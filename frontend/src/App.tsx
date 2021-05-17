@@ -1,5 +1,11 @@
+import Header from "./components/main/header/Header";
+
 function App() {
-	return <div className="App">Learn React</div>;
+	return (
+		<div>
+			<Header />
+		</div>
+	);
 }
 
 export default App;
