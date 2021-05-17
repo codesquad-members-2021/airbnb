@@ -31,7 +31,7 @@ public class AirbnbController {
     }
 
     @GetMapping("/search/rooms")
-    public ResponseEntity<Map<String, RoomResponse>> search(
+    public ResponseEntity<Map<String, List<RoomResponse>>> search(
             @RequestParam Long placeId,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkIn,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkOut,
@@ -40,9 +40,17 @@ public class AirbnbController {
             @RequestParam int adults,
             @RequestParam int children,
             @RequestParam int infants) {
-        Map<String, RoomResponse> filteredRooms = new HashMap<>();
-        RoomResponse room1 = new RoomResponse(4.73, "갯배도보5분/스카이씨리조트1316호", 114375);
-        filteredRooms.put("속초시", room1);
+        Map<String, List<RoomResponse>> filteredRooms = new HashMap<>();
+        RoomResponse room1 = new RoomResponse(4.23, "제인네집", 994375);
+        RoomResponse room2 = new RoomResponse(4.73, "갯배도보5분/스카이씨리조트1316호", 114375);
+        RoomResponse room3 = new RoomResponse(4.7, "Seoul Sunday House", 85000);
+        List<RoomResponse> incheon = new ArrayList<>();
+        List<RoomResponse> seoul = new ArrayList<>();
+        incheon.add(room1);
+        incheon.add(room2);
+        seoul.add(room3);
+        filteredRooms.put("서울", seoul);
+        filteredRooms.put("인천", incheon);
         return new ResponseEntity<>(filteredRooms, HttpStatus.OK);
     }
 
