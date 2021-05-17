@@ -36,9 +36,33 @@
 ## [브랜치 정책](https://github.com/ghojeong/baseball/wiki/%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%A0%95%EC%B1%85)
 `{development part}/{branch header}/{issue number}/{short description}`
 - be, ios 브랜치를 나눈다
-- PR 보낼때, 백엔드는 be 에서, 모바일은 ios 브랜치에서 PR 을 보낸다. -> codesquad-2021/ghojeong
+- PR 보낼때, 백엔드는 be 에서, 모바일은 ios 브랜치에서 PR 을 보낸다. -> codesquad-2021/team-20
+```
+development part : iOS, BE 등 소속 명시
+branch header : 아래의 header 참조
+issue number : Project의 Issue 넘버
+short description : 브랜치의 짧은 설명
+```
+
+- 예시) 
+  - iOS/Featrue/13/SideBar
+
+
+### 브랜치 나누기
+- 프론트랑 했을떄
+  - dev : 합치는거(배포)
+  - dev-BE : 
+  - def-FE  : front
+- --12 3 4 5
+- 1 3
+- 1 4
+- 1 5
+- 1 (3,4,5)
+
+
 
 <br><br>
+
 
 ## [커밋 메시지 정책](https://github.com/ghojeong/baseball/wiki/%EC%BB%A4%EB%B0%8B-%EB%A9%94%EC%8B%9C%EC%A7%80-%EC%A0%95%EC%B1%85)
 `{commit header}: {commit title} (#{issue number})`
