@@ -23,7 +23,7 @@
 - [모각코 회의실](https://zoom.us/j/7382123035?pwd=NG1TMjd5MFRPdWhwT21XUG03a0ZOQT09)
 - [iOS 수업 회의실](https://zoom.us/j/6239506083?pwd=YjZ4OUQxclhRWmZwdGZQdDdWamFWQT09)
 - [BE 수업 회의실](https://zoom.us/j/5996704860?pwd=NmxDSGJnaEl5YnB3Ky9RR09LNnlEQT09)
-
+https://gather.town/app/C1JEKQnsIvvB9zG0/codesquade
 <br><br>
 
 
