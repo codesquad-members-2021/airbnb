@@ -44,17 +44,60 @@
             </objects>
             <point key="canvasLocation" x="123" y="1226"/>
         </scene>
-        <!--View Controller-->
+        <!--검색-->
         <scene sceneID="Qwm-7q-s9H">
             <objects>
                 <viewController id="qp5-sO-miD" customClass="ViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mJ2-rE-c2h">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jOR-bQ-yQt">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ayq-bd-qlS">
+                                <rect key="frame" x="40" y="64" width="334" height="40"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hLg-8h-w9K">
+                                        <rect key="frame" x="76.5" y="8" width="181" height="24"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="k1R-sR-78B">
+                                                <rect key="frame" x="0.0" y="3" width="20" height="18"/>
+                                                <color key="tintColor" systemColor="systemRedColor"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="어디로 여행가세요?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQk-5p-aBt">
+                                                <rect key="frame" x="28" y="0.0" width="153" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="CA8-rB-sGb"/>
+                                    <constraint firstItem="hLg-8h-w9K" firstAttribute="centerY" secondItem="ayq-bd-qlS" secondAttribute="centerY" id="OCo-kC-AJt"/>
+                                    <constraint firstItem="hLg-8h-w9K" firstAttribute="centerX" secondItem="ayq-bd-qlS" secondAttribute="centerX" id="vk4-Fa-cVl"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="z0S-vr-11t"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="z0S-vr-11t" firstAttribute="trailing" secondItem="ayq-bd-qlS" secondAttribute="trailing" constant="40" id="LQH-pC-2Tc"/>
+                            <constraint firstItem="ayq-bd-qlS" firstAttribute="top" secondItem="z0S-vr-11t" secondAttribute="top" constant="20" id="OE9-Tv-5aP"/>
+                            <constraint firstItem="ayq-bd-qlS" firstAttribute="leading" secondItem="z0S-vr-11t" secondAttribute="leading" constant="40" id="mqz-l9-DUR"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="gl8-ub-9Sh"/>
+                    <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" id="UQP-Fm-Bu0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lhl-hL-5AI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -70,7 +113,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="deS-e4-AqC" kind="relationship" relationship="viewControllers" id="Q9E-M5-sMO"/>
+                        <segue destination="qp5-sO-miD" kind="relationship" relationship="viewControllers" id="25J-zb-hJr"/>
                         <segue destination="wJt-Pc-J7P" kind="relationship" relationship="viewControllers" id="lMh-Lr-C3O"/>
                         <segue destination="6X2-4X-di3" kind="relationship" relationship="viewControllers" id="MOJ-ZZ-AFy"/>
                     </connections>
@@ -79,25 +122,6 @@
             </objects>
             <point key="canvasLocation" x="-2071" y="175"/>
         </scene>
-        <!--검색-->
-        <scene sceneID="4ZA-Sc-dOG">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="deS-e4-AqC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" id="qy1-Iy-X8a"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BOB-bD-HBL">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="qp5-sO-miD" kind="relationship" relationship="rootViewController" id="knW-LL-qXe"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GhO-Pf-DJz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-786.95652173913049" y="-130.58035714285714"/>
-        </scene>
     </scenes>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>
@@ -105,6 +129,12 @@
         <image name="person" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
