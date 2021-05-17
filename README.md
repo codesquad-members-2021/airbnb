@@ -52,27 +52,33 @@ short description : 브랜치의 짧은 설명
 - 프론트랑 했을떄
   - dev : 합치는거(배포)
   - dev-BE : 
-  - def-FE  : front
-- --12 3 4 5
-- 1 3
-- 1 4
-- 1 5
-- 1 (3,4,5)
-
-
+  - dev-FE  : front
 
 <br><br>
 
 
-## [커밋 메시지 정책](https://github.com/ghojeong/baseball/wiki/%EC%BB%A4%EB%B0%8B-%EB%A9%94%EC%8B%9C%EC%A7%80-%EC%A0%95%EC%B1%85)
-`{commit header}: {commit title} (#{issue number})`
+## [커밋 메시지 정책]
+```
+{commit header}: {commit title}
+
+{commit message}
+```
+
+- Commit Header
+  - feat: 신규 기능 구현 : 사용자를 위한 신 기능; 새로운 빌드 관련 기능은 미포함
+  - fix: 버그나 에러 수정 : 사용자 버그 수정; 빌드 관련 버그 픽스 미포함
+  - refactor: 리팩토링 : Production Code ( 비즈니스 로직 ?)의 수정사항; 변수의 이름 변경 포함.
+  - style: 코드 스타일 수정 : 포멧, 잊어버린 세미 콜론 등; Production Code의 코드 변경이 없음.
+  - docs: 문서 작업 : 문서의 변경점
+  - test: 테스트 코드 : 빠진 테스트의 추가, 테스트의 리팩터링; Production Code의 변경 없음
+  - chore: 그외 기타 : updating grunt tasks etc; Production Code의 변경 없음
 
 <br><br>
 
 ## 리드미
-- BE :
-- FE : 
-- iOS : 
+- BE : ./BE/README.md
+- FE : ./FE/README.md
+- iOS : ./iOS/README.md
 
 <br><br>
 
