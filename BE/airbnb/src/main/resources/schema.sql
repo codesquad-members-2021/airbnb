@@ -1,0 +1,1 @@
+INSERT INTO `airbnb`.`user`(`username`, `email`, `role`, `join_date`) VALUES ('김시온' 'test@test.com', 'USER', (now()));
