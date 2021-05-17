@@ -11,19 +11,23 @@ class LocationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        addGesture()
+//        navigationController?.navigationItem.backBarButtonItem?.title = "뒤로"
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.hidesNavigationBarDuringPresentation = false
+        self.navigationItem.searchController = searchController
+        self.navigationItem.title = "숙소 찾기"
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func addGesture() {
+        let edgePenGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(popViewControllerOnScreenEdgeSwipe(sender:)))
+        edgePenGesture.edges = .left
+        view.addGestureRecognizer(edgePenGesture)
     }
-    */
-
+    
+    @objc func popViewControllerOnScreenEdgeSwipe(sender: UIScreenEdgePanGestureRecognizer) {
+        if sender.state == .recognized {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }
