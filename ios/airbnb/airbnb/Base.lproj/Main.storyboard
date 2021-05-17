@@ -44,7 +44,7 @@
             </objects>
             <point key="canvasLocation" x="123" y="1226"/>
         </scene>
-        <!--검색-->
+        <!--View Controller-->
         <scene sceneID="Qwm-7q-s9H">
             <objects>
                 <viewController id="qp5-sO-miD" customClass="ViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
@@ -57,7 +57,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ayq-bd-qlS">
-                                <rect key="frame" x="40" y="64" width="334" height="40"/>
+                                <rect key="frame" x="40" y="108" width="334" height="40"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hLg-8h-w9K">
                                         <rect key="frame" x="76.5" y="8" width="181" height="24"/>
@@ -75,7 +75,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <color key="backgroundColor" red="0.88011103869999996" green="0.88011103869999996" blue="0.88011103869999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="CA8-rB-sGb"/>
                                     <constraint firstItem="hLg-8h-w9K" firstAttribute="centerY" secondItem="ayq-bd-qlS" secondAttribute="centerY" id="OCo-kC-AJt"/>
@@ -97,29 +97,31 @@
                             <constraint firstItem="ayq-bd-qlS" firstAttribute="leading" secondItem="z0S-vr-11t" secondAttribute="leading" constant="40" id="mqz-l9-DUR"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" id="UQP-Fm-Bu0"/>
+                    <navigationItem key="navigationItem" id="GHZ-sw-TNJ"/>
                     <connections>
                         <outlet property="searchView" destination="ayq-bd-qlS" id="sE8-CK-XBd"/>
+                        <segue destination="exg-hB-AFd" kind="show" identifier="local" id="mKg-70-pzN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lhl-hL-5AI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="123.18840579710145" y="-130.58035714285714"/>
+            <point key="canvasLocation" x="1033.3333333333335" y="-130.58035714285714"/>
         </scene>
         <!--Location View Controller-->
         <scene sceneID="Jzi-ht-Dg4">
             <objects>
-                <viewController storyboardIdentifier="location" id="exg-hB-AFd" customClass="LocationViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="exg-hB-AFd" customClass="LocationViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V1Z-HZ-u6S">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="pqa-qT-S16"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="FYL-VQ-w9P"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pfI-IZ-1M0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="904" y="-131"/>
+            <point key="canvasLocation" x="1821.7391304347827" y="-131.25"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9wb-Pd-fxU">
@@ -131,7 +133,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="qp5-sO-miD" kind="relationship" relationship="viewControllers" id="25J-zb-hJr"/>
+                        <segue destination="3BE-eD-sYd" kind="relationship" relationship="viewControllers" id="25J-zb-hJr"/>
                         <segue destination="wJt-Pc-J7P" kind="relationship" relationship="viewControllers" id="lMh-Lr-C3O"/>
                         <segue destination="6X2-4X-di3" kind="relationship" relationship="viewControllers" id="MOJ-ZZ-AFy"/>
                     </connections>
@@ -140,6 +142,25 @@
             </objects>
             <point key="canvasLocation" x="-2071" y="175"/>
         </scene>
+        <!--검색-->
+        <scene sceneID="2YT-sX-fHf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3BE-eD-sYd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" id="UQP-Fm-Bu0"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gvo-dh-jqd">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qp5-sO-miD" kind="relationship" relationship="rootViewController" id="qID-L9-eCz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zje-0Y-71M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="123.18840579710145" y="-130.58035714285714"/>
+        </scene>
     </scenes>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>
@@ -147,9 +168,6 @@
         <image name="person" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

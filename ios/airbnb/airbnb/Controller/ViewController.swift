@@ -14,6 +14,7 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addTapGesture()
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     private func addTapGesture() {
@@ -22,8 +23,7 @@ final class ViewController: UIViewController {
     }
     
     @objc func tapped() {
-        guard let viewController = storyboard?.instantiateViewController(identifier: "location") as? LocationViewController else { return }
-        present(viewController, animated: true, completion: nil)
+        performSegue(withIdentifier: "local", sender: self)
     }
 
 }
