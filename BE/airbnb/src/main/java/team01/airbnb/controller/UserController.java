@@ -12,6 +12,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+import team01.airbnb.domain.KakaoProfile;
 import team01.airbnb.domain.OAuthToken;
 
 @Controller
@@ -75,6 +76,25 @@ public class UserController {
                 kakaoProfileRequest2,
                 String.class
         );
+
+        System.out.println(response2.getBody());
+
+        // Json 데이터를 자바 오브젝트로 처리
+        ObjectMapper objectMapper2 = new ObjectMapper();
+        KakaoProfile kakaoProfile = null;
+
+        try {
+            kakaoProfile = objectMapper2.readValue(response2.getBody(), KakaoProfile.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("카카오 아이디(번호) : " + kakaoProfile.getId());
+        System.out.println("카카오 닉네임 : " + kakaoProfile.getProperties().getNickname());
+        System.out.println("카카오 이메일 : " + kakaoProfile.getKakao_account().getEmail());
+
+        System.out.println("유저네임 : " + kakaoProfile.getProperties().getNickname());
+        System.out.println("이메일 : " + kakaoProfile.getKakao_account().getEmail());
 
         return response2.getBody();
     }
