@@ -1,6 +1,7 @@
 import GlobalStyle from "./GlobalStyle";
 import styled from "styled-components";
 import Header from "./Header/Header";
+import Footer from "./Footer/Footer"
 
 const Main = () => (
 	<>
@@ -8,6 +9,7 @@ const Main = () => (
 		<MainWrapper>
 			<HeroImg />
 			<Header />
+      <Footer />
 		</MainWrapper>
 	</>
 );
