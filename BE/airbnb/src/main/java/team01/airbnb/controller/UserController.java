@@ -14,9 +14,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import team01.airbnb.domain.KakaoProfile;
 import team01.airbnb.domain.OAuthToken;
+import team01.airbnb.domain.RoleType;
+import team01.airbnb.domain.User;
+import team01.airbnb.service.UserService;
 
 @Controller
 public class UserController {
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/auth/kakao/callback")
     public @ResponseBody
@@ -95,6 +104,15 @@ public class UserController {
 
         System.out.println("유저네임 : " + kakaoProfile.getProperties().getNickname());
         System.out.println("이메일 : " + kakaoProfile.getKakao_account().getEmail());
+
+        User user = User.builder()
+                .username(kakaoProfile.getProperties().getNickname())
+                .email(kakaoProfile.getKakao_account().getEmail())
+                .role(RoleType.USER)
+                .build();
+
+        int result = userService.join(user);
+        System.out.println("result : " + result);
 
         return response2.getBody();
     }

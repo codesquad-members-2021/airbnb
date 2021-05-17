@@ -1,10 +1,15 @@
 package team01.airbnb.domain;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 
 import java.sql.Timestamp;
 
-@Data
+@Builder
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class User {
 
     private Long id;
