@@ -98,10 +98,28 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" id="UQP-Fm-Bu0"/>
+                    <connections>
+                        <outlet property="searchView" destination="ayq-bd-qlS" id="sE8-CK-XBd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lhl-hL-5AI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="123.18840579710145" y="-130.58035714285714"/>
+        </scene>
+        <!--Location View Controller-->
+        <scene sceneID="Jzi-ht-Dg4">
+            <objects>
+                <viewController storyboardIdentifier="location" id="exg-hB-AFd" customClass="LocationViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="V1Z-HZ-u6S">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="pqa-qT-S16"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pfI-IZ-1M0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="904" y="-131"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9wb-Pd-fxU">
