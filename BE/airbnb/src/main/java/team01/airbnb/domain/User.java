@@ -1,14 +1,13 @@
 package team01.airbnb.domain;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Builder
+@Setter
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class User {
 
@@ -16,6 +15,6 @@ public class User {
     private String username;
     private String email;
     private RoleType role; // ADMIN, USER
-    private Timestamp createDate;
+    private Date createDate;
 
 }

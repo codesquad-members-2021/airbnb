@@ -105,15 +105,21 @@ public class UserController {
         System.out.println("유저네임 : " + kakaoProfile.getProperties().getNickname());
         System.out.println("이메일 : " + kakaoProfile.getKakao_account().getEmail());
 
-        User user = User.builder()
+        User kakaoUser = User.builder()
                 .username(kakaoProfile.getProperties().getNickname())
                 .email(kakaoProfile.getKakao_account().getEmail())
                 .role(RoleType.USER)
                 .build();
 
-        int result = userService.join(user);
-        System.out.println("result : " + result);
+        // 가입자 혹은 비가입자 체크해서 처리
+        User originUser = userService.findByUsername(kakaoUser.getUsername());
 
-        return response2.getBody();
+        if (originUser == null) {
+            userService.join(kakaoUser);
+        }
+
+        // todo: 로그인 처리
+
+        return "redirect:/";
     }
 }
