@@ -101,9 +101,10 @@
 		D4DDA63626524ECD00FE52FA /* airbnb */ = {
 			isa = PBXGroup;
 			children = (
-				D4DDA63726524ECD00FE52FA /* AppDelegate.swift */,
-				D4DDA63926524ECD00FE52FA /* SceneDelegate.swift */,
-				D4DDA63B26524ECD00FE52FA /* ViewController.swift */,
+				D4DDA6792653616900FE52FA /* LifeCycle */,
+				D4DDA6782653614600FE52FA /* Controller */,
+				D4DDA6772653613E00FE52FA /* View */,
+				D4DDA6762653613500FE52FA /* Model */,
 				D4DDA63D26524ECD00FE52FA /* Main.storyboard */,
 				D4DDA64026524ECE00FE52FA /* Assets.xcassets */,
 				D4DDA64226524ECE00FE52FA /* LaunchScreen.storyboard */,
@@ -128,6 +129,37 @@
 				D4DDA65B26524ECF00FE52FA /* Info.plist */,
 			);
 			path = airbnbUITests;
+			sourceTree = "<group>";
+		};
+		D4DDA6762653613500FE52FA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D4DDA6772653613E00FE52FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D4DDA6782653614600FE52FA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D4DDA63B26524ECD00FE52FA /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D4DDA6792653616900FE52FA /* LifeCycle */ = {
+			isa = PBXGroup;
+			children = (
+				D4DDA63726524ECD00FE52FA /* AppDelegate.swift */,
+				D4DDA63926524ECD00FE52FA /* SceneDelegate.swift */,
+			);
+			path = LifeCycle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
