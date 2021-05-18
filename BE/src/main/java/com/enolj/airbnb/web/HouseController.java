@@ -1,6 +1,7 @@
 package com.enolj.airbnb.web;
 
 import com.enolj.airbnb.service.HouseService;
+import com.enolj.airbnb.web.dto.SearchChargesRequestDTO;
 import com.enolj.airbnb.web.dto.SearchRequestDTO;
 import com.enolj.airbnb.web.dto.SearchResponseDTO;
 import org.slf4j.Logger;
@@ -25,5 +26,11 @@ public class HouseController {
     public List<SearchResponseDTO> searchHouses(@RequestBody SearchRequestDTO requestDTO) {
         logger.info("숙소 검색 요청");
         return houseService.searchHousesByCondition(requestDTO);
+    }
+
+    @GetMapping("/houses/charges")
+    public List<Integer> searchCharges(@RequestBody SearchChargesRequestDTO requestDTO) {
+        logger.info("범위 내 숙소 가격 요청");
+        return houseService.searchChargesByCondition(requestDTO);
     }
 }
