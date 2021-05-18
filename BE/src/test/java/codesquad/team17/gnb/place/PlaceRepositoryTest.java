@@ -37,7 +37,7 @@ class PlaceRepositoryTest {
     @Test
     void getPlace() {
         Place place = placeRepository.findById(1L).orElseThrow(() -> new NotFoundException("숙소 없음"));
-        assertThat(place).hasFieldOrPropertyWithValue("name", "서울호스텔");
+        assertThat(place).hasFieldOrPropertyWithValue("name", "코드스쿼드");
     }
 
     @Test
@@ -54,12 +54,23 @@ class PlaceRepositoryTest {
     @Test
     void findByStayPeriod() {
         softly.assertThat(placeRepository
-                .findAllByStayPeriod(LocalDate.of(2021, 5, 23), LocalDate.of(2021, 5, 25)))
+                .findAllByStayPeriod(LocalDate.of(2021, 5, 22), LocalDate.of(2021, 5, 25)))
                 .hasSize(2);
 
         softly.assertThat(placeRepository
                 .findAllByStayPeriod(LocalDate.of(2021, 5, 18), LocalDate.of(2021, 5, 25)))
                 .hasSize(1);
 
+        softly.assertThat(placeRepository
+                .findAllByStayPeriod(LocalDate.of(2021, 5, 17), LocalDate.of(2021, 5, 18)))
+                .hasSize(2);
+
+        softly.assertThat(placeRepository
+                .findAllByStayPeriod(LocalDate.of(2021, 5, 18), LocalDate.of(2021, 5, 21)))
+                .hasSize(1);
+
+        softly.assertThat(placeRepository
+                .findAllByStayPeriod(LocalDate.of(2021, 5, 17), LocalDate.of(2021, 5, 21)))
+                .hasSize(1);
     }
 }

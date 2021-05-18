@@ -1,8 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "room.findById",
-      "type": "java.lang.String",
-      "description": "Description for room.findById."
-  }
-] }

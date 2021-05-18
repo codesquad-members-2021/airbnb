@@ -14,13 +14,26 @@ import java.util.Optional;
 @Repository
 public class JdbcPlaceRepository implements PlaceRepository {
 
-    private static final String PLACE_FIND_BY_ID = "SELECT place_id, place_name, maximum_number_of_people FROM place WHERE place_id=:id";
-    private static final String PLACE_FIND_ALL = "SELECT place_id, place_name, maximum_number_of_people FROM place";
-    private static final RowMapper<Place> PLACE_ROWMAPPER = (rs, rowNum) -> new Place(
-            rs.getLong(1),
-            rs.getString(2),
-            rs.getInt(3)
-    );
+    private static final String PLACE_FIND_ALL = "SELECT * FROM place";
+    private static final String PLACE_FIND_BY_ID = "SELECT * FROM place WHERE place_id=:id";
+
+    private static final RowMapper<Place> PLACE_ROWMAPPER = (rs, rowNum) -> new Place.Builder()
+            .id(rs.getLong("place_id"))
+            .name(rs.getString("place_name"))
+            .location(new Location.Builder()
+                    .city(rs.getString("city"))
+                    .district(rs.getString("district"))
+                    .address1(rs.getString("address1"))
+                    .address2(rs.getString("address2"))
+                    .latitude(rs.getDouble("latitude"))
+                    .longitude(rs.getDouble("longitude"))
+                    .build())
+            .star(rs.getDouble("star"))
+            .hostId(rs.getLong("host_id"))
+            .maximumNumberOfPeople(rs.getInt("maximum_number_of_people"))
+            .description(rs.getString("description"))
+            .price(rs.getInt("price"))
+            .build();
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
