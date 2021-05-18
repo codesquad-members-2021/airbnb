@@ -12,7 +12,7 @@ const theme = {
     green: '#118917',
   },
   fontSize: {
-    larger: '2rem',
+    largest: '2rem',
     large: '1.125rem',
     medium: '1rem',
     small: '0.75rem',
