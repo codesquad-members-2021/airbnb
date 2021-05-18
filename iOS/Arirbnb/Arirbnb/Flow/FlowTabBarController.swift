@@ -13,16 +13,18 @@ class FlowTabBarController: UITabBarController {
         super.viewDidLoad()
     }
     
-    convenience init(_ mainSearchVC: MainSearchViewController, _ wishListVC: WishListViewController, _ myReservationVC: MyReserVationViewController) {
+    convenience init(_ searchSceneNavigationController: UINavigationController, _ wishListVC: WishListViewController, _ myReservationVC: MyReserVationViewController) {
         self.init()
+        
         let searchBarItem = UITabBarItem(title: "검색", image: UIImage(systemName: "magnifyingglass"), selectedImage: nil)
         let wishListBarItem = UITabBarItem(title: "위시리스트", image: UIImage(systemName: "heart"), selectedImage: nil)
         let reservationBarItem = UITabBarItem(title: "예약", image: UIImage(systemName: "person"), selectedImage: nil)
 
-        mainSearchVC.tabBarItem = searchBarItem
+        searchSceneNavigationController.tabBarItem = searchBarItem
         wishListVC.tabBarItem = wishListBarItem
         myReservationVC.tabBarItem = reservationBarItem
         
-        viewControllers = [mainSearchVC, wishListVC, myReservationVC]
+        viewControllers = [UINavigationController()]
+        viewControllers = [searchSceneNavigationController, wishListVC, myReservationVC]
     }
 }

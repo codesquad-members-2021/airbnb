@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailSearchViewController: UITabBarController {
+class DetailSearchViewController: UIViewController {
 
     static let storyboardName = "Main"
     static let storybardID = "DetailSearchViewController"
