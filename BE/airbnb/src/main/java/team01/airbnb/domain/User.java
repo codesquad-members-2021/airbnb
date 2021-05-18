@@ -17,4 +17,11 @@ public class User {
     private RoleType role; // ADMIN, USER
     private Date createDate;
 
+    public static User fromKakaoProfile(KakaoProfile kakaoProfile) {
+        return User.builder()
+                .username(kakaoProfile.getProperties().getNickname())
+                .email(kakaoProfile.getKakao_account().getEmail())
+                .role(RoleType.USER)
+                .build();
+    }
 }
