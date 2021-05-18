@@ -1,5 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
-
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import theme from './components/utils/theme';
+import Home from './components/Home';
 export const GlobalStyle = createGlobalStyle`
   *{
     padding:0; 
@@ -18,7 +19,10 @@ export const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <div className="App">
-      <GlobalStyle />
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Home />
+      </ThemeProvider>
     </div>
   );
 }

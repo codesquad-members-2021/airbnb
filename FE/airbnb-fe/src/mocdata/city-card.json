@@ -1,0 +1,50 @@
+[
+  {
+    "cityId": 1,
+    "name": "서울",
+    "distance": "차로 30분 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/71e23854-a3c7-491c-b715-6e86233a293f.jpg"
+  },
+  {
+    "cityId": 2,
+    "name": "의정부",
+    "distance": "차로 30분 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/558a403a-aeed-4829-83a6-c9b0ccf21866.jpg"
+  },
+  {
+    "cityId": 3,
+    "name": "서울",
+    "distance": "차로 30분 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/71e23854-a3c7-491c-b715-6e86233a293f.jpg"
+  },
+  {
+    "cityId": 4,
+    "name": "서울",
+    "distance": "차로 30분 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/71e23854-a3c7-491c-b715-6e86233a293f.jpg"
+  },
+  {
+    "cityId": 5,
+    "name": "서울",
+    "distance": "차로 30분 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/71e23854-a3c7-491c-b715-6e86233a293f.jpg"
+  },
+  {
+    "cityId": 6,
+    "name": "서울",
+    "distance": "차로 30분 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/71e23854-a3c7-491c-b715-6e86233a293f.jpg"
+  },
+  {
+    "cityId": 7,
+    "name": "서울",
+    "distance": "차로 30분 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/71e23854-a3c7-491c-b715-6e86233a293f.jpg"
+  },
+  {
+    "cityId": 8,
+    "name": "서울",
+    "distance": "차로 30분 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/71e23854-a3c7-491c-b715-6e86233a293f.jpg"
+  }
+]
