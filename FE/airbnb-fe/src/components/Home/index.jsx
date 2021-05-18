@@ -1,10 +1,12 @@
 import React from 'react';
-import RoomTour from './TourSection/RoomTour';
+import FooterSection from './FooterSection';
+import TourSection from './TourSection';
 
 const Home = () => {
   return (
     <div>
-      <RoomTour />
+      <TourSection />
+      <FooterSection />
     </div>
   );
 };
