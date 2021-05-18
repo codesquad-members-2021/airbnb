@@ -7,15 +7,25 @@
 
 import Foundation
 
+struct MainSearchViewModelAction {
+    let showDetailSearchView : () -> ()
+}
+
 class MainSearchViewModel {
-    var sectionPerItems: [[Int]]
+    private var sectionPerItems: [[Int]]
+    private var actions: MainSearchViewModelAction
     
-    init() {
+    init(actions: MainSearchViewModelAction) {
+        self.actions = actions
         self.sectionPerItems = [[0], [1, 2, 3, 4, 5], [6, 7, 8]]
     }
     
     func forApplyItems(sectionIndex: Int) -> [Int]{
         return sectionPerItems[sectionIndex]
+    }
+    
+    func showDetailSearchView() {
+        actions.showDetailSearchView()
     }
 }
 

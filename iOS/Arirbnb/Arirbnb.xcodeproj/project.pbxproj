@@ -28,6 +28,8 @@
 		FF5767D52653A99400F46A43 /* MyReserVationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767D42653A99400F46A43 /* MyReserVationViewModel.swift */; };
 		FF5767D82653A9EB00F46A43 /* WishListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767D72653A9EB00F46A43 /* WishListViewModel.swift */; };
 		FF5767DC2653AC3000F46A43 /* FlowTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767DB2653AC3000F46A43 /* FlowTabBarController.swift */; };
+		FF5767E32653B48700F46A43 /* DetailSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767E22653B48700F46A43 /* DetailSearchViewController.swift */; };
+		FF5767E52653B4C800F46A43 /* DetailSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767E42653B4C800F46A43 /* DetailSearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		FF5767D42653A99400F46A43 /* MyReserVationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReserVationViewModel.swift; sourceTree = "<group>"; };
 		FF5767D72653A9EB00F46A43 /* WishListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewModel.swift; sourceTree = "<group>"; };
 		FF5767DB2653AC3000F46A43 /* FlowTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTabBarController.swift; sourceTree = "<group>"; };
+		FF5767E22653B48700F46A43 /* DetailSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchViewController.swift; sourceTree = "<group>"; };
+		FF5767E42653B4C800F46A43 /* DetailSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,7 @@
 			children = (
 				FF5767D02653A5F700F46A43 /* Flow */,
 				FF5767A82652A1F500F46A43 /* MainSearchScene */,
+				FF5767DF2653B44500F46A43 /* DetailSearchScene */,
 				FF5767C82653A21D00F46A43 /* MyReservationScene */,
 				FF5767C72653A21500F46A43 /* WishListScene */,
 				FF5767BD2653654400F46A43 /* SharedView */,
@@ -287,6 +292,31 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		FF5767DF2653B44500F46A43 /* DetailSearchScene */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767E12653B47000F46A43 /* ViewModel */,
+				FF5767E02653B46B00F46A43 /* View */,
+			);
+			path = DetailSearchScene;
+			sourceTree = "<group>";
+		};
+		FF5767E02653B46B00F46A43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767E22653B48700F46A43 /* DetailSearchViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FF5767E12653B47000F46A43 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767E42653B4C800F46A43 /* DetailSearchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -421,6 +451,7 @@
 			files = (
 				FF5767CC2653A28D00F46A43 /* MyReserVationViewController.swift in Sources */,
 				FF5767DC2653AC3000F46A43 /* FlowTabBarController.swift in Sources */,
+				FF5767E32653B48700F46A43 /* DetailSearchViewController.swift in Sources */,
 				FF5767D22653A60800F46A43 /* AirbnbSceneFlowCoordinator.swift in Sources */,
 				FF5767D82653A9EB00F46A43 /* WishListViewModel.swift in Sources */,
 				FF5767CF2653A2AE00F46A43 /* WishListViewController.swift in Sources */,
@@ -429,6 +460,7 @@
 				FF5767672652490C00F46A43 /* MainSearchViewController.swift in Sources */,
 				FF5767632652490C00F46A43 /* AppDelegate.swift in Sources */,
 				FF5767D52653A99400F46A43 /* MyReserVationViewModel.swift in Sources */,
+				FF5767E52653B4C800F46A43 /* DetailSearchViewModel.swift in Sources */,
 				FF5767652652490C00F46A43 /* SceneDelegate.swift in Sources */,
 				FF5767B726533AC600F46A43 /* MainSearchViewModel.swift in Sources */,
 				FF5767BC26535AC200F46A43 /* HeroImageCell.swift in Sources */,

@@ -43,6 +43,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="kS1-Wu-oGl">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aML-Xi-JCg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tabBarController id="LPe-Fb-6h6" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gQh-iJ-bqt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -50,7 +51,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aML-Xi-JCg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1510" y="-139"/>
         </scene>
@@ -89,6 +89,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTappedSearchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XMJ-36-cxG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -110,6 +113,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-17" y="-415"/>
+        </scene>
+        <!--Detail Search View Controller-->
+        <scene sceneID="SDs-3Q-GAX">
+            <objects>
+                <viewController storyboardIdentifier="DetailSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6w4-Cz-qFn" customClass="DetailSearchViewController" customModule="Arirbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bch-vb-Qa3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5p-Ww-GGk">
+                                <rect key="frame" x="186" y="442.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="v1K-vX-Nyy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="S5p-Ww-GGk" firstAttribute="centerX" secondItem="v1K-vX-Nyy" secondAttribute="centerX" id="Ri6-cn-2kR"/>
+                            <constraint firstItem="S5p-Ww-GGk" firstAttribute="centerY" secondItem="v1K-vX-Nyy" secondAttribute="centerY" id="Tnd-qB-Nda"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F2N-9U-4yG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1143" y="-415"/>
         </scene>
     </scenes>
     <resources>

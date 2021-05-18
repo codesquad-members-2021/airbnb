@@ -12,7 +12,7 @@ class MainSearchViewController: UIViewController {
     static let storyboardName = "Main"
     static let storyboardID = "MainSearchViewController"
     
-    static func create(with viewModel: MainSearchViewModel = MainSearchViewModel()) -> MainSearchViewController {
+    static func create(with viewModel: MainSearchViewModel) -> MainSearchViewController {
         let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
         guard let vc = storyboard.instantiateViewController(identifier: storyboardID) as? MainSearchViewController else {
             return MainSearchViewController()
@@ -43,7 +43,7 @@ class MainSearchViewController: UIViewController {
         configureDataSource()
         applySnapshot()
     }
-    
+
     private func configureCollectionView(){
         mainCollectionView.delegate = self
         mainCollectionView.setCollectionViewLayout(createLayout(), animated: false)
@@ -58,6 +58,14 @@ class MainSearchViewController: UIViewController {
     }
 }
 
+//MARK: - Actions
+extension MainSearchViewController {
+    @IBAction func didTappedSearchButton(_ sender: Any) {
+        viewModel.showDetailSearchView()
+    }
+}
+
+//MARK: - Delegate
 extension MainSearchViewController: UICollectionViewDelegate {
     
 }
