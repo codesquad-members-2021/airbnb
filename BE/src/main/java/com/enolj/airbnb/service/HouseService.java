@@ -56,4 +56,15 @@ public class HouseService {
     public void changeWish(Long houseId) {
 
     }
+
+    public List<ReservationResponseDTO> getReservationList() {
+        List<ReservationResponseDTO> reservationResponseDTOList = new ArrayList<>();
+        reservationResponseDTOList.add(new ReservationResponseDTO(1L, "https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg",
+                "2021년 5월 17일 - 2021년 6월 4일", "서초구, 서울, 한국", "Specious and Comfortable cozy house #4"));
+        reservationResponseDTOList.add(new ReservationResponseDTO(2L, "https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg",
+                "2021년 5월 17일 - 2021년 6월 4일", "서초구, 서울, 한국", "Specious and Comfortable cozy house #4"));
+        reservationResponseDTOList.add(new ReservationResponseDTO(3L, "https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg",
+                "2021년 5월 17일 - 2021년 6월 4일", "서초구, 서울, 한국", "Specious and Comfortable cozy house #4"));
+        return reservationResponseDTOList;
+    }
 }

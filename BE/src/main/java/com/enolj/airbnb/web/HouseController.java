@@ -44,7 +44,7 @@ public class HouseController {
 
     @GetMapping("/wishes")
     public List<WishesResponseDTO> getWishes() {
-        logger.info("위시 리스트 요청");
+        logger.info("숙소 위시 리스트 요청");
         return houseService.getWishList();
     }
 
@@ -52,5 +52,11 @@ public class HouseController {
     public void changeWish(@PathVariable Long houseId) {
         logger.info("{}번 숙소의 위시 요청", houseId);
         houseService.changeWish(houseId);
+    }
+
+    @GetMapping("/reservation")
+    public List<ReservationResponseDTO> getReservationList() {
+        logger.info("숙소 예약 리스트 요청");
+        return houseService.getReservationList();
     }
 }
