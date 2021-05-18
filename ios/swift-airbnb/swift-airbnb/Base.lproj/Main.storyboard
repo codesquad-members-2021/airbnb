@@ -1,27 +1,251 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TyQ-Cq-eFx">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="swift_airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="swift_airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jv6-dU-A29">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="127"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="어디로 여행가세요?" translatesAutoresizingMaskIntoConstraints="NO" id="vhG-7z-4kA">
+                                        <rect key="frame" x="16" y="60" width="382" height="51"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="vhG-7z-4kA" firstAttribute="leading" secondItem="Jv6-dU-A29" secondAttribute="leading" constant="16" id="9xw-mI-uDC"/>
+                                    <constraint firstItem="vhG-7z-4kA" firstAttribute="top" secondItem="Jv6-dU-A29" secondAttribute="top" constant="60" id="T8E-TP-YW7"/>
+                                    <constraint firstAttribute="bottom" secondItem="vhG-7z-4kA" secondAttribute="bottom" constant="16" id="moB-en-TEG"/>
+                                    <constraint firstAttribute="trailing" secondItem="vhG-7z-4kA" secondAttribute="trailing" constant="16" id="wRz-27-7V5"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsV-lA-TQy">
+                                <rect key="frame" x="0.0" y="127" width="414" height="1173"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Nd-SI-qFd">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1170"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VO1-09-PDE">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                                                <color key="backgroundColor" red="0.80000000000000004" green="0.82745098039999998" blue="0.1764705882" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="VO1-09-PDE" secondAttribute="height" multiplier="1:1" id="3qc-0w-QCE"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="슬기로운 자연생활" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rJ-39-Ooz">
+                                                <rect key="frame" x="16" y="24" width="130" height="82"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="82" id="Cml-sP-xo6"/>
+                                                    <constraint firstAttribute="width" constant="130" id="X6R-Vh-9V4"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="34"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="에어비앤비가 엄선한 위시리스트를 만나보세요." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5Y-Up-bLK">
+                                                <rect key="frame" x="16" y="122" width="180" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="1hC-8a-x5O"/>
+                                                    <constraint firstAttribute="width" constant="180" id="sOh-wq-8UH"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GME-CD-Jbv">
+                                                <rect key="frame" x="16" y="182" width="165" height="38"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="38" id="K6m-A8-XoN"/>
+                                                    <constraint firstAttribute="width" constant="165" id="dBh-0y-CNU"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <state key="normal" title="여행 아이디어 얻기">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가까운 여행지 둘러보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHv-33-hnH">
+                                                <rect key="frame" x="16" y="454" width="382" height="28"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="0Sx-ie-JPc"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wBs-yb-723">
+                                                <rect key="frame" x="16" y="506" width="382" height="172"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="172" id="Lnb-ks-hHT"/>
+                                                </constraints>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="24" id="rP9-U2-1qo">
+                                                    <size key="itemSize" width="128" height="128"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TravelCollectionViewCell" id="Xqc-tg-N1A">
+                                                        <rect key="frame" x="0.0" y="22" width="128" height="128"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="imJ-nx-jey">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </collectionViewCellContentView>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="어디에서나,여행은 살아보는거야!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zo5-hZ-WAA">
+                                                <rect key="frame" x="16" y="718" width="176" height="56"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="56" id="RxX-Br-81a"/>
+                                                    <constraint firstAttribute="width" constant="176" id="uW1-yb-LsB"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wUN-gh-WyS">
+                                                <rect key="frame" x="16" y="802" width="382" height="368"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="368" id="eGo-3a-EFL"/>
+                                                </constraints>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FrC-4r-Vfk">
+                                                    <size key="itemSize" width="128" height="128"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecommendTravelCollectionViewCell" id="49d-fy-Vl2">
+                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="nTJ-vx-xUf">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </collectionViewCellContentView>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="wUN-gh-WyS" secondAttribute="bottom" id="6Cd-p5-Rc6"/>
+                                            <constraint firstItem="o5Y-Up-bLK" firstAttribute="top" secondItem="7rJ-39-Ooz" secondAttribute="bottom" constant="16" id="A88-cJ-KHS"/>
+                                            <constraint firstItem="GME-CD-Jbv" firstAttribute="leading" secondItem="0Nd-SI-qFd" secondAttribute="leading" constant="16" id="Am8-bf-8Oi"/>
+                                            <constraint firstItem="zo5-hZ-WAA" firstAttribute="leading" secondItem="0Nd-SI-qFd" secondAttribute="leading" constant="16" id="CXv-Db-FDJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="wUN-gh-WyS" secondAttribute="trailing" constant="16" id="GQL-KY-Mxd"/>
+                                            <constraint firstItem="VO1-09-PDE" firstAttribute="leading" secondItem="0Nd-SI-qFd" secondAttribute="leading" id="KU7-tX-WxB"/>
+                                            <constraint firstItem="wUN-gh-WyS" firstAttribute="top" secondItem="zo5-hZ-WAA" secondAttribute="bottom" constant="28" id="NaB-e5-9eC"/>
+                                            <constraint firstItem="7rJ-39-Ooz" firstAttribute="leading" secondItem="0Nd-SI-qFd" secondAttribute="leading" constant="16" id="Nhe-2y-j4x"/>
+                                            <constraint firstAttribute="trailing" secondItem="VO1-09-PDE" secondAttribute="trailing" id="PfN-Jm-0ZB"/>
+                                            <constraint firstItem="dHv-33-hnH" firstAttribute="top" secondItem="VO1-09-PDE" secondAttribute="bottom" constant="40" id="Phv-fh-KTZ"/>
+                                            <constraint firstItem="dHv-33-hnH" firstAttribute="leading" secondItem="0Nd-SI-qFd" secondAttribute="leading" constant="16" id="SX2-Xh-CAe"/>
+                                            <constraint firstItem="VO1-09-PDE" firstAttribute="top" secondItem="0Nd-SI-qFd" secondAttribute="top" id="Vt6-i0-iGL"/>
+                                            <constraint firstAttribute="trailing" secondItem="dHv-33-hnH" secondAttribute="trailing" constant="16" id="YcG-02-N5H"/>
+                                            <constraint firstItem="wUN-gh-WyS" firstAttribute="leading" secondItem="0Nd-SI-qFd" secondAttribute="leading" constant="16" id="Yoy-sK-4X7"/>
+                                            <constraint firstItem="zo5-hZ-WAA" firstAttribute="top" secondItem="wBs-yb-723" secondAttribute="bottom" constant="40" id="aZG-GI-h1b"/>
+                                            <constraint firstItem="GME-CD-Jbv" firstAttribute="top" secondItem="o5Y-Up-bLK" secondAttribute="bottom" constant="16" id="fI0-Sz-jTe"/>
+                                            <constraint firstItem="wBs-yb-723" firstAttribute="top" secondItem="dHv-33-hnH" secondAttribute="bottom" constant="24" id="mpq-Gi-3wE"/>
+                                            <constraint firstItem="wBs-yb-723" firstAttribute="leading" secondItem="0Nd-SI-qFd" secondAttribute="leading" constant="16" id="qcO-sh-sxQ"/>
+                                            <constraint firstItem="7rJ-39-Ooz" firstAttribute="top" secondItem="0Nd-SI-qFd" secondAttribute="top" constant="24" id="sGX-LC-qau"/>
+                                            <constraint firstAttribute="trailing" secondItem="wBs-yb-723" secondAttribute="trailing" constant="16" id="vNd-su-G8I"/>
+                                            <constraint firstItem="o5Y-Up-bLK" firstAttribute="leading" secondItem="0Nd-SI-qFd" secondAttribute="leading" constant="16" id="yTe-jU-o3H"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0Nd-SI-qFd" firstAttribute="top" secondItem="g00-C7-5Jz" secondAttribute="top" id="P5v-nF-qeH"/>
+                                    <constraint firstItem="0Nd-SI-qFd" firstAttribute="trailing" secondItem="g00-C7-5Jz" secondAttribute="trailing" id="Rl0-IF-oZi"/>
+                                    <constraint firstItem="0Nd-SI-qFd" firstAttribute="bottom" secondItem="g00-C7-5Jz" secondAttribute="bottom" id="XHB-BB-yI6"/>
+                                    <constraint firstItem="0Nd-SI-qFd" firstAttribute="leading" secondItem="g00-C7-5Jz" secondAttribute="leading" id="b3h-EP-8qD"/>
+                                    <constraint firstItem="0Nd-SI-qFd" firstAttribute="width" secondItem="QrN-hA-fw9" secondAttribute="width" id="j4T-jK-PhJ"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="g00-C7-5Jz"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="QrN-hA-fw9"/>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wsV-lA-TQy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1Xw-Zb-rXz"/>
+                            <constraint firstItem="Jv6-dU-A29" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="AFg-hV-lqj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Jv6-dU-A29" secondAttribute="trailing" id="Eoc-gO-otK"/>
+                            <constraint firstAttribute="bottom" secondItem="wsV-lA-TQy" secondAttribute="bottom" id="dgK-TC-kSy"/>
+                            <constraint firstItem="wsV-lA-TQy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hWn-Cg-jcs"/>
+                            <constraint firstItem="wsV-lA-TQy" firstAttribute="top" secondItem="Jv6-dU-A29" secondAttribute="bottom" id="mBr-Sx-2iE"/>
+                            <constraint firstItem="Jv6-dU-A29" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sYJ-O1-MGk"/>
+                        </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="NZV-lh-oOf"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <size key="freeformSize" width="414" height="1300"/>
+                    <connections>
+                        <outlet property="recommendTravelCollectionView" destination="wUN-gh-WyS" id="0QJ-zR-eB3"/>
+                        <outlet property="travelCollectionView" destination="wBs-yb-723" id="fIB-ok-tLt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="40"/>
+            <point key="canvasLocation" x="1042.0289855072465" y="39.508928571428569"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="H23-Xe-Gk0">
+            <objects>
+                <viewController id="2Ea-rI-jh3" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6tI-Qc-lM9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="MlD-N4-5am"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WKm-ht-3dm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2369" y="-213"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Kgv-ab-Efg">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ak-hk-Sxb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="TyQ-Cq-eFx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gnY-xJ-D0C">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="R7u-fR-mwN"/>
+                    </connections>
+                </tabBarController>
+            </objects>
+            <point key="canvasLocation" x="133.33333333333334" y="39.508928571428569"/>
         </scene>
     </scenes>
     <resources>

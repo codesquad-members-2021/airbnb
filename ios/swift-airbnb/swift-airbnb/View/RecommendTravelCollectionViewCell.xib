@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecommendTravelCollectionViewCell" id="gTV-IL-0wX" customClass="RecommendTravelCollectionViewCell" customModule="swift_airbnb" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="253" height="368"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="253" height="368"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpK-g1-hJ6">
+                        <rect key="frame" x="0.0" y="0.0" width="253" height="368"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d2x-XA-eCv">
+                                <rect key="frame" x="0.0" y="0.0" width="253" height="308"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="308" id="r96-5U-4L6"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="자연생활을 만끽할 수 있는 숙소" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5d3-OK-WhQ">
+                                <rect key="frame" x="0.0" y="324" width="150" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="EtS-oX-QyT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5d3-OK-WhQ" firstAttribute="top" secondItem="d2x-XA-eCv" secondAttribute="bottom" constant="16" id="75h-P2-QP6"/>
+                            <constraint firstAttribute="width" constant="253" id="C9s-9d-pNI"/>
+                            <constraint firstAttribute="height" constant="368" id="Gjg-4U-gjH"/>
+                            <constraint firstAttribute="trailing" secondItem="d2x-XA-eCv" secondAttribute="trailing" id="OxJ-jJ-5N2"/>
+                            <constraint firstItem="5d3-OK-WhQ" firstAttribute="leading" secondItem="dpK-g1-hJ6" secondAttribute="leading" id="PdH-16-JeR"/>
+                            <constraint firstItem="d2x-XA-eCv" firstAttribute="top" secondItem="dpK-g1-hJ6" secondAttribute="top" id="S0z-An-8pI"/>
+                            <constraint firstItem="d2x-XA-eCv" firstAttribute="leading" secondItem="dpK-g1-hJ6" secondAttribute="leading" id="pa8-xf-5ZU"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="dpK-g1-hJ6" secondAttribute="trailing" id="dK1-Jh-zHg"/>
+                <constraint firstAttribute="bottom" secondItem="dpK-g1-hJ6" secondAttribute="bottom" id="ddZ-ek-Nhj"/>
+                <constraint firstItem="dpK-g1-hJ6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="qbW-Wd-Jm4"/>
+                <constraint firstItem="dpK-g1-hJ6" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="r4c-oy-qea"/>
+            </constraints>
+            <connections>
+                <outlet property="descriptionLabel" destination="5d3-OK-WhQ" id="ItZ-Jh-e66"/>
+                <outlet property="recommendTravelImageView" destination="d2x-XA-eCv" id="wIW-g5-ypB"/>
+            </connections>
+            <point key="canvasLocation" x="-22.463768115942031" y="87.723214285714278"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
