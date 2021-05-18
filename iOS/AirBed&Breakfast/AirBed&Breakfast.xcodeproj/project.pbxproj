@@ -82,13 +82,11 @@
 		8843A7BB26523EA80068B4E3 /* AirBed&Breakfast */ = {
 			isa = PBXGroup;
 			children = (
-				8843A7BC26523EA80068B4E3 /* AppDelegate.swift */,
-				8843A7BE26523EA80068B4E3 /* SceneDelegate.swift */,
-				8843A7C026523EA80068B4E3 /* ViewController.swift */,
-				8843A7C226523EA80068B4E3 /* Main.storyboard */,
-				8843A7C526523EAA0068B4E3 /* Assets.xcassets */,
-				8843A7C726523EAA0068B4E3 /* LaunchScreen.storyboard */,
-				8843A7CA26523EAA0068B4E3 /* Info.plist */,
+				885CEB3826535DF100B3291F /* Application */,
+				885CEB3926535E3000B3291F /* Data */,
+				885CEB3A26535E4A00B3291F /* Domain */,
+				885CEB3B26535E5800B3291F /* Presentation */,
+				885CEB3E26535EA100B3291F /* Resources */,
 			);
 			path = "AirBed&Breakfast";
 			sourceTree = "<group>";
@@ -100,6 +98,64 @@
 				8843A7D526523EAA0068B4E3 /* Info.plist */,
 			);
 			path = "AirBed&BreakfastTests";
+			sourceTree = "<group>";
+		};
+		885CEB3826535DF100B3291F /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				8843A7BC26523EA80068B4E3 /* AppDelegate.swift */,
+				8843A7BE26523EA80068B4E3 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		885CEB3926535E3000B3291F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		885CEB3A26535E4A00B3291F /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		885CEB3B26535E5800B3291F /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				885CEB3C26535E7D00B3291F /* View */,
+				885CEB3D26535E8A00B3291F /* Controller */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		885CEB3C26535E7D00B3291F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8843A7C226523EA80068B4E3 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		885CEB3D26535E8A00B3291F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8843A7C026523EA80068B4E3 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		885CEB3E26535EA100B3291F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8843A7C526523EAA0068B4E3 /* Assets.xcassets */,
+				8843A7C726523EAA0068B4E3 /* LaunchScreen.storyboard */,
+				8843A7CA26523EAA0068B4E3 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
