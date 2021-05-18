@@ -3,17 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		5C6D74CF4FEC1ED21AB67A15 /* Pods_Airbnb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E7A5ACE26BDD8E29A55207 /* Pods_Airbnb.framework */; };
 		71A67D2526539B6A00FC6689 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D2426539B6A00FC6689 /* AppDelegate.swift */; };
 		71A67D2726539B6A00FC6689 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D2626539B6A00FC6689 /* SceneDelegate.swift */; };
-		71A67D2926539B6A00FC6689 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D2826539B6A00FC6689 /* ViewController.swift */; };
+		71A67D2926539B6A00FC6689 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D2826539B6A00FC6689 /* MainViewController.swift */; };
 		71A67D2C26539B6A00FC6689 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71A67D2A26539B6A00FC6689 /* Main.storyboard */; };
 		71A67D2E26539B6B00FC6689 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71A67D2D26539B6B00FC6689 /* Assets.xcassets */; };
 		71A67D3126539B6B00FC6689 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71A67D2F26539B6B00FC6689 /* LaunchScreen.storyboard */; };
+		71A67D3E2653A92100FC6689 /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D3D2653A92100FC6689 /* MainCell.swift */; };
+		71A67D422653AA9800FC6689 /* MainViewInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D412653AA9800FC6689 /* MainViewInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,11 +24,13 @@
 		71A67D2126539B6A00FC6689 /* Airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71A67D2426539B6A00FC6689 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71A67D2626539B6A00FC6689 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		71A67D2826539B6A00FC6689 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		71A67D2826539B6A00FC6689 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		71A67D2B26539B6A00FC6689 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		71A67D2D26539B6B00FC6689 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71A67D3026539B6B00FC6689 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71A67D3226539B6B00FC6689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71A67D3D2653A92100FC6689 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
+		71A67D412653AA9800FC6689 /* MainViewInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewInfo.swift; sourceTree = "<group>"; };
 		CCB98BA9F1F4A561BA5FBBA8 /* Pods-Airbnb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airbnb.debug.xcconfig"; path = "Target Support Files/Pods-Airbnb/Pods-Airbnb.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +75,7 @@
 		71A67D2326539B6A00FC6689 /* Airbnb */ = {
 			isa = PBXGroup;
 			children = (
+				71A67D3F2653AA8600FC6689 /* Data */,
 				71A67D3826539BA900FC6689 /* Presenter */,
 				71A67D2D26539B6B00FC6689 /* Assets.xcassets */,
 				71A67D3226539B6B00FC6689 /* Info.plist */,
@@ -81,6 +86,7 @@
 		71A67D3826539BA900FC6689 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				71A67D3C2653A90E00FC6689 /* View */,
 				71A67D3B26539BCA00FC6689 /* Controller */,
 				71A67D3A26539BBA00FC6689 /* Storyboard */,
 				71A67D3926539BB100FC6689 /* Supports */,
@@ -109,9 +115,33 @@
 		71A67D3B26539BCA00FC6689 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				71A67D2826539B6A00FC6689 /* ViewController.swift */,
+				71A67D2826539B6A00FC6689 /* MainViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		71A67D3C2653A90E00FC6689 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				71A67D3D2653A92100FC6689 /* MainCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		71A67D3F2653AA8600FC6689 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				71A67D402653AA8A00FC6689 /* Model */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		71A67D402653AA8A00FC6689 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				71A67D412653AA9800FC6689 /* MainViewInfo.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B1377F24FC4030DA7991B7AB /* Pods */ = {
@@ -120,7 +150,6 @@
 				CCB98BA9F1F4A561BA5FBBA8 /* Pods-Airbnb.debug.xcconfig */,
 				6BCF80A292B8920BE3DCDDD7 /* Pods-Airbnb.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -238,8 +267,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71A67D2926539B6A00FC6689 /* ViewController.swift in Sources */,
+				71A67D2926539B6A00FC6689 /* MainViewController.swift in Sources */,
 				71A67D2526539B6A00FC6689 /* AppDelegate.swift in Sources */,
+				71A67D422653AA9800FC6689 /* MainViewInfo.swift in Sources */,
+				71A67D3E2653A92100FC6689 /* MainCell.swift in Sources */,
 				71A67D2726539B6A00FC6689 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
