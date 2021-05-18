@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import NearTravel from "./NearTravel";
 import AnyWhere from "./AnyWhere"
+import Floor from "./Floor"
 
 const Footer = () => (
 	<FooterWrapper>
 		<NearTravel />
 		<AnyWhere />
+		<Floor />
 	</FooterWrapper>
 );
 
