@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Period from "./Period";
+import Price from "./Price";
 import SearchButton from "./SearchButton";
 
 const SearchBar = () => (
@@ -7,6 +8,7 @@ const SearchBar = () => (
 		<Period />
 		<SearchButton />
 		<Line />
+		<Price />
 	</SearchBarWrapper>
 );
 
@@ -27,6 +29,7 @@ const Line = styled.div`
 	width: 1px;
 	height: 44px;
 	background: #e0e0e0;
+	margin-left: 24px;
 `;
 
 export default SearchBar;

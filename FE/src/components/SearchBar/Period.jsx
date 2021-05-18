@@ -22,7 +22,7 @@ const CheckOut = () => (
 
 const PeriodWrapper = styled.div`
 	position: relative;
-	width: 361px;
+	width: 297px;
 	height: 76px;
 	display: flex;
 	align-items: center;
