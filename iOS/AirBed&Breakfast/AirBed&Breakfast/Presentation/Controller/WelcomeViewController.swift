@@ -7,10 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class WelcomeViewController: UIViewController {
+    @IBOutlet weak var heroImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    @IBAction func searchButton(_ sender: UIButton) {
+        print("BAM!")
     }
     
 }
