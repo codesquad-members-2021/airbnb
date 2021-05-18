@@ -51,6 +51,7 @@ extension SearchViewController {
         searchResultCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         searchResultCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         searchResultCollectionView.backgroundColor = .systemTeal
+        searchResultCollectionView.delegate = self
         view.addSubview(searchResultCollectionView)
     }
     
@@ -73,5 +74,10 @@ extension SearchViewController {
         snapshot.appendItems(myDesArray)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
-    
+}
+
+extension SearchViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("\(indexPath) cell has been clicked")
+    }
 }
