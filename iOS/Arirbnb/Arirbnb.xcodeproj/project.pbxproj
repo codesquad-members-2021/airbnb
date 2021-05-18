@@ -22,6 +22,8 @@
 		FF5767B726533AC600F46A43 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767B626533AC600F46A43 /* MainViewModel.swift */; };
 		FF5767BC26535AC200F46A43 /* HeroImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767BB26535AC200F46A43 /* HeroImageCell.swift */; };
 		FF5767BF2653655400F46A43 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767BE2653655400F46A43 /* HeaderView.swift */; };
+		FF5767CC2653A28D00F46A43 /* MyReserVationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767CB2653A28D00F46A43 /* MyReserVationViewController.swift */; };
+		FF5767CF2653A2AE00F46A43 /* WishListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767CE2653A2AE00F46A43 /* WishListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		FF5767B626533AC600F46A43 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		FF5767BB26535AC200F46A43 /* HeroImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroImageCell.swift; sourceTree = "<group>"; };
 		FF5767BE2653655400F46A43 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		FF5767CB2653A28D00F46A43 /* MyReserVationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReserVationViewController.swift; sourceTree = "<group>"; };
+		FF5767CE2653A2AE00F46A43 /* WishListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,10 +117,12 @@
 		FF5767612652490C00F46A43 /* Arirbnb */ = {
 			isa = PBXGroup;
 			children = (
+				FF5767A82652A1F500F46A43 /* MainScene */,
+				FF5767C82653A21D00F46A43 /* MyReservationScene */,
+				FF5767C72653A21500F46A43 /* WishListScene */,
 				FF5767BD2653654400F46A43 /* SharedView */,
 				FF5767BA26535A3F00F46A43 /* Delegate */,
 				FF5767B926535A1600F46A43 /* SupportingFiles */,
-				FF5767A82652A1F500F46A43 /* MainScene */,
 			);
 			path = Arirbnb;
 			sourceTree = "<group>";
@@ -211,6 +217,38 @@
 				FF5767BE2653655400F46A43 /* HeaderView.swift */,
 			);
 			path = SharedView;
+			sourceTree = "<group>";
+		};
+		FF5767C72653A21500F46A43 /* WishListScene */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767CD2653A2A100F46A43 /* View */,
+			);
+			path = WishListScene;
+			sourceTree = "<group>";
+		};
+		FF5767C82653A21D00F46A43 /* MyReservationScene */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767CA2653A25E00F46A43 /* View */,
+			);
+			path = MyReservationScene;
+			sourceTree = "<group>";
+		};
+		FF5767CA2653A25E00F46A43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767CB2653A28D00F46A43 /* MyReserVationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FF5767CD2653A2A100F46A43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767CE2653A2AE00F46A43 /* WishListViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,6 +383,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF5767CC2653A28D00F46A43 /* MyReserVationViewController.swift in Sources */,
+				FF5767CF2653A2AE00F46A43 /* WishListViewController.swift in Sources */,
 				FF5767B42653311E00F46A43 /* ThemeDestinationsCell.swift in Sources */,
 				FF5767A22652935F00F46A43 /* AdjacentDestinationsCell.swift in Sources */,
 				FF5767672652490C00F46A43 /* MainViewController.swift in Sources */,
