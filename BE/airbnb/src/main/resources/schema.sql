@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`user` (
     `role` VARCHAR(5) NOT NULL,
     `join_date` DATETIME NOT NULL DEFAULT now(),
     PRIMARY KEY(`id`)
-    ) ENGINE = InnoDB;
+) ENGINE = InnoDB;
