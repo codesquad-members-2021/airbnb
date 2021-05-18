@@ -41,4 +41,10 @@ public class HouseController {
         logger.info("{}번 숙소 예약 요청", houseId);
         houseService.makeReservation(requestDTO);
     }
+
+    @GetMapping("/wishes")
+    public List<WishesResponseDTO> getWishes() {
+        logger.info("위시 리스트 요청");
+        return houseService.getWishList();
+    }
 }

@@ -2,7 +2,7 @@ package com.enolj.airbnb.web.dto;
 
 public class SearchResponseDTO {
 
-    private final long id;
+    private final Long id;
     private final String image;
     private final Location location;
     private final String name;
@@ -11,8 +11,9 @@ public class SearchResponseDTO {
     private final int review;
     private final String description;
     private final String option;
+    private final boolean wish;
 
-    public SearchResponseDTO(long id, String image, Location location, String name, int charge, double grade, int review, String description, String option) {
+    public SearchResponseDTO(Long id, String image, Location location, String name, int charge, double grade, int review, String description, String option, boolean wish) {
         this.id = id;
         this.image = image;
         this.location = location;
@@ -22,9 +23,10 @@ public class SearchResponseDTO {
         this.review = review;
         this.description = description;
         this.option = option;
+        this.wish = wish;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -58,5 +60,9 @@ public class SearchResponseDTO {
 
     public String getOption() {
         return option;
+    }
+
+    public boolean isWish() {
+        return wish;
     }
 }
