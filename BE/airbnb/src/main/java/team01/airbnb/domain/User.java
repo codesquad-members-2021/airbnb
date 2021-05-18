@@ -1,6 +1,8 @@
 package team01.airbnb.domain;
 
 import lombok.*;
+import team01.airbnb.dto.KakaoProfile;
+import team01.airbnb.dto.RoleType;
 
 import java.util.Date;
 

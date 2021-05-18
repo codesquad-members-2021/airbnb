@@ -13,9 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import team01.airbnb.domain.KakaoProfile;
-import team01.airbnb.domain.OAuthToken;
-import team01.airbnb.domain.RoleType;
+import team01.airbnb.dto.KakaoLogout;
+import team01.airbnb.dto.KakaoProfile;
+import team01.airbnb.dto.OAuthToken;
+import team01.airbnb.dto.RoleType;
 import team01.airbnb.domain.User;
 import team01.airbnb.utils.KakaoLoginUtils;
 
@@ -117,5 +118,26 @@ public class UserService {
         System.out.println("카카오 닉네임 : " + kakaoProfile.getProperties().getNickname());
         System.out.println("카카오 이메일 : " + kakaoProfile.getKakao_account().getEmail());
         return kakaoProfile;
+    }
+
+    public void kakaoLogout(String accessToken) {
+        RestTemplate rt = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + accessToken);
+        HttpEntity<MultiValueMap<String, String>> kakaoLogoutRequest = new HttpEntity<>(headers);
+        ResponseEntity<String> response = rt.exchange(
+                "https://kapi.kakao.com/v1/user/logout",
+                HttpMethod.POST,
+                kakaoLogoutRequest,
+                String.class
+        );
+        ObjectMapper objectMapper = new ObjectMapper();
+        KakaoLogout kakaoLogout = null;
+        try {
+            kakaoLogout = objectMapper.readValue(response.getBody(), KakaoLogout.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        System.out.println("카카오 id 번호 : " + kakaoLogout.getId());
     }
 }

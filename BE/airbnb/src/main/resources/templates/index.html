@@ -1,16 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Team01</title>
-</head>
-<body>
+{{> layout/header}}
 
 에어비엔비 클론 프로젝트 1팀 서버가 배포 중입니다. <br/>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            {{#username}}
+            Logged in as: <span id="user">{{username}}</span>
+            <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            <a href="#" class="btn btn-success active" role="button">숙소 목록</a>
+            <a href="#" class="btn btn-secondary active" role="button">회원 목록</a>
+            {{/username}}
+            {{^username}}
+            <a href="Https://kauth.kakao.com/oauth/authorize?client_id={{kakao-client-id}}&redirect_uri={{kakao-redirect-uri}}&response_type=code"><img src="/image/kakao_login_button.png"/></a>
+            {{/username}}
+        </div>
+    </div>
+</div>
 
-<a href="Https://kauth.kakao.com/oauth/authorize?client_id={{kakao-client-id}}
-&redirect_uri={{kakao-redirect-uri}}
-&response_type=code"><img src="/image/kakao_login_button.png" /></a>
-
-</body>
-</html>
+{{> layout/footer}}

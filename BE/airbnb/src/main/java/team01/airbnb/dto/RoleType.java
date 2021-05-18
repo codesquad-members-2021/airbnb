@@ -1,4 +1,4 @@
-package team01.airbnb.domain;
+package team01.airbnb.dto;
 
 public enum RoleType {
     ADMIN, USER
