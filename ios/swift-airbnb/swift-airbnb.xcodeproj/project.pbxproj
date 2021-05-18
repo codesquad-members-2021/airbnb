@@ -16,6 +16,8 @@
 		BDFD8B1B26527A05006CA75A /* swift_airbnbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFD8B1A26527A05006CA75A /* swift_airbnbTests.swift */; };
 		BDFD8B2626527A05006CA75A /* swift_airbnbUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFD8B2526527A05006CA75A /* swift_airbnbUITests.swift */; };
 		BDFD8B35265280C1006CA75A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BDFD8B34265280C1006CA75A /* Alamofire */; };
+		BDFD8B3C265285A1006CA75A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFD8B3B265285A1006CA75A /* NetworkManager.swift */; };
+		BDFD8B3E26528779006CA75A /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFD8B3D26528779006CA75A /* DTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		BDFD8B2126527A05006CA75A /* swift-airbnbUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "swift-airbnbUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDFD8B2526527A05006CA75A /* swift_airbnbUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swift_airbnbUITests.swift; sourceTree = "<group>"; };
 		BDFD8B2726527A05006CA75A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BDFD8B3B265285A1006CA75A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BDFD8B3D26528779006CA75A /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 		BDFD8B0226527A04006CA75A /* swift-airbnb */ = {
 			isa = PBXGroup;
 			children = (
+				BDFD8B38265284ED006CA75A /* Network */,
 				BDFD8B0326527A04006CA75A /* AppDelegate.swift */,
 				BDFD8B0526527A04006CA75A /* SceneDelegate.swift */,
 				BDFD8B0726527A04006CA75A /* ViewController.swift */,
@@ -128,6 +133,23 @@
 				BDFD8B2726527A05006CA75A /* Info.plist */,
 			);
 			path = "swift-airbnbUITests";
+			sourceTree = "<group>";
+		};
+		BDFD8B38265284ED006CA75A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BDFD8B3B265285A1006CA75A /* NetworkManager.swift */,
+				BDFD8B39265284F8006CA75A /* DTO */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		BDFD8B39265284F8006CA75A /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				BDFD8B3D26528779006CA75A /* DTO.swift */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,7 +290,9 @@
 			files = (
 				BDFD8B0826527A04006CA75A /* ViewController.swift in Sources */,
 				BDFD8B0426527A04006CA75A /* AppDelegate.swift in Sources */,
+				BDFD8B3C265285A1006CA75A /* NetworkManager.swift in Sources */,
 				BDFD8B0626527A04006CA75A /* SceneDelegate.swift in Sources */,
+				BDFD8B3E26528779006CA75A /* DTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
