@@ -1,9 +1,7 @@
 package com.enolj.airbnb.service;
 
-import com.enolj.airbnb.web.dto.Location;
-import com.enolj.airbnb.web.dto.SearchChargesRequestDTO;
-import com.enolj.airbnb.web.dto.SearchRequestDTO;
-import com.enolj.airbnb.web.dto.SearchResponseDTO;
+import com.enolj.airbnb.web.ReservationInfoResponseDTO;
+import com.enolj.airbnb.web.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -37,5 +35,9 @@ public class HouseService {
         charges.add(10000);
         charges.add(100000);
         return charges;
+    }
+
+    public ReservationInfoResponseDTO getReservationInfo(Long houseId) {
+        return new ReservationInfoResponseDTO(71466, new Fee(25996, 182468), 4);
     }
 }

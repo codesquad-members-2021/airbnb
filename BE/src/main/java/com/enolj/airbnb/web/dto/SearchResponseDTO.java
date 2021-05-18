@@ -2,15 +2,15 @@ package com.enolj.airbnb.web.dto;
 
 public class SearchResponseDTO {
 
-    private long id;
-    private String image;
-    private Location location;
-    private String name;
-    private int charge;
-    private double grade;
-    private int review;
-    private String description;
-    private String option;
+    private final long id;
+    private final String image;
+    private final Location location;
+    private final String name;
+    private final int charge;
+    private final double grade;
+    private final int review;
+    private final String description;
+    private final String option;
 
     public SearchResponseDTO(long id, String image, Location location, String name, int charge, double grade, int review, String description, String option) {
         this.id = id;
