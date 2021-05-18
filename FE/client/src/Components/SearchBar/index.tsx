@@ -22,6 +22,7 @@ const SearchBar = () => {
 const SearchBarWrapper = styled.div`
   display:flex;
   width: 70%;
+  min-width: 35rem;
   height: 6rem;
   margin: 2rem auto ;
   background: #fff;

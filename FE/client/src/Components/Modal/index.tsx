@@ -11,6 +11,7 @@ const Modal = () => {
 
 const ModalWrapper = styled.div`
    width: 70%;
+   min-width: 35rem;
    margin:auto;
 `;
 
