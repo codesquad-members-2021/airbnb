@@ -14,12 +14,12 @@ class SearchViewController: UIViewController {
         case main
     }
     
-    @IBOutlet weak var searchResultCollectionView: UICollectionView!
-    
+    var searchResultCollectionView: UICollectionView! = nil
     var dataSource: UICollectionViewDiffableDataSource<Section, String>! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureHierarchy()
         configureDataSource()
     }
 
@@ -28,9 +28,33 @@ class SearchViewController: UIViewController {
     
     @IBAction func navigationBarClearButtonPressed(_ sender: UIBarButtonItem) {
     }
+}
+
+extension SearchViewController {
+    private func createLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8),
+                                             heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalWidth(0.2))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                         subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+    }
+    
+    private func configureHierarchy() {
+        searchResultCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        searchResultCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        searchResultCollectionView.backgroundColor = .systemTeal
+        view.addSubview(searchResultCollectionView)
+    }
     
     private func configureDataSource() {
-        
         let cellRegistration = UICollectionView.CellRegistration<SearchResultCollectionViewCell, String>.init(cellNib: SearchResultCollectionViewCell.nib) { (cell, indexPath, item) in
             cell.destinationNameLabel.text = item
             cell.distanceLabel.text = "걸어서 100분"
