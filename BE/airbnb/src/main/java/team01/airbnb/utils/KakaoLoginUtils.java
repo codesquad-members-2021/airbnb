@@ -12,7 +12,27 @@ public class KakaoLoginUtils {
 
     private final Environment environment;
 
-    public String getProperty(String key) {
-        return environment.getProperty(key);
+    public String getGrantType() {
+        return environment.getProperty("kakao-grant-type");
+    }
+
+    public String getClientId() {
+        return environment.getProperty("kakao-client-id");
+    }
+
+    public String getRedirectUri() {
+        return environment.getProperty("kakao-redirect-uri");
+    }
+
+    public String getCodeUri() {
+        return environment.getProperty("kakao-code-uri");
+    }
+
+    public String getTokenUri() {
+        return environment.getProperty("kakao-token-uri");
+    }
+
+    public String getProfileUri() {
+        return environment.getProperty("kakao-profile-uri");
     }
 }

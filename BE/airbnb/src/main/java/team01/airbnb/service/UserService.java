@@ -64,15 +64,15 @@ public class UserService {
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
         // bodyBody 오브젝트 생성
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.add("grant_type", kakaoLoginUtils.getProperty("kakao-grant-type"));
-        params.add("client_id", kakaoLoginUtils.getProperty("kakao-client-id"));
-        params.add("redirect_uri", kakaoLoginUtils.getProperty("kakao-redirect-uri"));
+        params.add("grant_type", kakaoLoginUtils.getGrantType());
+        params.add("client_id", kakaoLoginUtils.getClientId());
+        params.add("redirect_uri", kakaoLoginUtils.getRedirectUri());
         params.add("code", code);
         // HttpHeader와 HttpBody를 하나의 오브젝트에 담기
         HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<>(params, headers);
         // Http 요청하기 - Post 방식으로 - 그리고 response 변수의 응답 받음
         ResponseEntity<String> response = rt.exchange(
-                kakaoLoginUtils.getProperty("kakao-token-uri"),
+                kakaoLoginUtils.getTokenUri(),
                 HttpMethod.POST,
                 kakaoTokenRequest,
                 String.class
@@ -100,7 +100,7 @@ public class UserService {
         HttpEntity<MultiValueMap<String, String>> kakaoProfileRequest = new HttpEntity<>(headers);
         // Http 요청하기 - Post 방식으로 - 그리고 response 변수의 응답 받음
         ResponseEntity<String> response = rt.exchange(
-                kakaoLoginUtils.getProperty("kakao-profile-uri"),
+                kakaoLoginUtils.getProfileUri(),
                 HttpMethod.POST,
                 kakaoProfileRequest,
                 String.class
