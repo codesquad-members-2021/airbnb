@@ -67,20 +67,49 @@
         <!--숙소찾기-->
         <scene sceneID="uXT-1s-4cW">
             <objects>
-                <viewController id="g2N-ac-rmr" sceneMemberID="viewController">
+                <viewController id="g2N-ac-rmr" customClass="SearchViewController" customModule="AirBed_Breakfast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qBL-t9-4XW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pkI-Ol-eOj">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" red="0.72941176470000002" green="0.45882352939999999" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eXx-qa-Pwe">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="hTL-cl-uW0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pkI-Ol-eOj" firstAttribute="top" secondItem="hTL-cl-uW0" secondAttribute="top" id="4oa-8L-vND"/>
+                            <constraint firstItem="hTL-cl-uW0" firstAttribute="bottom" secondItem="pkI-Ol-eOj" secondAttribute="bottom" id="KjL-Ka-pkf"/>
+                            <constraint firstItem="hTL-cl-uW0" firstAttribute="trailing" secondItem="pkI-Ol-eOj" secondAttribute="trailing" id="bE2-cT-ZXx"/>
+                            <constraint firstItem="pkI-Ol-eOj" firstAttribute="leading" secondItem="hTL-cl-uW0" secondAttribute="leading" id="zgy-kd-c5k"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="숙소찾기" id="tf7-1S-hty">
                         <barButtonItem key="backBarButtonItem" title="뒤로" id="kMD-je-ng6"/>
                         <barButtonItem key="leftBarButtonItem" title="뒤로" id="Zes-Pb-Way">
                             <imageReference key="image" image="chevron.left" catalog="system" symbolScale="large"/>
+                            <connections>
+                                <action selector="navigationBarBackButtonPressed:" destination="g2N-ac-rmr" id="TeW-3B-Rsh"/>
+                            </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="지우기" id="4Z8-EA-F0V"/>
+                        <barButtonItem key="rightBarButtonItem" title="지우기" id="4Z8-EA-F0V">
+                            <connections>
+                                <action selector="navigationBarClearButtonPressed:" destination="g2N-ac-rmr" id="nxf-g3-ZAR"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchResultCollectionView" destination="pkI-Ol-eOj" id="RUA-mh-xBq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8a2-AA-XJf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
