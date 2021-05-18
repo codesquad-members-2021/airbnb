@@ -109,7 +109,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" id="Ug4-jG-z8q"/>
                     <connections>
-                        <outlet property="mainCollectionView" destination="6z5-sA-Jei" id="jC7-Dk-5T3"/>
+                        <outlet property="mainCollectionView" destination="6z5-sA-Jei" id="l7x-Bh-rlk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

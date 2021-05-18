@@ -20,26 +20,23 @@ class MainViewController: UIViewController {
             }
         }
     }
+    
+    @IBOutlet weak var mainCollectionView: UICollectionView!
+    
     var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
-    var serarchBar: UISearchBar! = nil
-    var mainCollectionView: UICollectionView! = nil
     var viewModel = MainViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureHierarchy()
+        configureCollectionView()
         configureDataSource()
         applySnapshot()
     }
     
-    func configureHierarchy(){
-        let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.backgroundColor = .white
-        registerSubviews(with: collectionView)
-        mainCollectionView = collectionView
+    private func configureCollectionView(){
+        mainCollectionView.delegate = self
+        mainCollectionView.setCollectionViewLayout(createLayout(), animated: false)
+        registerSubviews(with: mainCollectionView)
     }
 
     private func registerSubviews(with collectionView: UICollectionView) {
