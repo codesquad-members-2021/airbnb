@@ -1,15 +1,17 @@
 import styled from "styled-components";
+// import CloseButton from "./CloseButton";
 
 const Personnel = () => (
 	<PersonnelWrapper>
 		<PersonnelContent>인원</PersonnelContent>
 		<PersonnelInput />
+		{/* <CloseButton /> */}
 	</PersonnelWrapper>
 );
 
 const PersonnelWrapper = styled.div`
 	position: relative;
-	width: 298px;
+	width: 188px;
 	height: 44px;
 	display: flex;
 	flex-direction: column;

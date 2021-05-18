@@ -1,9 +1,11 @@
 import styled from "styled-components";
+// import CloseButton from "./CloseButton";
 
 const Period = () => (
 	<PeriodWrapper>
 		<CheckIn />
 		<CheckOut />
+		{/* <CloseButton /> */}
 	</PeriodWrapper>
 );
 
@@ -23,7 +25,7 @@ const CheckOut = () => (
 const PeriodWrapper = styled.div`
 	position: relative;
 	width: 297px;
-	height: 76px;
+	height: 44px;
 	display: flex;
 	align-items: center;
 `;
