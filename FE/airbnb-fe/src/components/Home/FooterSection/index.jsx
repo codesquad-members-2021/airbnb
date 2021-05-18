@@ -33,7 +33,7 @@ const FooterDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  background: ${({ theme }) => theme.colors.gray1};
+  background: ${({ theme }) => theme.colors.gray6};
   height: fit-content;
 `;
 
@@ -48,7 +48,7 @@ const FooterContentsDiv = styled.div`
 const FooterLineDivider = styled.div`
   width: 88.88%;
   margin: 0 auto;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.gray2};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray5};
 `;
 
 const FooterCompDataDiv = styled.div`
@@ -56,7 +56,7 @@ const FooterCompDataDiv = styled.div`
   width: 88.88%;
   gap: 1rem;
   margin: 2rem auto;
-  color: ${({ theme }) => theme.colors.gray6};
+  color: ${({ theme }) => theme.colors.gray1};
 `;
 
 export default FooterSection;

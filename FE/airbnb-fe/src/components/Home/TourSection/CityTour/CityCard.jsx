@@ -16,11 +16,7 @@ const CityCard = ({ children, ...props }) => {
 const CityCardDiv = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  width: 308px;
   height: 80px;
-  margin: 24px 16px 0 0;
-  padding: 0px;
 `;
 const CityImg = styled.img`
   width: 80px;

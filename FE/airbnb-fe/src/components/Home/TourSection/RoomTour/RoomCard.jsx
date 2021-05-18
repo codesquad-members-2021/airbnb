@@ -23,7 +23,7 @@ const RoomCardImg = styled.img`
 `;
 
 const RoomCardSubTitle = styled.div`
-  color: ${({ theme }) => theme.colors.gray6};
+  color: ${({ theme }) => theme.colors.gray1};
   font-size: 1.25rem;
 `;
 

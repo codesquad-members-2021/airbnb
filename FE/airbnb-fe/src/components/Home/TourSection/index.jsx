@@ -13,10 +13,8 @@ const TourSection = () => {
 };
 
 const TourSectionDiv = styled.div`
-  height: 935px;
-  margin: 0 80px;
-  border: 2px solid red;
-  /* background-color: ${({ theme }) => theme.colors.gray2}; */
+  height: fit-content;
+  margin: 0 auto;
 `;
 
 export default TourSection;

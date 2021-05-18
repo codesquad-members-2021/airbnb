@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import CityCard from './CityCard';
-import cityData from '../../../../mocdata/city-card.json';
+import cityData from '../../../utils/mock/city-card.json';
 const CityTour = () => {
   return (
     <CityTourDiv>
@@ -21,16 +21,17 @@ const CityTour = () => {
 };
 
 const CityTourDiv = styled.div`
-  margin-bottom: 80px;
-  /* background-color: ${({ theme }) => theme.colors.gray2}; */
+  margin: 0rem auto 5rem auto;
+  width: 88.88%;
 `;
 const CityCardFrame = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 1rem;
 `;
 const CityTitle = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: 2rem;
   color: ${({ theme }) => theme.colors.gray1};
   font-size: ${({ theme }) => theme.fontSizes.XL};
 `;

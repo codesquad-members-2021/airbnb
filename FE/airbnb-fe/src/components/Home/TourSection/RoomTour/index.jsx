@@ -23,7 +23,7 @@ const RoomTourDiv = styled.div`
 `;
 
 const RoomTourTitle = styled.div`
-  color: ${({ theme }) => theme.colors.gray6};
+  color: ${({ theme }) => theme.colors.gray1};
   font-size: 2rem;
   margin: 0 0 2rem 0;
 `;

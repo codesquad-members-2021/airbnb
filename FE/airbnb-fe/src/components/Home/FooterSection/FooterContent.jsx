@@ -16,7 +16,7 @@ const FooterContent = ({ ...footerData }) => {
 
 const FooterContentCard = styled.div`
   font-size: 1rem;
-  color: ${({ theme }) => theme.colors.gray6};
+  color: ${({ theme }) => theme.colors.gray1};
   min-width: 21%;
 `;
 
