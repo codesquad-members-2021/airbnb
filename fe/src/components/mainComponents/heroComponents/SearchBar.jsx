@@ -1,16 +1,45 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import SearchIcon from "@material-ui/icons/Search";
 
+const initialValue = {
+  location: null,
+};
+
 const SearchBar = (props) => {
+  const [location, setLocation] = useState(null);
+
+  const currSearchingLocation = useRef();
+  const handleSearchLocation = ({ key }) => {
+    if (key === "Enter") {
+      setLocation(currSearchingLocation.current.value);
+      return;
+    }
+
+    let inputLocationValue;
+    setTimeout(() => {
+      inputLocationValue = currSearchingLocation.current.value;
+      // fetch(url) 로 get 요청 보내서 밑에 추천검색어 띄워주기
+    }, 200);
+  };
+
   return (
     <Bar>
-      <Location>위치</Location>
-      <CheckIn>체크인</CheckIn>
-      <CheckOut>체크아웃</CheckOut>
-      <Price>금액</Price>
+      <Location>
+        <NavigatingText>위치</NavigatingText>
+        <InputLocation ref={currSearchingLocation} onKeyDown={handleSearchLocation} />
+      </Location>
+      <CheckIn>
+        <NavigatingText>체크인</NavigatingText>
+      </CheckIn>
+      <CheckOut>
+        <NavigatingText>체크아웃</NavigatingText>
+      </CheckOut>
+      <Price>
+        <NavigatingText>금액</NavigatingText>
+      </Price>
       <People>
-        <span>인원</span>
+        <NavigatingText>인원</NavigatingText>
         <SearchButton>
           <SearchIcon />
         </SearchButton>
@@ -20,6 +49,10 @@ const SearchBar = (props) => {
 };
 
 export default SearchBar;
+
+const NavigatingText = styled.p``;
+
+const InputLocation = styled.input``;
 
 const Bar = styled.div`
   display: flex;
