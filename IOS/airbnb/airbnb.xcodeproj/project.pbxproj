@@ -57,8 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				E4DB1D0626524A9500894DCB /* AppCycle */,
-				E4DB1CF626524A7700894DCB /* ViewController.swift */,
-				E4DB1CF826524A7700894DCB /* Main.storyboard */,
+				E4DB1D7726538AF800894DCB /* Main */,
+				E4DB1D7826538AFE00894DCB /* LocationSearch */,
 				E4DB1CFB26524A7900894DCB /* Assets.xcassets */,
 				E4DB1CFD26524A7900894DCB /* LaunchScreen.storyboard */,
 				E4DB1D0026524A7900894DCB /* Info.plist */,
@@ -73,6 +73,22 @@
 				E4DB1CF426524A7700894DCB /* SceneDelegate.swift */,
 			);
 			path = AppCycle;
+			sourceTree = "<group>";
+		};
+		E4DB1D7726538AF800894DCB /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E4DB1CF826524A7700894DCB /* Main.storyboard */,
+				E4DB1CF626524A7700894DCB /* ViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		E4DB1D7826538AFE00894DCB /* LocationSearch */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LocationSearch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
