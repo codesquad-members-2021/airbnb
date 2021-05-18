@@ -1,5 +1,6 @@
 create databases airbnb;
 
+
 drop table city;
 create table city(
     id int not null auto_increment,
