@@ -39,16 +39,6 @@
 		8843A7CF26523EAA0068B4E3 /* AirBed&BreakfastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AirBed&BreakfastTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8843A7D326523EAA0068B4E3 /* AirBed_BreakfastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirBed_BreakfastTests.swift; sourceTree = "<group>"; };
 		8843A7D526523EAA0068B4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8843A7F4265240860068B4E3 /* AirBed&Breakfast.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "AirBed&Breakfast.xcodeproj"; sourceTree = "<group>"; };
-		8843A7F8265240860068B4E3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8843A7F9265240860068B4E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8843A7FB265240860068B4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8843A7FD265240860068B4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8843A7FE265240860068B4E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8843A7FF265240860068B4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8843A800265240860068B4E3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8843A802265240860068B4E3 /* AirBed_BreakfastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirBed_BreakfastTests.swift; sourceTree = "<group>"; };
-		8843A803265240860068B4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8843A804265241200068B4E3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,7 +65,6 @@
 			children = (
 				8843A804265241200068B4E3 /* README.md */,
 				8843A7BB26523EA80068B4E3 /* AirBed&Breakfast */,
-				8843A7F3265240860068B4E3 /* AirBed&Breakfast */,
 				8843A7D226523EAA0068B4E3 /* AirBed&BreakfastTests */,
 				8843A7BA26523EA80068B4E3 /* Products */,
 			);
@@ -109,44 +98,6 @@
 			children = (
 				8843A7D326523EAA0068B4E3 /* AirBed_BreakfastTests.swift */,
 				8843A7D526523EAA0068B4E3 /* Info.plist */,
-			);
-			path = "AirBed&BreakfastTests";
-			sourceTree = "<group>";
-		};
-		8843A7F3265240860068B4E3 /* AirBed&Breakfast */ = {
-			isa = PBXGroup;
-			children = (
-				8843A7F4265240860068B4E3 /* AirBed&Breakfast.xcodeproj */,
-				8843A7F7265240860068B4E3 /* AirBed&Breakfast */,
-				8843A801265240860068B4E3 /* AirBed&BreakfastTests */,
-			);
-			name = "AirBed&Breakfast";
-			sourceTree = "<group>";
-		};
-		8843A7F5265240860068B4E3 /* Products */ = {
-			isa = PBXGroup;
-			name = Products;
-			sourceTree = "<group>";
-		};
-		8843A7F7265240860068B4E3 /* AirBed&Breakfast */ = {
-			isa = PBXGroup;
-			children = (
-				8843A7F8265240860068B4E3 /* ViewController.swift */,
-				8843A7F9265240860068B4E3 /* Assets.xcassets */,
-				8843A7FA265240860068B4E3 /* LaunchScreen.storyboard */,
-				8843A7FC265240860068B4E3 /* Main.storyboard */,
-				8843A7FE265240860068B4E3 /* AppDelegate.swift */,
-				8843A7FF265240860068B4E3 /* Info.plist */,
-				8843A800265240860068B4E3 /* SceneDelegate.swift */,
-			);
-			path = "AirBed&Breakfast";
-			sourceTree = "<group>";
-		};
-		8843A801265240860068B4E3 /* AirBed&BreakfastTests */ = {
-			isa = PBXGroup;
-			children = (
-				8843A802265240860068B4E3 /* AirBed_BreakfastTests.swift */,
-				8843A803265240860068B4E3 /* Info.plist */,
 			);
 			path = "AirBed&BreakfastTests";
 			sourceTree = "<group>";
@@ -218,12 +169,6 @@
 			mainGroup = 8843A7B026523EA80068B4E3;
 			productRefGroup = 8843A7BA26523EA80068B4E3 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 8843A7F5265240860068B4E3 /* Products */;
-					ProjectRef = 8843A7F4265240860068B4E3 /* AirBed&Breakfast.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				8843A7B826523EA80068B4E3 /* AirBed&Breakfast */,
@@ -297,22 +242,6 @@
 				8843A7C826523EAA0068B4E3 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		8843A7FA265240860068B4E3 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8843A7FB265240860068B4E3 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		8843A7FC265240860068B4E3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8843A7FD265240860068B4E3 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
