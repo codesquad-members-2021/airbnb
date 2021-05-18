@@ -1,2 +1,44 @@
-# airbnb
-그룹 프로젝트 #4
+## Team-03
+
+### 팀원 소개
+
+ - Kyu
+ - Elly
+ - Beemo
+
+### 브랜치 규칙
+
+각 클래스별 개발 브랜치
+- iOS-dev
+- BE-dev
+- FE-dev
+
+각 클래스별 기능 브랜치
+- iOS-feature명
+- BE-feature명
+- FE-feature명
+
+각 기능 브랜치에서 개발 후 dev 브랜치로 Merge
+프로젝트 마지막날쯤 main에 병합하기
+
+### Commit Message Rules
+
+- Feat: (new feature for the user, not a new feature for build script)
+- Fix: (bug fix for the user, not a fix to a build script)
+- Docs: (changes to the documentation)
+- Style: (formatting, missing semi colons, etc; no production code change)
+- Refactor: (refactoring production code, eg. renaming a variable)
+- Test: (adding missing tests, refactoring tests; no production code change)
+- Chore: (updating grunt tasks etc; no production code change)
+
+
+### Daily Rules
+
+- 2시에 회의 시간을 가지고 회의 내용을 wiki에 기록한다
+- 회의는 진행상황을 공유하고, API를 상의하기 
+
+### 프로젝트 규칙
+
+- 마일드 스톤 -> [iOS] [FE] [BE]
+- issue -> 마일드 스톤에 issue 추가하여 관리 
+- project -> 프로젝트생성 후 todo doing done 기록 
