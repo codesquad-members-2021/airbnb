@@ -35,6 +35,7 @@ const SearchButtonWrapper = styled.div`
 	align-items: center;
 	background: #e84c60;
 	border-radius: 30px;
+	z-index: 1;
 `;
 const SearchButtonContent = styled.div`
 	font-weight: bold;

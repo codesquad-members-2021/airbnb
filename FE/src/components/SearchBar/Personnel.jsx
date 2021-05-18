@@ -1,29 +1,29 @@
 import styled from "styled-components";
 
-const Price = () => (
-	<PriceWrapper>
-		<PriceContent>요금</PriceContent>
-		<PriceInput />
-	</PriceWrapper>
+const Personnel = () => (
+	<PersonnelWrapper>
+		<PersonnelContent>인원</PersonnelContent>
+		<PersonnelInput />
+	</PersonnelWrapper>
 );
 
-const PriceWrapper = styled.div`
+const PersonnelWrapper = styled.div`
 	position: relative;
-	width: 201px;
+	width: 298px;
 	height: 44px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	margin-left: 24px;
 `;
-const PriceContent = styled.div`
+const PersonnelContent = styled.div`
 	font-weight: bold;
 	font-size: 12px;
 	line-height: 17px;
 	color: #010101;
 `;
-const PriceInput = styled.input.attrs({
-	placeholder: "금액대 설정",
+const PersonnelInput = styled.input.attrs({
+	placeholder: "게스트 추가",
 })`
 	width: 100%;
 	height: 23px;
@@ -34,4 +34,4 @@ const PriceInput = styled.input.attrs({
 	color: #010101;
 `;
 
-export default Price;
+export default Personnel;

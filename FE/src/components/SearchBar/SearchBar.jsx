@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Period from "./Period";
 import Price from "./Price";
+import Personnel from "./Personnel";
 import SearchButton from "./SearchButton";
 
 const SearchBar = () => (
@@ -9,6 +10,8 @@ const SearchBar = () => (
 		<SearchButton />
 		<Line />
 		<Price />
+		<Line />
+		<Personnel />
 	</SearchBarWrapper>
 );
 
