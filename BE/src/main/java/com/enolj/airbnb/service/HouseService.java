@@ -52,4 +52,8 @@ public class HouseService {
         wishesResponseDTOList.add(new WishesResponseDTO(3L, "비담집, 비우고담은집", 308571, true, 4.98));
         return wishesResponseDTOList;
     }
+
+    public void changeWish(Long houseId) {
+
+    }
 }

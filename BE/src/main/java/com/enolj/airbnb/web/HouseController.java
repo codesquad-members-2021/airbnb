@@ -47,4 +47,10 @@ public class HouseController {
         logger.info("위시 리스트 요청");
         return houseService.getWishList();
     }
+
+    @PostMapping("/wishes/{houseId}")
+    public void changeWish(@PathVariable Long houseId) {
+        logger.info("{}번 숙소의 위시 요청", houseId);
+        houseService.changeWish(houseId);
+    }
 }
