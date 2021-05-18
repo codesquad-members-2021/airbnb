@@ -65,4 +65,10 @@ public class HouseController {
         logger.info("{}번 숙소의 디테일 예약정보 요청", houseId);
         return houseService.getReservationDetail(houseId);
     }
+
+    @DeleteMapping("/reservation/{houseId}")
+    public void cancelReservation(@PathVariable Long houseId) {
+        logger.info("{}번 숙소의 예약 취소 요청", houseId);
+        houseService.cancelReservation(houseId);
+    }
 }

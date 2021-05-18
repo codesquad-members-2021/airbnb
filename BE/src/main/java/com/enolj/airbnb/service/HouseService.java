@@ -76,4 +76,8 @@ public class HouseService {
         return new ReservationDetailDTO(1L, images, "서초구, 서울, 한국", "Specious and Comfortable cozy house #4", "2021년 5월 17일 오후 4:00", "2021년 6월 4일 오후 12:00",
                 new Description("Jong님", "집전체 • 게스트 3명", 1488195));
     }
+
+    public void cancelReservation(Long houseId) {
+
+    }
 }
