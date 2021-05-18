@@ -1,10 +1,11 @@
 import React from "react";
-import { ChakraProvider, Button } from "@chakra-ui/react";
 
+import { ChakraProvider } from "@chakra-ui/react";
+import Home from "pages/Home";
 function App() {
   return (
     <ChakraProvider>
-      <Button colorScheme="blue">Button</Button>
+      <Home />
     </ChakraProvider>
   );
 }
