@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  airBnB
+//  JacksonBnB
 //
-//  Created by jinseo park on 5/17/21.
+//  Created by jinseo park on 5/18/21.
 //
 
 import UIKit

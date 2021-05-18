@@ -1,18 +1,19 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'airBnB' do
+target 'JacksonBnB' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for airBnB
+  # Pods for JacksonBnB
+  pod 'lottie-ios'
 
-  target 'airBnBTests' do
+  target 'JacksonBnBTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'airBnBUITests' do
+  target 'JacksonBnBUITests' do
     # Pods for testing
   end
 

@@ -1,14 +1,14 @@
 //
-//  airBnBTests.swift
-//  airBnBTests
+//  JacksonBnBTests.swift
+//  JacksonBnBTests
 //
-//  Created by jinseo park on 5/17/21.
+//  Created by jinseo park on 5/18/21.
 //
 
 import XCTest
-@testable import airBnB
+@testable import JacksonBnB
 
-class airBnBTests: XCTestCase {
+class JacksonBnBTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
