@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SearchResultCollectionViewCell" customModule="AirBed_Breakfast" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="248" height="51"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="248" height="51"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.down.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Cfn-Wr-gB7">
+                        <rect key="frame" x="0.0" y="0.0" width="51" height="51"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="여행지 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRm-qy-HSi">
+                        <rect key="frame" x="71" y="0.0" width="177" height="25.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YCM-1e-O18">
+                        <rect key="frame" x="51" y="0.0" width="20" height="51"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="여행지까지의 거리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSN-6n-VZq">
+                        <rect key="frame" x="71" y="25.5" width="177" height="25.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.55294117649999996" green="0.55294117649999996" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="CSN-6n-VZq" secondAttribute="bottom" id="HUt-L8-VJm"/>
+                <constraint firstAttribute="bottom" secondItem="YCM-1e-O18" secondAttribute="bottom" id="OOJ-5d-Sie"/>
+                <constraint firstItem="CSN-6n-VZq" firstAttribute="leading" secondItem="YCM-1e-O18" secondAttribute="trailing" id="P8n-Hi-o1a"/>
+                <constraint firstItem="Cfn-Wr-gB7" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="1:1" id="Roi-Yr-1ST"/>
+                <constraint firstItem="vRm-qy-HSi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="T6f-Lb-i3I"/>
+                <constraint firstItem="YCM-1e-O18" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.08" id="XU8-Al-C8c"/>
+                <constraint firstItem="vRm-qy-HSi" firstAttribute="leading" secondItem="YCM-1e-O18" secondAttribute="trailing" id="dDC-yq-Lge"/>
+                <constraint firstItem="YCM-1e-O18" firstAttribute="leading" secondItem="Cfn-Wr-gB7" secondAttribute="trailing" id="feX-j8-BnT"/>
+                <constraint firstItem="CSN-6n-VZq" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.5" id="hni-HK-p6l"/>
+                <constraint firstAttribute="bottom" secondItem="Cfn-Wr-gB7" secondAttribute="bottom" id="j2r-tX-fTe"/>
+                <constraint firstItem="YCM-1e-O18" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="lbd-lz-aH8"/>
+                <constraint firstItem="vRm-qy-HSi" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.5" id="m6Z-2y-0rZ"/>
+                <constraint firstAttribute="trailing" secondItem="vRm-qy-HSi" secondAttribute="trailing" id="obh-EG-0nh"/>
+                <constraint firstAttribute="trailing" secondItem="CSN-6n-VZq" secondAttribute="trailing" id="p4V-kv-8jh"/>
+                <constraint firstItem="Cfn-Wr-gB7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="tNp-Up-fBw"/>
+                <constraint firstItem="Cfn-Wr-gB7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="yEM-3R-TS5"/>
+            </constraints>
+            <size key="customSize" width="248" height="51"/>
+            <connections>
+                <outlet property="destinationImageView" destination="Cfn-Wr-gB7" id="mYG-cO-QSe"/>
+                <outlet property="destinationNameLabel" destination="vRm-qy-HSi" id="X0P-uA-uXZ"/>
+                <outlet property="distanceLabel" destination="CSN-6n-VZq" id="0uO-Q8-Xov"/>
+            </connections>
+            <point key="canvasLocation" x="-118.84057971014494" y="84.040178571428569"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
