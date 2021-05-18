@@ -22,11 +22,11 @@ const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
     outline: none; 
+    border: none;
   }
   input {
     display: flex;
     outline: none;
-    padding-left: 10px;
   }
 `;
 
