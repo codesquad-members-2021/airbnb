@@ -3,7 +3,8 @@ name: mockup-api
 on:
   push:
     branches:
-      - BE/mokcup/**
+      - BE/mockup/**
+      - BE/mockup
   workflow_dispatch:
 
 jobs:
