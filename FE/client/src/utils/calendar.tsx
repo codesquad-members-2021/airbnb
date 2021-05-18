@@ -14,7 +14,7 @@ export const getYearAndMonth = (date: Date): string => {
   return `${date.getFullYear()}년 ${date.getMonth() + 1}월`;
 }
 
-export const getDayArray = (date :Date): Array<Array<string|number>> => {
+export const getDayArray = (date :Date): Array<Array<string>> => {
   const lastDayNumber = getLastDayNumber(date); 
   const firstDayNumber = getFirstDayOfMonthNumber(date); 
   let dayCount = 0;
@@ -22,9 +22,9 @@ export const getDayArray = (date :Date): Array<Array<string|number>> => {
   const dayArray = Array.from({ length: 6 }, (_, idx) => Array.from({ length: 7 }, (_, i) => {
     if (lastDayNumber < dayCount + 1) return '';
     if (idx === 0) {
-      return i >= firstDayNumber ? ++dayCount : '';
+      return i >= firstDayNumber ? (++dayCount).toString() : '';
     } else {
-      return ++dayCount;
+      return (++dayCount).toString();
     }
   }));
   

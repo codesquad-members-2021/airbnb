@@ -3,12 +3,16 @@ import { getDate } from './../utils/calendar';
 
 const currentDate = { now: new Date() };
 
-export const monthIndexAtom = atom({
+export const monthIndexAtom = atom<number>({
   key: 'monthIndexState',
   default: 0
 });
 
-export const calendarStateSelector = selector({
+export type CalendarSelectorType = {
+  leftMonthDate: Date,
+  rightMonthDate: Date
+}
+export const calendarStateSelector = selector<CalendarSelectorType>({
   key: 'calendarState',
   get: ({ get }) => {
     const monthIndex = get(monthIndexAtom);
