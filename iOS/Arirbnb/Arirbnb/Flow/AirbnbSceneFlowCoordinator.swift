@@ -18,12 +18,12 @@ public class AirbnbSceneFlowCoordinator {
         let wishListVC = WishListViewController.create()
         let myreservationVC = MyReserVationViewController()
         
-        tabBarController = FlowTabBarController(mainSearchVC, wishListVC, myreservationVC)
+        tabBarController = FlowTabBarController(searachSceneNavigationController ?? UINavigationController(), wishListVC, myreservationVC)
         return tabBarController ?? UITabBarController()
     }
     
     func showDetailSearchView() {
         let detailSerchVC = DetailSearchViewController.create(DetailSearchViewModel())
-        searachSceneNavigationController?.pushViewController(detailSerchVC, animated: false)
+        searachSceneNavigationController?.pushViewController(detailSerchVC, animated: true)
     }
 }
