@@ -7,10 +7,6 @@ import Month from './Month';
 const Calendar = () => {
   const calendarState = useRecoilValue(calendarStateSelector);
 
-  useEffect(()=>{
-    console.log(calendarState)
-  },[calendarState])
-
   return (
     <CalendarWrapper>
       <Month left='0%' date={calendarState.leftMonthDate}/>
