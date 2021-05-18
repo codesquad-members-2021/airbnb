@@ -14,10 +14,11 @@ const RoomCardDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 24%;
 `;
 
 const RoomCardImg = styled.img`
-  width: 19.25rem;
+  width: 100%;
   border-radius: 0.6rem;
 `;
 

@@ -39,26 +39,24 @@ const FooterDiv = styled.div`
 
 const FooterContentsDiv = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 1.25rem;
-  width: 67.5%;
+  width: 88.88%;
   margin: 4rem auto;
 `;
 
 const FooterLineDivider = styled.div`
-  width: 67.5%;
+  width: 88.88%;
   margin: 0 auto;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray2};
 `;
 
 const FooterCompDataDiv = styled.div`
   display: flex;
-  min-width: 67.5%;
+  width: 88.88%;
   gap: 1rem;
   margin: 2rem auto;
   color: ${({ theme }) => theme.colors.gray6};
 `;
-
-const FooterDotDivider = styled.span``;
 
 export default FooterSection;

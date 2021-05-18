@@ -17,8 +17,9 @@ const RoomTour = () => {
 };
 
 const RoomTourDiv = styled.div`
-  width: 100%;
+  width: 88.88%;
   height: fit-content;
+  margin: 5rem auto 5rem auto;
 `;
 
 const RoomTourTitle = styled.div`
@@ -30,6 +31,7 @@ const RoomTourTitle = styled.div`
 const RoomTourCardList = styled.div`
   display: flex;
   gap: 1rem;
+  justify-content: space-between;
 `;
 
 export default RoomTour;
