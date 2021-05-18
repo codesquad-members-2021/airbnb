@@ -1,6 +1,7 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import theme from './components/utils/theme';
 import Home from './components/Home';
+import './index.css';
 
 export const GlobalStyle = createGlobalStyle`
   *{
@@ -12,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Noto Sans KR';
   }
   
-  ol, ul {
+  ol, ul, li {
     list-style: none;
   }
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { roomMock } from '../../../utils/roomCardMockData';
+import { roomMock } from '../../../utils/mock/roomCardMockData';
 import RoomCard from './RoomCard';
 
 const RoomTour = () => {
