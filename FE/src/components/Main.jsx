@@ -2,6 +2,7 @@ import GlobalStyle from "./GlobalStyle";
 import styled from "styled-components";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer"
+import SearchBar from "./SearchBar/SearchBar"
 
 const Main = () => (
 	<>
@@ -9,6 +10,7 @@ const Main = () => (
 		<MainWrapper>
 			<HeroImg />
 			<Header />
+			<SearchBar />
       <Footer />
 		</MainWrapper>
 	</>
