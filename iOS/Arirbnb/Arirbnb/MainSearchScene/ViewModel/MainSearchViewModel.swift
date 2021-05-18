@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MainViewModel {
+class MainSearchViewModel {
     var sectionPerItems: [[Int]]
     
     init() {
@@ -19,6 +19,6 @@ class MainViewModel {
     }
 }
 
-extension MainViewModel {
+extension MainSearchViewModel {
     
 }

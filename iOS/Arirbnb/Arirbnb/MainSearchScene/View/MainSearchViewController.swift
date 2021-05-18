@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainSearchViewController: UIViewController {
     static let sectionHeaderElementKind = "MainViewSectionHeaderElement"
     
     enum Section: Int, CaseIterable {
@@ -23,8 +23,8 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
-    var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
-    var viewModel = MainViewModel()
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
+    private var viewModel = MainSearchViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,13 +47,13 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: UICollectionViewDelegate {
+extension MainSearchViewController: UICollectionViewDelegate {
     
 }
 
 
 //MARK: - Diffable DataSource
-extension MainViewController {
+extension MainSearchViewController {
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: mainCollectionView) { (collectionView: UICollectionView, indexPath: IndexPath, item: Int) -> UICollectionViewCell? in
             var cell = UICollectionViewCell()
@@ -89,7 +89,7 @@ extension MainViewController {
 }
 
 //MARK: - Compositional Layout
-extension MainViewController {
+extension MainSearchViewController {
     private func createLayout() -> UICollectionViewLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.interSectionSpacing = 40
