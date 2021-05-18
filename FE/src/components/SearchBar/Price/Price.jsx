@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import CloseButton from "./CloseButton";
+// import CloseButton from "../CloseButton";
 
 const Price = () => (
 	<PriceWrapper>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Period from "./Period";
-import Price from "./Price";
-import Personnel from "./Personnel";
+import Period from "./Period/Period";
+import Price from "./Price/Price";
+import Personnel from "./Personnel/Personnel";
 import SearchButton from "./SearchButton";
 
 const SearchBar = () => (

@@ -1,10 +1,12 @@
 import styled from "styled-components";
-// import CloseButton from "./CloseButton";
+import CalendarModal from "./CalendarModal"
+// import CloseButton from "../CloseButton";
 
 const Period = () => (
 	<PeriodWrapper>
 		<CheckIn />
 		<CheckOut />
+		<CalendarModal />
 		{/* <CloseButton /> */}
 	</PeriodWrapper>
 );
