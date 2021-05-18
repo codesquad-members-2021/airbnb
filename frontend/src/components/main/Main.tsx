@@ -1,7 +1,11 @@
-import * as React from "react";
+import SearchBar from "./../search_bar/SearchBar";
 
 export interface IAppProps {}
 
 export default function Main(props: IAppProps) {
-	return <div>Main</div>;
+	return (
+		<div>
+			<SearchBar />
+		</div>
+	);
 }
