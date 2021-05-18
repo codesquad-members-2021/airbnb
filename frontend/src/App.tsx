@@ -20,4 +20,5 @@ const MainWrapper = styled.div`
 	background-size: 1920px 75%;
 	min-width: 1280px;
 	min-height: 1280px;
+	padding: 30px 200px;
 `;
