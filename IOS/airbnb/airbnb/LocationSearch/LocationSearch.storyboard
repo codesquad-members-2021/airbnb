@@ -8,19 +8,19 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--숙소 찾기-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PopularLocationViewController" title="숙소 찾기" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="PopularLocationViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TVY-RV-LOp">
-                                <rect key="frame" x="0.0" y="110" width="414" height="752"/>
+                                <rect key="frame" x="0.0" y="95" width="414" height="767"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="k6h-DE-6yX">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PopularLocationTableViewCell" rowHeight="80" id="k6h-DE-6yX" customClass="PopularLocationTableViewCell" customModule="airbnb" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k6h-DE-6yX" id="tfv-gc-G19">
@@ -62,11 +62,16 @@
                                                 <constraint firstItem="bq2-If-5yh" firstAttribute="top" secondItem="wtd-0U-uha" secondAttribute="bottom" constant="4" id="sJ1-Mc-pO1"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="popularLocationDistanceLabel" destination="bq2-If-5yh" id="evg-K1-Ftw"/>
+                                            <outlet property="popularLocationImageView" destination="72m-Ff-vyv" id="fs5-EB-b7n"/>
+                                            <outlet property="popularLocationTitleLabel" destination="wtd-0U-uha" id="nFn-ca-Z1S"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" placeholder="어디로 여행가세요?" translatesAutoresizingMaskIntoConstraints="NO" id="VI3-hY-Iyo">
-                                <rect key="frame" x="0.0" y="59" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
@@ -78,7 +83,7 @@
                             <constraint firstItem="TVY-RV-LOp" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="JLa-2x-eCo"/>
                             <constraint firstItem="TVY-RV-LOp" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="QUs-l2-H2G"/>
                             <constraint firstItem="VI3-hY-Iyo" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="bGd-DD-gg5"/>
-                            <constraint firstItem="VI3-hY-Iyo" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="15" id="g98-iI-rNi"/>
+                            <constraint firstItem="VI3-hY-Iyo" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="g98-iI-rNi"/>
                             <constraint firstItem="TVY-RV-LOp" firstAttribute="top" secondItem="VI3-hY-Iyo" secondAttribute="bottom" id="ghZ-lC-fKt"/>
                         </constraints>
                     </view>

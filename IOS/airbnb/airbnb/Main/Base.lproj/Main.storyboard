@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mh7-uZ-IJA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="V51-XS-8yb">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -12,7 +12,7 @@
         <!--로그인-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="로그인" customClass="ViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="로그인" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,7 +31,6 @@
         <!--위시리스트-->
         <scene sceneID="y70-QQ-Jao">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="477-BQ-uc2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="uB9-ij-poF" userLabel="위시리스트" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D7S-TD-ggv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -44,23 +43,24 @@
                         <imageReference key="selectedImage" image="heart" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="477-BQ-uc2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="846" y="-35"/>
         </scene>
         <!--검색-->
         <scene sceneID="vJI-5i-xpK">
             <objects>
-                <viewController id="YBE-yj-Bm8" userLabel="검색" sceneMemberID="viewController">
+                <viewController id="YBE-yj-Bm8" userLabel="검색" customClass="ViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JqF-wV-wYB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="어디로 여행가세요?" translatesAutoresizingMaskIntoConstraints="NO" id="Euw-ss-UcR">
-                                <rect key="frame" x="0.0" y="59" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DRb-al-wVs" userLabel="Hero Image Section">
-                                <rect key="frame" x="0.0" y="110" width="414" height="473"/>
+                                <rect key="frame" x="0.0" y="139" width="414" height="473"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d3g-cp-em3" userLabel="Hero Image View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="473"/>
@@ -138,7 +138,7 @@
                             <constraint firstItem="Euw-ss-UcR" firstAttribute="leading" secondItem="nAw-Sq-gct" secondAttribute="leading" id="1ry-DQ-cAb"/>
                             <constraint firstItem="Euw-ss-UcR" firstAttribute="trailing" secondItem="nAw-Sq-gct" secondAttribute="trailing" id="8JY-ql-TXO"/>
                             <constraint firstItem="DRb-al-wVs" firstAttribute="width" secondItem="JqF-wV-wYB" secondAttribute="width" id="Ai7-vm-JNB"/>
-                            <constraint firstItem="Euw-ss-UcR" firstAttribute="top" secondItem="nAw-Sq-gct" secondAttribute="top" constant="15" id="D0e-tF-QDA"/>
+                            <constraint firstItem="Euw-ss-UcR" firstAttribute="top" secondItem="nAw-Sq-gct" secondAttribute="top" id="D0e-tF-QDA"/>
                             <constraint firstItem="DRb-al-wVs" firstAttribute="trailing" secondItem="nAw-Sq-gct" secondAttribute="trailing" id="p4H-Ep-iyc"/>
                             <constraint firstItem="DRb-al-wVs" firstAttribute="top" secondItem="Euw-ss-UcR" secondAttribute="bottom" id="uW3-nm-y2D"/>
                             <constraint firstItem="DRb-al-wVs" firstAttribute="leading" secondItem="nAw-Sq-gct" secondAttribute="leading" id="ucL-mf-78x"/>
@@ -148,15 +148,36 @@
                         <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="large"/>
                         <imageReference key="selectedImage" image="magnifyingglass" catalog="system" symbolScale="large"/>
                     </tabBarItem>
+                    <navigationItem key="navigationItem" id="JQx-Ei-Mj6"/>
+                    <connections>
+                        <outlet property="locationSearchBar" destination="Euw-ss-UcR" id="YpL-7x-e9I"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXH-RG-Ldu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="155.07246376811597" y="-35.491071428571423"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XPb-1Z-wR4">
+            <objects>
+                <navigationController id="V51-XS-8yb" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rsf-jX-Wfs">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Mh7-uZ-IJA" kind="relationship" relationship="rootViewController" id="VvW-S2-u3V"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cwM-Ia-Xy0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1257" y="-35"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="d88-Mn-AwA">
             <objects>
                 <tabBarController id="Mh7-uZ-IJA" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="a2d-vd-5zy"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="u2C-M3-8Im">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

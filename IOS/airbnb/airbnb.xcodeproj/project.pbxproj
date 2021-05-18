@@ -14,6 +14,8 @@
 		E4DB1CFC26524A7900894DCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4DB1CFB26524A7900894DCB /* Assets.xcassets */; };
 		E4DB1CFF26524A7900894DCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4DB1CFD26524A7900894DCB /* LaunchScreen.storyboard */; };
 		E4DB1D7A26538BA800894DCB /* LocationSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4DB1D7926538BA800894DCB /* LocationSearch.storyboard */; };
+		E4DB1D7C2653912F00894DCB /* PopularLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DB1D7B2653912F00894DCB /* PopularLocationViewController.swift */; };
+		E4DB1D7E2653916900894DCB /* PopularLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DB1D7D2653916900894DCB /* PopularLocationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		E4DB1CFE26524A7900894DCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4DB1D0026524A7900894DCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4DB1D7926538BA800894DCB /* LocationSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationSearch.storyboard; sourceTree = "<group>"; };
+		E4DB1D7B2653912F00894DCB /* PopularLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationViewController.swift; sourceTree = "<group>"; };
+		E4DB1D7D2653916900894DCB /* PopularLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				E4DB1D7926538BA800894DCB /* LocationSearch.storyboard */,
+				E4DB1D7B2653912F00894DCB /* PopularLocationViewController.swift */,
+				E4DB1D7D2653916900894DCB /* PopularLocationTableViewCell.swift */,
 			);
 			path = LocationSearch;
 			sourceTree = "<group>";
@@ -166,6 +172,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4DB1CF726524A7700894DCB /* ViewController.swift in Sources */,
+				E4DB1D7E2653916900894DCB /* PopularLocationTableViewCell.swift in Sources */,
+				E4DB1D7C2653912F00894DCB /* PopularLocationViewController.swift in Sources */,
 				E4DB1CF326524A7700894DCB /* AppDelegate.swift in Sources */,
 				E4DB1CF526524A7700894DCB /* SceneDelegate.swift in Sources */,
 			);
