@@ -9,12 +9,19 @@
 /* Begin PBXBuildFile section */
 		FF5767632652490C00F46A43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767622652490C00F46A43 /* AppDelegate.swift */; };
 		FF5767652652490C00F46A43 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767642652490C00F46A43 /* SceneDelegate.swift */; };
-		FF5767672652490C00F46A43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767662652490C00F46A43 /* ViewController.swift */; };
+		FF5767672652490C00F46A43 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767662652490C00F46A43 /* MainViewController.swift */; };
 		FF57676A2652490C00F46A43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF5767682652490C00F46A43 /* Main.storyboard */; };
 		FF57676C2652490E00F46A43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF57676B2652490E00F46A43 /* Assets.xcassets */; };
 		FF57676F2652490E00F46A43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF57676D2652490E00F46A43 /* LaunchScreen.storyboard */; };
 		FF57677A2652490E00F46A43 /* ArirbnbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767792652490E00F46A43 /* ArirbnbTests.swift */; };
 		FF5767852652490E00F46A43 /* ArirbnbUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767842652490E00F46A43 /* ArirbnbUITests.swift */; };
+		FF5767A22652935F00F46A43 /* AdjacentDestinationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767A02652935F00F46A43 /* AdjacentDestinationsCell.swift */; };
+		FF5767A4265298A000F46A43 /* AdjacentDestinationsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5767A12652935F00F46A43 /* AdjacentDestinationsCell.xib */; };
+		FF5767B42653311E00F46A43 /* ThemeDestinationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767B22653311E00F46A43 /* ThemeDestinationsCell.swift */; };
+		FF5767B52653311E00F46A43 /* ThemeDestinationsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5767B32653311E00F46A43 /* ThemeDestinationsCell.xib */; };
+		FF5767B726533AC600F46A43 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767B626533AC600F46A43 /* MainViewModel.swift */; };
+		FF5767BC26535AC200F46A43 /* HeroImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767BB26535AC200F46A43 /* HeroImageCell.swift */; };
+		FF5767BF2653655400F46A43 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767BE2653655400F46A43 /* HeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +45,7 @@
 		FF57675F2652490C00F46A43 /* Arirbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arirbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF5767622652490C00F46A43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF5767642652490C00F46A43 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FF5767662652490C00F46A43 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FF5767662652490C00F46A43 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FF5767692652490C00F46A43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FF57676B2652490E00F46A43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF57676E2652490E00F46A43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +56,13 @@
 		FF5767802652490E00F46A43 /* ArirbnbUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArirbnbUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF5767842652490E00F46A43 /* ArirbnbUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArirbnbUITests.swift; sourceTree = "<group>"; };
 		FF5767862652490E00F46A43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF5767A02652935F00F46A43 /* AdjacentDestinationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjacentDestinationsCell.swift; sourceTree = "<group>"; };
+		FF5767A12652935F00F46A43 /* AdjacentDestinationsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdjacentDestinationsCell.xib; sourceTree = "<group>"; };
+		FF5767B22653311E00F46A43 /* ThemeDestinationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDestinationsCell.swift; sourceTree = "<group>"; };
+		FF5767B32653311E00F46A43 /* ThemeDestinationsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemeDestinationsCell.xib; sourceTree = "<group>"; };
+		FF5767B626533AC600F46A43 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		FF5767BB26535AC200F46A43 /* HeroImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroImageCell.swift; sourceTree = "<group>"; };
+		FF5767BE2653655400F46A43 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +113,10 @@
 		FF5767612652490C00F46A43 /* Arirbnb */ = {
 			isa = PBXGroup;
 			children = (
-				FF5767622652490C00F46A43 /* AppDelegate.swift */,
-				FF5767642652490C00F46A43 /* SceneDelegate.swift */,
-				FF5767662652490C00F46A43 /* ViewController.swift */,
-				FF5767682652490C00F46A43 /* Main.storyboard */,
-				FF57676B2652490E00F46A43 /* Assets.xcassets */,
-				FF57676D2652490E00F46A43 /* LaunchScreen.storyboard */,
-				FF5767702652490E00F46A43 /* Info.plist */,
+				FF5767BD2653654400F46A43 /* SharedView */,
+				FF5767BA26535A3F00F46A43 /* Delegate */,
+				FF5767B926535A1600F46A43 /* SupportingFiles */,
+				FF5767A82652A1F500F46A43 /* MainScene */,
 			);
 			path = Arirbnb;
 			sourceTree = "<group>";
@@ -126,6 +137,80 @@
 				FF5767862652490E00F46A43 /* Info.plist */,
 			);
 			path = ArirbnbUITests;
+			sourceTree = "<group>";
+		};
+		FF5767A82652A1F500F46A43 /* MainScene */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767B8265359F000F46A43 /* Model */,
+				FF5767AA2652A20100F46A43 /* View */,
+				FF5767A92652A1FB00F46A43 /* ViewModel */,
+			);
+			path = MainScene;
+			sourceTree = "<group>";
+		};
+		FF5767A92652A1FB00F46A43 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767B626533AC600F46A43 /* MainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FF5767AA2652A20100F46A43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767662652490C00F46A43 /* MainViewController.swift */,
+				FF5767AB2652A20600F46A43 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FF5767AB2652A20600F46A43 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767A02652935F00F46A43 /* AdjacentDestinationsCell.swift */,
+				FF5767A12652935F00F46A43 /* AdjacentDestinationsCell.xib */,
+				FF5767B22653311E00F46A43 /* ThemeDestinationsCell.swift */,
+				FF5767B32653311E00F46A43 /* ThemeDestinationsCell.xib */,
+				FF5767BB26535AC200F46A43 /* HeroImageCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		FF5767B8265359F000F46A43 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FF5767B926535A1600F46A43 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767682652490C00F46A43 /* Main.storyboard */,
+				FF57676B2652490E00F46A43 /* Assets.xcassets */,
+				FF57676D2652490E00F46A43 /* LaunchScreen.storyboard */,
+				FF5767702652490E00F46A43 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		FF5767BA26535A3F00F46A43 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767622652490C00F46A43 /* AppDelegate.swift */,
+				FF5767642652490C00F46A43 /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		FF5767BD2653654400F46A43 /* SharedView */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767BE2653655400F46A43 /* HeaderView.swift */,
+			);
+			path = SharedView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,8 +316,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF5767A4265298A000F46A43 /* AdjacentDestinationsCell.xib in Resources */,
 				FF57676F2652490E00F46A43 /* LaunchScreen.storyboard in Resources */,
 				FF57676C2652490E00F46A43 /* Assets.xcassets in Resources */,
+				FF5767B52653311E00F46A43 /* ThemeDestinationsCell.xib in Resources */,
 				FF57676A2652490C00F46A43 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,9 +345,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF5767672652490C00F46A43 /* ViewController.swift in Sources */,
+				FF5767B42653311E00F46A43 /* ThemeDestinationsCell.swift in Sources */,
+				FF5767A22652935F00F46A43 /* AdjacentDestinationsCell.swift in Sources */,
+				FF5767672652490C00F46A43 /* MainViewController.swift in Sources */,
 				FF5767632652490C00F46A43 /* AppDelegate.swift in Sources */,
 				FF5767652652490C00F46A43 /* SceneDelegate.swift in Sources */,
+				FF5767B726533AC600F46A43 /* MainViewModel.swift in Sources */,
+				FF5767BC26535AC200F46A43 /* HeroImageCell.swift in Sources */,
+				FF5767BF2653655400F46A43 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,7 +530,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
-				INFOPLIST_FILE = Arirbnb/Info.plist;
+				INFOPLIST_FILE = Arirbnb/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -457,7 +549,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
-				INFOPLIST_FILE = Arirbnb/Info.plist;
+				INFOPLIST_FILE = Arirbnb/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
