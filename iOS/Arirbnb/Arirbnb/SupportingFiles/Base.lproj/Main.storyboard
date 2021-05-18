@@ -11,7 +11,7 @@
         <!--로그인-->
         <scene sceneID="3YB-WV-yK4">
             <objects>
-                <viewController id="nGh-Q2-3Nk" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyReserVationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nGh-Q2-3Nk" customClass="MyReserVationViewController" customModule="Arirbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oOj-M9-dxp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,7 +27,7 @@
         <!--위시리스트-->
         <scene sceneID="SNS-Iy-kbG">
             <objects>
-                <viewController id="s8H-y3-2hi" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WishListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="s8H-y3-2hi" customClass="WishListViewController" customModule="Arirbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HrC-Lu-dKZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,11 +49,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="1Tb-3Z-OE6"/>
-                        <segue destination="s8H-y3-2hi" kind="relationship" relationship="viewControllers" id="Knx-2I-pX2"/>
-                        <segue destination="nGh-Q2-3Nk" kind="relationship" relationship="viewControllers" id="4JS-2B-B4Y"/>
-                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aML-Xi-JCg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -62,13 +57,13 @@
         <!--검색-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Arirbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainSearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MainSearchViewController" customModule="Arirbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6z5-sA-Jei">
-                                <rect key="frame" x="0.0" y="115" width="414" height="698"/>
+                                <rect key="frame" x="0.0" y="115" width="414" height="747"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vkq-PQ-VNa">
                                     <size key="itemSize" width="128" height="128"/>

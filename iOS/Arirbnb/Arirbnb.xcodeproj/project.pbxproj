@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		FF5767632652490C00F46A43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767622652490C00F46A43 /* AppDelegate.swift */; };
 		FF5767652652490C00F46A43 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767642652490C00F46A43 /* SceneDelegate.swift */; };
-		FF5767672652490C00F46A43 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767662652490C00F46A43 /* MainViewController.swift */; };
+		FF5767672652490C00F46A43 /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767662652490C00F46A43 /* MainSearchViewController.swift */; };
 		FF57676A2652490C00F46A43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF5767682652490C00F46A43 /* Main.storyboard */; };
 		FF57676C2652490E00F46A43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF57676B2652490E00F46A43 /* Assets.xcassets */; };
 		FF57676F2652490E00F46A43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF57676D2652490E00F46A43 /* LaunchScreen.storyboard */; };
@@ -19,11 +19,15 @@
 		FF5767A4265298A000F46A43 /* AdjacentDestinationsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5767A12652935F00F46A43 /* AdjacentDestinationsCell.xib */; };
 		FF5767B42653311E00F46A43 /* ThemeDestinationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767B22653311E00F46A43 /* ThemeDestinationsCell.swift */; };
 		FF5767B52653311E00F46A43 /* ThemeDestinationsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5767B32653311E00F46A43 /* ThemeDestinationsCell.xib */; };
-		FF5767B726533AC600F46A43 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767B626533AC600F46A43 /* MainViewModel.swift */; };
+		FF5767B726533AC600F46A43 /* MainSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767B626533AC600F46A43 /* MainSearchViewModel.swift */; };
 		FF5767BC26535AC200F46A43 /* HeroImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767BB26535AC200F46A43 /* HeroImageCell.swift */; };
 		FF5767BF2653655400F46A43 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767BE2653655400F46A43 /* HeaderView.swift */; };
 		FF5767CC2653A28D00F46A43 /* MyReserVationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767CB2653A28D00F46A43 /* MyReserVationViewController.swift */; };
 		FF5767CF2653A2AE00F46A43 /* WishListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767CE2653A2AE00F46A43 /* WishListViewController.swift */; };
+		FF5767D22653A60800F46A43 /* AirbnbSceneFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767D12653A60800F46A43 /* AirbnbSceneFlowCoordinator.swift */; };
+		FF5767D52653A99400F46A43 /* MyReserVationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767D42653A99400F46A43 /* MyReserVationViewModel.swift */; };
+		FF5767D82653A9EB00F46A43 /* WishListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767D72653A9EB00F46A43 /* WishListViewModel.swift */; };
+		FF5767DC2653AC3000F46A43 /* FlowTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767DB2653AC3000F46A43 /* FlowTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +51,7 @@
 		FF57675F2652490C00F46A43 /* Arirbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arirbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF5767622652490C00F46A43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF5767642652490C00F46A43 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FF5767662652490C00F46A43 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		FF5767662652490C00F46A43 /* MainSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
 		FF5767692652490C00F46A43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FF57676B2652490E00F46A43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF57676E2652490E00F46A43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,11 +66,15 @@
 		FF5767A12652935F00F46A43 /* AdjacentDestinationsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdjacentDestinationsCell.xib; sourceTree = "<group>"; };
 		FF5767B22653311E00F46A43 /* ThemeDestinationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDestinationsCell.swift; sourceTree = "<group>"; };
 		FF5767B32653311E00F46A43 /* ThemeDestinationsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemeDestinationsCell.xib; sourceTree = "<group>"; };
-		FF5767B626533AC600F46A43 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		FF5767B626533AC600F46A43 /* MainSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchViewModel.swift; sourceTree = "<group>"; };
 		FF5767BB26535AC200F46A43 /* HeroImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroImageCell.swift; sourceTree = "<group>"; };
 		FF5767BE2653655400F46A43 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		FF5767CB2653A28D00F46A43 /* MyReserVationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReserVationViewController.swift; sourceTree = "<group>"; };
 		FF5767CE2653A2AE00F46A43 /* WishListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewController.swift; sourceTree = "<group>"; };
+		FF5767D12653A60800F46A43 /* AirbnbSceneFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbnbSceneFlowCoordinator.swift; sourceTree = "<group>"; };
+		FF5767D42653A99400F46A43 /* MyReserVationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReserVationViewModel.swift; sourceTree = "<group>"; };
+		FF5767D72653A9EB00F46A43 /* WishListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewModel.swift; sourceTree = "<group>"; };
+		FF5767DB2653AC3000F46A43 /* FlowTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +125,8 @@
 		FF5767612652490C00F46A43 /* Arirbnb */ = {
 			isa = PBXGroup;
 			children = (
-				FF5767A82652A1F500F46A43 /* MainScene */,
+				FF5767D02653A5F700F46A43 /* Flow */,
+				FF5767A82652A1F500F46A43 /* MainSearchScene */,
 				FF5767C82653A21D00F46A43 /* MyReservationScene */,
 				FF5767C72653A21500F46A43 /* WishListScene */,
 				FF5767BD2653654400F46A43 /* SharedView */,
@@ -145,20 +154,20 @@
 			path = ArirbnbUITests;
 			sourceTree = "<group>";
 		};
-		FF5767A82652A1F500F46A43 /* MainScene */ = {
+		FF5767A82652A1F500F46A43 /* MainSearchScene */ = {
 			isa = PBXGroup;
 			children = (
 				FF5767B8265359F000F46A43 /* Model */,
 				FF5767AA2652A20100F46A43 /* View */,
 				FF5767A92652A1FB00F46A43 /* ViewModel */,
 			);
-			path = MainScene;
+			path = MainSearchScene;
 			sourceTree = "<group>";
 		};
 		FF5767A92652A1FB00F46A43 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				FF5767B626533AC600F46A43 /* MainViewModel.swift */,
+				FF5767B626533AC600F46A43 /* MainSearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -166,7 +175,7 @@
 		FF5767AA2652A20100F46A43 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FF5767662652490C00F46A43 /* MainViewController.swift */,
+				FF5767662652490C00F46A43 /* MainSearchViewController.swift */,
 				FF5767AB2652A20600F46A43 /* Cell */,
 			);
 			path = View;
@@ -222,6 +231,7 @@
 		FF5767C72653A21500F46A43 /* WishListScene */ = {
 			isa = PBXGroup;
 			children = (
+				FF5767D62653A9DF00F46A43 /* ViewModel */,
 				FF5767CD2653A2A100F46A43 /* View */,
 			);
 			path = WishListScene;
@@ -230,6 +240,7 @@
 		FF5767C82653A21D00F46A43 /* MyReservationScene */ = {
 			isa = PBXGroup;
 			children = (
+				FF5767D32653A98400F46A43 /* ViewModel */,
 				FF5767CA2653A25E00F46A43 /* View */,
 			);
 			path = MyReservationScene;
@@ -249,6 +260,31 @@
 				FF5767CE2653A2AE00F46A43 /* WishListViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FF5767D02653A5F700F46A43 /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767D12653A60800F46A43 /* AirbnbSceneFlowCoordinator.swift */,
+				FF5767DB2653AC3000F46A43 /* FlowTabBarController.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		FF5767D32653A98400F46A43 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767D42653A99400F46A43 /* MyReserVationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FF5767D62653A9DF00F46A43 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767D72653A9EB00F46A43 /* WishListViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,13 +420,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF5767CC2653A28D00F46A43 /* MyReserVationViewController.swift in Sources */,
+				FF5767DC2653AC3000F46A43 /* FlowTabBarController.swift in Sources */,
+				FF5767D22653A60800F46A43 /* AirbnbSceneFlowCoordinator.swift in Sources */,
+				FF5767D82653A9EB00F46A43 /* WishListViewModel.swift in Sources */,
 				FF5767CF2653A2AE00F46A43 /* WishListViewController.swift in Sources */,
 				FF5767B42653311E00F46A43 /* ThemeDestinationsCell.swift in Sources */,
 				FF5767A22652935F00F46A43 /* AdjacentDestinationsCell.swift in Sources */,
-				FF5767672652490C00F46A43 /* MainViewController.swift in Sources */,
+				FF5767672652490C00F46A43 /* MainSearchViewController.swift in Sources */,
 				FF5767632652490C00F46A43 /* AppDelegate.swift in Sources */,
+				FF5767D52653A99400F46A43 /* MyReserVationViewModel.swift in Sources */,
 				FF5767652652490C00F46A43 /* SceneDelegate.swift in Sources */,
-				FF5767B726533AC600F46A43 /* MainViewModel.swift in Sources */,
+				FF5767B726533AC600F46A43 /* MainSearchViewModel.swift in Sources */,
 				FF5767BC26535AC200F46A43 /* HeroImageCell.swift in Sources */,
 				FF5767BF2653655400F46A43 /* HeaderView.swift in Sources */,
 			);

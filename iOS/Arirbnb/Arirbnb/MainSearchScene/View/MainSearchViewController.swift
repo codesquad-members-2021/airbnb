@@ -9,6 +9,17 @@ import UIKit
 
 class MainSearchViewController: UIViewController {
     static let sectionHeaderElementKind = "MainViewSectionHeaderElement"
+    static let storyboardName = "Main"
+    static let storyboardID = "MainSearchViewController"
+    
+    static func create(with viewModel: MainSearchViewModel = MainSearchViewModel()) -> MainSearchViewController {
+        let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
+        guard let vc = storyboard.instantiateViewController(identifier: storyboardID) as? MainSearchViewController else {
+            return MainSearchViewController()
+        }
+        vc.viewModel = viewModel
+        return vc
+    }
     
     enum Section: Int, CaseIterable {
         case heroImages, adjacentDestinations, themeDestinations
@@ -24,7 +35,7 @@ class MainSearchViewController: UIViewController {
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
-    private var viewModel = MainSearchViewModel()
+    private var viewModel: MainSearchViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
