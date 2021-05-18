@@ -12,7 +12,8 @@ create table city(
 drop table category;
 create table category(
     id int not null auto_increment,
-    name varchar(45) not null
+    name varchar(45) not null,
+    primary key(id)
 );
 
 drop tabel room;
@@ -61,11 +62,11 @@ create table image_type(
     primary key (id)
 );
 
-drop table user;
-create tabel user(
+drop table 'user';
+create table user(
     id varchar(45) not null,
     primary key (id)
-)
+);
 
 drop table wish_list;
 create table wish_list(
