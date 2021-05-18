@@ -6,6 +6,14 @@
 |---|---|---|
 |Eamon:dark_sunglasses:|woody:cat:|쑤:rabbit:|
 
+# 브랜치 규칙
+- team-09: release 브랜치
+- dev: 개발 중이지만 배포 가능한 브랜치
+- dev/BE: 백엔드의 메인 브랜치
+- dev/FE: 프론트엔드의 메인 브랜치
+- dev/iOS: iOS의 메인 브랜치
+- FE/feature/play-view: 프론트엔드의 기능 구현 브랜치
+
 # N 주차 목표
 
  ## 1 주차 목표
