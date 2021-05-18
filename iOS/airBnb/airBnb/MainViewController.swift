@@ -23,5 +23,11 @@ class MainViewController: UIViewController {
     }
 
     @objc func moveSearchViewController(_ UITapGestureReconizer: UITapGestureRecognizer) {
+        guard let locationSearchView = UIStoryboard(name: "LocationSearch", bundle: nil).instantiateViewController(withIdentifier: "LocationSearch") as? LocationSearchViewController else {
+            return
+        }
+        let navigationController = UINavigationController(rootViewController: locationSearchView)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true)
     }
 }

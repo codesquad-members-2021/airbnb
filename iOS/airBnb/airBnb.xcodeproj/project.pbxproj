@@ -13,6 +13,8 @@
 		BFE430BB2653902E00F4DA1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFE430B92653902E00F4DA1C /* Main.storyboard */; };
 		BFE430BD2653903000F4DA1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFE430BC2653903000F4DA1C /* Assets.xcassets */; };
 		BFE430C02653903000F4DA1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFE430BE2653903000F4DA1C /* LaunchScreen.storyboard */; };
+		BFE430D526541D2B00F4DA1C /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE430D426541D2B00F4DA1C /* LocationSearchViewController.swift */; };
+		BFE430D826541F1E00F4DA1C /* LocationSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFE430D726541F1E00F4DA1C /* LocationSearch.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		BFE430BC2653903000F4DA1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFE430BF2653903000F4DA1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFE430C12653903000F4DA1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFE430D426541D2B00F4DA1C /* LocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
+		BFE430D726541F1E00F4DA1C /* LocationSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationSearch.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				BFE430B32653902E00F4DA1C /* AppDelegate.swift */,
 				BFE430B52653902E00F4DA1C /* SceneDelegate.swift */,
 				BFE430B72653902E00F4DA1C /* MainViewController.swift */,
+				BFE430D426541D2B00F4DA1C /* LocationSearchViewController.swift */,
+				BFE430D726541F1E00F4DA1C /* LocationSearch.storyboard */,
 				BFE430B92653902E00F4DA1C /* Main.storyboard */,
 				BFE430BC2653903000F4DA1C /* Assets.xcassets */,
 				BFE430BE2653903000F4DA1C /* LaunchScreen.storyboard */,
@@ -127,6 +133,7 @@
 				BFE430C02653903000F4DA1C /* LaunchScreen.storyboard in Resources */,
 				BFE430BD2653903000F4DA1C /* Assets.xcassets in Resources */,
 				BFE430BB2653902E00F4DA1C /* Main.storyboard in Resources */,
+				BFE430D826541F1E00F4DA1C /* LocationSearch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +147,7 @@
 				BFE430B82653902E00F4DA1C /* MainViewController.swift in Sources */,
 				BFE430B42653902E00F4DA1C /* AppDelegate.swift in Sources */,
 				BFE430B62653902E00F4DA1C /* SceneDelegate.swift in Sources */,
+				BFE430D526541D2B00F4DA1C /* LocationSearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
