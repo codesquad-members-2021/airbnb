@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w39-Dj-YZY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -9,7 +9,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--로그인-->
+        <scene sceneID="TFp-BA-09N">
+            <objects>
+                <viewController id="7j3-2H-fDZ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="D61-VO-Cus">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="KYl-ru-OA0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="로그인" selectedImage="person.fill" catalog="system" id="wLF-dn-KGs"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bDG-W1-uWM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="754" y="-574"/>
+        </scene>
+        <!--검색-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Airbnb" customModuleProvider="target" sceneMemberID="viewController">
@@ -62,6 +78,8 @@
                             <constraint firstItem="P8b-Vo-b6K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qM3-HZ-hxs"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="검색" selectedImage="magnifyingglass" catalog="system" id="I6f-gj-dUv"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mainInfoCollectionView" destination="P8b-Vo-b6K" id="iih-uD-DNr"/>
                         <outlet property="travelSearchBar" destination="k1y-Vs-qGE" id="d9S-bZ-xgu"/>
@@ -69,10 +87,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="755" y="88"/>
+        </scene>
+        <!--위시리스트-->
+        <scene sceneID="vch-nN-zRH">
+            <objects>
+                <viewController id="WZi-dD-ZYj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SnV-B3-4wI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="L4v-F1-Vni"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="위시리스트" selectedImage="heart" catalog="system" id="wCo-Kd-XwI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="71L-wA-dia" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="754" y="749"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="MlB-QM-A7L">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="w39-Dj-YZY" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eyb-pa-mQi">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Dbg-Kq-bS9"/>
+                        <segue destination="WZi-dD-ZYj" kind="relationship" relationship="viewControllers" id="il7-OP-avY"/>
+                        <segue destination="7j3-2H-fDZ" kind="relationship" relationship="viewControllers" id="lmE-2x-5Y2"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6UH-5I-QOj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="15.942028985507248" y="88.392857142857139"/>
         </scene>
     </scenes>
     <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
