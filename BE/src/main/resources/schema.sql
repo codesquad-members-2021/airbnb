@@ -15,5 +15,5 @@ CREATE TABLE reservation
     child          INT    NOT NULL,
     infant         INT    NOT NULL,
     price          INT    NOT NULL,
-    CONSTRAINT place_reserved FOREIGN KEY place_id REFERENCES place(place_id) ON DELETE CASCADE
+    CONSTRAINT place_reserved FOREIGN KEY (place_id) REFERENCES place(place_id)
 );
