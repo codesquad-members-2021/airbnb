@@ -16,8 +16,8 @@ function App() {
 export default App;
 
 const MainWrapper = styled.div`
-	background: url("/hero.jpg") no-repeat center;
-	background-size: cover;
-	min-width: 2560px;
+	background: url("/hero.jpg") no-repeat;
+	background-size: 1920px 75%;
+	min-width: 1280px;
 	min-height: 1280px;
 `;
