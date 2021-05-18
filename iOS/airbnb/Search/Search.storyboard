@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,18 +16,81 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Mm-cA-XfY">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Mce-hi-LFW">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="752"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mlp-dj-LSF">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="488"/>
+                                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="488" id="k7N-Zg-s96"/>
+                                                </constraints>
+                                            </view>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FFM-Bl-tds">
+                                                <rect key="frame" x="0.0" y="528" width="414" height="224"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="224" id="c1L-kn-nBZ"/>
+                                                </constraints>
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Sbf-oW-krp">
+                                                    <size key="itemSize" width="253" height="74"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TravelAreaCell" id="E5I-7U-7oE" customClass="TravelAreaCell" customModule="airbnb" customModuleProvider="target">
+                                                        <rect key="frame" x="80.5" y="0.0" width="253" height="74"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zim-fw-4nj">
+                                                            <rect key="frame" x="0.0" y="0.0" width="253" height="74"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </collectionViewCellContentView>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Mce-hi-LFW" firstAttribute="top" secondItem="47K-TR-DOr" secondAttribute="top" id="0pO-Um-aXv"/>
+                                    <constraint firstItem="Mce-hi-LFW" firstAttribute="width" secondItem="ZQb-ZV-Bef" secondAttribute="width" id="8DX-OL-HwW"/>
+                                    <constraint firstItem="Mce-hi-LFW" firstAttribute="bottom" secondItem="47K-TR-DOr" secondAttribute="bottom" id="Szi-Ta-m1n"/>
+                                    <constraint firstItem="Mce-hi-LFW" firstAttribute="leading" secondItem="47K-TR-DOr" secondAttribute="leading" id="jDe-dP-1l2"/>
+                                    <constraint firstItem="Mce-hi-LFW" firstAttribute="trailing" secondItem="47K-TR-DOr" secondAttribute="trailing" id="sVk-83-4BI"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="47K-TR-DOr"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="ZQb-ZV-Bef"/>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Mm-cA-XfY" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="0Q4-IT-kZG"/>
+                            <constraint firstItem="6Mm-cA-XfY" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="JdY-mw-Ixt"/>
+                            <constraint firstItem="6Mm-cA-XfY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="PCy-fa-oDe"/>
+                            <constraint firstAttribute="bottom" secondItem="6Mm-cA-XfY" secondAttribute="bottom" id="rGe-c2-GW9"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="travelArea" destination="FFM-Bl-tds" id="tBi-MJ-OOA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="84"/>
+            <point key="canvasLocation" x="137.68115942028987" y="83.705357142857139"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

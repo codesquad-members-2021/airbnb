@@ -21,6 +21,8 @@
 		10E1B1702653DDEF0087B69B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1B16F2653DDEF0087B69B /* Coordinator.swift */; };
 		10E1B1722653DE0D0087B69B /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1B1712653DE0D0087B69B /* Storyboarded.swift */; };
 		10E1B1742653DE2F0087B69B /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1B1732653DE2F0087B69B /* MainCoordinator.swift */; };
+		10E1B17A2653F49D0087B69B /* TravelAreaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1B1782653F49D0087B69B /* TravelAreaCell.swift */; };
+		10E1B17B2653F49D0087B69B /* TravelAreaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10E1B1792653F49D0087B69B /* TravelAreaCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		10E1B16F2653DDEF0087B69B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		10E1B1712653DE0D0087B69B /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 		10E1B1732653DE2F0087B69B /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		10E1B1782653F49D0087B69B /* TravelAreaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelAreaCell.swift; sourceTree = "<group>"; };
+		10E1B1792653F49D0087B69B /* TravelAreaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TravelAreaCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,12 +82,12 @@
 				10D29C6926538C6900E71840 /* Assets.xcassets */,
 				10D29C6B26538C6900E71840 /* LaunchScreen.storyboard */,
 				10D29C6E26538C6900E71840 /* Info.plist */,
-				10D29C882653A5C300E71840 /* Search */,
-				10D29C872653A5BF00E71840 /* Login */,
-				10D29C862653A5B800E71840 /* WishList */,
 				10E1B16F2653DDEF0087B69B /* Coordinator.swift */,
 				10E1B1712653DE0D0087B69B /* Storyboarded.swift */,
 				10E1B1732653DE2F0087B69B /* MainCoordinator.swift */,
+				10D29C882653A5C300E71840 /* Search */,
+				10D29C872653A5BF00E71840 /* Login */,
+				10D29C862653A5B800E71840 /* WishList */,
 			);
 			path = airbnb;
 			sourceTree = "<group>";
@@ -111,8 +115,18 @@
 			children = (
 				10D29C74265393F800E71840 /* SearchViewController.swift */,
 				10D29C8E2653A89500E71840 /* Search.storyboard */,
+				10E1B1772653F44E0087B69B /* View */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		10E1B1772653F44E0087B69B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				10E1B1782653F49D0087B69B /* TravelAreaCell.swift */,
+				10E1B1792653F49D0087B69B /* TravelAreaCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +191,7 @@
 				10D29C8F2653A89500E71840 /* Search.storyboard in Resources */,
 				10D29C912653A89F00E71840 /* Login.storyboard in Resources */,
 				10D29C932653A8A600E71840 /* WishList.storyboard in Resources */,
+				10E1B17B2653F49D0087B69B /* TravelAreaCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +205,7 @@
 				10D29C6526538C6800E71840 /* MainViewController.swift in Sources */,
 				10D29C8D2653A61E00E71840 /* WishListViewController.swift in Sources */,
 				10D29C6126538C6800E71840 /* AppDelegate.swift in Sources */,
+				10E1B17A2653F49D0087B69B /* TravelAreaCell.swift in Sources */,
 				10D29C75265393F800E71840 /* SearchViewController.swift in Sources */,
 				10D29C8B2653A61500E71840 /* LoginViewController.swift in Sources */,
 				10D29C6326538C6800E71840 /* SceneDelegate.swift in Sources */,
