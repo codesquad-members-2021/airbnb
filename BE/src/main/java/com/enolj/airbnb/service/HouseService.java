@@ -40,4 +40,8 @@ public class HouseService {
     public ReservationInfoResponseDTO getReservationInfo(Long houseId) {
         return new ReservationInfoResponseDTO(71466, new Fee(25996, 182468), 4);
     }
+
+    public void makeReservation(ReservationRequestDTO requestDTO) {
+        System.out.println(requestDTO);
+    }
 }

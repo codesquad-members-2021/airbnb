@@ -1,15 +1,10 @@
 package com.enolj.airbnb.web;
 
 import com.enolj.airbnb.service.HouseService;
-import com.enolj.airbnb.web.dto.SearchChargesRequestDTO;
-import com.enolj.airbnb.web.dto.SearchRequestDTO;
-import com.enolj.airbnb.web.dto.SearchResponseDTO;
+import com.enolj.airbnb.web.dto.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,5 +34,11 @@ public class HouseController {
     public ReservationInfoResponseDTO getReservationPage(@PathVariable Long houseId) {
         logger.info("{}번 숙소 예약 페이지 요청", houseId);
         return houseService.getReservationInfo(houseId);
+    }
+
+    @PostMapping("houses/{houseId}")
+    public void makeReservation(@PathVariable Long houseId, @RequestBody ReservationRequestDTO requestDTO) {
+        logger.info("{}번 숙소 예약 요청", houseId);
+        houseService.makeReservation(requestDTO);
     }
 }
