@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, Storyboarded {
 
     let searchController = UISearchController(searchResultsController: SearchViewController())
     

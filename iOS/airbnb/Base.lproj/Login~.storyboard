@@ -8,22 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="t4S-JY-cPk"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2294" y="127"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DX7-mh-kaO">
             <objects>
@@ -55,12 +39,28 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="CZH-3w-aXD"/>
+                        <segue destination="xuu-7G-3K8" kind="relationship" relationship="rootViewController" id="WKi-lp-oO5"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EkJ-x3-IFu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1377" y="127"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="nc3-EP-ZPN">
+            <objects>
+                <viewController id="xuu-7G-3K8" customClass="SearchViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ydf-d8-cuM">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="qIC-zz-C5R"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="H5y-wB-cJP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ubb-vO-VYH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2454" y="127"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NFn-zc-XbF">
@@ -71,24 +71,62 @@
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="FnM-W1-5c8" kind="relationship" relationship="rootViewController" id="qCA-cr-DC5"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cPS-gd-zkn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1377" y="-1347"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Login View Controller-->
+        <scene sceneID="PpE-c9-DpV">
+            <objects>
+                <viewController id="FnM-W1-5c8" customClass="LoginViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="laI-Pe-zdq">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="rkI-iH-Oke"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uhU-rD-tr3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="778-gQ-dkn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2455" y="-1347"/>
+        </scene>
+        <!--We-->
         <scene sceneID="1Yf-Av-iwO">
             <objects>
-                <navigationController id="bU9-FV-krW" sceneMemberID="viewController">
+                <navigationController id="bU9-FV-krW" customClass="We" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="DyJ-Ri-GYI"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Wm-T9-bss">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="gma-ZE-MtB" kind="relationship" relationship="rootViewController" id="DQ7-UP-Hy0"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Bp-Zl-qUG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1377" y="-647"/>
+        </scene>
+        <!--Wish List View Controller-->
+        <scene sceneID="TEh-oo-GU1">
+            <objects>
+                <viewController id="gma-ZE-MtB" customClass="WishListViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fg1-Pi-Gkr">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="0Sb-Xg-fI1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3Bn-UR-WoV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jb5-Zl-7uQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2454" y="-648"/>
         </scene>
     </scenes>
     <resources>
