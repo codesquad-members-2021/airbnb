@@ -7,8 +7,8 @@ const FooterSection = () => {
   return (
     <FooterDiv>
       <FooterContentsDiv>
-        {footerMock.map((footerData) => (
-          <FooterContent {...footerData} />
+        {footerMock.map((footerData, idx) => (
+          <FooterContent {...footerData} key={idx} />
         ))}
       </FooterContentsDiv>
       <FooterLineDivider />

@@ -8,8 +8,8 @@ const RoomTour = () => {
     <RoomTourDiv>
       <RoomTourTitle>어디서나 여행은 살아보는거야!</RoomTourTitle>
       <RoomTourCardList>
-        {roomMock.map((v) => (
-          <RoomCard title={v.title} imgUrl={v.imgUrl} />
+        {roomMock.map((v, idx) => (
+          <RoomCard title={v.title} imgUrl={v.imgUrl} key={idx} />
         ))}
       </RoomTourCardList>
     </RoomTourDiv>

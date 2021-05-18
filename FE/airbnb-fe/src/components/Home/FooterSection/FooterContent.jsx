@@ -6,8 +6,8 @@ const FooterContent = ({ ...footerData }) => {
     <FooterContentCard>
       <FooterContentSubtitle>{footerData.title}</FooterContentSubtitle>
       <FooterContentUl>
-        {footerData.contents.map((content) => (
-          <li>{content}</li>
+        {footerData.contents.map((content, idx) => (
+          <li key={idx}>{content}</li>
         ))}
       </FooterContentUl>
     </FooterContentCard>

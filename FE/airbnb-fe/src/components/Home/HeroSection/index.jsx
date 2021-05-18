@@ -5,8 +5,8 @@ import Search from '../../Atoms/Search';
 const HeroSection = () => {
   return (
     <HeroSectionDiv>
-      <Header></Header>
-      <Search></Search>
+      <Header />
+      <Search />
     </HeroSectionDiv>
   );
 };
