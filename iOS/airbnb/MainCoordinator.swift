@@ -16,9 +16,19 @@ class MainCoordinator: Coordinator {
     }
 
     func start() {
-        let search = SearchViewController.instantiate()
-        let wishList = WishListViewController.instantiate()
-        let login = LoginViewController.instantiate()
+    
+        let search = UINavigationController(rootViewController: SearchViewController.instantiate())
+        let wishList = UINavigationController(rootViewController: WishListViewController.instantiate())
+        let login = UINavigationController(rootViewController: LoginViewController.instantiate())
+        
+        let searchItem = UITabBarItem(title: "검색", image: nil, tag: 0)
+        let wishItem = UITabBarItem(title: "위시리스트", image: nil, tag: 1)
+        let loginItem = UITabBarItem(title: "로그인", image: nil, tag: 2)
+        
+        search.tabBarItem = searchItem
+        wishList.tabBarItem = wishItem
+        login.tabBarItem = loginItem
+        
         tabBarController.viewControllers = [search, wishList, login]
     }
 }
