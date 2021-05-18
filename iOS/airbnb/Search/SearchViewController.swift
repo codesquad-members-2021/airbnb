@@ -9,8 +9,12 @@ import UIKit
 
 class SearchViewController : UIViewController {
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchController.searchBar.placeholder = "어디로 여행가세요?"
+        self.navigationItem.searchController = searchController
         view.backgroundColor = .purple
     }
 }
