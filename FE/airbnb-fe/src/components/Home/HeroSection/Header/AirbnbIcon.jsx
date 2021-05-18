@@ -13,6 +13,6 @@ export default () => (
 );
 
 const LogoSvg = styled.svg`
-  fill: black;
+  fill: ${({ theme }) => theme.colors.gray1};
   width: 100px;
 `;

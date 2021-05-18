@@ -19,10 +19,9 @@ const HeaderDiv = styled.div`
   display: flex;
   justify-content: space-between;
   width: 88.88%;
-  border: 1px solid red;
   margin: 0 auto;
   align-items: center;
-  /* background-color: ${({ theme }) => theme.colors.gray3}; */
+  color: ${({ theme }) => theme.colors.gray1};
 `;
 
 const LogoIcon = styled.svg`
