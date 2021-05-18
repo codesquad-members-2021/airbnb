@@ -21,6 +21,7 @@ const theme = {
   },
   borders: {
     S: '10px',
+    M: '30px',
     L: '40px',
   },
   boxShadow: {
