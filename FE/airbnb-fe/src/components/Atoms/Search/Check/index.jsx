@@ -20,9 +20,9 @@ const Check = () => {
 const CheckDiv = styled.div`
   display: grid;
   grid-template-columns: 7fr 10fr 1fr;
+  grid-gap: 24px;
   flex-direction: row;
   align-items: center;
-  padding: 16px 0px 16px 40px;
   border-radius: 3rem;
   /* border: solid 2px red; */
 `;
@@ -49,7 +49,6 @@ const CheckInp = styled.div`
 `;
 const LineDiv = styled.div`
   border-left: 1px solid red;
-  /* color: ${({ theme }) => theme.colors.black}; */
 `;
 
 export default Check;

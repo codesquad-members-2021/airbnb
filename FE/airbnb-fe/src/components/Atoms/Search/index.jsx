@@ -26,8 +26,9 @@ const SearchWrap = styled.div`
   width: 63.6%;
   align-items: center;
   display: grid;
-  grid-template-columns: 5fr 3fr 2fr;
+  grid-template-columns: 5fr 3fr 3fr;
   text-align: center;
+  padding: 1rem 1rem 1rem 40px;
   border-radius: 3rem;
   background-color: ${({ theme }) => theme.colors.white};
 `;
