@@ -29,8 +29,6 @@ export default function SearchBy({ type, input, isEnd, placeholder }: IAppProps)
 		console.log(`${type} clicked`);
 	}
 
-	
-
 	return (
 		<>
 		<StyleSearch isEnd= {isEnd} onClick={()=>handleOnClick(type)}>
