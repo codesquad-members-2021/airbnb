@@ -28,7 +28,8 @@ extension MainViewController: UISearchBarDelegate {
     }
     
     private func pushNextViewController() {
-        let nextStoryBoard = UIStoryboard(name: "LocationSearch", bundle: .main)
+        let nextStoryBoardID = StoryBoardID.accomodationConditions
+        let nextStoryBoard = UIStoryboard(name: nextStoryBoardID, bundle: .main)
         let nextViewControllerID = PopularLocationViewController.reuseIdentifier
         let nextViewController = nextStoryBoard.instantiateViewController(identifier: nextViewControllerID) as? PopularLocationViewController ?? PopularLocationViewController()
         self.navigationController?.pushViewController(nextViewController, animated: true)
