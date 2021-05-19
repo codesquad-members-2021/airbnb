@@ -4,10 +4,10 @@ class MainCell: UICollectionViewCell {
     
     static let identifier = "MainCell"
     
-    private var mainView: MainView?
+    private var mainView: FirstSectionView?
     
     func configureFirstSection(_ item:MainViewInfo) {
-        mainView = MainView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height*0.8))
+        mainView = FirstSectionView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height*0.8))
         mainView?.configureMainView(item)
         addSubview(mainView!)
     }

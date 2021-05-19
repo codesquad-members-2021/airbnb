@@ -1,6 +1,6 @@
 import UIKit
 
-class MainView: UIView {
+class FirstSectionView: UIView {
     
     private lazy var  mainImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
@@ -40,7 +40,7 @@ class MainView: UIView {
 }
 
 //MARK: -SetupViews
-private extension MainView {
+private extension FirstSectionView {
     
     private func setupMainView() {
         setupMainImageView()
