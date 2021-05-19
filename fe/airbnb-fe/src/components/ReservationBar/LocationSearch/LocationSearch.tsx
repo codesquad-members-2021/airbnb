@@ -9,16 +9,9 @@ type LocationSearchProps = {
 };
 
 function LocationSearch({ className }: LocationSearchProps): ReactElement {
-  const [location, setLocation] = useRecoilState<string>(LocationSearchState);
-
-  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    setLocation(target.value);
-  };
-
   return (
     <StyledLocationSearch>
-      <div className='title'>위치</div>
-      <input className='content' placeholder={'어디로 여행가세요?'} onChange={handleChange}/>
+      LocationSearch
     </StyledLocationSearch>
   )
 };
@@ -26,5 +19,8 @@ function LocationSearch({ className }: LocationSearchProps): ReactElement {
 export default LocationSearch;
 
 const StyledLocationSearch = styled.div`
+  box-shadow: 0 0 0 1px red inset;
+  width: 30rem; // FIXME
+  height: 30rem; // FIEMX
   border: 9999px;
 `;
