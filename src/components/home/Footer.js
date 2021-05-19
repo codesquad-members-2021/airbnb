@@ -55,6 +55,9 @@ const FooterBottom = styled.ul`
   width: 80%;
   margin: 0 auto;
   display: flex;
+  border-top: 1px solid #d8d8d8;
+  padding-top: 1rem;
+
   & > li + li {
     margin-left: 2rem;
   }
