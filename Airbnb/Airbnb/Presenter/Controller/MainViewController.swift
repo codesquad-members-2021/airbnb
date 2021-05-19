@@ -21,6 +21,8 @@ class MainViewController: UIViewController {
             cell.configureFirstSection(item)
         } else if indexPath.section == 1 {
             cell.configureSecondSection(item)
+        } else {
+            cell.configureThirdView(item)
         }
         return cell
     }, configureSupplementaryView: titleForHeaderInsection)
@@ -47,7 +49,6 @@ private extension MainViewController {
     
     private func setupCollectionView() {
         mainInfoCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Section")
-        
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.headerReferenceSize = CGSize(width: self.mainInfoCollectionView.frame.width, height: self.mainInfoCollectionView.frame.height*0.2)
         mainInfoCollectionView.collectionViewLayout = flowLayout
@@ -70,8 +71,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDelegate
         if indexPath.section == 0 {
             return CGSize(width: view.frame.width, height: view.frame.height*0.5)
         } else if indexPath.section == 1 {
-            return CGSize(width: view.frame.width/2, height: view.frame.height*0.1)
+            return CGSize(width: mainInfoCollectionView.frame.width*0.5, height: mainInfoCollectionView.frame.height*0.1)
         }
-        else { return CGSize(width: 100, height: 100)}
+        else { return CGSize(width: view.frame.width*0.8, height: view.frame.height*0.4)}
     }
+    
 }

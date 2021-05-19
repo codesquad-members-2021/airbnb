@@ -20,6 +20,7 @@
 		71A67D422653AA9800FC6689 /* MainViewInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D412653AA9800FC6689 /* MainViewInfo.swift */; };
 		71A67D442653AD7400FC6689 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D432653AD7400FC6689 /* DataManager.swift */; };
 		71DA18362654CACC00415EDD /* SecondSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA18352654CACC00415EDD /* SecondSectionView.swift */; };
+		71DA183A2654E2FE00415EDD /* ThirdSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA18392654E2FE00415EDD /* ThirdSectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		71A67D412653AA9800FC6689 /* MainViewInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewInfo.swift; sourceTree = "<group>"; };
 		71A67D432653AD7400FC6689 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		71DA18352654CACC00415EDD /* SecondSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionView.swift; sourceTree = "<group>"; };
+		71DA18392654E2FE00415EDD /* ThirdSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionView.swift; sourceTree = "<group>"; };
 		CCB98BA9F1F4A561BA5FBBA8 /* Pods-Airbnb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airbnb.debug.xcconfig"; path = "Target Support Files/Pods-Airbnb/Pods-Airbnb.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 				71A67D3D2653A92100FC6689 /* MainCell.swift */,
 				7157C8852654A14500EF7977 /* FirstSectionView.swift */,
 				71DA18352654CACC00415EDD /* SecondSectionView.swift */,
+				71DA18392654E2FE00415EDD /* ThirdSectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				71A67D442653AD7400FC6689 /* DataManager.swift in Sources */,
 				71A67D3E2653A92100FC6689 /* MainCell.swift in Sources */,
 				71A67D2726539B6A00FC6689 /* SceneDelegate.swift in Sources */,
+				71DA183A2654E2FE00415EDD /* ThirdSectionView.swift in Sources */,
 				7157C8892654AC4000EF7977 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
