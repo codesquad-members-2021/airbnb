@@ -17,6 +17,7 @@ const Month = ({ left, right, date }: MonthProps) => {
   const [, setMonthIndex] = useRecoilState(monthIndexAtom);
   const [calendarClickState, setCalendarClickState] = useRecoilState(calendarClickAtom);
   const [checkInTime, checkOutTime] = calendarClickState;
+
   const handleClickMonthMove = (moveCount: number) => () => {
     setMonthIndex(month => month + moveCount * 2);
   }
@@ -64,7 +65,7 @@ const Month = ({ left, right, date }: MonthProps) => {
                     aria-selected={checkInTime === dayTime || checkOutTime === dayTime}
                     aria-checked={checkInTime < dayTime && dayTime < checkOutTime}
                     aria-disabled={!!day.replace(/\d/g, '')}
-                    data-date={day && dayTime}
+                    data-date={day && dayTime ? dayTime : ''}
                   >
                     {day.replace(/\D/g, '')}
                   </td>
@@ -100,11 +101,10 @@ const DayTable = styled.table`
   }
   &>tbody{
     &>tr{
-      height: 4rem;
       margin-top:.2rem;
     }
   }
-  td{
+  td{  
       &[aria-disabled='true'] {
           color: #BDBDBD;
       }
@@ -112,6 +112,7 @@ const DayTable = styled.table`
         background: #333333;
         border-radius: 50%;
         color:#fff;
+      
       }
       &[aria-checked='true']:not(:empty){
         background: #F7F7F7;
@@ -122,6 +123,16 @@ const DayTable = styled.table`
             cursor:pointer;
         }
       }
+      &:before {
+        content: '';
+        display:block;
+        padding-bottom: 37%;
+      }   
+      &:after {
+        content: '';
+        display:block;
+        padding-bottom: 37%;
+      }     
     }
 `;
 export default Month;

@@ -1,20 +1,48 @@
+import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import EntryDate from './EntryDate';
 import Charge from './Charge';
 import Personnel from './Personnel';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
+import { useRecoilState } from 'recoil';
+import { searchBarFocusAtom, searchBarRefAtom } from '../../recoil/atoms';
 
 const SearchBar = () => {
-  return (
-    <SearchBarWrapper>
-      <EntryDate></EntryDate>
+  const [searchBarState, setSearchBarState] = useRecoilState(searchBarFocusAtom);
+  const [, setSearchBarRef] = useRecoilState(searchBarRefAtom);
+  const { entryDate, charge, personnel, focus } = searchBarState;
+  const $SearchBarWrapper = useRef<HTMLDivElement>(null);
 
-      <Charge></Charge>
-      <Personnel></Personnel>
-      <Button variant="contained" color="secondary" style={{ borderRadius: '50%' , height:'4rem', marginRight:'1rem'}}> 
-        <SearchIcon fontSize="large"/>
-      </Button>
+  useEffect(() => {
+    setSearchBarRef($SearchBarWrapper);
+  }, [$SearchBarWrapper])
+
+  const handleClickShowModal = (clickTarget: string) => () => {
+    setSearchBarState({
+      entryDate: false,
+      charge: false,
+      personnel: false,
+      focus: true,
+      [clickTarget]: true
+    });
+  }
+
+  return (
+    <SearchBarWrapper ref={$SearchBarWrapper}>
+      <EntryDate {...{ entryDate, handleClickShowModal }} />
+      <Charge {...{ charge, handleClickShowModal }} />
+      <Personnel {...{ personnel, handleClickShowModal }} />
+      <SearchButtonWrapper>
+        <Button variant="contained" color="secondary"
+          style={{
+            borderRadius: focus ? '2rem' : '50%', height: '4rem', marginRight: '1rem',
+            fontWeight: 700, fontSize: '18px'
+          }}>
+          <SearchIcon fontSize="large" />
+          {focus ? '검색' : ''}
+        </Button>
+      </SearchButtonWrapper>
     </SearchBarWrapper>
   )
 }
@@ -32,5 +60,9 @@ const SearchBarWrapper = styled.div`
   place-content: space-between;
 `;
 
+const SearchButtonWrapper = styled.div`
+  width: 15%;
+  text-align: end;
+`;
 
 export default SearchBar;

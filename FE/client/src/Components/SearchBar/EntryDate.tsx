@@ -7,27 +7,32 @@ import { useRecoilState } from 'recoil';
 import { calendarClickAtom } from './../../recoil/atoms';
 import { getMonthAndDay } from '../../utils/calendarUtil';
 
-const EntryDate = () => {
-  const [calendarClickState] = useRecoilState(calendarClickAtom);
+type EntryDateType = {
+  handleClickShowModal: (clickTarget: string) => () => void;
+  entryDate: boolean;
+}
+
+const EntryDate = ({ handleClickShowModal, entryDate }: EntryDateType) => {
+  const [calendarClickState, setCalendarClickState] = useRecoilState(calendarClickAtom);
   const [checkInTime, checkOutTime] = calendarClickState;
-  
-  
+
+  const handleClickDayReset = () => setCalendarClickState([]);
+
   return (
-    <EntryDateWrapper>
-        <CheckIn>
-          <DivisionTitle>체크인</DivisionTitle>
-          <DivisionContent>
-            {checkInTime ? getMonthAndDay(checkInTime) : '날짜 입력'}
-          </DivisionContent>
-        </CheckIn>
-        <Checkout>
-          <DivisionTitle>체크아웃</DivisionTitle>
-          <DivisionContent>
-            {checkOutTime ? getMonthAndDay(checkOutTime) : '날짜 입력'}
-          </DivisionContent>
-        </Checkout>
-      {/* <IconButton style={{display:'none'}}> */}
-      <IconButton>
+    <EntryDateWrapper onClick={handleClickShowModal('entryDate')}>
+      <CheckInWrapper>
+        <DivisionTitle>체크인</DivisionTitle>
+        <DivisionContent>
+          {checkInTime ? getMonthAndDay(checkInTime) : '날짜 입력'}
+        </DivisionContent>
+      </CheckInWrapper>
+      <CheckoutWrapper>
+        <DivisionTitle>체크아웃</DivisionTitle>
+        <DivisionContent>
+          {checkOutTime ? getMonthAndDay(checkOutTime) : '날짜 입력'}
+        </DivisionContent>
+      </CheckoutWrapper>
+      <IconButton onClick={handleClickDayReset} style={{visibility: entryDate ? 'visible' : 'hidden'} }>
         <HighlightOffIcon />
       </IconButton>
     </EntryDateWrapper>
@@ -41,7 +46,7 @@ const EntryDateWrapper = styled.div`
   border-right:1px solid #E0E0E0;
 `;
 
-const CheckIn = styled.span`
+const CheckInWrapper = styled.span`
   width: 43%;
   place-self: center;
   &:hover{
@@ -49,7 +54,7 @@ const CheckIn = styled.span`
   }
 `;
 
-const Checkout = styled.span`
+const CheckoutWrapper = styled.span`
   width: 43%;
   place-self: center;
   &:hover{

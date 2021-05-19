@@ -3,14 +3,19 @@ import { DivisionContent, DivisionTitle } from './../commons/base';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { IconButton } from "@material-ui/core";
 
-const Charge = () => {
+type EntryDateType = {
+  handleClickShowModal: (clickTarget: string) => () => void;
+  charge: boolean;
+}
+
+const Charge = ({ handleClickShowModal, charge }: EntryDateType) => {
   return (
-    <ChargeWrapper>
+    <ChargeWrapper onClick={handleClickShowModal('charge')}>
       <span>
         <DivisionTitle>요금</DivisionTitle>
         <DivisionContent>금액대 설정</DivisionContent>
       </span>
-      <IconButton>
+      <IconButton style={{ visibility: charge ? 'visible' : 'hidden' }}>
         <HighlightOffIcon />
       </IconButton>
     </ChargeWrapper>

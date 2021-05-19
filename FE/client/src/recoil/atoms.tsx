@@ -1,5 +1,6 @@
+import React  from 'react';
 import { atom, selector } from "recoil";
-import { getDate,currentDate } from '../utils/calendarUtil';
+import { getDate, currentDate } from '../utils/calendarUtil';
 
 export const monthIndexAtom = atom<number>({
   key: 'monthIndexAtom',
@@ -24,6 +25,28 @@ export const calendarStateSelector = selector<CalendarSelectorType>({
 });
 
 export const calendarClickAtom = atom<Array<number>>({
-  key:'calendarClickAtom',
+  key: 'calendarClickAtom',
   default: []
 });
+
+type SearchBarFocusAtomType = {
+  entryDate: boolean,
+  charge: boolean,
+  personnel: boolean,
+  focus: boolean
+}
+
+export const searchBarFocusAtom = atom<SearchBarFocusAtomType>({
+  key: 'searchBarFocusAtom',
+  default: {
+    entryDate: false,
+    charge: false,
+    personnel: false,
+    focus: false
+  }
+})
+
+export const searchBarRefAtom = atom<null | React.RefObject<HTMLDivElement>>({
+  key: 'searchBarRefAtom',
+  default: null
+})
