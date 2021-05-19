@@ -16,9 +16,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let animationView = AnimationView(name: "airbnb-logo")
-        mainView.addSubview(animationView)
-        animationView.play()        
+        let lottieAnimation = LottieAnimation(with: self.view)
+//        let animationView = AnimationView(name: "airbnb-logo")
+//        animationView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
+//        animationView.center = self.view.center
+//        animationView.contentMode = .scaleAspectFill
+        mainView.addSubview(lottieAnimation.animationView)
+        lottieAnimation.animationView.play()
     }
     
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		011C6CD90FD8FABADD6F53AE /* Pods_JacksonBnBTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 383CD06302A005908D2359B8 /* Pods_JacksonBnBTests.framework */; };
 		882EC72C5BCAF3E485B328E6 /* Pods_JacksonBnB_JacksonBnBUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD03A04B919FFB7C0A869DC8 /* Pods_JacksonBnB_JacksonBnBUITests.framework */; };
+		FA77FD8D2654AAA800F37BDD /* LottieAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77FD8C2654AAA800F37BDD /* LottieAnimation.swift */; };
 		FA7942C72653F3B700D73017 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7942C62653F3B700D73017 /* AppDelegate.swift */; };
 		FA7942C92653F3B700D73017 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7942C82653F3B700D73017 /* SceneDelegate.swift */; };
 		FA7942CB2653F3B700D73017 /* LoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7942CA2653F3B700D73017 /* LoadViewController.swift */; };
@@ -48,6 +49,7 @@
 		E1BE35E383E2FA2372B564AC /* Pods_JacksonBnB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JacksonBnB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6D5C57E656E91C19B3F7C6D /* Pods-JacksonBnBTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JacksonBnBTests.debug.xcconfig"; path = "Target Support Files/Pods-JacksonBnBTests/Pods-JacksonBnBTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED6C62A104721DC1C5BEA953 /* Pods-JacksonBnB-JacksonBnBUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JacksonBnB-JacksonBnBUITests.debug.xcconfig"; path = "Target Support Files/Pods-JacksonBnB-JacksonBnBUITests/Pods-JacksonBnB-JacksonBnBUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FA77FD8C2654AAA800F37BDD /* LottieAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimation.swift; sourceTree = "<group>"; };
 		FA7942C32653F3B700D73017 /* JacksonBnB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JacksonBnB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7942C62653F3B700D73017 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA7942C82653F3B700D73017 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 		FA77FD8A2653FB5600F37BDD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FA77FD8C2654AAA800F37BDD /* LottieAnimation.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA77FD8D2654AAA800F37BDD /* LottieAnimation.swift in Sources */,
 				FA7942CB2653F3B700D73017 /* LoadViewController.swift in Sources */,
 				FA7942C72653F3B700D73017 /* AppDelegate.swift in Sources */,
 				FA7942C92653F3B700D73017 /* SceneDelegate.swift in Sources */,
