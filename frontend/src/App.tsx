@@ -1,15 +1,16 @@
+import styled from "styled-components";
+// import {BrowserRouter as Router, Switch} from "react-router-dom";
 import Header from "./components/main/header/Header";
 import Main from "./components/main/Main";
-import styled from "styled-components";
 
 function App() {
 	return (
-		<div>
+		<>
 			<MainWrapper>
 				<Header />
 				<Main />
 			</MainWrapper>
-		</div>
+		</>
 	);
 }
 
