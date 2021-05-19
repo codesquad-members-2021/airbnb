@@ -15,6 +15,10 @@
 		BFE430C02653903000F4DA1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFE430BE2653903000F4DA1C /* LaunchScreen.storyboard */; };
 		BFE430D526541D2B00F4DA1C /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE430D426541D2B00F4DA1C /* LocationSearchViewController.swift */; };
 		BFE430D826541F1E00F4DA1C /* LocationSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFE430D726541F1E00F4DA1C /* LocationSearch.storyboard */; };
+		BFE4310626554B3600F4DA1C /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE4310526554B3500F4DA1C /* LocationCell.swift */; };
+		BFE4310926554BAC00F4DA1C /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFE4310826554BAC00F4DA1C /* LocationCell.xib */; };
+		BFE4311326557A2900F4DA1C /* LocationHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE4311226557A2900F4DA1C /* LocationHeaderView.swift */; };
+		BFE431172655948800F4DA1C /* LocationResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE431162655948800F4DA1C /* LocationResultCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		BFE430C12653903000F4DA1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFE430D426541D2B00F4DA1C /* LocationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
 		BFE430D726541F1E00F4DA1C /* LocationSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationSearch.storyboard; sourceTree = "<group>"; };
+		BFE4310526554B3500F4DA1C /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		BFE4310826554BAC00F4DA1C /* LocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
+		BFE4311226557A2900F4DA1C /* LocationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHeaderView.swift; sourceTree = "<group>"; };
+		BFE431162655948800F4DA1C /* LocationResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +72,10 @@
 				BFE430B52653902E00F4DA1C /* SceneDelegate.swift */,
 				BFE430B72653902E00F4DA1C /* MainViewController.swift */,
 				BFE430D426541D2B00F4DA1C /* LocationSearchViewController.swift */,
+				BFE4310526554B3500F4DA1C /* LocationCell.swift */,
+				BFE431162655948800F4DA1C /* LocationResultCell.swift */,
+				BFE4310826554BAC00F4DA1C /* LocationCell.xib */,
+				BFE4311226557A2900F4DA1C /* LocationHeaderView.swift */,
 				BFE430D726541F1E00F4DA1C /* LocationSearch.storyboard */,
 				BFE430B92653902E00F4DA1C /* Main.storyboard */,
 				BFE430BC2653903000F4DA1C /* Assets.xcassets */,
@@ -130,6 +142,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE4310926554BAC00F4DA1C /* LocationCell.xib in Resources */,
 				BFE430C02653903000F4DA1C /* LaunchScreen.storyboard in Resources */,
 				BFE430BD2653903000F4DA1C /* Assets.xcassets in Resources */,
 				BFE430BB2653902E00F4DA1C /* Main.storyboard in Resources */,
@@ -145,8 +158,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFE430B82653902E00F4DA1C /* MainViewController.swift in Sources */,
+				BFE4310626554B3600F4DA1C /* LocationCell.swift in Sources */,
 				BFE430B42653902E00F4DA1C /* AppDelegate.swift in Sources */,
 				BFE430B62653902E00F4DA1C /* SceneDelegate.swift in Sources */,
+				BFE431172655948800F4DA1C /* LocationResultCell.swift in Sources */,
+				BFE4311326557A2900F4DA1C /* LocationHeaderView.swift in Sources */,
 				BFE430D526541D2B00F4DA1C /* LocationSearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7wA-kI-XBG">
-    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -29,7 +30,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3CD-GA-Zhb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-30.434782608695656" y="93.75"/>
+            <point key="canvasLocation" x="-954" y="158"/>
         </scene>
         <!--검색-->
         <scene sceneID="Bmw-h9-aJY">
@@ -38,7 +39,7 @@
                     <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" id="DgF-w9-Kyb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="M2Q-Jc-k5k">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -48,69 +49,77 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Civ-Dv-9fi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="969.56521739130437" y="93.75"/>
+            <point key="canvasLocation" x="297" y="135"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="P56-NS-xKU">
             <objects>
                 <viewController storyboardIdentifier="main" id="Ar4-KE-pev" customClass="MainViewController" customModule="airBnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YSL-O0-4Px">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YnR-Ne-vQ0">
-                                <rect key="frame" x="0.0" y="88" width="414" height="537.66666666666663"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainImage" translatesAutoresizingMaskIntoConstraints="NO" id="YnR-Ne-vQ0">
+                                <rect key="frame" x="0.0" y="87.999999999999972" width="375" height="365.33333333333326"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="슬기로운 노예생활" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8h-kg-QjJ">
-                                <rect key="frame" x="30" y="202.33333333333334" width="285.33333333333331" height="48"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <rect key="frame" x="29.999999999999986" y="145.33333333333334" width="242.66666666666663" height="40.666666666666657"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D25-Yx-8xL">
-                                <rect key="frame" x="30" y="295.33333333333331" width="150" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="30" y="230.33333333333334" width="165" height="38.000000000000028"/>
+                                <color key="backgroundColor" name="CityColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="xKG-X1-dTe"/>
+                                    <constraint firstAttribute="height" constant="38" id="xBB-52-BGf"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="165" id="xKG-X1-dTe"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="여행 아이디어 얻기">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="에어비엔비가 엄선한 위시리스트를 만나보세요." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6i-OU-tDQ">
-                                <rect key="frame" x="30" y="258.33333333333331" width="257.66666666666669" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="30" y="194" width="312" height="20.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="CityColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Gqd-nq-7DM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Gqd-nq-7DM" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="h8h-kg-QjJ" secondAttribute="trailing" id="83V-F0-3TI"/>
                             <constraint firstItem="YnR-Ne-vQ0" firstAttribute="trailing" secondItem="Gqd-nq-7DM" secondAttribute="trailing" id="I2T-pO-rC1"/>
                             <constraint firstItem="c6i-OU-tDQ" firstAttribute="leading" secondItem="h8h-kg-QjJ" secondAttribute="leading" id="QLE-9a-px0"/>
                             <constraint firstItem="h8h-kg-QjJ" firstAttribute="leading" secondItem="Gqd-nq-7DM" secondAttribute="leading" constant="30" id="QRi-Yo-5r1"/>
                             <constraint firstItem="D25-Yx-8xL" firstAttribute="leading" secondItem="c6i-OU-tDQ" secondAttribute="leading" id="RdK-UD-lpU"/>
                             <constraint firstItem="YnR-Ne-vQ0" firstAttribute="top" secondItem="Gqd-nq-7DM" secondAttribute="top" id="XTY-rS-oUo"/>
-                            <constraint firstItem="D25-Yx-8xL" firstAttribute="top" secondItem="c6i-OU-tDQ" secondAttribute="bottom" constant="20" id="aK6-Dx-v2u"/>
-                            <constraint firstItem="h8h-kg-QjJ" firstAttribute="top" secondItem="Gqd-nq-7DM" secondAttribute="top" multiplier="2.3" id="eB5-2A-RQC"/>
+                            <constraint firstItem="D25-Yx-8xL" firstAttribute="top" secondItem="c6i-OU-tDQ" secondAttribute="bottom" constant="16" id="aK6-Dx-v2u"/>
+                            <constraint firstItem="Gqd-nq-7DM" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="c6i-OU-tDQ" secondAttribute="trailing" id="dxN-Qe-ey7"/>
+                            <constraint firstItem="h8h-kg-QjJ" firstAttribute="top" secondItem="Gqd-nq-7DM" secondAttribute="top" multiplier="1.65" id="eB5-2A-RQC"/>
+                            <constraint firstItem="Gqd-nq-7DM" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="D25-Yx-8xL" secondAttribute="trailing" id="hby-G6-Dbn"/>
                             <constraint firstItem="c6i-OU-tDQ" firstAttribute="top" secondItem="h8h-kg-QjJ" secondAttribute="bottom" constant="8" id="kPK-Xv-eXW"/>
                             <constraint firstItem="YnR-Ne-vQ0" firstAttribute="leading" secondItem="Gqd-nq-7DM" secondAttribute="leading" id="stI-ON-mJk"/>
-                            <constraint firstItem="YnR-Ne-vQ0" firstAttribute="height" secondItem="YSL-O0-4Px" secondAttribute="height" multiplier="0.6" id="tse-aR-H4P"/>
+                            <constraint firstItem="YnR-Ne-vQ0" firstAttribute="height" secondItem="YSL-O0-4Px" secondAttribute="height" multiplier="0.45" id="tse-aR-H4P"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9gn-Uc-gmy"/>
+                    <connections>
+                        <outlet property="tripIdeaButton" destination="D25-Yx-8xL" id="VIx-BM-Cdz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B5p-Y5-JBL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1810.7692307692307" y="93.127962085308056"/>
+            <point key="canvasLocation" x="1123" y="135"/>
         </scene>
         <!--위시리스트-->
         <scene sceneID="9V7-y8-CQU">
             <objects>
                 <viewController id="RwC-Rx-5fJ" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ylc-Xj-0vS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="jMZ-Wh-c6v"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -121,14 +130,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2kO-0v-qlB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="61" y="872"/>
+            <point key="canvasLocation" x="296" y="865"/>
         </scene>
         <!--로그인-->
         <scene sceneID="g19-Wk-LYQ">
             <objects>
                 <viewController id="r1X-Xl-ZlI" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vbw-47-s7H">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="e40-RY-VJg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -137,13 +146,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rql-wt-qNE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="784" y="-579"/>
+            <point key="canvasLocation" x="296" y="-591"/>
         </scene>
     </scenes>
     <resources>
+        <image name="MainImage" width="250" height="325.33334350585938"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="suit.heart" catalog="system" width="128" height="109"/>
+        <namedColor name="CityColor">
+            <color red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

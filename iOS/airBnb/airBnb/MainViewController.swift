@@ -9,6 +9,8 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    @IBOutlet weak var tripIdeaButton: UIButton!
+    
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "어디로 여행가세요?"
@@ -20,6 +22,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.titleView = searchBar
+        tripIdeaButton.layer.cornerRadius = 10
     }
 
     override func viewWillAppear(_ animated: Bool) {
