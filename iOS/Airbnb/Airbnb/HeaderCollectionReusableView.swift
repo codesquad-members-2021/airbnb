@@ -12,7 +12,6 @@ class HeaderCollectionReusableView: UICollectionReusableView {
 
     private let headerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .purple
         return view
     }()
     
