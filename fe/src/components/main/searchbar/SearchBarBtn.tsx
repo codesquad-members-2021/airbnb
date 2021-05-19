@@ -1,12 +1,8 @@
-import { Center } from "@chakra-ui/layout"
 import { BsSearch } from "react-icons/bs";
 
 const SearchBarBtn = () => {
-    return (
-       <Center>
-           <BsSearch/>
-       </Center>
-    )
-}
+  return <BsSearch />;
+};
 
-export default SearchBarBtn
+export default SearchBarBtn;
+ 

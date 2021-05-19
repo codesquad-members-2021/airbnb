@@ -20,6 +20,8 @@ const StyledAccountMenu = styled.button`
   border-radius: 2rem;
   color: gray;
   padding: 0.5rem 1rem;
+  border: 1px solid #BDBDBD;
+
   .bar {
     font-size: 1.5rem;
   }

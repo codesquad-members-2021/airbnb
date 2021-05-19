@@ -1,22 +1,27 @@
 import styled from "styled-components";
-import { Box, Center, Flex, Spacer } from "@chakra-ui/react";
+import { Box } from "@material-ui/core";
 import AccountMenu from "./AccountMenu";
 import Logo from "./Logo";
 import Menus from "./Menus";
 
 const Header = () => {
+  const flex = {
+    width: "33%",
+    display: "flex",
+    alignItems: "center",
+  };
+
   return (
     <StyledHeader>
-      <Box w="33%">
+      <Box css={flex} justifyContent="flex-start">
         <Logo />
       </Box>
-      <Center w="33%">
+      <Box css={flex} justifyContent="center">
         <Menus />
-      </Center>
-      <Flex w="33%">
-        <Spacer />
+      </Box>
+      <Box css={flex} justifyContent="flex-end">
         <AccountMenu />
-      </Flex>
+      </Box>
     </StyledHeader>
   );
 };
@@ -29,5 +34,4 @@ const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
 `;

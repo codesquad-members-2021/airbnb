@@ -1,14 +1,17 @@
-import { Center } from "@chakra-ui/layout";
+import { Box } from "@material-ui/core";
 import styled from "styled-components";
 const SearchBar = () => {
-
-  return (<Center w='100%' ><StyledSearchBar></StyledSearchBar></Center>);
+  return (
+    <Box width="100%" display="flex" justifyContent="center">
+      <StyledSearchBar></StyledSearchBar>
+    </Box>
+  );
 };
 
 export default SearchBar;
 
 const StyledSearchBar = styled.div`
-  margin-top: 2.5rem;
+  margin-top: 2.4rem;
   display: flex;
   flex-direction: row;
   align-items: center;

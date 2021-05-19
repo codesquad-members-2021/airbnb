@@ -21,19 +21,22 @@ const StyledMenuItem = styled.li`
   justify-content: center;
   align-items: center;
   width: 7rem;
+  font-size: 1.2rem;
+  
   &:hover {
     cursor: pointer;
+    font-weight: 700;
     div {
-      width: 60%;
+      width: 30%;
     }
   }
   div {
-    margin: 1rem 0;
+    margin: 0.5rem 0;
   }
 `;
 
 const StyledBar = styled.div`
-  width: 20%;
+  width: 10%;
   background-color: black;
-  height: 0.2rem;
+  height: 0.15rem;
 `;
