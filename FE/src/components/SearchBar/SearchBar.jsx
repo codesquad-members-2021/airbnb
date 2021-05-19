@@ -1,19 +1,31 @@
 import styled from "styled-components";
-import Period from "./Period";
-import Price from "./Price";
-import Personnel from "./Personnel";
+import Period from "./Period/Period";
+import Price from "./Price/Price";
+import Personnel from "./Personnel/Personnel";
 import SearchButton from "./SearchButton";
+import { useEffect, useRef, useState } from "react";
 
-const SearchBar = () => (
-	<SearchBarWrapper>
-		<Period />
-		<SearchButton />
-		<Line />
-		<Price />
-		<Line />
-		<Personnel />
-	</SearchBarWrapper>
-);
+const SearchBar = () => {
+	const [isFocus, setFocus] = useState(false);
+	const currentDOM = useRef();
+
+	useEffect(() => {
+		document.addEventListener("click", (e) => {
+			if (currentDOM.current && !currentDOM.current.contains(e.target)) setFocus(() => false);
+		});
+	});
+
+	return (
+		<SearchBarWrapper ref={currentDOM} onClick={() => setFocus(() => true)}>
+			<Period />
+			<SearchButton isFocus={isFocus} />
+			<Line />
+			<Price />
+			<Line />
+			<Personnel />
+		</SearchBarWrapper>
+	);
+};
 
 const SearchBarWrapper = styled.div`
 	position: absolute;
