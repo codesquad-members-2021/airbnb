@@ -13,12 +13,17 @@ class LocationSearchBar: UISearchBar {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        placeholder = LocationSearchBar.placeholder
+        configure()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        configure()
+    }
+    
+    private func configure() {
         placeholder = LocationSearchBar.placeholder
+        searchTextField.clearButtonMode = .never
     }
     
 }
