@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { CenterContainer } from '../util/utilStyles';
-import { SvgMenuBar, SvgUser } from '../svg/svg';
 import { IoGlobeOutline } from 'react-icons/io5';
 import HoverBlock from './HoverBlock';
+import HeaderNav from './nav/HeaderNav';
 
 const Header = () => {
   return (
@@ -18,10 +18,7 @@ const Header = () => {
         <HoverBlock>
           <IoGlobeOutline />
         </HoverBlock>
-        <div className='nav__user'>
-          <SvgMenuBar />
-          <SvgUser />
-        </div>
+        <HeaderNav />
       </div>
     </StyledHeder>
   );
@@ -50,18 +47,6 @@ const StyledHeder = styled(CenterContainer)`
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-    &__user {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4px 8px;
-      background: ${({ theme }) => theme.colors.white};
-      border: ${({ theme }) => `1px solid ${theme.colors.gray4}`};
-      box-sizing: border-box;
-      border-radius: 30px;
-      margin-left: 12px;
-      cursor: pointer;
     }
   }
 `;

@@ -1,7 +1,7 @@
-import Header from './Header';
 import styled from 'styled-components';
+import Header from '../components/header/Header';
 
-const Main = () => {
+const MainPage = () => {
   return (
     <StyledMain>
       <main className='main'>
@@ -13,10 +13,10 @@ const Main = () => {
   );
 };
 
+export default MainPage;
+
 const StyledMain = styled.div`
   .main-sections {
     padding: 0 5rem;
   }
 `;
-
-export default Main;
