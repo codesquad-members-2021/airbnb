@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BDCCB7252654FA23006FD4F5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCCB7242654FA23006FD4F5 /* SearchViewController.swift */; };
 		BDFD8B0426527A04006CA75A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFD8B0326527A04006CA75A /* AppDelegate.swift */; };
 		BDFD8B0626527A04006CA75A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFD8B0526527A04006CA75A /* SceneDelegate.swift */; };
 		BDFD8B0826527A04006CA75A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFD8B0726527A04006CA75A /* MainViewController.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BDCCB7242654FA23006FD4F5 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BDFD8B0026527A04006CA75A /* swift-airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-airbnb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDFD8B0326527A04006CA75A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDFD8B0526527A04006CA75A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BDCCB7262654FA28006FD4F5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BDCCB7242654FA23006FD4F5 /* SearchViewController.swift */,
+				BDFD8B0726527A04006CA75A /* MainViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		BDCCB7272654FA3E006FD4F5 /* AppLifeCycle */ = {
+			isa = PBXGroup;
+			children = (
+				BDFD8B0326527A04006CA75A /* AppDelegate.swift */,
+				BDFD8B0526527A04006CA75A /* SceneDelegate.swift */,
+			);
+			path = AppLifeCycle;
+			sourceTree = "<group>";
+		};
 		BDFD8AF726527A04006CA75A = {
 			isa = PBXGroup;
 			children = (
@@ -117,12 +137,11 @@
 		BDFD8B0226527A04006CA75A /* swift-airbnb */ = {
 			isa = PBXGroup;
 			children = (
+				BDCCB7272654FA3E006FD4F5 /* AppLifeCycle */,
+				BDCCB7262654FA28006FD4F5 /* ViewController */,
 				BDFD8B442653A1B8006CA75A /* DataSouce */,
 				BDFD8B3F265394E4006CA75A /* View */,
 				BDFD8B38265284ED006CA75A /* Network */,
-				BDFD8B0326527A04006CA75A /* AppDelegate.swift */,
-				BDFD8B0526527A04006CA75A /* SceneDelegate.swift */,
-				BDFD8B0726527A04006CA75A /* MainViewController.swift */,
 				BDFD8B0926527A04006CA75A /* Main.storyboard */,
 				BDFD8B0C26527A05006CA75A /* Assets.xcassets */,
 				BDFD8B0E26527A05006CA75A /* LaunchScreen.storyboard */,
@@ -171,8 +190,6 @@
 			children = (
 				BDFD8B4126539A8C006CA75A /* TravelCollectionViewCell.xib */,
 				BDFD8B4026539A8C006CA75A /* TravelCollectionViewCell.swift */,
-				BDFD8B492653AD36006CA75A /* TravelCollectionViewDataSource.swift */,
-				BDFD8B4B2653AE1E006CA75A /* RecommendTravelCollectionViewDataSource.swift */,
 				BDFD8B4D2653D01D006CA75A /* RecommendTravelCollectionViewCell.swift */,
 				BDFD8B4E2653D01D006CA75A /* RecommendTravelCollectionViewCell.xib */,
 			);
@@ -182,6 +199,8 @@
 		BDFD8B442653A1B8006CA75A /* DataSouce */ = {
 			isa = PBXGroup;
 			children = (
+				BDFD8B492653AD36006CA75A /* TravelCollectionViewDataSource.swift */,
+				BDFD8B4B2653AE1E006CA75A /* RecommendTravelCollectionViewDataSource.swift */,
 			);
 			path = DataSouce;
 			sourceTree = "<group>";
@@ -324,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDCCB7252654FA23006FD4F5 /* SearchViewController.swift in Sources */,
 				BDFD8B4226539A8C006CA75A /* TravelCollectionViewCell.swift in Sources */,
 				BDFD8B0826527A04006CA75A /* MainViewController.swift in Sources */,
 				BDFD8B0426527A04006CA75A /* AppDelegate.swift in Sources */,

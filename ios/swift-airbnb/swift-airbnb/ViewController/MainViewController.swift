@@ -14,11 +14,16 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var travelCollectionView: UICollectionView!
     @IBOutlet weak var recommendTravelCollectionView: UICollectionView!
+  
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDataSource()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     func configureDataSource() {
@@ -28,6 +33,12 @@ class MainViewController: UIViewController {
         recommendTravelCollectionView.register(RecommendTravelCollectionViewCell.nib, forCellWithReuseIdentifier: RecommendTravelCollectionViewCell.identifier)
     }
 
+    @IBAction func pressedSearchButton(_ sender: UIButton) {
+        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
 
+    
 }
 
