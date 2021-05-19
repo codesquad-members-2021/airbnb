@@ -14,9 +14,13 @@ export default function SearchBy({ type, input, isEnd, placeholder }: IAppProps)
 		console.log("search!");
 	}
 
+	const handleOnClick =(type:string):void => {
+		console.log(`${type} clicked`);
+	}
+
 	return (
 		<>
-		<StyleSearch isEnd= {isEnd}>
+		<StyleSearch isEnd= {isEnd} onClick={()=>handleOnClick(type)}>
 			<SearchWrapper isEnd={isEnd}>
 				{type}
 				{input && <SearchLocationStyle placeholder={input}></SearchLocationStyle>}
