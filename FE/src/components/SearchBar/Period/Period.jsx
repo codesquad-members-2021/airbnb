@@ -26,7 +26,7 @@ const Period = () => {
 		<PeriodWrapper ref={currentDOM} onClick={() => setOn(() => true)}>
 			<CheckIn value={start} />
 			<CheckOut value={end} />
-			{isOn && <CalendarModal />}
+			{isOn && <CalendarModal period={{ start, setStart, end, setEnd }} />}
 			{(start || end) && <CloseButton onClick={resetEvent} />}
 		</PeriodWrapper>
 	);
