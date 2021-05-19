@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import CalendarModal from "./CalendarModal";
 import CloseButton from "../CloseButton";
@@ -9,12 +9,25 @@ const Period = () => {
 
 	const [isOn, setOn] = useState(false);
 
+	const resetEvent = () => {
+		setStart(() => "");
+		setEnd(() => "");
+	};
+
+	const currentDOM = useRef();
+
+	useEffect(() => {
+		document.addEventListener("click", (e) => {
+			if (currentDOM.current && !currentDOM.current.contains(e.target)) setOn(() => false);
+		});
+	});
+
 	return (
-		<PeriodWrapper onClick={() => setOn(() => true)}>
+		<PeriodWrapper ref={currentDOM} onClick={() => setOn(() => true)}>
 			<CheckIn value={start} />
 			<CheckOut value={end} />
 			{isOn && <CalendarModal />}
-			{(start || end) && <CloseButton />}
+			{(start || end) && <CloseButton onClick={resetEvent} />}
 		</PeriodWrapper>
 	);
 };

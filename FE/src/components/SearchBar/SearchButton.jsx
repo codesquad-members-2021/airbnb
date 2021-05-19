@@ -1,12 +1,10 @@
-import { useState } from "react";
 import styled from "styled-components";
 
-const SearchButton = () => {
-	const [isOn, setOn] = useState(false);
+const SearchButton = ({isFocus}) => {
 	return (
-		<SearchButtonWrapper isOn={isOn} onClick={() => setOn(() => true)}>
+		<SearchButtonWrapper isFocus={isFocus} >
 			<Glass />
-			{isOn && <SearchButtonContent>검색</SearchButtonContent>}
+			{isFocus && <SearchButtonContent>검색</SearchButtonContent>}
 		</SearchButtonWrapper>
 	);
 };
@@ -26,7 +24,7 @@ const Glass = () => (
 
 const SearchButtonWrapper = styled.div`
 	position: absolute;
-	width: ${({ isOn }) => (isOn ? "90px" : "40px")};
+	width: ${({ isFocus }) => (isFocus ? "90px" : "40px")};
 	height: 40px;
 	right: 18px;
 	top: 18px;
