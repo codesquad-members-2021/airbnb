@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TVY-RV-LOp">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TVY-RV-LOp">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Ndf-ol-eCB" userLabel="Header View">
@@ -106,10 +106,90 @@
             </objects>
             <point key="canvasLocation" x="-252.17391304347828" y="81.696428571428569"/>
         </scene>
+        <!--Search Result Table View Controller-->
+        <scene sceneID="re2-u7-VHh">
+            <objects>
+                <tableViewController storyboardIdentifier="SearchResultTableViewController" id="tY0-Vw-Z0v" customClass="SearchResultTableViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Rb-FF-ubk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchResultTableViewCell" id="0ZF-1o-hi8" customClass="SearchResultTableViewCell" customModule="airbnb" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0ZF-1o-hi8" id="dTK-a0-Lgn">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="샌프란시스코" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DER-0O-PGe">
+                                            <rect key="frame" x="96" y="27" width="109" height="26"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Emx-Hg-CVA" userLabel="Location View">
+                                            <rect key="frame" x="16" y="8" width="64" height="64"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paperplane.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="snZ-x7-kGF">
+                                                    <rect key="frame" x="14.5" y="15" width="35" height="34.5"/>
+                                                    <color key="tintColor" systemColor="systemGrayColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="78a-bZ-u8V"/>
+                                                        <constraint firstAttribute="width" constant="35" id="TaQ-eL-NpG"/>
+                                                    </constraints>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                            <constraints>
+                                                <constraint firstItem="snZ-x7-kGF" firstAttribute="centerY" secondItem="Emx-Hg-CVA" secondAttribute="centerY" id="0jQ-0g-Yxu"/>
+                                                <constraint firstItem="snZ-x7-kGF" firstAttribute="centerX" secondItem="Emx-Hg-CVA" secondAttribute="centerX" id="7LL-k7-3yu"/>
+                                                <constraint firstAttribute="height" constant="64" id="oDv-hy-wuN"/>
+                                                <constraint firstAttribute="width" constant="64" id="y96-2P-WBG"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Emx-Hg-CVA" secondAttribute="bottom" priority="750" constant="8" id="4vq-X6-dfx"/>
+                                        <constraint firstItem="Emx-Hg-CVA" firstAttribute="top" secondItem="dTK-a0-Lgn" secondAttribute="top" priority="750" constant="8" id="HWQ-rA-FrW"/>
+                                        <constraint firstItem="Emx-Hg-CVA" firstAttribute="leading" secondItem="dTK-a0-Lgn" secondAttribute="leading" constant="16" id="MFg-RZ-TDy"/>
+                                        <constraint firstItem="DER-0O-PGe" firstAttribute="leading" secondItem="Emx-Hg-CVA" secondAttribute="trailing" constant="16" id="UIl-az-lqh"/>
+                                        <constraint firstItem="Emx-Hg-CVA" firstAttribute="centerY" secondItem="dTK-a0-Lgn" secondAttribute="centerY" id="dgD-33-kdS"/>
+                                        <constraint firstItem="DER-0O-PGe" firstAttribute="centerY" secondItem="dTK-a0-Lgn" secondAttribute="centerY" id="srF-dU-vA8"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="locationLabel" destination="DER-0O-PGe" id="qwI-eW-gNw"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="tY0-Vw-Z0v" id="rAk-tj-AzK"/>
+                            <outlet property="delegate" destination="tY0-Vw-Z0v" id="41R-7B-rg9"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="searchResultTable" destination="4Rb-FF-ubk" id="t40-qD-iNB"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="41g-cR-iof" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-252.17391304347828" y="743.97321428571422"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="paperplane.fill" catalog="system" width="128" height="118"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

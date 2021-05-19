@@ -30,6 +30,7 @@ class LocationSearchController: UISearchController {
     private func configure() {
         hidesNavigationBarDuringPresentation = false
         automaticallyShowsCancelButton = false
+        obscuresBackgroundDuringPresentation = false
     }
     
     private func setPlaceholder() {

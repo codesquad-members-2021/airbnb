@@ -24,7 +24,9 @@ class PopularLocationViewController: UIViewController {
     }
     
     private func setNavigationSearchController() {
-        searchController = LocationSearchController(searchResultsController: nil)
+        let searchResultViewControllerID = SearchResultTableViewController.reuseIdentifier
+        let searchResultViewController = self.storyboard?.instantiateViewController(withIdentifier: searchResultViewControllerID) as? SearchResultTableViewController
+        searchController = LocationSearchController(searchResultsController: searchResultViewController)
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
     }
