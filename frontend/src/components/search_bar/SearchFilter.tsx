@@ -1,17 +1,17 @@
 import {useState} from 'react';
 import styled from "styled-components";
 import {ReactComponent as SearchIcon} from './../../icons/search.svg';
-import translate from './../../utils/translate';
+import translate from '../../utils/translate';
 
 export interface IAppProps {
 	type: string;
 	input?: string;
 	isEnd: boolean;
-	placeholder?: string;
+	placeholder?: boolean;
 }
 
 
-export default function SearchBy({ type, input, isEnd, placeholder }: IAppProps) {
+export default function SearchFilter({ type, input, isEnd, placeholder }: IAppProps) {
 	const [isLocationModalOn, setIsLocationModalOn] = useState<boolean>(false);
 	const [isScheduleModalOn, setIsScheduleModalOn] = useState<boolean>(false);
 	const [isFeeModalOn, setIsFeeModalOn] = useState<boolean>(false);
@@ -31,19 +31,19 @@ export default function SearchBy({ type, input, isEnd, placeholder }: IAppProps)
 
 	return (
 		<>
-		<StyleSearch isEnd= {isEnd} onClick={()=>handleOnClick(type)}>
+		<StyleFilter isEnd= {isEnd} onClick={()=>handleOnClick(type)}>
 			<SearchWrapper isEnd={isEnd}>
 				{translate("title", type, "KR")}
 				{input && <SearchLocationStyle placeholder={input}></SearchLocationStyle>}
 				{placeholder && <div>{translate("placeholder",type, "KR")}</div>}
 			</SearchWrapper>
-		</StyleSearch>
+		</StyleFilter>
 			{isEnd && <StyleSearchBtn onClick ={handleSearchClick}><SearchIcon stroke="#FFFFFF"/></StyleSearchBtn>}
 		</>
 	);
 }
 
-const StyleSearch = styled.button <{isEnd: boolean}>`
+const StyleFilter = styled.button <{isEnd: boolean}>`
 	font-family: "Noto Sans KR", sans-serif;
 	width: ${(props) => (props.isEnd ? `${40}%` : `${25}%` )};
 	height: 100%;
