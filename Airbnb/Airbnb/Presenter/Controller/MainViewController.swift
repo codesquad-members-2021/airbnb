@@ -17,11 +17,12 @@ class MainViewController: UIViewController {
     
     private lazy var dataSource = RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData>(configureCell: { dataSource, collectionView, indexPath, item in
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCell.identifier, for: indexPath) as? MainCell  else { return UICollectionViewCell() }
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0:
             cell.configureFirstSection(item)
-        } else if indexPath.section == 1 {
+        case 1:
             cell.configureSecondSection(item)
-        } else {
+        default:
             cell.configureThirdView(item)
         }
         return cell
