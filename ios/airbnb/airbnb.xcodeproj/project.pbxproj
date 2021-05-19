@@ -15,6 +15,7 @@
 		B3D7316326523C4400FE6C62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3D7316126523C4400FE6C62 /* LaunchScreen.storyboard */; };
 		B3D7316E26523C4400FE6C62 /* airbnbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D7316D26523C4400FE6C62 /* airbnbTests.swift */; };
 		B3D7317926523C4500FE6C62 /* airbnbUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D7317826523C4500FE6C62 /* airbnbUITests.swift */; };
+		B3D73187265289DA00FE6C62 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D73186265289DA00FE6C62 /* LocationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		B3D7317426523C4500FE6C62 /* airbnbUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = airbnbUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D7317826523C4500FE6C62 /* airbnbUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = airbnbUITests.swift; sourceTree = "<group>"; };
 		B3D7317A26523C4500FE6C62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3D73186265289DA00FE6C62 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +103,8 @@
 			children = (
 				B3D7315626523C4300FE6C62 /* AppDelegate.swift */,
 				B3D7315826523C4300FE6C62 /* SceneDelegate.swift */,
-				B3D7315A26523C4300FE6C62 /* ViewController.swift */,
 				B3D7315C26523C4300FE6C62 /* Main.storyboard */,
+				B3D73188265289EF00FE6C62 /* Controller */,
 				B3D7315F26523C4400FE6C62 /* Assets.xcassets */,
 				B3D7316126523C4400FE6C62 /* LaunchScreen.storyboard */,
 				B3D7316426523C4400FE6C62 /* Info.plist */,
@@ -126,6 +128,15 @@
 				B3D7317A26523C4500FE6C62 /* Info.plist */,
 			);
 			path = airbnbUITests;
+			sourceTree = "<group>";
+		};
+		B3D73188265289EF00FE6C62 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B3D7315A26523C4300FE6C62 /* ViewController.swift */,
+				B3D73186265289DA00FE6C62 /* LocationViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +272,7 @@
 				B3D7315B26523C4300FE6C62 /* ViewController.swift in Sources */,
 				B3D7315726523C4300FE6C62 /* AppDelegate.swift in Sources */,
 				B3D7315926523C4300FE6C62 /* SceneDelegate.swift in Sources */,
+				B3D73187265289DA00FE6C62 /* LocationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
