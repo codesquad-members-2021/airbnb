@@ -20,9 +20,9 @@ const UserInfo = () => {
   const HoverMenu = () => {
     return (
      <>
-     <MenuBlock ref={userInfoModal}>
-       <Menu>로그인</Menu>
-     </MenuBlock>
+      <MenuBlock ref={userInfoModal}>
+        <Menu>로그인</Menu>
+      </MenuBlock>
      </>
      )
   }
