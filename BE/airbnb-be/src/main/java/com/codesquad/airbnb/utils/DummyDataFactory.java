@@ -1,9 +1,9 @@
 package com.codesquad.airbnb.utils;
 
-import com.codesquad.airbnb.accommodation.AccommodationOption;
-import com.codesquad.airbnb.accommodation.AccommodationResponseDTO;
-import com.codesquad.airbnb.accommodation.AccommodationType;
-import com.codesquad.airbnb.accommodation.RestroomType;
+import com.codesquad.airbnb.accommodation.controller.AccommodationResponseDTO;
+import com.codesquad.airbnb.accommodation.domain.AccommodationOption;
+import com.codesquad.airbnb.accommodation.domain.AccommodationType;
+import com.codesquad.airbnb.accommodation.domain.RestroomType;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.accommodation;
+package com.codesquad.airbnb.accommodation.domain;
 
 public final class AccommodationOptionBuilder {
     private int capacity;

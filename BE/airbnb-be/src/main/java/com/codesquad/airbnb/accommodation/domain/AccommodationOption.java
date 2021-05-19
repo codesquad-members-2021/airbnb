@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.accommodation;
+package com.codesquad.airbnb.accommodation.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

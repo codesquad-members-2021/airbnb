@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.accommodation;
+package com.codesquad.airbnb.accommodation.controller;
 
 import com.codesquad.airbnb.utils.DummyDataFactory;
 import org.springframework.web.bind.annotation.GetMapping;

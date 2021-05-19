@@ -1,5 +1,6 @@
-package com.codesquad.airbnb.accommodation;
+package com.codesquad.airbnb.accommodation.controller;
 
+import com.codesquad.airbnb.accommodation.domain.AccommodationOption;
 public class AccommodationResponseDTO {
     private Long id;
     private String name;

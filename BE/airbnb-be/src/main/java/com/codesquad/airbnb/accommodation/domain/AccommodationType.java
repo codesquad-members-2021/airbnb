@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.accommodation;
+package com.codesquad.airbnb.accommodation.domain;
 
 public enum AccommodationType {
     NORMAL, ONEROOM
