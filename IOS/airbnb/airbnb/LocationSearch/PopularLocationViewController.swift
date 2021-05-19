@@ -9,8 +9,8 @@ import UIKit
 
 class PopularLocationViewController: UIViewController {
 
-    @IBOutlet weak var locationSearchBar: UISearchBar!
     @IBOutlet weak var popularLocationTableView: UITableView!
+    private var searchController: LocationSearchController!
     
     static var reuseIdentifier: String {
         return String(describing: self)
@@ -18,8 +18,23 @@ class PopularLocationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationSearchBar.searchTextField.becomeFirstResponder()
-        self.popularLocationTableView.dataSource = self
+        setNavigationSearchController()
+        searchController.searchResultsUpdater = self
+        popularLocationTableView.dataSource = self
+    }
+    
+    private func setNavigationSearchController() {
+        searchController = LocationSearchController(searchResultsController: nil)
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+
+}
+
+extension PopularLocationViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
     }
     
 }

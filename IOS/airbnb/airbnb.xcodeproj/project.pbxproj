@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E481480A265495870069BE20 /* LocationSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4814809265495870069BE20 /* LocationSearchBar.swift */; };
+		E481480C265496930069BE20 /* LocationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E481480B265496930069BE20 /* LocationSearchController.swift */; };
 		E4DB1CF326524A7700894DCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DB1CF226524A7700894DCB /* AppDelegate.swift */; };
 		E4DB1CF526524A7700894DCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DB1CF426524A7700894DCB /* SceneDelegate.swift */; };
-		E4DB1CF726524A7700894DCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DB1CF626524A7700894DCB /* ViewController.swift */; };
+		E4DB1CF726524A7700894DCB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DB1CF626524A7700894DCB /* MainViewController.swift */; };
 		E4DB1CFA26524A7700894DCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4DB1CF826524A7700894DCB /* Main.storyboard */; };
 		E4DB1CFC26524A7900894DCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4DB1CFB26524A7900894DCB /* Assets.xcassets */; };
 		E4DB1CFF26524A7900894DCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4DB1CFD26524A7900894DCB /* LaunchScreen.storyboard */; };
@@ -19,10 +21,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E4814809265495870069BE20 /* LocationSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchBar.swift; sourceTree = "<group>"; };
+		E481480B265496930069BE20 /* LocationSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchController.swift; sourceTree = "<group>"; };
 		E4DB1CEF26524A7700894DCB /* airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4DB1CF226524A7700894DCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4DB1CF426524A7700894DCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E4DB1CF626524A7700894DCB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E4DB1CF626524A7700894DCB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E4DB1CF926524A7700894DCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E4DB1CFB26524A7900894DCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4DB1CFE26524A7900894DCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -85,7 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				E4DB1CF826524A7700894DCB /* Main.storyboard */,
-				E4DB1CF626524A7700894DCB /* ViewController.swift */,
+				E4DB1CF626524A7700894DCB /* MainViewController.swift */,
+				E4814809265495870069BE20 /* LocationSearchBar.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -95,6 +100,7 @@
 			children = (
 				E4DB1D7926538BA800894DCB /* LocationSearch.storyboard */,
 				E4DB1D7B2653912F00894DCB /* PopularLocationViewController.swift */,
+				E481480B265496930069BE20 /* LocationSearchController.swift */,
 				E4DB1D7D2653916900894DCB /* PopularLocationTableViewCell.swift */,
 			);
 			path = LocationSearch;
@@ -171,11 +177,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4DB1CF726524A7700894DCB /* ViewController.swift in Sources */,
+				E4DB1CF726524A7700894DCB /* MainViewController.swift in Sources */,
 				E4DB1D7E2653916900894DCB /* PopularLocationTableViewCell.swift in Sources */,
 				E4DB1D7C2653912F00894DCB /* PopularLocationViewController.swift in Sources */,
 				E4DB1CF326524A7700894DCB /* AppDelegate.swift in Sources */,
+				E481480A265495870069BE20 /* LocationSearchBar.swift in Sources */,
 				E4DB1CF526524A7700894DCB /* SceneDelegate.swift in Sources */,
+				E481480C265496930069BE20 /* LocationSearchController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

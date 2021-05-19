@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TVY-RV-LOp">
-                                <rect key="frame" x="0.0" y="95" width="414" height="767"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Ndf-ol-eCB" userLabel="Header View">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -88,25 +88,17 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" placeholder="어디로 여행가세요?" translatesAutoresizingMaskIntoConstraints="NO" id="VI3-hY-Iyo">
-                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="TVY-RV-LOp" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="3bC-yd-rFP"/>
-                            <constraint firstItem="VI3-hY-Iyo" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="6Cv-eO-AGd"/>
                             <constraint firstItem="TVY-RV-LOp" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="JLa-2x-eCo"/>
                             <constraint firstItem="TVY-RV-LOp" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="QUs-l2-H2G"/>
-                            <constraint firstItem="VI3-hY-Iyo" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="bGd-DD-gg5"/>
-                            <constraint firstItem="VI3-hY-Iyo" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="g98-iI-rNi"/>
-                            <constraint firstItem="TVY-RV-LOp" firstAttribute="top" secondItem="VI3-hY-Iyo" secondAttribute="bottom" id="ghZ-lC-fKt"/>
+                            <constraint firstItem="TVY-RV-LOp" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="z1N-sD-oeV"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="locationSearchBar" destination="VI3-hY-Iyo" id="bnf-fW-gU3"/>
                         <outlet property="popularLocationTableView" destination="TVY-RV-LOp" id="KR0-nS-dFV"/>
                     </connections>
                 </viewController>

@@ -7,22 +7,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
-    @IBOutlet weak var locationSearchBar: UISearchBar!
+    private var searchBar: LocationSearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationSearchBar.delegate = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        searchBar = LocationSearchBar()
+        searchBar.delegate = self
+        tabBarController?.navigationItem.titleView = searchBar
     }
     
 }
 
-extension ViewController: UISearchBarDelegate {
+extension MainViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
