@@ -32,7 +32,7 @@ class FirstSectionView: UIView {
         setupMainView()
     }
     
-    func configureMainView(_ item: MainViewInfo) {
+    func configure(_ item: MainViewInfo) {
         mainImageView.image = UIImage(named: item.image)
         mainTitleLabel.text = item.mainInfo
         detailInfoLabel.text = item.detailInfo

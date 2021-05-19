@@ -9,17 +9,26 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mainInfoCollectionView: UICollectionView!
     
     private let mainViewModel = MainViewModel()
-    private let dataSource = RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData>(configureCell: { dataSource, collectionView, indexPath, item in
+    
+    private lazy var titleForHeaderInsection: RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData>.ConfigureSupplementaryView = { [weak self] dataSource, collectionView, kind, indexPath in
+        guard let strongSelf = self else { return UICollectionReusableView()}
+        return strongSelf.headerCell(indexPath: indexPath, kind: kind)
+    }
+    
+    private lazy var dataSource = RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData>(configureCell: { dataSource, collectionView, indexPath, item in
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCell.identifier, for: indexPath) as? MainCell  else { return UICollectionViewCell() }
         if indexPath.section == 0 {
             cell.configureFirstSection(item)
+        } else if indexPath.section == 1 {
+            cell.configureSecondSection(item)
         }
         return cell
-    })
+    }, configureSupplementaryView: titleForHeaderInsection)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegate()
+        setupCollectionView()
         bindMainViewModel()
     }
     
@@ -34,11 +43,35 @@ class MainViewController: UIViewController {
     }
 }
 
+private extension MainViewController {
+    
+    private func setupCollectionView() {
+        mainInfoCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Section")
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.headerReferenceSize = CGSize(width: self.mainInfoCollectionView.frame.width, height: self.mainInfoCollectionView.frame.height*0.2)
+        mainInfoCollectionView.collectionViewLayout = flowLayout
+    }
+    
+    private func headerCell(indexPath: IndexPath, kind: String) -> UICollectionReusableView {
+        let header = mainInfoCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Section", for: indexPath)
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: mainInfoCollectionView.frame.width, height: mainInfoCollectionView.frame.height*0.2))
+        label.textColor = UIColor.black
+        label.textAlignment = .center
+        label.text = dataSource.sectionModels[indexPath.section].header
+        header.addSubview(label)
+        return header
+    }
+}
+
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.section == 0 { return CGSize(width: view.frame.width, height: view.frame.height*0.5)}
-        else if indexPath.section == 1 { return CGSize(width: 40, height: 40)}
+        if indexPath.section == 0 {
+            return CGSize(width: view.frame.width, height: view.frame.height*0.5)
+        } else if indexPath.section == 1 {
+            return CGSize(width: view.frame.width/2, height: view.frame.height*0.1)
+        }
         else { return CGSize(width: 100, height: 100)}
     }
 }
