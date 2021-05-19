@@ -24,7 +24,7 @@ const UserInfo = () => {
         <Menu>로그인</Menu>
       </MenuBlock>
      </>
-     )
+     )  
   }
 
   return(
