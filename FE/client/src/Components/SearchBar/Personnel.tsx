@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import { DivisionContent, DivisionTitle } from './../commons/base';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { IconButton } from "@material-ui/core";
+import { PersonnelType } from '../commons/searchBarType';
 
-type EntryDateType = {
+type PersonnelModalType = PersonnelType & {
   handleClickShowModal: (clickTarget: string) => () => void;
-  personnel: boolean;
 }
 
-const Personnel = ({ handleClickShowModal, personnel }: EntryDateType) => {
+const Personnel = ({ handleClickShowModal, personnel }: PersonnelModalType) => {
   return (
     <PersonnelWrapper onClick={handleClickShowModal('personnel')}>
       <span>

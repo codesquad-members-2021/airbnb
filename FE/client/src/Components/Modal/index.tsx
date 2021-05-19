@@ -20,6 +20,7 @@ const Modal = () => {
   useEffect(() => {
     document.addEventListener('click', handleClickHideModal);
     return () => document.removeEventListener('click', handleClickHideModal);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focus]);
 
   return (

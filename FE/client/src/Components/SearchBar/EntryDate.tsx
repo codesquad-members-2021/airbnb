@@ -6,10 +6,10 @@ import { DivisionContent, DivisionTitle } from './../commons/base';
 import { useRecoilState } from 'recoil';
 import { calendarClickAtom } from './../../recoil/atoms';
 import { getMonthAndDay } from '../../utils/calendarUtil';
+import { CalendarType } from '../commons/searchBarType';
 
-type EntryDateType = {
+type EntryDateType = CalendarType & {
   handleClickShowModal: (clickTarget: string) => () => void;
-  entryDate: boolean;
 }
 
 const EntryDate = ({ handleClickShowModal, entryDate }: EntryDateType) => {
@@ -32,7 +32,7 @@ const EntryDate = ({ handleClickShowModal, entryDate }: EntryDateType) => {
           {checkOutTime ? getMonthAndDay(checkOutTime) : '날짜 입력'}
         </DivisionContent>
       </CheckoutWrapper>
-      <IconButton onClick={handleClickDayReset} style={{visibility: entryDate ? 'visible' : 'hidden'} }>
+      <IconButton onClick={handleClickDayReset} style={{ visibility: entryDate ? 'visible' : 'hidden' }}>
         <HighlightOffIcon />
       </IconButton>
     </EntryDateWrapper>
