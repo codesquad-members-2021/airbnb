@@ -50,6 +50,11 @@ class PopularLocationViewController: UIViewController {
 
     @objc private func searchCanceled(_ sender: UIBarButtonItem) {
         inactiveSearchController()
+        unsetCancelBarButton()
+    }
+    
+    private func unsetCancelBarButton() {
+        navigationItem.setRightBarButton(nil, animated: true)
     }
 
 }
@@ -57,19 +62,16 @@ class PopularLocationViewController: UIViewController {
 extension PopularLocationViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if navigationItem.rightBarButtonItem == nil { setCancelBarButton() }
+        setCancelBarButton()
     }
     
     private func setCancelBarButton() {
+        guard navigationItem.rightBarButtonItem == nil else { return }
         let cancelButtonItem = UIBarButtonItem(title: "Cancel",
                                                style: .done,
                                                target: self,
                                                action: #selector(searchCanceled(_:)))
         navigationItem.setRightBarButton(cancelButtonItem, animated: true)
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        navigationItem.setRightBarButton(nil, animated: true)
     }
     
 }
