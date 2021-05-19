@@ -16,7 +16,7 @@ const parseDate = (date) => {
 
 const Day = ({ date, period, disable, children }) => {
 	const { start, setStart, end, setEnd } = period;
-  
+
 	let type =
 		date < Date.now() || !disable
 			? "OLD"
@@ -27,6 +27,7 @@ const Day = ({ date, period, disable, children }) => {
 			: "NORMAL";
 
 	const setPeriod = () => {
+    if (type === "CHECKED" && !end) return setEnd(()=>packDate(date))
 		if (type !== "NORMAL" && type !== "BETWEEN") return;
 		if (!start && !end) return setStart(() => packDate(date));
 		if (parseDate(start) > date) {
