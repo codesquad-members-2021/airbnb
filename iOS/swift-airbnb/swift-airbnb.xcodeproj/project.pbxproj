@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		CE7E0C852653B0FD00E0ADD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E0C842653B0FD00E0ADD3 /* AppDelegate.swift */; };
 		CE7E0C872653B0FD00E0ADD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E0C862653B0FD00E0ADD3 /* SceneDelegate.swift */; };
-		CE7E0C892653B0FD00E0ADD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E0C882653B0FD00E0ADD3 /* ViewController.swift */; };
+		CE7E0C892653B0FD00E0ADD3 /* mainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E0C882653B0FD00E0ADD3 /* mainPageViewController.swift */; };
 		CE7E0C8C2653B0FD00E0ADD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7E0C8A2653B0FD00E0ADD3 /* Main.storyboard */; };
 		CE7E0C8E2653B0FE00E0ADD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7E0C8D2653B0FE00E0ADD3 /* Assets.xcassets */; };
 		CE7E0C912653B0FE00E0ADD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7E0C8F2653B0FE00E0ADD3 /* LaunchScreen.storyboard */; };
@@ -38,7 +38,7 @@
 		CE7E0C812653B0FD00E0ADD3 /* swift-airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-airbnb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7E0C842653B0FD00E0ADD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7E0C862653B0FD00E0ADD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE7E0C882653B0FD00E0ADD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CE7E0C882653B0FD00E0ADD3 /* mainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainPageViewController.swift; sourceTree = "<group>"; };
 		CE7E0C8B2653B0FD00E0ADD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE7E0C8D2653B0FE00E0ADD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE7E0C902653B0FE00E0ADD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,9 +99,11 @@
 		CE7E0C832653B0FD00E0ADD3 /* swift-airbnb */ = {
 			isa = PBXGroup;
 			children = (
+				CE990AC1265500B5008E91E5 /* Model */,
+				CE990AC0265500AB008E91E5 /* View */,
+				CE990ABF2655009E008E91E5 /* Controller */,
 				CE7E0C842653B0FD00E0ADD3 /* AppDelegate.swift */,
 				CE7E0C862653B0FD00E0ADD3 /* SceneDelegate.swift */,
-				CE7E0C882653B0FD00E0ADD3 /* ViewController.swift */,
 				CE7E0C8A2653B0FD00E0ADD3 /* Main.storyboard */,
 				CE7E0C8D2653B0FE00E0ADD3 /* Assets.xcassets */,
 				CE7E0C8F2653B0FE00E0ADD3 /* LaunchScreen.storyboard */,
@@ -126,6 +128,28 @@
 				CE7E0CA82653B0FE00E0ADD3 /* Info.plist */,
 			);
 			path = "swift-airbnbUITests";
+			sourceTree = "<group>";
+		};
+		CE990ABF2655009E008E91E5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CE7E0C882653B0FD00E0ADD3 /* mainPageViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CE990AC0265500AB008E91E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE990AC1265500B5008E91E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE7E0C892653B0FD00E0ADD3 /* ViewController.swift in Sources */,
+				CE7E0C892653B0FD00E0ADD3 /* mainPageViewController.swift in Sources */,
 				CE7E0C852653B0FD00E0ADD3 /* AppDelegate.swift in Sources */,
 				CE7E0C872653B0FD00E0ADD3 /* SceneDelegate.swift in Sources */,
 			);
