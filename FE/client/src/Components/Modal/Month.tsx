@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { IconButton } from "@material-ui/core";
-import { monthIndexAtom } from '../../recoil/atoms';
+import { monthIndexAtom, calendarClickAtom } from '../../recoil/atoms';
 import { useRecoilState } from 'recoil';
-import { getYearAndMonth, getDayArray } from '../../utils/calendar';
+import { getYearAndMonth, getDayArray } from '../../utils/calendarUtil';
 
 type MonthProps = {
   left?: string;
@@ -15,13 +15,25 @@ type MonthProps = {
 
 const Month = ({ left, right, date }: MonthProps) => {
   const [, setMonthIndex] = useRecoilState(monthIndexAtom);
-
+  const [calendarClickState, setCalendarClickState] = useRecoilState(calendarClickAtom);
+  const [checkInTime, checkOutTime] = calendarClickState;
   const handleClickMonthMove = (moveCount: number) => () => {
     setMonthIndex(month => month + moveCount * 2);
   }
 
-  const dayArray = getDayArray(date);
+  const handleClickDaySelect = ({ currentTarget }: React.MouseEvent<HTMLElement>) => {
+    if (currentTarget.getAttribute('aria-disabled') === 'true' || !currentTarget.innerText) return;
+    const targetTime = Number(currentTarget.dataset.date);
+    setCalendarClickState(([checkInTime, checkOutTime]) => {
+      if (!checkInTime) return [targetTime];
+      if (!checkOutTime) return [checkInTime, targetTime];
+      if (checkOutTime === targetTime) return [targetTime, checkOutTime];
+      return targetTime < checkInTime ? [targetTime, checkOutTime] : [checkInTime, targetTime];
+    })
+  }
 
+  const dayArray = getDayArray(date);
+  const yearAndMonth = getYearAndMonth(date);
   return (
     <MonthWrapper>
       <MonthTitle>
@@ -32,7 +44,7 @@ const Month = ({ left, right, date }: MonthProps) => {
             ? <ArrowBackIosIcon />
             : <ArrowForwardIosIcon />}
         </IconButton>
-        {getYearAndMonth(date)}
+        {yearAndMonth}
       </MonthTitle>
       <DayTable>
         <thead>
@@ -44,7 +56,19 @@ const Month = ({ left, right, date }: MonthProps) => {
           {dayArray.map((td, idx) => {
             return (<tr key={`week-tr-${idx}`}>
               {td.map((day, index) => {
-                return (<td key={`day-td-${index}`}>{day}</td>);
+                const dayTime = new Date(yearAndMonth.replace(/\D+/g, '-') + day).getTime();
+                return (
+                  <td
+                    key={`day-td-${index}`}
+                    onClick={handleClickDaySelect}
+                    aria-selected={checkInTime === dayTime || checkOutTime === dayTime}
+                    aria-checked={checkInTime < dayTime && dayTime < checkOutTime}
+                    aria-disabled={!!day.replace(/\d/g, '')}
+                    data-date={day && dayTime}
+                  >
+                    {day.replace(/\D/g, '')}
+                  </td>
+                );
               })}
             </tr>)
           })}
@@ -78,13 +102,26 @@ const DayTable = styled.table`
     &>tr{
       height: 4rem;
       margin-top:.2rem;
-      &>td{
-        border-radius:50%;
-        &:hover{
-          cursor:pointer;
+    }
+  }
+  td{
+      &[aria-disabled='true'] {
+          color: #BDBDBD;
+      }
+      &[aria-selected='true']:not(:empty) {
+        background: #333333;
+        border-radius: 50%;
+        color:#fff;
+      }
+      &[aria-checked='true']:not(:empty){
+        background: #F7F7F7;
+        box-shadow: 0 0 4px 0 #F7F7F7, 4px 0 4px 0 #F7F7F7
+      }
+      &:hover{
+        &[aria-disabled='false']:not(:empty){
+            cursor:pointer;
         }
       }
     }
-  }
 `;
 export default Month;

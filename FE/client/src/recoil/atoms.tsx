@@ -1,25 +1,29 @@
 import { atom, selector } from "recoil";
-import { getDate } from './../utils/calendar';
-
-const currentDate = { now: new Date() };
+import { getDate,currentDate } from '../utils/calendarUtil';
 
 export const monthIndexAtom = atom<number>({
-  key: 'monthIndexState',
+  key: 'monthIndexAtom',
   default: 0
 });
 
-export type CalendarSelectorType = {
+type CalendarSelectorType = {
   leftMonthDate: Date,
   rightMonthDate: Date
 }
+
 export const calendarStateSelector = selector<CalendarSelectorType>({
-  key: 'calendarState',
+  key: 'calendarStateSelector',
   get: ({ get }) => {
     const monthIndex = get(monthIndexAtom);
-    const { now: date } = currentDate;
+    const date = currentDate;
     return {
       leftMonthDate: getDate(date, monthIndex),
       rightMonthDate: getDate(date, monthIndex + 1),
     }
   }
+});
+
+export const calendarClickAtom = atom<Array<number>>({
+  key:'calendarClickAtom',
+  default: []
 });
