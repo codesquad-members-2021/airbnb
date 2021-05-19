@@ -1,6 +1,9 @@
 package com.codesquad.airbnb.accommodation.controller;
 
 import com.codesquad.airbnb.accommodation.domain.AccommodationOption;
+
+import java.util.Objects;
+
 public class AccommodationResponseDTO {
     private Long id;
     private String name;
@@ -81,6 +84,19 @@ public class AccommodationResponseDTO {
 
     public void setMainImage(String mainImage) {
         this.mainImage = mainImage;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AccommodationResponseDTO that = (AccommodationResponseDTO) o;
+        return Double.compare(that.reviewRating, reviewRating) == 0 && reviewCounts == that.reviewCounts && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(accommodationOption, that.accommodationOption) && Objects.equals(totalPrice, that.totalPrice) && Objects.equals(mainImage, that.mainImage);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, accommodationOption, totalPrice, reviewRating, reviewCounts, mainImage);
     }
 
     @Override

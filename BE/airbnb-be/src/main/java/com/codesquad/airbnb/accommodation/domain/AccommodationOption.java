@@ -2,6 +2,8 @@ package com.codesquad.airbnb.accommodation.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 public class AccommodationOption {
     private int capacity;
     private int pricePerNight;
@@ -116,6 +118,19 @@ public class AccommodationOption {
 
     public void setHasHairdrier(boolean hasHairdrier) {
         this.hasHairdrier = hasHairdrier;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AccommodationOption that = (AccommodationOption) o;
+        return capacity == that.capacity && pricePerNight == that.pricePerNight && bedroomCount == that.bedroomCount && restroomCount == that.restroomCount && hasKitchen == that.hasKitchen && hasInternet == that.hasInternet && hasAirconditioner == that.hasAirconditioner && hasHairdrier == that.hasHairdrier && accommodationType == that.accommodationType && restroomType == that.restroomType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(capacity, pricePerNight, accommodationType, bedroomCount, restroomCount, restroomType, hasKitchen, hasInternet, hasAirconditioner, hasHairdrier);
     }
 
     @Override
