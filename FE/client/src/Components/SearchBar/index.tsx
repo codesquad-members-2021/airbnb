@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import EntryDate from './EntryDate';
 import Charge from './Charge';

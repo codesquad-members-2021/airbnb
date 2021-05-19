@@ -17,6 +17,7 @@ const Month = ({ left, right, date }: MonthProps) => {
   const [, setMonthIndex] = useRecoilState(monthIndexAtom);
   const [calendarClickState, setCalendarClickState] = useRecoilState(calendarClickAtom);
   const [checkInTime, checkOutTime] = calendarClickState;
+
   const handleClickMonthMove = (moveCount: number) => () => {
     setMonthIndex(month => month + moveCount * 2);
   }
