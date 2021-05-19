@@ -71,6 +71,7 @@ public class UserService {
         ResponseEntity<String> response = getJsonResponseByPost(
                 kakaoLoginUtils.getProfileUri()
                 , kakaoLoginUtils.getKakaoProfileRequestEntity(accessToken));
+        System.out.println(response.getBody());
         return convertJsonToObject(response, KakaoProfile.class);
     }
 
