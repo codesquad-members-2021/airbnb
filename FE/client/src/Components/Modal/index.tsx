@@ -1,29 +1,19 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Calendar from './Calendar';
 import { useRecoilState } from 'recoil';
-import { searchBarFocusAtom, searchBarRefAtom } from '../../recoil/atoms';
+import { searchBarFocusAtom } from '../../recoil/atoms';
 import ChargeModal from './ChargeModal';
 import PersonnelModal from './PersonnelModal';
 import { SearchBarType } from '../commons/searchBarType';
 
 const Modal = () => {
   const [searchBarState, setSearchBarState] = useRecoilState(searchBarFocusAtom);
-  const [$searchBarRef] = useRecoilState(searchBarRefAtom);
-  const $ModalWrapper = useRef<HTMLDivElement>(null);
   const { entryDate, charge, personnel, focus } = searchBarState;
 
   const handleClickHideModal = (event: MouseEvent) => {
     const targetList = (event.target as HTMLElement);
-    const modalTarget = $ModalWrapper.current?.classList;
-    const searchBarTarget = $searchBarRef?.current?.classList;
-    let checkTarget: Element | null = null;
-    modalTarget?.forEach(v => {
-      if (!checkTarget) checkTarget = targetList.closest(`.${v}`);
-    })
-    searchBarTarget?.forEach(v => {
-      if (!checkTarget) checkTarget = targetList.closest(`.${v}`);
-    })
+    const checkTarget = targetList.closest('.Modal') || targetList.closest('.SearchBar');
     if (!checkTarget && focus) setSearchBarState(searchBar => ({ ...searchBar, focus: false }));
   }
 
@@ -33,7 +23,7 @@ const Modal = () => {
   }, [focus]);
 
   return (
-    <ModalWrapper {...{ focus }} ref={$ModalWrapper}>
+    <ModalWrapper {...{ focus }} className="Modal">
       <Calendar {...{ entryDate }} />
       <ChargeModal {...{ charge }} />
       <PersonnelModal {...{ personnel }} />

@@ -1,4 +1,3 @@
-import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import EntryDate from './EntryDate';
 import Charge from './Charge';
@@ -6,17 +5,11 @@ import Personnel from './Personnel';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import { useRecoilState } from 'recoil';
-import { searchBarFocusAtom, searchBarRefAtom } from '../../recoil/atoms';
+import { searchBarFocusAtom } from '../../recoil/atoms';
 
 const SearchBar = () => {
   const [searchBarState, setSearchBarState] = useRecoilState(searchBarFocusAtom);
-  const [, setSearchBarRef] = useRecoilState(searchBarRefAtom);
   const { entryDate, charge, personnel, focus } = searchBarState;
-  const $SearchBarWrapper = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setSearchBarRef($SearchBarWrapper);
-  }, [$SearchBarWrapper])
 
   const handleClickShowModal = (clickTarget: string) => () => {
     setSearchBarState({
@@ -29,7 +22,7 @@ const SearchBar = () => {
   }
 
   return (
-    <SearchBarWrapper ref={$SearchBarWrapper}>
+    <SearchBarWrapper className='SearchBar'>
       <EntryDate {...{ entryDate, handleClickShowModal }} />
       <Charge {...{ charge, handleClickShowModal }} />
       <Personnel {...{ personnel, handleClickShowModal }} />

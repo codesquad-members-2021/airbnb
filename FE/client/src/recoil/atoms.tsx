@@ -1,4 +1,3 @@
-import React  from 'react';
 import { atom, selector } from "recoil";
 import { getDate, currentDate } from '../utils/calendarUtil';
 
@@ -44,9 +43,4 @@ export const searchBarFocusAtom = atom<SearchBarFocusAtomType>({
     personnel: false,
     focus: false
   }
-})
-
-export const searchBarRefAtom = atom<null | React.RefObject<HTMLDivElement>>({
-  key: 'searchBarRefAtom',
-  default: null
 })
