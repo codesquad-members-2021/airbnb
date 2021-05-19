@@ -22,12 +22,15 @@ class MainViewController: UIViewController {
         self.navigationItem.titleView = searchBar
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     @objc func moveSearchViewController(_ UITapGestureReconizer: UITapGestureRecognizer) {
         guard let locationSearchView = UIStoryboard(name: "LocationSearch", bundle: nil).instantiateViewController(withIdentifier: "LocationSearch") as? LocationSearchViewController else {
             return
         }
-        let navigationController = UINavigationController(rootViewController: locationSearchView)
-        navigationController.modalPresentationStyle = .fullScreen
-        self.present(navigationController, animated: true)
+        self.navigationController?.pushViewController(locationSearchView, animated: true)
     }
 }
