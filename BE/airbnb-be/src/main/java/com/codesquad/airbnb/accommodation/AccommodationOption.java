@@ -5,10 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class AccommodationOption {
     private int capacity;
     private int pricePerNight;
-    private String accommodationType;
+    private AccommodationType accommodationType;
     private int bedroomCount;
     private int restroomCount;
-    private String restroomType;
+    private RestroomType restroomType;
     private boolean hasKitchen;
     private boolean hasInternet;
     private boolean hasAirconditioner;
@@ -17,7 +17,7 @@ public class AccommodationOption {
     public AccommodationOption() {
     }
 
-    public AccommodationOption(int capacity, int pricePerNight, String accommodationType, int bedroomCount, int restroomCount, String restroomType, boolean hasKitchen, boolean hasInternet, boolean hasAirconditioner, boolean hasHairdrier) {
+    public AccommodationOption(int capacity, int pricePerNight, AccommodationType accommodationType, int bedroomCount, int restroomCount, RestroomType restroomType, boolean hasKitchen, boolean hasInternet, boolean hasAirconditioner, boolean hasHairdrier) {
         this.capacity = capacity;
         this.pricePerNight = pricePerNight;
         this.accommodationType = accommodationType;
@@ -50,11 +50,11 @@ public class AccommodationOption {
         this.pricePerNight = pricePerNight;
     }
 
-    public String getAccommodationType() {
+    public AccommodationType getAccommodationType() {
         return accommodationType;
     }
 
-    public void setAccommodationType(String accommodationType) {
+    public void setAccommodationType(AccommodationType accommodationType) {
         this.accommodationType = accommodationType;
     }
 
@@ -74,11 +74,11 @@ public class AccommodationOption {
         this.restroomCount = restroomCount;
     }
 
-    public String getRestroomType() {
+    public RestroomType getRestroomType() {
         return restroomType;
     }
 
-    public void setRestroomType(String restroomType) {
+    public void setRestroomType(RestroomType restroomType) {
         this.restroomType = restroomType;
     }
 

@@ -3,10 +3,10 @@ package com.codesquad.airbnb.accommodation;
 public final class AccommodationOptionBuilder {
     private int capacity;
     private int pricePerNight;
-    private String accommodationType;
+    private AccommodationType accommodationType;
     private int bedroomCount;
     private int restroomCount;
-    private String restroomType;
+    private RestroomType restroomType;
     private boolean hasKitchen;
     private boolean hasInternet;
     private boolean hasAirconditioner;
@@ -29,7 +29,7 @@ public final class AccommodationOptionBuilder {
         return this;
     }
 
-    public AccommodationOptionBuilder accommodationType(String accommodationType) {
+    public AccommodationOptionBuilder accommodationType(AccommodationType accommodationType) {
         this.accommodationType = accommodationType;
         return this;
     }
@@ -44,7 +44,7 @@ public final class AccommodationOptionBuilder {
         return this;
     }
 
-    public AccommodationOptionBuilder restroomType(String restroomType) {
+    public AccommodationOptionBuilder restroomType(RestroomType restroomType) {
         this.restroomType = restroomType;
         return this;
     }
