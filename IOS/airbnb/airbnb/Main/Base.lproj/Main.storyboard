@@ -12,9 +12,9 @@
         <!--로그인-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="로그인" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="BYZ-38-t0r" userLabel="로그인" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -31,9 +31,9 @@
         <!--위시리스트-->
         <scene sceneID="y70-QQ-Jao">
             <objects>
-                <viewController id="uB9-ij-poF" userLabel="위시리스트" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="uB9-ij-poF" userLabel="위시리스트" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D7S-TD-ggv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="myQ-I6-1bQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -50,16 +50,17 @@
         <!--검색-->
         <scene sceneID="vJI-5i-xpK">
             <objects>
-                <viewController id="YBE-yj-Bm8" userLabel="검색" customClass="MainViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="YBE-yj-Bm8" userLabel="검색" customClass="MainViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JqF-wV-wYB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DRb-al-wVs" userLabel="Hero Image Section">
-                                <rect key="frame" x="0.0" y="88" width="414" height="473"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="473"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d3g-cp-em3" userLabel="Hero Image View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="473"/>
+                                        <color key="backgroundColor" red="0.84633721279999996" green="0.81177633699999996" blue="0.96366003789999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="hIC-QV-CiQ" userLabel="Title Stack View">
                                         <rect key="frame" x="30" y="92" width="138.5" height="99"/>
@@ -132,7 +133,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="DRb-al-wVs" firstAttribute="width" secondItem="JqF-wV-wYB" secondAttribute="width" id="Ai7-vm-JNB"/>
-                            <constraint firstItem="DRb-al-wVs" firstAttribute="top" secondItem="nAw-Sq-gct" secondAttribute="top" id="h3m-ni-d9T"/>
+                            <constraint firstItem="DRb-al-wVs" firstAttribute="top" secondItem="JqF-wV-wYB" secondAttribute="top" id="h3m-ni-d9T"/>
                             <constraint firstItem="DRb-al-wVs" firstAttribute="trailing" secondItem="nAw-Sq-gct" secondAttribute="trailing" id="p4H-Ep-iyc"/>
                             <constraint firstItem="DRb-al-wVs" firstAttribute="leading" secondItem="nAw-Sq-gct" secondAttribute="leading" id="ucL-mf-78x"/>
                         </constraints>
@@ -150,11 +151,25 @@
         <!--Navigation Controller-->
         <scene sceneID="XPb-1Z-wR4">
             <objects>
-                <navigationController id="V51-XS-8yb" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rsf-jX-Wfs">
+                <navigationController extendedLayoutIncludesOpaqueBars="YES" id="V51-XS-8yb" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="rsf-jX-Wfs">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="systemPinkColor"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" systemColor="labelColor"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="view.backgroundColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="Mh7-uZ-IJA" kind="relationship" relationship="rootViewController" id="VvW-S2-u3V"/>
                     </connections>
@@ -171,8 +186,9 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="u2C-M3-8Im">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" systemColor="systemGray2Color"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
@@ -190,11 +206,17 @@
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

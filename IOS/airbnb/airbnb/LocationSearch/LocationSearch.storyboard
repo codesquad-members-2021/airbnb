@@ -11,14 +11,15 @@
         <!--숙소 찾기-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="PopularLocationViewController" title="숙소 찾기" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="PopularLocationViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PopularLocationViewController" title="숙소 찾기" extendedLayoutIncludesOpaqueBars="YES" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="PopularLocationViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TVY-RV-LOp">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="systemPinkColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Ndf-ol-eCB" userLabel="Header View">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -80,6 +81,7 @@
                                                 <constraint firstItem="bq2-If-5yh" firstAttribute="top" secondItem="wtd-0U-uha" secondAttribute="bottom" constant="4" id="sJ1-Mc-pO1"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="popularLocationDistanceLabel" destination="bq2-If-5yh" id="evg-K1-Ftw"/>
                                             <outlet property="popularLocationImageView" destination="72m-Ff-vyv" id="fs5-EB-b7n"/>
@@ -90,7 +92,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TVY-RV-LOp" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="3bC-yd-rFP"/>
                             <constraint firstItem="TVY-RV-LOp" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="JLa-2x-eCo"/>
@@ -109,7 +111,7 @@
         <!--Search Result Table View Controller-->
         <scene sceneID="re2-u7-VHh">
             <objects>
-                <tableViewController storyboardIdentifier="SearchResultTableViewController" id="tY0-Vw-Z0v" customClass="SearchResultTableViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SearchResultTableViewController" extendedLayoutIncludesOpaqueBars="YES" id="tY0-Vw-Z0v" customClass="SearchResultTableViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Rb-FF-ubk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -193,6 +195,9 @@
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
