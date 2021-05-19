@@ -23,4 +23,5 @@ git config commit.template ./.commit_template
 ```
 
 > **예시**
-  ![commit_template](https://user-images.githubusercontent.com/24666330/118770431-466f6500-b8bc-11eb-90c1-f2c4793f44f4.png)
+  ![commit_template](https://user-images.githubusercontent.com/24666330/118772258-7fa8d480-b8be-11eb-893f-73b904094e0c.png)
+
