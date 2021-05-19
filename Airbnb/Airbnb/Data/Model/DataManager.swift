@@ -13,7 +13,7 @@ enum ImageManager {
 }
 
 enum MainInfoManager {
-    static let main = "에어비앤비가 엄선한 위시리스트를 만나보세요."
+    static let main = "슬기로운 자연생활"
     static let seoul = "서울"
     static let gwangju = "광주"
     static let uijeongbu = "의정부시"
@@ -27,12 +27,13 @@ enum MainInfoManager {
 }
 
 enum HeaderManager {
-    static let first = "슬기로운 자연생활"
+    static let first = ""
     static let second = "가까운 여행지 둘러보기"
     static let third = "어디에서나, 여행은 살아보는거야!"
 }
 
 enum DetailInfoManager {
+    static let main = "에어비앤비가 엄선한 위시리스트를 만나보세요."
     static let seoul = "30분"
     static let gwangju = "4시간"
     static let uijeongbu = "30분"

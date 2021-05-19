@@ -2,7 +2,7 @@ import UIKit
 
 class MainView: UIView {
     
-    private lazy var  mainImageVIew: UIImageView = {
+    private lazy var  mainImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         return imageView
     }()
@@ -21,7 +21,7 @@ class MainView: UIView {
         let button = UIButton(type: .system)
         return button
     }()
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupMainView()
@@ -32,9 +32,10 @@ class MainView: UIView {
         setupMainView()
     }
     
-    func configureMainView(_ title:String, _ detail:String) {
-        mainTitleLabel.text = title
-        detailInfoLabel.text = detail
+    func configureMainView(_ item: MainViewInfo) {
+        mainImageView.image = UIImage(named: item.image)
+        mainTitleLabel.text = item.mainInfo
+        detailInfoLabel.text = item.detailInfo
     }
 }
 
@@ -49,44 +50,47 @@ private extension MainView {
     }
     
     private func setupMainImageView() {
-        addSubview(mainImageVIew)
-        mainImageVIew.translatesAutoresizingMaskIntoConstraints = false
-        mainImageVIew.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
-        mainImageVIew.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-        mainImageVIew.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-        mainImageVIew.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+        addSubview(mainImageView)
+        mainImageView.isUserInteractionEnabled = true
+        mainImageView.translatesAutoresizingMaskIntoConstraints = false
+        mainImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+        mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
+        mainImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
+        mainImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
     }
     
     private func setupMainTitleLabel() {
-        mainImageVIew.addSubview(mainTitleLabel)
+        mainImageView.addSubview(mainTitleLabel)
         mainTitleLabel.numberOfLines = 0
-        mainTitleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        mainTitleLabel.font = UIFont.boldSystemFont(ofSize: 30)
         mainTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        mainTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
-        mainTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
-        mainTitleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6).isActive = true
-        mainTitleLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4).isActive = true
+        mainTitleLabel.topAnchor.constraint(equalTo: mainImageView.topAnchor, constant: 20).isActive = true
+        mainTitleLabel.leadingAnchor.constraint(equalTo: mainImageView.leadingAnchor, constant: 16).isActive = true
+        mainTitleLabel.widthAnchor.constraint(equalTo: mainImageView.widthAnchor, multiplier: 0.6).isActive = true
+        mainTitleLabel.heightAnchor.constraint(equalTo: mainImageView.heightAnchor, multiplier: 0.2).isActive = true
     }
     
     private func setupDetailInfoLabel() {
-        mainImageVIew.addSubview(detailInfoLabel)
+        mainImageView.addSubview(detailInfoLabel)
+        detailInfoLabel.numberOfLines = 0
         detailInfoLabel.translatesAutoresizingMaskIntoConstraints = false
-        detailInfoLabel.topAnchor.constraint(equalTo: mainTitleLabel.topAnchor, constant: 16).isActive = true
+        detailInfoLabel.topAnchor.constraint(equalTo: mainTitleLabel.bottomAnchor, constant: 16).isActive = true
         detailInfoLabel.leadingAnchor.constraint(equalTo: mainTitleLabel.leadingAnchor).isActive = true
         detailInfoLabel.widthAnchor.constraint(equalTo: mainTitleLabel.widthAnchor).isActive = true
-        detailInfoLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2).isActive = true
+        detailInfoLabel.heightAnchor.constraint(equalTo: mainImageView.heightAnchor, multiplier: 0.2).isActive = true
     }
     
     private func setupIdeaButton() {
-        mainImageVIew.addSubview(ideaButton)
+        mainImageView.addSubview(ideaButton)
+        ideaButton.isUserInteractionEnabled = true
         ideaButton.setTitle("여행 아이디어 얻기", for: .normal)
         ideaButton.setTitleColor(UIColor.white, for: .normal)
-        ideaButton.backgroundColor = UIColor.systemGray
+        ideaButton.backgroundColor = UIColor.darkGray
         ideaButton.translatesAutoresizingMaskIntoConstraints = false
-        ideaButton.topAnchor.constraint(equalTo: detailInfoLabel.topAnchor, constant: 16).isActive = true
+        ideaButton.topAnchor.constraint(equalTo: detailInfoLabel.bottomAnchor, constant: 16).isActive = true
         ideaButton.leadingAnchor.constraint(equalTo: mainTitleLabel.leadingAnchor).isActive = true
-        ideaButton.widthAnchor.constraint(equalTo: mainTitleLabel.widthAnchor).isActive = true
-        ideaButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2).isActive = true
+        ideaButton.widthAnchor.constraint(equalTo: mainTitleLabel.widthAnchor, multiplier: 0.5).isActive = true
+        ideaButton.heightAnchor.constraint(equalTo: mainImageView.heightAnchor, multiplier: 0.1).isActive = true
         ideaButton.layer.cornerRadius = 5
     }
 }
