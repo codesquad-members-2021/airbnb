@@ -1,5 +1,7 @@
+import {useState} from 'react';
 import styled from "styled-components";
 import {ReactComponent as SearchIcon} from './../../icons/search.svg';
+import translate from './../../utils/translate';
 
 export interface IAppProps {
 	type: string;
@@ -8,23 +10,34 @@ export interface IAppProps {
 	placeholder?: string;
 }
 
+
 export default function SearchBy({ type, input, isEnd, placeholder }: IAppProps) {
+	const [isLocationModalOn, setIsLocationModalOn] = useState<boolean>(false);
+	const [isScheduleModalOn, setIsScheduleModalOn] = useState<boolean>(false);
+	const [isFeeModalOn, setIsFeeModalOn] = useState<boolean>(false);
+	const [isGuestModalOn, setIsGuestModalOn] = useState<boolean>(false);
 
 	const handleSearchClick = (): void => {
 		console.log("search!");
 	}
 
-	const handleOnClick =(type:string):void => {
+	const handleOnClick =(type:string): void => {
+		if(type === "LOCATION") isLocationModalOn ? setIsLocationModalOn(false) : setIsLocationModalOn(true);
+		else if (type === "CHECKIN" || type === "CHECKOUT") isScheduleModalOn ? setIsScheduleModalOn(false) : setIsScheduleModalOn(true);
+		else if (type === "FEE") isFeeModalOn ? setIsFeeModalOn(false) : setIsFeeModalOn(true);
+		else if (type === "GUEST") isGuestModalOn ? setIsGuestModalOn(false) : setIsGuestModalOn(true);
 		console.log(`${type} clicked`);
 	}
+
+	
 
 	return (
 		<>
 		<StyleSearch isEnd= {isEnd} onClick={()=>handleOnClick(type)}>
 			<SearchWrapper isEnd={isEnd}>
-				{type}
+				{translate("title", type, "KR")}
 				{input && <SearchLocationStyle placeholder={input}></SearchLocationStyle>}
-				{placeholder && <div>{placeholder}</div>}
+				{placeholder && <div>{translate("placeholder",type, "KR")}</div>}
 			</SearchWrapper>
 		</StyleSearch>
 			{isEnd && <StyleSearchBtn onClick ={handleSearchClick}><SearchIcon stroke="#FFFFFF"/></StyleSearchBtn>}

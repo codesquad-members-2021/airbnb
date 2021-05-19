@@ -7,11 +7,11 @@ export default function SearchBar(props: IAppProps) {
 	return (
 		<StyleSearchBar>
 			{/* 검색 조건에 지역 넣게되면 아래 줄 주석 풀기 */}
-			{/* <SearchBy type="위치" input="어디로 여행가세요?" isEnd={false} /> */} 
-			<SearchBy type="체크인" isEnd={false} placeholder="날짜 입력" />
-			<SearchBy type="체크아웃" isEnd={false} placeholder="날짜 입력" />
-			<SearchBy type="요금" isEnd={false} placeholder="금액대 설정" />
-			<SearchBy type="인원" isEnd={true} placeholder="게스트 추가" />
+			{/* <SearchBy type="LOCATION" input="어디로 여행가세요?" isEnd={false} /> */} 
+			<SearchBy type="CHECKIN" isEnd={false} placeholder="date" />
+			<SearchBy type="CHECKOUT" isEnd={false} placeholder="date" />
+			<SearchBy type="FEE" isEnd={false} placeholder="Set arange" />
+			<SearchBy type="GUEST" isEnd={true} placeholder="Set guest" />
 		</StyleSearchBar>
 	);
 }
