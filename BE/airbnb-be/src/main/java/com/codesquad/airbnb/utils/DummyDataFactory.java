@@ -94,4 +94,18 @@ public class DummyDataFactory {
                 DummyDataFactory.accommodationResponseDTOTypeLowQuality()
         );
     }
+
+    public static List<AccommodationResponseDTO> accommodationResponseDTOsWithId() {
+        List<AccommodationResponseDTO> accommodationResponseDTOs = Arrays.asList(
+                DummyDataFactory.accommodationResponseDTOTypeSuiteroom(),
+                DummyDataFactory.accommodationResponseDTOTypeOneroom(),
+                DummyDataFactory.accommodationResponseDTOTypeLowQuality()
+        );
+
+        for (int i = 0; i < accommodationResponseDTOs.size(); i++) {
+            accommodationResponseDTOs.get(i).setId(Long.valueOf(i + 1));
+        }
+
+        return accommodationResponseDTOs;
+    }
 }
