@@ -1,45 +1,37 @@
 import React, { useState, useEffect, useRef} from 'react'
 import styled from 'styled-components'
+import useModalCtrl from '../customHook/useModalCtrl'
 
-
-type reffy = HTMLDivElement | null
 const UserInfo = () => {
-  const refy = useRef<reffy>(null)
-  const refy2 = useRef<reffy>(null)
-  const [open, setOpen] = useState(false)
-
-  useEffect(()=>{
-    const handle = ({target}:any):void => {
-      const users = refy.current;
-      const menus = refy2.current;
-      if (users||menus){
-        if(users?.contains(target)) setOpen((open)=>!open)
-        else if(menus?.contains(target)) setOpen(true)
-        else setOpen(false)        
-      }
+  const userInfoBtn = useRef<HTMLDivElement>(null)
+  const userInfoModal = useRef<HTMLDivElement>(null)
+  const open = useModalCtrl({toggle: userInfoBtn, modal: userInfoModal, init:false});
+  interface IF_Img {
+    path: string;
   }
-    document.addEventListener('click', handle)
-    return ()=>{
-      document.removeEventListener('click',handle)
-    }
-  },[])
+  const IMG:React.FunctionComponent<IF_Img> = ({ path }) => {
+    return (   
+    <ImgBlock>
+      <img src = {process.env.PUBLIC_URL + path} alt = {path}/>
+    </ImgBlock>
+    )
+  }
 
   const HoverMenu = () => {
     return (
      <>
-     <MenuBlock ref={refy2}>
+     <MenuBlock ref={userInfoModal}>
        <Menu>로그인</Menu>
      </MenuBlock>
      </>
      )
   }
 
-  
   return(
     <>
-    <BtnBlock className="user-btn" ref={refy}>
-    <ImgBlock className="IMG"><img src = {process.env.PUBLIC_URL + '/hamburger_btn.png'} alt='hbg'/> </ImgBlock>
-    <ImgBlock className="IMG"><img src={process.env.PUBLIC_URL + '/user_img.png'} alt="user"/> </ImgBlock>
+    <BtnBlock ref={userInfoBtn}>
+      <IMG path='/hamburger_btn.png'></IMG>
+      <IMG path='/user_img.png'></IMG>
     </BtnBlock>
     {open && <HoverMenu/>}
     </>
