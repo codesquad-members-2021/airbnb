@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FoQ-h1-iaf">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -9,34 +9,76 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JacksonBnB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="JacksonBnB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m70-q2-emK">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="669"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n28-43-hhT">
+                                <rect key="frame" x="16" y="96" width="382" height="30"/>
+                                <state key="normal" title="여행가기"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="m70-q2-emK" secondAttribute="bottom" id="C5D-8G-gjb"/>
+                            <constraint firstItem="n28-43-hhT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="52" id="2cr-ct-Tj4"/>
                             <constraint firstItem="m70-q2-emK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DSQ-da-wO6"/>
                             <constraint firstItem="m70-q2-emK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Xkb-je-aXh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n28-43-hhT" secondAttribute="trailing" constant="16" id="l1e-z0-SVG"/>
+                            <constraint firstItem="n28-43-hhT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="mjK-XS-h05"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="m70-q2-emK" secondAttribute="bottom" constant="100" id="so3-Jh-Pet"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="m70-q2-emK" secondAttribute="trailing" id="uG0-VF-Gfu"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="ezy-1i-ywP"/>
                     <connections>
                         <outlet property="mainView" destination="m70-q2-emK" id="cwV-cd-7j7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="67" y="78"/>
+            <point key="canvasLocation" x="67" y="866"/>
+        </scene>
+        <!--Favorite View Controller-->
+        <scene sceneID="INL-98-m5e">
+            <objects>
+                <viewController id="k7S-45-z3b" customClass="FavoriteViewController" customModule="JacksonBnB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TXQ-I8-t1I">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Gfc-qy-cuf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="1Eb-uy-HWv"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tq0-F6-zeP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="948" y="866"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="INY-93-TaR">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="FoQ-h1-iaf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="c9R-H8-LS6">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Hqe-T9-714"/>
+                        <segue destination="k7S-45-z3b" kind="relationship" relationship="viewControllers" id="G8J-Ga-tOT"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PUV-gA-dXF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="66.666666666666671" y="77.678571428571431"/>
         </scene>
     </scenes>
     <resources>

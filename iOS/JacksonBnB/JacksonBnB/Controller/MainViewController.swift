@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
     @IBOutlet weak var mainView: UIImageView!
     
