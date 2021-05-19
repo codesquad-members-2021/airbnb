@@ -58,7 +58,8 @@ private extension MainViewController {
         let header = mainInfoCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Section", for: indexPath)
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: mainInfoCollectionView.frame.width, height: mainInfoCollectionView.frame.height*0.2))
         label.textColor = UIColor.black
-        label.textAlignment = .center
+        label.textAlignment = .left
+        label.font = UIFont.boldSystemFont(ofSize: 30)
         label.text = dataSource.sectionModels[indexPath.section].header
         header.addSubview(label)
         return header
@@ -71,7 +72,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDelegate
         if indexPath.section == 0 {
             return CGSize(width: view.frame.width, height: view.frame.height*0.5)
         } else if indexPath.section == 1 {
-            return CGSize(width: mainInfoCollectionView.frame.width*0.5, height: mainInfoCollectionView.frame.height*0.1)
+            return CGSize(width: mainInfoCollectionView.frame.width*0.4, height: mainInfoCollectionView.frame.height*0.1)
         }
         else { return CGSize(width: view.frame.width*0.8, height: view.frame.height*0.4)}
     }
