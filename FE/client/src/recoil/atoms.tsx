@@ -1,4 +1,3 @@
-import React  from 'react';
 import { atom, selector } from "recoil";
 import { getDate, currentDate } from '../utils/calendarUtil';
 
