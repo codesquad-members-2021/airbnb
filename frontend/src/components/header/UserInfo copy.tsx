@@ -1,43 +1,35 @@
 import React, { useState, useEffect, useRef} from 'react'
 import styled from 'styled-components'
+const HoverMenu = () => {
+  return (
+   <>
+   <MenuBlock className="toggle-menu">
+     <Menu>로그인</Menu>
+   </MenuBlock>
+   </>
+   )
+}
 
+type refy = HTMLDivElement | undefined
 
-type reffy = HTMLDivElement | null
 const UserInfo = () => {
-  const refy = useRef<reffy>(null)
-  const refy2 = useRef<reffy>(null)
   const [open, setOpen] = useState(false)
-
   useEffect(()=>{
     const handle = ({target}:any):void => {
-      const users = refy.current;
-      const menus = refy2.current;
-      if (users||menus){
-        if(users?.contains(target)) setOpen((open)=>!open)
-        else if(menus?.contains(target)) setOpen(true)
-        else setOpen(false)        
-      }
-  }
+      // if (toggleUser.current.contains(target)) setOpen(!open)
+      if (target.closest('.user-btn'))setOpen((open)=>!open)
+      else if (target.closest('.toggle-menu')) setOpen(true)
+      else setOpen(false)
+    }
     document.addEventListener('click', handle)
     return ()=>{
       document.removeEventListener('click',handle)
     }
   },[])
-
-  const HoverMenu = () => {
-    return (
-     <>
-     <MenuBlock ref={refy2}>
-       <Menu>로그인</Menu>
-     </MenuBlock>
-     </>
-     )
-  }
-
-  
   return(
     <>
-    <BtnBlock className="user-btn" ref={refy}>
+    <BtnBlock className="user-btn">
+    
     <ImgBlock className="IMG"><img src = {process.env.PUBLIC_URL + '/hamburger_btn.png'} alt='hbg'/> </ImgBlock>
     <ImgBlock className="IMG"><img src={process.env.PUBLIC_URL + '/user_img.png'} alt="user"/> </ImgBlock>
     </BtnBlock>
