@@ -1,26 +1,34 @@
+import { useState } from "react";
 import styled from "styled-components";
-import CalendarModal from "./CalendarModal"
-// import CloseButton from "../CloseButton";
+import CalendarModal from "./CalendarModal";
+import CloseButton from "../CloseButton";
 
-const Period = () => (
-	<PeriodWrapper>
-		<CheckIn />
-		<CheckOut />
-		<CalendarModal />
-		{/* <CloseButton /> */}
-	</PeriodWrapper>
-);
+const Period = () => {
+	const [start, setStart] = useState("");
+	const [end, setEnd] = useState("");
 
-const CheckIn = () => (
+	const [isOn, setOn] = useState(false);
+
+	return (
+		<PeriodWrapper onClick={() => setOn(() => true)}>
+			<CheckIn value={start} />
+			<CheckOut value={end} />
+			{isOn && <CalendarModal />}
+			{(start || end) && <CloseButton />}
+		</PeriodWrapper>
+	);
+};
+
+const CheckIn = ({ value }) => (
 	<CheckInWrapper>
 		<CheckContent>체크인</CheckContent>
-		<CheckInput />
+		<CheckInput value={value} readOnly />
 	</CheckInWrapper>
 );
-const CheckOut = () => (
+const CheckOut = ({ value }) => (
 	<CheckOutWrapper>
 		<CheckContent>체크아웃</CheckContent>
-		<CheckInput />
+		<CheckInput value={value} readOnly />
 	</CheckOutWrapper>
 );
 

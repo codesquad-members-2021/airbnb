@@ -1,45 +1,62 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const CalendarModal = () => {
-	const modifier = 0;
+	const [currentModifier, setCurrentModifier] = useState([-2, -1, 0, 1, 2, 3]);
+	const [containerState, setContainerState] = useState("CENTER");
+
+	const slideEvent = async (type) => {
+		const delayedSlide = (delay) =>
+			new Promise((res, rej) => {
+				setContainerState(() => type);
+				setTimeout(() => res(), delay);
+			});
+		await delayedSlide(400);
+		setCurrentModifier((arr) => arr.map((el) => el + (type === "LEFT" ? -2 : 2)));
+		setContainerState(() => "CENTER");
+	};
+
 	return (
 		<CalendarModalWrapper>
-			<Container>
-				<Calendar modifier={modifier} />
-				<Calendar modifier={modifier + 1} />
-				<Calendar modifier={modifier + 2} />
-				<Calendar modifier={modifier + 3} />
-			</Container>
-			<SlideButton type="LEFT" />
-			<SlideButton type="RIGHT" />
+			<ShowWindow>
+				<Container state={containerState}>
+					{currentModifier.map((el) => (
+						<Calendar modifier={el} key={el} />
+					))}
+				</Container>
+			</ShowWindow>
+			<SlideButton type="LEFT" onClick={() => slideEvent("LEFT")} />
+			<SlideButton type="RIGHT" onClick={() => slideEvent("RIGHT")} />
 		</CalendarModalWrapper>
 	);
 };
 
-const makeMonthArray = (modifier = 0) => {
-	const now = new Date(Date.now());
-	const [year, month] = [now.getFullYear(), now.getMonth() + modifier];
-	const firstDay = new Date(year, month, 1).getDay(); // 6=토요일
+const makeMonthArray = (year, month) => {
+	const firstDay = new Date(year, month, 1).getDay();
 	const sumDay = new Date(year, month + 1, 0).getDate();
 
 	const monthArray = [];
-	let tempArr = [];
+	let weekArray = [];
 	for (let count = 1 - firstDay; count <= sumDay; count++) {
-		if (tempArr.length === 7) {
-			monthArray.push(tempArr);
-			tempArr = [];
+		if (weekArray.length === 7) {
+			monthArray.push(weekArray);
+			weekArray = [];
 		}
-		tempArr.push(count);
+		weekArray.push(count);
 	}
-	if (tempArr.length > 0) monthArray.push(tempArr);
+	if (weekArray.length > 0) monthArray.push(weekArray);
 
 	return monthArray;
+};
+const fixMonth = (year, month) => {
+	if (0 <= month && month <= 11) return [year, month];
+	return month < 0 ? fixMonth(year - 1, month + 12) : fixMonth(year + 1, month - 12);
 };
 
 const Calendar = ({ modifier }) => {
 	const now = new Date(Date.now());
-	const [year, month] = [now.getFullYear(), now.getMonth() + modifier];
-	const monthArray = makeMonthArray(modifier);
+	const [year, month] = fixMonth(now.getFullYear(), now.getMonth() + modifier);
+	const monthArray = makeMonthArray(year, month);
 	return (
 		<CalendarWrapper>
 			<CalendarTitle>{`${year}년 ${month + 1}월`}</CalendarTitle>
@@ -59,7 +76,9 @@ const Calendar = ({ modifier }) => {
 					{monthArray.map((el) => (
 						<tr key={el}>
 							{el.map((v) => (
-								<Day key={v}>{v > 0 && v}</Day>
+								<Day date={new Date(year, month, v)} key={v}>
+									{v > 0 && v}
+								</Day>
 							))}
 						</tr>
 					))}
@@ -69,8 +88,8 @@ const Calendar = ({ modifier }) => {
 	);
 };
 
-const SlideButton = ({ type }) => (
-	<SlideButtonWrapper type={type}>
+const SlideButton = ({ type, onClick }) => (
+	<SlideButtonWrapper type={type} onClick={onClick}>
 		{type === "LEFT" ? (
 			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M15 18L9 12L15 6" stroke="#111111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -93,15 +112,24 @@ const CalendarModalWrapper = styled.div`
 	box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
 	border-radius: 40px;
 `;
-const Container = styled.div`
+const ShowWindow = styled.div`
 	position: absolute;
 	width: 722px;
 	height: 383px;
 	top: 70px;
 	left: 97px;
+	overflow: hidden;
+`;
+const xLocation = {
+	LEFT: "translateX(0)",
+	CENTER: "translateX(-772px)",
+	RIGHT: "translateX(-1545px)",
+};
+const Container = styled.div`
+	position: absolute;
 	display: flex;
-	/* overflow: hidden; */
-	border: 1px solid red;
+	transform: ${({ state }) => xLocation[state]};
+	transition: transform ${({ state }) => (state === "CENTER" ? "0ms" : "400ms")};
 `;
 const CalendarWrapper = styled.div`
 	width: 336px;
@@ -110,7 +138,6 @@ const CalendarWrapper = styled.div`
 	& + & {
 		margin-left: 50px;
 	}
-	border: 1px solid green;
 `;
 const CalendarTitle = styled.div`
 	width: 336px;
@@ -124,10 +151,7 @@ const CalendarTitle = styled.div`
 `;
 const CalendarBody = styled.table`
 	width: 336px;
-	/* height: 336px; */
-
 	margin-top: 24px;
-	border: 1px solid blue;
 `;
 const Week = styled.thead`
 	th {
@@ -146,12 +170,13 @@ const Day = styled.td`
 	line-height: 17px;
 	text-align: center;
 	vertical-align: middle;
-	color: #bdbdbd;
+	color:${({ date }) => date > Date.now() ? "#333" : "#bdbdbd"}
 `;
 const SlideButtonWrapper = styled.div`
 	position: absolute;
 	top: 70px;
 	left: ${({ type }) => (type === "LEFT" ? "97px" : "795px")};
+	z-index: 1;
 `;
 
 export default CalendarModal;
