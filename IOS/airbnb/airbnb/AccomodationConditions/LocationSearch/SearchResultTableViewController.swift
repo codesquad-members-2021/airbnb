@@ -7,10 +7,15 @@
 
 import UIKit
 
+protocol SearchResultDelegate {
+    func didSelect(result: String)
+}
+
 class SearchResultTableViewController: UITableViewController {
 
     @IBOutlet var searchResultTable: UITableView!
     private var searchResults: [String]?
+    var delegate: SearchResultDelegate?
     
     static var reuseIdentifier: String {
         return String(describing: self)
@@ -30,6 +35,12 @@ class SearchResultTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as? SearchResultTableViewCell ?? SearchResultTableViewCell()
         cell.locationLabel.text = searchResults?[indexPath.row] ?? ""
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let delegate = delegate,
+              let searchResult = searchResults?[indexPath.row] else { return }
+        delegate.didSelect(result: searchResult)
     }
     
 }

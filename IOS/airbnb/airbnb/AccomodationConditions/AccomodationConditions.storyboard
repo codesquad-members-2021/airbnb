@@ -8,10 +8,25 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--숙소 찾기-->
+        <!--캘린더 설정-->
+        <scene sceneID="Zah-gc-36R">
+            <objects>
+                <viewController storyboardIdentifier="CalendarViewController" title="숙소 찾기" extendedLayoutIncludesOpaqueBars="YES" id="PF0-Km-4oG" userLabel="캘린더 설정" customClass="CalendarViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1ZD-bd-2S3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="GAQ-ii-ORU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fdm-XV-b3l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1171" y="82"/>
+        </scene>
+        <!--장소 설정-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="PopularLocationViewController" title="숙소 찾기" extendedLayoutIncludesOpaqueBars="YES" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="PopularLocationViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PopularLocationViewController" title="숙소 찾기" extendedLayoutIncludesOpaqueBars="YES" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" userLabel="장소 설정" customClass="PopularLocationViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -112,7 +127,7 @@
         <scene sceneID="re2-u7-VHh">
             <objects>
                 <tableViewController storyboardIdentifier="SearchResultTableViewController" extendedLayoutIncludesOpaqueBars="YES" id="tY0-Vw-Z0v" customClass="SearchResultTableViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Rb-FF-ubk">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4Rb-FF-ubk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -182,7 +197,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="41g-cR-iof" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-252.17391304347828" y="743.97321428571422"/>
+            <point key="canvasLocation" x="393" y="82"/>
         </scene>
     </scenes>
     <resources>

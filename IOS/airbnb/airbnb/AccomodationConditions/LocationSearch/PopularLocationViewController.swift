@@ -42,8 +42,9 @@ class PopularLocationViewController: UIViewController {
     
     private func setNavigationSearchController() {
         let searchResultViewControllerID = SearchResultTableViewController.reuseIdentifier
-        let searchResultViewController = self.storyboard?.instantiateViewController(withIdentifier: searchResultViewControllerID) as? SearchResultTableViewController
+        let searchResultViewController = self.storyboard?.instantiateViewController(withIdentifier: searchResultViewControllerID) as? SearchResultTableViewController ?? SearchResultTableViewController()
         searchController = LocationSearchController(searchResultsController: searchResultViewController)
+        searchResultViewController.delegate = self
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
     }
@@ -57,6 +58,24 @@ class PopularLocationViewController: UIViewController {
         navigationItem.setRightBarButton(nil, animated: true)
     }
 
+}
+
+extension PopularLocationViewController: SearchResultDelegate {
+    
+    func didSelect(result: String) {
+        pushNextViewController(with: result)
+        inactiveSearchController()
+        unsetCancelBarButton()
+    }
+    
+    private func pushNextViewController(with result: String) {
+        let nextViewControllerID = CalendarViewController.reuseIdentifier
+        let nextViewController = storyboard?.instantiateViewController(identifier: nextViewControllerID) as? CalendarViewController ?? CalendarViewController()
+        nextViewController.location = result
+        self.navigationItem.backButtonTitle = "Back"
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    
 }
 
 extension PopularLocationViewController: UISearchBarDelegate {
