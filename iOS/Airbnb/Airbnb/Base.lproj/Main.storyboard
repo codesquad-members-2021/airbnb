@@ -57,36 +57,66 @@
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NBE-ur-pX5">
                                                         <rect key="frame" x="0.0" y="0.0" width="390" height="400"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="슬기로운자연생활" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i92-Ku-10w">
-                                                        <rect key="frame" x="25" y="25" width="150" height="91"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="WZL-gH-GUW">
+                                                        <rect key="frame" x="20" y="20" width="200" height="220"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="슬기로운자연생활" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i92-Ku-10w">
+                                                                <rect key="frame" x="0.0" y="0.0" width="160" height="100"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="160" id="D50-Tk-cpi"/>
+                                                                    <constraint firstAttribute="height" constant="100" id="Qxd-sj-5Ua"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="에어비앤비가 엄선한 위시리스트를 만나보세요." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PU0-uJ-X9B">
+                                                                <rect key="frame" x="0.0" y="120" width="200" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="Tsi-rF-3ey"/>
+                                                                    <constraint firstAttribute="width" constant="200" id="XNP-lV-NzG"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntO-EA-Pog">
+                                                                <rect key="frame" x="0.0" y="190" width="140" height="30"/>
+                                                                <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="30" id="SoE-b6-qzC"/>
+                                                                    <constraint firstAttribute="width" constant="140" id="s7c-dk-wLj"/>
+                                                                </constraints>
+                                                                <state key="normal" title="여행 아이디어 얻기">
+                                                                    <color key="titleColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="8"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                        </subviews>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="150" id="z29-dp-x48"/>
+                                                            <constraint firstAttribute="trailing" secondItem="ntO-EA-Pog" secondAttribute="trailing" constant="60" id="61b-ZM-ezx"/>
+                                                            <constraint firstItem="i92-Ku-10w" firstAttribute="leading" secondItem="WZL-gH-GUW" secondAttribute="leading" id="AtR-Xx-tzc"/>
+                                                            <constraint firstItem="PU0-uJ-X9B" firstAttribute="leading" secondItem="WZL-gH-GUW" secondAttribute="leading" id="FQw-Nk-eCx"/>
+                                                            <constraint firstItem="i92-Ku-10w" firstAttribute="top" secondItem="WZL-gH-GUW" secondAttribute="top" id="G1e-eG-sbh"/>
+                                                            <constraint firstAttribute="trailing" secondItem="PU0-uJ-X9B" secondAttribute="trailing" id="aKO-dN-6qj"/>
+                                                            <constraint firstItem="ntO-EA-Pog" firstAttribute="leading" secondItem="WZL-gH-GUW" secondAttribute="leading" id="uDP-Zn-ps0"/>
+                                                            <constraint firstAttribute="bottom" secondItem="ntO-EA-Pog" secondAttribute="bottom" id="yiq-NX-oEG"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="38"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="에어비앤비가 엄선한 위시리스트를 만나보세요." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PU0-uJ-X9B">
-                                                        <rect key="frame" x="25" y="141" width="180" height="40.666666666666657"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="180" id="AKu-nc-6ay"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="NBE-ur-pX5" secondAttribute="trailing" id="1Qc-DX-YaJ"/>
-                                                    <constraint firstItem="PU0-uJ-X9B" firstAttribute="leading" secondItem="7yd-Jk-BQt" secondAttribute="leading" constant="25" id="ALi-4R-vYT"/>
+                                                    <constraint firstItem="WZL-gH-GUW" firstAttribute="top" secondItem="7yd-Jk-BQt" secondAttribute="top" constant="20" id="38N-66-28F"/>
                                                     <constraint firstItem="NBE-ur-pX5" firstAttribute="top" secondItem="7yd-Jk-BQt" secondAttribute="top" id="Awg-2E-5YN"/>
                                                     <constraint firstAttribute="bottom" secondItem="NBE-ur-pX5" secondAttribute="bottom" id="PMR-aA-p2h"/>
+                                                    <constraint firstItem="WZL-gH-GUW" firstAttribute="leading" secondItem="7yd-Jk-BQt" secondAttribute="leading" constant="20" id="Vlb-GD-tuc"/>
                                                     <constraint firstAttribute="height" constant="400" id="XNZ-Ge-Nur"/>
                                                     <constraint firstItem="NBE-ur-pX5" firstAttribute="leading" secondItem="7yd-Jk-BQt" secondAttribute="leading" id="bvx-eX-k5G"/>
-                                                    <constraint firstItem="i92-Ku-10w" firstAttribute="leading" secondItem="7yd-Jk-BQt" secondAttribute="leading" constant="25" id="dv7-sS-eCD"/>
-                                                    <constraint firstItem="PU0-uJ-X9B" firstAttribute="top" secondItem="i92-Ku-10w" secondAttribute="bottom" constant="25" id="eRm-2J-rVT"/>
-                                                    <constraint firstItem="i92-Ku-10w" firstAttribute="top" secondItem="7yd-Jk-BQt" secondAttribute="top" constant="25" id="fvF-pS-cyA"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
