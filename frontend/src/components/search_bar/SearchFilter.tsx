@@ -9,6 +9,8 @@ import GuestModal from "../modals/guest/GuestModal";
 import { SearchFilterInterface } from "./../../utils/interfaces";
 
 export default function SearchFilter({ type, input, isEnd, placeholder, isCalendarModalOn, setIsCalendarModalOn, isFeeModalOn, setIsFeeModalOn, isGuestModalOn, setIsGuestModalOn, isLocationModalOn, setIsLocationModalOn }: SearchFilterInterface) {
+	const [inplaceHolder, setInplaceHolder] = useState(placeholder);
+
 	const handleSearchClick = (): void => {
 		console.log("search");
 	};
@@ -26,7 +28,7 @@ export default function SearchFilter({ type, input, isEnd, placeholder, isCalend
 				<SearchWrapper isEnd={isEnd}>
 					{parseByType("title", type)}
 					{input && <SearchLocationStyle placeholder={input}></SearchLocationStyle>}
-					{placeholder && <div>{placeholder}</div>}
+					{placeholder && <div>{inplaceHolder}</div>}
 				</SearchWrapper>
 			</StyleFilter>
 			{isEnd && (
@@ -34,10 +36,10 @@ export default function SearchFilter({ type, input, isEnd, placeholder, isCalend
 					<SearchIcon stroke="#FFFFFF" />
 				</StyleSearchBtn>
 			)}
-			{isLocationModalOn && <LocationModal type={type} />}
-			{isCalendarModalOn && <CalendarModal type={type} />}
-			{isFeeModalOn && <FeeModal type={type} />}
-			{isGuestModalOn && <GuestModal type={type} />}
+			{isLocationModalOn && <LocationModal type={type} setInplaceHolder={setInplaceHolder} />}
+			{isCalendarModalOn && <CalendarModal type={type} setInplaceHolder={setInplaceHolder} />}
+			{isFeeModalOn && <FeeModal type={type} setInplaceHolder={setInplaceHolder} />}
+			{isGuestModalOn && <GuestModal type={type} setInplaceHolder={setInplaceHolder} />}
 		</>
 	);
 }
