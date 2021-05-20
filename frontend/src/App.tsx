@@ -1,15 +1,17 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, RouteComponentProps } from 'react-router-dom';
 import GlobalStyle from './style/GlobalStyle'
-import Header from './components/header/Header'
 import { ThemeProvider } from 'styled-components'
 import { Theme } from './style/Theme'
+import Header from './components/header/Header'
+import SearchBar from './components/searchBar/SearchBar'
 function App() {
   return (
     <div className="App">
       <ThemeProvider theme={Theme}>
         <GlobalStyle/>
         <Header/>
+        <SearchBar/>
       </ThemeProvider>
     </div>
   );

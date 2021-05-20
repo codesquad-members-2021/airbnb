@@ -1,7 +1,7 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 
 type CtrlModal = {
-  toggle:any;
+  toggle: any;
   modal: any;
   init: boolean;
 }

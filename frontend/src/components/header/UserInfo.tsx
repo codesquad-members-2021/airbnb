@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useRef} from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
-import useModalCtrl from '../customHook/useModalCtrl'
+import useModalCtrl from '../../customHook/useModalCtrl'
 
 const UserInfo = () => {
   const userInfoBtn = useRef<HTMLDivElement>(null)
   const userInfoModal = useRef<HTMLDivElement>(null)
   const open = useModalCtrl({toggle: userInfoBtn, modal: userInfoModal, init:false});
   interface IF_Img {
-    path: string;
+    desc: string;
   }
-  const IMG:React.FunctionComponent<IF_Img> = ({ path }) => {
+  const IMG:React.FunctionComponent<IF_Img> = ({ desc }) => {
     return (   
     <ImgBlock>
-      <img src = {process.env.PUBLIC_URL + path} alt = {path}/>
+      <img src = {process.env.PUBLIC_URL + desc} alt = {desc}/>
     </ImgBlock>
     )
   }
@@ -30,8 +30,8 @@ const UserInfo = () => {
   return(
     <>
     <BtnBlock ref={userInfoBtn}>
-      <IMG path='/hamburger_btn.png'></IMG>
-      <IMG path='/user_img.png'></IMG>
+      <IMG desc='/hamburger_btn.png'></IMG>
+      <IMG desc='/user_img.png'></IMG>
     </BtnBlock>
     {open && <HoverMenu/>}
     </>

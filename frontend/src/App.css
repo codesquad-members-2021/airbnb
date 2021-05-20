@@ -1,4 +1,4 @@
-.App {  
-  text-align: center;
+.App {    
   width: 1536px;
+  box-sizing: border-box;
 }
