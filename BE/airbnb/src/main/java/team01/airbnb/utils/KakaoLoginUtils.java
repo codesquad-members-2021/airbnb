@@ -9,7 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-@PropertySource("classpath:application-oauth.properties")
+@PropertySource("classpath:custom-oauth.properties")
 @RequiredArgsConstructor
 @Configuration
 public class KakaoLoginUtils {
