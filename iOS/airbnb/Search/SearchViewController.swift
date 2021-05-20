@@ -12,8 +12,6 @@ class SearchViewController : UIViewController {
     @IBOutlet weak var nearPlaceCollection: UICollectionView!
     @IBOutlet weak var themePlaceCollection: UICollectionView!
     
-    let searchController = UISearchController(searchResultsController: TravelListViewController())
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,7 +33,7 @@ class SearchViewController : UIViewController {
         let headerNib = UINib(nibName: HeaderReusableView.nibName, bundle: nil)
         nearPlaceCollection?.register(headerNib, forCellWithReuseIdentifier: HeaderReusableView.reuseIdentifier)
         
-       
+        
         let specialNib = UINib(nibName: SpecialPlaceCell.nibName, bundle: nil)
         themePlaceCollection?.register(specialNib, forCellWithReuseIdentifier: SpecialPlaceCell.reuseIdentifier)
         themePlaceCollection?.register(headerNib, forCellWithReuseIdentifier: HeaderReusableView.reuseIdentifier)
@@ -75,7 +73,8 @@ extension SearchViewController : UICollectionViewDataSource {
 }
 extension SearchViewController : UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        print("called")
+        let travelListViewController = TravelListViewController.instantiate()
+        self.navigationController?.pushViewController(travelListViewController, animated: false)
         return false
     }
 }

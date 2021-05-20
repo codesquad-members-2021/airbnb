@@ -145,7 +145,7 @@
         <!--Travel List View Controller-->
         <scene sceneID="vny-eY-iyH">
             <objects>
-                <viewController id="1E9-eg-Y1u" customClass="TravelListViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TravelListViewController" id="1E9-eg-Y1u" customClass="TravelListViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BZl-vU-oYC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
