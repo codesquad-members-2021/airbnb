@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PopularLocationViewController: UIViewController, Instantiable {
+final class PopularLocationViewController: UIViewController, Instantiable {
 
     static var reuseIdentifier: String { String(describing: self) }
     private let backButtonTitle = "위치 검색"

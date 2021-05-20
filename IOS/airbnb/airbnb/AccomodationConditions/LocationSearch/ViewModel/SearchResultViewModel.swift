@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SearchResultViewModel: SearchResultConfigurable {
+final class SearchResultViewModel: SearchResultConfigurable {
     
     static let baseUrl = ""
     private var useCase: NewSearchCaseConfigurable

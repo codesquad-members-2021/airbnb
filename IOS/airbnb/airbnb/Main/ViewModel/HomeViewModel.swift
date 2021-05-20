@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HomeViewModel: HomeConfigurable {
+final class HomeViewModel: HomeConfigurable {
     
     static let baseUrl = ""
     private var useCase: TurnOnCaseConfigurable

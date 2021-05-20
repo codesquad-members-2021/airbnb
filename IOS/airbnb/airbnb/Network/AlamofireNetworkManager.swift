@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class AlamofireNetworkManager: AlamofireNetworkManagable {
+final class AlamofireNetworkManager: AlamofireNetworkManagable {
     
     private let requestManager: AlamofireRequestManagable
 

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PopularLocationTableViewCell: UITableViewCell {
+final class PopularLocationTableViewCell: UITableViewCell {
     
     @IBOutlet weak var popularLocationImageView: UIImageView!
     @IBOutlet weak var popularLocationTitleLabel: UILabel!

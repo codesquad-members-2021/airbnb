@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class NewSearchUseCase: NewSearchCaseConfigurable {
+final class NewSearchUseCase: NewSearchCaseConfigurable {
     
     enum EndPoint {
         static let searchResult = "/아직없음"

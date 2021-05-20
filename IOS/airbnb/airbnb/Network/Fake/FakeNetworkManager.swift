@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class FakeNetworkManager: AlamofireNetworkManagable {
+final class FakeNetworkManager: AlamofireNetworkManagable {
     
     private let fakeData: Decodable
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PopularLocationTableViewDataSource: NSObject, UITableViewDataSource {
+final class PopularLocationTableViewDataSource: NSObject, UITableViewDataSource {
     
     private var popularLocations: [PopularLocation]?
     private var popularLocationImagePaths: [String]?

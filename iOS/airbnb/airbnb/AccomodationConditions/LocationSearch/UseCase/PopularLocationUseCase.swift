@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class PopularLocationUseCase: PopularLocationCaseConfigurable {
+final class PopularLocationUseCase: PopularLocationCaseConfigurable {
     
     enum EndPoint {
         static let popularLocations = "/아직없음"

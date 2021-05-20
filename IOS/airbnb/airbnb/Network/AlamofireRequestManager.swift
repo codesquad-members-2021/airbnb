@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class AlamofireRequestManager: AlamofireRequestManagable {
+final class AlamofireRequestManager: AlamofireRequestManagable {
     
     private let baseAddress: String
     private let headers: HTTPHeaders

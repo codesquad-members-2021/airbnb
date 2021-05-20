@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class AlamofireImageLoadManager: AlamofireImageLoadManagable {
+final class AlamofireImageLoadManager: AlamofireImageLoadManagable {
     
     private let cacheURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
 

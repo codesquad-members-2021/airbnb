@@ -11,9 +11,10 @@ protocol SearchResultDelegate {
     func didSelect(result: LocationSearchResult)
 }
 
-class SearchResultTableViewController: UITableViewController, Instantiable {
+final class SearchResultTableViewController: UITableViewController, Instantiable {
 
     static var reuseIdentifier: String { String(describing: self) }
+    
     @IBOutlet var searchResultTable: UITableView!
     private var searchResults: [LocationSearchResult]?
     private var viewModel: SearchResultConfigurable!

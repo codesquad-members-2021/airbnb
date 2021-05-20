@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class TurnOnUseCase: TurnOnCaseConfigurable {
+final class TurnOnUseCase: TurnOnCaseConfigurable {
     
     enum EndPoint {
         static let heroImage = "/아직없음"

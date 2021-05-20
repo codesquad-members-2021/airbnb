@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PopularLocationViewModel: PopularLocationConfigurable {
+final class PopularLocationViewModel: PopularLocationConfigurable {
     
     static let baseUrl = ""
     private var useCase: PopularLocationCaseConfigurable
