@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const useFetch = (
-  url,
+  url: string,
   {
     callback = null,
     isExecuteFunc = false,
@@ -23,7 +23,7 @@ const useFetch = (
   const fetchData = async () => {
     try {
       if (!url) setError(`Error: URL IS NULL`);
-      console.log(url);
+
       const res = await fetch(url, options);
       if (!res.ok) return setError(`Error: code ${res.status}`);
 
@@ -32,7 +32,7 @@ const useFetch = (
       else result = await res.json();
 
       if (!result) return setError(`Error: NO DATA`);
-      console.log(result);
+
       setResponse(result);
     } catch (e) {
       setError(e);
