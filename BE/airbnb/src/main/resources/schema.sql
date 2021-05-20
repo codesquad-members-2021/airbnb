@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS `accommodation`
 (
     id           BIGINT auto_increment primary key,
     title        varchar(64),
-    reviewRating INT,
+    reviewRating decimal(10,5),
     reviewCount  INT,
     charge       INT,
     badge        varchar(64),
