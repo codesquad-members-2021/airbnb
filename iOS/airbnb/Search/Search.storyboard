@@ -170,12 +170,12 @@
                                         <color key="backgroundColor" red="0.45085787770000002" green="0.98829740290000001" blue="0.83763033149999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Nll-mH-iIu">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HeaderReusableView" id="Nll-mH-iIu">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근처의 인기 여행지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qa9-nS-Scl">
-                                            <rect key="frame" x="8" y="12" width="398" height="26.5"/>
+                                            <rect key="frame" x="24" y="12" width="366" height="26.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -183,8 +183,8 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="qa9-nS-Scl" firstAttribute="centerY" secondItem="Nll-mH-iIu" secondAttribute="centerY" id="5CO-SY-44S"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="qa9-nS-Scl" secondAttribute="trailing" id="A6E-9b-PbA"/>
-                                        <constraint firstItem="qa9-nS-Scl" firstAttribute="leading" secondItem="Nll-mH-iIu" secondAttribute="leadingMargin" id="Wq7-7c-cxb"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="qa9-nS-Scl" secondAttribute="trailing" constant="16" id="A6E-9b-PbA"/>
+                                        <constraint firstItem="qa9-nS-Scl" firstAttribute="leading" secondItem="Nll-mH-iIu" secondAttribute="leadingMargin" constant="16" id="Wq7-7c-cxb"/>
                                     </constraints>
                                 </collectionReusableView>
                             </collectionView>

@@ -37,6 +37,8 @@ class TravelListViewController: UIViewController {
     func registerNib() {
         let nib = UINib(nibName: NearPlaceCell.nibName, bundle: nil)
         travelList?.register(nib, forCellWithReuseIdentifier: NearPlaceCell.reuseIdentifier)
+        let headerNib = UINib(nibName: HeaderReusableView.nibName, bundle: nil)
+        travelList?.register(headerNib, forCellWithReuseIdentifier: HeaderReusableView.reuseIdentifier)
     }
 }
 extension TravelListViewController : UISearchResultsUpdating {
@@ -57,6 +59,16 @@ extension TravelListViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = travelList.dequeueReusableCell(withReuseIdentifier: NearPlaceCell.reuseIdentifier, for: indexPath) as! NearPlaceCell
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderReusableView.reuseIdentifier, for: indexPath)
+            return headerView
+        default:
+            assert(false, "Unexpected element kind")
+        }
     }
 }
 extension TravelListViewController : UICollectionViewDelegateFlowLayout {
