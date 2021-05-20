@@ -27,6 +27,7 @@
 		D4DDA69B2653767B00FE52FA /* RecommendTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA69A2653767B00FE52FA /* RecommendTrip.swift */; };
 		D4DDA6A0265376E500FE52FA /* FirstPageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA69F265376E500FE52FA /* FirstPageDTO.swift */; };
 		D4DDA6D126563CA400FE52FA /* SuggestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA6D026563CA400FE52FA /* SuggestionsTableViewController.swift */; };
+		D4DDA6E52656A6FA00FE52FA /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA6E42656A6F900FE52FA /* CalendarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		D4DDA69A2653767B00FE52FA /* RecommendTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTrip.swift; sourceTree = "<group>"; };
 		D4DDA69F265376E500FE52FA /* FirstPageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPageDTO.swift; sourceTree = "<group>"; };
 		D4DDA6D026563CA400FE52FA /* SuggestionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsTableViewController.swift; sourceTree = "<group>"; };
+		D4DDA6E42656A6F900FE52FA /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 				82FBF0D526538E07009B4A1F /* RecommendTripCollectionViewDataSource.swift */,
 				825702DF2653AE99009237BE /* SearchViewController.swift */,
 				D4DDA6D026563CA400FE52FA /* SuggestionsTableViewController.swift */,
+				D4DDA6E42656A6F900FE52FA /* CalendarViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				D4DDA6D126563CA400FE52FA /* SuggestionsTableViewController.swift in Sources */,
 				D4DDA63A26524ECD00FE52FA /* SceneDelegate.swift in Sources */,
 				D4DDA69B2653767B00FE52FA /* RecommendTrip.swift in Sources */,
+				D4DDA6E52656A6FA00FE52FA /* CalendarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

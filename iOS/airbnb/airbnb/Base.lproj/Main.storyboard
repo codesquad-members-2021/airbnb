@@ -331,9 +331,11 @@
                             <outlet property="delegate" destination="VKL-n8-dVM" id="lFE-7b-K4v"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="pQf-x9-F8C"/>
+                    <navigationItem key="navigationItem" id="pQf-x9-F8C">
+                        <barButtonItem key="backBarButtonItem" title="Item" id="Vcf-fm-Uya"/>
+                    </navigationItem>
                     <connections>
-                        <segue destination="Nne-XM-O7C" kind="show" id="NUo-eK-Chf"/>
+                        <segue destination="Nne-XM-O7C" kind="show" identifier="contentView" id="NUo-eK-Chf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2w2-ZT-Lsq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -358,15 +360,15 @@
                                 </connections>
                             </containerView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2z-9v-JgM">
-                                <rect key="frame" x="0.0" y="624" width="390" height="49"/>
+                                <rect key="frame" x="0.0" y="541" width="390" height="132"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
-                                    <tabBarItem systemItem="favorites" id="9yl-V1-5GB"/>
+                                    <tabBarItem systemItem="more" id="9yl-V1-5GB"/>
                                     <tabBarItem systemItem="more" id="Bv3-tL-fZl"/>
                                 </items>
                             </tabBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xaM-KD-q4S">
-                                <rect key="frame" x="0.0" y="440" width="390" height="184"/>
+                                <rect key="frame" x="0.0" y="440" width="390" height="101"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -392,10 +394,10 @@
             </objects>
             <point key="canvasLocation" x="3596.9230769230767" y="87.440758293838854"/>
         </scene>
-        <!--View Controller-->
+        <!--Calendar View Controller-->
         <scene sceneID="OLZ-rE-Zuy">
             <objects>
-                <viewController id="3v4-tX-kaj" sceneMemberID="viewController">
+                <viewController id="3v4-tX-kaj" customClass="CalendarViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="04a-xT-RYg">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="440"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -403,8 +405,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yT4-AN-IV5" customClass="FSCalendar">
                                 <rect key="frame" x="32" y="76" width="326" height="332"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="scrollEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsMultipleSelection" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsSelection" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="pagingEnabled" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="3v4-tX-kaj" id="RHS-2H-uqt"/>
+                                    <outlet property="delegate" destination="3v4-tX-kaj" id="gJP-zq-rOP"/>
+                                </connections>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="kGm-6Z-dMq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="yT4-AN-IV5" firstAttribute="top" secondItem="04a-xT-RYg" secondAttribute="topMargin" constant="32" id="250-aE-1ef"/>
@@ -413,10 +426,13 @@
                             <constraint firstItem="yT4-AN-IV5" firstAttribute="leading" secondItem="04a-xT-RYg" secondAttribute="leadingMargin" constant="16" id="zKX-RQ-HjU"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="calendar" destination="yT4-AN-IV5" id="lwc-yI-UeO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="StQ-kA-eB5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4309" y="-178"/>
+            <point key="canvasLocation" x="4566" y="87"/>
         </scene>
     </scenes>
     <resources>
