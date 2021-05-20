@@ -44,3 +44,19 @@ export const searchBarFocusAtom = atom<SearchBarFocusAtomType>({
     focus: false
   }
 })
+
+type PersonnelAtomType = {
+  adult: number;
+  child: number;
+  baby: number;
+  [key: string]: number;
+}
+
+export const PersonnelAtom = atom<PersonnelAtomType>({
+  key: 'PersonnelAtom',
+  default: {
+    adult: 0,
+    child: 0,
+    baby: 0
+  }
+})
