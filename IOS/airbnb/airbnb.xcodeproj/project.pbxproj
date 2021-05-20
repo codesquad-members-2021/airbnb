@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,7 @@
 		E4DB1D7A26538BA800894DCB /* AccomodationConditions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4DB1D7926538BA800894DCB /* AccomodationConditions.storyboard */; };
 		E4DB1D7C2653912F00894DCB /* PopularLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DB1D7B2653912F00894DCB /* PopularLocationViewController.swift */; };
 		E4DB1D7E2653916900894DCB /* PopularLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DB1D7D2653916900894DCB /* PopularLocationTableViewCell.swift */; };
+		E4F302A32655F71E002C9770 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E4F302A22655F71E002C9770 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4F302A32655F71E002C9770 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,7 +60,6 @@
 		E48148112654E63F0069BE20 /* CalendarSelect */ = {
 			isa = PBXGroup;
 			children = (
-
 				E481481526551B930069BE20 /* CalendarViewController.swift */,
 			);
 			path = CalendarSelect;
@@ -72,6 +73,13 @@
 				E48148112654E63F0069BE20 /* CalendarSelect */,
 			);
 			path = AccomodationConditions;
+			sourceTree = "<group>";
+		};
+		E481481726554A6D0069BE20 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		E4DB1CE626524A7700894DCB = {
@@ -97,6 +105,7 @@
 				E4814813265519BF0069BE20 /* StoryBoardID.swift */,
 				E4DB1D7726538AF800894DCB /* Main */,
 				E48148122654E6890069BE20 /* AccomodationConditions */,
+				E481481726554A6D0069BE20 /* Network */,
 				E4DB1CFB26524A7900894DCB /* Assets.xcassets */,
 				E4DB1CFD26524A7900894DCB /* LaunchScreen.storyboard */,
 				E4DB1D0026524A7900894DCB /* Info.plist */,
@@ -151,6 +160,9 @@
 			dependencies = (
 			);
 			name = airbnb;
+			packageProductDependencies = (
+				E4F302A22655F71E002C9770 /* Alamofire */,
+			);
 			productName = airbnb;
 			productReference = E4DB1CEF26524A7700894DCB /* airbnb.app */;
 			productType = "com.apple.product-type.application";
@@ -178,6 +190,9 @@
 				Base,
 			);
 			mainGroup = E4DB1CE626524A7700894DCB;
+			packageReferences = (
+				E4F302A12655F71E002C9770 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = E4DB1CF026524A7700894DCB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -418,6 +433,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E4F302A12655F71E002C9770 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E4F302A22655F71E002C9770 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4F302A12655F71E002C9770 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E4DB1CE726524A7700894DCB /* Project object */;
 }
