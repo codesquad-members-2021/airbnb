@@ -11,12 +11,11 @@ export default function SearchBar(props: EmptyInterface) {
 
 	return (
 		<StyleSearchBar>
-			{/* 검색 조건에 지역 넣게되면 아래 줄 주석 풀기 */}
-			{/* <SearchFilter type="LOCATION" input="어디로 여행가세요?" isEnd={false} /> */}
-			<SearchFilter type="CHECKIN" isEnd={false} placeholder={true} isCalendarModalOn={isCalendarModalOn} setIsCalendarModalOn={setIsCalendarModalOn} />
-			<SearchFilter type="CHECKOUT" isEnd={false} placeholder={true} isCalendarModalOn={isCalendarModalOn} setIsCalendarModalOn={setIsCalendarModalOn} />
-			<SearchFilter type="FEE" isEnd={false} placeholder={true} isFeeModalOn={isFeeModalOn} setIsFeeModalOn={setIsFeeModalOn} />
-			<SearchFilter type="GUEST" isEnd={true} placeholder={true} isGuestModalOn={isGuestModalOn} setIsGuestModalOn={setIsGuestModalOn} />
+			<SearchFilter type="LOCATION" input="어디로 여행가세요?" isEnd={false} isLocationModalOn={isLocationModalOn} setIsLocationModalOn={setIsLocationModalOn} />
+			<SearchFilter type="CHECKIN" isEnd={false} placeholder={"날짜 입력"} isCalendarModalOn={isCalendarModalOn} setIsCalendarModalOn={setIsCalendarModalOn} />
+			<SearchFilter type="CHECKOUT" isEnd={false} placeholder={"날짜 입력"} isCalendarModalOn={isCalendarModalOn} setIsCalendarModalOn={setIsCalendarModalOn} />
+			<SearchFilter type="FEE" isEnd={false} placeholder={"금액대 설정"} isFeeModalOn={isFeeModalOn} setIsFeeModalOn={setIsFeeModalOn} />
+			<SearchFilter type="GUEST" isEnd={true} placeholder={"게스트 추가"} isGuestModalOn={isGuestModalOn} setIsGuestModalOn={setIsGuestModalOn} />
 		</StyleSearchBar>
 	);
 }
@@ -29,7 +28,7 @@ const StyleSearchBar = styled.div`
 	width: 916px;
 	height: 76px;
 	top: 110px;
-	left: 25%;
+	left: 500px;
 	border-radius: 60px;
 	background-color: #ffffff;
 `;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as SearchIcon } from "./../../icons/search.svg";
-import translate from "../../utils/translate";
+import parseByType from "../../utils/parseByType";
 import LocationModal from "../modals/location/LocationModal";
 import CalendarModal from "../modals/calendar/CalendarModal";
 import FeeModal from "../modals/fee/FeeModal";
@@ -24,9 +24,9 @@ export default function SearchFilter({ type, input, isEnd, placeholder, isCalend
 		<>
 			<StyleFilter isEnd={isEnd} onClick={() => handleOnClick(type)}>
 				<SearchWrapper isEnd={isEnd}>
-					{translate("title", type, "KR")}
+					{parseByType("title", type)}
 					{input && <SearchLocationStyle placeholder={input}></SearchLocationStyle>}
-					{placeholder && <div>{translate("placeholder", type, "KR")}</div>}
+					{placeholder && <div>{placeholder}</div>}
 				</SearchWrapper>
 			</StyleFilter>
 			{isEnd && (

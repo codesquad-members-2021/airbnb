@@ -3,6 +3,7 @@ import styled from "styled-components";
 const ModalContainer = styled.div<{ type: string }>`
 	width: ${(props) => {
 		switch (props.type) {
+			case "LOCATION":
 			case "GUEST":
 				return "400px";
 			case "FEE":
