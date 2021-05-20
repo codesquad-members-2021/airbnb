@@ -8,6 +8,8 @@ drop table if exists review;
 drop table if exists rooms;
 drop table if exists image;
 drop table if exists users;
+drop table if exists reservation;
+drop table if exists wish_list;
 
 create table host(
     id bigint auto_increment primary key ,
@@ -83,4 +85,10 @@ create table reservation(
   check_in datetime,
   check_out datetime,
   total_price DECIMAL(20,10)
+);
+
+create table wish_list(
+  id bigint auto_increment primary key,
+  user_id bigint references users(id),
+  rooms_id bigint references rooms(id)
 );
