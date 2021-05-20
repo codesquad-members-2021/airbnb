@@ -1,4 +1,4 @@
-package codesquad.team17.gnb.place;
+package codesquad.team17.gnb.place.domain;
 
 import java.time.LocalDate;
 import java.util.List;

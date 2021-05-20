@@ -1,4 +1,4 @@
-package codesquad.team17.gnb.place;
+package codesquad.team17.gnb.place.domain;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -10,8 +10,6 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
-import static codesquad.team17.gnb.place.PlaceSql.*;
 
 @Repository
 public class JdbcPlaceRepository implements PlaceRepository {

@@ -1,4 +1,4 @@
-package codesquad.team17.gnb.place;
+package codesquad.team17.gnb.place.domain;
 
 import codesquad.team17.gnb.exception.NotFoundException;
 import org.assertj.core.api.SoftAssertions;

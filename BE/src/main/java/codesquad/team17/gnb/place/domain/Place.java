@@ -1,19 +1,19 @@
-package codesquad.team17.gnb.place;
+package codesquad.team17.gnb.place.domain;
 
 public class Place {
     private Long id;
     private String name;
 
     private Location location;
+    private int price;
+    private int maximumNumberOfPeople;
     private Option option;
 
     private double star;
     private double reviewCount;
 
     private Long hostId;
-    private int maximumNumberOfPeople;
     private String description;
-    private int price;
 
     public Place(Builder builder) {
         this.id = builder.id;

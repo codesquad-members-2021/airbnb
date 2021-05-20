@@ -1,4 +1,4 @@
-package codesquad.team17.gnb.place;
+package codesquad.team17.gnb.place.domain;
 
 public class Option {
 
