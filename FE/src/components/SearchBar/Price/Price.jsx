@@ -1,11 +1,13 @@
 import styled from "styled-components";
-// import CloseButton from "../CloseButton";
+import PriceModal from "./PriceModal";
+import CloseButton from "../CloseButton";
 
 const Price = () => (
 	<PriceWrapper>
 		<PriceContent>요금</PriceContent>
 		<PriceInput />
-		{/* <CloseButton /> */}
+		<PriceModal />
+		<CloseButton />
 	</PriceWrapper>
 );
 
