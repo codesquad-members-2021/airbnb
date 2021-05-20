@@ -23,11 +23,14 @@ public class UserService {
 
     private final JdbcTemplate jdbcTemplate;
     private final KakaoLoginUtils kakaoLoginUtils;
+    private final ObjectMapper objectMapper;
 
     public UserService(JdbcTemplate jdbcTemplate
-            , KakaoLoginUtils kakaoLoginUtils) {
+            , KakaoLoginUtils kakaoLoginUtils
+            , ObjectMapper objectMapper) {
         this.jdbcTemplate = jdbcTemplate;
         this.kakaoLoginUtils = kakaoLoginUtils;
+        this.objectMapper = objectMapper;
     }
 
     @Transactional
@@ -37,14 +40,14 @@ public class UserService {
         try {
             return jdbcTemplate.queryForObject(
                     query, new Object[]{username}, (rs, rowNum) -> {
-                User user = new User();
-                user.setId(rs.getLong("id"));
-                user.setUsername(rs.getString("username"));
-                user.setEmail(rs.getString("email"));
-                user.setRole(RoleType.valueOf(rs.getString("role")));
-                user.setCreateDate(rs.getDate("join_date").toLocalDate());
-                return user;
-            });
+                        User user = new User();
+                        user.setId(rs.getLong("id"));
+                        user.setUsername(rs.getString("username"));
+                        user.setEmail(rs.getString("email"));
+                        user.setRole(RoleType.valueOf(rs.getString("role")));
+                        user.setCreateDate(rs.getDate("join_date").toLocalDate());
+                        return user;
+                    });
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
@@ -85,7 +88,6 @@ public class UserService {
     }
 
     private <T> T convertJsonToObject(ResponseEntity<String> response, Class<T> valueType) {
-        ObjectMapper objectMapper = new ObjectMapper();
         try {
             return objectMapper.readValue(response.getBody(), valueType);
         } catch (JsonProcessingException e) {
