@@ -19,9 +19,7 @@ class PopularLocationViewModel {
     }
     
     convenience init() {
-        let tempLocations = [PopularLocation(name: "서울", distanceFromHere: "걸어서 1분 거리", imagePath: ""),
-                             PopularLocation(name: "샌프란시스코", distanceFromHere: "뛰어서 1분 거리", imagePath: ""),
-                             PopularLocation(name: "남극", distanceFromHere: "차로 1분 거리", imagePath: "")]
+        let tempLocations = Array(repeating: PopularLocation(), count: 10)
         let useCase = PopularLocationUseCase(url: PopularLocationViewModel.baseUrl)
         self.init(useCase: useCase, tempLocations: tempLocations)
     }
