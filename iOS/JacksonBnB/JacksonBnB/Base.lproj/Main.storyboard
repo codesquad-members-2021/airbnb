@@ -18,11 +18,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m70-q2-emK">
-                                <rect key="frame" x="0.0" y="44" width="414" height="669"/>
+                                <rect key="frame" x="0.0" y="148" width="414" height="565"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n28-43-hhT">
-                                <rect key="frame" x="16" y="96" width="382" height="30"/>
-                                <state key="normal" title="여행가기"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n28-43-hhT">
+                                <rect key="frame" x="64" y="96" width="286" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="여행 아이디어 얻기">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBound" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -30,9 +40,9 @@
                         <constraints>
                             <constraint firstItem="n28-43-hhT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="52" id="2cr-ct-Tj4"/>
                             <constraint firstItem="m70-q2-emK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DSQ-da-wO6"/>
-                            <constraint firstItem="m70-q2-emK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Xkb-je-aXh"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n28-43-hhT" secondAttribute="trailing" constant="16" id="l1e-z0-SVG"/>
-                            <constraint firstItem="n28-43-hhT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="mjK-XS-h05"/>
+                            <constraint firstItem="m70-q2-emK" firstAttribute="top" secondItem="n28-43-hhT" secondAttribute="bottom" constant="16" id="eM2-7O-X8W"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n28-43-hhT" secondAttribute="trailing" constant="64" id="l1e-z0-SVG"/>
+                            <constraint firstItem="n28-43-hhT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="64" id="mjK-XS-h05"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="m70-q2-emK" secondAttribute="bottom" constant="100" id="so3-Jh-Pet"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="m70-q2-emK" secondAttribute="trailing" id="uG0-VF-Gfu"/>
                         </constraints>
@@ -44,7 +54,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="67" y="866"/>
+            <point key="canvasLocation" x="66.666666666666671" y="865.84821428571422"/>
         </scene>
         <!--Favorite View Controller-->
         <scene sceneID="INL-98-m5e">
@@ -60,7 +70,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tq0-F6-zeP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="948" y="866"/>
+            <point key="canvasLocation" x="1162" y="78"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="INY-93-TaR">
