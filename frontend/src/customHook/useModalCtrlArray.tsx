@@ -9,17 +9,27 @@ const useModalCtrl = ({toggle, modal, init} : CtrlModal):boolean => {
   const [open, setOpen] = useState(init)
   console.log(open)
   useEffect(()=>{
+    let prev:number=0;
+    let curr:number;
     const handle = (e:MouseEvent):void => {
+      let count = 0;
       const {target} = e
       const toggleTarget = toggle.map(el=>el.current);
       const ModalTarget = modal.current;
-
-      for(let i=0; i<toggleTarget.length; i++){
-        if(toggleTarget[i].contains(target)) return setOpen((open)=>!open);
-        else if(ModalTarget?.contains(target)) setOpen(true);
-        else setOpen(false)    
-      }
-     
+      
+      toggleTarget.forEach((el:any, idx:number)=>{
+        if(el.contains(target)) {
+          curr=idx;
+          count++;
+        }
+      })
+      console.log(curr, prev, count)
+      if (count===1 && prev===curr) setOpen((open)=>!open)
+      else if (count===1 && prev!==curr) setOpen(true)
+      else if(ModalTarget?.contains(target)) setOpen(true);
+      else setOpen(false)   
+      count=0;
+      prev=curr;
     }
     document.addEventListener('click', handle)
     return ()=>{
