@@ -29,15 +29,13 @@ const Menu = () => {
           </MenuSelector>
         </fieldset>
         <SearchForm />
-        <SearchInput></SearchInput>
+        <SearchInput type="1"></SearchInput>
       </form>
     </MenuWrapper>
   );
 };
 
 const MenuWrapper = styled.div`
-  display: flex;
-  justify-content: center;
   & > form {
     display: flex;
     flex-direction: column;

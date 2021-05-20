@@ -8,7 +8,9 @@ const Header = () => {
     <HeaderWrapper>
       <HeaderContainer>
         <Logo fill="black" />
-        <Menu />
+        <MenuContainer>
+          <Menu />
+        </MenuContainer>
         <MyPage />
       </HeaderContainer>
     </HeaderWrapper>
@@ -31,6 +33,11 @@ const HeaderContainer = styled.div`
   & > * {
     width: 33%;
   }
+`;
+const MenuContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 1rem;
 `;
 
 export default Header;

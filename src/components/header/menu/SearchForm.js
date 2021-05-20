@@ -58,6 +58,7 @@ const SearchFormWrapper = styled.div`
   background: white;
   border-radius: 2rem;
   height: 4rem;
+  margin-top: 3rem;
 `;
 const FormItem = styled.div`
   box-sizing: border-box;
