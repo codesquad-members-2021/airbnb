@@ -3,18 +3,34 @@ import styled from 'styled-components';
 
 const Price = () => {
   return (
-    <PriceDiv>
-      <PriceTitle>요금</PriceTitle>
-      <PriceInp>금액대 설정</PriceInp>
-    </PriceDiv>
+    <>
+      <PriceDiv>
+        <PriceWrap>
+          <PriceTitle>요금</PriceTitle>
+          <PriceInp>금액대 설정</PriceInp>
+        </PriceWrap>
+        <LineDiv />
+      </PriceDiv>
+    </>
   );
 };
 
 const PriceDiv = styled.div`
+  display: grid;
+  grid-template-columns: 6fr 1fr;
+  justify-content: space-between;
+  align-items: center;
+`;
+const PriceWrap = styled.div`
   display: flex;
   flex-direction: column;
+  font-weight: bold;
   align-items: flex-start;
   border-radius: 3rem;
+  padding: 0.75rem 1.5rem;
+  &:hover {
+    background: ${({ theme }) => theme.colors.gray6};
+  }
 `;
 const PriceTitle = styled.div`
   color: ${({ theme }) => theme.colors.black};
@@ -22,6 +38,10 @@ const PriceTitle = styled.div`
 `;
 const PriceInp = styled.div`
   color: ${({ theme }) => theme.colors.gray2};
+`;
+const LineDiv = styled.div`
+  border-left: 1px solid #c0c0c0;
+  height: 2rem;
 `;
 
 export default Price;

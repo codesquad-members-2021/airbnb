@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as searchIcon } from '../../../utils/icons/SearchIcon.svg';
+import SearchButtonSvg from './SearchButtonSvg';
 
 const SearchBtn = () => {
   return (
     <SearchBtnDiv>
       {/* <SearchIconDiv> */}
-      <SearchIcon />
+      {/* <SearchIcon /> */}
+      <SearchSvg>
+        <SearchButtonSvg />
+      </SearchSvg>
       {/* </SearchIconDiv> */}
     </SearchBtnDiv>
   );
@@ -20,12 +23,14 @@ const SearchBtnDiv = styled.button`
   border-radius: 30px;
   cursor: pointer;
 `;
-const SearchIconDiv = styled.div`
-  width: 40px;
-`;
-const SearchIcon = styled(searchIcon)`
+
+const SearchSvg = styled.svg`
+  fill: white;
+  width: 20px;
+  height: 20px;
+  overflow: visible;
   stroke: white;
-  width: 30px;
+  stroke-width: 3px;
 `;
 
 export default SearchBtn;

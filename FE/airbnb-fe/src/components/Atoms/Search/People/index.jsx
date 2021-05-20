@@ -9,7 +9,7 @@ const People = () => {
         <PeopleTitle>인원</PeopleTitle>
         <PeopleInp>게스트 추가</PeopleInp>
       </PeopleWrap>
-      <SearchBtn />
+      {/* <SearchBtn /> */}
     </PeopleDiv>
   );
 };
@@ -20,6 +20,11 @@ const PeopleDiv = styled.div`
   /* justify-content: space-between; */
   padding: 0;
   border-radius: 3rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 3rem;
+  &:hover {
+    background: ${({ theme }) => theme.colors.gray6};
+  }
 `;
 const PeopleWrap = styled.div`
   display: flex;
