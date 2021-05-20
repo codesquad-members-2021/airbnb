@@ -4,7 +4,7 @@ import lombok.*;
 import team01.airbnb.dto.KakaoProfile;
 import team01.airbnb.dto.RoleType;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Builder
 @Setter
@@ -17,7 +17,7 @@ public class User {
     private String username;
     private String email;
     private RoleType role; // ADMIN, USER
-    private Date createDate;
+    private LocalDate createDate;
 
     public static User fromKakaoProfile(KakaoProfile kakaoProfile) {
         return User.builder()

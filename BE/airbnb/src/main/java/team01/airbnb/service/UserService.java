@@ -42,7 +42,7 @@ public class UserService {
                 user.setUsername(rs.getString("username"));
                 user.setEmail(rs.getString("email"));
                 user.setRole(RoleType.valueOf(rs.getString("role")));
-                user.setCreateDate(rs.getDate("join_date"));
+                user.setCreateDate(rs.getDate("join_date").toLocalDate());
                 return user;
             });
         } catch (EmptyResultDataAccessException e) {
