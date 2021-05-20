@@ -33,6 +33,12 @@ class MainSearchViewController: UIViewController {
         configureBestDestinationsTableView()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     func configureSearchController() {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.searchTextField.placeholder = "어디로 여행가세요?"
@@ -46,8 +52,8 @@ class MainSearchViewController: UIViewController {
         bestDestinationsTableView = UITableView(frame: self.view.frame)
         self.view.addSubview(bestDestinationsTableView)
         bestDestinationsTableView.dataSource = self
-        self.bestDestinationsTableView.register(BestDestinationTableViewCell.nib(),
-                                                forCellReuseIdentifier: BestDestinationTableViewCell.reuseIdentifier)
+        self.bestDestinationsTableView.register(DestinationTableViewCell.nib(),
+                                                forCellReuseIdentifier: DestinationTableViewCell.reuseIdentifier)
         bestDestinationsTableView.tableHeaderView = BestDestinationsTableHeaderView()
         bestDestinationsTableView.tableHeaderView?.frame.size.height = 70.0
         bestDestinationsTableView.rowHeight = 80.0
@@ -63,7 +69,7 @@ extension MainSearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: BestDestinationTableViewCell.reuseIdentifier, for: indexPath) as? BestDestinationTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DestinationTableViewCell.reuseIdentifier, for: indexPath) as? DestinationTableViewCell else {
             return UITableViewCell()
         }
         cell.destinationImageView.backgroundColor = .systemGray2
