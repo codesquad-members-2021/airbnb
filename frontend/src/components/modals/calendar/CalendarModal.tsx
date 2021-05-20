@@ -4,7 +4,7 @@ import { ModalInterface } from "../../../utils/interfaces";
 
 export default function CalendarModal({ type }: ModalInterface) {
 	return (
-		<ModalContainer isActive={true} type={type}>
+		<ModalContainer type={type}>
 			<ContentWrapper>달력모달~</ContentWrapper>
 		</ModalContainer>
 	);

@@ -4,7 +4,7 @@ import { ModalInterface } from "../../../utils/interfaces";
 
 export default function LocationModal({ type }: ModalInterface) {
 	return (
-		<ModalContainer isActive={true} type={type}>
+		<ModalContainer type={type}>
 			<ContentWrapper>로케이션모달~</ContentWrapper>
 		</ModalContainer>
 	);

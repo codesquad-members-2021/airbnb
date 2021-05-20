@@ -4,7 +4,7 @@ import { ModalInterface } from "../../../utils/interfaces";
 
 export default function FeeModal({ type }: ModalInterface) {
 	return (
-		<ModalContainer isActive={true} type={type}>
+		<ModalContainer type={type}>
 			<ContentWrapper>요금모달~</ContentWrapper>
 		</ModalContainer>
 	);

@@ -2,29 +2,22 @@ import { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as SearchIcon } from "./../../icons/search.svg";
 import translate from "../../utils/translate";
+import LocationModal from "../modals/location/LocationModal";
+import CalendarModal from "../modals/calendar/CalendarModal";
+import FeeModal from "../modals/fee/FeeModal";
+import GuestModal from "../modals/guest/GuestModal";
+import { SearchFilterInterface } from "./../../utils/interfaces";
 
-export interface IAppProps {
-	type: string;
-	input?: string;
-	isEnd: boolean;
-	placeholder?: boolean;
-}
-
-export default function SearchFilter({ type, input, isEnd, placeholder }: IAppProps) {
-	const [isLocationModalOn, setIsLocationModalOn] = useState<boolean>(false);
-	const [isScheduleModalOn, setIsScheduleModalOn] = useState<boolean>(false);
-	const [isFeeModalOn, setIsFeeModalOn] = useState<boolean>(false);
-	const [isGuestModalOn, setIsGuestModalOn] = useState<boolean>(false);
-	console.log(`scheduleState :${isScheduleModalOn}`, `feeState :${isFeeModalOn}`, `guestState :${isGuestModalOn}`);
-
-	const handleSearchClick = (): void => {};
+export default function SearchFilter({ type, input, isEnd, placeholder, isCalendarModalOn, setIsCalendarModalOn, isFeeModalOn, setIsFeeModalOn, isGuestModalOn, setIsGuestModalOn, isLocationModalOn, setIsLocationModalOn }: SearchFilterInterface) {
+	const handleSearchClick = (): void => {
+		console.log("search");
+	};
 
 	const handleOnClick = (type: string): void => {
-		console.log(type);
 		if (type === "LOCATION") isLocationModalOn ? setIsLocationModalOn(false) : setIsLocationModalOn(true);
-		if (type === "CHECKIN" || type === "CHECKOUT") isScheduleModalOn ? setIsScheduleModalOn(false) : setIsScheduleModalOn(true);
-		if (type === "GUEST") isGuestModalOn ? setIsGuestModalOn(false) : setIsGuestModalOn(true);
+		if (type === "CHECKIN" || type === "CHECKOUT") isCalendarModalOn ? setIsCalendarModalOn(false) : setIsCalendarModalOn(true);
 		if (type === "FEE") isFeeModalOn ? setIsFeeModalOn(false) : setIsFeeModalOn(true);
+		if (type === "GUEST") isGuestModalOn ? setIsGuestModalOn(false) : setIsGuestModalOn(true);
 	};
 
 	return (
@@ -41,6 +34,10 @@ export default function SearchFilter({ type, input, isEnd, placeholder }: IAppPr
 					<SearchIcon stroke="#FFFFFF" />
 				</StyleSearchBtn>
 			)}
+			{isLocationModalOn && <LocationModal type={type} />}
+			{isCalendarModalOn && <CalendarModal type={type} />}
+			{isFeeModalOn && <FeeModal type={type} />}
+			{isGuestModalOn && <GuestModal type={type} />}
 		</>
 	);
 }
