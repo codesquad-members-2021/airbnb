@@ -22,4 +22,9 @@ class VariousDestinationCell: UICollectionViewCell {
         self.imageView.backgroundColor = .red
     }
 
+    func configure(model: VariousDestinationModel) {
+        let image = UIImage(named: "\(model.destinationImage)")
+        self.imageView.image = image
+        self.imageDescriptionLabel.text = model.destinationDescription
+    }
 }

@@ -23,5 +23,9 @@ class CurationCell: UICollectionViewCell {
         // Initialization code
         self.mainImageView.backgroundColor = .red
     }
-
+    
+    func configure(model: CurationModel) {
+        let image = UIImage(named: "\(model.curationImage)")
+        self.mainImageView.image = image
+    }
 }

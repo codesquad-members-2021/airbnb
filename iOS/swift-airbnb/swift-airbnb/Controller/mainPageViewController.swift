@@ -9,7 +9,7 @@ import UIKit
 
 class mainPageViewController: UIViewController {
     @IBOutlet weak var mainPageCollectionView: UICollectionView!
-    var dataSource = mainPageCollectionViewDataSource()
+    private var dataSource = mainPageCollectionViewDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,15 +20,11 @@ class mainPageViewController: UIViewController {
         self.dataSource.applySnapshot()
     }
 
-    func configureCollectionViewLayout() {
+    private func configureCollectionViewLayout() {
         self.mainPageCollectionView.setCollectionViewLayout(createLayout(), animated: false)
     }
 
-    func configureCollectionViewCell() {
-//        let curationCell = UINib(nibName: "CurationCell", bundle: nil)
-//        let nearbyDestinationCell = UINib(nibName: "NearbyDestinationCell", bundle: nil)
-//        let variousDestinationCell = UINib(nibName: "VariousDestinationCell", bundle: nil)
-//        let mainPageHeaderView = UINib(nibName: "MainPageHeaderView", bundle: nil)
+    private func configureCollectionViewCell() {
         self.mainPageCollectionView.register(CurationCell.nib, forCellWithReuseIdentifier: CurationCell.reuseIdentifier)
         self.mainPageCollectionView.register(NearbyDestinationCell.nib, forCellWithReuseIdentifier: NearbyDestinationCell.reuseIdentifier)
         self.mainPageCollectionView.register(VariousDestinationCell.nib, forCellWithReuseIdentifier: VariousDestinationCell.reuseIdentifier)
@@ -43,12 +39,14 @@ extension mainPageViewController {
         config.interSectionSpacing = 20
         
         let layout = UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            switch sectionIndex {
-            case 0:
+            let section = mainPageCollectionViewDataSource.Section.allCases[sectionIndex]
+            
+            switch section {
+            case .curation:
                 return self.createCurationLayout()
-            case 1:
+            case .nearbyDestination:
                 return self.createNearbyDestinationLayout()
-            default:
+            case .variousDestination:
                 return self.createVariousDestinationLayout()
             }
         }, configuration: config)

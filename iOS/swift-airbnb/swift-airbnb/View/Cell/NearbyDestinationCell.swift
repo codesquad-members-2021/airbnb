@@ -23,4 +23,11 @@ class NearbyDestinationCell: UICollectionViewCell {
         self.imageView.backgroundColor = .red
     }
     
+    func configure(model: NearbyDestinationModel) {
+        let image = UIImage(named: "\(model.cityImage)")
+        self.imageView.image = image
+        self.cityLabel.text = model.cityName
+        self.distanceLabel.text = "차로 \(model.distance) 거리"
+    }
+    
 }
