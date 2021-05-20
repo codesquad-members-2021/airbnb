@@ -83,7 +83,6 @@ extension RecommendedDestinationViewController {
         view.addSubview(collectionView)
     }
     
-    /// - Tag: CreateFullLayout
     private func createLayout() -> UICollectionViewLayout {
         
         let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
@@ -116,7 +115,7 @@ extension RecommendedDestinationViewController {
                 
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 10
-                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                section.orthogonalScrollingBehavior = .groupPaging
                 section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 20, trailing: 10)
             }
             
