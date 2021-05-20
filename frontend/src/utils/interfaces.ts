@@ -4,7 +4,7 @@ export interface SearchFilterInterface {
 	type: string;
 	isEnd: boolean;
 	input?: string;
-	placeholder?: boolean;
+	placeholder?: string;
 	isCalendarModalOn?: boolean;
 	setIsCalendarModalOn?: any;
 	isFeeModalOn?: boolean;
