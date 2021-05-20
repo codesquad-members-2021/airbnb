@@ -1,6 +1,6 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 
-export const navToggle = atom({
-  key: 'navOpenState',
-  default: false,
+export const tabSelectedState = atom<boolean[]>({
+  key: 'tabSelectedState',
+  default: [true, false, false],
 });

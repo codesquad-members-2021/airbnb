@@ -3,16 +3,13 @@ import { CenterContainer } from '../util/utilStyles';
 import { IoGlobeOutline } from 'react-icons/io5';
 import HoverBlock from './HoverBlock';
 import HeaderNav from './nav/HeaderNav';
+import HeaderTabList from './tab/HeaderTabList';
 
 const Header = () => {
   return (
     <StyledHeder>
       <div className='logo'>LOGO</div>
-      <div className='tab'>
-        <div>숙소</div>
-        <div>체험</div>
-        <div>온라인 체험</div>
-      </div>
+      <HeaderTabList />
       <div className='nav'>
         <HoverBlock>호스트 되기</HoverBlock>
         <HoverBlock>
@@ -33,13 +30,10 @@ const StyledHeder = styled(CenterContainer)`
     font-size: ${({ theme }) => theme.fontSize.largest};
     font-weight: 700;
   }
-  .tab,
   .nav {
     width: 11rem;
     display: flex;
     justify-content: space-between;
-  }
-  .nav {
     width: 13rem;
     font-size: ${({ theme }) => theme.fontSize.small};
     font-weight: 600;
