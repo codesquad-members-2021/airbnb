@@ -41,4 +41,5 @@ DerivedData/
 # End of https://www.toptal.com/developers/gitignore/api/xcode
 
 *.xcuserstate
-.DS_Store
+
+ios/.DS_Store
