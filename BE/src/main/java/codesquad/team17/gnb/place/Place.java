@@ -5,6 +5,7 @@ public class Place {
     private String name;
 
     private Location location;
+    private Option option;
 
     private double star;
     private double reviewCount;
@@ -18,6 +19,7 @@ public class Place {
         this.id = builder.id;
         this.name = builder.name;
         this.location = builder.location;
+        this.option = builder.option;
         this.star = builder.star;
         this.reviewCount = builder.reviewCount;
         this.hostId = builder.hostId;
@@ -31,6 +33,7 @@ public class Place {
         private String name;
 
         private Location location;
+        private Option option;
 
         private double star;
         private double reviewCount;
@@ -55,6 +58,11 @@ public class Place {
 
         public Builder location(Location location) {
             this.location = location;
+            return this;
+        }
+
+        public Builder option(Option option) {
+            this.option = option;
             return this;
         }
 

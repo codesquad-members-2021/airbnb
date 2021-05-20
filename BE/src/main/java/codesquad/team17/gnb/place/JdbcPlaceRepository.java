@@ -28,6 +28,8 @@ public class JdbcPlaceRepository implements PlaceRepository {
                     .latitude(rs.getDouble("latitude"))
                     .longitude(rs.getDouble("longitude"))
                     .build())
+            .option(new Option(rs.getString("option"),
+                    rs.getString("additional_option")))
             .star(rs.getDouble("star"))
             .hostId(rs.getLong("host_id"))
             .maximumNumberOfPeople(rs.getInt("maximum_number_of_people"))
@@ -72,6 +74,5 @@ public class JdbcPlaceRepository implements PlaceRepository {
                         "OR (:check_in <= check_in AND check_in < :check_out))", namedParameters, PLACE_ROWMAPPER
         );
     }
-
 
 }

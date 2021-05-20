@@ -18,29 +18,17 @@ CREATE TABLE place
     latitude                 DOUBLE       NOT NULL,
     longitude                DOUBLE       NOT NULL,
 
-    star                     DOUBLE      DEFAULT 0,
-    review_count             INT         DEFAULT 0,
+    `option`                 VARCHAR(50)  NOT NULL,
+    additional_option        VARCHAR(50)  NOT NULL,
+
+    star                     DOUBLE DEFAULT 0,
+    review_count             INT    DEFAULT 0,
 
     host_id                  BIGINT       NOT NULL,
     maximum_number_of_people INT          NOT NULL,
     description              VARCHAR(300) NOT NULL,
     price                    INT          NOT NULL,
     CONSTRAINT place_host FOREIGN KEY (host_id) REFERENCES user (user_id)
-);
-
-CREATE TABLE `option`
-(
-    place_id           BIGINT      NOT NULL,
-    option_description VARCHAR(10) NOT NULL,
-    option_count       INT         NOT NULL,
-    CONSTRAINT place_has_option FOREIGN KEY (place_id) REFERENCES place (place_id)
-);
-
-CREATE TABLE additional_option
-(
-    place_id           BIGINT      NOT NULL,
-    option_description VARCHAR(10) NOT NULL,
-    CONSTRAINT place_has_additional_option FOREIGN KEY (place_id) REFERENCES place (place_id)
 );
 
 CREATE TABLE review
