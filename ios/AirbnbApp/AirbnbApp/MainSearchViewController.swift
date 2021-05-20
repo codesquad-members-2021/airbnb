@@ -48,6 +48,8 @@ class MainSearchViewController: UIViewController {
         bestDestinationsTableView.dataSource = self
         self.bestDestinationsTableView.register(BestDestinationTableViewCell.nib(),
                                                 forCellReuseIdentifier: BestDestinationTableViewCell.reuseIdentifier)
+        bestDestinationsTableView.tableHeaderView = BestDestinationsTableHeaderView()
+        bestDestinationsTableView.tableHeaderView?.frame.size.height = 70.0
         bestDestinationsTableView.rowHeight = 80.0
         bestDestinationsTableView.separatorStyle = .none
     }
