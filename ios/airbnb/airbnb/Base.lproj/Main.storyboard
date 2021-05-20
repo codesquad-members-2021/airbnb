@@ -53,9 +53,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jOR-bQ-yQt">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jOR-bQ-yQt">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ayq-bd-qlS">
                                 <rect key="frame" x="40" y="108" width="334" height="40"/>
@@ -93,13 +92,18 @@
                         <viewLayoutGuide key="safeArea" id="z0S-vr-11t"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="jOR-bQ-yQt" firstAttribute="leading" secondItem="z0S-vr-11t" secondAttribute="leading" id="H8p-rj-C6L"/>
                             <constraint firstItem="z0S-vr-11t" firstAttribute="trailing" secondItem="ayq-bd-qlS" secondAttribute="trailing" constant="40" id="LQH-pC-2Tc"/>
                             <constraint firstItem="ayq-bd-qlS" firstAttribute="top" secondItem="z0S-vr-11t" secondAttribute="top" constant="20" id="OE9-Tv-5aP"/>
+                            <constraint firstItem="jOR-bQ-yQt" firstAttribute="top" secondItem="mJ2-rE-c2h" secondAttribute="top" id="ia8-VZ-qmB"/>
+                            <constraint firstItem="jOR-bQ-yQt" firstAttribute="bottom" secondItem="z0S-vr-11t" secondAttribute="bottom" id="j0w-BD-kIY"/>
                             <constraint firstItem="ayq-bd-qlS" firstAttribute="leading" secondItem="z0S-vr-11t" secondAttribute="leading" constant="40" id="mqz-l9-DUR"/>
+                            <constraint firstItem="jOR-bQ-yQt" firstAttribute="trailing" secondItem="z0S-vr-11t" secondAttribute="trailing" id="xKP-1i-iB1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GHZ-sw-TNJ"/>
                     <connections>
+                        <outlet property="curationImage" destination="jOR-bQ-yQt" id="0yA-Et-4OV"/>
                         <outlet property="searchView" destination="ayq-bd-qlS" id="sE8-CK-XBd"/>
                         <segue destination="exg-hB-AFd" kind="show" identifier="local" id="mKg-70-pzN"/>
                     </connections>

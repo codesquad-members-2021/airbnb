@@ -7,10 +7,6 @@
 
 import UIKit
 
-struct City {
-    let name: String
-}
-
 struct DetailCity {
     let name: String
 }
@@ -20,15 +16,18 @@ final class LocationViewController: UIViewController {
     @IBOutlet weak var cityCollectionView: UICollectionView!
     
     private let searchController = UISearchController(searchResultsController: nil)
-    var cities = [City(name: "seoul"), City(name: "busan")]
+    private var locationManager: LocationManager!
+//    var cities = [City(name: "seoul"), City(name: "busan")]
     var detailCities = [DetailCity(name: "songpa"), DetailCity(name: "jamsil")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
         configureNavigationItem()
         configureSearchController()
         registerNib()
-        cityCollectionView.dataSource = self
+//        cityCollectionView.dataSource = self
         cityCollectionView.delegate = self
         searchController.searchResultsUpdater = self
         
@@ -72,28 +71,28 @@ final class LocationViewController: UIViewController {
     }
 }
 
-extension LocationViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if isFiltering() {
-            return cities.count
-        } else {
-            return detailCities.count
-        }
-
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CityCollectionViewCell
-        
-        if isFiltering() {
-            cell.location.text = detailCities[indexPath.row].name
-            cell.distance.isHidden = true
-        } else {
-            cell.location.text = cities[indexPath.row].name
-            cell.distance.isHidden = false
-        }
-        return cell
-    }
-}
+//extension LocationViewController: UICollectionViewDataSource {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        if isFiltering() {
+//            return cities.count
+//        } else {
+//            return detailCities.count
+//        }
+//
+//    }
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CityCollectionViewCell
+//
+//        if isFiltering() {
+//            cell.location.text = detailCities[indexPath.row].name
+//            cell.distance.isHidden = true
+//        } else {
+//            cell.location.text = cities[indexPath.row].name
+//            cell.distance.isHidden = false
+//        }
+//        return cell
+//    }
+//}
 
 extension LocationViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
