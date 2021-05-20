@@ -8,6 +8,13 @@ class MainCell: UICollectionViewCell {
     private var secondView: SecondSectionView?
     private var thirdView: ThirdSectionView?
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        firstView?.reuse()
+        secondView?.reuse()
+        thirdView?.reuse()
+    }
+    
     func configureFirstSection(_ item:MainViewInfo) {
         firstView = FirstSectionView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height*0.8))
         firstView?.configure(item)

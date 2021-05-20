@@ -32,6 +32,11 @@ class SecondSectionView: UIView {
         mainTitleLabel.text = item.mainInfo
         detailInfoLabel.text = "차로 \(item.detailInfo!) 거리"
     }
+    func reuse() {
+        mainImageView.image = nil
+        mainTitleLabel.text = nil
+        detailInfoLabel.text = nil
+    }
 }
 
 //MARK: -SetupViews
