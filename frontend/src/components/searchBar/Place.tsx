@@ -9,10 +9,6 @@ const Place = () => {
   const PlaceToggle = useRef<HTMLDivElement>(null)
   const PlaceModal = useRef<HTMLDivElement>(null)
   const open = useModalCtrl({toggle:PlaceToggle, modal:PlaceModal, init:false})
-  const [clicked, setClick] = useState(false)
-  useEffect(() => {
-    open? setClick(true) : setClick(false)
-  },[open])
 
   const defaultMsg = '어디로 여행가세요?';
   const [targetPlace, setTargetPlace] = useState<string>(defaultMsg)
@@ -25,7 +21,7 @@ const Place = () => {
 
   return(
     <PlaceSection>
-    <BarBlock clicked={clicked} ref={PlaceToggle}>
+    <BarBlock open={open} ref={PlaceToggle}>
       <BarInnerWrapper>
         <div>
           <BarTitle>위치</BarTitle>
@@ -36,7 +32,7 @@ const Place = () => {
     </BarBlock>
     {open && 
       (
-      <ModalWrapper ref={PlaceModal}>
+      <ModalWrapper ref={PlaceModal} modalType="place">
         <ModalPlace modalType="place" {...{targetPlace, setTargetPlace, defaultMsg}}/>
       </ModalWrapper>
       )

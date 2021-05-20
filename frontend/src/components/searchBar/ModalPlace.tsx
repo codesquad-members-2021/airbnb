@@ -27,8 +27,7 @@ const ModalPlace:React.FunctionComponent<IType> = ({modalType, targetPlace, setT
     </>
   )
 }
-const Xbtn = styled.div`
-`
+
 const GridWrapper =styled.div`
 display:grid;
 grid-template-rows: repeat(4, 1fr);

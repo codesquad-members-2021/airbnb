@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components'
 interface IClick {
-  clicked: boolean,
+  open: boolean,
   type?: string,
 }
 interface IType {
@@ -10,8 +10,10 @@ export const PlaceSection = styled.div`
 display:flex;
 flex-direction: column;
 `
-export const ModalWrapper = styled.div`
-margin-top: 16px;
+export const ModalWrapper = styled.div<IType>`
+position: absolute;
+top: 95px;
+left: ${props=>props.theme.modalPosition[props.modalType]};
 `
 export const BarTitle = styled.div`
   height: 17px;
@@ -34,7 +36,7 @@ export const BarBlock=styled.div<IClick>`
     background-color: ${props=>props.theme.color.grey_1};
     border-radius: 60px;
   }
-  ${props=>props.clicked && 
+  ${props=>props.open && 
     css`box-shadow:  0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
     border-radius: 60px;
     z-index:9999;

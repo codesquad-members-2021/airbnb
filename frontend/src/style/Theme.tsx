@@ -26,10 +26,14 @@ export const Theme = {
   },
   modalWidth:{
     place: '280px',
-    date: '400px'
+    date: '1120px'
   },
   modalPadding:{
     place: '20px 0'
+  },
+  modalPosition:{
+    place: '210px',
+    date: '210px',
   },
   searchWidth:{
     date: '200px'
