@@ -2,7 +2,7 @@ import Menu from "./menu/Menu";
 import React from "react";
 import styled from "styled-components";
 import MyPage from "./MyPage";
-import { ReactComponent as Logo } from "./svg/img_logo.svg";
+import { ReactComponent as Logo } from "../../assets/svg/img_logo.svg";
 const Header = () => {
   return (
     <HeaderWrapper>
@@ -27,6 +27,10 @@ const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  & > * {
+    width: 33%;
+  }
 `;
 
 export default Header;

@@ -1,8 +1,8 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { ReactComponent as Language } from "./svg/img_language.svg";
-import { ReactComponent as Hamberger } from "./svg/img_hamberger.svg";
-import { ReactComponent as MyPageIcon } from "./svg/img_myPage.svg";
+import { ReactComponent as Language } from "../../assets/svg/img_language.svg";
+import { ReactComponent as Hamberger } from "../../assets/svg/img_hamberger.svg";
+import { ReactComponent as MyPageIcon } from "../../assets/svg/img_myPage.svg";
 
 const MyPage = () => {
   return (
@@ -25,6 +25,7 @@ const renderItem = (content, background = "none") => {
 const MyPageWrapper = styled.ul`
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 `;
 const MyPageItem = styled.li`
   & + & {
