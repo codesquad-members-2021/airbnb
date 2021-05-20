@@ -6,7 +6,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root1234
       MYSQL_DATABASE: airbnb
-      MYSQL_USER: bat
+      MYSQL_USER: user
       MYSQL_PASSWORD: bat1234
     ports:
       - "3306:3306"
@@ -20,4 +20,4 @@ services:
     image: adminer
     container_name: adminer
     ports:
-      - 9984:8080
+      - 8484:8080
