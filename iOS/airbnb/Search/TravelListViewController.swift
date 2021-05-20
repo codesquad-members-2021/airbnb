@@ -11,16 +11,24 @@ class TravelListViewController: UIViewController {
 
     @IBOutlet weak var travelList: UICollectionView!
     
-    let searchController = UISearchController(searchResultsController: nil)
+    private let searchController = UISearchController(searchResultsController: nil)
+    private let removeButton = UIBarButtonItem(title: "지우기",
+                                               style: .plain,
+                                               target: self,
+                                               action: #selector(didTapRemoveButton))
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .yellow
-        searchController.searchResultsUpdater = self
-        
-        searchController.searchBar.placeholder = "어디로 여행가세요?"
         self.title = "숙소찾기"
+        
         self.navigationItem.searchController = searchController
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "어디로 여행가세요?"
+        navigationItem.rightBarButtonItem = removeButton
+    }
+ 
+    @objc func didTapRemoveButton(){
+        
     }
 }
 extension TravelListViewController : UISearchResultsUpdating {
