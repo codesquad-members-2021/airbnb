@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import SearchBtn from '../SearchBtn';
 
 const People = ({ dispatch }) => {
   return (

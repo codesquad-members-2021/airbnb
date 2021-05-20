@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default () => (
+const AirbnbIcon = () => (
   <LogoSvg>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,3 +16,5 @@ const LogoSvg = styled.svg`
   fill: ${({ theme }) => theme.colors.gray1};
   width: 100px;
 `;
+
+export default AirbnbIcon;
