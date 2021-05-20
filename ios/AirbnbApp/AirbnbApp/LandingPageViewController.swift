@@ -33,8 +33,9 @@ class LandingPageViewController: UIViewController {
 
 extension LandingPageViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        let mainSearchVC = MainSearchViewController()
-        self.navigationController?.pushViewController(mainSearchVC, animated: true)
+        let layout = UICollectionViewFlowLayout()
+        let mainSearchCollectionVC = MainSearchCollectionViewController(collectionViewLayout: layout)
+        self.navigationController?.pushViewController(mainSearchCollectionVC, animated: true)
         searchBar.endEditing(true)
     }
 }

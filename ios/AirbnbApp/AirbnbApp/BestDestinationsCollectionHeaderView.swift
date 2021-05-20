@@ -1,5 +1,5 @@
 //
-//  BestDestinationsTableHeaderView.swift
+//  BestDestinationsCollectionHeaderView.swift
 //  AirbnbApp
 //
 //  Created by Song on 2021/05/20.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class BestDestinationsTableHeaderView: UIView {
-
+class BestDestinationsCollectionHeaderView: UICollectionReusableView {
+    static let reuseIdentifier = String(describing: BestDestinationsCollectionHeaderView.self)
     let titleLabel = UILabel(frame: .zero)
     
     override init(frame: CGRect) {
