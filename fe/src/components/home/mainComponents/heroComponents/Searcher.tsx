@@ -1,26 +1,24 @@
-import React, { MutableRefObject, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import styled from 'styled-components';
 import SearchIcon from '@material-ui/icons/Search';
-import { mockupLocationData } from '../../../data/location';
+import { mockupLocationData } from '../../../../data/location';
+import { LocationList, Location } from '../../../../shared/interface';
+import { useReservationState, useReservationDispatch } from '../../../../hooks/ReservationHook';
 
-interface Location {
-    id: number;
-    city: string;
-}
-
-type LocationList = Location[];
+const isNotLocationSelected = (location: Location): boolean => {
+    return location.id === 0 && location.city === '';
+};
 
 const Searcher = (): React.ReactElement => {
-    const [location, setLocation] = useState<Location>({
-        id: 0,
-        city: '',
-    });
+    const reservationState = useReservationState();
+    const dispatch = useReservationDispatch();
+    const { location, checkIn, checkOut, fee, people } = reservationState;
 
     const inputOfLocation = useRef<HTMLInputElement>(null);
 
     const [locationList, setLocationList] = useState<LocationList>([]);
-
     const [locationLayer, setLocationLayer] = useState<boolean>(false);
+    const [calendarLayer, setCalendarLayer] = useState<boolean>(false);
 
     const handleInputLocation = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTimeout(() => {
@@ -36,50 +34,66 @@ const Searcher = (): React.ReactElement => {
         }, 200);
     };
 
-    const handleClickFocusDelegation: React.MouseEventHandler<HTMLDivElement> = (event) => {
+    const handleInputLayer: React.MouseEventHandler<HTMLDivElement> = () => {
         if (inputOfLocation?.current) {
             inputOfLocation.current.disabled = false;
             inputOfLocation.current.focus();
         }
     };
 
+    const handleCalendarLayer: React.MouseEventHandler<HTMLDivElement> = () => {
+        if (isNotLocationSelected(location) && inputOfLocation?.current) inputOfLocation.current.value = '';
+        setLocationLayer(false);
+        setCalendarLayer(true);
+    };
+
+    const setUpLocation = (place: Location) => {
+        // setLocation(place);
+        dispatch({ type: 'LOCATION', id: place.id, city: place.city });
+        if (inputOfLocation?.current) {
+            inputOfLocation.current.value = place.city;
+            inputOfLocation.current.blur();
+        }
+        setLocationLayer(false);
+    };
+
     return (
         <Search>
             <BarSection>
-                <Location onClick={handleClickFocusDelegation}>
+                <LocationTab onClick={handleInputLayer}>
                     <NavigatingText>위치</NavigatingText>
                     <LocationInput
                         ref={inputOfLocation}
                         onFocus={() => setLocationLayer(true)}
-                        onBlur={() => setLocationLayer(false)}
                         onChange={handleInputLocation}
                         disabled
                     />
-                </Location>
-                <CheckIn>
+                </LocationTab>
+                <CheckInTab onClick={handleCalendarLayer}>
                     <NavigatingText>체크인</NavigatingText>
-                </CheckIn>
-                <CheckOut>
+                </CheckInTab>
+                <CheckOutTab>
                     <NavigatingText>체크아웃</NavigatingText>
-                </CheckOut>
-                <Price>
+                </CheckOutTab>
+                <PriceTab>
                     <NavigatingText>금액</NavigatingText>
-                </Price>
-                <People>
+                </PriceTab>
+                <PeopleTab>
                     <NavigatingText>인원</NavigatingText>
                     <SearchButton>
                         <SearchIcon />
                     </SearchButton>
-                </People>
+                </PeopleTab>
             </BarSection>
             <LayerSection>
                 {locationLayer && (
                     <LocationLayer>
                         {locationList.map((place: Location) => (
-                            <li>{place.city}</li>
+                            <li onClick={() => setUpLocation(place)}>{place.city}</li>
                         ))}
                     </LocationLayer>
                 )}
+                {calendarLayer && <div>calendar</div>}
             </LayerSection>
         </Search>
     );
@@ -119,19 +133,23 @@ const LocationInput = styled.input`
     margin: 0;
 `;
 
-const Location = styled.div`
+const LocationTab = styled.div`
     flex: 2;
 `;
-const CheckIn = styled.div`
+
+const CheckInTab = styled.div`
     flex: 1;
 `;
-const CheckOut = styled.div`
+
+const CheckOutTab = styled.div`
     flex: 1;
 `;
-const Price = styled.div`
+
+const PriceTab = styled.div`
     flex: 1;
 `;
-const People = styled.div`
+
+const PeopleTab = styled.div`
     flex: 2;
     display: flex;
 `;

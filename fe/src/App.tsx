@@ -1,21 +1,42 @@
 import './App.css';
-import styled from 'styled-components';
-import Covid19Message from './components/Covid19Message';
-import Main from './components/Main';
+import React, { useReducer } from 'react';
+import Router from './Router';
+import { ReservationContext } from './shared/interface';
+import reducer from './shared/reducer';
+import { ReservationStateContext, ReservationDispatchContext } from './Contexts';
+
+const initialState = {
+    location: {
+        id: 0,
+        city: '',
+    },
+    checkIn: {
+        year: 0,
+        month: 0,
+        day: 0,
+    },
+    checkOut: {
+        year: 0,
+        month: 0,
+        day: 0,
+    },
+    fee: 0,
+    people: {
+        guest: 0,
+        kids: 0,
+    },
+} as ReservationContext;
 
 function App(): React.ReactElement {
+    const [reservationState, dispatch] = useReducer(reducer, initialState);
+
     return (
-        <TotalPage>
-            <Covid19Message />
-            <Main />
-        </TotalPage>
+        <ReservationDispatchContext.Provider value={dispatch}>
+            <ReservationStateContext.Provider value={reservationState}>
+                <Router />;
+            </ReservationStateContext.Provider>
+        </ReservationDispatchContext.Provider>
     );
 }
 
 export default App;
-
-const TotalPage = styled.section`
-    & div {
-        border: 1px solid black;
-    }
-`;

@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Icon } from "@material-ui/core";
 import LanguageIcon from '@material-ui/icons/Language';
-import Account from './Account';
+import Account from './headerComponents/Account';
 import styled from 'styled-components';
 
 const Header = (): React.ReactElement => {
