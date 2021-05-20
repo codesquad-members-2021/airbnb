@@ -12,7 +12,7 @@ export default function GuestModal({ type }: ModalInterface) {
 					<AgeWrapper isEnd={false}>
 						<TitleWrapper>
 							<div>성인</div>
-							<div>만 13세 이상</div>
+							<div className="sub_title">만 13세 이상</div>
 						</TitleWrapper>
 						<CountWrapper>
 							<Minus className="counter_icon" stroke="#828282">
@@ -27,7 +27,7 @@ export default function GuestModal({ type }: ModalInterface) {
 					<AgeWrapper isEnd={false}>
 						<TitleWrapper>
 							<div>어린이</div>
-							<div>만 2~12세</div>
+							<div className="sub_title">만 2~12세</div>
 						</TitleWrapper>
 						<CountWrapper>
 							<Minus className="counter_icon" stroke="#828282">
@@ -42,7 +42,7 @@ export default function GuestModal({ type }: ModalInterface) {
 					<AgeWrapper isEnd={true}>
 						<TitleWrapper>
 							<div>유아</div>
-							<div>만 2세 미만</div>
+							<div className="sub_title">만 2세 미만</div>
 						</TitleWrapper>
 						<CountWrapper>
 							<Minus className="counter_icon" stroke="#828282">
@@ -84,6 +84,11 @@ const TitleWrapper = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	height: 40px;
+	.sub_title {
+		font-size: 14px;
+		font-weight: 400;
+		color: #828282;
+	}
 `;
 
 const CountWrapper = styled.div`
