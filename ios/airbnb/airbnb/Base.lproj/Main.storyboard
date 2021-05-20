@@ -101,7 +101,9 @@
                             <constraint firstItem="jOR-bQ-yQt" firstAttribute="trailing" secondItem="z0S-vr-11t" secondAttribute="trailing" id="xKP-1i-iB1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="GHZ-sw-TNJ"/>
+                    <navigationItem key="navigationItem" id="GHZ-sw-TNJ">
+                        <barButtonItem key="backBarButtonItem" title="뒤로" id="AVf-yU-SVi"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="curationImage" destination="jOR-bQ-yQt" id="0yA-Et-4OV"/>
                         <outlet property="searchView" destination="ayq-bd-qlS" id="sE8-CK-XBd"/>
@@ -115,13 +117,13 @@
         <!--Location View Controller-->
         <scene sceneID="Jzi-ht-Dg4">
             <objects>
-                <viewController id="exg-hB-AFd" customClass="LocationViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="exg-hB-AFd" customClass="LocationViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V1Z-HZ-u6S">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4LK-9r-Lrz">
-                                <rect key="frame" x="0.0" y="118" width="414" height="695"/>
+                                <rect key="frame" x="16" y="118" width="382" height="744"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mxr-aa-rpK">
                                     <size key="itemSize" width="414" height="128"/>
@@ -131,13 +133,13 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="SPX-SB-DIL">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+                                        <rect key="frame" x="0.5" y="0.0" width="381" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ujz-5g-zWb">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="414" height="128"/>
+                                        <size key="customSize" width="381" height="128"/>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -147,8 +149,8 @@
                         <constraints>
                             <constraint firstItem="4LK-9r-Lrz" firstAttribute="top" secondItem="pqa-qT-S16" secondAttribute="top" constant="30" id="97a-oT-NkB"/>
                             <constraint firstItem="pqa-qT-S16" firstAttribute="bottom" secondItem="4LK-9r-Lrz" secondAttribute="bottom" id="9WC-sW-FbP"/>
-                            <constraint firstItem="pqa-qT-S16" firstAttribute="trailing" secondItem="4LK-9r-Lrz" secondAttribute="trailing" id="O8W-Cs-qJ2"/>
-                            <constraint firstItem="4LK-9r-Lrz" firstAttribute="leading" secondItem="pqa-qT-S16" secondAttribute="leading" id="bVN-Rn-Ijc"/>
+                            <constraint firstItem="pqa-qT-S16" firstAttribute="trailing" secondItem="4LK-9r-Lrz" secondAttribute="trailing" constant="16" id="O8W-Cs-qJ2"/>
+                            <constraint firstItem="4LK-9r-Lrz" firstAttribute="leading" secondItem="pqa-qT-S16" secondAttribute="leading" constant="16" id="bVN-Rn-Ijc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FYL-VQ-w9P"/>
