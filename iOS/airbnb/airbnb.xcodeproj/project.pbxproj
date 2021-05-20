@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		825702E02653AE99009237BE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825702DF2653AE99009237BE /* SearchViewController.swift */; };
 		82FBF0D426538AB8009B4A1F /* TripPlaceCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FBF0D326538AB8009B4A1F /* TripPlaceCollectionViewDataSource.swift */; };
 		82FBF0D626538E07009B4A1F /* RecommendTripCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FBF0D526538E07009B4A1F /* RecommendTripCollectionViewDataSource.swift */; };
 		D4DDA63826524ECD00FE52FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA63726524ECD00FE52FA /* AppDelegate.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		825702DF2653AE99009237BE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		82FBF0D326538AB8009B4A1F /* TripPlaceCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlaceCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		82FBF0D526538E07009B4A1F /* RecommendTripCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTripCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		D4DDA63426524ECD00FE52FA /* airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +171,7 @@
 				D4DDA63B26524ECD00FE52FA /* ViewController.swift */,
 				82FBF0D326538AB8009B4A1F /* TripPlaceCollectionViewDataSource.swift */,
 				82FBF0D526538E07009B4A1F /* RecommendTripCollectionViewDataSource.swift */,
+				825702DF2653AE99009237BE /* SearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				82FBF0D426538AB8009B4A1F /* TripPlaceCollectionViewDataSource.swift in Sources */,
 				D4DDA63826524ECD00FE52FA /* AppDelegate.swift in Sources */,
 				D4DDA68E265375CF00FE52FA /* WishList.swift in Sources */,
+				825702E02653AE99009237BE /* SearchViewController.swift in Sources */,
 				D4DDA6872653627100FE52FA /* EndPoint.swift in Sources */,
 				D4DDA6962653764700FE52FA /* TripPlace.swift in Sources */,
 				D4DDA67F265361BE00FE52FA /* Network.swift in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1Gj-gu-wZi">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -14,11 +14,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UvM-lt-kEs">
-                                <rect key="frame" x="0.0" y="127" width="390" height="735"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPn-YA-Qa7">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="1200"/>
@@ -245,32 +245,97 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="xt7-eG-Rsm"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="lgz-c3-OOv"/>
                             </scrollView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="NV7-ff-EDh">
-                                <rect key="frame" x="0.0" y="60" width="390" height="51"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="LlR-nX-7RL" secondAttribute="trailing" constant="197.5" id="1K9-50-dui"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NV7-ff-EDh" secondAttribute="trailing" id="5VA-IS-EBc"/>
-                            <constraint firstItem="NV7-ff-EDh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="GCq-6U-p1E"/>
-                            <constraint firstItem="UvM-lt-kEs" firstAttribute="top" secondItem="NV7-ff-EDh" secondAttribute="bottom" constant="16" id="GRu-Ln-2tw"/>
                             <constraint firstItem="UvM-lt-kEs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Uos-Il-PmA"/>
                             <constraint firstItem="UvM-lt-kEs" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="UvJ-ps-3Ue"/>
+                            <constraint firstItem="UvM-lt-kEs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gqd-cN-uXM"/>
                             <constraint firstItem="UvM-lt-kEs" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="52" id="hIQ-zK-CWo"/>
-                            <constraint firstItem="NV7-ff-EDh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hbO-L8-J7K"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="HfM-dw-7Hy"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="recommendTripCollectionView" destination="YMI-fl-yoN" id="Wxl-Js-d9U"/>
                         <outlet property="tripPlaceCollectionView" destination="Gh7-QY-udF" id="lnZ-oz-wD7"/>
+                        <segue destination="VKL-n8-dVM" kind="push" identifier="result" id="Hn9-rG-Z7S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1810.7692307692307" y="88.151658767772503"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="q49-ul-r8J">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="1Gj-gu-wZi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="orx-jW-4f1">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="syS-PX-geX" kind="relationship" relationship="viewControllers" id="KTn-59-Hlb"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SoN-h4-fZm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="-47.692307692307693" y="88.151658767772503"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="eWT-9O-GUW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="syS-PX-geX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="K5b-9p-Bt1"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="w10-Vo-eJO">
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jEk-Ja-khW">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="X2y-05-H48"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dfH-bZ-2Mm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="881.53846153846155" y="88.151658767772503"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="lpJ-pW-nOU">
+            <objects>
+                <tableViewController storyboardIdentifier="searchResultController" id="VKL-n8-dVM" customClass="SearchViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qKn-Ts-Ib1">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="756"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="gF8-aR-dKD">
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gF8-aR-dKD" id="N5q-NQ-mDn">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="VKL-n8-dVM" id="aL7-Kr-TJ4"/>
+                            <outlet property="delegate" destination="VKL-n8-dVM" id="lFE-7b-K4v"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="pQf-x9-F8C"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2w2-ZT-Lsq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2740" y="88"/>
         </scene>
     </scenes>
     <resources>
