@@ -11,11 +11,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import static codesquad.team17.gnb.place.PlaceSql.*;
+
 @Repository
 public class JdbcPlaceRepository implements PlaceRepository {
-
-    private static final String PLACE_FIND_ALL = "SELECT * FROM place";
-    private static final String PLACE_FIND_BY_ID = "SELECT * FROM place WHERE place_id=:id";
 
     private static final RowMapper<Place> PLACE_ROWMAPPER = (rs, rowNum) -> new Place.Builder()
             .id(rs.getLong("place_id"))
@@ -46,7 +45,7 @@ public class JdbcPlaceRepository implements PlaceRepository {
     @Override
     public Optional<Place> findById(Long id) {
         SqlParameterSource namedParameters = new MapSqlParameterSource("id", id);
-        List<Place> places = jdbcTemplate.query(PLACE_FIND_BY_ID, namedParameters, PLACE_ROWMAPPER);
+        List<Place> places = jdbcTemplate.query(PlaceSql.FIND_BY_ID, namedParameters, PLACE_ROWMAPPER);
 
         if (places.isEmpty()) {
             return Optional.empty();
@@ -57,7 +56,7 @@ public class JdbcPlaceRepository implements PlaceRepository {
 
     @Override
     public List<Place> findAll() {
-        return jdbcTemplate.query(PLACE_FIND_ALL, PLACE_ROWMAPPER);
+        return jdbcTemplate.query(PlaceSql.FIND_ALL, PLACE_ROWMAPPER);
     }
 
     @Override
@@ -67,11 +66,7 @@ public class JdbcPlaceRepository implements PlaceRepository {
                 .addValue("check_out", Date.valueOf(checkOut));
 
         return jdbcTemplate.query(
-                "SELECT * FROM place WHERE place_id NOT IN " +
-                        "(SELECT place_id FROM reservation " +
-                        "WHERE (check_in <= :check_in AND check_out > :check_in)" +
-                        "OR (check_in < :check_out AND check_out >= :check_out)" +
-                        "OR (:check_in <= check_in AND check_in < :check_out))", namedParameters, PLACE_ROWMAPPER
+                PlaceSql.FIND_ALL_BY_STAY_PERIOD, namedParameters, PLACE_ROWMAPPER
         );
     }
 
