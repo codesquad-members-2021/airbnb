@@ -11,7 +11,7 @@ export default function GuestModal({ type, setInplaceHolder }: ModalInterface) {
 	const [adultCount, setAdultCount] = useState<number>(0);
 	const [childCount, setChildCount] = useState<number>(0);
 	const [infantCount, setInfantCount] = useState<number>(0);
-	const [circle, setCircle] = useState(<XCircle />);
+	const [xCircle, setXCircle] = useState(<XCircle />);
 	const onAdultIncrease = () => setAdultCount(adultCount + 1);
 	const onAdultDecrease = () => {
 		if ((childCount || infantCount) && adultCount === 1) return;
@@ -35,8 +35,8 @@ export default function GuestModal({ type, setInplaceHolder }: ModalInterface) {
 		else setInplaceHolder("게스트 추가");
 	});
 
-	const handleOnEnter = () => setCircle(<XCircleHover />);
-	const handleOnLeave = () => setCircle(<XCircle />);
+	const handleOnEnter = () => setXCircle(<XCircleHover />);
+	const handleOnLeave = () => setXCircle(<XCircle />);
 	const cleanupGuest = () => {
 		setInfantCount(0);
 		setChildCount(0);
@@ -85,7 +85,7 @@ export default function GuestModal({ type, setInplaceHolder }: ModalInterface) {
 				</ContentWrapper>
 			</ModalContainer>
 			<XCircleWrapper onMouseEnter={handleOnEnter} onMouseLeave={handleOnLeave} onClick={cleanupGuest}>
-				{circle}
+				{xCircle}
 			</XCircleWrapper>
 		</>
 	);
