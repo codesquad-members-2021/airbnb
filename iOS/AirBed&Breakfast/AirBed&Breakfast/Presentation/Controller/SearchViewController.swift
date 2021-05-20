@@ -9,7 +9,9 @@ import UIKit
 import Combine
 
 class SearchViewController: UIViewController {
-
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     enum Section {
         case main
     }
@@ -48,7 +50,13 @@ extension SearchViewController {
     }
     
     private func configureHierarchy() {
-        searchResultCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        let searchBarHeight = self.searchBar.frame.height
+        let navigationBarHeight = self.navigationController?.navigationBar.frame.height ?? 0
+        let topPadding = UIApplication.shared.windows[0].safeAreaInsets.top
+        let collectionViewHeightAdjustment = searchBarHeight + navigationBarHeight + topPadding
+        
+        let collectionViewFrame = CGRect(x: 0, y: collectionViewHeightAdjustment, width: view.frame.width, height: view.frame.height - collectionViewHeightAdjustment)
+        searchResultCollectionView = UICollectionView(frame: collectionViewFrame, collectionViewLayout: createLayout())
         searchResultCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         searchResultCollectionView.backgroundColor = .systemTeal
         searchResultCollectionView.delegate = self

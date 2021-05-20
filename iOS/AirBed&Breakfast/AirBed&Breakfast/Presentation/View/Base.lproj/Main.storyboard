@@ -71,8 +71,20 @@
                     <view key="view" contentMode="scaleToFill" id="qBL-t9-4XW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="coV-Nb-Ucm">
+                                <rect key="frame" x="0.0" y="88" width="414" height="54"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="hTL-cl-uW0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="coV-Nb-Ucm" firstAttribute="trailing" secondItem="hTL-cl-uW0" secondAttribute="trailing" id="Kmu-99-OZn"/>
+                            <constraint firstItem="coV-Nb-Ucm" firstAttribute="top" secondItem="hTL-cl-uW0" secondAttribute="top" id="Sd3-qe-UB9"/>
+                            <constraint firstItem="coV-Nb-Ucm" firstAttribute="leading" secondItem="hTL-cl-uW0" secondAttribute="leading" id="U1E-ZE-cF4"/>
+                            <constraint firstItem="coV-Nb-Ucm" firstAttribute="height" secondItem="qBL-t9-4XW" secondAttribute="height" multiplier="0.06" id="rVc-mW-0v9"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="숙소찾기" id="tf7-1S-hty">
                         <barButtonItem key="backBarButtonItem" title="뒤로" id="kMD-je-ng6"/>
@@ -88,6 +100,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="coV-Nb-Ucm" id="XJh-Y2-vZa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8a2-AA-XJf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

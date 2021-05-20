@@ -13,10 +13,7 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var distanceLabel: UILabel!
     
     static let reuseIdentifier = String(describing: SearchResultCollectionViewCell.self)
-    static var nib: UINib {
-        return UINib(nibName: reuseIdentifier, bundle: nil)
-    }
-    
+    static let nib = UINib(nibName: reuseIdentifier, bundle: nil)
     
     override func awakeFromNib() {
         super.awakeFromNib()
