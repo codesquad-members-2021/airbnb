@@ -18,3 +18,15 @@ class NearbyDestinationModel {
         self.distance = distance
     }
 }
+
+extension NearbyDestinationModel: Equatable, Hashable {
+    static func == (lhs: NearbyDestinationModel, rhs: NearbyDestinationModel) -> Bool {
+        return lhs.cityImage == rhs.cityName && lhs.cityName == rhs.cityName && lhs.distance == rhs.distance
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(cityImage)
+        hasher.combine(cityName)
+        hasher.combine(distance)
+    }
+}

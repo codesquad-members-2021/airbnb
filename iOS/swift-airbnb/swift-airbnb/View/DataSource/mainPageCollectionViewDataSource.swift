@@ -24,22 +24,26 @@ class mainPageCollectionViewDataSource {
         }
     }
     
-    lazy var dataSource = UICollectionViewDiffableDataSource<Section, Int>()
+    lazy var dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>()
     
     func setDataSource(collectionView: UICollectionView) {
-        self.dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, int) -> UICollectionViewCell? in
+        self.dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
             let section = Section.allCases[indexPath.section]
             
-            switch section {
-            case .curation:
+            if let item = item as? CurationModel, section == .curation {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurationCell.reuseIdentifier, for: indexPath) as! CurationCell
+                cell.configure(model: item)
                 return cell
-            case .nearbyDestination:
+            } else if let item = item as? NearbyDestinationModel, section == .nearbyDestination {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NearbyDestinationCell.reuseIdentifier, for: indexPath) as! NearbyDestinationCell
+                cell.configure(model: item)
                 return cell
-            case .variousDestination:
+            } else if let item = item as? VariousDestinationModel, section == .variousDestination {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VariousDestinationCell.reuseIdentifier, for: indexPath) as! VariousDestinationCell
+                cell.configure(model: item)
                 return cell
+            } else {
+                return UICollectionViewCell()
             }
         })
         
@@ -52,12 +56,12 @@ class mainPageCollectionViewDataSource {
         }
     }
     
-    func applySnapshot() {
+    func applySnapshot(with model: MainPageModel) {
         var snapshot = self.dataSource.snapshot()
         snapshot.appendSections([.curation, .nearbyDestination, .variousDestination])
-        snapshot.appendItems([1], toSection: .curation)
-        snapshot.appendItems([2,3,4,5,6,10], toSection: .nearbyDestination)
-        snapshot.appendItems([7,8,9], toSection: .variousDestination)
+        snapshot.appendItems(model.curations, toSection: .curation)
+        snapshot.appendItems(model.nearbyDestinations, toSection: .nearbyDestination)
+        snapshot.appendItems(model.variousDestinations, toSection: .variousDestination)
         self.dataSource.apply(snapshot)
     }
 }

@@ -14,3 +14,13 @@ class CurationModel {
         self.curationImage = curationImage
     }
 }
+
+extension CurationModel: Hashable, Equatable {
+    static func == (lhs: CurationModel, rhs: CurationModel) -> Bool {
+        return lhs.curationImage == rhs.curationImage
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(curationImage)
+    }
+}

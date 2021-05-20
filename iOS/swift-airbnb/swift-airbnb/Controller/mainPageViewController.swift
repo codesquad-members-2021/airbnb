@@ -9,15 +9,17 @@ import UIKit
 
 class mainPageViewController: UIViewController {
     @IBOutlet weak var mainPageCollectionView: UICollectionView!
+    
     private var dataSource = mainPageCollectionViewDataSource()
+    private var mainPageModel = MainPageModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         configureCollectionViewCell()
         configureCollectionViewLayout()
         self.dataSource.setDataSource(collectionView: mainPageCollectionView)
-        self.dataSource.applySnapshot()
+        self.dataSource.applySnapshot(with: mainPageModel)
     }
 
     private func configureCollectionViewLayout() {
@@ -57,7 +59,7 @@ extension mainPageViewController {
     private func createCurationLayout() -> NSCollectionLayoutSection {
         let curationItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
         
-        let curationGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.5)), subitem: curationItem, count: 1)
+        let curationGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.6)), subitem: curationItem, count: 1)
         
         let curationSection = NSCollectionLayoutSection(group: curationGroup)
         curationSection.orthogonalScrollingBehavior = .groupPaging
@@ -82,9 +84,9 @@ extension mainPageViewController {
     
     private func createVariousDestinationLayout() -> NSCollectionLayoutSection {
         let destinationItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
-        destinationItem.contentInsets = NSDirectionalEdgeInsets(top: 28, leading: 16, bottom: 0, trailing: 0)
+        destinationItem.contentInsets = NSDirectionalEdgeInsets(top: 28, leading: 16, bottom: 48, trailing: 0)
         
-        let destinationGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .fractionalHeight(0.6)), subitem: destinationItem, count: 1)
+        let destinationGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .fractionalHeight(0.7)), subitem: destinationItem, count: 1)
         
         let destinationSection = NSCollectionLayoutSection(group: destinationGroup)
         destinationSection.orthogonalScrollingBehavior = .groupPaging

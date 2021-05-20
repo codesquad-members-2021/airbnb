@@ -46,7 +46,7 @@ class MainPageModel {
     
     private func makeMockVariousDestination() -> [VariousDestinationModel] {
         let imageArray = ["withNature", "FancySpace", "WholeHouse", "withPet"]
-        let descriptionArray = ["자연생활을 만끽할 수 있는 숙소", "독특한 공간", "집 전체", "반려동물 동반 가능"]
+        let descriptionArray = ["자연생활을 만끽할 수\n있는 숙소", "독특한 공간\n", "집 전체\n", "반려동물 동반 가능\n"]
         var variousDestinations: [VariousDestinationModel] = []
         
         for index in 0..<imageArray.count {

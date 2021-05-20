@@ -17,12 +17,6 @@ class NearbyDestinationCell: UICollectionViewCell {
         return UINib(nibName: reuseIdentifier, bundle: nil)
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        self.imageView.backgroundColor = .red
-    }
-    
     func configure(model: NearbyDestinationModel) {
         let image = UIImage(named: "\(model.cityImage)")
         self.imageView.image = image

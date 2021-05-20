@@ -16,3 +16,14 @@ class VariousDestinationModel {
         self.destinationDescription = destinationDescription
     }
 }
+
+extension VariousDestinationModel: Equatable, Hashable {
+    static func == (lhs: VariousDestinationModel, rhs: VariousDestinationModel) -> Bool {
+        return lhs.destinationImage == rhs.destinationImage && lhs.destinationDescription == rhs.destinationDescription
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(destinationImage)
+        hasher.combine(destinationDescription)
+    }
+}

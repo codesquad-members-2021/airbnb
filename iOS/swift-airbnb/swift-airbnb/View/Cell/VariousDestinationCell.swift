@@ -15,12 +15,6 @@ class VariousDestinationCell: UICollectionViewCell {
     static var nib: UINib {
         return UINib(nibName: reuseIdentifier, bundle: nil)
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        self.imageView.backgroundColor = .red
-    }
 
     func configure(model: VariousDestinationModel) {
         let image = UIImage(named: "\(model.destinationImage)")
