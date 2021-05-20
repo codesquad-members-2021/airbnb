@@ -7,9 +7,9 @@
 
 import UIKit
 
-class LocationSearchBar: UISearchBar {
+final class LocationSearchBar: UISearchBar {
 
-    static let placeholder = "어디로 여행가세요?"
+    private let placeholderText = "어디로 여행가세요?"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,7 +22,7 @@ class LocationSearchBar: UISearchBar {
     }
     
     private func configure() {
-        placeholder = LocationSearchBar.placeholder
+        placeholder = placeholderText
         searchTextField.clearButtonMode = .never
     }
     

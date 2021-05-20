@@ -50,7 +50,7 @@
         <!--검색-->
         <scene sceneID="vJI-5i-xpK">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="YBE-yj-Bm8" userLabel="검색" customClass="MainViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="YBE-yj-Bm8" userLabel="검색" customClass="HomeViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JqF-wV-wYB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -58,7 +58,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DRb-al-wVs" userLabel="Hero Image Section">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="473"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d3g-cp-em3" userLabel="Hero Image View">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d3g-cp-em3" userLabel="Hero Image View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="473"/>
                                         <color key="backgroundColor" red="0.84633721279999996" green="0.81177633699999996" blue="0.96366003789999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </imageView>
@@ -143,6 +143,9 @@
                         <imageReference key="selectedImage" image="magnifyingglass" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="JQx-Ei-Mj6"/>
+                    <connections>
+                        <outlet property="heroImageView" destination="d3g-cp-em3" id="pd3-IM-7t5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXH-RG-Ldu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

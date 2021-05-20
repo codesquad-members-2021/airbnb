@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PopularLocationTableViewCell: UITableViewCell {
+final class PopularLocationTableViewCell: UITableViewCell {
     
     @IBOutlet weak var popularLocationImageView: UIImageView!
     @IBOutlet weak var popularLocationTitleLabel: UILabel!
@@ -25,4 +25,15 @@ class PopularLocationTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    func update(with textInfos: PopularLocation) {
+        popularLocationTitleLabel.text = textInfos.name
+        popularLocationDistanceLabel.text = textInfos.distanceFromHere
+    }
+    
+    func update(with imagePath: String) {
+        let image = UIImage(contentsOfFile: imagePath) ?? UIImage()
+        popularLocationImageView.contentMode = .scaleAspectFill
+        popularLocationImageView.image = image
+    }
+    
 }
