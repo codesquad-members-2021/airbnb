@@ -8,16 +8,18 @@
 import Foundation
 import Alamofire
 
-class AlamofireImageDownloadManager {
+class AlamofireImageLoadManager: AlamofireImageLoadManagable {
     
     private let cacheURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
 
-    func download(from imageURL: String, fileName: String, completionHandler: @escaping (String) -> ()) {
+    func load(from imageUrl: String, completionHandler: @escaping (String) -> ()) {
+        guard let fileName = URL(string: imageUrl)?.lastPathComponent else { return }
+        
         if let cache = availableCache(of: fileName) {
             return completionHandler(cache)
         }
         
-        let request = downloadRequest(of: imageURL, fileName: fileName)
+        let request = downloadRequest(of: imageUrl, fileName: fileName)
         request.responseURL { response in
             if response.error == nil, let filePath = response.fileURL?.path {
                 completionHandler(filePath)

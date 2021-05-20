@@ -10,7 +10,7 @@ import UIKit
 class PopularLocationViewController: UIViewController, Instantiable {
 
     static var reuseIdentifier: String { String(describing: self) }
-    static let backButtonTitle = "위치 검색"
+    private let backButtonTitle = "위치 검색"
     
     @IBOutlet weak var popularLocationTableView: UITableView!
     private var popularLocationTableViewDataSource: PopularLocationTableViewDataSource!
@@ -46,6 +46,8 @@ class PopularLocationViewController: UIViewController, Instantiable {
         viewModel.popularLocations { result in
             do {
                 let popularLocations = try result.get()
+                let imagePaths = popularLocations.map{ $0.imagePath }
+                self.startDownloadingImages(from: imagePaths)
                 self.updateTableView(with: popularLocations)
             } catch {
                 self.alertError(error: error)
@@ -53,11 +55,30 @@ class PopularLocationViewController: UIViewController, Instantiable {
         }
     }
     
-    private func updateTableView(with popularLocations: [PopularLocation]) {
-        self.popularLocationTableViewDataSource.updateLocations(with: popularLocations)
+    private func startDownloadingImages(from imagePaths: [String]) {
+        var cachePaths = Array(repeating: "", count: imagePaths.count)
+        imagePaths.enumerated().forEach { (index, imagePath) in
+            self.viewModel.popularLocationImage(from: imagePath) { cachePath in
+                cachePaths[index] = cachePath
+                self.updateTableView(with: cachePaths)
+            }
+        }
+    }
+    
+    private func updateTableView(with cachePaths: [String]) {
+        popularLocationTableViewDataSource.updateImagePaths(with: cachePaths)
+        reloadTableView()
+    }
+    
+    private func reloadTableView() {
         DispatchQueue.main.async {
             self.popularLocationTableView.reloadData()
         }
+    }
+    
+    private func updateTableView(with popularLocations: [PopularLocation]) {
+        popularLocationTableViewDataSource.updateLocations(with: popularLocations)
+        reloadTableView()
     }
     
     private func alertError(error: Error) {
@@ -126,7 +147,7 @@ extension PopularLocationViewController: SearchResultDelegate {
         let storyboard = self.storyboard ?? StoryboardFactory.create(.accomodationConditions)
         let nextViewController = ViewControllerFactory.create(from: storyboard, type: CalendarViewController.self)
         nextViewController.location = result
-        self.navigationItem.backButtonTitle = PopularLocationViewController.backButtonTitle
+        self.navigationItem.backButtonTitle = backButtonTitle
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     

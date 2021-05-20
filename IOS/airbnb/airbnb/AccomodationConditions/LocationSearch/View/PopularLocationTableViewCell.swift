@@ -32,6 +32,7 @@ class PopularLocationTableViewCell: UITableViewCell {
     
     func update(with imagePath: String) {
         let image = UIImage(contentsOfFile: imagePath) ?? UIImage()
+        popularLocationImageView.contentMode = .scaleAspectFill
         popularLocationImageView.image = image
     }
     

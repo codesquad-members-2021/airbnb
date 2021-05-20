@@ -26,5 +26,11 @@ class PopularLocationViewModel: PopularLocationConfigurable {
             completionHandler(result)
         }
     }
+    
+    func popularLocationImage(from imageUrl: String, completionHandler: @escaping (String) -> Void) {
+        useCase.loadPopularLocationImage(from: imageUrl) { cachePath in
+            completionHandler(cachePath)
+        }
+    }
 
 }

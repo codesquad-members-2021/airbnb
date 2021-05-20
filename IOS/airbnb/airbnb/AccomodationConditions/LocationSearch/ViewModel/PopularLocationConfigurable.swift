@@ -9,4 +9,5 @@ import Foundation
 
 protocol PopularLocationConfigurable {
     func popularLocations(completionHandler: @escaping (Result<[PopularLocation], CustomError>) -> Void)
+    func popularLocationImage(from imageUrl: String, completionHandler: @escaping (String) -> Void)
 }

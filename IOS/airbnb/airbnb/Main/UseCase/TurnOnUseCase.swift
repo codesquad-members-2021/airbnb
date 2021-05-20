@@ -1,17 +1,17 @@
 //
-//  PopularLocationUseCase.swift
+//  TurnOnUseCase.swift
 //  airbnb
 //
-//  Created by Song on 2021/05/20.
+//  Created by Song on 2021/05/21.
 //
 
 import Foundation
 import Alamofire
 
-class PopularLocationUseCase: PopularLocationCaseConfigurable {
+class TurnOnUseCase: TurnOnCaseConfigurable {
     
     enum EndPoint {
-        static let popularLocations = "/아직없음"
+        static let heroImage = "/아직없음"
     }
     
     private var networkManager: AlamofireNetworkManagable
@@ -23,30 +23,24 @@ class PopularLocationUseCase: PopularLocationCaseConfigurable {
     }
     
     convenience init(url: String) {
-        let fakeData = FakeData.FakePopularLocations
+        let fakeData = FakeData.FakeHeroImagePath
         let imageLoadManager = AlamofireImageLoadManager()
         self.init(networkManager: FakeNetworkManager(fakeData: fakeData), imageLoadManager: imageLoadManager)
     }
     
-    func loadPopularLocationImage(from imageUrl: String, completionHandler: @escaping (String) -> Void) {
-        imageLoadManager.load(from: imageUrl) { cachePath in
-            completionHandler(cachePath)
-        }
-    }
-    
-    func loadPopularLocations(completionHandler: @escaping (Result<[PopularLocation], CustomError>) -> Void) {
-        let endPoint = EndPoint.popularLocations
-        
-        networkManager.get(decodingType: [PopularLocation].self, endPoint: endPoint) { dataResponse in
+    func loadHeroImage(completionHandler: @escaping (Result<String, CustomError>) -> Void) {
+        networkManager.get(decodingType: String.self, endPoint: EndPoint.heroImage) { dataResponse in
             guard let statusCode = dataResponse.response?.statusCode else {
                 return completionHandler(.failure(CustomError.internet))
             }
             switch statusCode {
             case 200..<300:
-                guard let value = dataResponse.value else {
+                guard let imageUrl = dataResponse.value else {
                     return completionHandler(.failure(CustomError.noResult))
                 }
-                completionHandler(.success(value))
+                self.imageLoadManager.load(from: imageUrl) { cacheUrl in
+                    completionHandler(.success(cacheUrl))
+                }
             case 300..<400:
                 completionHandler(.failure(CustomError.noResult))
             case 400..<500:
@@ -58,4 +52,5 @@ class PopularLocationUseCase: PopularLocationCaseConfigurable {
             }
         }
     }
+    
 }
