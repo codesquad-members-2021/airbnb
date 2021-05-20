@@ -123,7 +123,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cNb-ro-RNK">
-                                <rect key="frame" x="0.0" y="111" width="414" height="751"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qKe-U0-kLK">
                                     <size key="itemSize" width="128" height="128"/>
@@ -138,21 +138,14 @@
                                     <outlet property="delegate" destination="6w4-Cz-qFn" id="5vy-qO-F2V"/>
                                 </connections>
                             </collectionView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="V9y-4V-3hs">
-                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="v1K-vX-Nyy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="V9y-4V-3hs" firstAttribute="leading" secondItem="v1K-vX-Nyy" secondAttribute="leading" id="48V-xj-UJr"/>
                             <constraint firstItem="v1K-vX-Nyy" firstAttribute="trailing" secondItem="cNb-ro-RNK" secondAttribute="trailing" id="9AC-du-iCW"/>
                             <constraint firstItem="cNb-ro-RNK" firstAttribute="leading" secondItem="v1K-vX-Nyy" secondAttribute="leading" id="CUv-RM-8q6"/>
+                            <constraint firstItem="cNb-ro-RNK" firstAttribute="top" secondItem="v1K-vX-Nyy" secondAttribute="top" id="Gw5-J0-r0i"/>
                             <constraint firstItem="v1K-vX-Nyy" firstAttribute="bottom" secondItem="cNb-ro-RNK" secondAttribute="bottom" id="Xat-Hs-gDX"/>
-                            <constraint firstItem="V9y-4V-3hs" firstAttribute="trailing" secondItem="v1K-vX-Nyy" secondAttribute="trailing" id="amv-cn-sMc"/>
-                            <constraint firstItem="V9y-4V-3hs" firstAttribute="top" secondItem="v1K-vX-Nyy" secondAttribute="top" id="cMz-2k-6Aj"/>
-                            <constraint firstItem="cNb-ro-RNK" firstAttribute="top" secondItem="V9y-4V-3hs" secondAttribute="bottom" constant="16" id="rBu-TG-KmR"/>
                         </constraints>
                     </view>
                     <connections>

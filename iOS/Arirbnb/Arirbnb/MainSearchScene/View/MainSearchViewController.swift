@@ -39,6 +39,7 @@ class MainSearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.backButtonTitle = "뒤로"
         configureCollectionView()
         configureDataSource()
         applySnapshot()
