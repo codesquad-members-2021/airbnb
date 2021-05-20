@@ -23,19 +23,56 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Mce-hi-LFW">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1086"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hiro" translatesAutoresizingMaskIntoConstraints="NO" id="U2U-Kc-5mn">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DpH-dL-6bL">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hiro" translatesAutoresizingMaskIntoConstraints="NO" id="aoe-Ry-wWb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="sz1-SQ-RHj">
+                                                        <rect key="frame" x="16" y="134.5" width="249.5" height="145"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="슬기로운 자연생활" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uR7-JK-cew">
+                                                                <rect key="frame" x="0.0" y="0.0" width="249.5" height="42"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AP-ng-oWI">
+                                                                <rect key="frame" x="0.0" y="58" width="249.5" height="41"/>
+                                                                <string key="text">에어비앤비가 엄선한
+위시리스트를 만나보세요.</string>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qs2-8A-Cdv">
+                                                                <rect key="frame" x="0.0" y="115" width="249.5" height="30"/>
+                                                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" title="여행아이디어 얻기">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="U2U-Kc-5mn" secondAttribute="height" multiplier="1:1" id="zb0-MD-vkY"/>
+                                                    <constraint firstItem="aoe-Ry-wWb" firstAttribute="leading" secondItem="DpH-dL-6bL" secondAttribute="leading" id="BLw-DL-am5"/>
+                                                    <constraint firstAttribute="width" secondItem="DpH-dL-6bL" secondAttribute="height" multiplier="1:1" id="HSw-M5-O2t"/>
+                                                    <constraint firstItem="sz1-SQ-RHj" firstAttribute="leading" secondItem="DpH-dL-6bL" secondAttribute="leading" constant="16" id="N9Y-2h-Ux5"/>
+                                                    <constraint firstItem="sz1-SQ-RHj" firstAttribute="centerY" secondItem="DpH-dL-6bL" secondAttribute="centerY" id="UsR-Cs-1aE"/>
+                                                    <constraint firstAttribute="bottom" secondItem="aoe-Ry-wWb" secondAttribute="bottom" id="amB-Mt-7CY"/>
+                                                    <constraint firstItem="aoe-Ry-wWb" firstAttribute="top" secondItem="DpH-dL-6bL" secondAttribute="top" id="ozf-HV-AfR"/>
+                                                    <constraint firstAttribute="trailing" secondItem="aoe-Ry-wWb" secondAttribute="trailing" id="pm8-ad-KRg"/>
                                                 </constraints>
-                                            </imageView>
+                                            </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FFM-Bl-tds">
                                                 <rect key="frame" x="0.0" y="454" width="414" height="224"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="224" id="c1L-kn-nBZ"/>
                                                 </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qvf-LL-yAe">
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qvf-LL-yAe">
                                                     <size key="itemSize" width="253" height="74"/>
                                                     <size key="headerReferenceSize" width="50" height="50"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -43,7 +80,7 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="NearPlaceCell" id="Oty-Ae-lvZ" customClass="NearPlaceCell" customModule="airbnb" customModuleProvider="target">
-                                                        <rect key="frame" x="80.5" y="50" width="253" height="74"/>
+                                                        <rect key="frame" x="50" y="0.0" width="253" height="74"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dbK-xY-E5C">
                                                             <rect key="frame" x="0.0" y="0.0" width="253" height="74"/>
@@ -52,11 +89,11 @@
                                                     </collectionViewCell>
                                                 </cells>
                                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HeaderReusableView" id="D9Y-iN-yQX" customClass="HeaderReusableView" customModule="airbnb" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="224"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가까운 여행지 둘러보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRI-3T-Hgr">
-                                                            <rect key="frame" x="8" y="13" width="398" height="24"/>
+                                                            <rect key="frame" x="8" y="100" width="34" height="24"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
