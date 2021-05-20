@@ -1,7 +1,7 @@
 import { ReactComponent as LogoImg } from "./../../../icons/logo.svg";
-export interface IAppProps {}
+import { EmptyInterface } from "./../../../utils/interfaces";
 
-export default function Logo(props: IAppProps) {
+export default function Logo(props: EmptyInterface) {
 	return (
 		<>
 			<LogoImg />

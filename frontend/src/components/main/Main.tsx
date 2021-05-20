@@ -1,8 +1,7 @@
 import SearchBar from "./../search_bar/SearchBar";
+import { EmptyInterface } from "./../../utils/interfaces";
 
-export interface IAppProps {}
-
-export default function Main(props: IAppProps) {
+export default function Main(props: EmptyInterface) {
 	return (
 		<div>
 			<SearchBar />

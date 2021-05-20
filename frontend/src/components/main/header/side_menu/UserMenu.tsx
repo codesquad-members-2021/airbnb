@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { ReactComponent as MenuIcon } from "./../../../../icons/menu.svg";
 import { ReactComponent as UserIcon } from "./../../../../icons/user.svg";
-export interface IAppProps {}
+import { EmptyInterface } from "./../../../../utils/interfaces";
 
-export default function UserMenu(props: IAppProps) {
+export default function UserMenu(props: EmptyInterface) {
 	return (
 		<>
 			<StyleUserMenu>
