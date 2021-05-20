@@ -1,33 +1,37 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
-const PriceModal = () => {
-	const [min, setMin] = useState(0);
-	const [max, setMax] = useState(341);
+const PriceModal = ({ min, setMin, max, setMax, unit, minimumPrice, data }) => (
+	<PriceModalWrapper>
+		<Title>가격 범위</Title>
+		<Range>{`₩${min * unit + minimumPrice}  -  ₩${(max - 20) * unit + minimumPrice}`}</Range>
+		<Body>평균 1박 요금은 ₩165,556 입니다.</Body>
+		<Graph min={min} setMin={setMin} max={max} setMax={setMax} unit={unit} minimumPrice={minimumPrice} data={data} />
+	</PriceModalWrapper>
+);
 
-	useEffect(() => {
-		if (max - min < 20) setMin(() => max - 21);
-		if (min < 0) setMin(0);
-		if (max < 22) setMax(22);
-		if (max > 341) setMax(341);
-	}, [min, max]);
-
+const Graph = ({ min, max, setMin, setMax, unit, minimumPrice, data }) => {
 	return (
-		<PriceModalWrapper>
-			<Title>가격 범위</Title>
-			<Range>{`${min}  -  ${max}`}</Range>
-			<Body>평균 1박 요금은 ₩165,556 입니다.</Body>
-			<Graph min={min} setMin={setMin} max={max} setMax={setMax} />
-		</PriceModalWrapper>
+		<GraphWrapper>
+			<GraphContent>
+				{Object.keys(data.counts).map((el) => (
+					<GraphBar
+						price={el}
+						count={data.counts[el]}
+						length={data.length}
+						key={el}
+						unit={unit}
+						minimumPrice={minimumPrice}
+						min={min}
+						max={max}
+					/>
+				))}
+			</GraphContent>
+			<Slider value={min} setValue={setMin} />
+			<Slider value={max} setValue={setMax} />
+		</GraphWrapper>
 	);
 };
-
-const Graph = ({ min, max, setMin, setMax }) => (
-	<GraphWrapper>
-		<Slider value={min} setValue={setMin} />
-		<Slider value={max} setValue={setMax} />
-	</GraphWrapper>
-);
 
 const Slider = ({ value, setValue }) => {
 	const [start, setStart] = useState();
@@ -110,18 +114,27 @@ const GraphWrapper = styled.div`
 	height: 113px;
 	top: 178px;
 	left: 64px;
-	border: 1px red solid;
 `;
-
-// const Runner = styled.img.attrs(({ base, isRunning }) => ({
-// 	src: isRunning ? "image/runner_running.png" : "image/runner_waiting.png",
-// 	style: baseLocation[base % 4],
-// }))``;
+const GraphContent = styled.div`
+	position: absolute;
+	width: 365px;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+`;
+const GraphBar = styled.div.attrs(({ length, count }) => ({
+	style: { width: `${350 / length}px`, height: `${count * 20}px` },
+}))`
+	background: ${({ min, max, unit, minimumPrice, price }) =>
+		price >= min * unit + minimumPrice && price <= (max - 20) * unit + minimumPrice ? "#000" : "#aaa"};
+`;
 const SliderWrapper = styled.div.attrs(({ value }) => ({
 	style: { left: `${value}px` },
 }))`
 	position: absolute;
 	bottom: 0px;
+	z-index: 2;
 `;
 
 export default PriceModal;
