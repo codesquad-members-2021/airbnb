@@ -72,7 +72,6 @@ extension MainSearchViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DestinationTableViewCell.reuseIdentifier, for: indexPath) as? DestinationTableViewCell else {
             return UITableViewCell()
         }
-        cell.destinationImageView.backgroundColor = .systemGray2
         cell.destinationNameLabel.text = bestDestinations[indexPath.row].name
         cell.drivingTimeLabel.text = bestDestinations[indexPath.row].drivingTime
         return cell
