@@ -9,24 +9,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mainInfoCollectionView: UICollectionView!
     
     private let mainViewModel = MainViewModel()
-    
-    private lazy var titleForHeaderInsection: RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData>.ConfigureSupplementaryView = { [weak self] dataSource, collectionView, kind, indexPath in
-        guard let strongSelf = self else { return UICollectionReusableView()}
-        return strongSelf.headerCell(indexPath: indexPath, kind: kind)
-    }
-    
-    private lazy var dataSource = RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData>(configureCell: { dataSource, collectionView, indexPath, item in
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCell.identifier, for: indexPath) as? MainCell  else { return UICollectionViewCell() }
-        switch indexPath.section {
-        case 0:
-            cell.configureFirstSection(item)
-        case 1:
-            cell.configureSecondSection(item)
-        default:
-            cell.configureThirdView(item)
-        }
-        return cell
-    }, configureSupplementaryView: titleForHeaderInsection)
+    private lazy var dataSource = dataSources()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +47,22 @@ private extension MainViewController {
         label.text = dataSource.sectionModels[indexPath.section].header
         header.addSubview(label)
         return header
+    }
+    
+    private func dataSources() -> RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData> {
+        return RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData>(configureCell: {dataSource, collectionView, indexPath, item in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCell.identifier, for: indexPath) as? MainCell  else { return UICollectionViewCell() }
+            switch indexPath.section {
+            case 0: cell.configureFirstSection(item)
+            case 1: cell.configureSecondSection(item)
+            case 2: cell.configureThirdView(item)
+            default: break
+            }
+            return cell
+        }, configureSupplementaryView: {[weak self] dataSource, collectionView, kind, indexPath in
+            guard let strongSelf = self else { return UICollectionReusableView() }
+            return strongSelf.headerCell(indexPath: indexPath, kind: kind)
+        })
     }
 }
 
