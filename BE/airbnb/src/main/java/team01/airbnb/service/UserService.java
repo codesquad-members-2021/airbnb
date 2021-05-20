@@ -2,6 +2,8 @@ package team01.airbnb.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -20,6 +22,8 @@ import team01.airbnb.utils.KakaoLoginUtils;
 
 @Service
 public class UserService {
+
+    private final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     private final JdbcTemplate jdbcTemplate;
     private final KakaoLoginUtils kakaoLoginUtils;
@@ -75,7 +79,7 @@ public class UserService {
         ResponseEntity<String> response = getJsonResponseByPost(
                 kakaoLoginUtils.getProfileUri()
                 , kakaoLoginUtils.getKakaoProfileRequestEntity(accessToken));
-        System.out.println(response.getBody());
+        logger.info("User info from kakao : {}", response.getBody());
         return convertJsonToObject(response, KakaoProfile.class);
     }
 
