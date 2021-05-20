@@ -39,26 +39,17 @@ class SearchViewController: UITableViewController {
     override func awakeFromNib() {
         super.awakeFromNib()
         locationManager.delegate = self
-        
+
         suggestionController = SuggestionsTableViewController(style: .grouped)
         suggestionController.tableView.delegate = self
-        
+
         searchController = UISearchController(searchResultsController: suggestionController)
         searchController.searchResultsUpdater = suggestionController
-        
+//
 //        let name = UIApplication.willEnterForegroundNotification
 //        foregroundRestorationObserver = NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil, using: { [ unowned self ] (_) in
 //            self.requestLocation()
 //        })
-
-    }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
 
     }
     
@@ -88,7 +79,79 @@ class SearchViewController: UITableViewController {
     
     private func stopProvidingCompletions() {
         searchCompleter = nil
+    }
+}
+
+extension SearchViewController {
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return places?.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchRegion", for: indexPath)
         
+        if let mapItem = places?[indexPath.row] {
+            cell.textLabel?.text = mapItem.name
+        }
+        
+        return cell
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    
+    func search(for suggestedCompletion: MKLocalSearchCompletion) {
+        let searchRequest = MKLocalSearch.Request(completion: suggestedCompletion)
+        search(using: searchRequest)
+    }
+    
+    func search(for queryString: String?) {
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = queryString
+        search(using: searchRequest)
+    }
+    
+    func search(using searchRequest: MKLocalSearch.Request) {
+        searchRequest.region = boundingRegion
+        
+        searchRequest.resultTypes = .pointOfInterest
+        
+        localSearch = MKLocalSearch(request: searchRequest)
+        localSearch?.start { [weak self] (response, error) in
+
+            guard error == nil else {
+                print((String(describing: error)))
+                return
+            }
+            
+            self?.places = response?.mapItems
+            
+            if let updatedRegion = response?.boundingRegion {
+                self?.boundingRegion = updatedRegion
+            }
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        search(for: searchBar.text)
+    }
+}
+
+extension SearchViewController: CLLocationManagerDelegate {
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { (placemark, error) in
+            guard error == nil else { return }
+
+            self.currentPlacemark = placemark?.first
+            self.boundingRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 12_000, longitudinalMeters: 12_000)
+            self.suggestionController.updatePlacemark(self.currentPlacemark, boundingRegion: self.boundingRegion)
+        }
     }
 }
 
@@ -139,78 +202,3 @@ class SearchViewController: UITableViewController {
 //        present(alertController, animated: true, completion: nil)
 //    }
 //}
-
-extension SearchViewController {
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return places?.count ?? 0
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchRegion", for: indexPath)
-        
-        if let mapItem = places?[indexPath.row] {
-            cell.textLabel?.text = mapItem.name
-//            cell.detailTextLabel?.text = mapItem.placemark.formatted
-        }
-        
-        return cell
-    }
-}
-
-extension SearchViewController: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        
-        let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location) { (placemark, error) in
-            guard error == nil else { return }
-            
-            self.currentPlacemark = placemark?.first
-            self.boundingRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 12_000, longitudinalMeters: 12_000)
-            self.suggestionController.updatePlacemark(self.currentPlacemark, boundingRegion: self.boundingRegion)
-        }
-    }
-}
-
-extension SearchViewController: UISearchBarDelegate {
-    
-    func search(for suggestedCompletion: MKLocalSearchCompletion) {
-        let searchRequest = MKLocalSearch.Request(completion: suggestedCompletion)
-        search(using: searchRequest)
-    }
-    
-    func search(for queryString: String?) {
-        let searchRequest = MKLocalSearch.Request()
-        searchRequest.naturalLanguageQuery = queryString
-        search(using: searchRequest)
-    }
-    
-    func search(using searchRequest: MKLocalSearch.Request) {
-        searchRequest.region = boundingRegion
-        
-        searchRequest.resultTypes = .pointOfInterest
-        
-        localSearch = MKLocalSearch(request: searchRequest)
-        localSearch?.start { [weak self] (response, error) in
-            guard error == nil else {
-                print("\(error)")
-                return
-            }
-            
-            self?.places = response?.mapItems
-            
-            if let updatedRegion = response?.boundingRegion {
-                self?.boundingRegion = updatedRegion
-            }
-        }
-        
-        
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        search(for: searchBar.text)
-    }
-}
