@@ -80,6 +80,7 @@ extension RecommendedDestinationViewController {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
         collectionView.delegate = self
+        collectionView.isScrollEnabled = false
         view.addSubview(collectionView)
     }
     

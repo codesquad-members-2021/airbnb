@@ -40,12 +40,12 @@
                                 <rect key="frame" x="0.0" y="88" width="390" height="673"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uKz-11-S9P">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="1140"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="1240"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SPF-ed-ejb">
-                                                <rect key="frame" x="0.0" y="440" width="390" height="700"/>
+                                                <rect key="frame" x="0.0" y="440" width="390" height="800"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="700" id="VhA-B2-RO4"/>
+                                                    <constraint firstAttribute="height" constant="800" id="VhA-B2-RO4"/>
                                                 </constraints>
                                                 <connections>
                                                     <segue destination="Aj1-SS-wVo" kind="embed" id="cn2-CV-Qzv"/>
@@ -154,7 +154,7 @@
             <objects>
                 <viewController id="Aj1-SS-wVo" customClass="RecommendedDestinationViewController" customModule="Airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="caX-iN-bpu">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="700"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="ebU-fh-RxB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -162,7 +162,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NxC-MT-kcx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1920" y="781"/>
+            <point key="canvasLocation" x="1920" y="816"/>
         </scene>
     </scenes>
     <resources>
