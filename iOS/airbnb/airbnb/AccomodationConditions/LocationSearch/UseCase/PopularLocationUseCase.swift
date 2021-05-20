@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class PopularLocationUseCase {
+class PopularLocationUseCase: PopularLocationCaseConfigurable {
     
     enum EndPoint {
         static let popularLocations = "/아직없음"
@@ -24,15 +24,13 @@ class PopularLocationUseCase {
         self.init(networkManager: AlamofireNetworkManager(with: url))
     }
     
-    func execute(completionHandler: @escaping (Result<[PopularLocation], Error>) -> Void){
-        
+    func loadPopularLocations(completionHandler: @escaping (Result<[PopularLocation], Error>) -> Void) {
         let endPoint = EndPoint.popularLocations
         
         networkManager.get(decodingType: [PopularLocation].self, endPoint: endPoint) { response in
             let result = response.result.mapError{ $0 as Error }
             completionHandler(result)
         }
-        
     }
 
 }

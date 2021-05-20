@@ -16,7 +16,7 @@ class PopularLocationViewController: UIViewController, Instantiable {
     private var popularLocationTableViewDataSource: PopularLocationTableViewDataSource!
     private var searchController: LocationSearchController!
     private var searchResultUpdater: LocationSearchResultUpdating!
-    private var viewModel: PopularLocationViewModel!
+    private var viewModel: PopularLocationConfigurable!
 
     override func viewDidLoad() {
         super.viewDidLoad()

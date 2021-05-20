@@ -7,13 +7,13 @@
 
 import Foundation
 
-class SearchResultViewModel {
+class SearchResultViewModel: SearchResultConfigurable {
     
     static let baseUrl = ""
-    private var useCase: NewSearchUseCase
+    private var useCase: NewSearchCaseConfigurable
     private let tempResults: [LocationSearchResult]
     
-    init(useCase: NewSearchUseCase, tempResults: [LocationSearchResult]) {
+    init(useCase: NewSearchCaseConfigurable, tempResults: [LocationSearchResult]) {
         self.tempResults = tempResults
         self.useCase = useCase
     }
@@ -24,8 +24,9 @@ class SearchResultViewModel {
         self.init(useCase: useCase, tempResults: tempResults)
     }
     
-    func searchResults(completionHandler: @escaping ([LocationSearchResult]) -> Void) {
-        useCase.execute { result in
+    func searchResults(for keyword: String,
+                       completionHandler: @escaping ([LocationSearchResult]) -> Void) {
+        useCase.search(for: keyword) { result in
             do {
                 let popularLocaions = try result.get()
                 completionHandler(popularLocaions)

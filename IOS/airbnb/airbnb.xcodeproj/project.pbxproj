@@ -39,6 +39,10 @@
 		E4F302CD26564FCE002C9770 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302CC26564FCE002C9770 /* ViewControllerFactory.swift */; };
 		E4F302CF265650C5002C9770 /* Instantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302CE265650C5002C9770 /* Instantiable.swift */; };
 		E4F302D1265652D9002C9770 /* StoryboardFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302D0265652D9002C9770 /* StoryboardFactory.swift */; };
+		E4F302D926567335002C9770 /* PopularLocationConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302D826567335002C9770 /* PopularLocationConfigurable.swift */; };
+		E4F302DB26567345002C9770 /* SearchResultConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302DA26567345002C9770 /* SearchResultConfigurable.swift */; };
+		E4F302DD2656746E002C9770 /* PopularLocationCaseConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302DC2656746E002C9770 /* PopularLocationCaseConfigurable.swift */; };
+		E4F302DF26567480002C9770 /* NewSearchCaseConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302DE26567480002C9770 /* NewSearchCaseConfigurable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +79,10 @@
 		E4F302CC26564FCE002C9770 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		E4F302CE265650C5002C9770 /* Instantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instantiable.swift; sourceTree = "<group>"; };
 		E4F302D0265652D9002C9770 /* StoryboardFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardFactory.swift; sourceTree = "<group>"; };
+		E4F302D826567335002C9770 /* PopularLocationConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationConfigurable.swift; sourceTree = "<group>"; };
+		E4F302DA26567345002C9770 /* SearchResultConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultConfigurable.swift; sourceTree = "<group>"; };
+		E4F302DC2656746E002C9770 /* PopularLocationCaseConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationCaseConfigurable.swift; sourceTree = "<group>"; };
+		E4F302DE26567480002C9770 /* NewSearchCaseConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSearchCaseConfigurable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,7 +213,9 @@
 		E4F302B12656017B002C9770 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E4F302D826567335002C9770 /* PopularLocationConfigurable.swift */,
 				E4F302B2265602ED002C9770 /* PopularLocationViewModel.swift */,
+				E4F302DA26567345002C9770 /* SearchResultConfigurable.swift */,
 				E4F302C3265642BA002C9770 /* SearchResultViewModel.swift */,
 			);
 			path = ViewModel;
@@ -224,7 +234,9 @@
 		E4F302BB26560E1A002C9770 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				E4F302DC2656746E002C9770 /* PopularLocationCaseConfigurable.swift */,
 				E4F302BC26560E2D002C9770 /* PopularLocationUseCase.swift */,
+				E4F302DE26567480002C9770 /* NewSearchCaseConfigurable.swift */,
 				E4F302C5265642D8002C9770 /* NewSearchUseCase.swift */,
 			);
 			path = UseCase;
@@ -326,12 +338,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4DB1CF726524A7700894DCB /* MainViewController.swift in Sources */,
+				E4F302DB26567345002C9770 /* SearchResultConfigurable.swift in Sources */,
 				E4F302C4265642BA002C9770 /* SearchResultViewModel.swift in Sources */,
 				E4DB1D7E2653916900894DCB /* PopularLocationTableViewCell.swift in Sources */,
 				E4DB1D7C2653912F00894DCB /* PopularLocationViewController.swift in Sources */,
 				E4F302BA26560CC7002C9770 /* LocationSearchResultUpdating.swift in Sources */,
 				E4F302A72655F84B002C9770 /* AlamofireNetworkManager.swift in Sources */,
+				E4F302DF26567480002C9770 /* NewSearchCaseConfigurable.swift in Sources */,
 				E4F302A52655F837002C9770 /* AlamofireRequestManager.swift in Sources */,
+				E4F302D926567335002C9770 /* PopularLocationConfigurable.swift in Sources */,
 				E481481626551B930069BE20 /* CalendarViewController.swift in Sources */,
 				E4F302B82656059C002C9770 /* PopularLocation.swift in Sources */,
 				E4814814265519BF0069BE20 /* StoryboardID.swift in Sources */,
@@ -344,6 +359,7 @@
 				E481480E2654993F0069BE20 /* SearchResultTableViewController.swift in Sources */,
 				E4F302CD26564FCE002C9770 /* ViewControllerFactory.swift in Sources */,
 				E481480C265496930069BE20 /* LocationSearchController.swift in Sources */,
+				E4F302DD2656746E002C9770 /* PopularLocationCaseConfigurable.swift in Sources */,
 				E4F302C6265642D8002C9770 /* NewSearchUseCase.swift in Sources */,
 				E4F302AD2655FD17002C9770 /* AlamofireNetworkManagable.swift in Sources */,
 				E4F302C826564431002C9770 /* LocationSearchResult.swift in Sources */,

@@ -16,7 +16,7 @@ class SearchResultTableViewController: UITableViewController, Instantiable {
     static var reuseIdentifier: String { String(describing: self) }
     @IBOutlet var searchResultTable: UITableView!
     private var searchResults: [LocationSearchResult]?
-    private var viewModel: SearchResultViewModel!
+    private var viewModel: SearchResultConfigurable!
     var delegate: SearchResultDelegate?
     
     override func viewDidLoad() {
@@ -27,7 +27,7 @@ class SearchResultTableViewController: UITableViewController, Instantiable {
     func updateSearchResult(with newKeyword: String) {
         guard let viewModel = viewModel else { return }
         
-        viewModel.searchResults { searchResults in
+        viewModel.searchResults(for: newKeyword) { searchResults in
             self.searchResults = searchResults
             self.updateTableView()
         }

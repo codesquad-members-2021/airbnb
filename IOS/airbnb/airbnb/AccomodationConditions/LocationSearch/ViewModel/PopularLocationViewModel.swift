@@ -7,13 +7,13 @@
 
 import Foundation
 
-class PopularLocationViewModel {
+class PopularLocationViewModel: PopularLocationConfigurable {
     
     static let baseUrl = ""
-    private var useCase: PopularLocationUseCase
+    private var useCase: PopularLocationCaseConfigurable
     private let tempLocations: [PopularLocation]
     
-    init(useCase: PopularLocationUseCase, tempLocations: [PopularLocation]) {
+    init(useCase: PopularLocationCaseConfigurable, tempLocations: [PopularLocation]) {
         self.tempLocations = tempLocations
         self.useCase = useCase
     }
@@ -25,7 +25,7 @@ class PopularLocationViewModel {
     }
     
     func popularLocations(completionHandler: @escaping ([PopularLocation]) -> Void) {
-        useCase.execute { result in
+        useCase.loadPopularLocations { result in
             do {
                 let popularLocaions = try result.get()
                 completionHandler(popularLocaions)

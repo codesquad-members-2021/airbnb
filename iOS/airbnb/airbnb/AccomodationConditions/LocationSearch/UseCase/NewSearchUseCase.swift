@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class NewSearchUseCase {
+class NewSearchUseCase: NewSearchCaseConfigurable {
     
     enum EndPoint {
         static let searchResult = "/아직없음"
@@ -24,9 +24,10 @@ class NewSearchUseCase {
         self.init(networkManager: AlamofireNetworkManager(with: url))
     }
     
-    func execute(completionHandler: @escaping (Result<[LocationSearchResult], Error>) -> Void){
+    func search(for keyword: String,
+                completionHandler: @escaping (Result<[LocationSearchResult], Error>) -> Void) {
         
-        let endPoint = EndPoint.searchResult
+        let endPoint = EndPoint.searchResult + "\(keyword)"
         
         networkManager.get(decodingType: [LocationSearchResult].self, endPoint: endPoint) { response in
             let result = response.result.mapError{ $0 as Error }
