@@ -10,6 +10,7 @@
 		5C6D74CF4FEC1ED21AB67A15 /* Pods_Airbnb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E7A5ACE26BDD8E29A55207 /* Pods_Airbnb.framework */; };
 		7112E6E8265604E100F9AAD6 /* SecondSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112E6E7265604E100F9AAD6 /* SecondSectionCell.swift */; };
 		7112E6EA2656054900F9AAD6 /* ThirdSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112E6E92656054900F9AAD6 /* ThirdSectionCell.swift */; };
+		7112E6EC26561CDE00F9AAD6 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112E6EB26561CDE00F9AAD6 /* HeaderView.swift */; };
 		7157C8862654A14500EF7977 /* FirstSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C8852654A14500EF7977 /* FirstSectionView.swift */; };
 		7157C8892654AC4000EF7977 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C8882654AC4000EF7977 /* MainViewModel.swift */; };
 		71A67D2526539B6A00FC6689 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D2426539B6A00FC6689 /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 		6BCF80A292B8920BE3DCDDD7 /* Pods-Airbnb.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airbnb.release.xcconfig"; path = "Target Support Files/Pods-Airbnb/Pods-Airbnb.release.xcconfig"; sourceTree = "<group>"; };
 		7112E6E7265604E100F9AAD6 /* SecondSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionCell.swift; sourceTree = "<group>"; };
 		7112E6E92656054900F9AAD6 /* ThirdSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionCell.swift; sourceTree = "<group>"; };
+		7112E6EB26561CDE00F9AAD6 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		7157C8852654A14500EF7977 /* FirstSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSectionView.swift; sourceTree = "<group>"; };
 		7157C8882654AC4000EF7977 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		71A67D2126539B6A00FC6689 /* Airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +154,7 @@
 				71DA18352654CACC00415EDD /* SecondSectionView.swift */,
 				7112E6E92656054900F9AAD6 /* ThirdSectionCell.swift */,
 				71DA18392654E2FE00415EDD /* ThirdSectionView.swift */,
+				7112E6EB26561CDE00F9AAD6 /* HeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				7112E6EA2656054900F9AAD6 /* ThirdSectionCell.swift in Sources */,
 				71DA183A2654E2FE00415EDD /* ThirdSectionView.swift in Sources */,
 				7157C8892654AC4000EF7977 /* MainViewModel.swift in Sources */,
+				7112E6EC26561CDE00F9AAD6 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,13 +32,13 @@ class MainViewController: UIViewController {
 private extension MainViewController {
     
     private func setupCollectionView() {
-        mainInfoCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Section")
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.headerReferenceSize = CGSize(width: self.mainInfoCollectionView.frame.width, height: self.mainInfoCollectionView.frame.height*0.2)
         mainInfoCollectionView.collectionViewLayout = flowLayout
         mainInfoCollectionView.register(FirstSectionCell.self, forCellWithReuseIdentifier: FirstSectionCell.identifier)
         mainInfoCollectionView.register(SecondSectionCell.self, forCellWithReuseIdentifier: SecondSectionCell.identifier)
         mainInfoCollectionView.register(ThirdSectionCell.self, forCellWithReuseIdentifier: ThirdSectionCell.identifier)
+        mainInfoCollectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.identifier)
     }
     
     private func headerCell(indexPath: IndexPath, kind: String) -> UICollectionReusableView {
@@ -70,9 +70,10 @@ private extension MainViewController {
             default: break
             }
             return UICollectionViewCell()
-        }, configureSupplementaryView: {[weak self] dataSource, collectionView, kind, indexPath in
-            guard let strongSelf = self else { return UICollectionReusableView() }
-            return strongSelf.headerCell(indexPath: indexPath, kind: kind)
+        }, configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.identifier, for: indexPath) as? HeaderView else { return UICollectionReusableView() }
+            header.configure(dataSource.sectionModels[indexPath.section].header)
+            return header
         })
     }
 }
