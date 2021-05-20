@@ -24,13 +24,28 @@ export interface ReservationContext {
     people: People;
 }
 
-export type Action =
+export type ResercationAction =
     | { type: 'LOCATION'; id: number; city: string }
     | { type: 'CHECKIN'; year: number; month: number; day: number }
     | { type: 'CHECKOUT'; year: number; month: number; day: number }
     | { type: 'PEOPLE'; guest: number; kids: number }
     | { type: 'FEE'; fee: number };
 
-export type ReservationDispatch = Dispatch<Action>;
+export type SearchAction =
+    | { type: 'LOCATION_LIST'; list: Location[] | null }
+    | { type: 'LOCATION_LAYER'; state: boolean }
+    | { type: 'INPUTOFLOCATION'; value: string }
+    | { type: 'CALENDAR_LAYER'; state: boolean };
+
+export type ReservationDispatch = Dispatch<ResercationAction>;
+
+export type SearchDispatch = Dispatch<SearchAction>;
 
 export type LocationList = Location[];
+
+export interface SearcherContext {
+    locationList: Location[] | null;
+    inputOfLocation: string | null;
+    locationLayer: boolean;
+    calendarLayer: boolean;
+}

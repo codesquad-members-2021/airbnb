@@ -1,6 +1,6 @@
-import { ReservationContext, Action } from './interface';
+import { ReservationContext, ResercationAction } from './interface';
 
-export default function reducer(state: ReservationContext, action: Action): ReservationContext {
+export default function reservationReducer(state: ReservationContext, action: ResercationAction): ReservationContext {
     switch (action.type) {
         case 'LOCATION':
             return {

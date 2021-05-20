@@ -2,7 +2,7 @@ import './App.css';
 import React, { useReducer } from 'react';
 import Router from './Router';
 import { ReservationContext } from './shared/interface';
-import reducer from './shared/reducer';
+import reservationReducer from './shared/reservationReducer';
 import { ReservationStateContext, ReservationDispatchContext } from './Contexts';
 
 const initialState = {
@@ -28,10 +28,10 @@ const initialState = {
 } as ReservationContext;
 
 function App(): React.ReactElement {
-    const [reservationState, dispatch] = useReducer(reducer, initialState);
+    const [reservationState, reservationDispatch] = useReducer(reservationReducer, initialState);
 
     return (
-        <ReservationDispatchContext.Provider value={dispatch}>
+        <ReservationDispatchContext.Provider value={reservationDispatch}>
             <ReservationStateContext.Provider value={reservationState}>
                 <Router />;
             </ReservationStateContext.Provider>
