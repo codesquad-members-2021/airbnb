@@ -7,7 +7,6 @@ type CtrlModal = {
 }
 const useModalCtrl = ({toggle, modal, init} : CtrlModal):boolean => {
   const [open, setOpen] = useState(init)
-  console.log(open)
   useEffect(()=>{
     let prev:number=0;
     let curr:number;
@@ -23,7 +22,6 @@ const useModalCtrl = ({toggle, modal, init} : CtrlModal):boolean => {
           count++;
         }
       })
-      console.log(curr, prev, count)
       if (count===1 && prev===curr) setOpen((open)=>!open)
       else if (count===1 && prev!==curr) setOpen(true)
       else if(ModalTarget?.contains(target)) setOpen(true);

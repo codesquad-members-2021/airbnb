@@ -1,11 +1,11 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import useModalCtrl from '../../customHook/useModalCtrl'
+import useModalCtrl from '../../customHook/useModalCtrlArray'
 
 const UserInfo = () => {
   const userInfoBtn = useRef<HTMLDivElement>(null)
   const userInfoModal = useRef<HTMLDivElement>(null)
-  const open = useModalCtrl({toggle: userInfoBtn, modal: userInfoModal, init:false});
+  const open = useModalCtrl({toggle: [userInfoBtn], modal: userInfoModal, init:false});
   interface IF_Img {
     desc: string;
   }

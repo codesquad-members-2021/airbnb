@@ -2,13 +2,13 @@ import {useState, useRef, useEffect, } from 'react'
 import { PlaceSection, ModalWrapper, BarBlock, BarInnerWrapper, BarTitle, BarMessage} from '../../style/BarStyle'
 import { TiDelete } from "react-icons/ti";
 import IconButton from '@material-ui/core/IconButton';
-import useModalCtrl from '../../customHook/useModalCtrl'
+import useModalCtrl from '../../customHook/useModalCtrlArray'
 import ModalPlace from './ModalPlace';
 
 const Place = () => {
   const PlaceToggle = useRef<HTMLDivElement>(null)
   const PlaceModal = useRef<HTMLDivElement>(null)
-  const open = useModalCtrl({toggle:PlaceToggle, modal:PlaceModal, init:false})
+  const open = useModalCtrl({toggle:[PlaceToggle], modal:PlaceModal, init:false})
 
   const defaultMsg = '어디로 여행가세요?';
   const [targetPlace, setTargetPlace] = useState<string>(defaultMsg)
