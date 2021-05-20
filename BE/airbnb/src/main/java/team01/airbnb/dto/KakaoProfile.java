@@ -5,60 +5,60 @@ import lombok.Data;
 
 @Data
 public class KakaoProfile {
-    public Integer id;
+    private Integer id;
 
     @JsonProperty(value = "connected_at")
-    public String connectedAt;
+    private String connectedAt;
 
-    public Properties properties;
+    private Properties properties;
 
     @JsonProperty(value = "kakao_account")
-    public KakaoAccount kakaoAccount;
+    private KakaoAccount kakaoAccount;
 
     @Data
     public class Properties {
-        public String nickname;
+        private String nickname;
 
         @JsonProperty(value = "thumbnail_image")
-        public String thumbnailImage;
+        private String thumbnailImage;
 
         @JsonProperty(value = "profile_image")
-        public String profileImage;
+        private String profileImage;
     }
 
     @Data
     public class KakaoAccount {
         @JsonProperty(value = "profile_needs_agreement")
-        public Boolean profileNeedsAgreement;
+        private Boolean profileNeedsAgreement;
 
-        public Profile profile;
+        private Profile profile;
 
         @JsonProperty(value = "has_email")
-        public Boolean hasEmail;
+        private Boolean hasEmail;
 
         @JsonProperty(value = "email_needs_agreement")
-        public Boolean emailNeedsAgreement;
+        private Boolean emailNeedsAgreement;
 
         @JsonProperty(value = "is_email_valid")
-        public Boolean isEmailValid;
+        private Boolean isEmailValid;
 
         @JsonProperty(value = "is_email_verified")
-        public Boolean isEmailVerified;
+        private Boolean isEmailVerified;
 
-        public String email;
+        private String email;
 
         @Data
         public class Profile {
-            public String nickname;
+            private String nickname;
 
             @JsonProperty(value = "thumbnail_image_url")
-            public String thumbnailImageUrl;
+            private String thumbnailImageUrl;
 
             @JsonProperty(value = "profile_image_url")
-            public String profileImageUrl;
+            private String profileImageUrl;
 
             @JsonProperty(value = "is_default_image")
-            public Boolean isDefaultImage;
+            private Boolean isDefaultImage;
         }
     }
 }
