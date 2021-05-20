@@ -41,17 +41,6 @@ private extension MainViewController {
         mainInfoCollectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.identifier)
     }
     
-    private func headerCell(indexPath: IndexPath, kind: String) -> UICollectionReusableView {
-        let header = mainInfoCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Section", for: indexPath)
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: mainInfoCollectionView.frame.width, height: mainInfoCollectionView.frame.height*0.2))
-        label.textColor = UIColor.black
-        label.textAlignment = .left
-        label.font = UIFont.boldSystemFont(ofSize: 30)
-        label.text = dataSource.sectionModels[indexPath.section].header
-        header.addSubview(label)
-        return header
-    }
-    
     private func dataSources() -> RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData> {
         return RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData>(configureCell: {dataSource, collectionView, indexPath, item in
             switch indexPath.section {
@@ -84,12 +73,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDelegate
         if indexPath.section == 0 {
             return CGSize(width: view.frame.width, height: view.frame.height*0.5)
         } else if indexPath.section == 1 {
-            return CGSize(width: view.frame.width*0.4, height: view.frame.height*0.1)
+            return CGSize(width: view.frame.width*0.35, height: view.frame.height*0.1)
         }
         else { return CGSize(width: view.frame.width*0.8, height: view.frame.height*0.4)}
     }
-    
+        
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        if section == 1 {return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)}
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }

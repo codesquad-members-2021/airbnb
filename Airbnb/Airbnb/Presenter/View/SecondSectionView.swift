@@ -60,7 +60,7 @@ private extension SecondSectionView {
         mainTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2).isActive = true
         mainTitleLabel.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: 10).isActive = true
         mainTitleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
-        mainTitleLabel.heightAnchor.constraint(equalTo: mainImageView.heightAnchor, multiplier: 0.5).isActive = true
+        mainTitleLabel.heightAnchor.constraint(equalTo: mainImageView.heightAnchor, multiplier: 0.4).isActive = true
     }
     
     private func setupDetailInfoLabel() {
