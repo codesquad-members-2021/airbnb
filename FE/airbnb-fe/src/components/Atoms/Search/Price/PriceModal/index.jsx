@@ -12,7 +12,7 @@ const PriceModalDiv = styled.div`
   width: 31rem;
   height: 23rem;
   border-radius: 40px;
-  background-color: ${({ theme }) => theme.colors.green};
+  background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1),
     0px 0px 4px rgba(51, 51, 51, 0.05);
 `;

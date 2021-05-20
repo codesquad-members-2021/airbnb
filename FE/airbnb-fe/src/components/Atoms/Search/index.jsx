@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import Price from './Price';
 import Check from './Check';
@@ -9,23 +9,51 @@ import PeopleModal from './People/PeopleModal';
 import SearchBtn from './SearchBtn';
 
 const Search = () => {
+  const modalElement = useRef();
+
+  useEffect(() => {
+    const modalOff = (e) => {
+      // console.log('e : ', e);
+      // console.log('target :', e.target);
+      // console.log('modalElement.current:', modalElement.current);
+
+      if (modalElement.current && !modalElement.current.contains(e.target)) {
+        dispatch({ type: 'ModalOff' });
+      }
+    };
+    document.addEventListener('mousedown', modalOff);
+    return () => {
+      document.removeEventListener('mousedown', modalOff);
+    };
+  }, [modalElement]);
+
   const isClickedReducer = (state, action) => {
     switch (action.type) {
       case 'CHECKINOUT':
         return {
-          ...state,
           checkInOut: !state.checkInOut,
+          price: false,
+          people: false,
         };
       case 'PRICE':
         return {
-          ...state,
+          checkInOut: false,
           price: !state.price,
+          people: false,
         };
       case 'PEOPLE':
         return {
-          ...state,
+          checkInOut: false,
+          price: false,
           people: !state.people,
         };
+      case 'ModalOff':
+        return {
+          checkInOut: false,
+          price: false,
+          people: false,
+        };
+
       default:
         return;
     }
@@ -38,7 +66,6 @@ const Search = () => {
   });
 
   const { checkInOut, price, people } = clicked;
-
   return (
     <SearchDiv>
       <SearchWrap>
@@ -48,9 +75,11 @@ const Search = () => {
         <SearchBtnWrap>
           <SearchBtn />
         </SearchBtnWrap>
-        {checkInOut && <CheckModal />}
-        {price && <PriceModal />}
-        {people && <PeopleModal />}
+        <ModalDiv ref={modalElement}>
+          {checkInOut && <CheckModal />}
+          {price && <PriceModal />}
+          {people && <PeopleModal />}
+        </ModalDiv>
       </SearchWrap>
     </SearchDiv>
   );
@@ -69,15 +98,14 @@ const SearchWrap = styled.div`
   display: grid;
   grid-template-columns: 5fr 3fr 3fr;
   text-align: center;
-  /* padding: 0 0 0 2.3rem; */
   border-radius: 3rem;
   background-color: ${({ theme }) => theme.colors.white};
-  /* border: 1px solid yellow; */
 `;
 
 const SearchBtnWrap = styled.div`
   position: absolute;
   right: 1rem;
 `;
+const ModalDiv = styled.div``;
 
 export default Search;
