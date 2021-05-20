@@ -24,10 +24,9 @@ create table city(
 
 create table location(
     id bigint auto_increment primary key ,
+    city_id bigint references city(id),
     latitude double(20,10),
-    longitude double (20,10)
-    city_id bigint,
-    foreign key city_id references city(id);
+    longitude double(20,10)
 );
 
 create table additional_cost(
@@ -62,10 +61,9 @@ create table rooms(
 
 create table image(
     id bigint auto_increment primary key,
+    rooms_id bigint references rooms(id),
     url varchar (200) not null,
-    type varchar (30) not null,
-    rooms_id bigint,
-    foreign key rooms_id references rooms(id);
+    type varchar (30) not null
 );
 
 create table users(
@@ -82,7 +80,7 @@ create table reservation(
   adult int,
   child int,
   baby int,
-  check_in timestamp ,
-  check_out timestamp ,
+  check_in datetime,
+  check_out datetime,
   total_price DECIMAL(20,10)
 );
