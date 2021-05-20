@@ -1,6 +1,7 @@
 package airbnb.dao;
 
 import airbnb.domain.City;
+import airbnb.mapper.CityMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +12,7 @@ import java.util.List;
 public class CityDao {
 
     private JdbcTemplate jdbcTemplate;
-    private CityMapper cityMapper = new CityMapepr;
+    private CityMapper cityMapper = new CityMapper();
 
     public CityDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -19,6 +20,6 @@ public class CityDao {
 
     public List<City> findAll(){
         String sql = "SELECT id, name FROM city";
-        return jdbcTemplate.query(sql,CityMapper);
+        return jdbcTemplate.query(sql,cityMapper);
     }
 }
