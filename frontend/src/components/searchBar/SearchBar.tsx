@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Place from './Place'
+import Date from './Date'
 const SearchBar = () => {
 
 
@@ -8,6 +9,7 @@ const SearchBar = () => {
   <BarWrapper>
     <Bar>
       <Place/>
+      <Date/>
     </Bar>  
   </BarWrapper>
   )

@@ -11,9 +11,9 @@ const UserInfo = () => {
   }
   const IMG:React.FunctionComponent<IF_Img> = ({ desc }) => {
     return (   
-    <ImgBlock>
+    <div>
       <img src = {process.env.PUBLIC_URL + desc} alt = {desc}/>
-    </ImgBlock>
+    </div>
     )
   }
 
@@ -45,12 +45,13 @@ font-size: ${props=>props.theme.fontSize.sm}`
 const MenuBlock = styled.div`
 width: 200px;
 height: 87px;
+background-color: ${props=>props.theme.color.white};
+z-index:9999;
 position: absolute;
 left: 1140px;
 top: 75px;
 box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
 border-radius: 10px;`
-const ImgBlock = styled.div``
 const BtnBlock = styled.div`
 width: 76px;
 height: 40px;
