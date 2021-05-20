@@ -12,16 +12,16 @@
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="JacksonBnB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="BYZ-38-t0r" customClass="MainViewController" customModule="JacksonBnB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m70-q2-emK">
-                                <rect key="frame" x="0.0" y="148" width="414" height="565"/>
+                                <rect key="frame" x="0.0" y="192" width="414" height="521"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n28-43-hhT">
-                                <rect key="frame" x="64" y="96" width="286" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n28-43-hhT">
+                                <rect key="frame" x="64" y="140" width="286" height="36"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="여행 아이디어 얻기">
@@ -32,7 +32,12 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="NO"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="searchHotels:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zMx-0k-jQl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -47,14 +52,55 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="m70-q2-emK" secondAttribute="trailing" id="uG0-VF-Gfu"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="ezy-1i-ywP"/>
+                    <navigationItem key="navigationItem" id="z6s-aA-nVW"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="mainView" destination="m70-q2-emK" id="cwV-cd-7j7"/>
+                        <outlet property="mainImageView" destination="m70-q2-emK" id="cwV-cd-7j7"/>
+                        <outlet property="searchBtnTouched" destination="n28-43-hhT" id="Fe4-3y-lAj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="66.666666666666671" y="865.84821428571422"/>
+            <point key="canvasLocation" x="976.81159420289862" y="865.84821428571422"/>
+        </scene>
+        <!--Search Hotels View Controller-->
+        <scene sceneID="Ryq-bE-f9d">
+            <objects>
+                <viewController storyboardIdentifier="SearchHotelsViewController" id="SYX-9T-PQa" customClass="SearchHotelsViewController" customModule="JacksonBnB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qIa-ZT-2Hq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="어디로 여행가세요?" translatesAutoresizingMaskIntoConstraints="NO" id="vMe-5c-SP1">
+                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hyO-Aa-lAA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vMe-5c-SP1" firstAttribute="trailing" secondItem="hyO-Aa-lAA" secondAttribute="trailing" id="BVa-sh-jJS"/>
+                            <constraint firstItem="vMe-5c-SP1" firstAttribute="leading" secondItem="hyO-Aa-lAA" secondAttribute="leading" id="CW1-L3-NDC"/>
+                            <constraint firstItem="vMe-5c-SP1" firstAttribute="top" secondItem="hyO-Aa-lAA" secondAttribute="top" id="z8h-5h-EME"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <navigationItem key="navigationItem" id="Cr1-q2-Vbk"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="hotelsSearchBar" destination="vMe-5c-SP1" id="SGz-Ob-Dua"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oKf-y7-aY8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1779.7101449275365" y="863.83928571428567"/>
         </scene>
         <!--Favorite View Controller-->
         <scene sceneID="INL-98-m5e">
@@ -78,17 +124,37 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="FoQ-h1-iaf" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="c9R-H8-LS6">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Hqe-T9-714"/>
+                        <segue destination="mob-Vf-uYq" kind="relationship" relationship="viewControllers" id="Hqe-T9-714"/>
                         <segue destination="k7S-45-z3b" kind="relationship" relationship="viewControllers" id="G8J-Ga-tOT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PUV-gA-dXF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="66.666666666666671" y="77.678571428571431"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QxV-Nx-J6u">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mob-Vf-uYq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="search" id="ezy-1i-ywP"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8aD-hr-Mgb">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Sh7-6t-I2r"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I6N-ni-H5f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="66.666666666666671" y="865.84821428571422"/>
         </scene>
     </scenes>
     <resources>

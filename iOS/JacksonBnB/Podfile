@@ -7,7 +7,9 @@ target 'JacksonBnB' do
 
   # Pods for JacksonBnB
   pod 'lottie-ios'
-
+  pod 'Hero'
+  pod 'RealmSwift'
+  pod 'Alamofire'
   target 'JacksonBnBTests' do
     inherit! :search_paths
     # Pods for testing

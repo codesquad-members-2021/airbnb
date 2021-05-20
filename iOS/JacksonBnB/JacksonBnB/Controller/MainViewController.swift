@@ -7,22 +7,25 @@
 
 import UIKit
 import Lottie
+//import Hero
 
 class MainViewController: UIViewController {
 
-    @IBOutlet weak var mainView: UIImageView!
+    @IBOutlet weak var mainImageView: UIImageView!
+    @IBOutlet weak var searchBtnTouched: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         let lottieAnimation = LottieAnimation(with: self.view)
-//        let animationView = AnimationView(name: "airbnb-logo")
-//        animationView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
-//        animationView.center = self.view.center
-//        animationView.contentMode = .scaleAspectFill
-        mainView.addSubview(lottieAnimation.animationView)
+        mainImageView.addSubview(lottieAnimation.animationView)
         lottieAnimation.animationView.play()
+    }
+    @IBAction func searchHotels(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(identifier: "SearchHotelsViewController")
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
 }
