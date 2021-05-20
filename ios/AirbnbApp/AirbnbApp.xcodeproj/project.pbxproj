@@ -10,6 +10,9 @@
 		E43BB8E02653DF6000376748 /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BB8DF2653DF6000376748 /* MainSearchViewController.swift */; };
 		E43BB8E926560BFC00376748 /* BestDestinationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BB8E726560BFC00376748 /* BestDestinationTableViewCell.swift */; };
 		E43BB8EA26560BFC00376748 /* BestDestinationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E43BB8E826560BFC00376748 /* BestDestinationTableViewCell.xib */; };
+		E43BB8EE26562E4000376748 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BB8ED26562E4000376748 /* Destination.swift */; };
+		E43BB8F026562E9D00376748 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BB8EF26562E9D00376748 /* JSONParser.swift */; };
+		E43BB8F226562F2A00376748 /* MockJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43BB8F126562F2A00376748 /* MockJSON.swift */; };
 		E47FE1C62652922E0090B931 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FE1C52652922E0090B931 /* AppDelegate.swift */; };
 		E47FE1C82652922E0090B931 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FE1C72652922E0090B931 /* SceneDelegate.swift */; };
 		E47FE1CA2652922E0090B931 /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FE1C92652922E0090B931 /* LandingPageViewController.swift */; };
@@ -41,6 +44,9 @@
 		E43BB8DF2653DF6000376748 /* MainSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
 		E43BB8E726560BFC00376748 /* BestDestinationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestDestinationTableViewCell.swift; sourceTree = "<group>"; };
 		E43BB8E826560BFC00376748 /* BestDestinationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BestDestinationTableViewCell.xib; sourceTree = "<group>"; };
+		E43BB8ED26562E4000376748 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
+		E43BB8EF26562E9D00376748 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
+		E43BB8F126562F2A00376748 /* MockJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockJSON.swift; sourceTree = "<group>"; };
 		E47FE1C22652922E0090B931 /* AirbnbApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirbnbApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E47FE1C52652922E0090B931 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E47FE1C72652922E0090B931 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +117,9 @@
 				E43BB8E726560BFC00376748 /* BestDestinationTableViewCell.swift */,
 				E43BB8E826560BFC00376748 /* BestDestinationTableViewCell.xib */,
 				E43BB8DF2653DF6000376748 /* MainSearchViewController.swift */,
+				E43BB8ED26562E4000376748 /* Destination.swift */,
+				E43BB8EF26562E9D00376748 /* JSONParser.swift */,
+				E43BB8F126562F2A00376748 /* MockJSON.swift */,
 				E47FE1CB2652922E0090B931 /* Main.storyboard */,
 				E47FE1F52652929B0090B931 /* Supporting Files */,
 			);
@@ -278,7 +287,10 @@
 			files = (
 				E47FE1CA2652922E0090B931 /* LandingPageViewController.swift in Sources */,
 				E43BB8E926560BFC00376748 /* BestDestinationTableViewCell.swift in Sources */,
+				E43BB8F026562E9D00376748 /* JSONParser.swift in Sources */,
+				E43BB8EE26562E4000376748 /* Destination.swift in Sources */,
 				E47FE1C62652922E0090B931 /* AppDelegate.swift in Sources */,
+				E43BB8F226562F2A00376748 /* MockJSON.swift in Sources */,
 				E47FE1C82652922E0090B931 /* SceneDelegate.swift in Sources */,
 				E43BB8E02653DF6000376748 /* MainSearchViewController.swift in Sources */,
 			);
