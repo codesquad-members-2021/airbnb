@@ -1,6 +1,7 @@
 package com.example.airbnb.controller;
 
 
+import com.example.airbnb.dto.AccommodationListDTO;
 import com.example.airbnb.service.AccommodationService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/airbnb")
 public class AccommodationController {
 
     private final AccommodationService accommodationService;
@@ -18,6 +19,13 @@ public class AccommodationController {
     }
 
     @GetMapping
+    public AccommodationListDTO getSample() {
+        return AccommodationService.availableAccommodationsList();
+    }
+
+
+    /*
+    @GetMapping
     public String getSample(){
         //System.out.println(accommodationService.countAccommodation());
         //System.out.println(accommodationService.findById(1L).getTitle());
@@ -26,5 +34,7 @@ public class AccommodationController {
         System.out.println(accommodationService.delete("샘플숙소3"));
         return "dd";
     }
+
+     */
 
 }
