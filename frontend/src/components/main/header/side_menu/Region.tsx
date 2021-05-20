@@ -1,7 +1,5 @@
-import * as React from "react";
+import { EmptyInterface } from "./../../../../utils/interfaces";
 
-export interface IAppProps {}
-
-export default function Region(props: IAppProps) {
+export default function Region(props: EmptyInterface) {
 	return <div></div>;
 }

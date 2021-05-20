@@ -2,10 +2,9 @@ import styled from "styled-components";
 import Logo from "./Logo";
 import SideContainer from "./side_menu/SideContainer";
 import Tour from "./Tour";
+import { EmptyInterface } from "./../../../utils/interfaces";
 
-export interface IAppProps {}
-
-export default function Header(props: IAppProps) {
+export default function Header(props: EmptyInterface) {
 	return (
 		<StyleHeader>
 			<Logo />

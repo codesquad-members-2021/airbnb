@@ -1,8 +1,7 @@
 import styled from "styled-components";
+import { EmptyInterface } from "./../../../utils/interfaces";
 
-export interface IAppProps {}
-
-export default function Tour(props: IAppProps) {
+export default function Tour(props: EmptyInterface) {
 	return (
 		<>
 			<StyleList>
