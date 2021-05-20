@@ -10,8 +10,6 @@ const Main = () => {
         <MainWrapper>
             <Header/>
             <SearchBar/>
-            <SearchButton/>
-            <CloseButton/>
         </MainWrapper>
     );
 }

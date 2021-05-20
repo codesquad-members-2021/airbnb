@@ -11,5 +11,10 @@ body {
     width:100%;
     height:100%;
 }
+button {
+    border:0;
+    outline: 0;
+    background-color: transparent;
+}
 `
 export default GlobalStyle
