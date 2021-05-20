@@ -12,13 +12,16 @@ class SearchViewController : UIViewController {
     @IBOutlet weak var nearPlaceCollection: UICollectionView!
     @IBOutlet weak var themePlaceCollection: UICollectionView!
     
-    let searchController = UISearchController(searchResultsController: nil)
+    let searchController = UISearchController(searchResultsController: TravelListViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchController.searchBar.placeholder = "어디로 여행가세요?"
-        self.navigationItem.searchController = searchController
         
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "어디로 여행가세요?"
+        self.navigationItem.titleView = searchBar
+        
+        searchBar.delegate = self
         nearPlaceCollection.delegate = self
         nearPlaceCollection.dataSource = self
         themePlaceCollection.delegate = self
@@ -70,7 +73,12 @@ extension SearchViewController : UICollectionViewDataSource {
         }
     }
 }
-
+extension SearchViewController : UISearchBarDelegate {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        print("called")
+        return false
+    }
+}
 extension SearchViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let width: CGFloat = collectionView.frame.width

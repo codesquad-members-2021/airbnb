@@ -142,6 +142,70 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="83.705357142857139"/>
         </scene>
+        <!--Travel List View Controller-->
+        <scene sceneID="vny-eY-iyH">
+            <objects>
+                <viewController id="1E9-eg-Y1u" customClass="TravelListViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BZl-vU-oYC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MWL-2R-CEP">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZKV-5z-TbD">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="NCL-rN-gME">
+                                        <rect key="frame" x="0.0" y="50" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="32b-Yw-vdt">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" red="0.45085787770000002" green="0.98829740290000001" blue="0.83763033149999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Nll-mH-iIu">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근처의 인기 여행지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qa9-nS-Scl">
+                                            <rect key="frame" x="8" y="12" width="398" height="26.5"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="qa9-nS-Scl" firstAttribute="centerY" secondItem="Nll-mH-iIu" secondAttribute="centerY" id="5CO-SY-44S"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="qa9-nS-Scl" secondAttribute="trailing" id="A6E-9b-PbA"/>
+                                        <constraint firstItem="qa9-nS-Scl" firstAttribute="leading" secondItem="Nll-mH-iIu" secondAttribute="leadingMargin" id="Wq7-7c-cxb"/>
+                                    </constraints>
+                                </collectionReusableView>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HkH-LN-isg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MWL-2R-CEP" firstAttribute="top" secondItem="BZl-vU-oYC" secondAttribute="top" id="KZI-FU-sHm"/>
+                            <constraint firstItem="MWL-2R-CEP" firstAttribute="leading" secondItem="HkH-LN-isg" secondAttribute="leading" id="PB5-dJ-mnJ"/>
+                            <constraint firstItem="MWL-2R-CEP" firstAttribute="trailing" secondItem="HkH-LN-isg" secondAttribute="trailing" id="Waf-tf-UMQ"/>
+                            <constraint firstAttribute="bottom" secondItem="MWL-2R-CEP" secondAttribute="bottom" id="XzH-Nh-HaM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="travelList" destination="MWL-2R-CEP" id="lt9-RU-72y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wcw-gd-mTW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="83.705357142857139"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
