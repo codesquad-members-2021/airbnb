@@ -37,6 +37,11 @@ final class ViewController: UIViewController {
         performSegue(withIdentifier: "local", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let locationController = segue.destination as? LocationViewController else { return }
+        locationController.getLocationManager(manager: self.locationManager)
+    }
+    
     func bind() {
         locationManager.$mainImageData
             .receive(on: DispatchQueue.main)
