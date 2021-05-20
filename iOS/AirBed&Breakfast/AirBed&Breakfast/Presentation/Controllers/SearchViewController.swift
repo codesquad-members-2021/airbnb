@@ -40,6 +40,10 @@ class SearchViewController: UIViewController {
         searchController.searchBar.placeholder = "Search Candies"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+        // forTest
+        let targetVC = self.storyboard?.instantiateViewController(identifier: "DateSelectionViewController") as! DateSelectionViewController
+        navigationController?.pushViewController(targetVC, animated: false)
     }
 
     @IBAction func navigationBarBackButtonPressed(_ sender: UIBarButtonItem) {

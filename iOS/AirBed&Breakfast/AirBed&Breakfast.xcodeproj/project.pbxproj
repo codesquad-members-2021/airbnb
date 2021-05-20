@@ -18,6 +18,10 @@
 		885CEB4C26538DDC00B3291F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB4B26538DDC00B3291F /* SearchViewController.swift */; };
 		885CEB512653957A00B3291F /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB4F2653957A00B3291F /* SearchResultCollectionViewCell.swift */; };
 		885CEB522653957A00B3291F /* SearchResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885CEB502653957A00B3291F /* SearchResultCollectionViewCell.xib */; };
+		885CEB5E2656355200B3291F /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB5D2656355200B3291F /* DateSelectionViewController.swift */; };
+		885CEB65265639FF00B3291F /* ReservationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB64265639FF00B3291F /* ReservationDetailViewController.swift */; };
+		885CEB6A26563A8200B3291F /* ReservationDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB6826563A8200B3291F /* ReservationDetailTableViewCell.swift */; };
+		885CEB6B26563A8200B3291F /* ReservationDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885CEB6926563A8200B3291F /* ReservationDetailTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +50,10 @@
 		885CEB4B26538DDC00B3291F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		885CEB4F2653957A00B3291F /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		885CEB502653957A00B3291F /* SearchResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCollectionViewCell.xib; sourceTree = "<group>"; };
+		885CEB5D2656355200B3291F /* DateSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
+		885CEB64265639FF00B3291F /* ReservationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDetailViewController.swift; sourceTree = "<group>"; };
+		885CEB6826563A8200B3291F /* ReservationDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDetailTableViewCell.swift; sourceTree = "<group>"; };
+		885CEB6926563A8200B3291F /* ReservationDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReservationDetailTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				885CEB3C26535E7D00B3291F /* View */,
-				885CEB3D26535E8A00B3291F /* Controller */,
+				885CEB3D26535E8A00B3291F /* Controllers */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -143,17 +151,19 @@
 			children = (
 				8843A7C226523EA80068B4E3 /* Main.storyboard */,
 				885CEB5526539C7500B3291F /* SearchResultCollectionView */,
+				885CEB612656393700B3291F /* ReservationDetailView */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		885CEB3D26535E8A00B3291F /* Controller */ = {
+		885CEB3D26535E8A00B3291F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				8843A7C026523EA80068B4E3 /* WelcomeViewController.swift */,
 				885CEB4B26538DDC00B3291F /* SearchViewController.swift */,
+				885CEB5D2656355200B3291F /* DateSelectionViewController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		885CEB3E26535EA100B3291F /* Resources */ = {
@@ -173,6 +183,16 @@
 				885CEB502653957A00B3291F /* SearchResultCollectionViewCell.xib */,
 			);
 			path = SearchResultCollectionView;
+			sourceTree = "<group>";
+		};
+		885CEB612656393700B3291F /* ReservationDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				885CEB64265639FF00B3291F /* ReservationDetailViewController.swift */,
+				885CEB6826563A8200B3291F /* ReservationDetailTableViewCell.swift */,
+				885CEB6926563A8200B3291F /* ReservationDetailTableViewCell.xib */,
+			);
+			path = ReservationDetailView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8843A7C926523EAA0068B4E3 /* LaunchScreen.storyboard in Resources */,
+				885CEB6B26563A8200B3291F /* ReservationDetailTableViewCell.xib in Resources */,
 				8843A7C626523EAA0068B4E3 /* Assets.xcassets in Resources */,
 				8843A805265241200068B4E3 /* README.md in Resources */,
 				885CEB522653957A00B3291F /* SearchResultCollectionViewCell.xib in Resources */,
@@ -280,8 +301,11 @@
 				8843A7C126523EA80068B4E3 /* WelcomeViewController.swift in Sources */,
 				8843A7BD26523EA80068B4E3 /* AppDelegate.swift in Sources */,
 				885CEB4C26538DDC00B3291F /* SearchViewController.swift in Sources */,
+				885CEB65265639FF00B3291F /* ReservationDetailViewController.swift in Sources */,
+				885CEB5E2656355200B3291F /* DateSelectionViewController.swift in Sources */,
 				8843A7BF26523EA80068B4E3 /* SceneDelegate.swift in Sources */,
 				885CEB512653957A00B3291F /* SearchResultCollectionViewCell.swift in Sources */,
+				885CEB6A26563A8200B3291F /* ReservationDetailTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
