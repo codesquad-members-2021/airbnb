@@ -21,6 +21,9 @@ const IconContainer = styled.div`
   width: 4.8rem;
   height: 2.5rem;
   border-radius: 30px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default AccountMenu;
