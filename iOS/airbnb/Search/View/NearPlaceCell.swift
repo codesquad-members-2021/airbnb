@@ -7,14 +7,7 @@
 
 import UIKit
 
-class TravelAreaCell: UICollectionViewCell {
-    
-    static var nibName: String {
-        return String(describing: TravelAreaCell.self)
-    }
-    static var reuseIdentifier: String {
-        return String(describing: TravelAreaCell.self)
-    }
+class NearPlaceCell: UICollectionViewCell, IdentityInfo {
 
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var areaTitle: UILabel!
@@ -22,6 +15,10 @@ class TravelAreaCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        config()
+    }
+    func config(){
+        thumbnail.layer.cornerRadius = 10
     }
 
 }

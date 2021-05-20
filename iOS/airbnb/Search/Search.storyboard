@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Mce-hi-LFW">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="752"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1160"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mlp-dj-LSF">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="488"/>
@@ -36,22 +36,79 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="224" id="c1L-kn-nBZ"/>
                                                 </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vhw-L4-D18">
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qvf-LL-yAe">
                                                     <size key="itemSize" width="253" height="74"/>
-                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="headerReferenceSize" width="50" height="50"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TravelAreaCell" id="E5I-7U-7oE" customClass="TravelAreaCell" customModule="airbnb" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="253" height="74"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zim-fw-4nj">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="NearPlaceCell" id="Oty-Ae-lvZ" customClass="NearPlaceCell" customModule="airbnb" customModuleProvider="target">
+                                                        <rect key="frame" x="80.5" y="50" width="253" height="74"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dbK-xY-E5C">
                                                             <rect key="frame" x="0.0" y="0.0" width="253" height="74"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </collectionViewCellContentView>
                                                     </collectionViewCell>
                                                 </cells>
+                                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HeaderReusableView" id="D9Y-iN-yQX" customClass="HeaderReusableView" customModule="airbnb" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가까운 여행지 둘러보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRI-3T-Hgr">
+                                                            <rect key="frame" x="8" y="13" width="398" height="24"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="FRI-3T-Hgr" firstAttribute="leading" secondItem="D9Y-iN-yQX" secondAttribute="leadingMargin" id="9zn-uO-9fS"/>
+                                                        <constraint firstItem="FRI-3T-Hgr" firstAttribute="centerY" secondItem="D9Y-iN-yQX" secondAttribute="centerY" id="hP1-6e-FfW"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="FRI-3T-Hgr" secondAttribute="trailing" id="wmT-XU-D86"/>
+                                                    </constraints>
+                                                </collectionReusableView>
+                                            </collectionView>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a1J-09-J0J">
+                                                <rect key="frame" x="0.0" y="792" width="414" height="368"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="368" id="EZ1-ec-Uwk"/>
+                                                </constraints>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JiI-oy-b00">
+                                                    <size key="itemSize" width="253" height="368"/>
+                                                    <size key="headerReferenceSize" width="50" height="56"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SpecialPlaceCell" id="ITo-R9-bF9" customClass="SpecialPlaceCell" customModule="airbnb" customModuleProvider="target">
+                                                        <rect key="frame" x="50" y="0.0" width="253" height="368"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WwL-ud-xbt">
+                                                            <rect key="frame" x="0.0" y="0.0" width="253" height="368"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </collectionViewCellContentView>
+                                                    </collectionViewCell>
+                                                </cells>
+                                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HeaderReusableView" id="B33-xf-4Ov" customClass="HeaderReusableView" customModule="airbnb" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="368"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="어디에서나 여행은 살아보는거야" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qe-zK-xgL">
+                                                            <rect key="frame" x="8" y="172" width="34" height="24"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="8qe-zK-xgL" firstAttribute="centerY" secondItem="B33-xf-4Ov" secondAttribute="centerY" id="6wV-q5-6c1"/>
+                                                        <constraint firstItem="8qe-zK-xgL" firstAttribute="leading" secondItem="B33-xf-4Ov" secondAttribute="leadingMargin" id="FiL-jQ-KkW"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="8qe-zK-xgL" secondAttribute="trailing" id="Jsa-FD-TKT"/>
+                                                    </constraints>
+                                                </collectionReusableView>
                                             </collectionView>
                                         </subviews>
                                     </stackView>
@@ -77,7 +134,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="travelArea" destination="FFM-Bl-tds" id="tBi-MJ-OOA"/>
+                        <outlet property="nearPlaceCollection" destination="FFM-Bl-tds" id="tBi-MJ-OOA"/>
+                        <outlet property="themePlaceCollection" destination="a1J-09-J0J" id="B8C-ae-MZL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

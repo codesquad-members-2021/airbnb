@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		102FA1F726554C3900B761C7 /* SpecialPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102FA1F526554C3900B761C7 /* SpecialPlaceCell.swift */; };
+		102FA1F826554C3900B761C7 /* SpecialPlaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 102FA1F626554C3900B761C7 /* SpecialPlaceCell.xib */; };
+		102FA1FA265550CD00B761C7 /* IdentityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102FA1F9265550CD00B761C7 /* IdentityInfo.swift */; };
 		10D29C6126538C6800E71840 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D29C6026538C6800E71840 /* AppDelegate.swift */; };
 		10D29C6326538C6800E71840 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D29C6226538C6800E71840 /* SceneDelegate.swift */; };
 		10D29C6526538C6800E71840 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D29C6426538C6800E71840 /* MainViewController.swift */; };
@@ -21,11 +24,15 @@
 		10E1B1702653DDEF0087B69B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1B16F2653DDEF0087B69B /* Coordinator.swift */; };
 		10E1B1722653DE0D0087B69B /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1B1712653DE0D0087B69B /* Storyboarded.swift */; };
 		10E1B1742653DE2F0087B69B /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1B1732653DE2F0087B69B /* MainCoordinator.swift */; };
-		10E1B17A2653F49D0087B69B /* TravelAreaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1B1782653F49D0087B69B /* TravelAreaCell.swift */; };
-		10E1B17B2653F49D0087B69B /* TravelAreaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10E1B1792653F49D0087B69B /* TravelAreaCell.xib */; };
+		10E1B17A2653F49D0087B69B /* NearPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1B1782653F49D0087B69B /* NearPlaceCell.swift */; };
+		10E1B17B2653F49D0087B69B /* NearPlaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10E1B1792653F49D0087B69B /* NearPlaceCell.xib */; };
+		10E1B17D265407680087B69B /* HeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E1B17C265407680087B69B /* HeaderReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		102FA1F526554C3900B761C7 /* SpecialPlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialPlaceCell.swift; sourceTree = "<group>"; };
+		102FA1F626554C3900B761C7 /* SpecialPlaceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpecialPlaceCell.xib; sourceTree = "<group>"; };
+		102FA1F9265550CD00B761C7 /* IdentityInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityInfo.swift; sourceTree = "<group>"; };
 		10D29C5D26538C6800E71840 /* airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10D29C6026538C6800E71840 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10D29C6226538C6800E71840 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,8 +49,9 @@
 		10E1B16F2653DDEF0087B69B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		10E1B1712653DE0D0087B69B /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 		10E1B1732653DE2F0087B69B /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		10E1B1782653F49D0087B69B /* TravelAreaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelAreaCell.swift; sourceTree = "<group>"; };
-		10E1B1792653F49D0087B69B /* TravelAreaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TravelAreaCell.xib; sourceTree = "<group>"; };
+		10E1B1782653F49D0087B69B /* NearPlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearPlaceCell.swift; sourceTree = "<group>"; };
+		10E1B1792653F49D0087B69B /* NearPlaceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NearPlaceCell.xib; sourceTree = "<group>"; };
+		10E1B17C265407680087B69B /* HeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +93,7 @@
 				10E1B16F2653DDEF0087B69B /* Coordinator.swift */,
 				10E1B1712653DE0D0087B69B /* Storyboarded.swift */,
 				10E1B1732653DE2F0087B69B /* MainCoordinator.swift */,
+				102FA1F9265550CD00B761C7 /* IdentityInfo.swift */,
 				10D29C882653A5C300E71840 /* Search */,
 				10D29C872653A5BF00E71840 /* Login */,
 				10D29C862653A5B800E71840 /* WishList */,
@@ -123,8 +132,11 @@
 		10E1B1772653F44E0087B69B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				10E1B1782653F49D0087B69B /* TravelAreaCell.swift */,
-				10E1B1792653F49D0087B69B /* TravelAreaCell.xib */,
+				10E1B1782653F49D0087B69B /* NearPlaceCell.swift */,
+				10E1B1792653F49D0087B69B /* NearPlaceCell.xib */,
+				10E1B17C265407680087B69B /* HeaderReusableView.swift */,
+				102FA1F526554C3900B761C7 /* SpecialPlaceCell.swift */,
+				102FA1F626554C3900B761C7 /* SpecialPlaceCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,12 +198,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				102FA1F826554C3900B761C7 /* SpecialPlaceCell.xib in Resources */,
 				10D29C6D26538C6900E71840 /* LaunchScreen.storyboard in Resources */,
 				10D29C6A26538C6900E71840 /* Assets.xcassets in Resources */,
 				10D29C8F2653A89500E71840 /* Search.storyboard in Resources */,
 				10D29C912653A89F00E71840 /* Login.storyboard in Resources */,
 				10D29C932653A8A600E71840 /* WishList.storyboard in Resources */,
-				10E1B17B2653F49D0087B69B /* TravelAreaCell.xib in Resources */,
+				10E1B17B2653F49D0087B69B /* NearPlaceCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,9 +218,12 @@
 				10D29C6526538C6800E71840 /* MainViewController.swift in Sources */,
 				10D29C8D2653A61E00E71840 /* WishListViewController.swift in Sources */,
 				10D29C6126538C6800E71840 /* AppDelegate.swift in Sources */,
-				10E1B17A2653F49D0087B69B /* TravelAreaCell.swift in Sources */,
+				10E1B17D265407680087B69B /* HeaderReusableView.swift in Sources */,
+				10E1B17A2653F49D0087B69B /* NearPlaceCell.swift in Sources */,
 				10D29C75265393F800E71840 /* SearchViewController.swift in Sources */,
+				102FA1FA265550CD00B761C7 /* IdentityInfo.swift in Sources */,
 				10D29C8B2653A61500E71840 /* LoginViewController.swift in Sources */,
+				102FA1F726554C3900B761C7 /* SpecialPlaceCell.swift in Sources */,
 				10D29C6326538C6800E71840 /* SceneDelegate.swift in Sources */,
 				10E1B1702653DDEF0087B69B /* Coordinator.swift in Sources */,
 				10E1B1742653DE2F0087B69B /* MainCoordinator.swift in Sources */,
