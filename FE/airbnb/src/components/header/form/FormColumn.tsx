@@ -3,13 +3,18 @@ import styled from 'styled-components';
 interface Props {
   title: string;
   description: string;
+  isInput?: boolean;
 }
 
-const FormColumn = ({ title, description }: Props) => {
+const FormColumn = ({ title, description, isInput }: Props) => {
   return (
     <StyledFormColumn>
       <div className='title'>{title}</div>
-      <div className='description'>{description}</div>
+      {isInput ? (
+        <input type='text' name='locationInput' placeholder={description} />
+      ) : (
+        <div className='description'>{description}</div>
+      )}
     </StyledFormColumn>
   );
 };

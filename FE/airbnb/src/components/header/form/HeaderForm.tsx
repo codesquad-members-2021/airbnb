@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import FormColumn from './FormColumn';
 import { IoSearch } from 'react-icons/io5';
 import HoverBlock from '../HoverBlock';
+import { useRecoilState } from 'recoil';
+import { reserveSelectState } from '../headerAtom';
 
 interface formColumn {
   title: string;
@@ -14,13 +16,19 @@ const HeaderForm = () => {
     { title: '체크인', description: '날짜' },
     { title: '체크아웃', description: '날짜' },
     { title: '요금', description: '금액대 설정' },
-    { title: '요금', description: '게스트 추가' },
+    { title: '인원', description: '게스트 추가' },
   ];
+
+  const [isSelected, setIsSelected] = useRecoilState(reserveSelectState);
 
   return (
     <StyledHeaderForm>
       <HoverBlock className='form__column location' color='gray4'>
-        <FormColumn title={FORM_COLUMN[0].title} description={FORM_COLUMN[0].description} />
+        <FormColumn
+          title={FORM_COLUMN[0].title}
+          description={FORM_COLUMN[0].description}
+          isInput={true}
+        />
       </HoverBlock>
       <HoverBlock className='form__column reservation' color='gray4'>
         <FormColumn title={FORM_COLUMN[1].title} description={FORM_COLUMN[1].description} />
@@ -54,6 +62,7 @@ const StyledHeaderForm = styled.div<StyleProps>`
   .form__column {
     padding: 1rem;
     border-radius: 3rem;
+    cursor: pointer;
   }
   .location {
     padding-left: 2rem;

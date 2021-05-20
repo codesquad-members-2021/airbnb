@@ -15,6 +15,14 @@ body {
   box-sizing: border-box;
 }
 
+input {
+  border: none;
+  background-color: transparent;
+}
+input:focus {
+  outline: none;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
