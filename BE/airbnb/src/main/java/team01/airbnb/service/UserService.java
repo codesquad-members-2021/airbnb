@@ -100,8 +100,8 @@ public class UserService {
         return null;
     }
 
-    private ResponseEntity<String> getJsonResponseByPost(String uri, @Nullable HttpEntity<?> requestEntity) {
-        return new RestTemplate().exchange(
+    private <T> ResponseEntity<T> getJsonResponseByPost(String uri, @Nullable HttpEntity<?> requestEntity) {
+        return (ResponseEntity<T>) new RestTemplate().exchange(
                 uri,
                 HttpMethod.POST,
                 requestEntity,
