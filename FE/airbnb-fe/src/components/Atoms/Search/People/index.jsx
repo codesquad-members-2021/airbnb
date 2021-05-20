@@ -17,10 +17,7 @@ const People = () => {
 const PeopleDiv = styled.div`
   display: grid;
   grid-template-columns: 4fr 1fr;
-  /* justify-content: space-between; */
-  padding: 0;
-  border-radius: 3rem;
-  padding: 0.8rem 1.5rem;
+  padding: 0.9rem 1.5rem;
   border-radius: 3rem;
   &:hover {
     background: ${({ theme }) => theme.colors.gray6};

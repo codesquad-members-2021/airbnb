@@ -17,17 +17,16 @@ const Price = () => {
 
 const PriceDiv = styled.div`
   display: grid;
-  grid-template-columns: 6fr 1fr;
+  grid-template-columns: 6fr 0.1fr;
   justify-content: space-between;
   align-items: center;
 `;
 const PriceWrap = styled.div`
   display: flex;
   flex-direction: column;
-  font-weight: bold;
   align-items: flex-start;
   border-radius: 3rem;
-  padding: 0.75rem 1.5rem;
+  padding: 0.9rem 1.5rem;
   &:hover {
     background: ${({ theme }) => theme.colors.gray6};
   }
