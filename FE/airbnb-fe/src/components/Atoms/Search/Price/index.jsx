@@ -3,15 +3,13 @@ import styled from 'styled-components';
 
 const Price = ({ dispatch }) => {
   return (
-    <>
-      <PriceDiv>
-        <PriceWrap onClick={() => dispatch({ type: 'PRICE' })}>
-          <PriceTitle>요금</PriceTitle>
-          <PriceInp>금액대 설정</PriceInp>
-        </PriceWrap>
-        <LineDiv />
-      </PriceDiv>
-    </>
+    <PriceDiv>
+      <PriceWrap onClick={() => dispatch({ type: 'PRICE' })}>
+        <PriceTitle>요금</PriceTitle>
+        <PriceInp>금액대 설정</PriceInp>
+      </PriceWrap>
+      <LineDiv />
+    </PriceDiv>
   );
 };
 

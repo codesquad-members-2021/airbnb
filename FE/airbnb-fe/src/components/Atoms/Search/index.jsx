@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import Price from './Price';
 import Check from './Check';
 import People from './People';
+import CheckModal from './Check/CheckModal';
+import PriceModal from './Price/PriceModal';
+import PeopleModal from './People/PeopleModal';
 import SearchBtn from './SearchBtn';
 
 const Search = () => {
@@ -41,12 +44,13 @@ const Search = () => {
       <SearchWrap>
         <Check dispatch={dispatch}></Check>
         <Price dispatch={dispatch}></Price>
-        <People></People>
+        <People dispatch={dispatch}></People>
         <SearchBtnWrap>
           <SearchBtn />
         </SearchBtnWrap>
         {checkInOut && <CheckModal />}
         {price && <PriceModal />}
+        {people && <PeopleModal />}
       </SearchWrap>
     </SearchDiv>
   );
@@ -55,12 +59,12 @@ const Search = () => {
 const SearchDiv = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
+  /* width: 916px; */
 `;
 const SearchWrap = styled.div`
   position: relative;
   height: 76px;
-  width: 63.6%;
+  width: 916px;
   align-items: center;
   display: grid;
   grid-template-columns: 5fr 3fr 3fr;
@@ -74,22 +78,6 @@ const SearchWrap = styled.div`
 const SearchBtnWrap = styled.div`
   position: absolute;
   right: 1rem;
-`;
-
-const CheckModal = styled.div`
-  position: absolute;
-  width: 60rem;
-  height: 10rem;
-  background: white;
-  bottom: -11rem;
-`;
-
-const PriceModal = styled.div`
-  position: absolute;
-  width: 60rem;
-  height: 10rem;
-  background: pink;
-  bottom: -11rem;
 `;
 
 export default Search;
