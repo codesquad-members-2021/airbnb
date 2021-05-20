@@ -10,13 +10,13 @@ interface User {
 }
 
 const Main = (): React.ReactElement => {
-    const [user, setUser] = useState<User>({
-        email: '',
-        name: '',
-    });
+    // const [user, setUser] = useState<User>({
+    //     email: '',
+    //     name: '',
+    // });
     return (
         <>
-            <Hero user={user} setUser={setUser} />
+            <Hero />
             <NearbyLocation />
             <HouseType />
             <BeingHost />

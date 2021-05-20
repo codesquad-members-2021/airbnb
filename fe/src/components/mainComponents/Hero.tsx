@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Header from './heroComponents/Header';
-import SearchBar from './heroComponents/SearchBar';
+import Searcher from './heroComponents/Searcher';
 
 interface User {
     email: string;
@@ -17,29 +17,26 @@ interface IProps {
     setUser: (state: User | SetUserParams) => void;
 }
 
-const Hero = (props: IProps): React.ReactElement => {
-    const { user, setUser } = props;
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setUser({
-            ...user,
-            name: event.target.value,
-        });
-    };
+const Hero = (): React.ReactElement => {
+    // const { user, setUser } = props;
+    // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setUser({
+    //         ...user,
+    //         name: event.target.value,
+    //     });
+    // };
     return (
-        <div>
-            <input onChange={handleChange} value={user.name} />
+        <HeroSection>
             <Header />
-            <SearchSection>
-                <SearchBar />
-            </SearchSection>
-            <h1>{user.name}</h1>
-        </div>
+            <Searcher />
+            {/* <h1>{user.name}</h1> */}
+        </HeroSection>
     );
 };
 
 export default Hero;
 
-const SearchSection = styled.div`
-    display: flex;
-    justify-content: center;
+const HeroSection = styled.section`
+    height: 640px;
+    background: #ddd;
 `;
