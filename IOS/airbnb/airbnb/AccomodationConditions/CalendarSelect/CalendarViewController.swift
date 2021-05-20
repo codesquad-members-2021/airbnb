@@ -7,13 +7,11 @@
 
 import UIKit
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: UIViewController, Instantiable {
 
+    static var reuseIdentifier: String { String(describing: self) }
+    static let backButtonTitle = "날짜 선택"
     var location: LocationSearchResult?
-    
-    static var reuseIdentifier: String {
-        return String(describing: self)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

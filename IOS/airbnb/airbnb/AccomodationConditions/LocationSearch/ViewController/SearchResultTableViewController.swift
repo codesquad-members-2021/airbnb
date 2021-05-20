@@ -11,17 +11,19 @@ protocol SearchResultDelegate {
     func didSelect(result: LocationSearchResult)
 }
 
-class SearchResultTableViewController: UITableViewController {
+class SearchResultTableViewController: UITableViewController, Instantiable {
 
+    static var reuseIdentifier: String { String(describing: self) }
     @IBOutlet var searchResultTable: UITableView!
     private var searchResults: [LocationSearchResult]?
-    var viewModel: SearchResultViewModel?
+    private var viewModel: SearchResultViewModel!
     var delegate: SearchResultDelegate?
     
-    static var reuseIdentifier: String {
-        return String(describing: self)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel = SearchResultViewModel()
     }
-    
+
     func updateSearchResult(with newKeyword: String) {
         guard let viewModel = viewModel else { return }
         

@@ -7,19 +7,17 @@
 
 import UIKit
 
-class PopularLocationViewController: UIViewController {
+class PopularLocationViewController: UIViewController, Instantiable {
 
+    static var reuseIdentifier: String { String(describing: self) }
+    static let backButtonTitle = "위치 검색"
+    
     @IBOutlet weak var popularLocationTableView: UITableView!
     private var popularLocationTableViewDataSource: PopularLocationTableViewDataSource!
     private var searchController: LocationSearchController!
     private var searchResultUpdater: LocationSearchResultUpdating!
-    
     private var viewModel: PopularLocationViewModel!
-    
-    static var reuseIdentifier: String {
-        return String(describing: self)
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         popularLocationTableViewDataSource = PopularLocationTableViewDataSource()
@@ -36,11 +34,8 @@ class PopularLocationViewController: UIViewController {
     }
     
     private func setNavigationSearchController() {
-        let searchResultViewControllerID = SearchResultTableViewController.reuseIdentifier
-        
-        //controller 팩토리 생성하여 옵셔널 처리 맡겨버리기
-        let searchResultViewController = self.storyboard?.instantiateViewController(withIdentifier: searchResultViewControllerID) as? SearchResultTableViewController ?? SearchResultTableViewController()
-        searchResultViewController.viewModel = SearchResultViewModel()
+        let storyboard = self.storyboard ?? StoryboardFactory.create(.accomodationConditions)
+        let searchResultViewController = ViewControllerFactory.create(from: storyboard, type: SearchResultTableViewController.self)
         searchController = LocationSearchController(searchResultsController: searchResultViewController)
         searchResultViewController.delegate = self
         navigationItem.searchController = searchController
@@ -99,7 +94,7 @@ extension PopularLocationViewController: UISearchBarDelegate {
     
     private func setCancelBarButton() {
         guard navigationItem.rightBarButtonItem == nil else { return }
-        let cancelButtonItem = UIBarButtonItem(title: "Cancel",
+        let cancelButtonItem = UIBarButtonItem(title: "지우기",
                                                style: .done,
                                                target: self,
                                                action: #selector(searchCanceled(_:)))
@@ -117,10 +112,10 @@ extension PopularLocationViewController: SearchResultDelegate {
     }
     
     private func pushNextViewController(with result: LocationSearchResult) {
-        let nextViewControllerID = CalendarViewController.reuseIdentifier
-        let nextViewController = storyboard?.instantiateViewController(identifier: nextViewControllerID) as? CalendarViewController ?? CalendarViewController()
+        let storyboard = self.storyboard ?? StoryboardFactory.create(.accomodationConditions)
+        let nextViewController = ViewControllerFactory.create(from: storyboard, type: CalendarViewController.self)
         nextViewController.location = result
-        self.navigationItem.backButtonTitle = "Back"
+        self.navigationItem.backButtonTitle = PopularLocationViewController.backButtonTitle
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     
