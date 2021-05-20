@@ -51,9 +51,10 @@ public class UserService {
     }
 
     @Transactional
-    public int join(User user) {
-        return jdbcTemplate.update("INSERT INTO user (`username`, `email`, `role`) VALUES(?, ?, ?)"
+    public boolean join(User user) {
+        int result = jdbcTemplate.update("INSERT INTO user (`username`, `email`, `role`) VALUES(?, ?, ?)"
                 , user.getUsername(), user.getEmail(), user.getRole().name());
+        return result == 1;
     }
 
     public String getAccessToken(String code) {
