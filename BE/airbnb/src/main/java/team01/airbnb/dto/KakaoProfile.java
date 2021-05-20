@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class KakaoProfile {
+public class KakaoProfile implements SocialProfile {
     private Integer id;
 
     @JsonProperty(value = "connected_at")
@@ -14,6 +14,16 @@ public class KakaoProfile {
 
     @JsonProperty(value = "kakao_account")
     private KakaoAccount kakaoAccount;
+
+    @Override
+    public String getUsername() {
+        return properties.nickname;
+    }
+
+    @Override
+    public String getEmail() {
+        return kakaoAccount.email;
+    }
 
     @Data
     public class Properties {

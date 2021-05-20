@@ -13,10 +13,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
-import team01.airbnb.dto.KakaoLogout;
-import team01.airbnb.dto.KakaoProfile;
-import team01.airbnb.dto.OAuthToken;
-import team01.airbnb.dto.RoleType;
+import team01.airbnb.dto.*;
 import team01.airbnb.domain.User;
 import team01.airbnb.exception.NoResultSetException;
 import team01.airbnb.exception.NotProcessJsonException;
@@ -77,7 +74,7 @@ public class UserService {
         return oauthToken.getAccess_token();
     }
 
-    public KakaoProfile getKakaoProfile(String accessToken) {
+    public SocialProfile getKakaoProfile(String accessToken) {
         ResponseEntity<String> response = getJsonResponseByPost(
                 kakaoLoginUtils.getProfileUri()
                 , kakaoLoginUtils.getKakaoProfileRequestEntity(accessToken));

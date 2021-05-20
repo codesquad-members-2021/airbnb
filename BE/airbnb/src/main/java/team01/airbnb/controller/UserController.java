@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import team01.airbnb.config.auth.dto.SessionUser;
-import team01.airbnb.dto.KakaoProfile;
 import team01.airbnb.domain.User;
+import team01.airbnb.dto.SocialProfile;
 import team01.airbnb.service.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -21,8 +21,8 @@ public class UserController {
     @GetMapping("/auth/kakao/callback")
     public String kakaoCallBack(@RequestParam("code") String code) {
         String accessToken = userService.getAccessToken(code);
-        KakaoProfile kakaoProfile = userService.getKakaoProfile(accessToken);
-        User kakaoUser = User.fromKakaoProfile(kakaoProfile);
+        SocialProfile kakaoProfile = userService.getKakaoProfile(accessToken);
+        User kakaoUser = User.fromSocialProfile(kakaoProfile);
         httpSession.setAttribute("user", new SessionUser(kakaoUser));
         httpSession.setAttribute("access_token", accessToken);
         return "redirect:/";
