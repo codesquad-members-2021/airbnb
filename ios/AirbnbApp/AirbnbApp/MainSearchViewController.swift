@@ -23,6 +23,8 @@ class MainSearchViewController: UIViewController {
             return
         }
         bestDestinations = destinations
+        
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
