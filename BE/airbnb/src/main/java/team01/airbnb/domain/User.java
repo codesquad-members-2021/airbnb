@@ -22,7 +22,7 @@ public class User {
     public static User fromKakaoProfile(KakaoProfile kakaoProfile) {
         return User.builder()
                 .username(kakaoProfile.getProperties().getNickname())
-                .email(kakaoProfile.getKakao_account().getEmail())
+                .email(kakaoProfile.getKakaoAccount().getEmail())
                 .role(RoleType.USER)
                 .build();
     }
