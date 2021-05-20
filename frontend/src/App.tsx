@@ -1,5 +1,5 @@
-import './App.css';
 import { BrowserRouter as Router, Switch, Route, RouteComponentProps } from 'react-router-dom';
+import './App.css';
 import GlobalStyle from './style/GlobalStyle'
 import { ThemeProvider } from 'styled-components'
 import { Theme } from './style/Theme'

@@ -14,7 +14,7 @@ const Place = () => {
   },[open])
 
   return(
-    <>
+    <PlaceSection>
     <BarBlock clicked={clicked} ref={PlaceToggle}>
       <BarInnerWrapper>
         <BarTitle>위치</BarTitle>
@@ -28,12 +28,16 @@ const Place = () => {
       </Modal>
       )
     }
-    </>
+    </PlaceSection>
   )
 }
+
+const PlaceSection = styled.div`
+display:flex;
+flex-direction: column;
+`
 const Modal = styled.div`
-width: 100px;
-height: 100px;
+margin-top: 16px;
 `
 
 export default Place;

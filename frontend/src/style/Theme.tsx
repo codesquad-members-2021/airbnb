@@ -23,6 +23,15 @@ export const Theme = {
     lg: '20px',
     x_lg: '24px',
     super_lg: '32px',
+  },
+  modalWidth:{
+    place: '280px',
+  },
+  modalHeight:{
+    place: 'auto' 
+  },
+  modalPadding:{
+    place: '20px 0'
   }
 }
 
@@ -31,3 +40,6 @@ export const AlignTextCenter = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+
+
