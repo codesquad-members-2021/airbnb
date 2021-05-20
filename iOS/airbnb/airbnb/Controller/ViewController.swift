@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UISearchBarDelegate {
    
     @IBOutlet weak var tripPlaceCollectionView: UICollectionView!
     private var tripPlaceCollectionViewDataSource: TripPlaceCollectionViewDataSource = TripPlaceCollectionViewDataSource()
@@ -24,12 +24,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupSearchBar()
     }
-}
-
-extension ViewController: UISearchResultsUpdating, UISearchBarDelegate {
-    func updateSearchResults(for searchController: UISearchController) {
-        //
-    }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         self.performSegue(withIdentifier: "result", sender: nil)
@@ -42,3 +36,20 @@ extension ViewController: UISearchResultsUpdating, UISearchBarDelegate {
         self.searchBar.delegate = self
     }
 }
+
+//extension ViewController: UISearchResultsUpdating, UISearchBarDelegate {
+//    func updateSearchResults(for searchController: UISearchController) {
+//        //
+//    }
+//
+//    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+//        self.performSegue(withIdentifier: "result", sender: nil)
+//        return false
+//    }
+//
+//    private func setupSearchBar() {
+//        self.navigationItem.titleView = self.searchBar
+//        self.searchBar.placeholder = "어디로 여행가세요?"
+//        self.searchBar.delegate = self
+//    }
+//}

@@ -25,6 +25,7 @@
 		D4DDA6962653764700FE52FA /* TripPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA6952653764700FE52FA /* TripPlace.swift */; };
 		D4DDA69B2653767B00FE52FA /* RecommendTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA69A2653767B00FE52FA /* RecommendTrip.swift */; };
 		D4DDA6A0265376E500FE52FA /* FirstPageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA69F265376E500FE52FA /* FirstPageDTO.swift */; };
+		D4DDA6D126563CA400FE52FA /* SuggestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA6D026563CA400FE52FA /* SuggestionsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		D4DDA6952653764700FE52FA /* TripPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlace.swift; sourceTree = "<group>"; };
 		D4DDA69A2653767B00FE52FA /* RecommendTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTrip.swift; sourceTree = "<group>"; };
 		D4DDA69F265376E500FE52FA /* FirstPageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPageDTO.swift; sourceTree = "<group>"; };
+		D4DDA6D026563CA400FE52FA /* SuggestionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 				82FBF0D326538AB8009B4A1F /* TripPlaceCollectionViewDataSource.swift */,
 				82FBF0D526538E07009B4A1F /* RecommendTripCollectionViewDataSource.swift */,
 				825702DF2653AE99009237BE /* SearchViewController.swift */,
+				D4DDA6D026563CA400FE52FA /* SuggestionsTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				D4DDA6872653627100FE52FA /* EndPoint.swift in Sources */,
 				D4DDA6962653764700FE52FA /* TripPlace.swift in Sources */,
 				D4DDA67F265361BE00FE52FA /* Network.swift in Sources */,
+				D4DDA6D126563CA400FE52FA /* SuggestionsTableViewController.swift in Sources */,
 				D4DDA63A26524ECD00FE52FA /* SceneDelegate.swift in Sources */,
 				D4DDA69B2653767B00FE52FA /* RecommendTrip.swift in Sources */,
 			);
