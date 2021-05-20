@@ -29,6 +29,7 @@ final class LocationViewController: UIViewController {
         configureSearchController()
         registerNib()
         cityCollectionView.dataSource = self
+        cityCollectionView.delegate = self
         searchController.searchResultsUpdater = self
         
     }
@@ -80,23 +81,29 @@ extension LocationViewController: UICollectionViewDataSource {
         }
 
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CityCollectionViewCell
         
         if isFiltering() {
-            cell.label.text = detailCities[indexPath.row].name
+            cell.location.text = detailCities[indexPath.row].name
+            cell.distance.isHidden = true
         } else {
-            cell.label.text = cities[indexPath.row].name
+            cell.location.text = cities[indexPath.row].name
+            cell.distance.isHidden = false
         }
         return cell
     }
-    
-    
 }
 
 extension LocationViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         self.cityCollectionView.reloadData()
+    }
+}
+
+extension LocationViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = self.view.bounds.width
+        return CGSize(width: width, height: 60)
     }
 }
