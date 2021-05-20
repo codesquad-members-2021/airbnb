@@ -1,4 +1,5 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+
 import theme from './components/utils/theme';
 import Home from './components/Home';
 import './index.css';
@@ -15,6 +16,9 @@ export const GlobalStyle = createGlobalStyle`
   
   ol, ul, li {
     list-style: none;
+  }
+  button{
+    border:none;
   }
 `;
 

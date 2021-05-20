@@ -24,8 +24,4 @@ const HeaderDiv = styled.div`
   color: ${({ theme }) => theme.colors.gray1};
 `;
 
-const LogoIcon = styled.svg`
-  fill: black;
-`;
-
 export default Header;
