@@ -40,6 +40,7 @@ class PopularLocationViewController: UIViewController {
         
         //controller 팩토리 생성하여 옵셔널 처리 맡겨버리기
         let searchResultViewController = self.storyboard?.instantiateViewController(withIdentifier: searchResultViewControllerID) as? SearchResultTableViewController ?? SearchResultTableViewController()
+        searchResultViewController.viewModel = SearchResultViewModel()
         searchController = LocationSearchController(searchResultsController: searchResultViewController)
         searchResultViewController.delegate = self
         navigationItem.searchController = searchController
@@ -109,13 +110,13 @@ extension PopularLocationViewController: UISearchBarDelegate {
 
 extension PopularLocationViewController: SearchResultDelegate {
     
-    func didSelect(result: String) {
+    func didSelect(result: LocationSearchResult) {
         pushNextViewController(with: result)
         inactiveSearchController()
         unsetCancelBarButton()
     }
     
-    private func pushNextViewController(with result: String) {
+    private func pushNextViewController(with result: LocationSearchResult) {
         let nextViewControllerID = CalendarViewController.reuseIdentifier
         let nextViewController = storyboard?.instantiateViewController(identifier: nextViewControllerID) as? CalendarViewController ?? CalendarViewController()
         nextViewController.location = result

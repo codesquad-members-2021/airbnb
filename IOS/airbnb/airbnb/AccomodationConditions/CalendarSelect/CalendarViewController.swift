@@ -9,7 +9,7 @@ import UIKit
 
 class CalendarViewController: UIViewController {
 
-    var location: String?
+    var location: LocationSearchResult?
     
     static var reuseIdentifier: String {
         return String(describing: self)

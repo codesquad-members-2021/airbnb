@@ -33,6 +33,9 @@
 		E4F302B82656059C002C9770 /* PopularLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302B72656059C002C9770 /* PopularLocation.swift */; };
 		E4F302BA26560CC7002C9770 /* LocationSearchResultUpdating.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302B926560CC7002C9770 /* LocationSearchResultUpdating.swift */; };
 		E4F302BD26560E2D002C9770 /* PopularLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302BC26560E2D002C9770 /* PopularLocationUseCase.swift */; };
+		E4F302C4265642BA002C9770 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302C3265642BA002C9770 /* SearchResultViewModel.swift */; };
+		E4F302C6265642D8002C9770 /* NewSearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302C5265642D8002C9770 /* NewSearchUseCase.swift */; };
+		E4F302C826564431002C9770 /* LocationSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302C726564431002C9770 /* LocationSearchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +66,9 @@
 		E4F302B72656059C002C9770 /* PopularLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocation.swift; sourceTree = "<group>"; };
 		E4F302B926560CC7002C9770 /* LocationSearchResultUpdating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResultUpdating.swift; sourceTree = "<group>"; };
 		E4F302BC26560E2D002C9770 /* PopularLocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationUseCase.swift; sourceTree = "<group>"; };
+		E4F302C3265642BA002C9770 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
+		E4F302C5265642D8002C9770 /* NewSearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSearchUseCase.swift; sourceTree = "<group>"; };
+		E4F302C726564431002C9770 /* LocationSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				E4F302B2265602ED002C9770 /* PopularLocationViewModel.swift */,
+				E4F302C3265642BA002C9770 /* SearchResultViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -203,6 +210,7 @@
 			children = (
 				E4F302C0265637D2002C9770 /* DTO */,
 				E4F302B72656059C002C9770 /* PopularLocation.swift */,
+				E4F302C726564431002C9770 /* LocationSearchResult.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -211,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				E4F302BC26560E2D002C9770 /* PopularLocationUseCase.swift */,
+				E4F302C5265642D8002C9770 /* NewSearchUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -300,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4DB1CF726524A7700894DCB /* MainViewController.swift in Sources */,
+				E4F302C4265642BA002C9770 /* SearchResultViewModel.swift in Sources */,
 				E4DB1D7E2653916900894DCB /* PopularLocationTableViewCell.swift in Sources */,
 				E4DB1D7C2653912F00894DCB /* PopularLocationViewController.swift in Sources */,
 				E4F302BA26560CC7002C9770 /* LocationSearchResultUpdating.swift in Sources */,
@@ -315,7 +325,9 @@
 				E4F302B3265602ED002C9770 /* PopularLocationViewModel.swift in Sources */,
 				E481480E2654993F0069BE20 /* SearchResultTableViewController.swift in Sources */,
 				E481480C265496930069BE20 /* LocationSearchController.swift in Sources */,
+				E4F302C6265642D8002C9770 /* NewSearchUseCase.swift in Sources */,
 				E4F302AD2655FD17002C9770 /* AlamofireNetworkManagable.swift in Sources */,
+				E4F302C826564431002C9770 /* LocationSearchResult.swift in Sources */,
 				E4F302BD26560E2D002C9770 /* PopularLocationUseCase.swift in Sources */,
 				E4F302AB2655F970002C9770 /* AlamofireRequestManagable.swift in Sources */,
 				E481481026549C980069BE20 /* SearchResultTableViewCell.swift in Sources */,
