@@ -8,5 +8,5 @@
 import Foundation
 
 protocol PopularLocationConfigurable {
-    func popularLocations(completionHandler: @escaping ([PopularLocation]) -> Void)
+    func popularLocations(completionHandler: @escaping (Result<[PopularLocation], CustomError>) -> Void)
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    static let backButtonTitle = "홈"
     private var searchBar: LocationSearchBar!
     
     override func viewDidLoad() {
@@ -34,6 +35,7 @@ extension MainViewController: UISearchBarDelegate {
     private func pushNextViewController() {
         let nextStoryBoard = StoryboardFactory.create(.accomodationConditions)
         let nextViewController = ViewControllerFactory.create(from: nextStoryBoard, type: PopularLocationViewController.self)
+        self.navigationItem.backButtonTitle = MainViewController.backButtonTitle
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     

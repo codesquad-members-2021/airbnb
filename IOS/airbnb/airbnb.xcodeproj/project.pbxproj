@@ -43,6 +43,8 @@
 		E4F302DB26567345002C9770 /* SearchResultConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302DA26567345002C9770 /* SearchResultConfigurable.swift */; };
 		E4F302DD2656746E002C9770 /* PopularLocationCaseConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302DC2656746E002C9770 /* PopularLocationCaseConfigurable.swift */; };
 		E4F302DF26567480002C9770 /* NewSearchCaseConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302DE26567480002C9770 /* NewSearchCaseConfigurable.swift */; };
+		E4F302E826567B1C002C9770 /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302E726567B1C002C9770 /* AlertFactory.swift */; };
+		E4F302EA265683F5002C9770 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302E9265683F5002C9770 /* CustomError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +85,8 @@
 		E4F302DA26567345002C9770 /* SearchResultConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultConfigurable.swift; sourceTree = "<group>"; };
 		E4F302DC2656746E002C9770 /* PopularLocationCaseConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationCaseConfigurable.swift; sourceTree = "<group>"; };
 		E4F302DE26567480002C9770 /* NewSearchCaseConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSearchCaseConfigurable.swift; sourceTree = "<group>"; };
+		E4F302E726567B1C002C9770 /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
+		E4F302E9265683F5002C9770 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,7 @@
 		E481481726554A6D0069BE20 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				E4F302E9265683F5002C9770 /* CustomError.swift */,
 				E4F302AA2655F970002C9770 /* AlamofireRequestManagable.swift */,
 				E4F302A42655F837002C9770 /* AlamofireRequestManager.swift */,
 				E4F302AC2655FD17002C9770 /* AlamofireNetworkManagable.swift */,
@@ -256,6 +261,7 @@
 				E4F302D0265652D9002C9770 /* StoryboardFactory.swift */,
 				E4F302CE265650C5002C9770 /* Instantiable.swift */,
 				E4F302CC26564FCE002C9770 /* ViewControllerFactory.swift */,
+				E4F302E726567B1C002C9770 /* AlertFactory.swift */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -366,6 +372,8 @@
 				E4F302BD26560E2D002C9770 /* PopularLocationUseCase.swift in Sources */,
 				E4F302AB2655F970002C9770 /* AlamofireRequestManagable.swift in Sources */,
 				E481481026549C980069BE20 /* SearchResultTableViewCell.swift in Sources */,
+				E4F302EA265683F5002C9770 /* CustomError.swift in Sources */,
+				E4F302E826567B1C002C9770 /* AlertFactory.swift in Sources */,
 				E4F302A92655F890002C9770 /* AlamofireImageDownloadManager.swift in Sources */,
 				E4F302CF265650C5002C9770 /* Instantiable.swift in Sources */,
 			);

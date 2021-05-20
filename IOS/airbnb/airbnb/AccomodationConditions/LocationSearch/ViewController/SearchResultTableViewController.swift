@@ -27,16 +27,27 @@ class SearchResultTableViewController: UITableViewController, Instantiable {
     func updateSearchResult(with newKeyword: String) {
         guard let viewModel = viewModel else { return }
         
-        viewModel.searchResults(for: newKeyword) { searchResults in
-            self.searchResults = searchResults
-            self.updateTableView()
+        viewModel.searchResults(for: newKeyword) { result in
+            do {
+                let searchResults = try result.get()
+                self.updateTableView(with: searchResults)
+            } catch {
+                self.alertError(error: error)
+            }
         }
     }
     
-    private func updateTableView() {
+    private func updateTableView(with searchResults: [LocationSearchResult]) {
+        self.searchResults = searchResults
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+    private func alertError(error: Error) {
+        let customError = error as? CustomError ?? CustomError.unknown
+        let alert = AlertFactory.create(error: customError)
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

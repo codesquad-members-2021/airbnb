@@ -8,5 +8,5 @@
 import Foundation
 
 protocol NewSearchCaseConfigurable {
-    func search(for keyword: String, completionHandler: @escaping (Result<[LocationSearchResult], Error>) -> Void)
+    func search(for keyword: String, completionHandler: @escaping (Result<[LocationSearchResult], CustomError>) -> Void)
 }

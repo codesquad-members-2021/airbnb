@@ -43,16 +43,27 @@ class PopularLocationViewController: UIViewController, Instantiable {
     }
     
     private func configurePopularLocationTableView() {
-        viewModel.popularLocations { popularLocations in
-            self.popularLocationTableViewDataSource.updateLocations(with: popularLocations)
-            self.updateTableView()
+        viewModel.popularLocations { result in
+            do {
+                let popularLocations = try result.get()
+                self.updateTableView(with: popularLocations)
+            } catch {
+                self.alertError(error: error)
+            }
         }
     }
     
-    private func updateTableView() {
+    private func updateTableView(with popularLocations: [PopularLocation]) {
+        self.popularLocationTableViewDataSource.updateLocations(with: popularLocations)
         DispatchQueue.main.async {
             self.popularLocationTableView.reloadData()
         }
+    }
+    
+    private func alertError(error: Error) {
+        let customError = error as? CustomError ?? CustomError.unknown
+        let alert = AlertFactory.create(error: customError)
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {

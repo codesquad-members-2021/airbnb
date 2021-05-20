@@ -24,13 +24,28 @@ class PopularLocationUseCase: PopularLocationCaseConfigurable {
         self.init(networkManager: AlamofireNetworkManager(with: url))
     }
     
-    func loadPopularLocations(completionHandler: @escaping (Result<[PopularLocation], Error>) -> Void) {
+    func loadPopularLocations(completionHandler: @escaping (Result<[PopularLocation], CustomError>) -> Void) {
         let endPoint = EndPoint.popularLocations
         
-        networkManager.get(decodingType: [PopularLocation].self, endPoint: endPoint) { response in
-            let result = response.result.mapError{ $0 as Error }
-            completionHandler(result)
+        networkManager.get(decodingType: [PopularLocation].self, endPoint: endPoint) { dataResponse in
+            guard let statusCode = dataResponse.response?.statusCode else {
+                return completionHandler(.failure(CustomError.internet))
+            }
+            switch statusCode {
+            case 200..<300:
+                guard let value = dataResponse.value else {
+                    return completionHandler(.failure(CustomError.noResult))
+                }
+                completionHandler(.success(value))
+            case 300..<400:
+                completionHandler(.failure(CustomError.noResult))
+            case 400..<500:
+                completionHandler(.failure(CustomError.notAllowed))
+            case 500...:
+                completionHandler(.failure(CustomError.server))
+            default:
+                completionHandler(.failure(CustomError.unknown))
+            }
         }
     }
-
 }

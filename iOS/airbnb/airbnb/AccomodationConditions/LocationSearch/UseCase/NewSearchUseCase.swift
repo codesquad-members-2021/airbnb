@@ -25,15 +25,29 @@ class NewSearchUseCase: NewSearchCaseConfigurable {
     }
     
     func search(for keyword: String,
-                completionHandler: @escaping (Result<[LocationSearchResult], Error>) -> Void) {
-        
+                completionHandler: @escaping (Result<[LocationSearchResult], CustomError>) -> Void) {
         let endPoint = EndPoint.searchResult + "\(keyword)"
-        
-        networkManager.get(decodingType: [LocationSearchResult].self, endPoint: endPoint) { response in
-            let result = response.result.mapError{ $0 as Error }
-            completionHandler(result)
+    
+        networkManager.get(decodingType: [LocationSearchResult].self, endPoint: endPoint) { dataResponse in
+            guard let statusCode = dataResponse.response?.statusCode else {
+                return completionHandler(.failure(CustomError.internet))
+            }
+            switch statusCode {
+            case 200..<300:
+                guard let value = dataResponse.value else {
+                    return completionHandler(.failure(CustomError.noResult))
+                }
+                completionHandler(.success(value))
+            case 300..<400:
+                completionHandler(.failure(CustomError.noResult))
+            case 400..<500:
+                completionHandler(.failure(CustomError.notAllowed))
+            case 500...:
+                completionHandler(.failure(CustomError.server))
+            default:
+                completionHandler(.failure(CustomError.unknown))
+            }
         }
-        
     }
     
 }
