@@ -8,15 +8,7 @@
 import UIKit
 
 class HeaderReusableView: UICollectionReusableView, IdentityInfo {
-    /*
-    static var nibName: String {
-        return String(describing: HeaderReusableView.self)
-    }
-    static var reuseIdentifier: String {
-        return String(describing: HeaderReusableView.self)
-    }
-    */
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()

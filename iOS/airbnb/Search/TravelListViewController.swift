@@ -49,7 +49,9 @@ extension TravelListViewController : UISearchResultsUpdating {
     }
 }
 extension TravelListViewController : UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+    }
 }
 extension TravelListViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

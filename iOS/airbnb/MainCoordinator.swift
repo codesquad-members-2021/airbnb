@@ -32,8 +32,6 @@ class MainCoordinator: Coordinator {
         wishList.tabBarItem = wishItem
         login.tabBarItem = loginItem
         
-        
-        
         tabBarController.viewControllers = [search, wishList, login]
     }
 }
