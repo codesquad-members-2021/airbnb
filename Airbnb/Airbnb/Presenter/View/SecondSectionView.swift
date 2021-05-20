@@ -32,11 +32,6 @@ class SecondSectionView: UIView {
         mainTitleLabel.text = item.mainInfo
         detailInfoLabel.text = "차로 \(item.detailInfo!) 거리"
     }
-    func reuse() {
-        mainImageView.image = nil
-        mainTitleLabel.text = nil
-        detailInfoLabel.text = nil
-    }
 }
 
 //MARK: -SetupViews
@@ -64,13 +59,14 @@ private extension SecondSectionView {
         mainTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         mainTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2).isActive = true
         mainTitleLabel.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: 10).isActive = true
-        mainTitleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8).isActive = true
+        mainTitleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.4).isActive = true
         mainTitleLabel.heightAnchor.constraint(equalTo: mainImageView.heightAnchor, multiplier: 0.5).isActive = true
     }
     
     private func setupDetailInfoLabel() {
         addSubview(detailInfoLabel)
-        detailInfoLabel.font = UIFont.systemFont(ofSize: 15)
+        detailInfoLabel.numberOfLines = 2
+        detailInfoLabel.font = UIFont.systemFont(ofSize: 13)
         detailInfoLabel.textColor = UIColor.systemGray2
         detailInfoLabel.translatesAutoresizingMaskIntoConstraints = false
         detailInfoLabel.topAnchor.constraint(equalTo: mainTitleLabel.bottomAnchor, constant: 0).isActive = true

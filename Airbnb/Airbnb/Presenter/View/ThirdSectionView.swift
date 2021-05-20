@@ -26,10 +26,6 @@ class ThirdSectionView: UIView {
         mainImageView.image = UIImage(named: item.image)
         mainTitleLabel.text = item.mainInfo
     }
-    func reuse() {
-        mainImageView.image = nil
-        mainTitleLabel.text = nil
-    }
 }
 
 private extension ThirdSectionView {

@@ -37,12 +37,6 @@ class FirstSectionView: UIView {
         mainTitleLabel.text = item.mainInfo
         detailInfoLabel.text = item.detailInfo
     }
-    
-    func reuse() {
-        mainImageView.image = nil
-        mainTitleLabel.text = nil
-        detailInfoLabel.text = nil
-    }
 }
 
 //MARK: -SetupViews

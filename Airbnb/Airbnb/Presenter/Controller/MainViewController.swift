@@ -36,6 +36,9 @@ private extension MainViewController {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.headerReferenceSize = CGSize(width: self.mainInfoCollectionView.frame.width, height: self.mainInfoCollectionView.frame.height*0.2)
         mainInfoCollectionView.collectionViewLayout = flowLayout
+        mainInfoCollectionView.register(FirstSectionCell.self, forCellWithReuseIdentifier: FirstSectionCell.identifier)
+        mainInfoCollectionView.register(SecondSectionCell.self, forCellWithReuseIdentifier: SecondSectionCell.identifier)
+        mainInfoCollectionView.register(ThirdSectionCell.self, forCellWithReuseIdentifier: ThirdSectionCell.identifier)
     }
     
     private func headerCell(indexPath: IndexPath, kind: String) -> UICollectionReusableView {
@@ -51,14 +54,22 @@ private extension MainViewController {
     
     private func dataSources() -> RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData> {
         return RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData>(configureCell: {dataSource, collectionView, indexPath, item in
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCell.identifier, for: indexPath) as? MainCell  else { return UICollectionViewCell() }
             switch indexPath.section {
-            case 0: cell.configureFirstSection(item)
-            case 1: cell.configureSecondSection(item)
-            case 2: cell.configureThirdView(item)
+            case 0:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FirstSectionCell.identifier, for: indexPath) as? FirstSectionCell  else { return UICollectionViewCell() }
+                cell.configure(item)
+                return cell
+            case 1:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SecondSectionCell.identifier, for: indexPath) as? SecondSectionCell  else { return UICollectionViewCell() }
+                cell.configure(item)
+                return cell
+            case 2:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThirdSectionCell.identifier, for: indexPath) as? ThirdSectionCell  else { return UICollectionViewCell() }
+                cell.configure(item)
+                return cell
             default: break
             }
-            return cell
+            return UICollectionViewCell()
         }, configureSupplementaryView: {[weak self] dataSource, collectionView, kind, indexPath in
             guard let strongSelf = self else { return UICollectionReusableView() }
             return strongSelf.headerCell(indexPath: indexPath, kind: kind)
@@ -72,9 +83,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDelegate
         if indexPath.section == 0 {
             return CGSize(width: view.frame.width, height: view.frame.height*0.5)
         } else if indexPath.section == 1 {
-            return CGSize(width: mainInfoCollectionView.frame.width*0.4, height: mainInfoCollectionView.frame.height*0.1)
+            return CGSize(width: view.frame.width*0.4, height: view.frame.height*0.1)
         }
         else { return CGSize(width: view.frame.width*0.8, height: view.frame.height*0.4)}
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+    }
 }
