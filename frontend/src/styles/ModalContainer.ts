@@ -1,12 +1,38 @@
 import styled from "styled-components";
 
 const ModalContainer = styled.div<{ type: string }>`
+	width: ${(props) => {
+		switch (props.type) {
+			case "GUEST":
+				return "400px";
+			case "FEE":
+				return "493px";
+			case "CHECKIN":
+			case "CHECKOUT":
+				return "916px";
+		}
+	}};
+	height: ${(props) => {
+		switch (props.type) {
+			case "GUEST":
+				return "355px";
+			case "FEE":
+				return "364px";
+			case "CHECKIN":
+			case "CHECKOUT":
+				return "512px";
+		}
+	}};
+	left: ${(props) => {
+		switch (props.type) {
+			case "GUEST":
+				return "515px";
+			case "FEE":
+				return "420px";
+		}
+	}};
 	position: absolute;
-	// type 에 따라 left, top, width, height 값 다르게 주면 될듯.
-	left: 200px;
-	top: 300px;
-	width: 400px;
-	height: 400px;
+	top: 100px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
