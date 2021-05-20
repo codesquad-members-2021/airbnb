@@ -18,8 +18,8 @@ public class CityDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public List<City> findAll(){
+    public List<City> findAll() {
         String sql = "SELECT id, name FROM city";
-        return jdbcTemplate.query(sql,cityMapper);
+        return jdbcTemplate.query(sql, cityMapper);
     }
 }

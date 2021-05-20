@@ -8,8 +8,9 @@ import java.sql.SQLException;
 
 
 public class CityMapper implements RowMapper<City> {
+
     @Override
-    public City mapRow(ResultSet rs, int rowNum) throws SQLException{
-        return new City(rs.getLong("id"),rs.getString("name"));
+    public City mapRow(ResultSet rs, int rowNum) throws SQLException {
+        return new City(rs.getLong("id"), rs.getString("name"));
     }
 }

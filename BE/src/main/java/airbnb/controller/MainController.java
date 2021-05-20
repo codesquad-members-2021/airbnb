@@ -15,7 +15,7 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public CitiesWrapper readCities(){
+    public CitiesWrapper readCities() {
         return new CitiesWrapper(cityDao.findAll());
     }
 }
