@@ -10,8 +10,8 @@ function App() {
       <GlobalStyle />
       <Header></Header>
       <Switch>
-        {/* <Route path="/" component={HomePage} exact /> */}
-        <Route path="/" component={SearchPage} exact />
+        <Route path="/" component={HomePage} exact />
+        <Route path="/search" component={SearchPage} />
         {/* <Route path="/search" component={SearchPage} /> */}
       </Switch>
     </>

@@ -146,6 +146,7 @@ const ItemRateContainer = styled.div`
   & > *:last-child {
   }
 `;
+
 const ItemPriceContainer = styled.div`
   font-size: 1rem;
   text-align: right;
