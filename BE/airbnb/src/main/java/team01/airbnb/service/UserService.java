@@ -18,6 +18,8 @@ import team01.airbnb.dto.KakaoProfile;
 import team01.airbnb.dto.OAuthToken;
 import team01.airbnb.dto.RoleType;
 import team01.airbnb.domain.User;
+import team01.airbnb.exception.NoResultSetException;
+import team01.airbnb.exception.NotProcessJsonException;
 import team01.airbnb.utils.KakaoLoginUtils;
 
 @Service
@@ -49,11 +51,11 @@ public class UserService {
                         user.setUsername(rs.getString("username"));
                         user.setEmail(rs.getString("email"));
                         user.setRole(RoleType.valueOf(rs.getString("role")));
-                        user.setCreateDate(rs.getDate("join_date").toLocalDate());
+                        user.setCreateDate(rs.getDate("created_date").toLocalDate());
                         return user;
                     });
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            throw new NoResultSetException();
         }
     }
 
@@ -95,9 +97,8 @@ public class UserService {
         try {
             return objectMapper.readValue(response.getBody(), valueType);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            throw new NotProcessJsonException();
         }
-        return null;
     }
 
     private <T> ResponseEntity<T> getJsonResponseByPost(String uri, @Nullable HttpEntity<?> requestEntity) {
