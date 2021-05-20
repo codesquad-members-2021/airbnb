@@ -2,7 +2,6 @@ package airbnb.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Embedded;
 
 public class Image {
 
@@ -13,15 +12,10 @@ public class Image {
     @Column(value = "image_type_id")
     private Long imageTypeId;
 
-    @Embedded.Nullable
-    private ImageClassId imageClassId;
-
-
-    public Image(Long id, String url, Long imageTypeId, ImageClassId imageClassId) {
+    public Image(Long id, String url, Long imageTypeId) {
         this.id = id;
         this.url = url;
         this.imageTypeId = imageTypeId;
-        this.imageClassId = imageClassId;
     }
 
     public Long getId() {
@@ -34,9 +28,5 @@ public class Image {
 
     public Long getImageTypeId() {
         return imageTypeId;
-    }
-
-    public ImageClassId getImageClassId() {
-        return imageClassId;
     }
 }
