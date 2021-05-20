@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-// import { useReservationState } from '../../../../../hooks/ReservationHook';
 import styled from 'styled-components';
 import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/SearcherHook';
 import { LocationList, Location } from '../../../../../shared/interface';

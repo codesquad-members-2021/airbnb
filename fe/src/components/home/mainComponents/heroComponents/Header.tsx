@@ -13,8 +13,6 @@ const Header = (): React.ReactElement => {
             <RightHeader>
                 <ToBeHost href="/">호스트되기</ToBeHost>
                 <Globe>
-                    {/* <Icon className="fas fa-globe" 
-        tyle={{ color: "#fff" }} /> */}
                     <LanguageIcon />
                 </Globe>
                 <Account />

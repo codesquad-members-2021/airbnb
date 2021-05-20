@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Calendar = () => {
+const Calendar = (): React.ReactElement => {
     return <div>Calendar</div>;
 };
 

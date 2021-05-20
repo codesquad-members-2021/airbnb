@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Accomodation = () => {
+const Accomodation = (): React.ReactElement => {
     return <div>Accomodation Page</div>;
 };
 
