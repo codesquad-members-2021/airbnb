@@ -22,6 +22,7 @@
 		D0A4F29C2653934F009741B5 /* StyleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A4F29A2653934F009741B5 /* StyleCell.xib */; };
 		D0A4F29F26539390009741B5 /* LocationCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A4F29E26539390009741B5 /* LocationCellModel.swift */; };
 		D0A4F2A32653BEA5009741B5 /* StyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A4F2A22653BEA5009741B5 /* StyleCollectionViewCell.swift */; };
+		D0A4F2AA26563BE1009741B5 /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A4F2A926563BE1009741B5 /* ResultsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		D0A4F29A2653934F009741B5 /* StyleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StyleCell.xib; sourceTree = "<group>"; };
 		D0A4F29E26539390009741B5 /* LocationCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCellModel.swift; sourceTree = "<group>"; };
 		D0A4F2A22653BEA5009741B5 /* StyleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleCollectionViewCell.swift; sourceTree = "<group>"; };
+		D0A4F2A926563BE1009741B5 /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,12 +77,11 @@
 			isa = PBXGroup;
 			children = (
 				D0A4F2842652A8B3009741B5 /* Supporting Files */,
-				D0A4F2732652A8A4009741B5 /* ViewController.swift */,
+				D0A4F2A62654F8FB009741B5 /* ViewControllers */,
 				D0A4F28D265377C8009741B5 /* HeaderCollectionReusableView.swift */,
 				D0A4F28A26537533009741B5 /* LocationCollectionViewCell.swift */,
 				D0A4F2A22653BEA5009741B5 /* StyleCollectionViewCell.swift */,
 				D0A4F29E26539390009741B5 /* LocationCellModel.swift */,
-				D0A4F2862652B7A7009741B5 /* SearchViewController.swift */,
 				D0A4F2752652A8A4009741B5 /* Main.storyboard */,
 				D0A4F29026538350009741B5 /* LocationCell.swift */,
 				D0A4F29126538350009741B5 /* LocationCell.xib */,
@@ -100,6 +101,16 @@
 				D0A4F27A2652A8A4009741B5 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D0A4F2A62654F8FB009741B5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D0A4F2732652A8A4009741B5 /* ViewController.swift */,
+				D0A4F2862652B7A7009741B5 /* SearchViewController.swift */,
+				D0A4F2A926563BE1009741B5 /* ResultsTableViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +189,7 @@
 				D0A4F2702652A8A4009741B5 /* AppDelegate.swift in Sources */,
 				D0A4F28B26537533009741B5 /* LocationCollectionViewCell.swift in Sources */,
 				D0A4F29B2653934F009741B5 /* StyleCell.swift in Sources */,
+				D0A4F2AA26563BE1009741B5 /* ResultsTableViewController.swift in Sources */,
 				D0A4F2872652B7A7009741B5 /* SearchViewController.swift in Sources */,
 				D0A4F29226538350009741B5 /* LocationCell.swift in Sources */,
 				D0A4F2A32653BEA5009741B5 /* StyleCollectionViewCell.swift in Sources */,

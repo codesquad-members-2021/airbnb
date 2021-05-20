@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Up5-Xv-IAS">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Up5-Xv-IAS">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OGx-9J-loF">
@@ -80,11 +80,11 @@
             </objects>
             <point key="canvasLocation" x="-278" y="954"/>
         </scene>
-        <!--Item-->
+        <!--검색-->
         <scene sceneID="qFo-i2-kDK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zvh-8B-y2A" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="dtD-jL-RkA"/>
+                    <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" id="dtD-jL-RkA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ns4-Mw-OL2">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -131,11 +131,11 @@
             </objects>
             <point key="canvasLocation" x="1722" y="763"/>
         </scene>
-        <!--Item-->
+        <!--위시리스트-->
         <scene sceneID="jhY-Uk-dhu">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Rpn-jH-9tq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="F5E-8s-039"/>
+                    <tabBarItem key="tabBarItem" title="위시리스트" image="heart" catalog="system" id="F5E-8s-039"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bre-fn-O9b">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -150,11 +150,11 @@
             </objects>
             <point key="canvasLocation" x="939" y="763"/>
         </scene>
-        <!--Item-->
+        <!--로그인-->
         <scene sceneID="aBn-hS-iR2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OB3-gV-Wl3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Okc-bJ-uE3"/>
+                    <tabBarItem key="tabBarItem" title="로그인" image="person" catalog="system" id="Okc-bJ-uE3"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dxE-hs-Snk">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -171,6 +171,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="person" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

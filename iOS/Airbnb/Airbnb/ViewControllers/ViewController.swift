@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
+        searchBar.placeholder = "어디로 여행가세요?"
         return searchBar
     }()
     

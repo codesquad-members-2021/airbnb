@@ -18,7 +18,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     private let title: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont(name: "Helvetica", size: 20)
+        label.font = UIFont(name: "Helvetica-bold", size: 18)
         return label
     }()
     
@@ -26,7 +26,6 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         super.init(frame: frame)
         headerView.addSubview(title)
         self.addSubview(headerView)
-        
     }
     
     required init?(coder: NSCoder) {

@@ -20,7 +20,7 @@ class StyleCollectionViewCell: UICollectionViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 253, height: 308)
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(UINib(nibName: StyleCell.reuseId, bundle: nil), forCellWithReuseIdentifier: StyleCell.reuseId)
         collectionView.backgroundColor = .systemBackground

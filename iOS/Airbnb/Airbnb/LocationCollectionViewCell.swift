@@ -7,16 +7,17 @@
 
 import UIKit
 
+let locationCellModelData = [
+    LocationCellModel(image: "서울", location: "서울", distance: "차로 15분 거리"),
+    LocationCellModel(image: "인천", location: "인천", distance: "차로 45분 거리"),
+    LocationCellModel(image: "의정부", location: "의정부시", distance: "차로 30분 거리"),
+    LocationCellModel(image: "대구", location: "대구", distance: "차로 4시간 거리"),
+    LocationCellModel(image: "대전", location: "대전", distance: "차로 2.5시간 거리"),
+    LocationCellModel(image: "광주", location: "광주", distance: "차로 4시간 거리"),
+    LocationCellModel(image: "수원", location: "수원", distance: "차로 45분 거리"),
+    LocationCellModel(image: "울산", location: "울산", distance: "차로 5시간 거리")]
+
 class LocationCollectionViewCell: UICollectionViewCell {
-    private let locationCellModelData = [
-        LocationCellModel(image: "서울", location: "서울", distance: "차로 15분 거리"),
-        LocationCellModel(image: "인천", location: "인천", distance: "차로 45분 거리"),
-        LocationCellModel(image: "의정부", location: "의정부시", distance: "차로 30분 거리"),
-        LocationCellModel(image: "대구", location: "대구", distance: "차로 4시간 거리"),
-        LocationCellModel(image: "대전", location: "대전", distance: "차로 2.5시간 거리"),
-        LocationCellModel(image: "광주", location: "광주", distance: "차로 4시간 거리"),
-        LocationCellModel(image: "수원", location: "수원", distance: "차로 45분 거리"),
-        LocationCellModel(image: "울산", location: "울산", distance: "차로 5시간 거리")]
     
     static let reuseId = "LocationCollectionViewCell"
     
