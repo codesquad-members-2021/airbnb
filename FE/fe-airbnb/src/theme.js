@@ -23,6 +23,7 @@ const theme = {
     S: '10px',
     M: '30px',
     L: '40px',
+    XL: '60px',
   },
   boxShadow: {
     up: 'box-shadow: 0px 0px 4px rgba(204, 204, 204, 0.5), 0px 2px 4px rgba(0, 0, 0, 0.25)',
