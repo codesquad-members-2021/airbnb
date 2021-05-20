@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Price = () => {
+const Price = ({ dispatch }) => {
   return (
     <>
       <PriceDiv>
-        <PriceWrap>
+        <PriceWrap onClick={() => dispatch({ type: 'PRICE' })}>
           <PriceTitle>요금</PriceTitle>
           <PriceInp>금액대 설정</PriceInp>
         </PriceWrap>

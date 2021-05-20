@@ -1,17 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import CloseButton from '../../buttons/CloseBtn';
 
-const Check = () => {
+const Check = ({ dispatch }) => {
   return (
     <CheckDiv>
-      <CheckIn>
+      <CheckIn onClick={() => dispatch({ type: 'CHECKINOUT' })}>
         <CheckTitle>체크인</CheckTitle>
         <CheckInp>날짜입력</CheckInp>
       </CheckIn>
-      <CheckOut>
+      <CheckOut onClick={() => dispatch({ type: 'CHECKINOUT' })}>
         <CheckTitle>체크아웃</CheckTitle>
         <CheckInp>날짜입력</CheckInp>
       </CheckOut>
+      {/* <CloseButton /> */}
       <LineDiv />
     </CheckDiv>
   );
@@ -19,6 +21,7 @@ const Check = () => {
 
 const CheckDiv = styled.div`
   display: grid;
+  // grid-template-columns: 7fr 9fr 1fr 1fr; close버튼
   grid-template-columns: 7fr 9fr 1fr;
   grid-gap: 24px;
   justify-content: space-around;
