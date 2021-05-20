@@ -17,6 +17,7 @@ public class JdbcPlaceRepository implements PlaceRepository {
     private static final RowMapper<Place> PLACE_ROWMAPPER = (rs, rowNum) -> new Place.Builder()
             .id(rs.getLong("place_id"))
             .name(rs.getString("place_name"))
+            .imageUrl(rs.getString("image_url"))
             .location(new Location.Builder()
                     .city(rs.getString("city"))
                     .district(rs.getString("district"))
@@ -28,6 +29,7 @@ public class JdbcPlaceRepository implements PlaceRepository {
             .option(new Option(rs.getString("option"),
                     rs.getString("additional_option")))
             .star(rs.getDouble("star"))
+            .reviewCount(rs.getInt("review_count"))
             .hostId(rs.getLong("host_id"))
             .maximumNumberOfPeople(rs.getInt("maximum_number_of_people"))
             .description(rs.getString("description"))

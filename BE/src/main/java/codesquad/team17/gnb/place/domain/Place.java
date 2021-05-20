@@ -3,6 +3,7 @@ package codesquad.team17.gnb.place.domain;
 public class Place {
     private Long id;
     private String name;
+    private String imageUrl;
 
     private Location location;
     private int price;
@@ -10,7 +11,7 @@ public class Place {
     private Option option;
 
     private double star;
-    private double reviewCount;
+    private int reviewCount;
 
     private Long hostId;
     private String description;
@@ -18,25 +19,71 @@ public class Place {
     public Place(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
+        this.imageUrl = builder.imageUrl;
         this.location = builder.location;
+        this.price = builder.price;
+        this.maximumNumberOfPeople = builder.maximumNumberOfPeople;
         this.option = builder.option;
         this.star = builder.star;
         this.reviewCount = builder.reviewCount;
         this.hostId = builder.hostId;
-        this.maximumNumberOfPeople = builder.maximumNumberOfPeople;
         this.description = builder.description;
-        this.price = builder.price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getMaximumNumberOfPeople() {
+        return maximumNumberOfPeople;
+    }
+
+    public Option getOption() {
+        return option;
+    }
+
+    public double getStar() {
+        return star;
+    }
+
+    public int getReviewCount() {
+        return reviewCount;
+    }
+
+    public Long getHostId() {
+        return hostId;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public static class Builder {
         private Long id;
         private String name;
+        private String imageUrl;
 
         private Location location;
         private Option option;
 
         private double star;
-        private double reviewCount;
+        private int reviewCount;
 
         private Long hostId;
         private int maximumNumberOfPeople;
@@ -56,6 +103,11 @@ public class Place {
             return this;
         }
 
+        public Builder imageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
+            return this;
+        }
+
         public Builder location(Location location) {
             this.location = location;
             return this;
@@ -71,7 +123,7 @@ public class Place {
             return this;
         }
 
-        public Builder reviewCount(double reviewCount) {
+        public Builder reviewCount(int reviewCount) {
             this.reviewCount = reviewCount;
             return this;
         }

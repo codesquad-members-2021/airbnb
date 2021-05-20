@@ -10,6 +10,7 @@ CREATE TABLE place
 (
     place_id                 BIGINT AUTO_INCREMENT PRIMARY KEY,
     place_name               VARCHAR(30)  NOT NULL,
+    image_url                VARCHAR(255) NOT NULL,
 
     city                     VARCHAR(10)  NOT NULL,
     district                 VARCHAR(10)  NOT NULL,
