@@ -54,7 +54,7 @@ final class LocationViewController: UIViewController {
         definesPresentationContext = true
     }
     
-    func registerNib() {
+    private func registerNib() {
         let nib = UINib(nibName: "CityCollectionViewCell", bundle: nil)
         cityCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
     }
@@ -63,11 +63,11 @@ final class LocationViewController: UIViewController {
         
     }
     
-    func searchBarIsEmpty() -> Bool {
+    private func searchBarIsEmpty() -> Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
     
-    func isFiltering() -> Bool {
+    private func isFiltering() -> Bool {
         return searchController.isActive && !searchBarIsEmpty()
     }
 }
