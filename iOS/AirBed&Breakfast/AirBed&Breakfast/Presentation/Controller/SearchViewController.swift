@@ -10,19 +10,36 @@ import Combine
 
 class SearchViewController: UIViewController {
     
-    @IBOutlet weak var searchBar: UISearchBar!
-    
     enum Section {
         case main
     }
-    
+        
     var searchResultCollectionView: UICollectionView! = nil
     var dataSource: UICollectionViewDiffableDataSource<Section, String>! = nil
-    
+    // whenever value of this changes, will fetch relevant address info from the server.
+    let searchController = UISearchController(searchResultsController: nil)
+    // will have Destination data model later
+    var filteredDestinations: [String] = []
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
+
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarchy()
         configureDataSource()
+        
+        // UISearchController
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Candies"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
 
     @IBAction func navigationBarBackButtonPressed(_ sender: UIBarButtonItem) {
@@ -33,7 +50,7 @@ class SearchViewController: UIViewController {
 }
 
 extension SearchViewController {
-    private func createLayout() -> UICollectionViewLayout {
+    private func createCollectionViewLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8),
                                              heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -50,13 +67,13 @@ extension SearchViewController {
     }
     
     private func configureHierarchy() {
-        let searchBarHeight = self.searchBar.frame.height
+        let searchBarHeight = self.searchController.searchBar.frame.height
         let navigationBarHeight = self.navigationController?.navigationBar.frame.height ?? 0
         let topPadding = UIApplication.shared.windows[0].safeAreaInsets.top
         let collectionViewHeightAdjustment = searchBarHeight + navigationBarHeight + topPadding
         
         let collectionViewFrame = CGRect(x: 0, y: collectionViewHeightAdjustment, width: view.frame.width, height: view.frame.height - collectionViewHeightAdjustment)
-        searchResultCollectionView = UICollectionView(frame: collectionViewFrame, collectionViewLayout: createLayout())
+        searchResultCollectionView = UICollectionView(frame: collectionViewFrame, collectionViewLayout: createCollectionViewLayout())
         searchResultCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         searchResultCollectionView.backgroundColor = .systemTeal
         searchResultCollectionView.delegate = self
@@ -89,3 +106,20 @@ extension SearchViewController: UICollectionViewDelegate {
         print("\(indexPath) cell has been clicked")
     }
 }
+
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+//        filterContentForSearchText(searchBar.text!)
+
+    }
+
+//    func filterContentForSearchText(_ searchText: String) {
+//        filteredCandies = candies.filter { (destination: String) -> Bool in
+//            return candy.name.lowercased().contains(searchText.lowercased())
+//        }
+//        tableView.reloadData()
+//    }
+    
+}
+
