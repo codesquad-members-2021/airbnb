@@ -45,6 +45,7 @@
 		E4F302DF26567480002C9770 /* NewSearchCaseConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302DE26567480002C9770 /* NewSearchCaseConfigurable.swift */; };
 		E4F302E826567B1C002C9770 /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302E726567B1C002C9770 /* AlertFactory.swift */; };
 		E4F302EA265683F5002C9770 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302E9265683F5002C9770 /* CustomError.swift */; };
+		E4F302EC26568C0D002C9770 /* FakeNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302EB26568C0D002C9770 /* FakeNetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +88,7 @@
 		E4F302DE26567480002C9770 /* NewSearchCaseConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSearchCaseConfigurable.swift; sourceTree = "<group>"; };
 		E4F302E726567B1C002C9770 /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		E4F302E9265683F5002C9770 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		E4F302EB26568C0D002C9770 /* FakeNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				E4F302AC2655FD17002C9770 /* AlamofireNetworkManagable.swift */,
 				E4F302A62655F84B002C9770 /* AlamofireNetworkManager.swift */,
 				E4F302A82655F890002C9770 /* AlamofireImageDownloadManager.swift */,
+				E4F302ED26568C14002C9770 /* Fake */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -266,6 +269,14 @@
 			path = Factory;
 			sourceTree = "<group>";
 		};
+		E4F302ED26568C14002C9770 /* Fake */ = {
+			isa = PBXGroup;
+			children = (
+				E4F302EB26568C0D002C9770 /* FakeNetworkManager.swift */,
+			);
+			path = Fake;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -350,6 +361,7 @@
 				E4DB1D7C2653912F00894DCB /* PopularLocationViewController.swift in Sources */,
 				E4F302BA26560CC7002C9770 /* LocationSearchResultUpdating.swift in Sources */,
 				E4F302A72655F84B002C9770 /* AlamofireNetworkManager.swift in Sources */,
+				E4F302EC26568C0D002C9770 /* FakeNetworkManager.swift in Sources */,
 				E4F302DF26567480002C9770 /* NewSearchCaseConfigurable.swift in Sources */,
 				E4F302A52655F837002C9770 /* AlamofireRequestManager.swift in Sources */,
 				E4F302D926567335002C9770 /* PopularLocationConfigurable.swift in Sources */,

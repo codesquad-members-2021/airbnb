@@ -21,7 +21,8 @@ class PopularLocationUseCase: PopularLocationCaseConfigurable {
     }
     
     convenience init(url: String) {
-        self.init(networkManager: AlamofireNetworkManager(with: url))
+        let fakeData = FakeData.FakePopularLocations
+        self.init(networkManager: FakeNetworkManager(fakeData: fakeData))
     }
     
     func loadPopularLocations(completionHandler: @escaping (Result<[PopularLocation], CustomError>) -> Void) {

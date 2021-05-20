@@ -11,17 +11,14 @@ class SearchResultViewModel: SearchResultConfigurable {
     
     static let baseUrl = ""
     private var useCase: NewSearchCaseConfigurable
-    private let tempResults: [LocationSearchResult]
     
-    init(useCase: NewSearchCaseConfigurable, tempResults: [LocationSearchResult]) {
-        self.tempResults = tempResults
+    init(useCase: NewSearchCaseConfigurable) {
         self.useCase = useCase
     }
     
     convenience init() {
-        let tempResults = [LocationSearchResult()]
         let useCase = NewSearchUseCase(url: SearchResultViewModel.baseUrl)
-        self.init(useCase: useCase, tempResults: tempResults)
+        self.init(useCase: useCase)
     }
     
     func searchResults(for keyword: String,

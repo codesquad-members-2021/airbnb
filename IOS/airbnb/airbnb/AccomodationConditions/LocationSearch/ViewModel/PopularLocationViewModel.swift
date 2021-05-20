@@ -11,17 +11,14 @@ class PopularLocationViewModel: PopularLocationConfigurable {
     
     static let baseUrl = ""
     private var useCase: PopularLocationCaseConfigurable
-    private let tempLocations: [PopularLocation]
-
-    init(useCase: PopularLocationCaseConfigurable, tempLocations: [PopularLocation]) {
-        self.tempLocations = tempLocations
+    
+    init(useCase: PopularLocationCaseConfigurable) {
         self.useCase = useCase
     }
     
     convenience init() {
-        let tempLocations = [PopularLocation()]
         let useCase = PopularLocationUseCase(url: PopularLocationViewModel.baseUrl)
-        self.init(useCase: useCase, tempLocations: tempLocations)
+        self.init(useCase: useCase)
     }
     
     func popularLocations(completionHandler: @escaping (Result<[PopularLocation], CustomError>) -> Void) {

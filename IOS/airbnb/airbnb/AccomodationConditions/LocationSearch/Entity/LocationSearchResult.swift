@@ -10,11 +10,6 @@ import Foundation
 struct LocationSearchResult: Decodable {
     let name: String
     let coordinate: Coordinate
-    
-    init() {
-        self.name = "집"
-        self.coordinate = Coordinate()
-    }
 }
 
 struct Coordinate: Decodable {

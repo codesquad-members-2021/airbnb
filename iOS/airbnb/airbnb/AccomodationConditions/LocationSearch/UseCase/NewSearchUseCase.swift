@@ -21,7 +21,8 @@ class NewSearchUseCase: NewSearchCaseConfigurable {
     }
     
     convenience init(url: String) {
-        self.init(networkManager: AlamofireNetworkManager(with: url))
+        let fakeData = FakeData.FakeSearchResults
+        self.init(networkManager: FakeNetworkManager(fakeData: fakeData))
     }
     
     func search(for keyword: String,
