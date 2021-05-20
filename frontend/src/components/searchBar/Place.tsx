@@ -9,6 +9,7 @@ const Place = () => {
   const open = useModalCtrl({toggle:PlaceToggle, modal:PlaceModal, init:false})
 
   const [clicked, setClick] = useState(false)
+  const [targetPlace, setTargetPlace] = useState<string|HTMLButtonElement>('어디로 여행가세요?')
   useEffect(() => {
     open? setClick(true) : setClick(false)
   },[open])
@@ -18,13 +19,13 @@ const Place = () => {
     <BarBlock clicked={clicked} ref={PlaceToggle}>
       <BarInnerWrapper>
         <BarTitle>위치</BarTitle>
-        <BarMessage>어디로 여행가세요?</BarMessage>
+        <BarMessage>{targetPlace}</BarMessage>
       </BarInnerWrapper>
     </BarBlock>
     {open && 
       (
       <Modal ref={PlaceModal}>
-        <ModalPlace modalType="place"/>
+        <ModalPlace modalType="place" {...{targetPlace, setTargetPlace}}/>
       </Modal>
       )
     }
