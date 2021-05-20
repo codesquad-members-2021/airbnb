@@ -25,4 +25,14 @@ class PopularLocationTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    func update(with textInfos: PopularLocation) {
+        popularLocationTitleLabel.text = textInfos.name
+        popularLocationDistanceLabel.text = textInfos.distanceFromHere
+    }
+    
+    func update(with imagePath: String) {
+        let image = UIImage(contentsOfFile: imagePath) ?? UIImage()
+        popularLocationImageView.image = image
+    }
+    
 }
