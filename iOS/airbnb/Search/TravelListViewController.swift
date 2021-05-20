@@ -8,7 +8,7 @@
 import UIKit
 
 class TravelListViewController: UIViewController {
-
+    
     @IBOutlet weak var travelList: UICollectionView!
     
     private let searchController = UISearchController(searchResultsController: nil)
@@ -25,10 +25,18 @@ class TravelListViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "어디로 여행가세요?"
         navigationItem.rightBarButtonItem = removeButton
+        
+        self.travelList.delegate = self
+        self.travelList.dataSource = self
+        registerNib()
     }
- 
+    
     @objc func didTapRemoveButton(){
         
+    }
+    func registerNib() {
+        let nib = UINib(nibName: NearPlaceCell.nibName, bundle: nil)
+        travelList?.register(nib, forCellWithReuseIdentifier: NearPlaceCell.reuseIdentifier)
     }
 }
 extension TravelListViewController : UISearchResultsUpdating {
@@ -36,9 +44,32 @@ extension TravelListViewController : UISearchResultsUpdating {
         guard let text = searchController.searchBar.text else {
             return
         }
-        print(text)
     }
 }
+extension TravelListViewController : UICollectionViewDelegate {
+    
+}
+extension TravelListViewController : UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = travelList.dequeueReusableCell(withReuseIdentifier: NearPlaceCell.reuseIdentifier, for: indexPath) as! NearPlaceCell
+        return cell
+    }
+}
+extension TravelListViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let width: CGFloat = collectionView.frame.width
+        let height: CGFloat = 64
+        return CGSize(width: width, height: height)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+}
+
 extension TravelListViewController : Storyboarded {
     static func instantiate() -> Self {
         let fullName = NSStringFromClass(self)
