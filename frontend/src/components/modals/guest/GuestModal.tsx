@@ -12,18 +12,18 @@ export default function GuestModal({ type, setInplaceHolder }: ModalInterface) {
 	const onAdultIncrease = () => setAdultCount(adultCount + 1);
 	const onAdultDecrease = () => {
 		if ((childCount || infantCount) && adultCount === 1) return;
-		adultCount && setAdultCount(adultCount - 1);
+		setAdultCount(adultCount - 1);
 	};
 	const onChildIncrease = () => {
 		setChildCount(childCount + 1);
 		adultCount || setAdultCount(adultCount + 1);
 	};
-	const onChildDecrease = () => childCount && setChildCount(childCount - 1);
+	const onChildDecrease = () => setChildCount(childCount - 1);
 	const onInfantIncrease = () => {
 		setInfantCount(infantCount + 1);
 		adultCount || setAdultCount(adultCount + 1);
 	};
-	const onInfantDecrease = () => infantCount && setInfantCount(infantCount - 1);
+	const onInfantDecrease = () => setInfantCount(infantCount - 1);
 	const totalGuest = useRef<number>();
 
 	useEffect(() => {
@@ -42,7 +42,7 @@ export default function GuestModal({ type, setInplaceHolder }: ModalInterface) {
 							<div className="sub_title">만 13세 이상</div>
 						</TitleWrapper>
 						<CountWrapper>
-							<Minus className="counter_icon" stroke="#828282" onClick={onAdultDecrease} />
+							{adultCount ? <Minus className="counter_icon" stroke="#828282" onClick={onAdultDecrease} /> : <Minus className="counter_icon_disabled" stroke="#e4e4e4" />}
 							<Count>{adultCount}</Count>
 							<Plus className="counter_icon" stroke="#828282" onClick={onAdultIncrease} />
 						</CountWrapper>
@@ -53,7 +53,7 @@ export default function GuestModal({ type, setInplaceHolder }: ModalInterface) {
 							<div className="sub_title">만 2~12세</div>
 						</TitleWrapper>
 						<CountWrapper>
-							<Minus className="counter_icon" stroke="#828282" onClick={onChildDecrease} />
+							{childCount ? <Minus className="counter_icon" stroke="#828282" onClick={onChildDecrease} /> : <Minus className="counter_icon_disabled" stroke="#e4e4e4" />}
 							<Count>{childCount}</Count>
 							<Plus className="counter_icon" stroke="#828282" onClick={onChildIncrease} />
 						</CountWrapper>
@@ -64,7 +64,7 @@ export default function GuestModal({ type, setInplaceHolder }: ModalInterface) {
 							<div className="sub_title">만 2세 미만</div>
 						</TitleWrapper>
 						<CountWrapper>
-							<Minus className="counter_icon" stroke="#828282" onClick={onInfantDecrease} />
+							{infantCount ? <Minus className="counter_icon" stroke="#828282" onClick={onInfantDecrease} /> : <Minus className="counter_icon_disabled" stroke="#e4e4e4" />}
 							<Count>{infantCount}</Count>
 							<Plus className="counter_icon" stroke="#828282" onClick={onInfantIncrease} />
 						</CountWrapper>
@@ -90,6 +90,13 @@ const AgeWrapper = styled.li<{ isEnd: boolean }>`
 		border: 1px solid #828282;
 		:hover {
 			cursor: pointer;
+		}
+	}
+	.counter_icon_disabled {
+		border-radius: 60px;
+		border: 1px solid #e4e4e4;
+		:hover {
+			cursor: not-allowed;
 		}
 	}
 `;

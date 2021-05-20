@@ -27,7 +27,7 @@ export default function SearchFilter({ type, input, isEnd, placeholder, isCalend
 			<StyleFilter isEnd={isEnd} onClick={() => handleOnClick(type)}>
 				<SearchWrapper isEnd={isEnd}>
 					{parseByType("title", type)}
-					{input && <SearchLocationStyle placeholder={input}></SearchLocationStyle>}
+					{input && <SearchLocationStyle placeholder={input} />}
 					{placeholder && <div>{inplaceHolder}</div>}
 				</SearchWrapper>
 			</StyleFilter>
