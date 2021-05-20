@@ -4,24 +4,28 @@ import { IoGlobeOutline } from 'react-icons/io5';
 import HoverBlock from './HoverBlock';
 import HeaderNav from './nav/HeaderNav';
 import HeaderTabList from './tab/HeaderTabList';
+import HeaderForm from './form/HeaderForm';
 
 const Header = () => {
   return (
-    <StyledHeder>
-      <div className='logo'>LOGO</div>
-      <HeaderTabList />
-      <div className='nav'>
-        <HoverBlock>호스트 되기</HoverBlock>
-        <HoverBlock>
-          <IoGlobeOutline />
-        </HoverBlock>
-        <HeaderNav />
-      </div>
-    </StyledHeder>
+    <>
+      <StyledHeader>
+        <div className='logo'>LOGO</div>
+        <HeaderTabList />
+        <div className='nav'>
+          <HoverBlock color='white'>호스트 되기</HoverBlock>
+          <HoverBlock color='white'>
+            <IoGlobeOutline />
+          </HoverBlock>
+          <HeaderNav />
+        </div>
+      </StyledHeader>
+      <HeaderForm />
+    </>
   );
 };
 
-const StyledHeder = styled(CenterContainer)`
+const StyledHeader = styled(CenterContainer)`
   justify-content: space-between;
   height: 6rem;
   padding: 0 5rem;
@@ -31,16 +35,17 @@ const StyledHeder = styled(CenterContainer)`
     font-weight: 700;
   }
   .nav {
-    width: 11rem;
     display: flex;
     justify-content: space-between;
-    width: 13rem;
+    width: 14rem;
     font-size: ${({ theme }) => theme.fontSize.small};
     font-weight: 600;
     & > div {
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 4px 12px;
+      border-radius: 30px;
     }
   }
 `;

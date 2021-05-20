@@ -15,6 +15,7 @@ const HeaderTabList = () => {
 export default HeaderTabList;
 
 const StyledHeaderTabList = styled.div`
+  cursor: pointer;
   width: 11rem;
   display: flex;
   justify-content: space-between;

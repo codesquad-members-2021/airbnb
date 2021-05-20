@@ -2,17 +2,25 @@ import styled from 'styled-components';
 
 interface Props {
   children: JSX.Element[] | JSX.Element | string;
+  color: string;
+  className?: string;
 }
 
-const HoverBlock = ({ children }: Props) => {
-  return <StyledContainer>{children}</StyledContainer>;
+const HoverBlock = ({ children, color, className }: Props) => {
+  return (
+    <StyledContainer className={className} {...{ color }}>
+      {children}
+    </StyledContainer>
+  );
 };
 
-const StyledContainer = styled.div`
-  padding: 4px 12px;
-  border-radius: 1rem;
+interface StyleProps {
+  color: string;
+}
+
+const StyledContainer = styled.div<StyleProps>`
   &:hover {
-    background-color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme, color }) => theme.colors[color]};
   }
 `;
 
