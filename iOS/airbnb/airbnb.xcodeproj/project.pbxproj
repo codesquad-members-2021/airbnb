@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		825702E02653AE99009237BE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825702DF2653AE99009237BE /* SearchViewController.swift */; };
+		829DB9C4265645DB0083D153 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 829DB9C3265645DB0083D153 /* FSCalendar */; };
 		82FBF0D426538AB8009B4A1F /* TripPlaceCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FBF0D326538AB8009B4A1F /* TripPlaceCollectionViewDataSource.swift */; };
 		82FBF0D626538E07009B4A1F /* RecommendTripCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FBF0D526538E07009B4A1F /* RecommendTripCollectionViewDataSource.swift */; };
 		D4DDA63826524ECD00FE52FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA63726524ECD00FE52FA /* AppDelegate.swift */; };
@@ -78,6 +79,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DDA66C26535F5500FE52FA /* Alamofire in Frameworks */,
+				829DB9C4265645DB0083D153 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +236,7 @@
 			name = airbnb;
 			packageProductDependencies = (
 				D4DDA66B26535F5500FE52FA /* Alamofire */,
+				829DB9C3265645DB0083D153 /* FSCalendar */,
 			);
 			productName = airbnb;
 			productReference = D4DDA63426524ECD00FE52FA /* airbnb.app */;
@@ -308,6 +311,7 @@
 			mainGroup = D4DDA62B26524ECD00FE52FA;
 			packageReferences = (
 				D4DDA66A26535F5500FE52FA /* XCRemoteSwiftPackageReference "Alamofire" */,
+				829DB9C2265645DB0083D153 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = D4DDA63526524ECD00FE52FA /* Products */;
 			projectDirPath = "";
@@ -699,6 +703,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		829DB9C2265645DB0083D153 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.2;
+			};
+		};
 		D4DDA66A26535F5500FE52FA /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -710,6 +722,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		829DB9C3265645DB0083D153 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 829DB9C2265645DB0083D153 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
 		D4DDA66B26535F5500FE52FA /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D4DDA66A26535F5500FE52FA /* XCRemoteSwiftPackageReference "Alamofire" */;
