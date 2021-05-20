@@ -7,8 +7,8 @@
 
 import UIKit
 
-class BestDestinationTableViewCell: UITableViewCell {
-    static let reuseIdentifier = String(describing: BestDestinationTableViewCell.self)
+class DestinationTableViewCell: UITableViewCell {
+    static let reuseIdentifier = String(describing: DestinationTableViewCell.self)
     @IBOutlet weak var destinationImageView: UIImageView!
     @IBOutlet weak var destinationNameLabel: UILabel!
     @IBOutlet weak var drivingTimeLabel: UILabel!
