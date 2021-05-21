@@ -28,6 +28,10 @@ class SearchViewController : UIViewController {
         themePlaceCollection.dataSource = themePlaceDataSource
         registerNib()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
     func registerNib() {
         let nib = UINib(nibName: NearPlaceCell.nibName, bundle: nil)
         nearPlaceCollection?.register(nib, forCellWithReuseIdentifier: NearPlaceCell.reuseIdentifier)
@@ -43,7 +47,7 @@ class SearchViewController : UIViewController {
 extension SearchViewController : UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         let travelListViewController = TravelListViewController.instantiate()
-        self.navigationController?.pushViewController(travelListViewController, animated: false)
+        self.navigationController?.pushViewController(travelListViewController, animated: true)
         return false
     }
 }

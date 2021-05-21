@@ -9,8 +9,9 @@ import UIKit
 
 class TravelListViewController: UIViewController {
     
-    @IBOutlet weak var travelList: UICollectionView!
     
+    @IBOutlet weak var travelList: UICollectionView!
+    var nearPlaceDataSource = NearPlaceDataSource()
     private let searchController = UISearchController(searchResultsController: nil)
     private let removeButton = UIBarButtonItem(title: "지우기",
                                                style: .plain,
@@ -20,20 +21,27 @@ class TravelListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "숙소찾기"
-        
+        self.navigationItem.rightBarButtonItem = removeButton
         self.navigationItem.searchController = searchController
+        self.navigationController?.navigationBar.sizeToFit()
+        self.navigationController?.tabBarController?.tabBar.isHidden = true
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "어디로 여행가세요?"
-        navigationItem.rightBarButtonItem = removeButton
-        
+    
+        self.travelList.dataSource = nearPlaceDataSource
         self.travelList.delegate = self
-        self.travelList.dataSource = self
+        
         registerNib()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     @objc func didTapRemoveButton(){
         
     }
+}
+// MARK: - Functions
+extension TravelListViewController {
     func registerNib() {
         let nib = UINib(nibName: NearPlaceCell.nibName, bundle: nil)
         travelList?.register(nib, forCellWithReuseIdentifier: NearPlaceCell.reuseIdentifier)
@@ -41,35 +49,11 @@ class TravelListViewController: UIViewController {
         travelList?.register(headerNib, forCellWithReuseIdentifier: HeaderReusableView.reuseIdentifier)
     }
 }
+
 extension TravelListViewController : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else {
             return
-        }
-    }
-}
-extension TravelListViewController : UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        
-    }
-}
-extension TravelListViewController : UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = travelList.dequeueReusableCell(withReuseIdentifier: NearPlaceCell.reuseIdentifier, for: indexPath) as! NearPlaceCell
-        return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderReusableView.reuseIdentifier, for: indexPath)
-            return headerView
-        default:
-            assert(false, "Unexpected element kind")
         }
     }
 }
