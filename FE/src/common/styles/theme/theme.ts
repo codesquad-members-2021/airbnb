@@ -1,5 +1,11 @@
 import { DefaultTheme } from 'styled-components';
 
+// index.css
+// html { font-size: 10px; }
+// font-size: 1rem 1.2rem; 1.4rem;
+// var(--fontSizeS: font-size: 12px)
+
+
 const theme: DefaultTheme = {
   fontFamily: 'Noto Sans KR',
   fontWeight: {
