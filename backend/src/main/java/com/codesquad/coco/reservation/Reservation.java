@@ -1,12 +1,10 @@
 package com.codesquad.coco.reservation;
 
-import com.codesquad.coco.rooms.model.Rooms;
+import com.codesquad.coco.rooms.model.Money;
 import com.codesquad.coco.user.User;
 import org.springframework.data.annotation.Id;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class Reservation {
 
@@ -14,13 +12,23 @@ public class Reservation {
     private Long id;
 
     private User user;
-    private Rooms rooms;
     private int adult;
     private int child;
     private int baby;
     private LocalDate checkIn;
     private LocalDate checkOut;
-    private BigDecimal totalPrice;
+    private Money totalPrice;
+
+    private Reservation(Builder builder) {
+        this.id = builder.id;
+        this.user = builder.user;
+        this.adult = builder.adult;
+        this.child = builder.child;
+        this.baby = builder.baby;
+        this.checkIn = builder.checkIn;
+        this.checkOut = builder.checkOut;
+        this.totalPrice = builder.totalPrice;
+    }
 
     public Long getId() {
         return id;
@@ -28,10 +36,6 @@ public class Reservation {
 
     public User getUser() {
         return user;
-    }
-
-    public Rooms getRooms() {
-        return rooms;
     }
 
     public int getAdult() {
@@ -54,7 +58,76 @@ public class Reservation {
         return checkOut;
     }
 
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
+    public int getTotalPrice() {
+        return totalPrice.getMoney();
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", user=" + user +
+                ", adult=" + adult +
+                ", child=" + child +
+                ", baby=" + baby +
+                ", checkIn=" + checkIn +
+                ", checkOut=" + checkOut +
+                ", totalPrice=" + totalPrice +
+                '}';
+    }
+
+    public static class Builder {
+        private Long id;
+        private User user;
+        private int adult;
+        private int child;
+        private int baby;
+        private LocalDate checkIn;
+        private LocalDate checkOut;
+        private Money totalPrice;
+
+        public Builder id(Long val) {
+            this.id = val;
+            return this;
+        }
+
+        public Builder user(User val) {
+            this.user = val;
+            return this;
+        }
+
+        public Builder adult(int val) {
+            this.adult = val;
+            return this;
+        }
+
+        public Builder child(int val) {
+            this.child = val;
+            return this;
+        }
+
+        public Builder baby(int val) {
+            this.baby = val;
+            return this;
+        }
+
+        public Builder checkIn(LocalDate val) {
+            this.checkIn = val;
+            return this;
+        }
+
+        public Builder checkOut(LocalDate val) {
+            this.checkOut = val;
+            return this;
+        }
+
+        public Builder totalPrice(Money val) {
+            this.totalPrice = val;
+            return this;
+        }
+
+        public Reservation builder() {
+            return new Reservation(this);
+        }
     }
 }

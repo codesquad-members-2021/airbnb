@@ -10,6 +10,11 @@ public class Review {
     private double star;
     private double review;
 
+    public Review(double star, double review) {
+        this.star = star;
+        this.review = review;
+    }
+
     public Long getId() {
         return id;
     }
@@ -20,5 +25,14 @@ public class Review {
 
     public double getReview() {
         return review;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", star=" + star +
+                ", review=" + review +
+                '}';
     }
 }

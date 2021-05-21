@@ -38,6 +38,18 @@ public class SearchRoomsDTO extends SearchPriceDTO {
         return guest;
     }
 
+    public int getAdult() {
+        return guest.getAdult();
+    }
+
+    public int getChild() {
+        return guest.getChild();
+    }
+
+    public int getBaby() {
+        return guest.getBaby();
+    }
+
     public int getPriceMin() {
         return priceMin.getMoney();
     }

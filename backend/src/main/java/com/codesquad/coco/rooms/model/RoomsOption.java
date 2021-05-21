@@ -7,6 +7,13 @@ public class RoomsOption {
     private int bathRoom;
     private String type;
 
+    public RoomsOption(int bed, int maxGuest, int bathRoom, String type) {
+        this.bed = bed;
+        this.maxGuest = maxGuest;
+        this.bathRoom = bathRoom;
+        this.type = type;
+    }
+
     public int getBed() {
         return bed;
     }
@@ -21,5 +28,15 @@ public class RoomsOption {
 
     public String getType() {
         return type;
+    }
+
+    @Override
+    public String toString() {
+        return "RoomsOption{" +
+                "bed=" + bed +
+                ", maxGuest=" + maxGuest +
+                ", bathRoom=" + bathRoom +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

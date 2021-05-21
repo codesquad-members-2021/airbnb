@@ -1,6 +1,5 @@
 package com.codesquad.coco.image;
 
-import com.codesquad.coco.rooms.model.Rooms;
 import org.springframework.data.annotation.Id;
 
 public class Image {
@@ -10,12 +9,24 @@ public class Image {
 
     private String url;
     private String type;
-    private Rooms rooms;
 
-    public Image(Long id, String url, String type, Rooms rooms) {
+    public Image(String url, String type) {
+        this.url = url;
+        this.type = type;
+    }
+
+    public Image(Long id, String url, String type) {
         this.id = id;
         this.url = url;
         this.type = type;
-        this.rooms = rooms;
+    }
+
+    @Override
+    public String toString() {
+        return "Image{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

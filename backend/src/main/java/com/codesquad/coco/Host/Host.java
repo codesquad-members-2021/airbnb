@@ -10,6 +10,11 @@ public class Host {
     private String name;
     private String profileImageUrl;
 
+    public Host(String name, String profileImageUrl) {
+        this.name = name;
+        this.profileImageUrl = profileImageUrl;
+    }
+
     public Long getId() {
         return id;
     }
@@ -20,5 +25,14 @@ public class Host {
 
     public String getProfileImageUrl() {
         return profileImageUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "Host{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", profileImageUrl='" + profileImageUrl + '\'' +
+                '}';
     }
 }
