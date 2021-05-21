@@ -11,15 +11,15 @@ import java.util.List;
 @Repository
 public class CityDao {
 
-    private JdbcTemplate jdbcTemplate;
-    private CityMapper cityMapper = new CityMapper();
+    private final JdbcTemplate jdbcTemplate;
+    private final CityMapper cityMapper = new CityMapper();
 
     public CityDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public List<City> findAll() {
-        String sql = "SELECT id, name FROM city";
+        String sql = "SELECT id, 'name' FROM city";
         return jdbcTemplate.query(sql, cityMapper);
     }
 }
