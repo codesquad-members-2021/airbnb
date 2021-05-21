@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const PersonnelModal = () => {
     return (
-        <PersonnelModalWrapper>
+        <PersonnelModalWrapper onClick={e => e.stopPropagation()}>
         </PersonnelModalWrapper>
     );
 }

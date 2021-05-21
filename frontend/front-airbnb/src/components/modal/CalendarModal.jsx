@@ -3,9 +3,8 @@ import styled from 'styled-components';
 
 const CalendarModal = () => {
     return (
-        <CalendarModalWrapper>
-ㅇ
-
+        <CalendarModalWrapper onClick={e => e.stopPropagation()}>
+            캘린더 모달
         </CalendarModalWrapper>
     );
 }

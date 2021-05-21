@@ -1,16 +1,45 @@
-import React from 'react';
+import React, {useReducer} from 'react';
 import styled from 'styled-components';
 import Header from './header/Header';
 import SearchBar from '../searchBar/SearchBar';
-import SearchButton from '../searchBar/SearchButton';
-import CloseButton from '../searchBar/CloseButton';
-
+const changeModal = (toggleState, action) => {
+    const newToggleState = {...toggleState}
+    switch(action.category) {
+        case 'period':
+            newToggleState.personnel = false;
+            newToggleState.price = false;
+            newToggleState.period = !toggleState.period;
+            return newToggleState;
+        case 'price':
+            newToggleState.period = false;
+            newToggleState.personnel = false;
+            newToggleState.price = !toggleState.price;
+            return newToggleState;
+        case 'personnel':
+            newToggleState.period = false;
+            newToggleState.price = false;
+            newToggleState.personnel = !toggleState.personnel;
+            return newToggleState;
+        case 'main':
+            newToggleState.personnel = false;
+            newToggleState.period = false;
+            newToggleState.price = false;
+            return newToggleState;
+        default:
+            throw new Error();
+    }
+}
+const searchToggle = { period:false, price:false, personnel:false};
+export const PostsContext = React.createContext();
 const Main = () => {
+    const [toggleState, dispatch] = useReducer(changeModal, searchToggle)
     return (
-        <MainWrapper>
+        <PostsContext.Provider value={{toggleState, dispatch}}>
+        <MainWrapper onClick={()=> dispatch({category: 'main'})}>
             <Header/>
             <SearchBar/>
         </MainWrapper>
+        </PostsContext.Provider>
     );
 }
 

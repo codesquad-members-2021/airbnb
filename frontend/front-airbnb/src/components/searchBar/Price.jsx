@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PriceModal from '../modal/PriceModal';
-import { PostsContext } from '../searchBar/SearchBar';
+import { PostsContext } from '../mainPage/Main';
 
 const Price = () => {
     const {toggleState, dispatch} = useContext(PostsContext);

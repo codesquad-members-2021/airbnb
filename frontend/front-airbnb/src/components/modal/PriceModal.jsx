@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const PriceModal = () => {
     return (
-        <PriceModalWrapper>
+        <PriceModalWrapper onClick={e => e.stopPropagation()}>
 
         </PriceModalWrapper>
     );
@@ -14,7 +14,7 @@ const PriceModalWrapper = styled.div`
     width: 50%;
     height: 500px;
     border-radius: 50px;
-    background-color: #f0f0c7;
+    background-color: #cfcfac;
     top:120%;
     left:20%;
 `;

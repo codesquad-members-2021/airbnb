@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PersonnelModal from '../modal/PersonnelModal';
-import { PostsContext } from '../searchBar/SearchBar';
+import { PostsContext } from '../mainPage/Main';
 
 const Personnel = () => {
     const {toggleState, dispatch} = useContext(PostsContext);
