@@ -1,16 +1,16 @@
 import styled from 'styled-components';
-import { cssMainChildren } from '../../../common/styles/CommonStyledCSS';
+import { cssMainChildren } from '../../common/styles/CommonStyledCSS';
 
-const TopBackground = () => {
+const MainTopBackground = () => {
   return (
-    <StyledTopBackground />
+    <MainTopBackgroundBlock />
   );
 };
 
-export default TopBackground;
+export default MainTopBackground;
 
 // --- Styled Components ---
-const StyledTopBackground = styled.div`
+const MainTopBackgroundBlock = styled.div`
   ${cssMainChildren};
 
   height: 80vh;

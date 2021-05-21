@@ -1,41 +1,39 @@
 import styled from 'styled-components';
-import Subject from '../../utilComponents/Subject';
-import { IText } from '../../../common/reference';
+import Subject from '../utilComponents/Subject';
+import { IText } from '../../common/reference';
 import {
   cssImageAuto,
   cssMainChildren,
-  cssResetList,
   cssSectionSize,
-} from '../../../common/styles/CommonStyledCSS';
+} from '../../common/styles/CommonStyledCSS';
 
-const RoomType = ({ captions }: IText) => {
+const MainRoomType = ({ roomTypeItems }: IText) => {
   return (
-    captions && (
-      <StyledRoomType>
-        <Subject>{captions.subject}</Subject>
-        <RoomList>
-          {captions.items.map((item, i) => (
-            <RoomItem key={i}>
+    roomTypeItems && (
+      <MainRoomTypeBlock>
+        <Subject>{roomTypeItems.subject}</Subject>
+        <MainRoomList>
+          {roomTypeItems.items.map((item, i) => (
+            <MainRoomItem key={i}>
               <img src={`./images/main/roomType/0${i + 1}.jpg`} alt={`${i}`} />
               <p className="bold">{item.name}</p>
-            </RoomItem>
+            </MainRoomItem>
           ))}
-        </RoomList>
-      </StyledRoomType>
+        </MainRoomList>
+      </MainRoomTypeBlock>
     )
   );
 };
 
-export default RoomType;
+export default MainRoomType;
 
 // --- Styled Components ---
-const StyledRoomType = styled.div`
+const MainRoomTypeBlock = styled.div`
   ${cssMainChildren};
   ${cssSectionSize};
 `;
 
-const RoomList = styled.ul`
-  ${cssResetList};
+const MainRoomList = styled.ul`
   font-size: ${({ theme }) => theme.fontSize.XXL};
 
   display: grid;
@@ -43,7 +41,7 @@ const RoomList = styled.ul`
   gap: 16px;
 `;
 
-const RoomItem = styled.li`
+const MainRoomItem = styled.li`
   ${cssImageAuto};
   img {
     border-radius: 10px;
