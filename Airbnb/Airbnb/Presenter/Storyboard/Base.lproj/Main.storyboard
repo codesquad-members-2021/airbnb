@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VMs-Kj-Jvg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w39-Dj-YZY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -28,7 +28,7 @@
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="Main" storyboardIdentifier="Main" id="BYZ-38-t0r" customClass="MainViewController" customModule="Airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -81,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1663.7681159420292" y="87.723214285714278"/>
+            <point key="canvasLocation" x="1606" y="80"/>
         </scene>
         <!--위시리스트-->
         <scene sceneID="vch-nN-zRH">
@@ -185,7 +185,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="MlB-QM-A7L">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="w39-Dj-YZY" sceneMemberID="viewController">
+                <tabBarController restorationIdentifier="TabBarController" storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="w39-Dj-YZY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eyb-pa-mQi">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -206,7 +206,8 @@
         <!--검색-->
         <scene sceneID="1Ab-oL-qEK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pv1-cK-i3h" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u8W-dk-eXh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController restorationIdentifier="Nav" storyboardIdentifier="Nav" automaticallyAdjustsScrollViewInsets="NO" id="Pv1-cK-i3h" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" selectedImage="magnifyingglass" id="I6f-gj-dUv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TlQ-S9-pgO">
@@ -218,9 +219,8 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="BS6-ww-zdV"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u8W-dk-eXh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="753.62318840579712" y="87.723214285714278"/>
+            <point key="canvasLocation" x="878" y="68"/>
         </scene>
     </scenes>
     <resources>

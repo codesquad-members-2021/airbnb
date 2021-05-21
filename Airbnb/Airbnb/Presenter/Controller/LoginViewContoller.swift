@@ -1,4 +1,6 @@
 import UIKit
+import RxSwift
+import RxCocoa
 
 class LoginViewController: UIViewController {
     
@@ -31,6 +33,18 @@ private extension LoginViewController {
         passwordTextField.becomeFirstResponder()
     }
     @objc private func enteredPasswordTextField() {
-        //Network 구현 (로그인 요청)
+        guard let url = URL(string: Login.post) else {
+            return
+        }
+        APIService.post(url, parameter: LoginInfo(id: idTextField.text!, password: passwordTextField.text!))
+            .subscribe(onNext: { [weak self] data in
+                let main = MainViewController()
+                let tabBarController = self?.storyboard?.instantiateViewController(identifier: "TabBarController")
+                let nextVC = tabBarController?.children.first as! UINavigationController
+                let a = UINavigationController(rootViewController: main)
+                self?.present(a, animated: true, completion: nil)
+            }, onError: { error in
+                print(error.localizedDescription)
+            }).disposed(by: rx.disposeBag)
     }
 }
