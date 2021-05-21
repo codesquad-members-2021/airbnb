@@ -1,6 +1,6 @@
 package com.enolj.airbnb.service;
 
-import com.enolj.airbnb.web.ReservationInfoResponseDTO;
+import com.enolj.airbnb.web.dto.ReservationInfoResponseDTO;
 import com.enolj.airbnb.web.dto.*;
 import org.springframework.stereotype.Service;
 

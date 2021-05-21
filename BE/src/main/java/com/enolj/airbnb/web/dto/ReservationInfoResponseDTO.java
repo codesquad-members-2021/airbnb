@@ -1,6 +1,4 @@
-package com.enolj.airbnb.web;
-
-import com.enolj.airbnb.web.dto.Fee;
+package com.enolj.airbnb.web.dto;
 
 public class ReservationInfoResponseDTO {
 
