@@ -13,10 +13,9 @@ class SearchViewController: UIViewController {
         configureDataSource()
     }
     
-    private var cancelButton: UIBarButtonItem = {
-       let button = UIBarButtonItem()
-        button.title = "지우기"
-        return button
+    private lazy var cancelButton: UIBarButtonItem = {
+        let cancelButton = UIBarButtonItem(title: "지우기", style: .plain, target: self, action: #selector(clearSearchBar))
+        return cancelButton
     }()
     
     private var searchController: UISearchController = {
@@ -44,6 +43,10 @@ class SearchViewController: UIViewController {
     
     @objc func makeRemoveButton(_ UITapGestureReconizer: UITapGestureRecognizer) {
         self.navigationItem.rightBarButtonItem = cancelButton
+    }
+    
+    @objc func clearSearchBar()  {
+        self.searchController.searchBar.text = ""
     }
 }
 
