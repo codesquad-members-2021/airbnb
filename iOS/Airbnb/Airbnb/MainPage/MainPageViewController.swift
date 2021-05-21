@@ -11,6 +11,7 @@ import Combine
 class MainPageViewController: UIViewController {
     
     @IBOutlet weak var hiroImageView: UIImageView!
+    private var searchController: UISearchController!
     
     let viewModel = MainPageViewModel()
     private var cancelBag = Set<AnyCancellable>()
@@ -23,8 +24,9 @@ class MainPageViewController: UIViewController {
     }
     
     private func configureSearchBar() {
-        let searchController = UISearchController(searchResultsController: nil)
+        searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = "어디로 여행가세요?"
+        searchController.searchBar.delegate = self
         self.navigationItem.searchController = searchController
     }
     
@@ -51,4 +53,10 @@ class MainPageViewController: UIViewController {
     }
 }
 
+extension MainPageViewController: UISearchBarDelegate {
 
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        // push nextVC
+    }
+
+}
