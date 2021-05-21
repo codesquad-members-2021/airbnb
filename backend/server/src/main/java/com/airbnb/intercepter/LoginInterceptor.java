@@ -3,6 +3,7 @@ package com.airbnb.intercepter;
 import com.airbnb.annotation.LoginRequired;
 import com.airbnb.dto.UserDto;
 import com.airbnb.exception.AuthenticationException;
+import com.airbnb.service.OauthService;
 import com.airbnb.util.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +30,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     // FIXME: Session 을 사용하지 않는 인증방법은 없을까?
     private void authenticate(String authorization, HttpServletRequest request) {
-        HttpSession session = request.getSession();
         String[] splitAuth = authorization.split(" ");
         String tokenType = splitAuth[0].toLowerCase();
         if (splitAuth.length < 1 || !tokenType.equals("bearer")) {
@@ -37,14 +37,11 @@ public class LoginInterceptor implements HandlerInterceptor {
         }
         String token = splitAuth[1];
         handleJwt(token, request);
-        if (session.getAttribute(token) == null) {
-            throw new AuthenticationException("로그인하지 않은 유저입니다.");
-        }
     }
 
     private void handleJwt(String token, HttpServletRequest request) {
-        UserDto user = JwtUtil.decodeJwt(token);
-        logger.info("login:{}, name: {}", user.getLogin(), user.getName());
-        request.setAttribute("user", user);
+        UserDto userDto = JwtUtil.decodeJwt(token);
+        logger.info("login:{}, name: {}", userDto.getLogin(), userDto.getName());
+        request.setAttribute("user", userDto);
     }
 }

@@ -23,22 +23,24 @@ public class OauthController {
 
     @GetMapping("/hello")
     @LoginRequired
-    public MessageResponse getHello() {
+    public MessageResponse getHello(HttpServletRequest request) {
+        UserDto userDto = (UserDto) request.getAttribute("user");
+        oauthService.authenticate(userDto);
         return new MessageResponse("안녕하세요! 로그인 한 유저는 언제나 환영합니다!");
     }
 
     @PostMapping("/auth")
-    public ResponseEntity<AuthResponse> auth(@RequestBody AuthRequest authRequest, HttpServletRequest request) {
+    public ResponseEntity<AuthResponse> auth(@RequestBody AuthRequest authRequest) {
         String code = authRequest.getCode();
 
-        GithubAccessTokenResponse githubAccessTokenResponse = oauthService.getAccessToken(code);
-        String accessToken = githubAccessTokenResponse.getAccessToken();
+        AccessTokenResponse accessTokenResponse = oauthService.getAccessToken(code);
+        String accessToken = accessTokenResponse.getAccessToken();
 
         UserDto user = oauthService.getUserFromGitHub(accessToken);
         String jwt = JwtUtil.createJwt(user);
 
-        HttpSession session = request.getSession();
-        session.setAttribute(jwt, githubAccessTokenResponse);
+        oauthService.saveLoggedInUser(user, accessTokenResponse);
+
         return ResponseEntity.status(CREATED).body(new AuthResponse(jwt));
     }
 }

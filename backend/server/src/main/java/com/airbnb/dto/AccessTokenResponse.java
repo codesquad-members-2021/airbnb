@@ -1,9 +1,10 @@
 package com.airbnb.dto;
 
+import com.airbnb.domain.Token;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
-public class GithubAccessTokenResponse {
+public class AccessTokenResponse {
     private String accessToken;
     private String tokenType;
     private String scope;
@@ -36,5 +37,9 @@ public class GithubAccessTokenResponse {
     @JsonSetter("scope")
     public void setScope(String scope) {
         this.scope = scope;
+    }
+
+    public Token toToken() {
+        return new Token(accessToken, tokenType, scope);
     }
 }
