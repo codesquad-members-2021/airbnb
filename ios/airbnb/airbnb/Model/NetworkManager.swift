@@ -21,7 +21,7 @@ class NetworkManager: Networking {
                    encoding: URLEncoding.default,
                    headers: ["Content-Type":"application/json", "Accept":"application/json"])
             .validate(statusCode: 200..<300)
-            .responseDecodable(of: T.self) { response in
+            .responseDecodable(of: decodableType) { response in
                 switch response.result {
                 case .success:
                     guard let cities = response.value else { return }
