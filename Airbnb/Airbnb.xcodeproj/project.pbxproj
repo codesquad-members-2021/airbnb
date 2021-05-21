@@ -23,6 +23,7 @@
 		71A67D422653AA9800FC6689 /* MainViewInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D412653AA9800FC6689 /* MainViewInfo.swift */; };
 		71A67D442653AD7400FC6689 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D432653AD7400FC6689 /* DataManager.swift */; };
 		71B93A7226576CA10028C492 /* ThirdSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B93A7126576CA10028C492 /* ThirdSectionCell.swift */; };
+		71B93A74265783410028C492 /* LoginViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B93A73265783410028C492 /* LoginViewContoller.swift */; };
 		71D133DA2657531A00A71626 /* MainCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D133D92657531A00A71626 /* MainCollectionViewDelegate.swift */; };
 		71D133E126575AB000A71626 /* SecondSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D133E026575AB000A71626 /* SecondSectionCell.swift */; };
 		71DA18362654CACC00415EDD /* SecondSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA18352654CACC00415EDD /* SecondSectionView.swift */; };
@@ -49,6 +50,7 @@
 		71A67D412653AA9800FC6689 /* MainViewInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewInfo.swift; sourceTree = "<group>"; };
 		71A67D432653AD7400FC6689 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		71B93A7126576CA10028C492 /* ThirdSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionCell.swift; sourceTree = "<group>"; };
+		71B93A73265783410028C492 /* LoginViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewContoller.swift; sourceTree = "<group>"; };
 		71D133D92657531A00A71626 /* MainCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		71D133E026575AB000A71626 /* SecondSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionCell.swift; sourceTree = "<group>"; };
 		71DA18352654CACC00415EDD /* SecondSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionView.swift; sourceTree = "<group>"; };
@@ -146,8 +148,9 @@
 		71A67D3B26539BCA00FC6689 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				71B93A75265783660028C492 /* Delegate */,
 				71A67D2826539B6A00FC6689 /* MainViewController.swift */,
-				71D133D92657531A00A71626 /* MainCollectionViewDelegate.swift */,
+				71B93A73265783410028C492 /* LoginViewContoller.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -179,6 +182,14 @@
 				71A67D432653AD7400FC6689 /* DataManager.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		71B93A75265783660028C492 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				71D133D92657531A00A71626 /* MainCollectionViewDelegate.swift */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 		71D133DF26575A5C00A71626 /* Cell */ = {
@@ -331,6 +342,7 @@
 				7157C8892654AC4000EF7977 /* MainViewModel.swift in Sources */,
 				71D133DA2657531A00A71626 /* MainCollectionViewDelegate.swift in Sources */,
 				71B93A7226576CA10028C492 /* ThirdSectionCell.swift in Sources */,
+				71B93A74265783410028C492 /* LoginViewContoller.swift in Sources */,
 				7112E6EC26561CDE00F9AAD6 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
