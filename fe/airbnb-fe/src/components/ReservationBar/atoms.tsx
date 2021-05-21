@@ -31,7 +31,7 @@ export const DropPopupContent = selector<ReactElement|null>({
       case ReservationBarBtnType.CheckOut:
         return <CalendarSlider/>;
 
-      // TODO: 3, 4
+      // TODO: PriceRange, Personnel
 
       default:
         throw new Error(`Not existing index ${selectedBtnType}`);
@@ -44,12 +44,12 @@ export const LocationSearchState = atom<string>({
   default: ''
 });
 
-export type T_CheckInOutState = {
+export type T_CheckInOut = {
   in: number | null,
   out: number | null
 };
 
-export const CheckInOutState = atom<T_CheckInOutState>({
+export const CheckInOut = atom<T_CheckInOut>({
   key: 'CheckInOutState',
   default: {
     in: null,
@@ -58,19 +58,21 @@ export const CheckInOutState = atom<T_CheckInOutState>({
 });
 
 export type T_CheckInOutString = {
-  in: string,
-  out: string
+  in: string|null,
+  out: string|null
 };
 
-// export const CheckInOutStringState = selector<T_CheckInOutString>({
-//   key: 'CheckInOutStringState',
-//   get: ({ get: GetRecoilValue }) => {
-//     const checkInOutState: T_CheckInOutState = get(CheckInOutState);
+export const CheckInOutString = selector<T_CheckInOutString>({
+  key: 'CheckInOutStringState',
+  get: ({ get }) => {
+    const checkInOut: T_CheckInOut = get(CheckInOut);
+    const checkInDate: Date|null = checkInOut.in === null ? null : new Date(checkInOut.in);
+    const checkOutDate: Date|null = checkInOut.out === null ? null : new Date(checkInOut.out);
 
-//     return {
-//       in: `${checkInOutState.in?.getMonth()}월 ${checkInOutState.in?.getDay()}일`,
-//       out: `${checkInOutState.out?.getMonth()}월 ${checkInOutState.out?.getDay()}일`
-//     }
-//   },
-// });
+    return {
+      in: checkInDate === null ? null : `${checkInDate.getMonth() + 1}월 ${checkInDate.getDate()}일`,
+      out: checkOutDate === null ? null : `${checkOutDate.getMonth() + 1}월 ${checkOutDate.getDate()}일`
+    }
+  },
+});
 

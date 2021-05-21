@@ -50,7 +50,7 @@ const StyledReservationBarBtn = styled.div`
   }
 
   &.selected {
-    background-color: gray; // FIXME
+    background-color: lightgray; // FIXME
   }
 
   &:not(.selected):hover {
@@ -69,5 +69,10 @@ const StyledReservationBarBtn = styled.div`
   &:hover::before, &:hover + &::before,
   &.selected::before, &.selected + &::before {
     background-color: transparent;
+  }
+
+  .entered {
+    color: #333333;
+    font-weight: 800;
   }
 `;

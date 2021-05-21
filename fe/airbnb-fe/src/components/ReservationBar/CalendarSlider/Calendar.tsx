@@ -1,34 +1,86 @@
 import styled from 'styled-components';
 import React, { useState, ReactElement, ReactNode } from 'react';
-import { useRecoilState } from 'recoil';
-import { CheckInOutState } from '../atoms';
+import { useRecoilValue, useRecoilState } from 'recoil';
+
+import { ReservationBarBtnType, T_CheckInOut } from '../atoms';
+import { SelectedBtn, CheckInOut } from '../atoms';
 
 export type CalendarProps = {
   className?: string,
   width: number,
   todayDate: Date,
   year: number,
-  month: number
-}
-
-function _isPast(todayDate: Date, currDate: Date): boolean {
-  if (todayDate.getFullYear() > currDate.getFullYear()) return true;
-  if (todayDate.getMonth() > currDate.getMonth()) return true;
-  if (todayDate.getMonth() === currDate.getMonth() && todayDate.getDate() > currDate.getDate()) return true;
-  return false;
+  month: number // 0-based
 }
 
 function Calendar({ className, todayDate, width, year, month }: CalendarProps): ReactElement {
-  const [checkInOut, setCheckInOut] = useRecoilState(CheckInOutState);
+  const [selectedBtn, setSelectedBtn] = useRecoilState(SelectedBtn);
+  const [checkInOut, setCheckInOut] = useRecoilState(CheckInOut);
 
   const handleClickDate = ({ target }: React.MouseEvent<HTMLTableSectionElement>): void => {
     if (!(target as HTMLElement).dataset.date)
       return;
-
     
+    const dateValue: number = Number((target as HTMLElement).dataset.date);
+    const newCheckInOut: T_CheckInOut = { ...checkInOut };
+
+    if (selectedBtn === ReservationBarBtnType.CheckIn) {
+      newCheckInOut.in = dateValue;
+
+      if (newCheckInOut.out && newCheckInOut.out > dateValue)
+        newCheckInOut.out = null;
+      
+      setSelectedBtn(ReservationBarBtnType.CheckOut);
+    } else {
+      newCheckInOut.out = dateValue;
+
+      if (checkInOut.in && dateValue < checkInOut.in) {
+        newCheckInOut.in = dateValue;
+        newCheckInOut.out = null;
+      } else if (!checkInOut.in) {
+        setSelectedBtn(ReservationBarBtnType.CheckIn);
+      }
+    }
+
+    setCheckInOut(newCheckInOut);
   }
 
-  const renderDates = (): ReactElement[] => {
+  const renderDate = (currDate: Date): ReactElement => {
+    const _getTdClassName = (currDate: Date): string => {
+      if (!checkInOut.in || !checkInOut.out || checkInOut.in === checkInOut.out)
+        return '';
+
+      const v: number = currDate.valueOf();
+      if (v === checkInOut.in) return 'selected-start';
+      if (v === checkInOut.out) return 'selected-end';
+      if (v > checkInOut.in && v < checkInOut.out) return 'selected-intermediate';
+      return '';
+    };
+
+    function _isPast(todayDate: Date, currDate: Date): boolean {
+      if (todayDate.getFullYear() > currDate.getFullYear()) return true;
+      if (todayDate.getMonth() > currDate.getMonth()) return true;
+      if (todayDate.getMonth() === currDate.getMonth() && todayDate.getDate() > currDate.getDate()) return true;
+      return false;
+    };
+
+    return (
+      <>
+        <td key={currDate.valueOf()} className={_getTdClassName(currDate)}>
+          <div
+            className={
+              (_isPast(todayDate, currDate) ? 'past' : '') +
+              (currDate.valueOf() === checkInOut.in || currDate.valueOf() === checkInOut.out ? ' selected' : '')
+            }
+            data-date={currDate.valueOf()}>
+            {currDate.getDate()}
+          </div>
+        </td>
+      </>
+    );
+  }
+
+  const renderWeeks = (): ReactElement[] => {
     const weeks: ReactElement<HTMLTableRowElement>[] = [];
 
     let currDate: Date = new Date(year, month, 1);
@@ -38,23 +90,15 @@ function Calendar({ className, todayDate, width, year, month }: CalendarProps): 
 
       for (let i = 0; i < 7; i++) {
         if (currDate.getDay() > i || currDate.getMonth() !== month) {
-          week[i] = <td></td>;
+          week[i] = <td key={i}></td>;
           continue;
         }
 
-        week[i] = (
-          <td>
-            <div
-              className={_isPast(todayDate, currDate) ? 'past' : ''}
-              data-date={currDate.valueOf()}>
-              {currDate.getDate()}
-            </div>
-          </td>
-        );
+        week[i] = renderDate(currDate);
         currDate.setDate(currDate.getDate() + 1);
       }
 
-      weeks.push(<tr>{week}</tr>);
+      weeks.push(<tr key={weeks.length}>{week}</tr>);
     }
     
     return weeks;
@@ -63,11 +107,11 @@ function Calendar({ className, todayDate, width, year, month }: CalendarProps): 
   return (
     <StyledCalendar width={width}>
       <YearMonth>
-        {year + '년 ' + month + '월'}
+        {year + '년 ' + (month + 1) + '월'}
       </YearMonth>
       <CalendarTable>
         <CalendarTableBody onClick={handleClickDate}>
-          {renderDates()}
+          {renderWeeks()}
         </CalendarTableBody>
       </CalendarTable>
     </StyledCalendar>
@@ -105,7 +149,6 @@ const CalendarTableBody = styled.tbody`
     margin: 0;
     font-size: 1.2rem;
     cursor: pointer;
-    
 
     & > div {
       width: 100%;
@@ -126,19 +169,23 @@ const CalendarTableBody = styled.tbody`
       }
 
       &.selected {
+        color: #ffffff;
         background-color: #333333;
       }
     }
 
-    &.selected-start {
-
+    &.selected-start,
+    &.selected-intermediate,
+    &.selected-end {
+      background-color: #cdcdcd;
     }
 
-    &.selected-intermediate {
-
+    &.selected-start {
+      border-radius: 9999px 0 0 9999px;
     }
 
     &.selected-end {
+      border-radius: 0 9999px 9999px 0;
     }
   }
 `;
