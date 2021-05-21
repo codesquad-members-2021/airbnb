@@ -53,10 +53,15 @@ class MainPageViewController: UIViewController {
     }
 }
 
+
 extension MainPageViewController: UISearchBarDelegate {
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         // push nextVC
+        let nextVC = SearchCityViewController()
+        searchBar.resignFirstResponder()
+        self.navigationController?.pushViewController(nextVC, animated: false)
+        
     }
 
 }
