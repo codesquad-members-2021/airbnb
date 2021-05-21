@@ -1,19 +1,21 @@
 import styled from "styled-components";
-import { useState } from "react";
-type Props = {
+
+import { MouseEvent } from "react";
+type ModalProps = {
   toggle: Boolean;
-  children: JSX.Element | JSX.Element[];
+  children: JSX.Element | JSX.Element[] | null | undefined;
 };
 
-const Modal = ( { children }: Props) => {
-  const [toggle, setToggle] = useState<Boolean>(false);
-  return toggle ? (<StyledModal {...{ toggle }}>{children}</StyledModal> ) : null;
+const Modal = ({ toggle, children }: ModalProps) => {
+  return toggle ? <StyledModal>{children}</StyledModal> : null;
 };
 
 export default Modal;
 
 const StyledModal = styled.div`
-  background-color:  ${({theme}) => theme.color.White};
+  background-color: ${({ theme }) => theme.color.White};
   border-radius: 4rem;
   padding: 1rem;
+  position: absolute;
+  top: 115%;
 `;
