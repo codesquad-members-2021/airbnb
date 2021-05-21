@@ -7,8 +7,7 @@
 
 import UIKit
 
-class DetailSearchViewController: UIViewController {
-
+class DetailSearchViewController: UIViewController, UISearchResultsUpdating {
     static let storyboardName = "Main"
     static let storybardID = "DetailSearchViewController"
     static func create(_ viewModel: DetailSearchViewModel) -> DetailSearchViewController {
@@ -16,6 +15,7 @@ class DetailSearchViewController: UIViewController {
         guard let vc = storyboard.instantiateViewController(identifier: storybardID) as? DetailSearchViewController else {
             return DetailSearchViewController()
         }
+        
         vc.viewModel = viewModel
         return vc
     }
@@ -34,14 +34,40 @@ class DetailSearchViewController: UIViewController {
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
     private var viewModel: DetailSearchViewModel!
+    private var searchController: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureNavigation()
         configureCollectionView()
         configureDataSource()
         applySnapshot()
     }
     
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { print("123")
+            return 
+        }
+        if text.isEmpty {
+            print("55")
+        }
+    }
+    
+    private func configureNavigation() {
+        navigationItem.title = "숙소 찾기"
+        searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        searchController.becomeFirstResponder()
+        
+        searchController.searchBar.setImage(UIImage(systemName: "magnifyingglass"), for: .search, state: .normal)
+        searchController.searchBar.placeholder = "어디로 여행 가세요?"
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.hidesNavigationBarDuringPresentation = false
+        definesPresentationContext = true
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
     private func configureCollectionView() {
         destinationsCollectionView.setCollectionViewLayout(createLayout(), animated: false)
         registerSubViews()
