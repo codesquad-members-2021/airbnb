@@ -28,6 +28,7 @@
 		D4DDA6A0265376E500FE52FA /* FirstPageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA69F265376E500FE52FA /* FirstPageDTO.swift */; };
 		D4DDA6D126563CA400FE52FA /* SuggestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA6D026563CA400FE52FA /* SuggestionsTableViewController.swift */; };
 		D4DDA6E52656A6FA00FE52FA /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA6E42656A6F900FE52FA /* CalendarViewController.swift */; };
+		D4DDA6ED2657479F00FE52FA /* ConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA6EC2657479F00FE52FA /* ConditionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		D4DDA69F265376E500FE52FA /* FirstPageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPageDTO.swift; sourceTree = "<group>"; };
 		D4DDA6D026563CA400FE52FA /* SuggestionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsTableViewController.swift; sourceTree = "<group>"; };
 		D4DDA6E42656A6F900FE52FA /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		D4DDA6EC2657479F00FE52FA /* ConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 				825702DF2653AE99009237BE /* SearchViewController.swift */,
 				D4DDA6D026563CA400FE52FA /* SuggestionsTableViewController.swift */,
 				D4DDA6E42656A6F900FE52FA /* CalendarViewController.swift */,
+				D4DDA6EC2657479F00FE52FA /* ConditionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				825702E02653AE99009237BE /* SearchViewController.swift in Sources */,
 				D4DDA6872653627100FE52FA /* EndPoint.swift in Sources */,
 				D4DDA6962653764700FE52FA /* TripPlace.swift in Sources */,
+				D4DDA6ED2657479F00FE52FA /* ConditionViewController.swift in Sources */,
 				D4DDA67F265361BE00FE52FA /* Network.swift in Sources */,
 				D4DDA6D126563CA400FE52FA /* SuggestionsTableViewController.swift in Sources */,
 				D4DDA63A26524ECD00FE52FA /* SceneDelegate.swift in Sources */,

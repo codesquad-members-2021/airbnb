@@ -342,14 +342,28 @@
             </objects>
             <point key="canvasLocation" x="2740" y="88"/>
         </scene>
-        <!--View Controller-->
+        <!--Condition View Controller-->
         <scene sceneID="0Df-QY-FhC">
             <objects>
-                <viewController id="Nne-XM-O7C" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Nne-XM-O7C" customClass="ConditionViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RNC-Nh-xoT">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xaM-KD-q4S">
+                                <rect key="frame" x="0.0" y="440" width="390" height="233"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="WWq-bv-57b">
+                                        <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WWq-bv-57b" id="ezb-xN-hZ6">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mjG-21-1tZ">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="440"/>
                                 <constraints>
@@ -360,31 +374,29 @@
                                 </connections>
                             </containerView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2z-9v-JgM">
-                                <rect key="frame" x="0.0" y="541" width="390" height="132"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="673" width="390" height="83"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="83" id="Ylu-dt-fbP"/>
+                                </constraints>
                                 <items>
-                                    <tabBarItem systemItem="more" id="9yl-V1-5GB"/>
-                                    <tabBarItem systemItem="more" id="Bv3-tL-fZl"/>
+                                    <tabBarItem title="건너뛰기" id="9yl-V1-5GB"/>
+                                    <tabBarItem title="다음" id="Bv3-tL-fZl"/>
                                 </items>
                             </tabBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xaM-KD-q4S">
-                                <rect key="frame" x="0.0" y="440" width="390" height="101"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pak-gy-MbA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="mjG-21-1tZ" firstAttribute="leading" secondItem="pak-gy-MbA" secondAttribute="leading" id="Bdr-Z3-OM7"/>
-                            <constraint firstItem="pak-gy-MbA" firstAttribute="bottom" secondItem="b2z-9v-JgM" secondAttribute="bottom" id="EzW-v6-s5K"/>
                             <constraint firstItem="pak-gy-MbA" firstAttribute="trailing" secondItem="mjG-21-1tZ" secondAttribute="trailing" id="MlE-bC-xKE"/>
                             <constraint firstItem="pak-gy-MbA" firstAttribute="trailing" secondItem="b2z-9v-JgM" secondAttribute="trailing" id="daR-rZ-SLg"/>
                             <constraint firstItem="xaM-KD-q4S" firstAttribute="leading" secondItem="pak-gy-MbA" secondAttribute="leading" id="ff5-CD-b1B"/>
                             <constraint firstItem="xaM-KD-q4S" firstAttribute="bottom" secondItem="b2z-9v-JgM" secondAttribute="top" id="fq7-G3-DcG"/>
                             <constraint firstItem="mjG-21-1tZ" firstAttribute="top" secondItem="pak-gy-MbA" secondAttribute="top" id="hLy-V8-VSF"/>
-                            <constraint firstItem="b2z-9v-JgM" firstAttribute="bottom" secondItem="pak-gy-MbA" secondAttribute="bottom" id="iNo-Cz-AqI"/>
                             <constraint firstItem="pak-gy-MbA" firstAttribute="trailing" secondItem="xaM-KD-q4S" secondAttribute="trailing" id="jgc-lH-wgf"/>
                             <constraint firstItem="b2z-9v-JgM" firstAttribute="leading" secondItem="pak-gy-MbA" secondAttribute="leading" id="juV-eX-lSd"/>
+                            <constraint firstAttribute="bottom" secondItem="b2z-9v-JgM" secondAttribute="bottom" id="l6l-cW-Zd6"/>
                             <constraint firstItem="xaM-KD-q4S" firstAttribute="top" secondItem="mjG-21-1tZ" secondAttribute="bottom" id="ygv-gs-9gy"/>
                         </constraints>
                     </view>
@@ -399,11 +411,11 @@
             <objects>
                 <viewController id="3v4-tX-kaj" customClass="CalendarViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="04a-xT-RYg">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="440"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yT4-AN-IV5" customClass="FSCalendar">
-                                <rect key="frame" x="32" y="76" width="326" height="332"/>
+                                <rect key="frame" x="32" y="32" width="326" height="692"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="scrollEnabled" value="YES"/>
@@ -426,13 +438,14 @@
                             <constraint firstItem="yT4-AN-IV5" firstAttribute="leading" secondItem="04a-xT-RYg" secondAttribute="leadingMargin" constant="16" id="zKX-RQ-HjU"/>
                         </constraints>
                     </view>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="calendar" destination="yT4-AN-IV5" id="lwc-yI-UeO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="StQ-kA-eB5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4566" y="87"/>
+            <point key="canvasLocation" x="2894" y="868"/>
         </scene>
     </scenes>
     <resources>
@@ -441,6 +454,9 @@
         </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

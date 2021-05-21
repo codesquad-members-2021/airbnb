@@ -45,7 +45,7 @@ class SearchViewController: UITableViewController {
 
         searchController = UISearchController(searchResultsController: suggestionController)
         searchController.searchResultsUpdater = suggestionController
-//
+
         let name = UIApplication.willEnterForegroundNotification
         foregroundRestorationObserver = NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil, using: { [ unowned self ] (_) in
             self.requestLocation()
@@ -58,16 +58,15 @@ class SearchViewController: UITableViewController {
         setupSearchController()
     }
     
-//    override func viewDidDisappear(_ animated: Bool) {
-//        self.viewDidDisappear(animated)
-//        stopProvidingCompletions()
-//    }
-//
-//    override func viewDidAppear(_ animated: Bool) {
-//        self.viewDidAppear(animated)
-//        print("viewDidApper")
-//        //requestLocation()
-//    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        stopProvidingCompletions()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        requestLocation()
+    }
     
     private func setupSearchController() {
         self.navigationItem.searchController = searchController
@@ -76,6 +75,7 @@ class SearchViewController: UITableViewController {
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.searchBar.delegate = self
         self.searchController.searchBar.placeholder = "어디로 여행가세요?"
+        self.tabBarController?.tabBar.isHidden = true
         self.definesPresentationContext = true
     }
     
@@ -159,6 +159,11 @@ extension SearchViewController: CLLocationManagerDelegate {
             self.boundingRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 12_000, longitudinalMeters: 12_000)
             self.suggestionController.updatePlacemark(self.currentPlacemark, boundingRegion: self.boundingRegion)
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        // 에러처리 해주는 함수
+        // 현재 이함수에 걸린다 -> 에러가 발생하고 있다. Location을 못 불러 오는듯?
     }
 }
 
