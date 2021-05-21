@@ -16,6 +16,13 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setupDelegate()
         setupCollectionView()
+        bind()
+    }
+}
+
+//MARK: -Bind
+private extension MainViewController {
+    private func bind() {
         mainViewModel.firstViewList()
             .bind(to: mainCollectionView.rx.items(dataSource: datasource))
             .disposed(by: rx.disposeBag)

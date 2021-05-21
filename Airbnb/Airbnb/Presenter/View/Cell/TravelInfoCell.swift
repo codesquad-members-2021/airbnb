@@ -24,7 +24,7 @@ class TravelInfoCell: UICollectionViewCell {
     }
 }
 
-extension TravelInfoCell {
+private extension TravelInfoCell {
     private func setupMainCell() {
         addSubview(thirdSectionView)
     }

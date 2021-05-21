@@ -24,7 +24,7 @@ class RegieonInfoCell: UICollectionViewCell {
     }
 }
 
-extension RegieonInfoCell {
+private extension RegieonInfoCell {
     private func setupMainCell() {
         addSubview(secondSectionView)
     }

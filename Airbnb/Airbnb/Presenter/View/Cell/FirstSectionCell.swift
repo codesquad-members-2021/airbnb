@@ -24,7 +24,7 @@ class FirstSectionCell: UICollectionViewCell {
     }
 }
 
-extension FirstSectionCell {
+private extension FirstSectionCell {
     private func setupMainCell() {
         addSubview(firstSectionView)
     }
