@@ -47,6 +47,7 @@ class SearchViewController : UIViewController {
 extension SearchViewController : UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         let travelListViewController = TravelListViewController.instantiate()
+        self.navigationItem.backButtonTitle = "뒤로"
         self.navigationController?.pushViewController(travelListViewController, animated: true)
         return false
     }

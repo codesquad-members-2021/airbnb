@@ -242,6 +242,39 @@
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="83.705357142857139"/>
         </scene>
+        <!--건너뛰기-->
+        <scene sceneID="YmA-is-sBX">
+            <objects>
+                <viewController storyboardIdentifier="FilterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RaC-o0-fUa" customClass="FilterViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kB3-8u-FCG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="FUk-dU-trw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="건너뛰기" id="uHy-ra-vYK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mhi-1k-4a1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2777" y="84"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="rBs-24-6s0">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="NQu-DT-fYd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AK6-9l-JHi">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="RaC-o0-fUa" kind="relationship" relationship="viewControllers" id="icx-Yp-O8x"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8rM-UD-1p4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1910.144927536232" y="83.705357142857139"/>
+        </scene>
     </scenes>
     <resources>
         <image name="hiro" width="375" height="488"/>

@@ -11,7 +11,8 @@ class TravelListViewController: UIViewController {
     
     
     @IBOutlet weak var travelList: UICollectionView!
-    var nearPlaceDataSource = NearPlaceDataSource()
+    
+    private var nearPlaceDataSource = NearPlaceDataSource()
     private let searchController = UISearchController(searchResultsController: nil)
     private let removeButton = UIBarButtonItem(title: "지우기",
                                                style: .plain,
@@ -20,14 +21,14 @@ class TravelListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "숙소찾기"
+        
         self.navigationItem.rightBarButtonItem = removeButton
-        self.navigationItem.searchController = searchController
-        self.navigationController?.navigationBar.sizeToFit()
-        self.navigationController?.tabBarController?.tabBar.isHidden = true
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "어디로 여행가세요?"
-    
+        
+        self.navigationItem.title = "숙소찾기"
+        self.tabBarController?.tabBar.isHidden = true
+        
+        setSearchController()
+        
         self.travelList.dataSource = nearPlaceDataSource
         self.travelList.delegate = self
         
@@ -42,6 +43,17 @@ class TravelListViewController: UIViewController {
 }
 // MARK: - Functions
 extension TravelListViewController {
+    func setSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.placeholder = "어디로 여행가세요?"
+        definesPresentationContext = true
+        searchController.searchBar.delegate = self
+        searchController.searchBar.sizeToFit()
+        
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.navigationItem.searchController = searchController
+    }
     func registerNib() {
         let nib = UINib(nibName: NearPlaceCell.nibName, bundle: nil)
         travelList?.register(nib, forCellWithReuseIdentifier: NearPlaceCell.reuseIdentifier)
@@ -49,7 +61,18 @@ extension TravelListViewController {
         travelList?.register(headerNib, forCellWithReuseIdentifier: HeaderReusableView.reuseIdentifier)
     }
 }
+extension TravelListViewController : UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let viewController = FilterViewController.instantiate()
+        viewController.modalPresentationStyle = .fullScreen
+        self.navigationItem.backButtonTitle = "뒤로"
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+}
 
+extension TravelListViewController : UISearchBarDelegate {
+    
+}
 extension TravelListViewController : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else {

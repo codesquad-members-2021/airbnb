@@ -13,6 +13,7 @@
 		102FA1F726554C3900B761C7 /* ThemePlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102FA1F526554C3900B761C7 /* ThemePlaceCell.swift */; };
 		102FA1F826554C3900B761C7 /* ThemePlaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 102FA1F626554C3900B761C7 /* ThemePlaceCell.xib */; };
 		102FA1FA265550CD00B761C7 /* IdentityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102FA1F9265550CD00B761C7 /* IdentityInfo.swift */; };
+		1049206D265782AD00AA2590 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1049206C265782AD00AA2590 /* FilterViewController.swift */; };
 		10642205265641F1005B63FD /* TravelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10642204265641F1005B63FD /* TravelListViewController.swift */; };
 		10D29C6126538C6800E71840 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D29C6026538C6800E71840 /* AppDelegate.swift */; };
 		10D29C6326538C6800E71840 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D29C6226538C6800E71840 /* SceneDelegate.swift */; };
@@ -39,6 +40,7 @@
 		102FA1F526554C3900B761C7 /* ThemePlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePlaceCell.swift; sourceTree = "<group>"; };
 		102FA1F626554C3900B761C7 /* ThemePlaceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemePlaceCell.xib; sourceTree = "<group>"; };
 		102FA1F9265550CD00B761C7 /* IdentityInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityInfo.swift; sourceTree = "<group>"; };
+		1049206C265782AD00AA2590 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		10642204265641F1005B63FD /* TravelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelListViewController.swift; sourceTree = "<group>"; };
 		10D29C5D26538C6800E71840 /* airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10D29C6026538C6800E71840 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				10D29C74265393F800E71840 /* SearchViewController.swift */,
 				10642204265641F1005B63FD /* TravelListViewController.swift */,
+				1049206C265782AD00AA2590 /* FilterViewController.swift */,
 				10D29C8E2653A89500E71840 /* Search.storyboard */,
 				101C0EDD26575A650014D62B /* Model */,
 				10E1B1772653F44E0087B69B /* View */,
@@ -235,6 +238,7 @@
 				10D29C8D2653A61E00E71840 /* WishListViewController.swift in Sources */,
 				10D29C6126538C6800E71840 /* AppDelegate.swift in Sources */,
 				10E1B17D265407680087B69B /* HeaderReusableView.swift in Sources */,
+				1049206D265782AD00AA2590 /* FilterViewController.swift in Sources */,
 				10E1B17A2653F49D0087B69B /* NearPlaceCell.swift in Sources */,
 				10D29C75265393F800E71840 /* SearchViewController.swift in Sources */,
 				102FA1FA265550CD00B761C7 /* IdentityInfo.swift in Sources */,
