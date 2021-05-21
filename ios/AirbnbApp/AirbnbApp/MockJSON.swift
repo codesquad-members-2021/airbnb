@@ -44,4 +44,21 @@ struct MockJSON {
         },
     ]
     """.data(using: .utf8)!
+    
+    static let savedAddresses = """
+    [
+        {
+            "name": "양재동, 서초구, 서울특별시",
+        },
+        {
+            "name": "양재역 사거리, 양재1동",
+        },
+        {
+            "name": "서울특별시 양재2동 시민의숲앞",
+        },
+        {
+            "name": "서울특별시 양재2동 양재 IC",
+        },
+    ]
+    """.data(using: .utf8)!
 }

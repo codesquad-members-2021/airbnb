@@ -36,6 +36,11 @@ class MainSearchCollectionViewController: UICollectionViewController {
         }
         bestDestinations = destinations
         
+        guard let addresses = JSONParser.parse(jsonData: MockJSON.savedAddresses, to: [Destination].self) else {
+            return
+        }
+        searchedDestinations = addresses
+        
         self.tabBarController?.tabBar.isHidden = true
     }
     
