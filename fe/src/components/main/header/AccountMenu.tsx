@@ -1,9 +1,9 @@
 import Modal from "components/common/Modal";
-import { useState, MouseEvent, useRef, Ref } from "react";
+import { useState, MouseEvent } from "react";
 import { BsPeopleCircle } from "react-icons/bs";
 import { FaBars } from "react-icons/fa";
-import useOnClickOutside from "hooks/useOnClickOutside";
-import styled, {css}from "styled-components";
+
+import styled, { css } from "styled-components";
 import LogInList from "./LogInList";
 const AccountMenu = () => {
   const [toggle, setToggle] = useState<Boolean>(false);
@@ -12,17 +12,15 @@ const AccountMenu = () => {
     setToggle(!toggle);
   };
 
-  const ref: Ref<HTMLButtonElement> = useRef<HTMLButtonElement>(null);
-  useOnClickOutside(ref, handleClick);
   return (
     <>
-      <StyledAccountMenu onClick={handleClick} ref={ref}>
+      <StyledAccountMenu onClick={handleClick}>
         <FaBars className="bar" />
         <BsPeopleCircle className="people" />
-        <Modal toggle={toggle} br="0.5rem" position={ModalPosition}>
-          <LogInList />
-        </Modal>
       </StyledAccountMenu>
+      <Modal toggle={toggle} handleClick={handleClick} br="0.5rem" position={ModalPosition}>
+        <LogInList />
+      </Modal>
     </>
   );
 };
@@ -30,7 +28,7 @@ const AccountMenu = () => {
 export default AccountMenu;
 const ModalPosition = css`
   top: 115%;
-  right: 0;
+  right: 5rem;
 `;
 
 const StyledAccountMenu = styled.button`
@@ -53,7 +51,4 @@ const StyledAccountMenu = styled.button`
     margin-left: 1rem;
     font-size: 2rem;
   }
-  position: relative;
 `;
-
-

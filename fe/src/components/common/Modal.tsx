@@ -2,7 +2,8 @@ import styled, {
   CSSProp,
   DefaultTheme,
 } from "styled-components";
-
+import useOnClickOutside from "hooks/useOnClickOutside";
+import {  useRef, Ref } from "react";
 interface StyledModalProps {
   br?: String;
   position?: CSSProp<DefaultTheme> | undefined;
@@ -11,11 +12,16 @@ interface StyledModalProps {
 interface ModalProps extends  StyledModalProps {
   toggle: Boolean;
   children: JSX.Element | JSX.Element[] | null | undefined;
+  handleClick: (event: MouseEvent | Event) => void
 }
 
-const Modal = ({ toggle, children, br, position }: ModalProps) => {
+const Modal = ({ toggle, children, br, position,handleClick }: ModalProps) => {
+  
+  const ref: Ref<HTMLDivElement > = useRef<HTMLDivElement >(null);
+  useOnClickOutside(ref, handleClick);
+
   return toggle ? (
-    <StyledModal {...{br, position}}>
+    <StyledModal {...{br, position}} ref={ref}>
       {children}
     </StyledModal>
   ) : null;
