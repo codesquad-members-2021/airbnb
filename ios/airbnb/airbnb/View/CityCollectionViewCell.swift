@@ -8,11 +8,13 @@
 import UIKit
 
 class CityCollectionViewCell: UICollectionViewCell {
+    
+    static let nibName = String(describing: self)
+    static let identifier = String(describing: self)
 
     @IBOutlet weak var locationImage: UIImageView!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var distance: UILabel!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
