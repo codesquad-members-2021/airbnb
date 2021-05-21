@@ -1,31 +1,23 @@
-import { RefObject, useRef } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 import useToggle from '../../../hooks/useToggle';
 import HoverBlock from '../HoverBlock';
 import FormColumn from './FormColumn';
+import FormLocationToggle from './FormLocationToggle';
 
 const FormLocation = () => {
   const clickRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLDivElement>(null);
-  //   const open = useToggle();
+  const open = useToggle({ clickRef, toggleRef });
   return (
     <StyledLocationWrapper>
-      <StyledFormLocation ref={clickRef}>
+      <StyledFormLocation ref={clickRef} open={open}>
         <HoverBlock color='gray4' className='hover__location'>
           <FormColumn title='위치' description='어디로 여행가세요' isInput={true} />
         </HoverBlock>
       </StyledFormLocation>
-      <FormLocationToggle toggleRef={toggleRef} />
+      {open && <FormLocationToggle toggleRef={toggleRef} />}
     </StyledLocationWrapper>
-  );
-};
-//-------------------------------------------------
-interface toggleType {
-  toggleRef: RefObject<HTMLDivElement>;
-}
-const FormLocationToggle = ({ toggleRef }: toggleType) => {
-  return (
-    <StyledFormLocationToggle ref={toggleRef}>가까운 여행지 둘러보기</StyledFormLocationToggle>
   );
 };
 
@@ -35,21 +27,15 @@ const StyledLocationWrapper = styled.div`
   position: relative;
 `;
 
-const StyledFormLocation = styled.div`
+interface styleProps {
+  open: boolean;
+}
+const StyledFormLocation = styled.div<styleProps>`
   .hover__location {
+    background-color: ${({ open, theme }) => open && theme.colors.white};
     padding: 1rem;
     border-radius: 3rem;
     cursor: pointer;
     padding-left: 2rem;
   }
-`;
-
-const StyledFormLocationToggle = styled.div`
-  position: absolute;
-  bottom: -4rem;
-  width: 300px;
-  padding: 1rem;
-  background-color: ${({ theme }) => theme.colors.green};
-  box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
-  border-radius: 40px;
 `;
