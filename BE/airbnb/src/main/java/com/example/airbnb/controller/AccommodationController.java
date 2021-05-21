@@ -23,6 +23,10 @@ public class AccommodationController {
         return AccommodationService.availableAccommodationsList();
     }
 
+    @GetMapping("/like")
+    public AccommodationListDTO likeMarkredList() {
+        return AccommodationService.likeMarkredList();
+    }
 
     /*
     @GetMapping

@@ -21,13 +21,22 @@ public class AccommodationService {
     }
 
     public static AccommodationListDTO availableAccommodationsList() {
-        List<AccommodationDTO> accommodationDTOList = new ArrayList<>();
         List<Accommodation> accommodationList = accommodationDAO.findAll();
+        return domainListToDTOList(accommodationList);
+
+    }
+
+    private static AccommodationListDTO domainListToDTOList(List<Accommodation> accommodationList) {
+        List<AccommodationDTO> accommodationDTOList = new ArrayList<>();
         for(Accommodation accommodation : accommodationList) {
             accommodationDTOList.add(new AccommodationDTO(accommodation));
         }
-
         return new AccommodationListDTO(accommodationDTOList);
+    }
+
+    public static AccommodationListDTO likeMarkredList() {
+        List<Accommodation> markredList = accommodationDAO.findAllByLikeTrue();
+        return domainListToDTOList(markredList);
     }
 
     public Integer countAccommodation(){
