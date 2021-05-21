@@ -21,13 +21,16 @@ class MainSearchCollectionViewController: UICollectionViewController {
                                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                      withReuseIdentifier: BestDestinationsCollectionHeaderView.reuseIdentifier)
         
-        layout.headerReferenceSize = CGSize(width: self.collectionView.frame.size.width, height: 78.0)
-        layout.itemSize = CGSize(width: self.collectionView.frame.size.width, height: 64.0)
-        layout.minimumLineSpacing = 16.0
-        self.collectionView.collectionViewLayout = layout
-        
         self.collectionView.backgroundColor = .systemBackground
         self.title = "숙소 찾기"
+        
+        let headerSize = CGSize(width: self.collectionView.frame.size.width, height: 78.0)
+        let bestDestinationsLayout = makeFlowLayout(headerReferenceSize: headerSize)
+        self.collectionView.collectionViewLayout = bestDestinationsLayout
+        
+        let resultsLayout = makeFlowLayout()
+        resultsLayout.sectionInset = UIEdgeInsets(top: 26.0, left: 0.0, bottom: 64.0, right: 0.0)
+        resultsCollectionController = ResultsCollectionController(collectionViewLayout: resultsLayout)
         
         configureSearchController()
         
@@ -48,6 +51,14 @@ class MainSearchCollectionViewController: UICollectionViewController {
         super.viewWillDisappear(animated)
 
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    private func makeFlowLayout(headerReferenceSize: CGSize = CGSize(width: 0.0, height: 0.0)) -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.headerReferenceSize = headerReferenceSize
+        layout.itemSize = CGSize(width: self.collectionView.frame.size.width, height: 64.0)
+        layout.minimumLineSpacing = 16.0
+        return layout
     }
     
     func configureSearchController() {
