@@ -37,7 +37,8 @@ export default function GuestModal({ type, setInplaceHolder, isActive, setModalO
 
 	const handleOnEnter = () => setXCircle(<XCircleHover />);
 	const handleOnLeave = () => setXCircle(<XCircle />);
-	const cleanUpGuest = () => {
+	const cleanUpGuest = (e: any) => {
+		e.stopPropagation();
 		setInfantCount(0);
 		setChildCount(0);
 		setAdultCount(0);
