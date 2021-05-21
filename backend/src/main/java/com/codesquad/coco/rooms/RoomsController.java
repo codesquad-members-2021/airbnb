@@ -1,6 +1,6 @@
 package com.codesquad.coco.rooms;
 
-import com.codesquad.coco.rooms.model.dto.SearchInfoDTO;
+import com.codesquad.coco.rooms.model.dto.SearchPriceDTO;
 import com.codesquad.coco.rooms.model.dto.SearchRoomsDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +13,9 @@ public class RoomsController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping("/search/price")
-    public void searchPrice(SearchInfoDTO searchInfoDTO){
-        logger.debug(searchInfoDTO.toString());
+    public void searchPrice(SearchPriceDTO searchPriceDTO){
+        logger.debug(searchPriceDTO.toString());
+
         //todo : 들어온 것으로 price 검색
     }
 

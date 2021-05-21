@@ -5,27 +5,19 @@ import com.codesquad.coco.rooms.model.Money;
 
 import java.beans.ConstructorProperties;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
-public class SearchRoomsDTO {
+public class SearchRoomsDTO extends SearchPriceDTO {
 
-    private static String DEFAULT_CITY_NAME = "서울";
-
-    private LocalDate checkIn;
-    private LocalDate checkOut;
-    private String cityName;
     private Guest guest;
     private Money priceMin;
     private Money priceMax;
 
-    @ConstructorProperties({"check-in","check-out","city-name","price-min","price-max","adult","child","baby"})
+    @ConstructorProperties({"check-in", "check-out", "city-name", "adult", "child", "baby", "price-min", "price-max"})
     public SearchRoomsDTO(String checkIn, String checkOut, String cityName,
-                          int adult,int child,int baby,
+                          int adult, int child, int baby,
                           int priceMin, int priceMax) {
-        this.checkIn = checkIn != null ? LocalDate.parse(checkIn, DateTimeFormatter.ISO_DATE) : LocalDate.of(1993,6,11);
-        this.checkOut = checkOut != null ? LocalDate.parse(checkOut, DateTimeFormatter.ISO_DATE) : LocalDate.of(2021,10,11);
-        this.cityName = cityName != null ? cityName : DEFAULT_CITY_NAME;
-        this.guest = new Guest(adult,child,baby);
+        super(checkIn, checkOut, cityName);
+        this.guest = new Guest(adult, child, baby);
         this.priceMin = new Money(priceMin);
         this.priceMax = new Money(priceMax);
     }
