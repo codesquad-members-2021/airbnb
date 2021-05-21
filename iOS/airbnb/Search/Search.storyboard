@@ -74,13 +74,13 @@
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qvf-LL-yAe">
                                                     <size key="itemSize" width="253" height="74"/>
-                                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="NearPlaceCell" id="Oty-Ae-lvZ" customClass="NearPlaceCell" customModule="airbnb" customModuleProvider="target">
-                                                        <rect key="frame" x="50" y="0.0" width="253" height="74"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="253" height="74"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dbK-xY-E5C">
                                                             <rect key="frame" x="0.0" y="0.0" width="253" height="74"/>
@@ -88,23 +88,6 @@
                                                         </collectionViewCellContentView>
                                                     </collectionViewCell>
                                                 </cells>
-                                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HeaderReusableView" id="D9Y-iN-yQX" customClass="HeaderReusableView" customModule="airbnb" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="224"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가까운 여행지 둘러보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRI-3T-Hgr">
-                                                            <rect key="frame" x="8" y="100" width="34" height="24"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="FRI-3T-Hgr" firstAttribute="leading" secondItem="D9Y-iN-yQX" secondAttribute="leadingMargin" id="9zn-uO-9fS"/>
-                                                        <constraint firstItem="FRI-3T-Hgr" firstAttribute="centerY" secondItem="D9Y-iN-yQX" secondAttribute="centerY" id="hP1-6e-FfW"/>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="FRI-3T-Hgr" secondAttribute="trailing" id="wmT-XU-D86"/>
-                                                    </constraints>
-                                                </collectionReusableView>
                                             </collectionView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a1J-09-J0J">
                                                 <rect key="frame" x="0.0" y="718" width="414" height="368"/>
@@ -114,13 +97,13 @@
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JiI-oy-b00">
                                                     <size key="itemSize" width="253" height="368"/>
-                                                    <size key="headerReferenceSize" width="50" height="56"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThemePlaceCell" id="ITo-R9-bF9" customClass="ThemePlaceCell" customModule="airbnb" customModuleProvider="target">
-                                                        <rect key="frame" x="50" y="0.0" width="253" height="368"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="253" height="368"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WwL-ud-xbt">
                                                             <rect key="frame" x="0.0" y="0.0" width="253" height="368"/>
@@ -128,23 +111,6 @@
                                                         </collectionViewCellContentView>
                                                     </collectionViewCell>
                                                 </cells>
-                                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HeaderReusableView" id="B33-xf-4Ov" customClass="HeaderReusableView" customModule="airbnb" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="368"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="어디에서나 여행은 살아보는거야" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qe-zK-xgL">
-                                                            <rect key="frame" x="8" y="172" width="34" height="24"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="8qe-zK-xgL" firstAttribute="centerY" secondItem="B33-xf-4Ov" secondAttribute="centerY" id="6wV-q5-6c1"/>
-                                                        <constraint firstItem="8qe-zK-xgL" firstAttribute="leading" secondItem="B33-xf-4Ov" secondAttribute="leadingMargin" id="FiL-jQ-KkW"/>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="8qe-zK-xgL" secondAttribute="trailing" id="Jsa-FD-TKT"/>
-                                                    </constraints>
-                                                </collectionReusableView>
                                             </collectionView>
                                         </subviews>
                                     </stackView>
@@ -181,7 +147,7 @@
         <!--Travel List View Controller-->
         <scene sceneID="vny-eY-iyH">
             <objects>
-                <viewController storyboardIdentifier="TravelListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1E9-eg-Y1u" customClass="TravelListViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TravelListViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1E9-eg-Y1u" customClass="TravelListViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BZl-vU-oYC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -264,6 +230,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="NQu-DT-fYd" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AK6-9l-JHi">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

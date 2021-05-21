@@ -30,14 +30,12 @@ class SearchViewController : UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
     }
     func registerNib() {
         let nib = UINib(nibName: NearPlaceCell.nibName, bundle: nil)
         nearPlaceCollection?.register(nib, forCellWithReuseIdentifier: NearPlaceCell.reuseIdentifier)
         let headerNib = UINib(nibName: HeaderReusableView.nibName, bundle: nil)
         nearPlaceCollection?.register(headerNib, forCellWithReuseIdentifier: HeaderReusableView.reuseIdentifier)
-        
         
         let specialNib = UINib(nibName: ThemePlaceCell.nibName, bundle: nil)
         themePlaceCollection?.register(specialNib, forCellWithReuseIdentifier: ThemePlaceCell.reuseIdentifier)

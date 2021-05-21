@@ -23,7 +23,6 @@ class TravelListViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = removeButton
         self.navigationItem.title = "숙소찾기"
-        self.tabBarController?.tabBar.isHidden = true
         
         self.travelList.dataSource = nearPlaceDataSource
         self.travelList.delegate = self
