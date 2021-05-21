@@ -1,11 +1,18 @@
 package com.team19.airbnb.dto;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class SearchRequestDTO {
     private String location;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkIn;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkOut;
+
     private String priceRange;
     private Integer guest; //adult + child , toddler x
 

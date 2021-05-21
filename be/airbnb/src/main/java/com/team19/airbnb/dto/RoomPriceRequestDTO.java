@@ -1,10 +1,15 @@
 package com.team19.airbnb.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class RoomPriceRequestDTO {
     private Long roomId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkIn;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkOut;
     private Integer guest;
 
