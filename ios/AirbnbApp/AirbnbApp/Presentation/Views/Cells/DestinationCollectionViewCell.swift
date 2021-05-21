@@ -26,7 +26,12 @@ class DestinationCollectionViewCell: UICollectionViewCell {
         return nib
     }
     
-    func setDefaultImage() {
+    func fill(with viewModel: DestinationViewModel) {
+        destinationNameLabel.text = viewModel.name
+        drivingTimeLabel.text = viewModel.drivingTime
+    }
+    
+    private func setDefaultImage() {
         destinationImageView.layer.borderWidth = 1.0
         destinationImageView.layer.borderColor = #colorLiteral(red: 0.5098039216, green: 0.5098039216, blue: 0.5098039216, alpha: 1)
         destinationImageView.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.968627451, alpha: 1)
@@ -37,7 +42,7 @@ class DestinationCollectionViewCell: UICollectionViewCell {
         destinationImageView.image = image
     }
     
-    func resetImageView() {
+    private func resetImageView() {
         destinationImageView.layer.borderWidth = 0.0
         destinationImageView.layer.borderColor = nil
         destinationImageView.backgroundColor = nil
