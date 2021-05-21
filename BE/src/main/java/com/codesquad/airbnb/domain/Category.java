@@ -2,7 +2,7 @@ package com.codesquad.airbnb.domain;
 
 import org.springframework.data.annotation.Id;
 
-public class Location {
+public class Category {
 
     @Id
     private Long id;
@@ -11,7 +11,7 @@ public class Location {
 
     private String imageUrl;
 
-    public Location(String name, String imageUrl) {
+    public Category(String name, String imageUrl) {
         this.name = name;
         this.imageUrl = imageUrl;
     }
