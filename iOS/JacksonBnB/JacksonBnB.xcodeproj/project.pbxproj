@@ -23,6 +23,7 @@
 		FA7A930D265650E1006878F0 /* SearchHotelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A930C265650E1006878F0 /* SearchHotelsViewController.swift */; };
 		FA7A934C2656A494006878F0 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A934A2656A494006878F0 /* LocationCell.swift */; };
 		FA7A934D2656A494006878F0 /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7A934B2656A494006878F0 /* LocationCell.xib */; };
+		FA7A934F2657749E006878F0 /* LocationDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A934E2657749E006878F0 /* LocationDB.swift */; };
 		FF388F66DE14903A010115F7 /* Pods_JacksonBnB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BE35E383E2FA2372B564AC /* Pods_JacksonBnB.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		FA7A930C265650E1006878F0 /* SearchHotelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHotelsViewController.swift; sourceTree = "<group>"; };
 		FA7A934A2656A494006878F0 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		FA7A934B2656A494006878F0 /* LocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
+		FA7A934E2657749E006878F0 /* LocationDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 		FA77FD892653FB5200F37BDD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FA7A934E2657749E006878F0 /* LocationDB.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -144,6 +147,8 @@
 		FA77FD8A2653FB5600F37BDD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FA7A934A2656A494006878F0 /* LocationCell.swift */,
+				FA7A934B2656A494006878F0 /* LocationCell.xib */,
 				FA77FD8C2654AAA800F37BDD /* LottieAnimation.swift */,
 			);
 			path = View;
@@ -194,8 +199,6 @@
 				FA7942CF2653F3B800D73017 /* Assets.xcassets */,
 				FA7942D12653F3B800D73017 /* LaunchScreen.storyboard */,
 				FA7942D42653F3B800D73017 /* Info.plist */,
-				FA7A934A2656A494006878F0 /* LocationCell.swift */,
-				FA7A934B2656A494006878F0 /* LocationCell.xib */,
 			);
 			path = JacksonBnB;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 			files = (
 				FA77FD8D2654AAA800F37BDD /* LottieAnimation.swift in Sources */,
 				FA7942CB2653F3B700D73017 /* MainViewController.swift in Sources */,
+				FA7A934F2657749E006878F0 /* LocationDB.swift in Sources */,
 				FA7A930D265650E1006878F0 /* SearchHotelsViewController.swift in Sources */,
 				FA7942C72653F3B700D73017 /* AppDelegate.swift in Sources */,
 				FA7942C92653F3B700D73017 /* SceneDelegate.swift in Sources */,
