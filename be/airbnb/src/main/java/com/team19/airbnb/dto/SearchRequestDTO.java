@@ -1,13 +1,18 @@
 package com.team19.airbnb.dto;
 
+import java.time.LocalDate;
+
 public class SearchRequestDTO {
     private String location;
-    private String checkIn;
-    private String checkOut;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
     private String priceRange;
-    private int guest; //adult + child , toddler x
+    private Integer guest; //adult + child , toddler x
 
-    public SearchRequestDTO(String location, String checkIn, String checkOut, String priceRange, int guest) {
+    public SearchRequestDTO(String location,
+                            LocalDate checkIn, LocalDate checkOut,
+                            String priceRange,
+                            int guest) {
         this.location = location;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -19,11 +24,11 @@ public class SearchRequestDTO {
         this.location = location;
     }
 
-    public void setCheckIn(String checkIn) {
+    public void setCheckIn(LocalDate checkIn) {
         this.checkIn = checkIn;
     }
 
-    public void setCheckOut(String checkOut) {
+    public void setCheckOut(LocalDate checkOut) {
         this.checkOut = checkOut;
     }
 
@@ -31,7 +36,7 @@ public class SearchRequestDTO {
         this.priceRange = priceRange;
     }
 
-    public void setGuest(int guest) {
+    public void setGuest(Integer guest) {
         this.guest = guest;
     }
 }

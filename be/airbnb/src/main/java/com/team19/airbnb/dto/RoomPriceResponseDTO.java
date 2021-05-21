@@ -1,13 +1,19 @@
 package com.team19.airbnb.dto;
 
-public class RoomPriceResponseDTO {
-    private int discountPerWeek;
-    private int cleaningFee;
-    private int serviceFee;
-    private int tax;
-    private int totalPrice;
+import java.math.BigDecimal;
 
-    public RoomPriceResponseDTO(int discountPerWeek, int cleaningFee, int serviceFee, int tax, int totalPrice) {
+public class RoomPriceResponseDTO {
+    private BigDecimal discountPerWeek;
+    private BigDecimal cleaningFee;
+    private BigDecimal serviceFee;
+    private BigDecimal tax;
+    private BigDecimal totalPrice;
+
+    public RoomPriceResponseDTO(BigDecimal discountPerWeek,
+                                BigDecimal cleaningFee,
+                                BigDecimal serviceFee,
+                                BigDecimal tax,
+                                BigDecimal totalPrice) {
         this.discountPerWeek = discountPerWeek;
         this.cleaningFee = cleaningFee;
         this.serviceFee = serviceFee;
@@ -15,23 +21,23 @@ public class RoomPriceResponseDTO {
         this.totalPrice = totalPrice;
     }
 
-    public int getDiscountPerWeek() {
+    public BigDecimal getDiscountPerWeek() {
         return discountPerWeek;
     }
 
-    public int getCleaningFee() {
+    public BigDecimal getCleaningFee() {
         return cleaningFee;
     }
 
-    public int getServiceFee() {
+    public BigDecimal getServiceFee() {
         return serviceFee;
     }
 
-    public int getTax() {
+    public BigDecimal getTax() {
         return tax;
     }
 
-    public int getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 }

@@ -1,19 +1,19 @@
 package com.team19.airbnb.dto;
 
 public class HeroBanner {
-    private String image;
     private String title;
+    private String image;
 
-    public HeroBanner(String image, String title) {
-        this.image = image;
+    public HeroBanner(String title, String image) {
         this.title = title;
-    }
-
-    public String getImage() {
-        return image;
+        this.image = image;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public String getImage() {
+        return image;
     }
 }

@@ -1,14 +1,20 @@
 package com.team19.airbnb.dto;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 public class BookingRequestDTO {
     // /bookings
-    private int roomId;
-    private String checkIn;
-    private String checkOut;
-    private int guest;
-    private int totalPrice;
+    private Long roomId;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
+    private Integer guest;
+    private BigDecimal totalPrice;
 
-    public BookingRequestDTO(int roomId, String checkIn, String checkOut, int guest, int totalPrice) {
+    public BookingRequestDTO(Long roomId,
+                             LocalDate checkIn, LocalDate checkOut,
+                             Integer guest,
+                             BigDecimal totalPrice) {
         this.roomId = roomId;
         this.checkIn = checkIn;
         this.checkOut = checkOut;

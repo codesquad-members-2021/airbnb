@@ -1,21 +1,33 @@
 package com.team19.airbnb.dto;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 public class RoomDetailResponseDTO {
     // /rooms~ , /wishlist, /search
     private Long roomId;
     private String roomName;
-    private String[] images;
-    private float grade;
-    private int reviewer;
+    private List<String> images;
+    private Double grade;
+    private Integer reviewer;
     private String location;
-    private int pricePerDay;
-    private int totalPrice;
+    private BigDecimal pricePerDay;
+    private BigDecimal totalPrice;
     private String roomType;
-    private Host host;
     private String roomConfiguration;
     private String description;
+    private Host host;
 
-    public RoomDetailResponseDTO(Long roomId, String roomName, String[] images, float grade, int reviewer, String location, int pricePerDay, int totalPrice, String roomType, Host host, String roomConfiguration, String description) {
+    private String[] coordiante;
+
+    public RoomDetailResponseDTO(Long roomId, String roomName,
+                                 List<String> images,
+                                 Double grade, Integer reviewer,
+                                 String location,
+                                 BigDecimal pricePerDay, BigDecimal totalPrice,
+                                 String roomType,
+                                 String roomConfiguration, String description,
+                                 Host host) {
         this.roomId = roomId;
         this.roomName = roomName;
         this.images = images;
@@ -38,15 +50,15 @@ public class RoomDetailResponseDTO {
         return roomName;
     }
 
-    public String[] getImages() {
+    public List<String> getImages() {
         return images;
     }
 
-    public float getGrade() {
+    public Double getGrade() {
         return grade;
     }
 
-    public int getReviewer() {
+    public Integer getReviewer() {
         return reviewer;
     }
 
@@ -54,11 +66,11 @@ public class RoomDetailResponseDTO {
         return location;
     }
 
-    public int getPricePerDay() {
+    public BigDecimal getPricePerDay() {
         return pricePerDay;
     }
 
-    public int getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 

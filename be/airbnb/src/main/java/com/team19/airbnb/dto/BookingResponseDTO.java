@@ -1,24 +1,28 @@
 package com.team19.airbnb.dto;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
+
 public class BookingResponseDTO {
     private Long bookingId;
-    private String checkIn;
-    private String checkOut;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
     private Long roomId;
     private String roomName;
     private String roomType;
-    private String[] images;
+    private List<String> images;
     private Host host;
-    private int guest;
-    private int totalPrice;
+    private Integer guest;
+    private BigDecimal totalPrice;
 
     public BookingResponseDTO(Long bookingId,
-                              String checkIn, String checkOut,
+                              LocalDate checkIn, LocalDate checkOut,
                               Long roomId, String roomName, String roomType,
-                              String[] images,
+                              List<String> images,
                               Host host,
-                              int guest,
-                              int totalPrice) {
+                              Integer guest,
+                              BigDecimal totalPrice) {
         this.bookingId = bookingId;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -35,11 +39,11 @@ public class BookingResponseDTO {
         return bookingId;
     }
 
-    public String getCheckIn() {
+    public LocalDate getCheckIn() {
         return checkIn;
     }
 
-    public String getCheckOut() {
+    public LocalDate getCheckOut() {
         return checkOut;
     }
 
@@ -55,7 +59,7 @@ public class BookingResponseDTO {
         return roomType;
     }
 
-    public String[] getImages() {
+    public List<String> getImages() {
         return images;
     }
 
@@ -63,11 +67,11 @@ public class BookingResponseDTO {
         return host;
     }
 
-    public int getGuest() {
+    public Integer getGuest() {
         return guest;
     }
 
-    public int getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 }

@@ -1,31 +1,35 @@
 package com.team19.airbnb.dto;
 
-public class RoomPriceRequestDTO {
-    private int roomId;
-    private String checkIn;
-    private String checkOut;
-    private int guest;
+import java.time.LocalDate;
 
-    public RoomPriceRequestDTO(int roomId, String checkIn, String checkOut, int guest) {
+public class RoomPriceRequestDTO {
+    private Long roomId;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
+    private Integer guest;
+
+    public RoomPriceRequestDTO(Long roomId,
+                               LocalDate checkIn, LocalDate checkOut,
+                               int guest) {
         this.roomId = roomId;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.guest = guest;
     }
 
-    public void setRoomId(int roomId) {
+    public void setRoomId(Long roomId) {
         this.roomId = roomId;
     }
 
-    public void setCheckIn(String checkIn) {
+    public void setCheckIn(LocalDate checkIn) {
         this.checkIn = checkIn;
     }
 
-    public void setCheckOut(String checkOut) {
+    public void setCheckOut(LocalDate checkOut) {
         this.checkOut = checkOut;
     }
 
-    public void setGuest(int guest) {
+    public void setGuest(Integer guest) {
         this.guest = guest;
     }
 }
