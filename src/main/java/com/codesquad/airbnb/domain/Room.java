@@ -5,8 +5,10 @@ import org.springframework.data.annotation.Id;
 import java.util.List;
 
 public class Room {
+
     @Id
     private final Long id;
+
     private int max;
     private String name;
     private double rating;
@@ -22,6 +24,10 @@ public class Room {
     private int salePrice;
     private boolean flexibleRefund;
     private boolean immediateBooking;
+
+    private List<Thumbnail> thumbnails;
+    private List<Option> options;
+    private List<Badge> badges;
 
     public Room(Long id, int max, String name, double rating, double latitude, double longitude, int bedroomCount,
                 int bedCount, int bathroomCount, String address, String detailAddress, int commentCount,

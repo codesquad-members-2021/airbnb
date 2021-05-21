@@ -1,5 +1,5 @@
-drop table if exists `badges`;
-drop table if exists `thumbnails`;
+drop table if exists `badge`;
+drop table if exists `thumbnail`;
 drop table if exists `option`;
 drop table if exists `wish`;
 drop table if exists `booking`;
@@ -71,7 +71,7 @@ create table `option`
     foreign key (room_id) references room (id)
 );
 
-create table `thumbnails`
+create table `thumbnail`
 (
     room_id   int not null,
     thumbnail varchar(200) not null,

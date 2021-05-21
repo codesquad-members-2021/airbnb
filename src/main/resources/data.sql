@@ -16,9 +16,9 @@ values (1, 1);
 insert into `option` (room_id, kitchen, air_conditioner, wifi, free_parking_lot, hair_dryer)
 values (1, 1, 1, 1, 1, 1);
 
-insert into `thumbnails` (room_id, thumbnail)
+insert into `thumbnail` (room_id, thumbnail)
 values (1, "https://a0.muscache.com/im/pictures/c45d08e5-f560-44f0-83fc-83290ccd1670.jpg?im_w=720");
 insert into `thumbnails` (room_id, thumbnail)
 values (1, "https://a0.muscache.com/im/pictures/e3258341-b4f3-4988-b958-bec903936a0b.jpg?im_w=720");
 
-insert into `badges` (room_id, `type`) values (1, "슈퍼호스트");
+insert into `badge` (room_id, `type`) values (1, "슈퍼호스트");

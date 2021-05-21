@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import java.util.Date;
 
 public class Booking {
+
     @Id
     private Long id;
 

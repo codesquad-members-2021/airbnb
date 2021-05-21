@@ -1,5 +1,7 @@
 package com.codesquad.airbnb.domain;
 
+import java.util.List;
+
 public class RoomBuilder {
     private Long id;
     private int max;
@@ -17,6 +19,10 @@ public class RoomBuilder {
     private int salePrice;
     private boolean flexibleRefund;
     private boolean immediateBooking;
+
+    private List<Thumbnail> thumbnails;
+    private List<Option> options;
+    private List<Badge> badges;
 
     public RoomBuilder setId(Long id) {
         this.id = id;
