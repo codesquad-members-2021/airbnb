@@ -28,12 +28,6 @@ final class PopularLocationUseCase: PopularLocationCaseConfigurable {
         self.init(networkManager: FakeNetworkManager(fakeData: fakeData), imageLoadManager: imageLoadManager)
     }
     
-    func loadPopularLocationImage(from imageUrl: String, completionHandler: @escaping (String) -> Void) {
-        imageLoadManager.load(from: imageUrl) { cachePath in
-            completionHandler(cachePath)
-        }
-    }
-    
     func loadPopularLocations(completionHandler: @escaping (Result<[PopularLocation], CustomError>) -> Void) {
         let endPoint = EndPoint.popularLocations
         
@@ -56,6 +50,12 @@ final class PopularLocationUseCase: PopularLocationCaseConfigurable {
             default:
                 completionHandler(.failure(CustomError.unknown))
             }
+        }
+    }
+    
+    func loadPopularLocationImage(from imageUrl: String, completionHandler: @escaping (String) -> Void) {
+        imageLoadManager.load(from: imageUrl) { cachePath in
+            completionHandler(cachePath)
         }
     }
 }

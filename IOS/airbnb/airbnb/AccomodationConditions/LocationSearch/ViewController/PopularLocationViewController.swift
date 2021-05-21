@@ -43,14 +43,14 @@ final class PopularLocationViewController: UIViewController, Instantiable {
     }
     
     private func configurePopularLocationTableView() {
-        viewModel.popularLocations { result in
+        viewModel.popularLocations { [weak self] result in
             do {
                 let popularLocations = try result.get()
                 let imagePaths = popularLocations.map{ $0.imagePath }
-                self.startDownloadingImages(from: imagePaths)
-                self.updateTableView(with: popularLocations)
+                self?.startDownloadingImages(from: imagePaths)
+                self?.updateTableView(with: popularLocations)
             } catch {
-                self.alertError(error: error)
+                self?.alertError(error: error)
             }
         }
     }
@@ -58,9 +58,9 @@ final class PopularLocationViewController: UIViewController, Instantiable {
     private func startDownloadingImages(from imagePaths: [String]) {
         var cachePaths = Array(repeating: "", count: imagePaths.count)
         imagePaths.enumerated().forEach { (index, imagePath) in
-            self.viewModel.popularLocationImage(from: imagePath) { cachePath in
+            self.viewModel.popularLocationImage(from: imagePath) { [weak self] cachePath in
                 cachePaths[index] = cachePath
-                self.updateTableView(with: cachePaths)
+                self?.updateTableView(with: cachePaths)
             }
         }
     }
