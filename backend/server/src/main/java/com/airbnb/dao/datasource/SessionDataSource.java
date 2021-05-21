@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SessionDataSource extends DataSource {
+    // FIXME: 인프라를 구축해서 Redis url 로 바꿔야한다.
     @Value("${session.datasource.url}")
     private String url;
 
