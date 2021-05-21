@@ -4,6 +4,7 @@ import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/Sear
 import { LocationList, Location } from '../../../../../shared/interface';
 import { mockupLocationData } from '../../../../../data/location';
 import { useReservationDispatch } from '../../../../../hooks/ReservationHook';
+import Layer from './Layer.style';
 
 const LocationTab = (): React.ReactElement => {
     const searcherDispatch = useSearcherDispatch();
@@ -54,15 +55,13 @@ const LocationTab = (): React.ReactElement => {
                     disabled
                 />
             </Tab>
-            <LayerSection>
-                {locationLayer && (
-                    <LocationLayer>
-                        {locationList?.map((place: Location) => (
-                            <li onClick={() => setUpLocation(place)}>{place.city}</li>
-                        ))}
-                    </LocationLayer>
-                )}
-            </LayerSection>
+            {locationLayer && (
+                <Layer width={493}>
+                    {locationList?.map((place: Location) => (
+                        <li onClick={() => setUpLocation(place)}>{place.city}</li>
+                    ))}
+                </Layer>
+            )}
         </Container>
     );
 };
@@ -81,16 +80,4 @@ const NavigatingText = styled.p`
 
 const LocationInput = styled.input`
     margin: 0;
-`;
-
-const LayerSection = styled.section`
-    position: absolute;
-    top: 70px;
-    left: 0;
-`;
-
-const LocationLayer = styled.ul`
-    border: 1px solid red;
-    width: 493px;
-    height: 364px;
 `;

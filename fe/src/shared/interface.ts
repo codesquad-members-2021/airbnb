@@ -49,3 +49,9 @@ export interface SearcherContext {
     locationLayer: boolean;
     calendarLayer: boolean;
 }
+
+export type Td = {
+    classNames: string[] | null;
+    dataSets: string[] | null;
+    countDay: number;
+};

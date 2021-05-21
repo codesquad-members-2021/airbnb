@@ -7,6 +7,7 @@ import { useReservationState, useReservationDispatch } from '../../../../hooks/R
 import LocationTab from './searcherComponents/LocationTab';
 import { SearcherStateContext, SearcherDispatchContext } from '../../../../Contexts';
 import { searchReducer } from '../../../../shared/searchBarReducer';
+import Calendar from './searcherComponents/Calendar';
 
 const isNotLocationSelected = (location: Location): boolean => {
     return location.id === 0 && location.city === '';
@@ -25,7 +26,7 @@ const Searcher = (): React.ReactElement => {
     const { location, checkIn, checkOut, fee, people } = reservationState;
 
     const [searcherState, searcherDispatch] = useReducer(searchReducer, initialSearcherState);
-
+    const { calendarLayer } = searcherState;
     const handleCalendarLayer: React.MouseEventHandler<HTMLDivElement> = () => {
         searcherDispatch({ type: 'LOCATION_LAYER', state: false });
         searcherDispatch({ type: 'CALENDAR_LAYER', state: true });
@@ -62,9 +63,9 @@ const Searcher = (): React.ReactElement => {
                             <li onClick={() => setUpLocation(place)}>{place.city}</li>
                         ))}
                     </LocationLayer>
-                )}
-                {calendarLayer && <div>calendar</div>}
-            </LayerSection> */}
+                )}  */}
+            {calendarLayer && <Calendar />}
+            {/* </LayerSection>  */}
         </Search>
     );
 };
