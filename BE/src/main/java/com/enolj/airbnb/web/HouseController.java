@@ -19,13 +19,13 @@ public class HouseController {
     }
 
     @GetMapping("/houses")
-    public List<SearchResponseDTO> searchHouses(@RequestBody SearchRequestDTO requestDTO) {
+    public List<SearchResponseDTO> searchHouses(SearchRequestDTO requestDTO) {
         logger.info("숙소 검색 요청");
         return houseService.searchHousesByCondition(requestDTO);
     }
 
     @GetMapping("/houses/charges")
-    public List<Integer> searchCharges(@RequestBody SearchChargesRequestDTO requestDTO) {
+    public List<Integer> searchCharges(SearchChargesRequestDTO requestDTO) {
         logger.info("범위 내 숙소 가격 요청");
         return houseService.searchChargesByCondition(requestDTO);
     }
