@@ -4,31 +4,37 @@ import { ReactElement } from 'react';
 import LocationSearch from './LocationSearch/LocationSearch';
 import CalendarSlider from './CalendarSlider/CalendarSlider';
 
-export const SelectedBtnIdx = atom<number|null>({
-  key: 'SelectedBtnIdx',
+export enum ReservationBarBtnType {
+  Location = 'location',
+  CheckIn = 'check-in',
+  CheckOut = 'check-out',
+};
+
+export const SelectedBtn = atom<ReservationBarBtnType|null>({
+  key: 'SelectedBtn',
   default: null
 });
 
 export const DropPopupContent = selector<ReactElement|null>({
   key: 'DropPopupContent',
   get: ({ get }): (ReactElement|null) => {
-    const selectedBtnIdx: number|null = get(SelectedBtnIdx);
+    const selectedBtnType: ReservationBarBtnType|null = get(SelectedBtn);
 
-    switch(selectedBtnIdx) {
+    switch(selectedBtnType) {
       case null:
         return null;
 
-      case 0:
+      case ReservationBarBtnType.Location:
         return <LocationSearch/>;
 
-      case 1:
-      case 2:
+      case ReservationBarBtnType.CheckIn:
+      case ReservationBarBtnType.CheckOut:
         return <CalendarSlider/>;
 
       // TODO: 3, 4
 
       default:
-        throw new Error(`Not existing index ${selectedBtnIdx}`);
+        throw new Error(`Not existing index ${selectedBtnType}`);
     }
   }
 });
@@ -39,8 +45,8 @@ export const LocationSearchState = atom<string>({
 });
 
 export type T_CheckInOutState = {
-  in: Date | null,
-  out: Date | null
+  in: number | null,
+  out: number | null
 };
 
 export const CheckInOutState = atom<T_CheckInOutState>({
@@ -56,15 +62,15 @@ export type T_CheckInOutString = {
   out: string
 };
 
-export const CheckInOutStringState = selector<T_CheckInOutString>({
-  key: 'CheckInOutStringState',
-  get: ({ get }) => {
-    const checkInOutState: T_CheckInOutState = get(CheckInOutState);
+// export const CheckInOutStringState = selector<T_CheckInOutString>({
+//   key: 'CheckInOutStringState',
+//   get: ({ get: GetRecoilValue }) => {
+//     const checkInOutState: T_CheckInOutState = get(CheckInOutState);
 
-    return {
-      in: `${checkInOutState.in?.getMonth()}월 ${checkInOutState.in?.getDay()}일`,
-      out: `${checkInOutState.out?.getMonth()}월 ${checkInOutState.out?.getDay()}일`
-    }
-  },
-});
+//     return {
+//       in: `${checkInOutState.in?.getMonth()}월 ${checkInOutState.in?.getDay()}일`,
+//       out: `${checkInOutState.out?.getMonth()}월 ${checkInOutState.out?.getDay()}일`
+//     }
+//   },
+// });
 

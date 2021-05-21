@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import React, { useRef, ReactElement } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
-import { T_CheckInOutState } from './atoms';
-import { SelectedBtnIdx, DropPopupContent, LocationSearchState, CheckInOutState } from './atoms';
+import { ReservationBarBtnType, T_CheckInOutState } from './atoms';
+import { SelectedBtn, DropPopupContent, LocationSearchState, CheckInOutState } from './atoms';
 
 import ReservationBarBtn from './ReservationBarBtn';
 import ReservationBarDropPopup from './ReservationBarDropPopup';
@@ -15,19 +15,19 @@ type ReservationBarProps = {
 
 function ReservationBar({ className }: ReservationBarProps): ReactElement {
   const ref = useRef<HTMLDivElement>(null);
-  const [selectedIdx, setSelectedIdx] = useRecoilState<number|null>(SelectedBtnIdx);
+  const [selectedBtn, setSelectedBtn] = useRecoilState<ReservationBarBtnType|null>(SelectedBtn);
   const dropPopupContent = useRecoilValue<ReactElement|null>(DropPopupContent);
   const [location, setLocation] = useRecoilState<string>(LocationSearchState);
   const checkInOut = useRecoilValue<T_CheckInOutState>(CheckInOutState);
 
   const handleClickCaptureBtn = (currentTarget: HTMLDivElement): void => {
-    setSelectedIdx((oldSelectedIdx: number|null): number|null => {
-      const newSelectedIdx = Number(currentTarget.dataset.index);
+    setSelectedBtn((oldSelectedBtn: ReservationBarBtnType|null): ReservationBarBtnType|null => {
+      const newSelectedBtn: ReservationBarBtnType|null = currentTarget.dataset.btnType as ReservationBarBtnType;
 
-      if (oldSelectedIdx === newSelectedIdx)
+      if (oldSelectedBtn === newSelectedBtn)
         return null;
 
-      return Number(currentTarget.dataset.index);
+      return newSelectedBtn;
     });
   }
 
@@ -37,32 +37,32 @@ function ReservationBar({ className }: ReservationBarProps): ReactElement {
 
   return (
     <StyledReservationBar className={className} ref={ref}>
-      <ReservationBarBtn dataIndex={0} onClickCapture={handleClickCaptureBtn}>
+      <ReservationBarBtn dataBtnType={ReservationBarBtnType.Location} onClickCapture={handleClickCaptureBtn}>
         <div className='title'>위치</div>
         <input className='content' value={location} onChange={handleChange} placeholder={'어디로 여행가세요?'}/>
       </ReservationBarBtn>
-      <ReservationBarBtn dataIndex={1} onClickCapture={handleClickCaptureBtn}>
+      <ReservationBarBtn dataBtnType={ReservationBarBtnType.CheckIn} onClickCapture={handleClickCaptureBtn}>
         <div className='title'>체크인</div>
         <div className='content'>{checkInOut.in ?? '날짜 입력'}</div>
       </ReservationBarBtn>        
-      <ReservationBarBtn dataIndex={2} onClickCapture={handleClickCaptureBtn}>
+      <ReservationBarBtn dataBtnType={ReservationBarBtnType.CheckOut} onClickCapture={handleClickCaptureBtn}>
         <div className='title'>체크아웃</div>
         <div className='content'>{checkInOut.out ?? '날짜 입력'}</div>
       </ReservationBarBtn>
-      <ReservationBarBtn dataIndex={3} onClickCapture={handleClickCaptureBtn}>
+      <ReservationBarBtn onClickCapture={handleClickCaptureBtn}>
         <div className='title'>요금</div>
         <div className='content'>tmp</div>
       </ReservationBarBtn>
-      <ReservationBarBtn className='with-btn' dataIndex={4} onClickCapture={handleClickCaptureBtn}>
+      <ReservationBarBtn className='with-btn' onClickCapture={handleClickCaptureBtn}>
         <div className='title'>인원</div>
         <div className='content'>tmp</div>
         <button className='search-btn'>
         </button>
       </ReservationBarBtn>
-      {/* {dropPopupContent && <ReservationBarDropPopup outsideBlacklist={[ref.current as HTMLElement]}>{dropPopupContent}</ReservationBarDropPopup>} */}
-      <ReservationBarDropPopup>
-        <CalendarSlider/>
-      </ReservationBarDropPopup>
+      {dropPopupContent && <ReservationBarDropPopup outsideBlacklist={[ref.current as HTMLElement]}>{dropPopupContent}</ReservationBarDropPopup>}
+      {/* <ReservationBarDropPopup> */}
+        {/* <CalendarSlider/> */}
+      {/* </ReservationBarDropPopup> */}
     </StyledReservationBar>
   )
 };

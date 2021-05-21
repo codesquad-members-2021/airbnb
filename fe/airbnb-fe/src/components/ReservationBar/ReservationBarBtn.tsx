@@ -2,18 +2,19 @@ import styled from 'styled-components';
 import React, { ReactElement } from 'react';
 import { useRecoilValue } from 'recoil';
 
-import { SelectedBtnIdx } from './atoms';
+import { ReservationBarBtnType } from './atoms';
+import { SelectedBtn } from './atoms';
 
 type ReservationBarBtnProps = {
   className?: string,
-  dataIndex: number,
+  dataBtnType?: ReservationBarBtnType,
   // onClick?: (target: HTMLDivElement) => void,
   onClickCapture: (target: HTMLDivElement) => void,
   children?: ReactElement[]
 }
 
-function ReservationBarBtn({ className, dataIndex, onClickCapture, children }: ReservationBarBtnProps): ReactElement {
-  const selectedIdx = useRecoilValue<number|null>(SelectedBtnIdx);
+function ReservationBarBtn({ className, dataBtnType, onClickCapture, children }: ReservationBarBtnProps): ReactElement {
+  const selectedBtn = useRecoilValue<ReservationBarBtnType|null>(SelectedBtn);
 
   const handleClickCapture = ({ target, currentTarget }: React.MouseEvent<HTMLDivElement>) => {
     onClickCapture(currentTarget as HTMLDivElement);
@@ -21,9 +22,9 @@ function ReservationBarBtn({ className, dataIndex, onClickCapture, children }: R
 
   return (
     <StyledReservationBarBtn
-      className={(className ?? '') + (dataIndex === selectedIdx ? ' selected' : '')}
+      className={(className ?? '') + (dataBtnType === selectedBtn ? ' selected' : '')}
       onClickCapture={handleClickCapture}
-      data-index={dataIndex}>
+      data-btn-type={dataBtnType}>
       {children}
     </StyledReservationBarBtn>
   );

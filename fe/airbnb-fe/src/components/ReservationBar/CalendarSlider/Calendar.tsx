@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState, ReactElement } from 'react';
+import React, { useState, ReactElement, ReactNode } from 'react';
 import { useRecoilState } from 'recoil';
 import { CheckInOutState } from '../atoms';
 
@@ -22,6 +22,10 @@ function Calendar({ className, todayDate, width, year, month }: CalendarProps): 
   const [checkInOut, setCheckInOut] = useRecoilState(CheckInOutState);
 
   const handleClickDate = ({ target }: React.MouseEvent<HTMLTableSectionElement>): void => {
+    if (!(target as HTMLElement).dataset.date)
+      return;
+
+    
   }
 
   const renderDates = (): ReactElement[] => {
@@ -38,7 +42,15 @@ function Calendar({ className, todayDate, width, year, month }: CalendarProps): 
           continue;
         }
 
-        week[i] = <td className={_isPast(todayDate, currDate) ? 'past' : ''}>{currDate.getDate()}</td>;
+        week[i] = (
+          <td>
+            <div
+              className={_isPast(todayDate, currDate) ? 'past' : ''}
+              data-date={currDate.valueOf()}>
+              {currDate.getDate()}
+            </div>
+          </td>
+        );
         currDate.setDate(currDate.getDate() + 1);
       }
 
@@ -93,10 +105,40 @@ const CalendarTableBody = styled.tbody`
     margin: 0;
     font-size: 1.2rem;
     cursor: pointer;
+    
 
-    &.past {
-      color: #bdbdbd;
-      cursor: default;
+    & > div {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      padding-top: 1rem;
+      border-radius: 9999px;
+      border: 1.5px transparent solid;
+
+      &.past {
+        color: #bdbdbd;
+        cursor: default;
+        pointer-events: none;
+      }
+
+      &:not(.past):hover, &.selected {
+        border-color: #333333;
+      }
+
+      &.selected {
+        background-color: #333333;
+      }
+    }
+
+    &.selected-start {
+
+    }
+
+    &.selected-intermediate {
+
+    }
+
+    &.selected-end {
     }
   }
 `;
