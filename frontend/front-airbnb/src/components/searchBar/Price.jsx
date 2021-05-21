@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import PriceModal from '../modal/PriceModal';
 
 const Price = () => {
     return (
         <PriceWrapper>
         <Title>요금</Title>
         <View>금액대 설정</View>
+        <PriceModal/>
         </PriceWrapper>
     );
 }

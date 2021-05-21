@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import PersonnelModal from '../modal/PersonnelModal';
 
 const Personnel = () => {
     return (
         <PersonnelWrapper>
                 <Title>인원</Title>
                 <View>게스트추가</View>
+                <PersonnelModal/>
         </PersonnelWrapper>
     );
 }
