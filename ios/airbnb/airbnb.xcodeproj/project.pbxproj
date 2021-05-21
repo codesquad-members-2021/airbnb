@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B302110126575A8000A0AA92 /* SpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30210FF26575A8000A0AA92 /* SpotCollectionViewCell.swift */; };
+		B302110226575A8000A0AA92 /* SpotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B302110026575A8000A0AA92 /* SpotCollectionViewCell.xib */; };
 		B3C8FB162655FD52005C6235 /* CityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */; };
 		B3C8FB172655FD52005C6235 /* CityCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3C8FB152655FD52005C6235 /* CityCollectionViewCell.xib */; };
 		B3C8FB1C26562E13005C6235 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B3C8FB1B26562E13005C6235 /* Alamofire */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B30210FF26575A8000A0AA92 /* SpotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpotCollectionViewCell.swift; path = airbnb/SpotCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		B302110026575A8000A0AA92 /* SpotCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SpotCollectionViewCell.xib; path = airbnb/SpotCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
 		B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCollectionViewCell.swift; sourceTree = "<group>"; };
 		B3C8FB152655FD52005C6235 /* CityCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityCollectionViewCell.xib; sourceTree = "<group>"; };
 		B3C8FB1D26562E7C005C6235 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -95,6 +99,8 @@
 		B30210FE265757D900A0AA92 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B30210FF26575A8000A0AA92 /* SpotCollectionViewCell.swift */,
+				B302110026575A8000A0AA92 /* SpotCollectionViewCell.xib */,
 				B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */,
 				B3C8FB152655FD52005C6235 /* CityCollectionViewCell.xib */,
 			);
@@ -285,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3D7316326523C4400FE6C62 /* LaunchScreen.storyboard in Resources */,
+				B302110226575A8000A0AA92 /* SpotCollectionViewCell.xib in Resources */,
 				B3D7316026523C4400FE6C62 /* Assets.xcassets in Resources */,
 				B3D7315E26523C4300FE6C62 /* Main.storyboard in Resources */,
 				B3C8FB172655FD52005C6235 /* CityCollectionViewCell.xib in Resources */,
@@ -318,6 +325,7 @@
 				B3C8FB2726564787005C6235 /* EndPoint.swift in Sources */,
 				B3D7315926523C4300FE6C62 /* SceneDelegate.swift in Sources */,
 				B3C8FB2526563D26005C6235 /* LocationManager.swift in Sources */,
+				B302110126575A8000A0AA92 /* SpotCollectionViewCell.swift in Sources */,
 				B3C8FB2126563304005C6235 /* MainLayout.swift in Sources */,
 				B3C8FB162655FD52005C6235 /* CityCollectionViewCell.swift in Sources */,
 				B3D73187265289DA00FE6C62 /* LocationViewController.swift in Sources */,
