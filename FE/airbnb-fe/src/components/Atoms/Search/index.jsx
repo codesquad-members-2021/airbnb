@@ -1,4 +1,10 @@
-import React, { useReducer, useRef, useEffect } from 'react';
+import React, {
+  useReducer,
+  useRef,
+  useEffect,
+  createContext,
+  useState,
+} from 'react';
 import styled from 'styled-components';
 import Price from './Price';
 import Check from './Check';
@@ -9,13 +15,15 @@ import PeopleModal from './People/PeopleModal';
 import SearchBtn from './SearchBtn';
 import modalClickReducer from '../../utils/reducer/modalClickReducer';
 
+export const SearchContext = createContext();
+
 const Search = () => {
   const modalElement = useRef();
 
   useEffect(() => {
     const modalOff = (e) => {
       if (modalElement.current && !modalElement.current.contains(e.target)) {
-        dispatch({ type: 'ModalOff' });
+        modalDispatch({ type: 'ModalOff' });
       }
     };
     document.addEventListener('mousedown', modalOff);
@@ -24,29 +32,54 @@ const Search = () => {
     };
   }, [modalElement]);
 
-  const [clicked, dispatch] = useReducer(modalClickReducer, {
+  const [clicked, modalDispatch] = useReducer(modalClickReducer, {
     checkInOut: false,
     price: false,
     people: false,
   });
 
+  const peopleReducer = (state, action) => {
+    switch (action.type) {
+      case 'INCREASE':
+        return {
+          ...state,
+          [action.payload]: state[action.payload] + 1,
+        };
+      case 'DECREASE':
+        return {
+          ...state,
+          [action.payload]: state[action.payload] - 1,
+        };
+      default:
+        return;
+    }
+  };
+
+  const [peopleCount, peopleDispatch] = useReducer(peopleReducer, {
+    adult: 0,
+    child: 0,
+    baby: 0,
+  });
+
   const { checkInOut, price, people } = clicked;
   return (
-    <SearchDiv className="searchBar">
-      <SearchWrap>
-        <Check dispatch={dispatch}></Check>
-        <Price dispatch={dispatch}></Price>
-        <People dispatch={dispatch}></People>
-        <SearchBtnWrap>
-          <SearchBtn />
-        </SearchBtnWrap>
-        <ModalDiv ref={modalElement}>
-          {checkInOut && <CheckModal />}
-          {price && <PriceModal />}
-          {people && <PeopleModal />}
-        </ModalDiv>
-      </SearchWrap>
-    </SearchDiv>
+    <SearchContext.Provider value={{ peopleCount, peopleDispatch }}>
+      <SearchDiv className="searchBar">
+        <SearchWrap>
+          <Check dispatch={modalDispatch}></Check>
+          <Price dispatch={modalDispatch}></Price>
+          <People dispatch={modalDispatch}></People>
+          <SearchBtnWrap>
+            <SearchBtn />
+          </SearchBtnWrap>
+          <ModalDiv ref={modalElement}>
+            {checkInOut && <CheckModal />}
+            {price && <PriceModal />}
+            {people && <PeopleModal />}
+          </ModalDiv>
+        </SearchWrap>
+      </SearchDiv>
+    </SearchContext.Provider>
   );
 };
 

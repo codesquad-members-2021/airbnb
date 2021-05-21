@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { SearchContext } from '..';
 
 const People = ({ dispatch }) => {
+  const { peopleCount } = useContext(SearchContext);
+  const { adult, child, baby } = peopleCount;
+
   return (
     <PeopleDiv>
       <PeopleWrap onClick={() => dispatch({ type: 'PEOPLE' })}>
         <PeopleTitle>인원</PeopleTitle>
-        <PeopleInp>게스트 추가</PeopleInp>
+        <PeopleInp>
+          {adult + child + baby
+            ? `게스트 ${adult + child + baby} 명`
+            : '게스트 추가'}
+        </PeopleInp>
       </PeopleWrap>
     </PeopleDiv>
   );
