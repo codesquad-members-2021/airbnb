@@ -33,7 +33,7 @@ const StyleSearchBar = styled.div`
 	width: 916px;
 	height: 76px;
 	top: 110px;
-	left: 500px;
+	left: 410px;
 	border-radius: 60px;
 	background-color: #ffffff;
 `;

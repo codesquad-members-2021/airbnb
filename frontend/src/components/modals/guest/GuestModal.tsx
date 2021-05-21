@@ -7,7 +7,7 @@ import { ReactComponent as Plus } from "./../../../icons/plus.svg";
 import { ReactComponent as XCircle } from "./../../../icons/x-circle.svg";
 import { ReactComponent as XCircleHover } from "./../../../icons/x-circle-hover.svg";
 
-export default function GuestModal({ type, setInplaceHolder, isActive }: ModalInterface) {
+export default function GuestModal({ type, setInplaceHolder, isActive, setModalOn }: ModalInterface) {
 	const [adultCount, setAdultCount] = useState<number>(0);
 	const [childCount, setChildCount] = useState<number>(0);
 	const [infantCount, setInfantCount] = useState<number>(0);
@@ -43,25 +43,24 @@ export default function GuestModal({ type, setInplaceHolder, isActive }: ModalIn
 		setAdultCount(0);
 	};
 
-	// 모달에다가 클래스 네임을 걸고, 모달이 렌더링됐을 때 window.addeventListener에 클릭 이벤트를 걸어서
-	// 버블링 or 캡쳐링으로 클래스네임을 검사
-	// 이후 클린업함수를 만들어서 useEffect에서 window 에걸린 클릭 이벤트 remove
-	// const cleanUpClickEvent = () => window.removeEventListener("click", closeModal);
-	// const [isActive, setIsActive] = useState(true);
-	// const closeModal = (event: any): void => {
-	// 	console.log(event.currentTarget);
-	// };
-	// useEffect(() => {
-	// 	window.addEventListener("click", closeModal);
-	// });
+	const handleOutClick = () => {
+		setModalOn(false);
+		window.removeEventListener("click", handleOutClick);
+	};
 
-	const handleOnclick = () => {
+	useEffect(() => {
+		window.addEventListener("click", handleOutClick);
+	}, []);
+
+	const handleOnclick = (e: any) => {
+		e.stopPropagation();
 		console.log("modal clicked");
 	};
+
 	return (
 		<>
 			{isActive && (
-				<ModalContainer type={type} onClick={handleOnclick}>
+				<ModalContainer type={type} onClick={(e) => handleOnclick(e)}>
 					<ContentWrapper>
 						<ul>
 							<AgeWrapper isEnd={false}>

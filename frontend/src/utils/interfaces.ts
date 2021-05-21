@@ -22,4 +22,5 @@ export interface ModalInterface {
 	setInplaceHolder: React.Dispatch<React.SetStateAction<string | undefined>>;
 	className?: string;
 	isActive: boolean;
+	setModalOn: any;
 }

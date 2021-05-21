@@ -11,27 +11,19 @@ import { SearchFilterInterface } from "./../../utils/interfaces";
 export default function SearchFilter({ type, input, isEnd, placeholder, isCalendarModalOn, setIsCalendarModalOn, isFeeModalOn, setIsFeeModalOn, isGuestModalOn, setIsGuestModalOn, isLocationModalOn, setIsLocationModalOn }: SearchFilterInterface) {
 	const [inplaceHolder, setInplaceHolder] = useState(placeholder);
 
-	const handleSearchClick = (): void => {
+	const handleSearchClick = (e: any): void => {
 		console.log("search");
+		e.stopPropagation();
 	};
 
 	const handleOnClick = (e: any, type: string): void => {
 		// e.stopPropagation();
 		console.log("search filter clicked");
-		if (type === "LOCATION") isLocationModalOn ? setIsLocationModalOn(false) : setIsLocationModalOn(true);
-		if (type === "CHECKIN" || type === "CHECKOUT") isCalendarModalOn ? setIsCalendarModalOn(false) : setIsCalendarModalOn(true);
-		if (type === "FEE") isFeeModalOn ? setIsFeeModalOn(false) : setIsFeeModalOn(true);
-		if (type === "GUEST") isGuestModalOn ? setIsGuestModalOn(false) : setIsGuestModalOn(true);
+		if (type === "LOCATION") setIsLocationModalOn((isLocationModalOn: boolean) => !isLocationModalOn);
+		if (type === "CHECKIN" || type === "CHECKOUT") setIsCalendarModalOn((isCalendarModalOn: boolean) => !isCalendarModalOn);
+		if (type === "FEE") setIsFeeModalOn((isFeeModalOn: boolean) => !isFeeModalOn);
+		if (type === "GUEST") setIsGuestModalOn((isGuestModalOn: boolean) => !isGuestModalOn);
 	};
-
-	// document.addEventListener("click", function (e) {
-	// 	let target: any = e.currentTarget;
-	// 	console.log(target);
-	// 	if (target.className === "guest-modal") setIsGuestModalOn(true);
-	// 	else if (target.className === "fee-modal") setIsFeeModalOn(true);
-	// 	else if (target.className === "calendar-modal") setIsCalendarModalOn(true);
-	// 	else if (target.className === "location-modal") setIsLocationModalOn(true);
-	// });
 
 	return (
 		<SearchFilterWrapper onClick={(e) => handleOnClick(e, type)}>
@@ -43,14 +35,14 @@ export default function SearchFilter({ type, input, isEnd, placeholder, isCalend
 				</SearchWrapper>
 			</StyleFilter>
 			{isEnd && (
-				<StyleSearchBtn onClick={handleSearchClick}>
+				<StyleSearchBtn onClick={(e) => handleSearchClick(e)}>
 					<SearchIcon stroke="#FFFFFF" />
 				</StyleSearchBtn>
 			)}
-			{isLocationModalOn && <LocationModal className="location-modal" type={type} setInplaceHolder={setInplaceHolder} isActive={isLocationModalOn} />}
-			{isCalendarModalOn && <CalendarModal className="calendar-modal" type={type} setInplaceHolder={setInplaceHolder} isActive={isCalendarModalOn} />}
-			{isFeeModalOn && <FeeModal type={type} className="fee-modal" setInplaceHolder={setInplaceHolder} isActive={isFeeModalOn} />}
-			{isGuestModalOn && <GuestModal type={type} className="guest-modal" setInplaceHolder={setInplaceHolder} isActive={isGuestModalOn} />}
+			{isLocationModalOn && <LocationModal className="location-modal" type={type} setInplaceHolder={setInplaceHolder} isActive={isLocationModalOn} setModalOn={setIsLocationModalOn} />}
+			{isCalendarModalOn && <CalendarModal className="calendar-modal" type={type} setInplaceHolder={setInplaceHolder} isActive={isCalendarModalOn} setModalOn={setIsCalendarModalOn} />}
+			{isFeeModalOn && <FeeModal type={type} className="fee-modal" setInplaceHolder={setInplaceHolder} isActive={isFeeModalOn} setModalOn={setIsFeeModalOn} />}
+			{isGuestModalOn && <GuestModal type={type} className="guest-modal" setInplaceHolder={setInplaceHolder} isActive={isGuestModalOn} setModalOn={setIsGuestModalOn} />}
 		</SearchFilterWrapper>
 	);
 }
