@@ -1,22 +1,25 @@
-import styled from 'styled-components';
-
 import TopBackground from './partial/TopBackground';
 import Nearby from './partial/Nearby';
-import RoomsType from './partial/RoomsType';
+import RoomType from './partial/RoomType';
 import ContentInfo from './partial/ContentInfo';
 
+import { Text, TextContentInfo } from '../../common/reference';
+import Background from '../utilComponents/Background';
+
 const Main = () => {
+  const { nearby, roomType } = Text;
+  const { contentInfo } = TextContentInfo;
+
   return (
-    <StyledMain>
+    <>
       <TopBackground />
-      <Nearby />
-      <RoomsType />
-      <ContentInfo />
-    </StyledMain>
+      <Nearby captions={nearby} />
+      <RoomType captions={roomType} />
+      <Background strColor={'gray6'} >
+        <ContentInfo captions={contentInfo}/>
+      </Background>
+    </>
   );
 };
 
 export default Main;
-
-// --- Styled Components ---
-const StyledMain = styled.div``;
