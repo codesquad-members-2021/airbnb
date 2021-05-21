@@ -9,13 +9,13 @@ public class Image {
     private Long id;
     private String url;
 
-    @Column(value = "image_type_id")
-    private Long imageTypeId;
+    @Column(value = "image_type")
+    private ImageType imageType;
 
-    public Image(Long id, String url, Long imageTypeId) {
+    public Image(Long id, String url, ImageType imageType) {
         this.id = id;
         this.url = url;
-        this.imageTypeId = imageTypeId;
+        this.imageType = imageType;
     }
 
     public Long getId() {
@@ -26,7 +26,7 @@ public class Image {
         return url;
     }
 
-    public Long getImageTypeId() {
-        return imageTypeId;
+    public ImageType getImageType() {
+        return imageType;
     }
 }
