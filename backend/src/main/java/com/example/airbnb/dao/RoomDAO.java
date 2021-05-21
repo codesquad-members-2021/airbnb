@@ -63,6 +63,28 @@ public class RoomDAO {
         return roomList;
     }
 
+    public List<Long> getRoomByPriceAnd(int minPrice, int maxPrice, int guestCount) {
+        String sql = "SELECT r.id FROM room r WHERE (r.price_per_day < :min_price OR r.price_per_day> :max_price) OR max_guest< :guest_count ";
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("min_price", minPrice)
+                .addValue("max_price", maxPrice)
+                .addValue("guest_count", guestCount);
+        List<Long> roomList = new ArrayList<>();
+        namedParameterJdbcTemplate.query(sql, sqlParameterSource, (rs, rowNum) ->
+                roomList.add(rs.getLong("id")));
+        return roomList;
+    }
+
+    public List<Long> getRoomByExceedGuest(int guestCount) {
+        String sql = "SELECT r.id FROM room r WHERE max_guest< :guest_count";
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("guest_count", guestCount);
+        List<Long> roomList = new ArrayList<>();
+        namedParameterJdbcTemplate.query(sql, sqlParameterSource, (rs, rowNum) ->
+                roomList.add(rs.getLong("id")));
+        return roomList;
+    }
+
     public List<Integer> getAllPrices(List<Long> roomList) {
         List<Integer> allPrices = new ArrayList<>();
         String sql = "SELECT r.price_per_day FROM room r WHERE r.id = :room_id";
