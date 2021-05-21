@@ -30,7 +30,7 @@ const SearchSvg = styled.svg`
   height: 20px;
   overflow: visible;
   stroke: white;
-  strokewidth: 3px;
+  stroke-width: 3px;
 `;
 
 export default SearchBtn;

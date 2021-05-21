@@ -7,16 +7,13 @@ import CheckModal from './Check/CheckModal';
 import PriceModal from './Price/PriceModal';
 import PeopleModal from './People/PeopleModal';
 import SearchBtn from './SearchBtn';
+import modalClickReducer from '../../utils/reducer/modalClickReducer';
 
 const Search = () => {
   const modalElement = useRef();
 
   useEffect(() => {
     const modalOff = (e) => {
-      // console.log('e : ', e);
-      // console.log('target :', e.target);
-      // console.log('modalElement.current:', modalElement.current);
-
       if (modalElement.current && !modalElement.current.contains(e.target)) {
         dispatch({ type: 'ModalOff' });
       }
@@ -27,39 +24,7 @@ const Search = () => {
     };
   }, [modalElement]);
 
-  const isClickedReducer = (state, action) => {
-    switch (action.type) {
-      case 'CHECKINOUT':
-        return {
-          checkInOut: !state.checkInOut,
-          price: false,
-          people: false,
-        };
-      case 'PRICE':
-        return {
-          checkInOut: false,
-          price: !state.price,
-          people: false,
-        };
-      case 'PEOPLE':
-        return {
-          checkInOut: false,
-          price: false,
-          people: !state.people,
-        };
-      case 'ModalOff':
-        return {
-          checkInOut: false,
-          price: false,
-          people: false,
-        };
-
-      default:
-        return;
-    }
-  };
-
-  const [clicked, dispatch] = useReducer(isClickedReducer, {
+  const [clicked, dispatch] = useReducer(modalClickReducer, {
     checkInOut: false,
     price: false,
     people: false,
