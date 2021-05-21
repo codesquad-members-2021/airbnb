@@ -25,15 +25,24 @@ const CityTourDiv = styled.div`
   width: 88.88%;
 `;
 const CityCardFrame = styled.div`
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-gap: 1rem;
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 0.5rem;
+  }
 `;
 const CityTitle = styled.div`
   margin-bottom: 2rem;
   color: ${({ theme }) => theme.colors.gray1};
   font-size: ${({ theme }) => theme.fontSizes.XL};
+  @media only screen and (max-width: 768px) {
+    font-size: 1.7rem;
+  }
 `;
 
 export default CityTour;

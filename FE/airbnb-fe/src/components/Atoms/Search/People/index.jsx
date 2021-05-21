@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import SearchBtn from '../SearchBtn';
 
-const People = () => {
+const People = ({ dispatch }) => {
   return (
     <PeopleDiv>
-      <PeopleWrap>
+      <PeopleWrap onClick={() => dispatch({ type: 'PEOPLE' })}>
         <PeopleTitle>인원</PeopleTitle>
         <PeopleInp>게스트 추가</PeopleInp>
       </PeopleWrap>
