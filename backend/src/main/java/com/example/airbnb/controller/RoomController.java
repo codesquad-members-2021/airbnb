@@ -2,16 +2,20 @@ package com.example.airbnb.controller;
 
 import com.example.airbnb.dto.PriceDTO;
 import com.example.airbnb.dto.RoomDetailDTO;
+import com.example.airbnb.dto.RoomList;
+import com.example.airbnb.dto.RoomListDTO;
 import com.example.airbnb.service.RoomService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+
 
 @Api(tags = {"Airbnb API"}, description = "Airbnb API made by Bat")
 @RestController
@@ -31,12 +35,26 @@ public class RoomController {
     }
 
     @GetMapping("/prices")
-    @ApiOperation(value = "방 가격보기", notes = "방 가격보기 반환합니다.")
+    @ApiOperation(value = "예약 가능한 방들 가격보기", notes = "예약 가능한 방들의 가격을 반환합니다.")
     @ResponseStatus(HttpStatus.OK)
-    public PriceDTO getAllPrices(@DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkIn, @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkOut, @RequestParam String cityName) {
+    public PriceDTO getAllPrices(@ApiParam(value = "체크인 날짜", example = "2021-05-20") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkIn,
+                                 @ApiParam(value = "체크아웃 날짜", example = "2021-05-25") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkOut,
+                                 @ApiParam(value = "도시 이름", example = "인천") @RequestParam String cityName) {
         PriceDTO priceDTO = roomService.getAllPricesByCityAndDate(checkIn, checkOut, cityName);
         return priceDTO;
     }
 
+    @GetMapping("/search")
+    @ApiOperation(value = "예약 가능한 방들 목록보기", notes = "검색 조건에 따른 예약 가능한 방들 모두를 반환합니다.")
+    @ResponseStatus(HttpStatus.OK)
+    public RoomList getRoomBySearch(@ApiParam(value = "체크인 날짜", example = "2021-05-20") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkIn,
+                                                    @ApiParam(value = "체크아웃 날짜", example = "2021-05-25") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkOut,
+                                                    @ApiParam(value = "도시 이름", example = "인천") @RequestParam String cityName,
+                                                    @ApiParam(value = "최소 가격", example = "30000") @RequestParam int minPrice,
+                                                    @ApiParam(value = "최대 가격", example = "80000") @RequestParam int maxPrice,
+                                                    @ApiParam(value = "인원", example = "3") @RequestParam int numOfPeople) {
+        List<RoomListDTO> roomList = roomService.getRoomByCityAndReservationAndPriceAndGuest(checkIn, checkOut, cityName, minPrice, maxPrice, numOfPeople);
+        return new RoomList(roomList);
+    }
 
 }

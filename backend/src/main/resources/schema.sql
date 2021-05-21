@@ -85,9 +85,9 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`reservation`(
     `check_in` DATE,
     `check_out` DATE,
     `total_price` INT,
-    `adult` INT,
-    `child` INT,
-    `baby` INT,
+    `number_of_guest` INT,
+--     `child` INT,
+--     `baby` INT,
     CONSTRAINT user_reservation_foreign_key FOREIGN KEY (`user`) references `user` (id),
     CONSTRAINT room_reservation_foreign_key FOREIGN KEY (`room`) references `room` (id)
     );

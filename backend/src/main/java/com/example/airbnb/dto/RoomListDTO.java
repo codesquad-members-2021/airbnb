@@ -3,17 +3,14 @@ package com.example.airbnb.dto;
 public class RoomListDTO {
     private RoomDTO room;
     private String thumbImage;
-    private int totalPrice;
+    private LocationDTO location;
+    private Receipt receipt;
 
-    public RoomListDTO(RoomDTO room, String thumbImage, int days) {
+    public RoomListDTO(RoomDTO room, String thumbImage, int days, LocationDTO locationDTO) {
         this.room = room;
         this.thumbImage = thumbImage;
-        int basicPrice = room.getPricePerDay() * days;
-        Double weekSale = -(basicPrice * 0.04);
-        int cleaningFee = 20000;
-        Double serviceFee = basicPrice *0.14;
-        Double resultFee = basicPrice * 0.014;
-        this.totalPrice = basicPrice + weekSale.intValue() + cleaningFee + serviceFee.intValue() +resultFee.intValue();
+        this.location = locationDTO;
+        this.receipt = new Receipt(room, days);
     }
 
     public RoomDTO getRoom() {
@@ -24,8 +21,13 @@ public class RoomListDTO {
         return thumbImage;
     }
 
-    public int getTotalPrice() {
-        return totalPrice;
+    public Receipt getReceipt() {
+        return receipt;
+    }
+
+    public LocationDTO getLocation() {
+        return location;
     }
 
 }
+
