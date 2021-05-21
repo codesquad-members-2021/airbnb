@@ -11,20 +11,20 @@ import { SearchFilterInterface } from "./../../utils/interfaces";
 export default function SearchFilter({ type, input, isEnd, placeholder, isCalendarModalOn, setIsCalendarModalOn, isFeeModalOn, setIsFeeModalOn, isGuestModalOn, setIsGuestModalOn, isLocationModalOn, setIsLocationModalOn }: SearchFilterInterface) {
 	const [inplaceHolder, setInplaceHolder] = useState(placeholder);
 
-	const handleSearchClick = (): void => {
-		console.log("search");
+	const handleSearchClick = (e: any): void => {
+		e.stopPropagation();
 	};
 
-	const handleOnClick = (type: string): void => {
-		if (type === "LOCATION") isLocationModalOn ? setIsLocationModalOn(false) : setIsLocationModalOn(true);
-		if (type === "CHECKIN" || type === "CHECKOUT") isCalendarModalOn ? setIsCalendarModalOn(false) : setIsCalendarModalOn(true);
-		if (type === "FEE") isFeeModalOn ? setIsFeeModalOn(false) : setIsFeeModalOn(true);
-		if (type === "GUEST") isGuestModalOn ? setIsGuestModalOn(false) : setIsGuestModalOn(true);
+	const handleOnClick = (e: any, type: string): void => {
+		if (type === "LOCATION") setIsLocationModalOn((isLocationModalOn: boolean) => !isLocationModalOn);
+		if (type === "CHECKIN" || type === "CHECKOUT") setIsCalendarModalOn((isCalendarModalOn: boolean) => !isCalendarModalOn);
+		if (type === "FEE") setIsFeeModalOn((isFeeModalOn: boolean) => !isFeeModalOn);
+		if (type === "GUEST") setIsGuestModalOn((isGuestModalOn: boolean) => !isGuestModalOn);
 	};
 
 	return (
-		<>
-			<StyleFilter isEnd={isEnd} onClick={() => handleOnClick(type)}>
+		<SearchFilterWrapper onClick={(e) => handleOnClick(e, type)}>
+			<StyleFilter isEnd={isEnd}>
 				<SearchWrapper isEnd={isEnd}>
 					{parseByType("title", type)}
 					{input && <SearchLocationStyle placeholder={input} />}
@@ -32,21 +32,30 @@ export default function SearchFilter({ type, input, isEnd, placeholder, isCalend
 				</SearchWrapper>
 			</StyleFilter>
 			{isEnd && (
-				<StyleSearchBtn onClick={handleSearchClick}>
+				<StyleSearchBtn onClick={(e) => handleSearchClick(e)}>
 					<SearchIcon stroke="#FFFFFF" />
 				</StyleSearchBtn>
 			)}
-			{isLocationModalOn && <LocationModal type={type} setInplaceHolder={setInplaceHolder} />}
-			{isCalendarModalOn && <CalendarModal type={type} setInplaceHolder={setInplaceHolder} />}
-			{isFeeModalOn && <FeeModal type={type} setInplaceHolder={setInplaceHolder} />}
-			{isGuestModalOn && <GuestModal type={type} setInplaceHolder={setInplaceHolder} />}
-		</>
+			{isLocationModalOn && <LocationModal className="location-modal" type={type} setInplaceHolder={setInplaceHolder} isActive={isLocationModalOn} setModalOn={setIsLocationModalOn} />}
+			{isCalendarModalOn && <CalendarModal className="calendar-modal" type={type} setInplaceHolder={setInplaceHolder} isActive={isCalendarModalOn} setModalOn={setIsCalendarModalOn} />}
+			{isFeeModalOn && <FeeModal type={type} className="fee-modal" setInplaceHolder={setInplaceHolder} isActive={isFeeModalOn} setModalOn={setIsFeeModalOn} />}
+			{isGuestModalOn && <GuestModal type={type} className="guest-modal" setInplaceHolder={setInplaceHolder} isActive={isGuestModalOn} setModalOn={setIsGuestModalOn} />}
+		</SearchFilterWrapper>
 	);
 }
 
+const SearchFilterWrapper = styled.div`
+	display: flex;
+	height: 100%;
+	align-items: center;
+`;
+
 const StyleFilter = styled.button<{ isEnd: boolean }>`
 	font-family: "Noto Sans KR", sans-serif;
-	width: ${(props) => (props.isEnd ? `${40}%` : `${25}%`)};
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 210px;
 	height: 100%;
 	border-radius: 60px;
 	background-color: #ffffff;
@@ -56,6 +65,7 @@ const StyleFilter = styled.button<{ isEnd: boolean }>`
 `;
 
 const SearchWrapper = styled.div<{ isEnd: boolean }>`
+	width: 100%;
 	height: 44px;
 	display: flex;
 	flex-direction: column;
@@ -73,7 +83,7 @@ const StyleSearchBtn = styled.button`
 	position: absolute;
 	width: 50px;
 	height: 50px;
-	left: 93%;
+	left: 107%;
 	background-color: #e84c60;
 	border-radius: 50%;
 	transition: background-color 0.5s;
