@@ -10,7 +10,8 @@ import UIKit
 class MainSearchCollectionViewController: UICollectionViewController {
     private var searchController = UISearchController()
     private var bestDestinations = [Destination]()
-    private var layout = UICollectionViewFlowLayout()
+    var searchedDestinations = [Destination]()
+    private var resultsCollectionController: ResultsCollectionController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,17 +63,21 @@ class MainSearchCollectionViewController: UICollectionViewController {
     }
     
     func configureSearchController() {
-        searchController = UISearchController(searchResultsController: nil)
+        searchController = UISearchController(searchResultsController: resultsCollectionController)
         searchController.searchBar.searchTextField.placeholder = "어디로 여행가세요?"
         searchController.searchBar.returnKeyType = .go
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.automaticallyShowsCancelButton = false
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        
+        definesPresentationContext = true
     }
+}
 
-    // MARK: UICollectionViewDataSource
+//MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 
+extension MainSearchCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bestDestinations.count
     }
@@ -86,8 +91,6 @@ class MainSearchCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    // MARK: UICollectionViewDelegate
-
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: BestDestinationsCollectionHeaderView.reuseIdentifier, for: indexPath)
         return headerView
