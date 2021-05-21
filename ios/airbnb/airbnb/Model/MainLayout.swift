@@ -10,6 +10,7 @@ import Foundation
 struct MainLayout: Decodable {
     let mainImage: String
     let cities: [City]
+    let extraImages: [String]
 }
 
 struct City: Decodable {

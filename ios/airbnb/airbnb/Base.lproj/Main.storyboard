@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eVE-Et-lE9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eVE-Et-lE9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,8 +15,8 @@
                     <view key="view" contentMode="scaleToFill" id="FLH-dB-wQV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="pob-xg-hD6"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="위시리스트" image="heart" catalog="system" id="VMw-G6-DKO"/>
                     <navigationItem key="navigationItem" title="위시리스트" id="Wt0-68-CIj"/>
@@ -34,8 +33,8 @@
                     <view key="view" contentMode="scaleToFill" id="NxV-by-mww">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="wBD-0l-LsM"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="예약" image="person" catalog="system" id="a8u-oB-k02"/>
                     <navigationItem key="navigationItem" title="예약" id="zve-qQ-Rua"/>
@@ -57,7 +56,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dnw-0t-5Oq">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1492"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1312"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jOR-bQ-yQt">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="376"/>
@@ -65,36 +64,6 @@
                                                     <constraint firstAttribute="height" constant="376" id="U0r-9Q-v86"/>
                                                 </constraints>
                                             </imageView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ayq-bd-qlS">
-                                                <rect key="frame" x="40" y="775" width="334" height="40"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hLg-8h-w9K">
-                                                        <rect key="frame" x="76.5" y="8" width="181" height="24"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="k1R-sR-78B">
-                                                                <rect key="frame" x="0.0" y="3" width="20" height="18"/>
-                                                                <color key="tintColor" systemColor="systemRedColor"/>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="어디로 여행가세요?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQk-5p-aBt">
-                                                                <rect key="frame" x="28" y="0.0" width="153" height="24"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                    </stackView>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.88011103869999996" green="0.88011103869999996" blue="0.88011103869999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="8hL-fv-pDE"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가까운 여행지 둘러보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYG-Ks-xi7">
                                                 <rect key="frame" x="16" y="416" width="382" height="28"/>
                                                 <constraints>
@@ -106,7 +75,7 @@
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kbl-hK-I6A">
                                                 <rect key="frame" x="0.0" y="468" width="414" height="400"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="400" id="5Li-v7-N2x"/>
                                                 </constraints>
@@ -127,7 +96,7 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ssssssss\naa" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGe-AQ-wFh">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGe-AQ-wFh">
                                                 <rect key="frame" x="16" y="908" width="382" height="56"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56" id="eml-3Q-ZqM"/>
@@ -137,10 +106,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ymh-LP-H4G">
-                                                <rect key="frame" x="16" y="992" width="382" height="500"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <rect key="frame" x="16" y="992" width="382" height="320"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="500" id="sLR-6g-vz6"/>
+                                                    <constraint firstAttribute="height" constant="320" id="sLR-6g-vz6"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wxR-x3-xbo">
                                                     <size key="itemSize" width="128" height="128"/>
@@ -159,8 +128,40 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ayq-bd-qlS">
+                                                <rect key="frame" x="40" y="640" width="334" height="40"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hLg-8h-w9K">
+                                                        <rect key="frame" x="76.5" y="8" width="181.5" height="24"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="k1R-sR-78B">
+                                                                <rect key="frame" x="0.0" y="3" width="20" height="18"/>
+                                                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="어디로 여행가세요?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQk-5p-aBt">
+                                                                <rect key="frame" x="28" y="0.0" width="153.5" height="24"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.88011103869999996" green="0.88011103869999996" blue="0.88011103869999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="hLg-8h-w9K" firstAttribute="centerX" secondItem="ayq-bd-qlS" secondAttribute="centerX" id="5dd-Rc-eVa"/>
+                                                    <constraint firstAttribute="height" constant="40" id="8hL-fv-pDE"/>
+                                                    <constraint firstItem="hLg-8h-w9K" firstAttribute="centerY" secondItem="ayq-bd-qlS" secondAttribute="centerY" id="fr7-i7-7U4"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="jOR-bQ-yQt" firstAttribute="top" secondItem="dnw-0t-5Oq" secondAttribute="top" id="1fO-Zg-PpK"/>
                                             <constraint firstAttribute="trailing" secondItem="ayq-bd-qlS" secondAttribute="trailing" constant="40" id="7Tf-pg-wPm"/>
@@ -194,8 +195,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="58E-Jj-4So"/>
                             </scrollView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="z0S-vr-11t"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="nFX-kF-WtB" firstAttribute="top" secondItem="z0S-vr-11t" secondAttribute="top" id="KKB-sn-1kz"/>
                             <constraint firstItem="z0S-vr-11t" firstAttribute="bottom" secondItem="nFX-kF-WtB" secondAttribute="bottom" id="Tgy-cv-bBI"/>
@@ -203,6 +203,7 @@
                             <constraint firstItem="z0S-vr-11t" firstAttribute="trailing" secondItem="nFX-kF-WtB" secondAttribute="trailing" id="dhW-zX-zHa"/>
                             <constraint firstItem="nFX-kF-WtB" firstAttribute="leading" secondItem="z0S-vr-11t" secondAttribute="leading" id="erG-vF-xge"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="z0S-vr-11t"/>
                     </view>
                     <navigationItem key="navigationItem" id="GHZ-sw-TNJ">
                         <barButtonItem key="backBarButtonItem" title="뒤로" id="AVf-yU-SVi"/>
@@ -212,6 +213,7 @@
                         <outlet property="curationImage" destination="jOR-bQ-yQt" id="0yA-Et-4OV"/>
                         <outlet property="searchView" destination="ayq-bd-qlS" id="sE8-CK-XBd"/>
                         <outlet property="spotCollectionView" destination="Ymh-LP-H4G" id="kNh-Ta-dLe"/>
+                        <outlet property="spotTitle" destination="mGe-AQ-wFh" id="DHx-Va-stq"/>
                         <segue destination="exg-hB-AFd" kind="show" identifier="local" id="mKg-70-pzN"/>
                     </connections>
                 </viewController>
@@ -229,7 +231,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4LK-9r-Lrz">
                                 <rect key="frame" x="16" y="118" width="382" height="744"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mxr-aa-rpK">
                                     <size key="itemSize" width="414" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -249,14 +251,14 @@
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="pqa-qT-S16"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="4LK-9r-Lrz" firstAttribute="top" secondItem="pqa-qT-S16" secondAttribute="top" constant="30" id="97a-oT-NkB"/>
                             <constraint firstItem="pqa-qT-S16" firstAttribute="bottom" secondItem="4LK-9r-Lrz" secondAttribute="bottom" id="9WC-sW-FbP"/>
                             <constraint firstItem="pqa-qT-S16" firstAttribute="trailing" secondItem="4LK-9r-Lrz" secondAttribute="trailing" constant="16" id="O8W-Cs-qJ2"/>
                             <constraint firstItem="4LK-9r-Lrz" firstAttribute="leading" secondItem="pqa-qT-S16" secondAttribute="leading" constant="16" id="bVN-Rn-Ijc"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="pqa-qT-S16"/>
                     </view>
                     <navigationItem key="navigationItem" id="FYL-VQ-w9P"/>
                     <connections>
@@ -313,11 +315,5 @@
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person" catalog="system" width="128" height="117"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

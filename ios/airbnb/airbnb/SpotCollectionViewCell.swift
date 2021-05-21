@@ -9,8 +9,8 @@ import UIKit
 
 class SpotCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = String(describing: self)
-    static let nibName = String(describing: self)
+    static let identifier = "SpotCollectionViewCell"
+    static let nibName = "SpotCollectionViewCell"
     @IBOutlet weak var spotImage: UIImageView!
     @IBOutlet weak var spotLabel: UILabel!
     

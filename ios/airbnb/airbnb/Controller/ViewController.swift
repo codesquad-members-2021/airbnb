@@ -12,6 +12,7 @@ final class ViewController: UIViewController {
     
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var curationImage: UIImageView!
+    @IBOutlet weak var spotTitle: UILabel!
     private var locationManager: LocationManager!
     private var cancelable = Set<AnyCancellable>()
     @IBOutlet weak var cityCollectionView: UICollectionView!
@@ -25,6 +26,9 @@ final class ViewController: UIViewController {
         addTapGesture()
         bind()
         registerNib()
+        cityCollectionView.dataSource = self
+        spotCollectionView.dataSource = self
+        spotTitle.text = "어디에서나, 여행은\n살아보는거야"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,7 +62,41 @@ final class ViewController: UIViewController {
             .sink { [weak self] data in
                 guard let data = data else { return }
                 self?.curationImage.image = UIImage(data: data)
-            }.store(in: &self.cancelable)
+            }
+            .store(in: &self.cancelable)
+        
+        locationManager.$mainLayout
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] mainlayout in
+                self?.cityCollectionView.reloadData()
+                self?.spotCollectionView.reloadData()
+            }
+            .store(in: &self.cancelable)
     }
 }
 
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == self.cityCollectionView {
+            return locationManager.mainLayout?.cities.count ?? 0
+        } else {
+            return locationManager.mainLayout?.extraImages.count ?? 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == self.cityCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.identifier, for: indexPath) as! CityCollectionViewCell
+            let image = UIImage(data: locationManager.cityImagesData[indexPath.row])
+            cell.locationImage.image = image
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SpotCollectionViewCell.identifier, for: indexPath) as! SpotCollectionViewCell
+            let image = UIImage(data: locationManager.extraImagesData[indexPath.row])
+            cell.spotImage.image = image
+            return cell
+        }
+    }
+    
+    
+}

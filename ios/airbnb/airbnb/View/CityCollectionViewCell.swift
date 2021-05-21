@@ -9,8 +9,8 @@ import UIKit
 
 class CityCollectionViewCell: UICollectionViewCell {
     
-    static let nibName = String(describing: self)
-    static let identifier = String(describing: self)
+    static let nibName = "CityCollectionViewCell"
+    static let identifier = "CityCollectionViewCell"
 
     @IBOutlet weak var locationImage: UIImageView!
     @IBOutlet weak var location: UILabel!

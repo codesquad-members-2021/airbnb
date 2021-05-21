@@ -50,8 +50,8 @@ final class LocationViewController: UIViewController {
     }
     
     private func registerNib() {
-        let nib = UINib(nibName: "CityCollectionViewCell", bundle: nil)
-        cityCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
+        let nib = UINib(nibName: CityCollectionViewCell.nibName, bundle: nil)
+        cityCollectionView.register(nib, forCellWithReuseIdentifier: CityCollectionViewCell.identifier)
     }
     
     func getLocationManager(manager: LocationManager) {
@@ -81,7 +81,7 @@ extension LocationViewController: UICollectionViewDataSource {
 
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CityCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.identifier, for: indexPath) as! CityCollectionViewCell
 
         if isFiltering() {
             cell.location.text = detailCities[indexPath.row].name
