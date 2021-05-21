@@ -21,6 +21,8 @@
 		FA7942F72653FA6C00D73017 /* airbnb-logo.json in Resources */ = {isa = PBXBuildFile; fileRef = FA7942F62653FA6C00D73017 /* airbnb-logo.json */; };
 		FA7A930B2654C762006878F0 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A930A2654C762006878F0 /* FavoriteViewController.swift */; };
 		FA7A930D265650E1006878F0 /* SearchHotelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A930C265650E1006878F0 /* SearchHotelsViewController.swift */; };
+		FA7A934C2656A494006878F0 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A934A2656A494006878F0 /* LocationCell.swift */; };
+		FA7A934D2656A494006878F0 /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7A934B2656A494006878F0 /* LocationCell.xib */; };
 		FF388F66DE14903A010115F7 /* Pods_JacksonBnB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BE35E383E2FA2372B564AC /* Pods_JacksonBnB.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +71,8 @@
 		FA7942F62653FA6C00D73017 /* airbnb-logo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "airbnb-logo.json"; sourceTree = "<group>"; };
 		FA7A930A2654C762006878F0 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		FA7A930C265650E1006878F0 /* SearchHotelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHotelsViewController.swift; sourceTree = "<group>"; };
+		FA7A934A2656A494006878F0 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		FA7A934B2656A494006878F0 /* LocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +194,8 @@
 				FA7942CF2653F3B800D73017 /* Assets.xcassets */,
 				FA7942D12653F3B800D73017 /* LaunchScreen.storyboard */,
 				FA7942D42653F3B800D73017 /* Info.plist */,
+				FA7A934A2656A494006878F0 /* LocationCell.swift */,
+				FA7A934B2656A494006878F0 /* LocationCell.xib */,
 			);
 			path = JacksonBnB;
 			sourceTree = "<group>";
@@ -321,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA7942F72653FA6C00D73017 /* airbnb-logo.json in Resources */,
+				FA7A934D2656A494006878F0 /* LocationCell.xib in Resources */,
 				FA7942D32653F3B800D73017 /* LaunchScreen.storyboard in Resources */,
 				FA7942D02653F3B800D73017 /* Assets.xcassets in Resources */,
 				FA7942CE2653F3B700D73017 /* Main.storyboard in Resources */,
@@ -456,6 +463,7 @@
 				FA7A930D265650E1006878F0 /* SearchHotelsViewController.swift in Sources */,
 				FA7942C72653F3B700D73017 /* AppDelegate.swift in Sources */,
 				FA7942C92653F3B700D73017 /* SceneDelegate.swift in Sources */,
+				FA7A934C2656A494006878F0 /* LocationCell.swift in Sources */,
 				FA7A930B2654C762006878F0 /* FavoriteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
