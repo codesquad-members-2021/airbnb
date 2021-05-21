@@ -15,6 +15,4 @@ public class Location {
     public Location create(String address, Double latitude, Double longitude) {
         return new Location(address, latitude, longitude);
     }
-
-
 }

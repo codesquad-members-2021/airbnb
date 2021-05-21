@@ -1,6 +1,7 @@
-package com.team19.airbnb.dto;
+package com.team19.airbnb.entity;
 
 public class Host {
+
     private String name;
     private String profileImage;
 

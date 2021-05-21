@@ -1,6 +1,9 @@
 package com.team19.airbnb.controller;
 
 import com.team19.airbnb.dto.*;
+import com.team19.airbnb.entity.HeroBanner;
+import com.team19.airbnb.entity.Host;
+import com.team19.airbnb.entity.NearDestination;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 

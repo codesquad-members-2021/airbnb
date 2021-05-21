@@ -2,9 +2,11 @@ package com.team19.airbnb.dto;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class SearchRequestDTO {
+
     private String location;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -13,17 +15,19 @@ public class SearchRequestDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkOut;
 
-    private String priceRange;
+    private BigDecimal minPrice;
+    private BigDecimal maxPrice;
     private Integer guest; //adult + child , toddler x
 
     public SearchRequestDTO(String location,
                             LocalDate checkIn, LocalDate checkOut,
-                            String priceRange,
+                            BigDecimal minPrice, BigDecimal maxPrice,
                             int guest) {
         this.location = location;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
-        this.priceRange = priceRange;
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
         this.guest = guest;
     }
 
@@ -39,8 +43,12 @@ public class SearchRequestDTO {
         this.checkOut = checkOut;
     }
 
-    public void setPriceRange(String priceRange) {
-        this.priceRange = priceRange;
+    public void setMinPrice(BigDecimal minPrice) {
+        this.minPrice = minPrice;
+    }
+
+    public void setMaxPrice(BigDecimal maxPrice) {
+        this.maxPrice = maxPrice;
     }
 
     public void setGuest(Integer guest) {

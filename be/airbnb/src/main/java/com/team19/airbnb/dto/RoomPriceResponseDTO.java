@@ -3,6 +3,7 @@ package com.team19.airbnb.dto;
 import java.math.BigDecimal;
 
 public class RoomPriceResponseDTO {
+
     private BigDecimal discountPerWeek;
     private BigDecimal cleaningFee;
     private BigDecimal serviceFee;

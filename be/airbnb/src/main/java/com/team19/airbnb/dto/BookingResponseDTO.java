@@ -1,12 +1,13 @@
 package com.team19.airbnb.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.team19.airbnb.entity.Host;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
 public class BookingResponseDTO {
+
     private Long bookingId;
     private LocalDate checkIn;
     private LocalDate checkOut;

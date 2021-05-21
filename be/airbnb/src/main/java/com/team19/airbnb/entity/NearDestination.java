@@ -1,8 +1,9 @@
-package com.team19.airbnb.dto;
+package com.team19.airbnb.entity;
 
 public class NearDestination {
+
     private String destination;
-    private Double timeDistance; //시간 단위 (ex.0.5는 30분)
+    private Double timeDistance;
     private String image;
 
     public NearDestination(String destination, Double timeDistance, String image) {
