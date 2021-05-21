@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import ModalContainer from "../../../styles/ModalContainer";
 import { ModalInterface } from "../../../utils/interfaces";
@@ -7,7 +7,7 @@ import { ReactComponent as Plus } from "./../../../icons/plus.svg";
 import { ReactComponent as XCircle } from "./../../../icons/x-circle.svg";
 import { ReactComponent as XCircleHover } from "./../../../icons/x-circle-hover.svg";
 
-export default function GuestModal({ type, setInplaceHolder }: ModalInterface) {
+export default function GuestModal({ type, setInplaceHolder, isActive }: ModalInterface) {
 	const [adultCount, setAdultCount] = useState<number>(0);
 	const [childCount, setChildCount] = useState<number>(0);
 	const [infantCount, setInfantCount] = useState<number>(0);
@@ -37,56 +37,75 @@ export default function GuestModal({ type, setInplaceHolder }: ModalInterface) {
 
 	const handleOnEnter = () => setXCircle(<XCircleHover />);
 	const handleOnLeave = () => setXCircle(<XCircle />);
-	const cleanupGuest = () => {
+	const cleanUpGuest = () => {
 		setInfantCount(0);
 		setChildCount(0);
 		setAdultCount(0);
 	};
 
+	// 모달에다가 클래스 네임을 걸고, 모달이 렌더링됐을 때 window.addeventListener에 클릭 이벤트를 걸어서
+	// 버블링 or 캡쳐링으로 클래스네임을 검사
+	// 이후 클린업함수를 만들어서 useEffect에서 window 에걸린 클릭 이벤트 remove
+	// const cleanUpClickEvent = () => window.removeEventListener("click", closeModal);
+	// const [isActive, setIsActive] = useState(true);
+	// const closeModal = (event: any): void => {
+	// 	console.log(event.currentTarget);
+	// };
+	// useEffect(() => {
+	// 	window.addEventListener("click", closeModal);
+	// });
+
+	const handleOnclick = () => {
+		console.log("modal clicked");
+	};
 	return (
 		<>
-			<ModalContainer type={type}>
-				<ContentWrapper>
-					<ul>
-						<AgeWrapper isEnd={false}>
-							<TitleWrapper>
-								<div>성인</div>
-								<div className="sub_title">만 13세 이상</div>
-							</TitleWrapper>
-							<CountWrapper>
-								{adultCount ? <Minus className="counter_icon" stroke="#828282" onClick={onAdultDecrease} /> : <Minus className="counter_icon_disabled" stroke="#e4e4e4" />}
-								<Count>{adultCount}</Count>
-								<Plus className="counter_icon" stroke="#828282" onClick={onAdultIncrease} />
-							</CountWrapper>
-						</AgeWrapper>
-						<AgeWrapper isEnd={false}>
-							<TitleWrapper>
-								<div>어린이</div>
-								<div className="sub_title">만 2~12세</div>
-							</TitleWrapper>
-							<CountWrapper>
-								{childCount ? <Minus className="counter_icon" stroke="#828282" onClick={onChildDecrease} /> : <Minus className="counter_icon_disabled" stroke="#e4e4e4" />}
-								<Count>{childCount}</Count>
-								<Plus className="counter_icon" stroke="#828282" onClick={onChildIncrease} />
-							</CountWrapper>
-						</AgeWrapper>
-						<AgeWrapper isEnd={true}>
-							<TitleWrapper>
-								<div>유아</div>
-								<div className="sub_title">만 2세 미만</div>
-							</TitleWrapper>
-							<CountWrapper>
-								{infantCount ? <Minus className="counter_icon" stroke="#828282" onClick={onInfantDecrease} /> : <Minus className="counter_icon_disabled" stroke="#e4e4e4" />}
-								<Count>{infantCount}</Count>
-								<Plus className="counter_icon" stroke="#828282" onClick={onInfantIncrease} />
-							</CountWrapper>
-						</AgeWrapper>
-					</ul>
-				</ContentWrapper>
-			</ModalContainer>
-			<XCircleWrapper onMouseEnter={handleOnEnter} onMouseLeave={handleOnLeave} onClick={cleanupGuest}>
-				{xCircle}
-			</XCircleWrapper>
+			{isActive && (
+				<ModalContainer type={type} onClick={handleOnclick}>
+					<ContentWrapper>
+						<ul>
+							<AgeWrapper isEnd={false}>
+								<TitleWrapper>
+									<div>성인</div>
+									<div className="guest-modal sub_title">만 13세 이상</div>
+								</TitleWrapper>
+								<CountWrapper>
+									{adultCount ? <Minus className="guest-modal counter_icon" stroke="#828282" onClick={onAdultDecrease} /> : <Minus className="counter_icon_disabled" stroke="#e4e4e4" />}
+									<Count>{adultCount}</Count>
+									<Plus className="guest-modal counter_icon" stroke="#828282" onClick={onAdultIncrease} />
+								</CountWrapper>
+							</AgeWrapper>
+							<AgeWrapper isEnd={false}>
+								<TitleWrapper>
+									<div>어린이</div>
+									<div className="guest-modal sub_title">만 2~12세</div>
+								</TitleWrapper>
+								<CountWrapper>
+									{childCount ? <Minus className="guest-modal counter_icon" stroke="#828282" onClick={onChildDecrease} /> : <Minus className="counter_icon_disabled" stroke="#e4e4e4" />}
+									<Count>{childCount}</Count>
+									<Plus className="guest-modal counter_icon" stroke="#828282" onClick={onChildIncrease} />
+								</CountWrapper>
+							</AgeWrapper>
+							<AgeWrapper isEnd={true}>
+								<TitleWrapper>
+									<div>유아</div>
+									<div className="guest-modal sub_title">만 2세 미만</div>
+								</TitleWrapper>
+								<CountWrapper>
+									{infantCount ? <Minus className="guest-modal counter_icon" stroke="#828282" onClick={onInfantDecrease} /> : <Minus className="counter_icon_disabled" stroke="#e4e4e4" />}
+									<Count>{infantCount}</Count>
+									<Plus className="guest-modal counter_icon" stroke="#828282" onClick={onInfantIncrease} />
+								</CountWrapper>
+							</AgeWrapper>
+						</ul>
+					</ContentWrapper>
+				</ModalContainer>
+			)}
+			{isActive && (
+				<XCircleWrapper onMouseEnter={handleOnEnter} onMouseLeave={handleOnLeave} onClick={cleanUpGuest}>
+					{xCircle}
+				</XCircleWrapper>
+			)}
 		</>
 	);
 }
@@ -143,7 +162,7 @@ const Count = styled.span`
 
 const XCircleWrapper = styled.button`
 	position: absolute;
-	left: 810px;
+	left: 940px;
 	top: 25px;
 	background: none;
 `;

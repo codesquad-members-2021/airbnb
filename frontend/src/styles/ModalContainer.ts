@@ -26,10 +26,13 @@ const ModalContainer = styled.div<{ type: string }>`
 	}};
 	left: ${(props) => {
 		switch (props.type) {
+			case "CHECKIN":
+			case "CHECKOUT":
+				return "0px";
 			case "GUEST":
-				return "515px";
+				return "650px";
 			case "FEE":
-				return "420px";
+				return "560px";
 		}
 	}};
 	position: absolute;

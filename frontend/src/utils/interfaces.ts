@@ -20,4 +20,6 @@ export interface SearchFilterInterface {
 export interface ModalInterface {
 	type: string;
 	setInplaceHolder: React.Dispatch<React.SetStateAction<string | undefined>>;
+	className?: string;
+	isActive: boolean;
 }
