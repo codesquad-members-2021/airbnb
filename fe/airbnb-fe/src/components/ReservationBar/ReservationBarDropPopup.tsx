@@ -40,9 +40,11 @@ function ReservationBarDropPopup({ outsideBlacklist = [], children }: Reservatio
 export default ReservationBarDropPopup;
 
 const StyledReservationBarDropPopup = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   padding: 2.5rem;
   position: absolute;
   top: 6rem;

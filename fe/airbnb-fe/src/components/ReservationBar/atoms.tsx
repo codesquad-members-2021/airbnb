@@ -2,7 +2,7 @@ import { atom, selector } from 'recoil';
 import { ReactElement } from 'react';
 
 import LocationSearch from './LocationSearch/LocationSearch';
-import Calendar from './Calendar/Calendar';
+import CalendarSlider from './CalendarSlider/CalendarSlider';
 
 export const SelectedBtnIdx = atom<number|null>({
   key: 'SelectedBtnIdx',
@@ -23,7 +23,7 @@ export const DropPopupContent = selector<ReactElement|null>({
 
       case 1:
       case 2:
-        return <Calendar/>;
+        return <CalendarSlider/>;
 
       // TODO: 3, 4
 

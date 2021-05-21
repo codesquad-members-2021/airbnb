@@ -7,6 +7,7 @@ import { SelectedBtnIdx, DropPopupContent, LocationSearchState, CheckInOutState 
 
 import ReservationBarBtn from './ReservationBarBtn';
 import ReservationBarDropPopup from './ReservationBarDropPopup';
+import CalendarSlider from './CalendarSlider/CalendarSlider';
 
 type ReservationBarProps = {
   className?: string,
@@ -58,7 +59,10 @@ function ReservationBar({ className }: ReservationBarProps): ReactElement {
         <button className='search-btn'>
         </button>
       </ReservationBarBtn>
-      {dropPopupContent && <ReservationBarDropPopup outsideBlacklist={[ref.current as HTMLElement]}>{dropPopupContent}</ReservationBarDropPopup>}
+      {/* {dropPopupContent && <ReservationBarDropPopup outsideBlacklist={[ref.current as HTMLElement]}>{dropPopupContent}</ReservationBarDropPopup>} */}
+      <ReservationBarDropPopup>
+        <CalendarSlider/>
+      </ReservationBarDropPopup>
     </StyledReservationBar>
   )
 };
@@ -66,7 +70,7 @@ function ReservationBar({ className }: ReservationBarProps): ReactElement {
 export default ReservationBar;
 
 const StyledReservationBar = styled.div`
-  width: 60rem;
+  width: 64rem;
   height: 4.5rem;
   display: flex;
   margin: 0 auto;
