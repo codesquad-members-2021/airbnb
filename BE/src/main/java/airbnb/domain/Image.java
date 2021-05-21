@@ -1,21 +1,15 @@
 package airbnb.domain;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
 
 public class Image {
 
     @Id
     private Long id;
     private String url;
-
-    @Column(value = "image_type")
     private ImageType imageType;
-    @Column(value = "city_id")
     private Long cityId;
-    @Column(value = "room_id")
     private Long roomId;
-    @Column(value = "category_id")
     private Long categoryId;
 
     private Image(Builder builder) {
@@ -61,7 +55,7 @@ public class Image {
             return this;
         }
 
-        public Builder build(){
+        public Image build(){
             return new Image(this);
         }
     }
