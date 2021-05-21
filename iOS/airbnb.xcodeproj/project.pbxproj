@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		102FA1F726554C3900B761C7 /* SpecialPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102FA1F526554C3900B761C7 /* SpecialPlaceCell.swift */; };
-		102FA1F826554C3900B761C7 /* SpecialPlaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 102FA1F626554C3900B761C7 /* SpecialPlaceCell.xib */; };
+		101C0EDF26575A7B0014D62B /* NearPlaceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101C0EDE26575A7B0014D62B /* NearPlaceDTO.swift */; };
+		101C0EE126575BF80014D62B /* NearPlaceDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101C0EE026575BF80014D62B /* NearPlaceDataSource.swift */; };
+		101C0EE326575D2B0014D62B /* ThemePlaceDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101C0EE226575D2B0014D62B /* ThemePlaceDataSource.swift */; };
+		102FA1F726554C3900B761C7 /* ThemePlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102FA1F526554C3900B761C7 /* ThemePlaceCell.swift */; };
+		102FA1F826554C3900B761C7 /* ThemePlaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 102FA1F626554C3900B761C7 /* ThemePlaceCell.xib */; };
 		102FA1FA265550CD00B761C7 /* IdentityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102FA1F9265550CD00B761C7 /* IdentityInfo.swift */; };
 		10642205265641F1005B63FD /* TravelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10642204265641F1005B63FD /* TravelListViewController.swift */; };
 		10D29C6126538C6800E71840 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D29C6026538C6800E71840 /* AppDelegate.swift */; };
@@ -30,8 +33,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		102FA1F526554C3900B761C7 /* SpecialPlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialPlaceCell.swift; sourceTree = "<group>"; };
-		102FA1F626554C3900B761C7 /* SpecialPlaceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpecialPlaceCell.xib; sourceTree = "<group>"; };
+		101C0EDE26575A7B0014D62B /* NearPlaceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearPlaceDTO.swift; sourceTree = "<group>"; };
+		101C0EE026575BF80014D62B /* NearPlaceDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearPlaceDataSource.swift; sourceTree = "<group>"; };
+		101C0EE226575D2B0014D62B /* ThemePlaceDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePlaceDataSource.swift; sourceTree = "<group>"; };
+		102FA1F526554C3900B761C7 /* ThemePlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePlaceCell.swift; sourceTree = "<group>"; };
+		102FA1F626554C3900B761C7 /* ThemePlaceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemePlaceCell.xib; sourceTree = "<group>"; };
 		102FA1F9265550CD00B761C7 /* IdentityInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityInfo.swift; sourceTree = "<group>"; };
 		10642204265641F1005B63FD /* TravelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelListViewController.swift; sourceTree = "<group>"; };
 		10D29C5D26538C6800E71840 /* airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +71,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		101C0EDD26575A650014D62B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				101C0EDE26575A7B0014D62B /* NearPlaceDTO.swift */,
+				101C0EE026575BF80014D62B /* NearPlaceDataSource.swift */,
+				101C0EE226575D2B0014D62B /* ThemePlaceDataSource.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		10D29C5426538C6800E71840 = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +140,7 @@
 				10D29C74265393F800E71840 /* SearchViewController.swift */,
 				10642204265641F1005B63FD /* TravelListViewController.swift */,
 				10D29C8E2653A89500E71840 /* Search.storyboard */,
+				101C0EDD26575A650014D62B /* Model */,
 				10E1B1772653F44E0087B69B /* View */,
 			);
 			path = Search;
@@ -135,8 +152,8 @@
 				10E1B1782653F49D0087B69B /* NearPlaceCell.swift */,
 				10E1B1792653F49D0087B69B /* NearPlaceCell.xib */,
 				10E1B17C265407680087B69B /* HeaderReusableView.swift */,
-				102FA1F526554C3900B761C7 /* SpecialPlaceCell.swift */,
-				102FA1F626554C3900B761C7 /* SpecialPlaceCell.xib */,
+				102FA1F526554C3900B761C7 /* ThemePlaceCell.swift */,
+				102FA1F626554C3900B761C7 /* ThemePlaceCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,7 +215,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				102FA1F826554C3900B761C7 /* SpecialPlaceCell.xib in Resources */,
+				102FA1F826554C3900B761C7 /* ThemePlaceCell.xib in Resources */,
 				10D29C6D26538C6900E71840 /* LaunchScreen.storyboard in Resources */,
 				10D29C6A26538C6900E71840 /* Assets.xcassets in Resources */,
 				10D29C8F2653A89500E71840 /* Search.storyboard in Resources */,
@@ -222,10 +239,13 @@
 				10D29C75265393F800E71840 /* SearchViewController.swift in Sources */,
 				102FA1FA265550CD00B761C7 /* IdentityInfo.swift in Sources */,
 				10D29C8B2653A61500E71840 /* LoginViewController.swift in Sources */,
-				102FA1F726554C3900B761C7 /* SpecialPlaceCell.swift in Sources */,
+				102FA1F726554C3900B761C7 /* ThemePlaceCell.swift in Sources */,
+				101C0EE326575D2B0014D62B /* ThemePlaceDataSource.swift in Sources */,
 				10D29C6326538C6800E71840 /* SceneDelegate.swift in Sources */,
 				10E1B1702653DDEF0087B69B /* Coordinator.swift in Sources */,
+				101C0EE126575BF80014D62B /* NearPlaceDataSource.swift in Sources */,
 				10E1B1742653DE2F0087B69B /* MainCoordinator.swift in Sources */,
+				101C0EDF26575A7B0014D62B /* NearPlaceDTO.swift in Sources */,
 				10E1B1722653DE0D0087B69B /* Storyboarded.swift in Sources */,
 				10642205265641F1005B63FD /* TravelListViewController.swift in Sources */,
 			);

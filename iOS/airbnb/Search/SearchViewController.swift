@@ -12,6 +12,10 @@ class SearchViewController : UIViewController {
     @IBOutlet weak var nearPlaceCollection: UICollectionView!
     @IBOutlet weak var themePlaceCollection: UICollectionView!
     
+    var nearPlaceDataSource = NearPlaceDataSource()
+    var themePlaceDataSource = ThemePlaceDataSource()
+    
+    // MARK: - DataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,11 +24,8 @@ class SearchViewController : UIViewController {
         self.navigationItem.titleView = searchBar
         
         searchBar.delegate = self
-        nearPlaceCollection.delegate = self
-        nearPlaceCollection.dataSource = self
-        themePlaceCollection.delegate = self
-        themePlaceCollection.dataSource = self
-        
+        nearPlaceCollection.dataSource = nearPlaceDataSource
+        themePlaceCollection.dataSource = themePlaceDataSource
         registerNib()
     }
     func registerNib() {
@@ -34,41 +35,9 @@ class SearchViewController : UIViewController {
         nearPlaceCollection?.register(headerNib, forCellWithReuseIdentifier: HeaderReusableView.reuseIdentifier)
         
         
-        let specialNib = UINib(nibName: SpecialPlaceCell.nibName, bundle: nil)
-        themePlaceCollection?.register(specialNib, forCellWithReuseIdentifier: SpecialPlaceCell.reuseIdentifier)
+        let specialNib = UINib(nibName: ThemePlaceCell.nibName, bundle: nil)
+        themePlaceCollection?.register(specialNib, forCellWithReuseIdentifier: ThemePlaceCell.reuseIdentifier)
         themePlaceCollection?.register(headerNib, forCellWithReuseIdentifier: HeaderReusableView.reuseIdentifier)
-    }
-}
-extension SearchViewController : UICollectionViewDelegate {
-    
-}
-extension SearchViewController : UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == themePlaceCollection {
-            return 4
-        }
-        return 6
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == themePlaceCollection {
-            let cell = themePlaceCollection.dequeueReusableCell(withReuseIdentifier: SpecialPlaceCell.reuseIdentifier, for: indexPath) as! SpecialPlaceCell
-            return cell
-        }
-        let cell = nearPlaceCollection.dequeueReusableCell(withReuseIdentifier: NearPlaceCell.reuseIdentifier, for: indexPath) as! NearPlaceCell
-        return cell 
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderReusableView.reuseIdentifier, for: indexPath)
-            headerView.backgroundColor = UIColor.blue
-            return headerView
-        default:
-            assert(false, "Unexpected element kind")
-        }
     }
 }
 extension SearchViewController : UISearchBarDelegate {

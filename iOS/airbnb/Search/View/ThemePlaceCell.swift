@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SpecialPlaceCell: UICollectionViewCell, IdentityInfo {
+class ThemePlaceCell: UICollectionViewCell, IdentityInfo {
 
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var specialPlaceLabel: UILabel!
