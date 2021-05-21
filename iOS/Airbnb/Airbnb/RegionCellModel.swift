@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LocationCellModel {
+struct RegionCellModel: Hashable {
     let image: String
     let location: String
     let distance: String

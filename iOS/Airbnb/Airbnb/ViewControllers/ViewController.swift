@@ -23,8 +23,8 @@ class ViewController: UIViewController {
         searchBar.delegate = self
         navigationItem.titleView = searchBar
         
-        collectionView.register(LocationCollectionViewCell.self,
-                                forCellWithReuseIdentifier: LocationCollectionViewCell.reuseId)
+        collectionView.register(RegionCollectionViewCell.self,
+                                forCellWithReuseIdentifier: RegionCollectionViewCell.reuseId)
         collectionView.register(StyleCollectionViewCell.self,
                                 forCellWithReuseIdentifier: StyleCollectionViewCell.reuseId)
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.reuseId)
@@ -59,7 +59,7 @@ extension ViewController: UICollectionViewDataSource {
             cell.contentView.addSubview(image)
             return cell
         case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationCollectionViewCell.reuseId, for: indexPath) as! LocationCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RegionCollectionViewCell.reuseId, for: indexPath) as! RegionCollectionViewCell
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StyleCollectionViewCell.reuseId, for: indexPath) as! StyleCollectionViewCell
@@ -69,7 +69,6 @@ extension ViewController: UICollectionViewDataSource {
         }
     }
     
-    // Section Header
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.reuseId, for: indexPath) as! HeaderCollectionReusableView
         switch indexPath.section {
