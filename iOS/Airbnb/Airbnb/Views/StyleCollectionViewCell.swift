@@ -22,7 +22,7 @@ class StyleCollectionViewCell: UICollectionViewCell {
         layout.itemSize = CGSize(width: 253, height: 308)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(UINib(nibName: StyleCell.reuseId, bundle: nil), forCellWithReuseIdentifier: StyleCell.reuseId)
+        collectionView.register(UINib(nibName: TravelStyleCell.reuseId, bundle: nil), forCellWithReuseIdentifier: TravelStyleCell.reuseId)
         collectionView.backgroundColor = .systemBackground
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
@@ -55,7 +55,7 @@ extension StyleCollectionViewCell: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StyleCell.reuseId, for: indexPath) as! StyleCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TravelStyleCell.reuseId, for: indexPath) as! TravelStyleCell
         let model = styleCellModelData[indexPath.item]
         cell.configure(model: model)
         return cell

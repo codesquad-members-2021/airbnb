@@ -7,12 +7,12 @@
 
 import UIKit
 
-class StyleCell: UICollectionViewCell {
+class TravelStyleCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var content: UILabel!
 
-    static let reuseId = "StyleCell"
+    static let reuseId = "TravelStyleCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()

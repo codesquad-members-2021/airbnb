@@ -17,15 +17,16 @@ class ResultsTableViewController: UITableViewController {
     typealias DataSource = UITableViewDiffableDataSource<Section, MKLocalSearchCompletion>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, MKLocalSearchCompletion>
     
+    let tableViewCellReuseId = "tableViewCellReuseId"
     private lazy var dataSource = makeDataSource()
     private var searchResults = [MKLocalSearchCompletion]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UINib(nibName: LocationCell.reuseId, bundle: nil),
-                           forCellReuseIdentifier: LocationCell.reuseId)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: tableViewCellReuseId)
         tableView.dataSource = dataSource
+        tableView.separatorStyle = .none
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -45,12 +46,12 @@ extension ResultsTableViewController {
         return UITableViewDiffableDataSource(
             tableView: tableView,
             cellProvider: { tableView, indexPath, model in
-                guard let cell = tableView.dequeueReusableCell(
-                        withIdentifier: LocationCell.reuseId,
-                        for: indexPath) as? LocationCell else {
-                    return UITableViewCell() }
+                let cell = tableView.dequeueReusableCell(
+                        withIdentifier: self.tableViewCellReuseId,
+                        for: indexPath)
                 let searchResult = self.searchResults[indexPath.row]
-                cell.location.text = searchResult.title
+                cell.textLabel?.text = searchResult.title
+                cell.imageView?.image = UIImage(systemName: "map")
                 return cell
             }
         )

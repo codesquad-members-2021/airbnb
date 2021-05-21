@@ -18,13 +18,11 @@
 		D0A4F28E265377C8009741B5 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A4F28D265377C8009741B5 /* HeaderCollectionReusableView.swift */; };
 		D0A4F29226538350009741B5 /* RegionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A4F29026538350009741B5 /* RegionCell.swift */; };
 		D0A4F29326538350009741B5 /* RegionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A4F29126538350009741B5 /* RegionCell.xib */; };
-		D0A4F29B2653934F009741B5 /* StyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A4F2992653934F009741B5 /* StyleCell.swift */; };
-		D0A4F29C2653934F009741B5 /* StyleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A4F29A2653934F009741B5 /* StyleCell.xib */; };
+		D0A4F29B2653934F009741B5 /* TravelStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A4F2992653934F009741B5 /* TravelStyleCell.swift */; };
+		D0A4F29C2653934F009741B5 /* TravelStyleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A4F29A2653934F009741B5 /* TravelStyleCell.xib */; };
 		D0A4F29F26539390009741B5 /* RegionCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A4F29E26539390009741B5 /* RegionCellModel.swift */; };
 		D0A4F2A32653BEA5009741B5 /* StyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A4F2A22653BEA5009741B5 /* StyleCollectionViewCell.swift */; };
 		D0A4F2AA26563BE1009741B5 /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A4F2A926563BE1009741B5 /* ResultsTableViewController.swift */; };
-		D0A4F2B12656637A009741B5 /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A4F2AF2656637A009741B5 /* LocationCell.xib */; };
-		D0A4F2B82656AD65009741B5 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A4F2B72656AD65009741B5 /* LocationCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,13 +39,11 @@
 		D0A4F28D265377C8009741B5 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		D0A4F29026538350009741B5 /* RegionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionCell.swift; sourceTree = "<group>"; };
 		D0A4F29126538350009741B5 /* RegionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegionCell.xib; sourceTree = "<group>"; };
-		D0A4F2992653934F009741B5 /* StyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleCell.swift; sourceTree = "<group>"; };
-		D0A4F29A2653934F009741B5 /* StyleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StyleCell.xib; sourceTree = "<group>"; };
+		D0A4F2992653934F009741B5 /* TravelStyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelStyleCell.swift; sourceTree = "<group>"; };
+		D0A4F29A2653934F009741B5 /* TravelStyleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TravelStyleCell.xib; sourceTree = "<group>"; };
 		D0A4F29E26539390009741B5 /* RegionCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionCellModel.swift; sourceTree = "<group>"; };
 		D0A4F2A22653BEA5009741B5 /* StyleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleCollectionViewCell.swift; sourceTree = "<group>"; };
 		D0A4F2A926563BE1009741B5 /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
-		D0A4F2AF2656637A009741B5 /* LocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
-		D0A4F2B72656AD65009741B5 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +57,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D02D783E26579A6700F5488B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D0A4F28D265377C8009741B5 /* HeaderCollectionReusableView.swift */,
+				D0A4F28A26537533009741B5 /* RegionCollectionViewCell.swift */,
+				D0A4F2A22653BEA5009741B5 /* StyleCollectionViewCell.swift */,
+				D0A4F29026538350009741B5 /* RegionCell.swift */,
+				D0A4F2992653934F009741B5 /* TravelStyleCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		D0A4F2632652A8A4009741B5 = {
 			isa = PBXGroup;
 			children = (
@@ -82,15 +90,9 @@
 			children = (
 				D0A4F2842652A8B3009741B5 /* Supporting Files */,
 				D0A4F2A62654F8FB009741B5 /* ViewControllers */,
-				D0A4F28D265377C8009741B5 /* HeaderCollectionReusableView.swift */,
-				D0A4F28A26537533009741B5 /* RegionCollectionViewCell.swift */,
-				D0A4F2A22653BEA5009741B5 /* StyleCollectionViewCell.swift */,
+				D02D783E26579A6700F5488B /* Views */,
 				D0A4F29E26539390009741B5 /* RegionCellModel.swift */,
 				D0A4F2752652A8A4009741B5 /* Main.storyboard */,
-				D0A4F29026538350009741B5 /* RegionCell.swift */,
-				D0A4F2992653934F009741B5 /* StyleCell.swift */,
-				D0A4F2AF2656637A009741B5 /* LocationCell.xib */,
-				D0A4F2B72656AD65009741B5 /* LocationCell.swift */,
 				D0A4F27D2652A8A4009741B5 /* Info.plist */,
 			);
 			path = Airbnb;
@@ -104,7 +106,7 @@
 				D0A4F2782652A8A4009741B5 /* Assets.xcassets */,
 				D0A4F27A2652A8A4009741B5 /* LaunchScreen.storyboard */,
 				D0A4F29126538350009741B5 /* RegionCell.xib */,
-				D0A4F29A2653934F009741B5 /* StyleCell.xib */,
+				D0A4F29A2653934F009741B5 /* TravelStyleCell.xib */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -177,8 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0A4F27C2652A8A4009741B5 /* LaunchScreen.storyboard in Resources */,
-				D0A4F29C2653934F009741B5 /* StyleCell.xib in Resources */,
-				D0A4F2B12656637A009741B5 /* LocationCell.xib in Resources */,
+				D0A4F29C2653934F009741B5 /* TravelStyleCell.xib in Resources */,
 				D0A4F2792652A8A4009741B5 /* Assets.xcassets in Resources */,
 				D0A4F29326538350009741B5 /* RegionCell.xib in Resources */,
 				D0A4F2772652A8A4009741B5 /* Main.storyboard in Resources */,
@@ -195,10 +196,9 @@
 				D0A4F2742652A8A4009741B5 /* ViewController.swift in Sources */,
 				D0A4F2702652A8A4009741B5 /* AppDelegate.swift in Sources */,
 				D0A4F28B26537533009741B5 /* RegionCollectionViewCell.swift in Sources */,
-				D0A4F29B2653934F009741B5 /* StyleCell.swift in Sources */,
+				D0A4F29B2653934F009741B5 /* TravelStyleCell.swift in Sources */,
 				D0A4F2AA26563BE1009741B5 /* ResultsTableViewController.swift in Sources */,
 				D0A4F2872652B7A7009741B5 /* SearchViewController.swift in Sources */,
-				D0A4F2B82656AD65009741B5 /* LocationCell.swift in Sources */,
 				D0A4F29226538350009741B5 /* RegionCell.swift in Sources */,
 				D0A4F2A32653BEA5009741B5 /* StyleCollectionViewCell.swift in Sources */,
 				D0A4F28E265377C8009741B5 /* HeaderCollectionReusableView.swift in Sources */,
