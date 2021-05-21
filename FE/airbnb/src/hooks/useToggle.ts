@@ -1,8 +1,8 @@
-import { ReactElement, useState, useEffect } from 'react';
+import { RefObject, useState, useEffect } from 'react';
 
 interface refsType {
-  clickRef: any; //HTMLDivElement | HTMLDivElement[] |
-  toggleRef: any; //HTMLDivElement | ReactElement |
+  clickRef: RefObject<HTMLDivElement>;
+  toggleRef: RefObject<HTMLDivElement>;
 }
 
 const useToggle = ({ clickRef, toggleRef }: refsType): boolean => {
