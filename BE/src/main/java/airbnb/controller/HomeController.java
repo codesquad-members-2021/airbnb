@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class MainController {
+public class HomeController {
 
     private CityDao cityDao;
 
-    public MainController(CityDao cityDao) {
+    public HomeController(CityDao cityDao) {
         this.cityDao = cityDao;
     }
 
-    @GetMapping("/main")
+    @GetMapping
     public CitiesWrapper readCities() {
         return new CitiesWrapper(cityDao.findAll());
     }
