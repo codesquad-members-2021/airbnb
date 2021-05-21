@@ -18,8 +18,4 @@ final class CalendarViewController: UIViewController, Instantiable {
         super.viewDidLoad()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
 }

@@ -33,7 +33,7 @@ final class AlamofireImageLoadManager: AlamofireImageLoadManagable {
     }
     
     private func downloadRequest(of imageURL: String, fileName: String) -> DownloadRequest {
-        let destination: DownloadRequest.Destination = {_,_ in
+        let destination: DownloadRequest.Destination = { _,_ in
             let fileURL = self.cacheURL.appendingPathComponent(fileName)
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }

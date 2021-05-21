@@ -29,7 +29,7 @@ final class TurnOnUseCase: TurnOnCaseConfigurable {
     }
     
     func loadHeroImage(completionHandler: @escaping (Result<String, CustomError>) -> Void) {
-        networkManager.get(decodingType: String.self, endPoint: EndPoint.heroImage) { dataResponse in
+        networkManager.get(decodingType: String.self, endPoint: EndPoint.heroImage) { [weak self] dataResponse in
             guard let statusCode = dataResponse.response?.statusCode else {
                 return completionHandler(.failure(CustomError.internet))
             }
@@ -38,7 +38,7 @@ final class TurnOnUseCase: TurnOnCaseConfigurable {
                 guard let imageUrl = dataResponse.value else {
                     return completionHandler(.failure(CustomError.noResult))
                 }
-                self.imageLoadManager.load(from: imageUrl) { cacheUrl in
+                self?.imageLoadManager.load(from: imageUrl) { cacheUrl in
                     completionHandler(.success(cacheUrl))
                 }
             case 300..<400:

@@ -23,12 +23,12 @@ final class HomeViewController: UIViewController {
     }
     
     private func appDidTurnOn() {
-        viewModel.heroImage { result in
+        viewModel.heroImage { [weak self] result in
             do {
                 let cacheUrl = try result.get()
-                self.updateHeroImage(with: cacheUrl)
+                self?.updateHeroImage(with: cacheUrl)
             } catch {
-                self.alertError(error: error)
+                self?.alertError(error: error)
             }
         }
     }

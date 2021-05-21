@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SearchResultDelegate {
+protocol SearchResultDelegate: AnyObject {
     func didSelect(result: LocationSearchResult)
 }
 
@@ -18,7 +18,7 @@ final class SearchResultTableViewController: UITableViewController, Instantiable
     @IBOutlet var searchResultTable: UITableView!
     private var searchResults: [LocationSearchResult]?
     private var viewModel: SearchResultConfigurable!
-    var delegate: SearchResultDelegate?
+    weak var delegate: SearchResultDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +28,12 @@ final class SearchResultTableViewController: UITableViewController, Instantiable
     func updateSearchResult(with newKeyword: String) {
         guard let viewModel = viewModel else { return }
         
-        viewModel.searchResults(for: newKeyword) { result in
+        viewModel.searchResults(for: newKeyword) { [weak self] result in
             do {
                 let searchResults = try result.get()
-                self.updateTableView(with: searchResults)
+                self?.updateTableView(with: searchResults)
             } catch {
-                self.alertError(error: error)
+                self?.alertError(error: error)
             }
         }
     }
