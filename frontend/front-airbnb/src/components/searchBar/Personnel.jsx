@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PersonnelModal from '../modal/PersonnelModal';
+import { PostsContext } from '../searchBar/SearchBar';
 
-const Personnel = ({toggleState, dispatch}) => {
+const Personnel = () => {
+    const {toggleState, dispatch} = useContext(PostsContext);
     return (
         <PersonnelWrapper onClick={() => dispatch({category: 'personnel'})}>
                 <Title>인원</Title>

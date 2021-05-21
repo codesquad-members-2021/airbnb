@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import CalendarModal from '../modal/CalendarModal';
+import { PostsContext } from '../searchBar/SearchBar';
 
-const Period = ({toggleState, dispatch}) => {
-    console.log(toggleState.period)
+const Period = () => {
+    const {toggleState, dispatch} = useContext(PostsContext);
     const periodData = [
         {
             id: 1,

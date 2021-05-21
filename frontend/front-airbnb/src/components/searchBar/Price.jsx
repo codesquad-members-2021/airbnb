@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PriceModal from '../modal/PriceModal';
+import { PostsContext } from '../searchBar/SearchBar';
 
-const Price = ({toggleState, dispatch}) => {
+const Price = () => {
+    const {toggleState, dispatch} = useContext(PostsContext);
     return (
         <PriceWrapper onClick={()=> dispatch({category: 'price'})}>
         <Title>요금</Title>
