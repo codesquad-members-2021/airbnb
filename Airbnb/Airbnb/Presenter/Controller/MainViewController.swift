@@ -6,57 +6,60 @@ import NSObject_Rx
 class MainViewController: UIViewController {
     
     @IBOutlet weak var travelSearchBar: UISearchBar!
-    @IBOutlet weak var mainInfoCollectionView: UICollectionView!
+    @IBOutlet weak var mainCollectionView: UICollectionView!
     
     private let mainViewModel = MainViewModel()
-    private lazy var dataSource = dataSources()
+    private let delegate = MainCollectionViewDelegate()
+    private lazy var datasource = setupDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegate()
         setupCollectionView()
-        bindMainViewModel()
-    }
-    
-    private func setupDelegate() {
-        mainInfoCollectionView.rx.setDelegate(self).disposed(by: rx.disposeBag)
-    }
-    
-    private func bindMainViewModel() {
-        mainViewModel.mainViewList()
-            .bind(to: mainInfoCollectionView.rx.items(dataSource: dataSource))
+        mainViewModel.firstViewList()
+            .bind(to: mainCollectionView.rx.items(dataSource: datasource))
             .disposed(by: rx.disposeBag)
     }
 }
 
+//MARK: -Setup Delegate
 private extension MainViewController {
     
-    private func setupCollectionView() {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.headerReferenceSize = CGSize(width: self.mainInfoCollectionView.frame.width, height: self.mainInfoCollectionView.frame.height*0.2)
-        mainInfoCollectionView.collectionViewLayout = flowLayout
-        mainInfoCollectionView.register(FirstSectionCell.self, forCellWithReuseIdentifier: FirstSectionCell.identifier)
-        mainInfoCollectionView.register(SecondSectionCell.self, forCellWithReuseIdentifier: SecondSectionCell.identifier)
-        mainInfoCollectionView.register(ThirdSectionCell.self, forCellWithReuseIdentifier: ThirdSectionCell.identifier)
-        mainInfoCollectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.identifier)
+    private func setupDelegate() {
+        mainCollectionView.rx.setDelegate(delegate)
+            .disposed(by: rx.disposeBag)
+        delegate.setupItemSize(view.frame.width, view.frame.height*0.4)
     }
     
-    private func dataSources() -> RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData> {
-        return RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData>(configureCell: {dataSource, collectionView, indexPath, item in
+    private func setupCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.headerReferenceSize = CGSize(width: view.frame.width, height: view.frame.height*0.1)
+        mainCollectionView.collectionViewLayout = layout
+        mainCollectionView.register(FirstSectionCell.self, forCellWithReuseIdentifier: FirstSectionCell.identifier)
+        mainCollectionView.register(SecondSectionCell.self, forCellWithReuseIdentifier: SecondSectionCell.identifier)
+        mainCollectionView.register(ThirdSectionCell.self, forCellWithReuseIdentifier: ThirdSectionCell.identifier)
+        mainCollectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.identifier)
+    }
+}
+
+//MARK: -Setup DataSource
+private extension MainViewController {
+    
+    private func setupDataSource() -> RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData> {
+        return RxCollectionViewSectionedReloadDataSource<SectionOfMainViewData>(configureCell: { dataSource, collectionView, indexPath, item in
             switch indexPath.section {
             case 0:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FirstSectionCell.identifier, for: indexPath) as? FirstSectionCell  else { return UICollectionViewCell() }
                 cell.configure(item)
                 return cell
             case 1:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SecondSectionCell.identifier, for: indexPath) as? SecondSectionCell  else { return UICollectionViewCell() }
-                cell.configure(item)
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SecondSectionCell.identifier, for: indexPath) as? SecondSectionCell else { return UICollectionViewCell() }
                 return cell
             case 2:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThirdSectionCell.identifier, for: indexPath) as? ThirdSectionCell  else { return UICollectionViewCell() }
-                cell.configure(item)
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThirdSectionCell.identifier, for: indexPath) as? ThirdSectionCell else { return UICollectionViewCell() }
                 return cell
-            default: break
+            default:
+                break
             }
             return UICollectionViewCell()
         }, configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
@@ -64,22 +67,5 @@ private extension MainViewController {
             header.configure(dataSource.sectionModels[indexPath.section].header)
             return header
         })
-    }
-}
-
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.section == 0 {
-            return CGSize(width: view.frame.width, height: view.frame.height*0.5)
-        } else if indexPath.section == 1 {
-            return CGSize(width: view.frame.width*0.35, height: view.frame.height*0.1)
-        }
-        else { return CGSize(width: view.frame.width*0.8, height: view.frame.height*0.4)}
-    }
-        
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if section == 1 {return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)}
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }

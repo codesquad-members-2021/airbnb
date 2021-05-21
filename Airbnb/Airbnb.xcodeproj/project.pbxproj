@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5C6D74CF4FEC1ED21AB67A15 /* Pods_Airbnb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42E7A5ACE26BDD8E29A55207 /* Pods_Airbnb.framework */; };
-		7112E6E8265604E100F9AAD6 /* SecondSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112E6E7265604E100F9AAD6 /* SecondSectionCell.swift */; };
-		7112E6EA2656054900F9AAD6 /* ThirdSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112E6E92656054900F9AAD6 /* ThirdSectionCell.swift */; };
+		7112E6E8265604E100F9AAD6 /* RegieonInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112E6E7265604E100F9AAD6 /* RegieonInfoCell.swift */; };
+		7112E6EA2656054900F9AAD6 /* TravelInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112E6E92656054900F9AAD6 /* TravelInfoCell.swift */; };
 		7112E6EC26561CDE00F9AAD6 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112E6EB26561CDE00F9AAD6 /* HeaderView.swift */; };
 		7157C8862654A14500EF7977 /* FirstSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C8852654A14500EF7977 /* FirstSectionView.swift */; };
 		7157C8892654AC4000EF7977 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C8882654AC4000EF7977 /* MainViewModel.swift */; };
@@ -22,6 +22,9 @@
 		71A67D3E2653A92100FC6689 /* FirstSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D3D2653A92100FC6689 /* FirstSectionCell.swift */; };
 		71A67D422653AA9800FC6689 /* MainViewInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D412653AA9800FC6689 /* MainViewInfo.swift */; };
 		71A67D442653AD7400FC6689 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D432653AD7400FC6689 /* DataManager.swift */; };
+		71B93A7226576CA10028C492 /* ThirdSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B93A7126576CA10028C492 /* ThirdSectionCell.swift */; };
+		71D133DA2657531A00A71626 /* MainCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D133D92657531A00A71626 /* MainCollectionViewDelegate.swift */; };
+		71D133E126575AB000A71626 /* SecondSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D133E026575AB000A71626 /* SecondSectionCell.swift */; };
 		71DA18362654CACC00415EDD /* SecondSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA18352654CACC00415EDD /* SecondSectionView.swift */; };
 		71DA183A2654E2FE00415EDD /* ThirdSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA18392654E2FE00415EDD /* ThirdSectionView.swift */; };
 /* End PBXBuildFile section */
@@ -29,8 +32,8 @@
 /* Begin PBXFileReference section */
 		42E7A5ACE26BDD8E29A55207 /* Pods_Airbnb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Airbnb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BCF80A292B8920BE3DCDDD7 /* Pods-Airbnb.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airbnb.release.xcconfig"; path = "Target Support Files/Pods-Airbnb/Pods-Airbnb.release.xcconfig"; sourceTree = "<group>"; };
-		7112E6E7265604E100F9AAD6 /* SecondSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionCell.swift; sourceTree = "<group>"; };
-		7112E6E92656054900F9AAD6 /* ThirdSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionCell.swift; sourceTree = "<group>"; };
+		7112E6E7265604E100F9AAD6 /* RegieonInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegieonInfoCell.swift; sourceTree = "<group>"; };
+		7112E6E92656054900F9AAD6 /* TravelInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelInfoCell.swift; sourceTree = "<group>"; };
 		7112E6EB26561CDE00F9AAD6 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		7157C8852654A14500EF7977 /* FirstSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSectionView.swift; sourceTree = "<group>"; };
 		7157C8882654AC4000EF7977 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -45,6 +48,9 @@
 		71A67D3D2653A92100FC6689 /* FirstSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSectionCell.swift; sourceTree = "<group>"; };
 		71A67D412653AA9800FC6689 /* MainViewInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewInfo.swift; sourceTree = "<group>"; };
 		71A67D432653AD7400FC6689 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		71B93A7126576CA10028C492 /* ThirdSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionCell.swift; sourceTree = "<group>"; };
+		71D133D92657531A00A71626 /* MainCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		71D133E026575AB000A71626 /* SecondSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionCell.swift; sourceTree = "<group>"; };
 		71DA18352654CACC00415EDD /* SecondSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionView.swift; sourceTree = "<group>"; };
 		71DA18392654E2FE00415EDD /* ThirdSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionView.swift; sourceTree = "<group>"; };
 		CCB98BA9F1F4A561BA5FBBA8 /* Pods-Airbnb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airbnb.debug.xcconfig"; path = "Target Support Files/Pods-Airbnb/Pods-Airbnb.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				71A67D2826539B6A00FC6689 /* MainViewController.swift */,
+				71D133D92657531A00A71626 /* MainCollectionViewDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -148,11 +155,9 @@
 		71A67D3C2653A90E00FC6689 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				71A67D3D2653A92100FC6689 /* FirstSectionCell.swift */,
+				71D133DF26575A5C00A71626 /* Cell */,
 				7157C8852654A14500EF7977 /* FirstSectionView.swift */,
-				7112E6E7265604E100F9AAD6 /* SecondSectionCell.swift */,
 				71DA18352654CACC00415EDD /* SecondSectionView.swift */,
-				7112E6E92656054900F9AAD6 /* ThirdSectionCell.swift */,
 				71DA18392654E2FE00415EDD /* ThirdSectionView.swift */,
 				7112E6EB26561CDE00F9AAD6 /* HeaderView.swift */,
 			);
@@ -174,6 +179,18 @@
 				71A67D432653AD7400FC6689 /* DataManager.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		71D133DF26575A5C00A71626 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				71A67D3D2653A92100FC6689 /* FirstSectionCell.swift */,
+				7112E6E7265604E100F9AAD6 /* RegieonInfoCell.swift */,
+				7112E6E92656054900F9AAD6 /* TravelInfoCell.swift */,
+				71D133E026575AB000A71626 /* SecondSectionCell.swift */,
+				71B93A7126576CA10028C492 /* ThirdSectionCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		B1377F24FC4030DA7991B7AB /* Pods */ = {
@@ -302,15 +319,18 @@
 				71A67D2926539B6A00FC6689 /* MainViewController.swift in Sources */,
 				7157C8862654A14500EF7977 /* FirstSectionView.swift in Sources */,
 				71A67D2526539B6A00FC6689 /* AppDelegate.swift in Sources */,
+				71D133E126575AB000A71626 /* SecondSectionCell.swift in Sources */,
 				71DA18362654CACC00415EDD /* SecondSectionView.swift in Sources */,
 				71A67D422653AA9800FC6689 /* MainViewInfo.swift in Sources */,
 				71A67D442653AD7400FC6689 /* DataManager.swift in Sources */,
 				71A67D3E2653A92100FC6689 /* FirstSectionCell.swift in Sources */,
 				71A67D2726539B6A00FC6689 /* SceneDelegate.swift in Sources */,
-				7112E6E8265604E100F9AAD6 /* SecondSectionCell.swift in Sources */,
-				7112E6EA2656054900F9AAD6 /* ThirdSectionCell.swift in Sources */,
+				7112E6E8265604E100F9AAD6 /* RegieonInfoCell.swift in Sources */,
+				7112E6EA2656054900F9AAD6 /* TravelInfoCell.swift in Sources */,
 				71DA183A2654E2FE00415EDD /* ThirdSectionView.swift in Sources */,
 				7157C8892654AC4000EF7977 /* MainViewModel.swift in Sources */,
+				71D133DA2657531A00A71626 /* MainCollectionViewDelegate.swift in Sources */,
+				71B93A7226576CA10028C492 /* ThirdSectionCell.swift in Sources */,
 				7112E6EC26561CDE00F9AAD6 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

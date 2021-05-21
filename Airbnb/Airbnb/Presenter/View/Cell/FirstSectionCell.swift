@@ -5,7 +5,7 @@ class FirstSectionCell: UICollectionViewCell {
     static let identifier = "FirstCell"
     
     private lazy var firstSectionView: FirstSectionView = {
-        let firstView = FirstSectionView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height*0.8))
+        let firstView = FirstSectionView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
         return firstView
     }()
         

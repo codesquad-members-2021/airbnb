@@ -1,11 +1,11 @@
 import UIKit
 
-class SecondSectionCell: UICollectionViewCell {
+class RegieonInfoCell: UICollectionViewCell {
     
-    static let identifier = "SecondCell"
+    static let identifier = "RegieonInfoCell"
     
     private lazy var secondSectionView: SecondSectionView = {
-        let secondView = SecondSectionView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height*0.8))
+        let secondView = SecondSectionView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
         return secondView
     }()
         
@@ -24,7 +24,7 @@ class SecondSectionCell: UICollectionViewCell {
     }
 }
 
-extension SecondSectionCell {
+extension RegieonInfoCell {
     private func setupMainCell() {
         addSubview(secondSectionView)
     }
