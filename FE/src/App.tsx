@@ -5,6 +5,7 @@ import AppStyle from './common/styles/AppStyle';
 import theme from './common/styles/theme/theme';
 
 import MainPage from './pages/MainPage';
+import SearchPage from './pages/SearchPage';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route path={'/'} exact component={MainPage} />
+          <Route path={'/search'} component={SearchPage} />
         </Switch>
       </BrowserRouter>
 
