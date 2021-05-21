@@ -19,9 +19,9 @@ USE `airbnb_db` ;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `airbnb_db`.`accommodation`;
 CREATE TABLE IF NOT EXISTS `airbnb_db`.`accommodation` (
-  `id` INT NOT NULL,
+  `id` INT AUTO_INCREMENT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
-  `maxPeople` INT NOT NULL DEFAULT 1,
+  `max_people` INT NOT NULL DEFAULT 1,
   `type` VARCHAR(45) NOT NULL,
   `num_of_bed` INT NOT NULL DEFAULT 1,
   `num_of_bathroom` INT NOT NULL DEFAULT 1,
@@ -34,7 +34,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `airbnb_db`.`accommodation_detail`;
 CREATE TABLE IF NOT EXISTS `airbnb_db`.`accommodation_detail` (
-  `id` INT NOT NULL,
+  `id` INT AUTO_INCREMENT NOT NULL,
   `host_name` VARCHAR(45) NULL,
   `description` VARCHAR(45) NULL,
   `accommodation_id` INT NOT NULL,
@@ -53,7 +53,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `airbnb_db`.`reservation`;
 CREATE TABLE IF NOT EXISTS `airbnb_db`.`reservation` (
-  `id` INT NOT NULL,
+  `id` INT AUTO_INCREMENT NOT NULL,
   `check_in_date` DATE NULL,
   `check_out_date` DATE NULL,
   `accommodation_id` INT NOT NULL,
@@ -72,7 +72,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `airbnb_db`.`reservation_date`;
 CREATE TABLE IF NOT EXISTS `airbnb_db`.`reservation_date` (
-  `id` INT NOT NULL,
+  `id` INT AUTO_INCREMENT NOT NULL,
   `reserved_date` DATE NULL,
   `reservation_id` INT NOT NULL,
   PRIMARY KEY (`id`, `reservation_id`),
