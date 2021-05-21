@@ -29,3 +29,6 @@ function useOnClickOutside<T extends HTMLElement = HTMLElement>(
 }
 
 export default useOnClickOutside;
+
+
+// 참고해서 만들었습니다. https://usehooks-typescript.com/react-hook/use-on-click-outside
