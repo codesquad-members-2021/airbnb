@@ -4,7 +4,6 @@ package com.example.airbnb.controller;
 import com.example.airbnb.dto.AccommodationListDTO;
 import com.example.airbnb.service.AccommodationService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +16,8 @@ public class AccommodationController {
     public AccommodationController(AccommodationService accommodationService) {
         this.accommodationService = accommodationService;
     }
+
+
 
     @GetMapping
     public AccommodationListDTO getSample() {
