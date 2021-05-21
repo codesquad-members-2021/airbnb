@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w39-Dj-YZY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VMs-Kj-Jvg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -111,50 +111,48 @@
                                 <rect key="frame" x="20" y="384" width="374" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아이디" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAQ-AL-sQV">
-                                        <rect key="frame" x="25" y="20" width="71" height="29"/>
+                                        <rect key="frame" x="25" y="20" width="71" height="24"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="비밀번호" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGm-lE-tg1">
-                                        <rect key="frame" x="25" y="79" width="71" height="29"/>
+                                        <rect key="frame" x="25" y="79" width="69.5" height="29"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="아이디를 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qBg-Jt-IkT">
-                                        <rect key="frame" x="121" y="20" width="233" height="34"/>
+                                        <rect key="frame" x="121" y="20" width="238" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="비밀번호를 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aV5-e5-ibO">
-                                        <rect key="frame" x="121" y="74" width="233" height="34"/>
+                                        <rect key="frame" x="119.5" y="74" width="238" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="qBg-Jt-IkT" firstAttribute="height" secondItem="mWu-hu-TY8" secondAttribute="height" multiplier="0.265625" id="1Bb-R4-CBd"/>
-                                    <constraint firstAttribute="bottom" secondItem="aV5-e5-ibO" secondAttribute="bottom" constant="20" id="1NB-0A-h8e"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qBg-Jt-IkT" secondAttribute="trailing" constant="20" symbolic="YES" id="1qb-2J-0fo"/>
-                                    <constraint firstItem="qBg-Jt-IkT" firstAttribute="width" secondItem="mWu-hu-TY8" secondAttribute="width" multiplier="0.622995" id="3Me-cw-JcD"/>
-                                    <constraint firstItem="MAQ-AL-sQV" firstAttribute="leading" secondItem="mWu-hu-TY8" secondAttribute="leading" constant="25" id="8p7-pD-phe"/>
-                                    <constraint firstItem="RGm-lE-tg1" firstAttribute="width" secondItem="mWu-hu-TY8" secondAttribute="width" multiplier="0.18984" id="96K-4a-Yn8"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aV5-e5-ibO" secondAttribute="trailing" constant="20" symbolic="YES" id="ARK-XM-zBd"/>
-                                    <constraint firstItem="qBg-Jt-IkT" firstAttribute="top" secondItem="mWu-hu-TY8" secondAttribute="top" constant="20" id="Lls-z8-eKe"/>
-                                    <constraint firstItem="RGm-lE-tg1" firstAttribute="height" secondItem="mWu-hu-TY8" secondAttribute="height" multiplier="0.226562" id="MZk-5r-edW"/>
-                                    <constraint firstItem="MAQ-AL-sQV" firstAttribute="width" secondItem="mWu-hu-TY8" secondAttribute="width" multiplier="0.18984" id="V7b-Ig-jmk"/>
-                                    <constraint firstItem="MAQ-AL-sQV" firstAttribute="top" secondItem="mWu-hu-TY8" secondAttribute="top" constant="20" id="Wf7-yY-Muq"/>
-                                    <constraint firstItem="qBg-Jt-IkT" firstAttribute="leading" secondItem="MAQ-AL-sQV" secondAttribute="trailing" constant="25" id="Zq3-gr-3eA"/>
-                                    <constraint firstItem="RGm-lE-tg1" firstAttribute="leading" secondItem="mWu-hu-TY8" secondAttribute="leading" constant="25" id="fvy-wN-6s3"/>
-                                    <constraint firstItem="MAQ-AL-sQV" firstAttribute="height" secondItem="mWu-hu-TY8" secondAttribute="height" multiplier="0.226562" id="kL8-7x-DQD"/>
-                                    <constraint firstItem="aV5-e5-ibO" firstAttribute="leading" secondItem="RGm-lE-tg1" secondAttribute="trailing" constant="25" id="qbD-Od-yer"/>
-                                    <constraint firstAttribute="bottom" secondItem="RGm-lE-tg1" secondAttribute="bottom" constant="20" id="sdS-vk-weC"/>
-                                    <constraint firstItem="aV5-e5-ibO" firstAttribute="height" secondItem="mWu-hu-TY8" secondAttribute="height" multiplier="0.265625" id="t2w-Ho-j2T"/>
-                                    <constraint firstItem="aV5-e5-ibO" firstAttribute="width" secondItem="mWu-hu-TY8" secondAttribute="width" multiplier="0.622995" id="wUG-x9-fOK"/>
+                                    <constraint firstItem="MAQ-AL-sQV" firstAttribute="leading" secondItem="mWu-hu-TY8" secondAttribute="leading" constant="25" id="AEL-Ic-Kca"/>
+                                    <constraint firstItem="MAQ-AL-sQV" firstAttribute="width" secondItem="mWu-hu-TY8" secondAttribute="width" multiplier="0.18984" id="AbT-kd-l8I"/>
+                                    <constraint firstAttribute="bottom" secondItem="aV5-e5-ibO" secondAttribute="bottom" constant="20" id="CbI-R1-U7d"/>
+                                    <constraint firstItem="aV5-e5-ibO" firstAttribute="width" secondItem="mWu-hu-TY8" secondAttribute="width" multiplier="0.636364" id="I4G-GS-LVv"/>
+                                    <constraint firstItem="qBg-Jt-IkT" firstAttribute="height" secondItem="mWu-hu-TY8" secondAttribute="height" multiplier="0.265625" id="IWY-Bb-geT"/>
+                                    <constraint firstItem="aV5-e5-ibO" firstAttribute="height" secondItem="mWu-hu-TY8" secondAttribute="height" multiplier="0.265625" id="T5g-eX-bMD"/>
+                                    <constraint firstItem="RGm-lE-tg1" firstAttribute="width" secondItem="mWu-hu-TY8" secondAttribute="width" multiplier="0.185829" id="TTq-fC-1GD"/>
+                                    <constraint firstItem="aV5-e5-ibO" firstAttribute="leading" secondItem="RGm-lE-tg1" secondAttribute="trailing" constant="25" id="TjT-6s-m06"/>
+                                    <constraint firstItem="qBg-Jt-IkT" firstAttribute="top" secondItem="mWu-hu-TY8" secondAttribute="top" constant="20" id="Yds-YC-ueZ"/>
+                                    <constraint firstItem="RGm-lE-tg1" firstAttribute="leading" secondItem="mWu-hu-TY8" secondAttribute="leading" constant="25" id="byx-ew-fyx"/>
+                                    <constraint firstItem="qBg-Jt-IkT" firstAttribute="leading" secondItem="MAQ-AL-sQV" secondAttribute="trailing" constant="25" id="bz9-Im-bbQ"/>
+                                    <constraint firstItem="qBg-Jt-IkT" firstAttribute="width" secondItem="mWu-hu-TY8" secondAttribute="width" multiplier="0.636364" id="cRi-Fs-Maq"/>
+                                    <constraint firstAttribute="bottom" secondItem="RGm-lE-tg1" secondAttribute="bottom" constant="20" id="iyK-Dz-WIn"/>
+                                    <constraint firstItem="RGm-lE-tg1" firstAttribute="height" secondItem="mWu-hu-TY8" secondAttribute="height" multiplier="0.226562" id="n0y-Qd-z1g"/>
+                                    <constraint firstItem="MAQ-AL-sQV" firstAttribute="height" secondItem="mWu-hu-TY8" secondAttribute="height" multiplier="0.1875" id="pxv-cw-mZh"/>
+                                    <constraint firstItem="MAQ-AL-sQV" firstAttribute="top" secondItem="mWu-hu-TY8" secondAttribute="top" constant="20" id="s44-Gj-zQu"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -206,7 +204,6 @@
         <!--검색-->
         <scene sceneID="1Ab-oL-qEK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u8W-dk-eXh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController restorationIdentifier="Nav" storyboardIdentifier="Nav" automaticallyAdjustsScrollViewInsets="NO" id="Pv1-cK-i3h" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" selectedImage="magnifyingglass" id="I6f-gj-dUv"/>
                     <toolbarItems/>
@@ -219,6 +216,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="BS6-ww-zdV"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u8W-dk-eXh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="878" y="68"/>
         </scene>

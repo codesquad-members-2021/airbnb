@@ -1,5 +1,6 @@
 import UIKit
 import RxSwift
+import RxCocoa
 import RxDataSources
 import NSObject_Rx
 
@@ -36,6 +37,7 @@ private extension MainViewController {
         mainCollectionView.rx.setDelegate(delegate)
             .disposed(by: rx.disposeBag)
         delegate.setupItemSize(view.frame.width, view.frame.height*0.4)
+        setupSearchBarTapped()
     }
     
     private func setupCollectionView() {
@@ -46,6 +48,15 @@ private extension MainViewController {
         mainCollectionView.register(SecondSectionCell.self, forCellWithReuseIdentifier: SecondSectionCell.identifier)
         mainCollectionView.register(ThirdSectionCell.self, forCellWithReuseIdentifier: ThirdSectionCell.identifier)
         mainCollectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.identifier)
+    }
+    
+    private func setupSearchBarTapped() {
+        let gesture = UITapGestureRecognizer()
+        travelSearchBar.addGestureRecognizer(gesture)
+        gesture.rx.event
+            .bind(onNext: { recognizer in
+                //NextViewController
+            }).disposed(by: rx.disposeBag)
     }
 }
 

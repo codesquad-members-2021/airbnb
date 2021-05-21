@@ -38,11 +38,9 @@ private extension LoginViewController {
         }
         APIService.post(url, parameter: LoginInfo(id: idTextField.text!, password: passwordTextField.text!))
             .subscribe(onNext: { [weak self] data in
-                let main = MainViewController()
                 let tabBarController = self?.storyboard?.instantiateViewController(identifier: "TabBarController")
-                let nextVC = tabBarController?.children.first as! UINavigationController
-                let a = UINavigationController(rootViewController: main)
-                self?.present(a, animated: true, completion: nil)
+                tabBarController?.modalPresentationStyle = .fullScreen
+                self?.present(tabBarController!, animated: true, completion: nil)
             }, onError: { error in
                 print(error.localizedDescription)
             }).disposed(by: rx.disposeBag)
