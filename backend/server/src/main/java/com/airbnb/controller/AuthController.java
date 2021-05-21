@@ -2,30 +2,32 @@ package com.airbnb.controller;
 
 import com.airbnb.annotation.LoginRequired;
 import com.airbnb.dto.*;
-import com.airbnb.service.OauthService;
+import com.airbnb.service.GitHubService;
+import com.airbnb.service.UserService;
 import com.airbnb.util.JwtUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
 @RequestMapping("/api")
-public class OauthController {
-    private final OauthService oauthService;
+public class AuthController {
+    private final GitHubService gitHubService;
+    private final UserService userService;
 
-    public OauthController(OauthService oauthService) {
-        this.oauthService = oauthService;
+    public AuthController(GitHubService gitHubService, UserService userService) {
+        this.gitHubService = gitHubService;
+        this.userService = userService;
     }
 
     @GetMapping("/hello")
     @LoginRequired
     public MessageResponse getHello(HttpServletRequest request) {
         UserDto userDto = (UserDto) request.getAttribute("user");
-        oauthService.authenticate(userDto);
+        userService.authenticate(userDto);
         return new MessageResponse("안녕하세요! 로그인 한 유저는 언제나 환영합니다!");
     }
 
@@ -33,13 +35,13 @@ public class OauthController {
     public ResponseEntity<AuthResponse> auth(@RequestBody AuthRequest authRequest) {
         String code = authRequest.getCode();
 
-        AccessTokenResponse accessTokenResponse = oauthService.getAccessToken(code);
+        AccessTokenResponse accessTokenResponse = gitHubService.getAccessToken(code);
         String accessToken = accessTokenResponse.getAccessToken();
 
-        UserDto user = oauthService.getUserFromGitHub(accessToken);
+        UserDto user = gitHubService.getUser(accessToken);
         String jwt = JwtUtil.createJwt(user);
 
-        oauthService.saveLoggedInUser(user, accessTokenResponse);
+        userService.saveLoggedInUser(user, accessTokenResponse);
 
         return ResponseEntity.status(CREATED).body(new AuthResponse(jwt));
     }
