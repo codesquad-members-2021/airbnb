@@ -2,14 +2,14 @@ package airbnb.domain;
 
 import org.springframework.data.annotation.Id;
 
-import java.util.Set;
+import java.util.List;
 
 public class City {
 
     @Id
     private Long id;
     private String name;
-    private Set<Image> images;
+    private List<Image> images;
 
     public City(Long id, String name) {
         this.id = id;
@@ -24,7 +24,7 @@ public class City {
         return name;
     }
 
-    public Set<Image> getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
