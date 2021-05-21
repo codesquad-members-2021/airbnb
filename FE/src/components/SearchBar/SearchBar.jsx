@@ -10,13 +10,15 @@ const SearchBar = () => {
 	const currentDOM = useRef();
 
 	useEffect(() => {
-		document.addEventListener("click", (e) => {
-			if (currentDOM.current && !currentDOM.current.contains(e.target)) setFocus(() => false);
-		});
+		const blur = ({ target }) => {
+			if (currentDOM.current && !currentDOM.current.contains(target)) setFocus(false);
+		};
+		document.addEventListener("click", blur);
+		return () => document.removeEventListener("click", blur);
 	});
 
 	return (
-		<SearchBarWrapper ref={currentDOM} onClick={() => setFocus(() => true)}>
+		<SearchBarWrapper ref={currentDOM} onClick={() => setFocus(true)}>
 			<Period />
 			<SearchButton isFocus={isFocus} />
 			<Line />

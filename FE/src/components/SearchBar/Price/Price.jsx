@@ -2,67 +2,87 @@ import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import PriceModal from "./PriceModal";
 import CloseButton from "../CloseButton";
+import addComma from "../../../util/addComma";
 
-const priceDataParser = (data) => {
-	const parsedData = { length: 0, counts: {} };
+// 현재 데이터 상태 :
+// 숙소 최저가 : 50000
+// 숙소 최고가 : 200000
+// 그래프 x 단위 : 5000
+// 그래프 개수 : 30
+// 슬라이더 가로 픽셀 : 300등분
+const priceDataParser = (data, totalSlide) => {
+	const counts = {};
+	let maxCount = 0;
+	let length = 0;
 
-	data.forEach((el) => (parsedData.counts[el] ? parsedData.counts[el]++ : ((parsedData.counts[el] = 1), parsedData.length++)));
+	const minimumPrice = Math.min(...data);
+	const maximumPrice = Math.max(...data);
+	const unit = (maximumPrice - minimumPrice) / totalSlide;
+	const average = data.length ? Math.round(data.reduce((acc, cur) => acc + cur) / data.length) : 0;
 
-	return parsedData;
+	const getPrice = (price) => Math.floor((price - minimumPrice) / unit) * unit + minimumPrice;
+
+	data.forEach((el) => {
+		if (counts[getPrice(el)]) {
+			counts[getPrice(el)]++;
+			maxCount = maxCount < counts[getPrice(el)] ? counts[getPrice(el)] : maxCount;
+		} else {
+			counts[getPrice(el)] = 1;
+			length++;
+		}
+	});
+	return { counts, maxCount, minimumPrice, maximumPrice, unit, length, average };
 };
 
 const Price = () => {
 	const [isOn, setOn] = useState(false);
 
 	const [min, setMin] = useState(0);
-	const [max, setMax] = useState(341);
+	const [max, setMax] = useState(321);
 
-	const [data, setData] = useState([]);
+	const [data, setData] = useState(priceDataParser([], 300));
 
 	useEffect(() => {
 		if (max - min < 20) setMin(() => max - 20);
 		if (min < 0) setMin(0);
 		if (max < 20) setMax(20);
-		if (max > 341) setMax(341);
+		if (max > 320) setMax(320);
 	}, [min, max]);
 
-	const minimumPrice = Math.min(...data);
-	const maximumPrice = Math.max(...data);
-	const unit = Math.floor((maximumPrice - minimumPrice) / 321);
+	const { minimumPrice, unit } = data;
 
-	const isActivated = Boolean(min !== 0 || max !== 341);
+	const isActivated = Boolean(min !== 0 || max !== 320);
 
 	useEffect(() => {
-		fetch(`http://3.37.76.224:8080/houses/charges`)
+		fetch(`http://3.37.76.224:8080/houses/charges?checkIn=2021-05-18&checkOut=2021-05-25&latitude=37.566826&longitude=126.9786567`)
 			.then((res) => res.json())
-			.then((json) => setData(() => json))
+			.then((json) => setData(() => priceDataParser(json, 300)))
 			.catch((res) => console.log("fetch error : ", res));
 	}, []);
 
 	const currentDOM = useRef();
 
 	useEffect(() => {
-		document.addEventListener("click", (e) => {
-			if (currentDOM.current && !currentDOM.current.contains(e.target)) setOn(() => false);
-		});
+		const blur = ({ target }) => {
+			if (currentDOM.current && !currentDOM.current.contains(target)) setOn(false);
+		};
+		document.addEventListener("click", blur);
+		return () => document.removeEventListener("click", blur);
 	}, []);
+
+	const resetEvent = () => {
+		setMin(0);
+		setMax(321);
+	};
+
+	const range = `₩${addComma(minimumPrice + min * unit)} ~ ₩${addComma(minimumPrice + (max - 20) * unit)}`;
 
 	return (
 		<PriceWrapper ref={currentDOM} onClick={() => setOn(true)}>
 			<PriceContent>요금</PriceContent>
-			<PriceInput value={isActivated ? `${minimumPrice + min * unit}~${minimumPrice + (max - 20) * unit}` : ""} readOnly />
-			{isOn && (
-				<PriceModal
-					min={min}
-					setMin={setMin}
-					max={max}
-					setMax={setMax}
-					unit={unit}
-					minimumPrice={minimumPrice}
-					data={priceDataParser(data)}
-				/>
-			)}
-			{isActivated && <CloseButton />}
+			<PriceInput value={isActivated ? range : ""} readOnly />
+			{isOn && <PriceModal min={min} setMin={setMin} max={max} setMax={setMax} range={range} data={data} />}
+			{isActivated && <CloseButton onClick={resetEvent} />}
 		</PriceWrapper>
 	);
 };

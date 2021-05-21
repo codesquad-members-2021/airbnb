@@ -10,20 +10,22 @@ const Period = () => {
 	const [isOn, setOn] = useState(false);
 
 	const resetEvent = () => {
-		setStart(() => "");
-		setEnd(() => "");
+		setStart("");
+		setEnd("");
 	};
 
 	const currentDOM = useRef();
 
 	useEffect(() => {
-		document.addEventListener("click", (e) => {
-			if (currentDOM.current && !currentDOM.current.contains(e.target)) setOn(() => false);
-		});
+		const blur = ({ target }) => {
+			if (currentDOM.current && !currentDOM.current.contains(target)) setOn(false);
+		};
+		document.addEventListener("click", blur);
+		return () => document.removeEventListener("click", blur);
 	});
 
 	return (
-		<PeriodWrapper ref={currentDOM} onClick={() => setOn(() => true)}>
+		<PeriodWrapper ref={currentDOM} onClick={() => setOn(true)}>
 			<CheckIn value={start} />
 			<CheckOut value={end} />
 			{isOn && <CalendarModal period={{ start, setStart, end, setEnd }} />}

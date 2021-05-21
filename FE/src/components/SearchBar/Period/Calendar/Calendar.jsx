@@ -47,7 +47,7 @@ const Calendar = ({ modifier, period }) => {
 					{monthArray.map((el) => (
 						<tr key={el}>
 							{el.map((v) => (
-								<Day date={new Date(year, month, v)} disable={v > 0} period={period} key={v}>
+								<Day date={new Date(year, month, v)} period={period} key={v}>
 									{v > 0 && v}
 								</Day>
 							))}

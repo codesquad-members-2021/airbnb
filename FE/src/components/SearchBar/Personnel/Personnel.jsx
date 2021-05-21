@@ -15,23 +15,25 @@ const Personnel = () => {
 	const currentDOM = useRef();
 
 	useEffect(() => {
-		document.addEventListener("click", (e) => {
-			if (currentDOM.current && !currentDOM.current.contains(e.target)) setOn(() => false);
-		});
+		const blur = ({ target }) => {
+			if (currentDOM.current && !currentDOM.current.contains(target)) setOn(false);
+		};
+		document.addEventListener("click", blur);
+		return () => document.removeEventListener("click", blur);
 	}, []);
 
 	useEffect(() => {
-		if (man === 0 && (kid || baby)) setMan(() => 1);
+		if (man === 0 && (kid || baby)) setMan(1);
 	}, [man, kid, baby]);
 
 	const resetEvent = () => {
-		setMan(() => 0);
-		setKid(() => 0);
-		setBaby(() => 0);
+		setMan(0);
+		setKid(0);
+		setBaby(0);
 	};
 
 	return (
-		<PersonnelWrapper ref={currentDOM} onClick={() => setOn(() => true)}>
+		<PersonnelWrapper ref={currentDOM} onClick={() => setOn(true)}>
 			<PersonnelContent>인원</PersonnelContent>
 			<PersonnelInput value={isActivated ? `게스트 ${man + kid}명, 유아${baby}명` : ""} readOnly />
 			{isOn && <PersonnelModal people={{ man, setMan, kid, setKid, baby, setBaby }} />}
