@@ -3,6 +3,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import NSObject_Rx
+import RxGesture
 
 class MainViewController: UIViewController {
     
@@ -51,11 +52,12 @@ private extension MainViewController {
     }
     
     private func setupSearchBarTapped() {
-        let gesture = UITapGestureRecognizer()
-        travelSearchBar.addGestureRecognizer(gesture)
-        gesture.rx.event
-            .bind(onNext: { recognizer in
-                //NextViewController
+        travelSearchBar.rx.tapGesture()
+            .when(.ended)
+            .subscribe(onNext: { [weak self] _ in
+                let searchVC = SearchViewController()
+                //searchVC.modalPresentationStyle = .fullScreen
+                self?.navigationController?.pushViewController(searchVC, animated: true)
             }).disposed(by: rx.disposeBag)
     }
 }

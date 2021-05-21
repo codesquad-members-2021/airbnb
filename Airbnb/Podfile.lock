@@ -10,6 +10,9 @@ PODS:
     - Differentiator (~> 5.0)
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
+  - RxGesture (4.0.2):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - RxRelay (6.1.0):
     - RxSwift (= 6.1.0)
   - RxSwift (6.1.0)
@@ -19,6 +22,7 @@ DEPENDENCIES:
   - "NSObject+Rx"
   - RxCocoa
   - RxDataSources
+  - RxGesture
   - RxSwift
 
 SPEC REPOS:
@@ -28,6 +32,7 @@ SPEC REPOS:
     - "NSObject+Rx"
     - RxCocoa
     - RxDataSources
+    - RxGesture
     - RxRelay
     - RxSwift
 
@@ -37,9 +42,10 @@ SPEC CHECKSUMS:
   "NSObject+Rx": 49ffbf55ad0bbc29a44547db63a9e33caf0c5d60
   RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
+  RxGesture: f059f2aeef966fb17dad56ee440e76410f10e55f
   RxRelay: 483e1a19fad961b41f0b0c0bee506f46c1ae14fe
   RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce
 
-PODFILE CHECKSUM: 9ee7ec6bce1955864d64644eca80a72c653f6696
+PODFILE CHECKSUM: 113f5d4fa721a13e618a663db82d193b0b9471a9
 
 COCOAPODS: 1.10.1
