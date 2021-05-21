@@ -1,9 +1,3 @@
-//
-//  ViewController.swift
-//  swift-airbnb
-//
-//  Created by sonjuhyeong on 2021/05/17.
-//
 
 import UIKit
 
@@ -35,10 +29,7 @@ class MainViewController: UIViewController {
 
     @IBAction func pressedSearchButton(_ sender: UIButton) {
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.pushViewController(viewController, animated: true)
     }
-
-    
 }
 

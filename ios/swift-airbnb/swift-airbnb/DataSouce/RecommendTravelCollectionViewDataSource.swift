@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 class RecommendTravelCollectionViewDataSource: NSObject, UICollectionViewDataSource {
@@ -12,6 +11,7 @@ class RecommendTravelCollectionViewDataSource: NSObject, UICollectionViewDataSou
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendTravelCollectionViewCell.identifier, for: indexPath) as? RecommendTravelCollectionViewCell else {
             return RecommendTravelCollectionViewCell()
         }
+        cell.configureTravelCell(indexPath: indexPath.row)
         
         return cell
     }
