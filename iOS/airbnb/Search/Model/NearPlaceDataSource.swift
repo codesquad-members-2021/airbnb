@@ -26,4 +26,14 @@ class NearPlaceDataSource: NSObject, UICollectionViewDataSource {
         cell.timeRequired.text = "차로 \(item.distance) 시간 거리"
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader :
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderReusableView.reuseIdentifier, for: indexPath)
+            return headerView
+        default :
+            assert(false)
+        }
+    }
+    
 }

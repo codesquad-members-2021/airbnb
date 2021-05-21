@@ -21,17 +21,14 @@ class TravelListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationItem.rightBarButtonItem = removeButton
-        
         self.navigationItem.title = "숙소찾기"
         self.tabBarController?.tabBar.isHidden = true
-        
-        setSearchController()
         
         self.travelList.dataSource = nearPlaceDataSource
         self.travelList.delegate = self
         
+        setSearchController()
         registerNib()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +47,8 @@ extension TravelListViewController {
         definesPresentationContext = true
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
-        
+        searchController.automaticallyShowsCancelButton = false
+        searchController.obscuresBackgroundDuringPresentation = false
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = searchController
     }
@@ -78,16 +76,6 @@ extension TravelListViewController : UISearchResultsUpdating {
         guard let text = searchController.searchBar.text else {
             return
         }
-    }
-}
-extension TravelListViewController : UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let width: CGFloat = collectionView.frame.width
-        let height: CGFloat = 64
-        return CGSize(width: width, height: height)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
 
