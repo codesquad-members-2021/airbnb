@@ -1,9 +1,9 @@
 package com.codesquad.airbnb.domain;
 
-public class Badges {
+public class Badge {
     private String type;
 
-    public Badges(String type) {
+    public Badge(String type) {
         this.type = type;
     }
 }
