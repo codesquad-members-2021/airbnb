@@ -32,6 +32,10 @@ public class City {
         images.add(image);
     }
 
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
     public String findMainImageUrl(){
         Image mainImage = images.stream().filter(image ->ImageType.MAIN.equals(image.getImageType()))
                 .findFirst().orElseThrow(NullPointerException::new);
