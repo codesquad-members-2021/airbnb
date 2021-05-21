@@ -78,7 +78,7 @@ create table `thumbnails`
     foreign key (room_id) references room (id)
 );
 
-create table `badges`
+create table `badge`
 (
     room_id int not null,
     type    varchar(64) not null,
