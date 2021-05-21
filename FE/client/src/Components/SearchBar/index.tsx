@@ -6,6 +6,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import { useRecoilState } from 'recoil';
 import { searchBarFocusAtom } from '../../recoil/atoms';
+import { Link } from 'react-router-dom';
 
 const SearchBar = () => {
   const [searchBarState, setSearchBarState] = useRecoilState(searchBarFocusAtom);
@@ -27,14 +28,16 @@ const SearchBar = () => {
       <Charge {...{ charge, handleClickShowModal }} />
       <Personnel {...{ personnel, handleClickShowModal }} />
       <SearchButtonWrapper>
-        <Button variant="contained" color="secondary"
-          style={{
-            borderRadius: focus ? '2rem' : '50%', height: '4rem', marginRight: '1rem',
-            fontWeight: 700, fontSize: '18px'
-          }}>
-          <SearchIcon fontSize="large" />
-          {focus ? '검색' : ''}
-        </Button>
+        <Link to="/searchMap" style={{ textDecoration: 'none' }}>
+          <Button variant="contained" color="secondary"
+            style={{
+              borderRadius: focus ? '2rem' : '50%', height: '4rem', marginRight: '1rem',
+              fontWeight: 700, fontSize: '18px'
+            }}>
+            <SearchIcon fontSize="large" />
+            {focus ? '검색' : ''}
+          </Button>
+        </Link>
       </SearchButtonWrapper>
     </SearchBarWrapper>
   )

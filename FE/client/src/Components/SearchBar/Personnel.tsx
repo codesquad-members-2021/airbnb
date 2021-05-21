@@ -11,11 +11,15 @@ type PersonnelModalType = PersonnelType & {
 }
 
 const Personnel = ({ handleClickShowModal, personnel }: PersonnelModalType) => {
-  const [personnelState] = useRecoilState(PersonnelAtom);
+  const [personnelState, setPersonnelState] = useRecoilState(PersonnelAtom);
   const { adult, child, baby } = personnelState;
 
   const guest = `게스트 ${adult + child}명`;
   const young = baby ? `, 유아 ${baby}명` : '';
+
+  const handleClickResetPersonnel = () => {
+    setPersonnelState({ adult:0, child:0, baby:0 });
+  }
 
   return (
     <PersonnelWrapper onClick={handleClickShowModal('personnel')}>
@@ -26,7 +30,7 @@ const Personnel = ({ handleClickShowModal, personnel }: PersonnelModalType) => {
             ? '게스트추가' : guest + young}
         </DivisionContent>
       </span>
-      <IconButton style={{ visibility: personnel ? 'visible' : 'hidden' }}>
+      <IconButton style={{ visibility: personnel ? 'visible' : 'hidden' }} onClick={handleClickResetPersonnel}>
         <HighlightOffIcon />
       </IconButton>
     </PersonnelWrapper>

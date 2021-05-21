@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import airbnbMainImage from '../../Images/airbnbMain.jpg';
-import Header from '../GNB';
+import GNB from '../GNB';
 import SearchBar from '../SearchBar';
 import Modal from '../Modal';
 
 const MainPage = () => {
   return (
     <MainPageWrapper>
-      <Header />
+      <GNB isMain/>
       <SearchBar />
       <Modal />
     </MainPageWrapper>
