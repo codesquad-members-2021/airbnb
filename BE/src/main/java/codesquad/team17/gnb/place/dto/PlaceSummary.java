@@ -8,8 +8,8 @@ public class PlaceSummary {
     private final LocationDto location;
     private final String name;
     private final OptionDto options;
-    private final double star;
-    private final int reviewCount;
+    private final int maximumNumberOfPeople;
+    private final int likeCount;
     private final int price;
 
     public PlaceSummary(Place place) {
@@ -18,8 +18,8 @@ public class PlaceSummary {
         this.location = new LocationDto(place.getLocation());
         this.name = place.getName();
         this.options = new OptionDto(place.getOption());
-        this.star = place.getStar();
-        this.reviewCount = place.getReviewCount();
+        this.maximumNumberOfPeople = place.getMaximumNumberOfPeople();
+        this.likeCount = place.getLikeCount();
         this.price = place.getPrice();
     }
 
@@ -39,16 +39,16 @@ public class PlaceSummary {
         return name;
     }
 
-    public OptionDto getOptions() {
-        return options;
+    public String getOption() {
+        return "최대 " + maximumNumberOfPeople + "명 · " + options.getOption();
     }
 
-    public double getStar() {
-        return star;
+    public String getAdditionalOption() {
+        return options.getAdditional();
     }
 
-    public int getReviewCount() {
-        return reviewCount;
+    public int getLikeCount() {
+        return likeCount;
     }
 
     public int getPrice() {

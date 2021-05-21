@@ -10,8 +10,7 @@ public class Place {
     private int maximumNumberOfPeople;
     private Option option;
 
-    private double star;
-    private int reviewCount;
+    private int likeCount;
 
     private Long hostId;
     private String description;
@@ -24,8 +23,7 @@ public class Place {
         this.price = builder.price;
         this.maximumNumberOfPeople = builder.maximumNumberOfPeople;
         this.option = builder.option;
-        this.star = builder.star;
-        this.reviewCount = builder.reviewCount;
+        this.likeCount = builder.likeCount;
         this.hostId = builder.hostId;
         this.description = builder.description;
     }
@@ -58,12 +56,8 @@ public class Place {
         return option;
     }
 
-    public double getStar() {
-        return star;
-    }
-
-    public int getReviewCount() {
-        return reviewCount;
+    public int getLikeCount() {
+        return likeCount;
     }
 
     public Long getHostId() {
@@ -82,8 +76,7 @@ public class Place {
         private Location location;
         private Option option;
 
-        private double star;
-        private int reviewCount;
+        private int likeCount;
 
         private Long hostId;
         private int maximumNumberOfPeople;
@@ -118,13 +111,8 @@ public class Place {
             return this;
         }
 
-        public Builder star(double star) {
-            this.star = star;
-            return this;
-        }
-
-        public Builder reviewCount(int reviewCount) {
-            this.reviewCount = reviewCount;
+        public Builder likeCount(int likeCount) {
+            this.likeCount = likeCount;
             return this;
         }
 

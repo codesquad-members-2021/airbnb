@@ -28,8 +28,7 @@ public class JdbcPlaceRepository implements PlaceRepository {
                     .build())
             .option(new Option(rs.getString("option"),
                     rs.getString("additional_option")))
-            .star(rs.getDouble("star"))
-            .reviewCount(rs.getInt("review_count"))
+            .likeCount(rs.getInt("like_count"))
             .hostId(rs.getLong("host_id"))
             .maximumNumberOfPeople(rs.getInt("maximum_number_of_people"))
             .description(rs.getString("description"))

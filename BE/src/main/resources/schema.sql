@@ -22,21 +22,13 @@ CREATE TABLE place
     `option`                 VARCHAR(50)  NOT NULL,
     additional_option        VARCHAR(50)  NOT NULL,
 
-    star                     DOUBLE DEFAULT 0,
-    review_count             INT    DEFAULT 0,
+    like_count               INT DEFAULT 0,
 
     host_id                  BIGINT       NOT NULL,
     maximum_number_of_people INT          NOT NULL,
     description              VARCHAR(300) NOT NULL,
     price                    INT          NOT NULL,
     CONSTRAINT place_host FOREIGN KEY (host_id) REFERENCES user (user_id)
-);
-
-CREATE TABLE review
-(
-    review_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    place_id  BIGINT NOT NULL,
-    CONSTRAINT place_review FOREIGN KEY (place_id) REFERENCES place (place_id)
 );
 
 CREATE TABLE reservation
