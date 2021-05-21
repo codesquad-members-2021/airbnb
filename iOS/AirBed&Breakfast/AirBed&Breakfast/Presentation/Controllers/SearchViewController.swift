@@ -27,8 +27,6 @@ class SearchViewController: UIViewController {
         return searchController.isActive && !isSearchBarEmpty
     }
 
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarchy()
@@ -44,6 +42,7 @@ class SearchViewController: UIViewController {
         // forTest
         let targetVC = self.storyboard?.instantiateViewController(identifier: "DateSelectionViewController") as! DateSelectionViewController
         navigationController?.pushViewController(targetVC, animated: false)
+    
     }
 
     @IBAction func navigationBarBackButtonPressed(_ sender: UIBarButtonItem) {

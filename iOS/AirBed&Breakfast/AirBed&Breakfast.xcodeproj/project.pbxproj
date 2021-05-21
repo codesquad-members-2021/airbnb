@@ -23,6 +23,8 @@
 		885CEB6A26563A8200B3291F /* ReservationDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB6826563A8200B3291F /* ReservationDetailTableViewCell.swift */; };
 		885CEB6B26563A8200B3291F /* ReservationDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885CEB6926563A8200B3291F /* ReservationDetailTableViewCell.xib */; };
 		885CEB7026564EDB00B3291F /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 885CEB6F26564EDB00B3291F /* HorizonCalendar */; };
+		886061322657964A00681808 /* DayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886061312657964A00681808 /* DayLabel.swift */; };
+		88606136265796AA00681808 /* DayRangeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88606135265796AA00681808 /* DayRangeIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		885CEB64265639FF00B3291F /* ReservationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDetailViewController.swift; sourceTree = "<group>"; };
 		885CEB6826563A8200B3291F /* ReservationDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDetailTableViewCell.swift; sourceTree = "<group>"; };
 		885CEB6926563A8200B3291F /* ReservationDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReservationDetailTableViewCell.xib; sourceTree = "<group>"; };
+		886061312657964A00681808 /* DayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayLabel.swift; sourceTree = "<group>"; };
+		88606135265796AA00681808 /* DayRangeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRangeIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				885CEB3C26535E7D00B3291F /* View */,
+				8860612D2657958600681808 /* ViewModel */,
 				885CEB3D26535E8A00B3291F /* Controllers */,
 			);
 			path = Presentation;
@@ -154,6 +159,7 @@
 				8843A7C226523EA80068B4E3 /* Main.storyboard */,
 				885CEB5526539C7500B3291F /* SearchResultCollectionView */,
 				885CEB612656393700B3291F /* ReservationDetailView */,
+				886061302657962100681808 /* CalendarView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -195,6 +201,22 @@
 				885CEB6926563A8200B3291F /* ReservationDetailTableViewCell.xib */,
 			);
 			path = ReservationDetailView;
+			sourceTree = "<group>";
+		};
+		8860612D2657958600681808 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		886061302657962100681808 /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				886061312657964A00681808 /* DayLabel.swift */,
+				88606135265796AA00681808 /* DayRangeIndicatorView.swift */,
+			);
+			path = CalendarView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,8 +330,10 @@
 			files = (
 				8843A7C126523EA80068B4E3 /* WelcomeViewController.swift in Sources */,
 				8843A7BD26523EA80068B4E3 /* AppDelegate.swift in Sources */,
+				886061322657964A00681808 /* DayLabel.swift in Sources */,
 				885CEB4C26538DDC00B3291F /* SearchViewController.swift in Sources */,
 				885CEB65265639FF00B3291F /* ReservationDetailViewController.swift in Sources */,
+				88606136265796AA00681808 /* DayRangeIndicatorView.swift in Sources */,
 				885CEB5E2656355200B3291F /* DateSelectionViewController.swift in Sources */,
 				8843A7BF26523EA80068B4E3 /* SceneDelegate.swift in Sources */,
 				885CEB512653957A00B3291F /* SearchResultCollectionViewCell.swift in Sources */,

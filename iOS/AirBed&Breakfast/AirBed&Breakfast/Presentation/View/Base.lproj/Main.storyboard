@@ -147,7 +147,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="otb-Rh-5hJ">
-                                <rect key="frame" x="0.0" y="593" width="414" height="269"/>
+                                <rect key="frame" x="0.0" y="630" width="414" height="232"/>
                                 <connections>
                                     <segue destination="faP-Zb-HnF" kind="embed" identifier="containerViewSegue" id="h7G-cm-qD0"/>
                                 </connections>
@@ -157,7 +157,7 @@
                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                         <constraints>
                             <constraint firstItem="cp6-fQ-8zu" firstAttribute="bottom" secondItem="otb-Rh-5hJ" secondAttribute="bottom" id="BNA-qm-pfA"/>
-                            <constraint firstItem="otb-Rh-5hJ" firstAttribute="height" secondItem="S3s-F0-6ZQ" secondAttribute="height" multiplier="0.3" id="Mzc-Wh-dCP"/>
+                            <constraint firstItem="otb-Rh-5hJ" firstAttribute="height" secondItem="cp6-fQ-8zu" secondAttribute="height" multiplier="0.3" id="Mzc-Wh-dCP"/>
                             <constraint firstItem="otb-Rh-5hJ" firstAttribute="leading" secondItem="cp6-fQ-8zu" secondAttribute="leading" id="nrf-o7-dVk"/>
                             <constraint firstItem="cp6-fQ-8zu" firstAttribute="trailing" secondItem="otb-Rh-5hJ" secondAttribute="trailing" id="ooI-TU-WPS"/>
                         </constraints>
@@ -173,28 +173,29 @@
             <objects>
                 <viewController id="faP-Zb-HnF" customClass="ReservationDetailViewController" customModule="AirBed_Breakfast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1X6-Ae-Ek2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="269"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="232"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cxc-8q-vsW">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="215"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="185.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3E-Y5-Zmi">
-                                <rect key="frame" x="30" y="215" width="124" height="54"/>
+                                <rect key="frame" x="30" y="185.5" width="124" height="46.5"/>
                                 <state key="normal" title="지우기"/>
                                 <connections>
                                     <action selector="deleteCurrentDetailButtonPressed:" destination="faP-Zb-HnF" eventType="touchUpInside" id="83V-AE-eFv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FGb-Od-ZTh">
-                                <rect key="frame" x="260" y="215" width="124" height="54"/>
+                                <rect key="frame" x="260" y="185.5" width="124" height="46.5"/>
                                 <state key="normal" title="다음"/>
                                 <connections>
                                     <action selector="nextButtonPressed:" destination="faP-Zb-HnF" eventType="touchUpInside" id="AO1-dI-G3h"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="wIx-uj-t9O"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="FGb-Od-ZTh" firstAttribute="top" secondItem="cxc-8q-vsW" secondAttribute="bottom" id="1ac-Pc-dzb"/>
