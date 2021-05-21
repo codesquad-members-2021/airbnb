@@ -8,9 +8,9 @@ public class Accommodation {
     private Integer reviewCount;
     private Integer charge;
     private String badge;
-    //private Boolean isLike;
     private String image;
-    //String[] images;
+    private Boolean isLike;
+
     //지도정보 필요
 
     public Accommodation() {
@@ -20,22 +20,21 @@ public class Accommodation {
         this.reviewCount = reviewCount;
         this.charge = charge;
         this.badge = badge;
-        //this.isLike = isLike;
         this.image = image;
+        this.isLike = isLike;
     }
 
     public Accommodation(Long id, String title, Double reviewRating,
                          Integer reviewCount, Integer charge, String badge,
-                          String image) {
-        //Boolean isLike,
+                          String image, Boolean isLike) {
         this.id = id;
         this.title = title;
         this.reviewRating = reviewRating;
         this.reviewCount = reviewCount;
         this.charge = charge;
         this.badge = badge;
-        //this.isLike = isLike;
         this.image = image;
+        this.isLike = isLike;
     }
 
     public Long getId() {
@@ -93,7 +92,6 @@ public class Accommodation {
         return this;
     }
 
-    /*
     //Boolean isLike;
     public Boolean getIsLike() {
         return this.isLike;
@@ -102,7 +100,6 @@ public class Accommodation {
         this.isLike = isLike;
         return this;
     }
-    */
 
     //String image;
     public String getImage() {

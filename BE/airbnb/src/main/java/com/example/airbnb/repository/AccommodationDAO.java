@@ -51,6 +51,7 @@ public class AccommodationDAO {
             accommodation.setCharge(rs.getInt("charge"));
             accommodation.setBadge(rs.getString("badge"));
             accommodation.setImage(rs.getString("image"));
+            accommodation.setIsLike(rs.getBoolean("isLike"));
             return accommodation;
         });
     }
