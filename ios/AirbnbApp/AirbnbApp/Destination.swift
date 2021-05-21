@@ -9,5 +9,5 @@ import Foundation
 
 struct Destination: Decodable {
     let name: String
-    let drivingTime: String
+    var drivingTime: String? = nil
 }
