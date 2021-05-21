@@ -21,5 +21,11 @@ class ThemeDestinationsCell: UICollectionViewCell {
         super.awakeFromNib()
         themeDestinationImageView.backgroundColor = .brown
     }
+    
+    func configure(with model: ThemeDestination?) {
+        guard let model = model else { return }
+        themeDestinationImageView.load(url: model.imageURL)
+        themeDestinationLabel.text = model.themeName
+    }
 
 }

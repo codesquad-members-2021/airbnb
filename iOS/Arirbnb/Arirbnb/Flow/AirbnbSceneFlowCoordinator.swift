@@ -25,5 +25,6 @@ public class AirbnbSceneFlowCoordinator {
     func showDetailSearchView() {
         let detailSerchVC = DetailSearchViewController.create(DetailSearchViewModel())
         searachSceneNavigationController?.pushViewController(detailSerchVC, animated: true)
+        searachSceneNavigationController?.setNavigationBarHidden(false, animated: true)
     }
 }

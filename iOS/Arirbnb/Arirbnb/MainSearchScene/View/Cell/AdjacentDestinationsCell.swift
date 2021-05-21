@@ -22,5 +22,12 @@ class AdjacentDestinationsCell: UICollectionViewCell {
         super.awakeFromNib()
         destinationImageView.backgroundColor = .red
     }
+    
+    func configure(with model: AdjacentDestination?) {
+        guard let model = model else { return }
+        destinationImageView.load(url: model.imageURL)
+        destinationLabel.text = model.destinationName
+        distanceLabel.text = model.distance
+    }
 
 }

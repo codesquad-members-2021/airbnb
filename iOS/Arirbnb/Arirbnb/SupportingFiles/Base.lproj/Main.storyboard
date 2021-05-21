@@ -73,14 +73,16 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v5L-iD-DLK">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v5L-iD-DLK">
                                 <rect key="frame" x="42.5" y="60" width="329" height="39"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="v5L-iD-DLK" secondAttribute="height" multiplier="329:39" id="hLj-ZU-8k2"/>
                                     <constraint firstAttribute="width" constant="329" id="t47-vy-KLh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="어디로 여행가세요?">
+                                <color key="tintColor" systemColor="systemPinkColor"/>
+                                <state key="normal" title="어디로 여행가세요?" image="magnifyingglass" catalog="system">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -123,7 +125,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cNb-ro-RNK">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="60" width="414" height="802"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qKe-U0-kLK">
                                     <size key="itemSize" width="128" height="128"/>
@@ -144,7 +146,7 @@
                         <constraints>
                             <constraint firstItem="v1K-vX-Nyy" firstAttribute="trailing" secondItem="cNb-ro-RNK" secondAttribute="trailing" id="9AC-du-iCW"/>
                             <constraint firstItem="cNb-ro-RNK" firstAttribute="leading" secondItem="v1K-vX-Nyy" secondAttribute="leading" id="CUv-RM-8q6"/>
-                            <constraint firstItem="cNb-ro-RNK" firstAttribute="top" secondItem="v1K-vX-Nyy" secondAttribute="top" id="Gw5-J0-r0i"/>
+                            <constraint firstItem="cNb-ro-RNK" firstAttribute="top" secondItem="v1K-vX-Nyy" secondAttribute="top" constant="16" id="Gw5-J0-r0i"/>
                             <constraint firstItem="v1K-vX-Nyy" firstAttribute="bottom" secondItem="cNb-ro-RNK" secondAttribute="bottom" id="Xat-Hs-gDX"/>
                         </constraints>
                     </view>
@@ -166,6 +168,9 @@
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

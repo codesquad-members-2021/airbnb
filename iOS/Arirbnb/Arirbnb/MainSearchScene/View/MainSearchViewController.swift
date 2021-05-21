@@ -34,12 +34,13 @@ class MainSearchViewController: UIViewController {
     
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
-    private var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
+    private var dataSource: UICollectionViewDiffableDataSource<Section, DiffableUsableModel>! = nil
     private var viewModel: MainSearchViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.backButtonTitle = "뒤로"
+        navigationController?.setNavigationBarHidden(true, animated: false)
         configureCollectionView()
         configureDataSource()
         applySnapshot()
@@ -60,6 +61,7 @@ class MainSearchViewController: UIViewController {
 }
 
 //MARK: - Actions
+
 extension MainSearchViewController {
     @IBAction func didTappedSearchButton(_ sender: Any) {
         viewModel.showDetailSearchView()
@@ -67,28 +69,32 @@ extension MainSearchViewController {
 }
 
 //MARK: - Delegate
+
 extension MainSearchViewController: UICollectionViewDelegate {
     
 }
 
 
 //MARK: - Diffable DataSource
+
 extension MainSearchViewController {
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: mainCollectionView) { (collectionView: UICollectionView, indexPath: IndexPath, item: Int) -> UICollectionViewCell? in
-            var cell = UICollectionViewCell()
+        dataSource = UICollectionViewDiffableDataSource<Section, DiffableUsableModel>(collectionView: mainCollectionView) { (collectionView: UICollectionView, indexPath: IndexPath, item: DiffableUsableModel) -> UICollectionViewCell? in
             let sectionKind = Section.allCases[indexPath.section]
             
             switch sectionKind {
             case .heroImages:
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeroImageCell.reuseIdentifier, for: indexPath)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeroImageCell.reuseIdentifier, for: indexPath)
+                return cell
             case .adjacentDestinations:
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdjacentDestinationsCell.reuseIdentifier, for: indexPath)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdjacentDestinationsCell.reuseIdentifier, for: indexPath) as? AdjacentDestinationsCell
+                cell?.configure(with: item as? AdjacentDestination)
+                return cell
             case .themeDestinations:
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeDestinationsCell.reuseIdentifier, for: indexPath)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeDestinationsCell.reuseIdentifier, for: indexPath) as? ThemeDestinationsCell
+                cell?.configure(with: item as? ThemeDestination)
+                return cell
             }
-            
-            return cell
         }
         
         dataSource.supplementaryViewProvider = {(collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
@@ -97,9 +103,9 @@ extension MainSearchViewController {
             return view
         }
     }
-    
+
     private func applySnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, DiffableUsableModel>()
         snapshot.appendSections(Section.allCases)
         Section.allCases.forEach { section in
             snapshot.appendItems(viewModel.forApplyItems(sectionIndex: section.rawValue), toSection: section)
@@ -109,6 +115,7 @@ extension MainSearchViewController {
 }
 
 //MARK: - Compositional Layout
+
 extension MainSearchViewController {
     private func createLayout() -> UICollectionViewLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()

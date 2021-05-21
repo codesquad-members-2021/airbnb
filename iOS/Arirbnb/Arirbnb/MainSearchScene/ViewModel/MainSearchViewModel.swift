@@ -12,16 +12,16 @@ struct MainSearchViewModelAction {
 }
 
 class MainSearchViewModel {
-    private var sectionPerItems: [[Int]]
+    private var models: [[DiffableUsableModel]]
     private var actions: MainSearchViewModelAction
     
     init(actions: MainSearchViewModelAction) {
         self.actions = actions
-        self.sectionPerItems = [[0], [1, 2, 3, 4, 5], [6, 7, 8]]
+        self.models = [[],MockAdjacentDestination.mockDatas, MockThemeDestination.mockDatas]
     }
     
-    func forApplyItems(sectionIndex: Int) -> [Int]{
-        return sectionPerItems[sectionIndex]
+    func forApplyItems(sectionIndex: Int) -> [DiffableUsableModel]{
+        return models[sectionIndex]
     }
     
     func showDetailSearchView() {

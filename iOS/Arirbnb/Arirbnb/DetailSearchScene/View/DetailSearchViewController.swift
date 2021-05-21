@@ -32,26 +32,24 @@ class DetailSearchViewController: UIViewController, UISearchResultsUpdating {
 
     @IBOutlet weak var destinationsCollectionView: UICollectionView!
     
-    private var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
+    private var dataSource: UICollectionViewDiffableDataSource<Section, DiffableUsableModel>! = nil
     private var viewModel: DetailSearchViewModel!
     private var searchController: UISearchController!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         configureNavigation()
         configureCollectionView()
         configureDataSource()
-        applySnapshot()
+        applyDefaultSnapshot()
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { print("123")
-            return 
-        }
-        if text.isEmpty {
-            print("55")
-        }
+        guard let text = searchController.searchBar.text else { return }
+        viewModel.filteringDestinations(with: text)
+        applySnapshot()
     }
     
     private func configureNavigation() {
@@ -83,18 +81,19 @@ class DetailSearchViewController: UIViewController, UISearchResultsUpdating {
 
 extension DetailSearchViewController {
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: destinationsCollectionView) { (collectionView, indexPath, item) -> UICollectionViewCell? in
-            var cell = UICollectionViewCell()
+        dataSource = UICollectionViewDiffableDataSource<Section, DiffableUsableModel>(collectionView: destinationsCollectionView) { (collectionView, indexPath, item) -> UICollectionViewCell? in
             let sectionKind = Section.allCases[indexPath.section]
             
             switch sectionKind {
             case .adjacentDestinations:
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdjacentDestinationsCell.reuseIdentifier, for: indexPath)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdjacentDestinationsCell.reuseIdentifier, for: indexPath) as? AdjacentDestinationsCell
+                cell?.configure(with: item as? AdjacentDestination)
+                return cell
             case .searchResultDestinations:
-                break
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCell.reuseIdentifier, for: indexPath) as? SearchResultCell
+                cell?.configure(with: item as? SearchedDestination)
+                return cell
             }
-            
-            return cell
         }
         
         dataSource.supplementaryViewProvider = {(collectionView, kind, indexPath) -> UICollectionReusableView? in
@@ -105,9 +104,8 @@ extension DetailSearchViewController {
     }
     
     private func applySnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
-        snapshot.appendSections(Section.allCases)
-        snapshot.appendItems([0,1], toSection: Section.adjacentDestinations)
+        var snapshot = NSDiffableDataSourceSnapshot<Section, DiffableUsableModel>()
+        
         dataSource.apply(snapshot)
     }
 }
@@ -134,7 +132,7 @@ extension DetailSearchViewController {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.6), heightDimension: .fractionalHeight(0.15))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .fractionalHeight(0.125))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
         group.contentInsets = NSDirectionalEdgeInsets.init(top: 8, leading: 16, bottom: 8, trailing: 16)
 

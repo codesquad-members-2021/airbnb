@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,6 +30,14 @@
 		FF5767DC2653AC3000F46A43 /* FlowTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767DB2653AC3000F46A43 /* FlowTabBarController.swift */; };
 		FF5767E32653B48700F46A43 /* DetailSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767E22653B48700F46A43 /* DetailSearchViewController.swift */; };
 		FF5767E52653B4C800F46A43 /* DetailSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767E42653B4C800F46A43 /* DetailSearchViewModel.swift */; };
+		FF665D1D26574E4200130ABB /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D1B26574E4200130ABB /* SearchResultCell.swift */; };
+		FF665D1E26574E4200130ABB /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF665D1C26574E4200130ABB /* SearchResultCell.xib */; };
+		FF665D26265753D200130ABB /* SearchedDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D25265753D200130ABB /* SearchedDestination.swift */; };
+		FF665D28265755D600130ABB /* AdjacentDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D27265755D600130ABB /* AdjacentDestination.swift */; };
+		FF665D2E2657841000130ABB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FF665D2D2657841000130ABB /* Kingfisher */; };
+		FF665D302657845700130ABB /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D2F2657845700130ABB /* UIImageView+Extension.swift */; };
+		FF665D342657850700130ABB /* ThemeDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D332657850700130ABB /* ThemeDestination.swift */; };
+		FF665D38265787E000130ABB /* DiffableUsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D37265787E000130ABB /* DiffableUsable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +87,13 @@
 		FF5767DB2653AC3000F46A43 /* FlowTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTabBarController.swift; sourceTree = "<group>"; };
 		FF5767E22653B48700F46A43 /* DetailSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchViewController.swift; sourceTree = "<group>"; };
 		FF5767E42653B4C800F46A43 /* DetailSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchViewModel.swift; sourceTree = "<group>"; };
+		FF665D1B26574E4200130ABB /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		FF665D1C26574E4200130ABB /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		FF665D25265753D200130ABB /* SearchedDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedDestination.swift; sourceTree = "<group>"; };
+		FF665D27265755D600130ABB /* AdjacentDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjacentDestination.swift; sourceTree = "<group>"; };
+		FF665D2F2657845700130ABB /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		FF665D332657850700130ABB /* ThemeDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDestination.swift; sourceTree = "<group>"; };
+		FF665D37265787E000130ABB /* DiffableUsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableUsable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF665D2E2657841000130ABB /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				FF5767D02653A5F700F46A43 /* Flow */,
+				FF665D202657538000130ABB /* Model */,
 				FF5767A82652A1F500F46A43 /* MainSearchScene */,
 				FF5767DF2653B44500F46A43 /* DetailSearchScene */,
 				FF5767C82653A21D00F46A43 /* MyReservationScene */,
@@ -162,7 +179,6 @@
 		FF5767A82652A1F500F46A43 /* MainSearchScene */ = {
 			isa = PBXGroup;
 			children = (
-				FF5767B8265359F000F46A43 /* Model */,
 				FF5767AA2652A20100F46A43 /* View */,
 				FF5767A92652A1FB00F46A43 /* ViewModel */,
 			);
@@ -198,13 +214,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		FF5767B8265359F000F46A43 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		FF5767B926535A1600F46A43 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +221,7 @@
 				FF57676B2652490E00F46A43 /* Assets.xcassets */,
 				FF57676D2652490E00F46A43 /* LaunchScreen.storyboard */,
 				FF5767702652490E00F46A43 /* Info.plist */,
+				FF665D2F2657845700130ABB /* UIImageView+Extension.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -305,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				FF5767E22653B48700F46A43 /* DetailSearchViewController.swift */,
+				FF665D1F26574E4500130ABB /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -315,6 +326,26 @@
 				FF5767E42653B4C800F46A43 /* DetailSearchViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FF665D1F26574E4500130ABB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FF665D1C26574E4200130ABB /* SearchResultCell.xib */,
+				FF665D1B26574E4200130ABB /* SearchResultCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		FF665D202657538000130ABB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FF665D25265753D200130ABB /* SearchedDestination.swift */,
+				FF665D27265755D600130ABB /* AdjacentDestination.swift */,
+				FF665D332657850700130ABB /* ThemeDestination.swift */,
+				FF665D37265787E000130ABB /* DiffableUsable.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,6 +364,9 @@
 			dependencies = (
 			);
 			name = Arirbnb;
+			packageProductDependencies = (
+				FF665D2D2657841000130ABB /* Kingfisher */,
+			);
 			productName = Arirbnb;
 			productReference = FF57675F2652490C00F46A43 /* Arirbnb.app */;
 			productType = "com.apple.product-type.application";
@@ -404,6 +438,9 @@
 				Base,
 			);
 			mainGroup = FF5767562652490C00F46A43;
+			packageReferences = (
+				FF665D2C2657841000130ABB /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = FF5767602652490C00F46A43 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -424,6 +461,7 @@
 				FF57676F2652490E00F46A43 /* LaunchScreen.storyboard in Resources */,
 				FF57676C2652490E00F46A43 /* Assets.xcassets in Resources */,
 				FF5767B52653311E00F46A43 /* ThemeDestinationsCell.xib in Resources */,
+				FF665D1E26574E4200130ABB /* SearchResultCell.xib in Resources */,
 				FF57676A2652490C00F46A43 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,13 +490,19 @@
 				FF5767CC2653A28D00F46A43 /* MyReserVationViewController.swift in Sources */,
 				FF5767DC2653AC3000F46A43 /* FlowTabBarController.swift in Sources */,
 				FF5767E32653B48700F46A43 /* DetailSearchViewController.swift in Sources */,
+				FF665D26265753D200130ABB /* SearchedDestination.swift in Sources */,
+				FF665D342657850700130ABB /* ThemeDestination.swift in Sources */,
 				FF5767D22653A60800F46A43 /* AirbnbSceneFlowCoordinator.swift in Sources */,
 				FF5767D82653A9EB00F46A43 /* WishListViewModel.swift in Sources */,
 				FF5767CF2653A2AE00F46A43 /* WishListViewController.swift in Sources */,
+				FF665D1D26574E4200130ABB /* SearchResultCell.swift in Sources */,
+				FF665D302657845700130ABB /* UIImageView+Extension.swift in Sources */,
 				FF5767B42653311E00F46A43 /* ThemeDestinationsCell.swift in Sources */,
+				FF665D28265755D600130ABB /* AdjacentDestination.swift in Sources */,
 				FF5767A22652935F00F46A43 /* AdjacentDestinationsCell.swift in Sources */,
 				FF5767672652490C00F46A43 /* MainSearchViewController.swift in Sources */,
 				FF5767632652490C00F46A43 /* AppDelegate.swift in Sources */,
+				FF665D38265787E000130ABB /* DiffableUsable.swift in Sources */,
 				FF5767D52653A99400F46A43 /* MyReserVationViewModel.swift in Sources */,
 				FF5767E52653B4C800F46A43 /* DetailSearchViewModel.swift in Sources */,
 				FF5767652652490C00F46A43 /* SceneDelegate.swift in Sources */,
@@ -797,6 +841,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FF665D2C2657841000130ABB /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FF665D2D2657841000130ABB /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF665D2C2657841000130ABB /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FF5767572652490C00F46A43 /* Project object */;
 }

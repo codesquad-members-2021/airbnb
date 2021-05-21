@@ -7,8 +7,23 @@
 
 import Foundation
 
-struct SearchedDestination {
+class SearchedDestination: DiffableUsableModel {
     var destinationName: String
+    
+    init(destinationName: String) {
+        self.destinationName = destinationName
+        super.init()
+    }
+    
+    override func hash(into hasher: inout Hasher) {
+      hasher.combine(identifier)
+    }
+
+    static func == (lhs: SearchedDestination, rhs: SearchedDestination) -> Bool {
+      return lhs.identifier == rhs.identifier
+    }
+    
+    private let identifier = UUID()
 }
 
 struct MockSearchedDestinaion {
