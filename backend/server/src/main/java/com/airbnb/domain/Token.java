@@ -10,4 +10,16 @@ public class Token {
         this.tokenType = tokenType;
         this.scope = scope;
     }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public String getTokenType() {
+        return tokenType;
+    }
+
+    public String getScope() {
+        return scope;
+    }
 }

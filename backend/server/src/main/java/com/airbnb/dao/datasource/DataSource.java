@@ -1,4 +1,4 @@
-package com.airbnb.datasource;
+package com.airbnb.dao.datasource;
 
 import com.airbnb.exception.DataSourceException;
 import org.slf4j.Logger;

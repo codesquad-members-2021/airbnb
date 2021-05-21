@@ -35,8 +35,8 @@ public class UserDto {
         this.name = name;
     }
 
-    public User toUser(AccessTokenResponse accessTokenResponse) {
-        return new User(login, name, accessTokenResponse.toToken());
+    public User toUser() {
+        return new User(login, name);
     }
 
     public static UserDto from (User user) {

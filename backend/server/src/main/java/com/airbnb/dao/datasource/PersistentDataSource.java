@@ -1,17 +1,17 @@
-package com.airbnb.datasource;
+package com.airbnb.dao.datasource;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SessionDataSource extends DataSource {
-    @Value("${session.datasource.url}")
+public class PersistentDataSource extends DataSource {
+    @Value("${persistent.datasource.url}")
     private String url;
 
-    @Value("${session.datasource.username}")
+    @Value("${persistent.datasource.username}")
     private String username;
 
-    @Value("${session.datasource.password}")
+    @Value("${persistent.datasource.password}")
     private String password;
 
     @Override

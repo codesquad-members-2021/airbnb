@@ -2,6 +2,7 @@ package com.airbnb.controller;
 
 import com.airbnb.annotation.LoginRequired;
 import com.airbnb.dto.*;
+import com.airbnb.service.AuthService;
 import com.airbnb.service.GitHubService;
 import com.airbnb.service.UserService;
 import com.airbnb.util.JwtUtil;
@@ -17,17 +18,19 @@ import static org.springframework.http.HttpStatus.CREATED;
 public class AuthController {
     private final GitHubService gitHubService;
     private final UserService userService;
+    private final AuthService authService;
 
-    public AuthController(GitHubService gitHubService, UserService userService) {
+    public AuthController(GitHubService gitHubService, UserService userService, AuthService authService) {
         this.gitHubService = gitHubService;
         this.userService = userService;
+        this.authService = authService;
     }
 
     @GetMapping("/hello")
     @LoginRequired
     public MessageResponse getHello(HttpServletRequest request) {
         UserDto userDto = (UserDto) request.getAttribute("user");
-        userService.authenticate(userDto);
+        authService.authenticate(userDto);
         return new MessageResponse("안녕하세요! 로그인 한 유저는 언제나 환영합니다!");
     }
 
@@ -38,11 +41,11 @@ public class AuthController {
         AccessTokenResponse accessTokenResponse = gitHubService.getAccessToken(code);
         String accessToken = accessTokenResponse.getAccessToken();
 
-        UserDto user = gitHubService.getUser(accessToken);
-        String jwt = JwtUtil.createJwt(user);
+        UserDto userDto = gitHubService.getUser(accessToken);
+        userService.save(userDto);
+        authService.save(userDto, accessTokenResponse);
 
-        userService.saveLoggedInUser(user, accessTokenResponse);
-
-        return ResponseEntity.status(CREATED).body(new AuthResponse(jwt));
+        return ResponseEntity.status(CREATED)
+                .body(new AuthResponse(JwtUtil.createJwt(userDto)));
     }
 }

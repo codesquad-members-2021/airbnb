@@ -1,21 +1,12 @@
 package com.airbnb.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Embedded;
-
 public class User {
-    @Id
-    private Long id;
     private final String login;
     private final String name;
 
-    @Embedded(onEmpty = Embedded.OnEmpty.USE_EMPTY)
-    private final Token token;
-
-    public User(String login, String name, Token token) {
+    public User(String login, String name) {
         this.login = login;
         this.name = name;
-        this.token = token;
     }
 
     public String getLogin() {
