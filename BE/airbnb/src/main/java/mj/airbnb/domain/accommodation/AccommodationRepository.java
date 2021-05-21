@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public class AccommodationRepository {
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public AccommodationRepository(DataSource dataSource){
         jdbcTemplate = new JdbcTemplate(dataSource);
