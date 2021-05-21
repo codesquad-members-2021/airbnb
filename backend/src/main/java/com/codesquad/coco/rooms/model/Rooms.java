@@ -3,7 +3,6 @@ package com.codesquad.coco.rooms.model;
 import com.codesquad.coco.Host.Host;
 import org.springframework.data.annotation.Id;
 
-import java.math.BigDecimal;
 
 public class Rooms {
 
@@ -16,7 +15,7 @@ public class Rooms {
     private Review review;
     private RoomsOption roomsOption;
     private String name;
-    private BigDecimal pricePerDate;
+    private Money pricePerDate;
     private String description;
 
 
@@ -48,8 +47,8 @@ public class Rooms {
         return name;
     }
 
-    public BigDecimal getPricePerDate() {
-        return pricePerDate;
+    public int getPricePerDate() {
+        return pricePerDate.getMoney();
     }
 
     public String getDescription() {
