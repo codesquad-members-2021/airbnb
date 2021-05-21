@@ -1,5 +1,6 @@
 package com.codesquad.coco.rooms;
 
+import com.codesquad.coco.rooms.model.Rooms;
 import com.codesquad.coco.rooms.model.dto.PricesDTO;
 import com.codesquad.coco.rooms.model.dto.SearchPriceDTO;
 import com.codesquad.coco.rooms.model.dto.SearchRoomsDTO;
@@ -7,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class RoomsController {
@@ -26,7 +29,11 @@ public class RoomsController {
 
     @GetMapping("/search")
     public void searchRooms(SearchRoomsDTO roomsDTO) {
-        logger.debug(roomsDTO.toString());
+        
+        List<Rooms> roomsList = roomsService.findRoomsBySearchRooms(roomsDTO);
+        for (Rooms rooms : roomsList) {
+            logger.debug(rooms.toString());
+        }
         //todo : 들어온 정보로 예약 가능한 곳 검색
         // maxGuestt와 price의 min max , check 날짜
     }
