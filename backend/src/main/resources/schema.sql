@@ -19,15 +19,16 @@ create table host(
 
 
 create table city(
-    id bigint auto_increment primary key ,
-    name varchar (45),
-    image_url varchar (200)
+                     name      varchar(45) primary key,
+                     image_url varchar(200)
 );
 
-create table location(
-    id bigint auto_increment primary key ,
-    city_id bigint references city(id),
-    latitude double(20,10),
+create table location
+(
+    id        bigint auto_increment primary key,
+    city_name varchar(45) references city (name),
+    latitude  double(20, 10
+) ,
     longitude double(20,10)
 );
 
