@@ -16,10 +16,15 @@ class LocationCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-//        self.translatesAutoresizingMaskIntoConstraints = true
+        
         locationCellImageView.image = UIImage(named: "CodeSquadHotel")
         locationNameLabel.text = "서울시"
     }
+    
+//    func fillLocations() {
+//        let dbManager = DataBaseManager()
+//        let locations = dbManager.getLocations()
+//        
+//    }
 
 }

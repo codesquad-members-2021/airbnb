@@ -8,13 +8,20 @@
 import UIKit
 
 class SearchHotelsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    let dbManager = DataBaseManager()
+    var allLocations = Locations(locations: [])
+//    let allLocations =
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+//        5
+        allLocations.locations.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocationCell.reuseIdentifier, for: indexPath) as! LocationCell
+        cell.locationNameLabel.text = allLocations.locations[indexPath.row].name
+        cell.locationCellImageView.image = UIImage(named: allLocations.locations[indexPath.row].imageName)
+
         return cell
     }
     
@@ -29,8 +36,11 @@ class SearchHotelsViewController: UIViewController, UICollectionViewDataSource, 
         
         let locationNib = UINib(nibName: LocationCell.reuseIdentifier, bundle: nil)
         hotelsCollectionView.register(locationNib, forCellWithReuseIdentifier: LocationCell.reuseIdentifier)
-                
+                        
         hotelsCollectionView.collectionViewLayout = setCollectionViewLayout()
+        
+        allLocations = dbManager.getLocations()
+        print("all = ",allLocations)
     }
     
     func setCollectionViewLayout() -> UICollectionViewLayout {
