@@ -1,8 +1,7 @@
 package airbnb.dao;
 
 import airbnb.domain.Category;
-import airbnb.domain.City;
-import airbnb.mapper.CityMapper;
+import airbnb.mapper.CategoryMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +12,7 @@ public class CategoryDao {
 
     private final JdbcTemplate jdbcTemplate;
     private final ImageDao imageDao;
-    private final CategoryMapper categoryMapper = new CityMapper();
+    private final CategoryMapper categoryMapper = new CategoryMapper();
 
 
     public CategoryDao(JdbcTemplate jdbcTemplate, ImageDao imageDao) {
