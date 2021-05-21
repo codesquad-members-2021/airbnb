@@ -11,14 +11,19 @@ import java.util.List;
 public class CityDao {
 
     private final JdbcTemplate jdbcTemplate;
+    private final ImageDao imageDao;
     private final CityMapper cityMapper = new CityMapper();
 
-    public CityDao(JdbcTemplate jdbcTemplate) {
+
+    public CityDao(JdbcTemplate jdbcTemplate, ImageDao imageDao) {
         this.jdbcTemplate = jdbcTemplate;
+        this.imageDao = imageDao;
     }
 
     public List<City> findAll() {
         String sql = "SELECT id, name FROM city";
-        return jdbcTemplate.query(sql, cityMapper);
+        List<City> cities = jdbcTemplate.query(sql, cityMapper);
+        cities.forEach(city -> city.setImages(imageDao.findByCityId(city.getId())));
+        return cities;
     }
 }
