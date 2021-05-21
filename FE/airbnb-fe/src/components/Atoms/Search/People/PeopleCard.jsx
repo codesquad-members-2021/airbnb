@@ -13,6 +13,7 @@ const PeopleCard = ({ type: peopleType, title, contents }) => {
       </PeopleLabel>
       <PeopleCountSpace>
         <CountButton
+          disabled={peopleCount[peopleType] === 0 ? true : false}
           onClick={() =>
             peopleDispatch({ type: 'DECREASE', payload: `${peopleType}` })
           }
@@ -70,7 +71,9 @@ const CountButton = styled.button`
   height: 30px;
   color: ${({ theme }) => theme.colors.gray3};
   font-size: ${({ theme }) => theme.fontSizes.M};
-  border: 1px solid ${({ theme }) => theme.colors.gray3};
+  border: 1px solid
+    ${({ theme, disabled }) =>
+      disabled ? theme.colors.gray5 : theme.colors.gray3};
   cursor: pointer;
 `;
 
