@@ -3,6 +3,6 @@ export interface ICustomProps {
 }
 
 export interface IBackgroundProps {
-  strColor: string | '';
+  color: string | '';
   children: React.ReactChild | React.ReactChild[] | React.ReactChildren | React.ReactChildren[];
 }

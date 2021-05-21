@@ -3,17 +3,27 @@
 import { useState, useEffect } from 'react';
 
 interface FetchOptions {
-  callback: null,
-  isExecuteFunc: boolean,
-  options: object,
-  addProps: Array<any>,
-  returnType: string,
+  callback: null;
+  isExecuteFunc: boolean;
+  options: object;
+  addProps: Array<any>;
+  returnType: string;
 }
 
-const useFetch = (
-  url: string, fetchOptions: FetchOptions,
-) => {
-  const { callback, isExecuteFunc, options, addProps, returnType} = fetchOptions;
+export const createFetchOptions = (method: string, bodyData: object = {}) => {
+  if (Object.keys(bodyData).length <= 0) return;
+  const arrMethod: string[] = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'];
+  const isMethod: boolean = arrMethod.findIndex((v) => method === v) > -1;
+  return {
+    method: isMethod ? method : 'GET',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(bodyData),
+  };
+};
+
+const useFetch = (url: string, fetchOptions: FetchOptions) => {
+  const { callback, isExecuteFunc, options, addProps, returnType } =
+    fetchOptions;
 
   const [response, setResponse] = useState();
   const [loading, setLoading] = useState(true);
