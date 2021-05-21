@@ -1,6 +1,6 @@
 package airbnb.controller;
 
-import airbnb.dao.CityDao;
+import airbnb.Service.CityService;
 import airbnb.wrapper.CitiesWrapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
-    private CityDao cityDao;
+    private final CityService cityService;
 
-    public HomeController(CityDao cityDao) {
-        this.cityDao = cityDao;
+    public HomeController(CityService cityService) {
+        this.cityService = cityService;
     }
 
     @GetMapping
     public CitiesWrapper readCities() {
-        return new CitiesWrapper(cityDao.findAll());
+        return new CitiesWrapper(cityService.createAllToRequestList());
     }
 }

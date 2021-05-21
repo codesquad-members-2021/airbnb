@@ -1,18 +1,18 @@
 package airbnb.wrapper;
 
-import airbnb.domain.City;
+import airbnb.dto.CityResponse;
 
 import java.util.List;
 
 public class CitiesWrapper {
 
-    private List<City> cities;
+    private List<CityResponse> cities;
 
-    public CitiesWrapper(List<City> cities) {
+    public CitiesWrapper(List<CityResponse> cities) {
         this.cities = cities;
     }
 
-    public List<City> getCities() {
+    public List<CityResponse> getCities() {
         return cities;
     }
 }

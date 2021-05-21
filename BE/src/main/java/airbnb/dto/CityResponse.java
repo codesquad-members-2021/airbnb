@@ -1,13 +1,15 @@
 package airbnb.dto;
 
-public class CityRequest {
+import airbnb.domain.City;
+
+public class CityResponse {
 
     private final Long id;
     private final String name;
     private final String image;
     private final int distance;
 
-    public CityRequest(Builder builder) {
+    public CityResponse(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.image = builder.image;
@@ -20,7 +22,7 @@ public class CityRequest {
 
         private String name;
         private String image;
-        private int distance;
+        private int distance = 10;
 
         public Builder(Long id) {
             this.id = id;
@@ -41,8 +43,8 @@ public class CityRequest {
             return this;
         }
 
-        public CityRequest build() {
-            return new CityRequest(this);
+        public CityResponse build() {
+            return new CityResponse(this);
         }
     }
 
@@ -62,5 +64,9 @@ public class CityRequest {
         return distance;
     }
 
-
+    public static CityResponse of(City city, String imageUrl) {
+        return new CityResponse.Builder(city.getId())
+                .name(city.getName())
+                .image(imageUrl).build();
+    }
 }
