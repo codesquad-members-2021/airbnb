@@ -19,18 +19,14 @@ public class CityResponse {
     public static class Builder {
 
         private final Long id;
+        private final String name;
 
-        private String name;
         private String image;
         private int distance = 10;
 
-        public Builder(Long id) {
+        public Builder(Long id, String name) {
             this.id = id;
-        }
-
-        public Builder name(String name) {
             this.name = name;
-            return this;
         }
 
         public Builder image(String image) {
@@ -65,8 +61,7 @@ public class CityResponse {
     }
 
     public static CityResponse of(City city, String imageUrl) {
-        return new CityResponse.Builder(city.getId())
-                .name(city.getName())
+        return new CityResponse.Builder(city.getId(), city.getName())
                 .image(imageUrl).build();
     }
 }
