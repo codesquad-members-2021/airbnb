@@ -1,10 +1,10 @@
 package team01.airbnb.domain;
 
 import lombok.*;
-import team01.airbnb.dto.KakaoProfile;
 import team01.airbnb.dto.RoleType;
+import team01.airbnb.dto.SocialProfile;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Builder
 @Setter
@@ -17,12 +17,12 @@ public class User {
     private String username;
     private String email;
     private RoleType role; // ADMIN, USER
-    private Date createDate;
+    private LocalDate createDate;
 
-    public static User fromKakaoProfile(KakaoProfile kakaoProfile) {
+    public static User fromSocialProfile(SocialProfile socialProfile) {
         return User.builder()
-                .username(kakaoProfile.getProperties().getNickname())
-                .email(kakaoProfile.getKakao_account().getEmail())
+                .username(socialProfile.getUsername())
+                .email(socialProfile.getEmail())
                 .role(RoleType.USER)
                 .build();
     }

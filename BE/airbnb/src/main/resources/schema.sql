@@ -5,6 +5,6 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`user` (
     `username` VARCHAR(45) NOT NULL,
     `email` VARCHAR(45) NOT NULL,
     `role` VARCHAR(5) NOT NULL,
-    `join_date` DATETIME NOT NULL DEFAULT now(),
+    `created_date` DATETIME NOT NULL DEFAULT now(),
     PRIMARY KEY(`id`)
 ) ENGINE = InnoDB;

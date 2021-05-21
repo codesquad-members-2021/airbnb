@@ -2,6 +2,7 @@ package team01.airbnb.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -11,23 +12,26 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
-import team01.airbnb.dto.KakaoLogout;
-import team01.airbnb.dto.KakaoProfile;
-import team01.airbnb.dto.OAuthToken;
-import team01.airbnb.dto.RoleType;
+import team01.airbnb.dto.*;
 import team01.airbnb.domain.User;
+import team01.airbnb.exception.NoResultSetException;
+import team01.airbnb.exception.NotProcessJsonException;
 import team01.airbnb.utils.KakaoLoginUtils;
 
+@Slf4j
 @Service
 public class UserService {
 
     private final JdbcTemplate jdbcTemplate;
     private final KakaoLoginUtils kakaoLoginUtils;
+    private final ObjectMapper objectMapper;
 
     public UserService(JdbcTemplate jdbcTemplate
-            , KakaoLoginUtils kakaoLoginUtils) {
+            , KakaoLoginUtils kakaoLoginUtils
+            , ObjectMapper objectMapper) {
         this.jdbcTemplate = jdbcTemplate;
         this.kakaoLoginUtils = kakaoLoginUtils;
+        this.objectMapper = objectMapper;
     }
 
     @Transactional
@@ -37,68 +41,57 @@ public class UserService {
         try {
             return jdbcTemplate.queryForObject(
                     query, new Object[]{username}, (rs, rowNum) -> {
-                User user = new User();
-                user.setId(rs.getLong("id"));
-                user.setUsername(rs.getString("username"));
-                user.setEmail(rs.getString("email"));
-                user.setRole(RoleType.valueOf(rs.getString("role")));
-                user.setCreateDate(rs.getDate("join_date"));
-                return user;
-            });
+                        User user = new User();
+                        user.setId(rs.getLong("id"));
+                        user.setUsername(rs.getString("username"));
+                        user.setEmail(rs.getString("email"));
+                        user.setRole(RoleType.valueOf(rs.getString("role")));
+                        user.setCreateDate(rs.getDate("created_date").toLocalDate());
+                        return user;
+                    });
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            throw new NoResultSetException();
         }
     }
 
     @Transactional
-    public int join(User user) {
-        return jdbcTemplate.update("INSERT INTO user (`username`, `email`, `role`) VALUES(?, ?, ?)"
+    public boolean join(User user) {
+        int result = jdbcTemplate.update("INSERT INTO user (`username`, `email`, `role`) VALUES(?, ?, ?)"
                 , user.getUsername(), user.getEmail(), user.getRole().name());
+        return result == 1;
     }
 
     public String getAccessToken(String code) {
-        // POST방식으로 key=value 데이터를 요청 (카카오 쪽으로)
-        // Http 요청하기 - Post 방식으로 - 그리고 response 변수의 응답 받음
-        ResponseEntity<String> response = getJsonResponseByPost(
+        OAuthToken oauthToken = getObjectbyPost(
                 kakaoLoginUtils.getTokenUri()
-                , kakaoLoginUtils.getTokenRequestEntity(code));
-        // Json 데이터를 자바 오브젝트로 처리
-        OAuthToken oauthToken = convertJsonToObject(response, OAuthToken.class);
+                , kakaoLoginUtils.getTokenRequestEntity(code)
+                , OAuthToken.class);
+        log.info("oauthToken : {}", oauthToken.toString());
         return oauthToken.getAccess_token();
     }
 
-    public KakaoProfile getKakaoProfile(String accessToken) {
-        ResponseEntity<String> response = getJsonResponseByPost(
+    public SocialProfile getKakaoProfile(String accessToken) {
+        KakaoProfile kakaoProfile = getObjectbyPost(
                 kakaoLoginUtils.getProfileUri()
-                , kakaoLoginUtils.getKakaoProfileRequestEntity(accessToken));
-        System.out.println(response.getBody());
-        return convertJsonToObject(response, KakaoProfile.class);
+                , kakaoLoginUtils.getKakaoProfileRequestEntity(accessToken)
+                , KakaoProfile.class);
+        log.info("kakaoProfile : {}", kakaoProfile);
+        return kakaoProfile;
     }
 
     public Long kakaoLogout(String accessToken) {
-        ResponseEntity<String> response = getJsonResponseByPost(
+        KakaoLogout kakaoLogout = getObjectbyPost(
                 kakaoLoginUtils.getLogoutUri()
-                , kakaoLoginUtils.getLogoutRequestEntity(accessToken));
-        KakaoLogout kakaoLogout = convertJsonToObject(response, KakaoLogout.class);
+                , kakaoLoginUtils.getLogoutRequestEntity(accessToken)
+                , KakaoLogout.class);
+        log.info("kakaoLogout : {}", kakaoLogout.toString());
         return kakaoLogout.getId();
     }
 
-    private <T> T convertJsonToObject(ResponseEntity<String> response, Class<T> valueType) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.readValue(response.getBody(), valueType);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private ResponseEntity<String> getJsonResponseByPost(String uri, @Nullable HttpEntity<?> requestEntity) {
-        return new RestTemplate().exchange(
-                uri,
-                HttpMethod.POST,
-                requestEntity,
-                String.class
-        );
+    private <T> T getObjectbyPost(String uri, @Nullable Object request, Class<T> responseType) {
+        return new RestTemplate().postForObject(
+                uri
+                , request
+                , responseType);
     }
 }
