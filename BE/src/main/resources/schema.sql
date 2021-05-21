@@ -1,14 +1,21 @@
-create database airbnb;
+create database if not exists airbnb;
 use airbnb;
 
-create table location
+create table if not exists location
 (
     id    BIGINT primary key auto_increment,
     name  varchar(45),
     image_url varchar(255)
 );
 
-create table property
+create table if not exists category
+(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(45),
+    image_url VARCHAR(1000)
+);
+
+create table if not exists property
 (
     id          bigint primary key auto_increment,
     name        varchar(255),
@@ -17,8 +24,7 @@ create table property
     foreign key (location_id) references location (id)
 );
 
-drop table property_detail;
-create table property_detail
+create table if not exists property_detail
 (
     property_id   bigint,
     description   varchar(255),
@@ -34,8 +40,7 @@ create table property_detail
     foreign key (property_id) references property (id)
 );
 
-drop table image;
-create table image
+create table if not exists image
 (
     id        BIGINT Primary Key auto_increment,
     image_url varchar(1000),
@@ -44,14 +49,14 @@ create table image
     foreign key (property_id) references property(id)
 );
 
-create table user
+create table if not exists user
 (
     id    BIGINT primary key auto_increment,
     name  varchar(45),
     email varchar(255)
 );
 
-create table reservation
+create table if not exists reservation
 (
     check_in_date  datetime,
     check_out_date datetime,
@@ -63,7 +68,7 @@ create table reservation
     foreign key (property_id) references property (id)
 );
 
-create table wish_list
+create table if not exists wish_list
 (
     bookmark    boolean,
     user_id     bigint,
@@ -72,12 +77,11 @@ create table wish_list
     foreign key (property_id) references property (id)
 );
 
-drop table property_category;
-create table property_category
+create table if not exists property_category
 (
     id bigint primary key auto_increment,
     name varchar(45),
     image_url varchar(1000)
 );
 
-drop table wish_list, reservation, user, property_detail, image, property, location;
+# drop table wish_list, reservation, user, property_detail, image, property, location;
