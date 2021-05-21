@@ -67,7 +67,7 @@ const Search = () => {
 
   const { checkInOut, price, people } = clicked;
   return (
-    <SearchDiv>
+    <SearchDiv className="searchBar">
       <SearchWrap>
         <Check dispatch={dispatch}></Check>
         <Price dispatch={dispatch}></Price>

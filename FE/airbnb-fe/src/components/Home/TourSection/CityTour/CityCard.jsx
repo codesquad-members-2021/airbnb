@@ -15,26 +15,36 @@ const CityCard = ({ children, ...props }) => {
 
 const CityCardDiv = styled.div`
   display: flex;
-  flex-direction: row;
-  height: 80px;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+  /* flex-direction: row; */
+  /* height: 80px; */
 `;
 const CityImg = styled.img`
   width: 80px;
   height: 80px;
-  margin-right: 16px;
+  /* margin-right: 16px; */
   border-radius: 10px;
+  @media only screen and (max-width: 768px) {
+    width: 80px;
+    height: 80px;
+  }
 `;
 const CityContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: space-between;
   margin: 10px 0;
-  padding: 0px;
+  justify-content: center;
 `;
 const CityTag = styled.div`
   color: ${({ theme }) => theme.colors.gray1};
   font-size: ${({ theme }) => theme.fontSizes.S};
   font-weight: 400;
+  @media only screen and (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export default CityCard;
