@@ -5,7 +5,6 @@ import airbnb.mapper.CityMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
@@ -14,12 +13,12 @@ public class CityDao {
     private final JdbcTemplate jdbcTemplate;
     private final CityMapper cityMapper = new CityMapper();
 
-    public CityDao(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    public CityDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public List<City> findAll() {
-        String sql = "SELECT id, 'name' FROM city";
+        String sql = "SELECT id, name FROM city";
         return jdbcTemplate.query(sql, cityMapper);
     }
 }
