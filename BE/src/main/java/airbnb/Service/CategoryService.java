@@ -30,7 +30,6 @@ public class CategoryService {
             CategoryResponse categoryResponse = CategoryResponse.of(category, category.findMainImageUrl());
             responsesList.add(categoryResponse);
         }
-
         return responsesList;
     }
 }

@@ -29,12 +29,10 @@ public class CategoryResponse {
             this.name = name;
         }
 
-
         public Builder image(String image) {
             this.image = image;
             return this;
         }
-
 
         public CategoryResponse build() {
             return new CategoryResponse(this);
@@ -57,5 +55,4 @@ public class CategoryResponse {
         return new CategoryResponse.Builder(category.getId(), category.getName())
                 .image(imageUrl).build();
     }
-
 }
