@@ -12,9 +12,5 @@ class LocationCell: UITableViewCell {
     @IBOutlet weak var location: UILabel!
     
     static let reuseId = "LocationCell"
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+
 }
