@@ -190,3 +190,4 @@ gradle-app.setting
 /.idea/jarRepositories.xml
 /.idea/libraries-with-intellij-classes.xml
 /BE/build.sh
+/BE/src/main/resources/oauth.properties
