@@ -2,7 +2,7 @@ package com.codesquad.coco.rooms.model;
 
 public class Money {
 
-    private int money;
+    private final int money;
 
     public Money(int money) {
         this.money = money;

@@ -2,9 +2,9 @@ package com.codesquad.coco.rooms.model;
 
 public class Guest {
 
-    private int adult;
-    private int child;
-    private int baby;
+    private final int adult;
+    private final int child;
+    private final int baby;
 
     public Guest(int adult, int child, int baby) {
         this.adult = adult;
