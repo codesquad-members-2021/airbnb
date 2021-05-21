@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import Title from '@components/common/Title';
+import SearchButton from './SearchButton';
 
 const SearchBar = () => {
   return (
@@ -21,7 +22,7 @@ const SearchBar = () => {
         <Title>인원</Title>
         <input type="text" placeholder="날짜" />
       </div>
-      <div>여기엔 검색이 들어간다</div>
+      <SearchButton />
     </SearchBarWrap>
   );
 };
@@ -35,6 +36,7 @@ const SearchBarWrap = styled.div`
   border-radius: 60px;
   border: 1px solid ${({ theme }) => theme.color.gray4};
   background-color: ${({ theme }) => theme.color.white};
+  position: relative;
 
   input {
     padding: 0;

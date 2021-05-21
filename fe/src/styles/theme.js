@@ -9,7 +9,7 @@ const color = {
   gray3: '#828282',
   gray2: '#4F4F4F',
   gray1: '#333333',
-  coral: '#010101',
+  coral: '#E84C60',
   green: '#118917',
 };
 
