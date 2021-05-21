@@ -14,7 +14,6 @@ public class CategoryDao {
     private final ImageDao imageDao;
     private final CategoryMapper categoryMapper = new CategoryMapper();
 
-
     public CategoryDao(JdbcTemplate jdbcTemplate, ImageDao imageDao) {
         this.jdbcTemplate = jdbcTemplate;
         this.imageDao = imageDao;

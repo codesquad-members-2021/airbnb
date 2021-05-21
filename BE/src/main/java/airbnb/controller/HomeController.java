@@ -1,7 +1,9 @@
 package airbnb.controller;
 
+import airbnb.Service.CategoryService;
 import airbnb.Service.CityService;
-import airbnb.wrapper.CitiesWrapper;
+import airbnb.dto.MainPageResponse;
+import airbnb.wrapper.MainPageWrapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,13 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
 
     private final CityService cityService;
+    private final CategoryService categoryService;
 
-    public HomeController(CityService cityService) {
+    public HomeController(CityService cityService, CategoryService categoryService) {
         this.cityService = cityService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping
-    public CitiesWrapper readCities() {
-        return new CitiesWrapper(cityService.createAllToRequestList());
+    public MainPageWrapper readCities() {
+        MainPageResponse mainPageResponse = new MainPageResponse(cityService.createAllToCityResponseList(), categoryService.createAllToCategoryResponseList());
+        return new MainPageWrapper(mainPageResponse);
     }
 }

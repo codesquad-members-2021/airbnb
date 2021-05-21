@@ -21,7 +21,8 @@ public class Image {
         this.categoryId = builder.categoryId;
     }
 
-    public static class Builder{
+    public static class Builder {
+
         private final Long id;
         private final String url;
 
@@ -35,27 +36,27 @@ public class Image {
             this.url = url;
         }
 
-        public Builder imageType(ImageType imageType){
+        public Builder imageType(ImageType imageType) {
             this.imageType = imageType;
             return this;
         }
 
-        public Builder cityId(Long cityId){
+        public Builder cityId(Long cityId) {
             this.cityId = cityId;
             return this;
         }
 
-        public Builder roomId(Long roomId){
+        public Builder roomId(Long roomId) {
             this.roomId = roomId;
             return this;
         }
 
-        public Builder categoryId(Long categoryId){
+        public Builder categoryId(Long categoryId) {
             this.categoryId = categoryId;
             return this;
         }
 
-        public Image build(){
+        public Image build() {
             return new Image(this);
         }
     }

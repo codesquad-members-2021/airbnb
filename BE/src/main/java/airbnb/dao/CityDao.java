@@ -14,7 +14,6 @@ public class CityDao {
     private final ImageDao imageDao;
     private final CityMapper cityMapper = new CityMapper();
 
-
     public CityDao(JdbcTemplate jdbcTemplate, ImageDao imageDao) {
         this.jdbcTemplate = jdbcTemplate;
         this.imageDao = imageDao;

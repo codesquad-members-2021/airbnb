@@ -32,8 +32,8 @@ public class Category {
         this.images = images;
     }
 
-    public String findMainImageUrl(){
-        Image mainImage = images.stream().filter(image ->ImageType.MAIN.equals(image.getImageType()))
+    public String findMainImageUrl() {
+        Image mainImage = images.stream().filter(image -> ImageType.MAIN.equals(image.getImageType()))
                 .findFirst().orElseThrow(NullPointerException::new);
         return mainImage.getUrl();
     }

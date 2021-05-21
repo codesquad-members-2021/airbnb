@@ -11,7 +11,7 @@ public class ImageMapper implements RowMapper<Image> {
 
     @Override
     public Image mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return new Image.Builder(rs.getLong("id"),rs.getString("url"))
+        return new Image.Builder(rs.getLong("id"), rs.getString("url"))
                 .imageType(ImageType.valueOf(rs.getString("image_type")))
                 .cityId(rs.getLong("city_id"))
                 .roomId(rs.getLong("room_id"))

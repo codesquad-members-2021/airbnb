@@ -28,7 +28,7 @@ public class City {
         return images;
     }
 
-    public void addImage(Image image){
+    public void addImage(Image image) {
         images.add(image);
     }
 
@@ -36,8 +36,8 @@ public class City {
         this.images = images;
     }
 
-    public String findMainImageUrl(){
-        Image mainImage = images.stream().filter(image ->ImageType.MAIN.equals(image.getImageType()))
+    public String findMainImageUrl() {
+        Image mainImage = images.stream().filter(image -> ImageType.MAIN.equals(image.getImageType()))
                 .findFirst().orElseThrow(NullPointerException::new);
         return mainImage.getUrl();
     }

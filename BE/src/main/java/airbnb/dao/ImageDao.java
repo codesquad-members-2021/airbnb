@@ -18,27 +18,27 @@ public class ImageDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Image> findByCityId(Long cityId){
+    public List<Image> findByCityId(Long cityId) {
         String sql = "SELECT id, url, room_id, city_id, category_id, image_type FROM image " +
                 "WHERE city_id = :cityId";
         MapSqlParameterSource parameter = new MapSqlParameterSource();
-        parameter.addValue("cityId",cityId);
-        return jdbcTemplate.query(sql,parameter,imageMapper);
+        parameter.addValue("cityId", cityId);
+        return jdbcTemplate.query(sql, parameter, imageMapper);
     }
 
-    public List<Image> findByCategoryId(Long categoryId){
+    public List<Image> findByCategoryId(Long categoryId) {
         String sql = "SELECT id, url, room_id, city_id, category_id, image_type FROM image " +
                 "WHERE category_id = :categoryId";
         MapSqlParameterSource parameter = new MapSqlParameterSource();
-        parameter.addValue("categoryId",categoryId);
-        return jdbcTemplate.query(sql,parameter,imageMapper);
+        parameter.addValue("categoryId", categoryId);
+        return jdbcTemplate.query(sql, parameter, imageMapper);
     }
 
-    public List<Image> findByType(String imageType){
+    public List<Image> findByType(String imageType) {
         String sql = "SELECT id, url, room_id, city_id, category_id, image_type FROM image " +
                 "WHERE image_type = :imageType";
         MapSqlParameterSource parameter = new MapSqlParameterSource();
-        parameter.addValue("imageType",imageType);
-        return jdbcTemplate.query(sql,parameter,imageMapper);
+        parameter.addValue("imageType", imageType);
+        return jdbcTemplate.query(sql, parameter, imageMapper);
     }
 }

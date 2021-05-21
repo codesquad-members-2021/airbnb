@@ -3,7 +3,6 @@ package airbnb.Service;
 import airbnb.dao.CategoryDao;
 import airbnb.domain.Category;
 import airbnb.dto.CategoryResponse;
-import airbnb.wrapper.CategoriesWrapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,19 +17,20 @@ public class CategoryService {
         this.categoryDao = categoryDao;
     }
 
-    public List<Category> findAll(){
+    public List<Category> findAll() {
         return categoryDao.findAll();
     }
 
-    public CategoriesWrapper createAllToCategoriesWrapper(){
+    public List<CategoryResponse> createAllToCategoryResponseList() {
 
         List<CategoryResponse> responsesList = new ArrayList<>();
         List<Category> categories = findAll();
 
-        for(Category category:categories){
+        for (Category category : categories) {
             CategoryResponse categoryResponse = CategoryResponse.of(category, category.findMainImageUrl());
             responsesList.add(categoryResponse);
         }
-        return new CategoriesWrapper(responsesList);
+
+        return responsesList;
     }
 }
