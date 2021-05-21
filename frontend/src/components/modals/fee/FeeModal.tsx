@@ -15,7 +15,6 @@ export default function FeeModal({ type, setInplaceHolder, isActive, setModalOn 
 
 	const handleOnclick = (e: any) => {
 		e.stopPropagation();
-		console.log("modal clicked");
 	};
 	return (
 		<>

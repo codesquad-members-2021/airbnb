@@ -15,7 +15,6 @@ export default function CalendarModal({ type, setInplaceHolder, isActive, setMod
 
 	const handleOnclick = (e: any) => {
 		e.stopPropagation();
-		console.log("modal clicked");
 	};
 
 	return (

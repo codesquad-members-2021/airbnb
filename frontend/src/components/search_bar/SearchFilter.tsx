@@ -12,13 +12,10 @@ export default function SearchFilter({ type, input, isEnd, placeholder, isCalend
 	const [inplaceHolder, setInplaceHolder] = useState(placeholder);
 
 	const handleSearchClick = (e: any): void => {
-		console.log("search");
 		e.stopPropagation();
 	};
 
 	const handleOnClick = (e: any, type: string): void => {
-		// e.stopPropagation();
-		console.log("search filter clicked");
 		if (type === "LOCATION") setIsLocationModalOn((isLocationModalOn: boolean) => !isLocationModalOn);
 		if (type === "CHECKIN" || type === "CHECKOUT") setIsCalendarModalOn((isCalendarModalOn: boolean) => !isCalendarModalOn);
 		if (type === "FEE") setIsFeeModalOn((isFeeModalOn: boolean) => !isFeeModalOn);

@@ -54,7 +54,6 @@ export default function GuestModal({ type, setInplaceHolder, isActive, setModalO
 
 	const handleOnclick = (e: any) => {
 		e.stopPropagation();
-		console.log("modal clicked");
 	};
 
 	return (

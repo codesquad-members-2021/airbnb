@@ -9,10 +9,7 @@ export default function SearchBar(props: EmptyInterface) {
 	const [isFeeModalOn, setIsFeeModalOn] = useState<boolean>(false);
 	const [isGuestModalOn, setIsGuestModalOn] = useState<boolean>(false);
 
-	const handleOnclick = (e: any): void => {
-		// e.stopPropagation();
-		console.log("search bar clicked");
-	};
+	const handleOnclick = (e: any): void => {};
 
 	return (
 		<StyleSearchBar onClick={handleOnclick}>

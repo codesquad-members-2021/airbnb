@@ -4,13 +4,9 @@ import Header from "./components/main/header/Header";
 import Main from "./components/main/Main";
 
 function App() {
-	const toggleModals = (e: any): void => {
-		// e.stopPropagation();
-		console.log("app clicked");
-	};
 	return (
 		<>
-			<MainWrapper onClick={toggleModals}>
+			<MainWrapper>
 				<Header />
 				<Main />
 			</MainWrapper>
