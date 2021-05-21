@@ -1,5 +1,5 @@
 import "styled-components";
-type Keys = "color" | "title" | "content";
+
 
 interface DefaultTheme {
   [key: string]: {

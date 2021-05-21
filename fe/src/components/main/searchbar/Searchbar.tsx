@@ -9,9 +9,9 @@ const SearchBar = () => {
     <Box width="100%" display="flex" justifyContent="center">
       <StyledSearchBar>
         <DateInput />
-        <SeperateBar />
+        <SeparateBar />
         <PriceInput />
-        <SeperateBar />
+        <SeparateBar />
         <PeopleInput />
 
         <SearchBarBtn />
@@ -36,7 +36,7 @@ const StyledSearchBar = styled.div`
   border: ${({ theme }) => theme.border.Gray5};
 `;
 
-const SeperateBar = styled.div`
+const SeparateBar = styled.div`
   width: 1px;
   height: 70%;
   background-color: ${({ theme }) => theme.color.Gray5};
