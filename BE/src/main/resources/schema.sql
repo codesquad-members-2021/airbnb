@@ -5,7 +5,7 @@ create table location
 (
     id    BIGINT primary key auto_increment,
     name  varchar(45),
-    image varchar(255)
+    image_url varchar(255)
 );
 
 create table property
