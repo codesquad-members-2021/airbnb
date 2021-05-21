@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import styled from 'styled-components';
 import Period from './Period';
 import Personnel from './Personnel';
@@ -7,17 +7,34 @@ import SearchButton from './SearchButton';
 
 
 const SearchBar = () => {
+
+    const changeModal = (toggleState, action) => {
+        const newToggleState = {...toggleState}
+        switch(action.category) {
+            case 'period':
+                newToggleState.period = !toggleState.period;
+                return newToggleState;
+            case 'price':
+                newToggleState.price = !toggleState.price;
+                return newToggleState;
+            case 'personnel':
+                newToggleState.personnel = !toggleState.personnel;
+                return newToggleState;
+            default:
+                throw new Error();
+        }
+    }
     const searchToggle = { period:false, price:false, personnel:false};
-    const [toggleState, setToggleState] = useState(searchToggle)
+    const [toggleState, dispatch] = useReducer(changeModal, searchToggle)
     // searchToggle.period = true;
     // const se = {...searchToggle}
     // console.log(searchToggle.period)
     // console.log(se.period)
     return (
         <SearchBarWrapper>
-            <Period toggleState={toggleState} setToggleState={setToggleState}/>
-            <Price/>
-            <Personnel/>
+            <Period toggleState={toggleState} dispatch={dispatch}/>
+            <Price toggleState={toggleState} dispatch={dispatch} />
+            <Personnel toggleState={toggleState} dispatch={dispatch}/>
             <SearchButton/>
         </SearchBarWrapper>
     );

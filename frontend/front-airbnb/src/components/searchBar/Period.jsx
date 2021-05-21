@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import CalendarModal from '../modal/CalendarModal';
 
-const Period = ({toggleState, setToggleState}) => {
+const Period = ({toggleState, dispatch}) => {
     console.log(toggleState.period)
     const periodData = [
         {
@@ -20,13 +20,8 @@ const Period = ({toggleState, setToggleState}) => {
     const periodList = peroidInfo.map((e, idx) => {
         return <CheckBox key={idx}><Title>{e.name}</Title><View>{e.input}</View></CheckBox>
     })
-    const openModal = () => {
-        const newToggleState = {...toggleState}
-        newToggleState.period = !toggleState.period;
-        setToggleState(newToggleState);
-    }
     return (
-        <PeriodWrapper onClick={() => openModal()}>
+        <PeriodWrapper onClick={() => dispatch({category: 'period'})}>
             {periodList}
             {toggleState.period && <CalendarModal/>}
         </PeriodWrapper>

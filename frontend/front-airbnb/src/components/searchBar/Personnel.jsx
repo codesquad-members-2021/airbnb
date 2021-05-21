@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import PersonnelModal from '../modal/PersonnelModal';
 
-const Personnel = () => {
+const Personnel = ({toggleState, dispatch}) => {
     return (
-        <PersonnelWrapper>
+        <PersonnelWrapper onClick={() => dispatch({category: 'personnel'})}>
                 <Title>인원</Title>
                 <View>게스트추가</View>
-                <PersonnelModal/>
+                {toggleState.personnel && <PersonnelModal/>}
         </PersonnelWrapper>
     );
 }

@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import PriceModal from '../modal/PriceModal';
 
-const Price = () => {
+const Price = ({toggleState, dispatch}) => {
     return (
-        <PriceWrapper>
+        <PriceWrapper onClick={()=> dispatch({category: 'price'})}>
         <Title>요금</Title>
         <View>금액대 설정</View>
-        <PriceModal/>
+        {toggleState.price && <PriceModal/>}
         </PriceWrapper>
     );
 }
