@@ -16,6 +16,8 @@ class MainSearchCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "숙소 찾기"
+        
         self.collectionView.register(DestinationCollectionViewCell.nib(),
                                      forCellWithReuseIdentifier: DestinationCollectionViewCell.reuseIdentifier)
         self.collectionView.register(BestDestinationsCollectionHeaderView.self,
@@ -23,7 +25,6 @@ class MainSearchCollectionViewController: UICollectionViewController {
                                      withReuseIdentifier: BestDestinationsCollectionHeaderView.reuseIdentifier)
         
         self.collectionView.backgroundColor = .systemBackground
-        self.title = "숙소 찾기"
         
         let headerSize = CGSize(width: self.collectionView.frame.size.width, height: 78.0)
         let bestDestinationsLayout = makeFlowLayout(headerReferenceSize: headerSize)

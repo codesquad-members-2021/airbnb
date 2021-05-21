@@ -22,17 +22,15 @@ class BestDestinationsCollectionHeaderView: UICollectionReusableView {
     }
     
     private func configureTitleLabel() {
-        self.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(titleLabel)
         titleLabel.font = UIFont.systemFont(ofSize: 17.0, weight: .semibold)
         titleLabel.textColor = UIColor(named: "Black")
         titleLabel.text = "근처의 인기 여행지"
-        
+        let inset = CGFloat(16)
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor,
-                                                constant: 16.0),
-            titleLabel.trailingAnchor.constraint(greaterThanOrEqualTo: self.trailingAnchor,
-                                                 constant: -16.0),
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: inset),
+            titleLabel.trailingAnchor.constraint(greaterThanOrEqualTo: self.trailingAnchor, constant: -inset),
             titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
     }
