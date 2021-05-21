@@ -9,7 +9,7 @@ public class CityResponse {
     private final String image;
     private final int distance;
 
-    public CityResponse(Builder builder) {
+    private CityResponse(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.image = builder.image;
