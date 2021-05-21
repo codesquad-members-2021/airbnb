@@ -2,6 +2,8 @@ package com.codesquad.airbnb.domain;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
+
 public class Room {
     @Id
     private final Long id;
@@ -23,7 +25,8 @@ public class Room {
 
     public Room(Long id, int max, String name, double rating, double latitude, double longitude, int bedroomCount,
                 int bedCount, int bathroomCount, String address, String detailAddress, int commentCount,
-                int originalPrice, int salePrice, boolean flexibleRefund, boolean immediateBooking) {
+                int originalPrice, int salePrice, boolean flexibleRefund, boolean immediateBooking,
+                List<Thumbnail> thumbnails, List<Option> options, List<Badge> badges) {
         this.id = id;
         this.max = max;
         this.name = name;
@@ -40,5 +43,12 @@ public class Room {
         this.salePrice = salePrice;
         this.flexibleRefund = flexibleRefund;
         this.immediateBooking = immediateBooking;
+        this.thumbnails = thumbnails;
+        this.options = options;
+        this.badges = badges;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

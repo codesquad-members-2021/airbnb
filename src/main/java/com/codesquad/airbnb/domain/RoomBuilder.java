@@ -88,18 +88,35 @@ public class RoomBuilder {
         return this;
     }
 
-    public RoomBuilder setFlexibleRefund(boolean flexibleRefund) {
-        this.flexibleRefund = flexibleRefund;
+    public RoomBuilder setFlexibleRefund(int flexibleRefund) {
+        if (flexibleRefund == 1) this.flexibleRefund = true;
+        if (flexibleRefund == 0) this.flexibleRefund = false;
         return this;
     }
 
-    public RoomBuilder setImmediateBooking(boolean immediateBooking) {
-        this.immediateBooking = immediateBooking;
+    public RoomBuilder setImmediateBooking(int immediateBooking) {
+        if (immediateBooking == 1) this.immediateBooking = true;
+        if (immediateBooking == 0) this.immediateBooking = false;
+        return this;
+    }
+
+    public RoomBuilder setThumbnails(List<Thumbnail> thumbnails) {
+        this.thumbnails = thumbnails;
+        return this;
+    }
+
+    public RoomBuilder setOptions(List<Option> options) {
+        this.options = options;
+        return this;
+    }
+
+    public RoomBuilder setBadges(List<Badge> badges) {
+        this.badges = badges;
         return this;
     }
 
     public Room build() {
         return new Room(id, max, name, rating, latitude, longitude, bedroomCount, bedCount, bathroomCount, address,
-                detailAddress, commentCount, originalPrice, salePrice, flexibleRefund, immediateBooking);
+                detailAddress, commentCount, originalPrice, salePrice, flexibleRefund, immediateBooking, thumbnails, options, badges);
     }
 }
