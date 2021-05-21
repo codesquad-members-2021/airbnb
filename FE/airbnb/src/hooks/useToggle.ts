@@ -1,12 +1,13 @@
 import { RefObject, useState, useEffect } from 'react';
 
 interface refsType {
-  clickRef: RefObject<HTMLDivElement>;
+  clickRef: RefObject<HTMLDivElement | HTMLDivElement[]>;
   toggleRef: RefObject<HTMLDivElement>;
 }
 
 const useToggle = ({ clickRef, toggleRef }: refsType): boolean => {
   const [open, setOpen] = useState<boolean>(false);
+  const [selectElement, setSelectElement] = useState<HTMLDivElement>();
 
   useEffect(() => {
     document.body.addEventListener('click', handleClick);
@@ -15,19 +16,20 @@ const useToggle = ({ clickRef, toggleRef }: refsType): boolean => {
 
   const handleClick = (e: MouseEvent): void => {
     const { target } = e;
-    if (toggleRef.current?.contains(target)) {
+    if (toggleRef.current?.contains(target as Node)) {
       setOpen(true);
       return;
     }
-    if (clickRef instanceof Array) {
-      for (const elem of clickRef) {
-        if (elem.current.contains(target)) {
+    if (clickRef.current instanceof Array) {
+      for (const elem of clickRef.current) {
+        if ((elem as Node).contains(target as Node) && selectElement === elem)
           setOpen((open) => !open);
-          return;
-        }
+        else setOpen(true);
+        setSelectElement(elem);
+        return;
       }
     } else {
-      if (clickRef.current?.contains(target)) {
+      if (clickRef.current?.contains(target as Node)) {
         setOpen((open) => !open);
         return;
       }

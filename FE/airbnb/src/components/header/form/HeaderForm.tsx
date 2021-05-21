@@ -46,16 +46,17 @@ const StyledHeaderForm = styled.div<StyleProps>`
   & > div {
     position: relative;
   }
-  & > div:not(:last-child)::before {
+  & > div:not(:first-child)::before {
     position: absolute;
     height: 3rem;
-    right: 0;
+    left: 0;
     top: 1rem;
     content: '';
     border-right: ${({ theme }) => `1px solid ${theme.colors.gray5}`};
   }
   & > div:not(:last-child):hover {
-    &::before {
+    &::before,
+    & + div::before {
       border-right: none;
     }
   }

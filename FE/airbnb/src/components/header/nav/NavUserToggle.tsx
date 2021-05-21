@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { ReactElement } from 'react';
+import { ReactElement, RefObject } from 'react';
 interface Props {
-  toggleRef: any;
+  toggleRef: RefObject<HTMLDivElement>;
+  dataBtn: string;
 }
-const NavUserToggle = ({ toggleRef }: Props) => {
+const NavUserToggle = ({ toggleRef, dataBtn }: Props) => {
   const LOG_OUT_COLUMN: string[] = ['로그인'];
   const LOG_IN_COLUMN: string[] = ['예약 취소', '위시리스트', '로그아웃'];
 
@@ -11,7 +12,11 @@ const NavUserToggle = ({ toggleRef }: Props) => {
     <div key={column + idx}>{column}</div>
   ));
 
-  return <StyledNavUserToggle ref={toggleRef}>{columnList}</StyledNavUserToggle>;
+  return (
+    <StyledNavUserToggle ref={toggleRef} data-btn={dataBtn}>
+      {columnList}
+    </StyledNavUserToggle>
+  );
 };
 
 export default NavUserToggle;
@@ -25,6 +30,7 @@ const StyledNavUserToggle = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
   border-radius: 10px;
+  z-index: 10;
   & > div {
     margin: 0 1rem;
     padding: 1rem 0;

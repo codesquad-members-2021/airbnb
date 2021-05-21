@@ -6,7 +6,7 @@ import NavUserToggle from './NavUserToggle';
 
 const HeaderNav = () => {
   const navRef = useRef<HTMLDivElement>(null);
-  const toggleRef = useRef<ReactElement>(null);
+  const toggleRef = useRef<HTMLDivElement>(null);
   const open = useToggle({ clickRef: navRef, toggleRef });
   return (
     <StyleNavWrapper>
@@ -14,7 +14,7 @@ const HeaderNav = () => {
         <SvgMenuBar />
         <SvgUser />
       </StyleHeaderNav>
-      {open && <NavUserToggle toggleRef={toggleRef} />}
+      {open && <NavUserToggle toggleRef={toggleRef} dataBtn='toggle' />}
     </StyleNavWrapper>
   );
 };
