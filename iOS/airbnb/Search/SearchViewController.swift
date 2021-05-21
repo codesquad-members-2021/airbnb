@@ -21,8 +21,7 @@ class SearchViewController : UIViewController {
         
         let searchBar = UISearchBar()
         searchBar.placeholder = "어디로 여행가세요?"
-        self.navigationItem.titleView = searchBar
-        
+        self.tabBarController?.navigationItem.titleView = searchBar
         searchBar.delegate = self
         nearPlaceCollection.dataSource = nearPlaceDataSource
         themePlaceCollection.dataSource = themePlaceDataSource

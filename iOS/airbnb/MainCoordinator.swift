@@ -9,29 +9,25 @@ import UIKit
 
 class MainCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
-    var tabBarController: UITabBarController
-
-    init(tabBarController: UITabBarController) {
-        self.tabBarController = tabBarController
-    }
-
-    func start() {
+    var navigationController: UINavigationController
     
-        let search = UINavigationController(rootViewController: SearchViewController.instantiate())
-        let wishList = UINavigationController(rootViewController: WishListViewController.instantiate())
-        let login = UINavigationController(rootViewController: LoginViewController.instantiate())
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
+    func start() {
         
-        let searchItem = UITabBarItem(title: "검색", image: nil, tag: 0)
-        searchItem.image = UIImage(named: "search")
-        let wishItem = UITabBarItem(title: "위시리스트", image: nil, tag: 1)
-        wishItem.image = UIImage(named: "heart")
-        let loginItem = UITabBarItem(title: "로그인", image: nil, tag: 2)
-        loginItem.image = UIImage(named: "user")
+        let tabBarController = UITabBarController()
         
-        search.tabBarItem = searchItem
-        wishList.tabBarItem = wishItem
-        login.tabBarItem = loginItem
+        let search = SearchViewController.instantiate()
+        search.tabBarItem = UITabBarItem(title: "검색", image: UIImage(named: "search"), tag: 0)
+        let wishList = WishListViewController.instantiate()
+        wishList.tabBarItem = UITabBarItem(title: "위시리스트", image: UIImage(named: "heart"), tag: 1)
+        let login = LoginViewController.instantiate()
+        login.tabBarItem = UITabBarItem(title: "로그인", image: UIImage(named: "user"), tag: 2)
         
+        self.navigationController.title = "title"
         tabBarController.viewControllers = [search, wishList, login]
+        navigationController.pushViewController(tabBarController, animated: false)
     }
 }
