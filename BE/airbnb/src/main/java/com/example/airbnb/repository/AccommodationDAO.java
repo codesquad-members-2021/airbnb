@@ -46,6 +46,11 @@ public class AccommodationDAO {
             Accommodation accommodation = new Accommodation();
             accommodation.setId(rs.getLong("id"));
             accommodation.setTitle(rs.getString("title"));
+            accommodation.setReviewRating(rs.getDouble("reviewRating"));
+            accommodation.setReviewCount(rs.getDouble("reviewCount"));
+            accommodation.setCharge(rs.getInt("charge"));
+            accommodation.setBadge(rs.getString("badge"));
+            accommodation.setImage(rs.getString("image"));
             return accommodation;
         });
     }

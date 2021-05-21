@@ -1,3 +1,4 @@
+ALTER DATABASE `airbnb` DEFAULT CHARACTER SET utf8;
 DROP TABLE IF EXISTS `accommodation`;
 
 CREATE TABLE IF NOT EXISTS `accommodation`
