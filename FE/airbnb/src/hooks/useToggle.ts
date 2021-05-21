@@ -1,11 +1,11 @@
 import { ReactElement, useState, useEffect } from 'react';
 
-interface refs {
+interface refsType {
   clickRef: any; //HTMLDivElement | HTMLDivElement[] |
   toggleRef: any; //HTMLDivElement | ReactElement |
 }
 
-const useToggle = ({ clickRef, toggleRef }: refs): boolean => {
+const useToggle = ({ clickRef, toggleRef }: refsType): boolean => {
   const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {

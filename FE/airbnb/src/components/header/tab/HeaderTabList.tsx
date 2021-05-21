@@ -1,6 +1,4 @@
 import { ReactElement } from 'react';
-import { useRecoilState } from 'recoil';
-import { tabSelectedState } from '../headerAtom';
 import styled from 'styled-components';
 import HeaderTab from './HeaderTab';
 

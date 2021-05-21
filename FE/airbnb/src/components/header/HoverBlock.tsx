@@ -4,11 +4,18 @@ interface Props {
   children: JSX.Element[] | JSX.Element | string;
   color: string;
   className?: string;
+  onClickCapture?: any;
+  dataKey?: string;
 }
 
-const HoverBlock = ({ children, color, className }: Props) => {
+const HoverBlock = ({ children, color, className, onClickCapture, dataKey }: Props) => {
   return (
-    <StyledContainer className={className} {...{ color }}>
+    <StyledContainer
+      onClickCapture={onClickCapture}
+      className={className}
+      {...{ color }}
+      data-key={dataKey}
+    >
       {children}
     </StyledContainer>
   );

@@ -28,6 +28,7 @@ const StyledFormColumn = styled.div`
     margin-bottom: 0.3rem;
   }
   .description {
+    font-size: 0.9rem;
     color: ${({ theme }) => theme.colors.gray3};
   }
 `;
