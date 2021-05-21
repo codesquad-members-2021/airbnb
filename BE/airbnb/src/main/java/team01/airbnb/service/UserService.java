@@ -2,8 +2,7 @@ package team01.airbnb.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -19,10 +18,9 @@ import team01.airbnb.exception.NoResultSetException;
 import team01.airbnb.exception.NotProcessJsonException;
 import team01.airbnb.utils.KakaoLoginUtils;
 
+@Slf4j
 @Service
 public class UserService {
-
-    private final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     private final JdbcTemplate jdbcTemplate;
     private final KakaoLoginUtils kakaoLoginUtils;
@@ -64,46 +62,36 @@ public class UserService {
     }
 
     public String getAccessToken(String code) {
-        // POST방식으로 key=value 데이터를 요청 (카카오 쪽으로)
-        // Http 요청하기 - Post 방식으로 - 그리고 response 변수의 응답 받음
-        ResponseEntity<String> response = getJsonResponseByPost(
+        OAuthToken oauthToken = getObjectbyPost(
                 kakaoLoginUtils.getTokenUri()
-                , kakaoLoginUtils.getTokenRequestEntity(code));
-        // Json 데이터를 자바 오브젝트로 처리
-        OAuthToken oauthToken = convertJsonToObject(response, OAuthToken.class);
+                , kakaoLoginUtils.getTokenRequestEntity(code)
+                , OAuthToken.class);
+        log.info("oauthToken : {}", oauthToken.toString());
         return oauthToken.getAccess_token();
     }
 
     public SocialProfile getKakaoProfile(String accessToken) {
-        ResponseEntity<String> response = getJsonResponseByPost(
+        KakaoProfile kakaoProfile = getObjectbyPost(
                 kakaoLoginUtils.getProfileUri()
-                , kakaoLoginUtils.getKakaoProfileRequestEntity(accessToken));
-        logger.info("User info from kakao : {}", response.getBody());
-        return convertJsonToObject(response, KakaoProfile.class);
+                , kakaoLoginUtils.getKakaoProfileRequestEntity(accessToken)
+                , KakaoProfile.class);
+        log.info("kakaoProfile : {}", kakaoProfile);
+        return kakaoProfile;
     }
 
     public Long kakaoLogout(String accessToken) {
-        ResponseEntity<String> response = getJsonResponseByPost(
+        KakaoLogout kakaoLogout = getObjectbyPost(
                 kakaoLoginUtils.getLogoutUri()
-                , kakaoLoginUtils.getLogoutRequestEntity(accessToken));
-        KakaoLogout kakaoLogout = convertJsonToObject(response, KakaoLogout.class);
+                , kakaoLoginUtils.getLogoutRequestEntity(accessToken)
+                , KakaoLogout.class);
+        log.info("kakaoLogout : {}", kakaoLogout.toString());
         return kakaoLogout.getId();
     }
 
-    private <T> T convertJsonToObject(ResponseEntity<String> response, Class<T> valueType) {
-        try {
-            return objectMapper.readValue(response.getBody(), valueType);
-        } catch (JsonProcessingException e) {
-            throw new NotProcessJsonException();
-        }
-    }
-
-    private <T> ResponseEntity<T> getJsonResponseByPost(String uri, @Nullable HttpEntity<?> requestEntity) {
-        return (ResponseEntity<T>) new RestTemplate().exchange(
-                uri,
-                HttpMethod.POST,
-                requestEntity,
-                String.class
-        );
+    private <T> T getObjectbyPost(String uri, @Nullable Object request, Class<T> responseType) {
+        return new RestTemplate().postForObject(
+                uri
+                , request
+                , responseType);
     }
 }
