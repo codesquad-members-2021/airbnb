@@ -1,45 +1,33 @@
+import { useRef } from 'react';
 import styled from 'styled-components';
-import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
-import {
-  reserveSelectState,
-  reserveSelectStateTypes,
-  reserveWithSelect,
-} from '../../../recoil/headerAtom';
 import FormLocation from './FormLocation';
 import FormGuest from './FormGuest';
 import FormCheckIn from './FormCheckIn';
 import FormCheckOut from './FormCheckOut';
 import FormPrice from './FormPrice';
-
-interface formColumn {
-  title: string;
-  description: string;
-}
+import useToggle from '../../../hooks/useToggle';
 
 const HeaderForm = () => {
-  // const reserveSelect = useRecoilValue(reserveSelectState);
-  const [reserveSelect, selectReserve] = useRecoilState(reserveWithSelect);
+  const checkOutRef = useRef<HTMLDivElement>(null);
 
   return (
     <StyledHeaderForm>
       <FormLocation />
-      <FormCheckIn />
-      <FormCheckOut />
+      <FormCheckIn checkOutRef={checkOutRef} />
+      <FormCheckOut checkOutRef={checkOutRef} />
       <FormPrice />
       <FormGuest />
     </StyledHeaderForm>
   );
 };
 
-interface StyleProps {
-  reserveSelect?: reserveSelectStateTypes;
-}
+interface StyleProps {}
 
 const StyledHeaderForm = styled.div<StyleProps>`
   display: grid;
-  grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 0.7fr;
+  grid-template-columns: 0.7fr 0.5fr 0.5fr 0.5fr 0.6fr;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1100px;
   border: ${({ theme }) => `1px solid ${theme.colors.gray4}`};
   border-radius: 60px;
   background-color: ${({ theme }) => theme.colors.white};
@@ -54,22 +42,12 @@ const StyledHeaderForm = styled.div<StyleProps>`
     content: '';
     border-right: ${({ theme }) => `1px solid ${theme.colors.gray5}`};
   }
-  & > div:not(:last-child):hover {
+  & > div:hover {
     &::before,
     & + div::before {
       border-right: none;
     }
   }
-  /* & > div:first-child:hover {
-    &::before {
-      border-right: none;
-    }
-  }
-  & > div:nth-child(2):hover {
-    &::before {
-      border-right: none;
-    }
-  } */
 `;
 
 export default HeaderForm;

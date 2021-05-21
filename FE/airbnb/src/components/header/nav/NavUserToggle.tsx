@@ -12,11 +12,7 @@ const NavUserToggle = ({ toggleRef, dataBtn }: Props) => {
     <div key={column + idx}>{column}</div>
   ));
 
-  return (
-    <StyledNavUserToggle ref={toggleRef} data-btn={dataBtn}>
-      {columnList}
-    </StyledNavUserToggle>
-  );
+  return <StyledNavUserToggle ref={toggleRef}>{columnList}</StyledNavUserToggle>;
 };
 
 export default NavUserToggle;
