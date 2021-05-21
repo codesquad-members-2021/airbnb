@@ -9,14 +9,22 @@ public class Location {
 
     private String name;
 
-    public Location(String name) {
+    private String imageUrl;
+
+    public Location(String name, String imageUrl) {
         this.name = name;
+        this.imageUrl = imageUrl;
     }
+
     public Long getId() {
         return id;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 }
