@@ -5,21 +5,28 @@ import com.airbnb.dto.AccessTokenRequest;
 import com.airbnb.dto.AccessTokenResponse;
 import com.airbnb.dto.UserDto;
 import com.airbnb.exception.AuthenticationException;
-import com.airbnb.exception.JwtException;
 import com.airbnb.repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.Optional;
+import static org.springframework.http.HttpHeaders.ACCEPT;
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Service
 public class OauthService {
     private static final String GITHUB_ACCESS_TOKEN_URI = "https://github.com/login/oauth/access_token";
     private static final String GITHUB_USER_URI = "https://api.github.com/user";
-    private static RestTemplate restTemplate = new RestTemplate();
+
+    private static WebClient accessTokenClient = WebClient.builder()
+            .baseUrl(GITHUB_ACCESS_TOKEN_URI)
+            .defaultHeader(ACCEPT, APPLICATION_JSON_VALUE)
+            .build();
+    private static WebClient userClient = WebClient.builder()
+            .baseUrl(GITHUB_USER_URI)
+            .defaultHeader(ACCEPT, APPLICATION_JSON_VALUE)
+            .build();
 
     private final LoginRepository loginRepository;
 
@@ -34,30 +41,19 @@ public class OauthService {
     private String CLIENT_SECRET;
 
     public AccessTokenResponse getAccessToken(String code) {
-        RequestEntity<AccessTokenRequest> request = RequestEntity
-                .post(GITHUB_ACCESS_TOKEN_URI)
-                .header("Accept", "application/json")
-                .body(new AccessTokenRequest(CLIENT_ID, CLIENT_SECRET, code));
-
-        ResponseEntity<AccessTokenResponse> response = restTemplate
-                .exchange(request, AccessTokenResponse.class);
-
-        return Optional.ofNullable(response.getBody())
-                .orElseThrow(() -> new JwtException("Access Token 획득 실패"));
+        return accessTokenClient.post()
+                .bodyValue(new AccessTokenRequest(CLIENT_ID, CLIENT_SECRET, code))
+                .retrieve()
+                .bodyToMono(AccessTokenResponse.class)
+                .block();
     }
 
     public UserDto getUserFromGitHub(String accessToken) {
-        RequestEntity<Void> request = RequestEntity
-                .get(GITHUB_USER_URI)
-                .header("Accept", "application/json")
-                .header("Authorization", "token " + accessToken)
-                .build();
-
-        ResponseEntity<UserDto> response = restTemplate
-                .exchange(request, UserDto.class);
-
-        return Optional.ofNullable(response.getBody())
-                .orElseThrow(() -> new JwtException("유저 정보 획득 실패"));
+        return userClient.get()
+                .header(AUTHORIZATION, "token " + accessToken)
+                .retrieve()
+                .bodyToMono(UserDto.class)
+                .block();
     }
 
     public void saveLoggedInUser(UserDto userDto, AccessTokenResponse accessTokenResponse) {
@@ -66,7 +62,7 @@ public class OauthService {
     }
 
     public void authenticate(UserDto userDto) {
-       loginRepository.findByName(userDto.getName())
+        loginRepository.findByName(userDto.getName())
                 .orElseThrow(() -> new AuthenticationException("로그인하지 않은 유저입니다."));
     }
 }
