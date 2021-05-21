@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import Logo from './Logo';
 import Form from './Form';
-import Profile from '@components/Header/Profile/Profile';
+import Profile from '@components/Header/ProfileMenu/Profile';
 
 const Nav = () => {
   return (

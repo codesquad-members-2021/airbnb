@@ -6,6 +6,7 @@
       "@pages/*":["pages/*"],
       "@styles/*":["styles/*"],
       "@assets/*":["assets/*"],
+      "@recoil/*":["recoil/*"],
     }
   }
 }

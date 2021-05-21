@@ -1,40 +1,52 @@
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
-import Title from '@components/common/Title';
+import { dateSearchClick } from '@recoil/atoms/calendarState';
+
+import SearchButton from './SearchButton';
+import Date from './Date';
+import Fare from './Fare';
+import Guests from './Guests';
+import CalendarWrap from '@components/Header/Calender/CalendarWrap';
 
 const SearchBar = () => {
+  const [isOpenCalendar, setIsOpenCalendar] = useRecoilState(dateSearchClick);
+
+  useEffect(() => {
+    const handleClickOutsideCalendar = (): void => setIsOpenCalendar(false);
+    document.addEventListener('click', handleClickOutsideCalendar);
+    return () => {
+      document.removeEventListener('click', handleClickOutsideCalendar);
+    };
+  }, [setIsOpenCalendar]);
+
   return (
-    <SearchBarWrap>
-      <div>
-        <Title>체크인</Title>
-        <input type="text" placeholder="날짜" />
-      </div>
-      <div>
-        <Title>체크아웃</Title>
-        <input type="text" placeholder="날짜" />
-      </div>
-      <div>
-        <Title>요금</Title>
-        <input type="text" placeholder="날짜" />
-      </div>
-      <div>
-        <Title>인원</Title>
-        <input type="text" placeholder="날짜" />
-      </div>
-      <div>여기엔 검색이 들어간다</div>
-    </SearchBarWrap>
+    <>
+      <Select>
+        <Date />
+        <Fare />
+        <Guests />
+        <SearchButton />
+      </Select>
+      {isOpenCalendar && <CalendarWrap />}
+    </>
   );
 };
 
 export default SearchBar;
 
-const SearchBarWrap = styled.div`
-  ${({ theme }) => theme.flexCenter};
+const Select = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   width: 916px;
   height: 76px;
   border-radius: 60px;
   border: 1px solid ${({ theme }) => theme.color.gray4};
   background-color: ${({ theme }) => theme.color.white};
+  position: relative;
+  cursor: pointer;
 
   input {
     padding: 0;

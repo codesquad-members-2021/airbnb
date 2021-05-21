@@ -54,3 +54,8 @@ input {
 	padding: 0;
 	border: 0;
 }
+
+button {
+	outline: 0;
+	border: 0;
+}

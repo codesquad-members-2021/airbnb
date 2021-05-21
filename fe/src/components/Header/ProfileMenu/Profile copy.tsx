@@ -4,6 +4,9 @@ import { useState, useRef, useEffect } from 'react';
 import { ReactComponent as MenuIcon } from '@assets/menu.svg';
 import { ReactComponent as User } from '@assets/user.svg';
 
+// useRef를 사용한 프로필 메뉴 관리
+// 현재 사용하지 않는다.
+
 const Profile = () => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const profileRef = useRef<HTMLDivElement>(null);

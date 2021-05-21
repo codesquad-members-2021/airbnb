@@ -9,7 +9,7 @@ const color = {
   gray3: '#828282',
   gray2: '#4F4F4F',
   gray1: '#333333',
-  coral: '#010101',
+  coral: '#E84C60',
   green: '#118917',
 };
 
@@ -24,6 +24,12 @@ const padding = {
   base: '5rem',
 };
 
+const borderRadius = {
+  s: '30px',
+  m: '60px',
+  calendar: '40px',
+};
+
 const flexCenter = css`
   display: flex;
   justify-content: center;
@@ -34,6 +40,13 @@ const fontWeight = {
   base: 700,
 };
 
-const theme = { color, fontSize, padding, flexCenter, fontWeight };
+const theme = {
+  color,
+  fontSize,
+  padding,
+  flexCenter,
+  fontWeight,
+  borderRadius,
+};
 
 export default theme;
