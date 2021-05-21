@@ -2,41 +2,69 @@ package com.enolj.airbnb.web.dto;
 
 public class SearchRequestDTO {
 
-    private CheckDate date;
-    private Charge charge;
-    private People people;
-    private Location location;
+    private String checkIn;
+    private String checkOut;
+    private int minCharge;
+    private int maxCharge;
+    private int guest;
+    private int kid;
+    private double latitude;
+    private double longitude;
 
-    public SearchRequestDTO(CheckDate date, Charge charge, People people, Location location) {
-        this.date = date;
-        this.charge = charge;
-        this.people = people;
-        this.location = location;
+    public SearchRequestDTO(String checkIn, String checkOut, int minCharge, int maxCharge, int guest, int kid, double latitude, double longitude) {
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.minCharge = minCharge;
+        this.maxCharge = maxCharge;
+        this.guest = guest;
+        this.kid = kid;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
-    public void setDate(CheckDate date) {
-        this.date = date;
+    public void setCheckIn(String checkIn) {
+        this.checkIn = checkIn;
     }
 
-    public void setCharge(Charge charge) {
-        this.charge = charge;
+    public void setCheckOut(String checkOut) {
+        this.checkOut = checkOut;
     }
 
-    public void setPeople(People people) {
-        this.people = people;
+    public void setMinCharge(int minCharge) {
+        this.minCharge = minCharge;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setMaxCharge(int maxCharge) {
+        this.maxCharge = maxCharge;
+    }
+
+    public void setGuest(int guest) {
+        this.guest = guest;
+    }
+
+    public void setKid(int kid) {
+        this.kid = kid;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     @Override
     public String toString() {
         return "SearchRequestDTO{" +
-                "date=" + date +
-                ", charge=" + charge +
-                ", people=" + people +
-                ", location=" + location +
+                "checkIn='" + checkIn + '\'' +
+                ", checkOut='" + checkOut + '\'' +
+                ", minCharge=" + minCharge +
+                ", maxCharge=" + maxCharge +
+                ", quest=" + guest +
+                ", kid=" + kid +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
                 '}';
     }
 }
