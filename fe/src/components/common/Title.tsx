@@ -1,9 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 
-type childProp = {
-  children: React.ReactNode;
-};
+import { childProp } from './childType';
 
 const Title = ({ children }: childProp) => {
   return <TitleWrap>{children}</TitleWrap>;
