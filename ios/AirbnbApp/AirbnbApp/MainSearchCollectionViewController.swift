@@ -17,7 +17,7 @@ class MainSearchCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         self.collectionView.register(DestinationCollectionViewCell.nib(),
-                                      forCellWithReuseIdentifier: DestinationCollectionViewCell.reuseIdentifier)
+                                     forCellWithReuseIdentifier: DestinationCollectionViewCell.reuseIdentifier)
         self.collectionView.register(BestDestinationsCollectionHeaderView.self,
                                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                      withReuseIdentifier: BestDestinationsCollectionHeaderView.reuseIdentifier)
@@ -50,7 +50,7 @@ class MainSearchCollectionViewController: UICollectionViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
+        
         self.tabBarController?.tabBar.isHidden = false
     }
     
@@ -70,6 +70,8 @@ class MainSearchCollectionViewController: UICollectionViewController {
         searchController.automaticallyShowsCancelButton = false
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.delegate = self
+        searchController.searchBar.delegate = self
         
         definesPresentationContext = true
     }
@@ -81,7 +83,7 @@ extension MainSearchCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bestDestinations.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DestinationCollectionViewCell.reuseIdentifier, for: indexPath) as? DestinationCollectionViewCell else {
             return UICollectionViewCell()
@@ -94,5 +96,26 @@ extension MainSearchCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: BestDestinationsCollectionHeaderView.reuseIdentifier, for: indexPath)
         return headerView
+    }
+}
+
+// MARK: - UISearchBarDelegate
+
+extension MainSearchCollectionViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchController.dismiss(animated: true, completion: nil)
+        searchBar.text = ""
+    }
+}
+
+// MARK: - UISearchControllerDelegate
+
+extension MainSearchCollectionViewController: UISearchControllerDelegate {
+    func presentSearchController(_ searchController: UISearchController) {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "지우기", style: .done, target: self, action: nil)
+    }
+    
+    func willDismissSearchController(_ searchController: UISearchController) {
+        self.navigationItem.rightBarButtonItem = nil
     }
 }
