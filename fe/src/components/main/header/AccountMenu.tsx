@@ -16,12 +16,15 @@ const StyledAccountMenu = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
-  background-color: white;
+  background-color: ${({ theme }) => theme.color.White};
   border-radius: 2rem;
-  color: gray;
+  color: ${({ theme }) => theme.color.Gray3};
   padding: 0.5rem 1rem;
-  border: 1px solid #BDBDBD;
-
+  border: ${({ theme }) => theme.border.Gray4};
+  &:hover {
+    box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.15),
+      0px 3px 8px rgba(0, 0, 0, 0.1);
+  }
   .bar {
     font-size: 1.5rem;
   }

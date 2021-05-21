@@ -13,7 +13,7 @@ const SearchBar = () => {
         <PriceInput />
         <SeperateBar />
         <PeopleInput />
-        
+
         <SearchBarBtn />
       </StyledSearchBar>
     </Box>
@@ -27,17 +27,17 @@ const StyledSearchBar = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: white;
+  background-color: ${({ theme }) => theme.color.White};
   width: 63%;
-  height: 4.75rem;
+  height: 5rem;
   border-radius: 3.7rem;
   position: relative;
   padding: 0 5rem 0 2rem;
+  border: ${({ theme }) => theme.border.Gray5};
 `;
 
 const SeperateBar = styled.div`
   width: 1px;
   height: 70%;
-  background-color: #E0E0E0;
-
+  background-color: ${({ theme }) => theme.color.Gray5};
 `;

@@ -13,14 +13,14 @@ const SearchBarBtn = () => {
 export default SearchBarBtn;
 
 const StyledSearchBarBtn = styled.button`
-  color: white;
-  width: 3rem;
-  height: 3rem;
+  color: ${({ theme }) => theme.color.White};
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 50%;
-  background-color: #e84c60;
+  background-color: ${({ theme }) => theme.color.Red};
   position: absolute;
-  top: 0.875rem;
-  right: 1rem;
+  top: 0.6rem;
+  right: 0.6rem;
   font-size: 1.4rem;
   border: none;
   cursor: pointer;
