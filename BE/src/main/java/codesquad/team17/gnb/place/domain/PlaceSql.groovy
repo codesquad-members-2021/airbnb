@@ -5,6 +5,7 @@ class PlaceSql {
         SELECT
             place_id,
             place_name,
+            image_url,
             city,
             district,
             address1,
