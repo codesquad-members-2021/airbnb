@@ -82,8 +82,8 @@ create table reservation(
   adult int,
   child int,
   baby int,
-  check_in datetime,
-  check_out datetime,
+  check_in date,
+  check_out date,
   total_price DECIMAL(20,10)
 );
 

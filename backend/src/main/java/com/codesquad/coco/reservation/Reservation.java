@@ -5,6 +5,7 @@ import com.codesquad.coco.user.User;
 import org.springframework.data.annotation.Id;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Reservation {
@@ -17,8 +18,8 @@ public class Reservation {
     private int adult;
     private int child;
     private int baby;
-    private LocalDateTime checkIn;
-    private LocalDateTime checkOut;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
     private BigDecimal totalPrice;
 
     public Long getId() {
@@ -45,11 +46,11 @@ public class Reservation {
         return baby;
     }
 
-    public LocalDateTime getCheckIn() {
+    public LocalDate getCheckIn() {
         return checkIn;
     }
 
-    public LocalDateTime getCheckOut() {
+    public LocalDate getCheckOut() {
         return checkOut;
     }
 
