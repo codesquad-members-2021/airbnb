@@ -48,19 +48,18 @@ create table image(
     room_id int,
     category_id int,
     city_id int,
-    image_type_id int not null,
+    image_type varchar(10) not null,
     primary key (id),
     foreign key (room_id) references room(id),
     foreign key (category_id) references category(id),
     foreign key (city_id) references city(id),
-    foreign key (image_type_id) references image_type(id)
+    foreign key (image_type) references image_type(type)
 );
 
 drop table image_type;
 create table image_type(
-    id int not null auto_increment,
-    type varchar(45) not null,
-    primary key (id)
+    type varchar(10) not null,
+    primary key (type)
 );
 
 drop table 'user';
