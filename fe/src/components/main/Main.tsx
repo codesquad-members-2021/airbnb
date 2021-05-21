@@ -5,7 +5,7 @@ const Main = () => {
   return (
     <StyledMain>
       <Header />
-      <SearchBar/>
+      <SearchBar />
     </StyledMain>
   );
 };

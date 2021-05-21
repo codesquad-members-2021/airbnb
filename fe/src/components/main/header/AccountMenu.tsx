@@ -1,12 +1,28 @@
+import Modal from "components/common/Modal";
+import { useState, MouseEvent, useRef, Ref } from "react";
 import { BsPeopleCircle } from "react-icons/bs";
 import { FaBars } from "react-icons/fa";
+import useOnClickOutside from "hooks/useOnClickOutside";
 import styled from "styled-components";
 const AccountMenu = () => {
+  const [toggle, setToggle] = useState<Boolean>(false);
+
+  const handleClick = (event: MouseEvent | Event) => {
+    setToggle(!toggle);
+  };
+
+  const ref: Ref<HTMLButtonElement> = useRef<HTMLButtonElement>(null);
+  useOnClickOutside(ref, handleClick);
   return (
-    <StyledAccountMenu>
-      <FaBars className="bar" />
-      <BsPeopleCircle className="people" />
-    </StyledAccountMenu>
+    <>
+      <StyledAccountMenu onClick={handleClick} ref={ref}>
+        <FaBars className="bar" />
+        <BsPeopleCircle className="people" />
+        <Modal toggle={toggle}>
+          <div></div>
+        </Modal>
+      </StyledAccountMenu>
+    </>
   );
 };
 
@@ -16,12 +32,15 @@ const StyledAccountMenu = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
-  background-color: white;
+  background-color: ${({ theme }) => theme.color.White};
   border-radius: 2rem;
-  color: gray;
+  color: ${({ theme }) => theme.color.Gray3};
   padding: 0.5rem 1rem;
-  border: 1px solid #BDBDBD;
-
+  border: ${({ theme }) => theme.border.Gray4};
+  &:hover {
+    box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.15),
+      0px 3px 8px rgba(0, 0, 0, 0.1);
+  }
   .bar {
     font-size: 1.5rem;
   }
@@ -29,4 +48,5 @@ const StyledAccountMenu = styled.button`
     margin-left: 1rem;
     font-size: 2rem;
   }
+  position: relative;
 `;
