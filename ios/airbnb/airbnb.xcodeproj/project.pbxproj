@@ -92,6 +92,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B30210FE265757D900A0AA92 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */,
+				B3C8FB152655FD52005C6235 /* CityCollectionViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B3C8FB1F26562E83005C6235 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,8 +138,7 @@
 				B3D7315626523C4300FE6C62 /* AppDelegate.swift */,
 				B3D7315826523C4300FE6C62 /* SceneDelegate.swift */,
 				B3D7315C26523C4300FE6C62 /* Main.storyboard */,
-				B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */,
-				B3C8FB152655FD52005C6235 /* CityCollectionViewCell.xib */,
+				B30210FE265757D900A0AA92 /* View */,
 				B3C8FB1F26562E83005C6235 /* Model */,
 				B3D73188265289EF00FE6C62 /* Controller */,
 				B3D7315F26523C4400FE6C62 /* Assets.xcassets */,
