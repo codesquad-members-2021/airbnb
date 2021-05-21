@@ -23,6 +23,7 @@
 		E47FE1E8265292300090B931 /* AirbnbAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FE1E7265292300090B931 /* AirbnbAppUITests.swift */; };
 		E4CB9C6026566CF40068DBDA /* BestDestinationsCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CB9C5F26566CF40068DBDA /* BestDestinationsCollectionHeaderView.swift */; };
 		E4CB9C6226567B2F0068DBDA /* ResultsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CB9C6126567B2F0068DBDA /* ResultsCollectionController.swift */; };
+		E4F5233226573B830073A306 /* MainSearchCollectionViewController+ResultsUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F5233126573B830073A306 /* MainSearchCollectionViewController+ResultsUpdate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		E47FE1E9265292300090B931 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4CB9C5F26566CF40068DBDA /* BestDestinationsCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestDestinationsCollectionHeaderView.swift; sourceTree = "<group>"; };
 		E4CB9C6126567B2F0068DBDA /* ResultsCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCollectionController.swift; sourceTree = "<group>"; };
+		E4F5233126573B830073A306 /* MainSearchCollectionViewController+ResultsUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainSearchCollectionViewController+ResultsUpdate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				E43BB8F9265660C100376748 /* DestinationCollectionViewCell.swift */,
 				E43BB8FA265660C100376748 /* DestinationCollectionViewCell.xib */,
 				E43BB8F726565F9700376748 /* MainSearchCollectionViewController.swift */,
+				E4F5233126573B830073A306 /* MainSearchCollectionViewController+ResultsUpdate.swift */,
 				E4CB9C6126567B2F0068DBDA /* ResultsCollectionController.swift */,
 				E4CB9C5F26566CF40068DBDA /* BestDestinationsCollectionHeaderView.swift */,
 				E43BB8ED26562E4000376748 /* Destination.swift */,
@@ -300,6 +303,7 @@
 				E43BB8F226562F2A00376748 /* MockJSON.swift in Sources */,
 				E47FE1C82652922E0090B931 /* SceneDelegate.swift in Sources */,
 				E4CB9C6226567B2F0068DBDA /* ResultsCollectionController.swift in Sources */,
+				E4F5233226573B830073A306 /* MainSearchCollectionViewController+ResultsUpdate.swift in Sources */,
 				E4CB9C6026566CF40068DBDA /* BestDestinationsCollectionHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -64,6 +64,7 @@ class MainSearchCollectionViewController: UICollectionViewController {
     
     func configureSearchController() {
         searchController = UISearchController(searchResultsController: resultsCollectionController)
+        searchController.searchResultsUpdater = self
         searchController.searchBar.searchTextField.placeholder = "어디로 여행가세요?"
         searchController.searchBar.returnKeyType = .go
         searchController.hidesNavigationBarDuringPresentation = false
