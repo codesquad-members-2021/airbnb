@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import { FaSearch } from "react-icons/fa";
+import { PostsContext } from '../mainPage/Main';
 
 const SearchButton = () => {
+    const {toggleState} = useContext(PostsContext);
     return (
         <SearchButtonWrapper>
             <FaSearch/>
+            {toggleState.search && <SearchTitle>검색</SearchTitle>}
         </SearchButtonWrapper>
     );
 }
@@ -27,5 +30,9 @@ font-size:25px;
     background-color: #fd733d;
 }
 `;
-const SearchTitle = styled.div``;
+const SearchTitle = styled.div`
+margin-left: 5px;
+font-size:20px;
+font-weight: 800;
+`;
 export default SearchButton;

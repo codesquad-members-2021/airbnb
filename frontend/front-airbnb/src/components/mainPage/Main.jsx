@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, {useState, useReducer} from 'react';
 import styled from 'styled-components';
 import Header from './header/Header';
 import SearchBar from '../searchBar/SearchBar';
@@ -24,12 +24,16 @@ const changeModal = (toggleState, action) => {
             newToggleState.personnel = false;
             newToggleState.period = false;
             newToggleState.price = false;
+            newToggleState.search = false;
+            return newToggleState;
+        case 'search':
+            newToggleState.search = true;
             return newToggleState;
         default:
             throw new Error();
     }
 }
-const searchToggle = { period:false, price:false, personnel:false};
+const searchToggle = { period:false, price:false, personnel:false, search:false};
 export const PostsContext = React.createContext();
 const Main = () => {
     const [toggleState, dispatch] = useReducer(changeModal, searchToggle)
