@@ -5,24 +5,33 @@ import com.example.airbnb.domain.Accommodation;
 public class AccommodationDTO {
 
     //LocationDTO location;
+    private Long id;
     private String title;
     private Double reviewRating;
     private Integer reviewCount;
     private Integer charge;
     private String badge;
     private String  image;
+    private Boolean isLike;
 
     public AccommodationDTO(Accommodation accommodation) {
+        this.id = accommodation.getId();
         this.title = accommodation.getTitle();
         this.reviewRating = accommodation.getReviewRating();
         this.reviewCount = accommodation.getReviewCount();
         this.charge = accommodation.getCharge();
         this.badge = accommodation.getBadge();
         this.image = accommodation.getImage();
+        this.isLike = accommodation.getIsLike();
     }
 
-    // Boolean isLike;
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -70,5 +79,13 @@ public class AccommodationDTO {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Boolean getLike() {
+        return isLike;
+    }
+
+    public void setLike(Boolean like) {
+        isLike = like;
     }
 }

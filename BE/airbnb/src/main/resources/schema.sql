@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `accommodation`
     reviewCount  INT,
     charge       INT,
     badge        varchar(64),
-    image        varchar(64),
+    image        varchar(300),
     isLike       TINYINT(1)
 ) DEFAULT CHARSET = utf8;
 
