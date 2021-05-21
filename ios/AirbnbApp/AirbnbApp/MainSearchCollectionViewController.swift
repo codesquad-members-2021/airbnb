@@ -46,6 +46,7 @@ class MainSearchCollectionViewController: UICollectionViewController {
         searchedDestinations = addresses
         
         self.tabBarController?.tabBar.isHidden = true
+        searchController.searchBar.searchTextField.clearButtonMode = .never
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,7 +72,6 @@ class MainSearchCollectionViewController: UICollectionViewController {
         searchController.automaticallyShowsCancelButton = false
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.delegate = self
         searchController.searchBar.delegate = self
         
         definesPresentationContext = true
@@ -103,20 +103,22 @@ extension MainSearchCollectionViewController {
 // MARK: - UISearchBarDelegate
 
 extension MainSearchCollectionViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let inputText = searchBar.text else { return }
+        self.navigationItem.rightBarButtonItem = inputText.isEmpty ? nil : UIBarButtonItem(title: "지우기",
+                                                                                           style: .done,
+                                                                                           target: self,
+                                                                                           action: #selector(clearSearchBar))
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchController.dismiss(animated: true, completion: nil)
         searchBar.text = ""
     }
-}
-
-// MARK: - UISearchControllerDelegate
-
-extension MainSearchCollectionViewController: UISearchControllerDelegate {
-    func presentSearchController(_ searchController: UISearchController) {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "지우기", style: .done, target: self, action: nil)
-    }
     
-    func willDismissSearchController(_ searchController: UISearchController) {
+    @objc
+    func clearSearchBar() {
+        searchController.searchBar.text = ""
         self.navigationItem.rightBarButtonItem = nil
     }
 }
