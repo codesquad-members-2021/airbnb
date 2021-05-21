@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { SearchContext } from '..';
+import CloseButton from '../../buttons/CloseBtn';
 
 const People = ({ dispatch }) => {
-  const { peopleCount } = useContext(SearchContext);
+  const { peopleCount, peopleDispatch } = useContext(SearchContext);
   const { adult, child, baby } = peopleCount;
 
   return (
@@ -16,13 +17,17 @@ const People = ({ dispatch }) => {
             : '게스트 추가'}
         </PeopleInp>
       </PeopleWrap>
+      {adult || child || baby ? (
+        <CloseButton fn={() => peopleDispatch({ type: 'RESET' })} />
+      ) : null}
     </PeopleDiv>
   );
 };
 
 const PeopleDiv = styled.div`
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
   padding: 0.9rem 1.5rem;
   border-radius: 3rem;
   &:hover {
