@@ -3,7 +3,8 @@ import { useState, MouseEvent, useRef, Ref } from "react";
 import { BsPeopleCircle } from "react-icons/bs";
 import { FaBars } from "react-icons/fa";
 import useOnClickOutside from "hooks/useOnClickOutside";
-import styled from "styled-components";
+import styled, {css}from "styled-components";
+import LogInList from "./LogInList";
 const AccountMenu = () => {
   const [toggle, setToggle] = useState<Boolean>(false);
 
@@ -18,8 +19,8 @@ const AccountMenu = () => {
       <StyledAccountMenu onClick={handleClick} ref={ref}>
         <FaBars className="bar" />
         <BsPeopleCircle className="people" />
-        <Modal toggle={toggle}>
-          <div></div>
+        <Modal toggle={toggle} br="0.5rem" position={ModalPosition}>
+          <LogInList />
         </Modal>
       </StyledAccountMenu>
     </>
@@ -27,6 +28,10 @@ const AccountMenu = () => {
 };
 
 export default AccountMenu;
+const ModalPosition = css`
+  top: 115%;
+  right: 0;
+`;
 
 const StyledAccountMenu = styled.button`
   display: flex;
@@ -50,3 +55,5 @@ const StyledAccountMenu = styled.button`
   }
   position: relative;
 `;
+
+
