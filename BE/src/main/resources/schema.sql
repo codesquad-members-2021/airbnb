@@ -11,7 +11,7 @@ create table location
 create table property
 (
     id          bigint primary key auto_increment,
-    name        varchar(45),
+    name        varchar(255),
     price       int,
     location_id BIGINT,
     foreign key (location_id) references location (id)
@@ -70,6 +70,14 @@ create table wish_list
     property_id bigint,
     foreign key (user_id) references user (id),
     foreign key (property_id) references property (id)
+);
+
+drop table property_category;
+create table property_category
+(
+    id bigint primary key auto_increment,
+    name varchar(45),
+    image_url varchar(1000)
 );
 
 drop table wish_list, reservation, user, property_detail, image, property, location;
