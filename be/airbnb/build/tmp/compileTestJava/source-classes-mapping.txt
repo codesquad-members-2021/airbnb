@@ -1,2 +1,0 @@
-com/team19/airbnb/AirbnbApplicationTests.java
- com.team19.airbnb.AirbnbApplicationTests
