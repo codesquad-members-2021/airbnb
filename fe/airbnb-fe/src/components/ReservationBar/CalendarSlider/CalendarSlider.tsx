@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import React, { useState, useEffect, useRef, useMemo, ReactElement } from 'react';
-import { useRecoilState } from 'recoil';
-// import { CheckInOutState } from '../atoms';
+import { useRecoilValue, useRecoilState } from 'recoil';
 
+import { T_CheckInOut } from '../atoms';
+import { CheckInOut } from '../atoms';
 import Calendar, { CalendarProps } from './Calendar';
 
 type CalendarSliderProps = {
@@ -18,17 +19,18 @@ function CalendarSlider({ className }: CalendarSliderProps): ReactElement {
   const [slideWidth, setSlideWidth] = useState<number>(0);
   const [calendarsData, setCalendarsData] = useState<CalendarProps[]>([]);
   const [todayDate] = useState<Date>(new Date());
+  const checkInOut = useRecoilValue<T_CheckInOut>(CheckInOut);
   const calendarCnt = 2;
 
   useEffect(() => {
-    // const todayDate: Date = new Date();
+    const pivotDate: Date = checkInOut.in && checkInOut.out ? new Date(checkInOut.in) : todayDate;
     const newCalendarsData: CalendarProps[] = Array(calendarCnt + 2);
     const daysOffsetWidth: number = daysRef.current?.offsetWidth ?? 0;
     const newBetweenSpace: number = (ref.current?.offsetWidth ?? 0) - 2 * daysOffsetWidth;
 
     for (let i = 0; i < newCalendarsData.length; i++) {
-      const currDate: Date = new Date();
-      currDate.setMonth(todayDate.getMonth() + i - 1);
+      const currDate: Date = new Date(pivotDate);
+      currDate.setMonth(pivotDate.getMonth() + i - 1);
 
       newCalendarsData[i] = {
         width: daysOffsetWidth,

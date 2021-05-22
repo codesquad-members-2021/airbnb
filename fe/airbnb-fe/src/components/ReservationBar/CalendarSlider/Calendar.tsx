@@ -4,6 +4,7 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 
 import { ReservationBarBtnType, T_CheckInOut } from '../atoms';
 import { SelectedBtn, CheckInOut } from '../atoms';
+import { HoveredDate } from './atoms';
 
 export type CalendarProps = {
   className?: string,
@@ -16,6 +17,21 @@ export type CalendarProps = {
 function Calendar({ className, todayDate, width, year, month }: CalendarProps): ReactElement {
   const [selectedBtn, setSelectedBtn] = useRecoilState(SelectedBtn);
   const [checkInOut, setCheckInOut] = useRecoilState(CheckInOut);
+  const [hoveredDate, setHoveredDate] = useRecoilState(HoveredDate);
+
+  const handleMouseOverDate = ({ target }: React.MouseEvent<HTMLTableSectionElement>): void => {
+    if (!(target as HTMLElement).dataset.date) {
+      setHoveredDate(null);
+      return;
+    }
+
+    const dateValue: number = Number((target as HTMLElement).dataset.date);
+    setHoveredDate(dateValue);
+  }
+
+  const handleMouseLeaveTable = (): void => {
+    setHoveredDate(null);
+  }
 
   const handleClickDate = ({ target }: React.MouseEvent<HTMLTableSectionElement>): void => {
     if (!(target as HTMLElement).dataset.date)
@@ -27,7 +43,7 @@ function Calendar({ className, todayDate, width, year, month }: CalendarProps): 
     if (selectedBtn === ReservationBarBtnType.CheckIn) {
       newCheckInOut.in = dateValue;
 
-      if (newCheckInOut.out && newCheckInOut.out > dateValue)
+      if (newCheckInOut.out && dateValue > newCheckInOut.out)
         newCheckInOut.out = null;
       
       setSelectedBtn(ReservationBarBtnType.CheckOut);
@@ -47,31 +63,57 @@ function Calendar({ className, todayDate, width, year, month }: CalendarProps): 
 
   const renderDate = (currDate: Date): ReactElement => {
     const _getTdClassName = (currDate: Date): string => {
-      if (!checkInOut.in || !checkInOut.out || checkInOut.in === checkInOut.out)
+      if ((!checkInOut.in && !checkInOut.out) || checkInOut.in === checkInOut.out)
         return '';
-
+      
       const v: number = currDate.valueOf();
-      if (v === checkInOut.in) return 'selected-start';
-      if (v === checkInOut.out) return 'selected-end';
-      if (v > checkInOut.in && v < checkInOut.out) return 'selected-intermediate';
+
+      if (checkInOut.in && checkInOut.out) {
+        if (v === checkInOut.in) return 'selected-start';
+        if (v === checkInOut.out) return 'selected-end';
+        if (v > checkInOut.in && v < checkInOut.out) return 'selected-intermediate';
+        return '';
+      }
+
+      if (hoveredDate) {
+        if (checkInOut.in) {
+          if (v === checkInOut.in) return 'selected-start';
+          if (v === hoveredDate && hoveredDate > checkInOut.in) return 'selected-end';
+          if (v > checkInOut.in && v < hoveredDate) return 'selected-intermediate';
+        }
+        if (checkInOut.out) {
+          if (v === checkInOut.out) return 'selected-end';
+          if (v === hoveredDate && hoveredDate < checkInOut.out) return 'selected-start';
+          if (v < checkInOut.out && v > hoveredDate) return 'selected-intermediate';
+        }
+      }
+      
       return '';
     };
 
-    function _isPast(todayDate: Date, currDate: Date): boolean {
+    const _isPast = (todayDate: Date, currDate: Date): boolean => {
       if (todayDate.getFullYear() > currDate.getFullYear()) return true;
       if (todayDate.getMonth() > currDate.getMonth()) return true;
       if (todayDate.getMonth() === currDate.getMonth() && todayDate.getDate() > currDate.getDate()) return true;
       return false;
     };
 
+    const _isSelected = (currDate: Date): boolean => {
+      const v: number = currDate.valueOf();
+      if (v === checkInOut.in || v === checkInOut.out) return true;
+      if (checkInOut.in && checkInOut.out) return false;
+      if (hoveredDate) {
+        if (v === hoveredDate && checkInOut.in && hoveredDate > checkInOut.in) return true;
+        if (v === hoveredDate && checkInOut.out && hoveredDate < checkInOut.out) return true;
+      }
+      return false;
+    }
+
     return (
       <>
         <td key={currDate.valueOf()} className={_getTdClassName(currDate)}>
           <div
-            className={
-              (_isPast(todayDate, currDate) ? 'past' : '') +
-              (currDate.valueOf() === checkInOut.in || currDate.valueOf() === checkInOut.out ? ' selected' : '')
-            }
+            className={(_isPast(todayDate, currDate) ? 'past' : '') + (_isSelected(currDate) ? ' selected' : '')}
             data-date={currDate.valueOf()}>
             {currDate.getDate()}
           </div>
@@ -105,12 +147,15 @@ function Calendar({ className, todayDate, width, year, month }: CalendarProps): 
   }
 
   return (
-    <StyledCalendar width={width}>
+    <StyledCalendar
+      width={width}>
       <YearMonth>
         {year + '년 ' + (month + 1) + '월'}
       </YearMonth>
-      <CalendarTable>
-        <CalendarTableBody onClick={handleClickDate}>
+      <CalendarTable onMouseLeave={handleMouseLeaveTable}>
+        <CalendarTableBody
+          onClick={handleClickDate}
+          onMouseOver={handleMouseOverDate}>
           {renderWeeks()}
         </CalendarTableBody>
       </CalendarTable>
@@ -138,7 +183,7 @@ const YearMonth = styled.div`
 const CalendarTable = styled.table`
   padding-top: 3.5rem;
   margin: 0;
-  border-spacing: 0;
+  border-spacing: 0 0.3rem;
 `;
 
 const CalendarTableBody = styled.tbody`
@@ -177,7 +222,7 @@ const CalendarTableBody = styled.tbody`
     &.selected-start,
     &.selected-intermediate,
     &.selected-end {
-      background-color: #cdcdcd;
+      background-color: #eeeeee;
     }
 
     &.selected-start {
