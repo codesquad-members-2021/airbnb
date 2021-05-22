@@ -17,11 +17,17 @@ class LocationSearchViewController: UITableViewController {
         return button
     }()
     
+    private lazy var backBarButtonItem: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "뒤로", style: .plain, target: self, action: nil)
+        return button
+    }()
+    
     private var resultTableViewController = LocationResultViewController()
     private var searchController: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configure()
         setUpSearchController()
         setUpTableView()
@@ -31,6 +37,7 @@ class LocationSearchViewController: UITableViewController {
         title = "숙소 찾기"
         navigationItem.rightBarButtonItem = deleteText
         navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.backBarButtonItem = backBarButtonItem
         tabBarController?.tabBar.isHidden = true
     }
     
@@ -76,6 +83,13 @@ class LocationSearchViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: "Calendar", bundle: nil)
+        guard let calendarViewController = storyBoard.instantiateViewController(withIdentifier: "Calendar") as? CalendarViewController else {
+            return
+        }
+        self.navigationController?.pushViewController(calendarViewController, animated: true)
+    }
 }
 
 extension LocationSearchViewController: UISearchResultsUpdating {

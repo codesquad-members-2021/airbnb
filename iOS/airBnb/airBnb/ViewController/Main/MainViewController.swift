@@ -23,6 +23,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.titleView = searchBar
         tripIdeaButton.layer.cornerRadius = 10
+        CalendarManager()
     }
 
     override func viewWillAppear(_ animated: Bool) {

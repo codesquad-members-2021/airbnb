@@ -36,5 +36,4 @@ class LocationResultViewController: UITableViewController {
         cell.configure(city: resultCities[indexPath.row])
         return cell
     }
-
 }
