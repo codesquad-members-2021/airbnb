@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import styled from "styled-components";
-import { ReactComponent as Menu } from 'image/menu.svg';
-import { ReactComponent as Login } from 'image/login.svg';
+import Header from "components/Header/Header";
+import SearchBar from "components/SearchBar/SearchBar";
+import Responsive from "components/common/Responsive";
 
-
-const Mainpage = ({link}) => {
-
+const MainPage = ({ link }) => {
   // const getToken = () => {
   //   // const params = new URLSearchParams(window.location.search);
   //       const code = "261ac6065884d19df5a7"
@@ -24,45 +23,35 @@ const Mainpage = ({link}) => {
 
   // useEffect(() => {
   //  getToken();
-  // }, []) 
+  // }, [])
 
   return (
-    <MainpageLayout>
-      <Hamburger link={link}>
-        <Menu className="menu"/>
-        <Login className="login"/>
-      </Hamburger>
-    </MainpageLayout>
-  )
+    <>
+      <MainPageLayout>
+        <Header />
+        <SearchBar />
+      </MainPageLayout>
+      <HeroBackgroundImageLayer />
+    </>
+  );
 };
 
-const MainpageLayout =  styled.div`
-  display: flex;
-`
+const MainPageLayout = styled(Responsive)``;
 
-const Hamburger = styled.a.attrs((props) => ({
-  href: props.link,
-}))`
-  width: 76px;
-  height: 40px;
-  border: 1px solid #DDDDDD;
-  border-radius: 30px;
-  color: #555;
-  text-align: center;
-  cursor: pointer;
-  padding: 5px 5px 5px 12px;
-  display: flex;
-  align-items: center;
+const HeroBackgroundImageLayer = styled.div`
+  width: 100%;
+  height: 80%;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  background-image: url("https://a0.muscache.com/im/pictures/ddc7f01f-3fb3-483c-87e6-701dad52c930.jpg");
+  background-size: cover;
 
-  .menu {
-    padding: 8px;
+  @media (max-width: 1024px) {
+    width: 100%;
+    height: 80%;
+    background-image: url("https://a0.muscache.com/im/pictures/4e9fc041-1c7e-4f2d-b2bd-52c9cdc6a512.jpg");
   }
+`;
 
-  .login {
-    padding: 8px;
-  }
-
-`
-
-
-export default Mainpage;
+export default MaiPage;
