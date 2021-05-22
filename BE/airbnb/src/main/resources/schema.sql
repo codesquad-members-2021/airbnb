@@ -19,13 +19,14 @@ USE `airbnb_db` ;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `airbnb_db`.`accommodation`;
 CREATE TABLE IF NOT EXISTS `airbnb_db`.`accommodation` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `maxPeople` INT NOT NULL DEFAULT 1,
+  `max_people` INT NOT NULL DEFAULT 1,
   `type` VARCHAR(45) NOT NULL,
   `num_of_bed` INT NOT NULL DEFAULT 1,
   `num_of_bathroom` INT NOT NULL DEFAULT 1,
-  `cost` INT NOT NULL,
+  `price` INT NOT NULL,
+  `address` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -34,7 +35,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `airbnb_db`.`accommodation_detail`;
 CREATE TABLE IF NOT EXISTS `airbnb_db`.`accommodation_detail` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `host_name` VARCHAR(45) NULL,
   `description` VARCHAR(45) NULL,
   `accommodation_id` INT NOT NULL,
@@ -53,7 +54,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `airbnb_db`.`reservation`;
 CREATE TABLE IF NOT EXISTS `airbnb_db`.`reservation` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `check_in_date` DATE NULL,
   `check_out_date` DATE NULL,
   `accommodation_id` INT NOT NULL,
@@ -72,14 +73,15 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `airbnb_db`.`reservation_date`;
 CREATE TABLE IF NOT EXISTS `airbnb_db`.`reservation_date` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `reserved_date` DATE NULL,
   `reservation_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `reservation_id`),
-  INDEX `fk_reservation_date_reservation1_idx` (`reservation_id` ASC) VISIBLE,
+  `reservation_accommodation_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `reservation_id`, `reservation_accommodation_id`),
+  INDEX `fk_reservation_date_reservation1_idx` (`reservation_id` ASC, `reservation_accommodation_id` ASC) VISIBLE,
   CONSTRAINT `fk_reservation_date_reservation1`
-    FOREIGN KEY (`reservation_id`)
-    REFERENCES `airbnb_db`.`reservation` (`id`)
+    FOREIGN KEY (`reservation_id` , `reservation_accommodation_id`)
+    REFERENCES `airbnb_db`.`reservation` (`id` , `accommodation_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
