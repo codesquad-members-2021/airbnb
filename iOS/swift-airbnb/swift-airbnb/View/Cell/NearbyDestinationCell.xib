@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,28 +33,38 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지역 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ix-5F-spe">
-                                <rect key="frame" x="96" y="16" width="63" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="거리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEu-PA-Lmx">
-                                <rect key="frame" x="96" y="43" width="29.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="u7p-iO-A2G">
+                                <rect key="frame" x="96" y="14" width="124" height="52"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지역 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ix-5F-spe">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="mIM-3g-p2u"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="거리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEu-PA-Lmx">
+                                        <rect key="frame" x="0.0" y="30" width="124" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="527-We-tUY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Ql-10-hKW" firstAttribute="leading" secondItem="aeq-ha-Lqu" secondAttribute="leading" id="3tr-tB-IZP"/>
-                            <constraint firstItem="OEu-PA-Lmx" firstAttribute="leading" secondItem="6Ql-10-hKW" secondAttribute="trailing" constant="16" id="4zX-Gc-MJZ"/>
                             <constraint firstAttribute="bottom" secondItem="6Ql-10-hKW" secondAttribute="bottom" id="7yO-t9-dvA"/>
                             <constraint firstItem="6Ql-10-hKW" firstAttribute="top" secondItem="aeq-ha-Lqu" secondAttribute="top" id="8ZG-Eo-TeH"/>
-                            <constraint firstAttribute="bottom" secondItem="OEu-PA-Lmx" secondAttribute="bottom" constant="16" id="Dt9-J6-7yl"/>
-                            <constraint firstItem="2ix-5F-spe" firstAttribute="leading" secondItem="6Ql-10-hKW" secondAttribute="trailing" constant="16" id="EPF-vC-rXO"/>
-                            <constraint firstItem="2ix-5F-spe" firstAttribute="top" secondItem="aeq-ha-Lqu" secondAttribute="top" constant="16" id="GZg-Ju-dMo"/>
+                            <constraint firstItem="u7p-iO-A2G" firstAttribute="centerY" secondItem="aeq-ha-Lqu" secondAttribute="centerY" id="feK-o6-9kW"/>
+                            <constraint firstItem="u7p-iO-A2G" firstAttribute="leading" secondItem="6Ql-10-hKW" secondAttribute="trailing" constant="16" id="gzG-dq-Ih2"/>
+                            <constraint firstAttribute="trailing" secondItem="u7p-iO-A2G" secondAttribute="trailing" id="nJr-Lt-2dy"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -71,7 +82,7 @@
                 <outlet property="distanceLabel" destination="OEu-PA-Lmx" id="NzJ-GS-0vo"/>
                 <outlet property="imageView" destination="6Ql-10-hKW" id="GsR-pb-cBN"/>
             </connections>
-            <point key="canvasLocation" x="200.00000000000003" y="75.669642857142847"/>
+            <point key="canvasLocation" x="200.00000000000003" y="75"/>
         </collectionViewCell>
     </objects>
     <resources>

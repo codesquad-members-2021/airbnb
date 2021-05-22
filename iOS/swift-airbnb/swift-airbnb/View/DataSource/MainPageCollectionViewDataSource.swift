@@ -7,7 +7,7 @@
 
 import UIKit
 
-class mainPageCollectionViewDataSource {
+class MainPageCollectionViewDataSource {
     
     enum Section: Int, CaseIterable {
         case curation, nearbyDestination, variousDestination
@@ -30,15 +30,15 @@ class mainPageCollectionViewDataSource {
         self.dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
             let section = Section.allCases[indexPath.section]
             
-            if let item = item as? CurationModel, section == .curation {
+            if let item = item as? Curation, section == .curation {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurationCell.reuseIdentifier, for: indexPath) as! CurationCell
                 cell.configure(model: item)
                 return cell
-            } else if let item = item as? NearbyDestinationModel, section == .nearbyDestination {
+            } else if let item = item as? NearbyDestination, section == .nearbyDestination {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NearbyDestinationCell.reuseIdentifier, for: indexPath) as! NearbyDestinationCell
                 cell.configure(model: item)
                 return cell
-            } else if let item = item as? VariousDestinationModel, section == .variousDestination {
+            } else if let item = item as? VariousDestination, section == .variousDestination {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VariousDestinationCell.reuseIdentifier, for: indexPath) as! VariousDestinationCell
                 cell.configure(model: item)
                 return cell

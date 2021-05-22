@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NearbyDestinationModel {
+class NearbyDestination {
     private(set) var cityImage: String
     private(set) var cityName: String
     private(set) var distance: String
@@ -19,8 +19,8 @@ class NearbyDestinationModel {
     }
 }
 
-extension NearbyDestinationModel: Equatable, Hashable {
-    static func == (lhs: NearbyDestinationModel, rhs: NearbyDestinationModel) -> Bool {
+extension NearbyDestination: Equatable, Hashable {
+    static func == (lhs: NearbyDestination, rhs: NearbyDestination) -> Bool {
         return lhs.cityImage == rhs.cityName && lhs.cityName == rhs.cityName && lhs.distance == rhs.distance
     }
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class VariousDestinationModel {
+class VariousDestination {
     private(set) var destinationImage: String
     private(set) var destinationDescription: String
     
@@ -17,8 +17,8 @@ class VariousDestinationModel {
     }
 }
 
-extension VariousDestinationModel: Equatable, Hashable {
-    static func == (lhs: VariousDestinationModel, rhs: VariousDestinationModel) -> Bool {
+extension VariousDestination: Equatable, Hashable {
+    static func == (lhs: VariousDestination, rhs: VariousDestination) -> Bool {
         return lhs.destinationImage == rhs.destinationImage && lhs.destinationDescription == rhs.destinationDescription
     }
     

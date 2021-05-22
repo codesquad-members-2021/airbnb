@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CurationModel {
+class Curation {
     private(set) var curationImage: String
     
     init(curationImage: String) {
@@ -15,8 +15,8 @@ class CurationModel {
     }
 }
 
-extension CurationModel: Hashable, Equatable {
-    static func == (lhs: CurationModel, rhs: CurationModel) -> Bool {
+extension Curation: Equatable, Hashable {
+    static func == (lhs: Curation, rhs: Curation) -> Bool {
         return lhs.curationImage == rhs.curationImage
     }
     

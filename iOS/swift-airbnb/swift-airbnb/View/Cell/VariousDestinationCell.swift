@@ -16,7 +16,7 @@ class VariousDestinationCell: UICollectionViewCell {
         return UINib(nibName: reuseIdentifier, bundle: nil)
     }
 
-    func configure(model: VariousDestinationModel) {
+    func configure(model: VariousDestination) {
         let image = UIImage(named: "\(model.destinationImage)")
         self.imageView.image = image
         self.imageDescriptionLabel.text = model.destinationDescription

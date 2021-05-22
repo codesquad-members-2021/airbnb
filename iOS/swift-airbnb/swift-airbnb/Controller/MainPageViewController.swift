@@ -7,10 +7,10 @@
 
 import UIKit
 
-class mainPageViewController: UIViewController {
+class MainPageViewController: UIViewController {
     @IBOutlet weak var mainPageCollectionView: UICollectionView!
     
-    private var dataSource = mainPageCollectionViewDataSource()
+    private var dataSource = MainPageCollectionViewDataSource()
     private var mainPageModel = MainPageModel()
     
     override func viewDidLoad() {
@@ -21,7 +21,12 @@ class mainPageViewController: UIViewController {
         self.dataSource.setDataSource(collectionView: mainPageCollectionView)
         self.dataSource.applySnapshot(with: mainPageModel)
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     private func configureCollectionViewLayout() {
         self.mainPageCollectionView.setCollectionViewLayout(createLayout(), animated: false)
     }
@@ -35,13 +40,13 @@ class mainPageViewController: UIViewController {
 }
 
 //MARK: create layout of collectionView
-extension mainPageViewController {
+extension MainPageViewController {
     private func createLayout() -> UICollectionViewLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.interSectionSpacing = 20
         
         let layout = UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            let section = mainPageCollectionViewDataSource.Section.allCases[sectionIndex]
+            let section = MainPageCollectionViewDataSource.Section.allCases[sectionIndex]
             
             switch section {
             case .curation:
