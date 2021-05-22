@@ -37,20 +37,35 @@ class CalendarDayCell: UICollectionViewCell {
         dayLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
     
-    func configure(day: String) {
-        day.isEmpty ? empty() : show(dayText: day)
+    func configure(day: Date?) {
+        day == nil ? empty() : show(dayText: day)
     }
     
-    func updateLabel(text: String) {
-        dayLabel.text = text.components(separatedBy: "-")[2]
+    func updateLabel(text: Date?) {
+        guard let date = text else {
+             return
+        }
+        dayLabel.text = DateFormatter().convertDayString(date: date)
     }
     
     func empty() {
         self.isHidden = true
     }
     
-    func show(dayText: String) {
+    func show(dayText: Date?) {
         self.isHidden = false
         updateLabel(text: dayText)
+    }
+    
+    func setupDaysRange(dates: SequenceDates, day: Date?) {
+        guard let start = dates.start, let end = dates.end, let day = day else {
+            self.backgroundColor = .clear
+             return
+        }
+        if start <= day && end >= day {
+            self.backgroundColor = .brown
+        } else {
+            self.backgroundColor = .clear
+        }
     }
 }

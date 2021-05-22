@@ -9,10 +9,10 @@ import UIKit
 
 class CalendarDataSource: NSObject, UICollectionViewDataSource {
     
-    let dates: [String:[String]]
+    let dates: [String:[Date?]]
     var sequenceDates: SequenceDates
     
-    init(dates: [String:[String]], sequenceDates: SequenceDates) {
+    init(dates: [String:[Date?]], sequenceDates: SequenceDates) {
         self.dates = dates
         self.sequenceDates = sequenceDates
     }
@@ -31,9 +31,9 @@ class CalendarDataSource: NSObject, UICollectionViewDataSource {
             return .init()
         }
         let month = CalendarHelper.getMonth(index: indexPath.section)
-        let day = dates[month]?[indexPath.row] ?? ""
-        print(sequenceDates)
+        let day = dates[month]?[indexPath.row]
         cell.configure(day: day)
+        cell.setupDaysRange(dates : sequenceDates, day: day)
         return cell
     }
     

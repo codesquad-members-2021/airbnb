@@ -11,8 +11,8 @@ class CalendarHelper {
     private static let calendar = Calendar.current
     private static let dateFormatter = DateFormatter()
     
-    static func makeCalenderDate() -> [String:[String]] {
-        var dates: [String:[String]] = [:]
+    static func makeCalenderDate() -> [String:[Date?]] {
+        var dates: [String:[Date?]] = [:]
         (0..<12).forEach { (value) in
             let month = calendar.date(byAdding: .month, value: value, to: Date()) ?? Date()
             let days = makeDays(date: month)
@@ -22,19 +22,18 @@ class CalendarHelper {
         return dates
     }
     
-    static func makeDays(date: Date) -> [String] {
-        var days: [String] = []
+    static func makeDays(date: Date) -> [Date?] {
+        var days: [Date?] = []
         let daysInMonth = getDaysInMonth(date: date)
         let firstDayOfMonth = getFirstOfMonth(date: date)
         let startingSpaces = getWeekDay(date: firstDayOfMonth)
         (1...daysInMonth + startingSpaces).forEach { (count) in
             checkFirstDayRange(day: count) ?
-                days.append("") :
-                days.append(convertString(v:count - startingSpaces))
+                days.append(nil) :
+                days.append(createDay(with:count - startingSpaces))
         }
-        func convertString(v: Int) -> String {
-            let date = calendar.date(byAdding: .day, value: v - 1, to: firstDayOfMonth) ?? Date()
-            return DateFormatter().convertCalenderDayString(date: date)
+        func createDay(with count: Int) -> Date {
+            return calendar.date(byAdding: .day, value: count - 1, to: firstDayOfMonth) ?? Date()
         }
         
         func checkFirstDayRange(day: Int) -> Bool {
@@ -72,6 +71,11 @@ extension DateFormatter {
     
     func convertCalenderDayString(date: Date) -> String {
         self.dateFormat = "yyyy-M-d"
+        return self.string(from: date)
+    }
+    
+    func convertDayString(date: Date) -> String {
+        self.dateFormat = "d"
         return self.string(from: date)
     }
 }

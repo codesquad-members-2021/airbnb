@@ -8,11 +8,11 @@
 import Foundation
 
 struct SequenceDates {
-    var start,end: String?
+    var start,end: Date?
 }
 
 class CalendarManager {
-    private(set) var dates: [String:[String]] = [:]
+    private(set) var dates: [String:[Date?]] = [:]
     private(set) var sequenceDates: SequenceDates
     
     enum NotiName {
@@ -28,25 +28,25 @@ class CalendarManager {
         dates = CalendarHelper.makeCalenderDate()
     }
     
-    func selectDay(with day: String) {
-        let willSelectedDate = day
+    func selectDay(with day: Date) {
+        let selectedDate = day
         
         if sequenceDates.start == nil && sequenceDates.end == nil {
-            sequenceDates.start = willSelectedDate
+            sequenceDates.start = selectedDate
             sequenceDates.end = nil
         } else if let _ = sequenceDates.start, let _ = sequenceDates.end {
-            sequenceDates.start = willSelectedDate
+            sequenceDates.start = selectedDate
             sequenceDates.end = nil
-        } else if let start = sequenceDates.start, sequenceDates.end == nil && start == willSelectedDate {
+        } else if let start = sequenceDates.start, sequenceDates.end == nil && start == selectedDate {
             sequenceDates.start = nil
             sequenceDates.end = nil
-        } else if let start = sequenceDates.start, sequenceDates.end == nil && start != willSelectedDate {
-            if willSelectedDate < start {
-                sequenceDates.start = willSelectedDate
+        } else if let start = sequenceDates.start, sequenceDates.end == nil && start != selectedDate {
+            if selectedDate < start {
+                sequenceDates.start = selectedDate
                 sequenceDates.end = start
             } else {
                 sequenceDates.start = start
-                sequenceDates.end = willSelectedDate
+                sequenceDates.end = selectedDate
             }
         } else {
             sequenceDates.start = nil
