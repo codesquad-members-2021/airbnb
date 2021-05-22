@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Header from "./header/Header";
-import SearchBar from "./searchbar/SearchBar";
+import SearchBar from "./searchbar/Searchbar";  
+
 const Main = () => {
   return (
     <StyledMain>
