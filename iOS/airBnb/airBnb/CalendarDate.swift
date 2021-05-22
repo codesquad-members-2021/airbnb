@@ -9,11 +9,35 @@ import Foundation
 
 class CalendarDate {
     
-    var dates: [String:[String]] = [:]
+    private(set) var sequenceDates: SequenceDates
     
-    struct SequenceDates {
-        var start,end: String?
+    init() {
+        sequenceDates = .init(start: nil, end: nil)
     }
-    lazy var sequenceDates: SequenceDates = .init(start: nil, end: nil)
-    var selectDates: (from: Date?, to: Date?) = (from: nil, to: nil)
+    
+    func willSelectDates(with indexPath: String) {
+        let willSelectedDate = indexPath
+        
+        if sequenceDates.start == nil && sequenceDates.end == nil {
+            sequenceDates.start = willSelectedDate
+            sequenceDates.end = nil
+        } else if let _ = sequenceDates.start, let _ = sequenceDates.end {
+            sequenceDates.start = willSelectedDate
+            sequenceDates.end = nil
+        } else if let start = sequenceDates.start, sequenceDates.end == nil && start == willSelectedDate {
+            sequenceDates.start = nil
+            sequenceDates.end = nil
+        } else if let start = sequenceDates.start, sequenceDates.end == nil && start != willSelectedDate {
+            if willSelectedDate < start {
+                sequenceDates.start = willSelectedDate
+                sequenceDates.end = start
+            } else {
+                sequenceDates.start = start
+                sequenceDates.end = willSelectedDate
+            }
+        } else {
+            sequenceDates.start = nil
+            sequenceDates.end = nil
+        }
+    }
 }

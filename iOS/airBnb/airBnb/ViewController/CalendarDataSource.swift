@@ -10,9 +10,11 @@ import UIKit
 class CalendarDataSource: NSObject, UICollectionViewDataSource {
     
     let dates: [String:[String]]
+    var sequenceDates: SequenceDates
     
-    init(dates: [String:[String]]) {
+    init(dates: [String:[String]], sequenceDates: SequenceDates) {
         self.dates = dates
+        self.sequenceDates = sequenceDates
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -30,6 +32,7 @@ class CalendarDataSource: NSObject, UICollectionViewDataSource {
         }
         let month = CalendarHelper.getMonth(index: indexPath.section)
         let day = dates[month]?[indexPath.row] ?? ""
+        print(sequenceDates)
         cell.configure(day: day)
         return cell
     }

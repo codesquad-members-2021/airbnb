@@ -11,23 +11,49 @@ class CalendarViewController: UIViewController {
 
     @IBOutlet weak var calendarCollection: UICollectionView!
     
-    private var calendarManger = CalendarManager()
-    private var calendarDelegate = CalendarDelegate()
-    private lazy var calendarDataSource: UICollectionViewDataSource = {
-        let dataSource = CalendarDataSource(dates: calendarManger.dates)
-        return dataSource
-    }()
+    private var calendarManager = CalendarManager()
+    private var calendarDataSource: CalendarDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createDataSoure()
         configure()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateSequseDates(_:)), name: CalendarManager.NotiName.selectDate, object: calendarManager)
     }
     
     func configure() {
         calendarCollection.register(CalendarDayCell.self, forCellWithReuseIdentifier: CalendarDayCell.identifier)
         calendarCollection.register(CalendarHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CalendarHeaderView.identifier)
         calendarCollection.dataSource = calendarDataSource
-        calendarCollection.delegate = calendarDelegate
+        calendarCollection.delegate = self
     }
     
+    private func createDataSoure() {
+        calendarDataSource = CalendarDataSource(dates: calendarManager.dates, sequenceDates: calendarManager.sequenceDates)
+    }
+    
+    @objc func updateSequseDates(_ notification: Notification) {
+        guard let sequseDate = notification.userInfo?["sequenceDates"] as? SequenceDates else {
+            return
+        }
+        calendarDataSource?.sequenceDates = sequseDate
+    }
+}
+
+extension CalendarViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.size.width / 7,
+                      height: collectionView.frame.size.width / 7)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.size.width, height: 60)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let month = CalendarHelper.getMonth(index: indexPath.section)
+        let day = calendarManager.dates[month]?[indexPath.row] ?? ""
+        calendarManager.selectDay(with: day)
+        collectionView.reloadData()
+    }
 }
