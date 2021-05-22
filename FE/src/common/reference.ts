@@ -1,3 +1,4 @@
+// ITextAll (IText & ITextContentInfo), 어디에도 쓰이진 않음
 export interface ITextAll {
   [name: string]:
     | {
@@ -34,6 +35,10 @@ export interface ITextCotnentInfo {
   };
 }
 
+export interface ITextFooter {
+  [footerItems: string]: string[];
+}
+
 export const Text: IText = {
   nearby: {
     subject: '가까운 여행지 둘러보기',
@@ -59,7 +64,7 @@ export const Text: IText = {
   },
 };
 
-export const TextContentInfo : ITextCotnentInfo = {
+export const TextContentInfo: ITextCotnentInfo = {
   contentInfo: {
     introduce: {
       subject: '소개',
@@ -109,4 +114,14 @@ export const TextContentInfo : ITextCotnentInfo = {
       ],
     },
   },
-}
+};
+
+export const TextFooter: ITextFooter = {
+  footerItems: [
+    '© 2021 Airbnb, Inc.',
+    '개인정보처리방침',
+    '이용약관',
+    '한국의 변경된 환불 정책',
+    '회사 세부정보',
+  ],
+};

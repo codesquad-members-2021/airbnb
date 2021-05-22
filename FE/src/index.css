@@ -1,5 +1,20 @@
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
+
+
+/* Custom
+   ========================================================================== */
+ul, ol {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  list-style: none;
+}
+
 /* Document
    ========================================================================== */
 

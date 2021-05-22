@@ -1,48 +1,46 @@
 import styled from 'styled-components';
-import Subject from '../../utilComponents/Subject';
-import { IText } from '../../../common/reference';
+import Subject from '../utilComponents/Subject';
+import { IText } from '../../common/reference';
 import {
   cssImageAuto,
   cssMainChildren,
-  cssResetList,
   cssSectionSize,
-} from '../../../common/styles/CommonStyledCSS';
+} from '../../common/styles/CommonStyledCSS';
 
-const Nearby = ({ captions }: IText) => {
+const MainNearby = ({ nearbyItems }: IText) => {
   return (
-    captions && (
-      <StyledNearby>
-        <Subject>{captions.subject}</Subject>
-        <NearbyList>
-          {captions.items.map((item, i) => {
+    nearbyItems && (
+      <MainNearbyBlock>
+        <Subject>{nearbyItems.subject}</Subject>
+        <MainNearbyList>
+          {nearbyItems.items.map((item, i) => {
             const { name, distance } = item;
 
             return (
-              <NearbyItem key={i}>
+              <MainNearbyItem key={i}>
                 <img src={`./images/main/nearby/0${i + 1}.jpg`} alt={`${i}`} />
                 <div className="content">
                   <p className="bold">{name}</p>
                   <p>{distance}</p>
                 </div>
-              </NearbyItem>
+              </MainNearbyItem>
             );
           })}
-        </NearbyList>
-      </StyledNearby>
+        </MainNearbyList>
+      </MainNearbyBlock>
     )
   );
 };
 
-export default Nearby;
+export default MainNearby;
 
 // --- Styled Components ---
-const StyledNearby = styled.div`
+const MainNearbyBlock = styled.div`
   ${cssMainChildren};
   ${cssSectionSize};
 `;
 
-const NearbyList = styled.ul`
-  ${cssResetList};
+const MainNearbyList = styled.ul`
   font-size: ${({ theme }) => theme.fontSize.XL};
 
   display: grid;
@@ -51,7 +49,7 @@ const NearbyList = styled.ul`
   row-gap: 24px;
 `;
 
-const NearbyItem = styled.li`
+const MainNearbyItem = styled.li`
   ${cssImageAuto};
   img {
     border-radius: 10px;
@@ -64,6 +62,5 @@ const NearbyItem = styled.li`
   display: grid;
   grid-template-columns: 80px 1fr;
   column-gap: 16px;
-
   align-items: center;
 `;

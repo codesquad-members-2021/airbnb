@@ -13,17 +13,6 @@ export const cssMainChildren = css`
   ${cssMainChildrenPadding};
 `;
 
-export const cssResetList = css`
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  background: transparent;
-  list-style: none;
-`;
-
 export const cssImageAuto = css`
   img {
     /* 이미지 크기 보정 */

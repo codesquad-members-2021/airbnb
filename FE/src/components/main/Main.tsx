@@ -1,22 +1,25 @@
-import TopBackground from './partial/TopBackground';
-import Nearby from './partial/Nearby';
-import RoomType from './partial/RoomType';
-import ContentInfo from './partial/ContentInfo';
+import MainTopBackground from './MainTopBackground';
+import MainNearby from './MainNearby';
+import MainRoomType from './MainRoomType';
+import MainContentInfo from './MainContentInfo';
 
-import { Text, TextContentInfo } from '../../common/reference';
+import { Text, TextContentInfo, TextFooter } from '../../common/reference';
 import Background from '../utilComponents/Background';
+import MainFooter from './MainFooter';
 
 const Main = () => {
   const { nearby, roomType } = Text;
   const { contentInfo } = TextContentInfo;
+  const { footerItems } = TextFooter;
 
   return (
     <>
-      <TopBackground />
-      <Nearby captions={nearby} />
-      <RoomType captions={roomType} />
-      <Background strColor={'gray6'} >
-        <ContentInfo captions={contentInfo}/>
+      <MainTopBackground />
+      <MainNearby nearbyItems={nearby} />
+      <MainRoomType roomTypeItems={roomType} />
+      <Background color={'gray6'} >
+        <MainContentInfo contentInfoItems={contentInfo}/>
+        <MainFooter footerItems={footerItems}/>
       </Background>
     </>
   );
