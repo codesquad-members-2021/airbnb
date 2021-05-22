@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/java-web,windows,intellij
-# Edit at https://www.toptal.com/developers/gitignore?templates=java-web,windows,intellij
+# Created by https://www.toptal.com/developers/gitignore/api/intellij,java
+# Edit at https://www.toptal.com/developers/gitignore?templates=intellij,java
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -106,34 +106,29 @@ fabric.properties
 # https://plugins.jetbrains.com/plugin/12206-codestream
 .idea/codestream.xml
 
-### Java-Web ###
-## ignoring target file
-target/
+### Java ###
+# Compiled class file
+*.class
 
-### Windows ###
-# Windows thumbnail cache files
-Thumbs.db
-Thumbs.db:encryptable
-ehthumbs.db
-ehthumbs_vista.db
+# Log file
+*.log
 
-# Dump file
-*.stackdump
+# BlueJ files
+*.ctxt
 
-# Folder config file
-[Dd]esktop.ini
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
 
-# Windows Installer files
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
 
-# Windows shortcuts
-*.lnk
-
-# End of https://www.toptal.com/developers/gitignore/api/java-web,windows,intellij
+# End of https://www.toptal.com/developers/gitignore/api/intellij,java
