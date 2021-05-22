@@ -50,6 +50,7 @@ private extension SecondSectionView {
         mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         mainImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
         mainImageView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+        mainImageView.layer.masksToBounds = true
         mainImageView.layer.cornerRadius = 10
     }
     
