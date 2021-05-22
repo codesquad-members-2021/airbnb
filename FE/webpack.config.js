@@ -25,7 +25,6 @@ module.exports = {
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
       { test: /\.(webp|jpg|png|jpeg)$/, loader: "file-loader", 
         options: {
-          publicPath: path.resolve("./public"),
           name: "[name].[ext]?[hash]", // 파일명 형식
         },
       },
