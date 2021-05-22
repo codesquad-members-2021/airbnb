@@ -30,6 +30,10 @@ public class AccommodationResponseDTO {
         return AccommodationResponseDTOBuilder.anAccommodationDTO();
     }
 
+    public int pricePerNight() {
+        return accommodationOption.getPricePerNight();
+    }
+
     public Long getId() {
         return id;
     }

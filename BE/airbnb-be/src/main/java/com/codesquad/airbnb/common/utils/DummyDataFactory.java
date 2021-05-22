@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.utils;
+package com.codesquad.airbnb.common.utils;
 
 import com.codesquad.airbnb.accommodation.controller.AccommodationResponseDTO;
 import com.codesquad.airbnb.accommodation.domain.AccommodationOption;
