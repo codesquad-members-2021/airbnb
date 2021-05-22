@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: "development",
+  mode: "development", // or production
   entry: "./src/index.tsx",
   output: {
     filename: "[name].js",
@@ -15,7 +15,7 @@ module.exports = {
     })
   ],
 
-  devtool: "source-map",
+  devtool: "source-map", // hidden-source-map (production 모드에선 이거쓰기)
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
   },
@@ -42,30 +42,3 @@ module.exports = {
     // writeToDisk: true 
   }
 }
-
-/* 
-
-module.exports = {
-    mode: 'development',    // production
-    devtool: 'eval',        // hidden-source-map (production 모드에선 이거쓰기)
-    resolve: {
-        extensions: ['.jsx', '.js', '.tsx', '.ts'],
-    },
-    entry: {
-        app: './client',    // 메인 파일 (client.tsx)
-    },
-    module: {
-        rules: [{
-            test: /\.tsx?$/,
-            loader: 'ts-loader',
-        }]
-    },
-    output: {
-        filename: '[name].js',
-        path: path.join(__dirname, 'dist'),
-        publicPath: '/dist',
-    }
-};
-
-
-*/
