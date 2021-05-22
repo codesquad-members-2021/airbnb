@@ -1,10 +1,12 @@
 package com.example.airbnb.controller;
 
 
+import com.example.airbnb.domain.SearchConditions;
 import com.example.airbnb.dto.AccommodationListDTO;
 import com.example.airbnb.service.AccommodationService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,10 +19,21 @@ public class AccommodationController {
         this.accommodationService = accommodationService;
     }
 
+/*
+    @GetMapping
+    public AccommodationListDTO getSample(@RequestParam(required=false) String location, @RequestParam String checkin, @RequestParam String checkout,
+                                          @RequestParam Integer adults, @RequestParam Integer children, @RequestParam Integer infants) {
+        SearchConditions conditions = new SearchConditions(location, checkin, checkout, adults, children, infants);
+        System.out.println(conditions.toString());
+        return AccommodationService.availableAccommodationsList();
+    }*/
+
 
 
     @GetMapping
-    public AccommodationListDTO getSample() {
+    public AccommodationListDTO getSample(@RequestParam(required=false) SearchConditions conditions) {
+
+        System.out.println(conditions.toString());
         return AccommodationService.availableAccommodationsList();
     }
 
