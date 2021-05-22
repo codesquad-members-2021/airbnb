@@ -7,60 +7,48 @@
 
 import UIKit
 
-class LocationSearchViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
+class LocationSearchViewController: UITableViewController {
     
     var cities = ["서울","광주","의정부시","수원시","대구","울산","부천시"]
     var resultCities: [String] = []
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        resultCities = cities.filter({ (data:String) -> Bool in
-            return data.contains(searchController.searchBar.text ?? "")
-        })
-        resultTableViewController.tableView.reloadData()
-    }
     
     private lazy var deleteText: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "지우기" ,style: .plain, target: self, action: #selector(closeSearchText(_:)))
         return button
     }()
     
-    private lazy var searchController: UISearchController = {
-        let controller = UISearchController(searchResultsController: resultTableViewController)
-        controller.obscuresBackgroundDuringPresentation = false
-        controller.hidesNavigationBarDuringPresentation = false
-        controller.searchBar.showsCancelButton = false
-        controller.searchBar.searchTextField.clearButtonMode = .never
-        controller.searchBar.placeholder = "어디로 여행가세요?"
-        return controller
-    }()
-    
-    @IBOutlet weak var searchTableView: UITableView!
-    private var resultTableViewController = UITableViewController()
+    private var resultTableViewController = LocationResultViewController()
+    private var searchController: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configure()
+        setUpSearchController()
+        setUpTableView()
+    }
+    
+    private func configure() {
         title = "숙소 찾기"
         navigationItem.rightBarButtonItem = deleteText
-        navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         tabBarController?.tabBar.isHidden = true
-        
-        tableView.register(LocationCell.self, forCellReuseIdentifier: LocationCell.identifier)
+    }
+    
+    private func setUpSearchController() {
+        searchController = UISearchController(searchResultsController: resultTableViewController)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.showsCancelButton = false
+        searchController.searchBar.searchTextField.clearButtonMode = .never
+        searchController.searchBar.placeholder = "어디로 여행가세요?"
         searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
-        searchController.delegate = self
+        navigationItem.searchController = searchController
+    }
+    
+    private func setUpTableView() {
+        tableView.register(LocationCell.self, forCellReuseIdentifier: LocationCell.identifier)
         let header = LocationHeaderView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 60))
-        header.backgroundColor = .clear
         tableView.tableHeaderView = header
-        
-        resultTableViewController.tableView.register(LocationResultCell.self, forCellReuseIdentifier: LocationResultCell.identifier)
-        let resultHeader = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 15))
-        resultHeader.backgroundColor = .clear
-        resultTableViewController.tableView.tableHeaderView = resultHeader
-        resultTableViewController.tableView.separatorStyle = .none
-        resultTableViewController.tableView.rowHeight = 80
-        resultTableViewController.tableView.dataSource = self
-        resultTableViewController.tableView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,25 +65,28 @@ class LocationSearchViewController: UITableViewController, UISearchResultsUpdati
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableView == resultTableViewController.tableView ? resultCities.count : cities.count
+        return cities.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == resultTableViewController.tableView {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationResultCell.identifier, for: indexPath) as? LocationResultCell else {
-                return UITableViewCell()
-            }
-            cell.configure(city: resultCities[indexPath.row])
-            return cell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationCell.identifier, for: indexPath) as? LocationCell else {
-                return UITableViewCell()
-            }
-            
-            cell.configure(city: cities[indexPath.row])
-            return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationCell.identifier, for: indexPath) as? LocationCell else {
+            return .init()
         }
-        
+        cell.configure(city: cities[indexPath.row])
+        return cell
     }
     
+}
+
+extension LocationSearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        resultCities = cities.filter({ (data:String) -> Bool in
+            return data.contains(searchController.searchBar.text ?? "")
+        })
+        guard let resultController = searchController.searchResultsController as? LocationResultViewController else {
+            return
+        }
+        resultController.resultCities = resultCities
+        resultController.tableView.reloadData()
+    }
 }

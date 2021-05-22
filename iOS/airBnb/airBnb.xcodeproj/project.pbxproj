@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF4048CF2658CB4600CA02B5 /* LocationResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4048CE2658CB4600CA02B5 /* LocationResultViewController.swift */; };
 		BFE430B42653902E00F4DA1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE430B32653902E00F4DA1C /* AppDelegate.swift */; };
 		BFE430B62653902E00F4DA1C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE430B52653902E00F4DA1C /* SceneDelegate.swift */; };
 		BFE430B82653902E00F4DA1C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE430B72653902E00F4DA1C /* MainViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF4048CE2658CB4600CA02B5 /* LocationResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResultViewController.swift; sourceTree = "<group>"; };
 		BFE430B02653902E00F4DA1C /* airBnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = airBnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFE430B32653902E00F4DA1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFE430B52653902E00F4DA1C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				BFE430B52653902E00F4DA1C /* SceneDelegate.swift */,
 				BFE430B72653902E00F4DA1C /* MainViewController.swift */,
 				BFE430D426541D2B00F4DA1C /* LocationSearchViewController.swift */,
+				BF4048CE2658CB4600CA02B5 /* LocationResultViewController.swift */,
 				BFE4310526554B3500F4DA1C /* LocationCell.swift */,
 				BFE431162655948800F4DA1C /* LocationResultCell.swift */,
 				BFE4310826554BAC00F4DA1C /* LocationCell.xib */,
@@ -161,6 +164,7 @@
 				BFE4310626554B3600F4DA1C /* LocationCell.swift in Sources */,
 				BFE430B42653902E00F4DA1C /* AppDelegate.swift in Sources */,
 				BFE430B62653902E00F4DA1C /* SceneDelegate.swift in Sources */,
+				BF4048CF2658CB4600CA02B5 /* LocationResultViewController.swift in Sources */,
 				BFE431172655948800F4DA1C /* LocationResultCell.swift in Sources */,
 				BFE4311326557A2900F4DA1C /* LocationHeaderView.swift in Sources */,
 				BFE430D526541D2B00F4DA1C /* LocationSearchViewController.swift in Sources */,

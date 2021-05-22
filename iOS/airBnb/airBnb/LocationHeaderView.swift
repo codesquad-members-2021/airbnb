@@ -29,6 +29,7 @@ class LocationHeaderView: UIView {
     }
     
     private func configure() {
+        self.backgroundColor = .clear
         self.addSubview(title)
         title.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
         title.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
