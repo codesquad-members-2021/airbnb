@@ -42,7 +42,7 @@ VALUE
     (-0.04, 20000, 0.2, 0.02);
 
 INSERT INTO reservation
-    (room, check_in, check_out)
+    (room, check_in, check_out, total_price, number_of_guest)
 VALUE
-    (1, '2021-05-20', '2021-05-25');
+    (1, '2021-05-26', '2021-05-28', 153680, 2);
 

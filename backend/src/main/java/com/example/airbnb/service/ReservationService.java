@@ -1,7 +1,5 @@
 package com.example.airbnb.service;
 
-import com.example.airbnb.dao.ImageDAO;
-import com.example.airbnb.dao.LocationDAO;
 import com.example.airbnb.dao.ReservationDAO;
 import com.example.airbnb.dao.RoomDAO;
 import com.example.airbnb.dto.Receipt;
@@ -16,34 +14,29 @@ import java.util.List;
 
 @Service
 public class ReservationService {
-    private RoomDAO roomDAO;
-    private ImageDAO imageDAO;
-    private LocationDAO locationDAO;
-    private ReservationDAO reservationDAO;
+    private final RoomDAO roomDAO;
+    private final ReservationDAO reservationDAO;
 
-    public ReservationService(RoomDAO roomDAO, ImageDAO imageDAO, LocationDAO locationDAO, ReservationDAO reservationDAO) {
+    public ReservationService(RoomDAO roomDAO, ReservationDAO reservationDAO) {
         this.roomDAO = roomDAO;
-        this.imageDAO = imageDAO;
-        this.locationDAO = locationDAO;
         this.reservationDAO = reservationDAO;
     }
 
     public ReservationDTO reservationRoom(Long roomId, LocalDate checkIn, LocalDate checkOut, int guestCount) {
-
-        RoomDTO roomDTO = roomDAO.getRoom(roomId);
+        RoomDTO roomDTO = roomDAO.getRoom(roomId).orElseThrow(() -> new NullPointerException("해당하는 방이 없습니다."));
         int days = getPeriod(checkIn, checkOut);
         int totalPrice = new Receipt(roomDTO, days).getTotalPrice();
         Long reservationId = reservationDAO.reservationRoom(roomId, checkIn, checkOut, guestCount, totalPrice);
-        return reservationDAO.getReservationById(reservationId);
+        return reservationDAO.getReservationByReservationId(reservationId).orElseThrow(() -> new NullPointerException("해당하는 예약이 없습니다."));
     }
 
-    public boolean checkPeriod(Long roomId, LocalDate checkIn, LocalDate checkOut) {
-        List<Long> periodRoomList = new ArrayList<>(roomDAO.getAvailableDates(checkIn, checkOut));
+    public boolean checkPeriodCondition(Long roomId, LocalDate checkIn, LocalDate checkOut) {
+        List<Long> periodRoomList = new ArrayList<>(roomDAO.periodCondition(checkIn, checkOut));
         return periodRoomList.contains(roomId);
     }
 
-    public boolean checkNumGuest(Long roomId, int guestCount) {
-        List<Long> exceedRoomList = new ArrayList<>(roomDAO.getRoomByExceedGuest(guestCount));
+    public boolean checkHeadcountCondition(Long roomId, int guestCount) {
+        List<Long> exceedRoomList = new ArrayList<>(roomDAO.headcountCondition(guestCount));
         return exceedRoomList.contains(roomId);
     }
 
@@ -52,9 +45,8 @@ public class ReservationService {
     }
 
     private int getPeriod(LocalDate checkIn, LocalDate checkOut) {
-        Long period = ChronoUnit.DAYS.between(checkIn, checkOut);
-        int days = period.intValue();
-        return days;
+        long period = ChronoUnit.DAYS.between(checkIn, checkOut);
+        return (int) period;
     }
 
 }

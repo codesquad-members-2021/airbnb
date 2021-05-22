@@ -32,4 +32,5 @@ public class LocationDAO {
         });
         return locations.get(0);
     }
+
 }

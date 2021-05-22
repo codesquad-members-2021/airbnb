@@ -10,7 +10,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -40,21 +39,22 @@ public class RoomController {
     public PriceDTO getAllPrices(@ApiParam(value = "체크인 날짜", example = "2021-05-20") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkIn,
                                  @ApiParam(value = "체크아웃 날짜", example = "2021-05-25") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkOut,
                                  @ApiParam(value = "도시 이름", example = "인천") @RequestParam String cityName) {
-        PriceDTO priceDTO = roomService.getAllPricesByCityAndDate(checkIn, checkOut, cityName);
+        PriceDTO priceDTO = roomService.getAllPricesByConditionsOfCityAndPeriod(checkIn, checkOut, cityName);
         return priceDTO;
     }
 
     @GetMapping("/search")
     @ApiOperation(value = "예약 가능한 방들 목록보기", notes = "검색 조건에 따른 예약 가능한 방들 모두를 반환합니다.")
     @ResponseStatus(HttpStatus.OK)
-    public RoomList getRoomBySearch(@ApiParam(value = "체크인 날짜", example = "2021-05-20") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkIn,
-                                                    @ApiParam(value = "체크아웃 날짜", example = "2021-05-25") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkOut,
-                                                    @ApiParam(value = "도시 이름", example = "인천") @RequestParam String cityName,
-                                                    @ApiParam(value = "최소 가격", example = "30000") @RequestParam int minPrice,
-                                                    @ApiParam(value = "최대 가격", example = "80000") @RequestParam int maxPrice,
-                                                    @ApiParam(value = "인원", example = "3") @RequestParam int numOfPeople) {
-        List<RoomListDTO> roomList = roomService.getRoomByCityAndReservationAndPriceAndGuest(checkIn, checkOut, cityName, minPrice, maxPrice, numOfPeople);
+    public RoomList searchRoomByConditions(@ApiParam(value = "체크인 날짜", example = "2021-05-20") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkIn,
+                                    @ApiParam(value = "체크아웃 날짜", example = "2021-05-25") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkOut,
+                                    @ApiParam(value = "도시 이름", example = "인천") @RequestParam String cityName,
+                                    @ApiParam(value = "최소 가격", example = "30000") @RequestParam int minPrice,
+                                    @ApiParam(value = "최대 가격", example = "80000") @RequestParam int maxPrice,
+                                    @ApiParam(value = "인원", example = "2") @RequestParam int numOfPeople) {
+        List<RoomListDTO> roomList = roomService.getRoomsByConditionsOfCityAndPeriodAndPriceAndHeadcount(checkIn, checkOut, cityName, minPrice, maxPrice, numOfPeople);
         return new RoomList(roomList);
     }
 
 }
+
