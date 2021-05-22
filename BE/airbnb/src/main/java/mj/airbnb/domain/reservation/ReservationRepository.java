@@ -24,6 +24,13 @@ public class ReservationRepository {
         return jdbcTemplate.queryForObject(sqlQuery, reservationRowMapper(), id);
     }
 
+    public List<ReservationDate> findALLReservationDateByAccommodationId(Long accommodationId) {
+        String sqlQuery = "SELECT id, reserved_date, reservation_id, reservation_accommodation_id " +
+                "FROM reservation_date " +
+                "WHERE reservation_accommodation_id = ?";
+        return jdbcTemplate.query(sqlQuery, reservationDateRowMapper(), accommodationId);
+    }
+
     private RowMapper<Reservation> reservationRowMapper() {
         return (rs, rowNum) -> {
             Reservation reservation = new Reservation();
@@ -33,6 +40,18 @@ public class ReservationRepository {
             reservation.setCheckOutDate(rs.getString("check_out_date"));
 
             return reservation;
+        };
+    }
+
+    private RowMapper<ReservationDate> reservationDateRowMapper() {
+        return (rs, rowNum) -> {
+            ReservationDate reservationDate = new ReservationDate();
+            reservationDate.setId(rs.getLong("id"));
+            reservationDate.setReservedDate(rs.getString("reserved_date"));
+            reservationDate.setReservationId(rs.getLong("reservation_id"));
+            reservationDate.setReservationAccommodationId(rs.getLong("reservation_accommodation_id"));
+
+            return reservationDate;
         };
     }
 }

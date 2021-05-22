@@ -49,7 +49,7 @@ public class AccommodationController {
         if (destination.isPresent() && checkInDate.isPresent() && checkOutDate.isPresent()) {
 
             logger.info("지역, 날짜 조건에 따라 숙소 조회 ");
-            return accommodationService.findAllAccommodations();
+            return accommodationService.findAllByDestinationAndDate(destination.get(), checkInDate.get(), checkOutDate.get());
         }
 
         if (destination.isPresent()) {
