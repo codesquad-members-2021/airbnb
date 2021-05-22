@@ -31,8 +31,7 @@ public class CityDAO {
             ));
             return null;
         });
-        MainPageDTO mainPageDTO = new MainPageDTO(cityDTOList);
-        return mainPageDTO;
+        return new MainPageDTO(cityDTOList);
     }
 
 }

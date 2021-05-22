@@ -35,7 +35,7 @@ public class RoomService {
     public RoomDetailDTO getRoomDetail(Long id) {
         return new RoomDetailDTO(
                 roomDAO.getRoom(id).orElseThrow(() -> new NullPointerException("해당하는 방이 없습니다.")),
-                locationDAO.getLocation(id),
+                locationDAO.getLocationByLocationId(id).orElseThrow(() -> new NullPointerException("해당하는 로케이션이 없습니다.")),
                 imageDAO.getThumbImage(id),
                 imageDAO.getDetailImages(id)
         );
@@ -63,7 +63,10 @@ public class RoomService {
 
         List<RoomListDTO> roomListDTO = new ArrayList<>();
         for (Long roomId : allConditions) {
-            roomListDTO.add(new RoomListDTO(roomDAO.getRoom(roomId).orElseThrow(() -> new NullPointerException("해당하는 방이 없습니다.")), imageDAO.getThumbImage(roomId), fewNights, locationDAO.getLocation(roomId)));
+            roomListDTO.add(new RoomListDTO(roomDAO.getRoom(roomId).orElseThrow(() -> new NullPointerException("해당하는 방이 없습니다.")),
+                    imageDAO.getThumbImage(roomId),
+                    fewNights,
+                    locationDAO.getLocationByLocationId(roomId).orElseThrow(() -> new NullPointerException("해당하는 로케이션이 없습니다."))));
         }
         return roomListDTO;
     }

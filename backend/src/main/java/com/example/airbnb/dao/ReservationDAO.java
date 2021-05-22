@@ -34,14 +34,18 @@ public class ReservationDAO {
                 .addValue("check_out", checkOut)
                 .addValue("total_price", totalPrice)
                 .addValue("number_of_guest", guestCount);
+
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sql, sqlParameterSource, keyHolder, new String[]{"ID"});
         return keyHolder.getKey().longValue();
     }
 
     public Optional<ReservationDTO> getReservationByReservationId(Long reservationId) {
-        String sql = "SELECT r.room, r.check_in, r.check_out, r.total_price, r.number_of_guest FROM reservation r WHERE r.id =" + reservationId;
-        List<ReservationDTO> objects = jdbcTemplate.query(sql, (rs, rowNum) -> {
+        String sql = "SELECT r.room, r.check_in, r.check_out, r.total_price, r.number_of_guest FROM reservation r WHERE r.id = :reservation_id";
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("reservation_id", reservationId);
+
+        List<ReservationDTO> reservationDTO = namedParameterJdbcTemplate.query(sql, sqlParameterSource, (rs, rowNum) -> {
             return new ReservationDTO(
                     reservationId,
                     rs.getLong("room"),
@@ -51,7 +55,7 @@ public class ReservationDAO {
                     rs.getInt("number_of_guest")
             );
         });
-        return Optional.ofNullable(DataAccessUtils.singleResult(objects));
+        return Optional.ofNullable(DataAccessUtils.singleResult(reservationDTO));
     }
 
     public void cancelReservationById(Long reservationId) {

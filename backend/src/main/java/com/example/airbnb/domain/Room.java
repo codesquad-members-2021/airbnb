@@ -12,17 +12,6 @@ public class Room {
 
     private Long location;
 
-    public Room(Long id, String title, String description, int pricePerDay, String roomType, int bed, int maxGuest, int bathroom) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.pricePerDay = pricePerDay;
-        this.roomType = roomType;
-        this.bed = bed;
-        this.maxGuest = maxGuest;
-        this.bathroom = bathroom;
-    }
-
     public Room(Long id, String title, String description, int pricePerDay, String roomType, int bed, int maxGuest, int bathroom, Long location) {
         this.id = id;
         this.title = title;

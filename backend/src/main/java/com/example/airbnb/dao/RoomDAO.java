@@ -26,8 +26,11 @@ public class RoomDAO {
     }
 
     public Optional<RoomDTO> getRoom(Long roomId) {
-        String sql = "SELECT r.id, r.title, r.description, r.price_per_day, r.room_type, r.bed, r.max_guest, r.bathroom FROM room r WHERE r.id = " + roomId;
-        List<RoomDTO> objects = jdbcTemplate.query(sql, (rs, rowNum) -> {
+        String sql = "SELECT r.id, r.title, r.description, r.price_per_day, r.room_type, r.bed, r.max_guest, r.bathroom FROM room r WHERE r.id = :room_id";
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("room_id", roomId);
+
+        List<RoomDTO> roomDTO = namedParameterJdbcTemplate.query(sql, sqlParameterSource, (rs, rowNum) -> {
             return new RoomDTO(
                     rs.getLong("id"),
                     rs.getString("title"),
@@ -39,13 +42,14 @@ public class RoomDAO {
                     rs.getInt("bathroom")
             );
         });
-        return Optional.ofNullable(DataAccessUtils.singleResult(objects));
+        return Optional.ofNullable(DataAccessUtils.singleResult(roomDTO));
     }
 
     public List<Long> cityCondition(String cityName) {
         String sql = "SELECT l.id FROM location l WHERE l.city = :city_name";
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
                 .addValue("city_name", cityName);
+
         List<Long> roomList = new ArrayList<>();
         namedParameterJdbcTemplate.query(sql, sqlParameterSource, (rs, rowNum) ->
                 roomList.add(rs.getLong("id")));
@@ -55,9 +59,10 @@ public class RoomDAO {
     public List<Integer> getAllPrices(List<Long> roomList) {
         List<Integer> allPrices = new ArrayList<>();
         String sql = "SELECT r.price_per_day FROM room r WHERE r.id = :room_id";
-        for (int i = 0; i < roomList.size(); i++) {
+
+        for (Long roomId : roomList) {
             SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
-                    .addValue("room_id", roomList.get(i));
+                    .addValue("room_id", roomId);
             namedParameterJdbcTemplate.query(sql, sqlParameterSource, (rs, rowNum) ->
                     allPrices.add(rs.getInt("price_per_day")));
         }
@@ -71,6 +76,7 @@ public class RoomDAO {
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
                 .addValue("reserve_check_in", reserveCheckIn)
                 .addValue("reserve_check_out", reserveCheckOut);
+
         List<Long> roomList = new ArrayList<>();
         namedParameterJdbcTemplate.query(sql, sqlParameterSource, (rs, rowNum) ->
                 roomList.add(rs.getLong("room")));
@@ -82,6 +88,7 @@ public class RoomDAO {
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
                 .addValue("min_price", minPrice)
                 .addValue("max_price", maxPrice);
+
         List<Long> roomList = new ArrayList<>();
         namedParameterJdbcTemplate.query(sql, sqlParameterSource, (rs, rowNum) ->
                 roomList.add(rs.getLong("id")));
@@ -92,6 +99,7 @@ public class RoomDAO {
         String sql = "SELECT r.id FROM room r WHERE max_guest >= :guest_count";
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
                 .addValue("guest_count", guestCount);
+
         List<Long> roomList = new ArrayList<>();
         namedParameterJdbcTemplate.query(sql, sqlParameterSource, (rs, rowNum) ->
                 roomList.add(rs.getLong("id")));
