@@ -3,6 +3,7 @@ package com.codesquad.coco.rooms.model;
 import com.codesquad.coco.Host.Host;
 import com.codesquad.coco.image.Image;
 import com.codesquad.coco.reservation.Reservation;
+import com.codesquad.coco.user.WishList;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
@@ -19,11 +20,13 @@ public class Rooms {
     private AdditionalCost additionalCost;
     private Review review;
     private RoomsOption roomsOption;
+    private String type;
     private String name;
     private Money pricePerDate;
     private String description;
     private List<Reservation> reservations = new ArrayList<>();
     private List<Image> images = new ArrayList<>();
+    private WishList wishList;
 
     private Rooms(Builder builder) {
         this.id = builder.id;
@@ -37,6 +40,8 @@ public class Rooms {
         this.description = builder.description;
         this.reservations = builder.reservations;
         this.images = builder.images;
+        this.wishList = builder.wishList;
+        this.type = builder.type;
     }
 
     public void addReservation(Reservation reservation) {
@@ -91,6 +96,25 @@ public class Rooms {
         return images;
     }
 
+
+    public String getType() {
+        return type;
+    }
+
+    public boolean getWish() {
+        return wishList.isWish();
+    }
+
+    public String getFirstImage() {
+        return images.stream()
+                .filter(Image::isThumbnail)
+                .findFirst()
+                .map(Image::getUrl)
+                .orElse("http://sample.com");
+        //todo : type이 썸네일일 때만?
+        //  예외 변경
+    }
+
     @Override
     public String toString() {
         return "Rooms{" +
@@ -115,11 +139,24 @@ public class Rooms {
         private AdditionalCost additionalCost;
         private Review review;
         private RoomsOption roomsOption;
+        private String type;
         private String name;
         private Money pricePerDate;
         private String description;
         private List<Reservation> reservations = new ArrayList<>();
         private List<Image> images = new ArrayList<>();
+        private WishList wishList;
+
+
+        public Builder type(String val) {
+            this.type = val;
+            return this;
+        }
+
+        public Builder wishList(WishList val) {
+            this.wishList = val;
+            return this;
+        }
 
         public Builder id(Long val) {
             this.id = val;

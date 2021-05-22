@@ -1,6 +1,5 @@
 package com.codesquad.coco.user;
 
-import com.codesquad.coco.rooms.model.Rooms;
 import org.springframework.data.annotation.Id;
 
 public class WishList {
@@ -8,12 +7,29 @@ public class WishList {
     @Id
     private Long id;
 
-    private User user;
-    private Rooms rooms;
+    private Long userId;
+    private Long roomsId;
+    private boolean wish;
 
-    public WishList(Long id, User user, Rooms rooms) {
-        this.id = id;
-        this.user = user;
-        this.rooms = rooms;
+    public WishList(Long userId, Long roomsId, boolean wish) {
+        this.userId = userId;
+        this.roomsId = roomsId;
+        this.wish = wish;
+    }
+
+    public boolean isWish() {
+        return wish;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public Long getRoomsId() {
+        return roomsId;
     }
 }
