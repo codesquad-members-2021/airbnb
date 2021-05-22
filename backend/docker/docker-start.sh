@@ -6,6 +6,6 @@ docker rm $PYRO_DB
 
 docker rmi pyrodb:1.0
 
-docker build --tag pyrodb:1.0 .
+docker build --platform linux/x86_64  --tag pyrodb:1.0 .
 
 docker run -d -p 12345:3306 --name=pyrodb pyrodb:1.0
