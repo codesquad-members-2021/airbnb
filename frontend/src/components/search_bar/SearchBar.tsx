@@ -24,13 +24,10 @@ export default function SearchBar(props: EmptyInterface) {
 
 const StyleSearchBar = styled.div`
 	display: flex;
-	position: absolute;
 	align-items: center;
-	/* justify-content: space-between; */
-	width: 916px;
+	width: 1016px;
 	height: 76px;
-	top: 110px;
-	left: 410px;
+	margin-top: 30px;
 	border-radius: 60px;
 	background-color: #ffffff;
 `;
