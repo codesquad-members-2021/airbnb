@@ -8,9 +8,11 @@
 
 backend 디렉토리로 이동해서, start.sh 를 실행한다.
 
+M1 맥북에서는 sudo 권한이 없으면 제대로 동작하지 않는다. 주의하자.
+
 ```
 cd ./backend
-sh ./start.sh
+sudo sh ./start.sh
 ```
 
 ## Oauth 작동 확인법
