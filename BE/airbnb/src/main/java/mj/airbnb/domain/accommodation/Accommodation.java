@@ -16,6 +16,7 @@ public class Accommodation {
     private Integer numOfBed;
     private Integer numOfBathroom;
     private Integer cost;
+    private String address;
 
     public Accommodation() {
     }
@@ -29,6 +30,7 @@ public class Accommodation {
         values.put("num_of_bed", numOfBed);
         values.put("num_of_bathroom", numOfBathroom);
         values.put("cost", cost);
+        values.put("address", address);
 
         return values;
     }
@@ -69,6 +71,10 @@ public class Accommodation {
         return numOfBed;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
     public void setNumOfBed(Integer numOfBed) {
         this.numOfBed = numOfBed;
     }
@@ -87,6 +93,10 @@ public class Accommodation {
 
     public void setCost(Integer cost) {
         this.cost = cost;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override

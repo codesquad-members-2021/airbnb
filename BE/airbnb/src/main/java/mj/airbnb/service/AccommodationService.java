@@ -1,5 +1,6 @@
 package mj.airbnb.service;
 
+import mj.airbnb.domain.accommodation.Accommodation;
 import mj.airbnb.domain.accommodation.AccommodationRepository;
 import mj.airbnb.web.dto.AccommodationResponseDto;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,12 @@ public class AccommodationService {
     public List<AccommodationResponseDto> findAllAccommodations(){
         return accommodationRepository.findAll().stream()
                 .map(AccommodationResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> findAllPopularDestinations(String destination){
+        return accommodationRepository.findPopularDestinations(destination).stream()
+                .map(Accommodation::getAddress)
                 .collect(Collectors.toList());
     }
 }

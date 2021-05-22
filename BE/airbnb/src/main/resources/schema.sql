@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `airbnb_db`.`accommodation` (
   `num_of_bed` INT NOT NULL DEFAULT 1,
   `num_of_bathroom` INT NOT NULL DEFAULT 1,
   `cost` INT NOT NULL,
+  `address` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
