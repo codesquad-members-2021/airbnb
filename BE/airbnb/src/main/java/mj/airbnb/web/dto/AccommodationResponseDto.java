@@ -17,7 +17,7 @@ public class AccommodationResponseDto {
         this.type = accommodation.getType();
         this.numOfBed = accommodation.getNumOfBed();
         this.numOfBathroom = accommodation.getNumOfBathroom();
-        this.cost = accommodation.getCost();
+        this.cost = accommodation.getPrice();
     }
 
     public String getName() {

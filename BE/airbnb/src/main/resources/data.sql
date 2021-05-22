@@ -2,10 +2,10 @@
 -- accommodation 초기값 추가
 -- -----------------------------------------------------
 
-INSERT INTO accommodation (name, max_people, type, num_of_bed, num_of_bathroom, cost, address) VALUES ('house #1', 3, '원룸', 1, 1, 15000, '서울특별시 서초구 양재동 123-2');
-INSERT INTO accommodation (name, max_people, type, num_of_bed, num_of_bathroom, cost, address) VALUES ('house #2', 4, '투룸', 2, 1, 20000, '서울특별시 서초구 양재동 111-2');
-INSERT INTO accommodation (name, max_people, type, num_of_bed, num_of_bathroom, cost, address) VALUES ('house #3', 1, '원룸', 1, 1, 10000, '서울특별시 관악구 봉천동 100-2');
-INSERT INTO accommodation (name, max_people, type, num_of_bed, num_of_bathroom, cost, address) VALUES ('house #4', 4, '투룸', 2, 2, 20000, '서울특별시 관악구 봉천동 12-2');
+INSERT INTO accommodation (name, max_people, type, num_of_bed, num_of_bathroom, price, address) VALUES ('house #1', 3, '원룸', 1, 1, 15000, '서울특별시 서초구 양재동 123-2');
+INSERT INTO accommodation (name, max_people, type, num_of_bed, num_of_bathroom, price, address) VALUES ('house #2', 4, '투룸', 2, 1, 20000, '서울특별시 서초구 양재동 111-2');
+INSERT INTO accommodation (name, max_people, type, num_of_bed, num_of_bathroom, price, address) VALUES ('house #3', 1, '원룸', 1, 1, 10000, '서울특별시 관악구 봉천동 100-2');
+INSERT INTO accommodation (name, max_people, type, num_of_bed, num_of_bathroom, price, address) VALUES ('house #4', 4, '투룸', 2, 2, 20000, '서울특별시 관악구 봉천동 12-2');
 
 
 -- -----------------------------------------------------

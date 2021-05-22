@@ -15,7 +15,7 @@ public class Accommodation {
     private String type;
     private Integer numOfBed;
     private Integer numOfBathroom;
-    private Integer cost;
+    private Integer price;
     private String address;
 
     public Accommodation() {
@@ -29,7 +29,7 @@ public class Accommodation {
         values.put("type", type);
         values.put("num_of_bed", numOfBed);
         values.put("num_of_bathroom", numOfBathroom);
-        values.put("cost", cost);
+        values.put("cost", price);
         values.put("address", address);
 
         return values;
@@ -87,12 +87,12 @@ public class Accommodation {
         this.numOfBathroom = numOfBathroom;
     }
 
-    public Integer getCost() {
-        return cost;
+    public Integer getPrice() {
+        return price;
     }
 
-    public void setCost(Integer cost) {
-        this.cost = cost;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
     public void setAddress(String address) {
@@ -108,7 +108,7 @@ public class Accommodation {
                 ", type='" + type + '\'' +
                 ", numOfBed=" + numOfBed +
                 ", numOfBathroom=" + numOfBathroom +
-                ", cost=" + cost +
+                ", cost=" + price +
                 '}';
     }
 }

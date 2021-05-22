@@ -35,7 +35,7 @@ public class AccommodationController {
                 minPrice.isPresent() && maxPrice.isPresent() && numOfAdult.isPresent() &&
                 numOfChild.isPresent() && numOfInfant.isPresent()) {
 
-            logger.info("모든 조건에 따라 숙소 조회 ");
+            logger.info("지역, 날짜, 가격, 인원 조건 따라 숙소 조회 ");
             return accommodationService.findAllAccommodations();
         }
 
@@ -43,7 +43,8 @@ public class AccommodationController {
                 minPrice.isPresent() && maxPrice.isPresent()) {
 
             logger.info("지역, 날짜, 가격 조건에 따라 숙소 조회 ");
-            return accommodationService.findAllAccommodations();
+            return accommodationService.findAllByDestinationAndDateAndPrice(destination.get(), checkInDate.get(),
+                    checkOutDate.get(), minPrice.get(), maxPrice.get());
         }
 
         if (destination.isPresent() && checkInDate.isPresent() && checkOutDate.isPresent()) {

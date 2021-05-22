@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class AccommodationRepository {
@@ -22,13 +21,13 @@ public class AccommodationRepository {
     }
 
     public List<Accommodation> findAll() {
-        String sqlQuery = "SELECT id, name, max_people, type, num_of_bed, num_of_bathroom, cost, address " +
+        String sqlQuery = "SELECT id, name, max_people, type, num_of_bed, num_of_bathroom, price, address " +
                 "FROM accommodation";
         return jdbcTemplate.query(sqlQuery, accommodationRowMapper());
     }
 
     public List<Accommodation> findAllByDestination(String destination) {
-        String sqlQuery = "SELECT id, name, max_people, type, num_of_bed, num_of_bathroom, cost, address " +
+        String sqlQuery = "SELECT id, name, max_people, type, num_of_bed, num_of_bathroom, price, address " +
                 "FROM accommodation " +
                 "WHERE address LIKE ? ";
         return jdbcTemplate.query(sqlQuery, accommodationRowMapper(), "%" + destination + "%");
@@ -41,6 +40,8 @@ public class AccommodationRepository {
         return jdbcTemplate.query(sqlQuery, stringRowMapper(), "%" + destination + "%");
     }
 
+
+
     private RowMapper<Accommodation> accommodationRowMapper() {
         return (rs, rowNum) -> {
             Accommodation accommodation = new Accommodation();
@@ -50,7 +51,7 @@ public class AccommodationRepository {
             accommodation.setType(rs.getString("type"));
             accommodation.setNumOfBed(rs.getInt("num_of_bed"));
             accommodation.setNumOfBathroom(rs.getInt("num_of_bathroom"));
-            accommodation.setCost(rs.getInt("cost"));
+            accommodation.setPrice(rs.getInt("price"));
             accommodation.setAddress(rs.getString("address"));
 
             return accommodation;
