@@ -15,7 +15,7 @@ export default FormLocationToggle;
 
 const StyledFormLocationToggle = styled.div`
   position: absolute;
-  bottom: -90px;
+  top: 100px;
   width: 300px;
   min-height: 80px;
   padding: 1rem;
