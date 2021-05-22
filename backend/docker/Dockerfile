@@ -1,4 +1,4 @@
-FROM mysql:5.7
+FROM mysql
 
 ENV MYSQL_DATABASE=pyrodb
 ENV MYSQL_USER=pyro
