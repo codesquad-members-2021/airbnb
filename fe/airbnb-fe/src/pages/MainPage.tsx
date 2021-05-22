@@ -17,7 +17,7 @@ export default MainPage;
 const StyledMainPage = styled.div`
   .main {
     width: 100%;
-    height: 35rem;
+    height: 50rem;
     background-color: yellowgreen;
   }
 `;

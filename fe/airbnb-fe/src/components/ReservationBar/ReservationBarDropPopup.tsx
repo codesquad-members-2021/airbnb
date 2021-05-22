@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import React, { useRef, useEffect, ReactElement } from 'react';
 import { useSetRecoilState } from 'recoil';
 
-import { SelectedBtnIdx } from './atoms';
+import { ReservationBarBtnType } from './atoms';
+import { SelectedBtn } from './atoms';
 
 type ReservationBarDropPopupProps = {
   outsideBlacklist?: HTMLElement[],
@@ -11,7 +12,7 @@ type ReservationBarDropPopupProps = {
 
 function ReservationBarDropPopup({ outsideBlacklist = [], children }: ReservationBarDropPopupProps): ReactElement {
   const ref = useRef<HTMLDivElement>(null);
-  const setSelectedIdx = useSetRecoilState<number|null>(SelectedBtnIdx);
+  const setSelectedBtn = useSetRecoilState<ReservationBarBtnType|null>(SelectedBtn);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -27,7 +28,7 @@ function ReservationBarDropPopup({ outsideBlacklist = [], children }: Reservatio
         return;
     }
 
-    setSelectedIdx(null);
+    setSelectedBtn(null);
   };
 
   return (
@@ -40,9 +41,11 @@ function ReservationBarDropPopup({ outsideBlacklist = [], children }: Reservatio
 export default ReservationBarDropPopup;
 
 const StyledReservationBarDropPopup = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   padding: 2.5rem;
   position: absolute;
   top: 6rem;
