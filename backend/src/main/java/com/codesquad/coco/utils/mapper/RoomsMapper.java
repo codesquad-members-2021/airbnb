@@ -2,6 +2,7 @@ package com.codesquad.coco.utils.mapper;
 
 import com.codesquad.coco.Host.Host;
 import com.codesquad.coco.rooms.model.*;
+import com.codesquad.coco.user.WishList;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -16,11 +17,11 @@ public class RoomsMapper implements RowMapper<Rooms> {
                 .name(rs.getString("rm_name"))
                 .pricePerDate(new Money(rs.getInt("rm_price_per_date")))
                 .description(rs.getString("rm_description"))
+                .type(rs.getString("rm_type"))
                 .roomsOption(new RoomsOption(
                         rs.getInt("rm_bed"),
                         rs.getInt("rm_max_guest"),
-                        rs.getInt("rm_bathroom"),
-                        rs.getString("rm_type")
+                        rs.getInt("rm_bathroom")
                         ))
                 .host(new Host(
                         rs.getString("h_name"),
@@ -39,7 +40,13 @@ public class RoomsMapper implements RowMapper<Rooms> {
                 .review(new Review(
                         rs.getDouble("rw_star"),
                         rs.getDouble("rw_review")
-                )).build();
+                ))
+                .wishList(new WishList(
+                        rs.getLong("wl_user_id"),
+                        rs.getLong("wl_rooms_id"),
+                        rs.getBoolean("wl_wish")
+                ))
+                .build();
 
     }
 }

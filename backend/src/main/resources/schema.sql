@@ -89,7 +89,8 @@ create table reservation(
 );
 
 create table wish_list(
-  id bigint auto_increment primary key,
-  user_id bigint references users(id),
-  rooms_id bigint references rooms(id)
+                          id       bigint auto_increment primary key,
+                          user_id  bigint references users (id),
+                          rooms_id bigint references rooms (id),
+                          wish     TINYINT(0)
 );

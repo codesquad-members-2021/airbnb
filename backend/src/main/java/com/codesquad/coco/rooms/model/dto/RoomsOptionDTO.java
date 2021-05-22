@@ -1,12 +1,12 @@
-package com.codesquad.coco.rooms.model;
+package com.codesquad.coco.rooms.model.dto;
 
-public class RoomsOption {
+public class RoomsOptionDTO {
 
     private int bed;
     private int maxGuest;
     private int bathRoom;
 
-    public RoomsOption(int bed, int maxGuest, int bathRoom) {
+    public RoomsOptionDTO(int bed, int maxGuest, int bathRoom) {
         this.bed = bed;
         this.maxGuest = maxGuest;
         this.bathRoom = bathRoom;
@@ -24,13 +24,4 @@ public class RoomsOption {
         return bathRoom;
     }
 
-
-    @Override
-    public String toString() {
-        return "RoomsOption{" +
-                "bed=" + bed +
-                ", maxGuest=" + maxGuest +
-                ", bathRoom=" + bathRoom +
-                '}';
-    }
 }

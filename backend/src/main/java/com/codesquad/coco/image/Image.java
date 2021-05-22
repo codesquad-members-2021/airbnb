@@ -21,6 +21,22 @@ public class Image {
         this.type = type;
     }
 
+    public boolean isThumbnail() {
+        return type.equals("thumbnail");
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getType() {
+        return type;
+    }
+
     @Override
     public String toString() {
         return "Image{" +
