@@ -3,10 +3,7 @@ package mj.airbnb.service;
 import mj.airbnb.domain.accommodation.Accommodation;
 import mj.airbnb.domain.accommodation.AccommodationRepository;
 import mj.airbnb.domain.reservation.ReservationRepository;
-import mj.airbnb.web.AccommodationController;
 import mj.airbnb.web.dto.AccommodationResponseDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,9 +16,6 @@ public class AccommodationService {
 
     private final AccommodationRepository accommodationRepository;
     private final ReservationRepository reservationRepository;
-
-    private final Logger logger = LoggerFactory.getLogger(AccommodationController.class);
-
 
     public AccommodationService(AccommodationRepository accommodationRepository, ReservationRepository reservationRepository) {
         this.accommodationRepository = accommodationRepository;

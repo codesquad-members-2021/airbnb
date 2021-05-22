@@ -1,7 +1,6 @@
 package mj.airbnb.web;
 
 import mj.airbnb.service.AccommodationService;
-import mj.airbnb.web.dto.AccommodationResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +21,7 @@ public class DestinationController {
         this.accommodationService = accommodationService;
     }
 
-    // TODO: 추후 보완(accommodation
+    // TODO: 추후 인기 여행지에 대한 기준 정립하여 보완할 것
     @GetMapping
     public List<String> viewAllByDestinationKeyword(@RequestParam String keyword) {
         logger.info("인기 여행지 조회");

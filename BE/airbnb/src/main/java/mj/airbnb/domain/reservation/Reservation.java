@@ -1,13 +1,9 @@
 package mj.airbnb.domain.reservation;
-
-import org.springframework.data.annotation.Id;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class Reservation {
 
-    @Id
     private Long id;
     private String checkInDate;
     private String checkOutDate;
@@ -56,15 +52,5 @@ public class Reservation {
 
     public void setAccommodationId(Long accommodationId) {
         this.accommodationId = accommodationId;
-    }
-
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "id=" + id +
-                ", checkInDate='" + checkInDate + '\'' +
-                ", checkOutDate='" + checkOutDate + '\'' +
-                ", accommodationId=" + accommodationId +
-                '}';
     }
 }

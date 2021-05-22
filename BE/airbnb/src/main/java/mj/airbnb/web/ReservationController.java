@@ -1,7 +1,6 @@
 package mj.airbnb.web;
 
 import mj.airbnb.domain.reservation.Reservation;
-import mj.airbnb.service.AccommodationService;
 import mj.airbnb.service.ReservationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

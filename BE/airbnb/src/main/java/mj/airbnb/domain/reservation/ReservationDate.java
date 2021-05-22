@@ -11,7 +11,6 @@ public class ReservationDate {
     private Long reservationAccommodationId;
 
     public ReservationDate() {
-
     }
 
     public Long getId() {

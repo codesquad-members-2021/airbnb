@@ -1,6 +1,4 @@
 package mj.airbnb.domain.reservation;
-
-import mj.airbnb.domain.accommodation.Accommodation;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;

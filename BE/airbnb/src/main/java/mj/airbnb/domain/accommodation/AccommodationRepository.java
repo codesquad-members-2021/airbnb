@@ -1,8 +1,4 @@
 package mj.airbnb.domain.accommodation;
-
-import mj.airbnb.web.AccommodationController;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -14,7 +10,6 @@ import java.util.List;
 public class AccommodationRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    private final Logger logger = LoggerFactory.getLogger(AccommodationController.class);
 
     public AccommodationRepository(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
@@ -37,10 +32,8 @@ public class AccommodationRepository {
         String sqlQuery = "SELECT address " +
                 "FROM accommodation " +
                 "WHERE address LIKE ? ";
-        return jdbcTemplate.query(sqlQuery, stringRowMapper(), "%" + destination + "%");
+        return jdbcTemplate.query(sqlQuery, addressMapper(), "%" + destination + "%");
     }
-
-
 
     private RowMapper<Accommodation> accommodationRowMapper() {
         return (rs, rowNum) -> {
@@ -58,8 +51,7 @@ public class AccommodationRepository {
         };
     }
 
-
-    private RowMapper<Accommodation> stringRowMapper() {
+    private RowMapper<Accommodation> addressMapper() {
         return (rs, rowNum) -> {
             Accommodation accommodation = new Accommodation();
             accommodation.setAddress(rs.getString("address"));
