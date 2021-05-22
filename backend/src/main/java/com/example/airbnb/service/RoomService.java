@@ -58,9 +58,7 @@ public class RoomService {
         List<Long> headcountCondition = roomDAO.headcountCondition(guestCount);
 
         List<Long> allConditions = intersection(cityCondition, intersection(priceCondition, headcountCondition));
-        for (Long roomId : periodCondition) {
-            allConditions.remove(roomId);
-        }
+        difference(allConditions, periodCondition);
         int fewNights = calculatePeriod(checkIn, checkOut);
 
         List<RoomListDTO> roomListDTO = new ArrayList<>();

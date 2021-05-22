@@ -24,7 +24,7 @@ public class ReservationController {
     @PostMapping("/{roomId}")
     @ApiOperation(value = "방 예약", notes = "방 예약합니다.")
     @ResponseStatus(HttpStatus.CREATED)
-    public Object reserveRoom(@ApiParam("방 식별자") @PathVariable Long roomId,
+    public Object reserveRoom(@ApiParam(value = "방 식별자", example = "2") @PathVariable Long roomId,
                               @ApiParam(value = "체크인 날짜", example = "2021-05-20") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkIn,
                               @ApiParam(value = "체크아웃 날짜", example = "2021-05-25") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkOut,
                               @ApiParam(value = "인원", example = "3") @RequestParam int numOfPeople) {

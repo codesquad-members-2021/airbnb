@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainPageDTO {
-    public String mainImage = "https://a0.muscache.com/im/pictures/ddc7f01f-3fb3-483c-87e6-701dad52c930.jpg?im_w=960";
+    public String mainImage;
     public List<CityDTO> cities;
     public List<String> extraImages = new ArrayList<String>();
 
@@ -17,7 +17,7 @@ public class MainPageDTO {
     }
 
     public String getMainImage() {
-        return mainImage;
+        return "https://a0.muscache.com/im/pictures/ddc7f01f-3fb3-483c-87e6-701dad52c930.jpg?im_w=960";
     }
 
     public List<String> getExtraImages() {

@@ -36,11 +36,6 @@ VALUES
     ('detail', 'https://a0.muscache.com/im/pictures/468e312c-f002-4049-99b6-d44661da52ff.jpg?im_w=720', 2),
     ('detail', 'https://a0.muscache.com/im/pictures/468e312c-f002-4049-99b6-d44661da52ff.jpg?im_w=720', 2);
 
-INSERT INTO extra_cost
-    (`week_sale_percent`, cleaning_fee, service_fee_percent, resort_fee_percent)
-VALUE
-    (-0.04, 20000, 0.2, 0.02);
-
 INSERT INTO reservation
     (room, check_in, check_out, total_price, number_of_guest)
 VALUE
