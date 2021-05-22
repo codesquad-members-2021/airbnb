@@ -1,6 +1,6 @@
 package com.codesquad.coco.rooms.model;
 
-import com.codesquad.coco.Host.Host;
+import com.codesquad.coco.host.Host;
 import com.codesquad.coco.image.Image;
 import com.codesquad.coco.reservation.Reservation;
 import com.codesquad.coco.user.WishList;

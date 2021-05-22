@@ -8,11 +8,13 @@ import com.codesquad.coco.rooms.model.dto.SearchRoomsDTO;
 import com.codesquad.coco.utils.mapper.ReservationMapper;
 import com.codesquad.coco.utils.mapper.RoomsMapper;
 import com.codesquad.coco.utils.mapper.SearchPriceMapper;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.codesquad.coco.utils.RoomsSQLKt.*;
 
@@ -65,5 +67,12 @@ public class RoomsDAO {
         MapSqlParameterSource parameter = new MapSqlParameterSource()
                 .addValue("rooms_id", id);
         return template.query(FIND_RESERVATION_BY_ROOMS_ID, parameter, new ReservationMapper());
+    }
+
+    public Optional<Rooms> findRoomsByRoomsId(Long roomsId) {
+        MapSqlParameterSource parameter = new MapSqlParameterSource()
+                .addValue("rooms_id", roomsId);
+        List<Rooms> rooms = template.query(FIND_ROOMS_BY_ROOMS_ID, parameter, new RoomsMapper());
+        return Optional.ofNullable(DataAccessUtils.singleResult(rooms));
     }
 }

@@ -1,6 +1,6 @@
 package com.codesquad.coco.utils.mapper;
 
-import com.codesquad.coco.Host.Host;
+import com.codesquad.coco.host.Host;
 import com.codesquad.coco.rooms.model.*;
 import com.codesquad.coco.user.WishList;
 import org.springframework.jdbc.core.RowMapper;

@@ -6,6 +6,7 @@ import com.codesquad.coco.utils.DTOConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -37,11 +38,12 @@ public class RoomsController {
             DTOConverter.roomsToRoomsListDTO(rooms);
             logger.debug(rooms.toString());
         }
-
         return new SearchRoomsListDTO(roomsListDTOs);
+    }
 
-
-        //todo : 들어온 정보로 예약 가능한 곳 검색
-        // maxGuestt와 price의 min max , check 날짜
+    @GetMapping("/rooms/{roomsId}")
+    public RoomsDetailDTO roomsDetail(@PathVariable Long roomsId) {
+        Rooms rooms = roomsService.findRoomsByRoomsId(roomsId);
+        return DTOConverter.roomsToRoomsDetailDTO(rooms);
     }
 }

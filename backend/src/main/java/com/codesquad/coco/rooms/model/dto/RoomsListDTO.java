@@ -10,9 +10,9 @@ public class RoomsListDTO {
     private boolean wish;
     private String thumbnailImage;
     private LocationDTO coordinate;
-    private ReviewDTO reviewDTO;
+    private ReviewDTO review;
 
-    public RoomsListDTO(Long id, String name, int priceForData, RoomsOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO) {
+    private RoomsListDTO(Long id, String name, int priceForData, RoomsOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO) {
         this.id = id;
         this.name = name;
         this.priceForData = priceForData;
@@ -21,7 +21,11 @@ public class RoomsListDTO {
         this.wish = wish;
         this.thumbnailImage = thumbnailImage;
         this.coordinate = coordinate;
-        this.reviewDTO = reviewDTO;
+        this.review = reviewDTO;
+    }
+
+    public static RoomsListDTO of(Long id, String name, int priceForData, RoomsOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO) {
+        return new RoomsListDTO(id, name, priceForData, homeDetails, type, wish, thumbnailImage, coordinate, reviewDTO);
     }
 
 
@@ -58,6 +62,6 @@ public class RoomsListDTO {
     }
 
     public ReviewDTO getReviewDTO() {
-        return reviewDTO;
+        return review;
     }
 }

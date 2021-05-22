@@ -25,4 +25,9 @@ public class RoomsService {
     public List<Rooms> findRoomsBySearchRooms(SearchRoomsDTO roomsDTO) {
         return roomsDAO.findRoomsBySearchRooms(roomsDTO);
     }
+
+    public Rooms findRoomsByRoomsId(Long roomsId) {
+        return roomsDAO.findRoomsByRoomsId(roomsId).orElseThrow(NullPointerException::new);
+        //todo : rooms가 없을 때의 예외 정의
+    }
 }

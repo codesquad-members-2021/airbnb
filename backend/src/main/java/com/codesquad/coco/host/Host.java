@@ -1,4 +1,4 @@
-package com.codesquad.coco.Host;
+package com.codesquad.coco.host;
 
 import org.springframework.data.annotation.Id;
 
