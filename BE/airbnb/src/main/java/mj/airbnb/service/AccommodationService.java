@@ -72,6 +72,6 @@ public class AccommodationService {
         return reservationRepository.findALLReservationDateByAccommodationId(accommodationId).stream()
                 .map(reservationDate -> LocalDate.parse(reservationDate.getReservedDate(), dateFormat))
                 .noneMatch(dateTime -> ((dateTime.isEqual(checkIn) || dateTime.isAfter(checkIn))
-                                        && (dateTime.isEqual(checkIn) || dateTime.isBefore(checkOut))));
+                        && (dateTime.isEqual(checkIn) || dateTime.isBefore(checkOut))));
     }
 }

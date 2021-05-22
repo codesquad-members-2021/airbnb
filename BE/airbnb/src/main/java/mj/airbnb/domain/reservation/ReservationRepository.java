@@ -13,14 +13,14 @@ public class ReservationRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public ReservationRepository(DataSource dataSource){
+    public ReservationRepository(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public Reservation findById(Long id) {
         String sqlQuery = "SELECT id, check_in_date, check_out_date, accommodation_id " +
-                          "FROM reservation " +
-                          "WHERE id = ?";
+                "FROM reservation " +
+                "WHERE id = ?";
         return jdbcTemplate.queryForObject(sqlQuery, reservationRowMapper(), id);
     }
 

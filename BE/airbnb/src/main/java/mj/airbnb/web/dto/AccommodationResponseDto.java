@@ -11,7 +11,7 @@ public class AccommodationResponseDto {
     private final Integer numOfBathroom;
     private final Integer cost;
 
-    public AccommodationResponseDto(Accommodation accommodation){
+    public AccommodationResponseDto(Accommodation accommodation) {
         this.name = accommodation.getName();
         this.maxPeople = accommodation.getMaxPeople();
         this.type = accommodation.getType();

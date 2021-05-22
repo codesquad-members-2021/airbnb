@@ -14,11 +14,11 @@ public class ReservationService {
 
     private final ReservationRepository reservationRepository;
 
-    public ReservationService(ReservationRepository reservationRepository){
+    public ReservationService(ReservationRepository reservationRepository) {
         this.reservationRepository = reservationRepository;
     }
 
-    public Reservation findById(Long id){
+    public Reservation findById(Long id) {
         return reservationRepository.findById(id);
     }
 }
