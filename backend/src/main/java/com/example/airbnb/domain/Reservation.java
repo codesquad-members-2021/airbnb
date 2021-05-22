@@ -10,10 +10,12 @@ public class Reservation {
 
     @Id
     private final Long id;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private final LocalDate checkIn;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private final LocalDate checkOut;
+
     private final int totalPrice;
     private final int adult;
     private final int child;

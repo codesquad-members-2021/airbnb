@@ -1,6 +1,5 @@
 package com.example.airbnb.dao;
 
-import com.example.airbnb.domain.Location;
 import com.example.airbnb.dto.LocationDTO;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

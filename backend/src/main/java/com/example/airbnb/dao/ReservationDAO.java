@@ -40,7 +40,7 @@ public class ReservationDAO {
     }
 
     public Optional<ReservationDTO> getReservationByReservationId(Long reservationId) {
-        String sql = "SELECT r.room, r.check_in, r.check_out, r.total_price, r.number_of_guest FROM reservation r WHERE r.id =" +reservationId;
+        String sql = "SELECT r.room, r.check_in, r.check_out, r.total_price, r.number_of_guest FROM reservation r WHERE r.id =" + reservationId;
         List<ReservationDTO> objects = jdbcTemplate.query(sql, (rs, rowNum) -> {
             return new ReservationDTO(
                     reservationId,

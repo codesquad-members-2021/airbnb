@@ -46,4 +46,5 @@ public class Receipt {
     public int getTotalPrice() {
         return totalPrice;
     }
+
 }

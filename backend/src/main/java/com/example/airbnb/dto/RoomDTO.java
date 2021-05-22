@@ -52,4 +52,5 @@ public class RoomDTO {
     public int getBathroom() {
         return bathroom;
     }
+
 }

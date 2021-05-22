@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 @Api(tags = {"Airbnb API"}, description = "Airbnb API made by Bat")
 @RestController
-@RequestMapping("/reserve")
+@RequestMapping("/reservation")
 public class ReservationController {
     private ReservationService reservationService;
 

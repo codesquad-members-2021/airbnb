@@ -3,7 +3,6 @@ package com.example.airbnb.domain;
 import org.springframework.data.annotation.Id;
 
 public class User {
-
     @Id
     private final Long id;
     private final String githubId;

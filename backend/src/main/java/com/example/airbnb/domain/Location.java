@@ -38,5 +38,4 @@ public class Location {
         return city;
     }
 
-
 }
