@@ -10,7 +10,7 @@ const ModalContainer = styled.div<{ type: string }>`
 				return "493px";
 			case "CHECKIN":
 			case "CHECKOUT":
-				return "916px";
+				return "1016px";
 		}
 	}};
 	height: ${(props) => {
@@ -28,15 +28,15 @@ const ModalContainer = styled.div<{ type: string }>`
 		switch (props.type) {
 			case "CHECKIN":
 			case "CHECKOUT":
-				return "0px";
+				return "210px";
 			case "GUEST":
-				return "650px";
+				return "830px";
 			case "FEE":
-				return "560px";
+				return "740px";
 		}
 	}};
 	position: absolute;
-	top: 100px;
+	top: 200px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

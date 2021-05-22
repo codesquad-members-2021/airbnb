@@ -55,7 +55,7 @@ const StyleFilter = styled.button<{ isEnd: boolean }>`
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	width: 210px;
+	width: 205px;
 	height: 100%;
 	border-radius: 60px;
 	background-color: #ffffff;
@@ -80,10 +80,10 @@ const SearchLocationStyle = styled.input`
 `;
 
 const StyleSearchBtn = styled.button`
-	position: absolute;
+	position: relative;
+	left: -65px;
 	width: 50px;
 	height: 50px;
-	left: 107%;
 	background-color: #e84c60;
 	border-radius: 50%;
 	transition: background-color 0.5s;
