@@ -28,7 +28,7 @@ public class HouseService {
     }
 
     public ReservationInfoResponseDTO getReservationInfo(Long houseId) {
-        return new ReservationInfoResponseDTO(71466, new Fee(25996, 182468), 4);
+        return new ReservationInfoResponseDTO(71466, 0.02, 7.24, 4);
     }
 
     public void makeReservation(ReservationRequestDTO requestDTO) {
