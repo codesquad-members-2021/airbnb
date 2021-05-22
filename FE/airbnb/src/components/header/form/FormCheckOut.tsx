@@ -11,7 +11,7 @@ const FormCheckOut = ({ checkOutRef }: Props) => {
   return (
     <StyledFormCheckOut ref={checkOutRef}>
       <HoverBlock color='gray4' className='hover__checkOut'>
-        <FormColumn title='체크아웃' description='날짜' isInput={true} />
+        <FormColumn title='체크아웃' description='날짜' />
       </HoverBlock>
     </StyledFormCheckOut>
   );

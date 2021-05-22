@@ -6,7 +6,7 @@ const FormPrice = () => {
   return (
     <StyledFormPrice>
       <HoverBlock color='gray4' className='hover__price'>
-        <FormColumn title='요금' description='금액대 설정' isInput={true} />
+        <FormColumn title='요금' description='금액대 설정' />
       </HoverBlock>
     </StyledFormPrice>
   );

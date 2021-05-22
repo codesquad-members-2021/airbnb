@@ -17,7 +17,7 @@ const FormCheckIn = ({ checkOutRef }: Props) => {
     <StyledCheckInWrapper>
       <StyledFormCheckIn ref={checkInRef}>
         <HoverBlock color='gray4' className='hover__checkIn'>
-          <FormColumn title='체크인' description='날짜' isInput={true} />
+          <FormColumn title='체크인' description='날짜' />
         </HoverBlock>
       </StyledFormCheckIn>
       {/* <FormCalendar toggleRef={toggleRef} /> */}

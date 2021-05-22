@@ -14,6 +14,7 @@ export default FormCalendar;
 const StyledFormCalendar = styled.div`
   position: absolute;
   bottom: -522px;
+  left: -6rem;
   width: 916px;
   height: 512px;
   background-color: ${({ theme }) => theme.colors.white};

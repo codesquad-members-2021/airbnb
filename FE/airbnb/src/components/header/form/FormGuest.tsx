@@ -7,7 +7,7 @@ const FormGuest = () => {
   return (
     <StyledFormGuest>
       <HoverBlock color='gray4' className='hover__guest'>
-        <FormColumn title='인원' description='게스트 추가' isInput={true} />
+        <FormColumn title='인원' description='게스트 추가' />
         <div className='search-icon'>
           <IoSearch />
         </div>
