@@ -36,7 +36,8 @@ public class AccommodationController {
                 numOfChild.isPresent() && numOfInfant.isPresent()) {
 
             logger.info("지역, 날짜, 가격, 인원 조건 따라 숙소 조회 ");
-            return accommodationService.findAllAccommodations();
+            return accommodationService.findAllByDestinationAndDateAndPriceAndPeople(destination.get(), checkInDate.get(),
+                    checkOutDate.get(), minPrice.get(), maxPrice.get(), numOfAdult.get(), numOfChild.get(), numOfInfant.get());
         }
 
         if (destination.isPresent() && checkInDate.isPresent() && checkOutDate.isPresent() &&

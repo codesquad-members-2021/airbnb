@@ -65,6 +65,22 @@ public class AccommodationService {
                 .collect(Collectors.toList());
     }
 
+    public List<AccommodationResponseDto> findAllByDestinationAndDateAndPriceAndPeople(
+            String destination, String checkInDate, String checkOutDate, Integer minPrice, Integer maxPrice,
+            Integer numOfAdult, Integer numOfChild, Integer numOfInfant) {
+
+        return accommodationRepository.findAllByDestination(destination).stream()
+                .filter(accommodation -> isAvailableDate(accommodation.getId(), checkInDate, checkOutDate)
+                        && isAvailableCost(accommodation.getPrice(), minPrice, maxPrice)
+                        && isAvailableNumOfPeople(accommodation.getMaxPeople(), numOfAdult, numOfChild, numOfInfant))
+                .map(AccommodationResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    private boolean isAvailableNumOfPeople(Integer maxPeople, Integer numOfAdult, Integer numOfChild, Integer numOfInfant) {
+        return maxPeople >= (numOfAdult + numOfChild + numOfInfant);
+    }
+
     private boolean isAvailableCost(Integer price, Integer minPrice, Integer maxPrice) {
         return price >= minPrice && price <= maxPrice;
     }
