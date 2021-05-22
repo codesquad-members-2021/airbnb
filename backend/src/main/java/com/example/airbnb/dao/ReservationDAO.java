@@ -1,6 +1,7 @@
 package com.example.airbnb.dao;
 
 import com.example.airbnb.dto.ReservationDTO;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -11,9 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ReservationDAO {
@@ -39,21 +39,19 @@ public class ReservationDAO {
         return keyHolder.getKey().longValue();
     }
 
-    public ReservationDTO getReservationById(Long reservationId) {
-        String sql = "SELECT r.room, r.check_in, r.check_out, r.total_price, r.number_of_guest FROM reservation r WHERE r.id =" +reservationId;
-        List<ReservationDTO> reservationDTO = new ArrayList<>();
-        jdbcTemplate.query(sql, (rs, rowNum) -> {
-            reservationDTO.add(new ReservationDTO(
+    public Optional<ReservationDTO> getReservationByReservationId(Long reservationId) {
+        String sql = "SELECT r.room, r.check_in, r.check_out, r.total_price, r.number_of_guest FROM reservation r WHERE r.id =" + reservationId;
+        List<ReservationDTO> objects = jdbcTemplate.query(sql, (rs, rowNum) -> {
+            return new ReservationDTO(
                     reservationId,
                     rs.getLong("room"),
-                    LocalDate.parse(rs.getString("check_in"), DateTimeFormatter.ISO_DATE),
-                    LocalDate.parse(rs.getString("check_out"), DateTimeFormatter.ISO_DATE),
+                    rs.getDate("check_in").toLocalDate(),
+                    rs.getDate("check_out").toLocalDate(),
                     rs.getInt("total_price"),
                     rs.getInt("number_of_guest")
-            ));
-            return null;
+            );
         });
-        return reservationDTO.get(0);
+        return Optional.ofNullable(DataAccessUtils.singleResult(objects));
     }
 
     public void cancelReservationById(Long reservationId) {

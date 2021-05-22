@@ -1,9 +1,5 @@
 package com.example.airbnb.dto;
 
-import com.example.airbnb.domain.Image;
-import com.example.airbnb.domain.Location;
-import com.example.airbnb.domain.Room;
-
 import java.util.List;
 
 public class RoomDetailDTO {

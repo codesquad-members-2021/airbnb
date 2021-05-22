@@ -16,4 +16,5 @@ public class LocationDTO {
     public Double getLongitude() {
         return longitude;
     }
+
 }

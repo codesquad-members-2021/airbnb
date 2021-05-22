@@ -4,7 +4,6 @@ import com.example.airbnb.dao.ImageDAO;
 import com.example.airbnb.dao.LocationDAO;
 import com.example.airbnb.dao.RoomDAO;
 import com.example.airbnb.dto.PriceDTO;
-import com.example.airbnb.dto.ReservationPriceDTO;
 import com.example.airbnb.dto.RoomDetailDTO;
 import com.example.airbnb.dto.RoomListDTO;
 import org.springframework.stereotype.Service;
@@ -17,9 +16,15 @@ import java.util.List;
 
 @Service
 public class RoomService {
-    private RoomDAO roomDAO;
-    private ImageDAO imageDAO;
-    private LocationDAO locationDAO;
+    private static final LocalDate DEFAULT_CHECK_IN = LocalDate.parse("2000-01-01");
+    private static final LocalDate DEFAULT_CHECK_OUT = LocalDate.parse("2100-01-01");
+    private static final int DEFAULT_MIN_PRICE = 0;
+    private static final int DEFAULT_MAX_PRICE = 999999999;
+    private static final int DEFAULT_MAX_GUEST = 9999;
+
+    private final RoomDAO roomDAO;
+    private final ImageDAO imageDAO;
+    private final LocationDAO locationDAO;
 
     public RoomService(RoomDAO roomDAO, ImageDAO imageDAO, LocationDAO locationDAO) {
         this.roomDAO = roomDAO;
@@ -28,68 +33,72 @@ public class RoomService {
     }
 
     public RoomDetailDTO getRoomDetail(Long id) {
-        RoomDetailDTO roomDetailDTO = new RoomDetailDTO(
-                roomDAO.getRoom(id),
+        return new RoomDetailDTO(
+                roomDAO.getRoom(id).orElseThrow(() -> new NullPointerException("해당하는 방이 없습니다.")),
                 locationDAO.getLocation(id),
                 imageDAO.getThumbImage(id),
                 imageDAO.getDetailImages(id)
         );
-        return roomDetailDTO;
     }
 
+    public PriceDTO getAllPricesByConditionsOfCityAndPeriod(LocalDate checkIn, LocalDate checkOut, String cityName) {
+        List<Long> cityCondition = roomDAO.cityCondition(cityName);
+        List<Long> periodCondition = roomDAO.periodCondition(checkIn, checkOut);
+        List<Long> allConditions = difference(cityCondition, periodCondition);
 
-    public PriceDTO getAllPricesByCityAndDate(LocalDate checkIn, LocalDate checkOut, String cityName) {
-        List<Long> reserveRoomList = new ArrayList<>(roomDAO.getAvailableDates(checkIn, checkOut));
-        List<Long> roomListCity = new ArrayList<>(roomDAO.getRoomByCityName(cityName));
-
-        for (int i = 0; i < reserveRoomList.size(); i++) {
-            if (roomListCity.contains(reserveRoomList.get(i))) {
-                roomListCity.remove(reserveRoomList.get(i));
-            }
-        }
-        List<Integer> allPrices = new ArrayList<>(roomDAO.getAllPrices(roomListCity));
+        List<Integer> allPrices = new ArrayList<>(roomDAO.getAllPrices(allConditions));
         Collections.sort(allPrices);
         return new PriceDTO(averagePrice(allPrices), allPrices);
     }
 
-    public List<RoomListDTO> getRoomByCityAndReservationAndPriceAndGuest(LocalDate checkIn, LocalDate checkOut, String cityName, int minPrice, int maxPrice, int guestCount) {
-        List<Long> roomListCity = new ArrayList<>(roomDAO.getRoomByCityName(cityName));
-        List<Long> reserveRoomList = new ArrayList<>(roomDAO.getAvailableDates(checkIn, checkOut));
-        List<Long> priceAndGuestList = new ArrayList<>(roomDAO.getRoomByPriceAnd(minPrice, maxPrice, guestCount));
-        for (int i = 0; i < reserveRoomList.size(); i++) {
-            if (roomListCity.contains(reserveRoomList.get(i))) {
-                roomListCity.remove(reserveRoomList.get(i));
-            }
-        }
-        for (int j = 0; j < priceAndGuestList.size(); j++) {
-            if (roomListCity.contains(priceAndGuestList.get(j))) {
-                roomListCity.remove(priceAndGuestList.get(j));
-            }
-        }
+    public List<RoomListDTO> getRoomsByConditionsOfCityAndPeriodAndPriceAndHeadcount(LocalDate checkIn, LocalDate checkOut, String cityName, int minPrice, int maxPrice, int guestCount) {
+        List<Long> cityCondition = roomDAO.cityCondition(cityName);
+        List<Long> periodCondition = roomDAO.periodCondition(checkIn, checkOut);
+        List<Long> priceCondition = roomDAO.priceCondition(minPrice, maxPrice);
+        List<Long> headcountCondition = roomDAO.headcountCondition(guestCount);
 
-        int days = getPeriod(checkIn, checkOut);
+        List<Long> allConditions = intersection(cityCondition, intersection(priceCondition, headcountCondition));
+        difference(allConditions, periodCondition);
+        int fewNights = calculatePeriod(checkIn, checkOut);
 
         List<RoomListDTO> roomListDTO = new ArrayList<>();
-        for (int k = 0; k< roomListCity.size(); k++) {
-            roomListDTO.add(new RoomListDTO(roomDAO.getRoom(roomListCity.get(k)), imageDAO.getThumbImage(roomListCity.get(k)), days, locationDAO.getLocation(roomListCity.get(k))));
+        for (Long roomId : allConditions) {
+            roomListDTO.add(new RoomListDTO(roomDAO.getRoom(roomId).orElseThrow(() -> new NullPointerException("해당하는 방이 없습니다.")), imageDAO.getThumbImage(roomId), fewNights, locationDAO.getLocation(roomId)));
         }
-
         return roomListDTO;
     }
 
-    private int getPeriod(LocalDate checkIn, LocalDate checkOut) {
-        Long period = ChronoUnit.DAYS.between(checkIn, checkOut);
-        int days = period.intValue();
-        return days;
+    private int calculatePeriod(LocalDate checkIn, LocalDate checkOut) {
+        long period = ChronoUnit.DAYS.between(checkIn, checkOut);
+        return (int) period;
     }
 
     private int averagePrice(List<Integer> allPrices) {
         int sum = 0;
         int size = allPrices.size();
-        for (int i = 0; i < allPrices.size(); i++) {
-            sum += allPrices.get(i);
+        for (Integer allPrice : allPrices) {
+            sum += allPrice;
         }
         return sum / size;
     }
 
+    private List<Long> difference(List<Long> condition1, List<Long> condition2) {
+        for (Long roomId : condition2) {
+            condition1.remove(roomId);
+        }
+        return condition1;
+    }
+
+    private List<Long> intersection(List<Long> condition1, List<Long> condition2) {
+        List<Long> list = new ArrayList<>();
+        for (Long roomId : condition1) {
+            if (condition2.contains(roomId)) {
+                list.add(roomId);
+            }
+        }
+        return list;
+    }
+
 }
+
+

@@ -42,4 +42,5 @@ public class Image {
     public Long getRoom() {
         return room;
     }
+
 }

@@ -3,7 +3,7 @@
 ## Docker Clear
 
 ```sh
-cd ./baseball/backend/docker
+cd ./airbnb/backend/docker
 rm -rf ./db/data
 
 sh ./docker-clear.sh
@@ -12,7 +12,7 @@ sh ./docker-clear.sh
 ## Docker Compose
 
 ```sh
-cd ./baseball/backend/docker
+cd ./airbnb/backend/docker
 
 # start
 sh docker-start.sh
@@ -29,9 +29,6 @@ docker-compose down
 ```sh
 mysql -h 127.0.0.1 -u root -p
 # 비밀번호: root1234
-
-mysql -h 127.0.0.1 -u pyro -p
-# 비밀번호: pyro1234
 
 mysql -h 127.0.0.1 -u bat -p
 # 비밀번호: bat1234
