@@ -1,19 +1,19 @@
 package com.airbnb.util;
 
+import com.airbnb.dto.UserDto;
+import com.airbnb.exception.JwtException;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
-import com.airbnb.dto.UserDto;
-import com.airbnb.exception.JwtException;
 
 public class JwtUtil {
-    private static String JWT_SECRET = "jwtSecret";
-    private static String JWT_ISSUER = "jwtIssuer";
-    private static String USER_LOGIN = "login";
-    private static String USER_NAME = "name";
+    private static final String JWT_SECRET = "jwtSecret";
+    private static final String JWT_ISSUER = "jwtIssuer";
+    private static final String USER_LOGIN = "login";
+    private static final String USER_NAME = "name";
 
     private JwtUtil() {}
 
