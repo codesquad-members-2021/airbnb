@@ -26,6 +26,14 @@ public class AccommodationRepository {
         return jdbcTemplate.query(sqlQuery, accommodationRowMapper());
     }
 
+    public List<Accommodation> findAllByDestination(String destination) {
+        logger.info("destination: {}", destination);
+        String sqlQuery = "SELECT id, name, max_people, type, num_of_bed, num_of_bathroom, cost, address " +
+                "FROM accommodation " +
+                "WHERE address LIKE ? ";
+        return jdbcTemplate.query(sqlQuery, accommodationRowMapper(), "%" + destination + "%");
+    }
+
     public List<Accommodation> findPopularDestinations(String destination) {
         String sqlQuery = "SELECT address " +
                           "FROM accommodation " +

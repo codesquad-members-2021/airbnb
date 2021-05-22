@@ -6,6 +6,7 @@ import mj.airbnb.web.dto.AccommodationResponseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,6 +27,12 @@ public class AccommodationService {
     public List<String> findAllPopularDestinations(String destination){
         return accommodationRepository.findPopularDestinations(destination).stream()
                 .map(Accommodation::getAddress)
+                .collect(Collectors.toList());
+    }
+
+    public List<AccommodationResponseDto> findAllByDestination(String destination) {
+        return accommodationRepository.findAllByDestination(destination).stream()
+                .map(AccommodationResponseDto::new)
                 .collect(Collectors.toList());
     }
 }
