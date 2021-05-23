@@ -35,11 +35,11 @@ class CalendarManager {
             sequenceDates.start = selectedDate
             sequenceDates.end = nil
         } else if let _ = sequenceDates.start, let _ = sequenceDates.end {
-            sequenceDates.start = selectedDate
-            sequenceDates.end = nil
-        } else if let start = sequenceDates.start, sequenceDates.end == nil && start == selectedDate {
             sequenceDates.start = nil
             sequenceDates.end = nil
+        } else if let start = sequenceDates.start, sequenceDates.end == nil && start == selectedDate {
+            sequenceDates.start = start
+            sequenceDates.end = start
         } else if let start = sequenceDates.start, sequenceDates.end == nil && start != selectedDate {
             if selectedDate < start {
                 sequenceDates.start = selectedDate
