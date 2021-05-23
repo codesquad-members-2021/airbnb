@@ -14,7 +14,6 @@ class ParsingManager {
         do {
             return try encoder.encode(data)
         } catch {
-            print("Encode error")
             return nil
         }
     }
@@ -25,7 +24,6 @@ class ParsingManager {
         do {
             return try decoder.decode(type, from: data)
         } catch {
-            print("Decode error")
             return nil
         }
     }

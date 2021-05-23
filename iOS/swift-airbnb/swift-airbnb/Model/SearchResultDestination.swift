@@ -10,10 +10,10 @@ import Foundation
 class SearchResultDestination {
     private(set) var addressName: String
     private(set) var placeName: String
-    private(set) var x: Double
-    private(set) var y: Double
+    private(set) var x: String
+    private(set) var y: String
     
-    init(addressName: String, placeName: String, x: Double, y: Double) {
+    init(addressName: String, placeName: String, x: String, y: String) {
         self.addressName = addressName
         self.placeName = placeName
         self.x = x

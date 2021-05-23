@@ -22,7 +22,7 @@ struct Document: Decodable {
     let id: String
     let phone: String
     let placeName: String
-    let placeURL: String
+    let placeUrl: String
     let roadAddressName: String
     let x: String
     let y: String

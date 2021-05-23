@@ -69,6 +69,7 @@
 		CE990AD6265529A4008E91E5 /* NearbyDestinationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE990AD4265529A4008E91E5 /* NearbyDestinationCell.xib */; };
 		CE990ADC26552B5D008E91E5 /* VariousDestinationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE990ADA26552B5D008E91E5 /* VariousDestinationCell.swift */; };
 		CE990ADD26552B5D008E91E5 /* VariousDestinationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE990ADB26552B5D008E91E5 /* VariousDestinationCell.xib */; };
+		CE9A06DF265ACA4F00769451 /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A06DE265ACA4F00769451 /* SearchResultModel.swift */; };
 		CEDEB8132656470D00CCAB84 /* MainPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEB8112656470D00CCAB84 /* MainPageHeaderView.swift */; };
 		CEDEB8142656470D00CCAB84 /* MainPageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDEB8122656470D00CCAB84 /* MainPageHeaderView.xib */; };
 		CEDEB8192656A67100CCAB84 /* MainPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEB8182656A67100CCAB84 /* MainPageModel.swift */; };
@@ -178,6 +179,7 @@
 		CE990AD4265529A4008E91E5 /* NearbyDestinationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NearbyDestinationCell.xib; sourceTree = "<group>"; };
 		CE990ADA26552B5D008E91E5 /* VariousDestinationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariousDestinationCell.swift; sourceTree = "<group>"; };
 		CE990ADB26552B5D008E91E5 /* VariousDestinationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VariousDestinationCell.xib; sourceTree = "<group>"; };
+		CE9A06DE265ACA4F00769451 /* SearchResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModel.swift; sourceTree = "<group>"; };
 		CEDEB8112656470D00CCAB84 /* MainPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageHeaderView.swift; sourceTree = "<group>"; };
 		CEDEB8122656470D00CCAB84 /* MainPageHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainPageHeaderView.xib; sourceTree = "<group>"; };
 		CEDEB8182656A67100CCAB84 /* MainPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageModel.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				CE90C081265795930072B8C2 /* NearbyPopularDestination.swift */,
 				CE90C092265798600072B8C2 /* SearchPageModel.swift */,
 				CE8E4732265A3FC9004AD00C /* SearchResultDestination.swift */,
+				CE9A06DE265ACA4F00769451 /* SearchResultModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 				CE90C093265798600072B8C2 /* SearchPageModel.swift in Sources */,
 				CE8E479D265A5B94004AD00C /* SearchResultDTO.swift in Sources */,
 				CE990AC426550207008E91E5 /* MainPageCollectionViewDataSource.swift in Sources */,
+				CE9A06DF265ACA4F00769451 /* SearchResultModel.swift in Sources */,
 				CE8E472E265A3E9A004AD00C /* SearchResultCollectionViewDataSource.swift in Sources */,
 				CE7E0C852653B0FD00E0ADD3 /* AppDelegate.swift in Sources */,
 				CE8E4722265A3954004AD00C /* SearchResultCollectionViewController.swift in Sources */,

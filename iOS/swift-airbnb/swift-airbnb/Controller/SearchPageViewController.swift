@@ -15,21 +15,26 @@ class SearchPageViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureSearchController()
+        configureNavigation()
         configureCollectionViewLayout()
         configureCollectionViewCell()
         searchPageCollectionViewDataSource.setDataSource(collectionView: self.collectionView)
         searchPageCollectionViewDataSource.applySnapshot(with: self.searchPageModel.nearbyPopularDestinations)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    private func configureSearchController() {
         let searchController = UISearchController(searchResultsController: searchResultController)
         searchController.searchBar.placeholder = "어디로 여행가세요?"
         searchController.automaticallyShowsCancelButton = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        self.navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchResultsUpdater = self
         self.navigationItem.searchController = searchController
+    }
+    
+    private func configureNavigation() {
+        self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.title = "숙소 찾기"
     }
@@ -72,4 +77,24 @@ extension SearchPageViewController {
         
         return destinationSection
     }
+}
+
+extension SearchPageViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        
+        NetworkManager.placeListRequest(about: text) { (responseData) in
+            guard let data = responseData else {
+                return
+            }
+            
+            if let searchResultController = searchController.searchResultsController as? SearchResultCollectionViewController, let decodedData = ParsingManager.decodeData(type: SearchResultDTO.self, data: data) {
+                searchResultController.updateModel(with: decodedData.documents)
+            }
+        }
+    }
+    
 }

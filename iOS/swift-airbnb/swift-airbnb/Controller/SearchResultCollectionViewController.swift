@@ -10,6 +10,7 @@ import UIKit
 class SearchResultCollectionViewController: UICollectionViewController {
 
     private var dataSource = SearchResultCollectionViewDataSource()
+    private var searchResultModel = SearchResultModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,8 +18,12 @@ class SearchResultCollectionViewController: UICollectionViewController {
         configureCollectionViewLayout()
         configureCollectionViewCell()
         self.dataSource.setDataSource(collectionView: self.collectionView)
-        self.dataSource.applySnapshot(with: [SearchResultDestination(addressName: "양재역", placeName: "위숨스터디", x: 1.2, y: 1.2), SearchResultDestination(addressName: "양재역", placeName: "부추곱창", x: 1.2, y: 1.2), SearchResultDestination(addressName: "양재역", placeName: "부추곱창", x: 1.2, y: 1.2), SearchResultDestination(addressName: "양재역", placeName: "부추곱창", x: 1.2, y: 1.2), SearchResultDestination(addressName: "양재역", placeName: "부추곱창", x: 1.2, y: 1.2), SearchResultDestination(addressName: "양재역", placeName: "부추곱창", x: 1.2, y: 1.2), SearchResultDestination(addressName: "양재역", placeName: "부추곱창", x: 1.2, y: 1.2), SearchResultDestination(addressName: "양재역", placeName: "부추곱창", x: 1.2, y: 1.2), SearchResultDestination(addressName: "양재역", placeName: "부추곱창", x: 1.2, y: 1.2), SearchResultDestination(addressName: "양재역", placeName: "부추곱창", x: 1.2, y: 1.2)])
-        NetworkManager.getTest()
+        
+    }
+    
+    func updateModel(with data: [Document]) {
+        self.searchResultModel.updateDestinations(with: data)
+        self.dataSource.applySnapshot(with: self.searchResultModel.searchResultDestinations)
     }
     
     private func configureCollectionViewLayout() {

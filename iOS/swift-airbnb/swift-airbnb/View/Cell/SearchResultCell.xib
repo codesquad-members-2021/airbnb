@@ -44,8 +44,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81e-hr-uHb">
-                                <rect key="frame" x="80" y="21.5" width="104" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81e-hr-uHb">
+                                <rect key="frame" x="80" y="22" width="104" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -58,7 +58,7 @@
                             <constraint firstItem="81e-hr-uHb" firstAttribute="centerY" secondItem="CqE-OS-DdZ" secondAttribute="centerY" id="Cmp-ss-XSc"/>
                             <constraint firstAttribute="bottom" secondItem="NL7-QV-rBG" secondAttribute="bottom" id="YOh-SB-ecM"/>
                             <constraint firstItem="NL7-QV-rBG" firstAttribute="top" secondItem="CqE-OS-DdZ" secondAttribute="top" id="fbY-ZH-ERM"/>
-                            <constraint firstItem="81e-hr-uHb" firstAttribute="leading" relation="lessThanOrEqual" secondItem="NL7-QV-rBG" secondAttribute="trailing" constant="16" id="wy6-95-rbM"/>
+                            <constraint firstItem="81e-hr-uHb" firstAttribute="leading" secondItem="NL7-QV-rBG" secondAttribute="trailing" constant="16" id="wy6-95-rbM"/>
                         </constraints>
                     </view>
                 </subviews>
