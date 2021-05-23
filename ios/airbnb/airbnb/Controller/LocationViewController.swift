@@ -7,6 +7,8 @@
 
 import UIKit
 import Combine
+import GooglePlaces
+
 
 struct DetailCity {
     let name: String
@@ -16,17 +18,18 @@ final class LocationViewController: UIViewController {
     
     @IBOutlet weak var cityCollectionView: UICollectionView!
     
-    private let searchController = UISearchController(searchResultsController: nil)
+    
+    var searchController : UISearchController?
+    var resultsViewController: GMSAutocompleteResultsViewController?
     var locationManager: LocationManager!
-    var detailCities = [DetailCity(name: "songpa"), DetailCity(name: "jamsil")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureSearchResultsController()
         configureNavigationItem()
         configureSearchController()
         registerNib()
         cityCollectionView.dataSource = self
-        searchController.searchResultsUpdater = self
     }
 
     
@@ -42,11 +45,19 @@ final class LocationViewController: UIViewController {
     }
     
     private func configureSearchController() {
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.automaticallyShowsCancelButton = false
-        searchController.searchBar.placeholder = "어디로 여행가세요?"
+        searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController?.searchResultsUpdater = resultsViewController
+        searchController?.searchBar.sizeToFit()
+        searchController?.hidesNavigationBarDuringPresentation = false
+        searchController?.automaticallyShowsCancelButton = false
+        searchController?.searchBar.placeholder = "어디로 여행가세요?"
         self.navigationItem.searchController = searchController
         definesPresentationContext = true
+    }
+    
+    private func configureSearchResultsController() {
+        resultsViewController = GMSAutocompleteResultsViewController()
+        resultsViewController?.delegate = self
     }
     
     private func registerNib() {
@@ -61,44 +72,28 @@ final class LocationViewController: UIViewController {
     @objc func tappedDeleteBarButton() {
         
     }
-    
-    private func searchBarIsEmpty() -> Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
-    
-    private func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmpty()
-    }
 }
 
 extension LocationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if isFiltering() {
-            return detailCities.count
-        } else {
-            return locationManager.mainLayout?.cities.count ?? 0
-        }
-
+        return locationManager.mainLayout?.cities.count ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.identifier, for: indexPath) as! CityCollectionViewCell
-
-        if isFiltering() {
-            cell.location.text = detailCities[indexPath.row].name
-            cell.distance.isHidden = true
-        } else {
-            cell.location.text = locationManager.mainLayout?.cities[indexPath.row].cityName
-            let data = locationManager.cityImagesData![indexPath.row]
-            cell.locationImage.image = UIImage(data: data)
-            cell.distance.isHidden = false
-        }
+        cell.location.text = locationManager.mainLayout?.cities[indexPath.row].cityName
+        let url = locationManager.mainLayout!.cities[indexPath.row].cityImage
+        cell.locationImage.load(with: url)
         return cell
     }
 }
 
-extension LocationViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        self.cityCollectionView.reloadData()
+extension LocationViewController: GMSAutocompleteResultsViewControllerDelegate {
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
+        searchController?.isActive = false
+        print("Place name: \(place.name)")
+    }
+    
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error) {
+        print("Error: ", error.localizedDescription)
     }
 }
-

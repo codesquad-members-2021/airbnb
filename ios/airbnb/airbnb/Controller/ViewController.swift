@@ -57,17 +57,11 @@ final class ViewController: UIViewController {
     }
     
     func bind() {
-        locationManager.$mainImageData
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] data in
-                guard let data = data else { return }
-                self?.curationImage.image = UIImage(data: data)
-            }
-            .store(in: &self.cancelable)
-        
         locationManager.$mainLayout
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] mainlayout in
+            .sink { [weak self] mainLayout in
+                guard let mainLayout = mainLayout else { return }
+                self?.curationImage.load(with: mainLayout.mainImage)
                 self?.cityCollectionView.reloadData()
                 self?.spotCollectionView.reloadData()
             }
@@ -87,16 +81,16 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.cityCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.identifier, for: indexPath) as! CityCollectionViewCell
-            let image = UIImage(data: locationManager.cityImagesData[indexPath.row])
-            cell.locationImage.image = image
+            guard let url = locationManager.mainLayout?.cities[indexPath.row].cityImage else { return UICollectionViewCell() }
+            cell.locationImage.load(with: url)
+            cell.location.text = locationManager.mainLayout?.cities[indexPath.row].cityName
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SpotCollectionViewCell.identifier, for: indexPath) as! SpotCollectionViewCell
-            let image = UIImage(data: locationManager.extraImagesData[indexPath.row])
-            cell.spotImage.image = image
+            guard let url = locationManager.mainLayout?.extraImages[indexPath.row] else
+            { return UICollectionViewCell() }
+            cell.spotImage.load(with: url)
             return cell
         }
     }
-    
-    
 }

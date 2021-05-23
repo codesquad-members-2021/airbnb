@@ -14,7 +14,6 @@ class CityCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var locationImage: UIImageView!
     @IBOutlet weak var location: UILabel!
-    @IBOutlet weak var distance: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
