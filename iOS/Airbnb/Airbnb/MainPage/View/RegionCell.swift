@@ -18,8 +18,8 @@ class RegionCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func fillUI(with region: CityName) {
-        self.regionLabel.text = region.city
+    func fillUI(with region: Region) {
+        self.regionLabel.text = region.name
     }
 
 }
