@@ -1,21 +1,21 @@
-package com.codesquad.coco.rooms.model.dto;
+package com.codesquad.coco.room.model.dto;
 
-import com.codesquad.coco.rooms.model.Guest;
-import com.codesquad.coco.rooms.model.Money;
+import com.codesquad.coco.room.model.Guest;
+import com.codesquad.coco.room.model.Money;
 
 import java.beans.ConstructorProperties;
 import java.time.LocalDate;
 
-public class SearchRoomsDTO extends SearchPriceDTO {
+public class SearchRoomDTO extends SearchPriceDTO {
 
     private Guest guest;
     private Money priceMin;
     private Money priceMax;
 
     @ConstructorProperties({"check-in", "check-out", "city-name", "adult", "child", "baby", "price-min", "price-max"})
-    public SearchRoomsDTO(String checkIn, String checkOut, String cityName,
-                          int adult, int child, int baby,
-                          int priceMin, int priceMax) {
+    public SearchRoomDTO(String checkIn, String checkOut, String cityName,
+                         int adult, int child, int baby,
+                         int priceMin, int priceMax) {
         super(checkIn, checkOut, cityName);
         this.guest = new Guest(adult, child, baby);
         this.priceMin = new Money(priceMin);

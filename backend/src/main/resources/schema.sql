@@ -9,16 +9,17 @@ drop table if exists city;
 drop table if exists location;
 drop table if exists additional_cost;
 drop table if exists review;
-drop table if exists rooms;
+drop table if exists room;
 drop table if exists image;
 drop table if exists users;
 drop table if exists reservation;
 drop table if exists wish_list;
 
-create table host(
-    id bigint auto_increment primary key ,
-    name varchar (45),
-    profile_image_url varchar (200)
+create table host
+(
+    id                bigint auto_increment primary key,
+    name              varchar(45),
+    profile_image_url varchar(200)
 );
 
 
@@ -50,7 +51,7 @@ create table review(
    review int
 );
 
-create table rooms
+create table room
 (
     id                 bigint auto_increment primary key,
     host_id            bigint references host (id),
@@ -67,11 +68,12 @@ create table rooms
 
 );
 
-create table image(
-    id bigint auto_increment primary key,
-    rooms_id bigint references rooms(id),
-    url varchar (200) not null,
-    type varchar (30) not null
+create table image
+(
+    id      bigint auto_increment primary key,
+    room_id bigint references room (id),
+    url     varchar(200) not null,
+    type    varchar(30)  not null
 );
 
 create table users(
@@ -81,21 +83,23 @@ create table users(
   profile_image_url varchar (200)
 );
 
-create table reservation(
-                            id bigint auto_increment primary key,
-                            user_id bigint references users(id),
-                            rooms_id bigint references rooms(id),
-                            adult int,
-                            child int,
-                            baby int,
-                            check_in date,
-                            check_out date,
-                            total_price int
+create table reservation
+(
+    id          bigint auto_increment primary key,
+    user_id     bigint references users (id),
+    room_id     bigint references room (id),
+    adult       int,
+    child       int,
+    baby        int,
+    check_in    date,
+    check_out   date,
+    total_price int
 );
 
-create table wish_list(
-                          id       bigint auto_increment primary key,
-                          user_id  bigint references users (id),
-                          rooms_id bigint references rooms (id),
-                          wish     TINYINT(0)
+create table wish_list
+(
+    id      bigint auto_increment primary key,
+    user_id bigint references users (id),
+    room_id bigint references room (id),
+    wish    TINYINT(0)
 );

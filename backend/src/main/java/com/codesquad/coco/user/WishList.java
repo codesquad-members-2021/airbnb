@@ -8,12 +8,12 @@ public class WishList {
     private Long id;
 
     private Long userId;
-    private Long roomsId;
+    private Long roomId;
     private boolean wish;
 
-    public WishList(Long userId, Long roomsId, boolean wish) {
+    public WishList(Long userId, Long roomId, boolean wish) {
         this.userId = userId;
-        this.roomsId = roomsId;
+        this.roomId = roomId;
         this.wish = wish;
     }
 
@@ -29,7 +29,7 @@ public class WishList {
         return userId;
     }
 
-    public Long getRoomsId() {
-        return roomsId;
+    public Long getRoomId() {
+        return roomId;
     }
 }

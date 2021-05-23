@@ -1,4 +1,4 @@
-package com.codesquad.coco.rooms.model.dto;
+package com.codesquad.coco.room.model.dto;
 
 import java.beans.ConstructorProperties;
 import java.time.LocalDate;

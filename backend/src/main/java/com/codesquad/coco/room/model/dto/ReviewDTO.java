@@ -1,4 +1,4 @@
-package com.codesquad.coco.rooms.model.dto;
+package com.codesquad.coco.room.model.dto;
 
 public class ReviewDTO {
 

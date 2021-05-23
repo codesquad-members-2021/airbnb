@@ -1,16 +1,16 @@
-package com.codesquad.coco.rooms.model.dto;
+package com.codesquad.coco.room.model.dto;
 
 import com.codesquad.coco.host.HostDTO;
 import com.codesquad.coco.image.ImageDTO;
 
 import java.util.List;
 
-public class RoomsDetailDTO {
+public class RoomDetailDTO {
 
     private Long id;
     private String name;
     private HostDTO host;
-    private RoomsOptionDTO homeDetails;
+    private RoomOptionDTO homeDetails;
     private String type;
     private int priceForData;
     private String description;
@@ -20,7 +20,7 @@ public class RoomsDetailDTO {
     private ReviewDTO review;
     private AdditionalCostDTO additionalCost;
 
-    private RoomsDetailDTO(Long id, String name, HostDTO host, RoomsOptionDTO homeDetails, String type, int priceForData,
+    private RoomDetailDTO(Long id, String name, HostDTO host, RoomOptionDTO homeDetails, String type, int priceForData,
                           String description, boolean wish, LocationDTO coordinate, List<ImageDTO> images, ReviewDTO review, AdditionalCostDTO additionalCost) {
         this.id = id;
         this.name = name;
@@ -36,9 +36,9 @@ public class RoomsDetailDTO {
         this.additionalCost = additionalCost;
     }
 
-    public static RoomsDetailDTO of(Long id, String name, HostDTO host, RoomsOptionDTO homeDetails, String type,
-                                    int priceForData, String description, boolean wish, LocationDTO coordinate, List<ImageDTO> images, ReviewDTO review, AdditionalCostDTO additionalCost){
-        return new RoomsDetailDTO(id,name,host,homeDetails,type,priceForData,description,wish,coordinate,images,review,additionalCost);
+    public static RoomDetailDTO of(Long id, String name, HostDTO host, RoomOptionDTO homeDetails, String type,
+                                   int priceForData, String description, boolean wish, LocationDTO coordinate, List<ImageDTO> images, ReviewDTO review, AdditionalCostDTO additionalCost) {
+        return new RoomDetailDTO(id, name, host, homeDetails, type, priceForData, description, wish, coordinate, images, review, additionalCost);
     }
 
     public Long getId() {
@@ -53,7 +53,7 @@ public class RoomsDetailDTO {
         return host;
     }
 
-    public RoomsOptionDTO getHomeDetails() {
+    public RoomOptionDTO getHomeDetails() {
         return homeDetails;
     }
 

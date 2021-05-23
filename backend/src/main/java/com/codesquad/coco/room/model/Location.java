@@ -1,4 +1,4 @@
-package com.codesquad.coco.rooms.model;
+package com.codesquad.coco.room.model;
 
 import com.codesquad.coco.city.City;
 import org.springframework.data.annotation.Id;

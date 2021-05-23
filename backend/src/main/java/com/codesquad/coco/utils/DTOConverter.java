@@ -4,8 +4,8 @@ import com.codesquad.coco.host.Host;
 import com.codesquad.coco.host.HostDTO;
 import com.codesquad.coco.image.Image;
 import com.codesquad.coco.image.ImageDTO;
-import com.codesquad.coco.rooms.model.*;
-import com.codesquad.coco.rooms.model.dto.*;
+import com.codesquad.coco.room.model.*;
+import com.codesquad.coco.room.model.dto.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,34 +13,34 @@ import java.util.stream.Collectors;
 public class DTOConverter {
 
 
-    public static RoomsListDTO roomsToRoomsListDTO(Rooms rooms) {
-        return RoomsListDTO.of(
-                rooms.getId(),
-                rooms.getName(),
-                rooms.getPricePerDate(),
-                roomsOptionToRoomsOptionDTO(rooms.getRoomsOption()),
-                rooms.getType(),
-                rooms.getWish(),
-                rooms.getThumbnailImage(),
-                locationToLocationDTO(rooms.getLocation()),
-                reviewToReviewDTO(rooms.getReview())
+    public static RoomPreviewDTO roomToRoomPreviewDTO(Room room) {
+        return RoomPreviewDTO.of(
+                room.getId(),
+                room.getName(),
+                room.getPricePerDate(),
+                roomOptionToRoomOptionDTO(room.getRoomOption()),
+                room.getType(),
+                room.getWish(),
+                room.getThumbnailImage(),
+                locationToLocationDTO(room.getLocation()),
+                reviewToReviewDTO(room.getReview())
         );
     }
 
-    public static RoomsDetailDTO roomsToRoomsDetailDTO(Rooms rooms) {
-        return RoomsDetailDTO.of(
-                rooms.getId(),
-                rooms.getName(),
-                hostToHostDTO(rooms.getHost()),
-                roomsOptionToRoomsOptionDTO(rooms.getRoomsOption()),
-                rooms.getType(),
-                rooms.getPricePerDate(),
-                rooms.getDescription(),
-                rooms.getWish(),
-                locationToLocationDTO(rooms.getLocation()),
-                imagesToImages(rooms.getImages()),
-                reviewToReviewDTO(rooms.getReview()),
-                additionalCostToAdditionalCostDTO(rooms.getAdditionalCost())
+    public static RoomDetailDTO roomToRoomDetailDTO(Room room) {
+        return RoomDetailDTO.of(
+                room.getId(),
+                room.getName(),
+                hostToHostDTO(room.getHost()),
+                roomOptionToRoomOptionDTO(room.getRoomOption()),
+                room.getType(),
+                room.getPricePerDate(),
+                room.getDescription(),
+                room.getWish(),
+                locationToLocationDTO(room.getLocation()),
+                imagesToImages(room.getImages()),
+                reviewToReviewDTO(room.getReview()),
+                additionalCostToAdditionalCostDTO(room.getAdditionalCost())
         );
     }
 
@@ -87,11 +87,11 @@ public class DTOConverter {
         );
     }
 
-    public static RoomsOptionDTO roomsOptionToRoomsOptionDTO(RoomsOption roomsOption) {
-        return new RoomsOptionDTO(
-                roomsOption.getBed(),
-                roomsOption.getMaxGuest(),
-                roomsOption.getBathRoom()
+    public static RoomOptionDTO roomOptionToRoomOptionDTO(RoomOption roomOption) {
+        return new RoomOptionDTO(
+                roomOption.getBed(),
+                roomOption.getMaxGuest(),
+                roomOption.getBathRoom()
         );
     }
 

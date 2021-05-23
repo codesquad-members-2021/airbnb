@@ -1,6 +1,6 @@
 package com.codesquad.coco.reservation;
 
-import com.codesquad.coco.rooms.model.Money;
+import com.codesquad.coco.room.model.Money;
 import com.codesquad.coco.user.User;
 import org.springframework.data.annotation.Id;
 

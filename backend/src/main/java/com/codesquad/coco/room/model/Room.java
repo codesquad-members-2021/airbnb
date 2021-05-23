@@ -1,4 +1,4 @@
-package com.codesquad.coco.rooms.model;
+package com.codesquad.coco.room.model;
 
 import com.codesquad.coco.host.Host;
 import com.codesquad.coco.image.Image;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Rooms {
+public class Room {
 
     private static String DEFAULT_THUMBNAIL_IMAGE = "https://a0.muscache.com/im/pictures/user/7822f895-df8a-4b0f-9035-0d3b3afbdc3d.jpg?aki_policy=profile_x_medium";
 
@@ -21,7 +21,7 @@ public class Rooms {
     private Location location;
     private AdditionalCost additionalCost;
     private Review review;
-    private RoomsOption roomsOption;
+    private RoomOption roomOption;
     private String type;
     private String name;
     private Money pricePerDate;
@@ -30,13 +30,13 @@ public class Rooms {
     private List<Image> images = new ArrayList<>();
     private WishList wishList;
 
-    private Rooms(Builder builder) {
+    private Room(Builder builder) {
         this.id = builder.id;
         this.host = builder.host;
         this.location = builder.location;
         this.additionalCost = builder.additionalCost;
         this.review = builder.review;
-        this.roomsOption = builder.roomsOption;
+        this.roomOption = builder.roomOption;
         this.name = builder.name;
         this.pricePerDate = builder.pricePerDate;
         this.description = builder.description;
@@ -86,8 +86,8 @@ public class Rooms {
         return review;
     }
 
-    public RoomsOption getRoomsOption() {
-        return roomsOption;
+    public RoomOption getRoomOption() {
+        return roomOption;
     }
 
     public String getName() {
@@ -123,7 +123,7 @@ public class Rooms {
                 ", location=" + location +
                 ", additionalCost=" + additionalCost +
                 ", review=" + review +
-                ", roomsOption=" + roomsOption +
+                ", roomsOption=" + roomOption +
                 ", name='" + name + '\'' +
                 ", pricePerDate=" + pricePerDate +
                 ", description='" + description + '\'' +
@@ -138,7 +138,7 @@ public class Rooms {
         private Location location;
         private AdditionalCost additionalCost;
         private Review review;
-        private RoomsOption roomsOption;
+        private RoomOption roomOption;
         private String type;
         private String name;
         private Money pricePerDate;
@@ -183,8 +183,8 @@ public class Rooms {
             return this;
         }
 
-        public Builder roomsOption(RoomsOption val) {
-            this.roomsOption = val;
+        public Builder roomOption(RoomOption val) {
+            this.roomOption = val;
             return this;
         }
 
@@ -213,8 +213,8 @@ public class Rooms {
             return this;
         }
 
-        public Rooms build() {
-            return new Rooms(this);
+        public Room build() {
+            return new Room(this);
         }
 
     }

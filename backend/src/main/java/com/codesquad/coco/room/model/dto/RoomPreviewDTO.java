@@ -1,18 +1,18 @@
-package com.codesquad.coco.rooms.model.dto;
+package com.codesquad.coco.room.model.dto;
 
-public class RoomsListDTO {
+public class RoomPreviewDTO {
 
     private Long id;
     private String name;
     private int priceForData;
-    private RoomsOptionDTO homeDetails;
+    private RoomOptionDTO homeDetails;
     private String type;
     private boolean wish;
     private String thumbnailImage;
     private LocationDTO coordinate;
     private ReviewDTO review;
 
-    private RoomsListDTO(Long id, String name, int priceForData, RoomsOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO) {
+    private RoomPreviewDTO(Long id, String name, int priceForData, RoomOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO) {
         this.id = id;
         this.name = name;
         this.priceForData = priceForData;
@@ -24,8 +24,8 @@ public class RoomsListDTO {
         this.review = reviewDTO;
     }
 
-    public static RoomsListDTO of(Long id, String name, int priceForData, RoomsOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO) {
-        return new RoomsListDTO(id, name, priceForData, homeDetails, type, wish, thumbnailImage, coordinate, reviewDTO);
+    public static RoomPreviewDTO of(Long id, String name, int priceForData, RoomOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO) {
+        return new RoomPreviewDTO(id, name, priceForData, homeDetails, type, wish, thumbnailImage, coordinate, reviewDTO);
     }
 
 
@@ -41,7 +41,7 @@ public class RoomsListDTO {
         return priceForData;
     }
 
-    public RoomsOptionDTO getHomeDetails() {
+    public RoomOptionDTO getHomeDetails() {
         return homeDetails;
     }
 

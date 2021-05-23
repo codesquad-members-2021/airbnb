@@ -1,28 +1,28 @@
 package com.codesquad.coco.utils.mapper;
 
 import com.codesquad.coco.host.Host;
-import com.codesquad.coco.rooms.model.*;
+import com.codesquad.coco.room.model.*;
 import com.codesquad.coco.user.WishList;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RoomsMapper implements RowMapper<Rooms> {
+public class RoomMapper implements RowMapper<Room> {
 
     @Override
-    public Rooms mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return new Rooms.Builder()
+    public Room mapRow(ResultSet rs, int rowNum) throws SQLException {
+        return new Room.Builder()
                 .id(rs.getLong("rm_id"))
                 .name(rs.getString("rm_name"))
                 .pricePerDate(new Money(rs.getInt("rm_price_per_date")))
                 .description(rs.getString("rm_description"))
                 .type(rs.getString("rm_type"))
-                .roomsOption(new RoomsOption(
+                .roomOption(new RoomOption(
                         rs.getInt("rm_bed"),
                         rs.getInt("rm_max_guest"),
                         rs.getInt("rm_bathroom")
-                        ))
+                ))
                 .host(new Host(
                         rs.getString("h_name"),
                         rs.getString("h_profile_image_url")
@@ -43,7 +43,7 @@ public class RoomsMapper implements RowMapper<Rooms> {
                 ))
                 .wishList(new WishList(
                         rs.getLong("wl_user_id"),
-                        rs.getLong("wl_rooms_id"),
+                        rs.getLong("wl_room_id"),
                         rs.getBoolean("wl_wish")
                 ))
                 .build();

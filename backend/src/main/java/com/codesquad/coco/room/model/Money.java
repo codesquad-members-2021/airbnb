@@ -1,4 +1,4 @@
-package com.codesquad.coco.rooms.model;
+package com.codesquad.coco.room.model;
 
 public class Money {
 

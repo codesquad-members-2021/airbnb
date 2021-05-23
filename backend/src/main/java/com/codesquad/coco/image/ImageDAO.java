@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static com.codesquad.coco.utils.ImageSQLKt.FIND_IMAGE_BY_ROOMS_ID;
+import static com.codesquad.coco.utils.ImageSQLKt.FIND_IMAGE_BY_ROOM_ID;
 
 @Component
 public class ImageDAO {
@@ -18,9 +18,9 @@ public class ImageDAO {
         this.template = template;
     }
 
-    public List<Image> findImageByRoomsId(Long id){
+    public List<Image> findImageByRoomId(Long id) {
         MapSqlParameterSource parameter = new MapSqlParameterSource()
-                .addValue("rooms_id",id);
-        return template.query(FIND_IMAGE_BY_ROOMS_ID, parameter, new ImageMapper());
+                .addValue("room_id", id);
+        return template.query(FIND_IMAGE_BY_ROOM_ID, parameter, new ImageMapper());
     }
 }
