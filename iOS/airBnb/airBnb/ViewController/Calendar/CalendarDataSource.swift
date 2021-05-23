@@ -34,6 +34,7 @@ class CalendarDataSource: NSObject, UICollectionViewDataSource {
         let day = dates[month]?[indexPath.row]
         cell.configure(day: day)
         cell.setupDaysRange(dates : sequenceDates, day: day)
+        cell.selectDay(dates: sequenceDates, day: day)
         return cell
     }
     

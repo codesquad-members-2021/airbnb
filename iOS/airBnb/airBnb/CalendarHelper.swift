@@ -30,7 +30,7 @@ class CalendarHelper {
         (1...daysInMonth + startingSpaces).forEach { (count) in
             checkFirstDayRange(day: count) ?
                 days.append(nil) :
-                days.append(createDay(with:count - startingSpaces))
+                days.append(createDay(with: count - startingSpaces))
         }
         func createDay(with count: Int) -> Date {
             return calendar.date(byAdding: .day, value: count - 1, to: firstDayOfMonth) ?? Date()
@@ -54,28 +54,11 @@ class CalendarHelper {
     
     static func getFirstOfMonth(date: Date) -> Date {
         let components = calendar.dateComponents([.year, .month], from: date)
-        return calendar.date(from: components)!
+        return calendar.date(from: components) ?? Date()
     }
     
     static func getWeekDay(date: Date) -> Int {
         let components = calendar.dateComponents([.weekday], from: date)
-        return components.weekday! - 1
-    }
-}
-
-extension DateFormatter {
-    func convertCalenderHeaderString(date: Date) -> String {
-        self.dateFormat = "yyyy년 M월"
-        return self.string(from: date)
-    }
-    
-    func convertCalenderDayString(date: Date) -> String {
-        self.dateFormat = "yyyy-M-d"
-        return self.string(from: date)
-    }
-    
-    func convertDayString(date: Date) -> String {
-        self.dateFormat = "d"
-        return self.string(from: date)
+        return components.weekday ?? 0 - 1
     }
 }
