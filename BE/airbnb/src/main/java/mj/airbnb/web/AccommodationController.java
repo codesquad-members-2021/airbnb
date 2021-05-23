@@ -2,6 +2,7 @@ package mj.airbnb.web;
 
 import mj.airbnb.service.AccommodationService;
 import mj.airbnb.web.dto.AccommodationResponseDto;
+import mj.airbnb.web.dto.SearchRequestDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,40 +25,36 @@ public class AccommodationController {
     }
 
     @GetMapping
-    public List<AccommodationResponseDto> viewAllAccommodations(
-            @RequestParam Optional<String> destination, @RequestParam Optional<String> checkInDate,
-            @RequestParam Optional<String> checkOutDate, @RequestParam Optional<Integer> minPrice,
-            @RequestParam Optional<Integer> maxPrice, @RequestParam Optional<Integer> numOfAdult,
-            @RequestParam Optional<Integer> numOfChild, @RequestParam Optional<Integer> numOfInfant) {
+    public List<AccommodationResponseDto> searchAccommodationsByConditions(SearchRequestDto requestDto) {
 
 
-        if (destination.isPresent() && checkInDate.isPresent() && checkOutDate.isPresent() &&
-                minPrice.isPresent() && maxPrice.isPresent() && numOfAdult.isPresent() &&
-                numOfChild.isPresent() && numOfInfant.isPresent()) {
+        if (requestDto.getDestination().isPresent() && requestDto.getCheckInDate().isPresent() && requestDto.getCheckOutDate().isPresent() &&
+                requestDto.getMinPrice().isPresent() && requestDto.getMaxPrice().isPresent() && requestDto.getNumOfAdult().isPresent() &&
+                requestDto.getNumOfChild().isPresent() && requestDto.getNumOfInfant().isPresent()) {
 
             logger.info("지역, 날짜, 가격, 인원 조건 따라 숙소 조회 ");
-            return accommodationService.findAllByDestinationAndDateAndPriceAndPeople(destination.get(), checkInDate.get(),
-                    checkOutDate.get(), minPrice.get(), maxPrice.get(), numOfAdult.get(), numOfChild.get(), numOfInfant.get());
+            return accommodationService.findAllByDestinationAndDateAndPriceAndPeople(requestDto.getDestination().get(), requestDto.getCheckInDate().get(),
+                    requestDto.getCheckOutDate().get(), requestDto.getMinPrice().get(), requestDto.getMaxPrice().get(), requestDto.getNumOfAdult().get(), requestDto.getNumOfChild().get(), requestDto.getNumOfInfant().get());
         }
 
-        if (destination.isPresent() && checkInDate.isPresent() && checkOutDate.isPresent() &&
-                minPrice.isPresent() && maxPrice.isPresent()) {
+        if (requestDto.getDestination().isPresent() && requestDto.getCheckInDate().isPresent() && requestDto.getCheckOutDate().isPresent() &&
+                requestDto.getMinPrice().isPresent() && requestDto.getMaxPrice().isPresent()) {
 
             logger.info("지역, 날짜, 가격 조건에 따라 숙소 조회 ");
-            return accommodationService.findAllByDestinationAndDateAndPrice(destination.get(), checkInDate.get(),
-                    checkOutDate.get(), minPrice.get(), maxPrice.get());
+            return accommodationService.findAllByDestinationAndDateAndPrice(requestDto.getDestination().get(), requestDto.getCheckInDate().get(),
+                    requestDto.getCheckOutDate().get(), requestDto.getMinPrice().get(), requestDto.getMaxPrice().get());
         }
 
-        if (destination.isPresent() && checkInDate.isPresent() && checkOutDate.isPresent()) {
+        if (requestDto.getDestination().isPresent() && requestDto.getCheckInDate().isPresent() && requestDto.getCheckOutDate().isPresent()) {
 
             logger.info("지역, 날짜 조건에 따라 숙소 조회 ");
-            return accommodationService.findAllByDestinationAndDate(destination.get(), checkInDate.get(), checkOutDate.get());
+            return accommodationService.findAllByDestinationAndDate(requestDto.getDestination().get(), requestDto.getCheckInDate().get(), requestDto.getCheckOutDate().get());
         }
 
-        if (destination.isPresent()) {
+        if (requestDto.getDestination().isPresent()) {
 
             logger.info("지역 조건에 따라 숙소 조회 ");
-            return accommodationService.findAllByDestination(destination.get());
+            return accommodationService.findAllByDestination(requestDto.getDestination().get());
         }
 
         logger.info("모든 숙소 조회 ");
