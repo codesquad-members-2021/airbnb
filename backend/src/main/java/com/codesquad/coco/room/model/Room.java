@@ -2,7 +2,7 @@ package com.codesquad.coco.room.model;
 
 import com.codesquad.coco.host.Host;
 import com.codesquad.coco.image.Image;
-import com.codesquad.coco.reservation.Reservation;
+import com.codesquad.coco.user.Reservation;
 import com.codesquad.coco.user.WishList;
 import org.springframework.data.annotation.Id;
 

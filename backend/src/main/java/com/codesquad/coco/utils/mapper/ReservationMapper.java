@@ -1,7 +1,7 @@
 package com.codesquad.coco.utils.mapper;
 
-import com.codesquad.coco.reservation.Reservation;
 import com.codesquad.coco.room.model.Money;
+import com.codesquad.coco.user.Reservation;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

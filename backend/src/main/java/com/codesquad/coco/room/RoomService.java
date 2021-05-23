@@ -26,14 +26,14 @@ public class RoomService {
     }
 
     public List<RoomPreviewDTO> findAllRoomPreviewDTO(SearchRoomDTO roomDTO) {
-        List<Room> rooms = roomDAO.findAllRoomBySearchRoomDTO(roomDTO);
+        List<Room> rooms = roomDAO.findAllBySearchRoomDTO(roomDTO);
         return rooms.stream()
                 .map(DTOConverter::roomToRoomPreviewDTO)
                 .collect(Collectors.toList());
     }
 
-    public RoomDetailDTO findRoomDTO(Long roomId) {
-        Room room = roomDAO.findRoomByRoomId(roomId);
+    public RoomDetailDTO findRoomDetilDTO(Long roomId) {
+        Room room = roomDAO.findById(roomId);
         return DTOConverter.roomToRoomDetailDTO(room);
     }
 }

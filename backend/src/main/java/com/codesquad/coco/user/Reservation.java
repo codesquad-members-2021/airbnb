@@ -1,7 +1,6 @@
-package com.codesquad.coco.reservation;
+package com.codesquad.coco.user;
 
 import com.codesquad.coco.room.model.Money;
-import com.codesquad.coco.user.User;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;

@@ -1,10 +1,10 @@
 package com.codesquad.coco.room;
 
 import com.codesquad.coco.image.ImageDAO;
-import com.codesquad.coco.reservation.Reservation;
 import com.codesquad.coco.room.model.Room;
 import com.codesquad.coco.room.model.dto.SearchPriceDTO;
 import com.codesquad.coco.room.model.dto.SearchRoomDTO;
+import com.codesquad.coco.user.Reservation;
 import com.codesquad.coco.utils.mapper.ReservationMapper;
 import com.codesquad.coco.utils.mapper.RoomMapper;
 import com.codesquad.coco.utils.mapper.SearchPriceMapper;
@@ -38,7 +38,7 @@ public class RoomDAO {
 
     }
 
-    public List<Room> findAllRoomBySearchRoomDTO(SearchRoomDTO roomDTO) {
+    public List<Room> findAllBySearchRoomDTO(SearchRoomDTO roomDTO) {
         List<Room> rooms = findAllRoomBySearchRoomDTOWithoutImageAndReservation(roomDTO);
         //todo : 해당하는 방이 없을 때의 예외 설정
         for (Room room : rooms) {
@@ -69,7 +69,7 @@ public class RoomDAO {
         return template.query(FIND_ALL_RESERVATION_BY_ROOM_ID, parameter, new ReservationMapper());
     }
 
-    public Room findRoomByRoomId(Long roomId) {
+    public Room findById(Long roomId) {
         MapSqlParameterSource parameter = new MapSqlParameterSource()
                 .addValue("room_id", roomId);
         List<Room> rooms = template.query(FIND_ROOM_BY_ROOM_ID, parameter, new RoomMapper());
