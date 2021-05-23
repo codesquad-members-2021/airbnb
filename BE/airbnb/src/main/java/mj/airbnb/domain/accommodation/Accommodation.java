@@ -6,10 +6,10 @@ public class Accommodation {
 
     private Long id;
     private String name;
-    private Integer maxPeople;
+    private int maxPeople;
     private String type;
-    private Integer numOfBed;
-    private Integer numOfBathroom;
+    private int numOfBed;
+    private int numOfBathroom;
     private BigDecimal price;
     private String address;
 
@@ -32,11 +32,11 @@ public class Accommodation {
         this.name = name;
     }
 
-    public Integer getMaxPeople() {
+    public int getMaxPeople() {
         return maxPeople;
     }
 
-    public void setMaxPeople(Integer maxPeople) {
+    public void setMaxPeople(int maxPeople) {
         this.maxPeople = maxPeople;
     }
 
@@ -48,7 +48,7 @@ public class Accommodation {
         this.type = type;
     }
 
-    public Integer getNumOfBed() {
+    public int getNumOfBed() {
         return numOfBed;
     }
 
@@ -56,15 +56,15 @@ public class Accommodation {
         return address;
     }
 
-    public void setNumOfBed(Integer numOfBed) {
+    public void setNumOfBed(int numOfBed) {
         this.numOfBed = numOfBed;
     }
 
-    public Integer getNumOfBathroom() {
+    public int getNumOfBathroom() {
         return numOfBathroom;
     }
 
-    public void setNumOfBathroom(Integer numOfBathroom) {
+    public void setNumOfBathroom(int numOfBathroom) {
         this.numOfBathroom = numOfBathroom;
     }
 
