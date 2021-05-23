@@ -12,7 +12,6 @@ class SpotCollectionViewCell: UICollectionViewCell {
     static let identifier = "SpotCollectionViewCell"
     static let nibName = "SpotCollectionViewCell"
     @IBOutlet weak var spotImage: UIImageView!
-    @IBOutlet weak var spotLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

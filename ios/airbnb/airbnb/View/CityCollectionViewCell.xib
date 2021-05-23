@@ -27,16 +27,10 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="osy-ER-C52">
-                                <rect key="frame" x="94" y="10" width="41.5" height="44"/>
+                                <rect key="frame" x="94" y="22" width="41.5" height="20.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugF-WY-M5E">
                                         <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yuF-w2-2ox">
-                                        <rect key="frame" x="0.0" y="23.5" width="41.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -66,7 +60,6 @@
             </constraints>
             <size key="customSize" width="326" height="55"/>
             <connections>
-                <outlet property="distance" destination="yuF-w2-2ox" id="awE-f6-idI"/>
                 <outlet property="location" destination="ugF-WY-M5E" id="tcM-bs-BAN"/>
                 <outlet property="locationImage" destination="8HO-Nd-p0X" id="MiU-hP-lBH"/>
             </connections>

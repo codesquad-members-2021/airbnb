@@ -83,6 +83,7 @@ extension ViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.identifier, for: indexPath) as! CityCollectionViewCell
             guard let url = locationManager.mainLayout?.cities[indexPath.row].cityImage else { return UICollectionViewCell() }
             cell.locationImage.load(with: url)
+            cell.location.text = locationManager.mainLayout?.cities[indexPath.row].cityName
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SpotCollectionViewCell.identifier, for: indexPath) as! SpotCollectionViewCell
