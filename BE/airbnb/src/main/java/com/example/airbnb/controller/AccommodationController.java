@@ -32,18 +32,10 @@ public class AccommodationController {
 
     @GetMapping("/like")
     public AccommodationListDTO likeMarkredList() {
-        return AccommodationService.likeMarkredList();
+        return accommodationService.likeMarkredList();
     }
+}
 
-    /*
-    @GetMapping
-    public String getSample(){
-        //System.out.println(accommodationService.countAccommodation());
-        //System.out.println(accommodationService.findById(1L).getTitle());
-        //System.out.println(accommodationService.findAll());
-        //System.out.println(accommodationService.insert("샘플숙소3"));
-        System.out.println(accommodationService.delete("샘플숙소3"));
-        return "dd";
-    }
 
-     */
+
+
