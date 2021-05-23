@@ -1,0 +1,6 @@
+framework module Pods_swift_airbnb {
+  umbrella header "Pods-swift-airbnb-umbrella.h"
+
+  export *
+  module * { export * }
+}
