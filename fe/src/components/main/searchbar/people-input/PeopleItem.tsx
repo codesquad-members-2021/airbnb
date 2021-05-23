@@ -11,7 +11,21 @@ interface PeopleItemProps {
 }
 
 const PeopleItem = ({ title, subtitle }: PeopleItemProps) => {
-  const [number, setNumber] = useState<Number>(0);
+  const [number, setNumber] = useState<number>(0);
+  const [pluseDisable, setPluseDisable] = useState<boolean>(false);
+  const [minusDisable, setMinusDisable] = useState<boolean>(true);
+  const clickPlus = () => {
+    if (number === 0) setMinusDisable(false);
+    if (number === 7) setPluseDisable(true);
+    setNumber((number) => number + 1);
+    console.log(number);
+  };
+
+  const clickMinus = () => {
+    if (number === 8) setPluseDisable(false);
+    if (number === 1) setMinusDisable(true);
+    setNumber((number) => number - 1);
+  };
   return (
     <StyledPeopleItem>
       <Box display="flex" flexDirection="column">
@@ -19,11 +33,11 @@ const PeopleItem = ({ title, subtitle }: PeopleItemProps) => {
         <PeopleSubtitle>{subtitle}</PeopleSubtitle>
       </Box>
       <Box display="flex" alignItems="center">
-        <PeopleBtn>
+        <PeopleBtn onClick={clickMinus} disabled={minusDisable}>
           <AiOutlineMinus />
         </PeopleBtn>
         <PeopleNumber>{number}</PeopleNumber>
-        <PeopleBtn>
+        <PeopleBtn onClick={clickPlus} disabled={pluseDisable}>
           <AiOutlinePlus />
         </PeopleBtn>
       </Box>
