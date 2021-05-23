@@ -4,8 +4,6 @@ import lombok.*;
 import team01.airbnb.dto.RoleType;
 import team01.airbnb.dto.SocialProfile;
 
-import java.time.LocalDate;
-
 @Builder
 @Setter
 @Getter
@@ -17,7 +15,7 @@ public class User {
     private String username;
     private String email;
     private RoleType role; // ADMIN, USER
-    private LocalDate createDate;
+    private String profileImage;
 
     public static User fromSocialProfile(SocialProfile socialProfile) {
         return User.builder()
@@ -26,4 +24,5 @@ public class User {
                 .role(RoleType.USER)
                 .build();
     }
+
 }
