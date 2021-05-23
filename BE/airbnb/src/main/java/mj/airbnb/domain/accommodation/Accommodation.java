@@ -1,6 +1,4 @@
 package mj.airbnb.domain.accommodation;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Accommodation {
 

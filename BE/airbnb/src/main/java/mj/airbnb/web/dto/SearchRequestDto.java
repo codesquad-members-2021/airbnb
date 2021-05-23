@@ -1,7 +1,5 @@
 package mj.airbnb.web.dto;
 
-import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.Optional;
 
 public class SearchRequestDto {
