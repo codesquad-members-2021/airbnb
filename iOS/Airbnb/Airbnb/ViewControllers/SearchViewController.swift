@@ -105,9 +105,11 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
 extension SearchViewController: ResultsTableViewControllerDelegate {
     func moveToNext() {
         self.searchController.searchBar.resignFirstResponder()
-        
+
+        let dummy = UIViewController()
+        dummy.view.backgroundColor = .systemBackground
         DispatchQueue.main.async {
-            self.navigationController?.pushViewController(TravelConditionViewController(), animated: true)
+            self.navigationController?.pushViewController(dummy, animated: true)
         }
     }
 }

@@ -11,6 +11,38 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private let searchViewController = SearchViewController()
+    private let mainImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "home"))
+        imageView.contentMode = .scaleAspectFill
+        let xPosition = imageView.frame.origin.x + 20
+        let title = UILabel(frame: CGRect(x: xPosition,
+                                          y: imageView.frame.origin.y + 20,
+                                          width: imageView.frame.width,
+                                          height: 60))
+        title.text = "슬기로운 자연생활"
+        title.font = UIFont(name: "helvetica", size: 34)
+        let subtitle = UILabel(frame: CGRect(x: xPosition,
+                                             y: title.frame.origin.y + title.frame.height,
+                                             width: imageView.frame.width,
+                                             height: 60))
+        subtitle.text = "에어비엔비가 엄선한 \n위시리스트를 만나보세요."
+        subtitle.numberOfLines = 0
+        let button = UILabel(frame: CGRect(x: xPosition,
+                                           y: subtitle.frame.origin.y + subtitle.frame.height + 10,
+                                           width: 165,
+                                           height: 38))
+        button.backgroundColor = .systemGray
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 10
+        button.textAlignment = .center
+        button.text = "여행 아이디어 얻기"
+        imageView.addSubview(title)
+        imageView.addSubview(subtitle)
+        imageView.addSubview(button)
+        return imageView
+    }()
+    
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "어디로 여행가세요?"
@@ -25,16 +57,23 @@ class ViewController: UIViewController {
         
         collectionView.register(RegionCollectionViewCell.self,
                                 forCellWithReuseIdentifier: RegionCollectionViewCell.reuseId)
-        collectionView.register(StyleCollectionViewCell.self,
-                                forCellWithReuseIdentifier: StyleCollectionViewCell.reuseId)
-        collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.reuseId)
+        collectionView.register(TravelStyleCollectionViewCell.self,
+                                forCellWithReuseIdentifier: TravelStyleCollectionViewCell.reuseId)
+        collectionView.register(HeaderCollectionReusableView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: HeaderCollectionReusableView.reuseId)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
     }
 }
 
 extension ViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        navigationController?.pushViewController(SearchViewController(), animated: true)
+        navigationController?.pushViewController(searchViewController, animated: true)
     }
 }
 
@@ -53,16 +92,14 @@ extension ViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-            let image = UIImageView(image: UIImage(named: "home"))
-            image.contentMode = .scaleAspectFill
-            image.frame = cell.bounds
-            cell.contentView.addSubview(image)
+            mainImageView.frame = cell.bounds
+            cell.contentView.addSubview(mainImageView)
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RegionCollectionViewCell.reuseId, for: indexPath) as! RegionCollectionViewCell
             return cell
         case 2:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StyleCollectionViewCell.reuseId, for: indexPath) as! StyleCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TravelStyleCollectionViewCell.reuseId, for: indexPath) as! TravelStyleCollectionViewCell
             return cell
         default:
             return UICollectionViewCell()
@@ -84,13 +121,11 @@ extension ViewController: UICollectionViewDataSource {
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
-    // 헤더의 높이
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 { return .zero }
         return CGSize(width: view.frame.width, height: 90)
     }
     
-    // 섹션별 아이템 사이즈
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case 0:

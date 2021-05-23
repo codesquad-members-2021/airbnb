@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StyleCollectionViewCell: UICollectionViewCell {
+class TravelStyleCollectionViewCell: UICollectionViewCell {
     private let styleCellModelData = [
         StyleCellModel(image: "nature", content: "자연생활을 만끽할 수 \n있는 숙소"),
         StyleCellModel(image: "special", content: "독특한 공간"),
@@ -35,7 +35,9 @@ class StyleCollectionViewCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        self.addSubview(collectionView)
+        setDelegate()
     }
     
     override func layoutSubviews() {
@@ -49,7 +51,7 @@ class StyleCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension StyleCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension TravelStyleCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return styleCellModelData.count
     }
