@@ -1,4 +1,4 @@
 package com.team19.airbnb.repository;
 
-public interface BookingRepository {
+public class BookingRepository {
 }
