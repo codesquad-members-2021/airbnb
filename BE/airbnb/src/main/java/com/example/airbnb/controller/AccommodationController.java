@@ -29,7 +29,11 @@ public class AccommodationController {
         SearchConditions conditions = new SearchConditions(location, checkin, checkout, adults, children, infants);
         return accommodationService.availableAccommodationsList(conditions);
     }
-}
+
+    @GetMapping("/like")
+    public AccommodationListDTO likeMarkredList() {
+        return AccommodationService.likeMarkredList();
+    }
 
     /*
     @GetMapping

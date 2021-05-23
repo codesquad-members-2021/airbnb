@@ -19,6 +19,20 @@ public class AccommodationService {
         this.accommodationDAO = accommodationDAO;
     }
 
+// w <<<<<<< BE/feature/45/likeAcmdOnly
+    public static AccommodationListDTO availableAccommodationsList() {
+        List<Accommodation> accommodationList = accommodationDAO.findAll();
+        return domainListToDTOList(accommodationList);
+
+    }
+
+    private static AccommodationListDTO domainListToDTOList(List<Accommodation> accommodationList) {
+        List<AccommodationDTO> accommodationDTOList = new ArrayList<>();
+        for(Accommodation accommodation : accommodationList) {
+            accommodationDTOList.add(new AccommodationDTO(accommodation));
+        }
+        return new AccommodationListDTO(accommodationDTOList);
+=======
     public AccommodationListDTO availableAccommodationsList(SearchConditions conditions) {
 
         List<Accommodation> accommodationList = accommodationDAO.findAll();
@@ -31,6 +45,12 @@ public class AccommodationService {
         // @todo : DB가 준비되면 SearchConditions 을 통해 전달된 데이터를 통해서 조건에 맞는 숙소만 전달해준다
         
         return (new AccommodationListDTO(accommodationDTOList, conditions));
+// w >>>>>>> dev-BE
+    }
+
+    public static AccommodationListDTO likeMarkredList() {
+        List<Accommodation> markredList = accommodationDAO.findAllByLikeTrue();
+        return domainListToDTOList(markredList);
     }
 
     public Integer countAccommodation(){
