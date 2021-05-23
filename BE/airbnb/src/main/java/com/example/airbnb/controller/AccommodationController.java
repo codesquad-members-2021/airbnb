@@ -13,29 +13,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/airbnb")
 public class AccommodationController {
 
-    private final AccommodationService accommodationService;
+    private AccommodationService accommodationService;
 
     public AccommodationController(AccommodationService accommodationService) {
         this.accommodationService = accommodationService;
     }
 
-/*
     @GetMapping
-    public AccommodationListDTO getSample(@RequestParam(required=false) String location, @RequestParam String checkin, @RequestParam String checkout,
-                                          @RequestParam Integer adults, @RequestParam Integer children, @RequestParam Integer infants) {
+    public AccommodationListDTO getSample(@RequestParam(required=false) String location,
+                                          @RequestParam(required=false) String checkin,
+                                          @RequestParam(required=false) String checkout,
+                                          @RequestParam(required=false) Integer adults,
+                                          @RequestParam(required=false) Integer children,
+                                          @RequestParam(required=false) Integer infants) {
         SearchConditions conditions = new SearchConditions(location, checkin, checkout, adults, children, infants);
-        System.out.println(conditions.toString());
-        return AccommodationService.availableAccommodationsList();
-    }*/
+        return accommodationService.availableAccommodationsList(conditions);
+    }
 
 
-
+/*
     @GetMapping
     public AccommodationListDTO getSample(@RequestParam(required=false) SearchConditions conditions) {
 
         System.out.println(conditions.toString());
         return AccommodationService.availableAccommodationsList();
     }
+    */
 
 
     /*

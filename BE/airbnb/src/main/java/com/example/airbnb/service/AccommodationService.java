@@ -1,6 +1,7 @@
 package com.example.airbnb.service;
 
 import com.example.airbnb.domain.Accommodation;
+import com.example.airbnb.domain.SearchConditions;
 import com.example.airbnb.dto.AccommodationDTO;
 import com.example.airbnb.dto.AccommodationListDTO;
 import com.example.airbnb.repository.AccommodationDAO;
@@ -12,22 +13,24 @@ import java.util.List;
 @Service
 public class AccommodationService {
 
-    private static AccommodationDAO accommodationDAO;
-    //private final AccommodationDAO accommodationDAO;
-
+    private AccommodationDAO accommodationDAO;
 
     public AccommodationService(AccommodationDAO accommodationDAO) {
         this.accommodationDAO = accommodationDAO;
     }
 
-    public static AccommodationListDTO availableAccommodationsList() {
-        List<AccommodationDTO> accommodationDTOList = new ArrayList<>();
+    public AccommodationListDTO availableAccommodationsList(SearchConditions conditions) {
+
         List<Accommodation> accommodationList = accommodationDAO.findAll();
+        List<AccommodationDTO> accommodationDTOList = new ArrayList<>();
+
         for(Accommodation accommodation : accommodationList) {
             accommodationDTOList.add(new AccommodationDTO(accommodation));
         }
 
-        return new AccommodationListDTO(accommodationDTOList);
+        // @todo : DB가 준비되면 SearchConditions 을 통해 전달된 데이터를 통해서 조건에 맞는 숙소만 전달해준다
+        
+        return (new AccommodationListDTO(accommodationDTOList, conditions));
     }
 
     public Integer countAccommodation(){
@@ -37,10 +40,6 @@ public class AccommodationService {
     public Accommodation findById(Long id){
         return accommodationDAO.findById(id);
     }
-
-    //public List<Accommodation> findAll(){
-    //    return
-    //}
 
     public String insert(String title){
         Accommodation accommodation = new Accommodation();
