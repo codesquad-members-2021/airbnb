@@ -36,5 +36,5 @@ export default PeopleInput;
 
 const ModalPosition = css`
   top: 115%;
-  right: 5rem;
+  right: 0;
 `;
