@@ -31,6 +31,22 @@ class SearchCityViewController: UIViewController {
     
 }
 
+extension SearchCityViewController {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        configureEmptySupplementaryView()
+        collectionView.reloadData()
+        collectionView.collectionViewLayout = createLayout(isHeaderExist: false)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        configureSupplementaryView()
+        collectionView.reloadData()
+        collectionView.collectionViewLayout = createLayout(isHeaderExist: true)
+    }
+    
+}
+
 
 extension SearchCityViewController {
     
@@ -49,6 +65,7 @@ extension SearchCityViewController {
                 print(error) ///사용자에게 에러 표시하는 부분 미구현
             }.store(in: &cancelBag)
     }
+    
 }
 
 
@@ -61,20 +78,21 @@ extension SearchCityViewController: UISearchBarDelegate {
         self.navigationItem.searchController = searchController
         self.navigationItem.title = "숙소 찾기"
     }
+    
 }
 
 
 extension SearchCityViewController {
     
     private func configureHierarchy() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout(isHeaderExist: true))
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
         collectionView.delegate = self
         view.addSubview(collectionView)
     }
     
-    private func createLayout() -> UICollectionViewLayout {
+    private func createLayout(isHeaderExist: Bool) -> UICollectionViewLayout {
         let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             
             // section
@@ -90,16 +108,21 @@ extension SearchCityViewController {
             section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 20, trailing: 10)
             
             // header
-            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                   heightDimension: .estimated(44)),
-                elementKind: SearchCityViewController.headerElementKind,
-                alignment: .top)
-            section.boundarySupplementaryItems = [sectionHeader]
-            
+            if isHeaderExist {
+                self.createSectionHeaderLayout(with: section)
+            }
             return section
         }
         return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
+    }
+    
+    private func createSectionHeaderLayout(with section: NSCollectionLayoutSection) {
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .estimated(44)),
+            elementKind: SearchCityViewController.headerElementKind,
+            alignment: .top)
+        section.boundarySupplementaryItems = [sectionHeader]
     }
     
     private func configureDataSource() {
@@ -127,6 +150,16 @@ extension SearchCityViewController {
         }
     }
  
+    private func configureEmptySupplementaryView() {
+        let supplementaryRegistration = UICollectionView.SupplementaryRegistration
+        <UICollectionReusableView>(elementKind: SearchCityViewController.headerElementKind) {
+            (supplementaryView, string, indexPath) in
+        }
+        dataSource.supplementaryViewProvider = { (view, kind, index) in
+            return self.collectionView.dequeueConfiguredReusableSupplementary(
+                using: supplementaryRegistration, for: index)
+        }
+    }
     
     private func applySnapshots(with cities: [City]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, City>()
@@ -135,6 +168,7 @@ extension SearchCityViewController {
         snapshot.appendItems(cities)
         self.dataSource.apply(snapshot)
     }
+    
 }
 
 
