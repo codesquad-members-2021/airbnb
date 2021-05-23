@@ -32,7 +32,7 @@ public class RoomService {
                 .collect(Collectors.toList());
     }
 
-    public RoomDetailDTO findRoomDetilDTO(Long roomId) {
+    public RoomDetailDTO findRoomDetailDTO(Long roomId) {
         Room room = roomDAO.findById(roomId);
         return DTOConverter.roomToRoomDetailDTO(room);
     }

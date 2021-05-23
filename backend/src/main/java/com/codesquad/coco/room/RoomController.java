@@ -33,6 +33,6 @@ public class RoomController {
 
     @GetMapping("/rooms/{roomId}")
     public RoomDetailDTO findRoomDetail(@PathVariable Long roomId) {
-        return roomService.findRoomDetilDTO(roomId);
+        return roomService.findRoomDetailDTO(roomId);
     }
 }
