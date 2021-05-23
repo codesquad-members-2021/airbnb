@@ -29,7 +29,7 @@ public class RoomDAO {
         this.imageDAO = imageDAO;
     }
 
-    public List<Integer> findAllPriceBySearchPrice(SearchPriceDTO dto) {
+    public List<Integer> findAllPriceBySearchPriceDTO(SearchPriceDTO dto) {
         MapSqlParameterSource parameter = new MapSqlParameterSource()
                 .addValue("check_in", dto.getCheckIn())
                 .addValue("check_out", dto.getCheckOut())
@@ -39,17 +39,17 @@ public class RoomDAO {
     }
 
     public List<Room> findAllRoomBySearchRoomDTO(SearchRoomDTO roomDTO) {
-        List<Room> rooms = findAllRoomBySearchRoomDTOWithOutImageAndReservation(roomDTO);
+        List<Room> rooms = findAllRoomBySearchRoomDTOWithoutImageAndReservation(roomDTO);
         //todo : 해당하는 방이 없을 때의 예외 설정
         for (Room room : rooms) {
             Long id = room.getId();
-            findReservationByRoomId(id).forEach(room::addReservation);
-            imageDAO.findImageByRoomId(id).forEach(room::addImages);
+            findAllReservationByRoomId(id).forEach(room::addReservation);
+            imageDAO.findAllImageByRoomId(id).forEach(room::addImages);
         }
         return rooms;
     }
 
-    private List<Room> findAllRoomBySearchRoomDTOWithOutImageAndReservation(SearchRoomDTO roomDTO) {
+    private List<Room> findAllRoomBySearchRoomDTOWithoutImageAndReservation(SearchRoomDTO roomDTO) {
         MapSqlParameterSource parameter = new MapSqlParameterSource()
                 .addValue("check_in", roomDTO.getCheckIn())
                 .addValue("check_out", roomDTO.getCheckOut())
@@ -63,7 +63,7 @@ public class RoomDAO {
 
     }
 
-    private List<Reservation> findReservationByRoomId(Long id) {
+    private List<Reservation> findAllReservationByRoomId(Long id) {
         MapSqlParameterSource parameter = new MapSqlParameterSource()
                 .addValue("room_id", id);
         return template.query(FIND_ALL_RESERVATION_BY_ROOM_ID, parameter, new ReservationMapper());
@@ -73,10 +73,14 @@ public class RoomDAO {
         MapSqlParameterSource parameter = new MapSqlParameterSource()
                 .addValue("room_id", roomId);
         List<Room> rooms = template.query(FIND_ROOM_BY_ROOM_ID, parameter, new RoomMapper());
-        Room room = Optional.ofNullable(DataAccessUtils.singleResult(rooms)).orElseThrow(NullPointerException::new);
-        //fixme : 예외 설정
+        Room room = (Room) getEntity(rooms);
         Long id = room.getId();
-        imageDAO.findImageByRoomId(id).forEach(room::addImages);
+        imageDAO.findAllImageByRoomId(id).forEach(room::addImages);
         return room;
+    }
+
+    private Object getEntity(List<?> sample) {
+        return Optional.ofNullable(DataAccessUtils.singleResult(sample)).orElseThrow(NullPointerException::new);
+        //fixme : 예외 설정
     }
 }

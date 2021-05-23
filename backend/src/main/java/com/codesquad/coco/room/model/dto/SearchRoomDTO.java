@@ -17,6 +17,7 @@ public class SearchRoomDTO extends SearchPriceDTO {
                          int adult, int child, int baby,
                          int priceMin, int priceMax) {
         super(checkIn, checkOut, cityName);
+        //todo 밑의 정보들이 없을 경우 default 값 설정
         this.guest = new Guest(adult, child, baby);
         this.priceMin = new Money(priceMin);
         this.priceMax = new Money(priceMax);

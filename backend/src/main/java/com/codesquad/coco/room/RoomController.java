@@ -22,17 +22,17 @@ public class RoomController {
     @GetMapping("/search/price")
     public PricesDTO searchAllPrice(SearchPriceDTO searchPriceDTO) {
         logger.debug(searchPriceDTO.toString());
-        return roomService.findPricesBySearchPrice(searchPriceDTO);
+        return roomService.findAllPriceDTO(searchPriceDTO);
     }
 
     @GetMapping("/search")
     public SearchRoomPreviewsDTO searchAllRoom(SearchRoomDTO roomDTO) {
-        List<RoomPreviewDTO> roomPreviewDTOs = roomService.findAllRoomBySearchRoomDTO(roomDTO);
+        List<RoomPreviewDTO> roomPreviewDTOs = roomService.findAllRoomPreviewDTO(roomDTO);
         return new SearchRoomPreviewsDTO(roomPreviewDTOs);
     }
 
     @GetMapping("/rooms/{roomId}")
     public RoomDetailDTO findRoomDetail(@PathVariable Long roomId) {
-        return roomService.findRoomDTOByRoomId(roomId);
+        return roomService.findRoomDTO(roomId);
     }
 }

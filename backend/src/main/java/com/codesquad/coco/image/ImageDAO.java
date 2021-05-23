@@ -18,7 +18,7 @@ public class ImageDAO {
         this.template = template;
     }
 
-    public List<Image> findImageByRoomId(Long id) {
+    public List<Image> findAllImageByRoomId(Long id) {
         MapSqlParameterSource parameter = new MapSqlParameterSource()
                 .addValue("room_id", id);
         return template.query(FIND_IMAGE_BY_ROOM_ID, parameter, new ImageMapper());

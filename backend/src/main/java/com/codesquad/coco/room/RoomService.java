@@ -20,21 +20,20 @@ public class RoomService {
         this.imageDAO = imageDAO;
     }
 
-    public PricesDTO findPricesBySearchPrice(SearchPriceDTO searchPriceDTO) {
-        List<Integer> prices = roomDAO.findAllPriceBySearchPrice(searchPriceDTO);
+    public PricesDTO findAllPriceDTO(SearchPriceDTO searchPriceDTO) {
+        List<Integer> prices = roomDAO.findAllPriceBySearchPriceDTO(searchPriceDTO);
         return new PricesDTO(prices);
     }
 
-    public List<RoomPreviewDTO> findAllRoomBySearchRoomDTO(SearchRoomDTO roomDTO) {
+    public List<RoomPreviewDTO> findAllRoomPreviewDTO(SearchRoomDTO roomDTO) {
         List<Room> rooms = roomDAO.findAllRoomBySearchRoomDTO(roomDTO);
         return rooms.stream()
                 .map(DTOConverter::roomToRoomPreviewDTO)
                 .collect(Collectors.toList());
     }
 
-    public RoomDetailDTO findRoomDTOByRoomId(Long roomId) {
+    public RoomDetailDTO findRoomDTO(Long roomId) {
         Room room = roomDAO.findRoomByRoomId(roomId);
         return DTOConverter.roomToRoomDetailDTO(room);
-        //todo : rooms가 없을 때의 예외 정의
     }
 }
