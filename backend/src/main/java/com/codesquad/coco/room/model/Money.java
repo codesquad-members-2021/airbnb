@@ -8,6 +8,16 @@ public class Money {
         this.money = money;
     }
 
+    public static Money priceMin(Integer money) {
+        money = money != null ? money : 0;
+        return new Money(money);
+    }
+
+    public static Money priceMax(Integer money) {
+        money = money != null ? money : 999_999_999;
+        return new Money(money);
+    }
+
     public Money setMoney(int money) {
         return new Money(money);
     }

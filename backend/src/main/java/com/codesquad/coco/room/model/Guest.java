@@ -12,6 +12,13 @@ public class Guest {
         this.baby = baby;
     }
 
+    public static Guest guestInfo(Integer adult, Integer child, Integer baby) {
+        adult = adult != null ? adult : 0;
+        child = child != null ? child : 0;
+        baby = baby != null ? baby : 0;
+        return new Guest(adult, child, baby);
+    }
+
     public int getAdult() {
         return adult;
     }

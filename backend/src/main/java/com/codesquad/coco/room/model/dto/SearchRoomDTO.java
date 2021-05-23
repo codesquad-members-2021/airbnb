@@ -14,13 +14,13 @@ public class SearchRoomDTO extends SearchPriceDTO {
 
     @ConstructorProperties({"check-in", "check-out", "city-name", "adult", "child", "baby", "price-min", "price-max"})
     public SearchRoomDTO(String checkIn, String checkOut, String cityName,
-                         int adult, int child, int baby,
-                         int priceMin, int priceMax) {
+                         Integer adult, Integer child, Integer baby,
+                         Integer priceMin, Integer priceMax) {
         super(checkIn, checkOut, cityName);
-        //todo 밑의 정보들이 없을 경우 default 값 설정
-        this.guest = new Guest(adult, child, baby);
-        this.priceMin = new Money(priceMin);
-        this.priceMax = new Money(priceMax);
+        //todo 밑의 정보들이 없을 경우 default 값 설정 // 생성자에서 초기화 로직정도는 괜찮은가?
+        this.guest = Guest.guestInfo(adult, child, baby);
+        this.priceMin = Money.priceMin(priceMin);
+        this.priceMax = Money.priceMax(priceMax);
     }
 
     public LocalDate getCheckIn() {
