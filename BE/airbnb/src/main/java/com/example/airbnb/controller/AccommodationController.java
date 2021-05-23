@@ -20,26 +20,16 @@ public class AccommodationController {
     }
 
     @GetMapping
-    public AccommodationListDTO getSample(@RequestParam(required=false) String location,
-                                          @RequestParam(required=false) String checkin,
-                                          @RequestParam(required=false) String checkout,
-                                          @RequestParam(required=false) Integer adults,
-                                          @RequestParam(required=false) Integer children,
-                                          @RequestParam(required=false) Integer infants) {
+    public AccommodationListDTO getSample(@RequestParam(required = false) String location,
+                                          @RequestParam(required = false) String checkin,
+                                          @RequestParam(required = false) String checkout,
+                                          @RequestParam(required = false) Integer adults,
+                                          @RequestParam(required = false) Integer children,
+                                          @RequestParam(required = false) Integer infants) {
         SearchConditions conditions = new SearchConditions(location, checkin, checkout, adults, children, infants);
         return accommodationService.availableAccommodationsList(conditions);
     }
-
-
-/*
-    @GetMapping
-    public AccommodationListDTO getSample(@RequestParam(required=false) SearchConditions conditions) {
-
-        System.out.println(conditions.toString());
-        return AccommodationService.availableAccommodationsList();
-    }
-    */
-
+}
 
     /*
     @GetMapping
@@ -53,5 +43,3 @@ public class AccommodationController {
     }
 
      */
-
-}
