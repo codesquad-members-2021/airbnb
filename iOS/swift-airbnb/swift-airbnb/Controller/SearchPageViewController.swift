@@ -11,6 +11,7 @@ class SearchPageViewController: UICollectionViewController {
 
     private var searchPageCollectionViewDataSource = SearchPageCollectionViewDataSource()
     private var searchPageModel = SearchPageModel()
+    private var searchResultController = SearchResultCollectionViewController(collectionViewLayout: UICollectionViewLayout())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,7 @@ class SearchPageViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        let searchController = UISearchController(searchResultsController: nil)
+        let searchController = UISearchController(searchResultsController: searchResultController)
         searchController.searchBar.placeholder = "어디로 여행가세요?"
         searchController.automaticallyShowsCancelButton = false
         searchController.obscuresBackgroundDuringPresentation = false
@@ -45,6 +46,7 @@ class SearchPageViewController: UICollectionViewController {
     
 }
 
+//MARK: Create layout of collectionView
 extension SearchPageViewController {
     private func createLayout() -> UICollectionViewLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()

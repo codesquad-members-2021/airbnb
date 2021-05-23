@@ -39,7 +39,7 @@ class MainPageViewController: UIViewController {
     }
 }
 
-//MARK: create layout of collectionView
+//MARK: Create layout of collectionView
 extension MainPageViewController {
     private func createLayout() -> UICollectionViewLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
