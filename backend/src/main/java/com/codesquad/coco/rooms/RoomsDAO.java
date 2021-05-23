@@ -69,10 +69,14 @@ public class RoomsDAO {
         return template.query(FIND_RESERVATION_BY_ROOMS_ID, parameter, new ReservationMapper());
     }
 
-    public Optional<Rooms> findRoomsByRoomsId(Long roomsId) {
+    public Rooms findRoomsByRoomsId(Long roomsId) {
         MapSqlParameterSource parameter = new MapSqlParameterSource()
                 .addValue("rooms_id", roomsId);
         List<Rooms> rooms = template.query(FIND_ROOMS_BY_ROOMS_ID, parameter, new RoomsMapper());
-        return Optional.ofNullable(DataAccessUtils.singleResult(rooms));
+        Rooms room = Optional.ofNullable(DataAccessUtils.singleResult(rooms)).orElseThrow(NullPointerException::new);
+        //fixme : 예외 설정
+        Long id = room.getId();
+        imageDAO.findImageByRoomsId(id).forEach(room::addImages);
+        return room;
     }
 }

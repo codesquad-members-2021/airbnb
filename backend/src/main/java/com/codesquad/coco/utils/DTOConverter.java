@@ -21,7 +21,7 @@ public class DTOConverter {
                 roomsOptionToRoomsOptionDTO(rooms.getRoomsOption()),
                 rooms.getType(),
                 rooms.getWish(),
-                rooms.getFirstImage(),
+                rooms.getThumbnailImage(),
                 locationToLocationDTO(rooms.getLocation()),
                 reviewToReviewDTO(rooms.getReview())
         );

@@ -12,6 +12,8 @@ import java.util.List;
 
 public class Rooms {
 
+    private static String DEFAULT_THUMBNAIL_IMAGE = "https://a0.muscache.com/im/pictures/user/7822f895-df8a-4b0f-9035-0d3b3afbdc3d.jpg?aki_policy=profile_x_medium";
+
     @Id
     private Long id;
 
@@ -42,6 +44,18 @@ public class Rooms {
         this.images = builder.images;
         this.wishList = builder.wishList;
         this.type = builder.type;
+    }
+
+    public boolean getWish() {
+        return wishList.isWish();
+    }
+
+    public String getThumbnailImage() {
+        return images.stream()
+                .filter(Image::isThumbnail)
+                .findFirst()
+                .map(Image::getUrl)
+                .orElse(DEFAULT_THUMBNAIL_IMAGE);
     }
 
     public void addReservation(Reservation reservation) {
@@ -99,20 +113,6 @@ public class Rooms {
 
     public String getType() {
         return type;
-    }
-
-    public boolean getWish() {
-        return wishList.isWish();
-    }
-
-    public String getFirstImage() {
-        return images.stream()
-                .filter(Image::isThumbnail)
-                .findFirst()
-                .map(Image::getUrl)
-                .orElse("http://sample.com");
-        //todo : type이 썸네일일 때만?
-        //  예외 변경
     }
 
     @Override

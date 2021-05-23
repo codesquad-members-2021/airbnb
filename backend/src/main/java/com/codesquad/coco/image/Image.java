@@ -22,7 +22,7 @@ public class Image {
     }
 
     public boolean isThumbnail() {
-        return type.equals("thumbnail");
+        return type.equals("thumb");
     }
 
     public Long getId() {
