@@ -29,3 +29,12 @@ INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommo
 INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2021-01-22', 3, 2);
 INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2021-02-01', 4, 2);
 INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2021-02-02', 4, 2);
+
+INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-21', 1, 1);
+INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-22', 1, 1);
+INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-01', 2, 1);
+INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-02', 2, 1);
+INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-21', 3, 2);
+INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-22', 3, 2);
+INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-01', 4, 2);
+INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-02', 4, 2);
