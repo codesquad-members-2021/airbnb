@@ -99,7 +99,7 @@ public class AccommodationService {
         return accommodationRepository.findAllByDestination(requestDto.getDestination().get()).stream()
                 .filter(accommodation -> isAvailableDate(accommodation.getId(), requestDto)
                         && isAvailableCost(accommodation.getPrice(), requestDto)
-                        && isAvailableNumOfPeople(accommodation.getMaxPeople(), requestDto))
+                        && isAvailableNumOfPeople(accommodation.getMaxNumOfPeople(), requestDto))
                 .map(AccommodationResponseDto::new)
                 .collect(Collectors.toList());
     }

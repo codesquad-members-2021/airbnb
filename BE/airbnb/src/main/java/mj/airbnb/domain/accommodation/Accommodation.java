@@ -6,7 +6,7 @@ public class Accommodation {
 
     private Long id;
     private String name;
-    private int maxPeople;
+    private int maxNumOfPeople;
     private String type;
     private int numOfBed;
     private int numOfBathroom;
@@ -32,12 +32,12 @@ public class Accommodation {
         this.name = name;
     }
 
-    public int getMaxPeople() {
-        return maxPeople;
+    public int getMaxNumOfPeople() {
+        return maxNumOfPeople;
     }
 
-    public void setMaxPeople(int maxPeople) {
-        this.maxPeople = maxPeople;
+    public void setMaxNumOfPeople(int maxNumOfPeople) {
+        this.maxNumOfPeople = maxNumOfPeople;
     }
 
     public String getType() {

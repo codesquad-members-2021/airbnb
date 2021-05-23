@@ -15,7 +15,7 @@ public class AccommodationResponseDto {
 
     public AccommodationResponseDto(Accommodation accommodation) {
         this.name = accommodation.getName();
-        this.maxPeople = accommodation.getMaxPeople();
+        this.maxPeople = accommodation.getMaxNumOfPeople();
         this.type = accommodation.getType();
         this.numOfBed = accommodation.getNumOfBed();
         this.numOfBathroom = accommodation.getNumOfBathroom();
