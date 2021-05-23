@@ -1,27 +1,15 @@
-import { RefObject, useState } from 'react';
-import {
-	PlaceSection,
-	ModalWrapper,
-	BarBlock,
-	BarInnerWrapper,
-	BarTitle,
-	BarMessage,
-} from '../../style/BarStyle';
+import { RefObject } from 'react'
+import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../style/BarStyle'
 
 interface IProps {
-	clicked: boolean;
-	open: boolean;
-	type: string;
-	checkOutToggle: RefObject<HTMLDivElement>;
-	onClick: () => void;
+	clicked: boolean
+	open: boolean
+	type: string
+	checkOutToggle: RefObject<HTMLDivElement>
+	onClick: () => void
 }
 
-const CheckIn: React.FunctionComponent<IProps> = ({
-	clicked,
-	open,
-	type,
-	checkOutToggle,
-}) => {
+const CheckIn: React.FunctionComponent<IProps> = ({ clicked, open, type, checkOutToggle }) => {
 	return (
 		<BarBlock clicked={clicked && open} type={type} ref={checkOutToggle}>
 			<BarInnerWrapper>
@@ -31,7 +19,7 @@ const CheckIn: React.FunctionComponent<IProps> = ({
 				</div>
 			</BarInnerWrapper>
 		</BarBlock>
-	);
-};
+	)
+}
 
-export default CheckIn;
+export default CheckIn

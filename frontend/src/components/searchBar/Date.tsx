@@ -1,29 +1,29 @@
-import { useState, useRef, useEffect } from 'react';
-import styled from 'styled-components';
-import { PlaceSection, ModalWrapper } from '../../style/BarStyle';
-import useModalCtrl from '../../customHook/useModalCtrlArray';
-import ModalCalendar from './ModalCalendar';
-import CheckIn from './CheckIn';
-import CheckOut from './CheckOut';
+import { useState, useRef } from 'react'
+import styled from 'styled-components'
+import { PlaceSection, ModalWrapper } from '../../style/BarStyle'
+import useModalCtrl from '../../customHook/useModalCtrlArray'
+import ModalCalendar from './ModalCalendar'
+import CheckIn from './CheckIn'
+import CheckOut from './CheckOut'
+
 const Date = () => {
-	const checkInToggle = useRef<HTMLDivElement>(null);
-	const checkOutToggle = useRef<HTMLDivElement>(null);
-	const CalendarModal = useRef<HTMLDivElement>(null);
+	const checkInToggle = useRef<HTMLDivElement>(null)
+	const checkOutToggle = useRef<HTMLDivElement>(null)
+	const CalendarModal = useRef<HTMLDivElement>(null)
 	const open = useModalCtrl({
 		toggle: [checkInToggle, checkOutToggle],
 		modal: CalendarModal,
 		init: false,
-	});
+	})
 
-	const [IN_clicked, IN_setClick] = useState(false);
-	const [OUT_clicked, OUT_setClick] = useState(false);
+	const [IN_clicked, IN_setClick] = useState(false)
+	const [OUT_clicked, OUT_setClick] = useState(false)
 	const IN_handleClick = () => {
-		IN_setClick((IN_clicked) => !IN_clicked);
-	};
+		IN_setClick((IN_clicked) => !IN_clicked)
+	}
 	const OUT_handleClick = () => {
-		console.log('?');
-		OUT_setClick((OUT_clicked) => !OUT_clicked);
-	};
+		OUT_setClick((OUT_clicked) => !OUT_clicked)
+	}
 
 	return (
 		<PlaceSection>
@@ -49,11 +49,11 @@ const Date = () => {
 				</ModalWrapper>
 			)}
 		</PlaceSection>
-	);
-};
+	)
+}
 
 const DateFlexWrapper = styled.div`
 	display: flex;
-`;
+`
 
-export default Date;
+export default Date
