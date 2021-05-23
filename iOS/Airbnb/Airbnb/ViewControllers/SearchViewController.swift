@@ -56,6 +56,8 @@ class SearchViewController: UIViewController {
         
         searchController.searchBar.delegate = self
         searchCompleter.delegate = resultsTableViewController
+        resultsTableViewController.delegate = self
+        tabBarController?.tabBar.isHidden = true
     }
     
     @objc func deleteText() {
@@ -69,13 +71,15 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 
-extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderCollectionReusableView.reuseId, for: indexPath) as! HeaderCollectionReusableView
         header.configure(title: "근처의 인기 여행지")
         return header
     }
-    
+}
+
+extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return RegionCellModelData.count
     }
@@ -95,5 +99,15 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width - 10, height: 74)
+    }
+}
+
+extension SearchViewController: ResultsTableViewControllerDelegate {
+    func moveToNext() {
+        self.searchController.searchBar.resignFirstResponder()
+        
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(TravelConditionViewController(), animated: true)
+        }
     }
 }
