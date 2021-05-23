@@ -2,7 +2,7 @@ package com.team19.airbnb.controller;
 
 import com.team19.airbnb.dto.RoomDetailResponseDTO;
 import com.team19.airbnb.dto.SearchRequestDTO;
-import com.team19.airbnb.entity.Host;
+import com.team19.airbnb.entity.room.Host;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;

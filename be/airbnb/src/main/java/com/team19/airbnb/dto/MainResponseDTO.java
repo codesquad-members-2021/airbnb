@@ -1,7 +1,7 @@
 package com.team19.airbnb.dto;
 
-import com.team19.airbnb.entity.HeroBanner;
-import com.team19.airbnb.entity.NearDestination;
+import com.team19.airbnb.entity.main.HeroBanner;
+import com.team19.airbnb.entity.main.NearDestination;
 
 import java.util.List;
 

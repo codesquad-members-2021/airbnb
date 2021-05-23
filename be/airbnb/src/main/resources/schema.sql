@@ -60,18 +60,19 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`booking` (
   `id` INT NOT NULL,
   `check_in` DATE NOT NULL,
   `check_out` DATE NOT NULL,
-  `user_id` INT NOT NULL,
-  `room_id` INT NOT NULL,
+  `user` INT NOT NULL,
+  `user_key` INT NOT NULL,
+  `room` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_booking_user1_idx` (`user_id` ASC) ,
-  INDEX `fk_booking_room1_idx` (`room_id` ASC),
+  INDEX `fk_booking_user1_idx` (`user` ASC) ,
+  INDEX `fk_booking_room1_idx` (`room` ASC),
   CONSTRAINT `fk_booking_user1`
-    FOREIGN KEY (`user_id`)
+    FOREIGN KEY (`user`)
     REFERENCES `airbnb`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_booking_room1`
-    FOREIGN KEY (`room_id`)
+    FOREIGN KEY (`room`)
     REFERENCES `airbnb`.`room` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -85,18 +86,19 @@ DROP TABLE IF EXISTS `airbnb`.`wishlist` ;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`wishlist` (
   `id` INT NOT NULL,
-  `user_id` INT NOT NULL,
-  `room_id` INT NOT NULL,
+  `user` INT NOT NULL,
+  `user_key` INT NOT NULL,
+  `room` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_wishlist_user1_idx` (`user_id` ASC) ,
-  INDEX `fk_wishlist_room1_idx` (`room_id` ASC),
+  INDEX `fk_wishlist_user1_idx` (`user` ASC) ,
+  INDEX `fk_wishlist_room1_idx` (`room` ASC),
   CONSTRAINT `fk_wishlist_user1`
-    FOREIGN KEY (`user_id`)
+    FOREIGN KEY (`user`)
     REFERENCES `airbnb`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_wishlist_room1`
-    FOREIGN KEY (`room_id`)
+    FOREIGN KEY (`room`)
     REFERENCES `airbnb`.`room` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

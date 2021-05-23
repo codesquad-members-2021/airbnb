@@ -2,7 +2,7 @@ package com.team19.airbnb.controller;
 
 import com.team19.airbnb.dto.BookingRequestDTO;
 import com.team19.airbnb.dto.BookingResponseDTO;
-import com.team19.airbnb.entity.Host;
+import com.team19.airbnb.entity.room.Host;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;

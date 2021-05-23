@@ -9,20 +9,19 @@ public class Booking {
     @Id
     private Long id;
 
+    private Long user;
+
     private LocalDate checkIn;
     private LocalDate checkOut;
-    private String userId;
-    private String roomId;
 
-    Booking(Long id, LocalDate checkIn, LocalDate checkOut, String userId, String roomId) {
+    Booking(Long id, Long user, LocalDate checkIn, LocalDate checkOut) {
         this.id = id;
+        this.user = user;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
-        this.userId = userId;
-        this.roomId = roomId;
     }
 
-    public Booking create(Long id, LocalDate checkIn, LocalDate checkOut, String userId, String roomId) {
-        return new Booking(id, checkIn, checkOut, userId, roomId);
+    public Booking create(Long user, LocalDate checkIn, LocalDate checkOut) {
+        return new Booking(null, user, checkIn, checkOut);
     }
 }

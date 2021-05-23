@@ -1,4 +1,4 @@
-package com.team19.airbnb.entity;
+package com.team19.airbnb.entity.room;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Embedded;
@@ -51,14 +51,13 @@ public class Room {
         this.host = host;
     }
 
-    public Room create(Long id,
-                       String name, List<Image> images,
+    public Room create(String name, List<Image> images,
                        Double grade, Integer reviewer,
                        Location location,
                        BigDecimal pricePerDay, BigDecimal totalPrice,
                        String roomType, String roomConfiguration, String description,
                        Host host) {
-        return new Room(id,
+        return new Room(null,
                 name, images,
                 grade, reviewer,
                 location,
@@ -66,5 +65,4 @@ public class Room {
                 roomType, roomConfiguration, description,
                 host);
     }
-
 }
