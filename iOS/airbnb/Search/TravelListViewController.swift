@@ -30,8 +30,9 @@ class TravelListViewController: UIViewController {
         setSearchController()
         registerNib()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationItem.searchController?.isActive = true
     }
     @objc func didTapRemoveButton(){
         
@@ -40,16 +41,16 @@ class TravelListViewController: UIViewController {
 // MARK: - Functions
 extension TravelListViewController {
     func setSearchController() {
+        definesPresentationContext = true
         searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "어디로 여행가세요?"
-        definesPresentationContext = true
-        searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
         searchController.automaticallyShowsCancelButton = false
         searchController.obscuresBackgroundDuringPresentation = false
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = searchController
+        self.navigationItem.searchController?.delegate = self
     }
     func registerNib() {
         let nib = UINib(nibName: NearPlaceCell.nibName, bundle: nil)
@@ -67,8 +68,12 @@ extension TravelListViewController : UICollectionViewDelegate {
     }
 }
 
-extension TravelListViewController : UISearchBarDelegate {
-    
+extension TravelListViewController: UISearchControllerDelegate {
+    func didPresentSearchController(_ searchController: UISearchController) {
+        DispatchQueue.main.async {
+            searchController.searchBar.becomeFirstResponder()
+        }
+    }
 }
 extension TravelListViewController : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
