@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { ReactComponent as Menu } from "image/menu.svg";
-import { ReactComponent as Login } from "image/login.svg";
 import { ReactComponent as Logo } from "components/common/Logo.svg";
+import Login from 'components/Header/Login';
 // type HeaderProps = {
 //   title: string;
 //   link: string;
@@ -19,34 +18,11 @@ const Header = () => {
             return <NavigatorList key={`nav-${idx}`}>{text}</NavigatorList>;
           })}
         </NavigatorLayout>
-        <Hamburger>
-          <Menu />
-          <Login />
-        </Hamburger>
+        <Login/>
       </HeaderLayout>
     </>
   );
 };
-
-const Hamburger = styled.a.attrs({
-  href:
-    "https://github.com/login/oauth/authorize?client_id=5064f641a3bfe7f785ab",
-})`
-  width: 76px;
-  height: 40px;
-  border: 1px solid #dddddd;
-  border-radius: 30px;
-  color: #555;
-  text-align: center;
-  cursor: pointer;
-  padding: 5px 5px 5px 12px;
-  display: flex;
-  align-items: center;
-
-  & > svg {
-    padding: 8px;
-  }
-`;
 
 const HeaderLayout = styled.div`
   outline: red solid;
