@@ -21,7 +21,7 @@ const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
 
 	const { day: dayOfFirst, dateOfLast } = DateInfo(new Date(`${year}-${currentMonth}-1`))
 
-	const DateArray = Array.from({ length: dateOfLast + dayOfFirst }, (v, i) => {
+	const DateArray = Array.from({ length: dateOfLast + dayOfFirst }, (_, i) => {
 		if (i < dayOfFirst) return null
 		return i - dayOfFirst + 1
 	})
