@@ -17,10 +17,9 @@ public class SearchRoomDTO extends SearchPriceDTO {
                          Integer adult, Integer child, Integer baby,
                          Integer priceMin, Integer priceMax) {
         super(checkIn, checkOut, cityName);
-        //todo 밑의 정보들이 없을 경우 default 값 설정 // 생성자에서 초기화 로직정도는 괜찮은가?
         this.guest = Guest.guestInfo(adult, child, baby);
-        this.priceMin = Money.priceMin(priceMin);
-        this.priceMax = Money.priceMax(priceMax);
+        this.priceMin = Money.minPrice(priceMin);
+        this.priceMax = Money.maxPrice(priceMax);
     }
 
     public LocalDate getCheckIn() {
