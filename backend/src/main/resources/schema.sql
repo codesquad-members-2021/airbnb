@@ -1,4 +1,8 @@
-use airbnb;
+use
+airbnb;
+
+ALTER
+DATABASE airbnb CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 drop table if exists host;
 drop table if exists city;
@@ -46,19 +50,20 @@ create table review(
    review int
 );
 
-create table rooms(
-  id bigint auto_increment primary key ,
-  host_id bigint references host(id),
-  location_id bigint references location(id),
-  additional_cost_id bigint references additional_cost(id),
-  review_id bigint references review(id),
-  name varchar (100),
-  price_per_date DECIMAL(20,10),
-  description varchar(300),
-  bed int,
-  max_guest int,
-  bathroom int,
-  type varchar (45)
+create table rooms
+(
+    id                 bigint auto_increment primary key,
+    host_id            bigint references host (id),
+    location_id        bigint references location (id),
+    additional_cost_id bigint references additional_cost (id),
+    review_id          bigint references review (id),
+    name               varchar(100),
+    price_per_date     int,
+    description        varchar(300),
+    bed                int,
+    max_guest          int,
+    bathroom           int,
+    type               varchar(45)
 
 );
 
@@ -77,15 +82,15 @@ create table users(
 );
 
 create table reservation(
-  id bigint auto_increment primary key,
-  user_id bigint references users(id),
-  rooms_id bigint references rooms(id),
-  adult int,
-  child int,
-  baby int,
-  check_in date,
-  check_out date,
-  total_price DECIMAL(20,10)
+                            id bigint auto_increment primary key,
+                            user_id bigint references users(id),
+                            rooms_id bigint references rooms(id),
+                            adult int,
+                            child int,
+                            baby int,
+                            check_in date,
+                            check_out date,
+                            total_price int
 );
 
 create table wish_list(
