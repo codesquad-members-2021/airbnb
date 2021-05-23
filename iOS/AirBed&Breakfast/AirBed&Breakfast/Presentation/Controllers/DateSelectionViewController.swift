@@ -12,8 +12,19 @@ class DateSelectionViewController: UIViewController {
 
     private var reservationViewController: ReservationDetailViewControllerProtocol!
     private var calendarView: CalendarView! = nil
-    private var lowerDay: Day?
-    private var upperDay: Day?
+    private var lowerDay: Day? {
+        willSet{
+            guard let lowerDate = Calendar.current.date(from: DateComponents(year: newValue?.components.year, month: newValue?.components.month, day: newValue?.components.day)) else { return }
+            reservationViewController.changeDateRange(date: lowerDate, isLowerDay: true)
+        }
+    }
+    private var upperDay: Day? {
+        willSet{
+            if newValue == nil { return }
+            guard let upperDate = Calendar.current.date(from: DateComponents(year: newValue?.components.year, month: newValue?.components.month, day: newValue?.components.day)) else { return }
+            reservationViewController.changeDateRange(date: upperDate, isLowerDay: false)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +32,14 @@ class DateSelectionViewController: UIViewController {
         
         self.calendarView.daySelectionHandler = { [weak self] day in
             guard let self = self else { return }
+            
+            let currentYear = Int(Date().year)
+            let currentMonth = Int(Date().month)!
+            let currentDay = Int(Date().day)!
+            
+            if day.components.year == currentYear && day.components.month! <= currentMonth && day.components.day! < currentDay {
+                return
+            }
             
             if self.lowerDay == nil && self.upperDay == nil {
                 self.lowerDay = day
@@ -41,32 +60,10 @@ class DateSelectionViewController: UIViewController {
                 let newContent = self.makeContentWithHighlightRange()
                 self.calendarView.setContent(newContent)
             } else {
-                let newContent = self.makeContentWithSelectedDay()
+                let newContent = self.makeContent()
                 self.calendarView.setContent(newContent)
             }
         }
-    }
-    
-    func makeContentWithSelectedDay() -> CalendarViewContent {
-        let newContent = self.makeContent().withDayItemModelProvider { day in
-            var invariantViewProperties = DayLabel.InvariantViewProperties(
-                font: UIFont.systemFont(ofSize: 18),
-                textColor: .darkGray,
-                backgroundColor: .clear)
-            
-            if day == self.lowerDay {
-                invariantViewProperties.textColor = .white
-                invariantViewProperties.backgroundColor = .blue
-            } else if day == self.upperDay {
-                invariantViewProperties.textColor = .white
-                invariantViewProperties.backgroundColor = .red
-            }
-            
-            return CalendarItemModel<DayLabel>(
-                invariantViewProperties: invariantViewProperties,
-                viewModel: .init(day: day))
-        }
-        return newContent
     }
     
     func makeContentWithHighlightRange() -> CalendarViewContent {
@@ -75,7 +72,7 @@ class DateSelectionViewController: UIViewController {
         
         let dateRangeToHighlight = lowerDate...upperDate
         
-        let newContent = self.makeContentWithSelectedDay().withDayRangeItemModelProvider(for: [dateRangeToHighlight]) { dayRangeLayoutContext in
+        let newContent = self.makeContent().withDayRangeItemModelProvider(for: [dateRangeToHighlight]) { dayRangeLayoutContext in
             CalendarItemModel<DayRangeIndicatorView>(
                 invariantViewProperties: .init(),
                 viewModel: .init(framesOfDaysToHighlight: dayRangeLayoutContext.daysAndFrames.map { $0.frame }))
@@ -100,8 +97,12 @@ class DateSelectionViewController: UIViewController {
     private func makeContent() -> CalendarViewContent {
         let calendar = Calendar.current
         
-        let startDate = calendar.date(from: DateComponents(year: 2021, month: 01, day: 01))!
-        let endDate = calendar.date(from: DateComponents(year: 2022, month: 12, day: 31))!
+        let currentYear = Int(Date().year)
+        let nextYear = Int(Date().year)! + 1
+        let currentMonth = Int(Date().month)!
+        let currentDay = Int(Date().day)!
+        let startDate = calendar.date(from: DateComponents(year: currentYear, month: currentMonth, day: 01))!
+        let endDate = calendar.date(from: DateComponents(year: nextYear, month: currentMonth, day: 31))!
         
         return CalendarViewContent(
             calendar: calendar,
@@ -109,11 +110,25 @@ class DateSelectionViewController: UIViewController {
             monthsLayout: .vertical(options: VerticalMonthsLayoutOptions()))
             
             .withDayItemModelProvider { day in
-                  CalendarItemModel<DayLabel>(
-                    invariantViewProperties: .init(
-                      font: UIFont.systemFont(ofSize: 18),
-                      textColor: .darkGray,
-                      backgroundColor: .clear),
+                var invariantViewProperties: DayLabel.InvariantViewProperties = .init(
+                    font: UIFont.systemFont(ofSize: 18),
+                    textColor: .darkGray,
+                    backgroundColor: .clear)
+                
+                if day.components.year == currentYear && day.components.month! <= currentMonth && day.components.day! < currentDay {
+                    invariantViewProperties.textColor = UIColor.red
+                }
+                
+                if day == self.lowerDay {
+                    invariantViewProperties.textColor = .white
+                    invariantViewProperties.backgroundColor = .blue
+                } else if day == self.upperDay {
+                    invariantViewProperties.textColor = .white
+                    invariantViewProperties.backgroundColor = .red
+                }
+                
+                return CalendarItemModel<DayLabel>(
+                    invariantViewProperties: invariantViewProperties,
                     viewModel: .init(day: day))
                 }
         

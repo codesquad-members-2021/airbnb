@@ -9,7 +9,7 @@ import UIKit
 
 protocol ReservationDetailViewControllerProtocol {
     func changeLocation()
-    func changeDateRange()
+    func changeDateRange(date: Date, isLowerDay: Bool)
     func changePriceRange()
     func changeNumberOfHeads()
 }
@@ -18,6 +18,9 @@ class ReservationDetailViewController: UIViewController {
     @IBOutlet weak var reservationDetailTableView: UITableView!
     @IBOutlet weak var deleteCurrentDetailButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    
+    var lowerDate: Date?
+    var upperDate: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +42,18 @@ extension ReservationDetailViewController: ReservationDetailViewControllerProtoc
         print("Changed Location")
     }
     
-    func changeDateRange() {
-        //todo
+    func changeDateRange(date: Date, isLowerDay: Bool) {
+        let indexPath = IndexPath(row: 1, section: 0)
+        let cell = reservationDetailTableView.cellForRow(at: indexPath) as! ReservationDetailTableViewCell
+        
+        if isLowerDay {
+            self.lowerDate = date
+            self.upperDate = nil
+            cell.detailContentsLabel.text = "\(date.month)월 \(date.day)일"
+        } else {
+            self.upperDate = date
+            cell.detailContentsLabel.text = "\(cell.detailContentsLabel.text!) ~ \(date.month)월 \(date.day)일"
+        }
     }
     
     func changePriceRange() {
