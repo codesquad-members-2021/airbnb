@@ -5,11 +5,17 @@ import com.example.airbnb.domain.SearchConditions;
 import java.util.List;
 
 public class AccommodationListDTO {
+
     List<AccommodationDTO> accommodationList;
     SearchConditions searchConditions;
+
     public AccommodationListDTO(List<AccommodationDTO> accommodationList, SearchConditions conditions) {
         this.accommodationList = accommodationList;
         this.searchConditions = conditions;
+    }
+
+    public AccommodationListDTO(List<AccommodationDTO> accommodationList) {
+        this.accommodationList = accommodationList;
     }
 
     public List<AccommodationDTO> getAccommodationList() {
