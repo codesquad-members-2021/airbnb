@@ -6,14 +6,14 @@ import java.util.Optional;
 
 public class SearchRequestDto {
 
-    private Optional<String> destination;
-    private Optional<String> checkInDate;
-    private Optional<String> checkOutDate;
-    private Optional<Integer> minPrice;
-    private Optional<Integer> maxPrice;
-    private Optional<Integer> numOfAdult;
-    private Optional<Integer> numOfChild;
-    private Optional<Integer> numOfInfant;
+    private final Optional<String> destination;
+    private final Optional<String> checkInDate;
+    private final Optional<String> checkOutDate;
+    private final Optional<Integer> minPrice;
+    private final Optional<Integer> maxPrice;
+    private final Optional<Integer> numOfAdult;
+    private final Optional<Integer> numOfChild;
+    private final Optional<Integer> numOfInfant;
 
     public SearchRequestDto(Optional<String> destination, Optional<String> checkInDate, Optional<String> checkOutDate,
                             Optional<Integer> minPrice, Optional<Integer> maxPrice, Optional<Integer> numOfAdult,
