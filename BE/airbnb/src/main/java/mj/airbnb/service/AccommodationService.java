@@ -10,8 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -108,13 +108,13 @@ public class AccommodationService {
         return maxPeople >= (requestDto.getNumOfAdult().get() + requestDto.getNumOfChild().get() + requestDto.getNumOfInfant().get());
     }
 
-    private boolean isAvailableCost(Integer price, SearchRequestDto requestDto) {
-        return price >= requestDto.getMinPrice().get() && price <= requestDto.getMaxPrice().get();
+    private boolean isAvailableCost(BigDecimal price, SearchRequestDto requestDto) {
+        return (price.compareTo(requestDto.getMinPrice().get()) == 0 || price.compareTo(requestDto.getMinPrice().get()) > 0)
+                && (price.compareTo(requestDto.getMaxPrice().get()) == 0 || price.compareTo(requestDto.getMaxPrice().get()) < 0);
     }
 
     // 해당 숙소의 reservedDate이 checkInDate과 checkOutDate 사이에 없다면 예약 가능
     private boolean isAvailableDate(Long accommodationId, SearchRequestDto requestDto) {
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate checkIn = requestDto.getCheckInDate().get();
         LocalDate checkOut = requestDto.getCheckOutDate().get();
 

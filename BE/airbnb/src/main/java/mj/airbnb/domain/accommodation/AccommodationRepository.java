@@ -44,7 +44,7 @@ public class AccommodationRepository {
             accommodation.setType(rs.getString("type"));
             accommodation.setNumOfBed(rs.getInt("num_of_bed"));
             accommodation.setNumOfBathroom(rs.getInt("num_of_bathroom"));
-            accommodation.setPrice(rs.getInt("price"));
+            accommodation.setPrice(rs.getBigDecimal("price"));
             accommodation.setAddress(rs.getString("address"));
 
             return accommodation;

@@ -2,6 +2,7 @@ package mj.airbnb.web.dto;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -12,14 +13,14 @@ public class SearchRequestDto {
     private final Optional<LocalDate> checkInDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private final Optional<LocalDate> checkOutDate;
-    private final Optional<Integer> minPrice;
-    private final Optional<Integer> maxPrice;
+    private final Optional<BigDecimal> minPrice;
+    private final Optional<BigDecimal> maxPrice;
     private final Optional<Integer> numOfAdult;
     private final Optional<Integer> numOfChild;
     private final Optional<Integer> numOfInfant;
 
     public SearchRequestDto(Optional<String> destination, Optional<LocalDate> checkInDate, Optional<LocalDate> checkOutDate,
-                            Optional<Integer> minPrice, Optional<Integer> maxPrice, Optional<Integer> numOfAdult,
+                            Optional<BigDecimal> minPrice, Optional<BigDecimal> maxPrice, Optional<Integer> numOfAdult,
                             Optional<Integer> numOfChild, Optional<Integer> numOfInfant) {
 
         this.destination = destination;
@@ -44,11 +45,11 @@ public class SearchRequestDto {
         return checkOutDate;
     }
 
-    public Optional<Integer> getMinPrice() {
+    public Optional<BigDecimal> getMinPrice() {
         return minPrice;
     }
 
-    public Optional<Integer> getMaxPrice() {
+    public Optional<BigDecimal> getMaxPrice() {
         return maxPrice;
     }
 

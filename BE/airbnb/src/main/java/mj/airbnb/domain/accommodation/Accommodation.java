@@ -1,5 +1,7 @@
 package mj.airbnb.domain.accommodation;
 
+import java.math.BigDecimal;
+
 public class Accommodation {
 
     private Long id;
@@ -8,7 +10,7 @@ public class Accommodation {
     private String type;
     private Integer numOfBed;
     private Integer numOfBathroom;
-    private Integer price;
+    private BigDecimal price;
     private String address;
 
     public Accommodation() {
@@ -66,11 +68,11 @@ public class Accommodation {
         this.numOfBathroom = numOfBathroom;
     }
 
-    public Integer getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
