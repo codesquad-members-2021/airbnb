@@ -46,7 +46,7 @@ const HeroBackgroundImageLayer = styled.div`
   z-index: -1;
   background-image: url("https://a0.muscache.com/im/pictures/ddc7f01f-3fb3-483c-87e6-701dad52c930.jpg");
   background-size: cover;
-  /* background-position: 0 90%; //x와 y축을 기준으로 이미지 전체 비율의 몇 퍼센트인지를 보여줌 */
+  background-position: 0 90%; //x와 y축을 기준으로 이미지 전체 비율의 몇 퍼센트인지를 보여줌
 
   @media (max-width: 1024px) {
     width: 100%;
