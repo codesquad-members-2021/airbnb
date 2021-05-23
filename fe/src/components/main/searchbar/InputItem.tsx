@@ -1,11 +1,15 @@
 import styled from "styled-components";
+import { MouseEvent } from "react"
+type InputItemProps = {
+  w: String;
+  title: String;
+  subtitle: String;
+  onClick?: (event: MouseEvent | Event) => void
+};
 
-
-type InputItemProps = { w: String; title: String; subtitle: String };
-
-const InputItem = ({ w, title, subtitle }: InputItemProps) => {
+const InputItem = ({ w, title, subtitle,onClick }: InputItemProps) => {
   return (
-    <FlexBox {...{ w }}>
+    <FlexBox {...{ w }} onClick={onClick} >
       <InputTitle>{title}</InputTitle>
       <InputSubtitle>{subtitle}</InputSubtitle>
     </FlexBox>

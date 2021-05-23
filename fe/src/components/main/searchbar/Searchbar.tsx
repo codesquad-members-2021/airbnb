@@ -18,7 +18,7 @@ const SearchBar = () => {
       </StyledSearchBar>
     </Box>
   );
-};
+}; 
 
 export default SearchBar;
 
