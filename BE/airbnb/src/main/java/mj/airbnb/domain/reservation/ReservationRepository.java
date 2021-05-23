@@ -34,8 +34,8 @@ public class ReservationRepository {
             Reservation reservation = new Reservation();
             reservation.setId(rs.getLong("id"));
             reservation.setAccommodationId(rs.getLong("accommodation_id"));
-            reservation.setCheckInDate(rs.getString("check_in_date"));
-            reservation.setCheckOutDate(rs.getString("check_out_date"));
+            reservation.setCheckInDate(rs.getDate("check_in_date").toLocalDate());
+            reservation.setCheckOutDate(rs.getDate("check_out_date").toLocalDate());
 
             return reservation;
         };
@@ -45,7 +45,7 @@ public class ReservationRepository {
         return (rs, rowNum) -> {
             ReservationDate reservationDate = new ReservationDate();
             reservationDate.setId(rs.getLong("id"));
-            reservationDate.setReservedDate(rs.getString("reserved_date"));
+            reservationDate.setReservedDate(rs.getDate("reserved_date").toLocalDate());
             reservationDate.setReservationId(rs.getLong("reservation_id"));
             reservationDate.setReservationAccommodationId(rs.getLong("reservation_accommodation_id"));
 

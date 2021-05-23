@@ -115,11 +115,11 @@ public class AccommodationService {
     // 해당 숙소의 reservedDate이 checkInDate과 checkOutDate 사이에 없다면 예약 가능
     private boolean isAvailableDate(Long accommodationId, SearchRequestDto requestDto) {
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate checkIn = LocalDate.parse(requestDto.getCheckInDate().get(), dateFormat);
-        LocalDate checkOut = LocalDate.parse(requestDto.getCheckOutDate().get(), dateFormat);
+        LocalDate checkIn = requestDto.getCheckInDate().get();
+        LocalDate checkOut = requestDto.getCheckOutDate().get();
 
         return reservationRepository.findALLReservationDateByAccommodationId(accommodationId).stream()
-                .map(reservationDate -> LocalDate.parse(reservationDate.getReservedDate(), dateFormat))
+                .map(reservationDate -> reservationDate.getReservedDate())
                 .noneMatch(dateTime -> ((dateTime.isEqual(checkIn) || dateTime.isAfter(checkIn))
                         && (dateTime.isEqual(checkIn) || dateTime.isBefore(checkOut))));
     }

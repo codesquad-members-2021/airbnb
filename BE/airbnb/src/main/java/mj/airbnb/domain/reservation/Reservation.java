@@ -1,10 +1,12 @@
 package mj.airbnb.domain.reservation;
 
+import java.time.LocalDate;
+
 public class Reservation {
 
     private Long id;
-    private String checkInDate;
-    private String checkOutDate;
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
     private Long accommodationId;
 
     public Reservation() {
@@ -18,19 +20,19 @@ public class Reservation {
         this.id = id;
     }
 
-    public String getCheckInDate() {
+    public LocalDate getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(String checkInDate) {
+    public void setCheckInDate(LocalDate checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public String getCheckOutDate() {
+    public LocalDate getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(String checkOutDate) {
+    public void setCheckOutDate(LocalDate checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 
