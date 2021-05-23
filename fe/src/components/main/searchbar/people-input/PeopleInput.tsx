@@ -1,8 +1,9 @@
 import Modal from "components/common/Modal";
 import { css } from "styled-components";
 import { useState } from "react";
-import { MouseEvent } from "react"
+import { MouseEvent } from "react";
 import InputItem from "../InputItem";
+import PeopleList from "./PeopleList";
 
 const PeopleInput = () => {
   const [toggle, setToggle] = useState<Boolean>(false);
@@ -22,10 +23,10 @@ const PeopleInput = () => {
       <Modal
         toggle={toggle}
         handleClick={handleClick}
-        br="0.5rem"
+        br="40px"
         position={ModalPosition}
       >
-        <div></div>
+        <PeopleList />
       </Modal>
     </>
   );
