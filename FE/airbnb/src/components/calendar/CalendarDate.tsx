@@ -38,6 +38,7 @@ const StyledCalendarDate = styled.div`
     width: 3rem;
     height: 3rem;
     font-size: ${({ theme }) => theme.fontSize.small};
+    text-align: center;
   }
   .date {
     font-weight: bold;
