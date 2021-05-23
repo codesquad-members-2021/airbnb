@@ -24,16 +24,16 @@ class CalendarHelper {
     
     static func makeDays(date: Date) -> [Date?] {
         var days: [Date?] = []
-        let daysInMonth = getDaysInMonth(date: date)
-        let firstDayOfMonth = getFirstOfMonth(date: date)
-        let startingSpaces = getWeekDay(date: firstDayOfMonth)
-        (1...daysInMonth + startingSpaces).forEach { (count) in
+        let dayCount = daysInMonth(date: date)
+        let firstDay = firstDayOfMonth(date: date)
+        let startingSpaces = weekDay(date: firstDay)
+        (1...dayCount + startingSpaces).forEach { (count) in
             checkFirstDayRange(day: count) ?
                 days.append(nil) :
                 days.append(createDay(with: count - startingSpaces))
         }
         func createDay(with count: Int) -> Date {
-            return calendar.date(byAdding: .day, value: count - 1, to: firstDayOfMonth) ?? Date()
+            return calendar.date(byAdding: .day, value: count - 1, to: firstDay) ?? Date()
         }
         
         func checkFirstDayRange(day: Int) -> Bool {
@@ -42,22 +42,22 @@ class CalendarHelper {
         return days
     }
     
-    static func getMonth(index: Int) -> String {
+    static func month(index: Int) -> String {
         let month = calendar.date(byAdding: .month, value: index, to: Date()) ?? Date()
         return dateFormatter.convertCalenderHeaderString(date: month)
     }
     
-    static func getDaysInMonth(date: Date) -> Int {
+    static func daysInMonth(date: Date) -> Int {
         let range = calendar.range(of: .day, in: .month, for: date)!
         return range.count
     }
     
-    static func getFirstOfMonth(date: Date) -> Date {
+    static func firstDayOfMonth(date: Date) -> Date {
         let components = calendar.dateComponents([.year, .month], from: date)
         return calendar.date(from: components) ?? Date()
     }
     
-    static func getWeekDay(date: Date) -> Int {
+    static func weekDay(date: Date) -> Int {
         let components = calendar.dateComponents([.weekday], from: date)
         return components.weekday! - 1
     }

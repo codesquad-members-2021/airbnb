@@ -22,7 +22,7 @@ class CalendarDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let datesSection = CalendarHelper.getMonth(index: section)
+        let datesSection = CalendarHelper.month(index: section)
         return dates[datesSection]?.count ?? 0
     }
     
@@ -30,7 +30,7 @@ class CalendarDataSource: NSObject, UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarDayCell.identifier, for: indexPath) as? CalendarDayCell else {
             return .init()
         }
-        let month = CalendarHelper.getMonth(index: indexPath.section)
+        let month = CalendarHelper.month(index: indexPath.section)
         let day = dates[month]?[indexPath.row]
         cell.configure(day: day)
         cell.setupDaysRange(dates : sequenceDates, day: day)
@@ -42,7 +42,7 @@ class CalendarDataSource: NSObject, UICollectionViewDataSource {
         guard let headerview = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CalendarHeaderView.identifier, for: indexPath) as? CalendarHeaderView else {
             return .init()
         }
-        let month = CalendarHelper.getMonth(index: indexPath.section)
+        let month = CalendarHelper.month(index: indexPath.section)
         headerview.updateLabel(text: month)
         return headerview
     }

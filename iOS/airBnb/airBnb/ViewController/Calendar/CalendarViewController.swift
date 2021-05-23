@@ -53,7 +53,7 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let month = CalendarHelper.getMonth(index: indexPath.section)
+        let month = CalendarHelper.month(index: indexPath.section)
         let day = calendarManager.dates[month]?[indexPath.row] ?? Date()
         if blockOldDaySelect(with: day) { return }
         calendarManager.selectDay(with: day)
