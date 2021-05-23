@@ -81,8 +81,8 @@ extension LocationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CityCollectionViewCell.identifier, for: indexPath) as! CityCollectionViewCell
         cell.location.text = locationManager.mainLayout?.cities[indexPath.row].cityName
-        let data = locationManager.cityImagesData![indexPath.row]
-        cell.locationImage.image = UIImage(data: data)
+        let url = locationManager.mainLayout!.cities[indexPath.row].cityImage
+        cell.locationImage.load(with: url)
         return cell
     }
 }
