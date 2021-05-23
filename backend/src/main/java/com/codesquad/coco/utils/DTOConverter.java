@@ -1,5 +1,7 @@
 package com.codesquad.coco.utils;
 
+import com.codesquad.coco.city.City;
+import com.codesquad.coco.city.CityDTO;
 import com.codesquad.coco.host.Host;
 import com.codesquad.coco.host.HostDTO;
 import com.codesquad.coco.image.Image;
@@ -93,6 +95,10 @@ public class DTOConverter {
                 roomOption.getMaxGuest(),
                 roomOption.getBathRoom()
         );
+    }
+
+    public static CityDTO cityToCityDTO(City city) {
+        return new CityDTO(city.getName(), city.getImageUrl());
     }
 
 
