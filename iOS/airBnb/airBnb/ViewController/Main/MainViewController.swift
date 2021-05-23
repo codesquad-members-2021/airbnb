@@ -23,7 +23,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.titleView = searchBar
         tripIdeaButton.layer.cornerRadius = 10
-        CalendarManager()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -32,9 +31,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func moveSearchViewController(_ UITapGestureReconizer: UITapGestureRecognizer) {
-        guard let locationSearchView = UIStoryboard(name: "LocationSearch", bundle: nil).instantiateViewController(withIdentifier: "LocationSearch") as? LocationSearchViewController else {
-            return
-        }
+        let locationSearchView = LocationSearchViewController()
         self.navigationController?.pushViewController(locationSearchView, animated: true)
     }
 }

@@ -51,10 +51,10 @@
             </objects>
             <point key="canvasLocation" x="297" y="135"/>
         </scene>
-        <!--Main View Controller-->
+        <!--홈-->
         <scene sceneID="P56-NS-xKU">
             <objects>
-                <viewController storyboardIdentifier="main" id="Ar4-KE-pev" customClass="MainViewController" customModule="airBnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main" title="홈" id="Ar4-KE-pev" customClass="MainViewController" customModule="airBnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YSL-O0-4Px">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

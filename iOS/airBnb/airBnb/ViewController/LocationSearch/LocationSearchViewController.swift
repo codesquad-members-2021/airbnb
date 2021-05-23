@@ -9,11 +9,11 @@ import UIKit
 
 class LocationSearchViewController: UITableViewController {
     
-    var cities = ["서울","광주","의정부시","수원시","대구","울산","부천시"]
-    var resultCities: [String] = []
+    private var cities = ["서울","광주","의정부시","수원시","대구","울산","부천시"]
     
     private lazy var deleteText: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "지우기" ,style: .plain, target: self, action: #selector(closeSearchText(_:)))
+        button.isEnabled = false
         return button
     }()
     
@@ -23,14 +23,15 @@ class LocationSearchViewController: UITableViewController {
     }()
     
     private var resultTableViewController = LocationResultViewController()
+    private let searchViewModel = SearchLocationViewModel()
     private var searchController: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configure()
         setUpSearchController()
         setUpTableView()
+        resultTableViewController.injectViewModel(from: searchViewModel)
     }
     
     private func configure() {
@@ -39,6 +40,8 @@ class LocationSearchViewController: UITableViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.backBarButtonItem = backBarButtonItem
         tabBarController?.tabBar.isHidden = true
+        tableView.separatorStyle = .none
+        tableView.rowHeight = 80
     }
     
     private func setUpSearchController() {
@@ -60,15 +63,21 @@ class LocationSearchViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.async {
-            self.searchController.searchBar.becomeFirstResponder()
+        DispatchQueue.main.async { [weak self] in
+            self?.searchController.searchBar.becomeFirstResponder()
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        searchController.dismiss(animated: true, completion: nil)
     }
     
     @objc func closeSearchText(_ gesture: UIBarButtonItem) {
         searchController.searchBar.searchTextField.text?.removeAll()
-        searchController.dismiss(animated: true, completion: nil)
         searchController.searchBar.resignFirstResponder()
+        deleteText.isEnabled = false
+        searchController.dismiss(animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -94,13 +103,6 @@ class LocationSearchViewController: UITableViewController {
 
 extension LocationSearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        resultCities = cities.filter({ (data:String) -> Bool in
-            return data.contains(searchController.searchBar.text ?? "")
-        })
-        guard let resultController = searchController.searchResultsController as? LocationResultViewController else {
-            return
-        }
-        resultController.resultCities = resultCities
-        resultController.tableView.reloadData()
+        searchViewModel.requestSearch(from: searchController.searchBar.text ?? "")
     }
 }

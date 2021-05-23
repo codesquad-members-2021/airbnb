@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import Combine
 
 class LocationResultViewController: UITableViewController {
 
-    var resultCities: [String] = []
+    private var resultCities: [CityInfoList] = []
+    private var searchViewModel: SearchLocationViewModel?
+    private var cancell: AnyCancellable?
     
     lazy var emptyHeaderView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 15))
@@ -23,6 +26,20 @@ class LocationResultViewController: UITableViewController {
         tableView.tableHeaderView = emptyHeaderView
         tableView.separatorStyle = .none
         tableView.rowHeight = 80
+        bind()
+    }
+    
+    private func bind() {
+        cancell = searchViewModel?.fetchSearchResult()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] (cityInfolist) in
+            self?.resultCities = cityInfolist
+            self?.tableView.reloadData()
+        })
+    }
+    
+    func injectViewModel(from viewmodel: SearchLocationViewModel) {
+        self.searchViewModel = viewmodel
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

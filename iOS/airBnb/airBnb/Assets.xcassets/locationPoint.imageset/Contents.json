@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "locationPoint.png",
+      "filename" : "locationPoint2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "locationPoint-1.png",
+      "filename" : "locationPoint2-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "locationPoint-2.png",
+      "filename" : "locationPoint2-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

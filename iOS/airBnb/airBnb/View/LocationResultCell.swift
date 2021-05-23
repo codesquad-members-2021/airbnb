@@ -26,7 +26,7 @@ class LocationResultCell: UITableViewCell {
     private var locationImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "locationPoint2")
+        imageView.image = UIImage(named: "locationPoint")
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = UIColor(named: "BoardColor")?.cgColor
         imageView.layer.cornerRadius = 10
@@ -61,7 +61,7 @@ class LocationResultCell: UITableViewCell {
         ])
     }
     
-    func configure(city: String) {
-        locationLabel.text = city
+    func configure(city: CityInfoList) {
+        locationLabel.text = city.address
     }
 }
