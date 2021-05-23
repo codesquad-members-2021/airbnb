@@ -1,7 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import Calendar, { OnClickResult } from "../../../lib/Calendar";
 import SearchForm from "./SearchForm";
 import SearchInput from "./SearchInput";
+
+const onClickDay = (result) => {
+  console.log(result.clickedDay);
+};
 
 const Menu = () => {
   return (
@@ -29,7 +34,9 @@ const Menu = () => {
           </MenuSelector>
         </fieldset>
         <SearchForm />
-        <SearchInput type="1"></SearchInput>
+        <SearchInput type="calendar">
+          {/* <Calendar onClickDay={onClickDay} /> */}
+        </SearchInput>
       </form>
     </MenuWrapper>
   );
