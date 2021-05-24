@@ -26,7 +26,7 @@ public class CategoryDAO {
         RowMapper<Category> categoryMapper = new RowMapper<Category>() {
             @Override
             public Category mapRow(ResultSet rs, int rowNum) throws SQLException {
-                return new Category(rs.getString("name"), rs.getString("image_url"));
+                return new Category(rs.getLong("id"), rs.getString("name"), rs.getString("image_url"));
             }
         };
         return jdbcTemplate.query(sql, categoryMapper);
