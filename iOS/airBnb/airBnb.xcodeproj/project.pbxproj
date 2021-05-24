@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		BF2FEAD2265A83F30022CB93 /* SearchLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAD1265A83F30022CB93 /* SearchLocationViewModel.swift */; };
 		BF2FEADC265B71260022CB93 /* SearchTextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEADB265B71260022CB93 /* SearchTextField+Extension.swift */; };
+		BF2FEAE2265BBAED0022CB93 /* LocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAE1265BBAED0022CB93 /* LocationInfoViewController.swift */; };
+		BF2FEAE6265BBB960022CB93 /* LocationInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF2FEAE5265BBB960022CB93 /* LocationInfo.storyboard */; };
+		BF2FEAE9265BE0730022CB93 /* LocationInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAE8265BE0720022CB93 /* LocationInfoViewModel.swift */; };
 		BF4048CF2658CB4600CA02B5 /* LocationResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4048CE2658CB4600CA02B5 /* LocationResultViewController.swift */; };
 		BF4048D22658D8AA00CA02B5 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4048D12658D8AA00CA02B5 /* CalendarViewController.swift */; };
 		BF4048D52658D8C500CA02B5 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4048D42658D8C500CA02B5 /* Calendar.storyboard */; };
@@ -40,6 +43,9 @@
 /* Begin PBXFileReference section */
 		BF2FEAD1265A83F30022CB93 /* SearchLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewModel.swift; sourceTree = "<group>"; };
 		BF2FEADB265B71260022CB93 /* SearchTextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchTextField+Extension.swift"; sourceTree = "<group>"; };
+		BF2FEAE1265BBAED0022CB93 /* LocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoViewController.swift; sourceTree = "<group>"; };
+		BF2FEAE5265BBB960022CB93 /* LocationInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationInfo.storyboard; sourceTree = "<group>"; };
+		BF2FEAE8265BE0720022CB93 /* LocationInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoViewModel.swift; sourceTree = "<group>"; };
 		BF4048CE2658CB4600CA02B5 /* LocationResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResultViewController.swift; sourceTree = "<group>"; };
 		BF4048D12658D8AA00CA02B5 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		BF4048D42658D8C500CA02B5 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
@@ -85,13 +91,24 @@
 			isa = PBXGroup;
 			children = (
 				BF2FEAD1265A83F30022CB93 /* SearchLocationViewModel.swift */,
+				BF2FEAE8265BE0720022CB93 /* LocationInfoViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BF2FEADF265BB8EE0022CB93 /* LocationInfo */ = {
+			isa = PBXGroup;
+			children = (
+				BF2FEAE1265BBAED0022CB93 /* LocationInfoViewController.swift */,
+				BF2FEAE5265BBB960022CB93 /* LocationInfo.storyboard */,
+			);
+			path = LocationInfo;
 			sourceTree = "<group>";
 		};
 		BF4048D72658F48D00CA02B5 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				BF2FEADF265BB8EE0022CB93 /* LocationInfo */,
 				BF4048E826592A3D00CA02B5 /* Main */,
 				BF4048E626592A3300CA02B5 /* LocationSearch */,
 				BF4048FE2659F52E00CA02B5 /* Calendar */,
@@ -279,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF4048D52658D8C500CA02B5 /* Calendar.storyboard in Resources */,
+				BF2FEAE6265BBB960022CB93 /* LocationInfo.storyboard in Resources */,
 				BFE430C02653903000F4DA1C /* LaunchScreen.storyboard in Resources */,
 				BFE430BD2653903000F4DA1C /* Assets.xcassets in Resources */,
 				BFE430BB2653902E00F4DA1C /* Main.storyboard in Resources */,
@@ -299,6 +317,7 @@
 				BF4048F526593DDB00CA02B5 /* CalendarHeaderView.swift in Sources */,
 				BF4048E42658FCAC00CA02B5 /* CalendarHelper.swift in Sources */,
 				BFE430B82653902E00F4DA1C /* MainViewController.swift in Sources */,
+				BF2FEAE9265BE0730022CB93 /* LocationInfoViewModel.swift in Sources */,
 				BFE4310626554B3600F4DA1C /* LocationCell.swift in Sources */,
 				BFE430B42653902E00F4DA1C /* AppDelegate.swift in Sources */,
 				BF404919265A815400CA02B5 /* SearchLocationUseCase.swift in Sources */,
@@ -306,6 +325,7 @@
 				BF4048CF2658CB4600CA02B5 /* LocationResultViewController.swift in Sources */,
 				BF40490F265A417000CA02B5 /* NetworkError.swift in Sources */,
 				BFE431172655948800F4DA1C /* LocationResultCell.swift in Sources */,
+				BF2FEAE2265BBAED0022CB93 /* LocationInfoViewController.swift in Sources */,
 				BF4048F12659335800CA02B5 /* CalendarDayCell.swift in Sources */,
 				BF4048D22658D8AA00CA02B5 /* CalendarViewController.swift in Sources */,
 				BF4048EB26592AAF00CA02B5 /* CalendarDataSource.swift in Sources */,

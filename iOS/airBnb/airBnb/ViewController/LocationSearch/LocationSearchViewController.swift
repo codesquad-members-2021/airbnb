@@ -97,8 +97,8 @@ class LocationSearchViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyBoard = UIStoryboard(name: "Calendar", bundle: nil)
-        guard let calendarViewController = storyBoard.instantiateViewController(withIdentifier: "Calendar") as? CalendarViewController else {
+        let storyBoard = UIStoryboard(name: "LocationInfo", bundle: nil)
+        guard let calendarViewController = storyBoard.instantiateViewController(withIdentifier: "LocationInfo") as? LocationInfoViewController else {
             return
         }
         self.navigationController?.pushViewController(calendarViewController, animated: true)
