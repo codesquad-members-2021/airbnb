@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import team01.airbnb.domain.accommodation.AccommodationAddress;
 import team01.airbnb.domain.accommodation.AccommodationCondition;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -60,6 +61,12 @@ class AccommodationRepositoryTest {
         softly.assertThat(condition.getBedroomCount()).isEqualTo("원룸");
         softly.assertThat(condition.getBedCount()).isEqualTo("1");
         softly.assertThat(condition.getBathroomCount()).isEqualTo("1");
+    }
+
+    @Test
+    void getAmenities() {
+        List<String> amenities = accommodationRepository.findAmenitiesByAccommodationId(1L);
+        softly.assertThat(amenities).contains("주방", "무선 인터넷", "에어컨", "헤어드라이기");
     }
 
 }

@@ -4,12 +4,14 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+import team01.airbnb.domain.Amenity;
 import team01.airbnb.domain.accommodation.Accommodation;
 import team01.airbnb.domain.accommodation.AccommodationAddress;
 import team01.airbnb.domain.accommodation.AccommodationCondition;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class AccommodationRepository {
@@ -71,5 +73,25 @@ public class AccommodationRepository {
                         .build()
         );
         return Optional.of(accommodationConditions.get(0));
+    }
+
+    public List<String> findAmenitiesByAccommodationId(Long accommodationId) {
+        String query = "SELECT * FROM amenity " +
+                "WHERE id in(" +
+                "   SELECT amenity_id FROM airbnb.accommodation_has_amenity " +
+                "   WHERE accommodation_id = 1" +
+                ")";
+        SqlParameterSource namedParameters = new MapSqlParameterSource("accommodation_id", accommodationId);
+        List<Amenity> amenities = jdbcTemplate.query(
+                query
+                , namedParameters
+                , (rs, rowNum) -> Amenity.builder()
+                        .id(rs.getLong("id"))
+                        .name(rs.getString("name"))
+                        .build()
+        );
+        return amenities.stream()
+                .map(amenity -> amenity.getName())
+                .collect(Collectors.toUnmodifiableList());
     }
 }
