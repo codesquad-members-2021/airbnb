@@ -1,16 +1,18 @@
 import { ReactElement } from 'react';
 import styled from 'styled-components';
-import { idText } from 'typescript';
+import { dayType } from './Calendar';
 
 interface Props {
-  monthData: number[][];
+  monthData: dayType[][];
 }
 
 const CalendarDate = ({ monthData }: Props) => {
   const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
-  const getDateList = (weekData: number[]): ReactElement[] => {
+  const getDateList = (weekData: dayType[]): ReactElement[] => {
     return weekData.map(
-      (date: number): ReactElement => <div className='date'>{date ? date : ''}</div>
+      ({ date, isAble }: dayType): ReactElement => (
+        <div className={isAble ? 'date' : 'date disable-date'}>{date ? date : ''}</div>
+      )
     );
   };
 
@@ -45,5 +47,8 @@ const StyledCalendarDate = styled.div`
   }
   .day {
     color: ${({ theme }) => theme.colors.gray3};
+  }
+  .disable-date {
+    color: #bdbdbd;
   }
 `;

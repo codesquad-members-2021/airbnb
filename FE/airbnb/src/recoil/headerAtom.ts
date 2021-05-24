@@ -5,15 +5,15 @@ export const tabSelectedState = atom<boolean[]>({
   default: [true, false, false],
 });
 
-interface dateType {
+export interface dateType {
   year: number;
   month: number;
-  date?: number;
+  date: number;
 }
 export interface calendarDateType {
   year: number;
   month: number;
-  todayDate?: dateType;
+  todayDate: dateType;
 }
 
 export const calendarState = atom<calendarDateType>({
