@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import SingleCalendar from './SingleCalendar';
+import TestSingleCalendar from './TestSingleCalendar';
 import YearMonth from './YearMonth';
-
+import DayViewTR from './DayViewTR';
 const Calendar = () => {
   const [calRange, setCalRange] = useState([-1, 0, 1, 2]);
   const [currentDistance, setCurrentDistance] = useState(-27.2); //가운데 = -27.2rem
@@ -49,8 +50,8 @@ const Calendar = () => {
           currentDistance={currentDistance}
           onTransitionEnd={() => onSlideEnd()}
         >
-          {calRange.map((range) => (
-            <YearMonthLI>
+          {calRange.map((range, idx) => (
+            <YearMonthLI key={idx}>
               <YearMonth range={range} />
             </YearMonthLI>
           ))}
@@ -58,32 +59,19 @@ const Calendar = () => {
         <RightButton onClick={() => handleRightClick()}>{'>'}</RightButton>
       </CalendarTop>
       <CalendarMiddle>
-        <DayViewTR>
-          <DayViewTD>일</DayViewTD>
-          <DayViewTD>월</DayViewTD>
-          <DayViewTD>화</DayViewTD>
-          <DayViewTD>수</DayViewTD>
-          <DayViewTD>목</DayViewTD>
-          <DayViewTD>금</DayViewTD>
-          <DayViewTD>토</DayViewTD>
-        </DayViewTR>
-        <DayViewTR>
-          <DayViewTD>일</DayViewTD>
-          <DayViewTD>월</DayViewTD>
-          <DayViewTD>화</DayViewTD>
-          <DayViewTD>수</DayViewTD>
-          <DayViewTD>목</DayViewTD>
-          <DayViewTD>금</DayViewTD>
-          <DayViewTD>토</DayViewTD>
-        </DayViewTR>
+        <DayViewTR />
+        <DayViewTR />
       </CalendarMiddle>
       <CalendarBottom>
         <CalTableWrapper
           currentDistance={currentDistance}
           onTransitionEnd={() => onSlideEnd()}
         >
-          {calRange.map((range) => (
-            <SingleCalendar />
+          {calRange.map((range, idx) => (
+            <div key={idx}>
+              <SingleCalendar range={range} />
+              <TestSingleCalendar range={range} />
+            </div>
           ))}
         </CalTableWrapper>
       </CalendarBottom>
@@ -121,20 +109,19 @@ const CalendarMiddle = styled.div`
   display: flex;
 `;
 
-const DayViewTR = styled.tr`
-  width: 21rem;
+// const DayViewTR = styled.tr`
+//   width: 21rem;
+//   display: flex;
+//   margin-right: 4.25rem;
+//   margin-bottom: 0.25rem;
+// `;
 
-  display: flex;
-  margin-right: 4.25rem;
-  margin-bottom: 0.25rem;
-`;
-const DayViewTD = styled.td`
-  width: 3rem;
-  height: 1.5rem;
-  font-size: 0.75rem;
-
-  color: ${({ theme }) => theme.colors.gray3};
-`;
+// const DayViewTD = styled.td`
+//   width: 3rem;
+//   height: 1.5rem;
+//   font-size: 0.75rem;
+//   color: ${({ theme }) => theme.colors.gray3};
+// `;
 
 const YearMonthUL = styled.ul`
   display: flex;
