@@ -40,7 +40,7 @@ public class PlaceSummary {
     }
 
     public String getOption() {
-        return "최대 " + maximumNumberOfPeople + "명 · " + options.getOption();
+        return "최대 " + maximumNumberOfPeople + "명 · " + options.getRooms();
     }
 
     public String getAdditionalOption() {
