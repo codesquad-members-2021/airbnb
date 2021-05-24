@@ -20,7 +20,7 @@ public class CityDao {
     }
 
     public List<City> findAll() {
-        String sql = "SELECT id, name FROM city";
+        String sql = "SELECT id, name, latitude, longitude  FROM city";
         List<City> cities = jdbcTemplate.query(sql, cityMapper);
         cities.forEach(city -> city.setImages(imageDao.findByCityId(city.getId())));
         return cities;
