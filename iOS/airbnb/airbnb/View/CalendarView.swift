@@ -10,6 +10,7 @@ import FSCalendar
 
 class CalendarView: FSCalendar {
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -20,6 +21,7 @@ class CalendarView: FSCalendar {
     }
     
     func configure() {
+        self.allowsMultipleSelection = true
         self.scrollDirection = .vertical
 //        self.calculator
         
@@ -34,16 +36,21 @@ class CalendarView: FSCalendar {
 }
 
 class CalendarViewDelgate: NSObject, FSCalendarDelegate {
+    
+    private var conditionData: ConditionData!
+    
+    init(conditionData: ConditionData) {
+        self.conditionData = conditionData
+    }
+    
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         performDateSelect(calendar, date: date)
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-
+        updateCheckIn(calendar)
     }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
         calendar.select(date)
+        updateCheckIn(calendar)
     }
     
     func calendar(_ calendar: FSCalendar, shouldDeselect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
@@ -59,13 +66,11 @@ class CalendarViewDelgate: NSObject, FSCalendarDelegate {
     
     private func performDateSelect(_ calender: FSCalendar, date: Date) {
         let sorted = calender.selectedDates.sorted { $0 < $1 }
-        
         if sorted.count > 1 && date == sorted.first {
             performDateDeselect(calender, date: date)
             calender.select(date)
             return
         }
-        
         if let firstData = sorted.first,
            let lastData = sorted.last {
             let ranges = dateRange(from: firstData, to: lastData)
@@ -87,4 +92,22 @@ class CalendarViewDelgate: NSObject, FSCalendarDelegate {
         }
         return dateArray
     }
+    
+    func updateCheckIn(_ calender: FSCalendar) {
+            let sorted = calender.selectedDates.sorted { $0 < $1 }
+            if sorted.count == 1 {
+                conditionData.update(firstDate: formatter(sorted.first ?? Date()))
+                conditionData.update(secondDate: "")
+            } else {
+                print(calender.selectedDates.count)
+                conditionData.update(firstDate: formatter(sorted.first ?? Date()))
+                conditionData.update(secondDate: formatter(sorted.last ?? Date()))
+            }
+        }
+        
+        let formatter: (Date) -> String = { (date) in
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM월 dd일"
+            return formatter.string(from: date)
+        }
 }

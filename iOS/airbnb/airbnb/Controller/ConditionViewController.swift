@@ -20,6 +20,9 @@ class ConditionViewController: UIViewController {
     private var currentStateInt: Int
     private var currentState: CurrentState
     
+    @IBOutlet weak var BeforeButton: UIButton!
+    @IBOutlet weak var AfterButton: UIButton!
+    
     @IBOutlet weak var conditionTableView: UITableView!
     @IBOutlet weak var content: UIStackView!
     
@@ -30,7 +33,7 @@ class ConditionViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.currentStateInt = 0
         self.conditionData = ConditionData()
-        self.calendarDelegate = CalendarViewDelgate()
+        self.calendarDelegate = CalendarViewDelgate(conditionData: self.conditionData)
         self.currentState = ConditionViewController.CurrentState.date
         super.init(nibName: nil, bundle: nil)
     }
@@ -38,13 +41,15 @@ class ConditionViewController: UIViewController {
     required init?(coder: NSCoder) {
         self.currentStateInt = 0
         self.conditionData = ConditionData()
-        self.calendarDelegate = CalendarViewDelgate()
+        self.calendarDelegate = CalendarViewDelgate(conditionData: self.conditionData)
         self.currentState = ConditionViewController.CurrentState.date
         super.init(coder: coder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.BeforeButton.setTitle("", for: .normal)
+        self.AfterButton.setTitle("다음", for: .normal)
         initCalendarView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(conditionDataUpdate), name: ConditionViewController.conditionDataUpdate, object: conditionData)
@@ -63,6 +68,7 @@ class ConditionViewController: UIViewController {
     
     @IBAction func pressedNextButton(_ sender: Any) {
         if currentState == .people{
+            //AlamofireRequest
             return
         }
         self.currentStateInt += 1
@@ -115,10 +121,16 @@ extension ConditionViewController {
         switch self.currentStateInt {
         case 0:
             self.currentState = .date
+            self.BeforeButton.setTitle("", for: .normal)
+            self.AfterButton.setTitle("다음", for: .normal)
         case 1:
             self.currentState = .cost
+            self.BeforeButton.setTitle("이전", for: .normal)
+            self.AfterButton.setTitle("다음", for: .normal)
         case 2:
             self.currentState = .people
+            self.BeforeButton.setTitle("이전", for: .normal)
+            self.AfterButton.setTitle("검색", for: .normal)
         default:
             break
         }
