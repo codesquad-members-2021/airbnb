@@ -48,7 +48,7 @@ const Calendar = (): React.ReactElement => {
             return (
                 <CalendarBox>
                     <CalendarTitle>
-                        {date.getFullYear()}년 {date.getMonth()}월
+                        {date.getFullYear()}년 {date.getMonth() + 1}월
                     </CalendarTitle>
                     <Days>{dateTable.map(renderWeek)}</Days>
                 </CalendarBox>
