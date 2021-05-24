@@ -17,27 +17,33 @@ const FormCalendar = ({ toggleRef }: Props) => {
   const [positionX, setPositionX] = useState<number>(DEFAULT_POSITION_X);
   const [transitionValue, setTransitionValue] = useState<string>(DEFAULT_TRANSITION);
   const [moveType, setMoveType] = useState<string>('');
+
   useEffect(() => {
     if (transitionValue === 'none') {
       setPositionX(DEFAULT_POSITION_X);
     }
   }, [transitionValue]);
+
   useEffect(() => {
     setTransitionValue(DEFAULT_TRANSITION);
   }, [positionX]);
+
   const handleTransitionEnd = (): void => {
     setTransitionValue('none');
     if (moveType === 'prev') moveCalendar(-2);
     else if (moveType === 'next') moveCalendar(+2);
   };
+
   const moveCalendar = (moveCount: number): void => {
     const newDate = getMovedDate(calendarDate, moveCount);
     setCalendarDate(newDate);
   };
+
   const handlePrevBtnClick = (): void => {
     setMoveType('prev');
     setPositionX((positionX) => positionX + 910);
   };
+
   const handleNextBtnClick = (): void => {
     setMoveType('next');
     setPositionX((positionX) => positionX - 910);
@@ -101,8 +107,9 @@ const StyledFormCalendar = styled.div<StyleType>`
     justify-content: space-between;
     width: 916px;
     left: 0;
-    top: 3.2rem;
-    padding: 0 6rem;
+    top: 3rem;
+    padding: 0 5rem;
+    cursor: pointer;
   }
   .calendar__wrapper {
     display: flex;

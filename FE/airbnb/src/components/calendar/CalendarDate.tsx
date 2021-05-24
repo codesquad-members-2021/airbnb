@@ -44,11 +44,13 @@ const StyledCalendarDate = styled.div`
   }
   .date {
     font-weight: bold;
+    cursor: pointer;
   }
   .day {
     color: ${({ theme }) => theme.colors.gray3};
   }
   .disable-date {
     color: #bdbdbd;
+    cursor: not-allowed;
   }
 `;
