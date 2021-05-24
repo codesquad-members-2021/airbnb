@@ -65,3 +65,12 @@ export type Td = {
     dataSets: string[] | null;
     countDay: number;
 };
+
+export type CalendarType = {
+    isCheckIn: boolean;
+};
+
+export type DateType = {
+    possible: boolean;
+    typeOfDate: string;
+};

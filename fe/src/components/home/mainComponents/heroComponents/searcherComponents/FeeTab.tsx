@@ -24,7 +24,8 @@ const FeeTab = (): React.ReactElement => {
         searcherDispatch({ type: 'FEE_LAYER', state: true });
     };
 
-    const handleSliderChange = (event: any, newValue: number[] | number) => {
+    const handleSliderChange = (event: React.ChangeEvent<unknown>, newValue: number[] | number) => {
+        // Slider의 Element가 무엇인지 모르겠다..
         setFeeValue(newValue);
         reservationDispatch({ type: 'FEE', fee: newValue });
     };

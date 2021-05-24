@@ -1,20 +1,13 @@
-import React, { createContext, useContext, useReducer, useRef, useState } from 'react';
+import React, { useReducer } from 'react';
 import styled from 'styled-components';
-import SearchIcon from '@material-ui/icons/Search';
-import { mockupLocationData } from '../../../../data/location';
-import { LocationList, Location, SearcherContext } from '../../../../shared/interface';
-import { useReservationState, useReservationDispatch } from '../../../../hooks/ReservationHook';
+import { SearcherContext } from '../../../../shared/interface';
 import LocationTab from './searcherComponents/LocationTab';
 import CheckInTab from './searcherComponents/CheckInTab';
 import { SearcherStateContext, SearcherDispatchContext } from '../../../../Contexts';
 import { searchReducer } from '../../../../shared/searchBarReducer';
-import Calendar from './searcherComponents/calendar/Calendar';
 import CheckOutTab from './searcherComponents/CheckOutTab';
 import FeeTab from './searcherComponents/FeeTab';
-
-const isNotLocationSelected = (location: Location): boolean => {
-    return location.id === 0 && location.city === '';
-};
+import PeopleTab from './searcherComponents/PeopleTab';
 
 const initialSearcherState: SearcherContext = {
     locationList: [],
@@ -27,10 +20,6 @@ const initialSearcherState: SearcherContext = {
 };
 
 const Searcher = (): React.ReactElement => {
-    const reservationState = useReservationState();
-    const reservationDispatch = useReservationDispatch();
-    const { location, checkIn, checkOut, fee, people } = reservationState;
-
     const [searcherState, searcherDispatch] = useReducer(searchReducer, initialSearcherState);
 
     return (
@@ -42,12 +31,7 @@ const Searcher = (): React.ReactElement => {
                         <CheckInTab />
                         <CheckOutTab />
                         <FeeTab />
-                        <PeopleTab>
-                            <NavigatingText>인원</NavigatingText>
-                            <SearchButton>
-                                <SearchIcon />
-                            </SearchButton>
-                        </PeopleTab>
+                        <PeopleTab />
                     </BarSection>
                 </SearcherDispatchContext.Provider>
             </SearcherStateContext.Provider>
@@ -68,18 +52,4 @@ const BarSection = styled.section`
     height: 76px;
     background: #fff;
     position: relative;
-`;
-
-const NavigatingText = styled.p`
-    margin: 0;
-`;
-
-const PeopleTab = styled.div`
-    flex: 2;
-    display: flex;
-`;
-
-const SearchButton = styled.button`
-    width: 40px;
-    height: 40px;
 `;
