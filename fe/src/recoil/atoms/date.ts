@@ -9,7 +9,7 @@ const calendarDateState = atom<dateType>({
   key: 'calendarDateState',
   default: {
     year: new Date().getFullYear(),
-    month: new Date().getMonth() + 1,
+    month: new Date().getMonth(),
   },
 });
 

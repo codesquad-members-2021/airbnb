@@ -23,4 +23,5 @@ const WeekList = styled.li`
   ${({ theme }) => theme.flexCenter}
   width: 48px;
   height: 24px;
+  font-size: ${({ theme }) => theme.fontSize.s};
 `;
