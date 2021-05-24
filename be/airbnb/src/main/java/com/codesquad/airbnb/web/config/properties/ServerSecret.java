@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.web.config;
+package com.codesquad.airbnb.web.config.properties;
 
 import lombok.Getter;
 import lombok.Setter;

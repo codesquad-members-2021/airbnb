@@ -1,7 +1,7 @@
 package com.codesquad.airbnb.web.service;
 
-import com.codesquad.airbnb.web.config.GithubApi;
-import com.codesquad.airbnb.web.config.ServerSecret;
+import com.codesquad.airbnb.web.config.properties.GithubApi;
+import com.codesquad.airbnb.web.config.properties.ServerSecret;
 import org.springframework.stereotype.Service;
 
 @Service

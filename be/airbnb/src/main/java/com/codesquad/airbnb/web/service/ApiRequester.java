@@ -1,7 +1,9 @@
 package com.codesquad.airbnb.web.service;
 
-import com.codesquad.airbnb.web.config.GithubApi;
-import com.codesquad.airbnb.web.config.ServerSecret;
+import com.codesquad.airbnb.web.config.properties.GithubApi;
+import com.codesquad.airbnb.web.config.properties.ServerSecret;
+import com.codesquad.airbnb.web.dto.GithubProfile;
+import com.codesquad.airbnb.web.dto.ReceivedAccessToken;
 import com.codesquad.airbnb.web.dto.RequestAccessToken;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
@@ -25,24 +27,27 @@ public class ApiRequester {
         this.restTemplate = restTemplate;
     }
 
-    public void githubAccessToken(String code) {
-        log.info("code : {}", code);
-        log.info("{} : {}", serverSecret.getClientIdKey(), serverSecret.getClientIdValue());
-        log.info("{} : {}", serverSecret.getClientSecretKey(), serverSecret.getClientSecretValue());
+    public String githubAccessToken(String code) {
         RequestAccessToken requestAccessToken = RequestAccessToken.builder()
                 .clientId(serverSecret.getClientIdValue())
                 .clientSecret(serverSecret.getClientSecretValue())
                 .code(code)
                 .build();
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setContentLength(151L);
-        String result = requestApi(githubApi.getAccessTokenUrl(), HttpMethod.POST, headers, requestAccessToken);
-        log.info("result : {}", result);
+        ReceivedAccessToken receivedAccessToken = callApi(githubApi.getAccessTokenUrl(), HttpMethod.POST,
+                new HttpHeaders(), requestAccessToken, ReceivedAccessToken.class);
+        return receivedAccessToken.getAccessToken();
     }
 
-    private String requestApi(String url, HttpMethod method, HttpHeaders httpHeaders, Object body) {
-        return restTemplate.exchange(url, method, new HttpEntity<>(body, httpHeaders), String.class).getBody();
+    public GithubProfile githubProfile(String accessToken) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(accessToken);
+        return callApi(githubApi.getProfileUrl(), HttpMethod.GET, headers, HttpEntity.EMPTY, GithubProfile.class);
+    }
+
+    private <T> T callApi(String url, HttpMethod method, HttpHeaders headers, Object body, Class<T> responseType) {
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Object> httpEntity = new HttpEntity<>(body, headers);
+        return restTemplate.exchange(url, method, httpEntity, responseType).getBody();
     }
 }

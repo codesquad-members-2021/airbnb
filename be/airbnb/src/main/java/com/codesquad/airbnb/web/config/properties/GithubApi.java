@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.web.config;
+package com.codesquad.airbnb.web.config.properties;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +16,7 @@ import org.springframework.context.annotation.PropertySource;
 public class GithubApi {
     private String loginUrl;
     private String accessTokenUrl;
+    private String profileUrl;
     private String scopeKey;
     private String scopeValue;
 }

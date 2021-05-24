@@ -1,5 +1,7 @@
 package com.codesquad.airbnb.web.config;
 
+import com.codesquad.airbnb.web.config.properties.GithubApi;
+import com.codesquad.airbnb.web.config.properties.ServerSecret;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

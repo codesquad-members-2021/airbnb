@@ -1,5 +1,6 @@
 package com.codesquad.airbnb.web.controller;
 
+import com.codesquad.airbnb.web.dto.GithubProfile;
 import com.codesquad.airbnb.web.service.ApiRequester;
 import com.codesquad.airbnb.web.service.ApiUrlGenerator;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +32,8 @@ public class UsersController {
 
     @GetMapping("/callback")
     public void callback(@RequestParam(value = "code") String code) {
-        apiRequester.githubAccessToken(code);
+        String githubAccessToken = apiRequester.githubAccessToken(code);
+        GithubProfile githubProfile = apiRequester.githubProfile(githubAccessToken);
+        log.info("githubProfile : {}", githubProfile);
     }
 }
