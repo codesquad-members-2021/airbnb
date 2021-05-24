@@ -20,6 +20,7 @@ export default FormGuest;
 
 const StyledFormGuest = styled.div`
   .hover__guest {
+    height: 100%;
     padding: 1rem;
     border-radius: 3rem;
     cursor: pointer;

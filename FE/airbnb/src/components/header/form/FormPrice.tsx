@@ -16,6 +16,7 @@ export default FormPrice;
 
 const StyledFormPrice = styled.div`
   .hover__price {
+    height: 100%;
     padding: 1rem;
     border-radius: 3rem;
     cursor: pointer;

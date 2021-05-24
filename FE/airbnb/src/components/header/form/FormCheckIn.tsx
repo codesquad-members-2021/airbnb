@@ -33,7 +33,9 @@ const StyledCheckInWrapper = styled.div`
 `;
 
 const StyledFormCheckIn = styled.div`
+  height: 100%;
   .hover__checkIn {
+    height: 100%;
     padding: 1rem;
     border-radius: 3rem;
     cursor: pointer;
