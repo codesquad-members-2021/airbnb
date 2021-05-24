@@ -88,9 +88,9 @@ const MyPageModal = ({ userInfo }) => (
 );
 
 const MyPageWrapper = styled.div`
-	position: absolute;
-	top: 27px;
-	left: 1284px;
+	position: relative;
+	margin-top: 27px;
+	margin-right: 80px;
 	width: 76px;
 	height: 40px;
 

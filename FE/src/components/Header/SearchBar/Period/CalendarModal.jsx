@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Calendar from "./Calendar/Calendar";
-import delay from "../../../util/delay";
+import delay from "../../../../util/delay";
 
-const CalendarModal = ({ period }) => {
+const CalendarModal = () => {
 	const [currentModifier, setCurrentModifier] = useState([-2, -1, 0, 1, 2, 3]);
 	const [containerState, setContainerState] = useState("CENTER");
 
@@ -18,7 +18,7 @@ const CalendarModal = ({ period }) => {
 			<ShowWindow>
 				<Container state={containerState}>
 					{currentModifier.map((el) => (
-						<Calendar modifier={el} period={period} key={el} />
+						<Calendar modifier={el} key={el} />
 					))}
 				</Container>
 			</ShowWindow>
