@@ -6,14 +6,25 @@
 //
 
 import Foundation
+import Combine
 
 struct SequenceDates {
     var start,end: Date?
+    
+    func convertDateString() -> String {
+        guard let start = start else {
+            return ""
+        }
+        guard let end = end else {
+            return start.convertString()
+        }
+        return start.convertString() + " - " + end.convertString()
+    }
 }
 
 class CalendarManager {
     private(set) var dates: [String:[Date?]] = [:]
-    private(set) var sequenceDates: SequenceDates
+    @Published private(set) var sequenceDates: SequenceDates
     
     enum NotiName {
         static let selectDate = Notification.Name("selectDate")

@@ -22,11 +22,16 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQp-RB-7wG">
                                         <rect key="frame" x="16" y="14" width="52" height="30"/>
-                                        <state key="normal" title="건너뛰기"/>
+                                        <state key="normal" title="건너뛰기">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDW-jJ-Gq9">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDW-jJ-Gq9">
                                         <rect key="frame" x="368" y="14" width="30" height="30"/>
                                         <state key="normal" title="다음"/>
+                                        <connections>
+                                            <action selector="nextButtonTouched:" destination="Ns1-cu-AzI" eventType="touchUpInside" id="enL-JC-lrg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
@@ -204,6 +209,7 @@
                         <outlet property="checkInOutLabel" destination="sdz-Bb-Pqn" id="hhI-DN-AqC"/>
                         <outlet property="containerView" destination="D9B-FG-zJ4" id="YnU-aN-LAi"/>
                         <outlet property="locationLabel" destination="JiX-da-mND" id="BeJ-Ag-lkE"/>
+                        <outlet property="nextButton" destination="cDW-jJ-Gq9" id="F3K-aV-rzN"/>
                         <outlet property="numOfPeopleLabel" destination="Kx0-J8-kCM" id="IEP-d7-PQa"/>
                         <outlet property="priceLabel" destination="tse-JF-QUN" id="qki-KH-zS3"/>
                     </connections>

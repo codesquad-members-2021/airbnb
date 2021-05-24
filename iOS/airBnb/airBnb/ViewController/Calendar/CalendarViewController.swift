@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class CalendarViewController: UIViewController {
 
@@ -22,14 +23,18 @@ class CalendarViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateSequseDates(_:)), name: CalendarManager.NotiName.selectDate, object: calendarManager)
     }
     
-    func configure() {
+    func relaySequenceDate() -> AnyPublisher<SequenceDates, Never> {
+        return calendarManager.$sequenceDates.eraseToAnyPublisher()
+    }
+    
+    private func configure() {
         calendarCollection.register(CalendarDayCell.self, forCellWithReuseIdentifier: CalendarDayCell.identifier)
         calendarCollection.register(CalendarHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CalendarHeaderView.identifier)
         calendarCollection.dataSource = calendarDataSource
         calendarCollection.delegate = self
     }
     
-    private func createDataSoure() {
+    func createDataSoure() {
         calendarDataSource = CalendarDataSource(dates: calendarManager.dates, sequenceDates: calendarManager.sequenceDates)
     }
     

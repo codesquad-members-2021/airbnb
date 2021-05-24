@@ -9,7 +9,6 @@ import Foundation
 
 class SearchManager {
      
-    // 추후 작업할 객체
     var location: String
     var selectDates: SequenceDates
     var price: String

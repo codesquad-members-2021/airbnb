@@ -12,6 +12,8 @@
 		BF2FEAE2265BBAED0022CB93 /* LocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAE1265BBAED0022CB93 /* LocationInfoViewController.swift */; };
 		BF2FEAE6265BBB960022CB93 /* LocationInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF2FEAE5265BBB960022CB93 /* LocationInfo.storyboard */; };
 		BF2FEAE9265BE0730022CB93 /* LocationInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAE8265BE0720022CB93 /* LocationInfoViewModel.swift */; };
+		BF2FEAED265BEFDB0022CB93 /* PriceSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAEC265BEFDB0022CB93 /* PriceSliderViewController.swift */; };
+		BF2FEAF0265C20230022CB93 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAEF265C20220022CB93 /* Date+Extension.swift */; };
 		BF4048CF2658CB4600CA02B5 /* LocationResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4048CE2658CB4600CA02B5 /* LocationResultViewController.swift */; };
 		BF4048D22658D8AA00CA02B5 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4048D12658D8AA00CA02B5 /* CalendarViewController.swift */; };
 		BF4048D52658D8C500CA02B5 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4048D42658D8C500CA02B5 /* Calendar.storyboard */; };
@@ -46,6 +48,8 @@
 		BF2FEAE1265BBAED0022CB93 /* LocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoViewController.swift; sourceTree = "<group>"; };
 		BF2FEAE5265BBB960022CB93 /* LocationInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationInfo.storyboard; sourceTree = "<group>"; };
 		BF2FEAE8265BE0720022CB93 /* LocationInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoViewModel.swift; sourceTree = "<group>"; };
+		BF2FEAEC265BEFDB0022CB93 /* PriceSliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSliderViewController.swift; sourceTree = "<group>"; };
+		BF2FEAEF265C20220022CB93 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		BF4048CE2658CB4600CA02B5 /* LocationResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResultViewController.swift; sourceTree = "<group>"; };
 		BF4048D12658D8AA00CA02B5 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		BF4048D42658D8C500CA02B5 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
@@ -105,9 +109,18 @@
 			path = LocationInfo;
 			sourceTree = "<group>";
 		};
+		BF2FEAEB265BEFAE0022CB93 /* PriceSlider */ = {
+			isa = PBXGroup;
+			children = (
+				BF2FEAEC265BEFDB0022CB93 /* PriceSliderViewController.swift */,
+			);
+			path = PriceSlider;
+			sourceTree = "<group>";
+		};
 		BF4048D72658F48D00CA02B5 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				BF2FEAEB265BEFAE0022CB93 /* PriceSlider */,
 				BF2FEADF265BB8EE0022CB93 /* LocationInfo */,
 				BF4048E826592A3D00CA02B5 /* Main */,
 				BF4048E626592A3300CA02B5 /* LocationSearch */,
@@ -160,6 +173,7 @@
 			children = (
 				BF4048F82659ED1400CA02B5 /* DateFormatter+Extension.swift */,
 				BF2FEADB265B71260022CB93 /* SearchTextField+Extension.swift */,
+				BF2FEAEF265C20220022CB93 /* Date+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -319,6 +333,7 @@
 				BFE430B82653902E00F4DA1C /* MainViewController.swift in Sources */,
 				BF2FEAE9265BE0730022CB93 /* LocationInfoViewModel.swift in Sources */,
 				BFE4310626554B3600F4DA1C /* LocationCell.swift in Sources */,
+				BF2FEAF0265C20230022CB93 /* Date+Extension.swift in Sources */,
 				BFE430B42653902E00F4DA1C /* AppDelegate.swift in Sources */,
 				BF404919265A815400CA02B5 /* SearchLocationUseCase.swift in Sources */,
 				BFE430B62653902E00F4DA1C /* SceneDelegate.swift in Sources */,
@@ -332,6 +347,7 @@
 				BF2FEADC265B71260022CB93 /* SearchTextField+Extension.swift in Sources */,
 				BFE4311326557A2900F4DA1C /* LocationHeaderView.swift in Sources */,
 				BF4048F92659ED1400CA02B5 /* DateFormatter+Extension.swift in Sources */,
+				BF2FEAED265BEFDB0022CB93 /* PriceSliderViewController.swift in Sources */,
 				BFE430D526541D2B00F4DA1C /* LocationSearchViewController.swift in Sources */,
 				BF4048DB2658F53C00CA02B5 /* CalendarManager.swift in Sources */,
 				BF404906265A3F0000CA02B5 /* Endpoint.swift in Sources */,
