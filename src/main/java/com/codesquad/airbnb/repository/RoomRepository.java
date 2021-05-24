@@ -35,6 +35,21 @@ public class RoomRepository implements JdbcRepository<Room> {
         return jdbcTemplate.query(sql, roomRowMapper());
     }
 
+    @Override
+    public void insert(Room room) {
+
+    }
+
+    @Override
+    public void update(Room room, Long id) {
+
+    }
+
+    @Override
+    public void delete(Long id) {
+
+    }
+
     private RowMapper<Room> roomRowMapper() {
         return (resultSet, rowNum) -> {
             Room room = new RoomBuilder().setId(resultSet.getLong("id"))

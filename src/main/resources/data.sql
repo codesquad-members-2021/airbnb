@@ -7,8 +7,8 @@ values (3, "#4 Clean & cozy room right next to Gangnam Station", 4.82, 37.49784,
 insert into `user` (github_id)
 values ("bibi");
 
-insert into `booking` (user_id, room_id, check_in, check_out, adult, child, baby, total)
-values (1, 1, "2021-05-20", "2021-05-21", 2, 0, 0, 2);
+insert into `booking` (user_id, room_id, check_in, check_out, adult, child, baby)
+values (1, 1, "2021-05-20", "2021-05-21", 2, 0, 0);
 
 insert into `wish` (room_id, user_id)
 values (1, 1);
@@ -18,7 +18,7 @@ values (1, 1, 1, 1, 1, 1);
 
 insert into `thumbnail` (room_id, thumbnail)
 values (1, "https://a0.muscache.com/im/pictures/c45d08e5-f560-44f0-83fc-83290ccd1670.jpg?im_w=720");
-insert into `thumbnails` (room_id, thumbnail)
+insert into `thumbnail` (room_id, thumbnail)
 values (1, "https://a0.muscache.com/im/pictures/e3258341-b4f3-4988-b958-bec903936a0b.jpg?im_w=720");
 
 insert into `badge` (room_id, `type`) values (1, "슈퍼호스트");

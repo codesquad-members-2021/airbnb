@@ -44,7 +44,6 @@ create table `booking`
     adult     int not null,
     child     int not null,
     baby      int not null,
-    total     int not null,
     primary key (id),
     foreign key (user_id) references user (id),
     foreign key (room_id) references room (id)
