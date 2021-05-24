@@ -10,6 +10,7 @@ class ThirdSectionCell: UICollectionViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height), collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = UIColor.clear
         collectionView.register(TravelInfoCell.self, forCellWithReuseIdentifier: TravelInfoCell.identifier)
         collectionView.delegate = self

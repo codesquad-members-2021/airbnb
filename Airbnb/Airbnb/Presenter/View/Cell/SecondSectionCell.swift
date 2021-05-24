@@ -9,6 +9,7 @@ class SecondSectionCell: UICollectionViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height), collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = UIColor.clear
         collectionView.register(RegieonInfoCell.self, forCellWithReuseIdentifier: RegieonInfoCell.identifier)
         collectionView.delegate = self

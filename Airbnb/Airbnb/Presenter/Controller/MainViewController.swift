@@ -45,6 +45,7 @@ private extension MainViewController {
         let layout = UICollectionViewFlowLayout()
         layout.headerReferenceSize = CGSize(width: view.frame.width, height: view.frame.height*0.1)
         mainCollectionView.collectionViewLayout = layout
+        mainCollectionView.showsVerticalScrollIndicator = false
         mainCollectionView.register(FirstSectionCell.self, forCellWithReuseIdentifier: FirstSectionCell.identifier)
         mainCollectionView.register(SecondSectionCell.self, forCellWithReuseIdentifier: SecondSectionCell.identifier)
         mainCollectionView.register(ThirdSectionCell.self, forCellWithReuseIdentifier: ThirdSectionCell.identifier)
