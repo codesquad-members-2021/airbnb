@@ -2,7 +2,7 @@ package com.team19.airbnb.controller;
 
 import com.team19.airbnb.dto.BookingRequestDTO;
 import com.team19.airbnb.dto.BookingResponseDTO;
-import com.team19.airbnb.entity.room.Host;
+import com.team19.airbnb.domain.room.Host;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -45,7 +45,7 @@ public class BookingController {
         images.add("image1");
         images.add("image2");
         images.add("image3");
-        Host host = new Host("홍길동", "image");
+        Host host = Host.create("홍길동", "image");
         int guest = 5;
         BigDecimal totalPrice = new BigDecimal(100000);
         return new BookingResponseDTO(bookingId,

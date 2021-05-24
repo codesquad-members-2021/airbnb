@@ -1,7 +1,8 @@
-package com.team19.airbnb.entity;
+package com.team19.airbnb.domain;
 
 import org.springframework.data.annotation.Id;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Booking {
@@ -9,23 +10,32 @@ public class Booking {
     @Id
     private Long id;
 
-    private Long room;
-
     private LocalDate checkIn;
     private LocalDate checkOut;
 
-    Booking(Long id, Long room, LocalDate checkIn, LocalDate checkOut) {
+    private Integer guest;
+    private BigDecimal totalPrice;
+
+    private Long room;
+
+    public Booking(Long id,
+                   LocalDate checkIn, LocalDate checkOut,
+                   Integer guest, BigDecimal totalPrice,
+                   Long room) {
         this.id = id;
-        this.room = room;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+        this.guest = guest;
+        this.totalPrice = totalPrice;
+        this.room = room;
     }
 
-    public static Booking create(Long id, Long room, LocalDate checkIn, LocalDate checkOut) {
-        return new Booking(id, room, checkIn, checkOut);
-    }
-
-    public static Booking create(Long room, LocalDate checkIn, LocalDate checkOut) {
-        return new Booking(null, room, checkIn, checkOut);
+    public static Booking create(LocalDate checkIn, LocalDate checkOut,
+                                 Integer guest, BigDecimal totalPrice,
+                                 Long room) {
+        return new Booking(null,
+                checkIn, checkOut,
+                guest, totalPrice,
+                room);
     }
 }

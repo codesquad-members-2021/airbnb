@@ -1,4 +1,4 @@
-package com.team19.airbnb.entity.room;
+package com.team19.airbnb.domain.room;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Embedded;

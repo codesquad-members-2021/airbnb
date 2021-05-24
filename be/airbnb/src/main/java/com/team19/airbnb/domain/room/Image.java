@@ -1,4 +1,4 @@
-package com.team19.airbnb.entity.room;
+package com.team19.airbnb.domain.room;
 
 public class Image {
 

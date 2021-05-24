@@ -1,8 +1,8 @@
 package com.team19.airbnb.controller;
 
 import com.team19.airbnb.dto.MainResponseDTO;
-import com.team19.airbnb.entity.main.HeroBanner;
-import com.team19.airbnb.entity.main.NearDestination;
+import com.team19.airbnb.domain.main.HeroBanner;
+import com.team19.airbnb.domain.main.NearDestination;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 public class MainController {
     @GetMapping("/main")
-    public MainResponseDTO getMain() {
+    public MainResponseDTO main() {
         List<HeroBanner> heroBanners = new ArrayList<>();
         heroBanners.add(HeroBanner.create( "hero1", "img1"));
         heroBanners.add(HeroBanner.create("hero2", "img2"));

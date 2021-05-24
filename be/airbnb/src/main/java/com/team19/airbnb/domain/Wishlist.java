@@ -1,4 +1,4 @@
-package com.team19.airbnb.entity;
+package com.team19.airbnb.domain;
 
 import org.springframework.data.annotation.Id;
 
