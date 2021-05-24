@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`room` (
    `price_per_day` DECIMAL NOT NULL,
    `room_type` VARCHAR(45) NOT NULL,
    `room_configuration` VARCHAR(45) NOT NULL,
-   `description` VARCHAR(21843) NOT NULL,
+   `description` TEXT NOT NULL,
    `host_name` VARCHAR(45) NOT NULL,
    `host_image` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`))

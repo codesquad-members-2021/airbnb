@@ -21,7 +21,6 @@ public class Room {
     private Location location;
 
     private BigDecimal pricePerDay;
-    private BigDecimal totalPrice;
 
     private String roomType;
     private String roomConfiguration;
@@ -34,7 +33,7 @@ public class Room {
                 String name, List<Image> images,
                 Double grade, Integer reviewer,
                 Location location,
-                BigDecimal pricePerDay, BigDecimal totalPrice,
+                BigDecimal pricePerDay,
                 String roomType, String roomConfiguration, String description,
                 Host host) {
         this.id = id;
@@ -44,7 +43,6 @@ public class Room {
         this.reviewer = reviewer;
         this.location = location;
         this.pricePerDay = pricePerDay;
-        this.totalPrice = totalPrice;
         this.roomType = roomType;
         this.roomConfiguration = roomConfiguration;
         this.description = description;
@@ -54,14 +52,14 @@ public class Room {
     public static Room create(String name, List<Image> images,
                        Double grade, Integer reviewer,
                        Location location,
-                       BigDecimal pricePerDay, BigDecimal totalPrice,
+                       BigDecimal pricePerDay,
                        String roomType, String roomConfiguration, String description,
                        Host host) {
         return new Room(null,
                 name, images,
                 grade, reviewer,
                 location,
-                pricePerDay, totalPrice,
+                pricePerDay,
                 roomType, roomConfiguration, description,
                 host);
     }
