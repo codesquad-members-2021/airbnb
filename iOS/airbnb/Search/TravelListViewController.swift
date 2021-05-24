@@ -59,6 +59,7 @@ extension TravelListViewController {
         travelList?.register(headerNib, forCellWithReuseIdentifier: HeaderReusableView.reuseIdentifier)
     }
 }
+
 extension TravelListViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let viewController = FilterViewController.instantiate()
@@ -75,6 +76,7 @@ extension TravelListViewController: UISearchControllerDelegate {
         }
     }
 }
+
 extension TravelListViewController : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else {

@@ -15,6 +15,7 @@ class FilterViewController: UIViewController {
     }
     
 }
+
 extension FilterViewController : Storyboarded {
     static func instantiate() -> Self {
         let fullName = NSStringFromClass(self)

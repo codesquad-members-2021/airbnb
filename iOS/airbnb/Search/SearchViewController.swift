@@ -41,6 +41,7 @@ class SearchViewController : UIViewController {
         themePlaceCollection?.register(headerNib, forCellWithReuseIdentifier: HeaderReusableView.reuseIdentifier)
     }
 }
+
 extension SearchViewController : UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         let travelListViewController = TravelListViewController.instantiate()
@@ -49,6 +50,7 @@ extension SearchViewController : UISearchBarDelegate {
         return false
     }
 }
+
 extension SearchViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let width: CGFloat = collectionView.frame.width
@@ -59,6 +61,7 @@ extension SearchViewController : UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
     }
 }
+
 extension SearchViewController : Storyboarded {
     static func instantiate() -> Self {
         let fullName = NSStringFromClass(self)
