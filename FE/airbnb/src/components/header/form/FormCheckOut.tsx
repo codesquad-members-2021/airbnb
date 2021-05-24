@@ -9,7 +9,7 @@ interface Props {
 
 const FormCheckOut = ({ checkOutRef }: Props) => {
   return (
-    <StyledFormCheckOut ref={checkOutRef}>
+    <StyledFormCheckOut ref={checkOutRef} data-type='checkOut'>
       <HoverBlock color='gray4' className='hover__checkOut'>
         <FormColumn title='체크아웃' description='날짜' />
       </HoverBlock>

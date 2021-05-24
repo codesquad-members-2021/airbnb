@@ -8,10 +8,10 @@ import FormLocationToggle from './FormLocationToggle';
 const FormLocation = () => {
   const clickRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLDivElement>(null);
-  const open = useToggle({ clickRef, toggleRef });
+  const { open } = useToggle({ clickRef, toggleRef });
   return (
     <StyledLocationWrapper>
-      <StyledFormLocation ref={clickRef} open={open}>
+      <StyledFormLocation ref={clickRef} open={open} data-type='location'>
         <HoverBlock color='gray4' className='hover__location'>
           <FormColumn title='위치' description='어디로 여행가세요' isInput={true} />
         </HoverBlock>

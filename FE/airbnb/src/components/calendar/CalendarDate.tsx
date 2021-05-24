@@ -8,6 +8,7 @@ interface Props {
 
 const CalendarDate = ({ monthData }: Props) => {
   const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
+  const daysList = DAYS.map((day: string): ReactElement => <div className='day'>{day}</div>);
   const getDateList = (weekData: dayType[]): ReactElement[] => {
     return weekData.map(
       ({ date, isAble }: dayType): ReactElement => (
@@ -16,8 +17,7 @@ const CalendarDate = ({ monthData }: Props) => {
     );
   };
 
-  const daysList = DAYS.map((day: string): ReactElement => <div className='day'>{day}</div>);
-  const weekList: ReactElement[] = monthData.map((week) => {
+  const weekList: ReactElement[] = monthData.map((week, idx) => {
     return <div className='week'>{getDateList(week)}</div>;
   });
   return (

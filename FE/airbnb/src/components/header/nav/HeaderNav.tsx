@@ -8,10 +8,10 @@ import NavUserToggle from './NavUserToggle';
 const HeaderNav = () => {
   const navRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLDivElement>(null);
-  const open = useToggle({ clickRef: navRef, toggleRef });
+  const { open } = useToggle({ clickRef: navRef, toggleRef });
   return (
     <StyleNavWrapper>
-      <StyleHeaderNav ref={navRef}>
+      <StyleHeaderNav ref={navRef} data-type='nav'>
         <MenuBar />
         <User />
       </StyleHeaderNav>

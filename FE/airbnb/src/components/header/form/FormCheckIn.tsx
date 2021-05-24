@@ -12,10 +12,10 @@ interface Props {
 const FormCheckIn = ({ checkOutRef }: Props) => {
   const checkInRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLDivElement>(null);
-  const open = useToggle({ clickRef: [checkInRef, checkOutRef], toggleRef });
+  const { open, selectType } = useToggle({ clickRef: [checkInRef, checkOutRef], toggleRef });
   return (
     <StyledCheckInWrapper>
-      <StyledFormCheckIn ref={checkInRef}>
+      <StyledFormCheckIn ref={checkInRef} data-type='checkIn'>
         <HoverBlock color='gray4' className='hover__checkIn'>
           <FormColumn title='체크인' description='날짜' />
         </HoverBlock>
