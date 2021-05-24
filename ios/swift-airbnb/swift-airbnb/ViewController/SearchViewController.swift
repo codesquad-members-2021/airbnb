@@ -19,11 +19,11 @@ class SearchViewController: UIViewController {
     }()
     
     private var searchController: UISearchController = {
-       let searchController = UISearchController(searchResultsController: SearchResultViewController())
+        let searchController = UISearchController(searchResultsController: SearchTableViewController())
         searchController.searchBar.placeholder = "어디로 여행가세요?"
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.automaticallyShowsCancelButton = false
-        searchController.searchBar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(makeRemoveButton(_:))))
+        searchController.searchBar.searchTextField.clearButtonMode = .never
         return searchController
     }()
 
@@ -31,6 +31,7 @@ class SearchViewController: UIViewController {
     func configureNavigationItem()  {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.searchController = searchController
+        self.navigationItem.searchController?.searchResultsUpdater = self
         self.navigationItem.title = "숙소 찾기"
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.rightBarButtonItem = cancelButton
@@ -41,12 +42,13 @@ class SearchViewController: UIViewController {
         travelCollectionView.register(TravelCollectionViewCell.nib, forCellWithReuseIdentifier: TravelCollectionViewCell.identifier)
     }
     
-    @objc func makeRemoveButton(_ UITapGestureReconizer: UITapGestureRecognizer) {
-        self.navigationItem.rightBarButtonItem = cancelButton
-    }
-    
     @objc func clearSearchBar()  {
         self.searchController.searchBar.text = ""
     }
 }
 
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        dump(searchController.searchBar.text)
+    }
+}

@@ -38,7 +38,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="pressedSearchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b1f-uG-Ngb"/>
+                                            <segue destination="2Ea-rI-jh3" kind="show" id="fzT-kV-bBZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -243,7 +243,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mLM-hb-pZM">
-                                <rect key="frame" x="16" y="121" width="382" height="741"/>
+                                <rect key="frame" x="16" y="121" width="382" height="692"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="16" minimumInteritemSpacing="10" id="NAb-Qx-SId">
                                     <size key="itemSize" width="128" height="128"/>
@@ -290,29 +290,41 @@
             </objects>
             <point key="canvasLocation" x="5426.0869565217399" y="-95.089285714285708"/>
         </scene>
-        <!--Search Result View Controller-->
-        <scene sceneID="YDb-Nk-edQ">
+        <!--Search Table View Controller-->
+        <scene sceneID="xgw-jD-gbG">
             <objects>
-                <viewController id="qZu-7D-me2" customClass="SearchResultViewController" customModule="swift_airbnb" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zTe-mU-Jfl">
+                <tableViewController id="hIr-8u-J0V" customClass="SearchTableViewController" customModule="swift_airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="y3r-af-ghg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="DNd-VN-xau"/>
-                        <color key="backgroundColor" systemColor="systemRedColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0R6-wH-QS5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchResultTableViewCell" id="Txt-Fl-zxM" customClass="SearchResultTableViewCell" customModule="swift_airbnb" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Txt-Fl-zxM" id="5U0-ev-RBO">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hIr-8u-J0V" id="sdB-tU-nJF"/>
+                            <outlet property="delegate" destination="hIr-8u-J0V" id="YYJ-rI-Jkv"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CTE-88-Cyh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6323" y="-95"/>
+            <point key="canvasLocation" x="6326" y="-102"/>
         </scene>
         <!--Item-->
         <scene sceneID="7sV-mu-vkd">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pJI-uO-dZH" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="pJI-uO-dZH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="W0B-Ir-Zwx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="o7Z-pM-B7r">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -397,9 +409,6 @@
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

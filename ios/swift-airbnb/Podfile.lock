@@ -1,0 +1,20 @@
+PODS:
+  - GooglePlaces (5.0.0)
+  - Kingfisher (6.3.0)
+
+DEPENDENCIES:
+  - GooglePlaces (= 5.0.0)
+  - Kingfisher (~> 6.0)
+
+SPEC REPOS:
+  trunk:
+    - GooglePlaces
+    - Kingfisher
+
+SPEC CHECKSUMS:
+  GooglePlaces: 5d87ca13ed98b7a937e0d8bc7026f718c7263271
+  Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
+
+PODFILE CHECKSUM: 3013ee0f6707e1032e948cba331eb55fa86fde2f
+
+COCOAPODS: 1.10.1

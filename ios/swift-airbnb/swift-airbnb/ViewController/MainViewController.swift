@@ -26,10 +26,5 @@ class MainViewController: UIViewController {
         recommendTravelCollectionView.dataSource = recommendTravelCollectionViewDataSource
         recommendTravelCollectionView.register(RecommendTravelCollectionViewCell.nib, forCellWithReuseIdentifier: RecommendTravelCollectionViewCell.identifier)
     }
-
-    @IBAction func pressedSearchButton(_ sender: UIButton) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
 }
 
