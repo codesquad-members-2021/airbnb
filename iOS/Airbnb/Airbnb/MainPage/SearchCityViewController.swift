@@ -107,6 +107,30 @@ extension SearchCityViewController: UISearchBarDelegate {
         collectionView.collectionViewLayout = createLayout(isHeaderExist: true)
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.performQuery(with: searchText)
+    }
+    
+}
+
+
+extension SearchCityViewController {
+    
+    func performQuery(with filter: String?) {
+        let regions = Region.allCities.filter{ contains(filter, region: $0) }.sorted { $0.name < $1.name }
+
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Region>()
+        snapshot.appendSections([1])
+        snapshot.appendItems(regions)
+        regionDataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    func contains(_ filter: String?, region: Region) -> Bool {
+        guard let filterText = filter else { return true }
+        if filterText.isEmpty { return true }
+        let lowercasedFilter = filterText.lowercased()
+        return region.name.lowercased().contains(lowercasedFilter)
+    }
 }
 
 //MARK:- Layout & DataSource
