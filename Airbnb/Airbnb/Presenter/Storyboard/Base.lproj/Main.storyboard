@@ -97,7 +97,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="t1y-yS-1W3">
-                                <rect key="frame" x="0.0" y="135" width="414" height="727"/>
+                                <rect key="frame" x="0.0" y="194" width="414" height="668"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2dB-0F-HUH">
                                     <size key="itemSize" width="128" height="128"/>
@@ -116,16 +116,26 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근처의 인기 여행지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4w-zw-WJN">
+                                <rect key="frame" x="20" y="145" width="168" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5hq-bZ-wHz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="85J-Yv-Ma9" firstAttribute="height" secondItem="lPj-ys-6Np" secondAttribute="height" multiplier="0.0569196" id="3TT-Y2-4qY"/>
+                            <constraint firstItem="F4w-zw-WJN" firstAttribute="width" secondItem="lPj-ys-6Np" secondAttribute="width" multiplier="0.405797" id="9Vy-Js-SqV"/>
+                            <constraint firstItem="t1y-yS-1W3" firstAttribute="top" secondItem="F4w-zw-WJN" secondAttribute="bottom" constant="15" id="Ama-zt-4ub"/>
                             <constraint firstItem="85J-Yv-Ma9" firstAttribute="centerX" secondItem="lPj-ys-6Np" secondAttribute="centerX" id="Oqg-AK-6NC"/>
-                            <constraint firstItem="t1y-yS-1W3" firstAttribute="top" secondItem="85J-Yv-Ma9" secondAttribute="bottom" constant="10" id="bG9-RB-H5n"/>
+                            <constraint firstItem="F4w-zw-WJN" firstAttribute="top" secondItem="85J-Yv-Ma9" secondAttribute="bottom" constant="20" id="Pgu-Se-XCW"/>
                             <constraint firstItem="t1y-yS-1W3" firstAttribute="leading" secondItem="5hq-bZ-wHz" secondAttribute="leading" id="cKN-bd-BGt"/>
+                            <constraint firstItem="F4w-zw-WJN" firstAttribute="height" secondItem="lPj-ys-6Np" secondAttribute="height" multiplier="0.0379464" id="hTe-wd-p9c"/>
                             <constraint firstItem="5hq-bZ-wHz" firstAttribute="trailing" secondItem="t1y-yS-1W3" secondAttribute="trailing" id="iq8-rK-Dvv"/>
                             <constraint firstItem="85J-Yv-Ma9" firstAttribute="width" secondItem="lPj-ys-6Np" secondAttribute="width" id="jkt-CN-7u3"/>
+                            <constraint firstItem="F4w-zw-WJN" firstAttribute="leading" secondItem="5hq-bZ-wHz" secondAttribute="leading" constant="20" id="rjJ-YA-GhD"/>
                             <constraint firstItem="5hq-bZ-wHz" firstAttribute="bottom" secondItem="t1y-yS-1W3" secondAttribute="bottom" id="w2v-dc-kEw"/>
                             <constraint firstItem="85J-Yv-Ma9" firstAttribute="top" secondItem="5hq-bZ-wHz" secondAttribute="top" constant="30" id="xMk-4P-QJG"/>
                         </constraints>
@@ -137,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bdF-zb-eC4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1593" y="88"/>
+            <point key="canvasLocation" x="1592.753623188406" y="87.723214285714278"/>
         </scene>
         <!--위시리스트-->
         <scene sceneID="vch-nN-zRH">

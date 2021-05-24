@@ -13,6 +13,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegate()
+        setupCollectionView()
         bind()
     }
     
@@ -25,6 +26,10 @@ private extension SearchViewController {
         regieonCollectionView.rx.setDelegate(delegate)
             .disposed(by: rx.disposeBag)
         delegate.setupItemSize(view.frame.width*0.5, view.frame.height*0.1)
+    }
+    
+    private func setupCollectionView() {
+        regieonCollectionView.showsVerticalScrollIndicator = false
     }
     
     private func bind() {
