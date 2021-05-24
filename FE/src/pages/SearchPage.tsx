@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {ResponsiveFluid} from '../components/common/ResponsiveFluid';
+import {ResponsiveFluid} from '../components/Common/ResponsiveFluid';
 
 function SearchPage() {
   return (

@@ -1,23 +1,23 @@
 import styled from 'styled-components';
-import { ITextFooter } from '../../common/reference';
-import { cssSectionSize } from '../../common/styles/CommonStyledCSS';
+import { ITextFooter } from '../../util/reference';
+import { cssSectionSize } from '../../util/styles/CommonStyledCSS';
 
-const MainFooter = ({ footerItems }: ITextFooter) => {
+const Footer = ({ footerItems }: ITextFooter) => {
   return (
-    <MainFooterBlock>
-      <MainFooterList>
+    <FooterLayout>
+      <FooterList>
         {footerItems.map((strItem, i) => (
-          <MainFooterItem key={i}>{strItem}</MainFooterItem>
+          <FooterItem key={i}>{strItem}</FooterItem>
         ))}
-      </MainFooterList>
-    </MainFooterBlock>
+      </FooterList>
+    </FooterLayout>
   );
 };
 
-export default MainFooter;
+export default Footer;
 
 // --- Styled Components ---
-const MainFooterBlock = styled.div`
+const FooterLayout = styled.div`
   ${cssSectionSize};
   margin: 0 auto;
   padding: 24px 0;
@@ -26,13 +26,13 @@ const MainFooterBlock = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.gray5};
 `;
 
-const MainFooterList = styled.ul`
+const FooterList = styled.ul`
   display: flex;
   font-size: ${({ theme }) => theme.fontSize.L};
   justify-content: flex-start;
 `;
 
-const MainFooterItem = styled.li`
+const FooterItem = styled.li`
   & + & {
     &:before {
       content: '・';

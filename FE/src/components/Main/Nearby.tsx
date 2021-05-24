@@ -1,46 +1,46 @@
 import styled from 'styled-components';
-import Subject from '../utilComponents/Subject';
-import { IText } from '../../common/reference';
+import Subject from '../Common/Subject';
+import { IText } from '../../util/reference';
 import {
   cssImageAuto,
   cssMainChildren,
   cssSectionSize,
-} from '../../common/styles/CommonStyledCSS';
+} from '../../util/styles/CommonStyledCSS';
 
-const MainNearby = ({ nearbyItems }: IText) => {
+const Nearby = ({ nearbyItems }: IText) => {
   return (
     nearbyItems && (
-      <MainNearbyBlock>
+      <NearbyLayout>
         <Subject>{nearbyItems.subject}</Subject>
-        <MainNearbyList>
+        <NearbyList>
           {nearbyItems.items.map((item, i) => {
             const { name, distance } = item;
 
             return (
-              <MainNearbyItem key={i}>
+              <NearbyItem key={i}>
                 <img src={`./images/main/nearby/0${i + 1}.jpg`} alt={`${i}`} />
                 <div className="content">
                   <p className="bold">{name}</p>
                   <p>{distance}</p>
                 </div>
-              </MainNearbyItem>
+              </NearbyItem>
             );
           })}
-        </MainNearbyList>
-      </MainNearbyBlock>
+        </NearbyList>
+      </NearbyLayout>
     )
   );
 };
 
-export default MainNearby;
+export default Nearby;
 
 // --- Styled Components ---
-const MainNearbyBlock = styled.div`
+const NearbyLayout = styled.div`
   ${cssMainChildren};
   ${cssSectionSize};
 `;
 
-const MainNearbyList = styled.ul`
+const NearbyList = styled.ul`
   font-size: ${({ theme }) => theme.fontSize.XL};
 
   display: grid;
@@ -49,7 +49,7 @@ const MainNearbyList = styled.ul`
   row-gap: 24px;
 `;
 
-const MainNearbyItem = styled.li`
+const NearbyItem = styled.li`
   ${cssImageAuto};
   img {
     border-radius: 10px;

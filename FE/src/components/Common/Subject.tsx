@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ICustomProps } from "../../common/types";
+import { ICustomProps } from "../../util/types";
 
 const Subject = ( { children } : ICustomProps ) => <StyledSubject>{children}</StyledSubject>
 

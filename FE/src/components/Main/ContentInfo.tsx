@@ -1,35 +1,35 @@
 import styled from 'styled-components';
-import { ITextCotnentInfo } from '../../common/reference';
+import { ITextCotnentInfo } from '../../util/reference';
 import {
   cssSectionSize,
-} from '../../common/styles/CommonStyledCSS';
+} from '../../util/styles/CommonStyledCSS';
 
-const MainContentInfo = ({ contentInfoItems }: ITextCotnentInfo) => {
+const ContentInfo = ({ contentInfoItems }: ITextCotnentInfo) => {
   return (
-    <MainContentInfoBlock>
+    <ContentInfoLayout>
       {Object.keys(contentInfoItems).map((contentType, i) => (
-        <MainContentInfoList key={i}>
+        <ContentInfoList key={i}>
           {/* 대분류 */}
-          <MainContentInfoTitleItem>
+          <ContentInfoTitleItem>
             {contentInfoItems[contentType].subject}
-          </MainContentInfoTitleItem>
+          </ContentInfoTitleItem>
 
           {/* 소분류들 */}
           {contentInfoItems[contentType].strItems.map((item, i) => (
-            <MainContentInfoItem key={i}>
+            <ContentInfoItem key={i}>
               {item}
-            </MainContentInfoItem>
+            </ContentInfoItem>
           ))}
-        </MainContentInfoList>
+        </ContentInfoList>
       ))}
-    </MainContentInfoBlock>
+    </ContentInfoLayout>
   );
 };
 
-export default MainContentInfo;
+export default ContentInfo;
 
 // --- Styled Components ---
-const MainContentInfoBlock = styled.div`
+const ContentInfoLayout = styled.div`
   ${cssSectionSize};
   margin: 0 auto;
   padding: 80px;
@@ -39,20 +39,20 @@ const MainContentInfoBlock = styled.div`
   align-items: flex-start;
 `;
 
-const MainContentInfoList = styled.ul`
+const ContentInfoList = styled.ul`
   font-size:${({ theme }) => theme.fontSize.L};
 `;
 
 
-const MainContentInfoTitleItem = styled.li`
+const ContentInfoTitleItem = styled.li`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;
 
-const MainContentInfoItem = styled.li`
+const ContentInfoItem = styled.li`
   & + & {
     margin-top: 16px;
   }
-  ${MainContentInfoTitleItem} + & {
+  ${ContentInfoTitleItem} + & {
     margin-top: 16px;
   }
 `;

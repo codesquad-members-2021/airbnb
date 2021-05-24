@@ -1,39 +1,39 @@
 import styled from 'styled-components';
-import Subject from '../utilComponents/Subject';
-import { IText } from '../../common/reference';
+import Subject from '../Common/Subject';
+import { IText } from '../../util/reference';
 import {
   cssImageAuto,
   cssMainChildren,
   cssSectionSize,
-} from '../../common/styles/CommonStyledCSS';
+} from '../../util/styles/CommonStyledCSS';
 
-const MainRoomType = ({ roomTypeItems }: IText) => {
+const RoomType = ({ roomTypeItems }: IText) => {
   return (
     roomTypeItems && (
-      <MainRoomTypeBlock>
+      <RoomTypeLayout>
         <Subject>{roomTypeItems.subject}</Subject>
-        <MainRoomList>
+        <RoomList>
           {roomTypeItems.items.map((item, i) => (
-            <MainRoomItem key={i}>
+            <RoomItem key={i}>
               <img src={`./images/main/roomType/0${i + 1}.jpg`} alt={`${i}`} />
               <p className="bold">{item.name}</p>
-            </MainRoomItem>
+            </RoomItem>
           ))}
-        </MainRoomList>
-      </MainRoomTypeBlock>
+        </RoomList>
+      </RoomTypeLayout>
     )
   );
 };
 
-export default MainRoomType;
+export default RoomType;
 
 // --- Styled Components ---
-const MainRoomTypeBlock = styled.div`
+const RoomTypeLayout = styled.div`
   ${cssMainChildren};
   ${cssSectionSize};
 `;
 
-const MainRoomList = styled.ul`
+const RoomList = styled.ul`
   font-size: ${({ theme }) => theme.fontSize.XXL};
 
   display: grid;
@@ -41,7 +41,7 @@ const MainRoomList = styled.ul`
   gap: 16px;
 `;
 
-const MainRoomItem = styled.li`
+const RoomItem = styled.li`
   ${cssImageAuto};
   img {
     border-radius: 10px;
