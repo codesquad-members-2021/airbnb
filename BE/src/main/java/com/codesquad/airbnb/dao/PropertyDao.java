@@ -49,9 +49,7 @@ public class PropertyDao {
                     rs.getString("room_type"), rs.getInt("review_count"),
                     rs.getDouble("latitude"), rs.getDouble("longitude"));
             WishList wishList = new WishList(rs.getBoolean("bookmark"));
-            Image image = new Image(rs.getString("image_url"));
-
-            return PropertyDto.of(property, propertyDetail, wishList, image, 0);
+            return PropertyDto.of(property, propertyDetail, wishList,0);
         }
     }
 
@@ -71,23 +69,39 @@ public class PropertyDao {
     public PropertiesResponseDto findBy(Long locationId, LocalDate checkIn, LocalDate checkOut,
                                         int minPrice, int maxPrice, int adult, int children, int infant) {
         int maxOccupancy = adult+children+infant;
-        String sql = "SELECT * FROM property, property_detail, image, wish_list " +
-                "RIGHT JOIN property p on wish_list.property_id = p.id " +
+        String sql = "SELECT * FROM property, property_detail, wish_list " +
                 "WHERE property.id = property_detail.property_id and " +
-                "property.id = image.property_id and " +
+                "property.id = wish_list.property_id and " +
                 "property.location_id = ? and " +
                 "property_detail.max_occupancy >= ? and " +
                 "property.price >= ? and property.price <= ?";
+        // TODO: userid도 함께 확인해서 wishList를 찾는것이 좋을 것 같음...
 
         List<PropertyDto> propertyDto = jdbcTemplate.query(sql, new PropertyDetailRowMapper(),
                 new SqlParameterValue(Types.BIGINT, locationId),
                 new SqlParameterValue(Types.INTEGER, maxOccupancy),
                 new SqlParameterValue(Types.INTEGER, minPrice),
                 new SqlParameterValue(Types.INTEGER, maxPrice));
+
+        propertyDto.stream()
+                .forEach(propertyDto1 -> propertyDto1.addImage(findImageByPropertyId(propertyDto1.getPropertyId())));
+
         PropertiesResponseDto propertyDtos = new PropertiesResponseDto(propertyDto);
 
         return propertyDtos;
     }
 
+    private List<Image> findImageByPropertyId(Long propertyId) {
+        String sql = "SELECT * FROM image " +
+                "WHERE image.property_id = ?";
+
+        List<Image> images = jdbcTemplate.query(sql, new RowMapper<Image>() {
+            @Override
+            public Image mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return new Image(rs.getString("image_url"));
+            }
+        }, propertyId);
+        return images;
+    }
 }
 

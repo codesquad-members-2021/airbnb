@@ -2,13 +2,15 @@ package com.codesquad.airbnb.dto;
 
 import com.codesquad.airbnb.domain.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class PropertyDto {
 
     private Long propertyId;
-    private Set<Image> images = new HashSet<>();
+    private List<String> images = new ArrayList<>();
     private String title;
     private boolean bookmark;
     private int pricePerNight;
@@ -19,9 +21,8 @@ public class PropertyDto {
     public PropertyDto() {
     }
 
-    public PropertyDto(Long propertyId, Image image, String title, boolean bookmark, int pricePerNight, int totalPrice, int reviewCount, double rating) {
+    public PropertyDto(Long propertyId, String title, boolean bookmark, int pricePerNight, int totalPrice, int reviewCount, double rating) {
         this.propertyId = propertyId;
-        this.images.add(image);
         this.title = title;
         this.bookmark = bookmark;
         this.pricePerNight = pricePerNight;
@@ -30,16 +31,20 @@ public class PropertyDto {
         this.rating = rating;
     }
 
-    public static PropertyDto of(Property property, PropertyDetail propertyDetail, WishList wishList, Image image, int totalPrice) {
-        return new PropertyDto(property.getId(), image, property.getName(), wishList.isBookmark(), property.getPrice(), totalPrice,
+    public static PropertyDto of(Property property, PropertyDetail propertyDetail, WishList wishList, int totalPrice) {
+        return new PropertyDto(property.getId(), property.getName(), wishList.isBookmark(), property.getPrice(), totalPrice,
                 propertyDetail.getReviewCount(), propertyDetail.getRating());
+    }
+
+    public void addImage(List<Image> images) {
+        images.stream().forEach(image -> this.images.add(image.getImageUrl()));
     }
 
     public Long getPropertyId() {
         return propertyId;
     }
 
-    public Set<Image> getImages() {
+    public List<String> getImages() {
         return images;
     }
 
