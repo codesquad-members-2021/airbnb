@@ -9,7 +9,7 @@ import Foundation
 
 protocol DestinationsViewModelInput {
     func updateDestinations()
-    func filter(using searchItems: [String]) -> [DestinationViewModel]
+    func filter(using text: String) -> [DestinationViewModel]
 }
 
 protocol DestinationsViewModelOutput {
@@ -38,7 +38,9 @@ extension DefaultDestinationsViewModel {
         allDestinations = addresses.map(DestinationViewModel.init)
     }
     
-    func filter(using searchItems: [String]) -> [DestinationViewModel] {
+    func filter(using text: String) -> [DestinationViewModel] {
+        let strippedString = text.trimmingCharacters(in: CharacterSet.whitespaces).lowercased()
+        let searchItems = strippedString.components(separatedBy: " ") as [String]
         var filtered = allDestinations
         searchItems.forEach { item in
             filtered = filtered.filter { destination in
