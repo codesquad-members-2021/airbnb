@@ -1,10 +1,9 @@
 package com.codesquad.airbnb.web.controller;
 
 import com.codesquad.airbnb.web.domain.User;
-import com.codesquad.airbnb.web.dto.GithubProfile;
-import com.codesquad.airbnb.web.service.GithubApiRequester;
-import com.codesquad.airbnb.web.service.ApiUrlGenerator;
-import com.codesquad.airbnb.web.service.OauthProfileConverter;
+import com.codesquad.airbnb.web.service.oauth.GithubApiRequesterRequester;
+import com.codesquad.airbnb.web.service.oauth.ApiUrlGenerator;
+import com.codesquad.airbnb.web.service.oauth.OauthApiRequester;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,13 +19,11 @@ import java.io.IOException;
 public class GithubUsersController {
 
     private final ApiUrlGenerator apiUrlGenerator;
-    private final GithubApiRequester githubApiRequester;
-    private final OauthProfileConverter oauthProfileConverter;
+    private final OauthApiRequester githubApiRequester;
 
-    public GithubUsersController(ApiUrlGenerator apiUrlGenerator, GithubApiRequester githubApiRequester, OauthProfileConverter oauthProfileConverter) {
+    public GithubUsersController(ApiUrlGenerator apiUrlGenerator, GithubApiRequesterRequester githubApiRequester) {
         this.apiUrlGenerator = apiUrlGenerator;
         this.githubApiRequester = githubApiRequester;
-        this.oauthProfileConverter = oauthProfileConverter;
     }
 
     @GetMapping("/login")
@@ -36,9 +33,8 @@ public class GithubUsersController {
 
     @GetMapping("/callback")
     public void githubCallback(@RequestParam(value = "code") String code) {
-        String githubAccessToken = githubApiRequester.githubAccessToken(code);
-        GithubProfile githubProfile = githubApiRequester.githubProfile(githubAccessToken);
-        User user = oauthProfileConverter.githubProfileToUser(githubProfile);
+        String githubAccessToken = githubApiRequester.accessToken(code);
+        User user = githubApiRequester.profile(githubAccessToken);
         log.info("user : {}", user);
     }
 }
