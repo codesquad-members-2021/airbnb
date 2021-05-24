@@ -1,7 +1,15 @@
 package team01.airbnb.domain.accommodation;
 
-import java.time.LocalDateTime;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 
+import java.sql.Time;
+
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Getter
 public class Accommodation {
 
     private Long id;
@@ -10,7 +18,7 @@ public class Accommodation {
     private String description;
     private int chargePerNight;
     private int cleaningCharge;
-    private LocalDateTime checkIn;
-    private LocalDateTime checkOut;
+    private Time checkIn;
+    private Time checkOut;
 
 }
