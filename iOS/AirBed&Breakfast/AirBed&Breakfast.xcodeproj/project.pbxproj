@@ -26,6 +26,7 @@
 		886061322657964A00681808 /* DayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886061312657964A00681808 /* DayLabel.swift */; };
 		88606136265796AA00681808 /* DayRangeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88606135265796AA00681808 /* DayRangeIndicatorView.swift */; };
 		8860613C265A337C00681808 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8860613B265A337C00681808 /* DateExtension.swift */; };
+		88606144265A571400681808 /* PriceSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88606143265A571400681808 /* PriceSelectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		886061312657964A00681808 /* DayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayLabel.swift; sourceTree = "<group>"; };
 		88606135265796AA00681808 /* DayRangeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRangeIndicatorView.swift; sourceTree = "<group>"; };
 		8860613B265A337C00681808 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		88606143265A571400681808 /* PriceSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSelectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				885CEB4B26538DDC00B3291F /* SearchViewController.swift */,
 				885CEB64265639FF00B3291F /* ReservationDetailViewController.swift */,
 				885CEB5D2656355200B3291F /* DateSelectionViewController.swift */,
+				88606143265A571400681808 /* PriceSelectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				8860613C265A337C00681808 /* DateExtension.swift in Sources */,
 				885CEB5E2656355200B3291F /* DateSelectionViewController.swift in Sources */,
 				8843A7BF26523EA80068B4E3 /* SceneDelegate.swift in Sources */,
+				88606144265A571400681808 /* PriceSelectionViewController.swift in Sources */,
 				885CEB512653957A00B3291F /* SearchResultCollectionViewCell.swift in Sources */,
 				885CEB6A26563A8200B3291F /* ReservationDetailTableViewCell.swift in Sources */,
 			);

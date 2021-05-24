@@ -10,10 +10,12 @@ import HorizonCalendar
 
 class DateSelectionViewController: UIViewController {
 
+    private let id = String(describing: DateSelectionViewController.self)
     private var reservationViewController: ReservationDetailViewControllerProtocol!
     private var calendarView: CalendarView! = nil
     private var lowerDay: Day? {
         willSet{
+            if newValue == nil { return }
             guard let lowerDate = Calendar.current.date(from: DateComponents(year: newValue?.components.year, month: newValue?.components.month, day: newValue?.components.day)) else { return }
             reservationViewController.changeDateRange(date: lowerDate, isLowerDay: true)
         }
@@ -66,7 +68,7 @@ class DateSelectionViewController: UIViewController {
         }
     }
     
-    func makeContentWithHighlightRange() -> CalendarViewContent {
+    private func makeContentWithHighlightRange() -> CalendarViewContent {
         guard let lowerDate = Calendar.current.date(from: DateComponents(year: self.lowerDay?.components.year, month: self.lowerDay?.components.month, day: self.lowerDay?.components.day)) else { return makeContent()}
         guard let upperDate = Calendar.current.date(from: DateComponents(year: self.upperDay?.components.year, month: self.upperDay?.components.month, day: self.upperDay?.components.day)) else { return makeContent()}
         
@@ -80,7 +82,7 @@ class DateSelectionViewController: UIViewController {
         return newContent
     }
     
-    func configureCelendarView() {
+    private func configureCelendarView() {
         self.calendarView = CalendarView(initialContent: makeContent())
         view.addSubview(calendarView)
         calendarView.translatesAutoresizingMaskIntoConstraints = false
@@ -137,10 +139,19 @@ class DateSelectionViewController: UIViewController {
             .withHorizontalDayMargin(8)
     }
 
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "containerViewSegue" {
             reservationViewController = segue.destination as? ReservationDetailViewController
+            reservationViewController.setCurrentParentId(id: self.id)
         }
     }
     
+    public func clearCalendarView() {
+        self.lowerDay = nil
+        self.upperDay = nil
+        
+        self.calendarView.setContent(makeContent())
+    }
 }

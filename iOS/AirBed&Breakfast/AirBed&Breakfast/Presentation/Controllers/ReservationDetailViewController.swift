@@ -8,6 +8,7 @@
 import UIKit
 
 protocol ReservationDetailViewControllerProtocol {
+    func setCurrentParentId(id: String)
     func changeLocation()
     func changeDateRange(date: Date, isLowerDay: Bool)
     func changePriceRange()
@@ -15,10 +16,19 @@ protocol ReservationDetailViewControllerProtocol {
 }
 
 class ReservationDetailViewController: UIViewController {
+    
+    enum Details {
+        case location
+        case date
+        case price
+        case numberOfHeads
+    }
+    
     @IBOutlet weak var reservationDetailTableView: UITableView!
     @IBOutlet weak var deleteCurrentDetailButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
+    var currentParentId: String!
     var lowerDate: Date?
     var upperDate: Date?
     
@@ -31,29 +41,73 @@ class ReservationDetailViewController: UIViewController {
     }
     
     @IBAction func deleteCurrentDetailButtonPressed(_ sender: UIButton) {
+        switch currentParentId {
+        case String(describing: DateSelectionViewController.self):
+            self.detailLabel(for: .date).text = ""
+            (parent as? DateSelectionViewController)?.clearCalendarView()
+        default:
+            return
+        }
+        
+        self.deleteCurrentDetailButton.isEnabled = false
+        self.nextButton.isEnabled = false
     }
+    
     @IBAction func nextButtonPressed(_ sender: UIButton) {
+        switch currentParentId {
+        case String(describing: DateSelectionViewController.self):
+            let targetVC = self.storyboard?.instantiateViewController(identifier: String(describing: PriceSelectionViewController.self)) as! PriceSelectionViewController
+            parent?.navigationController?.pushViewController(targetVC, animated: true)
+        default: break
+        }
+    }
+    
+    func detailLabel(for detail: Details) -> UILabel {
+        var indexPath: IndexPath
+        
+        switch detail {
+        case .location:
+            indexPath = IndexPath(row: 0, section: 0)
+        case .date:
+            indexPath = IndexPath(row: 1, section: 0)
+        case .price:
+            indexPath = IndexPath(row: 2, section: 0)
+        case .numberOfHeads:
+            indexPath = IndexPath(row: 3, section: 0)
+        }
+        
+        let cell = reservationDetailTableView.cellForRow(at: indexPath) as? ReservationDetailTableViewCell
+        
+        guard let safeCell = cell else { return UILabel()}
+        return safeCell.detailContentsLabel
     }
     
 }
 
 extension ReservationDetailViewController: ReservationDetailViewControllerProtocol {
+    func setCurrentParentId(id: String) {
+        self.currentParentId = id
+    }
+    
     func changeLocation() {
         print("Changed Location")
     }
     
     func changeDateRange(date: Date, isLowerDay: Bool) {
-        let indexPath = IndexPath(row: 1, section: 0)
-        let cell = reservationDetailTableView.cellForRow(at: indexPath) as! ReservationDetailTableViewCell
+        let dateDetailLabel = detailLabel(for: .date)
         
         if isLowerDay {
             self.lowerDate = date
             self.upperDate = nil
-            cell.detailContentsLabel.text = "\(date.month)월 \(date.day)일"
+            dateDetailLabel.text = "\(date.month)월 \(date.day)일"
+            self.nextButton.isEnabled = false
         } else {
             self.upperDate = date
-            cell.detailContentsLabel.text = "\(cell.detailContentsLabel.text!) ~ \(date.month)월 \(date.day)일"
+            dateDetailLabel.text = "\(dateDetailLabel.text!) ~ \(date.month)월 \(date.day)일"
+            self.nextButton.isEnabled = true
         }
+        
+        self.deleteCurrentDetailButton.isEnabled = true
     }
     
     func changePriceRange() {
@@ -63,6 +117,7 @@ extension ReservationDetailViewController: ReservationDetailViewControllerProtoc
     func changeNumberOfHeads() {
         //todo
     }
+    
 }
 
 extension ReservationDetailViewController: UITableViewDataSource {
