@@ -94,7 +94,7 @@ const Calendar = ({ isCheckIn }: CalendarType) => {
             day: +dataSets[0],
         });
         searcherDispatch({ type: 'CHECKIN_CALENDAR_LAYER', state: false });
-        searcherDispatch({ type: 'CHECKOUT_CALENDAR_LAYER', state: true });
+        searcherDispatch({ type: 'CHECKOUT_CALENDAR_LAYER', state: isCheckIn });
     };
 
     const isCheckInDate = (dataSets: string[] | null): boolean => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Hero from './mainComponents/Hero';
 import NearbyLocation from './mainComponents/NearbyLocation';
 import HouseType from './mainComponents/HouseType';

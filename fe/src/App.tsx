@@ -36,7 +36,7 @@ function App(): React.ReactElement {
         <ReservationDispatchContext.Provider value={reservationDispatch}>
             <ReservationStateContext.Provider value={reservationState}>
                 <ThemeProvider theme={theme}>
-                    <Router />;
+                    <Router />
                 </ThemeProvider>
             </ReservationStateContext.Provider>
         </ReservationDispatchContext.Provider>

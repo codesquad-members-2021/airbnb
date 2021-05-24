@@ -16,6 +16,7 @@ const CheckOutTab = (): React.ReactElement => {
     const handleCalendarLayer: React.MouseEventHandler<HTMLDivElement> = () => {
         searcherDispatch({ type: 'LOCATION_LAYER', state: false });
         searcherDispatch({ type: 'CHECKIN_CALENDAR_LAYER', state: false });
+        searcherDispatch({ type: 'FEE_LAYER', state: false });
         searcherDispatch({ type: 'CHECKOUT_CALENDAR_LAYER', state: true });
     };
 
