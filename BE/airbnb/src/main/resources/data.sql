@@ -26,7 +26,7 @@ INSERT INTO accommodation_address (accommodation_id, country_id, city_id, addres
 VALUE (1, 1, 1, '서초구');
 
 INSERT INTO accommodation_condition (accommodation_id, guests, bedroom_count, bed_count, bathroom_count)
-VALUE (1, 3, 1, 1, 1);
+VALUE (1, 3, '원룸', '1', '1');
 
 INSERT INTO accommodation_photo (accommodation_id, `name`) VALUES (1, 'https://codesquad.kr/img/place/img_5225.jpg');
 
@@ -43,7 +43,7 @@ INSERT INTO accommodation_address (accommodation_id, country_id, city_id, addres
     VALUE (2, 1, 1, '강남구');
 
 INSERT INTO accommodation_condition (accommodation_id, guests, bedroom_count, bed_count, bathroom_count)
-    VALUE (2, 4, 2, 2, 2);
+    VALUE (2, 4, '2', '2', '2');
 
 INSERT INTO accommodation_photo (accommodation_id, `name`) VALUES (2, 'https://codesquad.kr/img/place/img_5225.jpg');
 
@@ -60,7 +60,7 @@ INSERT INTO accommodation_address (accommodation_id, country_id, city_id, addres
     VALUE (3, 1, 1, '중구');
 
 INSERT INTO accommodation_condition (accommodation_id, guests, bedroom_count, bed_count, bathroom_count)
-    VALUE (3, 2, 1, 1, 1);
+    VALUE (3, 2, '원룸', '1', '1');
 
 INSERT INTO accommodation_photo (accommodation_id, `name`) VALUES (3, 'https://codesquad.kr/img/place/img_5225.jpg');
 

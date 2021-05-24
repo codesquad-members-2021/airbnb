@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import team01.airbnb.domain.accommodation.Accommodation;
 import team01.airbnb.domain.accommodation.AccommodationAddress;
+import team01.airbnb.domain.accommodation.AccommodationCondition;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,5 +54,22 @@ public class AccommodationRepository {
                         .build()
         );
         return Optional.of(accommodationAddresses.get(0));
+    }
+
+    public Optional<AccommodationCondition> findConditionByAccommodationId(Long accommodationId) {
+        String query = "SELECT * FROM accommodation_condition WHERE accommodation_id = :accommodation_id";
+        SqlParameterSource namedParameters = new MapSqlParameterSource("accommodation_id", accommodationId);
+        List<AccommodationCondition> accommodationConditions = jdbcTemplate.query(
+                query
+                , namedParameters
+                , (rs, rowNum) -> AccommodationCondition.builder()
+                        .accommodationId(rs.getLong("accommodation_id"))
+                        .guests(rs.getInt("guests"))
+                        .bedroomCount(rs.getString("bedroom_count"))
+                        .bedCount(rs.getString("bed_count"))
+                        .bathroomCount(rs.getString("bathroom_count"))
+                        .build()
+        );
+        return Optional.of(accommodationConditions.get(0));
     }
 }
