@@ -24,9 +24,14 @@ const FeeTab = (): React.ReactElement => {
         searcherDispatch({ type: 'FEE_LAYER', state: true });
     };
 
-    const handleChange = (event: any, newValue: number[] | number) => {
+    const handleSliderChange = (event: any, newValue: number[] | number) => {
         setFeeValue(newValue);
         reservationDispatch({ type: 'FEE', fee: newValue });
+    };
+
+    const handleSubmitFee = () => {
+        reservationDispatch({ type: 'FEE', fee: feeValue });
+        searcherDispatch({ type: 'FEE_LAYER', state: false });
     };
 
     return (
@@ -37,7 +42,8 @@ const FeeTab = (): React.ReactElement => {
             </Tab>
             {feeLayer && (
                 <Layer width={390} top={70} left={480}>
-                    <Slider value={feeValue} onChange={handleChange} valueLabelDisplay="auto" />
+                    <Slider value={feeValue} onChange={handleSliderChange} valueLabelDisplay="auto" />
+                    <button onClick={handleSubmitFee}>확인</button>
                 </Layer>
             )}
         </Container>
