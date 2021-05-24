@@ -24,7 +24,7 @@ export interface ReservationContext {
     location: Location;
     checkIn: Date;
     checkOut: Date;
-    fee: number;
+    fee: number[] | number;
     people: People;
 }
 
@@ -33,20 +33,7 @@ export type ResercationAction =
     | { type: 'CHECKIN'; year: number; month: number; day: number }
     | { type: 'CHECKOUT'; year: number; month: number; day: number }
     | { type: 'PEOPLE'; guest: number; kids: number }
-    | { type: 'FEE'; fee: number };
-
-export type SearchAction =
-    | { type: 'LOCATION_LIST'; list: Location[] | null }
-    | { type: 'LOCATION_LAYER'; state: boolean }
-    | { type: 'INPUTOFLOCATION'; value: string }
-    | { type: 'CHECKIN_CALENDAR_LAYER'; state: boolean }
-    | { type: 'CHECKOUT_CALENDAR_LAYER'; state: boolean };
-
-export type ReservationDispatch = Dispatch<ResercationAction>;
-
-export type SearchDispatch = Dispatch<SearchAction>;
-
-export type LocationList = Location[];
+    | { type: 'FEE'; fee: number[] | number };
 
 export interface SearcherContext {
     locationList: Location[] | null;
@@ -54,7 +41,24 @@ export interface SearcherContext {
     locationLayer: boolean;
     checkInCalendarLayer: boolean;
     checkOutCalendarLayer: boolean;
+    feeLayer: boolean;
+    peopleLayer: boolean;
 }
+
+export type SearchAction =
+    | { type: 'LOCATION_LIST'; list: Location[] | null }
+    | { type: 'LOCATION_LAYER'; state: boolean }
+    | { type: 'INPUTOFLOCATION'; value: string }
+    | { type: 'CHECKIN_CALENDAR_LAYER'; state: boolean }
+    | { type: 'CHECKOUT_CALENDAR_LAYER'; state: boolean }
+    | { type: 'FEE_LAYER'; state: boolean }
+    | { type: 'PEOPLE_LAYER'; state: boolean };
+
+export type ReservationDispatch = Dispatch<ResercationAction>;
+
+export type SearchDispatch = Dispatch<SearchAction>;
+
+export type LocationList = Location[];
 
 export type Td = {
     classNames: string[] | null;

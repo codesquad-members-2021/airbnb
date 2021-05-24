@@ -5,7 +5,6 @@ import { LocationList, Location } from '../../../../../shared/interface';
 import { mockupLocationData } from '../../../../../data/location';
 import { useReservationDispatch } from '../../../../../hooks/ReservationHook';
 import { Container, Tab, Layer } from './shared.style';
-import { debounce } from '@material-ui/core';
 
 const LocationTab = (): React.ReactElement => {
     const reservationDispatch = useReservationDispatch();

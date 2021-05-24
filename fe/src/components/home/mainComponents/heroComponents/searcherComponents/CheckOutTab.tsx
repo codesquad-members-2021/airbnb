@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useReservationState } from '../../../../../hooks/ReservationHook';
 import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/SearcherHook';
-import Calendar from './Calendar';
+import Calendar from './calendar/Calendar';
 import { Container, NavigatingText, Tab } from './shared.style';
 
 const CheckOutTab = (): React.ReactElement => {

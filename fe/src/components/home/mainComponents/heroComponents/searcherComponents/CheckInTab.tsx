@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/SearcherHook';
 import styled from 'styled-components';
-import Calendar from './Calendar';
+import Calendar from './calendar/Calendar';
 import { Container, Tab, NavigatingText } from './shared.style';
 import { useReservationState } from '../../../../../hooks/ReservationHook';
 

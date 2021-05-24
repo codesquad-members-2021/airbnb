@@ -8,8 +8,9 @@ import LocationTab from './searcherComponents/LocationTab';
 import CheckInTab from './searcherComponents/CheckInTab';
 import { SearcherStateContext, SearcherDispatchContext } from '../../../../Contexts';
 import { searchReducer } from '../../../../shared/searchBarReducer';
-import Calendar from './searcherComponents/Calendar';
+import Calendar from './searcherComponents/calendar/Calendar';
 import CheckOutTab from './searcherComponents/CheckOutTab';
+import FeeTab from './searcherComponents/FeeTab';
 
 const isNotLocationSelected = (location: Location): boolean => {
     return location.id === 0 && location.city === '';
@@ -21,6 +22,8 @@ const initialSearcherState: SearcherContext = {
     locationLayer: false,
     checkInCalendarLayer: false,
     checkOutCalendarLayer: false,
+    feeLayer: false,
+    peopleLayer: false,
 };
 
 const Searcher = (): React.ReactElement => {
@@ -38,9 +41,7 @@ const Searcher = (): React.ReactElement => {
                         <LocationTab />
                         <CheckInTab />
                         <CheckOutTab />
-                        <PriceTab>
-                            <NavigatingText>금액</NavigatingText>
-                        </PriceTab>
+                        <FeeTab />
                         <PeopleTab>
                             <NavigatingText>인원</NavigatingText>
                             <SearchButton>
@@ -50,16 +51,6 @@ const Searcher = (): React.ReactElement => {
                     </BarSection>
                 </SearcherDispatchContext.Provider>
             </SearcherStateContext.Provider>
-            {/* <LayerSection>
-                {locationLayer && (
-                    <LocationLayer>
-                        {locationList?.map((place: Location) => (
-                            <li onClick={() => setUpLocation(place)}>{place.city}</li>
-                        ))}
-                    </LocationLayer>
-                )}  */}
-            {/* {calendarLayer && <Calendar />} */}
-            {/* </LayerSection>  */}
         </Search>
     );
 };
@@ -81,14 +72,6 @@ const BarSection = styled.section`
 
 const NavigatingText = styled.p`
     margin: 0;
-`;
-
-const LocationInput = styled.input`
-    margin: 0;
-`;
-
-const PriceTab = styled.div`
-    flex: 1;
 `;
 
 const PeopleTab = styled.div`
