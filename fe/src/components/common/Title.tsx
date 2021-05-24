@@ -9,7 +9,7 @@ const Title = ({ children }: childProp) => {
 export default Title;
 
 const TitleWrap = styled.h6`
-  margin-bottom: 0.5rem;
+  margin: 0.5rem 0;
   font-size: ${({ theme }) => theme.fontSize.s};
   font-weight: ${({ theme }) => theme.fontWeight.base};
 `;

@@ -49,6 +49,7 @@ const Select = styled.div`
   cursor: pointer;
 
   input {
+    height: 30px;
     padding: 0;
     color: ${({ theme }) => theme.color.black};
     outline: 0;
