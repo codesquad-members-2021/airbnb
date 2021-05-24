@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E42671A6265BD357009323B8 /* SearchBarFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42671A5265BD357009323B8 /* SearchBarFactory.swift */; };
+		E42671A8265BEABE009323B8 /* SearchResultTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42671A7265BEABE009323B8 /* SearchResultTableViewDataSource.swift */; };
 		E481480C265496930069BE20 /* LocationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E481480B265496930069BE20 /* LocationSearchController.swift */; };
 		E481480E2654993F0069BE20 /* SearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E481480D2654993F0069BE20 /* SearchResultTableViewController.swift */; };
 		E481481026549C980069BE20 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E481480F26549C980069BE20 /* SearchResultTableViewCell.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		E42671A5265BD357009323B8 /* SearchBarFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarFactory.swift; sourceTree = "<group>"; };
+		E42671A7265BEABE009323B8 /* SearchResultTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewDataSource.swift; sourceTree = "<group>"; };
 		E481480B265496930069BE20 /* LocationSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchController.swift; sourceTree = "<group>"; };
 		E481480D2654993F0069BE20 /* SearchResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewController.swift; sourceTree = "<group>"; };
 		E481480F26549C980069BE20 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				E481480B265496930069BE20 /* LocationSearchController.swift */,
 				E4F302B926560CC7002C9770 /* LocationSearchResultUpdating.swift */,
 				E481480D2654993F0069BE20 /* SearchResultTableViewController.swift */,
+				E42671A7265BEABE009323B8 /* SearchResultTableViewDataSource.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				E4F302AB2655F970002C9770 /* AlamofireRequestManagable.swift in Sources */,
 				E481481026549C980069BE20 /* SearchResultTableViewCell.swift in Sources */,
 				E4F303042656B9DB002C9770 /* HomeViewModel.swift in Sources */,
+				E42671A8265BEABE009323B8 /* SearchResultTableViewDataSource.swift in Sources */,
 				E4F302EA265683F5002C9770 /* NetworkError.swift in Sources */,
 				E4F302E826567B1C002C9770 /* AlertFactory.swift in Sources */,
 				E4F302A92655F890002C9770 /* AlamofireImageLoadManager.swift in Sources */,

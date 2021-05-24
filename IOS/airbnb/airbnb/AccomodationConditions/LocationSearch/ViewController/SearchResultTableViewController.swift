@@ -14,12 +14,13 @@ protocol SearchResultDelegate: AnyObject {
 final class SearchResultTableViewController: UITableViewController {
 
     @IBOutlet var searchResultTable: UITableView!
-    private var searchResults: [LocationSearchResult]?
     private var viewModel = SearchResultViewModel()
+    private var searchResultTableViewDataSource: SearchResultTableViewDataSource?
     weak var delegate: SearchResultDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchResultTableViewDataSource = SearchResultTableViewDataSource()
         bind()
     }
 
@@ -36,7 +37,7 @@ final class SearchResultTableViewController: UITableViewController {
     }
     
     private func updateTableView(with searchResults: [LocationSearchResult]) {
-        self.searchResults = searchResults
+        self.searchResultTableViewDataSource?.updateResults(with: searchResults)
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -48,20 +49,10 @@ final class SearchResultTableViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults?.count ?? 0
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellID = SearchResultTableViewCell.reuseIdentifier
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as? SearchResultTableViewCell ?? SearchResultTableViewCell()
-        cell.locationLabel.text = searchResults?[indexPath.row].name ?? ""
-        return cell
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let targetIndex = indexPath.row
         guard let delegate = delegate,
-              let searchResult = searchResults?[indexPath.row] else { return }
+              let searchResult = searchResultTableViewDataSource?.searchResult(for: targetIndex) else { return }
         delegate.didSelect(result: searchResult)
     }
     
