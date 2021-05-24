@@ -37,7 +37,6 @@ class BestDestinationsCollectionHeaderView: UICollectionReusableView {
         titleLabel.font = UIFont.systemFont(ofSize: Constant.fontSize, weight: .semibold)
         titleLabel.textColor = Color.customBlack
         titleLabel.text = Constant.headerText
-        //let inset = CGFloat(16)
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constant.horizontalInset),
             titleLabel.trailingAnchor.constraint(greaterThanOrEqualTo: self.trailingAnchor, constant: -Constant.horizontalInset),
