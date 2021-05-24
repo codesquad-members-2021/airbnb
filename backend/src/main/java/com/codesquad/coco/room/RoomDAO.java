@@ -8,13 +8,11 @@ import com.codesquad.coco.user.Reservation;
 import com.codesquad.coco.utils.mapper.ReservationMapper;
 import com.codesquad.coco.utils.mapper.RoomMapper;
 import com.codesquad.coco.utils.mapper.SearchPriceMapper;
-import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 import static com.codesquad.coco.utils.RoomSQLKt.*;
 
@@ -39,17 +37,6 @@ public class RoomDAO {
     }
 
     public List<Room> findAllBySearchRoomDTO(SearchRoomDTO roomDTO) {
-        List<Room> rooms = findAllRoomBySearchRoomDTOWithoutImageAndReservation(roomDTO);
-        //todo : 해당하는 방이 없을 때의 예외 설정
-        for (Room room : rooms) {
-            Long id = room.getId();
-            findAllReservationByRoomId(id).forEach(room::addReservation);
-            imageDAO.findAllImageByRoomId(id).forEach(room::addImages);
-        }
-        return rooms;
-    }
-
-    private List<Room> findAllRoomBySearchRoomDTOWithoutImageAndReservation(SearchRoomDTO roomDTO) {
         MapSqlParameterSource parameter = new MapSqlParameterSource()
                 .addValue("check_in", roomDTO.getCheckIn())
                 .addValue("check_out", roomDTO.getCheckOut())
@@ -59,28 +46,39 @@ public class RoomDAO {
                 .addValue("baby", roomDTO.getBaby())
                 .addValue("price_min", roomDTO.getPriceMin())
                 .addValue("price_max", roomDTO.getPriceMax());
-        return template.query(FIND_ALL_ROOM_BY_SEARCH_REQUIREMENT, parameter, new RoomMapper());
-
+        List<Room> rooms = template.query(FIND_ALL_ROOM_BY_SEARCH_REQUIREMENT, parameter, new RoomMapper());
+        for (Room room : rooms) {
+            fillRoomWithImage(room);
+            fillRoomWithReservation(room);
+        }
+        return rooms;
     }
 
-    private List<Reservation> findAllReservationByRoomId(Long id) {
-        MapSqlParameterSource parameter = new MapSqlParameterSource()
-                .addValue("room_id", id);
-        return template.query(FIND_ALL_RESERVATION_BY_ROOM_ID, parameter, new ReservationMapper());
-    }
 
     public Room findById(Long roomId) {
         MapSqlParameterSource parameter = new MapSqlParameterSource()
                 .addValue("room_id", roomId);
         List<Room> rooms = template.query(FIND_ROOM_BY_ROOM_ID, parameter, new RoomMapper());
-        Room room = (Room) getEntity(rooms);
-        Long id = room.getId();
-        imageDAO.findAllImageByRoomId(id).forEach(room::addImages);
+        Room room = rooms.stream().findFirst().orElseThrow(NullPointerException::new);//fixme : 예외 설정
+        fillRoomWithImage(room);
+        fillRoomWithReservation(room);
         return room;
     }
 
-    private Object getEntity(List<?> sample) {
-        return Optional.ofNullable(DataAccessUtils.singleResult(sample)).orElseThrow(NullPointerException::new);
-        //fixme : 예외 설정
+    private void fillRoomWithImage(Room room) {
+        Long id = room.getId();
+        imageDAO.findAllImageByRoomId(id).forEach(room::addImages);
     }
+
+    private void fillRoomWithReservation(Room room) {
+        Long id = room.getId();
+        findAllReservationByRoomId(id).forEach(room::addReservation);
+    }
+
+    public List<Reservation> findAllReservationByRoomId(Long id) {
+        MapSqlParameterSource parameter = new MapSqlParameterSource()
+                .addValue("room_id", id);
+        return template.query(FIND_ALL_RESERVATION_BY_ROOM_ID, parameter, new ReservationMapper());
+    }
+
 }
