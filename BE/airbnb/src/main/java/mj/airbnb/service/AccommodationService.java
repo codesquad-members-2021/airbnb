@@ -118,7 +118,7 @@ public class AccommodationService {
         LocalDate checkIn = requestDto.getCheckInDate().get();
         LocalDate checkOut = requestDto.getCheckOutDate().get();
 
-        return reservationRepository.findALLReservationDateByAccommodationId(accommodationId).stream()
+        return reservationRepository.findAllReservationDateByAccommodationId(accommodationId).stream()
                 .map(reservationDate -> reservationDate.getReservedDate())
                 .noneMatch(dateTime -> ((dateTime.isEqual(checkIn) || dateTime.isAfter(checkIn))
                         && (dateTime.isEqual(checkIn) || dateTime.isBefore(checkOut))));

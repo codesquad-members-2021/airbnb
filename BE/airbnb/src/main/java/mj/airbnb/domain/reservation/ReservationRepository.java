@@ -22,7 +22,7 @@ public class ReservationRepository {
         return jdbcTemplate.queryForObject(sqlQuery, reservationRowMapper(), id);
     }
 
-    public List<ReservationDate> findALLReservationDateByAccommodationId(Long accommodationId) {
+    public List<ReservationDate> findAllReservationDateByAccommodationId(Long accommodationId) {
         String sqlQuery = "SELECT id, reserved_date, reservation_id, reservation_accommodation_id " +
                 "FROM reservation_date " +
                 "WHERE reservation_accommodation_id = ?";
