@@ -198,3 +198,22 @@ values ('Outdoor getaways', 'https://user-images.githubusercontent.com/59776016/
        ('Entire homes','https://user-images.githubusercontent.com/59776016/118950072-d1bc2980-b994-11eb-9392-e66b9b4bdd0b.png'),
        ('Pets allowed','https://user-images.githubusercontent.com/59776016/118950087-d4b71a00-b994-11eb-9311-b7271e0fc3b3.png');
 
+insert into wish_list(property_id, bookmark)
+values (1, false),
+       (2,false),
+       (3,false),
+       (4,false),
+       (5, false),
+       (6,false),
+       (7,false),
+       (8,false),
+       (9, false),
+       (10,false),
+       (11,false),
+       (12,false),
+       (13, false),
+       (14,false),
+       (15,false),
+       (16,false),
+       (17, false),
+       (18,false);
