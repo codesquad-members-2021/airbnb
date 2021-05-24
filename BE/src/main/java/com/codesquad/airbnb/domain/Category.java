@@ -11,7 +11,8 @@ public class Category {
 
     private String imageUrl;
 
-    public Category(String name, String imageUrl) {
+    public Category(Long id, String name, String imageUrl) {
+        this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
     }
@@ -26,5 +27,13 @@ public class Category {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

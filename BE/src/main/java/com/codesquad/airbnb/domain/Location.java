@@ -11,7 +11,8 @@ public class Location {
 
     private String imageUrl;
 
-    public Location(String name, String imageUrl) {
+    public Location(Long id, String name, String imageUrl) {
+        this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
     }
@@ -26,5 +27,12 @@ public class Location {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

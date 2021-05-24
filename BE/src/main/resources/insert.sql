@@ -1,11 +1,17 @@
 use airbnb;
 
-INSERT into location (name, image)
+INSERT into location (name, image_url)
 values ('서울', 'https://user-images.githubusercontent.com/59776016/118949618-61150d00-b994-11eb-8a8a-4a66f037444d.png'),
        ('인천', 'https://user-images.githubusercontent.com/59776016/118949720-7d18ae80-b994-11eb-91ed-6950b6745259.png'),
        ('대구', 'https://user-images.githubusercontent.com/59776016/118949734-7f7b0880-b994-11eb-8ec7-9c11a7a87c5e.png'),
        ('광주', 'https://user-images.githubusercontent.com/59776016/118949756-830e8f80-b994-11eb-8e6a-273f6d875d22.png'),
        ('제주', 'https://user-images.githubusercontent.com/59776016/118949756-830e8f80-b994-11eb-8e6a-273f6d875d22.png');
+
+INSERT INTO category (name, image_url)
+values ('Outdoor getaways', 'https://user-images.githubusercontent.com/59776016/118950055-ce28a280-b994-11eb-8c89-e0190cdeee68.png'),
+       ('Unique stays', 'https://user-images.githubusercontent.com/59776016/118950041-cb2db200-b994-11eb-8757-436f287bb805.png'),
+       ('Entire homes', 'https://user-images.githubusercontent.com/59776016/118950072-d1bc2980-b994-11eb-9392-e66b9b4bdd0b.png'),
+       ('Pets allowed', 'https://user-images.githubusercontent.com/59776016/118950087-d4b71a00-b994-11eb-9311-b7271e0fc3b3.png');
 
 INSERT into property (name, price, location_id)
 values ('☆Netflix☆Hongdae_Sangsu sta.20sec 갬성돋는 나만의 공간♡', 300000, 1),
@@ -22,7 +28,7 @@ values ('☆Netflix☆Hongdae_Sangsu sta.20sec 갬성돋는 나만의 공간♡'
        ('<NEW오픈특가>#범어역1분#명품가구', 16000, 3),
        ('Oasis House ♥︎ 신규오픈/ 복층 / 고층시티뷰 / 상무지구핫플', 30000, 4),
        ('켈리 하우스, *유스퀘어 버스터미널 인근(near bus terminal)', 44000, 4),
-       ('미니미HOUSE 2🌿광주 🌿주차장무료/넷플릭스/매일침구교체💚', 12000, 4),
+       ('미니미HOUSE 2 광주 주차장무료/넷플릭스/매일침구교체', 12000, 4),
        ('studio noi 스튜디오노이.협재해수욕장 10분거리 감성적인 독채', 88000, 5),
        ('"월정야大" 월정해변 근처 조용한 마을 돌집', 770000, 5),
        ('제주도, 제주시, 애월별땅,cozy 곽지해수욕장,애월한담산책로, 공항에서30분, 독채펜션', 390000, 5);
