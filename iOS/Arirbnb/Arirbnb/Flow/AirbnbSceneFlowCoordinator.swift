@@ -12,8 +12,8 @@ public class AirbnbSceneFlowCoordinator {
     private var searachSceneNavigationController: UINavigationController?
 
     func start() -> UITabBarController {
-        let mainSearchViewModelAction = MainSearchViewModelAction(showDetailSearchView: showDetailSearchView)
-        let mainSearchVC = MainSearchViewController.create(with: MainSearchViewModel(actions: mainSearchViewModelAction))
+        let mainSearchViewControllerAction = MainSearchViewControllerAction(showDetailSearchView: showDetailSearchView)
+        let mainSearchVC = MainSearchViewController.create(mainSearchViewControllerAction)
         searachSceneNavigationController = UINavigationController(rootViewController: mainSearchVC)
         let wishListVC = WishListViewController.create()
         let myreservationVC = MyReserVationViewController()
