@@ -61,7 +61,6 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`booking` (
   `guest` INT NOT NULL,
   `total_price` DECIMAL NOT NULL,
   `user` INT NOT NULL,
-  `user_key` INT NOT NULL,
   `room` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_booking_user1_idx` (`user` ASC) ,
