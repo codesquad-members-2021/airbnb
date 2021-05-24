@@ -290,6 +290,21 @@
             </objects>
             <point key="canvasLocation" x="5426.0869565217399" y="-95.089285714285708"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="CWL-pi-PIb">
+            <objects>
+                <viewController id="in7-78-36z" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1or-xJ-1gM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="KPH-WK-Hee"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xDZ-xE-5R9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6396" y="-95"/>
+        </scene>
         <!--Search Table View Controller-->
         <scene sceneID="xgw-jD-gbG">
             <objects>
@@ -316,7 +331,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CTE-88-Cyh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6326" y="-102"/>
+            <point key="canvasLocation" x="7620" y="-95"/>
         </scene>
         <!--Item-->
         <scene sceneID="7sV-mu-vkd">

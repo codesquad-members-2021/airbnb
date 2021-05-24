@@ -1,16 +1,19 @@
 
-
 import UIKit
+import GooglePlaces
 
 class SearchViewController: UIViewController {
 
     private var travelCollectionViewDataSource = TravelCollectionViewDataSource()
+    private var resultController = GMSAutocompleteResultsViewController()
     @IBOutlet weak var travelCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationItem()
         configureDataSource()
+        resultController.delegate = self
+        self.searchController.searchBar.delegate = self
     }
     
     private lazy var cancelButton: UIBarButtonItem = {
@@ -18,8 +21,8 @@ class SearchViewController: UIViewController {
         return cancelButton
     }()
     
-    private var searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: SearchTableViewController())
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: resultController)
         searchController.searchBar.placeholder = "어디로 여행가세요?"
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.automaticallyShowsCancelButton = false
@@ -31,10 +34,9 @@ class SearchViewController: UIViewController {
     func configureNavigationItem()  {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.searchController = searchController
-        self.navigationItem.searchController?.searchResultsUpdater = self
+        self.navigationItem.searchController?.searchResultsUpdater = resultController
         self.navigationItem.title = "숙소 찾기"
         self.navigationItem.hidesSearchBarWhenScrolling = false
-        self.navigationItem.rightBarButtonItem = cancelButton
     }
     
     func configureDataSource() {
@@ -47,8 +49,23 @@ class SearchViewController: UIViewController {
     }
 }
 
-extension SearchViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        dump(searchController.searchBar.text)
+extension SearchViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == "" {
+            self.navigationItem.rightBarButtonItem = .none
+        } else {
+            self.navigationItem.rightBarButtonItem = cancelButton
+        }
+    }
+}
+
+extension SearchViewController: GMSAutocompleteResultsViewControllerDelegate {
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
+        print("Place name: \(String(describing: place.name))")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error) {
+        print(error.localizedDescription)
     }
 }
