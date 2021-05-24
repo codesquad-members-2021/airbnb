@@ -41,11 +41,4 @@ class DestinationCollectionViewCell: UICollectionViewCell {
         destinationImageView.tintColor = #colorLiteral(red: 0.5098039216, green: 0.5098039216, blue: 0.5098039216, alpha: 1)
         destinationImageView.image = image
     }
-    
-    private func resetImageView() {
-        destinationImageView.layer.borderWidth = 0.0
-        destinationImageView.layer.borderColor = nil
-        destinationImageView.backgroundColor = nil
-        destinationImageView.contentMode = .scaleAspectFill
-    }
 }
