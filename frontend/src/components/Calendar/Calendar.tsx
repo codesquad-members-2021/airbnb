@@ -23,7 +23,6 @@ const CalendarModal = styled.div`
 const CalendarLayout = styled.div`
   display: flex;
   justify-content: space-between;
-  outline: red 1px solid;
   width: 40%;
 
   position: relative;

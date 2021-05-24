@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ReactComponent as Logo } from "components/common/Logo.svg";
-import Login from 'components/Header/Login';
+import Login from "components/Header/Login";
 // type HeaderProps = {
 //   title: string;
 //   link: string;
@@ -18,14 +18,13 @@ const Header = () => {
             return <NavigatorList key={`nav-${idx}`}>{text}</NavigatorList>;
           })}
         </NavigatorLayout>
-        <Login/>
+        <Login />
       </HeaderLayout>
     </>
   );
 };
 
 const HeaderLayout = styled.div`
-  outline: red solid;
   display: flex;
   justify-content: space-between;
   padding-top: 50px;
@@ -35,7 +34,6 @@ const NavigatorLayout = styled.ul`
   display: flex;
 `;
 const NavigatorList = styled.li`
-  outline: red solid 1px;
   width: 8rem;
   text-align: center;
   padding: 10px;
