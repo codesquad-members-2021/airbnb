@@ -7,17 +7,21 @@
 
 import UIKit
 
+struct MainSearchViewControllerAction {
+    let showDetailSearchView : () -> ()
+}
+
 class MainSearchViewController: UIViewController {
     static let sectionHeaderElementKind = "MainViewSectionHeaderElement"
     static let storyboardName = "Main"
     static let storyboardID = "MainSearchViewController"
     
-    static func create(with viewModel: MainSearchViewModel) -> MainSearchViewController {
+    static func create(_ action: MainSearchViewControllerAction) -> MainSearchViewController {
         let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
         guard let vc = storyboard.instantiateViewController(identifier: storyboardID) as? MainSearchViewController else {
             return MainSearchViewController()
         }
-        vc.viewModel = viewModel
+        vc.action = action
         return vc
     }
     
@@ -35,7 +39,8 @@ class MainSearchViewController: UIViewController {
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Destination>! = nil
-    private var viewModel: MainSearchViewModel!
+    private var action: MainSearchViewControllerAction!
+    private var destinations: [[Destination]] = [[],MockAdjacentDestination.mockDatas, MockThemeDestination.mockDatas]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +69,7 @@ class MainSearchViewController: UIViewController {
 
 extension MainSearchViewController {
     @IBAction func didTappedSearchButton(_ sender: Any) {
-        viewModel.showDetailSearchView()
+        action.showDetailSearchView()
     }
 }
 
@@ -108,7 +113,7 @@ extension MainSearchViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Destination>()
         snapshot.appendSections(Section.allCases)
         Section.allCases.forEach { section in
-            snapshot.appendItems(viewModel.forApplyItems(sectionIndex: section.rawValue), toSection: section)
+            snapshot.appendItems(destinations[section.rawValue], toSection: section)
         }
         dataSource.apply(snapshot)
     }

@@ -10,13 +10,11 @@ import UIKit
 class DetailSearchViewController: UIViewController, UISearchResultsUpdating {
     static let storyboardName = "Main"
     static let storybardID = "DetailSearchViewController"
-    static func create(_ viewModel: DetailSearchViewModel) -> DetailSearchViewController {
+    static func create() -> DetailSearchViewController {
         let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
         guard let vc = storyboard.instantiateViewController(identifier: storybardID) as? DetailSearchViewController else {
             return DetailSearchViewController()
         }
-        
-        vc.viewModel = viewModel
         return vc
     }
     
@@ -33,7 +31,7 @@ class DetailSearchViewController: UIViewController, UISearchResultsUpdating {
     @IBOutlet weak var destinationsCollectionView: UICollectionView!
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Destination>! = nil
-    private var viewModel: DetailSearchViewModel!
+    private var destinations: [[Destination]] = [MockAdjacentDestination.mockDatas,[]]
     private var searchController: UISearchController!
 
     
@@ -47,9 +45,7 @@ class DetailSearchViewController: UIViewController, UISearchResultsUpdating {
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-        viewModel.filteringDestinations(with: text)
-        applySnapshot()
+
     }
     
     private func configureNavigation() {
@@ -107,7 +103,7 @@ extension DetailSearchViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Destination>()
         snapshot.appendSections(Section.allCases)
         Section.allCases.forEach { section in
-            snapshot.appendItems(viewModel.forApplyItems(sectionIndex: section.rawValue), toSection: section)
+            snapshot.appendItems(destinations[section.rawValue], toSection: section)
         }
         dataSource.apply(snapshot)
     }
