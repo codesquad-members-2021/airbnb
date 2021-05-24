@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import AccountIcon from './AccountIcon.jsx';
+
 import MenuIcon from './MenuIcon.jsx';
 
 const AccountMenu = () => {
+  const handleAccountMenuClick = () => {};
+
   return (
-    <IconContainer>
+    <IconContainer onClick={() => handleAccountMenuClick()}>
       <MenuIcon />
       <AccountIcon />
     </IconContainer>
