@@ -9,7 +9,6 @@ import UIKit
 
 class TravelListViewController: UIViewController {
     
-    
     @IBOutlet weak var travelList: UICollectionView!
     
     private var nearPlaceDataSource = NearPlaceDataSource()
@@ -27,7 +26,7 @@ class TravelListViewController: UIViewController {
         self.travelList.dataSource = nearPlaceDataSource
         self.travelList.delegate = self
         
-        setSearchController()
+        setUpSearchController()
         registerNib()
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -40,14 +39,16 @@ class TravelListViewController: UIViewController {
 }
 // MARK: - Functions
 extension TravelListViewController {
-    func setSearchController() {
+    func setUpSearchController() {
         definesPresentationContext = true
+        
         searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "어디로 여행가세요?"
         searchController.searchBar.sizeToFit()
         searchController.automaticallyShowsCancelButton = false
         searchController.obscuresBackgroundDuringPresentation = false
+        
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = searchController
         self.navigationItem.searchController?.delegate = self

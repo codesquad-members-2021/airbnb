@@ -8,17 +8,17 @@
 import UIKit
 
 class NearPlaceDataSource: NSObject, UICollectionViewDataSource {
-    var list : [NearPlaceDTO] = [
+    var dummyData : [NearPlaceDTO] = [
         NearPlaceDTO(imageURL: nil, localName: "서울", distance: 0.5),
         NearPlaceDTO(imageURL: nil, localName: "부산", distance: 6),
         NearPlaceDTO(imageURL: nil, localName: "강남", distance: 2)
     ]
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return list.count
+        return dummyData.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = list[indexPath.row]
+        let item = dummyData[indexPath.row]
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NearPlaceCell.reuseIdentifier, for: indexPath) as! NearPlaceCell
         cell.areaTitle.text = item.localName

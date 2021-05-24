@@ -12,17 +12,22 @@ class SearchViewController : UIViewController {
     @IBOutlet weak var nearPlaceCollection: UICollectionView!
     @IBOutlet weak var themePlaceCollection: UICollectionView!
     
-    var nearPlaceDataSource = NearPlaceDataSource()
-    var themePlaceDataSource = ThemePlaceDataSource()
+    private var nearPlaceDataSource = NearPlaceDataSource()
+    private var themePlaceDataSource = ThemePlaceDataSource()
+    
+    private let searchBar : UISearchBar = {
+        let bar = UISearchBar()
+        bar.placeholder = "어디로 여행가세요?"
+        return bar
+    }()
     
     // MARK: - DataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let searchBar = UISearchBar()
-        searchBar.placeholder = "어디로 여행가세요?"
         self.tabBarController?.navigationItem.titleView = searchBar
         searchBar.delegate = self
+        
         nearPlaceCollection.dataSource = nearPlaceDataSource
         themePlaceCollection.dataSource = themePlaceDataSource
         registerNib()
