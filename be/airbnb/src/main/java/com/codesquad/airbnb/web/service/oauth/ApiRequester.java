@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.web.service;
+package com.codesquad.airbnb.web.service.oauth;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

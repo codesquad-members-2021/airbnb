@@ -20,4 +20,8 @@ public class User {
     private String name;
     private String profileImage;
     private String accessToken;
+
+    public void updateToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
 }

@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.web.service.oauth;
+package com.codesquad.airbnb.web.service.oauth.github;
 
 import com.codesquad.airbnb.web.config.properties.GithubApi;
 import com.codesquad.airbnb.web.config.properties.ServerSecret;
@@ -6,7 +6,9 @@ import com.codesquad.airbnb.web.domain.User;
 import com.codesquad.airbnb.web.dto.GithubProfile;
 import com.codesquad.airbnb.web.dto.ReceivedAccessToken;
 import com.codesquad.airbnb.web.dto.RequestAccessToken;
-import com.codesquad.airbnb.web.service.ApiRequester;
+import com.codesquad.airbnb.web.service.oauth.ApiRequester;
+import com.codesquad.airbnb.web.service.oauth.OauthApiRequester;
+import com.codesquad.airbnb.web.service.oauth.OauthProfileConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -16,15 +18,15 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class GithubApiRequesterRequester implements OauthApiRequester {
+public class GithubApiRequester implements OauthApiRequester {
 
     private final ServerSecret serverSecret;
     private final GithubApi githubApi;
     private final OauthProfileConverter oauthProfileConverter;
     private final ApiRequester apiRequester;
 
-    public GithubApiRequesterRequester(ServerSecret serverSecret, GithubApi githubApi,
-                                       OauthProfileConverter oauthProfileConverter, ApiRequester apiRequester) {
+    public GithubApiRequester(ServerSecret serverSecret, GithubApi githubApi,
+                              OauthProfileConverter oauthProfileConverter, ApiRequester apiRequester) {
         this.serverSecret = serverSecret;
         this.githubApi = githubApi;
         this.oauthProfileConverter = oauthProfileConverter;
@@ -50,6 +52,8 @@ public class GithubApiRequesterRequester implements OauthApiRequester {
         headers.setBearerAuth(accessToken);
         GithubProfile githubProfile = apiRequester.callApi(githubApi.getProfileUrl(), HttpMethod.GET, headers,
                 HttpEntity.EMPTY, GithubProfile.class);
-        return oauthProfileConverter.githubProfileToUser(githubProfile);
+        User user = oauthProfileConverter.githubProfileToUser(githubProfile);
+        user.updateToken(accessToken);
+        return user;
     }
 }
