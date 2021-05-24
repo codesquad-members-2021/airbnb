@@ -8,6 +8,17 @@
 import UIKit
 
 final class MainSearchCollectionViewController: UICollectionViewController {
+    enum Constant {
+        static let headerHeight: CGFloat = 78.0
+        static let cellHeight: CGFloat = 64.0
+        static let resultsLayoutTopInset: CGFloat = 26.0
+        static let resultsLayoutBottomInset: CGFloat = 64.0
+        static let lineSpacing: CGFloat = 16.0
+        static let title: String = "숙소 찾기"
+        static let searchBarPlaceholder: String = "어디로 여행가세요?"
+        static let rightBarButtonText: String = "지우기"
+    }
+    
     var viewModel: DestinationsViewModel!
     
     private var resultsCollectionController: ResultsCollectionController!
@@ -19,7 +30,7 @@ final class MainSearchCollectionViewController: UICollectionViewController {
         viewModel = DefaultDestinationsViewModel()
         viewModel.updateDestinations()
         
-        self.title = "숙소 찾기"
+        self.title = Constant.title
         self.tabBarController?.tabBar.isHidden = true
         
         configureCollectionView()
@@ -42,29 +53,32 @@ final class MainSearchCollectionViewController: UICollectionViewController {
         
         self.collectionView.backgroundColor = .systemBackground
         
-        let headerSize = CGSize(width: self.collectionView.frame.size.width, height: 78.0)
+        let headerSize = CGSize(width: self.collectionView.frame.size.width, height: Constant.headerHeight)
         let bestDestinationsLayout = makeFlowLayout(headerReferenceSize: headerSize)
         self.collectionView.collectionViewLayout = bestDestinationsLayout
     }
     
     private func configureResultsCollectionController() {
         let resultsLayout = makeFlowLayout()
-        resultsLayout.sectionInset = UIEdgeInsets(top: 26.0, left: 0.0, bottom: 64.0, right: 0.0)
+        resultsLayout.sectionInset = UIEdgeInsets(top: Constant.resultsLayoutTopInset,
+                                                  left: 0.0,
+                                                  bottom: Constant.resultsLayoutBottomInset,
+                                                  right: 0.0)
         resultsCollectionController = ResultsCollectionController(collectionViewLayout: resultsLayout)
     }
     
     private func makeFlowLayout(headerReferenceSize: CGSize = CGSize(width: 0.0, height: 0.0)) -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.headerReferenceSize = headerReferenceSize
-        layout.itemSize = CGSize(width: self.collectionView.frame.size.width, height: 64.0)
-        layout.minimumLineSpacing = 16.0
+        layout.itemSize = CGSize(width: self.collectionView.frame.size.width, height: Constant.cellHeight)
+        layout.minimumLineSpacing = Constant.lineSpacing
         return layout
     }
     
     private func configureSearchController() {
         searchController = UISearchController(searchResultsController: resultsCollectionController)
         searchController.searchResultsUpdater = self
-        searchController.searchBar.searchTextField.placeholder = "어디로 여행가세요?"
+        searchController.searchBar.searchTextField.placeholder = Constant.searchBarPlaceholder
         searchController.searchBar.returnKeyType = .go
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.automaticallyShowsCancelButton = false
@@ -103,7 +117,7 @@ extension MainSearchCollectionViewController {
 extension MainSearchCollectionViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let inputText = searchBar.text else { return }
-        self.navigationItem.rightBarButtonItem = inputText.isEmpty ? nil : UIBarButtonItem(title: "지우기",
+        self.navigationItem.rightBarButtonItem = inputText.isEmpty ? nil : UIBarButtonItem(title: Constant.rightBarButtonText,
                                                                                            style: .done,
                                                                                            target: self,
                                                                                            action: #selector(clearSearchBar))

@@ -10,10 +10,9 @@ import UIKit
 extension MainSearchCollectionViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
-        let strippedString = text.trimmingCharacters(in: CharacterSet.whitespaces).lowercased()
-        let searchItems = strippedString.components(separatedBy: " ") as [String]
+        
         if let resultsController = searchController.searchResultsController as? ResultsCollectionController {
-            resultsController.viewModel.filteredDestinations = viewModel.filter(using: searchItems)
+            resultsController.viewModel.filteredDestinations = viewModel.filter(using: text)
             resultsController.collectionView.reloadData()
         }
     }
