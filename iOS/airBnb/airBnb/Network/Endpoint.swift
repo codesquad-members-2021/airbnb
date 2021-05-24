@@ -9,7 +9,7 @@ import Foundation
 
 enum Endpoint {
     private static let scheme = "https"
-    private static let host = "b34558c4-ead2-43bd-8c8b-2a1dc745dfde.mock.pstmn.io"
+    private static let host = "enigmatic-island-37630.herokuapp.com"
     private static let searchPath = "/api/search/"
     
     static func searchURL(text: String) -> URL? {
@@ -20,4 +20,3 @@ enum Endpoint {
         return components.url
     }
 }
-//

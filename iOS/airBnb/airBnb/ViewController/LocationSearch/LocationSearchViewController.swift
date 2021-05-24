@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class LocationSearchViewController: UITableViewController {
     
@@ -25,12 +26,14 @@ class LocationSearchViewController: UITableViewController {
     private var resultTableViewController = LocationResultViewController()
     private let searchViewModel = SearchLocationViewModel()
     private var searchController: UISearchController!
+    private var cancellable = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         setUpSearchController()
         setUpTableView()
+        bind()
         resultTableViewController.injectViewModel(from: searchViewModel)
     }
     
@@ -51,7 +54,7 @@ class LocationSearchViewController: UITableViewController {
         searchController.searchBar.showsCancelButton = false
         searchController.searchBar.searchTextField.clearButtonMode = .never
         searchController.searchBar.placeholder = "어디로 여행가세요?"
-        searchController.searchResultsUpdater = self
+        searchController.delegate = self
         navigationItem.searchController = searchController
     }
     
@@ -61,16 +64,17 @@ class LocationSearchViewController: UITableViewController {
         tableView.tableHeaderView = header
     }
     
+    private func bind() {
+        searchController.searchBar.searchTextField.searchTextPublisher.sink { [weak self] (text) in
+            self?.searchViewModel.requestSearch(from: text)
+        }.store(in: &cancellable)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         DispatchQueue.main.async { [weak self] in
             self?.searchController.searchBar.becomeFirstResponder()
         }
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        searchController.dismiss(animated: true, completion: nil)
     }
     
     @objc func closeSearchText(_ gesture: UIBarButtonItem) {
@@ -101,8 +105,8 @@ class LocationSearchViewController: UITableViewController {
     }
 }
 
-extension LocationSearchViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        searchViewModel.requestSearch(from: searchController.searchBar.text ?? "")
+extension LocationSearchViewController: UISearchControllerDelegate {
+    func presentSearchController(_ searchController: UISearchController) {
+        deleteText.isEnabled = true
     }
 }

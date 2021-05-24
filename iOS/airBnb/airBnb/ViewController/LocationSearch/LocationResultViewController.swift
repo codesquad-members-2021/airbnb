@@ -29,6 +29,12 @@ class LocationResultViewController: UITableViewController {
         bind()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        resultCities = []
+        tableView.reloadData()
+    }
+    
     private func bind() {
         cancell = searchViewModel?.fetchSearchResult()
             .receive(on: DispatchQueue.main)

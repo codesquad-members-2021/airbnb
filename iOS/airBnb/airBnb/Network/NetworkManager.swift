@@ -23,7 +23,6 @@ final class NetworkManager: NetworkManageable {
     
     private func request<T : Decodable>(from url: URL) -> AnyPublisher<T, NetworkError> {
         return URLSession.shared.dataTaskPublisher(for: url)
-            .delay(for: .seconds(0.5), scheduler: DispatchQueue.global())
             .mapError { _ in
                 NetworkError.invalidRequest
             }

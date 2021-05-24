@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BF2FEAD2265A83F30022CB93 /* SearchLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAD1265A83F30022CB93 /* SearchLocationViewModel.swift */; };
+		BF2FEADC265B71260022CB93 /* SearchTextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEADB265B71260022CB93 /* SearchTextField+Extension.swift */; };
 		BF4048CF2658CB4600CA02B5 /* LocationResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4048CE2658CB4600CA02B5 /* LocationResultViewController.swift */; };
 		BF4048D22658D8AA00CA02B5 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4048D12658D8AA00CA02B5 /* CalendarViewController.swift */; };
 		BF4048D52658D8C500CA02B5 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4048D42658D8C500CA02B5 /* Calendar.storyboard */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		BF2FEAD1265A83F30022CB93 /* SearchLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewModel.swift; sourceTree = "<group>"; };
+		BF2FEADB265B71260022CB93 /* SearchTextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchTextField+Extension.swift"; sourceTree = "<group>"; };
 		BF4048CE2658CB4600CA02B5 /* LocationResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResultViewController.swift; sourceTree = "<group>"; };
 		BF4048D12658D8AA00CA02B5 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		BF4048D42658D8C500CA02B5 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				BF4048F82659ED1400CA02B5 /* DateFormatter+Extension.swift */,
+				BF2FEADB265B71260022CB93 /* SearchTextField+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				BF4048F12659335800CA02B5 /* CalendarDayCell.swift in Sources */,
 				BF4048D22658D8AA00CA02B5 /* CalendarViewController.swift in Sources */,
 				BF4048EB26592AAF00CA02B5 /* CalendarDataSource.swift in Sources */,
+				BF2FEADC265B71260022CB93 /* SearchTextField+Extension.swift in Sources */,
 				BFE4311326557A2900F4DA1C /* LocationHeaderView.swift in Sources */,
 				BF4048F92659ED1400CA02B5 /* DateFormatter+Extension.swift in Sources */,
 				BFE430D526541D2B00F4DA1C /* LocationSearchViewController.swift in Sources */,
