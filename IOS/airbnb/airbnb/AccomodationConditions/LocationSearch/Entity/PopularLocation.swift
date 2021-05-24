@@ -11,4 +11,5 @@ struct PopularLocation: Decodable {
     let name: String
     let distanceFromHere: String
     let imagePath: String
+    var cachePath: String?
 }

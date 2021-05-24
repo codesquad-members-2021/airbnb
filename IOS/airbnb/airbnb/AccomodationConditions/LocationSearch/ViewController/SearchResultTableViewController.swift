@@ -17,25 +17,24 @@ final class SearchResultTableViewController: UITableViewController, Instantiable
     
     @IBOutlet var searchResultTable: UITableView!
     private var searchResults: [LocationSearchResult]?
-    private var viewModel: SearchResultConfigurable!
+    private var viewModel = SearchResultViewModel()
     weak var delegate: SearchResultDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = SearchResultViewModel()
+        bind()
     }
 
-    func updateSearchResult(with newKeyword: String) {
-        guard let viewModel = viewModel else { return }
-        
-        viewModel.searchResults(for: newKeyword) { [weak self] result in
-            do {
-                let searchResults = try result.get()
-                self?.updateTableView(with: searchResults)
-            } catch {
-                self?.alertError(error: error)
-            }
+    private func bind() {
+        viewModel.bind { [weak self] searchResults in
+            self?.updateTableView(with: searchResults)
+        } errorHandler: { [weak self] error in
+            self?.alertError(error: error)
         }
+    }
+    
+    func updateSearchResult(with newKeyword: String) {
+        viewModel.newData(with: newKeyword)
     }
     
     private func updateTableView(with searchResults: [LocationSearchResult]) {

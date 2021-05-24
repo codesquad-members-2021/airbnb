@@ -9,27 +9,29 @@ import UIKit
 
 final class HomeViewController: UIViewController {
 
-    private let backButtonTitle = "홈"
-
     @IBOutlet weak var heroImageView: UIImageView!
-    private var searchBar: LocationSearchBar!
-    private var viewModel: HomeConfigurable!
+    
+    private var searchBar: UISearchBar {
+        let searchBar = UISearchBar()
+        searchBar.delegate = self
+        searchBar.searchTextField.clearButtonMode = .never
+        searchBar.placeholder = viewModel.searchBarPlaceholder
+        return searchBar
+    }
+    
+    private var viewModel = HomeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = HomeViewModel()
-        appDidTurnOn()
+        bind()
         setSearchBar()
     }
     
-    private func appDidTurnOn() {
-        viewModel.heroImage { [weak self] result in
-            do {
-                let cacheUrl = try result.get()
-                self?.updateHeroImage(with: cacheUrl)
-            } catch {
-                self?.alertError(error: error)
-            }
+    private func bind() {
+        viewModel.bind { [weak self] imageUrl in
+            self?.updateHeroImage(with: imageUrl)
+        } errorHandler: { [weak self] error in
+            self?.alertError(error: error)
         }
     }
     
@@ -44,8 +46,6 @@ final class HomeViewController: UIViewController {
     }
     
     private func setSearchBar() {
-        searchBar = LocationSearchBar()
-        searchBar.delegate = self
         tabBarController?.navigationItem.titleView = searchBar
     }
     
@@ -61,7 +61,7 @@ extension HomeViewController: UISearchBarDelegate {
     private func pushNextViewController() {
         let nextStoryBoard = StoryboardFactory.create(.accomodationConditions)
         let nextViewController = ViewControllerFactory.create(from: nextStoryBoard, type: PopularLocationViewController.self)
-        self.tabBarController?.navigationItem.backButtonTitle = backButtonTitle
+        self.tabBarController?.navigationItem.backButtonTitle = viewModel.backButtonTitle
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     

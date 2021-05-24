@@ -10,13 +10,12 @@ import UIKit
 final class PopularLocationViewController: UIViewController, Instantiable {
 
     static var reuseIdentifier: String { String(describing: self) }
-    private let backButtonTitle = "위치 검색"
-    
+
     @IBOutlet weak var popularLocationTableView: UITableView!
-    private var popularLocationTableViewDataSource: PopularLocationTableViewDataSource!
-    private var searchController: LocationSearchController!
-    private var searchResultUpdater: LocationSearchResultUpdating!
-    private var viewModel: PopularLocationConfigurable!
+    private var popularLocationTableViewDataSource: PopularLocationTableViewDataSource?
+    private var searchController: LocationSearchController?
+    private var searchResultUpdater: LocationSearchResultUpdating?
+    private var viewModel = PopularLocationViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +25,10 @@ final class PopularLocationViewController: UIViewController, Instantiable {
         setNavigationSearchController()
         
         searchResultUpdater = LocationSearchResultUpdating()
-        searchController.searchResultsUpdater = searchResultUpdater
-        searchController.searchBar.delegate = self
-        
-        viewModel = PopularLocationViewModel()
-        configurePopularLocationTableView()
+        searchController?.searchResultsUpdater = searchResultUpdater
+        searchController?.searchBar.delegate = self
+
+        bind()
     }
     
     private func setNavigationSearchController() {
@@ -42,43 +40,19 @@ final class PopularLocationViewController: UIViewController, Instantiable {
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
-    private func configurePopularLocationTableView() {
-        viewModel.popularLocations { [weak self] result in
-            do {
-                let popularLocations = try result.get()
-                let imagePaths = popularLocations.map{ $0.imagePath }
-                self?.startDownloadingImages(from: imagePaths)
-                self?.updateTableView(with: popularLocations)
-            } catch {
-                self?.alertError(error: error)
-            }
-        }
-    }
-    
-    private func startDownloadingImages(from imagePaths: [String]) {
-        var cachePaths = Array(repeating: "", count: imagePaths.count)
-        imagePaths.enumerated().forEach { (index, imagePath) in
-            self.viewModel.popularLocationImage(from: imagePath) { [weak self] cachePath in
-                cachePaths[index] = cachePath
-                self?.updateTableView(with: cachePaths)
-            }
-        }
-    }
-    
-    private func updateTableView(with cachePaths: [String]) {
-        popularLocationTableViewDataSource.updateImagePaths(with: cachePaths)
-        reloadTableView()
-    }
-    
-    private func reloadTableView() {
-        DispatchQueue.main.async {
-            self.popularLocationTableView.reloadData()
+    private func bind() {
+        viewModel.bind { [weak self] popularLocation in
+            self?.updateTableView(with: popularLocation)
+        } errorHandler: { [weak self] error in
+            self?.alertError(error: error)
         }
     }
     
     private func updateTableView(with popularLocations: [PopularLocation]) {
-        popularLocationTableViewDataSource.updateLocations(with: popularLocations)
-        reloadTableView()
+        popularLocationTableViewDataSource?.updateLocations(with: popularLocations)
+        DispatchQueue.main.async {
+            self.popularLocationTableView.reloadData()
+        }
     }
     
     private func alertError(error: Error) {
@@ -94,7 +68,7 @@ final class PopularLocationViewController: UIViewController, Instantiable {
     
     private func searchBarCursurOn() {
         DispatchQueue.main.async {
-            self.searchController.searchBar.becomeFirstResponder()
+            self.searchController?.searchBar.becomeFirstResponder()
         }
     }
     
@@ -104,7 +78,7 @@ final class PopularLocationViewController: UIViewController, Instantiable {
     }
     
     private func inactiveSearchController() {
-        searchController.isActive = false
+        searchController?.isActive = false
     }
     
     private func unsetCancelBarButton() {
@@ -126,10 +100,10 @@ extension PopularLocationViewController: UISearchBarDelegate {
     
     private func setCancelBarButton() {
         guard navigationItem.rightBarButtonItem == nil else { return }
-        let cancelButtonItem = UIBarButtonItem(title: "지우기",
+        let cancelButtonItem = UIBarButtonItem(title: viewModel.cancelButtonTitle,
                                                style: .done,
                                                target: self,
-                                               action: #selector(searchCanceled(_:)))
+                                               action: #selector(searchCanceled))
         navigationItem.setRightBarButton(cancelButtonItem, animated: true)
     }
     
@@ -147,7 +121,7 @@ extension PopularLocationViewController: SearchResultDelegate {
         let storyboard = self.storyboard ?? StoryboardFactory.create(.accomodationConditions)
         let nextViewController = ViewControllerFactory.create(from: storyboard, type: CalendarViewController.self)
         nextViewController.location = result
-        self.navigationItem.backButtonTitle = backButtonTitle
+        self.navigationItem.backButtonTitle = viewModel.backButtonTitle
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     
