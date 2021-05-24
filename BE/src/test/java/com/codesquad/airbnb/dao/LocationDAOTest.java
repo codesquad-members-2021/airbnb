@@ -24,6 +24,7 @@ class LocationDAOTest {
         Location location = locationDAO.findById(1L);
         assertThat(location).isNotNull();
         assertThat(location.getName()).isEqualTo("서울");
+        assertThat(location.getId()).isNotNull();
         logger.info("location found: {}", location);
     }
 
