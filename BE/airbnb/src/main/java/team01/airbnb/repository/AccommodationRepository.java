@@ -10,8 +10,11 @@ import team01.airbnb.domain.accommodation.Accommodation;
 import team01.airbnb.domain.accommodation.AccommodationAddress;
 import team01.airbnb.domain.accommodation.AccommodationCondition;
 import team01.airbnb.domain.accommodation.AccommodationPhoto;
+import team01.airbnb.dto.response.AccommodationResponseDto;
+import team01.airbnb.exception.ConditionNotFoundException;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,6 +26,21 @@ public class AccommodationRepository {
 
     public AccommodationRepository(NamedParameterJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public List<AccommodationResponseDto> findAccommodationsBySearch() {
+        List<AccommodationResponseDto> accommodationResponseDtos = new ArrayList<>();
+        List<Accommodation> accommodations = findAllAccommodations();
+        for (Accommodation accommodation : accommodations) {
+            Long accommodationId = accommodation.getId();
+            List<String> photos = findPhotosByAccommodationId(accommodationId);
+            AccommodationCondition condition = findConditionByAccommodationId(accommodationId)
+                    .orElseThrow(ConditionNotFoundException::new);
+            List<String> amenities = findAmenitiesByAccommodationId(accommodationId);
+            accommodationResponseDtos.add(
+                    AccommodationResponseDto.of(accommodation, photos, condition, amenities));
+        }
+        return accommodationResponseDtos;
     }
 
     public List<Accommodation> findAllAccommodations() {
@@ -82,7 +100,7 @@ public class AccommodationRepository {
         String query = "SELECT * FROM amenity " +
                 "WHERE id in(" +
                 "   SELECT amenity_id FROM airbnb.accommodation_has_amenity " +
-                "   WHERE accommodation_id = :accommodationId" +
+                "   WHERE accommodation_id = :accommodation_id" +
                 ")";
         SqlParameterSource namedParameters = new MapSqlParameterSource("accommodation_id", accommodationId);
         List<Amenity> amenities = jdbcTemplate.query(

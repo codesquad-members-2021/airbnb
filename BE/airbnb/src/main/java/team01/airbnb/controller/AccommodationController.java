@@ -19,9 +19,15 @@ public class AccommodationController {
         this.accommodationService = accommodationService;
     }
 
-    @GetMapping()
+    @GetMapping
     public ApiResult accommodations() {
-        List<Accommodation> accommodations = accommodationService.accommodations();
-        return ApiResult.succeed(accommodations);
+        return ApiResult.succeed(accommodationService.accommodations());
+    }
+
+    // todo : 조건에 따른 param 추가 예정
+    @GetMapping("/search")
+    public ApiResult accommodationsBySearch() {
+        return ApiResult.succeed(accommodationService.findAccommodationsBySearch());
+
     }
 }
