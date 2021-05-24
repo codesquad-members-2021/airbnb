@@ -15,6 +15,7 @@ class SearchCityViewController: UIViewController {
     private var searchController: UISearchController!
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Int, City>!
+    private var regionDataSource: UICollectionViewDiffableDataSource<Int, Region>!
     
     private var viewModel = MainPageViewModel()
     private var cancelBag = Set<AnyCancellable>()
@@ -27,22 +28,6 @@ class SearchCityViewController: UIViewController {
         bind()
         configureHierarchy()
         configureDataSource()
-    }
-    
-}
-
-extension SearchCityViewController {
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        configureEmptySupplementaryView()
-        collectionView.reloadData()
-        collectionView.collectionViewLayout = createLayout(isHeaderExist: false)
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        configureSupplementaryView()
-        collectionView.reloadData()
-        collectionView.collectionViewLayout = createLayout(isHeaderExist: true)
     }
     
 }
@@ -68,19 +53,63 @@ extension SearchCityViewController {
     
 }
 
+//MARK:- Search
 
-extension SearchCityViewController: UISearchBarDelegate {
+extension SearchCityViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        // resultVC 없이 화면 띄우기 위해 필요
+    }
     
     func configureSearchBar() {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = "어디로 여행가세요?"
         searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.automaticallyShowsCancelButton = false
+        
         self.navigationItem.searchController = searchController
         self.navigationItem.title = "숙소 찾기"
+        let eraseButton = UIBarButtonItem(title: "erase", style: .plain, target: self, action: #selector(eraseSearchBar))
+        self.navigationItem.rightBarButtonItem = eraseButton
+    }
+    
+    @objc func eraseSearchBar() {
+        searchController.searchBar.text = nil
+        searchController.searchBar.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = nil
+        searchBar.endEditing(true)
     }
     
 }
 
+
+extension SearchCityViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        configureRegionDataSource()
+        applyRegionSnapshots()
+        
+        collectionView.collectionViewLayout = createLayout(isHeaderExist: false)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        configureSupplementaryView()
+        collectionView.reloadData()
+        bind()
+        configureDataSource()
+        
+        collectionView.collectionViewLayout = createLayout(isHeaderExist: true)
+    }
+    
+}
+
+//MARK:- Layout & DataSource
 
 extension SearchCityViewController {
     
@@ -137,6 +166,18 @@ extension SearchCityViewController {
         self.configureSupplementaryView()
     }
     
+    private func configureRegionDataSource() {
+        regionDataSource = UICollectionViewDiffableDataSource<Int, Region>(collectionView: collectionView) {
+            (collectionView, indexPath, city) -> UICollectionViewCell? in
+            self.collectionView.register(RegionCell.nib, forCellWithReuseIdentifier: RegionCell.reuseIdentifier)
+            
+            let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: RegionCell.reuseIdentifier, for: indexPath) as! RegionCell
+            cell.fillUI(with: city)
+            return cell
+        }
+        configureEmptySupplementaryView()
+    }
+    
     private func configureSupplementaryView() {
         let supplementaryRegistration = UICollectionView.SupplementaryRegistration
         <TitleSupplementaryView>(elementKind: SearchCityViewController.headerElementKind) {
@@ -155,7 +196,7 @@ extension SearchCityViewController {
         <UICollectionReusableView>(elementKind: SearchCityViewController.headerElementKind) {
             (supplementaryView, string, indexPath) in
         }
-        dataSource.supplementaryViewProvider = { (view, kind, index) in
+        regionDataSource.supplementaryViewProvider = { (view, kind, index) in
             return self.collectionView.dequeueConfiguredReusableSupplementary(
                 using: supplementaryRegistration, for: index)
         }
@@ -169,11 +210,17 @@ extension SearchCityViewController {
         self.dataSource.apply(snapshot)
     }
     
+    private func applyRegionSnapshots() {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Region>()
+        
+        snapshot.appendSections([1])
+        snapshot.appendItems(Region.allCities)
+        self.regionDataSource.apply(snapshot)
+    }
+    
 }
 
-
-
-//MARK:- selection
+//MARK:- Selection
 
 extension SearchCityViewController: UICollectionViewDelegate {
     

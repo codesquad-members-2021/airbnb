@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Region {
+struct Region: Hashable {
     let name: String
     let id: Int
     
