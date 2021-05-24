@@ -1,16 +1,16 @@
 package mj.airbnb.domain.accommodation;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.math.BigDecimal;
 
 public class Accommodation {
 
     private Long id;
     private String name;
-    private Integer maxPeople;
+    private int maxNumOfPeople;
     private String type;
-    private Integer numOfBed;
-    private Integer numOfBathroom;
-    private Integer price;
+    private int numOfBed;
+    private int numOfBathroom;
+    private BigDecimal price;
     private String address;
 
     public Accommodation() {
@@ -32,12 +32,12 @@ public class Accommodation {
         this.name = name;
     }
 
-    public Integer getMaxPeople() {
-        return maxPeople;
+    public int getMaxNumOfPeople() {
+        return maxNumOfPeople;
     }
 
-    public void setMaxPeople(Integer maxPeople) {
-        this.maxPeople = maxPeople;
+    public void setMaxNumOfPeople(int maxNumOfPeople) {
+        this.maxNumOfPeople = maxNumOfPeople;
     }
 
     public String getType() {
@@ -48,7 +48,7 @@ public class Accommodation {
         this.type = type;
     }
 
-    public Integer getNumOfBed() {
+    public int getNumOfBed() {
         return numOfBed;
     }
 
@@ -56,23 +56,23 @@ public class Accommodation {
         return address;
     }
 
-    public void setNumOfBed(Integer numOfBed) {
+    public void setNumOfBed(int numOfBed) {
         this.numOfBed = numOfBed;
     }
 
-    public Integer getNumOfBathroom() {
+    public int getNumOfBathroom() {
         return numOfBathroom;
     }
 
-    public void setNumOfBathroom(Integer numOfBathroom) {
+    public void setNumOfBathroom(int numOfBathroom) {
         this.numOfBathroom = numOfBathroom;
     }
 
-    public Integer getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

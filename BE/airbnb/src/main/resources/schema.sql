@@ -21,11 +21,11 @@ DROP TABLE IF EXISTS `airbnb_db`.`accommodation`;
 CREATE TABLE IF NOT EXISTS `airbnb_db`.`accommodation` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `max_people` INT NOT NULL DEFAULT 1,
+  `max_num_of_people` INT NOT NULL DEFAULT 1,
   `type` VARCHAR(45) NOT NULL,
   `num_of_bed` INT NOT NULL DEFAULT 1,
   `num_of_bathroom` INT NOT NULL DEFAULT 1,
-  `price` INT NOT NULL,
+  `price` DECIMAL NOT NULL,
   `address` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;

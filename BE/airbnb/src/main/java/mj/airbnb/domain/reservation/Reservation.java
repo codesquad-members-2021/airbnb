@@ -1,25 +1,15 @@
 package mj.airbnb.domain.reservation;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.time.LocalDate;
 
 public class Reservation {
 
     private Long id;
-    private String checkInDate;
-    private String checkOutDate;
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
     private Long accommodationId;
 
     public Reservation() {
-    }
-
-    public Map<String, Object> toMap() {
-        Map<String, Object> values = new HashMap<>();
-        values.put("id", id);
-        values.put("check_in_date", checkInDate);
-        values.put("check_out_date", checkOutDate);
-        values.put("accommodation_id", accommodationId);
-
-        return values;
     }
 
     public Long getId() {
@@ -30,19 +20,19 @@ public class Reservation {
         this.id = id;
     }
 
-    public String getCheckInDate() {
+    public LocalDate getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(String checkInDate) {
+    public void setCheckInDate(LocalDate checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public String getCheckOutDate() {
+    public LocalDate getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(String checkOutDate) {
+    public void setCheckOutDate(LocalDate checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 

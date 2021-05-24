@@ -2,6 +2,8 @@ package mj.airbnb.web.dto;
 
 import mj.airbnb.domain.accommodation.Accommodation;
 
+import java.math.BigDecimal;
+
 public class AccommodationResponseDto {
 
     private final String name;
@@ -9,15 +11,15 @@ public class AccommodationResponseDto {
     private final String type;
     private final Integer numOfBed;
     private final Integer numOfBathroom;
-    private final Integer cost;
+    private final BigDecimal price;
 
     public AccommodationResponseDto(Accommodation accommodation) {
         this.name = accommodation.getName();
-        this.maxPeople = accommodation.getMaxPeople();
+        this.maxPeople = accommodation.getMaxNumOfPeople();
         this.type = accommodation.getType();
         this.numOfBed = accommodation.getNumOfBed();
         this.numOfBathroom = accommodation.getNumOfBathroom();
-        this.cost = accommodation.getPrice();
+        this.price = accommodation.getPrice();
     }
 
     public String getName() {
@@ -40,7 +42,7 @@ public class AccommodationResponseDto {
         return numOfBathroom;
     }
 
-    public Integer getCost() {
-        return cost;
+    public BigDecimal getPrice() {
+        return price;
     }
 }

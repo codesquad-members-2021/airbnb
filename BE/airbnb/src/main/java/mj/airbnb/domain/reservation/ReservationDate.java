@@ -1,12 +1,15 @@
 package mj.airbnb.domain.reservation;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 public class ReservationDate {
 
     @Id
     private Long id;
-    private String reservedDate;
+    private LocalDate reservedDate;
     private Long reservationId;
     private Long reservationAccommodationId;
 
@@ -21,11 +24,11 @@ public class ReservationDate {
         this.id = id;
     }
 
-    public String getReservedDate() {
+    public LocalDate getReservedDate() {
         return reservedDate;
     }
 
-    public void setReservedDate(String reservedDate) {
+    public void setReservedDate(LocalDate reservedDate) {
         this.reservedDate = reservedDate;
     }
 
