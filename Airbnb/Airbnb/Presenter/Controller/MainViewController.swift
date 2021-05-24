@@ -56,9 +56,9 @@ private extension MainViewController {
         travelSearchBar.rx.tapGesture()
             .when(.ended)
             .subscribe(onNext: { [weak self] _ in
-                let searchVC = SearchViewController()
+                let searchVC = self?.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchViewController
                 searchVC.modalPresentationStyle = .fullScreen
-                self?.present(searchVC, animated: false, completion: nil)
+                self?.present(searchVC, animated: true, completion: nil)
             }).disposed(by: rx.disposeBag)
     }
 }

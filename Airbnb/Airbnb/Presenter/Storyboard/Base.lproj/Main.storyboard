@@ -87,13 +87,53 @@
         <!--Search View Controller-->
         <scene sceneID="VPZ-9Q-lBd">
             <objects>
-                <viewController id="MBo-JN-KJ6" customClass="SearchViewController" customModule="Airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SearchVC" storyboardIdentifier="SearchVC" id="MBo-JN-KJ6" customClass="SearchViewController" customModule="Airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lPj-ys-6Np">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="어디로 여행가세요?" translatesAutoresizingMaskIntoConstraints="NO" id="85J-Yv-Ma9">
+                                <rect key="frame" x="0.0" y="74" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="t1y-yS-1W3">
+                                <rect key="frame" x="0.0" y="135" width="414" height="727"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2dB-0F-HUH">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="RegieonInfoCell" reuseIdentifier="RegieonInfoCell" id="QMC-Tv-jo3" customClass="RegieonInfoCell" customModule="Airbnb" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hij-Iy-T8j">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="5hq-bZ-wHz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="85J-Yv-Ma9" firstAttribute="height" secondItem="lPj-ys-6Np" secondAttribute="height" multiplier="0.0569196" id="3TT-Y2-4qY"/>
+                            <constraint firstItem="85J-Yv-Ma9" firstAttribute="centerX" secondItem="lPj-ys-6Np" secondAttribute="centerX" id="Oqg-AK-6NC"/>
+                            <constraint firstItem="t1y-yS-1W3" firstAttribute="top" secondItem="85J-Yv-Ma9" secondAttribute="bottom" constant="10" id="bG9-RB-H5n"/>
+                            <constraint firstItem="t1y-yS-1W3" firstAttribute="leading" secondItem="5hq-bZ-wHz" secondAttribute="leading" id="cKN-bd-BGt"/>
+                            <constraint firstItem="5hq-bZ-wHz" firstAttribute="trailing" secondItem="t1y-yS-1W3" secondAttribute="trailing" id="iq8-rK-Dvv"/>
+                            <constraint firstItem="85J-Yv-Ma9" firstAttribute="width" secondItem="lPj-ys-6Np" secondAttribute="width" id="jkt-CN-7u3"/>
+                            <constraint firstItem="5hq-bZ-wHz" firstAttribute="bottom" secondItem="t1y-yS-1W3" secondAttribute="bottom" id="w2v-dc-kEw"/>
+                            <constraint firstItem="85J-Yv-Ma9" firstAttribute="top" secondItem="5hq-bZ-wHz" secondAttribute="top" constant="30" id="xMk-4P-QJG"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="regieonCollectionView" destination="t1y-yS-1W3" id="aH1-gL-mqK"/>
+                        <outlet property="travelSearchBar" destination="85J-Yv-Ma9" id="7fC-yQ-HEF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bdF-zb-eC4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
