@@ -5,11 +5,13 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import team01.airbnb.domain.Amenity;
+import team01.airbnb.domain.Reservation;
 import team01.airbnb.domain.accommodation.Accommodation;
 import team01.airbnb.domain.accommodation.AccommodationAddress;
 import team01.airbnb.domain.accommodation.AccommodationCondition;
 import team01.airbnb.domain.accommodation.AccommodationPhoto;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -116,4 +118,26 @@ public class AccommodationRepository {
                 .map(photo -> photo.getName())
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public Optional<Reservation> findReservationByAccommodationId(Long accommodationId) {
+        String query = "SELECT * FROM reservation WHERE accommodation_id = :accommodation_id";
+        SqlParameterSource namedParameters = new MapSqlParameterSource("accommodation_id", accommodationId);
+        List<Reservation> reservations = jdbcTemplate.query(
+                query
+                , namedParameters
+                , (rs, rowNum) -> Reservation.builder()
+                        .id(rs.getLong("id"))
+                        .accommodationId(rs.getLong("accommodation_id"))
+                        .userId(rs.getLong("user_id"))
+                        .checkIn(rs.getDate("check_in").toLocalDate())
+                        .checkOut(rs.getDate("check_out").toLocalDate())
+                        .guests(rs.getInt("guests"))
+                        .charge(rs.getInt("charge"))
+                        .createdTime(
+                                new Timestamp(rs.getDate("created_time").getTime()).toLocalDateTime())
+                        .build()
+        );
+        return Optional.of(reservations.get(0));
+    }
+
 }

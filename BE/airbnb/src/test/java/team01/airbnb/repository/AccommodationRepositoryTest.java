@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import team01.airbnb.domain.accommodation.AccommodationAddress;
+import team01.airbnb.domain.Reservation;
 import team01.airbnb.domain.accommodation.AccommodationCondition;
 
 import java.util.List;
@@ -55,8 +55,8 @@ class AccommodationRepositoryTest {
 
     @Test
     void getCondition() {
-        Optional<AccommodationCondition> accommodationCondition = accommodationRepository.findConditionByAccommodationId(1L);
-        AccommodationCondition condition = accommodationCondition.orElseGet(null);
+        AccommodationCondition condition = accommodationRepository.findConditionByAccommodationId(1L)
+                .orElseGet(null);
         softly.assertThat(condition.getGuests()).isEqualTo(3);
         softly.assertThat(condition.getBedroomCount()).isEqualTo("원룸");
         softly.assertThat(condition.getBedCount()).isEqualTo("1");
@@ -75,4 +75,15 @@ class AccommodationRepositoryTest {
         softly.assertThat(photos).contains("https://codesquad.kr/img/place/img_5225.jpg");
     }
 
+    @Test
+    void getReservation() {
+        Reservation reservation = accommodationRepository.findReservationByAccommodationId(1L)
+                .orElseGet(null);
+        softly.assertThat(reservation.getAccommodationId()).isEqualTo(1L);
+        softly.assertThat(reservation.getUserId()).isEqualTo(4L);
+        softly.assertThat(reservation.getCheckIn()).isEqualTo("2021-05-05");
+        softly.assertThat(reservation.getCheckOut()).isEqualTo("2021-05-07");
+        softly.assertThat(reservation.getGuests()).isEqualTo(2);
+        softly.assertThat(reservation.getCharge()).isEqualTo(100000);
+    }
 }
