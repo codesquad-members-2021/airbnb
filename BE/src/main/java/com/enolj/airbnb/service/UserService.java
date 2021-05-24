@@ -3,7 +3,7 @@ package com.enolj.airbnb.service;
 import com.enolj.airbnb.authorization.GitHubOAuth;
 import com.enolj.airbnb.authorization.OAuth;
 import com.enolj.airbnb.domain.user.User;
-import com.enolj.airbnb.domain.user.UserRepository;
+import com.enolj.airbnb.domain.user.UserDAO;
 import com.enolj.airbnb.exception.EntityNotFoundException;
 import com.enolj.airbnb.exception.ErrorMessage;
 import com.enolj.airbnb.exception.TokenException;
@@ -21,11 +21,11 @@ import static com.enolj.airbnb.web.dto.UserResponseDTO.createUserResponseDTO;
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
+    private final UserDAO userDAO;
     private final OAuth gitHubOAuth;
 
-    public UserService(UserRepository userRepository, GitHubOAuth gitHubOAuth) {
-        this.userRepository = userRepository;
+    public UserService(UserDAO userDAO, GitHubOAuth gitHubOAuth) {
+        this.userDAO = userDAO;
         this.gitHubOAuth = gitHubOAuth;
     }
 
@@ -36,17 +36,19 @@ public class UserService {
         if (verifyUser(userInfoDTO.getLogin())) {
             User user = findByUserId(userInfoDTO.getLogin());
             user.update(userInfoDTO, emailDTO, tokenDTO);
-            return createUserResponseDTO(userRepository.save(user), JwtUtil.createToken(user.getUserId()));
+            userDAO.update(user);
+            return createUserResponseDTO(user, JwtUtil.createToken(user.getUserId()));
         }
         User user = createUser(userInfoDTO, emailDTO, tokenDTO);
-        return createUserResponseDTO(userRepository.save(user), JwtUtil.createToken(user.getUserId()));
+        userDAO.save(user);
+        return createUserResponseDTO(user, JwtUtil.createToken(user.getUserId()));
     }
 
     public void logout(String authorization) {
         String userId = JwtUtil.getUserIdFromToken(getTokenFromAuthorization(authorization));
         User user = findByUserId(userId);
         user.removeToken();
-        userRepository.save(user);
+        userDAO.update(user);
     }
 
     private String getTokenFromAuthorization(String authorization) {
@@ -70,10 +72,10 @@ public class UserService {
     }
 
     private boolean verifyUser(String userId) {
-        return userRepository.findByUserId(userId).isPresent();
+        return userDAO.findByUserId(userId).isPresent();
     }
 
     private User findByUserId(String userId) {
-        return userRepository.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
+        return userDAO.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
     }
 }

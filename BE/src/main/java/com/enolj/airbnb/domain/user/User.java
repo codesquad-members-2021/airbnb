@@ -9,28 +9,28 @@ public class User {
 
     @Id
     private Long id;
-    private String name;
-    private String email;
     private String userId;
+    private String email;
+    private String name;
     private String token;
 
     public User() {}
 
-    public User(String name, String email, String userId, String token) {
-        this.name = name;
-        this.email = email;
+    public User(String userId, String email, String name, String token) {
         this.userId = userId;
+        this.email = email;
+        this.name = name;
         this.token = token;
     }
 
     public static User createUser(UserInfoDTO userInfoDTO, EmailDTO emailDTO, TokenDTO tokenDTO) {
-        return new User(userInfoDTO.getName(), emailDTO.getEmail(), userInfoDTO.getLogin(), tokenDTO.getAccess_token());
+        return new User(userInfoDTO.getLogin(), emailDTO.getEmail(), userInfoDTO.getName(), tokenDTO.getAccess_token());
     }
 
     public void update(UserInfoDTO userInfoDTO, EmailDTO emailDTO, TokenDTO tokenDTO) {
-        this.name = userInfoDTO.getName();
-        this.email = emailDTO.getEmail();
         this.userId = userInfoDTO.getLogin();
+        this.email = emailDTO.getEmail();
+        this.name = userInfoDTO.getName();
         this.token = tokenDTO.getAccess_token();
     }
 
@@ -42,20 +42,40 @@ public class User {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUserId() {
         return userId;
     }
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getToken() {
         return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override
