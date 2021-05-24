@@ -1,6 +1,5 @@
 package com.codesquad.airbnb.dao;
 
-import com.codesquad.airbnb.domain.Image;
 import com.codesquad.airbnb.domain.Property;
 import com.codesquad.airbnb.domain.PropertyDetail;
 import com.codesquad.airbnb.domain.WishList;
@@ -42,19 +41,14 @@ public class PropertyDao {
         // interface method
         @Override
         public PropertyDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Property property = new Property(rs.getLong("id"), rs.getString("name"), rs.getInt("price"));
-            PropertyDetail propertyDetail = new PropertyDetail(rs.getLong("property_id"),
-                    rs.getString("description"), rs.getInt("max_occupancy"),
-                    rs.getInt("cleaning_fee"), rs.getInt("bed_count"), rs.getInt("bath_count"),
-                    rs.getString("room_type"), rs.getInt("review_count"),
-                    rs.getDouble("latitude"), rs.getDouble("longitude"));
-            WishList wishList = new WishList(rs.getBoolean("bookmark"));
-            return PropertyDto.of(property, propertyDetail, wishList,0);
+            return PropertyDto.of(rs.getLong("id"), rs.getString("name"),
+                    rs.getBoolean("bookmark"), rs.getInt("price"),
+                    0, rs.getInt("review_count"), rs.getInt("rating"));
         }
     }
 
     public Property findById(Long id) {
-        String sql = "SELECT * FROM property WHERE id = ?";
+        String sql = "SELECT p.id, p.name, p.price FROM property as p WHERE id = ?";
 
         return jdbcTemplate.queryForObject(sql, new PropertyRowMapper(), id);
     }
@@ -69,12 +63,16 @@ public class PropertyDao {
     public PropertiesResponseDto findBy(Long locationId, LocalDate checkIn, LocalDate checkOut,
                                         int minPrice, int maxPrice, int adult, int children, int infant) {
         int maxOccupancy = adult+children+infant;
-        String sql = "SELECT * FROM property, property_detail, wish_list " +
-                "WHERE property.id = property_detail.property_id and " +
-                "property.id = wish_list.property_id and " +
-                "property.location_id = ? and " +
-                "property_detail.max_occupancy >= ? and " +
-                "property.price >= ? and property.price <= ?";
+        String sql = "select p.id, p.name, wl.bookmark, p.price, pd.review_count, pd.rating " +
+                "from property as p, " +
+                "property_detail as pd, " +
+                "wish_list as wl " +
+                "where p.id = pd.property_id " +
+                "and p.id = wl.property_id " +
+                "and p.location_id = ? " +
+                "and pd.max_occupancy >= ? " +
+                "and p.price >= ? " +
+                "and p.price <= ?";
         // TODO: userid도 함께 확인해서 wishList를 찾는것이 좋을 것 같음...
 
         List<PropertyDto> propertyDto = jdbcTemplate.query(sql, new PropertyDetailRowMapper(),
@@ -84,21 +82,21 @@ public class PropertyDao {
                 new SqlParameterValue(Types.INTEGER, maxPrice));
 
         propertyDto.stream()
-                .forEach(propertyDto1 -> propertyDto1.addImage(findImageByPropertyId(propertyDto1.getPropertyId())));
+                .forEach(propertyDto1 -> propertyDto1.setImages(findImageByPropertyId(propertyDto1.getPropertyId())));
 
         PropertiesResponseDto propertyDtos = new PropertiesResponseDto(propertyDto);
 
         return propertyDtos;
     }
 
-    private List<Image> findImageByPropertyId(Long propertyId) {
+    private List<String> findImageByPropertyId(Long propertyId) {
         String sql = "SELECT * FROM image " +
                 "WHERE image.property_id = ?";
 
-        List<Image> images = jdbcTemplate.query(sql, new RowMapper<Image>() {
+        List<String> images = jdbcTemplate.query(sql, new RowMapper<String>() {
             @Override
-            public Image mapRow(ResultSet rs, int rowNum) throws SQLException {
-                return new Image(rs.getString("image_url"));
+            public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return rs.getString("image_url");
             }
         }, propertyId);
         return images;

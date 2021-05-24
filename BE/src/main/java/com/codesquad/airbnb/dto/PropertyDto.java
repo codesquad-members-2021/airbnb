@@ -31,13 +31,13 @@ public class PropertyDto {
         this.rating = rating;
     }
 
-    public static PropertyDto of(Property property, PropertyDetail propertyDetail, WishList wishList, int totalPrice) {
-        return new PropertyDto(property.getId(), property.getName(), wishList.isBookmark(), property.getPrice(), totalPrice,
-                propertyDetail.getReviewCount(), propertyDetail.getRating());
+    public static PropertyDto of(Long propertyId, String propertyTitle, boolean bookmark, int price, int totalPrice, int reviewCount, double rating) {
+        return new PropertyDto(propertyId, propertyTitle, bookmark, price, totalPrice,
+                reviewCount, rating);
     }
 
-    public void addImage(List<Image> images) {
-        images.stream().forEach(image -> this.images.add(image.getImageUrl()));
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
     public Long getPropertyId() {
