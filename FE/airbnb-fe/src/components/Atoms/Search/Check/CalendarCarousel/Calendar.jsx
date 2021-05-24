@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import SingleCalendar from './SingleCalendar';
+import YearMonth from './YearMonth';
 
 const Calendar = () => {
   const [calRange, setCalRange] = useState([-1, 0, 1, 2]);
@@ -49,7 +50,9 @@ const Calendar = () => {
           onTransitionEnd={() => onSlideEnd()}
         >
           {calRange.map((range) => (
-            <YearMonthLI>{new Date().getMonth() + 1 + range}월</YearMonthLI>
+            <YearMonthLI>
+              <YearMonth range={range} />
+            </YearMonthLI>
           ))}
         </YearMonthUL>
         <RightButton onClick={() => handleRightClick()}>{'>'}</RightButton>
@@ -70,7 +73,7 @@ const Calendardiv = styled.div`
 const CalendarTop = styled.div`
   display: flex;
   border: 1px solid green;
-  overflow: hidden;
+  /* overflow: hidden; */
 `;
 
 const YearMonthUL = styled.ul`
