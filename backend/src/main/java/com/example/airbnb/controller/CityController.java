@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/cities")
 public class CityController {
-
     private final CityService cityService;
 
     public CityController(CityService cityService) {
@@ -23,7 +22,6 @@ public class CityController {
 
     @GetMapping
     @ApiOperation(value = "도시 목록, 메인페이지", notes = "메인페이지의 이미지들과 도시들을 반환합니다.")
-    @ResponseStatus(HttpStatus.OK)
     public MainPageDTO getMainPage() {
         return cityService.getMainPage();
     }

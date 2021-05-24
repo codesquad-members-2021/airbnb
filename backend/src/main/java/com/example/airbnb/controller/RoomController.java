@@ -8,7 +8,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -27,14 +26,12 @@ public class RoomController {
 
     @GetMapping("/{roomId}")
     @ApiOperation(value = "방 상세보기", notes = "방 상세보기 반환합니다.")
-    @ResponseStatus(HttpStatus.OK)
     public RoomDetailDTO getRoomDetail(@ApiParam("방 식별자") @PathVariable Long roomId) {
         return roomService.getRoomDetail(roomId);
     }
 
     @GetMapping("/prices")
     @ApiOperation(value = "예약 가능한 방들 가격보기", notes = "예약 가능한 방들의 가격을 반환합니다.")
-    @ResponseStatus(HttpStatus.OK)
     public PriceDTO getAllPrices(@ApiParam(value = "체크인 날짜", example = "2021-05-20") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkIn,
                                  @ApiParam(value = "체크아웃 날짜", example = "2021-05-25") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkOut,
                                  @ApiParam(value = "도시 이름", example = "인천") @RequestParam String cityName) {
@@ -43,7 +40,6 @@ public class RoomController {
 
     @GetMapping("/search")
     @ApiOperation(value = "예약 가능한 방들 목록보기", notes = "검색 조건에 따른 예약 가능한 방들 모두를 반환합니다.")
-    @ResponseStatus(HttpStatus.OK)
     public List<RoomListDTO> searchRoomByConditions(@ApiParam(value = "체크인 날짜", example = "2021-05-20") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkIn,
                                     @ApiParam(value = "체크아웃 날짜", example = "2021-05-25") @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam LocalDate checkOut,
                                     @ApiParam(value = "도시 이름", example = "인천") @RequestParam String cityName,

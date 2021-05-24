@@ -1,6 +1,11 @@
 package com.example.airbnb.dto;
 
 public class Receipt {
+    private static final double WEEK_SALE_PERCENT = 0.04;
+    private static final double SERVICE_FEE_PERCENT = 0.14;
+    private static final double RESULT_FEE_PERCENT = 0.014;
+    private static final int CLEANING_FEE = 20000;
+
     private int basicPrice;
     private int weekSalePrice;
     private int cleaningFee;
@@ -10,17 +15,11 @@ public class Receipt {
 
     public Receipt(RoomDTO room, int days) {
         this.basicPrice = room.getPricePerDay() * days;
-        Double weekSale = basicPrice * 0.04;
-        Double serviceFee = basicPrice *0.14;
-        Double resultFee = basicPrice * 0.014;
-        this.weekSalePrice = 0;
-        if (days > 6) {
-            this.weekSalePrice = -weekSale.intValue();
-        }
-        this.cleaningFee = 20000;
-        this.serviceFee = serviceFee.intValue();
-        this.resultFee = resultFee.intValue();
-        this.totalPrice = basicPrice - weekSale.intValue() + cleaningFee + serviceFee.intValue() +resultFee.intValue();
+        this.weekSalePrice = calculateWeekSalePrice(WEEK_SALE_PERCENT, days);
+        this.cleaningFee = CLEANING_FEE;
+        this.serviceFee = calculateFee(SERVICE_FEE_PERCENT);
+        this.resultFee = calculateFee(RESULT_FEE_PERCENT);
+        this.totalPrice = calculateTotalPrice();
     }
 
     public int getBasicPrice() {
@@ -45,6 +44,21 @@ public class Receipt {
 
     public int getTotalPrice() {
         return totalPrice;
+    }
+
+    private int calculateFee(double percent) {
+        return (int) (basicPrice * percent);
+    }
+
+    private int calculateWeekSalePrice(double percent, int days) {
+        if (days > 6) {
+            return (int) (basicPrice * percent);
+        }
+        return 0;
+    }
+
+    private int calculateTotalPrice() {
+        return basicPrice - weekSalePrice + cleaningFee + serviceFee + resultFee;
     }
 
 }
