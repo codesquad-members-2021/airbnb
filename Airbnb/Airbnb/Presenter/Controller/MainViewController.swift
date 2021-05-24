@@ -75,6 +75,7 @@ private extension MainViewController {
                 return cell
             case 1:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SecondSectionCell.identifier, for: indexPath) as? SecondSectionCell else { return UICollectionViewCell() }
+                cell.configure(ControllerPage.main)
                 return cell
             case 2:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThirdSectionCell.identifier, for: indexPath) as? ThirdSectionCell else { return UICollectionViewCell() }

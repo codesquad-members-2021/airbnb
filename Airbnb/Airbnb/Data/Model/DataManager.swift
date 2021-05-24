@@ -43,3 +43,8 @@ enum DetailInfoManager {
     static let daejeon = "2시간"
     static let bucheon = "30분"
 }
+
+enum ControllerPage {
+    static let main = 0
+    static let search = 1
+}

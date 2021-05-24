@@ -4,6 +4,7 @@ import RxSwift
 class SecondSectionCell: UICollectionViewCell {
     
     static let identifier = "SecondSectionCell"
+    private var controllerInfo:Int?
     
     private lazy var horizontalCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -29,6 +30,10 @@ class SecondSectionCell: UICollectionViewCell {
         setupMainCellView()
         bind()
     }
+    
+    func configure(_ info:Int) {
+        controllerInfo = info
+    }
 }
 
 private extension SecondSectionCell {
@@ -40,8 +45,8 @@ private extension SecondSectionCell {
     
     private func bind() {
         viewModel.secondViewList()
-            .bind(to: horizontalCollectionView.rx.items(cellIdentifier: RegieonInfoCell.identifier, cellType: RegieonInfoCell.self)) { row, data, cell in
-                cell.configure(data)
+            .bind(to: horizontalCollectionView.rx.items(cellIdentifier: RegieonInfoCell.identifier, cellType: RegieonInfoCell.self)) { [weak self] row, data, cell in
+                cell.configure(data, self!.controllerInfo!)
             }.disposed(by: rx.disposeBag)
     }
 }

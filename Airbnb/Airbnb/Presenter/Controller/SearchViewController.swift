@@ -25,7 +25,7 @@ private extension SearchViewController {
     private func setupDelegate() {
         regieonCollectionView.rx.setDelegate(delegate)
             .disposed(by: rx.disposeBag)
-        delegate.setupItemSize(view.frame.width*0.5, view.frame.height*0.1)
+        delegate.setupItemSize(view.frame.width, view.frame.height*0.1)
     }
     
     private func setupCollectionView() {
@@ -35,7 +35,7 @@ private extension SearchViewController {
     private func bind() {
         viewModel.secondViewList()
             .bind(to: regieonCollectionView.rx.items(cellIdentifier: RegieonInfoCell.identifier, cellType: RegieonInfoCell.self)) { row, data, cell in
-                cell.configure(data)
+                cell.configure(data, ControllerPage.search)
             }.disposed(by: rx.disposeBag)
     }
 }
