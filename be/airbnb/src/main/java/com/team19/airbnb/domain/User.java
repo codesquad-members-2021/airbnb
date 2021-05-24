@@ -2,6 +2,7 @@ package com.team19.airbnb.entity;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -22,9 +23,12 @@ public class User {
         this.wishlists = wishlists;
     }
 
-    public static User create(String github,
-                              List<Booking> bookings, List<Wishlist> wishlists) {
+    public static User create(String github) {
         return new User(null, github,
-                        bookings, wishlists);
+                        new ArrayList<>(), new ArrayList<>());
+    }
+
+    public void book(Booking booking) {
+        bookings.add(booking);
     }
 }

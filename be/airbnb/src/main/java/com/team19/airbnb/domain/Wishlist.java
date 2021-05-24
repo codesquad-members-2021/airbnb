@@ -7,14 +7,14 @@ public class Wishlist {
     @Id
     private Long id;
 
-    private Long user;
+    private Long room;
 
-    Wishlist(Long id, Long user) {
+    Wishlist(Long id, Long room) {
         this.id = id;
-        this.user = user;
+        this.room = room;
     }
 
-    public static Wishlist create(Long user) {
-        return new Wishlist(null, user);
+    public static Wishlist create(Long room) {
+        return new Wishlist(null, room);
     }
 }

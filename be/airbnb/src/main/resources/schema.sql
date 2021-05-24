@@ -20,21 +20,19 @@ USE `airbnb` ;
 DROP TABLE IF EXISTS `airbnb`.`room` ;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`room` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
-  `grade` DOUBLE NOT NULL,
-  `reviewer` INT NOT NULL,
-  `address` VARCHAR(45) NOT NULL,
-  `location` VARCHAR(45) NOT NULL,
-  `latitude` DOUBLE NOT NULL,
-  `longitude` DOUBLE NOT NULL,
-  `price_per_day` DECIMAL NOT NULL,
-  `total_price` DECIMAL NULL,
-  `room_type` VARCHAR(45) NOT NULL,
-  `room_configuration` VARCHAR(45) NOT NULL,
-  `description` TEXT NOT NULL,
-  `host_name` VARCHAR(45) NOT NULL,
-  `host_image` VARCHAR(45) NOT NULL,
+   `id` INT AUTO_INCREMENT,
+   `name` VARCHAR(45) NOT NULL,
+   `grade` DOUBLE NOT NULL,
+   `reviewer` INT NOT NULL,
+   `address` VARCHAR(45) NOT NULL,
+   `latitude` DOUBLE NOT NULL,
+   `longitude` DOUBLE NOT NULL,
+   `price_per_day` DECIMAL NOT NULL,
+   `room_type` VARCHAR(45) NOT NULL,
+   `room_configuration` VARCHAR(45) NOT NULL,
+   `description` VARCHAR(21843) NOT NULL,
+   `host_name` VARCHAR(45) NOT NULL,
+   `host_image` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -45,8 +43,8 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `airbnb`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`user` (
-  `id` INT NOT NULL,
-  `github` VARCHAR(45) NOT NULL,
+  `id` INT AUTO_INCREMENT,
+  `github` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -57,7 +55,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `airbnb`.`booking` ;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`booking` (
-  `id` INT NOT NULL,
+  `id` INT AUTO_INCREMENT,
   `check_in` DATE NOT NULL,
   `check_out` DATE NOT NULL,
   `user` INT NOT NULL,
@@ -85,12 +83,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `airbnb`.`wishlist` ;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`wishlist` (
-  `id` INT NOT NULL,
+  `id` INT AUTO_INCREMENT,
   `user` INT NOT NULL,
   `user_key` INT NOT NULL,
   `room` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_wishlist_user1_idx` (`user` ASC) ,
+  INDEX `fk_wishlist_user1_idx` (`user` ASC),
   INDEX `fk_wishlist_room1_idx` (`room` ASC),
   CONSTRAINT `fk_wishlist_user1`
     FOREIGN KEY (`user`)
@@ -111,9 +109,9 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `airbnb`.`hero_banner` ;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`hero_banner` (
-  `id` INT NOT NULL,
+  `id` INT AUTO_INCREMENT,
   `title` VARCHAR(45) NOT NULL,
-  `image` VARCHAR(45) NOT NULL,
+  `image` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -124,10 +122,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `airbnb`.`near_destination` ;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`near_destination` (
-  `id` INT NOT NULL,
+  `id` INT AUTO_INCREMENT,
   `destination` VARCHAR(45) NOT NULL,
-  `time_destance` DOUBLE NOT NULL,
-  `image` VARCHAR(45) NOT NULL,
+  `time_distance` DOUBLE NOT NULL,
+  `image` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -138,11 +136,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `airbnb`.`image` ;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`image` (
-  `url` VARCHAR(45) NOT NULL,
-  `room_id` INT NOT NULL,
-  PRIMARY KEY (`room_id`),
+  `url` VARCHAR(255) NOT NULL,
+  `room` INT NOT NULL,
+  `room_key` INT NOT NULL,
+  PRIMARY KEY (`room`),
   CONSTRAINT `fk_image_room`
-    FOREIGN KEY (`room_id`)
+    FOREIGN KEY (`room`)
     REFERENCES `airbnb`.`room` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

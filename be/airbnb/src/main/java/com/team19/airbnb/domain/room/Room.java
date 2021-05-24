@@ -11,7 +11,7 @@ public class Room {
     @Id
     private Long id;
 
-    private String Name;
+    private String name;
     private List<Image> images;
 
     private Double grade;
@@ -38,7 +38,7 @@ public class Room {
                 String roomType, String roomConfiguration, String description,
                 Host host) {
         this.id = id;
-        Name = name;
+        this.name = name;
         this.images = images;
         this.grade = grade;
         this.reviewer = reviewer;
@@ -51,7 +51,7 @@ public class Room {
         this.host = host;
     }
 
-    public Room create(String name, List<Image> images,
+    public static Room create(String name, List<Image> images,
                        Double grade, Integer reviewer,
                        Location location,
                        BigDecimal pricePerDay, BigDecimal totalPrice,

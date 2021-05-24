@@ -12,7 +12,7 @@ public class Location {
         this.longitude = longitude;
     }
 
-    public Location create(String address, Double latitude, Double longitude) {
+    public static Location create(String address, Double latitude, Double longitude) {
         return new Location(address, latitude, longitude);
     }
 }
