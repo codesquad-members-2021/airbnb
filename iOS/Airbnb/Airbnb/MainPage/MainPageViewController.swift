@@ -40,7 +40,7 @@ class MainPageViewController: UIViewController {
         viewModel.$mainPage.receive(on: DispatchQueue.main)
             .sink { mainPage in
                 guard let mainPage = mainPage else { return }
-                self.hiroImageView.image = self.convert(imageUrlString: mainPage.hiroImage)
+                self.hiroImageView.image = self.convert(imageUrlString: mainPage.heroImage)
             }
             .store(in: &cancelBag)
         

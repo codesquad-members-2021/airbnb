@@ -12,7 +12,7 @@ struct Main: Codable {
 }
 
 struct MainPage: Codable, Hashable {
-    let hiroImage: String
+    let heroImage: String
     let cities: [City]
     let categories: [Category]
 }
