@@ -37,6 +37,7 @@ create table if not exists property_detail
     review_count  int,
     latitude      double,
     longitude     double,
+    rating double,
     foreign key (property_id) references property (id)
 );
 

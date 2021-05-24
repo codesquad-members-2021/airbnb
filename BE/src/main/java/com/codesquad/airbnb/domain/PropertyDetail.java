@@ -10,15 +10,28 @@ public class PropertyDetail {
     private Long property_id;
 
     private String description;
-    private String maxOccupancy;
+    private int maxOccupancy;
     private int cleaningFee;
-    private LocalDate occupiedDate;
     private int bedCount;
     private int bathCount;
     private String roomType;
     private int reviewCount;
     private double latitude;
     private double longitude;
+    private double rating;
+
+    public PropertyDetail(Long property_id, String description, int maxOccupancy, int cleaningFee, int bedCount, int bathCount, String roomType, int reviewCount, double latitude, double longitude) {
+        this.property_id = property_id;
+        this.description = description;
+        this.maxOccupancy = maxOccupancy;
+        this.cleaningFee = cleaningFee;
+        this.bedCount = bedCount;
+        this.bathCount = bathCount;
+        this.roomType = roomType;
+        this.reviewCount = reviewCount;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
     public Long getProperty_id() {
         return property_id;
@@ -28,16 +41,12 @@ public class PropertyDetail {
         return description;
     }
 
-    public String getMaxOccupancy() {
+    public int getMaxOccupancy() {
         return maxOccupancy;
     }
 
     public int getCleaningFee() {
         return cleaningFee;
-    }
-
-    public LocalDate getOccupiedDate() {
-        return occupiedDate;
     }
 
     public int getBedCount() {
@@ -62,5 +71,25 @@ public class PropertyDetail {
 
     public double getLongitude() {
         return longitude;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    @Override
+    public String toString() {
+        return "PropertyDetail{" +
+                "property_id=" + property_id +
+                ", description='" + description + '\'' +
+                ", maxOccupancy=" + maxOccupancy +
+                ", cleaningFee=" + cleaningFee +
+                ", bedCount=" + bedCount +
+                ", bathCount=" + bathCount +
+                ", roomType='" + roomType + '\'' +
+                ", reviewCount=" + reviewCount +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
     }
 }
