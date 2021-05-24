@@ -90,7 +90,10 @@ extension LocationViewController: UICollectionViewDataSource {
 extension LocationViewController: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
-        print("Place name: \(place.name)")
+        let dateViewController = storyboard?.instantiateViewController(identifier: "DateViewController") as! DateViewController
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+            self.navigationController?.pushViewController(dateViewController, animated: true)
+        }
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error) {
