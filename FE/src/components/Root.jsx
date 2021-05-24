@@ -1,24 +1,36 @@
-import GlobalStyle from "./GlobalStyle";
 import styled from "styled-components";
+import { MainContext } from "../config/MainContextProvider";
 import Header from "./Header/Header";
-import Footer from "./Footer/Footer"
-import SearchBar from "./SearchBar/SearchBar"
+import Footer from "./Footer/Footer";
+import Main from "./Main/Main";
+import Result from "./Result/Result";
+import { useContext } from "react";
 
-const Main = () => (
-	<>
-		<GlobalStyle />
-		<MainWrapper>
-			<HeroImg />
+const Root = () => {
+	const { isResult } = useContext(MainContext);
+	return (
+		<>
 			<Header />
-			<SearchBar />
-      <Footer />
-		</MainWrapper>
-	</>
-);
+			{isResult ? (
+				<ResultWrapper>
+					<Result />
+				</ResultWrapper>
+			) : (
+				<MainWrapper>
+					<HeroImg />
+					<Main />
+				</MainWrapper>
+			)}
+			<Footer />
+		</>
+	);
+};
 
 const MainWrapper = styled.div`
-	position: relative;
+	position: absolute;
+	top: 0px;
 `;
+const ResultWrapper = styled.div``;
 
 const HeroImg = styled.div`
 	position: absolute;
@@ -31,4 +43,4 @@ const HeroImg = styled.div`
 	background-size: cover;
 `;
 
-export default Main;
+export default Root;

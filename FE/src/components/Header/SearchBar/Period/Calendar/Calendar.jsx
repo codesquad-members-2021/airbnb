@@ -24,7 +24,7 @@ const fixMonth = (year, month) => {
 	return month < 0 ? fixMonth(year - 1, month + 12) : fixMonth(year + 1, month - 12);
 };
 
-const Calendar = ({ modifier, period }) => {
+const Calendar = ({ modifier }) => {
 	const now = new Date(Date.now());
 	const [year, month] = fixMonth(now.getFullYear(), now.getMonth() + modifier);
 	const monthArray = makeMonthArray(year, month);
@@ -47,7 +47,7 @@ const Calendar = ({ modifier, period }) => {
 					{monthArray.map((el) => (
 						<tr key={el}>
 							{el.map((v) => (
-								<Day date={new Date(year, month, v)} period={period} key={v}>
+								<Day date={new Date(year, month, v)} key={v}>
 									{v > 0 && v}
 								</Day>
 							))}

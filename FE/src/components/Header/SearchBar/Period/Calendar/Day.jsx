@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { SearchBarContext } from "../../../../../config/SearchBarContextProvider";
 
 const packDate = (date) => {
 	const year = date.getFullYear();
@@ -23,8 +25,8 @@ const checkDateType = (date, start, end, children) =>
 		? "CHECKED"
 		: "NORMAL";
 
-const Day = ({ date, period, children }) => {
-	const { start, setStart, end, setEnd } = period;
+const Day = ({ date, children }) => {
+	const { start, setStart, end, setEnd } = useContext(SearchBarContext);
 
 	const type = checkDateType(date, start, end, children);
 

@@ -1,26 +1,31 @@
+import { useContext } from "react";
 import styled from "styled-components";
-import Slider from "./Slider"
+import { SearchBarContext } from "../../../../config/SearchBarContextProvider";
+import Slider from "./Slider";
 
-const PriceModal = ({ min, setMin, max, setMax, data, range }) => (
+const PriceModal = ({ data, range }) => (
 	<PriceModalWrapper>
 		<Title>가격 범위</Title>
 		<Range>{range}</Range>
 		<Body>{`평균 1박 요금은 ₩${data.average} 입니다.`}</Body>
-		<Graph min={min} setMin={setMin} max={max} setMax={setMax} data={data} />
+		<Graph data={data} />
 	</PriceModalWrapper>
 );
 
-const Graph = ({ min, max, setMin, setMax, data }) => (
-	<GraphWrapper>
-		<GraphContent>
-			{Object.keys(data.counts).map((el) => (
-				<GraphBar price={el} count={data.counts[el]} key={el} min={min} max={max} {...data} />
-			))}
-		</GraphContent>
-		<Slider value={min} setValue={setMin} />
-		<Slider value={max} setValue={setMax} />
-	</GraphWrapper>
-);
+const Graph = ({ data }) => {
+	const { min, setMin, max, setMax } = useContext(SearchBarContext);
+	return (
+		<GraphWrapper>
+			<GraphContent>
+				{Object.keys(data.counts).map((el) => (
+					<GraphBar price={el} count={data.counts[el]} key={el} min={min} max={max} {...data} />
+				))}
+			</GraphContent>
+			<Slider value={min} setValue={setMin} />
+			<Slider value={max} setValue={setMax} />
+		</GraphWrapper>
+	);
+};
 
 const PriceModalWrapper = styled.div`
 	position: absolute;
