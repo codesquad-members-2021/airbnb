@@ -7,27 +7,27 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import team01.airbnb.domain.Reservation;
 import team01.airbnb.domain.accommodation.AccommodationCondition;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @JdbcTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class AccommodationRepositoryTest {
 
     @Autowired
-    private NamedParameterJdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     private AccommodationRepository accommodationRepository;
     private SoftAssertions softly;
 
     @BeforeEach
     void setUp() {
-        accommodationRepository = new AccommodationRepository(jdbcTemplate);
+        accommodationRepository = new AccommodationRepository(namedParameterJdbcTemplate ,jdbcTemplate);
         softly = new SoftAssertions();
     }
 

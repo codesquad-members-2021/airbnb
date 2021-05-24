@@ -28,7 +28,7 @@ public class UserService {
     @Transactional
     public User findByUser(User targetUser) {
         String username = targetUser.getUsername(); // todo : 더 강화된 정책 필요
-        String query = "SELECT * FROM user WHERE username = ?";
+        String query = "SELECT * FROM `user` WHERE username = ?";
         try {
             return jdbcTemplate.queryForObject(
                     query, new Object[]{username}, (rs, rowNum) -> {

@@ -1,13 +1,12 @@
 package team01.airbnb.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import team01.airbnb.domain.accommodation.Accommodation;
 import team01.airbnb.dto.ApiResult;
+import team01.airbnb.dto.request.AccommodationSaveRequestDto;
 import team01.airbnb.service.AccommodationService;
-
-import java.util.List;
 
 @RequestMapping("/accommodations")
 @RestController
@@ -29,5 +28,11 @@ public class AccommodationController {
     public ApiResult accommodationsBySearch() {
         return ApiResult.succeed(accommodationService.findAccommodationsBySearch());
 
+    }
+
+    @PostMapping("/save")
+    public void save(AccommodationSaveRequestDto accommodationSaveRequestDto) {
+        System.out.println(accommodationSaveRequestDto.toString());
+        accommodationService.save(accommodationSaveRequestDto);
     }
 }
