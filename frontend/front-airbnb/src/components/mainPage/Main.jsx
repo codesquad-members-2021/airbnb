@@ -6,25 +6,18 @@ const changeModal = (toggleState, action) => {
     const newToggleState = {...toggleState}
     switch(action.category) {
         case 'period':
-            newToggleState.personnel = false;
-            newToggleState.price = false;
-            newToggleState.period = !toggleState.period;
+            setModal(newToggleState, action.category)
             return newToggleState;
         case 'price':
-            newToggleState.period = false;
-            newToggleState.personnel = false;
-            newToggleState.price = !toggleState.price;
+            setModal(newToggleState, action.category)
             return newToggleState;
         case 'personnel':
-            newToggleState.period = false;
-            newToggleState.price = false;
-            newToggleState.personnel = !toggleState.personnel;
+            setModal(newToggleState, action.category)
             return newToggleState;
         case 'main':
-            newToggleState.personnel = false;
-            newToggleState.period = false;
-            newToggleState.price = false;
-            newToggleState.search = false;
+            // 조건문 
+            if(isCloseModal(newToggleState)) return toggleState;
+            setModal(newToggleState, action.category)
             return newToggleState;
         case 'search':
             newToggleState.search = true;
@@ -32,6 +25,22 @@ const changeModal = (toggleState, action) => {
         default:
             throw new Error();
     }
+}
+const setModal = (toggleState, category)=> {
+    for(let a in toggleState) {
+        if(a === category) {
+            toggleState[a] = !toggleState[a];
+        }
+        else if (a === 'search' && category !== 'main'){
+            continue;
+        }
+        else {
+            toggleState[a] = false;
+        }
+    }
+}
+const isCloseModal = (newToggleState) => {
+    return (!(newToggleState.period || newToggleState.price || newToggleState.personnel || newToggleState.search))
 }
 const searchToggle = { period:false, price:false, personnel:false, search:false};
 export const PostsContext = React.createContext();
