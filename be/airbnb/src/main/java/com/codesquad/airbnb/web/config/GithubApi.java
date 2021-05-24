@@ -8,15 +8,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@PropertySource(value = "classpath:secret.properties")
-@ConfigurationProperties(prefix = "secret")
+@PropertySource(value = "classpath:api.properties")
+@ConfigurationProperties(prefix = "api")
 @Getter
 @Setter
 @ToString
-public class ServerSecret {
-    private String clientIdKey;
-    private String clientIdValue;
-    private String clientSecretKey;
-    private String clientSecretValue;
-
+public class GithubApi {
+    private String loginUrl;
+    private String accessTokenUrl;
+    private String scopeKey;
+    private String scopeValue;
 }

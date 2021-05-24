@@ -9,15 +9,17 @@ import org.springframework.stereotype.Component;
 public class AirbnbInitializer implements CommandLineRunner {
 
     private final ServerSecret serverSecret;
+    private final GithubApi githubApi;
 
-    public AirbnbInitializer(ServerSecret serverSecret) {
+    public AirbnbInitializer(ServerSecret serverSecret, GithubApi githubApi) {
         this.serverSecret = serverSecret;
+        this.githubApi = githubApi;
     }
 
     @Override
     public void run(String... args) throws Exception {
         log.info("Start Airbnb initializer");
-        log.info("clientId : {}", serverSecret.getId());
-        log.info("clientSecret : {}", serverSecret.getSecret());
+        log.info("serverSecret : {}", serverSecret);
+        log.info("githubApi : {}", githubApi);
     }
 }

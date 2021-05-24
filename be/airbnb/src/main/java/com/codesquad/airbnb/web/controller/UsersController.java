@@ -1,6 +1,7 @@
 package com.codesquad.airbnb.web.controller;
 
 import com.codesquad.airbnb.web.service.ApiRequester;
+import com.codesquad.airbnb.web.service.ApiUrlGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,15 +16,17 @@ import java.io.IOException;
 @RestController
 public class UsersController {
 
+    private final ApiUrlGenerator apiUrlGenerator;
     private final ApiRequester apiRequester;
 
-    public UsersController(ApiRequester apiRequester) {
+    public UsersController(ApiUrlGenerator apiUrlGenerator, ApiRequester apiRequester) {
+        this.apiUrlGenerator = apiUrlGenerator;
         this.apiRequester = apiRequester;
     }
 
     @GetMapping("/login")
     public void login(HttpServletResponse response) throws IOException {
-        response.sendRedirect("https://github.com/login/oauth/authorize?client_id=Iv1.da513e37628ae941&scope=user");
+        response.sendRedirect(apiUrlGenerator.githubLoginUrl());
     }
 
     @GetMapping("/callback")
