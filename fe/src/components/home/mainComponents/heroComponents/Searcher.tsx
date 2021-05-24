@@ -5,6 +5,7 @@ import { mockupLocationData } from '../../../../data/location';
 import { LocationList, Location, SearcherContext } from '../../../../shared/interface';
 import { useReservationState, useReservationDispatch } from '../../../../hooks/ReservationHook';
 import LocationTab from './searcherComponents/LocationTab';
+import CheckInTab from './searcherComponents/CheckInTab';
 import { SearcherStateContext, SearcherDispatchContext } from '../../../../Contexts';
 import { searchReducer } from '../../../../shared/searchBarReducer';
 import Calendar from './searcherComponents/Calendar';
@@ -13,12 +14,13 @@ const isNotLocationSelected = (location: Location): boolean => {
     return location.id === 0 && location.city === '';
 };
 
-const initialSearcherState = {
+const initialSearcherState: SearcherContext = {
     locationList: [],
     inputOfLocation: '',
     locationLayer: false,
-    calendarLayer: false,
-} as SearcherContext;
+    checkInCalendarLayer: false,
+    checkOutCalendarLayer: false,
+};
 
 const Searcher = (): React.ReactElement => {
     const reservationState = useReservationState();
@@ -26,11 +28,11 @@ const Searcher = (): React.ReactElement => {
     const { location, checkIn, checkOut, fee, people } = reservationState;
 
     const [searcherState, searcherDispatch] = useReducer(searchReducer, initialSearcherState);
-    const { calendarLayer } = searcherState;
-    const handleCalendarLayer: React.MouseEventHandler<HTMLDivElement> = () => {
-        searcherDispatch({ type: 'LOCATION_LAYER', state: false });
-        searcherDispatch({ type: 'CALENDAR_LAYER', state: true });
-    };
+    // const { calendarLayer } = searcherState;
+    // const handleCalendarLayer: React.MouseEventHandler<HTMLDivElement> = () => {
+    //     searcherDispatch({ type: 'LOCATION_LAYER', state: false });
+    //     searcherDispatch({ type: 'CALENDAR_LAYER', state: true });
+    // };
 
     return (
         <Search>
@@ -38,9 +40,10 @@ const Searcher = (): React.ReactElement => {
                 <SearcherDispatchContext.Provider value={searcherDispatch}>
                     <BarSection>
                         <LocationTab />
-                        <CheckInTab onClick={handleCalendarLayer}>
+                        <CheckInTab />
+                        {/* <CheckInTab onClick={handleCalendarLayer}>
                             <NavigatingText>체크인</NavigatingText>
-                        </CheckInTab>
+                        </CheckInTab> */}
                         <CheckOutTab>
                             <NavigatingText>체크아웃</NavigatingText>
                         </CheckOutTab>
@@ -64,7 +67,7 @@ const Searcher = (): React.ReactElement => {
                         ))}
                     </LocationLayer>
                 )}  */}
-            {calendarLayer && <Calendar />}
+            {/* {calendarLayer && <Calendar />} */}
             {/* </LayerSection>  */}
         </Search>
     );
@@ -93,9 +96,9 @@ const LocationInput = styled.input`
     margin: 0;
 `;
 
-const CheckInTab = styled.div`
-    flex: 1;
-`;
+// const CheckInTab = styled.div`
+//     flex: 1;
+// `;
 
 const CheckOutTab = styled.div`
     flex: 1;

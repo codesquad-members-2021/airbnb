@@ -35,7 +35,8 @@ export type SearchAction =
     | { type: 'LOCATION_LIST'; list: Location[] | null }
     | { type: 'LOCATION_LAYER'; state: boolean }
     | { type: 'INPUTOFLOCATION'; value: string }
-    | { type: 'CALENDAR_LAYER'; state: boolean };
+    | { type: 'CHECKIN_CALENDAR_LAYER'; state: boolean }
+    | { type: 'CHECKOUT_CALENDAR_LAYER'; state: boolean };
 
 export type ReservationDispatch = Dispatch<ResercationAction>;
 
@@ -47,7 +48,8 @@ export interface SearcherContext {
     locationList: Location[] | null;
     inputOfLocation: string | null;
     locationLayer: boolean;
-    calendarLayer: boolean;
+    checkInCalendarLayer: boolean;
+    checkOutCalendarLayer: boolean;
 }
 
 export type Td = {

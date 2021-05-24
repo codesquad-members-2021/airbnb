@@ -5,15 +5,21 @@ import { LocationList, Location } from '../../../../../shared/interface';
 import { mockupLocationData } from '../../../../../data/location';
 import { useReservationDispatch } from '../../../../../hooks/ReservationHook';
 import Layer from './Layer.style';
+import { Container, Tab } from './shared.style';
 
 const LocationTab = (): React.ReactElement => {
-    const searcherDispatch = useSearcherDispatch();
     const reservationDispatch = useReservationDispatch();
+
     const searcherState = useSearcherState();
+    const searcherDispatch = useSearcherDispatch();
+
     const inputRef = useRef<HTMLInputElement>(null);
+
     const { locationLayer, locationList } = searcherState;
 
     const handleInputLayer: React.MouseEventHandler<HTMLDivElement> = () => {
+        searcherDispatch({ type: 'CHECKIN_CALENDAR_LAYER', state: false });
+        searcherDispatch({ type: 'CHECKOUT_CALENDAR_LAYER', state: false });
         if (inputRef?.current) {
             inputRef.current.disabled = false;
             inputRef.current.focus();
@@ -42,6 +48,7 @@ const LocationTab = (): React.ReactElement => {
             inputRef.current.blur();
         }
         searcherDispatch({ type: 'LOCATION_LAYER', state: false });
+        searcherDispatch({ type: 'CHECKIN_CALENDAR_LAYER', state: true });
     };
 
     return (
@@ -58,7 +65,9 @@ const LocationTab = (): React.ReactElement => {
             {locationLayer && (
                 <Layer width={493}>
                     {locationList?.map((place: Location) => (
-                        <li onClick={() => setUpLocation(place)}>{place.city}</li>
+                        <li key={place.id} onClick={() => setUpLocation(place)}>
+                            {place.city}
+                        </li>
                     ))}
                 </Layer>
             )}
@@ -67,12 +76,6 @@ const LocationTab = (): React.ReactElement => {
 };
 
 export default LocationTab;
-
-const Container = styled.div`
-    display: flex;
-`;
-
-const Tab = styled.div``;
 
 const NavigatingText = styled.p`
     margin: 0;
