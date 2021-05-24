@@ -34,7 +34,7 @@ class MainSearchViewController: UIViewController {
     
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
-    private var dataSource: UICollectionViewDiffableDataSource<Section, DiffableUsableModel>! = nil
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Destination>! = nil
     private var viewModel: MainSearchViewModel!
     
     override func viewDidLoad() {
@@ -79,7 +79,7 @@ extension MainSearchViewController: UICollectionViewDelegate {
 
 extension MainSearchViewController {
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, DiffableUsableModel>(collectionView: mainCollectionView) { (collectionView: UICollectionView, indexPath: IndexPath, item: DiffableUsableModel) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, Destination>(collectionView: mainCollectionView) { (collectionView: UICollectionView, indexPath: IndexPath, item: Destination) -> UICollectionViewCell? in
             let sectionKind = Section.allCases[indexPath.section]
             
             switch sectionKind {
@@ -88,11 +88,11 @@ extension MainSearchViewController {
                 return cell
             case .adjacentDestinations:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdjacentDestinationsCell.reuseIdentifier, for: indexPath) as? AdjacentDestinationsCell
-                cell?.configure(with: item as? AdjacentDestination)
+                cell?.configure(with: item)
                 return cell
             case .themeDestinations:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeDestinationsCell.reuseIdentifier, for: indexPath) as? ThemeDestinationsCell
-                cell?.configure(with: item as? ThemeDestination)
+                cell?.configure(with: item)
                 return cell
             }
         }
@@ -105,7 +105,7 @@ extension MainSearchViewController {
     }
 
     private func applySnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, DiffableUsableModel>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Destination>()
         snapshot.appendSections(Section.allCases)
         Section.allCases.forEach { section in
             snapshot.appendItems(viewModel.forApplyItems(sectionIndex: section.rawValue), toSection: section)
@@ -173,7 +173,7 @@ extension MainSearchViewController {
         let itemSieze = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSieze)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.6))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.61))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
         group.contentInsets = NSDirectionalEdgeInsets(top: 24, leading: 16, bottom: 0, trailing: 0)
         

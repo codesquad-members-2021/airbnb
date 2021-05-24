@@ -20,7 +20,7 @@ class SearchResultCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func configure(with model: SearchedDestination?) {
+    func configure(with model: Destination?) {
         guard let model = model else { return }
         searchResultLabel.text = model.destinationName
     }

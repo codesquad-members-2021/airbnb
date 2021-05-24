@@ -12,7 +12,7 @@ struct MainSearchViewModelAction {
 }
 
 class MainSearchViewModel {
-    private var models: [[DiffableUsableModel]]
+    private var models: [[Destination]]
     private var actions: MainSearchViewModelAction
     
     init(actions: MainSearchViewModelAction) {
@@ -20,7 +20,7 @@ class MainSearchViewModel {
         self.models = [[],MockAdjacentDestination.mockDatas, MockThemeDestination.mockDatas]
     }
     
-    func forApplyItems(sectionIndex: Int) -> [DiffableUsableModel]{
+    func forApplyItems(sectionIndex: Int) -> [Destination]{
         return models[sectionIndex]
     }
     

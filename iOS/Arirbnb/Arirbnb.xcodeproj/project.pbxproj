@@ -32,12 +32,9 @@
 		FF5767E52653B4C800F46A43 /* DetailSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767E42653B4C800F46A43 /* DetailSearchViewModel.swift */; };
 		FF665D1D26574E4200130ABB /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D1B26574E4200130ABB /* SearchResultCell.swift */; };
 		FF665D1E26574E4200130ABB /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF665D1C26574E4200130ABB /* SearchResultCell.xib */; };
-		FF665D26265753D200130ABB /* SearchedDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D25265753D200130ABB /* SearchedDestination.swift */; };
-		FF665D28265755D600130ABB /* AdjacentDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D27265755D600130ABB /* AdjacentDestination.swift */; };
 		FF665D2E2657841000130ABB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FF665D2D2657841000130ABB /* Kingfisher */; };
 		FF665D302657845700130ABB /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D2F2657845700130ABB /* UIImageView+Extension.swift */; };
-		FF665D342657850700130ABB /* ThemeDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D332657850700130ABB /* ThemeDestination.swift */; };
-		FF665D38265787E000130ABB /* DiffableUsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D37265787E000130ABB /* DiffableUsable.swift */; };
+		FF665D3C265B78B200130ABB /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D3B265B78B200130ABB /* Destination.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,11 +86,8 @@
 		FF5767E42653B4C800F46A43 /* DetailSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchViewModel.swift; sourceTree = "<group>"; };
 		FF665D1B26574E4200130ABB /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		FF665D1C26574E4200130ABB /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
-		FF665D25265753D200130ABB /* SearchedDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedDestination.swift; sourceTree = "<group>"; };
-		FF665D27265755D600130ABB /* AdjacentDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjacentDestination.swift; sourceTree = "<group>"; };
 		FF665D2F2657845700130ABB /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
-		FF665D332657850700130ABB /* ThemeDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDestination.swift; sourceTree = "<group>"; };
-		FF665D37265787E000130ABB /* DiffableUsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableUsable.swift; sourceTree = "<group>"; };
+		FF665D3B265B78B200130ABB /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Destination.swift; path = ../../../../../../Destination.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,10 +334,7 @@
 		FF665D202657538000130ABB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FF665D25265753D200130ABB /* SearchedDestination.swift */,
-				FF665D27265755D600130ABB /* AdjacentDestination.swift */,
-				FF665D332657850700130ABB /* ThemeDestination.swift */,
-				FF665D37265787E000130ABB /* DiffableUsable.swift */,
+				FF665D3B265B78B200130ABB /* Destination.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -490,19 +481,16 @@
 				FF5767CC2653A28D00F46A43 /* MyReserVationViewController.swift in Sources */,
 				FF5767DC2653AC3000F46A43 /* FlowTabBarController.swift in Sources */,
 				FF5767E32653B48700F46A43 /* DetailSearchViewController.swift in Sources */,
-				FF665D26265753D200130ABB /* SearchedDestination.swift in Sources */,
-				FF665D342657850700130ABB /* ThemeDestination.swift in Sources */,
 				FF5767D22653A60800F46A43 /* AirbnbSceneFlowCoordinator.swift in Sources */,
 				FF5767D82653A9EB00F46A43 /* WishListViewModel.swift in Sources */,
 				FF5767CF2653A2AE00F46A43 /* WishListViewController.swift in Sources */,
 				FF665D1D26574E4200130ABB /* SearchResultCell.swift in Sources */,
 				FF665D302657845700130ABB /* UIImageView+Extension.swift in Sources */,
 				FF5767B42653311E00F46A43 /* ThemeDestinationsCell.swift in Sources */,
-				FF665D28265755D600130ABB /* AdjacentDestination.swift in Sources */,
+				FF665D3C265B78B200130ABB /* Destination.swift in Sources */,
 				FF5767A22652935F00F46A43 /* AdjacentDestinationsCell.swift in Sources */,
 				FF5767672652490C00F46A43 /* MainSearchViewController.swift in Sources */,
 				FF5767632652490C00F46A43 /* AppDelegate.swift in Sources */,
-				FF665D38265787E000130ABB /* DiffableUsable.swift in Sources */,
 				FF5767D52653A99400F46A43 /* MyReserVationViewModel.swift in Sources */,
 				FF5767E52653B4C800F46A43 /* DetailSearchViewModel.swift in Sources */,
 				FF5767652652490C00F46A43 /* SceneDelegate.swift in Sources */,

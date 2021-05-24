@@ -9,15 +9,15 @@ import Foundation
 import Combine
 
 class DetailSearchViewModel {
-    private var models: [[DiffableUsableModel]]
-    private var allDestinations: [SearchedDestination]
+    private var models: [[Destination]]
+    private var allDestinations: [Destination]
     
     init() {
         self.models = [MockAdjacentDestination.mockDatas,[]]
         self.allDestinations = MockSearchedDestinaion.mockDatas
     }
     
-    func forApplyItems(sectionIndex: Int) -> [DiffableUsableModel] {
+    func forApplyItems(sectionIndex: Int) -> [Destination] {
         return models[sectionIndex]
     }
     

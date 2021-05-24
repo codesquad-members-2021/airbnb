@@ -32,7 +32,7 @@ class DetailSearchViewController: UIViewController, UISearchResultsUpdating {
 
     @IBOutlet weak var destinationsCollectionView: UICollectionView!
     
-    private var dataSource: UICollectionViewDiffableDataSource<Section, DiffableUsableModel>! = nil
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Destination>! = nil
     private var viewModel: DetailSearchViewModel!
     private var searchController: UISearchController!
 
@@ -43,7 +43,7 @@ class DetailSearchViewController: UIViewController, UISearchResultsUpdating {
         configureNavigation()
         configureCollectionView()
         configureDataSource()
-        applyDefaultSnapshot()
+        applySnapshot()
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -81,17 +81,17 @@ class DetailSearchViewController: UIViewController, UISearchResultsUpdating {
 
 extension DetailSearchViewController {
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, DiffableUsableModel>(collectionView: destinationsCollectionView) { (collectionView, indexPath, item) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, Destination>(collectionView: destinationsCollectionView) { (collectionView, indexPath, item) -> UICollectionViewCell? in
             let sectionKind = Section.allCases[indexPath.section]
             
             switch sectionKind {
             case .adjacentDestinations:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdjacentDestinationsCell.reuseIdentifier, for: indexPath) as? AdjacentDestinationsCell
-                cell?.configure(with: item as? AdjacentDestination)
+                cell?.configure(with: item)
                 return cell
             case .searchResultDestinations:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCell.reuseIdentifier, for: indexPath) as? SearchResultCell
-                cell?.configure(with: item as? SearchedDestination)
+                cell?.configure(with: item)
                 return cell
             }
         }
@@ -104,8 +104,11 @@ extension DetailSearchViewController {
     }
     
     private func applySnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, DiffableUsableModel>()
-        
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Destination>()
+        snapshot.appendSections(Section.allCases)
+        Section.allCases.forEach { section in
+            snapshot.appendItems(viewModel.forApplyItems(sectionIndex: section.rawValue), toSection: section)
+        }
         dataSource.apply(snapshot)
     }
 }
