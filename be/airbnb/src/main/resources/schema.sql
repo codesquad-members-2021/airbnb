@@ -58,6 +58,8 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`booking` (
   `id` INT AUTO_INCREMENT,
   `check_in` DATE NOT NULL,
   `check_out` DATE NOT NULL,
+  `guest` INT NOT NULL,
+  `total_price` DECIMAL NOT NULL,
   `user` INT NOT NULL,
   `user_key` INT NOT NULL,
   `room` INT NOT NULL,
@@ -136,17 +138,15 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `airbnb`.`image` ;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`image` (
-  `url` VARCHAR(255) NOT NULL,
-  `room` INT NOT NULL,
-  `room_key` INT NOT NULL,
-  PRIMARY KEY (`room`),
-  CONSTRAINT `fk_image_room`
-    FOREIGN KEY (`room`)
+`url` VARCHAR(255) NOT NULL,
+`room` INT NOT NULL,
+PRIMARY KEY (`url`),
+CONSTRAINT `fk_image_room`
+FOREIGN KEY (`room`)
     REFERENCES `airbnb`.`room` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
