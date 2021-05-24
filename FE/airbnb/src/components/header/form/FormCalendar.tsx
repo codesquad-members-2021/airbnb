@@ -1,7 +1,7 @@
-import { RefObject, useState, useCallback, useEffect } from 'react';
+import { RefObject, useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { calendarState, calendarDateType } from '../../../recoil/headerAtom';
+import { calendarState, calendarDateType } from '../../../recoil/calendarAtom';
 import Calendar from '../../calendar/Calendar';
 import { ReactComponent as CalendarPrevBtn } from '../../../assets/svg/Property 1=chevron-left.svg';
 import { ReactComponent as CalendarNextBtn } from '../../../assets/svg/Property 1=chevron-right.svg';

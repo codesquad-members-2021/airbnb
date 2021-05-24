@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { calendarDateType, dateType } from '../../recoil/headerAtom';
+import { calendarDateType, dateType } from '../../recoil/calendarAtom';
 import CalendarDate from './CalendarDate';
 import CalendarHeader from './CalendarHeader';
 

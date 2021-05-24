@@ -51,6 +51,6 @@ const StyledCalendarDate = styled.div`
   }
   .disable-date {
     color: #bdbdbd;
-    cursor: not-allowed;
+    cursor: default;
   }
 `;
