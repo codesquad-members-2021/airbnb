@@ -18,13 +18,13 @@ class LandingPageViewController: UIViewController {
         configureGetTripIdeasButton()
     }
     
-    func configureSearchBar() {
+    private func configureSearchBar() {
         searchBar.placeholder = "어디로 여행가세요?"
         searchBar.delegate = self
         navigationItem.titleView = searchBar
     }
     
-    func configureGetTripIdeasButton() {
+    private func configureGetTripIdeasButton() {
         getTripIdeasButton.layer.masksToBounds = true
         getTripIdeasButton.layer.cornerRadius = 10.0
         getTripIdeasButton.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0)
