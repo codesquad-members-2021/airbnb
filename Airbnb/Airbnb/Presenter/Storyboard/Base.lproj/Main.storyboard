@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="754" y="-574"/>
         </scene>
-        <!--Main View Controller-->
+        <!--검색-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController restorationIdentifier="Main" storyboardIdentifier="Main" id="BYZ-38-t0r" customClass="MainViewController" customModule="Airbnb" customModuleProvider="target" sceneMemberID="viewController">
@@ -34,11 +34,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="어디로 여행가세요?" translatesAutoresizingMaskIntoConstraints="NO" id="k1y-Vs-qGE">
-                                <rect key="frame" x="0.0" y="118" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="74" width="414" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="P8b-Vo-b6K">
-                                <rect key="frame" x="0.0" y="172" width="414" height="724"/>
+                                <rect key="frame" x="0.0" y="128" width="414" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bPF-yj-NLL">
                                     <size key="itemSize" width="392" height="128"/>
@@ -72,6 +72,7 @@
                             <constraint firstItem="P8b-Vo-b6K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qM3-HZ-hxs"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" id="L5z-h9-Rvk"/>
                     <navigationItem key="navigationItem" id="TmL-XX-hcF"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -81,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1606" y="80"/>
+            <point key="canvasLocation" x="754" y="88"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="VPZ-9Q-lBd">
@@ -96,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bdF-zb-eC4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2493" y="75"/>
+            <point key="canvasLocation" x="1593" y="88"/>
         </scene>
         <!--위시리스트-->
         <scene sceneID="vch-nN-zRH">
@@ -207,7 +208,7 @@
                         <color key="tintColor" systemColor="systemGray2Color"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Pv1-cK-i3h" kind="relationship" relationship="viewControllers" id="Dbg-Kq-bS9"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="IKl-QP-dJs"/>
                         <segue destination="WZi-dD-ZYj" kind="relationship" relationship="viewControllers" id="il7-OP-avY"/>
                         <segue destination="7j3-2H-fDZ" kind="relationship" relationship="viewControllers" id="lmE-2x-5Y2"/>
                     </connections>
@@ -215,25 +216,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6UH-5I-QOj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="15.942028985507248" y="88.392857142857139"/>
-        </scene>
-        <!--검색-->
-        <scene sceneID="1Ab-oL-qEK">
-            <objects>
-                <navigationController restorationIdentifier="Nav" storyboardIdentifier="Nav" automaticallyAdjustsScrollViewInsets="NO" id="Pv1-cK-i3h" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" selectedImage="magnifyingglass" id="I6f-gj-dUv"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TlQ-S9-pgO">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="BS6-ww-zdV"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u8W-dk-eXh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="878" y="68"/>
         </scene>
     </scenes>
     <resources>

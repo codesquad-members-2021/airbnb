@@ -57,8 +57,8 @@ private extension MainViewController {
             .when(.ended)
             .subscribe(onNext: { [weak self] _ in
                 let searchVC = SearchViewController()
-                //searchVC.modalPresentationStyle = .fullScreen
-                self?.navigationController?.pushViewController(searchVC, animated: true)
+                searchVC.modalPresentationStyle = .fullScreen
+                self?.present(searchVC, animated: false, completion: nil)
             }).disposed(by: rx.disposeBag)
     }
 }
