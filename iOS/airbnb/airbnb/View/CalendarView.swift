@@ -8,35 +8,38 @@
 import UIKit
 import FSCalendar
 
-class CalendarViewController: UIViewController {
+class CalendarView: FSCalendar {
     
-    @IBOutlet weak var calendar: FSCalendar!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         configure()
     }
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     func configure() {
-        self.calendar.scrollDirection = .vertical
-        self.calendar.calculator
+        self.scrollDirection = .vertical
+//        self.calculator
         
-        calendar.appearance.titleDefaultColor = .black
-        calendar.appearance.titleWeekendColor = .red
-        calendar.appearance.headerTitleColor = .systemPink
-        calendar.appearance.weekdayTextColor = .orange
+        self.appearance.titleDefaultColor = .black
+        self.appearance.titleWeekendColor = .red
+        self.appearance.headerTitleColor = .systemPink
+        self.appearance.weekdayTextColor = .orange
         
-        calendar.appearance.headerDateFormat = "YYYY년 M월"
-        calendar.locale = Locale(identifier: "ko_KR")
+        self.appearance.headerDateFormat = "YYYY년 M월"
+        self.locale = Locale(identifier: "ko_KR")
     }
 }
 
-extension CalendarViewController: FSCalendarDelegate {
+class CalendarViewDelgate: NSObject, FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         performDateSelect(calendar, date: date)
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
+
     }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -49,17 +52,17 @@ extension CalendarViewController: FSCalendarDelegate {
     }
     
     private func performDateDeselect(_ calender: FSCalendar, date: Date) {
-        calendar.selectedDates.forEach({
-            calendar.deselect($0)
+        calender.selectedDates.forEach({
+            calender.deselect($0)
         })
     }
     
     private func performDateSelect(_ calender: FSCalendar, date: Date) {
-        let sorted = calendar.selectedDates.sorted { $0 < $1 }
+        let sorted = calender.selectedDates.sorted { $0 < $1 }
         
         if sorted.count > 1 && date == sorted.first {
-            performDateDeselect(calendar, date: date)
-            calendar.select(date)
+            performDateDeselect(calender, date: date)
+            calender.select(date)
             return
         }
         
@@ -67,7 +70,7 @@ extension CalendarViewController: FSCalendarDelegate {
            let lastData = sorted.last {
             let ranges = dateRange(from: firstData, to: lastData)
             ranges.forEach {
-                calendar.select($0)
+                calender.select($0)
             }
         }
     }

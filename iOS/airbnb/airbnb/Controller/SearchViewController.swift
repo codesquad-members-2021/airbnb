@@ -20,6 +20,7 @@ class SearchViewController: UITableViewController {
     private var foregroundRestorationObserver: NSObjectProtocol?
     
     private var suggestionController: SuggestionsTableViewController!
+    private var selectedData: String = ""
     
     private var places: [MKMapItem]? {
         didSet {
@@ -82,6 +83,13 @@ class SearchViewController: UITableViewController {
     private func stopProvidingCompletions() {
         searchCompleter = nil
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let nextViewController = segue.destination as? ConditionViewController else {
+            return
+        }
+        nextViewController.takelocationBeforeController(location: selectedData)
+    }
 }
 
 extension SearchViewController {
@@ -96,11 +104,11 @@ extension SearchViewController {
         if let mapItem = places?[indexPath.row] {
             cell.textLabel?.text = mapItem.name
         }
-        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedData = suggestionController.completerResults?[indexPath.row].title ?? ""
         performSegue(withIdentifier: "contentView", sender: nil)
     }
 }
