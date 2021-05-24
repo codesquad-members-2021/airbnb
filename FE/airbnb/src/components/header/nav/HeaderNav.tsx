@@ -1,7 +1,8 @@
-import { ReactElement, useRef } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 import useToggle from '../../../hooks/useToggle';
-import { SvgMenuBar, SvgUser } from '../../svg/svg';
+import { ReactComponent as MenuBar } from '../../../assets/svg/Property 1=menu.svg';
+import { ReactComponent as User } from '../../../assets/svg/Property 1=user.svg';
 import NavUserToggle from './NavUserToggle';
 
 const HeaderNav = () => {
@@ -11,8 +12,8 @@ const HeaderNav = () => {
   return (
     <StyleNavWrapper>
       <StyleHeaderNav ref={navRef}>
-        <SvgMenuBar />
-        <SvgUser />
+        <MenuBar />
+        <User />
       </StyleHeaderNav>
       {open && <NavUserToggle toggleRef={toggleRef} dataBtn='toggle' />}
     </StyleNavWrapper>

@@ -1,28 +1,50 @@
 import { RefObject } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { calendarState } from '../../../recoil/headerAtom';
 import Calendar from '../../calendar/Calendar';
-import { SvgCalendarLeftBtn, SvgCalendarRightBtn } from '../../svg/svg';
+import { ReactComponent as CalendarPrevBtn } from '../../../assets/svg/Property 1=chevron-left.svg';
+import { ReactComponent as CalendarNextBtn } from '../../../assets/svg/Property 1=chevron-right.svg';
 
 interface Props {
   toggleRef: RefObject<HTMLDivElement>;
 }
 
 const FormCalendar = ({ toggleRef }: Props) => {
-  // const year: number = new Date().getFullYear();
-  // const month: number = new Date().getMonth() + 1;
+  const [calendarDate, setCalendarDate] = useRecoilState(calendarState);
+  const handlePrevBtnClick = (): void => {
+    const { year, month } = calendarDate;
+    let isPrevYear = false;
+    let newMonth = month - 2;
+    if (month - 2 < 1) {
+      isPrevYear = true;
+      newMonth = month - 2 + 12;
+    }
+    const newYear = isPrevYear ? year - 1 : year;
+    setCalendarDate({ year: newYear, month: newMonth });
+  };
+  const handleNextBtnClick = (): void => {
+    const { year, month } = calendarDate;
+    let isNextYear = false;
+    let newMonth = month + 2;
+    if (month + 2 > 12) {
+      isNextYear = true;
+      newMonth = month + 2 - 12;
+    }
+    const newYear = isNextYear ? year + 1 : year;
+    setCalendarDate({ year: newYear, month: newMonth });
+  };
 
-  const { year, month } = useRecoilValue(calendarState);
-  console.log(year, month);
+  const nextMonth = calendarDate.month + 1 > 12 ? 1 : calendarDate.month + 1;
+  const nextYear = nextMonth === 1 ? calendarDate.year + 1 : calendarDate.year;
   return (
     <StyledFormCalendar ref={toggleRef}>
       <div className='calendarButton'>
-        <SvgCalendarLeftBtn />
-        <SvgCalendarRightBtn />
+        <CalendarPrevBtn onClick={handlePrevBtnClick} />
+        <CalendarNextBtn onClick={handleNextBtnClick} />
       </div>
-      <Calendar {...{ year, month }} />
-      <Calendar {...{ year, month: month + 1 }} />
+      <Calendar {...{ year: calendarDate.year, month: calendarDate.month }} />
+      <Calendar {...{ year: nextYear, month: nextMonth }} />
     </StyledFormCalendar>
   );
 };
