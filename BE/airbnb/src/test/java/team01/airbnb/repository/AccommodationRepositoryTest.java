@@ -69,4 +69,10 @@ class AccommodationRepositoryTest {
         softly.assertThat(amenities).contains("주방", "무선 인터넷", "에어컨", "헤어드라이기");
     }
 
+    @Test
+    void getPhotos() {
+        List<String> photos = accommodationRepository.findPhotosByAccommodationId(1L);
+        softly.assertThat(photos).contains("https://codesquad.kr/img/place/img_5225.jpg");
+    }
+
 }

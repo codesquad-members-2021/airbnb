@@ -8,6 +8,7 @@ import team01.airbnb.domain.Amenity;
 import team01.airbnb.domain.accommodation.Accommodation;
 import team01.airbnb.domain.accommodation.AccommodationAddress;
 import team01.airbnb.domain.accommodation.AccommodationCondition;
+import team01.airbnb.domain.accommodation.AccommodationPhoto;
 
 import java.util.List;
 import java.util.Optional;
@@ -79,7 +80,7 @@ public class AccommodationRepository {
         String query = "SELECT * FROM amenity " +
                 "WHERE id in(" +
                 "   SELECT amenity_id FROM airbnb.accommodation_has_amenity " +
-                "   WHERE accommodation_id = 1" +
+                "   WHERE accommodation_id = :accommodationId" +
                 ")";
         SqlParameterSource namedParameters = new MapSqlParameterSource("accommodation_id", accommodationId);
         List<Amenity> amenities = jdbcTemplate.query(
@@ -92,6 +93,27 @@ public class AccommodationRepository {
         );
         return amenities.stream()
                 .map(amenity -> amenity.getName())
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<String> findPhotosByAccommodationId(Long accommodationId) {
+        String query = "SELECT * FROM accommodation_photo " +
+                "WHERE id in(" +
+                "   SELECT accommodation_id FROM accommodation_photo " +
+                "   WHERE accommodation_id = :accommodation_id" +
+                ")";
+        SqlParameterSource namedParameters = new MapSqlParameterSource("accommodation_id", accommodationId);
+        List<AccommodationPhoto> photos = jdbcTemplate.query(
+                query
+                , namedParameters
+                , (rs, rowNum) -> AccommodationPhoto.builder()
+                        .id(rs.getLong("id"))
+                        .accommodationId(rs.getLong("accommodation_id"))
+                        .name(rs.getString("name"))
+                        .build()
+        );
+        return photos.stream()
+                .map(photo -> photo.getName())
                 .collect(Collectors.toUnmodifiableList());
     }
 }
