@@ -30,7 +30,6 @@ public class RoomPreviewDTO {
         return new RoomPreviewDTO(id, name, pricePerDate, homeDetails, type, wish, thumbnailImage, coordinate, reviewDTO, totalPrice);
     }
 
-
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }

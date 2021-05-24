@@ -1,4 +1,4 @@
-package com.codesquad.coco.utils;
+package com.codesquad.coco.utils.sql;
 
 const val FIND_ALL_PRICE_BY_SEARCH_REQUIREMENT: String = """
 select rm.price_per_date 

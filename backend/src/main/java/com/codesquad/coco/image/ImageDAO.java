@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static com.codesquad.coco.utils.ImageSQLKt.FIND_IMAGE_BY_ROOM_ID;
+import static com.codesquad.coco.utils.sql.ImageSQLKt.FIND_IMAGE_BY_ROOM_ID;
 
 @Component
 public class ImageDAO {

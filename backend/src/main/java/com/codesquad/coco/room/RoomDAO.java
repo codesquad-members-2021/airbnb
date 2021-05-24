@@ -14,7 +14,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static com.codesquad.coco.utils.RoomSQLKt.*;
+import static com.codesquad.coco.utils.sql.RoomSQLKt.*;
+
 
 @Component
 public class RoomDAO {
