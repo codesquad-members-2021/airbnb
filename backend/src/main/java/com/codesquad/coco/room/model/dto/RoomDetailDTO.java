@@ -4,6 +4,7 @@ import com.codesquad.coco.host.HostDTO;
 import com.codesquad.coco.image.ImageDTO;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RoomDetailDTO {
 
@@ -12,22 +13,22 @@ public class RoomDetailDTO {
     private HostDTO host;
     private RoomOptionDTO homeDetails;
     private String type;
-    private int priceForData;
+    private int pricePerDate;
     private String description;
     private boolean wish;
     private LocationDTO coordinate;
-    private List<ImageDTO> images; //fixme : image-> images
+    private List<String> images; //fixme : image-> images
     private ReviewDTO review;
     private AdditionalCostDTO additionalCost;
 
-    private RoomDetailDTO(Long id, String name, HostDTO host, RoomOptionDTO homeDetails, String type, int priceForData,
-                          String description, boolean wish, LocationDTO coordinate, List<ImageDTO> images, ReviewDTO review, AdditionalCostDTO additionalCost) {
+    private RoomDetailDTO(Long id, String name, HostDTO host, RoomOptionDTO homeDetails, String type, int pricePerDate,
+                          String description, boolean wish, LocationDTO coordinate, List<String> images, ReviewDTO review, AdditionalCostDTO additionalCost) {
         this.id = id;
         this.name = name;
         this.host = host;
         this.homeDetails = homeDetails;
         this.type = type;
-        this.priceForData = priceForData;
+        this.pricePerDate = pricePerDate;
         this.description = description;
         this.wish = wish;
         this.coordinate = coordinate;
@@ -37,8 +38,11 @@ public class RoomDetailDTO {
     }
 
     public static RoomDetailDTO of(Long id, String name, HostDTO host, RoomOptionDTO homeDetails, String type,
-                                   int priceForData, String description, boolean wish, LocationDTO coordinate, List<ImageDTO> images, ReviewDTO review, AdditionalCostDTO additionalCost) {
-        return new RoomDetailDTO(id, name, host, homeDetails, type, priceForData, description, wish, coordinate, images, review, additionalCost);
+                                   int pricePerDate, String description, boolean wish, LocationDTO coordinate, List<ImageDTO> images, ReviewDTO review, AdditionalCostDTO additionalCost) {
+        List<String> imageURIs = images.stream()
+                .map(ImageDTO::getUrl)
+                .collect(Collectors.toList());
+        return new RoomDetailDTO(id, name, host, homeDetails, type, pricePerDate, description, wish, coordinate, imageURIs, review, additionalCost);
     }
 
     public Long getId() {
@@ -61,8 +65,8 @@ public class RoomDetailDTO {
         return type;
     }
 
-    public int getPriceForData() {
-        return priceForData;
+    public int getPricePerDate() {
+        return pricePerDate;
     }
 
     public String getDescription() {
@@ -77,7 +81,7 @@ public class RoomDetailDTO {
         return coordinate;
     }
 
-    public List<ImageDTO> getImages() {
+    public List<String> getImages() {
         return images;
     }
 

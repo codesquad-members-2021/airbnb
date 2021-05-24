@@ -4,13 +4,13 @@ import java.util.List;
 
 public class CitiesDTO {
 
-    private List<CityDTO> city;
+    private List<CityDTO> cities;
 
     public CitiesDTO(List<CityDTO> city) {
-        this.city = city;
+        this.cities = city;
     }
 
     public List<CityDTO> getCity() {
-        return city;
+        return cities;
     }
 }

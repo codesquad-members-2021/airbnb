@@ -4,7 +4,7 @@ public class RoomPreviewDTO {
 
     private Long id;
     private String name;
-    private int priceForData;
+    private int pricePerDate;
     private RoomOptionDTO homeDetails;
     private String type;
     private boolean wish;
@@ -12,10 +12,10 @@ public class RoomPreviewDTO {
     private LocationDTO coordinate;
     private ReviewDTO review;
 
-    private RoomPreviewDTO(Long id, String name, int priceForData, RoomOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO) {
+    private RoomPreviewDTO(Long id, String name, int pricePerDate, RoomOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO) {
         this.id = id;
         this.name = name;
-        this.priceForData = priceForData;
+        this.pricePerDate = pricePerDate;
         this.homeDetails = homeDetails;
         this.type = type;
         this.wish = wish;
@@ -24,8 +24,8 @@ public class RoomPreviewDTO {
         this.review = reviewDTO;
     }
 
-    public static RoomPreviewDTO of(Long id, String name, int priceForData, RoomOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO) {
-        return new RoomPreviewDTO(id, name, priceForData, homeDetails, type, wish, thumbnailImage, coordinate, reviewDTO);
+    public static RoomPreviewDTO of(Long id, String name, int pricePerDate, RoomOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO) {
+        return new RoomPreviewDTO(id, name, pricePerDate, homeDetails, type, wish, thumbnailImage, coordinate, reviewDTO);
     }
 
 
@@ -37,8 +37,8 @@ public class RoomPreviewDTO {
         return name;
     }
 
-    public int getPriceForData() {
-        return priceForData;
+    public int getPricePerDate() {
+        return pricePerDate;
     }
 
     public RoomOptionDTO getHomeDetails() {

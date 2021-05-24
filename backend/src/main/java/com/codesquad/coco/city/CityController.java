@@ -14,7 +14,7 @@ public class CityController {
         this.cityService = cityService;
     }
 
-    @GetMapping("/citys")
+    @GetMapping("/cities")
     public CitiesDTO findAllCity(){
         List<CityDTO> cityDTOs = cityService.findAllCityDTOs();
         return new CitiesDTO(cityDTOs);

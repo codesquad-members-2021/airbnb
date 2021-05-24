@@ -19,7 +19,9 @@ public class RoomController {
         this.roomService = roomService;
     }
 
-    @GetMapping("/search/price")
+
+    //todo 버저닝 알려주기
+    @GetMapping("/search/prices")
     public PricesDTO searchAllPrice(SearchPriceDTO searchPriceDTO) {
         logger.debug(searchPriceDTO.toString());
         return roomService.findAllPriceDTO(searchPriceDTO);
