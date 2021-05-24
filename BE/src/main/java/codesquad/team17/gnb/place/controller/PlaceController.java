@@ -2,7 +2,6 @@ package codesquad.team17.gnb.place.controller;
 
 import codesquad.team17.gnb.place.dto.PlaceSummary;
 import codesquad.team17.gnb.place.service.PlaceService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,13 +1,13 @@
 package codesquad.team17.gnb.place.domain;
 
 public class Location {
-    private String city;
-    private String district;
-    private String address1;
-    private String address2;
+    private final String city;
+    private final String district;
+    private final String address1;
+    private final String address2;
 
-    private double latitude;
-    private double longitude;
+    private final double latitude;
+    private final double longitude;
 
     private Location(Builder builder) {
         this.city = builder.city;
