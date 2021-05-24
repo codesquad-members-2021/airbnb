@@ -43,7 +43,7 @@ const Calendar = () => {
   };
 
   return (
-    <Calendardiv>
+    <CalendarDiv>
       <CalendarTop>
         <LeftButton onClick={() => handleLeftClick()}>{'<'}</LeftButton>
         <YearMonthUL
@@ -70,16 +70,16 @@ const Calendar = () => {
           {calRange.map((range, idx) => (
             <div key={idx}>
               <SingleCalendar range={range} />
-              <TestSingleCalendar range={range} />
+              {/* <TestSingleCalendar range={range} /> */}
             </div>
           ))}
         </CalTableWrapper>
       </CalendarBottom>
-    </Calendardiv>
+    </CalendarDiv>
   );
 };
 
-const Calendardiv = styled.div`
+const CalendarDiv = styled.div`
   border: 1px solid blue;
   position: relative;
   display: flex;

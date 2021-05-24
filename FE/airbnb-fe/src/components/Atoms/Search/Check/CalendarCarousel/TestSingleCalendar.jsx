@@ -4,25 +4,8 @@ import styled from 'styled-components';
 const TestSingleCalendar = ({ range }) => {
   return <SingleCalDiv>{getcalendarData(range)}</SingleCalDiv>;
 };
+
 const today = new Date();
-// 달-1 받아서 달 로 만듦
-const numToMonth = (num) => {
-  if (num + 1 < 10) {
-    return '0' + (num + 1);
-  } else {
-    return '' + (num + 1);
-  }
-};
-//setcalendarData 에서 html 시행할때 id 생성용
-const setFixDayCount = (number) => {
-  let fixNum = '';
-  if (number <= 10) {
-    fixNum = '0' + (number - 1);
-  } else {
-    fixNum = number - 1;
-  }
-  return fixNum;
-};
 
 // 원하는 달의 연도와,달 구해서 calendarHtml 얻기
 const getcalendarData = (monthNum) => {
@@ -48,7 +31,18 @@ const getcalendarData = (monthNum) => {
     return setcalendarData(g_year, g_month);
   }
 };
-
+const SingleDay = ({ year, month, setFixDayCount, startDayCount }) => {
+  return (
+    <SingleDay>
+      <span>${startDayCount}</span>
+      <span
+        id="${year}${month}${setFixDayCount(
+            startDayCount++
+          )}"
+      ></span>
+    </SingleDay>
+  );
+};
 const setcalendarData = (year, month) => {
   console.log('함수 결과 무슨달', month);
   console.log('함수결과 무슨연도', year);
@@ -131,7 +125,24 @@ const setcalendarData = (year, month) => {
   //캘린더 div 태그에 내용 붙임
   return calHtml;
 };
-
+// 달-1 받아서 달 로 만듦
+const numToMonth = (num) => {
+  if (num + 1 < 10) {
+    return '0' + (num + 1);
+  } else {
+    return '' + (num + 1);
+  }
+};
+//setcalendarData 에서 html 시행할때 id 생성용
+const setFixDayCount = (number) => {
+  let fixNum = '';
+  if (number <= 10) {
+    fixNum = '0' + (number - 1);
+  } else {
+    fixNum = number - 1;
+  }
+  return fixNum;
+};
 const CalendarDay = styled.div`
   display: inline-block;
   vertical-align: bottom;
