@@ -22,6 +22,7 @@ private extension LoginViewController {
     private func setupTextField() {
         idTextField.becomeFirstResponder()
         idTextField.addTarget(self, action: #selector(enteredIdTextField), for: .editingDidEndOnExit)
+        passwordTextField.isSecureTextEntry = true
         passwordTextField.addTarget(self, action: #selector(enteredPasswordTextField), for: .editingDidEndOnExit)
     }
 }
