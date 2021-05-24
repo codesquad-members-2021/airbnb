@@ -1,7 +1,7 @@
 package com.codesquad.airbnb.web.service.oauth.github;
 
 import com.codesquad.airbnb.web.config.properties.GithubApi;
-import com.codesquad.airbnb.web.config.properties.ServerSecret;
+import com.codesquad.airbnb.web.config.properties.OAuthSecret;
 import com.codesquad.airbnb.web.domain.User;
 import com.codesquad.airbnb.web.dto.GithubProfile;
 import com.codesquad.airbnb.web.dto.ReceivedAccessToken;
@@ -20,14 +20,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class GithubApiRequester implements OauthApiRequester {
 
-    private final ServerSecret serverSecret;
+    private final OAuthSecret OAuthSecret;
     private final GithubApi githubApi;
     private final OauthProfileConverter oauthProfileConverter;
     private final ApiRequester apiRequester;
 
-    public GithubApiRequester(ServerSecret serverSecret, GithubApi githubApi,
+    public GithubApiRequester(OAuthSecret OAuthSecret, GithubApi githubApi,
                               OauthProfileConverter oauthProfileConverter, ApiRequester apiRequester) {
-        this.serverSecret = serverSecret;
+        this.OAuthSecret = OAuthSecret;
         this.githubApi = githubApi;
         this.oauthProfileConverter = oauthProfileConverter;
         this.apiRequester = apiRequester;
@@ -36,8 +36,8 @@ public class GithubApiRequester implements OauthApiRequester {
     @Override
     public String accessToken(String code) {
         RequestAccessToken requestAccessToken = RequestAccessToken.builder()
-                .clientId(serverSecret.getClientIdValue())
-                .clientSecret(serverSecret.getClientSecretValue())
+                .clientId(OAuthSecret.getClientIdValue())
+                .clientSecret(OAuthSecret.getClientSecretValue())
                 .code(code)
                 .build();
         ReceivedAccessToken receivedAccessToken = apiRequester.callApi(githubApi.getAccessTokenUrl(), HttpMethod.POST,

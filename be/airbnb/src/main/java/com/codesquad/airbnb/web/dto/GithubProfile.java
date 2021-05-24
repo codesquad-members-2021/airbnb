@@ -11,6 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class GithubProfile {
+    private String id;
     private String login;
     private String name;
     private String avatarUrl;

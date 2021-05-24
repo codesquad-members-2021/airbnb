@@ -1,6 +1,7 @@
 package com.codesquad.airbnb.web.service.oauth;
 
 import com.codesquad.airbnb.web.constants.UserConstants;
+import com.codesquad.airbnb.web.domain.OAuthAuthenticater;
 import com.codesquad.airbnb.web.domain.User;
 import com.codesquad.airbnb.web.dto.GithubProfile;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ public class OauthProfileConverter {
                 .name(githubProfile.getName())
                 .profileImage(githubProfile.getAvatarUrl())
                 .accessToken(UserConstants.EMPTY_ACCESS_TOKEN)
+                .authenticatedBy(OAuthAuthenticater.GITHUB)
+                .oauthId(githubProfile.getId())
                 .build();
     }
 }

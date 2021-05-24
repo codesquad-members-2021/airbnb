@@ -1,25 +1,25 @@
 package com.codesquad.airbnb.web.service.oauth;
 
 import com.codesquad.airbnb.web.config.properties.GithubApi;
-import com.codesquad.airbnb.web.config.properties.ServerSecret;
+import com.codesquad.airbnb.web.config.properties.OAuthSecret;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ApiUrlGenerator {
     private final GithubApi githubApi;
-    private final ServerSecret serverSecret;
+    private final OAuthSecret OAuthSecret;
 
-    public ApiUrlGenerator(GithubApi githubApi, ServerSecret serverSecret) {
+    public ApiUrlGenerator(GithubApi githubApi, OAuthSecret OAuthSecret) {
         this.githubApi = githubApi;
-        this.serverSecret = serverSecret;
+        this.OAuthSecret = OAuthSecret;
     }
 
     public String githubLoginUrl() {
         return githubApi.getLoginUrl() +
                 "?" +
-                serverSecret.getClientIdKey() +
+                OAuthSecret.getClientIdKey() +
                 "=" +
-                serverSecret.getClientIdValue() +
+                OAuthSecret.getClientIdValue() +
                 "&" +
                 githubApi.getScopeKey() +
                 "=" +

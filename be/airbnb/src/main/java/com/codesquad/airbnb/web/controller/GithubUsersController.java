@@ -1,9 +1,10 @@
 package com.codesquad.airbnb.web.controller;
 
 import com.codesquad.airbnb.web.domain.User;
-import com.codesquad.airbnb.web.service.oauth.github.GithubApiRequester;
+import com.codesquad.airbnb.web.dto.UserWithToken;
 import com.codesquad.airbnb.web.service.oauth.ApiUrlGenerator;
 import com.codesquad.airbnb.web.service.oauth.OauthApiRequester;
+import com.codesquad.airbnb.web.service.oauth.github.GithubApiRequester;
 import com.codesquad.airbnb.web.service.users.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,10 +36,9 @@ public class GithubUsersController {
     }
 
     @GetMapping("/callback")
-    public void githubCallback(@RequestParam(value = "code") String code) {
+    public UserWithToken githubCallback(@RequestParam(value = "code") String code) {
         String githubAccessToken = githubApiRequester.accessToken(code);
         User user = githubApiRequester.profile(githubAccessToken);
-        userService.save(user);
-        log.info("user : {}", user);
+        return userService.processLogin(user);
     }
 }

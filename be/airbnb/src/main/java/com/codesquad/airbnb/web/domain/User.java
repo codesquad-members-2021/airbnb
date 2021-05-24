@@ -2,17 +2,15 @@ package com.codesquad.airbnb.web.domain;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 
 @Getter
-@AllArgsConstructor
-@ToString
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+@Setter
 @Builder
+@ToString
+@AllArgsConstructor
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class User {
     @Id
     private int id;
@@ -20,6 +18,8 @@ public class User {
     private String name;
     private String profileImage;
     private String accessToken;
+    private String oauthId;
+    private OAuthAuthenticater authenticatedBy;
 
     public void updateToken(String accessToken) {
         this.accessToken = accessToken;

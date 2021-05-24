@@ -9,14 +9,12 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @PropertySource(value = "classpath:secret.properties")
-@ConfigurationProperties(prefix = "secret")
+@ConfigurationProperties(prefix = "jwt")
 @Getter
 @Setter
 @ToString
-public class ServerSecret {
-    private String clientIdKey;
-    private String clientIdValue;
-    private String clientSecretKey;
-    private String clientSecretValue;
-
+public class JwtSecret {
+    private String issuer;
+    private String secretKey;
+    private long expireSecond;
 }
