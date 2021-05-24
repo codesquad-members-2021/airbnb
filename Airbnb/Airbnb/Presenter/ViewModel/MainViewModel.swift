@@ -27,6 +27,10 @@ class MainViewModel {
         return secondStorage
     }
     
+    func regieonViewData() -> [MainViewInfo] {
+        return secondViewData
+    }
+    
     func thirdViewList() -> Observable<[MainViewInfo]> {
         return thirdStroage
     }
