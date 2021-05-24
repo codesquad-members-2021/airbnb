@@ -1,22 +1,27 @@
-// import { getAPI } from "@/Utils/api";
+import { getAPI } from "@/Utils/api";
 
-// interface Args {
-//   apiName: string;
-//   setDataFn: () => void;
-//   setErrorFn: () => void;
-// }
+interface MainData {
+  hiroImage: string;
+  cities: Array<object>;
+  categories: Array<object>;
+}
 
-// const getData = async ({ apiName, setDataFn, setErrorFn }: Args) => {
-//   await getAPI[apiName]
-//     .then((res: object) => res.json())
-//     .then((json: object) => {
-//       if (json) {
-//         setDataFn(json);
-//       } else {
-//         throw Error();
-//       }
-//     })
-//     .catch((err) => setErrorFn(err));
-// };
+interface Args {
+  setDataFn: (json: MainData | null) => void;
+  setErrorFn: (err: object | null) => void;
+}
 
-// export default getData;
+const getData = async ({ setDataFn, setErrorFn }: Args) => {
+  await getAPI
+    .main()
+    .then((res) => res.json())
+    .then((json) => {
+      if (json) {
+        setDataFn(json);
+      } else throw Error();
+    })
+    .catch((err) => setErrorFn(err));
+};
+
+export default getData;
+// export {};

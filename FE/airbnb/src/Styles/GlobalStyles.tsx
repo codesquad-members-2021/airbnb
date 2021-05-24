@@ -7,20 +7,19 @@ const GlobalStyles = createGlobalStyle`
 		text-decoration : none;
 		color:inherit;
 		cursor:pointer;
-		color: #fff;
 	}
 	*{
 		box-sizing:border-box;
 	}
 	body{
-		color:#fff;
 		font-size : 16px;
+		font-family: Noto Sans KR;
+		color : #333;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
 	.App{
-		
 	}
 `;
 
