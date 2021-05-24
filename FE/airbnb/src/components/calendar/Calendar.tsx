@@ -2,12 +2,16 @@ import styled from 'styled-components';
 import CalendarDate from './CalendarDate';
 import CalendarHeader from './CalendarHeader';
 
-interface Props {
+interface dateType {
   year: number;
   month: number;
 }
 
-const Calendar = ({ year, month }: Props) => {
+interface Props {
+  calendarDate: dateType;
+}
+
+const Calendar = ({ calendarDate: { year, month } }: Props) => {
   const monthData = getMonthData(year, month);
 
   return (

@@ -1,4 +1,4 @@
-import { RefObject } from 'react';
+import { RefObject, useState, useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { calendarState } from '../../../recoil/headerAtom';
@@ -11,58 +11,97 @@ interface Props {
 }
 
 const FormCalendar = ({ toggleRef }: Props) => {
+  const DEFAULT_TRANSITION: string = 'all 0.5s';
+  const DEFAULT_POSITION_X: number = -916;
   const [calendarDate, setCalendarDate] = useRecoilState(calendarState);
-  const handlePrevBtnClick = (): void => {
-    const { year, month } = calendarDate;
-    let isPrevYear = false;
-    let newMonth = month - 2;
-    if (month - 2 < 1) {
-      isPrevYear = true;
-      newMonth = month - 2 + 12;
+  const [positionX, setPositionX] = useState<number>(DEFAULT_POSITION_X);
+  const [transitionValue, setTransitionValue] = useState<string>(DEFAULT_TRANSITION);
+  const [moveType, setMoveType] = useState<string>('');
+  useEffect(() => {
+    if (transitionValue === 'none') {
+      setPositionX(DEFAULT_POSITION_X);
     }
-    const newYear = isPrevYear ? year - 1 : year;
-    setCalendarDate({ year: newYear, month: newMonth });
+  }, [transitionValue]);
+  useEffect(() => {
+    setTransitionValue(DEFAULT_TRANSITION);
+  }, [positionX]);
+  const handleTransitionEnd = (): void => {
+    setTransitionValue('none');
+    if (moveType === 'prev') moveCalendar(-2);
+    else if (moveType === 'next') moveCalendar(+2);
+  };
+  const moveCalendar = (moveCount: number): void => {
+    const newDate = getMovedDate(calendarDate, moveCount);
+    setCalendarDate(newDate);
+  };
+  const handlePrevBtnClick = (): void => {
+    setMoveType('prev');
+    setPositionX((positionX) => positionX + 910);
   };
   const handleNextBtnClick = (): void => {
-    const { year, month } = calendarDate;
-    let isNextYear = false;
-    let newMonth = month + 2;
-    if (month + 2 > 12) {
-      isNextYear = true;
-      newMonth = month + 2 - 12;
-    }
-    const newYear = isNextYear ? year + 1 : year;
-    setCalendarDate({ year: newYear, month: newMonth });
+    setMoveType('next');
+    setPositionX((positionX) => positionX - 910);
   };
 
-  const nextMonth = calendarDate.month + 1 > 12 ? 1 : calendarDate.month + 1;
-  const nextYear = nextMonth === 1 ? calendarDate.year + 1 : calendarDate.year;
   return (
-    <StyledFormCalendar ref={toggleRef}>
+    <StyledFormCalendar {...{ positionX, transitionValue }} ref={toggleRef}>
       <div className='calendarButton'>
         <CalendarPrevBtn onClick={handlePrevBtnClick} />
         <CalendarNextBtn onClick={handleNextBtnClick} />
       </div>
-      <Calendar {...{ year: calendarDate.year, month: calendarDate.month }} />
-      <Calendar {...{ year: nextYear, month: nextMonth }} />
+      <div className='calendar__wrapper' onTransitionEnd={handleTransitionEnd}>
+        <Calendar {...{ calendarDate: getMovedDate(calendarDate, -2) }} />
+        <Calendar {...{ calendarDate: getMovedDate(calendarDate, -1) }} />
+        <Calendar {...{ calendarDate }} />
+        <Calendar {...{ calendarDate: getMovedDate(calendarDate, 1) }} />
+        <Calendar {...{ calendarDate: getMovedDate(calendarDate, 2) }} />
+        <Calendar {...{ calendarDate: getMovedDate(calendarDate, 3) }} />
+      </div>
     </StyledFormCalendar>
   );
 };
 
+interface dateType {
+  year: number;
+  month: number;
+}
+
+const getMovedDate = (date: dateType, moveCount: number): dateType => {
+  const { year, month } = date;
+  let newYear = year;
+  let newMonth = month + moveCount;
+
+  if (newMonth > 12) {
+    newMonth -= 12;
+    newYear++;
+  } else if (newMonth < 1) {
+    newMonth += 12;
+    newYear--;
+  }
+  return { year: newYear, month: newMonth };
+};
+
 export default FormCalendar;
 
-const StyledFormCalendar = styled.div`
+interface StyleType {
+  positionX: number;
+  transitionValue: string;
+}
+
+const StyledFormCalendar = styled.div<StyleType>`
+  overflow: hidden;
   position: absolute;
   top: 100px;
   left: -6rem;
   display: flex;
   justify-content: space-between;
-  padding: 3rem 5rem;
+  padding: 3rem 0;
   width: 916px;
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
   border-radius: 40px;
   .calendarButton {
+    z-index: 10;
     position: absolute;
     display: flex;
     justify-content: space-between;
@@ -70,5 +109,13 @@ const StyledFormCalendar = styled.div`
     left: 0;
     top: 3.2rem;
     padding: 0 6rem;
+  }
+  .calendar__wrapper {
+    display: flex;
+    transition: ${({ transitionValue }) => transitionValue};
+    transform: ${({ positionX }) => `translateX(${positionX}px)`};
+    & > div {
+      margin: 0 60px;
+    }
   }
 `;
