@@ -1,5 +1,9 @@
 import { atom, selector } from 'recoil';
 
+export interface dayType {
+  date: number;
+  isAble: boolean;
+}
 export interface dateType {
   year: number;
   month: number;

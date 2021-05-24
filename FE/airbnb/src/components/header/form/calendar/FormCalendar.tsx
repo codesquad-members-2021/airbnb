@@ -1,10 +1,13 @@
 import { RefObject, useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { calendarState, calendarDateType } from '../../../recoil/calendarAtom';
-import Calendar from '../../calendar/Calendar';
-import { ReactComponent as CalendarPrevBtn } from '../../../assets/svg/Property 1=chevron-left.svg';
-import { ReactComponent as CalendarNextBtn } from '../../../assets/svg/Property 1=chevron-right.svg';
+import { calendarState, calendarDateType } from '../../../../recoil/calendarAtom';
+import { ReactComponent as CalendarPrevBtn } from '../../../../assets/svg/Property 1=chevron-left.svg';
+import { ReactComponent as CalendarNextBtn } from '../../../../assets/svg/Property 1=chevron-right.svg';
+import CalendarDate from '../../../calendar/CalendarDate';
+import CalendarDay from '../../../calendar/CalendarDay';
+import CalendarHeader from '../../../calendar/CalendarHeader';
+import { getMonthData } from './calendarDateFn';
 
 interface Props {
   toggleRef: RefObject<HTMLDivElement>;
@@ -12,12 +15,12 @@ interface Props {
 
 const FormCalendar = ({ toggleRef }: Props) => {
   const DEFAULT_TRANSITION: string = 'all 0.5s';
-  const DEFAULT_POSITION_X: number = -916;
+  const DEFAULT_POSITION_X: number = -912;
+  const CALENDAR_MONTH_CHANGE: number[] = [-2, -1, 0, 1, 2, 3];
   const [calendarDate, setCalendarDate] = useRecoilState(calendarState);
   const [positionX, setPositionX] = useState<number>(DEFAULT_POSITION_X);
   const [transitionValue, setTransitionValue] = useState<string>(DEFAULT_TRANSITION);
   const [moveType, setMoveType] = useState<string>('');
-
   useEffect(() => {
     if (transitionValue === 'none') {
       setPositionX(DEFAULT_POSITION_X);
@@ -41,13 +44,21 @@ const FormCalendar = ({ toggleRef }: Props) => {
 
   const handlePrevBtnClick = (): void => {
     setMoveType('prev');
-    setPositionX((positionX) => positionX + 910);
+    setPositionX((positionX) => positionX + 912);
   };
 
   const handleNextBtnClick = (): void => {
     setMoveType('next');
-    setPositionX((positionX) => positionX - 910);
+    setPositionX((positionX) => positionX - 912);
   };
+
+  const calendarHeaderList = CALENDAR_MONTH_CHANGE.map((moveCount, idx) => (
+    <CalendarHeader key={idx} calendarDate={getMovedDate(calendarDate, moveCount)} />
+  ));
+
+  const calendarDateList = CALENDAR_MONTH_CHANGE.map((moveCount, idx) => (
+    <CalendarDate key={idx} monthData={getMonthData(getMovedDate(calendarDate, moveCount))} />
+  ));
 
   return (
     <StyledFormCalendar {...{ positionX, transitionValue }} ref={toggleRef}>
@@ -55,13 +66,15 @@ const FormCalendar = ({ toggleRef }: Props) => {
         <CalendarPrevBtn onClick={handlePrevBtnClick} />
         <CalendarNextBtn onClick={handleNextBtnClick} />
       </div>
-      <div className='calendar__wrapper' onTransitionEnd={handleTransitionEnd}>
-        <Calendar {...{ calendarDate: getMovedDate(calendarDate, -2) }} />
-        <Calendar {...{ calendarDate: getMovedDate(calendarDate, -1) }} />
-        <Calendar {...{ calendarDate }} />
-        <Calendar {...{ calendarDate: getMovedDate(calendarDate, 1) }} />
-        <Calendar {...{ calendarDate: getMovedDate(calendarDate, 2) }} />
-        <Calendar {...{ calendarDate: getMovedDate(calendarDate, 3) }} />
+      <div className='calendar-header__wrapper' onTransitionEnd={handleTransitionEnd}>
+        {calendarHeaderList}
+      </div>
+      <div className='calendar-day__wrapper'>
+        <CalendarDay />
+        <CalendarDay />
+      </div>
+      <div className='calendar-date__wrapper' onTransitionEnd={handleTransitionEnd}>
+        {calendarDateList}
       </div>
     </StyledFormCalendar>
   );
@@ -93,8 +106,6 @@ const StyledFormCalendar = styled.div<StyleType>`
   position: absolute;
   top: 100px;
   left: -6rem;
-  display: flex;
-  justify-content: space-between;
   padding: 3rem 0;
   width: 916px;
   background-color: ${({ theme }) => theme.colors.white};
@@ -111,7 +122,17 @@ const StyledFormCalendar = styled.div<StyleType>`
     padding: 0 5rem;
     cursor: pointer;
   }
-  .calendar__wrapper {
+  .calendar-header__wrapper {
+    width: 2740px;
+  }
+  .calendar-day__wrapper {
+    display: flex;
+    & > div {
+      margin: 0 60px;
+    }
+  }
+  .calendar-date__wrapper,
+  .calendar-header__wrapper {
     display: flex;
     transition: ${({ transitionValue }) => transitionValue};
     transform: ${({ positionX }) => `translateX(${positionX}px)`};
