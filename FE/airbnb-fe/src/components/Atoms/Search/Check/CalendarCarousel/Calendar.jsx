@@ -68,10 +68,7 @@ const Calendar = () => {
           onTransitionEnd={() => onSlideEnd()}
         >
           {calRange.map((range, idx) => (
-            <div key={idx}>
-              <SingleCalendar range={range} />
-              {/* <TestSingleCalendar range={range} /> */}
-            </div>
+            <SingleCalendar key={idx} range={range} />
           ))}
         </CalTableWrapper>
       </CalendarBottom>
