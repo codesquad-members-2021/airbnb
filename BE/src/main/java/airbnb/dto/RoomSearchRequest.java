@@ -1,8 +1,10 @@
 package airbnb.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class RoomSearchRequest {
 
@@ -12,18 +14,23 @@ public class RoomSearchRequest {
     @JsonProperty(value = "people")
     private final int maxPersonCount;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private final LocalDate checkIn;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private final LocalDate checkOut;
+
     private final int maxPrice;
     private final int minPrice;
-    private final LocalDateTime checkIn;
-    private final LocalDateTime checkOut;
 
-    public RoomSearchRequest(Long cityId, int maxPersonCount, int maxPrice, int minPrice, LocalDateTime checkIn, LocalDateTime checkOut) {
+
+    public RoomSearchRequest(Long cityId, int maxPersonCount, LocalDate checkIn, LocalDate checkOut, int maxPrice, int minPrice) {
         this.cityId = cityId;
         this.maxPersonCount = maxPersonCount;
-        this.maxPrice = maxPrice;
-        this.minPrice = minPrice;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+        this.maxPrice = maxPrice;
+        this.minPrice = minPrice;
     }
 
     public Long getCityId() {
@@ -34,19 +41,19 @@ public class RoomSearchRequest {
         return maxPersonCount;
     }
 
+    public LocalDate getCheckIn() {
+        return checkIn;
+    }
+
+    public LocalDate getCheckOut() {
+        return checkOut;
+    }
+
     public int getMaxPrice() {
         return maxPrice;
     }
 
     public int getMinPrice() {
         return minPrice;
-    }
-
-    public LocalDateTime getCheckIn() {
-        return checkIn;
-    }
-
-    public LocalDateTime getCheckOut() {
-        return checkOut;
     }
 }
