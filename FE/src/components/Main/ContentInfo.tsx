@@ -1,8 +1,6 @@
 import styled from 'styled-components';
+import { ResponsiveFluid } from '../Common/ResponsiveFluid';
 import { ITextCotnentInfo } from '../../util/reference';
-import {
-  cssSectionSize,
-} from '../../util/styles/CommonStyledCSS';
 
 const ContentInfo = ({ contentInfoItems }: ITextCotnentInfo) => {
   return (
@@ -29,8 +27,7 @@ const ContentInfo = ({ contentInfoItems }: ITextCotnentInfo) => {
 export default ContentInfo;
 
 // --- Styled Components ---
-const ContentInfoLayout = styled.div`
-  ${cssSectionSize};
+const ContentInfoLayout = styled(ResponsiveFluid)`
   margin: 0 auto;
   padding: 80px;
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
+import { ResponsiveFluid } from '../Common/ResponsiveFluid';
 import { ITextFooter } from '../../util/reference';
-import { cssSectionSize } from '../../util/styles/CommonStyledCSS';
 
 const Footer = ({ footerItems }: ITextFooter) => {
   return (
@@ -17,8 +17,7 @@ const Footer = ({ footerItems }: ITextFooter) => {
 export default Footer;
 
 // --- Styled Components ---
-const FooterLayout = styled.div`
-  ${cssSectionSize};
+const FooterLayout = styled(ResponsiveFluid)`
   margin: 0 auto;
   padding: 24px 0;
 

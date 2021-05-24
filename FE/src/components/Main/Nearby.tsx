@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import Subject from '../Common/Subject';
-import { IText } from '../../util/reference';
+import { ResponsiveFluid } from '../Common/ResponsiveFluid';
 import {
   cssImageAuto,
-  cssMainChildren,
-  cssSectionSize,
+  cssMainChildren
 } from '../../util/styles/CommonStyledCSS';
+import { ITextNearbyRoomType } from '../../util/reference';
 
-const Nearby = ({ nearbyItems }: IText) => {
+const Nearby = ({ nearbyItems }: ITextNearbyRoomType) => {
   return (
     nearbyItems && (
       <NearbyLayout>
@@ -35,9 +35,9 @@ const Nearby = ({ nearbyItems }: IText) => {
 export default Nearby;
 
 // --- Styled Components ---
-const NearbyLayout = styled.div`
+const NearbyLayout = styled(ResponsiveFluid)`
   ${cssMainChildren};
-  ${cssSectionSize};
+  flex-direction: column;
 `;
 
 const NearbyList = styled.ul`

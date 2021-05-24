@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import Subject from '../Common/Subject';
-import { IText } from '../../util/reference';
+import { ResponsiveFluid } from '../Common/ResponsiveFluid';
 import {
   cssImageAuto,
   cssMainChildren,
-  cssSectionSize,
 } from '../../util/styles/CommonStyledCSS';
+import { ITextNearbyRoomType } from '../../util/reference';
 
-const RoomType = ({ roomTypeItems }: IText) => {
+const RoomType = ({ roomTypeItems }: ITextNearbyRoomType) => {
   return (
     roomTypeItems && (
       <RoomTypeLayout>
@@ -28,9 +28,9 @@ const RoomType = ({ roomTypeItems }: IText) => {
 export default RoomType;
 
 // --- Styled Components ---
-const RoomTypeLayout = styled.div`
+const RoomTypeLayout = styled(ResponsiveFluid)`
   ${cssMainChildren};
-  ${cssSectionSize};
+  flex-direction: column;
 `;
 
 const RoomList = styled.ul`
