@@ -4,26 +4,27 @@ import Header from "components/Header/Header";
 import SearchBar from "components/SearchBar/SearchBar";
 import Responsive from "components/common/Responsive";
 
-const MainPage = ({ link }) => {
+const MainPage = () => {
   // const getToken = () => {
-  //   // const params = new URLSearchParams(window.location.search);
-  //       const code = "261ac6065884d19df5a7"
-  //       console.log("code",code);
-  //       fetch('https://github.com/login/oauth/access_token', {
-  //           method: 'POST',
-  //           headers: { 'Content-Type': 'application/json' },
-  //           body: JSON.stringify({ code })
-  //       }).then(response => response.json())
-  //       .then(({ token }) => {
-  //           console.log(token)
-  //           // localStorage.setItem('token', token);
-  //           // location.href = 'http://localhost:8080/home.html';
-  //       });
-  // }
+  //   const params = new URLSearchParams(window.location.search);
+  //   const code = params.get("code");
+  //   console.log("code", code);
+  //   fetch("https://github.com/login/oauth/access_token", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({ code }),
+  //   })
+  //     .then(response => response.json())
+  //     .then(({ token }) => {
+  //       console.log(token);
+  //       // localStorage.setItem('token', token);
+  //       // location.href = 'http://localhost:8080/home.html';
+  //     });
+  // };
 
   // useEffect(() => {
-  //  getToken();
-  // }, [])
+  //   getToken();
+  // }, []);
 
   return (
     <>
