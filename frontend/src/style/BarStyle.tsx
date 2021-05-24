@@ -1,16 +1,16 @@
 import styled, { css } from 'styled-components'
-interface IClick {
+interface ClickProps {
 	clicked: boolean
 	type?: string
 }
-interface IType {
+interface ModalProps {
 	modalType: string
 }
 export const PlaceSection = styled.div`
 	display: flex;
 	flex-direction: column;
 `
-export const ModalWrapper = styled.div<IType>`
+export const ModalWrapper = styled.div<ModalProps>`
 	position: absolute;
 	top: 95px;
 	left: ${(props) => props.theme.modalPosition[props.modalType]};
@@ -22,7 +22,7 @@ export const ModalWrapper = styled.div<IType>`
 		css`
 			width: ${props.theme.modalWidth[props.modalType] + 40}px;
 			height: 550px;
-			overflow: hidden;
+			// overflow: hidden;
 		`}
 `
 export const BarTitle = styled.div`
@@ -41,7 +41,7 @@ export const BarInnerWrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 `
-export const BarBlock = styled.div<IClick>`
+export const BarBlock = styled.div<ClickProps>`
 	width: ${(props) => (props.type ? props.theme.searchWidth[props.type] : '280px')};
 	height: 76px;
 	cursor: pointer;
@@ -58,7 +58,7 @@ export const BarBlock = styled.div<IClick>`
 		`};
 `
 
-export const Modal = styled.div<IType>`
+export const Modal = styled.div<ModalProps>`
 	background-color: ${(props) => props.theme.color.white};
 	padding: ${(props) => props.theme.modalPadding[props.modalType]};
 	width: ${(props) => props.theme.modalWidth[props.modalType]}px;

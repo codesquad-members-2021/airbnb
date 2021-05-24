@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { DateInfo } from '../../customHook/useDateInfo'
+
 interface IDate {
 	currentMonth: number
 }
@@ -8,15 +9,18 @@ interface IClick {
 }
 
 const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
-	// const monthList = Array.from({ length: 12 }, (v, idx) => idx + 1)
+	const MonthList = Array.from({ length: 12 }, (_, i) => i + 1)
 	const dayList: string[] = ['일', '월', '화', '수', '목', '금', '토']
 	let { year, month, date } = DateInfo(new Date())
+	let index
 	if (currentMonth > 12) {
-		currentMonth = 1
-		year += 1
+		index = (currentMonth % 12) - 1
+		year += Math.floor(currentMonth / 12)
+		currentMonth = MonthList[index]
 	} else if (currentMonth < 1) {
-		currentMonth = 12
-		year -= 1
+		index = (currentMonth % 12) + 12
+		year += Math.floor(currentMonth / 12)
+		currentMonth = MonthList[index]
 	}
 
 	const { day: dayOfFirst, dateOfLast } = DateInfo(new Date(`${year}-${currentMonth}-1`))
@@ -57,6 +61,7 @@ const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
 const CalendarBox = styled.div`
 	margin: 65px 90px;
 `
+
 const DateSection = styled.div`
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
@@ -69,13 +74,14 @@ const DateBlock = styled.div<IClick>`
 	margin-top: 4px;
 	font-weight: ${(props) => props.theme.fontWeight.w2};
 	font-size: ${(props) => props.theme.fontSize.super_sm};
-	color: ${(props) => (props.nonClickable ? props.theme.color.grey_2 : props.theme.color.black)};
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	color: ${(props) => props.theme.color.grey_2};
 	${(props) =>
 		!props.nonClickable &&
 		css`
+			color: ${props.theme.color.black};
 			&:hover {
 				border: 1px solid;
 				border-radius: 50%;
@@ -83,6 +89,7 @@ const DateBlock = styled.div<IClick>`
 			}
 		`};
 `
+
 const NonFixedArea = styled.div`
 	width: 336px;
 	text-align: center;
