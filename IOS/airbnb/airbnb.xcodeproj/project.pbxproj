@@ -27,7 +27,7 @@
 		E4F302A72655F84B002C9770 /* AlamofireNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302A62655F84B002C9770 /* AlamofireNetworkManager.swift */; };
 		E4F302A92655F890002C9770 /* AlamofireImageLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302A82655F890002C9770 /* AlamofireImageLoadManager.swift */; };
 		E4F302AB2655F970002C9770 /* AlamofireRequestManagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302AA2655F970002C9770 /* AlamofireRequestManagable.swift */; };
-		E4F302AD2655FD17002C9770 /* AlamofireNetworkManagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302AC2655FD17002C9770 /* AlamofireNetworkManagable.swift */; };
+		E4F302AD2655FD17002C9770 /* NetworkManagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302AC2655FD17002C9770 /* NetworkManagable.swift */; };
 		E4F302B3265602ED002C9770 /* PopularLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302B2265602ED002C9770 /* PopularLocationViewModel.swift */; };
 		E4F302B5265604D6002C9770 /* PopularLocationTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302B4265604D6002C9770 /* PopularLocationTableViewDataSource.swift */; };
 		E4F302B82656059C002C9770 /* PopularLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302B72656059C002C9770 /* PopularLocation.swift */; };
@@ -43,7 +43,7 @@
 		E4F302E826567B1C002C9770 /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302E726567B1C002C9770 /* AlertFactory.swift */; };
 		E4F302EA265683F5002C9770 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302E9265683F5002C9770 /* NetworkError.swift */; };
 		E4F302EC26568C0D002C9770 /* FakeNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302EB26568C0D002C9770 /* FakeNetworkManager.swift */; };
-		E4F302F42656B257002C9770 /* AlamofireImageLoadManagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302F32656B257002C9770 /* AlamofireImageLoadManagable.swift */; };
+		E4F302F42656B257002C9770 /* ImageLoadManagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302F32656B257002C9770 /* ImageLoadManagable.swift */; };
 		E4F302F82656B3E1002C9770 /* TurnOnCaseConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302F72656B3E1002C9770 /* TurnOnCaseConfigurable.swift */; };
 		E4F302FA2656B3EE002C9770 /* TurnOnUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302F92656B3EE002C9770 /* TurnOnUseCase.swift */; };
 		E4F303022656B9D1002C9770 /* DataLoadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F303012656B9D1002C9770 /* DataLoadViewModel.swift */; };
@@ -72,7 +72,7 @@
 		E4F302A62655F84B002C9770 /* AlamofireNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkManager.swift; sourceTree = "<group>"; };
 		E4F302A82655F890002C9770 /* AlamofireImageLoadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireImageLoadManager.swift; sourceTree = "<group>"; };
 		E4F302AA2655F970002C9770 /* AlamofireRequestManagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireRequestManagable.swift; sourceTree = "<group>"; };
-		E4F302AC2655FD17002C9770 /* AlamofireNetworkManagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkManagable.swift; sourceTree = "<group>"; };
+		E4F302AC2655FD17002C9770 /* NetworkManagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagable.swift; sourceTree = "<group>"; };
 		E4F302B2265602ED002C9770 /* PopularLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationViewModel.swift; sourceTree = "<group>"; };
 		E4F302B4265604D6002C9770 /* PopularLocationTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationTableViewDataSource.swift; sourceTree = "<group>"; };
 		E4F302B72656059C002C9770 /* PopularLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocation.swift; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		E4F302E726567B1C002C9770 /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		E4F302E9265683F5002C9770 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		E4F302EB26568C0D002C9770 /* FakeNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNetworkManager.swift; sourceTree = "<group>"; };
-		E4F302F32656B257002C9770 /* AlamofireImageLoadManagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireImageLoadManagable.swift; sourceTree = "<group>"; };
+		E4F302F32656B257002C9770 /* ImageLoadManagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadManagable.swift; sourceTree = "<group>"; };
 		E4F302F72656B3E1002C9770 /* TurnOnCaseConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnOnCaseConfigurable.swift; sourceTree = "<group>"; };
 		E4F302F92656B3EE002C9770 /* TurnOnUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnOnUseCase.swift; sourceTree = "<group>"; };
 		E4F303012656B9D1002C9770 /* DataLoadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadViewModel.swift; sourceTree = "<group>"; };
@@ -131,9 +131,9 @@
 				E4F302E9265683F5002C9770 /* NetworkError.swift */,
 				E4F302AA2655F970002C9770 /* AlamofireRequestManagable.swift */,
 				E4F302A42655F837002C9770 /* AlamofireRequestManager.swift */,
-				E4F302AC2655FD17002C9770 /* AlamofireNetworkManagable.swift */,
+				E4F302AC2655FD17002C9770 /* NetworkManagable.swift */,
 				E4F302A62655F84B002C9770 /* AlamofireNetworkManager.swift */,
-				E4F302F32656B257002C9770 /* AlamofireImageLoadManagable.swift */,
+				E4F302F32656B257002C9770 /* ImageLoadManagable.swift */,
 				E4F302A82655F890002C9770 /* AlamofireImageLoadManager.swift */,
 				E4F302ED26568C14002C9770 /* Fake */,
 			);
@@ -393,7 +393,7 @@
 				E4F302EC26568C0D002C9770 /* FakeNetworkManager.swift in Sources */,
 				E4F302DF26567480002C9770 /* NewSearchCaseConfigurable.swift in Sources */,
 				E4F303022656B9D1002C9770 /* DataLoadViewModel.swift in Sources */,
-				E4F302F42656B257002C9770 /* AlamofireImageLoadManagable.swift in Sources */,
+				E4F302F42656B257002C9770 /* ImageLoadManagable.swift in Sources */,
 				E4F302FA2656B3EE002C9770 /* TurnOnUseCase.swift in Sources */,
 				E4F302A52655F837002C9770 /* AlamofireRequestManager.swift in Sources */,
 				E481481626551B930069BE20 /* CalendarViewController.swift in Sources */,
@@ -411,7 +411,7 @@
 				E4F302C6265642D8002C9770 /* NewSearchUseCase.swift in Sources */,
 				E4BC87DE265B998200404FCF /* InputDealingViewModel.swift in Sources */,
 				E4F302F82656B3E1002C9770 /* TurnOnCaseConfigurable.swift in Sources */,
-				E4F302AD2655FD17002C9770 /* AlamofireNetworkManagable.swift in Sources */,
+				E4F302AD2655FD17002C9770 /* NetworkManagable.swift in Sources */,
 				E4F302C826564431002C9770 /* LocationSearchResult.swift in Sources */,
 				E4F302BD26560E2D002C9770 /* PopularLocationUseCase.swift in Sources */,
 				E4F302AB2655F970002C9770 /* AlamofireRequestManagable.swift in Sources */,

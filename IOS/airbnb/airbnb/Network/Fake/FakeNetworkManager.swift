@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-final class FakeNetworkManager: AlamofireNetworkManagable {
+final class FakeNetworkManager: NetworkManagable {
     
     private let fakeData: Decodable
     
@@ -17,15 +17,16 @@ final class FakeNetworkManager: AlamofireNetworkManagable {
     }
     
     func get<T: Decodable>(decodingType: T.Type, endPoint: String,
-                completionHandler: @escaping (DataResponse<T, AFError>) -> Void) {
+                completionHandler: @escaping (Result<T, NetworkError>) -> Void) {
         let fakeResponse = HTTPURLResponse(url: URL(string: "fake.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)
-        let fakeDataResponse = DataResponse<T, AFError>(request: nil,
+        let fakeDataResponse = DataResponse<T, NetworkError>(request: nil,
                                         response: fakeResponse,
                                         data: nil,
                                         metrics: nil,
                                         serializationDuration: 0,
                                         result: .success(fakeData as! T))
-        completionHandler(fakeDataResponse)
+        let result = fakeDataResponse.result
+        completionHandler(result)
     }
     
 }

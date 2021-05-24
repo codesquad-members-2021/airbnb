@@ -6,8 +6,7 @@
 //
 
 import Foundation
-import Alamofire
 
-protocol AlamofireImageLoadManagable {
+protocol ImageLoadManagable {
     func load(from imageUrl: String, completionHandler: @escaping (String) -> ())
 }
