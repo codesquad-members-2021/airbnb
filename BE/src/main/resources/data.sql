@@ -2,13 +2,13 @@ INSERT INTO city(name)
 values ('서울'),('경기도'),('강원도'),('충청도'),('경상남도'),('경상북도'),('전라남도'),('전라북도');
 
 INSERT INTO image_type(type)
-values ('HIRO'),('MAIN'),('DETAIL');
+values ('HERO'),('MAIN'),('DETAIL');
 
 INSERT INTO category(name)
 values ('자연생활을 만끽 할 수 있는 숙소'),('독특한 공간'),('집 전체'),('반려 동물과 함께 할 수 있는 공간');
 
 INSERT INTO image(url,image_type)
-values ('https://a0.muscache.com/im/pictures/ddc7f01f-3fb3-483c-87e6-701dad52c930.jpg?im_w=1920', 'HIRO');
+values ('https://a0.muscache.com/im/pictures/ddc7f01f-3fb3-483c-87e6-701dad52c930.jpg?im_w=1920', 'HERO');
 
 INSERT INTO image(url,image_type,city_id)
 values ('https://a0.muscache.com/im/pictures/71e23854-a3c7-491c-b715-6e86233a293f.jpg?im_q=medq&im_w=240','MAIN',1),
