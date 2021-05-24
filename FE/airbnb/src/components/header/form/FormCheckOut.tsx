@@ -21,6 +21,7 @@ export default FormCheckOut;
 
 const StyledFormCheckOut = styled.div`
   .hover__checkOut {
+    height: 100%;
     padding: 1rem;
     border-radius: 3rem;
     cursor: pointer;

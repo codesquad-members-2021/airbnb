@@ -32,6 +32,7 @@ interface styleProps {
 }
 const StyledFormLocation = styled.div<styleProps>`
   .hover__location {
+    height: 100%;
     background-color: ${({ open, theme }) => open && theme.colors.white};
     padding: 1rem;
     border-radius: 3rem;
