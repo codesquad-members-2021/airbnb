@@ -138,10 +138,10 @@
             </objects>
             <point key="canvasLocation" x="1838" y="94"/>
         </scene>
-        <!--Date Selection View Controller-->
+        <!--Set Up View Controller-->
         <scene sceneID="UbO-1N-ah8">
             <objects>
-                <viewController storyboardIdentifier="DateSelectionViewController" id="lUP-AH-NX7" customClass="DateSelectionViewController" customModule="AirBed_Breakfast" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DateSelectionViewController" id="lUP-AH-NX7" customClass="SetUpViewController" customModule="AirBed_Breakfast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S3s-F0-6ZQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -167,21 +167,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lHL-BJ-Nle" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3422" y="94"/>
-        </scene>
-        <!--Price Selection View Controller-->
-        <scene sceneID="1D0-O2-6yJ">
-            <objects>
-                <viewController storyboardIdentifier="PriceSelectionViewController" id="eCY-Og-55U" customClass="PriceSelectionViewController" customModule="AirBed_Breakfast" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="G1k-Q0-wQN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="7qi-xm-JWh"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LY7-ub-V8X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4286" y="94"/>
         </scene>
         <!--Reservation Detail View Controller-->
         <scene sceneID="2Zu-Qa-YXz">

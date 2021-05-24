@@ -1,45 +1,64 @@
 //
-//  DateSelectionViewController.swift
+//  CalendarViewManager.swift
 //  AirBed&Breakfast
 //
-//  Created by 조중윤 on 2021/05/20.
+//  Created by 조중윤 on 2021/05/24.
 //
 
 import UIKit
 import HorizonCalendar
 
-class DateSelectionViewController: UIViewController {
+protocol DateInfoReceivable {
+    func updateDateInfo(date: Date, isLowerDate: Bool)
+}
 
-    private let id = String(describing: DateSelectionViewController.self)
-    private var reservationViewController: ReservationDetailViewControllerProtocol!
+class CalendarControlView: UIView {
+    
+    private let currentYear = Int(Date().year)!
+    private let nextYear = Int(Date().year)! + 1
+    private let currentMonth = Int(Date().month)!
+    private let currentDay = Int(Date().day)!
+    
     private var calendarView: CalendarView! = nil
+    public var dateInfoReceivable: DateInfoReceivable?
+    
     private var lowerDay: Day? {
         willSet{
             if newValue == nil { return }
             guard let lowerDate = Calendar.current.date(from: DateComponents(year: newValue?.components.year, month: newValue?.components.month, day: newValue?.components.day)) else { return }
-            reservationViewController.changeDateRange(date: lowerDate, isLowerDay: true)
+            dateInfoReceivable?.updateDateInfo(date: lowerDate, isLowerDate: true)
         }
     }
+    
     private var upperDay: Day? {
         willSet{
             if newValue == nil { return }
             guard let upperDate = Calendar.current.date(from: DateComponents(year: newValue?.components.year, month: newValue?.components.month, day: newValue?.components.day)) else { return }
-            reservationViewController.changeDateRange(date: upperDate, isLowerDay: false)
+            dateInfoReceivable?.updateDateInfo(date: upperDate, isLowerDate: false)
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureCelendarView()
-        
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configureCalendarView()
+        setDaySelectionHandler()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        configureCalendarView()
+        setDaySelectionHandler()
+    }
+    
+    deinit {
+        print("Calendar View Has Been Removed")
+    }
+    
+    func setDaySelectionHandler() {
         self.calendarView.daySelectionHandler = { [weak self] day in
             guard let self = self else { return }
             
-            let currentYear = Int(Date().year)
-            let currentMonth = Int(Date().month)!
-            let currentDay = Int(Date().day)!
-            
-            if day.components.year == currentYear && day.components.month! <= currentMonth && day.components.day! < currentDay {
+            if day.components.year == self.currentYear && day.components.month! <= self.currentMonth && day.components.day! < self.currentDay {
                 return
             }
             
@@ -68,6 +87,19 @@ class DateSelectionViewController: UIViewController {
         }
     }
     
+    private func configureCalendarView() {
+        self.calendarView = CalendarView(initialContent: makeContent())
+        self.addSubview(calendarView)
+        calendarView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+          calendarView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+          calendarView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+          calendarView.topAnchor.constraint(equalTo: self.topAnchor),
+          calendarView.heightAnchor.constraint(equalTo: self.heightAnchor)
+        ])
+    }
+    
     private func makeContentWithHighlightRange() -> CalendarViewContent {
         guard let lowerDate = Calendar.current.date(from: DateComponents(year: self.lowerDay?.components.year, month: self.lowerDay?.components.month, day: self.lowerDay?.components.day)) else { return makeContent()}
         guard let upperDate = Calendar.current.date(from: DateComponents(year: self.upperDay?.components.year, month: self.upperDay?.components.month, day: self.upperDay?.components.day)) else { return makeContent()}
@@ -82,27 +114,9 @@ class DateSelectionViewController: UIViewController {
         return newContent
     }
     
-    private func configureCelendarView() {
-        self.calendarView = CalendarView(initialContent: makeContent())
-        view.addSubview(calendarView)
-        calendarView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let reservationDetailViewHeightRatioToView = 0.3
-        NSLayoutConstraint.activate([
-          calendarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-          calendarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-          calendarView.topAnchor.constraint(equalTo: view.topAnchor),
-          calendarView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: CGFloat((1.0 - reservationDetailViewHeightRatioToView)))
-        ])
-    }
-    
     private func makeContent() -> CalendarViewContent {
         let calendar = Calendar.current
         
-        let currentYear = Int(Date().year)
-        let nextYear = Int(Date().year)! + 1
-        let currentMonth = Int(Date().month)!
-        let currentDay = Int(Date().day)!
         let startDate = calendar.date(from: DateComponents(year: currentYear, month: currentMonth, day: 01))!
         let endDate = calendar.date(from: DateComponents(year: nextYear, month: currentMonth, day: 31))!
         
@@ -117,7 +131,7 @@ class DateSelectionViewController: UIViewController {
                     textColor: .darkGray,
                     backgroundColor: .clear)
                 
-                if day.components.year == currentYear && day.components.month! <= currentMonth && day.components.day! < currentDay {
+                if day.components.year == self.currentYear && day.components.month! <= self.currentMonth && day.components.day! < self.currentDay {
                     invariantViewProperties.textColor = UIColor.red
                 }
                 
@@ -138,15 +152,6 @@ class DateSelectionViewController: UIViewController {
             .withVerticalDayMargin(8)
             .withHorizontalDayMargin(8)
     }
-
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "containerViewSegue" {
-            reservationViewController = segue.destination as? ReservationDetailViewController
-            reservationViewController.setCurrentParentId(id: self.id)
-        }
-    }
     
     public func clearCalendarView() {
         self.lowerDay = nil
@@ -154,4 +159,5 @@ class DateSelectionViewController: UIViewController {
         
         self.calendarView.setContent(makeContent())
     }
+    
 }

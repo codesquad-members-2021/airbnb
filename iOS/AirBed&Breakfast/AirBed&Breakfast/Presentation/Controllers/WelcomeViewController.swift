@@ -15,7 +15,7 @@ class WelcomeViewController: UIViewController {
     }
     
     @IBAction func searchButton(_ sender: UIButton) {
-        print("BAM!")
+
     }
     
 }

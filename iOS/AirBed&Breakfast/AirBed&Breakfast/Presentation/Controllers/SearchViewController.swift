@@ -13,7 +13,7 @@ class SearchViewController: UIViewController {
     enum Section {
         case main
     }
-        
+    
     var searchResultCollectionView: UICollectionView! = nil
     var dataSource: UICollectionViewDiffableDataSource<Section, String>! = nil
     // whenever value of this changes, will fetch relevant address info from the server.
@@ -40,7 +40,7 @@ class SearchViewController: UIViewController {
         definesPresentationContext = true
         
         // forTest
-        let targetVC = self.storyboard?.instantiateViewController(identifier: "DateSelectionViewController") as! DateSelectionViewController
+        let targetVC = self.storyboard?.instantiateViewController(identifier: "DateSelectionViewController") as! SetUpViewController
         navigationController?.pushViewController(targetVC, animated: false)
     
     }

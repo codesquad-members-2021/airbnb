@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ReservationDetailViewControllerProtocol {
-    func setCurrentParentId(id: String)
+    func setContext(with description: String)
     func changeLocation()
     func changeDateRange(date: Date, isLowerDay: Bool)
     func changePriceRange()
@@ -28,23 +28,29 @@ class ReservationDetailViewController: UIViewController {
     @IBOutlet weak var deleteCurrentDetailButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
-    var currentParentId: String!
     var lowerDate: Date?
     var upperDate: Date?
+    var currentContext: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("Reservation Detail view loaded")
         reservationDetailTableView.register(ReservationDetailTableViewCell.nib, forCellReuseIdentifier: ReservationDetailTableViewCell.reuseIdentifier)
         
         reservationDetailTableView.dataSource = self
         reservationDetailTableView.delegate = self
     }
     
+    deinit {
+        print("Reservation Detail View Has Been deinit")
+    }
+    
     @IBAction func deleteCurrentDetailButtonPressed(_ sender: UIButton) {
-        switch currentParentId {
-        case String(describing: DateSelectionViewController.self):
+        switch currentContext {
+        case String(describing: CalendarControlView.self):
             self.detailLabel(for: .date).text = ""
-            (parent as? DateSelectionViewController)?.clearCalendarView()
+//            (parent as? SetUpViewController)?.calendarControlView?.clearCalendarView()
         default:
             return
         }
@@ -54,10 +60,9 @@ class ReservationDetailViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        switch currentParentId {
-        case String(describing: DateSelectionViewController.self):
-            let targetVC = self.storyboard?.instantiateViewController(identifier: String(describing: PriceSelectionViewController.self)) as! PriceSelectionViewController
-            parent?.navigationController?.pushViewController(targetVC, animated: true)
+        switch currentContext {
+        case String(describing: CalendarControlView.self):
+            (parent as? SetUpViewController)?.deinitializeCalendarControlView()
         default: break
         }
     }
@@ -85,8 +90,8 @@ class ReservationDetailViewController: UIViewController {
 }
 
 extension ReservationDetailViewController: ReservationDetailViewControllerProtocol {
-    func setCurrentParentId(id: String) {
-        self.currentParentId = id
+    func setContext(with description: String) {
+        self.currentContext = description
     }
     
     func changeLocation() {
@@ -138,7 +143,6 @@ extension ReservationDetailViewController: UITableViewDataSource {
         
         return cell
     }
-    
 }
 
 extension ReservationDetailViewController: UITableViewDelegate {
