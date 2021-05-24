@@ -52,8 +52,6 @@ public class GithubApiRequester implements OauthApiRequester {
         headers.setBearerAuth(accessToken);
         GithubProfile githubProfile = apiRequester.callApi(githubApi.getProfileUrl(), HttpMethod.GET, headers,
                 HttpEntity.EMPTY, GithubProfile.class);
-        User user = oauthProfileConverter.githubProfileToUser(githubProfile);
-        user.updateToken(accessToken);
-        return user;
+        return oauthProfileConverter.githubProfileToUser(githubProfile);
     }
 }
