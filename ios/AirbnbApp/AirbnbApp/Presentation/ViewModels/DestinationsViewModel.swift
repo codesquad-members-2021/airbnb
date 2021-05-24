@@ -40,14 +40,10 @@ extension DefaultDestinationsViewModel {
     
     func filter(using searchItems: [String]) -> [DestinationViewModel] {
         var filtered = allDestinations
-        var currentTerm = searchItems[0]
-        var index = 0
-        while currentTerm != "" {
-            filtered = filtered.filter {
-                $0.name.lowercased().contains(currentTerm)
+        searchItems.forEach { item in
+            filtered = filtered.filter { destination in
+                destination.name.lowercased().contains(item)
             }
-            index += 1
-            currentTerm = (index < searchItems.count) ? searchItems[index] : ""
         }
         return filtered
     }
