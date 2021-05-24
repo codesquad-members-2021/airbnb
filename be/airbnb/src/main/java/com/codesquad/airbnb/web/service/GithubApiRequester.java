@@ -15,13 +15,13 @@ import org.springframework.web.client.RestTemplate;
 
 @Slf4j
 @Service
-public class ApiRequester {
+public class GithubApiRequester {
 
     private final ServerSecret serverSecret;
     private final GithubApi githubApi;
     private final RestTemplate restTemplate;
 
-    public ApiRequester(ServerSecret serverSecret, GithubApi githubApi, RestTemplate restTemplate) {
+    public GithubApiRequester(ServerSecret serverSecret, GithubApi githubApi, RestTemplate restTemplate) {
         this.serverSecret = serverSecret;
         this.githubApi = githubApi;
         this.restTemplate = restTemplate;

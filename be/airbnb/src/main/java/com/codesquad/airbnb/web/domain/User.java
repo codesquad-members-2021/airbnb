@@ -1,17 +1,23 @@
-package com.codesquad.airbnb.web.dto;
+package com.codesquad.airbnb.web.domain;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
 
 @Getter
-@ToString
 @AllArgsConstructor
+@ToString
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class GithubProfile {
-    private String login;
+@Builder
+public class User {
+    @Id
+    private int id;
+    private String nickname;
     private String name;
-    private String avatarUrl;
+    private String profileImage;
+    private String accessToken;
 }
