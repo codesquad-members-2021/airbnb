@@ -1,7 +1,7 @@
 import { RefObject, useState, useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { calendarState } from '../../../recoil/headerAtom';
+import { calendarState, calendarDateType } from '../../../recoil/headerAtom';
 import Calendar from '../../calendar/Calendar';
 import { ReactComponent as CalendarPrevBtn } from '../../../assets/svg/Property 1=chevron-left.svg';
 import { ReactComponent as CalendarNextBtn } from '../../../assets/svg/Property 1=chevron-right.svg';
@@ -61,16 +61,10 @@ const FormCalendar = ({ toggleRef }: Props) => {
   );
 };
 
-interface dateType {
-  year: number;
-  month: number;
-}
-
-const getMovedDate = (date: dateType, moveCount: number): dateType => {
-  const { year, month } = date;
+const getMovedDate = (date: calendarDateType, moveCount: number): calendarDateType => {
+  const { year, month, todayDate } = date;
   let newYear = year;
   let newMonth = month + moveCount;
-
   if (newMonth > 12) {
     newMonth -= 12;
     newYear++;
@@ -78,7 +72,7 @@ const getMovedDate = (date: dateType, moveCount: number): dateType => {
     newMonth += 12;
     newYear--;
   }
-  return { year: newYear, month: newMonth };
+  return { year: newYear, month: newMonth, todayDate };
 };
 
 export default FormCalendar;
