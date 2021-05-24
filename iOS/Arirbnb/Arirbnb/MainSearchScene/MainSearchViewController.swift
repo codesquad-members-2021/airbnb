@@ -40,7 +40,7 @@ class MainSearchViewController: UIViewController {
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Destination>! = nil
     private var action: MainSearchViewControllerAction!
-    private var destinations: [[Destination]] = [[],MockAdjacentDestination.mockDatas, MockThemeDestination.mockDatas]
+    private var destinations: [[Destination]] = [[Destination.init(destinationName: "HeroImage")],MockAdjacentDestination.mockDatas, MockThemeDestination.mockDatas]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,10 +86,11 @@ extension MainSearchViewController {
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Destination>(collectionView: mainCollectionView) { (collectionView: UICollectionView, indexPath: IndexPath, item: Destination) -> UICollectionViewCell? in
             let sectionKind = Section.allCases[indexPath.section]
-            
+
             switch sectionKind {
             case .heroImages:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeroImageCell.reuseIdentifier, for: indexPath)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeroImageCell.reuseIdentifier, for: indexPath) as? HeroImageCell
+                cell?.configure()
                 return cell
             case .adjacentDestinations:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdjacentDestinationsCell.reuseIdentifier, for: indexPath) as? AdjacentDestinationsCell
