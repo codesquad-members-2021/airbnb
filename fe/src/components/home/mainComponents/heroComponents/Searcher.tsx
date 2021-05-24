@@ -9,6 +9,7 @@ import CheckInTab from './searcherComponents/CheckInTab';
 import { SearcherStateContext, SearcherDispatchContext } from '../../../../Contexts';
 import { searchReducer } from '../../../../shared/searchBarReducer';
 import Calendar from './searcherComponents/Calendar';
+import CheckOutTab from './searcherComponents/CheckOutTab';
 
 const isNotLocationSelected = (location: Location): boolean => {
     return location.id === 0 && location.city === '';
@@ -28,11 +29,6 @@ const Searcher = (): React.ReactElement => {
     const { location, checkIn, checkOut, fee, people } = reservationState;
 
     const [searcherState, searcherDispatch] = useReducer(searchReducer, initialSearcherState);
-    // const { calendarLayer } = searcherState;
-    // const handleCalendarLayer: React.MouseEventHandler<HTMLDivElement> = () => {
-    //     searcherDispatch({ type: 'LOCATION_LAYER', state: false });
-    //     searcherDispatch({ type: 'CALENDAR_LAYER', state: true });
-    // };
 
     return (
         <Search>
@@ -41,12 +37,7 @@ const Searcher = (): React.ReactElement => {
                     <BarSection>
                         <LocationTab />
                         <CheckInTab />
-                        {/* <CheckInTab onClick={handleCalendarLayer}>
-                            <NavigatingText>체크인</NavigatingText>
-                        </CheckInTab> */}
-                        <CheckOutTab>
-                            <NavigatingText>체크아웃</NavigatingText>
-                        </CheckOutTab>
+                        <CheckOutTab />
                         <PriceTab>
                             <NavigatingText>금액</NavigatingText>
                         </PriceTab>
@@ -94,14 +85,6 @@ const NavigatingText = styled.p`
 
 const LocationInput = styled.input`
     margin: 0;
-`;
-
-// const CheckInTab = styled.div`
-//     flex: 1;
-// `;
-
-const CheckOutTab = styled.div`
-    flex: 1;
 `;
 
 const PriceTab = styled.div`

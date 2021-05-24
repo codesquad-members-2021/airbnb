@@ -4,8 +4,8 @@ import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/Sear
 import { LocationList, Location } from '../../../../../shared/interface';
 import { mockupLocationData } from '../../../../../data/location';
 import { useReservationDispatch } from '../../../../../hooks/ReservationHook';
-import Layer from './Layer.style';
-import { Container, Tab } from './shared.style';
+import { Container, Tab, Layer } from './shared.style';
+import { debounce } from '@material-ui/core';
 
 const LocationTab = (): React.ReactElement => {
     const reservationDispatch = useReservationDispatch();
@@ -14,6 +14,8 @@ const LocationTab = (): React.ReactElement => {
     const searcherDispatch = useSearcherDispatch();
 
     const inputRef = useRef<HTMLInputElement>(null);
+
+    let debounceTimer: ReturnType<typeof setTimeout>;
 
     const { locationLayer, locationList } = searcherState;
 
@@ -27,7 +29,8 @@ const LocationTab = (): React.ReactElement => {
     };
 
     const handleInputLocationList = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setTimeout(() => {
+        if (debounceTimer) clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
             if (!event.target.value) {
                 searcherDispatch({ type: 'LOCATION_LIST', list: [] });
                 return;
@@ -63,7 +66,7 @@ const LocationTab = (): React.ReactElement => {
                 />
             </Tab>
             {locationLayer && (
-                <Layer width={493}>
+                <Layer width={493} top={70} left={0}>
                     {locationList?.map((place: Location) => (
                         <li key={place.id} onClick={() => setUpLocation(place)}>
                             {place.city}

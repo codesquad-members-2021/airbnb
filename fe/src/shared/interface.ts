@@ -1,5 +1,9 @@
 import { Dispatch } from 'react';
 
+export interface UsefulObject {
+    [key: string]: string;
+}
+
 export interface Location {
     id: number;
     city: string;

@@ -2,7 +2,6 @@ import React from 'react';
 import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/SearcherHook';
 import styled from 'styled-components';
 import Calendar from './Calendar';
-import Layer from './Layer.style';
 import { Container, Tab, NavigatingText } from './shared.style';
 import { useReservationState } from '../../../../../hooks/ReservationHook';
 
@@ -16,6 +15,7 @@ const CheckInTab = (): React.ReactElement => {
 
     const handleCalendarLayer: React.MouseEventHandler<HTMLDivElement> = () => {
         searcherDispatch({ type: 'LOCATION_LAYER', state: false });
+        searcherDispatch({ type: 'CHECKOUT_CALENDAR_LAYER', state: false });
         searcherDispatch({ type: 'CHECKIN_CALENDAR_LAYER', state: true });
     };
 
