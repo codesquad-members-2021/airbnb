@@ -9,7 +9,7 @@ import UIKit
 
 class ResultsCollectionController: UICollectionViewController {
 
-    var viewModel: ResultsViewModel!
+    private var viewModel: ResultsViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,10 @@ class ResultsCollectionController: UICollectionViewController {
     private func configureCollectionView() {
         self.collectionView.backgroundColor = .systemBackground
         self.collectionView.register(DestinationCollectionViewCell.nib(), forCellWithReuseIdentifier: DestinationCollectionViewCell.reuseIdentifier)
+    }
+    
+    func updateFilteredDestination(with destinations: [DestinationViewModel]) {
+        viewModel.filteredDestinations = destinations
     }
 
     //MARK: - UICollectionViewDataSource
