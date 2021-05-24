@@ -1,6 +1,6 @@
 package com.codesquad.coco.room.model.dto;
 
-import com.codesquad.coco.utils.LocalDateConvertor;
+import com.codesquad.coco.utils.LocalDateUtil;
 
 import java.beans.ConstructorProperties;
 import java.time.LocalDate;
@@ -17,8 +17,8 @@ public class SearchPriceDTO {
 
     @ConstructorProperties({"check-in", "check-out", "city-name"})
     public SearchPriceDTO(String checkIn, String checkOut, String cityName) {
-        this.checkIn = checkIn != null ? LocalDateConvertor.StringToLocalDate(checkIn) : DEFAULT_CHECK_IN;
-        this.checkOut = checkOut != null ? LocalDateConvertor.StringToLocalDate(checkOut) : DEFAULT_CHECK_OUT;
+        this.checkIn = checkIn != null ? LocalDateUtil.StringToLocalDate(checkIn) : DEFAULT_CHECK_IN;
+        this.checkOut = checkOut != null ? LocalDateUtil.StringToLocalDate(checkOut) : DEFAULT_CHECK_OUT;
         this.cityName = cityName != null ? cityName : DEFAULT_CITY_NAME;
     }
 

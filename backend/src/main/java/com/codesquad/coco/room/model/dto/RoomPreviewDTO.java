@@ -11,9 +11,9 @@ public class RoomPreviewDTO {
     private String thumbnailImage;
     private LocationDTO coordinate;
     private ReviewDTO review;
-    //todo : 검색에 사용된 날짜를 통해 total_price를 계산해서 보여주어야 한다.
+    private int totalPrice;
 
-    private RoomPreviewDTO(Long id, String name, int pricePerDate, RoomOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO) {
+    private RoomPreviewDTO(Long id, String name, int pricePerDate, RoomOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO, int totalPrice) {
         this.id = id;
         this.name = name;
         this.pricePerDate = pricePerDate;
@@ -23,12 +23,17 @@ public class RoomPreviewDTO {
         this.thumbnailImage = thumbnailImage;
         this.coordinate = coordinate;
         this.review = reviewDTO;
+        this.totalPrice = totalPrice;
     }
 
-    public static RoomPreviewDTO of(Long id, String name, int pricePerDate, RoomOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO) {
-        return new RoomPreviewDTO(id, name, pricePerDate, homeDetails, type, wish, thumbnailImage, coordinate, reviewDTO);
+    public static RoomPreviewDTO of(Long id, String name, int pricePerDate, RoomOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO, int totalPrice) {
+        return new RoomPreviewDTO(id, name, pricePerDate, homeDetails, type, wish, thumbnailImage, coordinate, reviewDTO, totalPrice);
     }
 
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     public Long getId() {
         return id;
@@ -64,5 +69,13 @@ public class RoomPreviewDTO {
 
     public ReviewDTO getReviewDTO() {
         return review;
+    }
+
+    public ReviewDTO getReview() {
+        return review;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
     }
 }

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class DTOConverter {
 
 
-    public static RoomPreviewDTO roomToRoomPreviewDTO(Room room) {
+    public static RoomPreviewDTO roomToRoomPreviewDTO(Room room, int fewNights) {
         return RoomPreviewDTO.of(
                 room.getId(),
                 room.getName(),
@@ -27,7 +27,8 @@ public class DTOConverter {
                 room.getWish(),
                 room.getThumbnailImage(),
                 locationToLocationDTO(room.getLocation()),
-                reviewToReviewDTO(room.getReview())
+                reviewToReviewDTO(room.getReview()),
+                room.getTotalPrice(fewNights)
         );
     }
 

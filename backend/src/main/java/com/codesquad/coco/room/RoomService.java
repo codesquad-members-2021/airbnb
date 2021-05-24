@@ -4,6 +4,7 @@ import com.codesquad.coco.image.ImageDAO;
 import com.codesquad.coco.room.model.Room;
 import com.codesquad.coco.room.model.dto.*;
 import com.codesquad.coco.utils.DTOConverter;
+import com.codesquad.coco.utils.LocalDateUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,11 +28,12 @@ public class RoomService {
 
     public List<RoomPreviewDTO> findAllRoomPreviewDTO(SearchRoomDTO roomDTO) {
         List<Room> rooms = roomDAO.findAllBySearchRoomDTO(roomDTO);
-        //todo searchDTO에 날짜들이 들어있다.
-        //  그 날짜들로 totalPrice를 계산해야한다. ->비즈니스 로직
-        //  그리고 그 값을 DTO에 넣어준다.
+
+        //fixme : ?
+        int fewNights = LocalDateUtil.getAccommodationDay(roomDTO.getCheckIn(), roomDTO.getCheckOut());
+
         return rooms.stream()
-                .map(DTOConverter::roomToRoomPreviewDTO)
+                .map(room -> DTOConverter.roomToRoomPreviewDTO(room, fewNights))
                 .collect(Collectors.toList());
     }
 

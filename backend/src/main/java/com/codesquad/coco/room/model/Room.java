@@ -12,7 +12,8 @@ import java.util.List;
 
 public class Room {
 
-    private static String DEFAULT_THUMBNAIL_IMAGE = "https://a0.muscache.com/im/pictures/user/7822f895-df8a-4b0f-9035-0d3b3afbdc3d.jpg?aki_policy=profile_x_medium";
+    private static final String DEFAULT_THUMBNAIL_IMAGE = "https://a0.muscache.com/im/pictures/user/7822f895-df8a-4b0f-9035-0d3b3afbdc3d.jpg?aki_policy=profile_x_medium";
+    private static final int ONE_WEEK = 7;
 
     @Id
     private Long id;
@@ -56,6 +57,25 @@ public class Room {
                 .findFirst()
                 .map(Image::getUrl)
                 .orElse(DEFAULT_THUMBNAIL_IMAGE);
+    }
+
+
+    public int getTotalPrice(int fewNights) {
+        int basicPrice = fewNights * pricePerDate.getMoney();
+        int additionalPrice = 0;
+        if (fewNights >= ONE_WEEK) {
+            additionalPrice -= percentCalc(basicPrice, additionalCost.getWeekSalePercent());
+        }
+        // 추가 비용
+        additionalPrice += percentCalc(basicPrice, additionalCost.getServiceFeePercent());
+        additionalPrice += percentCalc(basicPrice, additionalCost.getLodgmentFeePercent());
+        additionalPrice += additionalCost.getCleaningFee();
+
+        return basicPrice + additionalPrice;
+    }
+
+    private int percentCalc(int totalPrice, int percent) {
+        return totalPrice * (percent / 100);
     }
 
     public void addReservation(Reservation reservation) {
@@ -131,6 +151,7 @@ public class Room {
                 ", images=" + images +
                 '}';
     }
+
 
     public static class Builder {
         private Long id;
