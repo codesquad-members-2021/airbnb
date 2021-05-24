@@ -8,6 +8,8 @@ import com.codesquad.coco.image.Image;
 import com.codesquad.coco.image.ImageDTO;
 import com.codesquad.coco.room.model.*;
 import com.codesquad.coco.room.model.dto.*;
+import com.codesquad.coco.user.Reservation;
+import com.codesquad.coco.user.ReservationDateDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,7 +44,21 @@ public class DTOConverter {
                 locationToLocationDTO(room.getLocation()),
                 imagesToImages(room.getImages()),
                 reviewToReviewDTO(room.getReview()),
-                additionalCostToAdditionalCostDTO(room.getAdditionalCost())
+                additionalCostToAdditionalCostDTO(room.getAdditionalCost()),
+                reservationsToReservationDateDTOs(room.getReservations())
+        );
+    }
+
+    private static List<ReservationDateDTO> reservationsToReservationDateDTOs(List<Reservation> reservations) {
+        return reservations.stream()
+                .map(DTOConverter::reservationToReservationDateDTOs)
+                .collect(Collectors.toList());
+    }
+
+    public static ReservationDateDTO reservationToReservationDateDTOs(Reservation reservation) {
+        return new ReservationDateDTO(
+                reservation.getCheckIn(),
+                reservation.getCheckOut()
         );
     }
 

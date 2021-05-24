@@ -11,6 +11,7 @@ public class RoomPreviewDTO {
     private String thumbnailImage;
     private LocationDTO coordinate;
     private ReviewDTO review;
+    //todo : 검색에 사용된 날짜를 통해 total_price를 계산해서 보여주어야 한다.
 
     private RoomPreviewDTO(Long id, String name, int pricePerDate, RoomOptionDTO homeDetails, String type, boolean wish, String thumbnailImage, LocationDTO coordinate, ReviewDTO reviewDTO) {
         this.id = id;
