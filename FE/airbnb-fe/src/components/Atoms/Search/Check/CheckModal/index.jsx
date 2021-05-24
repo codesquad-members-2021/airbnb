@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import CalendarCarousel from '../CalendarCarousel';
 
 const CheckModal = () => {
-  return <CheckModalDiv></CheckModalDiv>;
+  return (
+    <CheckModalDiv>
+      <CalendarCarousel />
+    </CheckModalDiv>
+  );
 };
 
 const CheckModalDiv = styled.div`
