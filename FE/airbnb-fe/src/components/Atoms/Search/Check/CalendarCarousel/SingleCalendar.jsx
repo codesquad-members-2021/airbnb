@@ -41,7 +41,6 @@ const SingleCalendar = ({ range }) => {
   // console.log('달', monthArr);
   return (
     <SingleCalDiv>
-      <thead></thead>
       <tbody>
         {monthArr?.map((week, idx) => (
           <DayTr key={idx}>
@@ -55,7 +54,7 @@ const SingleCalendar = ({ range }) => {
   );
 };
 
-const SingleCalDiv = styled.div`
+const SingleCalDiv = styled.table`
   /* height: 16.5rem; */
   border: 1px solid #ff0000;
   width: 21rem;
@@ -65,8 +64,17 @@ const SingleCalDiv = styled.div`
 const DayTd = styled.td`
   width: 3rem;
   height: 3rem;
-  border: 1px solid gray;
-  font-size: ${({ theme }) => theme.fontSizes.XXS};
+  border-radius: 3rem;
+  font-size: ${({ theme }) => theme.fontSizes.TS};
+  font-weight: 700;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid #333;
+  }
+  /* &:click {
+    background-color: ${({ theme }) => theme.colors.gray1};
+    color: ${({ theme }) => theme.colors.white};
+  } */
 `;
 
 const DayTr = styled.tr`

@@ -13,6 +13,7 @@ const theme = {
     //gray1~gray6 => 5로 갈수록 진해짐
   },
   fontSizes: {
+    TS: '12px',
     XXS: '14px',
     XS: '16px',
     S: '18px',
