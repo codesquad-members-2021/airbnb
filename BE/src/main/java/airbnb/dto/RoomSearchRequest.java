@@ -1,6 +1,5 @@
 package airbnb.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,7 +21,6 @@ public class RoomSearchRequest {
 
     private final int maxPrice;
     private final int minPrice;
-
 
     public RoomSearchRequest(Long cityId, int maxPersonCount, LocalDate checkIn, LocalDate checkOut, int maxPrice, int minPrice) {
         this.cityId = cityId;
