@@ -1,4 +1,4 @@
-# kill -kill `lsof -t -i tcp:3306`
+#! kill -kill `lsof -t -i tcp:3306`
 # rm -rf ./db/data/
 
 docker stop $(docker ps -aq) ;

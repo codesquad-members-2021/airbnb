@@ -9,8 +9,9 @@ public class RoomDTO {
     private int bed;
     private int maxGuest;
     private int bathroom;
+    private LocationDTO location;
 
-    public RoomDTO(Long id, String title, String description, int pricePerDay, String roomType, int bed, int maxGuest, int bathroom) {
+    public RoomDTO(Long id, String title, String description, int pricePerDay, String roomType, int bed, int maxGuest, int bathroom, LocationDTO location) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -19,6 +20,7 @@ public class RoomDTO {
         this.bed = bed;
         this.maxGuest = maxGuest;
         this.bathroom = bathroom;
+        this.location = location;
     }
 
     public Long getId() {
@@ -51,6 +53,10 @@ public class RoomDTO {
 
     public int getBathroom() {
         return bathroom;
+    }
+
+    public LocationDTO getLocation() {
+        return location;
     }
 
 }

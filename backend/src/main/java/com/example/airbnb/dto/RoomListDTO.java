@@ -3,13 +3,11 @@ package com.example.airbnb.dto;
 public class RoomListDTO {
     private RoomDTO room;
     private String thumbImage;
-    private LocationDTO location;
     private Receipt receipt;
 
-    public RoomListDTO(RoomDTO room, String thumbImage, int days, LocationDTO locationDTO) {
+    public RoomListDTO(RoomDTO room, String thumbImage, int days) {
         this.room = room;
         this.thumbImage = thumbImage;
-        this.location = locationDTO;
         this.receipt = new Receipt(room, days);
     }
 
@@ -25,9 +23,6 @@ public class RoomListDTO {
         return receipt;
     }
 
-    public LocationDTO getLocation() {
-        return location;
-    }
 
 }
 
