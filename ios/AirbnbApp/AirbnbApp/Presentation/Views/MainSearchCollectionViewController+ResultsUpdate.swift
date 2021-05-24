@@ -12,7 +12,8 @@ extension MainSearchCollectionViewController: UISearchResultsUpdating {
         guard let text = searchController.searchBar.text else { return }
         
         if let resultsController = searchController.searchResultsController as? ResultsCollectionController {
-            resultsController.viewModel.filteredDestinations = viewModel.filter(using: text)
+            let filtered = viewModel.filter(using: text)
+            resultsController.updateFilteredDestination(with: filtered)
             resultsController.collectionView.reloadData()
         }
     }
