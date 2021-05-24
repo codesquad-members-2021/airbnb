@@ -11,7 +11,6 @@ const Header = () => {
       <AirbnbIcon />
       <NavRadio />
       <AccountMenu />
-      <AccountModal />
     </HeaderDiv>
   );
 };

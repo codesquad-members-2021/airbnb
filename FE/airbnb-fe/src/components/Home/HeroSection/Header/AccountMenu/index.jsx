@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import AccountIcon from './AccountIcon.jsx';
+import AccountModal from './AccountModal.jsx';
 
 import MenuIcon from './MenuIcon.jsx';
 
 const AccountMenu = () => {
-  const handleAccountMenuClick = () => {};
+  const [isAccountClicked, setIsAccountClicked] = useState(false);
+  const handleAccountMenuClick = () => {
+    setIsAccountClicked((isAccountClicked) => !isAccountClicked);
+  };
 
   return (
-    <IconContainer onClick={() => handleAccountMenuClick()}>
-      <MenuIcon />
-      <AccountIcon />
-    </IconContainer>
+    <>
+      <IconContainer onClick={() => handleAccountMenuClick()}>
+        <MenuIcon />
+        <AccountIcon />
+      </IconContainer>
+      {isAccountClicked && <AccountModal />}
+    </>
   );
 };
 
