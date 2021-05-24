@@ -49,7 +49,7 @@ extension ResultsTableViewController {
         let searchResult = searchResults[indexPath.row]
         let searchRequest = MKLocalSearch.Request(completion: searchResult)
         let search = MKLocalSearch(request: searchRequest)
-        search.start { (response, error) in
+        search.start { [weak self] (response, error) in
             guard error == nil else {
                 print("location api search error...")
                 return
@@ -57,10 +57,7 @@ extension ResultsTableViewController {
             guard let placemark = response?.mapItems[0].placemark else {
                 return
             }
-            // 좌표 저장
-            print(placemark.coordinate)
-            // 숙소 날짜 선택 창으로 넘어가야 함
-            self.delegate?.moveToNext()
+            self?.delegate?.moveToNext()
         }
     }
 }
