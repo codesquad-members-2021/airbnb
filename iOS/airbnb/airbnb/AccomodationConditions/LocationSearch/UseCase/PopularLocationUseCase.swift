@@ -28,27 +28,27 @@ final class PopularLocationUseCase: PopularLocationCaseConfigurable {
         self.init(networkManager: FakeNetworkManager(fakeData: fakeData), imageLoadManager: imageLoadManager)
     }
     
-    func loadPopularLocations(completionHandler: @escaping (Result<[PopularLocation], CustomError>) -> Void) {
+    func loadPopularLocations(completionHandler: @escaping (Result<[PopularLocation], NetworkError>) -> Void) {
         let endPoint = EndPoint.popularLocations
         
         networkManager.get(decodingType: [PopularLocation].self, endPoint: endPoint) { dataResponse in
             guard let statusCode = dataResponse.response?.statusCode else {
-                return completionHandler(.failure(CustomError.internet))
+                return completionHandler(.failure(NetworkError.internet))
             }
             switch statusCode {
             case 200..<300:
                 guard let value = dataResponse.value else {
-                    return completionHandler(.failure(CustomError.noResult))
+                    return completionHandler(.failure(NetworkError.noResult))
                 }
                 completionHandler(.success(value))
             case 300..<400:
-                completionHandler(.failure(CustomError.noResult))
+                completionHandler(.failure(NetworkError.noResult))
             case 400..<500:
-                completionHandler(.failure(CustomError.notAllowed))
+                completionHandler(.failure(NetworkError.notAllowed))
             case 500...:
-                completionHandler(.failure(CustomError.server))
+                completionHandler(.failure(NetworkError.server))
             default:
-                completionHandler(.failure(CustomError.unknown))
+                completionHandler(.failure(NetworkError.unknown))
             }
         }
     }

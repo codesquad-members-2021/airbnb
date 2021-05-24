@@ -7,10 +7,8 @@
 
 import UIKit
 
-final class PopularLocationViewController: UIViewController, Instantiable {
-
-    static var reuseIdentifier: String { String(describing: self) }
-
+final class PopularLocationViewController: UIViewController {
+    
     @IBOutlet weak var popularLocationTableView: UITableView!
     private var popularLocationTableViewDataSource: PopularLocationTableViewDataSource?
     private var searchController: LocationSearchController?
@@ -56,7 +54,7 @@ final class PopularLocationViewController: UIViewController, Instantiable {
     }
     
     private func alertError(error: Error) {
-        let customError = error as? CustomError ?? CustomError.unknown
+        let customError = error as? NetworkError ?? NetworkError.unknown
         let alert = AlertFactory.create(error: customError)
         self.present(alert, animated: true, completion: nil)
     }

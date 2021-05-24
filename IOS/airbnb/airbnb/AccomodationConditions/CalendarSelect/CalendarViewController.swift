@@ -7,9 +7,8 @@
 
 import UIKit
 
-final class CalendarViewController: UIViewController, Instantiable {
+final class CalendarViewController: UIViewController {
 
-    static var reuseIdentifier: String { String(describing: self) }
     private let backButtonTitle = "날짜 선택"
     
     var location: LocationSearchResult?

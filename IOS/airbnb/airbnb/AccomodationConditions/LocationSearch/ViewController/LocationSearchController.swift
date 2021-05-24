@@ -8,9 +8,10 @@
 import UIKit
 
 final class LocationSearchController: UISearchController {
-    
-    private lazy var customSearchBar = LocationSearchBar()
-    override var searchBar: UISearchBar { customSearchBar }
+
+    override var searchBar: UISearchBar {
+        return SearchBarFactory.create()
+    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)

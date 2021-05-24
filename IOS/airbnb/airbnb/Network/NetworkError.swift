@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CustomError: String, Error, CustomStringConvertible {
+enum NetworkError: String, Error, CustomStringConvertible {
     case internet = "인터넷 연결을 확인해주세요 :("
     case noResult = "검색 결과를 찾을 수 없습니다 :("
     case notAllowed = "잘못된 접근입니다 :("

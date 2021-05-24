@@ -12,10 +12,8 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var heroImageView: UIImageView!
     
     private var searchBar: UISearchBar {
-        let searchBar = UISearchBar()
+        let searchBar = SearchBarFactory.create()
         searchBar.delegate = self
-        searchBar.searchTextField.clearButtonMode = .never
-        searchBar.placeholder = viewModel.searchBarPlaceholder
         return searchBar
     }
     
@@ -40,7 +38,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func alertError(error: Error) {
-        let customError = error as? CustomError ?? CustomError.unknown
+        let customError = error as? NetworkError ?? NetworkError.unknown
         let alert = AlertFactory.create(error: customError)
         self.present(alert, animated: true, completion: nil)
     }
@@ -60,9 +58,9 @@ extension HomeViewController: UISearchBarDelegate {
     
     private func pushNextViewController() {
         let nextStoryBoard = StoryboardFactory.create(.accomodationConditions)
-        let nextViewController = ViewControllerFactory.create(from: nextStoryBoard, type: PopularLocationViewController.self)
+        let popularLocationViewController = ViewControllerFactory.create(from: nextStoryBoard, type: PopularLocationViewController.self)
         self.tabBarController?.navigationItem.backButtonTitle = viewModel.backButtonTitle
-        self.navigationController?.pushViewController(nextViewController, animated: true)
+        self.navigationController?.pushViewController(popularLocationViewController, animated: true)
     }
     
 }

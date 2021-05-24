@@ -8,5 +8,5 @@
 import Foundation
 
 protocol TurnOnCaseConfigurable {
-    func loadHeroImage(completionHandler: @escaping (Result<String, CustomError>) -> Void)
+    func loadHeroImage(completionHandler: @escaping (Result<String, NetworkError>) -> Void)
 }

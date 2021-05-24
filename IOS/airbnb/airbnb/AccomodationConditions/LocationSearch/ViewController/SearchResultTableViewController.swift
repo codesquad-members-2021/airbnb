@@ -11,10 +11,8 @@ protocol SearchResultDelegate: AnyObject {
     func didSelect(result: LocationSearchResult)
 }
 
-final class SearchResultTableViewController: UITableViewController, Instantiable {
+final class SearchResultTableViewController: UITableViewController {
 
-    static var reuseIdentifier: String { String(describing: self) }
-    
     @IBOutlet var searchResultTable: UITableView!
     private var searchResults: [LocationSearchResult]?
     private var viewModel = SearchResultViewModel()
@@ -45,7 +43,7 @@ final class SearchResultTableViewController: UITableViewController, Instantiable
     }
     
     private func alertError(error: Error) {
-        let customError = error as? CustomError ?? CustomError.unknown
+        let customError = error as? NetworkError ?? NetworkError.unknown
         let alert = AlertFactory.create(error: customError)
         self.present(alert, animated: true, completion: nil)
     }

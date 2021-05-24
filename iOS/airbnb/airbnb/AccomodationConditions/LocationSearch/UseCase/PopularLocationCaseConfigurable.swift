@@ -8,6 +8,6 @@
 import Foundation
 
 protocol PopularLocationCaseConfigurable {
-    func loadPopularLocations(completionHandler: @escaping (Result<[PopularLocation], CustomError>) -> Void)
+    func loadPopularLocations(completionHandler: @escaping (Result<[PopularLocation], NetworkError>) -> Void)
     func loadPopularLocationImage(from imageUrl: String, completionHandler: @escaping (String) -> Void)
 }

@@ -12,3 +12,12 @@ struct StoryboardFactory {
         return UIStoryboard(name: storyboard.id, bundle: .main)
     }
 }
+
+enum Storyboard: String {
+    case main = "Main"
+    case accomodationConditions = "AccomodationConditions"
+    
+    var id: String {
+        return rawValue
+    }
+}
