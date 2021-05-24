@@ -5,32 +5,26 @@ export const tabSelectedState = atom<boolean[]>({
   default: [true, false, false],
 });
 
-export interface reserveSelectStateTypes {
-  location: boolean;
-  checkIn: boolean;
-  checkOut: boolean;
-  price: boolean;
-  guest: boolean;
+export interface dateType {
+  year: number;
+  month: number;
+  date: number;
+}
+export interface calendarDateType {
+  year: number;
+  month: number;
+  todayDate: dateType;
 }
 
-export const reserveSelectState = atom<reserveSelectStateTypes>({
-  key: 'reserveSelectState',
-  default: { location: false, checkIn: false, checkOut: false, price: false, guest: false },
-});
-
-export const reserveWithSelect = selector({
-  key: 'reserveWithSelect',
-  get: ({ get }) => get(reserveSelectState),
-  set: ({ set }, type: any) => {
-    const newState: reserveSelectStateTypes = {
-      location: false,
-      checkIn: false,
-      checkOut: false,
-      price: false,
-      guest: false,
-      [type]: true,
-    };
-    console.log(newState);
-    set(reserveSelectState, newState);
+export const calendarState = atom<calendarDateType>({
+  key: 'calendarState',
+  default: {
+    year: new Date().getFullYear(),
+    month: new Date().getMonth() + 1,
+    todayDate: {
+      year: new Date().getFullYear(),
+      month: new Date().getMonth() + 1,
+      date: new Date().getDate(),
+    },
   },
 });

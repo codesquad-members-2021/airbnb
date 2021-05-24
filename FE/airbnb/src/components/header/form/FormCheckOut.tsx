@@ -1,12 +1,17 @@
+import { RefObject } from 'react';
 import styled from 'styled-components';
 import HoverBlock from '../HoverBlock';
 import FormColumn from './FormColumn';
 
-const FormCheckOut = () => {
+interface Props {
+  checkOutRef: RefObject<HTMLDivElement>;
+}
+
+const FormCheckOut = ({ checkOutRef }: Props) => {
   return (
-    <StyledFormCheckOut>
+    <StyledFormCheckOut ref={checkOutRef}>
       <HoverBlock color='gray4' className='hover__checkOut'>
-        <FormColumn title='체크아웃' description='날짜' isInput={true} />
+        <FormColumn title='체크아웃' description='날짜' />
       </HoverBlock>
     </StyledFormCheckOut>
   );
