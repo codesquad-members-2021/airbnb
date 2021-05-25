@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const SearchInput = ({ type }) => {
-  return <SearchInputWrapper></SearchInputWrapper>;
+const SearchInput = ({ children, type }) => {
+  return <SearchInputWrapper>{children}</SearchInputWrapper>;
 };
 
 const SearchInputWrapper = styled.div`
@@ -10,7 +10,6 @@ const SearchInputWrapper = styled.div`
   width: 55rem;
   background: white;
   border-radius: 2rem;
-  height: 30rem;
 `;
 
 export default SearchInput;
