@@ -1,6 +1,6 @@
 package com.example.airbnb.dto;
 
-import com.example.airbnb.domain.SearchConditions;
+import com.example.airbnb.utils.SearchConditions;
 
 import java.util.List;
 
