@@ -1,14 +1,22 @@
 import styled, { css } from 'styled-components'
+
 import { DateInfo } from '../../customHook/useDateInfo'
 
 interface IDate {
 	currentMonth: number
+	handleDateCLick: (year?: number, currentMonth?: number, dateEl?: number | null) => void
+	setActivation: any
 }
 interface IClick {
 	nonClickable: boolean
+	onClick: () => void
 }
 
-const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
+const Calendar: React.FunctionComponent<IDate> = ({
+	currentMonth,
+	handleDateCLick,
+	setActivation,
+}) => {
 	const MonthList = Array.from({ length: 12 }, (_, i) => i + 1)
 	const dayList: string[] = ['일', '월', '화', '수', '목', '금', '토']
 	let { year, month, date } = DateInfo(new Date())
@@ -20,10 +28,12 @@ const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
 		currentMonth = MonthList[index]
 	} else if (currentMonth < 1) {
 		index = (currentMonth % 12) + 12
-		year += Math.floor(currentMonth / 12)
-		currentMonth = MonthList[index]
+		year =
+			currentMonth === 0
+				? year + Math.floor(currentMonth - 1 / 12)
+				: year + Math.floor(currentMonth / 12)
+		currentMonth = MonthList[index - 1]
 	}
-
 	const { day: dayOfFirst, dateOfLast } = DateInfo(new Date(`${year}-${currentMonth}-1`))
 
 	const DateArray = Array.from({ length: dateOfLast + dayOfFirst }, (_, i) => {
@@ -33,14 +43,20 @@ const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
 
 	const nonClickableCheck = (dateEl: number | null): boolean => {
 		if (typeof dateEl === 'number') {
-			if (year < currentYear) return false
-			else if (year === currentYear && currentMonth < month) return false
-			else if (year === currentYear && currentMonth === month && date > dateEl) return false
+			if (
+				year < currentYear ||
+				(year === currentYear && currentMonth < month) ||
+				(year === currentYear && currentMonth === month && date > dateEl)
+			) {
+				setActivation(false)
+				return false
+			}
+			setActivation(true)
 			return true
 		}
+		setActivation(false)
 		return false
 	}
-
 	return (
 		<CalendarBox>
 			<DayBlock>
@@ -54,7 +70,11 @@ const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
 				</YearMonth>
 				<DateSection>
 					{DateArray.map((dateEl, idx) => (
-						<DateBlock key={idx} nonClickable={nonClickableCheck(dateEl)}>
+						<DateBlock
+							key={idx}
+							nonClickable={nonClickableCheck(dateEl)}
+							onClick={() => handleDateCLick(year, currentMonth, dateEl)}
+						>
 							{dateEl}
 						</DateBlock>
 					))}

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react'
 import {
 	PlaceSection,
 	ModalWrapper,
@@ -6,44 +6,42 @@ import {
 	BarInnerWrapper,
 	BarTitle,
 	BarMessage,
-} from '../../style/BarStyle';
-import { TiDelete } from 'react-icons/ti';
-import IconButton from '@material-ui/core/IconButton';
-import useModalCtrl from '../../customHook/useModalCtrlArray';
-import ModalPlace from './ModalPlace';
+} from '../../style/BarStyle'
+import { TiDelete } from 'react-icons/ti'
+import IconButton from '@material-ui/core/IconButton'
+import useModalCtrl from '../../customHook/useModalCtrlArray'
+import ModalPlace from './ModalPlace'
 
 const Place = () => {
-	const PlaceToggle = useRef<HTMLDivElement>(null);
-	const PlaceModal = useRef<HTMLDivElement>(null);
+	const PlaceToggle = useRef<HTMLDivElement>(null)
+	const PlaceModal = useRef<HTMLDivElement>(null)
 	const open = useModalCtrl({
 		toggle: [PlaceToggle],
 		modal: PlaceModal,
 		init: false,
-	});
+	})
 
-	const defaultMsg = '어디로 여행가세요?';
-	const [targetPlace, setTargetPlace] = useState<string>(defaultMsg);
-	const [viewX, setViewX] = useState(false);
-	const [clicked, setClicked] = useState(false);
+	const defaultMsg = '어디로 여행가세요?'
+	const [targetPlace, setTargetPlace] = useState<string>(defaultMsg)
+	const [viewX, setViewX] = useState(false)
+	const [clicked, setClicked] = useState(false)
 	const handleClick = () => {
-		setClicked(!clicked);
-	};
+		setClicked((clicked) => {
+			if (!open) return true
+			return !clicked
+		})
+	}
 	const X_handleClick = () => {
-		setTargetPlace(defaultMsg);
-	};
+		setTargetPlace(defaultMsg)
+	}
+
 	useEffect(() => {
-		targetPlace && targetPlace !== defaultMsg
-			? setViewX(true)
-			: setViewX(false);
-	}, [targetPlace]);
+		targetPlace && targetPlace !== defaultMsg ? setViewX(true) : setViewX(false)
+	}, [targetPlace])
 
 	return (
 		<PlaceSection>
-			<BarBlock
-				clicked={clicked && open}
-				onClick={handleClick}
-				ref={PlaceToggle}
-			>
+			<BarBlock clicked={clicked && open} onClick={handleClick} ref={PlaceToggle}>
 				<BarInnerWrapper>
 					<div>
 						<BarTitle>위치</BarTitle>
@@ -58,14 +56,11 @@ const Place = () => {
 			</BarBlock>
 			{open && (
 				<ModalWrapper ref={PlaceModal} modalType='place'>
-					<ModalPlace
-						modalType='place'
-						{...{ targetPlace, setTargetPlace, defaultMsg }}
-					/>
+					<ModalPlace modalType='place' {...{ setTargetPlace, defaultMsg }} />
 				</ModalWrapper>
 			)}
 		</PlaceSection>
-	);
-};
+	)
+}
 
-export default Place;
+export default Place

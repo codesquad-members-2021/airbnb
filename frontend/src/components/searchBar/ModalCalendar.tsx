@@ -11,6 +11,7 @@ interface IDate {
 	btnClicked: number
 	Xposition: number
 }
+
 //calendar component로 간단하게 선언하고 배열 형태로 관리하기
 // -> 렌더링할 해당월만 넘겨주면서 그에 해당하는 시작요일과 일수는 해당 캘린더에서 계산하여 렌더링.
 
@@ -38,10 +39,6 @@ const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType 
 	const [currentCalendar, setCalendar] = useState(CalendarToRendar)
 	const [btnClicked, setBtnClick] = useState<number>(0)
 
-	const handlePrevMonth = (num: number): void => {
-		setBtnClick(num)
-		setTransition(true)
-	}
 	const handleMonth = (num: number): void => {
 		setBtnClick(num)
 		setTransition(true)
@@ -68,6 +65,13 @@ const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType 
 		}
 	}
 
+	const [clicked, setClick] = useState(false) //회색글자 click state
+	const [activation, setActivation] = useState(false) //회색글자 state
+	const handleDateCLick = (year?: number, currentMonth?: number, dateEl?: number | null): void => {
+		console.log(year, currentMonth, dateEl)
+		if (activation) setClick(true)
+	}
+
 	return (
 		<Modal modalType={modalType}>
 			<BtnBox>
@@ -88,7 +92,12 @@ const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType 
 				btnClicked={btnClicked}
 			>
 				{currentCalendar.map((cal, idx) => (
-					<Calendar key={idx} currentMonth={cal} />
+					<Calendar
+						key={idx}
+						currentMonth={cal}
+						handleDateCLick={handleDateCLick}
+						setActivation={setActivation}
+					/>
 				))}
 			</TransitionBox>
 		</Modal>
@@ -119,6 +128,13 @@ const TransitionBox = styled.div<IDate>`
 		props.btnClicked === 1 &&
 		css`
 			transform: translateX(${props.Xposition - 30}px);
+			transition: transform 1s;
+		`};
+	${(props) =>
+		props.transitionState &&
+		props.btnClicked === -1 &&
+		css`
+			transform: translateX(${-props.Xposition + 60}px);
 			transition: transform 1s;
 		`};
 `

@@ -14,14 +14,11 @@ export const DateInfo = (today: Date): IDate => {
 	const month = today.getMonth() + 1
 	const date = today.getDate()
 	const day = today.getDay()
-
-	const checkFeb = () => {
-		if (year % 4 === 0) dateList[1] = 29
-		return dateList[1]
+	const checkFeb = (month: number) => {
+		if (month === 2 && year % 4 === 0) dateList[1] = 29
+		return dateList[month - 1]
 	}
-
-	// const dayOfFirst = new Date(`${year}-${month}-1`).getDate()
-	const dateOfLast = dateList[month === 2 ? checkFeb() : month - 1]
+	const dateOfLast = checkFeb(month)
 
 	return { year, month, date, day, dateOfLast }
 }
