@@ -13,7 +13,7 @@ class MainPageViewController: UIViewController {
     @IBOutlet weak var hiroImageView: UIImageView!
     private var searchController: UISearchController!
     
-    let viewModel = MainPageViewModel()
+    let viewModel = MainPageUseCase()
     private var cancelBag = Set<AnyCancellable>()
     
     override func viewDidLoad() {

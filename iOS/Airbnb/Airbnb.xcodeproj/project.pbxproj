@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		AE0B5DDF2655FCA0000B35E7 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DDE2655FCA0000B35E7 /* Network.swift */; };
 		AE0B5DE12655FE1F000B35E7 /* MainPageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DE02655FE1F000B35E7 /* MainPageDTO.swift */; };
-		AE0B5DE326560287000B35E7 /* MainPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DE226560287000B35E7 /* MainPageViewModel.swift */; };
+		AE0B5DE326560287000B35E7 /* MainPageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DE226560287000B35E7 /* MainPageUseCase.swift */; };
 		AE0B5DE62656073E000B35E7 /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DE42656073E000B35E7 /* CityCell.swift */; };
 		AE0B5DE72656073E000B35E7 /* CityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE0B5DE52656073E000B35E7 /* CityCell.xib */; };
 		AE0B5DE926562D4A000B35E7 /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DE826562D4A000B35E7 /* TitleSupplementaryView.swift */; };
@@ -51,7 +51,7 @@
 /* Begin PBXFileReference section */
 		AE0B5DDE2655FCA0000B35E7 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		AE0B5DE02655FE1F000B35E7 /* MainPageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageDTO.swift; sourceTree = "<group>"; };
-		AE0B5DE226560287000B35E7 /* MainPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewModel.swift; sourceTree = "<group>"; };
+		AE0B5DE226560287000B35E7 /* MainPageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageUseCase.swift; sourceTree = "<group>"; };
 		AE0B5DE42656073E000B35E7 /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		AE0B5DE52656073E000B35E7 /* CityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityCell.xib; sourceTree = "<group>"; };
 		AE0B5DE826562D4A000B35E7 /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 		AE0B5DF026563C54000B35E7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				AE0B5DE226560287000B35E7 /* MainPageViewModel.swift */,
+				AE0B5DE226560287000B35E7 /* MainPageUseCase.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -138,10 +138,7 @@
 		AE0B5DF526566D00000B35E7 /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
-				AE8CD3B72653538700BCB8FC /* MainPageViewController.swift */,
-				AE0B5DEE26563BE4000B35E7 /* RecommandedDestinationViewController.swift */,
-				AE3FE07426574E7000A95177 /* SearchCityViewController.swift */,
-				AE0B5DEA265631D7000B35E7 /* DetailDestinationViewController.swift */,
+				AE9AC6A4265C9AFF0038C198 /* Controller */,
 				AE0B5DF026563C54000B35E7 /* ViewModel */,
 				AE0B5DED26563275000B35E7 /* View */,
 				AE0B5DEC2656326B000B35E7 /* Model */,
@@ -208,6 +205,17 @@
 				AE8CD3C12653538800BCB8FC /* Info.plist */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		AE9AC6A4265C9AFF0038C198 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AE8CD3B72653538700BCB8FC /* MainPageViewController.swift */,
+				AE0B5DEE26563BE4000B35E7 /* RecommandedDestinationViewController.swift */,
+				AE3FE07426574E7000A95177 /* SearchCityViewController.swift */,
+				AE0B5DEA265631D7000B35E7 /* DetailDestinationViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,7 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE0B5DE326560287000B35E7 /* MainPageViewModel.swift in Sources */,
+				AE0B5DE326560287000B35E7 /* MainPageUseCase.swift in Sources */,
 				AE0B5DEF26563BE4000B35E7 /* RecommandedDestinationViewController.swift in Sources */,
 				AE0B5DE12655FE1F000B35E7 /* MainPageDTO.swift in Sources */,
 				AE3FE07A26579D3B00A95177 /* RegionCell.swift in Sources */,

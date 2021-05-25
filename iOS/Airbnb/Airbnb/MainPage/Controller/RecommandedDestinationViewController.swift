@@ -36,7 +36,7 @@ class RecommendedDestinationViewController: UIViewController {
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
     
-    private let viewModel = MainPageViewModel()
+    private let viewModel = MainPageUseCase()
     private var cancelBag = Set<AnyCancellable>()
     
     

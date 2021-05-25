@@ -17,7 +17,7 @@ class SearchCityViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Int, City>!
     private var regionDataSource: UICollectionViewDiffableDataSource<Int, Region>!
     
-    private var viewModel = MainPageViewModel()
+    private var viewModel = MainPageUseCase()
     private var cancelBag = Set<AnyCancellable>()
 
     
