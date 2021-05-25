@@ -41,6 +41,7 @@ private extension CalendarViewController {
         calendarView.appearance.selectionColor = UIColor.systemGray3
         calendarView.appearance.todayColor = UIColor.black
         calendarView.appearance.weekdayTextColor = UIColor.systemGray
+        calendarView.scrollDirection = .vertical
         calendarView.delegate = self
         calendarView.dataSource = self
     }
