@@ -26,8 +26,7 @@ class HeroImageCell: UICollectionViewCell {
         contentView.addSubview(heroImageView)
         
         heroImageView.translatesAutoresizingMaskIntoConstraints = false
-        heroImageView.backgroundColor = .green
-        
+        heroImageView.image = UIImage(named: "HeroImage.png")
         NSLayoutConstraint.activate([
             heroImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             heroImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

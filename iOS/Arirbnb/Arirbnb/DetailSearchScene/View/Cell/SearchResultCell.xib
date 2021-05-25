@@ -20,7 +20,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ajW-EY-KRr">
                         <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" image="map-marker-2-256" translatesAutoresizingMaskIntoConstraints="NO" id="q20-iJ-5SA">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" image="map-marker-2-44" translatesAutoresizingMaskIntoConstraints="NO" id="q20-iJ-5SA">
                                 <rect key="frame" x="33" y="33" width="44" height="44"/>
                             </imageView>
                         </subviews>
@@ -68,7 +68,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="map-marker-2-256" width="256" height="256"/>
+        <image name="map-marker-2-44" width="44" height="44"/>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -23,7 +23,7 @@ class AdjacentDestinationsCell: UICollectionViewCell {
         destinationImageView.backgroundColor = .red
     }
     
-    func configure(with model: AdjacentDestination?) {
+    func configure(with model: Destination?) {
         guard let model = model else { return }
         destinationImageView.load(url: model.imageURL)
         destinationLabel.text = model.destinationName

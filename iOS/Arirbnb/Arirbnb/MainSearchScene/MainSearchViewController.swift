@@ -7,17 +7,21 @@
 
 import UIKit
 
+struct MainSearchViewControllerAction {
+    let showDetailSearchView : () -> ()
+}
+
 class MainSearchViewController: UIViewController {
     static let sectionHeaderElementKind = "MainViewSectionHeaderElement"
     static let storyboardName = "Main"
     static let storyboardID = "MainSearchViewController"
     
-    static func create(with viewModel: MainSearchViewModel) -> MainSearchViewController {
+    static func create(_ action: MainSearchViewControllerAction) -> MainSearchViewController {
         let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
         guard let vc = storyboard.instantiateViewController(identifier: storyboardID) as? MainSearchViewController else {
             return MainSearchViewController()
         }
-        vc.viewModel = viewModel
+        vc.action = action
         return vc
     }
     
@@ -34,8 +38,9 @@ class MainSearchViewController: UIViewController {
     
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
-    private var dataSource: UICollectionViewDiffableDataSource<Section, DiffableUsableModel>! = nil
-    private var viewModel: MainSearchViewModel!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Destination>! = nil
+    private var action: MainSearchViewControllerAction!
+    private var destinations: [[Destination]] = [[Destination.init(destinationName: "HeroImage")],MockAdjacentDestination.mockDatas, MockThemeDestination.mockDatas]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +69,7 @@ class MainSearchViewController: UIViewController {
 
 extension MainSearchViewController {
     @IBAction func didTappedSearchButton(_ sender: Any) {
-        viewModel.showDetailSearchView()
+        action.showDetailSearchView()
     }
 }
 
@@ -74,25 +79,25 @@ extension MainSearchViewController: UICollectionViewDelegate {
     
 }
 
-
 //MARK: - Diffable DataSource
 
 extension MainSearchViewController {
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, DiffableUsableModel>(collectionView: mainCollectionView) { (collectionView: UICollectionView, indexPath: IndexPath, item: DiffableUsableModel) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, Destination>(collectionView: mainCollectionView) { (collectionView: UICollectionView, indexPath: IndexPath, item: Destination) -> UICollectionViewCell? in
             let sectionKind = Section.allCases[indexPath.section]
-            
+
             switch sectionKind {
             case .heroImages:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeroImageCell.reuseIdentifier, for: indexPath)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeroImageCell.reuseIdentifier, for: indexPath) as? HeroImageCell
+                cell?.configure()
                 return cell
             case .adjacentDestinations:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdjacentDestinationsCell.reuseIdentifier, for: indexPath) as? AdjacentDestinationsCell
-                cell?.configure(with: item as? AdjacentDestination)
+                cell?.configure(with: item)
                 return cell
             case .themeDestinations:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeDestinationsCell.reuseIdentifier, for: indexPath) as? ThemeDestinationsCell
-                cell?.configure(with: item as? ThemeDestination)
+                cell?.configure(with: item)
                 return cell
             }
         }
@@ -105,10 +110,10 @@ extension MainSearchViewController {
     }
 
     private func applySnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, DiffableUsableModel>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Destination>()
         snapshot.appendSections(Section.allCases)
         Section.allCases.forEach { section in
-            snapshot.appendItems(viewModel.forApplyItems(sectionIndex: section.rawValue), toSection: section)
+            snapshot.appendItems(destinations[section.rawValue], toSection: section)
         }
         dataSource.apply(snapshot)
     }
@@ -122,7 +127,6 @@ extension MainSearchViewController {
         config.interSectionSpacing = 40
         
         let layout = UICollectionViewCompositionalLayout(sectionProvider: { [weak self] (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) in
-    
             let sectionKind = Section.allCases[sectionIndex]
             
             switch sectionKind {
@@ -173,7 +177,7 @@ extension MainSearchViewController {
         let itemSieze = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSieze)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.6))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.61))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
         group.contentInsets = NSDirectionalEdgeInsets(top: 24, leading: 16, bottom: 0, trailing: 0)
         

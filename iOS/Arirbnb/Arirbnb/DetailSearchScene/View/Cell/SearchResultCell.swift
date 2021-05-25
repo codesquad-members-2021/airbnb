@@ -9,7 +9,7 @@ import UIKit
 
 class SearchResultCell: UICollectionViewCell {
 
-    static let reuseIdentifier = "reuseIdentifier"
+    static let reuseIdentifier = "SearchResultCell"
     static func nib() -> UINib {
         return UINib(nibName: reuseIdentifier, bundle: nil)
     }
@@ -20,7 +20,7 @@ class SearchResultCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func configure(with model: SearchedDestination?) {
+    func configure(with model: Destination?) {
         guard let model = model else { return }
         searchResultLabel.text = model.destinationName
     }

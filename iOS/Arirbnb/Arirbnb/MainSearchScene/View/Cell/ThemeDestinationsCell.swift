@@ -22,10 +22,10 @@ class ThemeDestinationsCell: UICollectionViewCell {
         themeDestinationImageView.backgroundColor = .brown
     }
     
-    func configure(with model: ThemeDestination?) {
+    func configure(with model: Destination?) {
         guard let model = model else { return }
         themeDestinationImageView.load(url: model.imageURL)
-        themeDestinationLabel.text = model.themeName
+        themeDestinationLabel.text = model.destinationName
     }
 
 }
