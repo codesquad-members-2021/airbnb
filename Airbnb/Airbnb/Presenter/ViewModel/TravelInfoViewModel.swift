@@ -2,7 +2,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class TravelInfoViewModel {
+class TravelInfoViewModel: CommonViewModelType {
     
     private let thirdViewData = [MainViewInfo(image: ImageManager.nature, mainInfo: MainInfoManager.nature, detailInfo: nil), MainViewInfo(image: ImageManager.unique, mainInfo: MainInfoManager.unique, detailInfo: nil)]
     

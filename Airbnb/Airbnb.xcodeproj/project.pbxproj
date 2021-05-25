@@ -33,6 +33,7 @@
 		71DA183A2654E2FE00415EDD /* ThirdSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA18392654E2FE00415EDD /* ThirdSectionView.swift */; };
 		71F65541265C9002008645B8 /* RegieonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65540265C9002008645B8 /* RegieonViewModel.swift */; };
 		71F65544265CB8FD008645B8 /* TravelInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */; };
+		71F65546265CB9D7008645B8 /* CommonViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65545265CB9D7008645B8 /* CommonViewModelType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		71DA18392654E2FE00415EDD /* ThirdSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionView.swift; sourceTree = "<group>"; };
 		71F65540265C9002008645B8 /* RegieonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegieonViewModel.swift; sourceTree = "<group>"; };
 		71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelInfoViewModel.swift; sourceTree = "<group>"; };
+		71F65545265CB9D7008645B8 /* CommonViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModelType.swift; sourceTree = "<group>"; };
 		CCB98BA9F1F4A561BA5FBBA8 /* Pods-Airbnb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airbnb.debug.xcconfig"; path = "Target Support Files/Pods-Airbnb/Pods-Airbnb.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +96,7 @@
 				7157C8882654AC4000EF7977 /* MainViewModel.swift */,
 				71F65540265C9002008645B8 /* RegieonViewModel.swift */,
 				71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */,
+				71F65545265CB9D7008645B8 /* CommonViewModelType.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				71D133DA2657531A00A71626 /* MainCollectionViewDelegate.swift in Sources */,
 				71F65541265C9002008645B8 /* RegieonViewModel.swift in Sources */,
 				71B93A7226576CA10028C492 /* ThirdSectionCell.swift in Sources */,
+				71F65546265CB9D7008645B8 /* CommonViewModelType.swift in Sources */,
 				71B93A74265783410028C492 /* LoginViewContoller.swift in Sources */,
 				71B93A7826578C5A0028C492 /* APIService.swift in Sources */,
 				7112E6EC26561CDE00F9AAD6 /* HeaderView.swift in Sources */,
