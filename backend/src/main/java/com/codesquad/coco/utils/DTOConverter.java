@@ -16,6 +16,9 @@ import java.util.stream.Collectors;
 
 public class DTOConverter {
 
+    private DTOConverter() {
+    }
+
     public static RoomPreviewDTO roomToRoomPreviewDTO(Room room, int fewNights) {
         return RoomPreviewDTO.of(
                 room.getId(),
