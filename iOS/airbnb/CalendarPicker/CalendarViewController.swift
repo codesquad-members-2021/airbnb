@@ -8,7 +8,9 @@
 import UIKit
 
 class CalendarViewController: UIViewController {
-
+   
+    @IBOutlet weak var collection: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
