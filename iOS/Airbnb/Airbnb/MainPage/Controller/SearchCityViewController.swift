@@ -116,8 +116,8 @@ extension SearchCityViewController: UISearchBarDelegate {
 
 extension SearchCityViewController {
     
-    func performQuery(with filter: String?) {
-        let regions = Region.allCities.filter{ contains(filter, region: $0) }.sorted { $0.name < $1.name }
+    private func performQuery(with filter: String?) {
+        let regions = getFilteredResult(filter)
 
         var snapshot = NSDiffableDataSourceSnapshot<Int, Region>()
         snapshot.appendSections([1])
@@ -125,11 +125,13 @@ extension SearchCityViewController {
         regionDataSource.apply(snapshot, animatingDifferences: true)
     }
     
-    func contains(_ filter: String?, region: Region) -> Bool {
-        guard let filterText = filter else { return true }
-        if filterText.isEmpty { return true }
-        let lowercasedFilter = filterText.lowercased()
-        return region.name.lowercased().contains(lowercasedFilter)
+    private func getFilteredResult(_ filter: String?) -> [Region] {
+        guard let filterText = filter else { return [] }
+        if filterText.isEmpty { return [] }
+        
+        return Region.allCities.filter{ (region) -> Bool in
+            region.name.lowercased().contains(filterText.lowercased())
+        }.sorted { $0.name < $1.name }
     }
 }
 
