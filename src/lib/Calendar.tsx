@@ -1,50 +1,63 @@
-import { useReducer, useState, Dispatch, createContext } from "react";
 import Carousel from "./Carousel";
 import styled from "styled-components";
 import { MESSAGE } from "./constant";
-import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi";
 import CalendarItem from "./CalendarItem";
 import CalendarProvider, { useCalendarState } from "./CalendarProvider";
-import { Direction, OnClickResult } from "./type";
+import { Direction, OnClickDay, _OnClickResult } from "./type";
 
 // type이 좋을까 interface가 좋을까
 // 상속으로 최대한 나누기
 // 이 파일에 있어야 할까?
 // 관심사를 최대한 줄여나가기.
 // 사용자가 OnClickResult를 import해서 사용하도록 API 문서
+
 export default function Calendar({ onClickDay, countOfMonth }: CalendarProps) {
+  if (countOfMonth < 1 || countOfMonth > 12) {
+    throw new Error(MESSAGE.ERROR.INVAILD_RANGE_COUNT_OF_MONTH);
+  }
   return (
-    <CalendarProvider onClickDay={onClickDay}>
-      <_Calendar />
+    <CalendarProvider onClickDay={onClickDay} countOfMonth={countOfMonth}>
+      <_Calendar countOfMonth={countOfMonth} />
     </CalendarProvider>
   );
 }
 
-function _Calendar() {
+export type OnClickResult = _OnClickResult;
+
+function _Calendar({ countOfMonth }: { countOfMonth: number }) {
   const state = useCalendarState();
   const { calendarList } = state;
 
-  const move = (dir: Direction) => {
-    switch (dir) {
-      case 1:
-        return;
-      case -1:
-        return;
-      default:
-        throw new Error("사실 발생할 일 없는 에러");
-    }
+  const onClickMove = (direction: Direction) => {
+    // 요소 변경
   };
-
   return (
     <CalendarWrapper>
-      <Controller left onClickHandler={move} />
-      <div>일 월 화 수 목 금 토 일 월 화 수 목 금 토</div>
-      <Carousel>
+      <WeeksContainer>
+        <Weeks>
+          <li>일</li>
+          <li>월</li>
+          <li>화</li>
+          <li>수</li>
+          <li>목</li>
+          <li>금</li>
+          <li>토</li>
+        </Weeks>
+        <Weeks>
+          <li>일</li>
+          <li>월</li>
+          <li>화</li>
+          <li>수</li>
+          <li>목</li>
+          <li>금</li>
+          <li>토</li>
+        </Weeks>
+      </WeeksContainer>
+      <Carousel countOfItemToShow={countOfMonth} onClickHandler={onClickMove}>
         {calendarList.map((calendar) => (
-          <CalendarItem calendar={calendar} />
+          <CalendarItem {...calendar} />
         ))}
       </Carousel>
-      <Controller right onClickHandler={move} />
     </CalendarWrapper>
   );
 }
@@ -52,41 +65,25 @@ Calendar.defaultProps = {
   countOfMonth: 2,
 };
 
-function Controller({ left, right, onClickHandler }: ControllerProps) {
-  const { ERROR } = MESSAGE;
-
-  if (left && right) {
-    throw new Error(ERROR.BOTH_DIRECTION);
-  }
-  if (!left && !right) {
-    throw new Error(ERROR.NO_DIRECTION);
-  }
-  const dir = left ? -1 : 1;
-
-  return (
-    <ControllerWraaper>
-      <Button onClick={() => onClickHandler(dir)}>
-        {left && <HiOutlineChevronLeft />}
-        {right && <HiOutlineChevronRight />}
-      </Button>
-    </ControllerWraaper>
-  );
-}
-
-type CalendarProps = {
+type CalendarProps = OnClickDay & {
   countOfMonth: number;
-  onClickDay: (result: OnClickResult) => void;
-};
-
-type ControllerProps = {
-  left?: boolean;
-  right?: boolean;
-  onClickHandler: (dir: Direction) => void;
 };
 
 // style
+const CalendarWrapper = styled.div`
+  position: relative;
+`;
 
-const CalendarWrapper = styled.div``;
-const CalendarContainer = styled.div``;
-const ControllerWraaper = styled.div``;
-const Button = styled.button``;
+const WeeksContainer = styled.div`
+  position: absolute;
+  top: 1.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+`;
+const Weeks = styled.ul`
+  width: 50%;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-around;
+`;

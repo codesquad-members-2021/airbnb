@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Calendar, { OnClickResult } from "../../../lib/Calendar";
+import CalendarBox from "./input/CalendarBox";
 import SearchForm from "./SearchForm";
 import SearchInput from "./SearchInput";
 
@@ -35,7 +35,7 @@ const Menu = () => {
         </fieldset>
         <SearchForm />
         <SearchInput type="calendar">
-          {/* <Calendar onClickDay={onClickDay} /> */}
+          <CalendarBox />
         </SearchInput>
       </form>
     </MenuWrapper>
