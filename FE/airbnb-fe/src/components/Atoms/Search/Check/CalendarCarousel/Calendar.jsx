@@ -68,10 +68,7 @@ const Calendar = () => {
           onTransitionEnd={() => onSlideEnd()}
         >
           {calRange.map((range, idx) => (
-            <div key={idx}>
-              <SingleCalendar range={range} />
-              {/* <TestSingleCalendar range={range} /> */}
-            </div>
+            <SingleCalendar key={idx} range={range} />
           ))}
         </CalTableWrapper>
       </CalendarBottom>
@@ -91,7 +88,7 @@ const CalendarTop = styled.div`
   border: 1px solid green;
   font-size: 1rem;
   margin-bottom: 1.5rem;
-  /* overflow: hidden; */
+  overflow: hidden;
 `;
 
 const CalTableWrapper = styled.div`
@@ -102,26 +99,14 @@ const CalTableWrapper = styled.div`
 `;
 const CalendarBottom = styled.div`
   display: flex;
+  overflow: hidden;
+
   border: 1px solid yellow;
 `;
 
 const CalendarMiddle = styled.div`
   display: flex;
 `;
-
-// const DayViewTR = styled.tr`
-//   width: 21rem;
-//   display: flex;
-//   margin-right: 4.25rem;
-//   margin-bottom: 0.25rem;
-// `;
-
-// const DayViewTD = styled.td`
-//   width: 3rem;
-//   height: 1.5rem;
-//   font-size: 0.75rem;
-//   color: ${({ theme }) => theme.colors.gray3};
-// `;
 
 const YearMonthUL = styled.ul`
   display: flex;
@@ -134,6 +119,9 @@ const YearMonthLI = styled.li`
   width: 21rem;
   margin: 0 2.125rem;
   border: 2px solid gray;
+  color: ${({ theme }) => theme.colors.black};
+  font-size: ${({ theme }) => theme.fontSizes.XS};
+  font-weight: 700;
 `;
 
 const LeftButton = styled.button`
