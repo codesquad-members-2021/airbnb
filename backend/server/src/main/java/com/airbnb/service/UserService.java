@@ -1,7 +1,7 @@
 package com.airbnb.service;
 
-import com.airbnb.dao.UserRepository;
 import com.airbnb.dto.UserDto;
+import com.airbnb.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service

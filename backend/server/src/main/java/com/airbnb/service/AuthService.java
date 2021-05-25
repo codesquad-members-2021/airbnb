@@ -1,10 +1,10 @@
 package com.airbnb.service;
 
-import com.airbnb.dao.AuthRepository;
 import com.airbnb.domain.Auth;
 import com.airbnb.dto.AccessTokenResponse;
 import com.airbnb.dto.UserDto;
 import com.airbnb.exception.AuthenticationException;
+import com.airbnb.repository.AuthRepository;
 import org.springframework.stereotype.Service;
 
 @Service

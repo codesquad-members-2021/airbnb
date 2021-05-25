@@ -1,4 +1,4 @@
-package com.airbnb.dao;
+package com.airbnb.repository;
 
 import com.airbnb.domain.Auth;
 import org.springframework.data.repository.CrudRepository;

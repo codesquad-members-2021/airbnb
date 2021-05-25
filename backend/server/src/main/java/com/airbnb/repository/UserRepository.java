@@ -1,4 +1,4 @@
-package com.airbnb.dao;
+package com.airbnb.repository;
 
 import com.airbnb.domain.User;
 import com.airbnb.exception.SqlException;
