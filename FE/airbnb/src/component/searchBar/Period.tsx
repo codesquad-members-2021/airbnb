@@ -1,14 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
-function Period() {
+interface Props {
+  onClick: (e: React.MouseEvent) => void;
+}
+
+function Period({ onClick }: Props) {
   return (
     <>
-      <CheckInContainer>
+      <CheckInContainer onClick={onClick}>
         <Title>체크인</Title>
         <Content>날짜 입력</Content>
       </CheckInContainer>
-      <CheckOutContainer>
+      <CheckOutContainer onClick={onClick}>
         <Title>체크아웃</Title>
         <Content>날짜 입력</Content>
       </CheckOutContainer>
