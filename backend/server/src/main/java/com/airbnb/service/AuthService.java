@@ -1,6 +1,7 @@
 package com.airbnb.service;
 
-import com.airbnb.dao.TokenDao;
+import com.airbnb.dao.AuthRepository;
+import com.airbnb.domain.Auth;
 import com.airbnb.dto.AccessTokenResponse;
 import com.airbnb.dto.UserDto;
 import com.airbnb.exception.AuthenticationException;
@@ -8,18 +9,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
-    private final TokenDao tokenDao;
+    private final AuthRepository authRepository;
 
-    public AuthService(TokenDao tokenDao) {
-        this.tokenDao = tokenDao;
+    public AuthService(AuthRepository authRepository) {
+        this.authRepository = authRepository;
     }
 
     public void save(UserDto userDto, AccessTokenResponse accessTokenResponse) {
-        tokenDao.save(userDto.toUser(), accessTokenResponse.toToken());
+        Auth auth = Auth.from(userDto.toUser(), accessTokenResponse.toToken());
+        authRepository.save(auth);
     }
 
     public void authenticate(UserDto userDto) {
-        tokenDao.findByUser(userDto.toUser())
+        authRepository.findById(userDto.getLogin())
                 .orElseThrow(() -> new AuthenticationException("로그인하지 않은 유저입니다."));
     }
 }

@@ -1,27 +1,27 @@
 package com.airbnb.dao;
 
-import com.airbnb.dao.datasource.PersistentDataSource;
 import com.airbnb.domain.User;
 import com.airbnb.exception.SqlException;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 @Repository
-public class UserDao {
-    private final PersistentDataSource persistentDataSource;
+public class UserRepository {
+    private final DataSource dataSource;
 
-    public UserDao(PersistentDataSource persistentDataSource) {
-        this.persistentDataSource = persistentDataSource;
+    public UserRepository(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
     public void save(User user) {
         String sql = "INSERT INTO `user` (`login`, `name`) values (?, ?) "
                 + "ON DUPLICATE KEY UPDATE `name` = ?";
 
-        try (Connection conn = persistentDataSource.getConnection()) {
+        try (Connection conn = dataSource.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, user.getLogin());
             pstmt.setString(2, user.getName());
