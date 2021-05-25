@@ -1,6 +1,7 @@
 package com.team19.airbnb.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ public class User {
     private String github;
     private List<Wishlist> wishlists;
 
+    @PersistenceConstructor
     User(Long id, String github,
        List<Wishlist> wishlists) {
         this.id = id;
@@ -20,8 +22,13 @@ public class User {
         this.wishlists = wishlists;
     }
 
+    User(String github) {
+        this.id = null;
+        this.github = github;
+        this.wishlists = new ArrayList<>();
+    }
+
     public static User create(String github) {
-        return new User(null, github,
-                        new ArrayList<>());
+        return new User(github);
     }
 }
