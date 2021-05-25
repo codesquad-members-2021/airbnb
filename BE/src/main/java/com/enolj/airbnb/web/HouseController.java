@@ -2,6 +2,7 @@ package com.enolj.airbnb.web;
 
 import com.enolj.airbnb.service.HouseService;
 import com.enolj.airbnb.web.dto.*;
+import com.enolj.airbnb.web.utils.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -37,9 +38,9 @@ public class HouseController {
     }
 
     @PostMapping("houses/{houseId}")
-    public void makeReservation(@PathVariable Long houseId, @RequestBody ReservationRequestDTO requestDTO) {
+    public void makeReservation(@RequestHeader String authorization, @PathVariable Long houseId, @RequestBody ReservationRequestDTO requestDTO) {
         logger.info("{}번 숙소 예약 요청", houseId);
-        houseService.makeReservation(requestDTO);
+        houseService.makeReservation(JwtUtil.getUserIdFromToken(JwtUtil.getTokenFromAuthorization(authorization)), houseId, requestDTO);
     }
 
     @GetMapping("/wishes")

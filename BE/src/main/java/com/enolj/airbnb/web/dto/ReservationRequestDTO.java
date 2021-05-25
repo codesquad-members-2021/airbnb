@@ -1,5 +1,8 @@
 package com.enolj.airbnb.web.dto;
 
+import com.enolj.airbnb.domain.join.Join;
+import com.enolj.airbnb.exception.EntityNotFoundException;
+
 public class ReservationRequestDTO {
 
     private CheckDate date;
@@ -10,6 +13,13 @@ public class ReservationRequestDTO {
         this.date = date;
         this.people = people;
         this.totalCharge = totalCharge;
+    }
+
+    public Join toEntity() {
+        if (date.getStart() == null || date.getEnd() == null || people.getGuest() == 0) {
+            throw new EntityNotFoundException();
+        }
+        return new Join(date.getStart(), date.getEnd(), people.getGuest(), people.getKid(), totalCharge);
     }
 
     public void setDate(CheckDate date) {

@@ -12,8 +12,16 @@ public class CheckDate {
         this.end = end;
     }
 
+    public LocalDate getStart() {
+        return start;
+    }
+
     public void setStart(LocalDate start) {
         this.start = start;
+    }
+
+    public LocalDate getEnd() {
+        return end;
     }
 
     public void setEnd(LocalDate end) {

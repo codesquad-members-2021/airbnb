@@ -4,6 +4,10 @@ import com.enolj.airbnb.domain.house.House;
 import com.enolj.airbnb.domain.house.HouseDAO;
 import com.enolj.airbnb.domain.image.Image;
 import com.enolj.airbnb.domain.image.ImageDAO;
+import com.enolj.airbnb.domain.join.Join;
+import com.enolj.airbnb.domain.join.JoinDAO;
+import com.enolj.airbnb.domain.user.User;
+import com.enolj.airbnb.domain.user.UserDAO;
 import com.enolj.airbnb.exception.EntityNotFoundException;
 import com.enolj.airbnb.web.dto.ReservationInfoResponseDTO;
 import com.enolj.airbnb.web.dto.*;
@@ -19,12 +23,16 @@ import static com.enolj.airbnb.web.dto.SearchResponseDTO.createSearchResponseDTO
 @Service
 public class HouseService {
 
+    private final UserDAO userDAO;
     private final HouseDAO houseDAO;
     private final ImageDAO imageDAO;
+    private final JoinDAO joinDAO;
 
-    public HouseService(HouseDAO houseDAO, ImageDAO imageDAO) {
+    public HouseService(UserDAO userDAO, HouseDAO houseDAO, ImageDAO imageDAO, JoinDAO joinDAO) {
+        this.userDAO = userDAO;
         this.houseDAO = houseDAO;
         this.imageDAO = imageDAO;
+        this.joinDAO = joinDAO;
     }
 
     public List<SearchResponseDTO> searchHousesByCondition(SearchRequestDTO requestDTO) {
@@ -57,8 +65,15 @@ public class HouseService {
         return houseDAO.findById(houseId).orElseThrow(EntityNotFoundException::new);
     }
 
-    public void makeReservation(ReservationRequestDTO requestDTO) {
+    public void makeReservation(String userId, Long houseId, ReservationRequestDTO requestDTO) {
         System.out.println(requestDTO);
+        Join join = requestDTO.toEntity();
+        join.reservation(findUserByUserId(userId), findHouseById(houseId));
+        joinDAO.save(join);
+    }
+
+    private User findUserByUserId(String userId) {
+        return userDAO.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
     }
 
     public List<WishesResponseDTO> getWishList() {
