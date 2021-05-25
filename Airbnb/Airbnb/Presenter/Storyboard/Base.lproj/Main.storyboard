@@ -122,25 +122,35 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJj-Bs-zZt">
+                                <rect key="frame" x="10" y="44" width="20" height="20"/>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="chevron.backward.circle" catalog="system"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5hq-bZ-wHz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="85J-Yv-Ma9" firstAttribute="height" secondItem="lPj-ys-6Np" secondAttribute="height" multiplier="0.0569196" id="3TT-Y2-4qY"/>
+                            <constraint firstItem="hJj-Bs-zZt" firstAttribute="width" secondItem="lPj-ys-6Np" secondAttribute="width" multiplier="0.0483092" id="97T-GA-Ial"/>
                             <constraint firstItem="F4w-zw-WJN" firstAttribute="width" secondItem="lPj-ys-6Np" secondAttribute="width" multiplier="0.405797" id="9Vy-Js-SqV"/>
                             <constraint firstItem="t1y-yS-1W3" firstAttribute="top" secondItem="F4w-zw-WJN" secondAttribute="bottom" constant="15" id="Ama-zt-4ub"/>
                             <constraint firstItem="85J-Yv-Ma9" firstAttribute="centerX" secondItem="lPj-ys-6Np" secondAttribute="centerX" id="Oqg-AK-6NC"/>
                             <constraint firstItem="F4w-zw-WJN" firstAttribute="top" secondItem="85J-Yv-Ma9" secondAttribute="bottom" constant="20" id="Pgu-Se-XCW"/>
+                            <constraint firstItem="hJj-Bs-zZt" firstAttribute="leading" secondItem="5hq-bZ-wHz" secondAttribute="leading" constant="10" id="Z5B-p2-uZa"/>
                             <constraint firstItem="t1y-yS-1W3" firstAttribute="leading" secondItem="5hq-bZ-wHz" secondAttribute="leading" id="cKN-bd-BGt"/>
+                            <constraint firstItem="hJj-Bs-zZt" firstAttribute="height" secondItem="85J-Yv-Ma9" secondAttribute="height" multiplier="0.392157" id="f6S-6y-A0f"/>
                             <constraint firstItem="F4w-zw-WJN" firstAttribute="height" secondItem="lPj-ys-6Np" secondAttribute="height" multiplier="0.0379464" id="hTe-wd-p9c"/>
                             <constraint firstItem="5hq-bZ-wHz" firstAttribute="trailing" secondItem="t1y-yS-1W3" secondAttribute="trailing" id="iq8-rK-Dvv"/>
                             <constraint firstItem="85J-Yv-Ma9" firstAttribute="width" secondItem="lPj-ys-6Np" secondAttribute="width" id="jkt-CN-7u3"/>
+                            <constraint firstItem="hJj-Bs-zZt" firstAttribute="top" secondItem="5hq-bZ-wHz" secondAttribute="top" id="lin-jk-7OB"/>
                             <constraint firstItem="F4w-zw-WJN" firstAttribute="leading" secondItem="5hq-bZ-wHz" secondAttribute="leading" constant="20" id="rjJ-YA-GhD"/>
                             <constraint firstItem="5hq-bZ-wHz" firstAttribute="bottom" secondItem="t1y-yS-1W3" secondAttribute="bottom" id="w2v-dc-kEw"/>
                             <constraint firstItem="85J-Yv-Ma9" firstAttribute="top" secondItem="5hq-bZ-wHz" secondAttribute="top" constant="30" id="xMk-4P-QJG"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="hJj-Bs-zZt" id="DPa-FN-NdX"/>
                         <outlet property="regieonCollectionView" destination="t1y-yS-1W3" id="aH1-gL-mqK"/>
                         <outlet property="travelSearchBar" destination="85J-Yv-Ma9" id="7fC-yQ-HEF"/>
                     </connections>
@@ -269,6 +279,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.backward.circle" catalog="system" width="128" height="121"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>

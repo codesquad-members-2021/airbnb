@@ -4,6 +4,7 @@ import RxCocoa
 
 class SearchViewController: UIViewController {
     
+    @IBOutlet var backButton: UIButton!
     @IBOutlet var travelSearchBar: UISearchBar!
     @IBOutlet var regieonCollectionView: UICollectionView!
     
@@ -46,14 +47,29 @@ private extension SearchViewController {
 private extension SearchViewController {
     
     private func bind() {
+        bindViewModel()
+        bindSearchController()
+        bindButton()
+    }
+    
+    private func bindViewModel() {
         viewModel.getFilteredData()
             .drive(regieonCollectionView.rx.items(cellIdentifier: RegieonInfoCell.identifier, cellType: RegieonInfoCell.self)) { _, data, cell in
                 cell.configure(data, ControllerPage.search)
             }.disposed(by: rx.disposeBag)
-        
+    }
+    
+    private func bindSearchController() {
         searchController.searchBar.rx.text
             .orEmpty
             .bind(to: viewModel.searchText)
             .disposed(by: rx.disposeBag)
+    }
+    
+    private func bindButton() {
+        backButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.dismiss(animated: true, completion: nil)
+            }).disposed(by: rx.disposeBag)
     }
 }
