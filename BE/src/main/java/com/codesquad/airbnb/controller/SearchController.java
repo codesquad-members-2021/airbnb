@@ -1,8 +1,8 @@
-package com.codesquad.airbnb;
+package com.codesquad.airbnb.controller;
 
-import com.codesquad.airbnb.dao.PropertyDao;
+import com.codesquad.airbnb.dto.PriceSearchDTO;
 import com.codesquad.airbnb.dto.PropertiesResponseDto;
-import com.codesquad.airbnb.dto.PropertyDto;
+import com.codesquad.airbnb.service.PropertyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,14 +12,14 @@ import java.time.LocalDate;
 @RequestMapping("/search")
 public class SearchController {
 
-    PropertyDao propertyDao;
+    PropertyService propertyService;
 
-    public SearchController(PropertyDao propertyDao) {
-        this.propertyDao = propertyDao;
+    public SearchController(PropertyService propertyService) {
+        this.propertyService = propertyService;
     }
 
     @GetMapping()
-    public ResponseEntity<PropertiesResponseDto> search(
+    public ResponseEntity<PropertiesResponseDto> propertiesSearch(
             @RequestParam(value = "locationId", required = false) Long locationId,
             @RequestParam(value = "checkIn" , required = false)LocalDate checkIn,
             @RequestParam(value = "checkOut" , required = false)LocalDate checkOut,
@@ -29,8 +29,13 @@ public class SearchController {
             @RequestParam(value = "children" , required = false, defaultValue = "0")int children,
             @RequestParam(value = "infant" , required = false, defaultValue = "0")int infant
             ) {
-        PropertiesResponseDto propertiesResponseDto = propertyDao.findBy(locationId,checkIn,checkOut,minPrice,maxPrice,adult,children,infant);
+        PropertiesResponseDto propertiesResponseDto = propertyService.findBy(locationId,checkIn,checkOut,minPrice,maxPrice,adult,children,infant);
         return ResponseEntity.ok().body(propertiesResponseDto);
+    }
+
+    @GetMapping("/{locationId}")
+    public ResponseEntity<PriceSearchDTO> propertiesAverageValue(@PathVariable Long locationId) {
+        return ResponseEntity.ok().body(propertyService.priceSearch(locationId));
     }
 
 }
