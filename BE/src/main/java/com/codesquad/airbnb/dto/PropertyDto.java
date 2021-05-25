@@ -10,7 +10,7 @@ import java.util.Set;
 public class PropertyDto {
 
     private Long propertyId;
-    private List<String> images = new ArrayList<>();
+    private String images;
     private String title;
     private boolean bookmark;
     private int pricePerNight;
@@ -35,7 +35,7 @@ public class PropertyDto {
                 reviewCount, rating);
     }
 
-    public void setImages(List<String> images) {
+    public void setImages(String images) {
         this.images = images;
     }
 
@@ -47,7 +47,7 @@ public class PropertyDto {
         return propertyId;
     }
 
-    public List<String> getImages() {
+    public String getImages() {
         return images;
     }
 

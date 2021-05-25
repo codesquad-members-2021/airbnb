@@ -94,7 +94,21 @@ public class PropertyDao {
         return propertyDtos;
     }
 
-    private List<String> findImageByPropertyId(Long propertyId) {
+    private String findImageByPropertyId(Long propertyId) {
+        String sql = "SELECT * FROM image " +
+                "WHERE image.property_id = ? " +
+                "and image.thumbnail = true";
+
+        String image = jdbcTemplate.queryForObject(sql, new RowMapper<String>() {
+            @Override
+            public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return rs.getString("image_url");
+            }
+        }, propertyId);
+        return image;
+    }
+
+    private List<String> findImagesByPropertyId(Long propertyId) {
         String sql = "SELECT * FROM image " +
                 "WHERE image.property_id = ?";
 
