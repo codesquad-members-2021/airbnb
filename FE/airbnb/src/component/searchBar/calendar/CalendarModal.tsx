@@ -3,10 +3,11 @@ import styled from "styled-components";
 import Calendar from "component/searchBar/calendar/Calendar";
 import { ReactComponent as LeftButton } from "assets/left_arrow.svg";
 import { ReactComponent as RightButton } from "assets/right_arrow.svg";
+import { stopPropagation } from "hooks/modalHooks";
 
 function CalendarModal() {
   return (
-    <Modal>
+    <Modal onClick={stopPropagation}>
       <LeftButton className="arrow left" />
       <Calendar />
       <Calendar />

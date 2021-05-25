@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Period from "component/searchBar/Period";
 import CalendarModal from "component/searchBar/calendar/CalendarModal";
 import Fare from "component/searchBar/Fare";
 import Guest from "component/searchBar/Guest";
-import SearchBtn from "./SearchBtn";
+import SearchBtn from "component/searchBar/SearchBtn";
+import { openModal, closeModalByBodyClick } from "hooks/modalHooks";
 
 function BigSearchBar() {
+  const [isOpenCalendar, setIsOpenCalendar] = useState<boolean>(false);
+  const handleClickPeriod = (e: React.MouseEvent) => openModal({ e, setState: setIsOpenCalendar });
+  closeModalByBodyClick(setIsOpenCalendar);
   return (
     <SearchBarContainer>
       <SearchBarList>
-        <Period />
-        <CalendarModal />
+        <Period onClick={handleClickPeriod} />
+        {isOpenCalendar && <CalendarModal />}
         <Fare />
         <Guest />
         <SearchBtn />
@@ -26,7 +30,7 @@ const SearchBarContainer = styled.div`
   width: 916px;
   height: 76px;
   border: 1px solid ${({ theme }) => theme.color.gray5};
-  border-radius: ${({ theme }) => theme.borderRadius.m};
+  border-radius: ${({ theme }) => theme.borderRadius.l};
   background-color: #fff;
 
   position: absolute;
