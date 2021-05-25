@@ -41,4 +41,12 @@ public class ImageDao {
         parameter.addValue("imageType", imageType);
         return jdbcTemplate.query(sql, parameter, imageMapper);
     }
+
+    public List<Image> findByRoomId(Long roomId) {
+        String sql = "SELECT id, url, room_id, city_id, category_id, image_type FROM image " +
+                "WHERE room_id = roomId";
+        MapSqlParameterSource parameter = new MapSqlParameterSource();
+        parameter.addValue("roomId", roomId);
+        return jdbcTemplate.query(sql, parameter, imageMapper);
+    }
 }
