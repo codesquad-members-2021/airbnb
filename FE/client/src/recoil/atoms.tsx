@@ -60,3 +60,16 @@ export const PersonnelAtom = atom<PersonnelAtomType>({
     baby: 0
   }
 })
+
+export type RangeAtomType = {
+  left: number;
+  right: number;
+}
+
+export const RangeAtom = atom<RangeAtomType>({
+  key: 'RangeAtom',
+  default : {
+    left: 0,
+    right: 100
+  }
+})
