@@ -159,6 +159,21 @@
             </objects>
             <point key="canvasLocation" x="1592.753623188406" y="87.723214285714278"/>
         </scene>
+        <!--Calender View Controller-->
+        <scene sceneID="bnS-JS-HTE">
+            <objects>
+                <viewController id="ZA2-Xb-Bt3" customClass="CalenderViewController" customModule="Airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jpc-7E-Ubz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="vE8-fz-wtx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DZV-yp-xQM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2400" y="88"/>
+        </scene>
         <!--위시리스트-->
         <scene sceneID="vch-nN-zRH">
             <objects>

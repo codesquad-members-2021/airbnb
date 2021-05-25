@@ -6,6 +6,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    private let viewModel = LoginViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,34 +17,35 @@ class LoginViewController: UIViewController {
 private extension LoginViewController {
     private func setupMainView() {
         view.backgroundColor = UIColor(patternImage: UIImage(named: "login")!)
-        setupTextField()
+        setupIdTextField()
+        setupPasswordTextField()
     }
     
-    private func setupTextField() {
+    private func setupIdTextField() {
         idTextField.becomeFirstResponder()
-        idTextField.addTarget(self, action: #selector(enteredIdTextField), for: .editingDidEndOnExit)
-        passwordTextField.isSecureTextEntry = true
-        passwordTextField.addTarget(self, action: #selector(enteredPasswordTextField), for: .editingDidEndOnExit)
+        idTextField.rx.controlEvent([.editingDidEndOnExit])
+            .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.idTextField.resignFirstResponder()
+                self?.passwordTextField.becomeFirstResponder()
+            }).disposed(by: rx.disposeBag)
     }
-}
-
-private extension LoginViewController {
     
-    @objc private func enteredIdTextField() {
-        idTextField.resignFirstResponder()
-        passwordTextField.becomeFirstResponder()
-    }
-    @objc private func enteredPasswordTextField() {
-        guard let url = URL(string: Login.post) else {
-            return
-        }
-        APIService.post(url, parameter: LoginInfo(id: idTextField.text!, password: passwordTextField.text!))
-            .subscribe(onNext: { [weak self] data in
-                let tabBarController = self?.storyboard?.instantiateViewController(identifier: "TabBarController")
-                tabBarController?.modalPresentationStyle = .fullScreen
-                self?.present(tabBarController!, animated: true, completion: nil)
-            }, onError: { error in
-                print(error.localizedDescription)
+    private func setupPasswordTextField(){
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.rx.controlEvent([.editingDidEndOnExit])
+            .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                guard let url = URL(string: Login.post) else { return }
+                APIService.post(url, parameter: LoginInfo(id: self!.idTextField.text!, password: self!.passwordTextField.text!))
+                    .subscribe(onNext: { [weak self] _ in
+                        let tabBarController = self?.storyboard?.instantiateViewController(withIdentifier: "TabBarController")
+                        tabBarController?.modalPresentationStyle = .fullScreen
+                        self?.present(tabBarController!, animated: true, completion: nil)
+                    }, onError: { error in
+                        print(error.localizedDescription)
+                    })
+                    .disposed(by: self!.rx.disposeBag)
             }).disposed(by: rx.disposeBag)
     }
 }
