@@ -13,7 +13,6 @@ interface toggleStateTypes {
 const useToggle = ({ clickRef, toggleRef }: refsType): toggleStateTypes => {
   const [open, setOpen] = useState<boolean>(false);
   const [selectType, setSelectType] = useState<string>();
-
   useEffect(() => {
     document.body.addEventListener('click', handleClick);
     return () => document.body.removeEventListener('click', handleClick);

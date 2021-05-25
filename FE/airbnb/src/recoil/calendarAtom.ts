@@ -15,6 +15,11 @@ export interface calendarDateType {
   todayDate: dateType;
 }
 
+export const calendarOpenState = atom<boolean>({
+  key: 'calendarOpenState',
+  default: false,
+});
+
 export const calendarState = atom<calendarDateType>({
   key: 'calendarState',
   default: {
@@ -30,7 +35,7 @@ export const calendarState = atom<calendarDateType>({
 
 export const selectCheckBoxState = atom<string>({
   key: 'selectCheckBoxState',
-  default: 'checkOut',
+  default: '',
 });
 
 interface selectDateStateType {
