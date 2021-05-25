@@ -36,17 +36,35 @@ const createMonthArray = (year, month) => {
 
 const SingleCalendar = ({ range }) => {
   const today = new Date(Date.now());
-  const [year, month] = [today.getFullYear(), range + today.getMonth()];
+  const [year, month] = [today.getFullYear(), range + today.getMonth() + 1];
   const monthArr = createMonthArray(year, month);
-  console.log('달', monthArr);
+  // console.log('달', monthArr);
+
+  const handleDisabled = (day) => {
+    let tempDate = new Date(year, month - 1, day, 23, 59, 59);
+    return today > tempDate;
+  };
+
+  const handleTdBtnClick = (e) => {
+    //
+    console.log(e.target.dataset.day);
+  };
+
   return (
     <SingleCalDiv>
       <tbody>
         {monthArr?.map((week, idx) => (
           <DayTr key={idx}>
             {week?.map((day, idx) => (
-              <DayTd key={idx} day={day}>
-                {day}
+              <DayTd key={idx}>
+                <DayTdButton
+                  disabled={handleDisabled(day)}
+                  day={day}
+                  data-day={`${year}-${month}-${day}`}
+                  onClick={(e) => handleTdBtnClick(e)}
+                >
+                  {day}
+                </DayTdButton>
               </DayTd>
             ))}
           </DayTr>
@@ -66,12 +84,19 @@ const SingleCalDiv = styled.table`
 const DayTd = styled.td`
   width: 3rem;
   height: 3rem;
+`;
+
+const DayTdButton = styled.button`
+  width: 100%;
+  height: 100%;
   border-radius: 3rem;
   font-size: ${({ theme }) => theme.fontSizes.TS};
   font-weight: 700;
-  cursor: pointer;
+  /* cursor: pointer; */
+  background: none;
   &:hover {
-    border: ${({ day }) => (day === ' ' ? 'none' : '1px solid gray')};
+    border: ${({ day, disabled }) =>
+      day === ' ' || disabled ? 'none' : '1px solid gray'};
   }
   /* &:click {
     background-color: ${({ theme }) => theme.colors.gray1};

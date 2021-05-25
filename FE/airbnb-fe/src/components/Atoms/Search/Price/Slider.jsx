@@ -90,7 +90,6 @@ const RightInput = styled.input`
   left: ${({ leftWidth }) => `${leftWidth}px`};
   width: ${({ rightWidth }) => `${rightWidth}px`};
   -webkit-appearance: none;
-
   background-image: linear-gradient(
     to right,
     #333333 0%,
