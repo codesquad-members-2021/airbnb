@@ -12,6 +12,7 @@ const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
 	const MonthList = Array.from({ length: 12 }, (_, i) => i + 1)
 	const dayList: string[] = ['일', '월', '화', '수', '목', '금', '토']
 	let { year, month, date } = DateInfo(new Date())
+	let currentYear = year
 	let index
 	if (currentMonth > 12) {
 		index = (currentMonth % 12) - 1
@@ -30,10 +31,14 @@ const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
 		return i - dayOfFirst + 1
 	})
 
-	const clickableCheck = (dateEl: number | null): boolean => {
-		if (typeof dateEl === 'number' && currentMonth > month) return false
-		if (typeof dateEl === 'number' && currentMonth === month && dateEl >= date) return false
-		return true
+	const nonClickableCheck = (dateEl: number | null): boolean => {
+		if (typeof dateEl === 'number') {
+			if (year < currentYear) return false
+			else if (year === currentYear && currentMonth < month) return false
+			else if (year === currentYear && currentMonth === month && date > dateEl) return false
+			return true
+		}
+		return false
 	}
 
 	return (
@@ -49,7 +54,7 @@ const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
 				</YearMonth>
 				<DateSection>
 					{DateArray.map((dateEl, idx) => (
-						<DateBlock key={idx} nonClickable={clickableCheck(dateEl)}>
+						<DateBlock key={idx} nonClickable={nonClickableCheck(dateEl)}>
 							{dateEl}
 						</DateBlock>
 					))}
@@ -79,7 +84,7 @@ const DateBlock = styled.div<IClick>`
 	justify-content: center;
 	color: ${(props) => props.theme.color.grey_2};
 	${(props) =>
-		!props.nonClickable &&
+		props.nonClickable &&
 		css`
 			color: ${props.theme.color.black};
 			&:hover {
@@ -89,7 +94,6 @@ const DateBlock = styled.div<IClick>`
 			}
 		`};
 `
-
 const NonFixedArea = styled.div`
 	width: 336px;
 	text-align: center;

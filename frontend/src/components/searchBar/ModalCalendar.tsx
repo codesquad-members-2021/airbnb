@@ -80,7 +80,8 @@ const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType 
 					</NextBtn>
 				</BtnFlexBox>
 			</BtnBox>
-			<FlexBox
+
+			<TransitionBox
 				Xposition={Xposition}
 				transitionState={transitionState}
 				onTransitionEnd={() => handleTransitionEnd(btnClicked)}
@@ -89,7 +90,7 @@ const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType 
 				{currentCalendar.map((cal, idx) => (
 					<Calendar key={idx} currentMonth={cal} />
 				))}
-			</FlexBox>
+			</TransitionBox>
 		</Modal>
 	)
 }
@@ -108,7 +109,8 @@ const BtnBox = styled.div`
 	position: relative;
 	top: 90px;
 `
-const FlexBox = styled.div<IDate>`
+
+const TransitionBox = styled.div<IDate>`
 	display: flex;
 	position: absolute;
 	left: -970px;
