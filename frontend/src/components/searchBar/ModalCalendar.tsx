@@ -19,6 +19,7 @@ interface IDate {
 	Xposition: number
 }
 let i = 0
+let prev: null | number = null
 const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType }) => {
 	const today: Date = new Date()
 	const currentMonth: number = today.getMonth() + 1
@@ -63,22 +64,20 @@ const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType 
 		}
 	}
 
-	const [clicked, setClick] = useState(false) //회색글자 click state
-	const [activation, setActivation] = useState(false) //회색글자 state
+	// const [clicked, setClick] = useState(false) //회색글자 click state
+	const [activation, setActivation] = useState(false) //회색글자가 아닐 때만 handle함수를 호출하기 위해. state
 
 	//handleClick 안에서 사용하기
 	const [checkIn, setCheckIn] = useRecoilState(checkInMessage)
 	const [checkOut, setCheckOut] = useRecoilState(checkOutMessage)
 
 	const handleDateCLick = (year?: number, currentMonth?: number, dateEl?: number | null): void => {
-		console.log(year, currentMonth, dateEl)
-		if (activation) {
-			setClick(true)
-			i++
-		}
-		console.log(i)
-		if (i === 1) setCheckIn(`${currentMonth}월 ${dateEl}일`)
-		if (i === 2) setCheckOut(`${currentMonth}월 ${dateEl}일`)
+		if (!activation) return
+
+		const clickedDate = new Date(`${year}-${currentMonth}-${dateEl}`).valueOf()
+		if (checkIn === '날짜입력') setCheckIn(clickedDate)
+		if (checkIn !== '날짜입력' && checkIn <= clickedDate) setCheckOut(clickedDate)
+		if (checkIn !== '날짜입력' && checkIn > clickedDate) setCheckIn(clickedDate)
 	}
 
 	return (
