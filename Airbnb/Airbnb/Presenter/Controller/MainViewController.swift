@@ -95,7 +95,10 @@ private extension MainViewController {
 
 extension MainViewController: SecondSectionCellDelegate {
     func move(_ info: String) {
-        print(info)
+        let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "CanlendarVC") as! CalendarViewController
+        nextVC.setupLocation(info)
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true, completion: nil)
     }
     
 }
