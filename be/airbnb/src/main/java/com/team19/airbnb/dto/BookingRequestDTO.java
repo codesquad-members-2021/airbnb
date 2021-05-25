@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 public class BookingRequestDTO {
     // /bookings
+    @JsonProperty("roomId")
     private Long roomId;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate checkIn;
@@ -17,18 +18,10 @@ public class BookingRequestDTO {
 
     @JsonProperty("personnel")
     private Integer guest;
+    @JsonProperty("totalPrice")
     private BigDecimal totalPrice;
 
-    public BookingRequestDTO(Long roomId,
-                             LocalDate checkIn, LocalDate checkOut,
-                             Integer guest,
-                             BigDecimal totalPrice) {
-        this.roomId = roomId;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
-        this.guest = guest;
-        this.totalPrice = totalPrice;
-    }
+    public BookingRequestDTO() {}
 
     public Booking toEntity() {
         return Booking.create(checkIn, checkOut, guest, totalPrice, roomId);
