@@ -7,9 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE0B5DDF2655FCA0000B35E7 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DDE2655FCA0000B35E7 /* Network.swift */; };
+		AE0B5DE12655FE1F000B35E7 /* MainPageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DE02655FE1F000B35E7 /* MainPageDTO.swift */; };
+		AE0B5DE326560287000B35E7 /* MainPageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DE226560287000B35E7 /* MainPageUseCase.swift */; };
+		AE0B5DE62656073E000B35E7 /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DE42656073E000B35E7 /* CityCell.swift */; };
+		AE0B5DE72656073E000B35E7 /* CityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE0B5DE52656073E000B35E7 /* CityCell.xib */; };
+		AE0B5DE926562D4A000B35E7 /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DE826562D4A000B35E7 /* TitleSupplementaryView.swift */; };
+		AE0B5DEB265631D7000B35E7 /* DetailDestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DEA265631D7000B35E7 /* DetailDestinationViewController.swift */; };
+		AE0B5DEF26563BE4000B35E7 /* RecommandedDestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DEE26563BE4000B35E7 /* RecommandedDestinationViewController.swift */; };
+		AE0B5DF3265642B2000B35E7 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DF1265642B2000B35E7 /* CategoryCell.swift */; };
+		AE0B5DF4265642B2000B35E7 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE0B5DF2265642B2000B35E7 /* CategoryCell.xib */; };
+		AE3FE07526574E7000A95177 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07426574E7000A95177 /* SearchCityViewController.swift */; };
+		AE3FE07726578F1700A95177 /* RegionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07626578F1700A95177 /* RegionData.swift */; };
+		AE3FE07A26579D3B00A95177 /* RegionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07826579D3B00A95177 /* RegionCell.swift */; };
+		AE3FE07B26579D3B00A95177 /* RegionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE3FE07926579D3B00A95177 /* RegionCell.xib */; };
 		AE8CD3B42653538700BCB8FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B32653538700BCB8FC /* AppDelegate.swift */; };
 		AE8CD3B62653538700BCB8FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B52653538700BCB8FC /* SceneDelegate.swift */; };
-		AE8CD3B82653538700BCB8FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B72653538700BCB8FC /* ViewController.swift */; };
+		AE8CD3B82653538700BCB8FC /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B72653538700BCB8FC /* MainPageViewController.swift */; };
 		AE8CD3BB2653538700BCB8FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE8CD3B92653538700BCB8FC /* Main.storyboard */; };
 		AE8CD3BD2653538800BCB8FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE8CD3BC2653538800BCB8FC /* Assets.xcassets */; };
 		AE8CD3C02653538800BCB8FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE8CD3BE2653538800BCB8FC /* LaunchScreen.storyboard */; };
@@ -35,10 +49,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE0B5DDE2655FCA0000B35E7 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		AE0B5DE02655FE1F000B35E7 /* MainPageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageDTO.swift; sourceTree = "<group>"; };
+		AE0B5DE226560287000B35E7 /* MainPageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageUseCase.swift; sourceTree = "<group>"; };
+		AE0B5DE42656073E000B35E7 /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
+		AE0B5DE52656073E000B35E7 /* CityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityCell.xib; sourceTree = "<group>"; };
+		AE0B5DE826562D4A000B35E7 /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
+		AE0B5DEA265631D7000B35E7 /* DetailDestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDestinationViewController.swift; sourceTree = "<group>"; };
+		AE0B5DEE26563BE4000B35E7 /* RecommandedDestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandedDestinationViewController.swift; sourceTree = "<group>"; };
+		AE0B5DF1265642B2000B35E7 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		AE0B5DF2265642B2000B35E7 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
+		AE3FE07426574E7000A95177 /* SearchCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
+		AE3FE07626578F1700A95177 /* RegionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionData.swift; sourceTree = "<group>"; };
+		AE3FE07826579D3B00A95177 /* RegionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionCell.swift; sourceTree = "<group>"; };
+		AE3FE07926579D3B00A95177 /* RegionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegionCell.xib; sourceTree = "<group>"; };
 		AE8CD3B02653538700BCB8FC /* Airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE8CD3B32653538700BCB8FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE8CD3B52653538700BCB8FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AE8CD3B72653538700BCB8FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AE8CD3B72653538700BCB8FC /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		AE8CD3BA2653538700BCB8FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AE8CD3BC2653538800BCB8FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE8CD3BF2653538800BCB8FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -76,6 +104,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE0B5DEC2656326B000B35E7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE0B5DE02655FE1F000B35E7 /* MainPageDTO.swift */,
+				AE3FE07626578F1700A95177 /* RegionData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AE0B5DED26563275000B35E7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AE0B5DE826562D4A000B35E7 /* TitleSupplementaryView.swift */,
+				AE0B5DE42656073E000B35E7 /* CityCell.swift */,
+				AE0B5DF1265642B2000B35E7 /* CategoryCell.swift */,
+				AE3FE07826579D3B00A95177 /* RegionCell.swift */,
+				AE3FE07926579D3B00A95177 /* RegionCell.xib */,
+				AE0B5DF2265642B2000B35E7 /* CategoryCell.xib */,
+				AE0B5DE52656073E000B35E7 /* CityCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AE0B5DF026563C54000B35E7 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				AE0B5DE226560287000B35E7 /* MainPageUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		AE0B5DF526566D00000B35E7 /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				AE9AC6A4265C9AFF0038C198 /* Controller */,
+				AE0B5DF026563C54000B35E7 /* UseCase */,
+				AE0B5DED26563275000B35E7 /* View */,
+				AE0B5DEC2656326B000B35E7 /* Model */,
+			);
+			path = MainPage;
+			sourceTree = "<group>";
+		};
 		AE8CD3A72653538700BCB8FC = {
 			isa = PBXGroup;
 			children = (
@@ -99,9 +169,10 @@
 		AE8CD3B22653538700BCB8FC /* Airbnb */ = {
 			isa = PBXGroup;
 			children = (
-				AE8CD3E32653543100BCB8FC /* Supporting Files */,
-				AE8CD3B72653538700BCB8FC /* ViewController.swift */,
 				AE8CD3B92653538700BCB8FC /* Main.storyboard */,
+				AE0B5DF526566D00000B35E7 /* MainPage */,
+				AE0B5DDE2655FCA0000B35E7 /* Network.swift */,
+				AE8CD3E32653543100BCB8FC /* SupportingFiles */,
 			);
 			path = Airbnb;
 			sourceTree = "<group>";
@@ -124,7 +195,7 @@
 			path = AirbnbUITests;
 			sourceTree = "<group>";
 		};
-		AE8CD3E32653543100BCB8FC /* Supporting Files */ = {
+		AE8CD3E32653543100BCB8FC /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
 				AE8CD3BC2653538800BCB8FC /* Assets.xcassets */,
@@ -133,7 +204,18 @@
 				AE8CD3BE2653538800BCB8FC /* LaunchScreen.storyboard */,
 				AE8CD3C12653538800BCB8FC /* Info.plist */,
 			);
-			path = "Supporting Files";
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		AE9AC6A4265C9AFF0038C198 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AE8CD3B72653538700BCB8FC /* MainPageViewController.swift */,
+				AE0B5DEE26563BE4000B35E7 /* RecommandedDestinationViewController.swift */,
+				AE3FE07426574E7000A95177 /* SearchCityViewController.swift */,
+				AE0B5DEA265631D7000B35E7 /* DetailDestinationViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,9 +321,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE0B5DF4265642B2000B35E7 /* CategoryCell.xib in Resources */,
 				AE8CD3C02653538800BCB8FC /* LaunchScreen.storyboard in Resources */,
 				AE8CD3BD2653538800BCB8FC /* Assets.xcassets in Resources */,
+				AE0B5DE72656073E000B35E7 /* CityCell.xib in Resources */,
 				AE8CD3BB2653538700BCB8FC /* Main.storyboard in Resources */,
+				AE3FE07B26579D3B00A95177 /* RegionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,9 +351,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE8CD3B82653538700BCB8FC /* ViewController.swift in Sources */,
+				AE0B5DE326560287000B35E7 /* MainPageUseCase.swift in Sources */,
+				AE0B5DEF26563BE4000B35E7 /* RecommandedDestinationViewController.swift in Sources */,
+				AE0B5DE12655FE1F000B35E7 /* MainPageDTO.swift in Sources */,
+				AE3FE07A26579D3B00A95177 /* RegionCell.swift in Sources */,
+				AE3FE07526574E7000A95177 /* SearchCityViewController.swift in Sources */,
+				AE3FE07726578F1700A95177 /* RegionData.swift in Sources */,
+				AE0B5DEB265631D7000B35E7 /* DetailDestinationViewController.swift in Sources */,
+				AE0B5DDF2655FCA0000B35E7 /* Network.swift in Sources */,
+				AE8CD3B82653538700BCB8FC /* MainPageViewController.swift in Sources */,
 				AE8CD3B42653538700BCB8FC /* AppDelegate.swift in Sources */,
+				AE0B5DE926562D4A000B35E7 /* TitleSupplementaryView.swift in Sources */,
+				AE0B5DE62656073E000B35E7 /* CityCell.swift in Sources */,
 				AE8CD3B62653538700BCB8FC /* SceneDelegate.swift in Sources */,
+				AE0B5DF3265642B2000B35E7 /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +542,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
-				INFOPLIST_FILE = Airbnb/Info.plist;
+				INFOPLIST_FILE = /Users/gimjigyeong/Desktop/Developer/masters/airbnb/iOS/Airbnb/Airbnb/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -465,7 +561,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
-				INFOPLIST_FILE = Airbnb/Info.plist;
+				INFOPLIST_FILE = /Users/gimjigyeong/Desktop/Developer/masters/airbnb/iOS/Airbnb/Airbnb/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
