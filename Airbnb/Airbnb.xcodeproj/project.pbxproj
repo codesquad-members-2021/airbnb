@@ -35,6 +35,7 @@
 		71F65544265CB8FD008645B8 /* TravelInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */; };
 		71F65546265CB9D7008645B8 /* CommonViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65545265CB9D7008645B8 /* CommonViewModelType.swift */; };
 		71F65548265CC43E008645B8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65547265CC43E008645B8 /* CalendarViewController.swift */; };
+		71F6554E265CDC33008645B8 /* RxDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F6554D265CDC33008645B8 /* RxDelegateProxy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelInfoViewModel.swift; sourceTree = "<group>"; };
 		71F65545265CB9D7008645B8 /* CommonViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModelType.swift; sourceTree = "<group>"; };
 		71F65547265CC43E008645B8 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		71F6554D265CDC33008645B8 /* RxDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxDelegateProxy.swift; sourceTree = "<group>"; };
 		CCB98BA9F1F4A561BA5FBBA8 /* Pods-Airbnb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airbnb.debug.xcconfig"; path = "Target Support Files/Pods-Airbnb/Pods-Airbnb.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -209,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				71D133D92657531A00A71626 /* MainCollectionViewDelegate.swift */,
+				71F6554D265CDC33008645B8 /* RxDelegateProxy.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				71A67D2526539B6A00FC6689 /* AppDelegate.swift in Sources */,
 				71D133E126575AB000A71626 /* SecondSectionCell.swift in Sources */,
 				71DA18362654CACC00415EDD /* SecondSectionView.swift in Sources */,
+				71F6554E265CDC33008645B8 /* RxDelegateProxy.swift in Sources */,
 				71A67D422653AA9800FC6689 /* MainViewInfo.swift in Sources */,
 				71A67D442653AD7400FC6689 /* DataManager.swift in Sources */,
 				71B93A7A26578E830028C492 /* LoginInfo.swift in Sources */,

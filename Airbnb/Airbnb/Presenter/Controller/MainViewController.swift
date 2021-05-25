@@ -75,6 +75,7 @@ private extension MainViewController {
                 return cell
             case 1:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SecondSectionCell.identifier, for: indexPath) as? SecondSectionCell else { return UICollectionViewCell() }
+                cell.rx.rx_delegate.setForwardToDelegate(self, retainDelegate: false)
                 cell.configure(ControllerPage.main)
                 return cell
             case 2:
@@ -90,4 +91,11 @@ private extension MainViewController {
             return header
         })
     }
+}
+
+extension MainViewController: SecondSectionCellDelegate {
+    func move(_ info: String) {
+        print(info)
+    }
+    
 }

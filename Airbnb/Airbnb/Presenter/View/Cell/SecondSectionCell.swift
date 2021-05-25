@@ -1,10 +1,15 @@
 import UIKit
 import RxSwift
 
+@objc protocol SecondSectionCellDelegate: AnyObject {
+    @objc optional func move(_ info:String)
+}
+
 class SecondSectionCell: UICollectionViewCell {
     
     static let identifier = "SecondSectionCell"
     private var controllerInfo:Int?
+    weak var delegate: SecondSectionCellDelegate?
     
     private lazy var horizontalCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -48,6 +53,13 @@ private extension SecondSectionCell {
             .drive(horizontalCollectionView.rx.items(cellIdentifier: RegieonInfoCell.identifier, cellType: RegieonInfoCell.self)) { [weak self] row, data, cell in
                 cell.configure(data, self!.controllerInfo!)
             }.disposed(by: rx.disposeBag)
+        
+        horizontalCollectionView.rx.modelSelected(MainViewInfo.self)
+            .subscribe(onNext: { [weak self] info in
+                self?.delegate?.move!(info.mainInfo)
+            }, onError: { error in
+                print(error.localizedDescription)
+            }).disposed(by: rx.disposeBag)
     }
 }
 
