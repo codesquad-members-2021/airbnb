@@ -5,7 +5,7 @@ import com.codesquad.coco.image.ImageDAO;
 import com.codesquad.coco.room.model.Room;
 import com.codesquad.coco.room.model.dto.SearchPriceDTO;
 import com.codesquad.coco.room.model.dto.SearchRoomDTO;
-import com.codesquad.coco.user.Reservation;
+import com.codesquad.coco.user.model.Reservation;
 import com.codesquad.coco.utils.mapper.ReservationMapper;
 import com.codesquad.coco.utils.mapper.RoomMapper;
 import com.codesquad.coco.utils.mapper.SearchPriceMapper;

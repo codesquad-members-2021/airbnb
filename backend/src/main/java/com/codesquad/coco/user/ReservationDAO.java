@@ -1,5 +1,6 @@
 package com.codesquad.coco.user;
 
+import com.codesquad.coco.user.model.dto.ReservationDTO;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;

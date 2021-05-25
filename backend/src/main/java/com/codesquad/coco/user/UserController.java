@@ -1,5 +1,6 @@
 package com.codesquad.coco.user;
 
+import com.codesquad.coco.user.model.dto.ReservationDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;

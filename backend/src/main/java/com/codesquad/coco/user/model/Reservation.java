@@ -1,4 +1,4 @@
-package com.codesquad.coco.user;
+package com.codesquad.coco.user.model;
 
 import com.codesquad.coco.room.model.Money;
 import com.codesquad.coco.utils.LocalDateUtil;

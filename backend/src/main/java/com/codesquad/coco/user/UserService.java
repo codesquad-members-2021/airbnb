@@ -3,6 +3,7 @@ package com.codesquad.coco.user;
 import com.codesquad.coco.exception.business.TotalPriceNonMatchException;
 import com.codesquad.coco.room.RoomDAO;
 import com.codesquad.coco.room.model.Room;
+import com.codesquad.coco.user.model.dto.ReservationDTO;
 import com.codesquad.coco.utils.LocalDateUtil;
 import org.springframework.stereotype.Service;
 

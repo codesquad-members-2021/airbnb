@@ -1,4 +1,4 @@
-package com.codesquad.coco.user;
+package com.codesquad.coco.user.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;

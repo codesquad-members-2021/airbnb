@@ -2,7 +2,7 @@ package com.codesquad.coco.room.model.dto;
 
 import com.codesquad.coco.host.HostDTO;
 import com.codesquad.coco.image.ImageDTO;
-import com.codesquad.coco.user.ReservationDateDTO;
+import com.codesquad.coco.user.model.dto.ReservationDateDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package com.codesquad.coco.user;
+package com.codesquad.coco.user.model.dto;
 
 import java.time.LocalDate;
 

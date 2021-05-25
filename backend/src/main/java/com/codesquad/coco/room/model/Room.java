@@ -4,8 +4,8 @@ import com.codesquad.coco.exception.business.NonReservationException;
 import com.codesquad.coco.exception.business.OvercapacityException;
 import com.codesquad.coco.host.Host;
 import com.codesquad.coco.image.Image;
-import com.codesquad.coco.user.Reservation;
-import com.codesquad.coco.user.WishList;
+import com.codesquad.coco.user.model.Reservation;
+import com.codesquad.coco.user.model.WishList;
 import com.codesquad.coco.utils.CalcUtil;
 import org.springframework.data.annotation.Id;
 
