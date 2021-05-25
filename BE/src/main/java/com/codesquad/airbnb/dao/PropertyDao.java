@@ -90,7 +90,7 @@ public class PropertyDao {
         return propertyDtos;
     }
 
-    public PropertiesDetailResponseDto findPropertyDetailByPropertyId(Long propertyId) {
+    public PropertyDetailResponseDto findPropertyDetailByPropertyId(Long propertyId) {
 
         String sql = "SELECT p.id, p.title, pd.description, l.name, pd.room_type, pd.max_occupancy," +
                 "pd.max_occupancy, pd.cleaning_fee, pd.bed_count, pd.bath_count, pd.review_count," +
@@ -103,10 +103,10 @@ public class PropertyDao {
                 "and h.property_id = p.id " +
                 "and p.id = ? ";
 
-        PropertiesDetailResponseDto propertyDetailDto =
-                jdbcTemplate.queryForObject(sql, new RowMapper<PropertiesDetailResponseDto>() {
+        PropertyDetailResponseDto propertyDetailDto =
+                jdbcTemplate.queryForObject(sql, new RowMapper<PropertyDetailResponseDto>() {
                     @Override
-                    public PropertiesDetailResponseDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    public PropertyDetailResponseDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 
                         List<String> imageUrls = findImagesByPropertyId(rs.getLong("id"));
                         PropertyDetailDto propertyDetailDto1 = PropertyDetailDto.of(
@@ -117,7 +117,7 @@ public class PropertyDao {
                                 rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getDouble("rating"),
                                 new HostDto(rs.getString("h.name"), rs.getString("image_url")));
 
-                        return new PropertiesDetailResponseDto(imageUrls, propertyDetailDto1);
+                        return new PropertyDetailResponseDto(imageUrls, propertyDetailDto1);
                     }
                 }, propertyId);
 

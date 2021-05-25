@@ -3,12 +3,12 @@ package com.codesquad.airbnb.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PropertiesDetailResponseDto {
+public class PropertyDetailResponseDto {
 
     private List<String> imageUrls = new ArrayList<>();
     private PropertyDetailDto property;
 
-    public PropertiesDetailResponseDto(List<String> imageUrls, PropertyDetailDto property) {
+    public PropertyDetailResponseDto(List<String> imageUrls, PropertyDetailDto property) {
         this.imageUrls = imageUrls;
         this.property = property;
     }
