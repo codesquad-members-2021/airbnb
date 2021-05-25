@@ -1,5 +1,6 @@
 package com.team19.airbnb.controller;
 
+import com.team19.airbnb.ResponseBody;
 import com.team19.airbnb.domain.room.Host;
 import com.team19.airbnb.dto.BookingRequestDTO;
 import com.team19.airbnb.dto.BookingResponseDTO;
@@ -34,7 +35,7 @@ public class BookingController {
     }
 
     @GetMapping("/bookings/{bookingId}/{userId}")
-    public BookingResponseDTO getBooking(@PathVariable Long bookingId, @PathVariable Long userId) {
+    public ResponseBody<BookingResponseDTO> getBooking(@PathVariable Long bookingId, @PathVariable Long userId) {
         bookingService.findBooking(userId, bookingId);
         return null;
     }
