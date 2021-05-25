@@ -5,12 +5,14 @@ import { FaBars } from "react-icons/fa";
 
 import styled, { css } from "styled-components";
 import LogInList from "./LogInList";
+import LogOutList from "./LogOutList";
 const AccountMenu = () => {
-  const [toggle, setToggle] = useState<Boolean>(false);
+  const [toggle, setToggle] = useState(false);
 
   const handleClick = (event: MouseEvent | Event) => {
     setToggle(!toggle);
   };
+  const isLogIn = localStorage.getItem("isLogIn");
 
   return (
     <>
@@ -18,8 +20,13 @@ const AccountMenu = () => {
         <FaBars className="bar" />
         <BsPeopleCircle className="people" />
       </StyledAccountMenu>
-      <Modal toggle={toggle} handleClick={handleClick} br="0.5rem" position={ModalPosition}>
-        <LogInList />
+      <Modal
+        toggle={toggle}
+        handleClick={handleClick}
+        br="0.5rem"
+        position={ModalPosition}
+      >
+        {isLogIn === "true" ? <LogOutList /> : <LogInList />}
       </Modal>
     </>
   );
