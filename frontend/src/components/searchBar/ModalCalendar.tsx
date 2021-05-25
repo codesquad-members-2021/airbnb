@@ -1,4 +1,11 @@
 import { useState, useEffect } from 'react'
+import {
+	checkInMessage,
+	checkOutMessage,
+	setCheckInMessage,
+	setCheckOutMessage,
+} from '../../customHook/atoms'
+import { useRecoilValue, useRecoilState } from 'recoil'
 import { Modal } from '../../style/BarStyle'
 import Calendar from './Calendar'
 import styled, { css } from 'styled-components'
@@ -11,22 +18,13 @@ interface IDate {
 	btnClicked: number
 	Xposition: number
 }
-
-//calendar component로 간단하게 선언하고 배열 형태로 관리하기
-// -> 렌더링할 해당월만 넘겨주면서 그에 해당하는 시작요일과 일수는 해당 캘린더에서 계산하여 렌더링.
-
-//배열형태로 관리
-//기본: m-1, m, m+1, m+2 (배열 길이는 항상 4를 유지하도록한다.)
-// next_Btn 클릭: 배열의 마지막 요소 (m+2) 기준 +1하여 배열에 push, (m-1)은 shift()
-// prev_Btn 클릭: 배열의 첫번째 요소 (m-1) 기준 -1하여 배열에 unshift, (m+2)는 pop()
-
+let i = 0
 const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType }) => {
 	const today: Date = new Date()
 	const currentMonth: number = today.getMonth() + 1
 	const [transitionState, setTransition] = useState(false)
 	const [Xposition, setXposition] = useState(-970)
 
-	// const [Xposition, setXposition] = useState(0)
 	const CalendarToRendar: number[] = [
 		currentMonth - 2,
 		currentMonth - 1,
@@ -67,9 +65,20 @@ const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType 
 
 	const [clicked, setClick] = useState(false) //회색글자 click state
 	const [activation, setActivation] = useState(false) //회색글자 state
+
+	//handleClick 안에서 사용하기
+	const [checkIn, setCheckIn] = useRecoilState(checkInMessage)
+	const [checkOut, setCheckOut] = useRecoilState(checkOutMessage)
+
 	const handleDateCLick = (year?: number, currentMonth?: number, dateEl?: number | null): void => {
 		console.log(year, currentMonth, dateEl)
-		if (activation) setClick(true)
+		if (activation) {
+			setClick(true)
+			i++
+		}
+		console.log(i)
+		if (i === 1) setCheckIn(`${currentMonth}월 ${dateEl}일`)
+		if (i === 2) setCheckOut(`${currentMonth}월 ${dateEl}일`)
 	}
 
 	return (

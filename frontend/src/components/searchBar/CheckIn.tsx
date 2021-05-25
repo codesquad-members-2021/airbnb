@@ -1,4 +1,6 @@
 import { RefObject } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { checkInMessage } from '../../customHook/atoms'
 import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../style/BarStyle'
 
 interface IProps {
@@ -10,12 +12,14 @@ interface IProps {
 }
 
 const CheckIn: React.FunctionComponent<IProps> = ({ clicked, open, type, checkInToggle }) => {
+	const checkIn = useRecoilValue(checkInMessage)
+
 	return (
 		<BarBlock clicked={clicked && open} type={type} ref={checkInToggle}>
 			<BarInnerWrapper>
 				<div>
 					<BarTitle>체크인</BarTitle>
-					<BarMessage>날짜입력</BarMessage>
+					<BarMessage>{checkIn}</BarMessage>
 				</div>
 			</BarInnerWrapper>
 		</BarBlock>

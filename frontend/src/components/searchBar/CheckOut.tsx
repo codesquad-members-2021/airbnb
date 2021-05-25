@@ -1,4 +1,6 @@
 import { RefObject } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { checkOutMessage } from '../../customHook/atoms'
 import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../style/BarStyle'
 
 interface IProps {
@@ -9,17 +11,18 @@ interface IProps {
 	onClick: () => void
 }
 
-const CheckIn: React.FunctionComponent<IProps> = ({ clicked, open, type, checkOutToggle }) => {
+const CheckOut: React.FunctionComponent<IProps> = ({ clicked, open, type, checkOutToggle }) => {
+	const [checkOut] = useRecoilState(checkOutMessage)
 	return (
 		<BarBlock clicked={clicked && open} type={type} ref={checkOutToggle}>
 			<BarInnerWrapper>
 				<div>
 					<BarTitle>체크아웃</BarTitle>
-					<BarMessage>날짜입력</BarMessage>
+					<BarMessage>{checkOut}</BarMessage>
 				</div>
 			</BarInnerWrapper>
 		</BarBlock>
 	)
 }
 
-export default CheckIn
+export default CheckOut
