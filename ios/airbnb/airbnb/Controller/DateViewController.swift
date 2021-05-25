@@ -18,6 +18,7 @@ class DateViewController: UIViewController {
         calendarView.dataSource = self
         setUpCalendarView()
         navigationItem.title = "숙소 찾기"
+        tabBarController?.tabBar.isHidden = false
     }
  
     func setUpCalendarView() {

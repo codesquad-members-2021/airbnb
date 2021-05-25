@@ -249,11 +249,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wK0-Zg-wHF">
-                                <rect key="frame" x="74" y="528" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uh6-Qf-Xeu" customClass="FSCalendar">
                                 <rect key="frame" x="0.0" y="44" width="414" height="465"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -261,11 +256,21 @@
                                     <constraint firstAttribute="height" constant="465" id="jgn-4L-QZ3"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AIq-BK-WPg" customClass="InformationView" customModule="airbnb" customModuleProvider="target">
+                                <rect key="frame" x="19.5" y="509" width="375" height="176"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="87q-4s-cLe"/>
+                                    <constraint firstAttribute="height" constant="176" id="kO8-xD-PM7"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7Aa-Mf-CAR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="AIq-BK-WPg" firstAttribute="centerX" secondItem="NPY-s9-e0Z" secondAttribute="centerX" id="9hR-Aw-czr"/>
                             <constraint firstItem="uh6-Qf-Xeu" firstAttribute="trailing" secondItem="7Aa-Mf-CAR" secondAttribute="trailing" id="Ffb-Dz-WjS"/>
+                            <constraint firstItem="AIq-BK-WPg" firstAttribute="top" secondItem="uh6-Qf-Xeu" secondAttribute="bottom" id="I2O-RS-cze"/>
                             <constraint firstItem="uh6-Qf-Xeu" firstAttribute="leading" secondItem="7Aa-Mf-CAR" secondAttribute="leading" id="i16-hk-8H6"/>
                             <constraint firstItem="uh6-Qf-Xeu" firstAttribute="top" secondItem="7Aa-Mf-CAR" secondAttribute="top" id="vdg-Zu-WtL"/>
                         </constraints>
