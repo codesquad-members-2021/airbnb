@@ -54,7 +54,7 @@ extension ResultsTableViewController {
                 print("location api search error...")
                 return
             }
-            guard let placemark = response?.mapItems[0].placemark else {
+            guard let _ = response?.mapItems[0].placemark else {
                 return
             }
             self?.delegate?.moveToNext()
