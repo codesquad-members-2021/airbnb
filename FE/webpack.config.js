@@ -38,6 +38,7 @@ module.exports = {
     hot: true,    
     host: "localhost",
     port: 3000,
+    historyApiFallback: true,
     // writeToDisk: true 
   }
 }

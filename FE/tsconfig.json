@@ -14,14 +14,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": false,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "types": ["google.maps"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "index.d.ts"],
   "exclude": ["node_modules/"]
-
 }
 
 // "declaration": true,                         /* Generates corresponding '.d.ts' file. */
 // "declarationMap": true,                      /* Generates a sourcemap for each corresponding '.d.ts' file. */
-    
-
