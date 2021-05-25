@@ -55,14 +55,17 @@ create table `room`
     rating         float,
     guest_capacity int,
     point          point,
-    description    varchar(300)
+    description    varchar(300),
+    bedroom_type   varchar(20),
+    bed_count      int,
+    bathroom_type  varchar(20)
 );
 
 create table `room_price`
 (
     id               int primary key auto_increment,
     room_id          int references room (id),
-    service_fee       int,
+    service_fee      int,
     accomodation_tax int,
     clean_up_cost    int,
     price_per_day    int,

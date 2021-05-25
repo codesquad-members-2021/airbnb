@@ -19,6 +19,9 @@ public class Room {
     private int guestCapacity;
     private Point point;
     private String description;
+    private BedroomType bedroomType;
+    private int bedCount;
+    private BathroomType bathroomType;
     private PricePolicy pricePolicy;
 
     public void updateId(int id) {

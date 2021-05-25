@@ -1,5 +1,7 @@
 package com.codesquad.airbnb.web.service.rooms;
 
+import com.codesquad.airbnb.web.domain.room.BathroomType;
+import com.codesquad.airbnb.web.domain.room.BedroomType;
 import com.codesquad.airbnb.web.domain.room.PricePolicy;
 import com.codesquad.airbnb.web.domain.room.Room;
 import com.codesquad.airbnb.web.exceptions.RoomNotFoundException;
@@ -75,6 +77,9 @@ class RoomDAOTest {
                 .locationId(locationId)
                 .point(point)
                 .rating(rating)
+                .bathroomType(BathroomType.PRIVATE_BATHROOM)
+                .bedroomType(BedroomType.BEDROOM)
+                .bedCount(2)
                 .pricePolicy(new PricePolicy(5000, 1000, 5000, 50000, 4))
                 .build();
     }
