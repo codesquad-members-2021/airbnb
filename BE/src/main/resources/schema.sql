@@ -3,15 +3,15 @@ use airbnb;
 
 create table if not exists location
 (
-    id    BIGINT primary key auto_increment,
-    name  varchar(45),
+    id        BIGINT primary key auto_increment,
+    name      varchar(45),
     image_url varchar(255)
 );
 
 create table if not exists category
 (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(45),
+    id        BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name      VARCHAR(45),
     image_url VARCHAR(1000)
 );
 
@@ -29,15 +29,15 @@ create table if not exists property_detail
     property_id   bigint,
     description   varchar(255),
     max_occupancy int,
-    cleaning_fee   int,
-    occupied_date  date,
+    cleaning_fee  int,
+    occupied_date date,
     bed_count     int,
     bath_count    int,
     room_type     varchar(45),
     review_count  int,
     latitude      double,
     longitude     double,
-    rating double,
+    rating        double,
     foreign key (property_id) references property (id)
 );
 
@@ -48,7 +48,7 @@ create table if not exists image
     name      varchar(45),
     thumbnail tinyint(1),
     property_id bigint,
-    foreign key (property_id) references property(id)
+    foreign key (property_id) references property (id)
 );
 
 create table if not exists user
@@ -60,6 +60,7 @@ create table if not exists user
 
 create table if not exists reservation
 (
+    id             BIGINT PRIMARY KEY AUTO_INCREMENT,
     check_in_date  datetime,
     check_out_date datetime,
     total_price    int,
@@ -81,8 +82,8 @@ create table if not exists wish_list
 
 create table if not exists property_category
 (
-    id bigint primary key auto_increment,
-    name varchar(45),
+    id        bigint primary key auto_increment,
+    name      varchar(45),
     image_url varchar(1000)
 );
 
