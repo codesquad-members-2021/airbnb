@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-final class FakeNetworkManager: AlamofireNetworkManagable {
+final class FakeNetworkManager: NetworkManagable {
     
     private let fakeData: Decodable
     
@@ -17,15 +17,16 @@ final class FakeNetworkManager: AlamofireNetworkManagable {
     }
     
     func get<T: Decodable>(decodingType: T.Type, endPoint: String,
-                completionHandler: @escaping (DataResponse<T, AFError>) -> Void) {
+                completionHandler: @escaping (Result<T, NetworkError>) -> Void) {
         let fakeResponse = HTTPURLResponse(url: URL(string: "fake.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)
-        let fakeDataResponse = DataResponse<T, AFError>(request: nil,
+        let fakeDataResponse = DataResponse<T, NetworkError>(request: nil,
                                         response: fakeResponse,
                                         data: nil,
                                         metrics: nil,
                                         serializationDuration: 0,
                                         result: .success(fakeData as! T))
-        completionHandler(fakeDataResponse)
+        let result = fakeDataResponse.result
+        completionHandler(result)
     }
     
 }
@@ -39,9 +40,9 @@ struct FakeData {
         PopularLocation(name: "코드스쿼드", distanceFromHere: "걸어서 6시간", imagePath: ImagePath.codesquad)
         ]
     static let FakeSearchResults = [
-        LocationSearchResult(name: "지구", coordinate: Coordinate()),
-        LocationSearchResult(name: "은하계", coordinate: Coordinate()),
-        LocationSearchResult(name: "방구석", coordinate: Coordinate())]
+        LocationSearchResult(name: "지구", coordinate: Coordinate(latitude: 1, longitude: 1)),
+        LocationSearchResult(name: "은하계", coordinate: Coordinate(latitude: 1, longitude: 1)),
+        LocationSearchResult(name: "방구석", coordinate: Coordinate(latitude: 1, longitude: 1))]
 }
 
 enum ImagePath {

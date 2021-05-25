@@ -7,25 +7,51 @@
 
 import Foundation
 
-final class SearchResultViewModel: SearchResultConfigurable {
+final class SearchResultViewModel: SearchResultUpdateModel {
+    
+    private var dataHandler: DataHandler?
+    private var errorHandler: ErrorHandler?
+    
+    private var searchResults: [LocationSearchResult]? {
+        didSet {
+            guard let searchResults = searchResults else { return }
+            dataHandler?(searchResults)
+        }
+    }
+    
+    private var error: Error? {
+        didSet {
+            guard let error = error else { return }
+            errorHandler?(error)
+        }
+    }
     
     static let baseUrl = ""
-    private var useCase: NewSearchCaseConfigurable
+    private var useCase: SearchResultFetchUseCase
     
-    init(useCase: NewSearchCaseConfigurable) {
+    init(useCase: SearchResultFetchUseCase) {
         self.useCase = useCase
     }
     
     convenience init() {
-        let useCase = NewSearchUseCase(url: SearchResultViewModel.baseUrl)
+        let useCase = SearchResultUseCase(url: SearchResultViewModel.baseUrl)
         self.init(useCase: useCase)
     }
     
-    func searchResults(for keyword: String,
-                       completionHandler: @escaping (Result<[LocationSearchResult], CustomError>) -> Void) {
-        useCase.search(for: keyword) { result in
-            completionHandler(result)
-        }
+    func bind(dataHandler: @escaping DataHandler, errorHandler: @escaping ErrorHandler) {
+        self.dataHandler = dataHandler
+        self.errorHandler = errorHandler
     }
     
+    func newData(with input: String) {
+        useCase.execute(for: input) { [weak self] result in
+            do {
+                let searchResults = try result.get()
+                self?.searchResults = searchResults
+            } catch {
+                self?.error = error
+            }
+        }
+    }
+
 }

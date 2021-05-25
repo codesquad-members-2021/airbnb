@@ -9,35 +9,27 @@ import UIKit
 
 final class PopularLocationTableViewDataSource: NSObject, UITableViewDataSource {
     
-    private var popularLocations: [PopularLocation]?
-    private var popularLocationImagePaths: [String]?
+    private var popularLocations = [PopularLocation]()
     
     func updateLocations(with popularLocations: [PopularLocation]) {
         self.popularLocations = popularLocations
     }
     
-    func updateImagePaths(with popularLocationImagePaths: [String]) {
-        self.popularLocationImagePaths = popularLocationImagePaths
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return popularLocations?.count ?? 0
+        return popularLocations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellID = PopularLocationTableViewCell.reuseIdentifier
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as? PopularLocationTableViewCell ?? PopularLocationTableViewCell()
         
-        guard let popularLocations = popularLocations else { return cell }
-        
         let targetIndex = indexPath.row
-        let textInfos = popularLocations[targetIndex]
-        cell.update(with: textInfos)
+        let popularLocationInfos = popularLocations[targetIndex]
+        cell.update(with: popularLocationInfos)
         
-        guard let popularLocationImagePaths = popularLocationImagePaths else { return cell }
-        
-        let imagePath = popularLocationImagePaths[targetIndex]
-        cell.update(with: imagePath)
+        if let popularLocationImagePath = popularLocations[targetIndex].cachePath {
+            cell.update(with: popularLocationImagePath)
+        }
 
         return cell
     }
