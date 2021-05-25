@@ -16,9 +16,9 @@ class ConditionViewTableViewDataSource: NSObject, UITableViewDataSource {
         case people = "인원"
     }
     
-    private let conditionData: ConditionData
+    private let conditionData: FindingAccommdationCondition
     
-    init(condition: ConditionData) {
+    init(condition: FindingAccommdationCondition) {
         self.conditionData = condition
     }
     
@@ -28,25 +28,33 @@ class ConditionViewTableViewDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "locationPeoplecondition", for: indexPath) as! ConditionViewTableViewCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "locationPeoplecondition", for: indexPath) as? ConditionViewTableViewCell else {
+                return CondtionsTableViewCell()
+            }
             cell.textLabel?.text = tableViewTitle.allCases[indexPath.row].rawValue
             cell.update(value: conditionData.location)
             return cell
         }
         else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "dateCostcondition", for: indexPath) as! CondtionsTableViewCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "dateCostcondition", for: indexPath) as? CondtionsTableViewCell else {
+                return CondtionsTableViewCell()
+            }
             cell.textLabel?.text = tableViewTitle.allCases[indexPath.row].rawValue
             cell.update(minvalue: conditionData.firstDate, maxvalue: conditionData.secondDate)
             return cell
         }
         else if indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "dateCostcondition", for: indexPath) as! CondtionsTableViewCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "dateCostcondition", for: indexPath) as? CondtionsTableViewCell else {
+                return CondtionsTableViewCell()
+            }
             cell.textLabel?.text = tableViewTitle.allCases[indexPath.row].rawValue
             cell.update(minvalue: conditionData.minCost, maxvalue: conditionData.maxCost)
             return cell
         }
         else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "locationPeoplecondition", for: indexPath) as! ConditionViewTableViewCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "locationPeoplecondition", for: indexPath) as? ConditionViewTableViewCell else {
+                return CondtionsTableViewCell()
+            }
             cell.textLabel?.text = tableViewTitle.allCases[indexPath.row].rawValue
             guard let peoplecount = conditionData.people else {
                 cell.update(value: "")

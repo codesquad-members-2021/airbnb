@@ -72,21 +72,17 @@ extension SuggestionsTableViewController {
             
             cell.textLabel?.text = suggestion.title
             cell.detailTextLabel?.text = suggestion.subtitle
-            // Each suggestion is a MKLocalSearchCompletion with a title, subtitle, and ranges describing what part of the title
-            // and subtitle matched the current query string. The ranges can be used to apply helpful highlighting of the text in
-            // the completion suggestion that matches the current query fragment.
-//            cell.textLabel?.attributedText = createHighlightedString(text: suggestion.title, rangeValues: suggestion.titleHighlightRanges)
-//            cell.detailTextLabel?.attributedText = createHighlightedString(text: suggestion.subtitle, rangeValues: suggestion.subtitleHighlightRanges)
+
+            cell.textLabel?.attributedText = createHighlightedString(text: suggestion.title, rangeValues: suggestion.titleHighlightRanges)
+            cell.detailTextLabel?.attributedText = createHighlightedString(text: suggestion.subtitle, rangeValues: suggestion.subtitleHighlightRanges)
         }
 
         return cell
     }
     
     private func createHighlightedString(text: String, rangeValues: [NSValue]) -> NSAttributedString {
-        let attributes = [NSAttributedString.Key.backgroundColor: UIColor(named: "suggestionHighlight")! ]
+        let attributes = [NSAttributedString.Key.backgroundColor: UIColor.systemYellow]
         let highlightedString = NSMutableAttributedString(string: text)
-        
-        // Each `NSValue` wraps an `NSRange` that can be used as a style attribute's range with `NSAttributedString`.
         let ranges = rangeValues.map { $0.rangeValue }
         ranges.forEach { (range) in
             highlightedString.addAttributes(attributes, range: range)
@@ -100,14 +96,11 @@ extension SuggestionsTableViewController: MKLocalSearchCompleterDelegate {
     
     /// - Tag: QueryResults
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        // As the user types, new completion suggestions are continuously returned to this method.
-        // Overwrite the existing results, and then refresh the UI with the new results.
         completerResults = completer.results
         tableView.reloadData()
     }
     
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        // Handle any errors returned from MKLocalSearchCompleter.
         if let error = error as NSError? {
             print("MKLocalSearchCompleter encountered an error: \(error.localizedDescription). The query fragment is: \"\(completer.queryFragment)\"")
         }
@@ -118,7 +111,6 @@ extension SuggestionsTableViewController: UISearchResultsUpdating {
 
     /// - Tag: UpdateQuery
     func updateSearchResults(for searchController: UISearchController) {
-        // Ask `MKLocalSearchCompleter` for new completion suggestions based on the change in the text entered in `UISearchBar`.
         searchCompleter?.queryFragment = searchController.searchBar.text ?? ""
     }
 }

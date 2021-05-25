@@ -37,26 +37,17 @@ class SearchViewController: UITableViewController {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        locationManager.delegate = self
-
-        suggestionController = SuggestionsTableViewController(style: .grouped)
-        suggestionController.tableView.delegate = self
-
-        searchController = UISearchController(searchResultsController: suggestionController)
-        searchController.searchResultsUpdater = suggestionController
-
-        let name = UIApplication.willEnterForegroundNotification
-        foregroundRestorationObserver = NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil, using: { [ unowned self ] (_) in
-            self.requestLocation()
-        })
-
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
+        
+        setupSuggestionController()
         setupSearchController()
+        
+        let name = UIApplication.willEnterForegroundNotification
+        foregroundRestorationObserver = NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil, using: { [ weak self ] (_) in
+            self?.requestLocation()
+        })
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -69,7 +60,14 @@ class SearchViewController: UITableViewController {
         requestLocation()
     }
     
+    private func setupSuggestionController() {
+        suggestionController = SuggestionsTableViewController(style: .grouped)
+        suggestionController.tableView.delegate = self
+    }
+    
     private func setupSearchController() {
+        searchController = UISearchController(searchResultsController: suggestionController)
+        searchController.searchResultsUpdater = suggestionController
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.searchController.automaticallyShowsCancelButton = false
@@ -85,7 +83,7 @@ class SearchViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let nextViewController = segue.destination as? ConditionViewController else {
+        guard let nextViewController = segue.destination as? FindingAccommdationViewController else {
             return
         }
         nextViewController.takelocationBeforeController(location: selectedData)
@@ -135,7 +133,6 @@ extension SearchViewController: UISearchBarDelegate {
         localSearch?.start { [weak self] (response, error) in
 
             guard error == nil else {
-                print((String(describing: error)))
                 return
             }
             

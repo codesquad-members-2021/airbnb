@@ -7,6 +7,10 @@
 
 import Foundation
 
-class SearchResultData {
+class SearchResultData: Decodable {
+    private(set) var rooms: [RoomData]
     
+    init() {
+        self.rooms = []
+    }
 }

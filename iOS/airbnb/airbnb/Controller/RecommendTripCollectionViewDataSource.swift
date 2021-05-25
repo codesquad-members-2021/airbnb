@@ -13,7 +13,7 @@ class RecommendTripCollectionViewDataSource: NSObject, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendTrip", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendTrip", for: indexPath)
         return cell
     }
 }

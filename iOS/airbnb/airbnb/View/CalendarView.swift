@@ -23,7 +23,7 @@ class CalendarView: FSCalendar {
     func configure() {
         self.allowsMultipleSelection = true
         self.scrollDirection = .vertical
-//        self.calculator
+        //        self.calculator
         
         self.appearance.titleDefaultColor = .black
         self.appearance.titleWeekendColor = .red
@@ -37,9 +37,9 @@ class CalendarView: FSCalendar {
 
 class CalendarViewDelgate: NSObject, FSCalendarDelegate {
     
-    private var conditionData: ConditionData!
+    private var conditionData: FindingAccommdationCondition!
     
-    init(conditionData: ConditionData) {
+    init(conditionData: FindingAccommdationCondition) {
         self.conditionData = conditionData
     }
     
@@ -94,20 +94,19 @@ class CalendarViewDelgate: NSObject, FSCalendarDelegate {
     }
     
     func updateCheckIn(_ calender: FSCalendar) {
-            let sorted = calender.selectedDates.sorted { $0 < $1 }
-            if sorted.count == 1 {
-                conditionData.update(firstDate: formatter(sorted.first ?? Date()))
-                conditionData.update(secondDate: "")
-            } else {
-                print(calender.selectedDates.count)
-                conditionData.update(firstDate: formatter(sorted.first ?? Date()))
-                conditionData.update(secondDate: formatter(sorted.last ?? Date()))
-            }
+        let sorted = calender.selectedDates.sorted { $0 < $1 }
+        if sorted.count == 1 {
+            conditionData.update(firstDate: formatter(date: sorted.first ?? Date()))
+            conditionData.update(secondDate: "")
+        } else {
+            conditionData.update(firstDate: formatter(date: sorted.first ?? Date()))
+            conditionData.update(secondDate: formatter(date: sorted.last ?? Date()))
         }
-        
-        let formatter: (Date) -> String = { (date) in
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MM월 dd일"
-            return formatter.string(from: date)
-        }
+    }
+    
+    func formatter(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM월 dd일"
+        return formatter.string(from: date)
+    }
 }

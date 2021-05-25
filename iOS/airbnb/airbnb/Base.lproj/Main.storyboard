@@ -139,7 +139,7 @@
                                                         </collectionViewCellContentView>
                                                     </collectionViewCell>
                                                 </cells>
-                                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FZc-sn-hxD">
+                                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" semanticContentAttribute="playback" insetsLayoutMarginsFromSafeArea="NO" id="FZc-sn-hxD">
                                                     <rect key="frame" x="0.0" y="0.0" width="16" height="172"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </collectionReusableView>
@@ -343,10 +343,10 @@
             </objects>
             <point key="canvasLocation" x="2740" y="88"/>
         </scene>
-        <!--Condition View Controller-->
+        <!--Finding Accommdation View Controller-->
         <scene sceneID="0Df-QY-FhC">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="Nne-XM-O7C" customClass="ConditionViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Nne-XM-O7C" customClass="FindingAccommdationViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RNC-Nh-xoT">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -593,7 +593,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="어린이" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWa-8e-6nd" userLabel="어린이">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="유아" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWa-8e-6nd" userLabel="어린이">
                                                                 <rect key="frame" x="16.000000000000004" y="195.33333333333331" width="57.333333333333343" height="20.333333333333343"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20.329999999999998" id="0w6-bj-68W"/>
@@ -603,7 +603,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="만 2세 미만" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AyG-Ts-vK7" userLabel="만 2~12세">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="만 2세 미만" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AyG-Ts-vK7">
                                                                 <rect key="frame" x="16" y="223.66666666666669" width="77.666666666666671" height="20.333333333333343"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="57.333333333333343" id="PYD-hT-oYB"/>
@@ -797,32 +797,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="z7x-sl-TZn"/>
                     <connections>
-                        <outlet property="AfterButton" destination="ZuZ-LT-fjb" id="Log-01-S9T"/>
-                        <outlet property="BeforeButton" destination="rol-jo-kKO" id="YAI-tM-1XT"/>
                         <outlet property="adultCountLabel" destination="rii-5A-upr" id="VDT-9u-gcm"/>
+                        <outlet property="afterButton" destination="ZuZ-LT-fjb" id="Log-01-S9T"/>
+                        <outlet property="beforeButton" destination="rol-jo-kKO" id="YAI-tM-1XT"/>
                         <outlet property="conditionTableView" destination="xaM-KD-q4S" id="bah-bK-Z5P"/>
-                        <outlet property="conditionViews" destination="0t4-YB-xzk" id="V9E-FG-MU9"/>
                         <outlet property="content" destination="Kzb-4f-T2h" id="aNs-DH-dpU"/>
+                        <outlet property="findingAccommdationConditionView" destination="0t4-YB-xzk" id="V9E-FG-MU9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dhj-L2-R88" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3596.9230769230767" y="87.440758293838854"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="eCf-9L-JsQ">
-            <objects>
-                <viewController id="Mhj-Zr-CfJ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="V1j-xh-0sg">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="gNp-6A-rvd"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BFp-jB-wXh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4902" y="88"/>
         </scene>
     </scenes>
     <resources>

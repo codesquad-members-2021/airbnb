@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FirstPageDTO: Decodable {
+struct MainPageDTO: Decodable {
     private (set) var wishList: WishList
     private (set) var tripPlaceList: [TripPlace]
     private (set) var recommendTripList: [RecommendTrip]

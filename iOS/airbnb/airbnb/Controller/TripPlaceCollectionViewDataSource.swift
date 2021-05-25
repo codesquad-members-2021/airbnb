@@ -13,7 +13,7 @@ class TripPlaceCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TripPlace", for: indexPath) 
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TripPlace", for: indexPath) 
         
         return cell
     }

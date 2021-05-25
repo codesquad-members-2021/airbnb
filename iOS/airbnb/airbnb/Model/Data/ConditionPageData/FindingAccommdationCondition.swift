@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ConditionData {
+final class FindingAccommdationCondition {
     private(set) var location: String
     private(set) var firstDate: String
     private(set) var secondDate: String
@@ -26,34 +26,39 @@ final class ConditionData {
     
     func insertData(location: String) {
         self.location = location
-        NotificationCenter.default.post(name: ConditionViewController.conditionDataUpdate, object: self)
+        NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
     }
     
     func update(firstDate: String) {
         self.firstDate = firstDate
-        NotificationCenter.default.post(name: ConditionViewController.conditionDataUpdate, object: self)
+        NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
     }
     
     func update(secondDate: String) {
         self.secondDate = secondDate
-        NotificationCenter.default.post(name: ConditionViewController.conditionDataUpdate, object: self)
+        NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
     }
     
     func update(minCost: String) {
         self.minCost = minCost
-        NotificationCenter.default.post(name: ConditionViewController.conditionDataUpdate, object: self)
+        NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
     }
     
     func update(maxCost: String) {
         self.maxCost = maxCost
-        NotificationCenter.default.post(name: ConditionViewController.conditionDataUpdate, object: self)
+        NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
     }
     
-    func update(people: Int, plus: Bool) {
+    func convert(peopleCount: Int) -> String {
+        let peopleCount: String = String(peopleCount)
+        return peopleCount
+    }
+    
+    func update(people: Int, isAdd: Bool) {
         if self.people == nil {
             self.people = 0
         }
-        if plus {
+        if isAdd {
             self.people! += people
         }
         else {
@@ -62,6 +67,6 @@ final class ConditionData {
             }
             self.people! -= people
         }
-        NotificationCenter.default.post(name: ConditionViewController.conditionDataUpdate, object: self)
+        NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
     }
 }
