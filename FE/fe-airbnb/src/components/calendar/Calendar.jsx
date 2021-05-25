@@ -16,11 +16,17 @@ const Calendar = ({ calendar }) => {
       <CalendarHeader calendar={calendar} />
       <CalendarBody>
         <DayNames />
-        {calendarMatrix.map((week) => (
-          <Week>
-            {week.map((day) => (
-              <Day>{day && day.format('D').toString()}</Day>
-            ))}
+        {calendarMatrix.map((week, i) => (
+          <Week key={i}>
+            {week.map((day, i) =>
+              day ? (
+                <Day key={day.format('YYYY-MM-DD')}>
+                  {day && day.format('D').toString()}
+                </Day>
+              ) : (
+                <Day key={i}></Day>
+              )
+            )}
           </Week>
         ))}
       </CalendarBody>

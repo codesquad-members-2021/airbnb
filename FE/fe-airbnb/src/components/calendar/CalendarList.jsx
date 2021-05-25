@@ -14,7 +14,7 @@ const CalendarList = ({ x, onTransitionEnd, leftSlide, rightSlide }) => {
     >
       <FlexBox>
         {calendars.map((calendar) => (
-          <Calendar calendar={calendar} />
+          <Calendar calendar={calendar} key={calendar.format('YYYY-MM')} />
         ))}
       </FlexBox>
     </CalendarListContainer>
