@@ -17,7 +17,7 @@ public class RoomMapper implements RowMapper<Room> {
     private RoomDetail createRoomDetail(ResultSet rs) throws SQLException {
         return new RoomDetail.Builder().oneRoom(rs.getBoolean("oneRoom")).bedCount(rs.getInt("bed")).bathCount(rs.getInt("bath"))
                 .hairDryer(rs.getBoolean("hair_dryer")).airConditioner(rs.getBoolean("air_conditioner"))
-                .wiFi(rs.getBoolean("wiFi")).build();
+                .wiFi(rs.getBoolean("wifi")).build();
     }
 
     private Tax createTax(ResultSet rs) throws SQLException {
