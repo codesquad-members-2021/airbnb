@@ -4,6 +4,7 @@ drop table if exists `guest`;
 drop table if exists location;
 drop table if exists room;
 drop table if exists reservation;
+drop table if exists room_price;
 drop table if exists amenity;
 drop table if exists room_amenity;
 drop table if exists bathroom;
@@ -55,6 +56,16 @@ create table `room`
     guest_capacity int,
     point          point,
     description    varchar(300)
+);
+
+create table `room_price`
+(
+    id               int primary key auto_increment,
+    room_id          int references room (id),
+    serviceFee       int,
+    accomodation_tax int,
+    clean_up_cost    int,
+    price_per_day    int
 );
 
 create table `amenity`

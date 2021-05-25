@@ -1,5 +1,6 @@
 package com.codesquad.airbnb.web.service.rooms;
 
+import com.codesquad.airbnb.web.domain.room.PricePolicy;
 import com.codesquad.airbnb.web.domain.room.Room;
 import com.codesquad.airbnb.web.domain.room.RoomRepository;
 import com.codesquad.airbnb.web.service.mapper.RoomMapper;
@@ -13,8 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.codesquad.airbnb.web.sqls.RoomSqlKt.FIND_ROOM;
-import static com.codesquad.airbnb.web.sqls.RoomSqlKt.SAVE_ROOM;
+import static com.codesquad.airbnb.web.sqls.RoomSqlKt.*;
 
 @Service
 public class RoomDAO implements RoomRepository {
@@ -40,7 +40,20 @@ public class RoomDAO implements RoomRepository {
                 .addValue("description", room.getDescription());
         jdbcTemplate.update(SAVE_ROOM, parameter, keyHolder);
         room.updateId(Objects.requireNonNull(keyHolder.getKey()).intValue());
+
+        savePricePolicy(room);
         return room;
+    }
+
+    private void savePricePolicy(Room room) {
+        PricePolicy pricePolicy = room.getPricePolicy();
+        MapSqlParameterSource parameter = new MapSqlParameterSource()
+                .addValue("room_id", room.getId())
+                .addValue("serviceFee", pricePolicy.getServiceFee())
+                .addValue("accomodation_tax", pricePolicy.getAccomodationTax())
+                .addValue("clean_up_cost", pricePolicy.getCleanUpCost())
+                .addValue("price_per_day", pricePolicy.getPricePerDay());
+        jdbcTemplate.update(SAVE_PRICE_POLICY, parameter);
     }
 
     @Override

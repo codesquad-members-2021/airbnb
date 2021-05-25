@@ -19,6 +19,7 @@ public class Room {
     private int guestCapacity;
     private Point point;
     private String description;
+    private PricePolicy pricePolicy;
 
     public void updateId(int id) {
         this.id = id;
