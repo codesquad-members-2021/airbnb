@@ -133,7 +133,7 @@ const CalendarLists = styled.div<styleProp>`
 `;
 
 const CalendarBox = styled.div`
-  /* overflow: hidden; */
+  overflow: hidden;
 `;
 
 const WeekBox = styled.div`
