@@ -6,6 +6,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet var logInButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +19,7 @@ private extension LoginViewController {
         view.backgroundColor = UIColor.white
         setupIdTextField()
         setupPasswordTextField()
+        setupLoginButton()
     }
     
     private func setupIdTextField() {
@@ -34,6 +36,22 @@ private extension LoginViewController {
         passwordTextField.isSecureTextEntry = true
         passwordTextField.rx.controlEvent([.editingDidEndOnExit])
             .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                guard let url = URL(string: Login.post) else { return }
+                APIService.post(url, parameter: LoginInfo(userId: self!.idTextField.text!, password: self!.passwordTextField.text!))
+                    .subscribe(onNext: { [weak self] _ in
+                        let tabBarController = self?.storyboard?.instantiateViewController(withIdentifier: "TabBarController")
+                        tabBarController?.modalPresentationStyle = .fullScreen
+                        self?.present(tabBarController!, animated: true, completion: nil)
+                    }, onError: { error in
+                        print(error.localizedDescription)
+                    })
+                    .disposed(by: self!.rx.disposeBag)
+            }).disposed(by: rx.disposeBag)
+    }
+    
+    private func setupLoginButton() {
+        logInButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let url = URL(string: Login.post) else { return }
                 APIService.post(url, parameter: LoginInfo(userId: self!.idTextField.text!, password: self!.passwordTextField.text!))

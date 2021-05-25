@@ -333,6 +333,7 @@
                     </view>
                     <connections>
                         <outlet property="idTextField" destination="qBg-Jt-IkT" id="Nc7-2V-2ZC"/>
+                        <outlet property="logInButton" destination="hJy-5y-5Rx" id="MMl-hy-vh4"/>
                         <outlet property="passwordTextField" destination="aV5-e5-ibO" id="Xfz-lY-udY"/>
                     </connections>
                 </viewController>

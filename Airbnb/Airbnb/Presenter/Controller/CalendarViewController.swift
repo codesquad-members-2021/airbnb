@@ -36,6 +36,7 @@ private extension CalendarViewController {
         calendarView.swipeToChooseGesture.isEnabled = true
         calendarView.appearance.selectionColor = UIColor.systemGray3
         calendarView.appearance.todayColor = UIColor.black
+        calendarView.appearance.weekdayTextColor = UIColor.systemGray
         calendarView.delegate = self
         calendarView.dataSource = self
     }

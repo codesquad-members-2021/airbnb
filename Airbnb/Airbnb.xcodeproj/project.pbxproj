@@ -29,6 +29,7 @@
 		71B93A7C2657A0480028C492 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B93A7B2657A0480028C492 /* SearchViewController.swift */; };
 		71D133DA2657531A00A71626 /* MainCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D133D92657531A00A71626 /* MainCollectionViewDelegate.swift */; };
 		71D133E126575AB000A71626 /* SecondSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D133E026575AB000A71626 /* SecondSectionCell.swift */; };
+		71D2391C265D0F3D001FA8F6 /* AccommodationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2391B265D0F3D001FA8F6 /* AccommodationInfo.swift */; };
 		71DA18362654CACC00415EDD /* SecondSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA18352654CACC00415EDD /* SecondSectionView.swift */; };
 		71DA183A2654E2FE00415EDD /* ThirdSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA18392654E2FE00415EDD /* ThirdSectionView.swift */; };
 		71F65541265C9002008645B8 /* RegieonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65540265C9002008645B8 /* RegieonViewModel.swift */; };
@@ -64,6 +65,7 @@
 		71B93A7B2657A0480028C492 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		71D133D92657531A00A71626 /* MainCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		71D133E026575AB000A71626 /* SecondSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionCell.swift; sourceTree = "<group>"; };
+		71D2391B265D0F3D001FA8F6 /* AccommodationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationInfo.swift; sourceTree = "<group>"; };
 		71DA18352654CACC00415EDD /* SecondSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionView.swift; sourceTree = "<group>"; };
 		71DA18392654E2FE00415EDD /* ThirdSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionView.swift; sourceTree = "<group>"; };
 		71F65540265C9002008645B8 /* RegieonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegieonViewModel.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				71A67D412653AA9800FC6689 /* MainViewInfo.swift */,
 				71A67D432653AD7400FC6689 /* DataManager.swift */,
 				71B93A7926578E830028C492 /* LoginInfo.swift */,
+				71D2391B265D0F3D001FA8F6 /* AccommodationInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				71D133E126575AB000A71626 /* SecondSectionCell.swift in Sources */,
 				71DA18362654CACC00415EDD /* SecondSectionView.swift in Sources */,
 				71F6554E265CDC33008645B8 /* RxDelegateProxy.swift in Sources */,
+				71D2391C265D0F3D001FA8F6 /* AccommodationInfo.swift in Sources */,
 				71A67D422653AA9800FC6689 /* MainViewInfo.swift in Sources */,
 				71A67D442653AD7400FC6689 /* DataManager.swift in Sources */,
 				71B93A7A26578E830028C492 /* LoginInfo.swift in Sources */,
