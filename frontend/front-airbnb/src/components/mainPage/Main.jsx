@@ -1,58 +1,13 @@
-import React, {useState, useReducer} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Header from './header/Header';
 import SearchBar from '../searchBar/SearchBar';
-const changeModal = (toggleState, action) => {
-    const newToggleState = {...toggleState}
-    switch(action.category) {
-        case 'period':
-            setModal(newToggleState, action.category)
-            return newToggleState;
-        case 'price':
-            setModal(newToggleState, action.category)
-            return newToggleState;
-        case 'personnel':
-            setModal(newToggleState, action.category)
-            return newToggleState;
-        case 'main':
-            // 조건문 
-            if(isCloseModal(newToggleState)) return toggleState;
-            setModal(newToggleState, action.category)
-            return newToggleState;
-        case 'search':
-            newToggleState.search = true;
-            return newToggleState;
-        default:
-            throw new Error();
-    }
-}
-const setModal = (toggleState, category)=> {
-    for(let a in toggleState) {
-        if(a === category) {
-            toggleState[a] = !toggleState[a];
-        }
-        else if (a === 'search' && category !== 'main'){
-            continue;
-        }
-        else {
-            toggleState[a] = false;
-        }
-    }
-}
-const isCloseModal = (newToggleState) => {
-    return (!(newToggleState.period || newToggleState.price || newToggleState.personnel || newToggleState.search))
-}
-const searchToggle = { period:false, price:false, personnel:false, search:false};
-export const PostsContext = React.createContext();
 const Main = () => {
-    const [toggleState, dispatch] = useReducer(changeModal, searchToggle)
     return (
-        <PostsContext.Provider value={{toggleState, dispatch}}>
-        <MainWrapper onClick={()=> dispatch({category: 'main'})}>
+        <MainWrapper>
             <Header/>
             <SearchBar/>
         </MainWrapper>
-        </PostsContext.Provider>
     );
 }
 

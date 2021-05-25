@@ -4,18 +4,21 @@ import Period from './Period';
 import Personnel from './Personnel';
 import Price from './Price';
 import SearchButton from './SearchButton';
-import { PostsContext } from '../mainPage/Main';
+import {ResultContextProvider} from '../../Context';
+import useComponentVisible from "../modal/Modal"
 
 
 const SearchBar = () => {
-    const {dispatch} = useContext(PostsContext);
+    const {searchRef, isFocus, setIsFocus} = useComponentVisible(true);
     return (
-        <SearchBarWrapper onClick={e => e.stopPropagation()} onFocus={()=> dispatch({category: 'search'})}>
+            <ResultContextProvider>
+        <SearchBarWrapper ref={searchRef} onClick={() => setIsFocus(false)}>
             <Period/>
             <Price/>
             <Personnel/>
-            <SearchButton/>
+            <SearchButton setIsFocus={setIsFocus} isFocus={isFocus}/>
         </SearchBarWrapper>
+            </ResultContextProvider>
     );
 }
 const SearchBarWrapper = styled.div`

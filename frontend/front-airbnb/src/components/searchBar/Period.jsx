@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CalendarModal from '../modal/CalendarModal';
-import { PostsContext } from '../mainPage/Main';
+import useComponentVisible from "../modal/Modal"
 
 const Period = () => {
-    const {toggleState, dispatch} = useContext(PostsContext);
+    const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
     const periodData = [
         {
             id: 1,
@@ -17,30 +17,35 @@ const Period = () => {
             input: '날짜입력'
         },
     ]
-    const [peroidInfo, setPeriodInfo] = useState(periodData)
+    const [peroidInfo, setPeriodInfo] = useState(periodData);
     const periodList = peroidInfo.map((e, idx) => {
         return <CheckBox key={idx}><Title>{e.name}</Title><View>{e.input}</View></CheckBox>
     })
     return (
-        <PeriodWrapper onClick={() => dispatch({category: 'period'})}>
+        <PeriodWrapper ref={ref}>
+            <PeriodBtn onClick={() => setIsComponentVisible(!isComponentVisible)}>
             {periodList}
-            {toggleState.period && <CalendarModal/>}
+            {!isComponentVisible && <CalendarModal/>}
+            </PeriodBtn>
         </PeriodWrapper>
     );
 }
 
-const PeriodWrapper = styled.button`
-display:flex;
-
-border-radius: 100px;
+const PeriodWrapper = styled.div`
 flex: 20%;
+`;
+
+const PeriodBtn = styled.button`
+display:flex;
+border-radius: 100px;
+width: 100%;
 height: auto;
 padding: 20px;
-padding-left: 3%;
+padding-left: 15%;
 &:hover {
     background-color: #ebebeb;
 }
-`;
+`
 
 const Title = styled.span`
 padding: 5px 0;

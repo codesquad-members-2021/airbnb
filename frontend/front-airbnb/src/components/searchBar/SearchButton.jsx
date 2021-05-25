@@ -1,19 +1,23 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import styled from 'styled-components';
 import { FaSearch } from "react-icons/fa";
-import { PostsContext } from '../mainPage/Main';
 
-const SearchButton = () => {
-    const {toggleState} = useContext(PostsContext);
+
+
+const SearchButton = ({isFocus}) => {
     return (
-        <SearchButtonWrapper>
+            <SearchBtn>
             <FaSearch/>
-            {toggleState.search && <SearchTitle>검색</SearchTitle>}
-        </SearchButtonWrapper>
+            { !isFocus && <SearchTitle>검색</SearchTitle>}
+            </SearchBtn>
     );
 }
 
-const SearchButtonWrapper = styled.button`
+const SearchButtonWrapper = styled.div`
+
+`;
+
+const SearchBtn = styled.button`
 background-color: red;
 border-radius: 100px;
 padding: 15px;
