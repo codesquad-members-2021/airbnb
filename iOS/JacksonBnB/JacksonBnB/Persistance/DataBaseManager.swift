@@ -14,7 +14,6 @@ private protocol DBOperations {
 }
 class DataBaseManager: DBOperations {
     
-    
     let realm = try! Realm()
     
     func getLocations() -> Locations {

@@ -16,6 +16,7 @@ class SearchLocationDataSource: NSObject, UICollectionViewDataSource, UISearchRe
     override init() {
         super.init()
         searchLocationsController.searchResultsUpdater = self
+        searchLocationsController.obscuresBackgroundDuringPresentation = false
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if searchLocationsController.isActive {
