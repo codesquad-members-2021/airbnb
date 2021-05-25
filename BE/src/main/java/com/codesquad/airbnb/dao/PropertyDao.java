@@ -1,8 +1,7 @@
 package com.codesquad.airbnb.dao;
 
 import com.codesquad.airbnb.domain.Property;
-import com.codesquad.airbnb.dto.PropertiesResponseDto;
-import com.codesquad.airbnb.dto.PropertyDto;
+import com.codesquad.airbnb.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -35,19 +34,8 @@ public class PropertyDao {
         }
     }
 
-    public class PropertyDetailRowMapper implements RowMapper<PropertyDto> {
-
-        // interface method
-        @Override
-        public PropertyDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return PropertyDto.of(rs.getLong("id"), rs.getString("name"),
-                    rs.getBoolean("bookmark"), rs.getInt("price"),
-                    rs.getInt("review_count"), rs.getDouble("rating"));
-        }
-    }
-
     public Property findById(Long id) {
-        String sql = "SELECT p.id, p.name, p.price FROM property as p WHERE id = ?";
+        String sql = "SELECT p.id, p.title, p.price FROM property as p WHERE id = ?";
 
         return jdbcTemplate.queryForObject(sql, new PropertyRowMapper(), id);
     }
@@ -61,8 +49,8 @@ public class PropertyDao {
 
     public PropertiesResponseDto findBy(Long locationId, LocalDate checkIn, LocalDate checkOut,
                                         int minPrice, int maxPrice, int adult, int children, int infant) {
-        int maxOccupancy = adult+children+infant;
-        String sql = "select p.id, p.name, wl.bookmark, p.price, pd.review_count, pd.rating " +
+        int maxOccupancy = adult + children + infant;
+        String sql = "select p.id, p.title, wl.bookmark, p.price, pd.review_count, pd.rating " +
                 "from property as p, " +
                 "property_detail as pd, " +
                 "wish_list as wl " +
@@ -76,7 +64,15 @@ public class PropertyDao {
 
         long diff = ChronoUnit.DAYS.between(checkIn, checkOut);
 
-        List<PropertyDto> propertyDto = jdbcTemplate.query(sql, new PropertyDetailRowMapper(),
+        List<PropertyDto> propertyDto = jdbcTemplate.query(sql, new RowMapper<PropertyDto>() {
+                    // interface method
+                    @Override
+                    public PropertyDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        return PropertyDto.of(rs.getLong("id"), rs.getString("name"),
+                                rs.getBoolean("bookmark"), rs.getInt("price"),
+                                rs.getInt("review_count"), rs.getDouble("rating"));
+                    }
+                },
                 new SqlParameterValue(Types.BIGINT, locationId),
                 new SqlParameterValue(Types.INTEGER, maxOccupancy),
                 new SqlParameterValue(Types.INTEGER, minPrice),
@@ -84,14 +80,48 @@ public class PropertyDao {
 
         propertyDto.stream()
                 .forEach(propertyDto1 -> {
-                    propertyDto1.setImages(findImageByPropertyId(propertyDto1.getPropertyId()));
-                    propertyDto1.setTotalPrice(diff);
-                }
+                            propertyDto1.setImages(findImageByPropertyId(propertyDto1.getPropertyId()));
+                            propertyDto1.setTotalPrice(diff);
+                        }
                 );
 
         PropertiesResponseDto propertyDtos = new PropertiesResponseDto(propertyDto);
 
         return propertyDtos;
+    }
+
+    public PropertiesDetailResponseDto findPropertyDetailByPropertyId(Long propertyId) {
+
+        String sql = "SELECT p.id, p.title, pd.description, l.name, pd.room_type, pd.max_occupancy," +
+                "pd.max_occupancy, pd.cleaning_fee, pd.bed_count, pd.bath_count, pd.review_count," +
+                "p.price, pd.latitude, pd.longitude, pd.rating, h.name, h.image_url " +
+                "from property as p, " +
+                "property_detail as pd, " +
+                "location as l , host as h " +
+                "where p.id = pd.property_id " +
+                "and l.id = p.location_id " +
+                "and h.property_id = p.id " +
+                "and p.id = ? ";
+
+        PropertiesDetailResponseDto propertyDetailDto =
+                jdbcTemplate.queryForObject(sql, new RowMapper<PropertiesDetailResponseDto>() {
+                    @Override
+                    public PropertiesDetailResponseDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+                        List<String> imageUrls = findImagesByPropertyId(rs.getLong("id"));
+                        PropertyDetailDto propertyDetailDto1 = PropertyDetailDto.of(
+                                rs.getString("title"), rs.getString("description"),
+                                rs.getString("l.name"), rs.getString("room_type"), rs.getInt("max_occupancy"),
+                                rs.getInt("cleaning_fee"), rs.getInt("bed_count"), rs.getInt("bath_count"),
+                                rs.getInt("review_count"), rs.getInt("price"),
+                                rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getDouble("rating"),
+                                new HostDto(rs.getString("h.name"), rs.getString("image_url")));
+
+                        return new PropertiesDetailResponseDto(imageUrls, propertyDetailDto1);
+                    }
+                }, propertyId);
+
+        return propertyDetailDto;
     }
 
     private String findImageByPropertyId(Long propertyId) {
