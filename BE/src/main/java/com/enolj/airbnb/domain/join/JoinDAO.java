@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class JoinDAO {
@@ -24,5 +25,16 @@ public class JoinDAO {
     public List<Join> findAllByUserId(Long userId) {
         String sql = "SELECT * FROM `join` WHERE user_id = ?";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Join.class), userId);
+    }
+
+    public Optional<Join> findByUserIdAndHouseId(Long userId, Long houseId) {
+        String sql = "SELECT * FROM `join` WHERE user_id = ? AND house_id = ?";
+        List<Join> joins = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Join.class), userId, houseId);
+        return joins.stream().findAny();
+    }
+
+    public void delete(Join join) {
+        String sql = "DELETE FROM `join` WHERE user_id = ? AND house_id = ?";
+        jdbcTemplate.update(sql, join.getUserId(), join.getHouseId());
     }
 }

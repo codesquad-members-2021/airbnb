@@ -113,7 +113,13 @@ public class HouseService {
                 new Description("Jong님", "집전체 • 게스트 3명", 1488195));
     }
 
-    public void cancelReservation(Long houseId) {
+    public void cancelReservation(String authorization, Long houseId) {
+        User user = getUserFromAuthorization(userDAO, authorization);
+        House house = findHouseById(houseId);
+        joinDAO.delete(findJoinByUserIdAndHouseId(user.getId(), house.getId()));
+    }
 
+    private Join findJoinByUserIdAndHouseId(Long userId, Long houseId) {
+        return joinDAO.findByUserIdAndHouseId(userId, houseId).orElseThrow(EntityNotFoundException::new);
     }
 }
