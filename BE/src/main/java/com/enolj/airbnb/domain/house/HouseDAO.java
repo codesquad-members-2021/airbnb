@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class HouseDAO {
@@ -14,6 +15,12 @@ public class HouseDAO {
 
     public HouseDAO(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    public Optional<House> findById(Long id) {
+        String sql = "SELECT * FROM house WHERE id = ?";
+        List<House> houses = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(House.class), id);
+        return houses.stream().findAny();
     }
 
     public List<House> findAll() {

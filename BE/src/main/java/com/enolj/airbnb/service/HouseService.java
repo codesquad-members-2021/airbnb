@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.enolj.airbnb.web.dto.ReservationInfoResponseDTO.createReservationInfoResponseDTO;
 import static com.enolj.airbnb.web.dto.SearchResponseDTO.createSearchResponseDTO;
 
 @Service
@@ -49,7 +50,11 @@ public class HouseService {
     }
 
     public ReservationInfoResponseDTO getReservationInfo(Long houseId) {
-        return new ReservationInfoResponseDTO(71466, 0.02, 7.24, 4);
+        return createReservationInfoResponseDTO(findHouseById(houseId));
+    }
+
+    private House findHouseById(Long houseId) {
+        return houseDAO.findById(houseId).orElseThrow(EntityNotFoundException::new);
     }
 
     public void makeReservation(ReservationRequestDTO requestDTO) {
