@@ -27,4 +27,15 @@ public class PropertyService {
 
         return average / prices.size();
     }
+
+    public int[] getPropertyCountsByPriceRange(Long locationId) {
+        int[] priceCounts = new int[20];
+        List<Integer> prices = propertyDao.findPricesByLocationId(locationId);
+
+        for (Integer i : prices) {
+            priceCounts[i / 50000]++;
+        }
+
+        return priceCounts;
+    }
 }
