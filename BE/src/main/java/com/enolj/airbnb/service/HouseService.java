@@ -1,5 +1,6 @@
 package com.enolj.airbnb.service;
 
+import com.enolj.airbnb.domain.house.House;
 import com.enolj.airbnb.domain.house.HouseDAO;
 import com.enolj.airbnb.domain.image.Image;
 import com.enolj.airbnb.domain.image.ImageDAO;
@@ -42,7 +43,9 @@ public class HouseService {
 
     public List<Integer> searchChargesByCondition(SearchChargesRequestDTO requestDTO) {
         System.out.println(requestDTO);
-        return makeCharges();
+        return houseDAO.findAll().stream()
+                .map(House::getCharge)
+                .collect(Collectors.toList());
     }
 
     public ReservationInfoResponseDTO getReservationInfo(Long houseId) {
@@ -87,40 +90,5 @@ public class HouseService {
 
     public void cancelReservation(Long houseId) {
 
-    }
-
-    public List<Integer> makeCharges() {
-        List<Integer> charges = new ArrayList<>();
-        charges.add(50000);
-        charges.add(55000);
-        charges.add(60000);
-        charges.add(65000);
-        charges.add(65000);
-        charges.add(70000);
-        charges.add(75000);
-        charges.add(75000);
-        charges.add(80000);
-        charges.add(80000);
-        charges.add(80000);
-        charges.add(85000);
-        charges.add(85000);
-        charges.add(85000);
-        charges.add(85000);
-        charges.add(90000);
-        charges.add(90000);
-        charges.add(90000);
-        charges.add(95000);
-        charges.add(100000);
-        charges.add(100000);
-        charges.add(105000);
-        charges.add(110000);
-        charges.add(115000);
-        charges.add(120000);
-        charges.add(125000);
-        charges.add(125000);
-        charges.add(130000);
-        charges.add(135000);
-        charges.add(140000);
-        return charges;
     }
 }
