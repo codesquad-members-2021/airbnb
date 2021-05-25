@@ -1,20 +1,36 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { MainContext } from "../../config/MainContextProvider";
 import Logo from "./Logo";
 import Menu from "./Menu";
-import MyPage from "./MyPage"
+import MyPage from "./MyPage";
+import SearchBarContextProvider from "../../config/SearchBarContextProvider";
+import SearchBar from "./SearchBar/SearchBar";
 
-const Header = () => (
-	<HeaderWrapper>
-		<Logo />
-		<Menu />
-    <MyPage />
-	</HeaderWrapper>
-);
+const Header = () => {
+	const { isResult, isSearchBarFocused } = useContext(MainContext);
+	return (
+		<HeaderWrapper isResult={isResult} isSearchBarFocused={isSearchBarFocused}>
+			<Logo />
+			<Menu />
+			<MyPage />
+			<SearchBarContextProvider>
+				<SearchBar />
+			</SearchBarContextProvider>
+		</HeaderWrapper>
+	);
+};
 
 const HeaderWrapper = styled.div`
-	position: relative;
-	width: 1440px;
-	height: 94px;
+	position: ${({ isResult }) => (isResult ? "absolute" : "relative")};
+	width: ${({ isResult }) => (isResult ? "100%" : "1440px")};
+	height: ${({ isSearchBarFocused }) => (isSearchBarFocused ? "192px" : "94px")};
+	left: ${({ isResult }) => (isResult ? "0px" : "")};
+	background: ${({ isResult }) => (isResult ? "#FFF" : "")};
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	z-index: 1;
 `;
 
 export default Header;

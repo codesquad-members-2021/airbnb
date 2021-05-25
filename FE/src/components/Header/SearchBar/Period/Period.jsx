@@ -1,32 +1,34 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import styled from "styled-components";
 import CalendarModal from "./CalendarModal";
 import CloseButton from "../CloseButton";
+import { SearchBarContext } from "../../../../config/SearchBarContextProvider";
 
 const Period = () => {
-	const [start, setStart] = useState("");
-	const [end, setEnd] = useState("");
+	const { start, setStart, end, setEnd } = useContext(SearchBarContext);
 
 	const [isOn, setOn] = useState(false);
 
 	const resetEvent = () => {
-		setStart(() => "");
-		setEnd(() => "");
+		setStart("");
+		setEnd("");
 	};
 
 	const currentDOM = useRef();
 
 	useEffect(() => {
-		document.addEventListener("click", (e) => {
-			if (currentDOM.current && !currentDOM.current.contains(e.target)) setOn(() => false);
-		});
+		const blur = ({ target }) => {
+			if (currentDOM.current && !currentDOM.current.contains(target)) setOn(false);
+		};
+		document.addEventListener("click", blur);
+		return () => document.removeEventListener("click", blur);
 	});
 
 	return (
-		<PeriodWrapper ref={currentDOM} onClick={() => setOn(() => true)}>
+		<PeriodWrapper ref={currentDOM} onClick={() => setOn(true)}>
 			<CheckIn value={start} />
 			<CheckOut value={end} />
-			{isOn && <CalendarModal period={{ start, setStart, end, setEnd }} />}
+			{isOn && <CalendarModal />}
 			{(start || end) && <CloseButton onClick={resetEvent} />}
 		</PeriodWrapper>
 	);

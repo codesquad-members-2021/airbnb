@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { MainContext } from "../../../config/MainContextProvider";
 
-const SearchButton = ({isFocus}) => {
+const SearchButton = () => {
+	const { isResult, setResult, isSearchBarFocused } = useContext(MainContext);
 	return (
-		<SearchButtonWrapper isFocus={isFocus} >
+		<SearchButtonWrapper isSearchBarFocused={isSearchBarFocused} isResult={isResult} onClick={() => setResult(true)}>
 			<Glass />
-			{isFocus && <SearchButtonContent>검색</SearchButtonContent>}
+			{isSearchBarFocused && <SearchButtonContent>검색</SearchButtonContent>}
 		</SearchButtonWrapper>
 	);
 };
@@ -24,10 +27,10 @@ const Glass = () => (
 
 const SearchButtonWrapper = styled.div`
 	position: absolute;
-	width: ${({ isFocus }) => (isFocus ? "90px" : "40px")};
+	width: ${({ isSearchBarFocused }) => (isSearchBarFocused ? "90px" : "40px")};
 	height: 40px;
-	right: 18px;
-	top: 18px;
+	right: ${({ isResult, isSearchBarFocused }) => (!isResult || isSearchBarFocused ? "18px" : "4px")};
+	top: ${({ isResult, isSearchBarFocused }) => (!isResult || isSearchBarFocused ? "18px" : "4px")};
 	display: flex;
 	justify-content: center;
 	align-items: center;

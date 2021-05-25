@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { SearchBarContext } from "../../../../../config/SearchBarContextProvider";
 
 const packDate = (date) => {
 	const year = date.getFullYear();
@@ -14,27 +16,29 @@ const parseDate = (date) => {
 	return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
 };
 
-const Day = ({ date, period, disable, children }) => {
-	const { start, setStart, end, setEnd } = period;
+const checkDateType = (date, start, end, children) =>
+	date < Date.now() || !children
+		? "OLD"
+		: date > parseDate(start) && date < parseDate(end)
+		? "BETWEEN"
+		: packDate(date) === start || packDate(date) === end
+		? "CHECKED"
+		: "NORMAL";
 
-	let type =
-		date < Date.now() || !disable
-			? "OLD"
-			: date > parseDate(start) && date < parseDate(end)
-			? "BETWEEN"
-			: packDate(date) === start || packDate(date) === end
-			? "CHECKED"
-			: "NORMAL";
+const Day = ({ date, children }) => {
+	const { start, setStart, end, setEnd } = useContext(SearchBarContext);
+
+	const type = checkDateType(date, start, end, children);
 
 	const setPeriod = () => {
-    if (type === "CHECKED" && !end) return setEnd(()=>packDate(date))
+		if (type === "CHECKED" && !end) return setEnd(packDate(date));
 		if (type !== "NORMAL" && type !== "BETWEEN") return;
-		if (!start && !end) return setStart(() => packDate(date));
+		if (!start && !end) return setStart(packDate(date));
 		if (parseDate(start) > date) {
-			if (!end) setEnd(() => start);
-			return setStart(() => packDate(date));
+			if (!end) setEnd(start);
+			return setStart(packDate(date));
 		} else {
-			return setEnd(() => packDate(date));
+			return setEnd(packDate(date));
 		}
 	};
 

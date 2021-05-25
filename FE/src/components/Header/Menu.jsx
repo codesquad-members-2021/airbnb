@@ -11,9 +11,8 @@ const Menu = () => (
 const Content = ({ content }) => <ContentWrapper>{content}</ContentWrapper>;
 
 const MenuWrapper = styled.div`
-	position: absolute;
-	top: 36px;
-	left: 627px;
+	position: relative;
+	margin-top: 36px;
 	width: 186px;
 
 	display: flex;

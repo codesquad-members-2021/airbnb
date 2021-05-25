@@ -1,20 +1,16 @@
 import { useState } from "react";
 import styled from "styled-components";
-import Calendar from "./Calendar/Calendar"
+import Calendar from "./Calendar/Calendar";
+import delay from "../../../../util/delay";
 
-const CalendarModal = ({ period }) => {
+const CalendarModal = () => {
 	const [currentModifier, setCurrentModifier] = useState([-2, -1, 0, 1, 2, 3]);
 	const [containerState, setContainerState] = useState("CENTER");
 
 	const slideEvent = async (type) => {
-		const delayedSlide = (delay) =>
-			new Promise((res, rej) => {
-				setContainerState(() => type);
-				setTimeout(() => res(), delay);
-			});
-		await delayedSlide(400);
+		await delay(() => setContainerState(type), 400);
 		setCurrentModifier((arr) => arr.map((el) => el + (type === "LEFT" ? -2 : 2)));
-		setContainerState(() => "CENTER");
+		setContainerState("CENTER");
 	};
 
 	return (
@@ -22,7 +18,7 @@ const CalendarModal = ({ period }) => {
 			<ShowWindow>
 				<Container state={containerState}>
 					{currentModifier.map((el) => (
-						<Calendar modifier={el} period={period} key={el} />
+						<Calendar modifier={el} key={el} />
 					))}
 				</Container>
 			</ShowWindow>

@@ -1,7 +1,9 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { SearchBarContext } from "../../../../config/SearchBarContextProvider";
 
-const PersonnelModal = ({ people }) => {
-	const { man, setMan, kid, setKid, baby, setBaby } = people;
+const PersonnelModal = () => {
+	const { man, setMan, kid, setKid, baby, setBaby } = useContext(SearchBarContext);
 	return (
 		<PersonnelModalWrapper>
 			<Content title="성인" body="만 13세 이상" count={man} setCount={setMan} />

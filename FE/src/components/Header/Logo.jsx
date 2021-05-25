@@ -12,9 +12,9 @@ const Logo = () => (
 );
 
 const LogoWrapper = styled.div`
-	position: absolute;
-	left: 80px;
-	top: 24px;
+	position: relative;
+	margin-left: 80px;
+	margin-top: 34px;
 `;
 
 export default Logo;

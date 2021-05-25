@@ -1,13 +1,33 @@
-// import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 
 const MyPage = () => {
-	// const [isOn, setOn] = useState(false);
-	// const [isLogin, setLogin] = useState(false);
+	const [isOn, setOn] = useState(Boolean(window.location.search));
+	const [userInfo, setUserInfo] = useState();
+	const currentDOM = useRef();
+
+	useEffect(() => {
+		if (userInfo) return;
+		if (window.location.search)
+			fetch(`http://3.37.76.224:8080/login?code=${window.location.search.replace("?code=", "")}&typeCode=1`, { method: "POST" })
+				.then((res) => res.json())
+				.then((json) => setUserInfo(() => json))
+				.catch((res) => console.error("fetch error in login : ", res));
+	});
+
+	useEffect(() => {
+		const blur = ({ target }) => {
+			if (currentDOM.current && !currentDOM.current.contains(target)) setOn(false);
+		};
+		document.addEventListener("click", blur);
+		return () => document.removeEventListener("click", blur);
+	});
+
 	return (
-		<MyPageWrapper>
+		<MyPageWrapper ref={currentDOM} onClick={() => setOn(true)}>
 			<Hamburger />
 			<Bust />
+			{isOn && <MyPageModal userInfo={userInfo} />}
 		</MyPageWrapper>
 	);
 };
@@ -43,10 +63,34 @@ const Bust = () => (
 	</BustWrapper>
 );
 
+const MyPageModal = ({ userInfo }) => (
+	<MyPageModalWrapper>
+		{userInfo ? (
+			<>
+				<ModalContent>{userInfo.email.split("@")[0]}님</ModalContent>
+				<Line />
+				<ModalContent>예약 취소</ModalContent>
+				<Line />
+				<ModalContent>위시리스트</ModalContent>
+				<Line />
+				<ModalContent>
+					<a href={"http://localhost:3000"}>로그아웃</a>
+				</ModalContent>
+			</>
+		) : (
+			<ModalContent>
+				<a href={"https://github.com/login/oauth/authorize?client_id=830ef6707e92703260eb&scope=user&redirect_uri=http://localhost:3000"}>
+					로그인
+				</a>
+			</ModalContent>
+		)}
+	</MyPageModalWrapper>
+);
+
 const MyPageWrapper = styled.div`
-	position: absolute;
-	top: 27px;
-	left: 1284px;
+	position: relative;
+	margin-top: 27px;
+	margin-right: 80px;
 	width: 76px;
 	height: 40px;
 
@@ -76,6 +120,45 @@ const BustWrapper = styled.div`
 	align-items: center;
 	background: #828282;
 	border-radius: 30px;
+`;
+const MyPageModalWrapper = styled.div`
+	position: absolute;
+	right: 0px;
+	top: 48px;
+	padding: 32px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	background: #fff;
+	box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
+	border-radius: 10px;
+	z-index: 2;
+`;
+const ModalContent = styled.div`
+	width: 136px;
+	height: 23px;
+	font-size: 16px;
+	line-height: 23px;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	color: #010101;
+	a {
+		font-size: 16px;
+		line-height: 23px;
+		text-decoration: none;
+		color: #010101;
+	}
+`;
+const Line = styled.div`
+	width: 136px;
+	height: 1px;
+	margin-top: 16px;
+	margin-bottom: 16px;
+
+	background: #c4c4c4;
 `;
 
 export default MyPage;
