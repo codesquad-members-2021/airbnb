@@ -57,7 +57,7 @@ public class UserService {
                 , kakaoLoginUtils.getTokenRequestEntity(code)
                 , OAuthToken.class);
         log.info("oauthToken : {}", oauthToken.toString());
-        return oauthToken.getAccess_token();
+        return oauthToken.getAccessToken();
     }
 
     public SocialProfile getKakaoProfile(String accessToken) {
