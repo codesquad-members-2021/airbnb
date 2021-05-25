@@ -17,7 +17,7 @@ class NearbyDestinationCell: UICollectionViewCell {
         return UINib(nibName: reuseIdentifier, bundle: nil)
     }
     
-    func configure(model: NearbyDestination) {
+    func configure(data model: NearbyDestinationInterface) {
         let image = UIImage(named: "\(model.cityImage)")
         self.imageView.image = image
         self.cityLabel.text = model.cityName

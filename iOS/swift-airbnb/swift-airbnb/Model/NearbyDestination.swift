@@ -7,10 +7,17 @@
 
 import Foundation
 
-class NearbyDestination {
-    private(set) var cityImage: String
-    private(set) var cityName: String
-    private(set) var distance: String
+//MARK: NearbyDestinationCell을 사용하기 위한 프로토콜
+protocol NearbyDestinationInterface {
+    var cityImage: String { get }
+    var cityName: String { get }
+    var distance: String { get }
+}
+
+struct NearbyDestination: NearbyDestinationInterface {
+    let cityImage: String
+    let cityName: String
+    let distance: String
     
     init(cityImage: String, cityName: String, distance: String) {
         self.cityImage = cityImage

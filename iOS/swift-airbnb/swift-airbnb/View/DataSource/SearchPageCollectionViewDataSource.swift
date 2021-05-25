@@ -27,7 +27,7 @@ class SearchPageCollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NearbyDestinationCell.reuseIdentifier, for: indexPath) as? NearbyDestinationCell else {
                 return UICollectionViewCell()
             }
-            cell.configure(model: item)
+            cell.configure(data: item)
             return cell
         })
         

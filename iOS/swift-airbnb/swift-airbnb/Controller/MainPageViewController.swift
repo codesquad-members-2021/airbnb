@@ -11,7 +11,13 @@ class MainPageViewController: UIViewController {
     @IBOutlet weak var mainPageCollectionView: UICollectionView!
     
     private var dataSource = MainPageCollectionViewDataSource()
-    private var mainPageModel = MainPageModel()
+    private var mainPageModel: MainPageInterface
+    
+    required init?(coder: NSCoder) {
+        let mainPageMockData: MainPageInterface = MainPageMock()
+        self.mainPageModel = MainPageModel(mainPageData: mainPageMockData)
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,16 +51,16 @@ extension MainPageViewController {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.interSectionSpacing = 20
         
-        let layout = UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+        let layout = UICollectionViewCompositionalLayout(sectionProvider: { [weak self] (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             let section = MainPageCollectionViewDataSource.Section.allCases[sectionIndex]
             
             switch section {
             case .curation:
-                return self.createCurationLayout()
+                return self?.createCurationLayout()
             case .nearbyDestination:
-                return self.createNearbyDestinationLayout()
+                return self?.createNearbyDestinationLayout()
             case .variousDestination:
-                return self.createVariousDestinationLayout()
+                return self?.createVariousDestinationLayout()
             }
         }, configuration: config)
         

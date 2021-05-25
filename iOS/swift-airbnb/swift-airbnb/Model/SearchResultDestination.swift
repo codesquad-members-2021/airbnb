@@ -7,11 +7,11 @@
 
 import Foundation
 
-class SearchResultDestination {
-    private(set) var addressName: String
-    private(set) var placeName: String
-    private(set) var x: String
-    private(set) var y: String
+struct SearchResultDestination {
+    let addressName: String
+    let placeName: String
+    let x: String
+    let y: String
     
     init(addressName: String, placeName: String, x: String, y: String) {
         self.addressName = addressName

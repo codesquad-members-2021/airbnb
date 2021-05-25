@@ -32,15 +32,15 @@ class MainPageCollectionViewDataSource {
             
             if let item = item as? Curation, section == .curation {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurationCell.reuseIdentifier, for: indexPath) as! CurationCell
-                cell.configure(model: item)
+                cell.configure(data: item)
                 return cell
             } else if let item = item as? NearbyDestination, section == .nearbyDestination {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NearbyDestinationCell.reuseIdentifier, for: indexPath) as! NearbyDestinationCell
-                cell.configure(model: item)
+                cell.configure(data: item)
                 return cell
             } else if let item = item as? VariousDestination, section == .variousDestination {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VariousDestinationCell.reuseIdentifier, for: indexPath) as! VariousDestinationCell
-                cell.configure(model: item)
+                cell.configure(data: item)
                 return cell
             } else {
                 return UICollectionViewCell()
@@ -56,7 +56,7 @@ class MainPageCollectionViewDataSource {
         }
     }
     
-    func applySnapshot(with model: MainPageModel) {
+    func applySnapshot(with model: MainPageInterface) {
         var snapshot = self.dataSource.snapshot()
         snapshot.appendSections([.curation, .nearbyDestination, .variousDestination])
         snapshot.appendItems(model.curations, toSection: .curation)

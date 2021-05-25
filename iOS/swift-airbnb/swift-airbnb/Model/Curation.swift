@@ -7,8 +7,8 @@
 
 import Foundation
 
-class Curation {
-    private(set) var curationImage: String
+struct Curation {
+    let curationImage: String
     
     init(curationImage: String) {
         self.curationImage = curationImage

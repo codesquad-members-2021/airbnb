@@ -7,9 +7,9 @@
 
 import Foundation
 
-class VariousDestination {
-    private(set) var destinationImage: String
-    private(set) var destinationDescription: String
+struct VariousDestination {
+    let destinationImage: String
+    let destinationDescription: String
     
     init(destinationImage: String, destinationDescription: String) {
         self.destinationImage = destinationImage

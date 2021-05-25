@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SearchPageModel {
+struct SearchPageModel {
     private(set) var nearbyPopularDestinations: [NearbyPopularDestination]
     
     init() {

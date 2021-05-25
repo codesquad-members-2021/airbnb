@@ -7,14 +7,14 @@
 
 import Foundation
 
-class SearchResultModel {
+struct SearchResultModel {
     private(set) var searchResultDestinations: [SearchResultDestination]
     
     init() {
         self.searchResultDestinations = []
     }
     
-    func updateDestinations(with dataArray: [Document]) {
+    mutating func updateDestinations(with dataArray: [Document]) {
         var tempSearchResultDestinations: [SearchResultDestination] = []
         for data in dataArray {
             let tempData = SearchResultDestination(addressName: data.addressName, placeName: data.placeName, x: data.x, y: data.y)

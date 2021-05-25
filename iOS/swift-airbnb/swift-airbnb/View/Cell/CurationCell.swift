@@ -18,8 +18,13 @@ class CurationCell: UICollectionViewCell {
         return UINib(nibName: reuseIdentifier, bundle: nil)
     }
     
-    func configure(model: Curation) {
+    func configure(data model: Curation) {
         let image = UIImage(named: "\(model.curationImage)")
         self.mainImageView.image = image
     }
+    
+//    func configure(model: Curation) {
+//        let image = UIImage(named: "\(model.curationImage)")
+//        self.mainImageView.image = image
+//    }
 }
