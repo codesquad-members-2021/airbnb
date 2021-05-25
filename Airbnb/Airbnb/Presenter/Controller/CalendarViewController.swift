@@ -35,6 +35,9 @@ private extension CalendarViewController {
     private func setupCalendarView() {
         calendarView.allowsMultipleSelection = true
         calendarView.swipeToChooseGesture.isEnabled = true
+        calendarView.appearance.headerDateFormat = "YYYY년 M월"
+        calendarView.appearance.headerMinimumDissolvedAlpha = 0.0
+        calendarView.appearance.headerTitleColor = UIColor.black
         calendarView.appearance.selectionColor = UIColor.systemGray3
         calendarView.appearance.todayColor = UIColor.black
         calendarView.appearance.weekdayTextColor = UIColor.systemGray
