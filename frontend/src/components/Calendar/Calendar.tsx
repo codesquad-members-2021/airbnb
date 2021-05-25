@@ -14,6 +14,7 @@ const Calendar = () => {
         </div>
       </CalendarSelector>
       <CalendarLayout>
+        
       </CalendarLayout>
     </CalendarModal>
   );
@@ -21,18 +22,18 @@ const Calendar = () => {
 
 
 const CalendarModal = styled.div`
-  position: absolute;
+  /* position: absolute;
+   */
+  width: 100%;
   right: 0;
   left: 0;
   top: 100%;
   z-index: 1;
   overflow: hidden;
   margin-top: 1.2rem;
-  /* height: 512px; */
   background: #ffffff;
   box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
   border-radius: 40px;
-  padding: 16px 32px;
 `;
 
 const CalendarSelector = styled.div`

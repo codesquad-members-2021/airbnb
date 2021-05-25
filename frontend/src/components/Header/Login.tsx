@@ -38,7 +38,6 @@ const Login = () => {
 
 const HamburgerLayout = styled.div`
   position: relative;
-  outline: 1px solid red;
 `
 
 const Hamburger = styled.a`
