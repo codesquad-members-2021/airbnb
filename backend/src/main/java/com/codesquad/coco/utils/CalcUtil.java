@@ -6,6 +6,7 @@ public class CalcUtil {
     }
 
     public static int percentCalc(int target, int percent) {
-        return target * (percent / 100);
+        return (int) (target * (percent / 100.0));
     }
+
 }
