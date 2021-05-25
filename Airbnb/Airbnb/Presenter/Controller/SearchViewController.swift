@@ -33,6 +33,14 @@ private extension SearchViewController {
         regieonCollectionView.rx.setDelegate(delegate)
             .disposed(by: rx.disposeBag)
         delegate.setupItemSize(view.frame.width, view.frame.height*0.1)
+        
+        regieonCollectionView.rx.modelSelected(MainViewInfo.self)
+            .subscribe(onNext: { [weak self] info in
+                let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "CanlendarVC") as! CalendarViewController
+                nextVC.setupLocation(info.mainInfo)
+                nextVC.modalPresentationStyle = .fullScreen
+                self?.present(nextVC, animated: true, completion: nil)
+            }).disposed(by: rx.disposeBag)
     }
 }
 
@@ -48,6 +56,7 @@ private extension SearchViewController {
         searchController.searchBar.rx.searchButtonClicked
             .subscribe(onNext: { [weak self] _ in
                 let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "CanlendarVC") as! CalendarViewController
+                nextVC.setupLocation(self!.searchController.searchBar.text!)
                 nextVC.modalPresentationStyle = .fullScreen
                 self?.dismiss(animated: true, completion: nil)
                 self?.present(nextVC, animated: true, completion: nil)
