@@ -4,7 +4,7 @@ import airbnb.domain.RoomDetail;
 import airbnb.domain.Tax;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class RoomsResponse {
+public class RoomResponse {
 
     private final Long roomId;
     private final int price;
@@ -19,7 +19,7 @@ public class RoomsResponse {
     @JsonProperty(value = "detail")
     private final RoomDetail roomDetail;
 
-    private RoomsResponse(Builder builder) {
+    private RoomResponse(Builder builder) {
         this.roomId = builder.roomId;
         this.price = builder.price;
         this.title = builder.title;
@@ -94,8 +94,8 @@ public class RoomsResponse {
             return this;
         }
 
-        public RoomsResponse build() {
-            return new RoomsResponse(this);
+        public RoomResponse build() {
+            return new RoomResponse(this);
         }
     }
 }
