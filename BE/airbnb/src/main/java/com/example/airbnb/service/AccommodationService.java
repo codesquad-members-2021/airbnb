@@ -1,14 +1,17 @@
 package com.example.airbnb.service;
 
 import com.example.airbnb.domain.Accommodation;
-import com.example.airbnb.domain.SearchConditions;
+import com.example.airbnb.utils.SearchConditions;
 import com.example.airbnb.dto.AccommodationDTO;
 import com.example.airbnb.dto.AccommodationListDTO;
 import com.example.airbnb.repository.AccommodationDAO;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.airbnb.utils.StringToLocalDate.StringToLocalDate;
 
 @Service
 public class AccommodationService {
@@ -19,20 +22,35 @@ public class AccommodationService {
         this.accommodationDAO = accommodationDAO;
     }
 
-// w <<<<<<< BE/feature/45/likeAcmdOnly
-    public static AccommodationListDTO availableAccommodationsList() {
+
+    public AccommodationListDTO availableAccommodationsList(SearchConditions conditions) {
+        SearchConditions sanitizedConditions = conditionVaildation(conditions);
         List<Accommodation> accommodationList = accommodationDAO.findAll();
         return domainListToDTOList(accommodationList);
 
     }
 
-    private static AccommodationListDTO domainListToDTOList(List<Accommodation> accommodationList) {
+    private SearchConditions conditionVaildation(SearchConditions conditions) {
+        if((conditions.getCheckout() != null ) && (conditions.getCheckin()!=null) ){
+            LocalDate checkinDate = StringToLocalDate(conditions.getCheckin());
+            LocalDate checkoutDate = StringToLocalDate(conditions.getCheckout());
+
+        }
+        else {
+
+        }
+
+
+
+    }
+
+    private AccommodationListDTO domainListToDTOList(List<Accommodation> accommodationList) {
         List<AccommodationDTO> accommodationDTOList = new ArrayList<>();
         for(Accommodation accommodation : accommodationList) {
             accommodationDTOList.add(new AccommodationDTO(accommodation));
         }
         return new AccommodationListDTO(accommodationDTOList);
-=======
+/*
     public AccommodationListDTO availableAccommodationsList(SearchConditions conditions) {
 
         List<Accommodation> accommodationList = accommodationDAO.findAll();
@@ -46,9 +64,11 @@ public class AccommodationService {
         
         return (new AccommodationListDTO(accommodationDTOList, conditions));
 // w >>>>>>> dev-BE
+
+ */
     }
 
-    public static AccommodationListDTO likeMarkredList() {
+    public AccommodationListDTO likeMarkredList() {
         List<Accommodation> markredList = accommodationDAO.findAllByLikeTrue();
         return domainListToDTOList(markredList);
     }
