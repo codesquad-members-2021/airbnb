@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailSearchViewController: UIViewController, UISearchResultsUpdating {
+class DetailSearchViewController: UIViewController{
     static let storyboardName = "Main"
     static let storybardID = "DetailSearchViewController"
     static func create() -> DetailSearchViewController {
@@ -23,29 +23,22 @@ class DetailSearchViewController: UIViewController, UISearchResultsUpdating {
         func sectionHeaderString() -> String? {
             switch self {
             case .adjacentDestinations: return "근처의 인기 여행지"
-            case .searchResultDestinations: return nil
+            case .searchResultDestinations: return "검색된 장소"
             }
         }
     }
-
-    @IBOutlet weak var destinationsCollectionView: UICollectionView!
     
-    private var dataSource: UICollectionViewDiffableDataSource<Section, Destination>! = nil
-    private var destinations: [[Destination]] = [MockAdjacentDestination.mockDatas,[]]
+    @IBOutlet weak var destinationsCollectionView: UICollectionView!
     private var searchController: UISearchController!
 
+    private var destinations: [[Destination]] = [MockAdjacentDestination.mockDatas, MockSearchedDestinaion.mockDatas]
+    private var filteredDestinations: [Destination]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureNavigation()
         configureCollectionView()
-        configureDataSource()
-        applySnapshot()
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-
     }
     
     private func configureNavigation() {
@@ -56,107 +49,85 @@ class DetailSearchViewController: UIViewController, UISearchResultsUpdating {
         
         searchController.searchBar.setImage(UIImage(systemName: "magnifyingglass"), for: .search, state: .normal)
         searchController.searchBar.placeholder = "어디로 여행 가세요?"
-        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     private func configureCollectionView() {
-        destinationsCollectionView.setCollectionViewLayout(createLayout(), animated: false)
         registerSubViews()
     }
     
     private func registerSubViews() {
         destinationsCollectionView.register(AdjacentDestinationsCell.nib, forCellWithReuseIdentifier: AdjacentDestinationsCell.reuseIdentifier)
+        destinationsCollectionView.register(SearchResultCell.nib(), forCellWithReuseIdentifier: SearchResultCell.reuseIdentifier)
         destinationsCollectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.reuseIdentifier)
     }
 }
 
-//MARK: - Diffable DataSource
-
-extension DetailSearchViewController {
-    private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Destination>(collectionView: destinationsCollectionView) { (collectionView, indexPath, item) -> UICollectionViewCell? in
-            let sectionKind = Section.allCases[indexPath.section]
-            
-            switch sectionKind {
-            case .adjacentDestinations:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdjacentDestinationsCell.reuseIdentifier, for: indexPath) as? AdjacentDestinationsCell
-                cell?.configure(with: item)
-                return cell
-            case .searchResultDestinations:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCell.reuseIdentifier, for: indexPath) as? SearchResultCell
-                cell?.configure(with: item)
-                return cell
-            }
+extension DetailSearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        filteredDestinations = destinations[Section.searchResultDestinations.rawValue].filter { destination in
+            destination.destinationName.contains(text)
         }
-        
-        dataSource.supplementaryViewProvider = {(collectionView, kind, indexPath) -> UICollectionReusableView? in
-            guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as? HeaderView else { return UICollectionReusableView() }
-            view.configure(headerText: Section.allCases[indexPath.section].sectionHeaderString())
-            return view
-        }
+        destinationsCollectionView.reloadData()
     }
     
-    private func applySnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Destination>()
-        snapshot.appendSections(Section.allCases)
-        Section.allCases.forEach { section in
-            snapshot.appendItems(destinations[section.rawValue], toSection: section)
-        }
-        dataSource.apply(snapshot)
+    private var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    private func isSearching() -> Bool{
+        return searchController.isActive && !isSearchBarEmpty
     }
 }
 
-//MARK: - Layout
-
-extension DetailSearchViewController {
-    private func createLayout() -> UICollectionViewLayout {
-        let config = UICollectionViewCompositionalLayoutConfiguration()
-        let layout = UICollectionViewCompositionalLayout(sectionProvider: { [weak self] (sectionIndex, layoutEnvironment) in
-            let sectionKind = Section.allCases[sectionIndex]
-            
-            switch sectionKind {
-            case .adjacentDestinations:
-                return self?.createAdjacentDestinationsLayout()
-            case .searchResultDestinations:
-                return self?.createSearchResultDestinationsLayout()
+extension DetailSearchViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if !isSearching() {
+            return destinations[Section.adjacentDestinations.rawValue].count
+        } else {
+            return filteredDestinations.count
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if !isSearching() {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdjacentDestinationsCell.reuseIdentifier, for: indexPath) as? AdjacentDestinationsCell
+            cell?.configure(with: destinations[Section.adjacentDestinations.rawValue][indexPath.item])
+            return cell ?? UICollectionViewCell()
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCell.reuseIdentifier, for: indexPath) as? SearchResultCell
+            cell?.configure(with: filteredDestinations[indexPath.item])
+            return cell ?? UICollectionViewCell()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as? HeaderView
+            if !isSearching() {
+                view?.configure(headerText: Section.adjacentDestinations.sectionHeaderString())
+                return view ?? UICollectionReusableView()
+            } else {
+                view?.configure(headerText: Section.searchResultDestinations.sectionHeaderString())
+                return view ?? UICollectionReusableView()
             }
-        }, configuration: config)
-        return layout
+        }
+        return UICollectionViewCell()
+    }
+}
+
+extension DetailSearchViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.bounds.width * 0.6
+        let height = collectionView.bounds.height * 0.125
+        return CGSize(width: width, height: height)
     }
     
-    private func createAdjacentDestinationsLayout() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .fractionalHeight(0.125))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
-        group.contentInsets = NSDirectionalEdgeInsets.init(top: 8, leading: 16, bottom: 8, trailing: 16)
-
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-
-        let section = NSCollectionLayoutSection(group: group)
-        section.boundarySupplementaryItems = [sectionHeader]
-        
-        return section
-    }
-    
-    private func createSearchResultDestinationsLayout() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.15))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
-        
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.boundarySupplementaryItems = [sectionHeader]
-        
-        return section
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 125)
     }
 }

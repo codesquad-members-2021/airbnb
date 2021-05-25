@@ -9,7 +9,7 @@ import UIKit
 
 class SearchResultCell: UICollectionViewCell {
 
-    static let reuseIdentifier = "reuseIdentifier"
+    static let reuseIdentifier = "SearchResultCell"
     static func nib() -> UINib {
         return UINib(nibName: reuseIdentifier, bundle: nil)
     }

@@ -186,8 +186,6 @@
 		FF5767AB2652A20600F46A43 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				FF5767A02652935F00F46A43 /* AdjacentDestinationsCell.swift */,
-				FF5767A12652935F00F46A43 /* AdjacentDestinationsCell.xib */,
 				FF5767B22653311E00F46A43 /* ThemeDestinationsCell.swift */,
 				FF5767B32653311E00F46A43 /* ThemeDestinationsCell.xib */,
 				FF5767BB26535AC200F46A43 /* HeroImageCell.swift */,
@@ -219,6 +217,8 @@
 		FF5767BD2653654400F46A43 /* SharedView */ = {
 			isa = PBXGroup;
 			children = (
+				FF5767A02652935F00F46A43 /* AdjacentDestinationsCell.swift */,
+				FF5767A12652935F00F46A43 /* AdjacentDestinationsCell.xib */,
 				FF5767BE2653655400F46A43 /* HeaderView.swift */,
 			);
 			path = SharedView;

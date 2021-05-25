@@ -79,7 +79,6 @@ extension MainSearchViewController: UICollectionViewDelegate {
     
 }
 
-
 //MARK: - Diffable DataSource
 
 extension MainSearchViewController {
@@ -128,7 +127,6 @@ extension MainSearchViewController {
         config.interSectionSpacing = 40
         
         let layout = UICollectionViewCompositionalLayout(sectionProvider: { [weak self] (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) in
-    
             let sectionKind = Section.allCases[sectionIndex]
             
             switch sectionKind {
