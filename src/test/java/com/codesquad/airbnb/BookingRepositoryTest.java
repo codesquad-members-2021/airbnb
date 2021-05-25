@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -26,12 +25,12 @@ public class BookingRepositoryTest {
     @Test
     void checkFindAll() {
         List<Booking> bookingList = bookingRepository.findAll();
-        Assertions.assertThat(bookingList.stream().count()).isEqualTo(1);
+        Assertions.assertThat(bookingList.stream().count()).isEqualTo(2);
     }
 
     @Test
     void check() {
-        Booking newBooking = new Booking(2L, 1L, 1L, new Date(), new Date(), 2, 0, 0);
+        Booking newBooking = new Booking(3L, 2L, 1L, "2021-5-20", "2021-5-23", 2, 0, 0);
         bookingRepository.insert(newBooking);
     }
 }

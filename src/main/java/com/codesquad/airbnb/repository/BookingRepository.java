@@ -49,7 +49,7 @@ public class BookingRepository implements JdbcRepository<Booking> {
     private RowMapper<Booking> bookingRowMapper() {
         return (resultSet, rowNum) -> {
             Booking booking = new Booking(resultSet.getLong("id"), resultSet.getLong("room_id"), resultSet.getLong("user_id"),
-                    resultSet.getDate("check_in"), resultSet.getDate("check_out"), resultSet.getInt("adult"),
+                    resultSet.getString("check_in"), resultSet.getString("check_out"), resultSet.getInt("adult"),
                     resultSet.getInt("child"), resultSet.getInt("baby"));
             return booking;
         };
