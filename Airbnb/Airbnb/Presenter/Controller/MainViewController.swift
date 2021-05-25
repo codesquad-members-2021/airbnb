@@ -25,8 +25,8 @@ class MainViewController: UIViewController {
 //MARK: -Bind
 private extension MainViewController {
     private func bind() {
-        mainViewModel.firstViewList()
-            .bind(to: mainCollectionView.rx.items(dataSource: datasource))
+        mainViewModel.getViewData()
+            .drive(mainCollectionView.rx.items(dataSource: datasource))
             .disposed(by: rx.disposeBag)
     }
 }

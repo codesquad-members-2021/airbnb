@@ -21,7 +21,7 @@ class RegieonViewModel {
         return filteredItems.asDriver(onErrorJustReturn: [])
     }
     
-    func originalRegieonData() -> Driver<[MainViewInfo]> {
+    func getViewData() -> Driver<[MainViewInfo]> {
         return items.asDriver(onErrorJustReturn: [])
     }
     

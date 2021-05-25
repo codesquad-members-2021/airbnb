@@ -44,7 +44,7 @@ private extension SecondSectionCell {
     }
     
     private func bind() {
-        viewModel.originalRegieonData()
+        viewModel.getViewData()
             .drive(horizontalCollectionView.rx.items(cellIdentifier: RegieonInfoCell.identifier, cellType: RegieonInfoCell.self)) { [weak self] row, data, cell in
                 cell.configure(data, self!.controllerInfo!)
             }.disposed(by: rx.disposeBag)

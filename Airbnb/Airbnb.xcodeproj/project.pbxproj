@@ -32,6 +32,7 @@
 		71DA18362654CACC00415EDD /* SecondSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA18352654CACC00415EDD /* SecondSectionView.swift */; };
 		71DA183A2654E2FE00415EDD /* ThirdSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA18392654E2FE00415EDD /* ThirdSectionView.swift */; };
 		71F65541265C9002008645B8 /* RegieonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65540265C9002008645B8 /* RegieonViewModel.swift */; };
+		71F65544265CB8FD008645B8 /* TravelInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		71DA18352654CACC00415EDD /* SecondSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionView.swift; sourceTree = "<group>"; };
 		71DA18392654E2FE00415EDD /* ThirdSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionView.swift; sourceTree = "<group>"; };
 		71F65540265C9002008645B8 /* RegieonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegieonViewModel.swift; sourceTree = "<group>"; };
+		71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelInfoViewModel.swift; sourceTree = "<group>"; };
 		CCB98BA9F1F4A561BA5FBBA8 /* Pods-Airbnb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airbnb.debug.xcconfig"; path = "Target Support Files/Pods-Airbnb/Pods-Airbnb.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +93,7 @@
 			children = (
 				7157C8882654AC4000EF7977 /* MainViewModel.swift */,
 				71F65540265C9002008645B8 /* RegieonViewModel.swift */,
+				71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				7112E6EA2656054900F9AAD6 /* TravelInfoCell.swift in Sources */,
 				71DA183A2654E2FE00415EDD /* ThirdSectionView.swift in Sources */,
 				7157C8892654AC4000EF7977 /* MainViewModel.swift in Sources */,
+				71F65544265CB8FD008645B8 /* TravelInfoViewModel.swift in Sources */,
 				71D133DA2657531A00A71626 /* MainCollectionViewDelegate.swift in Sources */,
 				71F65541265C9002008645B8 /* RegieonViewModel.swift in Sources */,
 				71B93A7226576CA10028C492 /* ThirdSectionCell.swift in Sources */,

@@ -17,7 +17,7 @@ class ThirdSectionCell: UICollectionViewCell {
         return collectionView
     }()
     
-    private let viewModel = MainViewModel()
+    private let viewModel = TravelInfoViewModel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,8 +39,8 @@ private extension ThirdSectionCell {
     }
     
     private func bind() {
-        viewModel.thirdViewList()
-            .bind(to: horizontalCollectionView.rx.items(cellIdentifier: TravelInfoCell.identifier, cellType: TravelInfoCell.self)) { row, data, cell in
+        viewModel.getViewData()
+            .drive(horizontalCollectionView.rx.items(cellIdentifier: TravelInfoCell.identifier, cellType: TravelInfoCell.self)) { row, data, cell in
                 cell.configure(data)
             }.disposed(by: rx.disposeBag)
     }
