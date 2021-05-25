@@ -3,15 +3,19 @@ import styled from 'styled-components';
 
 const DayViewTR = () => {
   return (
-    <DayViewTRDiv>
-      <DayViewTD>일</DayViewTD>
-      <DayViewTD>월</DayViewTD>
-      <DayViewTD>화</DayViewTD>
-      <DayViewTD>수</DayViewTD>
-      <DayViewTD>목</DayViewTD>
-      <DayViewTD>금</DayViewTD>
-      <DayViewTD>토</DayViewTD>
-    </DayViewTRDiv>
+    <table>
+      <tbody>
+        <DayViewTRDiv>
+          <DayViewTD>일</DayViewTD>
+          <DayViewTD>월</DayViewTD>
+          <DayViewTD>화</DayViewTD>
+          <DayViewTD>수</DayViewTD>
+          <DayViewTD>목</DayViewTD>
+          <DayViewTD>금</DayViewTD>
+          <DayViewTD>토</DayViewTD>
+        </DayViewTRDiv>
+      </tbody>
+    </table>
   );
 };
 
