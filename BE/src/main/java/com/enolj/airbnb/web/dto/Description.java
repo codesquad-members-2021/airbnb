@@ -1,5 +1,7 @@
 package com.enolj.airbnb.web.dto;
 
+import com.enolj.airbnb.domain.house.House;
+
 public class Description {
 
     private final String host;
@@ -10,6 +12,10 @@ public class Description {
         this.host = host;
         this.option = option;
         this.charge = charge;
+    }
+
+    public static Description createDescription(House house) {
+        return new Description(house.getHost(), house.getOption(), house.getCharge());
     }
 
     public String getHost() {

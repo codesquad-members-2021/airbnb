@@ -45,18 +45,9 @@ public class UserService {
     }
 
     public void logout(String authorization) {
-        String userId = JwtUtil.getUserIdFromToken(getTokenFromAuthorization(authorization));
-        User user = findByUserId(userId);
+        User user = getUserFromAuthorization(userDAO, authorization);
         user.removeToken();
         userDAO.update(user);
-    }
-
-    private String getTokenFromAuthorization(String authorization) {
-        String[] authArray = authorization.split(" ");
-        if (authArray.length < 2 || !authArray[0].equals("Beare")) {
-            throw new TokenException(ErrorMessage.INVALID_TOKEN);
-        }
-        return authArray[1];
     }
 
     private TokenDTO tokenRequestApi(String code, GitHubType gitHubType) {
@@ -77,5 +68,13 @@ public class UserService {
 
     private User findByUserId(String userId) {
         return userDAO.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
+    }
+
+    public static User getUserFromAuthorization(UserDAO userDAO, String authorization) {
+        User user = userDAO.findByUserId(JwtUtil.getUserIdFromToken(JwtUtil.getTokenFromAuthorization(authorization))).orElseThrow(EntityNotFoundException::new);
+        if (user.getToken() == null) {
+            throw new TokenException(ErrorMessage.INVALID_TOKEN);
+        }
+        return user;
     }
 }

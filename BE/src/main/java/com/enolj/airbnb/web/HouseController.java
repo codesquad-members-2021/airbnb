@@ -2,6 +2,7 @@ package com.enolj.airbnb.web;
 
 import com.enolj.airbnb.service.HouseService;
 import com.enolj.airbnb.web.dto.*;
+import com.enolj.airbnb.web.utils.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -37,38 +38,38 @@ public class HouseController {
     }
 
     @PostMapping("houses/{houseId}")
-    public void makeReservation(@PathVariable Long houseId, @RequestBody ReservationRequestDTO requestDTO) {
+    public void makeReservation(@RequestHeader String authorization, @PathVariable Long houseId, @RequestBody ReservationRequestDTO requestDTO) {
         logger.info("{}번 숙소 예약 요청", houseId);
-        houseService.makeReservation(requestDTO);
+        houseService.makeReservation(authorization, houseId, requestDTO);
     }
 
     @GetMapping("/wishes")
-    public List<WishesResponseDTO> getWishes() {
+    public List<WishResponseDTO> getWishes(@RequestHeader String authorization) {
         logger.info("숙소 위시 리스트 요청");
-        return houseService.getWishList();
+        return houseService.getWishList(authorization);
     }
 
     @PostMapping("/wishes/{houseId}")
-    public void changeWish(@PathVariable Long houseId) {
+    public void changeWish(@RequestHeader String authorization, @PathVariable Long houseId) {
         logger.info("{}번 숙소의 위시 요청", houseId);
-        houseService.changeWish(houseId);
+        houseService.changeWish(authorization, houseId);
     }
 
     @GetMapping("/reservation")
-    public List<ReservationResponseDTO> getReservationList() {
+    public List<ReservationResponseDTO> getReservationList(@RequestHeader String authorization) {
         logger.info("숙소 예약 리스트 요청");
-        return houseService.getReservationList();
+        return houseService.getReservationList(authorization);
     }
 
     @GetMapping("/reservation/{houseId}")
-    public ReservationDetailDTO getReservationDetail(@PathVariable Long houseId) {
+    public ReservationDetailDTO getReservationDetail(@RequestHeader String authorization, @PathVariable Long houseId) {
         logger.info("{}번 숙소의 디테일 예약정보 요청", houseId);
-        return houseService.getReservationDetail(houseId);
+        return houseService.getReservationDetail(authorization, houseId);
     }
 
     @DeleteMapping("/reservation/{houseId}")
-    public void cancelReservation(@PathVariable Long houseId) {
+    public void cancelReservation(@RequestHeader String authorization, @PathVariable Long houseId) {
         logger.info("{}번 숙소의 예약 취소 요청", houseId);
-        houseService.cancelReservation(houseId);
+        houseService.cancelReservation(authorization, houseId);
     }
 }

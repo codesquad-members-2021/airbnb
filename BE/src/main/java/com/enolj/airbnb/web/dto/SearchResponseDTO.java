@@ -1,5 +1,10 @@
 package com.enolj.airbnb.web.dto;
 
+import com.enolj.airbnb.domain.house.House;
+import com.enolj.airbnb.domain.image.Image;
+
+import static com.enolj.airbnb.web.dto.Location.createLocationByHouse;
+
 public class SearchResponseDTO {
 
     private final Long id;
@@ -24,6 +29,10 @@ public class SearchResponseDTO {
         this.description = description;
         this.option = option;
         this.wish = wish;
+    }
+
+    public static SearchResponseDTO createSearchResponseDTO(House house, Image image) {
+        return new SearchResponseDTO(house.getId(), image.getUrl(), createLocationByHouse(house), house.getName(), house.getCharge(), house.getGrade(), house.getReview(), house.getDescription(), house.getOption(), false);
     }
 
     public Long getId() {

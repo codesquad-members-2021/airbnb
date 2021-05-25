@@ -1,5 +1,7 @@
 package com.enolj.airbnb.web.dto;
 
+import com.enolj.airbnb.domain.house.House;
+
 public class Location {
 
     private double latitude;
@@ -8,6 +10,10 @@ public class Location {
     public Location(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public static Location createLocationByHouse(House house) {
+        return new Location(house.getLatitude(), house.getLongitude());
     }
 
     public double getLatitude() {

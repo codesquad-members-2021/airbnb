@@ -1,5 +1,7 @@
 package com.enolj.airbnb.web.dto;
 
+import com.enolj.airbnb.domain.house.House;
+
 public class ReservationInfoResponseDTO {
 
     private final int charge;
@@ -12,6 +14,10 @@ public class ReservationInfoResponseDTO {
         this.cleaningRatio = cleaningRatio;
         this.serviceRatio = serviceRatio;
         this.discountRatio = discountRatio;
+    }
+
+    public static ReservationInfoResponseDTO createReservationInfoResponseDTO(House house) {
+        return new ReservationInfoResponseDTO(house.getCharge(), house.getCleaningRatio(), house.getServiceRatio(), house.getDiscountRatio());
     }
 
     public int getCharge() {

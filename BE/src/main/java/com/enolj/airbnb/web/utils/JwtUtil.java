@@ -40,4 +40,12 @@ public class JwtUtil {
             throw new TokenException(ErrorMessage.INVALID_TOKEN);
         }
     }
+
+    public static String getTokenFromAuthorization(String authorization) {
+        String[] authArray = authorization.split(" ");
+        if (authArray.length < 2 || !authArray[0].equals("Beare")) {
+            throw new TokenException(ErrorMessage.INVALID_TOKEN);
+        }
+        return authArray[1];
+    }
 }

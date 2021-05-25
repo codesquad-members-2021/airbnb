@@ -38,6 +38,10 @@ public class User {
         this.token = null;
     }
 
+    public boolean verifyToken(String token) {
+        return this.token.equals(token);
+    }
+
     public Long getId() {
         return id;
     }

@@ -1,108 +1,127 @@
 package com.enolj.airbnb.service;
 
+import com.enolj.airbnb.domain.house.House;
+import com.enolj.airbnb.domain.house.HouseDAO;
+import com.enolj.airbnb.domain.image.Image;
+import com.enolj.airbnb.domain.image.ImageDAO;
+import com.enolj.airbnb.domain.join.Join;
+import com.enolj.airbnb.domain.join.JoinDAO;
+import com.enolj.airbnb.domain.user.User;
+import com.enolj.airbnb.domain.user.UserDAO;
+import com.enolj.airbnb.domain.wish.Wish;
+import com.enolj.airbnb.domain.wish.WishDAO;
+import com.enolj.airbnb.exception.EntityNotFoundException;
 import com.enolj.airbnb.web.dto.ReservationInfoResponseDTO;
 import com.enolj.airbnb.web.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static com.enolj.airbnb.service.UserService.getUserFromAuthorization;
+import static com.enolj.airbnb.web.dto.ReservationDetailDTO.createReservationDetailDTO;
+import static com.enolj.airbnb.web.dto.ReservationInfoResponseDTO.createReservationInfoResponseDTO;
+import static com.enolj.airbnb.web.dto.ReservationResponseDTO.createReservationResponseDTO;
+import static com.enolj.airbnb.web.dto.SearchResponseDTO.createSearchResponseDTO;
+import static com.enolj.airbnb.web.dto.WishResponseDTO.createWishResponseDTO;
 
 @Service
 public class HouseService {
 
+    private final UserDAO userDAO;
+    private final HouseDAO houseDAO;
+    private final ImageDAO imageDAO;
+    private final JoinDAO joinDAO;
+    private final WishDAO wishDAO;
+
+    public HouseService(UserDAO userDAO, HouseDAO houseDAO, ImageDAO imageDAO, JoinDAO joinDAO, WishDAO wishDAO) {
+        this.userDAO = userDAO;
+        this.houseDAO = houseDAO;
+        this.imageDAO = imageDAO;
+        this.joinDAO = joinDAO;
+        this.wishDAO = wishDAO;
+    }
+
     public List<SearchResponseDTO> searchHousesByCondition(SearchRequestDTO requestDTO) {
         System.out.println(requestDTO);
-        List<SearchResponseDTO> searchResponseDTOList = new ArrayList<>();
-        searchResponseDTOList.add(new SearchResponseDTO(1L, "https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg",
-                new Location(37.566826, 126.9786567), "Specious and Comfortable cozy house #4",
-                15400, 4.60, 270, "강남역 5번 출구에서 도보로 이동가능합니다. ...", "최대 인원 3명 • 원룸 • 침대 1개 • 욕실 1개 ...", true));
-        searchResponseDTOList.add(new SearchResponseDTO(2L, "https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg",
-                new Location(37.566826, 126.9786567), "Specious and Comfortable cozy house #4",
-                15400, 4.60, 270, "강남역 5번 출구에서 도보로 이동가능합니다. ...", "최대 인원 3명 • 원룸 • 침대 1개 • 욕실 1개 ...", false));
-        return searchResponseDTOList;
+        return houseDAO.findAll().stream()
+                .filter(house -> house.checkCharge(requestDTO.getMinCharge(), requestDTO.getMaxCharge()))
+                .filter((house -> house.checkLocation(requestDTO.getLatitude(), requestDTO.getLongitude())))
+                .map(house -> createSearchResponseDTO(house, findOneImageByHouseId(house.getId())))
+                .collect(Collectors.toList());
+    }
+
+    private Image findOneImageByHouseId(Long houseId) {
+        return imageDAO.findAll(houseId).stream()
+                .findFirst()
+                .orElseThrow(EntityNotFoundException::new);
     }
 
     public List<Integer> searchChargesByCondition(SearchChargesRequestDTO requestDTO) {
         System.out.println(requestDTO);
-        return makeCharges();
+        return houseDAO.findAll().stream()
+                .map(House::getCharge)
+                .collect(Collectors.toList());
     }
 
     public ReservationInfoResponseDTO getReservationInfo(Long houseId) {
-        return new ReservationInfoResponseDTO(71466, 0.02, 7.24, 4);
+        return createReservationInfoResponseDTO(findHouseById(houseId));
     }
 
-    public void makeReservation(ReservationRequestDTO requestDTO) {
+    private House findHouseById(Long houseId) {
+        return houseDAO.findById(houseId).orElseThrow(EntityNotFoundException::new);
+    }
+
+    public void makeReservation(String authorization, Long houseId, ReservationRequestDTO requestDTO) {
         System.out.println(requestDTO);
+        Join join = requestDTO.toEntity();
+        join.reservation(getUserFromAuthorization(userDAO, authorization), findHouseById(houseId));
+        joinDAO.save(join);
     }
 
-    public List<WishesResponseDTO> getWishList() {
-        List<WishesResponseDTO> wishesResponseDTOList = new ArrayList<>();
-        wishesResponseDTOList.add(new WishesResponseDTO(1L, "비담집, 비우고담은집", 308571, true, 4.98));
-        wishesResponseDTOList.add(new WishesResponseDTO(2L, "비담집, 비우고담은집", 308571, true, 4.98));
-        wishesResponseDTOList.add(new WishesResponseDTO(3L, "비담집, 비우고담은집", 308571, true, 4.98));
-        return wishesResponseDTOList;
+    public List<WishResponseDTO> getWishList(String authorization) {
+        return wishDAO.findAllByUserId(getUserFromAuthorization(userDAO, authorization).getId()).stream()
+                .map(wish -> createWishResponseDTO(findHouseById(wish.getHouseId())))
+                .collect(Collectors.toList());
     }
 
-    public void changeWish(Long houseId) {
-
+    public void changeWish(String authorization, Long houseId) {
+        User user = getUserFromAuthorization(userDAO, authorization);
+        House house = findHouseById(houseId);
+        Optional<Wish> wish = wishDAO.findByUserIdAndHouseId(user.getId(), house.getId());
+        if (wish.isPresent()) {
+            wishDAO.delete(wish.get());
+            return;
+        }
+        wishDAO.save(Wish.createWish(user, house));
     }
 
-    public List<ReservationResponseDTO> getReservationList() {
-        List<ReservationResponseDTO> reservationResponseDTOList = new ArrayList<>();
-        reservationResponseDTOList.add(new ReservationResponseDTO(1L, "https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg",
-                "2021년 5월 17일 - 2021년 6월 4일", "서초구, 서울, 한국", "Specious and Comfortable cozy house #4"));
-        reservationResponseDTOList.add(new ReservationResponseDTO(2L, "https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg",
-                "2021년 5월 17일 - 2021년 6월 4일", "서초구, 서울, 한국", "Specious and Comfortable cozy house #4"));
-        reservationResponseDTOList.add(new ReservationResponseDTO(3L, "https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg",
-                "2021년 5월 17일 - 2021년 6월 4일", "서초구, 서울, 한국", "Specious and Comfortable cozy house #4"));
-        return reservationResponseDTOList;
+    public List<ReservationResponseDTO> getReservationList(String authorization) {
+        User user = getUserFromAuthorization(userDAO, authorization);
+        return joinDAO.findAllByUserId(user.getId()).stream()
+                .map(join -> createReservationResponseDTO(findHouseById(join.getUserId()), join, findOneImageByHouseId(join.getHouseId())))
+                .collect(Collectors.toList());
     }
 
-    public ReservationDetailDTO getReservationDetail(Long houseId) {
-        List<String> images = new ArrayList<>();
-        images.add("https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg");
-        images.add("https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg");
-        images.add("https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg");
-        return new ReservationDetailDTO(1L, images, "서초구, 서울, 한국", "Specious and Comfortable cozy house #4", "2021년 5월 17일 오후 4:00", "2021년 6월 4일 오후 12:00",
-                new Description("Jong님", "집전체 • 게스트 3명", 1488195));
+    public ReservationDetailDTO getReservationDetail(String authorization, Long houseId) {
+        User user = getUserFromAuthorization(userDAO, authorization);
+        House house = findHouseById(houseId);
+        Join join = findJoinByUserIdAndHouseId(user.getId(), house.getId());
+        List<String> images = imageDAO.findAll(house.getId()).stream()
+                .map(Image::getUrl)
+                .collect(Collectors.toList());
+        return createReservationDetailDTO(house, images, join);
     }
 
-    public void cancelReservation(Long houseId) {
-
+    public void cancelReservation(String authorization, Long houseId) {
+        User user = getUserFromAuthorization(userDAO, authorization);
+        House house = findHouseById(houseId);
+        joinDAO.delete(findJoinByUserIdAndHouseId(user.getId(), house.getId()));
     }
 
-    public List<Integer> makeCharges() {
-        List<Integer> charges = new ArrayList<>();
-        charges.add(50000);
-        charges.add(55000);
-        charges.add(60000);
-        charges.add(65000);
-        charges.add(65000);
-        charges.add(70000);
-        charges.add(75000);
-        charges.add(75000);
-        charges.add(80000);
-        charges.add(80000);
-        charges.add(80000);
-        charges.add(85000);
-        charges.add(85000);
-        charges.add(85000);
-        charges.add(85000);
-        charges.add(90000);
-        charges.add(90000);
-        charges.add(90000);
-        charges.add(95000);
-        charges.add(100000);
-        charges.add(100000);
-        charges.add(105000);
-        charges.add(110000);
-        charges.add(115000);
-        charges.add(120000);
-        charges.add(125000);
-        charges.add(125000);
-        charges.add(130000);
-        charges.add(135000);
-        charges.add(140000);
-        return charges;
+    private Join findJoinByUserIdAndHouseId(Long userId, Long houseId) {
+        return joinDAO.findByUserIdAndHouseId(userId, houseId).orElseThrow(EntityNotFoundException::new);
     }
 }
