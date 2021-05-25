@@ -94,7 +94,8 @@ final class PopularLocationViewController: UIViewController {
 extension PopularLocationViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        setCancelBarButton()
+        guard let searchText = searchBar.searchTextField.text else { return }
+        searchText.count > 0 ? setCancelBarButton() : unsetCancelBarButton()
     }
     
     private func setCancelBarButton() {
