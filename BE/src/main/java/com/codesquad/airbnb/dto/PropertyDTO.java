@@ -1,6 +1,6 @@
 package com.codesquad.airbnb.dto;
 
-public class PropertyDto {
+public class PropertyDTO {
 
     private Long propertyId;
     private String images;
@@ -11,10 +11,10 @@ public class PropertyDto {
     private int reviewCount;
     private double rating;
 
-    public PropertyDto() {
+    public PropertyDTO() {
     }
 
-    public PropertyDto(Long propertyId, String title, boolean bookmark, int pricePerNight, int reviewCount, double rating) {
+    public PropertyDTO(Long propertyId, String title, boolean bookmark, int pricePerNight, int reviewCount, double rating) {
         this.propertyId = propertyId;
         this.title = title;
         this.bookmark = bookmark;
@@ -23,8 +23,8 @@ public class PropertyDto {
         this.rating = rating;
     }
 
-    public static PropertyDto of(Long propertyId, String propertyTitle, boolean bookmark, int price, int reviewCount, double rating) {
-        return new PropertyDto(propertyId, propertyTitle, bookmark, price,
+    public static PropertyDTO of(Long propertyId, String propertyTitle, boolean bookmark, int price, int reviewCount, double rating) {
+        return new PropertyDTO(propertyId, propertyTitle, bookmark, price,
                 reviewCount, rating);
     }
 

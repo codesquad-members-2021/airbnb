@@ -1,11 +1,11 @@
 package com.codesquad.airbnb.dto;
 
-public class HostDto {
+public class HostDTO {
 
     private String name;
     private String imageUrl;
 
-    public HostDto(String name, String imageUrl) {
+    public HostDTO(String name, String imageUrl) {
         this.name = name;
         this.imageUrl = imageUrl;
     }

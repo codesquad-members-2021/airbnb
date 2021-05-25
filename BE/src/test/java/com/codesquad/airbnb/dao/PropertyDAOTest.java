@@ -1,9 +1,9 @@
 package com.codesquad.airbnb.dao;
 
 import com.codesquad.airbnb.domain.Property;
-import com.codesquad.airbnb.dto.PropertyDetailResponseDto;
-import com.codesquad.airbnb.dto.PropertiesResponseDto;
-import com.codesquad.airbnb.dto.PropertyDto;
+import com.codesquad.airbnb.dto.PropertyDetailResponseDTO;
+import com.codesquad.airbnb.dto.PropertiesResponseDTO;
+import com.codesquad.airbnb.dto.PropertyDTO;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,11 +17,11 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class PropertyDaoTest {
-    private Logger logger = LoggerFactory.getLogger(PropertyDaoTest.class);
+public class PropertyDAOTest {
+    private Logger logger = LoggerFactory.getLogger(PropertyDAOTest.class);
 
     @Autowired
-    PropertyDao propertyDao;
+    PropertyDAO propertyDao;
 
     @Test
     void propertyDao_findById() {
@@ -43,9 +43,9 @@ public class PropertyDaoTest {
 
     @Test
     void propertyDao_findBy() {
-        PropertiesResponseDto properties = propertyDao.findBy(1L, LocalDate.of(2021, 5, 20), LocalDate.of(2021, 5, 23),
+        PropertiesResponseDTO properties = propertyDao.findBy(1L, LocalDate.of(2021, 5, 20), LocalDate.of(2021, 5, 23),
                 10000, 100000, 2, 0, 0);
-        for (PropertyDto property : properties.getProperties()) {
+        for (PropertyDTO property : properties.getProperties()) {
             assertThat(property).isNotNull();
             logger.info("Find property by propertyDao: {}",
                     property);
@@ -63,7 +63,7 @@ public class PropertyDaoTest {
 
     @Test
     void propertyDao_findPropertyDetailByPropertyId() {
-        PropertyDetailResponseDto property = propertyDao.findPropertyDetailByPropertyId(1L);
+        PropertyDetailResponseDTO property = propertyDao.findPropertyDetailByPropertyId(1L);
         assertThat(property).isNotNull();
         logger.info("Find property by propertyDao: {}",
                 property);

@@ -1,6 +1,6 @@
 package com.codesquad.airbnb.dto;
 
-public class PropertyDetailDto {
+public class PropertyDetailDTO {
 
     private String title;
     private String description;
@@ -15,12 +15,12 @@ public class PropertyDetailDto {
     private double latitude;
     private double longitude;
     private double rating;
-    private HostDto host;
+    private HostDTO host;
 
-    public PropertyDetailDto(String title, String description, String locationName,
+    public PropertyDetailDTO(String title, String description, String locationName,
                              String propertyType, int maxOccupancy, int cleaningFee,
                              int bedCount, int bathCount, int reviewCount, int pricePerNight,
-                             double latitude, double longitude, double rating, HostDto host) {
+                             double latitude, double longitude, double rating, HostDTO host) {
         this.title = title;
         this.description = description;
         this.locationName = locationName;
@@ -37,11 +37,11 @@ public class PropertyDetailDto {
         this.host = host;
     }
 
-    public static PropertyDetailDto of(String title, String description, String locationName,
+    public static PropertyDetailDTO of(String title, String description, String locationName,
                                        String propertyType, int maxOccupancy, int cleaningFee,
                                        int bedCount, int bathCount, int reviewCount, int pricePerNight,
-                                       double latitude, double longitude, double rating, HostDto host) {
-        return new PropertyDetailDto(title, description, locationName, propertyType, maxOccupancy,
+                                       double latitude, double longitude, double rating, HostDTO host) {
+        return new PropertyDetailDTO(title, description, locationName, propertyType, maxOccupancy,
                 cleaningFee, bedCount, bathCount, reviewCount, pricePerNight, latitude, longitude, rating, host);
     }
 
@@ -97,7 +97,7 @@ public class PropertyDetailDto {
         return rating;
     }
 
-    public HostDto getHost() {
+    public HostDTO getHost() {
         return host;
     }
 

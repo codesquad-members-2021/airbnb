@@ -1,6 +1,6 @@
 package com.codesquad.airbnb.controller;
 
-import com.codesquad.airbnb.dto.PropertyDetailResponseDto;
+import com.codesquad.airbnb.dto.PropertyDetailResponseDTO;
 import com.codesquad.airbnb.service.PropertyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ public class PropertyController {
     }
 
     @GetMapping("/{propertyId}")
-    public ResponseEntity<PropertyDetailResponseDto> propertiesAverageValue(@PathVariable Long propertyId) {
+    public ResponseEntity<PropertyDetailResponseDTO> propertiesAverageValue(@PathVariable Long propertyId) {
         return ResponseEntity.ok().body(propertyService.findPropertyDetailByPropertyId(propertyId));
     }
 }

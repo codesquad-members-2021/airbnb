@@ -1,7 +1,7 @@
 package com.codesquad.airbnb.controller;
 
 import com.codesquad.airbnb.dto.PriceSearchDTO;
-import com.codesquad.airbnb.dto.PropertiesResponseDto;
+import com.codesquad.airbnb.dto.PropertiesResponseDTO;
 import com.codesquad.airbnb.service.PropertyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ public class SearchController {
     }
 
     @GetMapping()
-    public ResponseEntity<PropertiesResponseDto> propertiesSearch(
+    public ResponseEntity<PropertiesResponseDTO> propertiesSearch(
             @RequestParam(value = "locationId", required = false) Long locationId,
             @RequestParam(value = "checkIn", required = false) LocalDate checkIn,
             @RequestParam(value = "checkOut", required = false) LocalDate checkOut,
@@ -29,7 +29,7 @@ public class SearchController {
             @RequestParam(value = "children", required = false, defaultValue = "0") int children,
             @RequestParam(value = "infant", required = false, defaultValue = "0") int infant
     ) {
-        PropertiesResponseDto propertiesResponseDto = propertyService.findBy(locationId, checkIn, checkOut, minPrice, maxPrice, adult, children, infant);
+        PropertiesResponseDTO propertiesResponseDto = propertyService.findBy(locationId, checkIn, checkOut, minPrice, maxPrice, adult, children, infant);
         return ResponseEntity.ok().body(propertiesResponseDto);
     }
 
