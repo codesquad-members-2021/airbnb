@@ -1,8 +1,6 @@
 package com.codesquad.airbnb.dao;
 
 import com.codesquad.airbnb.domain.Property;
-import com.codesquad.airbnb.domain.PropertyDetail;
-import com.codesquad.airbnb.domain.WishList;
 import com.codesquad.airbnb.dto.PropertiesResponseDto;
 import com.codesquad.airbnb.dto.PropertyDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Repository
@@ -43,7 +42,7 @@ public class PropertyDao {
         public PropertyDto mapRow(ResultSet rs, int rowNum) throws SQLException {
             return PropertyDto.of(rs.getLong("id"), rs.getString("name"),
                     rs.getBoolean("bookmark"), rs.getInt("price"),
-                    0, rs.getInt("review_count"), rs.getInt("rating"));
+                    rs.getInt("review_count"), rs.getDouble("rating"));
         }
     }
 
@@ -75,6 +74,8 @@ public class PropertyDao {
                 "and p.price <= ?";
         // TODO: userid도 함께 확인해서 wishList를 찾는것이 좋을 것 같음...
 
+        long diff = ChronoUnit.DAYS.between(checkIn, checkOut);
+
         List<PropertyDto> propertyDto = jdbcTemplate.query(sql, new PropertyDetailRowMapper(),
                 new SqlParameterValue(Types.BIGINT, locationId),
                 new SqlParameterValue(Types.INTEGER, maxOccupancy),
@@ -82,7 +83,11 @@ public class PropertyDao {
                 new SqlParameterValue(Types.INTEGER, maxPrice));
 
         propertyDto.stream()
-                .forEach(propertyDto1 -> propertyDto1.setImages(findImageByPropertyId(propertyDto1.getPropertyId())));
+                .forEach(propertyDto1 -> {
+                    propertyDto1.setImages(findImageByPropertyId(propertyDto1.getPropertyId()));
+                    propertyDto1.setTotalPrice(diff);
+                }
+                );
 
         PropertiesResponseDto propertyDtos = new PropertiesResponseDto(propertyDto);
 
