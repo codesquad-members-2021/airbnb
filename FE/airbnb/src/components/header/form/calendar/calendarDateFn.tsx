@@ -22,3 +22,17 @@ export const getMonthData = ({ year, month, todayDate }: calendarDateType): dayT
   monthArr.push(weekArr); //마지막 weekArr도 추가
   return monthArr;
 };
+
+interface date {
+  year: number;
+  month: number;
+  day: number;
+}
+
+export const getTimes = ({ year, month, day }: date): number =>
+  new Date(year, month - 1, day).getTime();
+
+export const getDateByTime = (time: number): date => {
+  const date = new Date(time);
+  return { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() };
+};

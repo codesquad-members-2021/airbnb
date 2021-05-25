@@ -21,11 +21,6 @@ const FormCalendar = ({ toggleRef }: Props) => {
   const [positionX, setPositionX] = useState<number>(DEFAULT_POSITION_X);
   const [transitionValue, setTransitionValue] = useState<string>(DEFAULT_TRANSITION);
   const [moveType, setMoveType] = useState<string>('');
-  useEffect(() => {
-    if (transitionValue === 'none') {
-      setPositionX(DEFAULT_POSITION_X);
-    }
-  }, [transitionValue]);
 
   useEffect(() => {
     setTransitionValue(DEFAULT_TRANSITION);
@@ -35,6 +30,7 @@ const FormCalendar = ({ toggleRef }: Props) => {
     setTransitionValue('none');
     if (moveType === 'prev') moveCalendar(-2);
     else if (moveType === 'next') moveCalendar(+2);
+    if (transitionValue === 'none') setPositionX(DEFAULT_POSITION_X);
   };
 
   const moveCalendar = (moveCount: number): void => {
@@ -56,9 +52,11 @@ const FormCalendar = ({ toggleRef }: Props) => {
     <CalendarHeader key={idx} calendarDate={getMovedDate(calendarDate, moveCount)} />
   ));
 
-  const calendarDateList = CALENDAR_MONTH_CHANGE.map((moveCount, idx) => (
-    <CalendarDate key={idx} monthData={getMonthData(getMovedDate(calendarDate, moveCount))} />
-  ));
+  const calendarDateList = CALENDAR_MONTH_CHANGE.map((moveCount, idx) => {
+    const movedDate = getMovedDate(calendarDate, moveCount);
+    const monthData = getMonthData(movedDate);
+    return <CalendarDate key={idx} {...{ monthData, calendarDate: movedDate }} />;
+  });
 
   return (
     <StyledFormCalendar {...{ positionX, transitionValue }} ref={toggleRef}>
