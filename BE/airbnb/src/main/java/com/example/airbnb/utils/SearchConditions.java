@@ -1,4 +1,4 @@
-package com.example.airbnb.domain;
+package com.example.airbnb.utils;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
