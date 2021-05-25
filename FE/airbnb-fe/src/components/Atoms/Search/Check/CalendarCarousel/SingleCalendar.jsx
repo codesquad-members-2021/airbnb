@@ -1,13 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const createMonthArray = (range) => {
+const createMonthArray = (year, month) => {
   let monthArr = [];
   let weekArr = [];
   let dayCnt = 1;
 
-  const today = new Date(Date.now());
-  const [year, month] = [today.getFullYear(), range + today.getMonth()];
   const firstDayName = new Date(year, month - 1, 1).getDay(); //6
   //이번달 마지막 날짜
   const lastDay = new Date(year, month, 0).getDate();
@@ -37,15 +35,19 @@ const createMonthArray = (range) => {
 };
 
 const SingleCalendar = ({ range }) => {
-  const monthArr = createMonthArray(range);
-  // console.log('달', monthArr);
+  const today = new Date(Date.now());
+  const [year, month] = [today.getFullYear(), range + today.getMonth()];
+  const monthArr = createMonthArray(year, month);
+  console.log('달', monthArr);
   return (
     <SingleCalDiv>
       <tbody>
         {monthArr?.map((week, idx) => (
           <DayTr key={idx}>
             {week?.map((day, idx) => (
-              <DayTd key={idx}>{day}</DayTd>
+              <DayTd key={idx} day={day}>
+                {day}
+              </DayTd>
             ))}
           </DayTr>
         ))}
@@ -69,7 +71,7 @@ const DayTd = styled.td`
   font-weight: 700;
   cursor: pointer;
   &:hover {
-    border: 1px solid #333;
+    border: ${({ day }) => (day === ' ' ? 'none' : '1px solid gray')};
   }
   /* &:click {
     background-color: ${({ theme }) => theme.colors.gray1};
