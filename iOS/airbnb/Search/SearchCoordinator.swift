@@ -29,7 +29,7 @@ class SearchCoodinator : NSObject, ChildCoordinator {
     }
     
     func choosePlace(){
-        let filterController = FilterViewController.instantiate()
+        let filterController = ContainerViewController.instantiate()
         filterController.coordinator = self
         navigationController.navigationItem.backButtonTitle = "뒤로"
         navigationController.pushViewController(filterController, animated: true)

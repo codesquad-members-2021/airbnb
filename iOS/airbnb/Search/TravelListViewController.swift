@@ -7,26 +7,34 @@
 
 import UIKit
 
+enum Section {
+    case main
+}
+
 class TravelListViewController: UIViewController {
     
-    @IBOutlet weak var travelList: UICollectionView!
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, NearPlaceDTO>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, NearPlaceDTO>
     
+    @IBOutlet weak var travelList: UICollectionView!
     weak var coordinator : SearchCoodinator?
-    private var nearPlaceDataSource = NearPlaceDataSource()
+    private lazy var dataSource = makeDataSource()
     private let searchController = UISearchController(searchResultsController: nil)
     private let removeButton = UIBarButtonItem(title: "지우기",
                                                style: .plain,
                                                target: self,
                                                action: #selector(didTapRemoveButton))
     
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = removeButton
         self.navigationItem.title = "숙소찾기"
-        
-        self.travelList.dataSource = nearPlaceDataSource
         self.travelList.delegate = self
         
+        applySnapshot(animatingDifferences: false)
+        makeSectionHeader()
         setUpSearchController()
         registerNib()
     }
@@ -37,16 +45,48 @@ class TravelListViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         self.dismiss(animated: false, completion: nil)
+        super.viewWillDisappear(animated)
     }
     
     @objc func didTapRemoveButton(){
         
     }
 }
+
 // MARK: - Functions
+
 extension TravelListViewController {
+    func makeDataSource() -> DataSource {
+        let dataSource = DataSource(
+            collectionView: travelList,
+            cellProvider: { ( collectionview, indexPath, card) -> UICollectionViewCell? in
+                let cell = collectionview.dequeueReusableCell(
+                    withReuseIdentifier: NearPlaceCell.reuseIdentifier,
+                    for: indexPath) as? NearPlaceCell
+                return cell
+            })
+        return dataSource
+    }
+    func makeSectionHeader(){
+        self.dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
+            guard kind == UICollectionView.elementKindSectionHeader else {
+                return nil
+            }
+            let headerView = collectionView
+                .dequeueReusableSupplementaryView(ofKind: kind,
+                                                  withReuseIdentifier: HeaderReusableView.reuseIdentifier,
+                                                  for: indexPath) as? HeaderReusableView
+            return headerView
+        }
+    }
+    func applySnapshot(animatingDifferences: Bool = true) {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(Dummy.nearPlaces)
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+    }
+    
     func setUpSearchController() {
         definesPresentationContext = true
         

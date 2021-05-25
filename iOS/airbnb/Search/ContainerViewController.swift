@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FilterViewController: UIViewController {
+class ContainerViewController: UIViewController {
     weak var coordinator: SearchCoodinator?
     
     override func viewDidLoad() {
@@ -17,7 +17,7 @@ class FilterViewController: UIViewController {
     
 }
 
-extension FilterViewController : Storyboarded {
+extension ContainerViewController : Storyboarded {
     static func instantiate() -> Self {
         let fullName = NSStringFromClass(self)
         let className = fullName.components(separatedBy: ".")[1]

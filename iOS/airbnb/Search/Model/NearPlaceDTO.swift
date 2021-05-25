@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NearPlaceDTO {
+struct NearPlaceDTO : Hashable {
     let imageURL : URL?
     let localName : String
     let distance : Double
