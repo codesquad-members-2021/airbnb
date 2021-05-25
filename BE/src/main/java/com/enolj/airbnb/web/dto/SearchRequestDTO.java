@@ -34,8 +34,16 @@ public class SearchRequestDTO {
         this.minCharge = minCharge;
     }
 
+    public int getMinCharge() {
+        return minCharge;
+    }
+
     public void setMaxCharge(int maxCharge) {
         this.maxCharge = maxCharge;
+    }
+
+    public int getMaxCharge() {
+        return maxCharge;
     }
 
     public void setGuest(int guest) {
@@ -50,8 +58,16 @@ public class SearchRequestDTO {
         this.latitude = latitude;
     }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
     }
 
     @Override
