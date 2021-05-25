@@ -73,8 +73,8 @@ public class BookingDAO {
         jdbcTemplate.update(query, booking.getCheckIn(), booking.getCheckOut(), booking.getGuest(), booking.getTotalPrice(), userId, booking.getRoom());
     }
 
-    public void deleteReservation(Long bookingId, Long userId) {
-        String query = "DELETE FROM booking WHERE id = ? AND user = ?";
-        jdbcTemplate.update(query, bookingId, userId);
+    public void delete(Long bookingId) {
+        String query = "DELETE FROM booking WHERE id = ? ";
+        jdbcTemplate.update(query, bookingId);
     }
 }
