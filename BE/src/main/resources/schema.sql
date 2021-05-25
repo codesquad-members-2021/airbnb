@@ -43,9 +43,10 @@ create table if not exists property_detail
 
 create table if not exists image
 (
-    id          BIGINT Primary Key auto_increment,
-    image_url   varchar(1000),
-    name        varchar(45),
+    id        BIGINT Primary Key auto_increment,
+    image_url varchar(1000),
+    name      varchar(45),
+    thumbnail tinyint(1),
     property_id bigint,
     foreign key (property_id) references property (id)
 );
