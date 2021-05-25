@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RoomsPrice {
+struct RoomsPrice: Decodable {
     let allPrices: [Int]
     let averagePrice: Int
 }

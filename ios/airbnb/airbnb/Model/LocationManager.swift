@@ -9,17 +9,17 @@ import Foundation
 import Combine
 
 final class LocationManager {
-    private let getDataManager: Networking
+    private let networkManager: Networking
     @Published private(set) var mainLayout: MainLayout?
 
     
     init(getDataManager: Networking) {
-        self.getDataManager = getDataManager
+        self.networkManager = getDataManager
 
     }
     
-    func fetchCitiesLocation() {
-        getDataManager.getData(url: EndPoint.url(path: .cities), decodableType: MainLayout.self) { mainLayout in
+    private func fetchCitiesLocation() {
+        networkManager.getData(url: EndPoint.url(path: .cities), decodableType: MainLayout.self) { mainLayout in
             self.mainLayout = mainLayout
         }
     }

@@ -13,6 +13,9 @@
 		B302CD7E265B7F8600FDD896 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B302CD7D265B7F8600FDD896 /* DateViewController.swift */; };
 		B304DF04265C9233008F3BB3 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B304DF03265C9233008F3BB3 /* InformationView.swift */; };
 		B304DF06265C9255008F3BB3 /* InformationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B304DF05265C9255008F3BB3 /* InformationView.xib */; };
+		B304DF08265CC945008F3BB3 /* FindingAccommodationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B304DF07265CC945008F3BB3 /* FindingAccommodationManager.swift */; };
+		B304DF0B265CCE14008F3BB3 /* RoomsPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B304DF0A265CCE14008F3BB3 /* RoomsPrice.swift */; };
+		B304DF0D265CCE1E008F3BB3 /* RoomsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B304DF0C265CCE1E008F3BB3 /* RoomsList.swift */; };
 		B30E1277265A80F7004425D6 /* ImageView+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30E1276265A80F7004425D6 /* ImageView+Load.swift */; };
 		B3C8FB162655FD52005C6235 /* CityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */; };
 		B3C8FB172655FD52005C6235 /* CityCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3C8FB152655FD52005C6235 /* CityCollectionViewCell.xib */; };
@@ -55,6 +58,9 @@
 		B302CD7D265B7F8600FDD896 /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
 		B304DF03265C9233008F3BB3 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InformationView.swift; path = airbnb/Controller/InformationView.swift; sourceTree = SOURCE_ROOT; };
 		B304DF05265C9255008F3BB3 /* InformationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InformationView.xib; sourceTree = "<group>"; };
+		B304DF07265CC945008F3BB3 /* FindingAccommodationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FindingAccommodationManager.swift; path = airbnb/FindingAccommodationManager.swift; sourceTree = SOURCE_ROOT; };
+		B304DF0A265CCE14008F3BB3 /* RoomsPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsPrice.swift; sourceTree = "<group>"; };
+		B304DF0C265CCE1E008F3BB3 /* RoomsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsList.swift; sourceTree = "<group>"; };
 		B30E1276265A80F7004425D6 /* ImageView+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Load.swift"; sourceTree = "<group>"; };
 		B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCollectionViewCell.swift; sourceTree = "<group>"; };
 		B3C8FB152655FD52005C6235 /* CityCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -122,6 +128,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B304DF09265CCE01008F3BB3 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				B3C8FB2026563304005C6235 /* MainLayout.swift */,
+				B304DF0A265CCE14008F3BB3 /* RoomsPrice.swift */,
+				B304DF0C265CCE1E008F3BB3 /* RoomsList.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
 		B30E1278265A80FC004425D6 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,10 +149,11 @@
 		B3C8FB1F26562E83005C6235 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B304DF07265CC945008F3BB3 /* FindingAccommodationManager.swift */,
 				B3C8FB1D26562E7C005C6235 /* NetworkManager.swift */,
 				B3C8FB2426563D26005C6235 /* LocationManager.swift */,
 				B3C8FB2626564787005C6235 /* EndPoint.swift */,
-				B3C8FB2026563304005C6235 /* MainLayout.swift */,
+				B304DF09265CCE01008F3BB3 /* DTO */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -426,10 +443,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B304DF0B265CCE14008F3BB3 /* RoomsPrice.swift in Sources */,
 				B3C8FB1E26562E7C005C6235 /* NetworkManager.swift in Sources */,
 				B30E1277265A80F7004425D6 /* ImageView+Load.swift in Sources */,
+				B304DF08265CC945008F3BB3 /* FindingAccommodationManager.swift in Sources */,
 				B3D7315B26523C4300FE6C62 /* ViewController.swift in Sources */,
 				B3D7315726523C4300FE6C62 /* AppDelegate.swift in Sources */,
+				B304DF0D265CCE1E008F3BB3 /* RoomsList.swift in Sources */,
 				B302CD7E265B7F8600FDD896 /* DateViewController.swift in Sources */,
 				B3C8FB2726564787005C6235 /* EndPoint.swift in Sources */,
 				B3D7315926523C4300FE6C62 /* SceneDelegate.swift in Sources */,
