@@ -20,9 +20,8 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegate()
-        setupCollectionView()
+        setupMainView()
         bind()
-        travelSearchBar.addSubview(searchController.searchBar)
     }
 }
 
@@ -38,8 +37,9 @@ private extension SearchViewController {
 
 private extension SearchViewController {
     
-    private func setupCollectionView() {
+    private func setupMainView() {
         regieonCollectionView.showsVerticalScrollIndicator = false
+        travelSearchBar.addSubview(searchController.searchBar)
     }
 }
 
