@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SpotCollectionViewCell: UICollectionViewCell {
+final class SpotCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "SpotCollectionViewCell"
     static let nibName = "SpotCollectionViewCell"

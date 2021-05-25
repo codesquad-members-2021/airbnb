@@ -9,19 +9,14 @@ import UIKit
 import Combine
 import GooglePlaces
 
-
-struct DetailCity {
-    let name: String
-}
-
 final class LocationViewController: UIViewController {
     
     @IBOutlet weak var cityCollectionView: UICollectionView!
     
     
-    var searchController : UISearchController?
-    var resultsViewController: GMSAutocompleteResultsViewController?
-    var locationManager: LocationManager!
+    private var searchController : UISearchController?
+    private var resultsViewController: GMSAutocompleteResultsViewController?
+    private var locationManager: LocationManager!
     lazy var cancelButton = UIBarButtonItem(title: "지우기", style: .done, target: self, action: #selector(tappedCancelButton))
 
     override func viewDidLoad() {

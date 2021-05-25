@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CityCollectionViewCell: UICollectionViewCell {
+final class CityCollectionViewCell: UICollectionViewCell {
     
     static let nibName = "CityCollectionViewCell"
     static let identifier = "CityCollectionViewCell"
