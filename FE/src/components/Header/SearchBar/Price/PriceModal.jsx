@@ -3,22 +3,22 @@ import styled from "styled-components";
 import { SearchBarContext } from "../../../../config/SearchBarContextProvider";
 import Slider from "./Slider";
 
-const PriceModal = ({ data, range }) => (
+const PriceModal = ({ average, range }) => (
 	<PriceModalWrapper>
 		<Title>가격 범위</Title>
 		<Range>{range}</Range>
-		<Body>{`평균 1박 요금은 ₩${data.average} 입니다.`}</Body>
-		<Graph data={data} />
+		<Body>{`평균 1박 요금은 ₩${average} 입니다.`}</Body>
+		<Graph />
 	</PriceModalWrapper>
 );
 
-const Graph = ({ data }) => {
-	const { min, setMin, max, setMax } = useContext(SearchBarContext);
+const Graph = () => {
+	const { min, setMin, max, setMax, priceData } = useContext(SearchBarContext);
 	return (
 		<GraphWrapper>
 			<GraphContent>
-				{Object.keys(data.counts).map((el) => (
-					<GraphBar price={el} count={data.counts[el]} key={el} min={min} max={max} {...data} />
+				{Object.keys(priceData.counts).map((el) => (
+					<GraphBar price={el} count={priceData.counts[el]} key={el} min={min} max={max} {...priceData} />
 				))}
 			</GraphContent>
 			<Slider value={min} setValue={setMin} />

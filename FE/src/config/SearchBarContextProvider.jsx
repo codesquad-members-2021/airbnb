@@ -38,10 +38,13 @@ const SearchBarContextProvider = ({ children }) => {
 		if (max > 320) setMax(320);
 	}, [min, max]);
 
-	const [data, setData] = useState([]);
 	const [priceData, setPriceData] = useState(priceDataParser([], 300));
-
-	useEffect(() => setPriceData(priceDataParser(data, 300)), [data]);
+	useEffect(() => {
+		fetch(`http://3.37.76.224:8080/houses/charges?checkIn=2021-05-18&checkOut=2021-05-25&latitude=37.566826&longitude=126.9786567`)
+			.then((res) => res.json())
+			.then((json) => setPriceData(priceDataParser(json, 300)))
+			.catch((res) => console.log("fetch error : ", res));
+	}, []);
 
 	const [man, setMan] = useState(0);
 	const [kid, setKid] = useState(0);
@@ -62,7 +65,6 @@ const SearchBarContextProvider = ({ children }) => {
 				setMin,
 				max,
 				setMax,
-				setData,
 				priceData,
 				man,
 				setMan,

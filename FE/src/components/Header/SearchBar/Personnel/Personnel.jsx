@@ -7,16 +7,14 @@ import { SearchBarContext } from "../../../../config/SearchBarContextProvider";
 const Personnel = () => {
 	const [isOn, setOn] = useState(false);
 
-	const {man, setMan, kid, setKid, baby, setBaby} = useContext(SearchBarContext)
+	const { man, setMan, kid, setKid, baby, setBaby } = useContext(SearchBarContext);
 
 	const isActivated = Boolean(man || kid || baby);
 
 	const currentDOM = useRef();
 
 	useEffect(() => {
-		const blur = ({ target }) => {
-			if (currentDOM.current && !currentDOM.current.contains(target)) setOn(false);
-		};
+		const blur = ({ target }) => !currentDOM.current?.contains(target) && setOn(false);
 		document.addEventListener("click", blur);
 		return () => document.removeEventListener("click", blur);
 	}, []);

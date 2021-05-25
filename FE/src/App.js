@@ -1,12 +1,15 @@
 import GlobalStyle from "./config/GlobalStyle";
-import MainContextProvider from "./config/MainContextProvider";
+import ResultContextProvider from "./config/ResultContextProvider";
+import SearchBarContextProvider from "./config/SearchBarContextProvider";
 import Root from "./components/Root";
 
 const App = () => (
-	<MainContextProvider>
-		<GlobalStyle />
-		<Root />
-	</MainContextProvider>
+	<ResultContextProvider>
+		<SearchBarContextProvider>
+			<GlobalStyle />
+			<Root />
+		</SearchBarContextProvider>
+	</ResultContextProvider>
 );
 
 export default App;

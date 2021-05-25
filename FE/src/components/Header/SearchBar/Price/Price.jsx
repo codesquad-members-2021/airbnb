@@ -8,24 +8,15 @@ import { SearchBarContext } from "../../../../config/SearchBarContextProvider";
 const Price = () => {
 	const [isOn, setOn] = useState(false);
 
-	const { min, setMin, max, setMax, priceData, setData } = useContext(SearchBarContext);
-	const { minimumPrice, unit } = priceData;
+	const { min, setMin, max, setMax, priceData } = useContext(SearchBarContext);
+	const { minimumPrice, unit, average } = priceData;
 
 	const isActivated = Boolean(min !== 0 || max !== 320);
-
-	useEffect(() => {
-		fetch(`http://3.37.76.224:8080/houses/charges?checkIn=2021-05-18&checkOut=2021-05-25&latitude=37.566826&longitude=126.9786567`)
-			.then((res) => res.json())
-			.then((json) => setData(() => json))
-			.catch((res) => console.log("fetch error : ", res));
-	});
 
 	const currentDOM = useRef();
 
 	useEffect(() => {
-		const blur = ({ target }) => {
-			if (currentDOM.current && !currentDOM.current.contains(target)) setOn(false);
-		};
+		const blur = ({ target }) => !currentDOM.current?.contains(target) && setOn(false);
 		document.addEventListener("click", blur);
 		return () => document.removeEventListener("click", blur);
 	}, []);
@@ -41,7 +32,7 @@ const Price = () => {
 		<PriceWrapper ref={currentDOM} onClick={() => setOn(true)}>
 			<PriceContent>요금</PriceContent>
 			<PriceInput value={isActivated ? range : ""} readOnly />
-			{isOn && <PriceModal range={range} data={priceData} />}
+			{isOn && <PriceModal range={range} average={average} />}
 			{isActivated && <CloseButton onClick={resetEvent} />}
 		</PriceWrapper>
 	);
