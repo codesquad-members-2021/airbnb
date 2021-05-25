@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
 
 private extension LoginViewController {
     private func setupMainView() {
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "login")!)
+        view.backgroundColor = UIColor.white
         setupIdTextField()
         setupPasswordTextField()
     }
@@ -36,7 +36,7 @@ private extension LoginViewController {
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
                 guard let url = URL(string: Login.post) else { return }
-                APIService.post(url, parameter: LoginInfo(id: self!.idTextField.text!, password: self!.passwordTextField.text!))
+                APIService.post(url, parameter: LoginInfo(userId: self!.idTextField.text!, password: self!.passwordTextField.text!))
                     .subscribe(onNext: { [weak self] _ in
                         let tabBarController = self?.storyboard?.instantiateViewController(withIdentifier: "TabBarController")
                         tabBarController?.modalPresentationStyle = .fullScreen
