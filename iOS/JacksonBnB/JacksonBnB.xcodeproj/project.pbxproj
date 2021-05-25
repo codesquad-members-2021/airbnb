@@ -20,12 +20,13 @@
 		FA7942E92653F3B800D73017 /* JacksonBnBUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7942E82653F3B800D73017 /* JacksonBnBUITests.swift */; };
 		FA7942F72653FA6C00D73017 /* airbnb-logo.json in Resources */ = {isa = PBXBuildFile; fileRef = FA7942F62653FA6C00D73017 /* airbnb-logo.json */; };
 		FA7A930B2654C762006878F0 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A930A2654C762006878F0 /* FavoriteViewController.swift */; };
-		FA7A930D265650E1006878F0 /* SearchHotelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A930C265650E1006878F0 /* SearchHotelsViewController.swift */; };
+		FA7A930D265650E1006878F0 /* SearchLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A930C265650E1006878F0 /* SearchLocationsViewController.swift */; };
 		FA7A934C2656A494006878F0 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A934A2656A494006878F0 /* LocationCell.swift */; };
 		FA7A934D2656A494006878F0 /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7A934B2656A494006878F0 /* LocationCell.xib */; };
 		FA7A934F2657749E006878F0 /* LocationDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A934E2657749E006878F0 /* LocationDB.swift */; };
 		FA7A935226578A45006878F0 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A935126578A45006878F0 /* DataBaseManager.swift */; };
 		FA7A935426578AA4006878F0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A935326578AA4006878F0 /* Location.swift */; };
+		FA7A935626579A7D006878F0 /* ResultHotelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A935526579A7D006878F0 /* ResultHotelsViewController.swift */; };
 		FF388F66DE14903A010115F7 /* Pods_JacksonBnB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BE35E383E2FA2372B564AC /* Pods_JacksonBnB.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,12 +74,13 @@
 		FA7942EA2653F3B800D73017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA7942F62653FA6C00D73017 /* airbnb-logo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "airbnb-logo.json"; sourceTree = "<group>"; };
 		FA7A930A2654C762006878F0 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
-		FA7A930C265650E1006878F0 /* SearchHotelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHotelsViewController.swift; sourceTree = "<group>"; };
+		FA7A930C265650E1006878F0 /* SearchLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationsViewController.swift; sourceTree = "<group>"; };
 		FA7A934A2656A494006878F0 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		FA7A934B2656A494006878F0 /* LocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
 		FA7A934E2657749E006878F0 /* LocationDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDB.swift; sourceTree = "<group>"; };
 		FA7A935126578A45006878F0 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		FA7A935326578AA4006878F0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		FA7A935526579A7D006878F0 /* ResultHotelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultHotelsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +165,8 @@
 			children = (
 				FA7942CA2653F3B700D73017 /* MainViewController.swift */,
 				FA7A930A2654C762006878F0 /* FavoriteViewController.swift */,
-				FA7A930C265650E1006878F0 /* SearchHotelsViewController.swift */,
+				FA7A930C265650E1006878F0 /* SearchLocationsViewController.swift */,
+				FA7A935526579A7D006878F0 /* ResultHotelsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -480,7 +483,8 @@
 				FA7A935426578AA4006878F0 /* Location.swift in Sources */,
 				FA7942CB2653F3B700D73017 /* MainViewController.swift in Sources */,
 				FA7A934F2657749E006878F0 /* LocationDB.swift in Sources */,
-				FA7A930D265650E1006878F0 /* SearchHotelsViewController.swift in Sources */,
+				FA7A930D265650E1006878F0 /* SearchLocationsViewController.swift in Sources */,
+				FA7A935626579A7D006878F0 /* ResultHotelsViewController.swift in Sources */,
 				FA7942C72653F3B700D73017 /* AppDelegate.swift in Sources */,
 				FA7942C92653F3B700D73017 /* SceneDelegate.swift in Sources */,
 				FA7A934C2656A494006878F0 /* LocationCell.swift in Sources */,

@@ -65,20 +65,16 @@
             </objects>
             <point key="canvasLocation" x="976.81159420289862" y="865.84821428571422"/>
         </scene>
-        <!--Search Hotels View Controller-->
+        <!--Search Locations View Controller-->
         <scene sceneID="Ryq-bE-f9d">
             <objects>
-                <viewController storyboardIdentifier="SearchHotelsViewController" id="SYX-9T-PQa" customClass="SearchHotelsViewController" customModule="JacksonBnB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchHotelsViewController" id="SYX-9T-PQa" customClass="SearchLocationsViewController" customModule="JacksonBnB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qIa-ZT-2Hq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="어디로 여행가세요?" translatesAutoresizingMaskIntoConstraints="NO" id="vMe-5c-SP1">
-                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5YB-RF-zvL">
-                                <rect key="frame" x="0.0" y="95" width="414" height="767"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0XH-hP-bo0">
                                     <size key="itemSize" width="128" height="128"/>
@@ -92,13 +88,10 @@
                         <viewLayoutGuide key="safeArea" id="hyO-Aa-lAA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="hyO-Aa-lAA" firstAttribute="bottom" secondItem="5YB-RF-zvL" secondAttribute="bottom" id="Arp-2a-32D"/>
-                            <constraint firstItem="vMe-5c-SP1" firstAttribute="trailing" secondItem="hyO-Aa-lAA" secondAttribute="trailing" id="BVa-sh-jJS"/>
-                            <constraint firstItem="vMe-5c-SP1" firstAttribute="leading" secondItem="hyO-Aa-lAA" secondAttribute="leading" id="CW1-L3-NDC"/>
-                            <constraint firstItem="hyO-Aa-lAA" firstAttribute="trailing" secondItem="5YB-RF-zvL" secondAttribute="trailing" id="LLf-Xe-EZi"/>
-                            <constraint firstItem="5YB-RF-zvL" firstAttribute="leading" secondItem="hyO-Aa-lAA" secondAttribute="leading" id="i4F-mr-WJ9"/>
-                            <constraint firstItem="5YB-RF-zvL" firstAttribute="top" secondItem="vMe-5c-SP1" secondAttribute="bottom" id="xzn-yR-ANb"/>
-                            <constraint firstItem="vMe-5c-SP1" firstAttribute="top" secondItem="hyO-Aa-lAA" secondAttribute="top" id="z8h-5h-EME"/>
+                            <constraint firstItem="5YB-RF-zvL" firstAttribute="leading" secondItem="hyO-Aa-lAA" secondAttribute="leading" id="7hE-tf-Dz9"/>
+                            <constraint firstItem="5YB-RF-zvL" firstAttribute="trailing" secondItem="hyO-Aa-lAA" secondAttribute="trailing" id="Iac-4z-upx"/>
+                            <constraint firstItem="5YB-RF-zvL" firstAttribute="top" secondItem="qIa-ZT-2Hq" secondAttribute="top" id="PMr-qB-Cs0"/>
+                            <constraint firstItem="5YB-RF-zvL" firstAttribute="bottom" secondItem="hyO-Aa-lAA" secondAttribute="bottom" id="XgB-2V-27r"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
@@ -110,13 +103,13 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="hotelsCollectionView" destination="5YB-RF-zvL" id="0Jl-pG-KlC"/>
-                        <outlet property="hotelsSearchBar" destination="vMe-5c-SP1" id="SGz-Ob-Dua"/>
+                        <outlet property="collectionView" destination="5YB-RF-zvL" id="1Ca-A2-im8"/>
+                        <outlet property="locationsCollectionView" destination="5YB-RF-zvL" id="0Jl-pG-KlC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oKf-y7-aY8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1779.7101449275365" y="863.83928571428567"/>
+            <point key="canvasLocation" x="2715.9420289855075" y="865.84821428571422"/>
         </scene>
         <!--Favorite View Controller-->
         <scene sceneID="INL-98-m5e">
@@ -171,6 +164,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I6N-ni-H5f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="66.666666666666671" y="865.84821428571422"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="p0J-8Z-1OU">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="05b-a7-sRr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gHb-qz-oem">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SYX-9T-PQa" kind="relationship" relationship="rootViewController" id="0WK-H8-WFa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s9Q-gU-DsX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1805.7971014492755" y="865.84821428571422"/>
         </scene>
     </scenes>
     <resources>
