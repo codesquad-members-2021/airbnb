@@ -44,8 +44,8 @@ public class UserService {
         return createUserResponseDTO(user, JwtUtil.createToken(user.getUserId()));
     }
 
-    public void logout(String userId) {
-        User user = findByUserId(userId);
+    public void logout(String authorization) {
+        User user = getUserFromAuthorization(userDAO, authorization);
         user.removeToken();
         userDAO.update(user);
     }
@@ -67,7 +67,11 @@ public class UserService {
     }
 
     private User findByUserId(String userId) {
-        User user = userDAO.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
+        return userDAO.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
+    }
+
+    public static User getUserFromAuthorization(UserDAO userDAO, String authorization) {
+        User user = userDAO.findByUserId(JwtUtil.getUserIdFromToken(JwtUtil.getTokenFromAuthorization(authorization))).orElseThrow(EntityNotFoundException::new);
         if (user.getToken() == null) {
             throw new TokenException(ErrorMessage.INVALID_TOKEN);
         }

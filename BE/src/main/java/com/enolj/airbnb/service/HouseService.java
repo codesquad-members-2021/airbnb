@@ -11,8 +11,6 @@ import com.enolj.airbnb.domain.user.UserDAO;
 import com.enolj.airbnb.domain.wish.Wish;
 import com.enolj.airbnb.domain.wish.WishDAO;
 import com.enolj.airbnb.exception.EntityNotFoundException;
-import com.enolj.airbnb.exception.ErrorMessage;
-import com.enolj.airbnb.exception.TokenException;
 import com.enolj.airbnb.web.dto.ReservationInfoResponseDTO;
 import com.enolj.airbnb.web.dto.*;
 import org.springframework.stereotype.Service;
@@ -22,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.enolj.airbnb.service.UserService.getUserFromAuthorization;
 import static com.enolj.airbnb.web.dto.ReservationInfoResponseDTO.createReservationInfoResponseDTO;
 import static com.enolj.airbnb.web.dto.ReservationResponseDTO.createReservationResponseDTO;
 import static com.enolj.airbnb.web.dto.SearchResponseDTO.createSearchResponseDTO;
@@ -74,29 +73,21 @@ public class HouseService {
         return houseDAO.findById(houseId).orElseThrow(EntityNotFoundException::new);
     }
 
-    public void makeReservation(String userId, Long houseId, ReservationRequestDTO requestDTO) {
+    public void makeReservation(String authorization, Long houseId, ReservationRequestDTO requestDTO) {
         System.out.println(requestDTO);
         Join join = requestDTO.toEntity();
-        join.reservation(findUserByUserId(userId), findHouseById(houseId));
+        join.reservation(getUserFromAuthorization(userDAO, authorization), findHouseById(houseId));
         joinDAO.save(join);
     }
 
-    private User findUserByUserId(String userId) {
-        User user = userDAO.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
-        if (user.getToken() == null) {
-            throw new TokenException(ErrorMessage.INVALID_TOKEN);
-        }
-        return user;
-    }
-
-    public List<WishResponseDTO> getWishList(String userId) {
-        return wishDAO.findAllByUserId(findUserByUserId(userId).getId()).stream()
+    public List<WishResponseDTO> getWishList(String authorization) {
+        return wishDAO.findAllByUserId(getUserFromAuthorization(userDAO, authorization).getId()).stream()
                 .map(wish -> createWishResponseDTO(findHouseById(wish.getHouseId())))
                 .collect(Collectors.toList());
     }
 
-    public void changeWish(String userId, Long houseId) {
-        User user = findUserByUserId(userId);
+    public void changeWish(String authorization, Long houseId) {
+        User user = getUserFromAuthorization(userDAO, authorization);
         House house = findHouseById(houseId);
         Optional<Wish> wish = wishDAO.findByUserIdAndHouseId(user.getId(), house.getId());
         if (wish.isPresent()) {
@@ -106,8 +97,8 @@ public class HouseService {
         wishDAO.save(Wish.createWish(user, house));
     }
 
-    public List<ReservationResponseDTO> getReservationList(String userId) {
-        User user = findUserByUserId(userId);
+    public List<ReservationResponseDTO> getReservationList(String authorization) {
+        User user = getUserFromAuthorization(userDAO, authorization);
         return joinDAO.findAllByUserId(user.getId()).stream()
                 .map(join -> createReservationResponseDTO(findHouseById(join.getUserId()), join, findOneImageByHouseId(join.getHouseId())))
                 .collect(Collectors.toList());

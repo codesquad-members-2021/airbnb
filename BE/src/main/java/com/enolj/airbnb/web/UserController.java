@@ -2,7 +2,6 @@ package com.enolj.airbnb.web;
 
 import com.enolj.airbnb.service.UserService;
 import com.enolj.airbnb.web.dto.UserResponseDTO;
-import com.enolj.airbnb.web.utils.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +27,6 @@ public class UserController {
     @GetMapping("/logout")
     public void logout(@RequestHeader String authorization) {
         logger.info("로그아웃 요청");
-        userService.logout(JwtUtil.getUserIdFromToken(JwtUtil.getTokenFromAuthorization(authorization)));
+        userService.logout(authorization);
     }
 }

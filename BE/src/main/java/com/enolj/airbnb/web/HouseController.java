@@ -40,25 +40,25 @@ public class HouseController {
     @PostMapping("houses/{houseId}")
     public void makeReservation(@RequestHeader String authorization, @PathVariable Long houseId, @RequestBody ReservationRequestDTO requestDTO) {
         logger.info("{}번 숙소 예약 요청", houseId);
-        houseService.makeReservation(JwtUtil.getUserIdFromToken(JwtUtil.getTokenFromAuthorization(authorization)), houseId, requestDTO);
+        houseService.makeReservation(authorization, houseId, requestDTO);
     }
 
     @GetMapping("/wishes")
     public List<WishResponseDTO> getWishes(@RequestHeader String authorization) {
         logger.info("숙소 위시 리스트 요청");
-        return houseService.getWishList(JwtUtil.getUserIdFromToken(JwtUtil.getTokenFromAuthorization(authorization)));
+        return houseService.getWishList(authorization);
     }
 
     @PostMapping("/wishes/{houseId}")
     public void changeWish(@RequestHeader String authorization, @PathVariable Long houseId) {
         logger.info("{}번 숙소의 위시 요청", houseId);
-        houseService.changeWish(JwtUtil.getUserIdFromToken(JwtUtil.getTokenFromAuthorization(authorization)), houseId);
+        houseService.changeWish(authorization, houseId);
     }
 
     @GetMapping("/reservation")
     public List<ReservationResponseDTO> getReservationList(@RequestHeader String authorization) {
         logger.info("숙소 예약 리스트 요청");
-        return houseService.getReservationList(JwtUtil.getUserIdFromToken(JwtUtil.getTokenFromAuthorization(authorization)));
+        return houseService.getReservationList(authorization);
     }
 
     @GetMapping("/reservation/{houseId}")
