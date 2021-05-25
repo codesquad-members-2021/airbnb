@@ -1,19 +1,48 @@
 import styled from "styled-components";
-import Calendar from "./Calendar";
-import Guests from "./Guests";
-import RoomPrice from "./RoomPrice";
+import Calendar from "components/Calendar/Calendar";
+import Guests from "components/Guests/Guests";
+import RoomPrice from "components/RoomPrice/RoomPrice";
+
 const SearchBar = () => {
   return (
     <>
-      <SearchBarLayout>
-        <Calendar />
-        {/* <RoomPrice /> */}
-        <Guests />
-        <SearchBarButton>검색</SearchBarButton>
-      </SearchBarLayout>
-    </>
+    <SearchBarLayout>
+      <SearchBarBox className="check-in">
+        <SearchBarTitle>체크인</SearchBarTitle>
+        <SearchBarText>날짜입력</SearchBarText>
+      </SearchBarBox>
+      <SearchBarBox className="check-out">
+        <SearchBarTitle>체크아웃</SearchBarTitle>
+        <SearchBarText>날짜입력</SearchBarText>
+      </SearchBarBox>
+    {/* <RoomPrice /> */}
+    <Guests />
+    <SearchBarButton>검색</SearchBarButton>
+    <Calendar />
+    </SearchBarLayout>
+  </>
   );
 };
+
+const SearchBarTitle = styled.div`
+  /* font-size: 1.2rem; */
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10%;
+`;
+const SearchBarText = styled.div`
+  /* font-size: 1.6rem; */
+  font-size: 16px;
+`;
+
+const SearchBarBox = styled.div`
+  outline: blue 1px solid;
+  /* padding: 5%; */
+  width: 40%;
+  text-align: center;
+  border: 1px gray solid;
+`;
+
 
 const SearchBarButton = styled.button`
   position: absolute;
