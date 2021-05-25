@@ -18,6 +18,18 @@ public class RoomRepository implements JdbcRepository<Room> {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public List<Room> getRoomsByDateAndPriceAndNumberOfPeople(String checkIn, String checkOut, int minPrice, int maxPrice, int numberOfPeople) {
+        // 조인한 BookingRoom 에서 booking의 checkIn, checkOut이 매개변수로 받은 체크인 체크아웃 범위에 들어가있지 않은 room들만 반환
+        String sql = "select room.id, `max`, `name`, `rating`, `latitude`, `longitude`, `bedroom_count`, `bed_count`, " +
+                "`bathroom_count`, `address`, `detail_address`, `comment_count`, `original_price`, `sale_price`, " +
+                "`flexible_refund`, `immediate_booking` from room " +
+                "left join booking on booking.room_id = room.id where `sale_price` >= ? and `sale_price` <= ? and `max` >= ? and " +
+                "(date_format(?, '%Y-%m-%d') not between date_format(check_in, '%Y-%m-%d') and date_format(check_out, '%Y-%m-%d') and " +
+                "date_format(?, '%Y-%m-%d') not between date_format(check_in, '%Y-%m-%d') and date_format(check_out, '%Y-%m-%d')) or " +
+                "(check_in is null and check_out is null)";
+        return jdbcTemplate.query(sql, roomRowMapper(), minPrice, maxPrice, numberOfPeople, checkIn, checkOut);
+    }
+
     @Override
     public Optional<Room> findById(Long id) {
         String sql = "select `id`, `max`, `name`, `rating`, `latitude`, `longitude`, `bedroom_count`, `bed_count`, " +
