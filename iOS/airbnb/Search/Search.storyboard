@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="SearchViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Mm-cA-XfY">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Mce-hi-LFW">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1086"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DpH-dL-6bL">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hiro" translatesAutoresizingMaskIntoConstraints="NO" id="aoe-Ry-wWb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="sz1-SQ-RHj">
+                                                        <rect key="frame" x="16" y="134.5" width="249.5" height="145"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="슬기로운 자연생활" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uR7-JK-cew">
+                                                                <rect key="frame" x="0.0" y="0.0" width="249.5" height="42"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AP-ng-oWI">
+                                                                <rect key="frame" x="0.0" y="58" width="249.5" height="41"/>
+                                                                <string key="text">에어비앤비가 엄선한
+위시리스트를 만나보세요.</string>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qs2-8A-Cdv">
+                                                                <rect key="frame" x="0.0" y="115" width="249.5" height="30"/>
+                                                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" title="여행아이디어 얻기">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="aoe-Ry-wWb" firstAttribute="leading" secondItem="DpH-dL-6bL" secondAttribute="leading" id="BLw-DL-am5"/>
+                                                    <constraint firstAttribute="width" secondItem="DpH-dL-6bL" secondAttribute="height" multiplier="1:1" id="HSw-M5-O2t"/>
+                                                    <constraint firstItem="sz1-SQ-RHj" firstAttribute="leading" secondItem="DpH-dL-6bL" secondAttribute="leading" constant="16" id="N9Y-2h-Ux5"/>
+                                                    <constraint firstItem="sz1-SQ-RHj" firstAttribute="centerY" secondItem="DpH-dL-6bL" secondAttribute="centerY" id="UsR-Cs-1aE"/>
+                                                    <constraint firstAttribute="bottom" secondItem="aoe-Ry-wWb" secondAttribute="bottom" id="amB-Mt-7CY"/>
+                                                    <constraint firstItem="aoe-Ry-wWb" firstAttribute="top" secondItem="DpH-dL-6bL" secondAttribute="top" id="ozf-HV-AfR"/>
+                                                    <constraint firstAttribute="trailing" secondItem="aoe-Ry-wWb" secondAttribute="trailing" id="pm8-ad-KRg"/>
+                                                </constraints>
+                                            </view>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FFM-Bl-tds">
+                                                <rect key="frame" x="0.0" y="454" width="414" height="224"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="224" id="c1L-kn-nBZ"/>
+                                                </constraints>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qvf-LL-yAe">
+                                                    <size key="itemSize" width="253" height="74"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="NearPlaceCell" id="Oty-Ae-lvZ" customClass="NearPlaceCell" customModule="airbnb" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="253" height="74"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dbK-xY-E5C">
+                                                            <rect key="frame" x="0.0" y="0.0" width="253" height="74"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </collectionViewCellContentView>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a1J-09-J0J">
+                                                <rect key="frame" x="0.0" y="718" width="414" height="368"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="368" id="EZ1-ec-Uwk"/>
+                                                </constraints>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JiI-oy-b00">
+                                                    <size key="itemSize" width="253" height="368"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThemePlaceCell" id="ITo-R9-bF9" customClass="ThemePlaceCell" customModule="airbnb" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="253" height="368"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WwL-ud-xbt">
+                                                            <rect key="frame" x="0.0" y="0.0" width="253" height="368"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </collectionViewCellContentView>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Mce-hi-LFW" firstAttribute="top" secondItem="47K-TR-DOr" secondAttribute="top" id="0pO-Um-aXv"/>
+                                    <constraint firstItem="Mce-hi-LFW" firstAttribute="width" secondItem="ZQb-ZV-Bef" secondAttribute="width" id="8DX-OL-HwW"/>
+                                    <constraint firstItem="Mce-hi-LFW" firstAttribute="bottom" secondItem="47K-TR-DOr" secondAttribute="bottom" id="Szi-Ta-m1n"/>
+                                    <constraint firstItem="Mce-hi-LFW" firstAttribute="leading" secondItem="47K-TR-DOr" secondAttribute="leading" id="jDe-dP-1l2"/>
+                                    <constraint firstItem="Mce-hi-LFW" firstAttribute="trailing" secondItem="47K-TR-DOr" secondAttribute="trailing" id="sVk-83-4BI"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="47K-TR-DOr"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="ZQb-ZV-Bef"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Mm-cA-XfY" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="0Q4-IT-kZG"/>
+                            <constraint firstItem="6Mm-cA-XfY" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="JdY-mw-Ixt"/>
+                            <constraint firstItem="6Mm-cA-XfY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="PCy-fa-oDe"/>
+                            <constraint firstAttribute="bottom" secondItem="6Mm-cA-XfY" secondAttribute="bottom" id="rGe-c2-GW9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="nearPlaceCollection" destination="FFM-Bl-tds" id="tBi-MJ-OOA"/>
+                        <outlet property="themePlaceCollection" destination="a1J-09-J0J" id="B8C-ae-MZL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="83.705357142857139"/>
+        </scene>
+        <!--Travel List View Controller-->
+        <scene sceneID="vny-eY-iyH">
+            <objects>
+                <viewController storyboardIdentifier="TravelListViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1E9-eg-Y1u" customClass="TravelListViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BZl-vU-oYC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MWL-2R-CEP">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZKV-5z-TbD">
+                                    <size key="itemSize" width="343" height="64"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="NCL-rN-gME">
+                                        <rect key="frame" x="35.5" y="50" width="343" height="64"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="32b-Yw-vdt">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="64"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" red="0.45085787770000002" green="0.98829740290000001" blue="0.83763033149999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HeaderReusableView" id="Nll-mH-iIu">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="근처의 인기 여행지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qa9-nS-Scl">
+                                            <rect key="frame" x="24" y="12" width="366" height="26.5"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="qa9-nS-Scl" firstAttribute="centerY" secondItem="Nll-mH-iIu" secondAttribute="centerY" id="5CO-SY-44S"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="qa9-nS-Scl" secondAttribute="trailing" constant="16" id="A6E-9b-PbA"/>
+                                        <constraint firstItem="qa9-nS-Scl" firstAttribute="leading" secondItem="Nll-mH-iIu" secondAttribute="leadingMargin" constant="16" id="Wq7-7c-cxb"/>
+                                    </constraints>
+                                </collectionReusableView>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HkH-LN-isg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MWL-2R-CEP" firstAttribute="top" secondItem="BZl-vU-oYC" secondAttribute="top" id="KZI-FU-sHm"/>
+                            <constraint firstItem="MWL-2R-CEP" firstAttribute="leading" secondItem="HkH-LN-isg" secondAttribute="leading" id="PB5-dJ-mnJ"/>
+                            <constraint firstItem="MWL-2R-CEP" firstAttribute="trailing" secondItem="HkH-LN-isg" secondAttribute="trailing" id="Waf-tf-UMQ"/>
+                            <constraint firstAttribute="bottom" secondItem="MWL-2R-CEP" secondAttribute="bottom" id="XzH-Nh-HaM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="travelList" destination="MWL-2R-CEP" id="lt9-RU-72y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wcw-gd-mTW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="83.705357142857139"/>
+        </scene>
+        <!--Filter View Controller-->
+        <scene sceneID="ull-qA-WnE">
+            <objects>
+                <viewController storyboardIdentifier="FilterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="m7A-7X-hDI" customClass="FilterViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f4M-Fy-gmb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="P3R-ox-FVp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Os-E5-eHt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2010" y="84"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="hiro" width="375" height="488"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

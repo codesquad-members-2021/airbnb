@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThemePlaceCell" id="gTV-IL-0wX" customClass="ThemePlaceCell" customModule="airbnb" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="253" height="368"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="253" height="368"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8CX-Zl-7h6">
+                        <rect key="frame" x="0.0" y="0.0" width="253" height="368"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="themePlace" translatesAutoresizingMaskIntoConstraints="NO" id="yCt-bd-h1X">
+                                <rect key="frame" x="0.0" y="0.0" width="253" height="308"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="308" id="iGa-yW-GlM"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="자연생활을 만끽할 수 있는 숙소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jxy-07-IT3">
+                                <rect key="frame" x="0.0" y="324" width="253" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="yCt-bd-h1X" firstAttribute="top" secondItem="8CX-Zl-7h6" secondAttribute="top" id="P7u-RM-SIi"/>
+                            <constraint firstItem="Jxy-07-IT3" firstAttribute="top" secondItem="yCt-bd-h1X" secondAttribute="bottom" constant="16" id="STC-ah-knt"/>
+                            <constraint firstItem="Jxy-07-IT3" firstAttribute="leading" secondItem="8CX-Zl-7h6" secondAttribute="leading" id="Weo-Z4-VbX"/>
+                            <constraint firstAttribute="trailing" secondItem="yCt-bd-h1X" secondAttribute="trailing" id="chd-zS-jAV"/>
+                            <constraint firstItem="yCt-bd-h1X" firstAttribute="leading" secondItem="8CX-Zl-7h6" secondAttribute="leading" id="lqd-bZ-jgf"/>
+                            <constraint firstAttribute="trailing" secondItem="Jxy-07-IT3" secondAttribute="trailing" id="oFs-zE-RJI"/>
+                            <constraint firstAttribute="bottom" secondItem="Jxy-07-IT3" secondAttribute="bottom" id="vjz-rM-tVB"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="8CX-Zl-7h6" secondAttribute="trailing" id="Guc-Vw-HBG"/>
+                <constraint firstItem="8CX-Zl-7h6" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="V9M-Xo-xMV"/>
+                <constraint firstItem="8CX-Zl-7h6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cIH-kA-DGy"/>
+                <constraint firstAttribute="bottom" secondItem="8CX-Zl-7h6" secondAttribute="bottom" id="dQv-et-mWl"/>
+            </constraints>
+            <connections>
+                <outlet property="specialPlaceLabel" destination="Jxy-07-IT3" id="lbN-du-X0w"/>
+                <outlet property="thumbnail" destination="yCt-bd-h1X" id="x5p-l9-KRK"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="146"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="themePlace" width="253" height="308"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
