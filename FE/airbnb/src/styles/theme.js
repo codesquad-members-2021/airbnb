@@ -25,8 +25,9 @@ const padding = {
 };
 
 const borderRadius = {
-  s: "30px",
-  m: "60px",
+  s: "10px",
+  m: "30px",
+  l: "60px",
   calendar: "40px",
 };
 
@@ -42,7 +43,7 @@ const searchListItem = css`
   box-sizing: border-box;
   height: 76px;
   padding: 16px 20px 16px 30px;
-  border-radius: ${({ theme }) => theme.borderRadius.m};
+  border-radius: ${({ theme }) => theme.borderRadius.l};
   cursor: pointer;
 
   display: flex;
