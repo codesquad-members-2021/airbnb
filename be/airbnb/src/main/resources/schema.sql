@@ -6,12 +6,13 @@ drop table if exists room;
 drop table if exists reservation;
 drop table if exists amenity;
 drop table if exists room_amenity;
-drop table if exists bedroom;
+drop table if exists bathroom;
 drop table if exists room_bathroom;
 drop table if exists bedroom;
 drop table if exists room_bedroom;
 drop table if exists discount;
 drop table if exists room_discount;
+drop table if exists room_image;
 
 create table `user`
 (

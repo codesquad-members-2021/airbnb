@@ -1,7 +1,7 @@
 package com.codesquad.airbnb.web.service.users;
 
-import com.codesquad.airbnb.web.domain.User;
-import com.codesquad.airbnb.web.domain.UserRepository;
+import com.codesquad.airbnb.web.domain.user.User;
+import com.codesquad.airbnb.web.domain.user.UserRepository;
 import com.codesquad.airbnb.web.dto.UserWithToken;
 import com.codesquad.airbnb.web.service.oauth.TokenService;
 import org.springframework.stereotype.Service;

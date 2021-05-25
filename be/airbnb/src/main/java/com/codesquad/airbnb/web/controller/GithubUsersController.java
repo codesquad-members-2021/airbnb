@@ -1,6 +1,6 @@
 package com.codesquad.airbnb.web.controller;
 
-import com.codesquad.airbnb.web.domain.User;
+import com.codesquad.airbnb.web.domain.user.User;
 import com.codesquad.airbnb.web.dto.UserWithToken;
 import com.codesquad.airbnb.web.service.oauth.ApiUrlGenerator;
 import com.codesquad.airbnb.web.service.oauth.OauthApiRequester;

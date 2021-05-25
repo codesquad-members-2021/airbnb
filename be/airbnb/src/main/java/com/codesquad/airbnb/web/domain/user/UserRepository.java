@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.web.domain;
+package com.codesquad.airbnb.web.domain.user;
 
 import java.util.Optional;
 

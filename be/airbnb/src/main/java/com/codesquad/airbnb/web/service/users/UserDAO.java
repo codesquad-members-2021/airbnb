@@ -1,11 +1,10 @@
 package com.codesquad.airbnb.web.service.users;
 
-import com.codesquad.airbnb.web.domain.OAuthAuthenticater;
-import com.codesquad.airbnb.web.domain.User;
-import com.codesquad.airbnb.web.domain.UserRepository;
+import com.codesquad.airbnb.web.domain.user.OAuthAuthenticater;
+import com.codesquad.airbnb.web.domain.user.User;
+import com.codesquad.airbnb.web.domain.user.UserRepository;
 import com.codesquad.airbnb.web.service.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
