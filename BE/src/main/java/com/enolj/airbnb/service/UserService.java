@@ -67,6 +67,10 @@ public class UserService {
     }
 
     private User findByUserId(String userId) {
-        return userDAO.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
+        User user = userDAO.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
+        if (user.getToken() == null) {
+            throw new TokenException(ErrorMessage.INVALID_TOKEN);
+        }
+        return user;
     }
 }

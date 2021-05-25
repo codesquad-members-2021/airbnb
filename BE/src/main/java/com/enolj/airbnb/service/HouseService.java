@@ -9,6 +9,8 @@ import com.enolj.airbnb.domain.join.JoinDAO;
 import com.enolj.airbnb.domain.user.User;
 import com.enolj.airbnb.domain.user.UserDAO;
 import com.enolj.airbnb.exception.EntityNotFoundException;
+import com.enolj.airbnb.exception.ErrorMessage;
+import com.enolj.airbnb.exception.TokenException;
 import com.enolj.airbnb.web.dto.ReservationInfoResponseDTO;
 import com.enolj.airbnb.web.dto.*;
 import org.springframework.stereotype.Service;
@@ -73,7 +75,11 @@ public class HouseService {
     }
 
     private User findUserByUserId(String userId) {
-        return userDAO.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
+        User user = userDAO.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
+        if (user.getToken() == null) {
+            throw new TokenException(ErrorMessage.INVALID_TOKEN);
+        }
+        return user;
     }
 
     public List<WishesResponseDTO> getWishList() {
