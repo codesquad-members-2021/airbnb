@@ -22,6 +22,7 @@ final class LocationViewController: UIViewController {
     var searchController : UISearchController?
     var resultsViewController: GMSAutocompleteResultsViewController?
     var locationManager: LocationManager!
+    lazy var cancelButton = UIBarButtonItem(title: "지우기", style: .done, target: self, action: #selector(tappedCancelButton))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,18 +40,18 @@ final class LocationViewController: UIViewController {
     
     private func configureNavigationItem() {
         self.navigationItem.title = "숙소 찾기"
-        let cancel = UIBarButtonItem(title: "지우기", style: .done, target: self, action: #selector(tappedDeleteBarButton))
-        self.navigationItem.rightBarButtonItem = cancel
         self.navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     private func configureSearchController() {
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
+        searchController?.searchBar.delegate = self
         searchController?.searchBar.sizeToFit()
         searchController?.hidesNavigationBarDuringPresentation = false
         searchController?.automaticallyShowsCancelButton = false
         searchController?.searchBar.placeholder = "어디로 여행가세요?"
+        searchController?.searchBar.searchTextField.clearButtonMode = .never
         self.navigationItem.searchController = searchController
         definesPresentationContext = true
     }
@@ -69,8 +70,8 @@ final class LocationViewController: UIViewController {
         self.locationManager = manager
     }
     
-    @objc func tappedDeleteBarButton() {
-        
+    @objc func tappedCancelButton() {
+        self.searchController?.searchBar.text = ""
     }
 }
 
@@ -90,10 +91,23 @@ extension LocationViewController: UICollectionViewDataSource {
 extension LocationViewController: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
-        print("Place name: \(place.name)")
+        let dateViewController = storyboard?.instantiateViewController(identifier: "DateViewController") as! DateViewController
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+            self.navigationController?.pushViewController(dateViewController, animated: true)
+        }
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error) {
         print("Error: ", error.localizedDescription)
+    }
+}
+
+extension LocationViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            navigationItem.setRightBarButton(nil, animated: false)
+        } else {
+            navigationItem.rightBarButtonItem = cancelButton
+        }
     }
 }

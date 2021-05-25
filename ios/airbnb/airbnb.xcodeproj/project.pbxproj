@@ -10,10 +10,13 @@
 		7D8F0667FA2328C15EBA2927 /* Pods_airbnb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E486A944AE97C6D1A02509 /* Pods_airbnb.framework */; };
 		B302110126575A8000A0AA92 /* SpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30210FF26575A8000A0AA92 /* SpotCollectionViewCell.swift */; };
 		B302110226575A8000A0AA92 /* SpotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B302110026575A8000A0AA92 /* SpotCollectionViewCell.xib */; };
+		B302CD7E265B7F8600FDD896 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B302CD7D265B7F8600FDD896 /* DateViewController.swift */; };
+		B304DF04265C9233008F3BB3 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B304DF03265C9233008F3BB3 /* InformationView.swift */; };
+		B304DF06265C9255008F3BB3 /* InformationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B304DF05265C9255008F3BB3 /* InformationView.xib */; };
 		B30E1277265A80F7004425D6 /* ImageView+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30E1276265A80F7004425D6 /* ImageView+Load.swift */; };
 		B3C8FB162655FD52005C6235 /* CityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */; };
 		B3C8FB172655FD52005C6235 /* CityCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3C8FB152655FD52005C6235 /* CityCollectionViewCell.xib */; };
-		B3C8FB1C26562E13005C6235 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = B3C8FB1B26562E13005C6235 /* SwiftPackageProductDependency */; };
+		B3C8FB1C26562E13005C6235 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B3C8FB1B26562E13005C6235 /* Alamofire */; };
 		B3C8FB1E26562E7C005C6235 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C8FB1D26562E7C005C6235 /* NetworkManager.swift */; };
 		B3C8FB2126563304005C6235 /* MainLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C8FB2026563304005C6235 /* MainLayout.swift */; };
 		B3C8FB2526563D26005C6235 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C8FB2426563D26005C6235 /* LocationManager.swift */; };
@@ -49,6 +52,9 @@
 /* Begin PBXFileReference section */
 		B30210FF26575A8000A0AA92 /* SpotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpotCollectionViewCell.swift; path = airbnb/SpotCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		B302110026575A8000A0AA92 /* SpotCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SpotCollectionViewCell.xib; path = airbnb/SpotCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
+		B302CD7D265B7F8600FDD896 /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
+		B304DF03265C9233008F3BB3 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InformationView.swift; path = airbnb/Controller/InformationView.swift; sourceTree = SOURCE_ROOT; };
+		B304DF05265C9255008F3BB3 /* InformationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InformationView.xib; sourceTree = "<group>"; };
 		B30E1276265A80F7004425D6 /* ImageView+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Load.swift"; sourceTree = "<group>"; };
 		B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCollectionViewCell.swift; sourceTree = "<group>"; };
 		B3C8FB152655FD52005C6235 /* CityCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -81,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3C8FB1C26562E13005C6235 /* BuildFile in Frameworks */,
+				B3C8FB1C26562E13005C6235 /* Alamofire in Frameworks */,
 				7D8F0667FA2328C15EBA2927 /* Pods_airbnb.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,6 +112,8 @@
 		B30210FE265757D900A0AA92 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B304DF03265C9233008F3BB3 /* InformationView.swift */,
+				B304DF05265C9255008F3BB3 /* InformationView.xib */,
 				B30210FF26575A8000A0AA92 /* SpotCollectionViewCell.swift */,
 				B302110026575A8000A0AA92 /* SpotCollectionViewCell.xib */,
 				B3C8FB142655FD52005C6235 /* CityCollectionViewCell.swift */,
@@ -195,6 +203,7 @@
 			children = (
 				B3D7315A26523C4300FE6C62 /* ViewController.swift */,
 				B3D73186265289DA00FE6C62 /* LocationViewController.swift */,
+				B302CD7D265B7F8600FDD896 /* DateViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -228,6 +237,7 @@
 				B3D7315026523C4300FE6C62 /* Frameworks */,
 				B3D7315126523C4300FE6C62 /* Resources */,
 				CDA993137936CC98A60C6C9F /* [CP] Copy Pods Resources */,
+				BE8598E1789B7125603FF524 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -235,7 +245,7 @@
 			);
 			name = airbnb;
 			packageProductDependencies = (
-				B3C8FB1B26562E13005C6235 /* SwiftPackageProductDependency */,
+				B3C8FB1B26562E13005C6235 /* Alamofire */,
 			);
 			productName = airbnb;
 			productReference = B3D7315326523C4300FE6C62 /* airbnb.app */;
@@ -309,7 +319,7 @@
 			);
 			mainGroup = B3D7314A26523C4300FE6C62;
 			packageReferences = (
-				B3C8FB1A26562E13005C6235 /* RemoteSwiftPackageReference */,
+				B3C8FB1A26562E13005C6235 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = B3D7315426523C4300FE6C62 /* Products */;
 			projectDirPath = "";
@@ -330,6 +340,7 @@
 				B3D7316326523C4400FE6C62 /* LaunchScreen.storyboard in Resources */,
 				B302110226575A8000A0AA92 /* SpotCollectionViewCell.xib in Resources */,
 				B3D7316026523C4400FE6C62 /* Assets.xcassets in Resources */,
+				B304DF06265C9255008F3BB3 /* InformationView.xib in Resources */,
 				B3D7315E26523C4300FE6C62 /* Main.storyboard in Resources */,
 				B3C8FB172655FD52005C6235 /* CityCollectionViewCell.xib in Resources */,
 			);
@@ -352,6 +363,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		BE8598E1789B7125603FF524 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-airbnb/Pods-airbnb-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-airbnb/Pods-airbnb-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-airbnb/Pods-airbnb-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CAA3BA46A0B711B1C67541B0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -402,11 +430,13 @@
 				B30E1277265A80F7004425D6 /* ImageView+Load.swift in Sources */,
 				B3D7315B26523C4300FE6C62 /* ViewController.swift in Sources */,
 				B3D7315726523C4300FE6C62 /* AppDelegate.swift in Sources */,
+				B302CD7E265B7F8600FDD896 /* DateViewController.swift in Sources */,
 				B3C8FB2726564787005C6235 /* EndPoint.swift in Sources */,
 				B3D7315926523C4300FE6C62 /* SceneDelegate.swift in Sources */,
 				B3C8FB2526563D26005C6235 /* LocationManager.swift in Sources */,
 				B302110126575A8000A0AA92 /* SpotCollectionViewCell.swift in Sources */,
 				B3C8FB2126563304005C6235 /* MainLayout.swift in Sources */,
+				B304DF04265C9233008F3BB3 /* InformationView.swift in Sources */,
 				B3C8FB162655FD52005C6235 /* CityCollectionViewCell.swift in Sources */,
 				B3D73187265289DA00FE6C62 /* LocationViewController.swift in Sources */,
 			);
@@ -745,7 +775,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B3C8FB1A26562E13005C6235 /* RemoteSwiftPackageReference */ = {
+		B3C8FB1A26562E13005C6235 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {
@@ -756,9 +786,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B3C8FB1B26562E13005C6235 /* SwiftPackageProductDependency */ = {
+		B3C8FB1B26562E13005C6235 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B3C8FB1A26562E13005C6235 /* RemoteSwiftPackageReference */;
+			package = B3C8FB1A26562E13005C6235 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
