@@ -63,6 +63,10 @@ extension SearchViewController: GMSAutocompleteResultsViewControllerDelegate {
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
         print("Place name: \(String(describing: place.name))")
         dismiss(animated: true, completion: nil)
+        guard let calendarViewController = self.storyboard?.instantiateViewController(identifier: "calendarViewController") else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            self.navigationController?.pushViewController(calendarViewController, animated: true)
+        })
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error) {

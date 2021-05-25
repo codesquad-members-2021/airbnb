@@ -9,6 +9,8 @@ pod 'Kingfisher', '~>6.0'
 
 pod 'GooglePlaces', '5.0.0'
 
+pod 'FSCalendar'
+
   # Pods for swift-airbnb
 
   target 'swift-airbnbTests' do

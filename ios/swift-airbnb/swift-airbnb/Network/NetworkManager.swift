@@ -17,11 +17,3 @@ class NetworkManager {
             }
     }
 }
-
-enum Url: String {
-    case base = "https://testapi.free.beeceptor.com"
-    
-    public func make(path: String) -> URL? {
-        return URL(string: Url.base.rawValue + "/\(path)")
-    }
-}
