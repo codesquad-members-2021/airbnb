@@ -3,6 +3,7 @@ package com.codesquad.coco.user;
 import com.codesquad.coco.exception.business.TotalPriceNonMatchException;
 import com.codesquad.coco.room.RoomDAO;
 import com.codesquad.coco.room.model.Room;
+import com.codesquad.coco.user.model.ReservationStatus;
 import com.codesquad.coco.user.model.dto.ReservationDTO;
 import com.codesquad.coco.utils.LocalDateUtil;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,10 @@ public class UserService {
         if (totalPrice != reservationDTO.getTotalPrice()) {
             throw new TotalPriceNonMatchException(totalPrice);
         }
-        reservationDAO.reservation(roomId, userId, reservationDTO);
+        reservationDAO.reservation(roomId, userId, reservationDTO, ReservationStatus.RESERVED);
+    }
+
+    public void cancelReservation(Long roomId, Long reservationId, Long userId) {
+        reservationDAO.cancelReservation(roomId, reservationId, userId, ReservationStatus.CANCEL);
     }
 }

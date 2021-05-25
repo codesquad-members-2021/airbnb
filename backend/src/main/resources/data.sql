@@ -9411,8 +9411,8 @@ INSERT INTO image (type, url, room_id)
 VALUES ('detail', 'https://a0.muscache.com/im/pictures/99197665/71edaa34_original.jpg?im_w=720', 150);
 
 
-insert into reservation (room_id, user_id, adult, child, baby, check_in, check_out, total_price)
-values (1, null, 1, 1, 2, '2021-03-02', '2021-03-03', 192000);
+insert into reservation (room_id, user_id, adult, child, baby, check_in, check_out, total_price, status)
+values (1, null, 1, 1, 2, '2021-03-02', '2021-03-03', 192000, 'RESERVED');
 
 insert into wish_list (user_id, room_id, wish)
 values (null, 1, 0);

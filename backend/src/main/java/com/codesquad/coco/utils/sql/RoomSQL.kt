@@ -13,6 +13,7 @@ where rm.id not in (select distinct rv.room_id
 and l.city_name = :city_name
 """
 
+//fixme : 서브쿼리 rv에서 stauts가 reserved인 애들만 가지고 온다.price도 동일
 const val FIND_ALL_ROOM_BY_SEARCH_REQUIREMENT: String = """
 select distinct rm.id as rm_id,rm.name as rm_name,rm.price_per_date as rm_price_per_date,rm.description as rm_description, rm.bed as rm_bed,rm.max_guest as rm_max_guest,rm.bathroom as rm_bathroom,rm.type as rm_type,
 h.name as h_name,h.profile_image_url as h_profile_image_url,
@@ -29,10 +30,12 @@ inner join additional_cost ac on ac.id = rm.additional_cost_id
 left join wish_list wl on wl.room_id = rm.id
 where rm.id not in (select distinct rv.room_id
 					from reservation rv
-					where :check_in between rv.check_in and rv.check_out
+					where ( :check_in between rv.check_in and rv.check_out
 					or :check_out between rv.check_in and rv.check_out
                     or rv.check_in  between :check_in and :check_out 
                     or rv.check_out between :check_in and :check_out )
+                    and rv.status = 'RESERVED'
+                    )
 and l.city_name = :city_name
 and rm.max_guest >= :adult + :child
 and rm.price_per_date between :price_min and :price_max;
@@ -41,7 +44,8 @@ const val FIND_ALL_RESERVATION_BY_ROOM_ID: String = """
 select rv.id as rv_id, rv.user_id as rv_user_id, rv.adult as rv_adult, rv.child as rv_child,
  rv.baby as rv_baby, rv.check_in as rv_check_in, rv.check_out as rv_check_out,rv.total_price as rv_total_price
 from reservation rv
-where rv.room_id = :room_id;
+where rv.room_id = :room_id
+and rv.status = 'RESERVED';
 """
 
 const val FIND_ROOM_BY_ROOM_ID: String = """
