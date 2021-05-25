@@ -1,5 +1,6 @@
 package com.codesquad.coco.room;
 
+import com.codesquad.coco.exception.common.NotFoundRoomException;
 import com.codesquad.coco.image.ImageDAO;
 import com.codesquad.coco.room.model.Room;
 import com.codesquad.coco.room.model.dto.SearchPriceDTO;
@@ -60,7 +61,7 @@ public class RoomDAO {
         MapSqlParameterSource parameter = new MapSqlParameterSource()
                 .addValue("room_id", roomId);
         List<Room> rooms = template.query(FIND_ROOM_BY_ROOM_ID, parameter, new RoomMapper());
-        Room room = rooms.stream().findFirst().orElseThrow(NullPointerException::new);//fixme : 예외 설정
+        Room room = rooms.stream().findFirst().orElseThrow(NotFoundRoomException::new);
         fillRoomWithImage(room);
         fillRoomWithReservation(room);
         return room;
