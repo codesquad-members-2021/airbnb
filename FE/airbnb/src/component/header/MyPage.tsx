@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as MenuIcon } from "assets/menu.svg";
 import { ReactComponent as UserIcon } from "assets/user.svg";
+import MyPageModal from "component/header/MyPageModal";
+import { toggleModal, closeModalByBodyClick, stopPropagation } from "hooks/modalHooks";
 
 function MyPage() {
+  const [isOpenMyPage, setIsOpenMyPage] = useState(false);
+  const handleClickMyPage = (e: React.MouseEvent) => toggleModal({ e, setState: setIsOpenMyPage, state: isOpenMyPage });
+  closeModalByBodyClick(setIsOpenMyPage);
   return (
-    <MyPageContainer>
+    <MyPageContainer onClick={handleClickMyPage}>
       <Button>
         <MenuIcon />
         <UserIcon />
       </Button>
+      {isOpenMyPage && <MyPageModal onClick={stopPropagation} />}
     </MyPageContainer>
   );
 }
@@ -23,10 +29,12 @@ const MyPageContainer = styled.div`
   padding: 4px 4px 4px 13px;
   border: 1px solid #bdbdbd;
   background-color: #fff;
-  border-radius: ${({ theme }) => theme.borderRadius.s};
+  border-radius: ${({ theme }) => theme.borderRadius.m};
+  cursor: pointer;
 
   display: flex;
   align-items: center;
+  position: relative;
 `;
 
 const Button = styled.button`
@@ -36,6 +44,7 @@ const Button = styled.button`
   outline: none;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 
   display: flex;
   justify-content: space-between;
