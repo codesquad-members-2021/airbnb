@@ -12,12 +12,12 @@ const theme = {
     green: '#118917',
   },
   fontSizes: {
-    XL: '32px',
-    L: '20px',
-    M: '18px',
-    SM: '16px',
-    S: '14px',
     XS: '12px',
+    S: '14px',
+    SM: '16px',
+    M: '18px',
+    L: '20px',
+    XL: '32px',
   },
   borders: {
     S: '10px',
