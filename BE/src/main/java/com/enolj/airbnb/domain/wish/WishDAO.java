@@ -17,8 +17,24 @@ public class WishDAO {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    public void save(Wish wish) {
+        String sql = "INSERT INTO wish(user_id, house_id) VALUES(?, ?)";
+        jdbcTemplate.update(sql, wish.getUserId(), wish.getHouseId());
+    }
+
     public List<Wish> findAllByUserId(Long userId) {
         String sql = "SELECT * FROM wish WHERE user_id = ?";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Wish.class), userId);
+    }
+
+    public Optional<Wish> findByUserIdAndHouseId(Long userId, Long houseId) {
+        String sql = "SELECT * FROM wish WHERE user_id = ? AND house_id = ?";
+        List<Wish> wishes = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Wish.class), userId, houseId);
+        return wishes.stream().findAny();
+    }
+
+    public void delete(Wish wish) {
+        String sql = "DELETE FROM wish WHERE user_id = ? AND house_id = ?";
+        jdbcTemplate.update(sql, wish.getUserId(), wish.getHouseId());
     }
 }

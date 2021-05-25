@@ -50,9 +50,9 @@ public class HouseController {
     }
 
     @PostMapping("/wishes/{houseId}")
-    public void changeWish(@PathVariable Long houseId) {
+    public void changeWish(@RequestHeader String authorization, @PathVariable Long houseId) {
         logger.info("{}번 숙소의 위시 요청", houseId);
-        houseService.changeWish(houseId);
+        houseService.changeWish(JwtUtil.getUserIdFromToken(JwtUtil.getTokenFromAuthorization(authorization)), houseId);
     }
 
     @GetMapping("/reservation")

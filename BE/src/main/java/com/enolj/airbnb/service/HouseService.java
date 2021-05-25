@@ -8,6 +8,8 @@ import com.enolj.airbnb.domain.join.Join;
 import com.enolj.airbnb.domain.join.JoinDAO;
 import com.enolj.airbnb.domain.user.User;
 import com.enolj.airbnb.domain.user.UserDAO;
+import com.enolj.airbnb.domain.wish.Wish;
+import com.enolj.airbnb.domain.wish.WishDAO;
 import com.enolj.airbnb.exception.EntityNotFoundException;
 import com.enolj.airbnb.exception.ErrorMessage;
 import com.enolj.airbnb.exception.TokenException;
@@ -17,10 +19,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.enolj.airbnb.web.dto.ReservationInfoResponseDTO.createReservationInfoResponseDTO;
 import static com.enolj.airbnb.web.dto.SearchResponseDTO.createSearchResponseDTO;
+import static com.enolj.airbnb.web.dto.WishResponseDTO.createWishResponseDTO;
 
 @Service
 public class HouseService {
@@ -29,12 +33,14 @@ public class HouseService {
     private final HouseDAO houseDAO;
     private final ImageDAO imageDAO;
     private final JoinDAO joinDAO;
+    private final WishDAO wishDAO;
 
-    public HouseService(UserDAO userDAO, HouseDAO houseDAO, ImageDAO imageDAO, JoinDAO joinDAO) {
+    public HouseService(UserDAO userDAO, HouseDAO houseDAO, ImageDAO imageDAO, JoinDAO joinDAO, WishDAO wishDAO) {
         this.userDAO = userDAO;
         this.houseDAO = houseDAO;
         this.imageDAO = imageDAO;
         this.joinDAO = joinDAO;
+        this.wishDAO = wishDAO;
     }
 
     public List<SearchResponseDTO> searchHousesByCondition(SearchRequestDTO requestDTO) {
@@ -88,8 +94,15 @@ public class HouseService {
                 .collect(Collectors.toList());
     }
 
-    public void changeWish(Long houseId) {
-
+    public void changeWish(String userId, Long houseId) {
+        User user = findUserByUserId(userId);
+        House house = findHouseById(houseId);
+        Optional<Wish> wish = wishDAO.findByUserIdAndHouseId(user.getId(), house.getId());
+        if (wish.isPresent()) {
+            wishDAO.delete(wish.get());
+            return;
+        }
+        wishDAO.save(Wish.createWish(user, house));
     }
 
     public List<ReservationResponseDTO> getReservationList() {
