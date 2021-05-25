@@ -26,12 +26,13 @@ public class RoomMapper implements RowMapper<Room> {
                 .bathroomType(BathroomType.valueOf(rs.getString(9)))
                 .bedroomType(BedroomType.valueOf(rs.getString(10)))
                 .bedCount(rs.getInt(11))
+                .amenity(rs.getString(12))
                 .pricePolicy(PricePolicy.builder()
-                        .accomodationTax(rs.getInt(12))
-                        .cleanUpCost(rs.getInt(13))
-                        .pricePerDay(rs.getInt(14))
-                        .serviceFee(rs.getInt(15))
-                        .weeklyDiscount(rs.getInt(16))
+                        .accomodationTax(rs.getInt(13))
+                        .cleanUpCost(rs.getInt(14))
+                        .pricePerDay(rs.getInt(15))
+                        .serviceFee(rs.getInt(16))
+                        .weeklyDiscount(rs.getInt(17))
                         .build())
                 .build();
     }

@@ -39,6 +39,10 @@ class RoomDAOTest {
         assertThat(testTarget.getLocationId()).isEqualTo(expected.getLocationId());
         assertThat(testTarget.getPoint()).isEqualTo(expected.getPoint());
         assertThat(testTarget.getRating()).isEqualTo(expected.getRating());
+        assertThat(testTarget.getBathroomType()).isEqualTo(expected.getBathroomType());
+        assertThat(testTarget.getBedroomType()).isEqualTo(expected.getBedroomType());
+        assertThat(testTarget.getBedCount()).isEqualTo(expected.getBedCount());
+        assertThat(testTarget.getAmenity()).isEqualTo(expected.getAmenity());
     }
 
     @Test
@@ -80,6 +84,7 @@ class RoomDAOTest {
                 .bathroomType(BathroomType.PRIVATE_BATHROOM)
                 .bedroomType(BedroomType.BEDROOM)
                 .bedCount(2)
+                .amenity("주방, 무선인터넷, 에어컨, 헤어드라이어")
                 .pricePolicy(new PricePolicy(5000, 1000, 5000, 50000, 4))
                 .build();
     }
