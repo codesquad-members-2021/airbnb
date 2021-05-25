@@ -51,8 +51,8 @@ const SearchBar = () => {
   };
   //state따로 있는데 reducer함수 같이 써도 되나요..?
   return (
-    <>
-      <SearchBarLayout>
+    <SearchBarLayout>
+      <SearchBarContainer>
         <SearchBarDiv>
           {SEARCH_FILTER.map((type, idx) => (
             <SearchFilter
@@ -63,11 +63,11 @@ const SearchBar = () => {
           ))}
         </SearchBarDiv>
         <SearchBarButton>검색</SearchBarButton>
-      </SearchBarLayout>
+      </SearchBarContainer>
       <Calendar />
       <RoomPrice />
       <Guests />
-    </>
+    </SearchBarLayout>
   );
 };
 //검색 이라는 글씨를 넣었다 뺐다해야됨
@@ -97,10 +97,10 @@ const SearchBarButton = styled.button`
   margin: 0 1%;
 `;
 
-const SearchBarLayout = styled.div`
+const SearchBarContainer = styled.div`
   position: relative;
   display: flex;
-  width: 916px;
+  width: 100%;
   height: 76px;
   margin: 2rem auto 0 auto;
   background: #ffffff;
@@ -112,5 +112,13 @@ const SearchBarLayout = styled.div`
     width: 100%;
   }
 `;
+
+const SearchBarLayout = styled.div`
+  width: 916px;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+`
 
 export default SearchBar;

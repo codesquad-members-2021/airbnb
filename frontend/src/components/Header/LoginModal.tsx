@@ -43,6 +43,8 @@ const LoginModalLayout = styled.ul`
   box-shadow: rgb(0 0 0 12%) 0px 2px 16px;
   list-style: none;
   padding: 1rem 2rem;
+  font-size: 1rem;
+  z-index: 99;
 
   & > li {
     padding: 1rem 0;
