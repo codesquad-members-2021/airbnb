@@ -58,6 +58,7 @@ class RoomDAOTest {
         assertThat(target.getAccomodationTax()).isEqualTo(expected.getAccomodationTax());
         assertThat(target.getCleanUpCost()).isEqualTo(expected.getCleanUpCost());
         assertThat(target.getServiceFee()).isEqualTo(expected.getServiceFee());
+        assertThat(target.getWeeklyDiscount()).isEqualTo(expected.getWeeklyDiscount());
     }
 
     private Room createRoom() {
@@ -74,7 +75,7 @@ class RoomDAOTest {
                 .locationId(locationId)
                 .point(point)
                 .rating(rating)
-                .pricePolicy(new PricePolicy(5000, 1000, 5000, 50000))
+                .pricePolicy(new PricePolicy(5000, 1000, 5000, 50000, 4))
                 .build();
     }
 }

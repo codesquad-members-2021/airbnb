@@ -26,6 +26,7 @@ public class RoomMapper implements RowMapper<Room> {
                         .cleanUpCost(rs.getInt(10))
                         .pricePerDay(rs.getInt(11))
                         .serviceFee(rs.getInt(12))
+                        .weeklyDiscount(rs.getInt(13))
                         .build())
                 .build();
     }

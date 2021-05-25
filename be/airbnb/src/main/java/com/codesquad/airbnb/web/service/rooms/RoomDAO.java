@@ -49,10 +49,11 @@ public class RoomDAO implements RoomRepository {
         PricePolicy pricePolicy = room.getPricePolicy();
         MapSqlParameterSource parameter = new MapSqlParameterSource()
                 .addValue("room_id", room.getId())
-                .addValue("serviceFee", pricePolicy.getServiceFee())
+                .addValue("service_fee", pricePolicy.getServiceFee())
                 .addValue("accomodation_tax", pricePolicy.getAccomodationTax())
                 .addValue("clean_up_cost", pricePolicy.getCleanUpCost())
-                .addValue("price_per_day", pricePolicy.getPricePerDay());
+                .addValue("price_per_day", pricePolicy.getPricePerDay())
+                .addValue("weekly_discount", pricePolicy.getWeeklyDiscount());
         jdbcTemplate.update(SAVE_PRICE_POLICY, parameter);
     }
 

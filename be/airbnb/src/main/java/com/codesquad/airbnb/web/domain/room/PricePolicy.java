@@ -14,4 +14,5 @@ public class PricePolicy {
     private int accomodationTax;
     private int cleanUpCost;
     private int pricePerDay;
+    private int weeklyDiscount;
 }

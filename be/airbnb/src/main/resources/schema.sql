@@ -62,10 +62,11 @@ create table `room_price`
 (
     id               int primary key auto_increment,
     room_id          int references room (id),
-    serviceFee       int,
+    service_fee       int,
     accomodation_tax int,
     clean_up_cost    int,
-    price_per_day    int
+    price_per_day    int,
+    weekly_discount  int
 );
 
 create table `amenity`
@@ -79,20 +80,6 @@ create table `room_amenity`
     id         int primary key auto_increment,
     room_id    int references room (id),
     amenity_id int references amenity (id)
-);
-
-create table `discount`
-(
-    id            int primary key auto_increment,
-    name          varchar(50),
-    discount_type varchar(50)
-);
-
-create table `room_discount`
-(
-    id          int primary key auto_increment,
-    room_id     int references room (id),
-    discount_id int references discount (id)
 );
 
 create table `bedroom`
