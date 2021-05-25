@@ -10,7 +10,7 @@ public class CitiesDTO {
         this.cities = city;
     }
 
-    public List<CityDTO> getCity() {
+    public List<CityDTO> getCities() {
         return cities;
     }
 }
