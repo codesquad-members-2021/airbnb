@@ -3,6 +3,7 @@ package com.codesquad.airbnb;
 import com.codesquad.airbnb.domain.Room;
 import com.codesquad.airbnb.repository.RoomRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,6 +26,15 @@ public class RoomRepositoryTest {
     @Test
     void checkFindAll() {
         List<Room> roomList = roomRepository.findAll();
-        Assertions.assertThat(roomList.stream().count()).isEqualTo(1);
+        Assertions.assertThat(roomList.stream().count()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("검색 조건에 맞는 room들을 조회한다.")
+    void checkJoinedAndFilteredTable() {
+        List<Room> rooms = roomRepository.getRoomsByDateAndPriceAndNumberOfPeople("2021-5-20", "2021-5-23",
+                40000, 80000, 2);
+
+        rooms.forEach(System.out::println);
     }
 }
