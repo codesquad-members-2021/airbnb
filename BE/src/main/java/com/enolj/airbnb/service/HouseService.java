@@ -82,12 +82,10 @@ public class HouseService {
         return user;
     }
 
-    public List<WishesResponseDTO> getWishList() {
-        List<WishesResponseDTO> wishesResponseDTOList = new ArrayList<>();
-        wishesResponseDTOList.add(new WishesResponseDTO(1L, "비담집, 비우고담은집", 308571, true, 4.98));
-        wishesResponseDTOList.add(new WishesResponseDTO(2L, "비담집, 비우고담은집", 308571, true, 4.98));
-        wishesResponseDTOList.add(new WishesResponseDTO(3L, "비담집, 비우고담은집", 308571, true, 4.98));
-        return wishesResponseDTOList;
+    public List<WishResponseDTO> getWishList(String userId) {
+        return wishDAO.findAllByUserId(findUserByUserId(userId).getId()).stream()
+                .map(wish -> createWishResponseDTO(findHouseById(wish.getHouseId())))
+                .collect(Collectors.toList());
     }
 
     public void changeWish(Long houseId) {

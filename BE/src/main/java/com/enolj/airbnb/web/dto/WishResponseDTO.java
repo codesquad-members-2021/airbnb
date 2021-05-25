@@ -1,19 +1,23 @@
 package com.enolj.airbnb.web.dto;
 
-public class WishesResponseDTO {
+import com.enolj.airbnb.domain.house.House;
+
+public class WishResponseDTO {
 
     private final Long id;
     private final String name;
     private final int charge;
-    private final boolean wish;
     private final double grade;
 
-    public WishesResponseDTO(Long id, String name, int charge, boolean wish, double grade) {
+    public WishResponseDTO(Long id, String name, int charge, double grade) {
         this.id = id;
         this.name = name;
         this.charge = charge;
-        this.wish = wish;
         this.grade = grade;
+    }
+
+    public static WishResponseDTO createWishResponseDTO(House house) {
+        return new WishResponseDTO(house.getId(), house.getName(), house.getCharge(), house.getGrade());
     }
 
     public Long getId() {
@@ -26,10 +30,6 @@ public class WishesResponseDTO {
 
     public int getCharge() {
         return charge;
-    }
-
-    public boolean isWish() {
-        return wish;
     }
 
     public double getGrade() {

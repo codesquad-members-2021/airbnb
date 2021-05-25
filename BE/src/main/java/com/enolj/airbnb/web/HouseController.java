@@ -44,9 +44,9 @@ public class HouseController {
     }
 
     @GetMapping("/wishes")
-    public List<WishesResponseDTO> getWishes() {
+    public List<WishResponseDTO> getWishes(@RequestHeader String authorization) {
         logger.info("숙소 위시 리스트 요청");
-        return houseService.getWishList();
+        return houseService.getWishList(JwtUtil.getUserIdFromToken(JwtUtil.getTokenFromAuthorization(authorization)));
     }
 
     @PostMapping("/wishes/{houseId}")
