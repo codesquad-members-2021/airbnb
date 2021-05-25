@@ -52,6 +52,11 @@ const Hamburger = styled.a`
   display: flex;
   align-items: center;
   background-color: #fff;
+  
+  &:hover{
+    box-shadow: 2px 2px 5px #555;
+    transition: box-shadow 0.2s ease;
+  }
 
   & > svg {
     padding: 8px;
