@@ -215,19 +215,102 @@
                     <view key="view" contentMode="scaleToFill" id="f4M-Fy-gmb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjO-cb-8cc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
+                                <connections>
+                                    <segue destination="Efo-Nk-qvn" kind="embed" id="fxu-JG-Csb"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wRV-0e-Uxm">
+                                <rect key="frame" x="0.0" y="720" width="414" height="176"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="176" id="iUN-Ch-g7H"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="m60-45-7AB" kind="embed" id="ZqJ-yN-KKS"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="P3R-ox-FVp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kjO-cb-8cc" firstAttribute="top" secondItem="f4M-Fy-gmb" secondAttribute="top" id="OPW-0W-m2z"/>
+                            <constraint firstItem="kjO-cb-8cc" firstAttribute="leading" secondItem="P3R-ox-FVp" secondAttribute="leading" id="S1C-le-C0X"/>
+                            <constraint firstItem="wRV-0e-Uxm" firstAttribute="top" secondItem="kjO-cb-8cc" secondAttribute="bottom" id="SkD-7t-yeT"/>
+                            <constraint firstItem="wRV-0e-Uxm" firstAttribute="leading" secondItem="P3R-ox-FVp" secondAttribute="leading" id="Vgp-Wt-6ck"/>
+                            <constraint firstAttribute="bottom" secondItem="wRV-0e-Uxm" secondAttribute="bottom" id="ZjS-Nn-YAs"/>
+                            <constraint firstItem="kjO-cb-8cc" firstAttribute="trailing" secondItem="P3R-ox-FVp" secondAttribute="trailing" id="jJH-Mv-LGs"/>
+                            <constraint firstItem="wRV-0e-Uxm" firstAttribute="trailing" secondItem="P3R-ox-FVp" secondAttribute="trailing" id="l0S-UT-rTq"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Os-E5-eHt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2010" y="84"/>
+            <point key="canvasLocation" x="2008.6956521739132" y="83.705357142857139"/>
+        </scene>
+        <!--Calendar View Controller-->
+        <scene sceneID="W4c-Re-aoc">
+            <objects>
+                <viewController storyboardIdentifier="CalendarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Efo-Nk-qvn" customClass="CalendarViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EEF-zg-q1A">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="hz1-yN-U81"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="srh-Fb-MAr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2897" y="24"/>
+        </scene>
+        <!--Footer View Controller-->
+        <scene sceneID="qDD-wj-KpC">
+            <objects>
+                <viewController storyboardIdentifier="FooterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="m60-45-7AB" customClass="FooterViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Zx-AM-qjE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="176"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fAD-t8-sPO">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="176"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="FnW-Pc-cRU">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FnW-Pc-cRU" id="IDn-10-Zfx">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="fAD-t8-sPO" secondAttribute="bottom" id="KKi-Fg-Nph"/>
+                            <constraint firstItem="fAD-t8-sPO" firstAttribute="top" secondItem="3Zx-AM-qjE" secondAttribute="top" id="Ql7-UO-3q5"/>
+                            <constraint firstAttribute="trailing" secondItem="fAD-t8-sPO" secondAttribute="trailing" id="kCq-Y0-akI"/>
+                            <constraint firstItem="fAD-t8-sPO" firstAttribute="leading" secondItem="3Zx-AM-qjE" secondAttribute="leading" id="teK-xx-bpy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="footerTable" destination="fAD-t8-sPO" id="zoO-u8-fBz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dpw-tR-DY2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2896" y="433"/>
         </scene>
     </scenes>
     <resources>
         <image name="hiro" width="375" height="488"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
