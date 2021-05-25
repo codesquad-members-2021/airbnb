@@ -17,7 +17,7 @@ class SecondSectionCell: UICollectionViewCell {
         return collectionView
     }()
     
-    private let viewModel = MainViewModel()
+    private let viewModel = RegieonViewModel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,8 +44,8 @@ private extension SecondSectionCell {
     }
     
     private func bind() {
-        viewModel.secondViewList()
-            .bind(to: horizontalCollectionView.rx.items(cellIdentifier: RegieonInfoCell.identifier, cellType: RegieonInfoCell.self)) { [weak self] row, data, cell in
+        viewModel.originalRegieonData()
+            .drive(horizontalCollectionView.rx.items(cellIdentifier: RegieonInfoCell.identifier, cellType: RegieonInfoCell.self)) { [weak self] row, data, cell in
                 cell.configure(data, self!.controllerInfo!)
             }.disposed(by: rx.disposeBag)
     }

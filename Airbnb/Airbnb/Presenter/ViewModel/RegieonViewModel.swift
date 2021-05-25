@@ -21,6 +21,10 @@ class RegieonViewModel {
         return filteredItems.asDriver(onErrorJustReturn: [])
     }
     
+    func originalRegieonData() -> Driver<[MainViewInfo]> {
+        return items.asDriver(onErrorJustReturn: [])
+    }
+    
     private func setupRegiondata() {
         searchText.asObservable()
             .subscribe(onNext: { text in
