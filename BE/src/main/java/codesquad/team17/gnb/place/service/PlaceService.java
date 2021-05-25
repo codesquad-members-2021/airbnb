@@ -1,6 +1,7 @@
 package codesquad.team17.gnb.place.service;
 
 import codesquad.team17.gnb.place.domain.PlaceRepository;
+import codesquad.team17.gnb.place.dto.PlaceQueries;
 import codesquad.team17.gnb.place.dto.PlaceSummary;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,8 @@ public class PlaceService {
         this.placeRepository = placeRepository;
     }
 
-    public List<PlaceSummary> placeSummaries() {
-        return placeRepository.findAll().stream()
+    public List<PlaceSummary> placeSummaries(PlaceQueries placeQueries) {
+        return placeRepository.findBy(placeQueries).stream()
                 .map(PlaceSummary::new)
                 .collect(Collectors.toList());
     }
