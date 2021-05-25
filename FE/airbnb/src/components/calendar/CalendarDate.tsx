@@ -1,6 +1,7 @@
 import { ReactElement, MouseEvent, useState, useEffect, useReducer } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { createPartiallyEmittedExpression } from 'typescript';
 import {
   calendarDateType,
   dayType,
@@ -21,7 +22,7 @@ const CalendarDate = ({ monthData, calendarDate }: Props) => {
 
   const [selectDate, setSelectDate] = useRecoilState(selectDateState);
   const { checkIn: checkInTime, checkOut: checkOutTime } = selectDate;
-  const selectedCheckBox = useRecoilValue(selectCheckBoxState);
+  const [selectedCheckBox, setSelectedCheckBox] = useRecoilState(selectCheckBoxState);
 
   useEffect(() => {
     setDateData(monthData);
@@ -31,19 +32,50 @@ const CalendarDate = ({ monthData, calendarDate }: Props) => {
     const target = event.target as HTMLElement;
     const value: number = +target.innerHTML;
     const dateWrapper = target.closest('.date__wrapper');
-    const dateTime = new Date(year, month - 1, value).getTime();
+    const selectTime = new Date(year, month - 1, value).getTime();
+
     if (isNaN(value) || value === 0) return;
     if (!dateWrapper || (dateWrapper && dateWrapper.classList.contains('disable-date'))) return;
-    if (selectedCheckBox === 'checkIn') {
-      if (!checkInTime || checkInTime > dateTime) {
-        setSelectDate((selectDate) => ({ ...selectDate, checkIn: dateTime }));
-        return;
-      }
-      if (checkInTime === dateTime || checkInTime < dateTime) {
-        setSelectDate((selectDate) => ({ ...selectDate, checkOut: dateTime }));
-      }
+
+    if (selectedCheckBox === 'checkIn') clickCheckInBox(selectTime);
+    if (selectedCheckBox === 'checkOut') clickCheckOutBox(selectTime);
+    return;
+  };
+
+  const clickCheckInBox = (selectTime: number): void => {
+    if (!checkOutTime) {
+      setSelectDate({ checkIn: selectTime, checkOut: null });
+      setSelectedCheckBox('checkOut');
       return;
     }
+    //체크아웃 먼저 누르고 checkInBox로 Focus 넘어온 경우
+    if (checkOutTime === selectTime) {
+      setSelectDate((selectDate) => ({ ...selectDate, checkIn: selectTime }));
+    } else if (checkOutTime < selectTime) {
+      setSelectDate({ checkIn: selectTime, checkOut: null });
+    } else if (selectTime < checkOutTime) {
+      setSelectDate((selectDate) => ({ ...selectDate, checkIn: selectTime }));
+    }
+    setSelectedCheckBox('checkOut');
+    return;
+  };
+
+  const clickCheckOutBox = (selectTime: number): void => {
+    if (!checkInTime) {
+      setSelectDate((selectDate) => ({ ...selectDate, checkOut: selectTime }));
+      setSelectedCheckBox('checkIn');
+      return;
+    }
+    if (checkInTime === selectTime) {
+      //체크인 먼저 누르고 checkOutBox로 Focus 넘어온 경우
+      setSelectDate((selectDate) => ({ ...selectDate, checkOut: selectTime }));
+    } else if (checkInTime < selectTime) {
+      setSelectDate((selectDate) => ({ ...selectDate, checkOut: selectTime }));
+    } else if (selectTime < checkInTime) {
+      setSelectDate((selectDate) => ({ ...selectDate, checkIn: selectTime }));
+    }
+    setSelectedCheckBox('checkOut');
+    return;
   };
 
   const getDateList = (weekData: dayType[]): ReactElement[] =>

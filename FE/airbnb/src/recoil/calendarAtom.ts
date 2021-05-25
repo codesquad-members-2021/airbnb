@@ -30,7 +30,7 @@ export const calendarState = atom<calendarDateType>({
 
 export const selectCheckBoxState = atom<string>({
   key: 'selectCheckBoxState',
-  default: 'checkIn',
+  default: 'checkOut',
 });
 
 interface selectDateStateType {
