@@ -12,16 +12,18 @@ class SetUpViewController: UIViewController {
 
     private var reservationDetailViewController: ReservationDetailViewControllerProtocol!
     private var calendarControlView: CalendarControlView! = nil
-    private var context: String! {
+    private var priceSlideControlView: PriceSlideControlView! = nil
+    private var currentContextView: String! {
         didSet {
-            guard self.context != nil else { return }
-            reservationDetailViewController.setContext(with: self.context)
+            guard self.currentContextView != nil else { return }
+            reservationDetailViewController.setContext(with: self.currentContextView)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCelendarControlView()
+        print(calendarControlView.bounds)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -30,22 +32,24 @@ class SetUpViewController: UIViewController {
         }
     }
     
+    private func configureLayout(of currentContextView: UIView) {
+        let reservationDetailViewHeightRatioToView = 0.3
+        NSLayoutConstraint.activate([
+            currentContextView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            currentContextView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            currentContextView.topAnchor.constraint(equalTo: view.topAnchor),
+            currentContextView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: CGFloat((1.0 - reservationDetailViewHeightRatioToView)))
+        ])
+    }
+    
     public func configureCelendarControlView() {
-        self.context = String(describing: CalendarControlView.self)
+        self.currentContextView = String(describing: CalendarControlView.self)
         
         self.calendarControlView = CalendarControlView()
         view.addSubview(calendarControlView)
         calendarControlView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let reservationDetailViewHeightRatioToView = 0.3
-        NSLayoutConstraint.activate([
-            calendarControlView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            calendarControlView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            calendarControlView.topAnchor.constraint(equalTo: view.topAnchor),
-            calendarControlView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: CGFloat((1.0 - reservationDetailViewHeightRatioToView)))
-        ])
-        
-        calendarControlView?.dateInfoReceivable = self
+        configureLayout(of: calendarControlView)
+        calendarControlView.dateInfoReceivable = self
     }
     
     public func deinitializeCalendarControlView() {
@@ -53,7 +57,25 @@ class SetUpViewController: UIViewController {
         self.calendarControlView.removeConstraints(self.calendarControlView.constraints)
         self.calendarControlView.removeFromSuperview()
         self.calendarControlView = nil
-        self.context = nil
+        self.currentContextView = nil
+    }
+    
+    public func configurePriceControlView() {
+        self.currentContextView = String(describing: PriceSlideControlView.self)
+        
+        self.priceSlideControlView = PriceSlideControlView()
+        view.addSubview(priceSlideControlView)
+        priceSlideControlView.translatesAutoresizingMaskIntoConstraints = false
+        configureLayout(of: priceSlideControlView)
+        priceSlideControlView.priceInfoReceivable = self
+    }
+    
+    public func deinitializePriceControlView() {
+        self.priceSlideControlView.priceInfoReceivable = nil
+        self.priceSlideControlView.removeConstraints(self.priceSlideControlView.constraints)
+        self.priceSlideControlView.removeFromSuperview()
+        self.priceSlideControlView = nil
+        self.currentContextView = nil
     }
 }
 
@@ -61,6 +83,14 @@ extension SetUpViewController: DateInfoReceivable {
     
     func updateDateInfo(date: Date, isLowerDate: Bool) {
         reservationDetailViewController.changeDateRange(date: date, isLowerDay: isLowerDate)
+    }
+    
+}
+
+extension SetUpViewController: PriceInfoReceivable {
+    
+    func updatePriceInfo(lowestPrice: CGFloat, highestPrice: CGFloat) {
+        reservationDetailViewController.changePriceRange(lowestPrice: lowestPrice, highestPrice: highestPrice)
     }
     
 }

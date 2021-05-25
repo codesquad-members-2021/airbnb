@@ -11,7 +11,7 @@ protocol ReservationDetailViewControllerProtocol {
     func setContext(with description: String)
     func changeLocation()
     func changeDateRange(date: Date, isLowerDay: Bool)
-    func changePriceRange()
+    func changePriceRange(lowestPrice: CGFloat, highestPrice: CGFloat)
     func changeNumberOfHeads()
 }
 
@@ -28,9 +28,12 @@ class ReservationDetailViewController: UIViewController {
     @IBOutlet weak var deleteCurrentDetailButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
+    var currentContext: String?
+    
     var lowerDate: Date?
     var upperDate: Date?
-    var currentContext: String?
+    var lowestPrice: CGFloat?
+    var highestPrice: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +54,8 @@ class ReservationDetailViewController: UIViewController {
         case String(describing: CalendarControlView.self):
             self.detailLabel(for: .date).text = ""
 //            (parent as? SetUpViewController)?.calendarControlView?.clearCalendarView()
+        case String(describing: PriceSlideControlView.self):
+            self.detailLabel(for: .price).text = ""
         default:
             return
         }
@@ -63,6 +68,10 @@ class ReservationDetailViewController: UIViewController {
         switch currentContext {
         case String(describing: CalendarControlView.self):
             (parent as? SetUpViewController)?.deinitializeCalendarControlView()
+            (parent as? SetUpViewController)?.configurePriceControlView()
+        case String(describing: PriceSlideControlView.self):
+            (parent as? SetUpViewController)?.deinitializePriceControlView()
+
         default: break
         }
     }
@@ -108,15 +117,20 @@ extension ReservationDetailViewController: ReservationDetailViewControllerProtoc
             self.nextButton.isEnabled = false
         } else {
             self.upperDate = date
-            dateDetailLabel.text = "\(dateDetailLabel.text!) ~ \(date.month)월 \(date.day)일"
+            dateDetailLabel.text = "\(dateDetailLabel.text!) - \(date.month)월 \(date.day)일"
             self.nextButton.isEnabled = true
         }
         
         self.deleteCurrentDetailButton.isEnabled = true
     }
     
-    func changePriceRange() {
-        //todo
+    func changePriceRange(lowestPrice: CGFloat, highestPrice: CGFloat) {
+        self.lowestPrice = lowestPrice
+        self.highestPrice = highestPrice
+        
+        detailLabel(for: .price).text = "\(String(format: "%.0f", lowestPrice))원 - \(String(format: "%.0f", highestPrice))원"
+        self.nextButton.isEnabled = true
+        self.deleteCurrentDetailButton.isEnabled = true
     }
     
     func changeNumberOfHeads() {

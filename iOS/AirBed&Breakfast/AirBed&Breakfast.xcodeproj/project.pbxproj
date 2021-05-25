@@ -27,6 +27,8 @@
 		88606136265796AA00681808 /* DayRangeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88606135265796AA00681808 /* DayRangeIndicatorView.swift */; };
 		8860613C265A337C00681808 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8860613B265A337C00681808 /* DateExtension.swift */; };
 		8860614A265B66D100681808 /* CalendarControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88606149265B66D100681808 /* CalendarControlView.swift */; };
+		8860615F265BED9E00681808 /* PriceSlideControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8860615E265BED9E00681808 /* PriceSlideControlView.swift */; };
+		88606167265BF5A300681808 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88606166265BF5A300681808 /* RangeSlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		88606135265796AA00681808 /* DayRangeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRangeIndicatorView.swift; sourceTree = "<group>"; };
 		8860613B265A337C00681808 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		88606149265B66D100681808 /* CalendarControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarControlView.swift; sourceTree = "<group>"; };
+		8860615E265BED9E00681808 /* PriceSlideControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSlideControlView.swift; sourceTree = "<group>"; };
+		88606166265BF5A300681808 /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +169,7 @@
 				885CEB5526539C7500B3291F /* SearchResultCollectionView */,
 				885CEB612656393700B3291F /* ReservationDetailTableView */,
 				886061302657962100681808 /* CalendarView */,
+				8860615D265BED4E00681808 /* PriceSlideView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -223,6 +228,15 @@
 				88606149265B66D100681808 /* CalendarControlView.swift */,
 			);
 			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		8860615D265BED4E00681808 /* PriceSlideView */ = {
+			isa = PBXGroup;
+			children = (
+				8860615E265BED9E00681808 /* PriceSlideControlView.swift */,
+				88606166265BF5A300681808 /* RangeSlider.swift */,
+			);
+			path = PriceSlideView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,11 +354,13 @@
 				886061322657964A00681808 /* DayLabel.swift in Sources */,
 				885CEB4C26538DDC00B3291F /* SearchViewController.swift in Sources */,
 				885CEB65265639FF00B3291F /* ReservationDetailViewController.swift in Sources */,
+				8860615F265BED9E00681808 /* PriceSlideControlView.swift in Sources */,
 				88606136265796AA00681808 /* DayRangeIndicatorView.swift in Sources */,
 				8860613C265A337C00681808 /* DateExtension.swift in Sources */,
 				885CEB5E2656355200B3291F /* SetUpViewController.swift in Sources */,
 				8843A7BF26523EA80068B4E3 /* SceneDelegate.swift in Sources */,
 				885CEB512653957A00B3291F /* SearchResultCollectionViewCell.swift in Sources */,
+				88606167265BF5A300681808 /* RangeSlider.swift in Sources */,
 				885CEB6A26563A8200B3291F /* ReservationDetailTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

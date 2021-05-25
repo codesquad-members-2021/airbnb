@@ -57,7 +57,7 @@ class CalendarControlView: UIView {
     func setDaySelectionHandler() {
         self.calendarView.daySelectionHandler = { [weak self] day in
             guard let self = self else { return }
-            
+        
             if day.components.year == self.currentYear && day.components.month! <= self.currentMonth && day.components.day! < self.currentDay {
                 return
             }
