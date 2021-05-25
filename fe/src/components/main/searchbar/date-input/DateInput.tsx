@@ -3,6 +3,7 @@ import InputItem from "../InputItem";
 import { useState, MouseEvent } from "react";
 import Modal from "components/common/Modal";
 import Calendar from "./Calendar";
+import CalendarSlider from "./CalendarSlider";
 
 const DateInput = () => {
   const [toggle, setToggle] = useState(false);
@@ -12,28 +13,30 @@ const DateInput = () => {
   };
 
   return (
-    <StyledDateInput>
-      <InputItem
-        w="40%"
-        title="체크인"
-        subtitle="날짜입력"
-        onClick={handleClick}
-      />
-      <InputItem
-        w="60%"
-        title="체크아웃"
-        subtitle="날짜입력"
-        onClick={handleClick}
-      />
+    <>
+      <StyledDateInput>
+        <InputItem
+          w="40%"
+          title="체크인"
+          subtitle="날짜입력"
+          onClick={handleClick}
+        />
+        <InputItem
+          w="60%"
+          title="체크아웃"
+          subtitle="날짜입력"
+          onClick={handleClick}
+        />
+      </StyledDateInput>
       <Modal
         toggle={toggle}
         handleClick={handleClick}
         br="40px"
         position={ModalPosition}
       >
-        <Calendar date={{ year: 2021, mon: 5 }} />
+        <CalendarSlider CalendarType="DOUBLE" />
       </Modal>
-    </StyledDateInput>
+    </>
   );
 };
 
@@ -46,5 +49,6 @@ const StyledDateInput = styled.div`
 
 const ModalPosition = css`
   top: 115%;
-  left: 5%;
+  left: 0;
+  width: 100%;
 `;
