@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
-
-import DayOfTheWeek from './DayOfTheWeek';
+import Day from './Day';
 
 type Props = {
   calendarDate: {
@@ -14,8 +13,11 @@ type Props = {
 const Calendar = ({ calendarDate, idx }: Props) => {
   const { year, month } = calendarDate;
 
+  const currentMonth = new Date(year, month + idx).getMonth() + 1;
+  const currentYear = new Date(year, month + idx).getFullYear();
+
   const firstDay: number = new Date(year, month + idx).getDay();
-  const days: number = new Date(year, month + idx, 0).getDate();
+  const days: number = new Date(year, currentMonth, 0).getDate();
 
   const getDayList = (): number[][] => {
     const dayList: number[][] = [];
@@ -38,10 +40,9 @@ const Calendar = ({ calendarDate, idx }: Props) => {
   return (
     <StyledDiv>
       <h3>
-        {year}년 {month + 1 + idx}월
+        {currentYear}년 {currentMonth}월
       </h3>
       <DatesWrap>
-        <DayOfTheWeek />
         <table>
           <tbody>
             {dayList.map((week, i) => {
@@ -71,16 +72,7 @@ const StyledDiv = styled.div`
 `;
 
 const DatesWrap = styled.div`
+  margin: 48px 0;
   width: 336px;
   height: 336px;
-`;
-
-const Row = styled.tr`
-  width: 100%;
-`;
-
-const Day = styled.td`
-  width: 48px;
-  height: 48px;
-  text-align: center;
 `;
