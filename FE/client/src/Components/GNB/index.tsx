@@ -29,12 +29,15 @@ const GNB = ({ isMain }: GNBType) => {
 }
 
 const GNBWrapper = styled.div<GNBType>`
+  position: ${({isMain}) => isMain ? '' : 'fixed'};
   display: flex;
   padding: 1rem 0;
   width: 100%;
   justify-content: space-around;
   box-shadow: ${({isMain}) => isMain ? '' : '0px 0px 4px rgba(204, 204, 204, 0.5), 0px 2px 4px rgba(0, 0, 0, 0.25)'}; 
+  background: ${({isMain}) => isMain ? 'none' : '#fff'};
   gap:10rem;
+  z-index: ${({isMain}) => isMain ? '0' : '1'};
 `;
 
 const Logo = styled.span`
