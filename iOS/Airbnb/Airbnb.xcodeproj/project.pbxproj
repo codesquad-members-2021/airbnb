@@ -65,6 +65,7 @@
 				D0A4F2A22653BEA5009741B5 /* TravelStyleCollectionViewCell.swift */,
 				D0A4F29026538350009741B5 /* RegionCell.swift */,
 				D0A4F2992653934F009741B5 /* TravelStyleCell.swift */,
+				D0A4F2752652A8A4009741B5 /* Main.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -92,7 +93,6 @@
 				D0A4F2A62654F8FB009741B5 /* ViewControllers */,
 				D02D783E26579A6700F5488B /* Views */,
 				D0F0ED31265A927F009E74AC /* ViewModels */,
-				D0A4F2752652A8A4009741B5 /* Main.storyboard */,
 				D0A4F27D2652A8A4009741B5 /* Info.plist */,
 			);
 			path = Airbnb;
