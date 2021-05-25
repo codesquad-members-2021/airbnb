@@ -1,6 +1,6 @@
 package com.team19.airbnb.dto;
 
-import com.team19.airbnb.entity.room.Host;
+import com.team19.airbnb.domain.room.Host;
 
 import java.math.BigDecimal;
 import java.util.List;

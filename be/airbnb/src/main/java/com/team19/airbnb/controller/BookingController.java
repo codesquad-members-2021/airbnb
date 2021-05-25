@@ -1,8 +1,9 @@
 package com.team19.airbnb.controller;
 
+import com.team19.airbnb.domain.room.Host;
 import com.team19.airbnb.dto.BookingRequestDTO;
 import com.team19.airbnb.dto.BookingResponseDTO;
-import com.team19.airbnb.domain.room.Host;
+import com.team19.airbnb.service.BookingService;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -13,9 +14,15 @@ import java.util.List;
 @RestController
 public class BookingController {
 
+    private final BookingService bookingService;
+
+    public BookingController(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
+
     @PostMapping("/bookings/{userId}")
-    public void bookRoom(@RequestBody BookingRequestDTO bookingRequestDTO) {
-        System.out.println(bookingRequestDTO.toString());
+    public void bookRoom(@RequestBody BookingRequestDTO bookingRequestDTO, @PathVariable Long userId) {
+        bookingService.createBooking(bookingRequestDTO, userId);
     }
 
     @GetMapping("/bookings/{userId}")
