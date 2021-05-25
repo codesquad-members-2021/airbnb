@@ -15,4 +15,8 @@ public class ResponseBody<T> {
     public static ResponseBody<String> notFound(String message) {
         return new ResponseBody<>(message);
     }
+
+    public T getBody() {
+        return body;
+    }
 }

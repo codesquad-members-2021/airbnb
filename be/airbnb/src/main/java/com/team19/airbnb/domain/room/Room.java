@@ -63,4 +63,48 @@ public class Room {
                 roomType, roomConfiguration, description,
                 host);
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public Double getGrade() {
+        return grade;
+    }
+
+    public Integer getReviewer() {
+        return reviewer;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public BigDecimal getPricePerDay() {
+        return pricePerDay;
+    }
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public String getRoomConfiguration() {
+        return roomConfiguration;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Host getHost() {
+        return host;
+    }
 }

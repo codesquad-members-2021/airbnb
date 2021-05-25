@@ -11,4 +11,8 @@ public class Image {
     public Image create(String url, Long roomId) {
         return new Image(url);
     }
+
+    public String getUrl() {
+        return url;
+    }
 }

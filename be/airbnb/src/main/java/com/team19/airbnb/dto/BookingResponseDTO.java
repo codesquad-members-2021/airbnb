@@ -1,41 +1,79 @@
 package com.team19.airbnb.dto;
 
+import com.team19.airbnb.domain.Booking;
 import com.team19.airbnb.domain.room.Host;
+import com.team19.airbnb.domain.room.Image;
+import com.team19.airbnb.domain.room.Room;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BookingResponseDTO {
 
     private Long bookingId;
     private LocalDate checkIn;
     private LocalDate checkOut;
+    private Integer guest;
+    private BigDecimal totalPrice;
+
     private Long roomId;
     private String roomName;
     private String roomType;
     private List<String> images;
     private Host host;
-    private Integer guest;
-    private BigDecimal totalPrice;
 
-    public BookingResponseDTO(Long bookingId,
-                              LocalDate checkIn, LocalDate checkOut,
-                              Long roomId, String roomName, String roomType,
-                              List<String> images,
-                              Host host,
-                              Integer guest,
-                              BigDecimal totalPrice) {
+    private BookingResponseDTO(Long bookingId, LocalDate checkIn, LocalDate checkOut, Integer guest, BigDecimal totalPrice,
+                               Long roomId, String roomName, String roomType, List<String> images, Host host) {
         this.bookingId = bookingId;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+        this.guest = guest;
+        this.totalPrice = totalPrice;
+
         this.roomId = roomId;
         this.roomName = roomName;
         this.roomType = roomType;
         this.images = images;
         this.host = host;
-        this.guest = guest;
-        this.totalPrice = totalPrice;
+    }
+
+    public static class Builder {
+
+        private Long bookingId;
+        private LocalDate checkIn;
+        private LocalDate checkOut;
+        private Integer guest;
+        private BigDecimal totalPrice;
+
+        private Long roomId;
+        private String roomName;
+        private String roomType;
+        private List<String> images;
+        private Host host;
+
+        public Builder(Booking booking, Room room) {
+
+            this.bookingId = booking.getId();
+            this.checkIn = booking.getCheckIn();
+            this.checkOut = booking.getCheckOut();
+            this.guest = booking.getGuest();
+            this.totalPrice = booking.getTotalPrice();
+
+            this.roomId = room.getId();
+            this.roomName = room.getName();
+            this.roomType = room.getRoomType();
+            this.images = room.getImages().stream()
+                    .map(Image::getUrl)
+                    .collect(Collectors.toList());
+            this.host = room.getHost();
+        }
+
+        public BookingResponseDTO build() {
+            return new BookingResponseDTO(bookingId, checkIn, checkOut, guest, totalPrice,
+                    roomId, roomName, roomType, images, host);
+        }
     }
 
     public Long getBookingId() {
@@ -48,6 +86,10 @@ public class BookingResponseDTO {
 
     public LocalDate getCheckOut() {
         return checkOut;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
     }
 
     public Long getRoomId() {
@@ -72,9 +114,5 @@ public class BookingResponseDTO {
 
     public Integer getGuest() {
         return guest;
-    }
-
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
     }
 }

@@ -28,41 +28,15 @@ public class BookingController {
 
     @GetMapping("/bookings/{userId}")
     public List<BookingResponseDTO> getBookings() {
-        List<BookingResponseDTO> bookings = new ArrayList<>();
-        bookings.add(createBookingResponseDTO(1L));
-        bookings.add(createBookingResponseDTO(2L));
-        return bookings;
+        return null;
     }
 
     @GetMapping("/bookings/{bookingId}/{userId}")
     public ResponseBody<BookingResponseDTO> getBooking(@PathVariable Long bookingId, @PathVariable Long userId) {
-        bookingService.findBooking(userId, bookingId);
-        return null;
+        return ResponseBody.ok(bookingService.findBooking(userId, bookingId));
     }
 
     @DeleteMapping("/bookings/{bookingId}/{userId}")
     public void deleteWishList(@PathVariable Long bookingId, @PathVariable Long userId) {
-    }
-
-    private BookingResponseDTO createBookingResponseDTO(Long bookingId) {
-        LocalDate checkIn = LocalDate.of(2020,3,20);
-        LocalDate checkOut = LocalDate.of(2020, 4, 4);
-        Long roomId = 1L;
-        String roomName = "코드스쿼드";
-        String roomType = "원룸";
-        List<String> images = new ArrayList<>();
-        images.add("image1");
-        images.add("image2");
-        images.add("image3");
-        Host host = Host.create("홍길동", "image");
-        int guest = 5;
-        BigDecimal totalPrice = new BigDecimal(100000);
-        return new BookingResponseDTO(bookingId,
-                checkIn, checkOut,
-                roomId, roomName, roomType,
-                images,
-                host,
-                guest,
-                totalPrice);
     }
 }
