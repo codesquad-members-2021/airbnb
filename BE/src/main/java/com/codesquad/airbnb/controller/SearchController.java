@@ -3,6 +3,7 @@ package com.codesquad.airbnb.controller;
 import com.codesquad.airbnb.dto.PriceSearchDTO;
 import com.codesquad.airbnb.dto.PropertiesResponseDTO;
 import com.codesquad.airbnb.service.PropertyService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +22,8 @@ public class SearchController {
     @GetMapping()
     public ResponseEntity<PropertiesResponseDTO> propertiesSearch(
             @RequestParam(value = "locationId", required = false) Long locationId,
-            @RequestParam(value = "checkIn", required = false) LocalDate checkIn,
-            @RequestParam(value = "checkOut", required = false) LocalDate checkOut,
+            @RequestParam(value = "checkIn", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkIn,
+            @RequestParam(value = "checkOut", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkOut,
             @RequestParam(value = "minPrice", required = false, defaultValue = "0") int minPrice,
             @RequestParam(value = "maxPrice", required = false, defaultValue = "1000000") int maxPrice,
             @RequestParam(value = "adult", required = false, defaultValue = "0") int adult,

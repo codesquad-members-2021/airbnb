@@ -61,14 +61,17 @@ public class PropertyDAO {
                 "and p.price >= ? " +
                 "and p.price <= ?";
         // TODO: userid도 함께 확인해서 wishList를 찾는것이 좋을 것 같음...
+        long diff = 1;
+        if(checkIn != null || checkOut != null) {
+            diff = ChronoUnit.DAYS.between(checkIn, checkOut);
+        }
 
-        long diff = ChronoUnit.DAYS.between(checkIn, checkOut);
 
         List<PropertyDTO> propertyDto = jdbcTemplate.query(sql, new RowMapper<PropertyDTO>() {
                     // interface method
                     @Override
                     public PropertyDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        return PropertyDTO.of(rs.getLong("id"), rs.getString("name"),
+                        return PropertyDTO.of(rs.getLong("id"), rs.getString("title"),
                                 rs.getBoolean("bookmark"), rs.getInt("price"),
                                 rs.getInt("review_count"), rs.getDouble("rating"));
                     }
@@ -78,10 +81,11 @@ public class PropertyDAO {
                 new SqlParameterValue(Types.INTEGER, minPrice),
                 new SqlParameterValue(Types.INTEGER, maxPrice));
 
+        long finalDiff = diff;
         propertyDto.stream()
                 .forEach(propertyDTO1 -> {
                             propertyDTO1.setImages(findImageByPropertyId(propertyDTO1.getPropertyId()));
-                            propertyDTO1.setTotalPrice(diff);
+                            propertyDTO1.setTotalPrice(finalDiff);
                         }
                 );
 
