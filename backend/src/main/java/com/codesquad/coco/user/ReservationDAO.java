@@ -15,15 +15,16 @@ public class ReservationDAO {
         this.template = template;
     }
 
-    public void reservation(Long roomId, ReservationDTO reservationDTO){
+    public void reservation(Long roomId, Long userId, ReservationDTO reservationDTO) {
         MapSqlParameterSource parameter = new MapSqlParameterSource()
-                .addValue("room_id",roomId)
-                .addValue("check_in",reservationDTO.getCheckIn())
-                .addValue("check_out",reservationDTO.getCheckOut())
-                .addValue("total_price",reservationDTO.getTotalPrice())
-                .addValue("adult",reservationDTO.getAdult())
-                .addValue("child",reservationDTO.getChild())
-                .addValue("baby",reservationDTO.getBaby());
+                .addValue("room_id", roomId)
+                .addValue("check_in", reservationDTO.getCheckIn())
+                .addValue("check_out", reservationDTO.getCheckOut())
+                .addValue("total_price", reservationDTO.getTotalPrice())
+                .addValue("adult", reservationDTO.getAdult())
+                .addValue("child", reservationDTO.getChild())
+                .addValue("baby", reservationDTO.getBaby())
+                .addValue("user_id", userId);
         //todo : oauth 완료하고 userId도 넣어야함
         template.update(INSERT_RESERVATION,parameter);
     }

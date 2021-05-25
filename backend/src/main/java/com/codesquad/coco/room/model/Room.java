@@ -1,11 +1,15 @@
 package com.codesquad.coco.room.model;
 
+import com.codesquad.coco.exception.business.NonReservationException;
+import com.codesquad.coco.exception.business.OvercapacityException;
 import com.codesquad.coco.host.Host;
 import com.codesquad.coco.image.Image;
 import com.codesquad.coco.user.Reservation;
 import com.codesquad.coco.user.WishList;
+import com.codesquad.coco.utils.CalcUtil;
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,22 +64,33 @@ public class Room {
     }
 
 
-    public int getTotalPrice(int fewNights) {
+    public int calcTotalPrice(int fewNights) {
         int basicPrice = fewNights * pricePerDate.getMoney();
         int additionalPrice = 0;
         if (fewNights >= ONE_WEEK) {
-            additionalPrice -= percentCalc(basicPrice, additionalCost.getWeekSalePercent());
+            additionalPrice -= CalcUtil.percentCalc(basicPrice, additionalCost.getWeekSalePercent());
         }
-        // 추가 비용
-        additionalPrice += percentCalc(basicPrice, additionalCost.getServiceFeePercent());
-        additionalPrice += percentCalc(basicPrice, additionalCost.getLodgmentFeePercent());
+        additionalPrice += CalcUtil.percentCalc(basicPrice, additionalCost.getServiceFeePercent());
+        additionalPrice += CalcUtil.percentCalc(basicPrice, additionalCost.getLodgmentFeePercent());
         additionalPrice += additionalCost.getCleaningFee();
 
         return basicPrice + additionalPrice;
     }
 
-    private int percentCalc(int totalPrice, int percent) {
-        return totalPrice * (percent / 100);
+    public boolean capacityCheck(int adult, int child) {
+        if (roomOption.getMaxGuest() < adult + child) {
+            throw new OvercapacityException();
+        }
+        return true;
+    }
+
+    public boolean reservationAvailabilityCheck(LocalDate checkIn, LocalDate checkOut) {
+        for (Reservation reservation : reservations) {
+            if (!reservation.reservationDateCheck(checkIn, checkOut)) {
+                throw new NonReservationException();
+            }
+        }
+        return true;
     }
 
     public void addReservation(Reservation reservation) {

@@ -16,4 +16,8 @@ public class LocalDateUtil {
     public static int getAccommodationDay(LocalDate checkIn, LocalDate checkOut) {
         return (int) ChronoUnit.DAYS.between(checkIn, checkOut);
     }
+
+    public static boolean betweenCheck(LocalDate targetDate, LocalDate startDate, LocalDate endDate) {
+        return (targetDate.isAfter(startDate)) && (targetDate.isBefore(endDate));
+    }
 }
