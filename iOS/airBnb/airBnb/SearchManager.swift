@@ -28,4 +28,11 @@ class SearchManager {
     func selectDays(from dates: SequenceDates) {
         selectDates = dates
     }
+     
+    func resetDates() {
+        selectDates.start = nil
+        selectDates.end = nil
+        NotificationCenter.default.post(name: CalendarViewController.NotiName.reset, object: nil)
+    }
+
 }

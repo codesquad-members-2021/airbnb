@@ -20,14 +20,20 @@ class LocationInfoViewController: UIViewController{
     
     private var cancellable = Set<AnyCancellable>()
     private var locationInfoViewModel: LocationInfoViewModel?
-    
+    private var deleteDatesSubject = PassthroughSubject<Void, Never>()
+    private var nextViewControllerSubject: PassthroughSubject<Void, Never>?
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
     }
     
-    func inject(from manager : SearchManager){
+    func inject(from manager : SearchManager, subject: PassthroughSubject<Void,Never>){
         locationInfoViewModel = LocationInfoViewModel(from: manager)
+        nextViewControllerSubject = subject
+        deleteDatesSubject.sink { [weak self] _ in
+            self?.locationInfoViewModel?.deleteSelectDate()
+        }.store(in: &cancellable)
     }
         
     func bind() {
@@ -42,23 +48,11 @@ class LocationInfoViewController: UIViewController{
     }
     
     @IBAction func nextButtonTouched(_ sender: UIButton) {
-        func remove() {
-            _ = children.map {
-                $0.view.removeFromSuperview()
-                $0.removeFromParent()
-            }
-            
-            let priceView = PriceSliderViewController()
-            addChild(priceView)
-            
-            priceView.view.frame = containerView.bounds
-            containerView.addSubview(priceView.view)
-        }
-        remove()
+        nextViewControllerSubject?.send()
     }
     
     @IBAction func skipAndDeleteButtonTouched(_ sender: UIButton) {
-        
+        deleteDatesSubject.send()
     }
     
 }

@@ -370,6 +370,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
+                                            <action selector="skipAndDeleteButtonTouched:" destination="fBp-PC-pPS" eventType="touchUpInside" id="S7s-kr-kDN"/>
                                             <action selector="skipAndDeleteButtonTouched:" destination="Ns1-cu-AzI" eventType="touchUpInside" id="VVY-u8-3Zb"/>
                                         </connections>
                                     </button>
@@ -378,8 +379,8 @@
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="다음"/>
                                         <connections>
+                                            <action selector="nextButtonTouched:" destination="fBp-PC-pPS" eventType="touchUpInside" id="OBN-8X-j3y"/>
                                             <action selector="nextButtonTouched:" destination="Ns1-cu-AzI" eventType="touchUpInside" id="Tjt-92-YQY"/>
-                                            <action selector="nextButtonTouched:" destination="fBp-PC-pPS" eventType="touchUpInside" id="hSf-My-taz"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -408,7 +409,7 @@
                     <connections>
                         <outlet property="checkInOutLabel" destination="vzA-l7-a0W" id="k8A-wB-f6k"/>
                         <outlet property="locationLabel" destination="Lx4-hQ-5Xw" id="GTM-RL-duj"/>
-                        <outlet property="nextButton" destination="Yvw-QB-s9D" id="QAt-rE-QaY"/>
+                        <outlet property="nextButton" destination="Yvw-QB-s9D" id="EPk-62-TYf"/>
                         <outlet property="numOfPeopleLabel" destination="HFW-uu-o0N" id="m9U-qs-lux"/>
                         <outlet property="priceLabel" destination="Bee-nC-3c5" id="CGs-dR-Xhw"/>
                         <outlet property="skipAndDeleteButton" destination="hdu-Rh-OcB" id="WJs-Ij-SSh"/>

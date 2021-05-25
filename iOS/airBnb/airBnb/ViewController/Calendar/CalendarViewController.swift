@@ -10,6 +10,10 @@ import Combine
 
 class CalendarViewController: UIViewController {
 
+    enum NotiName {
+        static let reset = Notification.Name.init("reset")
+    }
+    
     @IBOutlet weak var calendarCollection: UICollectionView!
     @IBOutlet weak var containerView: UIView!
     
@@ -18,6 +22,7 @@ class CalendarViewController: UIViewController {
     private let headerViewHight:CGFloat = 60
     private let searchManager = SearchManager()
     private let didSelectSubject = PassthroughSubject<Void,Never>()
+    private let nextViewControllerSubject = PassthroughSubject<Void,Never>()
     private var cancellable = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -26,17 +31,18 @@ class CalendarViewController: UIViewController {
         createDataSoure()
         configure()
         bind()
+        NotificationCenter.default.addObserver(self, selector: #selector(resetSelectDates(_:)), name: NotiName.reset, object: nil)
     }
     
     private func addContainerView() {
         let storyboard = UIStoryboard(name: "LocationInfo", bundle: nil)
-        guard let bottomView = storyboard.instantiateViewController(withIdentifier: "LocationInfo") as? LocationInfoViewController else {
+        guard let InfoView = storyboard.instantiateViewController(withIdentifier: "LocationInfo") as? LocationInfoViewController else {
             return
         }
-        bottomView.inject(from: searchManager)
-        addChild(bottomView)
-        bottomView.view.frame = containerView.bounds
-        containerView.addSubview(bottomView.view)
+        InfoView.inject(from: searchManager, subject: nextViewControllerSubject)
+        addChild(InfoView)
+        InfoView.view.frame = containerView.bounds
+        containerView.addSubview(InfoView.view)
     }
     
     private func configure() {
@@ -54,6 +60,20 @@ class CalendarViewController: UIViewController {
         didSelectSubject.sink { [weak self] _ in
             self?.calendarDataSource?.sequenceDates = self?.searchManager.selectDates ?? SequenceDates.init()
         }.store(in: &self.cancellable)
+        
+        moveViewController()
+    }
+    
+    @objc func resetSelectDates(_ notification: Notification) {
+        didSelectSubject.send()
+        calendarCollection.reloadData()
+    }
+    
+    func moveViewController() {
+        nextViewControllerSubject.sink { [weak self] _ in
+            self?.navigationController?.pushViewController(PriceSliderViewController(), animated: true)
+            
+        }.store(in: &cancellable)
     }
 }
 

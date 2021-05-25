@@ -36,7 +36,7 @@ struct SequenceDates {
         } else if let s = start, end == nil && start != selectedDate {
             if selectedDate < s {
                 start = selectedDate
-                end = start
+                end = s
             } else {
                 start = s
                 end = selectedDate
@@ -56,16 +56,11 @@ struct SequenceDates {
 class CalendarManager {
     private(set) var dates: [String:[Date?]] = [:]
     
-    enum NotiName {
-        static let selectDate = Notification.Name("selectDate")
-    }
-    
     init() {
-        sequenceDates = .init(start: nil, end: nil)
         makeCalendarDate()
     }
     
-    func makeCalendarDate() {
+    private func makeCalendarDate() {
         dates = CalendarHelper.makeCalenderDate()
     }
 }

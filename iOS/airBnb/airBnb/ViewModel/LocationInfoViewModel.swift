@@ -39,4 +39,8 @@ class LocationInfoViewModel {
             .map { $0.start != nil && $0.end != nil }
             .eraseToAnyPublisher()
     }
+    
+    func deleteSelectDate() {
+        searchManager.resetDates()
+    }
 }
