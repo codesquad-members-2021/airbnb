@@ -31,7 +31,7 @@ final class FindingAccommodation {
         self.networkManager = networkManager
     }
     
-    func getAvailableRoomsPrices(checkIn: String, checkOut: String, cityName: String) {
+    private func getAvailableRoomsPrices(checkIn: String, checkOut: String, cityName: String) {
         var queryItems = [URLQueryItem]()
         queryItems.append(QueryItems.cityName.assign(value: cityName))
         queryItems.append(QueryItems.checkIn.assign(value: checkIn))
@@ -45,7 +45,7 @@ final class FindingAccommodation {
         }
     }
     
-    func getAvailableRoomsList(numOfPeople: Int) {
+    private func getAvailableRoomsList(numOfPeople: Int) {
         var queryItems = [URLQueryItem]()
         queryItems.append(QueryItems.checkIn.assign(value: checkIn!))
         queryItems.append(QueryItems.checkOut.assign(value: checkOut!))

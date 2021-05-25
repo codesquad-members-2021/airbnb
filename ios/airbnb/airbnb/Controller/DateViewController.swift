@@ -8,7 +8,7 @@
 import UIKit
 import FSCalendar
 
-class DateViewController: UIViewController {
+final class DateViewController: UIViewController {
 
     @IBOutlet weak var calendarView: FSCalendar!
     
@@ -21,7 +21,7 @@ class DateViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
     }
  
-    func setUpCalendarView() {
+    private func setUpCalendarView() {
         calendarView.allowsMultipleSelection = true
         calendarView.swipeToChooseGesture.isEnabled = true
         calendarView.scrollDirection = .vertical

@@ -69,7 +69,7 @@ enum QueryItems {
     case minPrice
     case numOfPeople
     
-    private func assign(value: String) -> URLQueryItem {
+    func assign(value: String) -> URLQueryItem {
         switch self {
         case .checkIn:
             return URLQueryItem(name: "checkIn", value: value)

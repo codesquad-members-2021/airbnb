@@ -35,7 +35,7 @@ final class ViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    func registerNib() {
+    private func registerNib() {
         let cityNib = UINib(nibName: CityCollectionViewCell.nibName, bundle: nil)
         let spotNib = UINib(nibName: SpotCollectionViewCell.nibName, bundle: nil)
         cityCollectionView.register(cityNib, forCellWithReuseIdentifier: CityCollectionViewCell.identifier)
@@ -47,7 +47,7 @@ final class ViewController: UIViewController {
         searchView.addGestureRecognizer(gesture)
     }
     
-    @objc func tapped() {
+    @objc private func tapped() {
         performSegue(withIdentifier: "local", sender: self)
     }
     
@@ -56,7 +56,7 @@ final class ViewController: UIViewController {
         locationController.getLocationManager(manager: self.locationManager)
     }
     
-    func bind() {
+    private func bind() {
         locationManager.$mainLayout
             .receive(on: DispatchQueue.main)
             .sink { [weak self] mainLayout in

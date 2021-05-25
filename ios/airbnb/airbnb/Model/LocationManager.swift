@@ -18,7 +18,7 @@ final class LocationManager {
 
     }
     
-    private func fetchCitiesLocation() {
+    func fetchCitiesLocation() {
         networkManager.getData(url: EndPoint.url(path: .cities), decodableType: MainLayout.self) { mainLayout in
             self.mainLayout = mainLayout
         }

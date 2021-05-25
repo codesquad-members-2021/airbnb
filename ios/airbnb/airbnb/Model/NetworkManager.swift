@@ -13,7 +13,7 @@ protocol Networking {
     func getData<T: Decodable>(url: String, decodableType: T.Type, completion: @escaping (T) -> Void)
 }
 
-class NetworkManager: Networking {
+final class NetworkManager: Networking {
     func getData<T: Decodable>(url: String, decodableType: T.Type, completion: @escaping (T) -> Void) {
         AF.request(url,
                    method: .get,
