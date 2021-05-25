@@ -9,8 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -41,7 +42,8 @@ public class PropertyDaoTest {
 
     @Test
     void propertyDao_findBy() {
-        PropertiesResponseDto properties = propertyDao.findBy(1L,null,null,10000, 100000, 2,0,0);
+        PropertiesResponseDto properties = propertyDao.findBy(1L, LocalDate.of(2021,5,20),LocalDate.of(2021,5,23),
+                10000, 100000, 2,0,0);
         for(PropertyDto property : properties.getProperties()){
             assertThat(property).isNotNull();
             logger.info("Find property by propertyDao: {}",

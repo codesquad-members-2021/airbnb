@@ -10,41 +10,44 @@ import java.util.Set;
 public class PropertyDto {
 
     private Long propertyId;
-    private List<String> images = new ArrayList<>();
+    private String images;
     private String title;
     private boolean bookmark;
     private int pricePerNight;
-    private int totalPrice;
+    private long totalPrice;
     private int reviewCount;
     private double rating;
 
     public PropertyDto() {
     }
 
-    public PropertyDto(Long propertyId, String title, boolean bookmark, int pricePerNight, int totalPrice, int reviewCount, double rating) {
+    public PropertyDto(Long propertyId, String title, boolean bookmark, int pricePerNight, int reviewCount, double rating) {
         this.propertyId = propertyId;
         this.title = title;
         this.bookmark = bookmark;
         this.pricePerNight = pricePerNight;
-        this.totalPrice = totalPrice;
         this.reviewCount = reviewCount;
         this.rating = rating;
     }
 
-    public static PropertyDto of(Long propertyId, String propertyTitle, boolean bookmark, int price, int totalPrice, int reviewCount, double rating) {
-        return new PropertyDto(propertyId, propertyTitle, bookmark, price, totalPrice,
+    public static PropertyDto of(Long propertyId, String propertyTitle, boolean bookmark, int price, int reviewCount, double rating) {
+        return new PropertyDto(propertyId, propertyTitle, bookmark, price,
                 reviewCount, rating);
     }
 
-    public void setImages(List<String> images) {
+    public void setImages(String images) {
         this.images = images;
+    }
+
+    public void setTotalPrice(long totalDate) {
+        totalPrice = totalDate * pricePerNight;
     }
 
     public Long getPropertyId() {
         return propertyId;
     }
 
-    public List<String> getImages() {
+    public String getImages() {
         return images;
     }
 
@@ -60,7 +63,7 @@ public class PropertyDto {
         return pricePerNight;
     }
 
-    public int getTotalPrice() {
+    public long getTotalPrice() {
         return totalPrice;
     }
 
