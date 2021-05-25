@@ -24,11 +24,11 @@ final class PopularLocationTableViewDataSource: NSObject, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as? PopularLocationTableViewCell ?? PopularLocationTableViewCell()
         
         let targetIndex = indexPath.row
-        let textInfos = popularLocations[targetIndex]
-        cell.update(with: textInfos)
+        let popularLocationInfos = popularLocations[targetIndex]
+        cell.update(with: popularLocationInfos)
         
-        if let imagePath = popularLocations[targetIndex].cachePath {
-            cell.update(with: imagePath)
+        if let popularLocationImagePath = popularLocations[targetIndex].cachePath {
+            cell.update(with: popularLocationImagePath)
         }
 
         return cell

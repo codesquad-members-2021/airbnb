@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import Alamofire
 
-final class TurnOnUseCase: TurnOnCaseConfigurable {
+final class HeroImageUseCase: ImageLoadUseCase {
     
     enum EndPoint {
         static let heroImage = "/아직없음"
@@ -28,10 +27,16 @@ final class TurnOnUseCase: TurnOnCaseConfigurable {
         self.init(networkManager: FakeNetworkManager(fakeData: fakeData), imageLoadManager: imageLoadManager)
     }
     
-    func loadHeroImage(completionHandler: @escaping (Result<String, NetworkError>) -> Void) {
+    func execute(completionHandler: @escaping (Result<String, NetworkError>) -> Void) {
         networkManager.get(decodingType: String.self, endPoint: EndPoint.heroImage) { dataResponse in
-            completionHandler(dataResponse)
+            do {
+                let imageUrl = try dataResponse.get()
+                self.imageLoadManager.load(from: imageUrl) { cacheUrl in
+                    completionHandler(.success(cacheUrl))
+                }
+            } catch {
+                completionHandler(dataResponse)
+            }
         }
     }
-    
 }

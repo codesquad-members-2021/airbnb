@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import Alamofire
 
-final class NewSearchUseCase: NewSearchCaseConfigurable {
+final class SearchResultUseCase: SearchResultFetchUseCase {
     
     enum EndPoint {
         static let searchResult = "/아직없음"
@@ -25,7 +24,7 @@ final class NewSearchUseCase: NewSearchCaseConfigurable {
         self.init(networkManager: FakeNetworkManager(fakeData: fakeData))
     }
     
-    func search(for keyword: String,
+    func execute(for keyword: String,
                 completionHandler: @escaping (Result<[LocationSearchResult], NetworkError>) -> Void) {
         let endPoint = EndPoint.searchResult + "\(keyword)"
         networkManager.get(decodingType: [LocationSearchResult].self, endPoint: endPoint) { dataResponse in

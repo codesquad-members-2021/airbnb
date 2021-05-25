@@ -7,9 +7,8 @@
 
 import Foundation
 
-final class HomeViewModel: DataLoadViewModel {
+final class HomeViewModel: ImagePathLoadModel {
     
-    typealias DataType = String
     private var dataHandler: DataHandler?
     private var errorHandler: ErrorHandler?
     
@@ -27,17 +26,19 @@ final class HomeViewModel: DataLoadViewModel {
         }
     }
     
-    private(set) var backButtonTitle = "홈"
-    private(set) var searchBarPlaceholder = "어디로 여행가세요?"
-    static let baseUrl = ""
-    private var useCase: TurnOnCaseConfigurable
+    enum ButtonTitle {
+        static let back = "홈"
+    }
     
-    init(useCase: TurnOnCaseConfigurable) {
+    static let baseUrl = ""
+    private var useCase: ImageLoadUseCase
+    
+    init(useCase: ImageLoadUseCase) {
         self.useCase = useCase
     }
     
     convenience init() {
-        let useCase = TurnOnUseCase(url: PopularLocationViewModel.baseUrl)
+        let useCase = HeroImageUseCase(url: PopularLocationViewModel.baseUrl)
         self.init(useCase: useCase)
     }
     
@@ -48,7 +49,7 @@ final class HomeViewModel: DataLoadViewModel {
     }
 
     private func loadHeroImage() {
-        useCase.loadHeroImage { [weak self] result in
+        useCase.execute { [weak self] result in
             do {
                 let cacheUrl = try result.get()
                 self?.heroImagePath = cacheUrl

@@ -40,9 +40,9 @@ struct FakeData {
         PopularLocation(name: "코드스쿼드", distanceFromHere: "걸어서 6시간", imagePath: ImagePath.codesquad)
         ]
     static let FakeSearchResults = [
-        LocationSearchResult(name: "지구", coordinate: Coordinate()),
-        LocationSearchResult(name: "은하계", coordinate: Coordinate()),
-        LocationSearchResult(name: "방구석", coordinate: Coordinate())]
+        LocationSearchResult(name: "지구", coordinate: Coordinate(latitude: 1, longitude: 1)),
+        LocationSearchResult(name: "은하계", coordinate: Coordinate(latitude: 1, longitude: 1)),
+        LocationSearchResult(name: "방구석", coordinate: Coordinate(latitude: 1, longitude: 1))]
 }
 
 enum ImagePath {

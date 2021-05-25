@@ -7,9 +7,8 @@
 
 import Foundation
 
-final class PopularLocationViewModel: DataLoadViewModel {
+final class PopularLocationViewModel: PopularLocationLoadModel {
     
-    typealias DataType = [PopularLocation]
     private var dataHandler: DataHandler?
     private var errorHandler: ErrorHandler?
     
@@ -26,14 +25,16 @@ final class PopularLocationViewModel: DataLoadViewModel {
             errorHandler?(error)
         }
     }
-    
-    private(set) var cancelButtonTitle = "지우기"
-    private(set) var backButtonTitle = "위치 검색"
-    private(set) var searchBarPlaceholder = "어디로 여행가세요?"
+
+    enum ButtonTitle {
+        static let cancel = "지우기"
+        static let back = "위치 검색"
+    }
+
     static let baseUrl = ""
-    private var useCase: PopularLocationCaseConfigurable
+    private var useCase: PopularLocationLoadUseCase
     
-    init(useCase: PopularLocationCaseConfigurable) {
+    init(useCase: PopularLocationLoadUseCase) {
         self.useCase = useCase
     }
     
@@ -49,7 +50,7 @@ final class PopularLocationViewModel: DataLoadViewModel {
     }
     
     private func loadPopularLocations() {
-        useCase.loadPopularLocations { [weak self] result in
+        useCase.execute { [weak self] result in
             do {
                 let popularLocations = try result.get()
                 self?.popularLocations = popularLocations
@@ -63,7 +64,7 @@ final class PopularLocationViewModel: DataLoadViewModel {
     
     private func loadPopularLocationImages(from imageUrls: [String]) {
         imageUrls.enumerated().forEach { index, imageUrl in
-            useCase.loadPopularLocationImage(from: imageUrl) { [weak self] cachePath in
+            useCase.execute(with: imageUrl) { [weak self] cachePath in
                 self?.popularLocations?[index].cachePath = cachePath
             }
         }

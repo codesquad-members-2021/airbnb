@@ -15,9 +15,4 @@ struct LocationSearchResult: Decodable {
 struct Coordinate: Decodable {
     let latitude: Double
     let longitude: Double
-    
-    init() {
-        self.latitude = 0.0
-        self.longitude = 0.0
-    }
 }

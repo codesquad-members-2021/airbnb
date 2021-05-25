@@ -14,26 +14,24 @@ protocol SearchResultDelegate: AnyObject {
 final class SearchResultTableViewController: UITableViewController {
 
     @IBOutlet var searchResultTable: UITableView!
-    private var viewModel = SearchResultViewModel()
     private var searchResultTableViewDataSource: SearchResultTableViewDataSource?
+    private var viewModel: SearchResultUpdateModel?
     weak var delegate: SearchResultDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchResultTableViewDataSource = SearchResultTableViewDataSource()
+        searchResultTable.dataSource = searchResultTableViewDataSource
+        viewModel = SearchResultViewModel()
         bind()
     }
 
     private func bind() {
-        viewModel.bind { [weak self] searchResults in
+        viewModel?.bind { [weak self] searchResults in
             self?.updateTableView(with: searchResults)
         } errorHandler: { [weak self] error in
             self?.alertError(error: error)
         }
-    }
-    
-    func updateSearchResult(with newKeyword: String) {
-        viewModel.newData(with: newKeyword)
     }
     
     private func updateTableView(with searchResults: [LocationSearchResult]) {
@@ -42,11 +40,15 @@ final class SearchResultTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
-    
+
     private func alertError(error: Error) {
         let customError = error as? NetworkError ?? NetworkError.unknown
         let alert = AlertFactory.create(error: customError)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func updateSearchResult(with newKeyword: String) {
+        viewModel?.newData(with: newKeyword)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

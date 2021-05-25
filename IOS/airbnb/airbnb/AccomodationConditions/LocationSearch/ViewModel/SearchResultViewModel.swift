@@ -7,10 +7,8 @@
 
 import Foundation
 
-final class SearchResultViewModel: InputDealingViewModel {
+final class SearchResultViewModel: SearchResultUpdateModel {
     
-    typealias InputType = String
-    typealias DataType = [LocationSearchResult]
     private var dataHandler: DataHandler?
     private var errorHandler: ErrorHandler?
     
@@ -29,14 +27,14 @@ final class SearchResultViewModel: InputDealingViewModel {
     }
     
     static let baseUrl = ""
-    private var useCase: NewSearchCaseConfigurable
+    private var useCase: SearchResultFetchUseCase
     
-    init(useCase: NewSearchCaseConfigurable) {
+    init(useCase: SearchResultFetchUseCase) {
         self.useCase = useCase
     }
     
     convenience init() {
-        let useCase = NewSearchUseCase(url: SearchResultViewModel.baseUrl)
+        let useCase = SearchResultUseCase(url: SearchResultViewModel.baseUrl)
         self.init(useCase: useCase)
     }
     
@@ -46,7 +44,7 @@ final class SearchResultViewModel: InputDealingViewModel {
     }
     
     func newData(with input: String) {
-        useCase.search(for: input) { [weak self] result in
+        useCase.execute(for: input) { [weak self] result in
             do {
                 let searchResults = try result.get()
                 self?.searchResults = searchResults

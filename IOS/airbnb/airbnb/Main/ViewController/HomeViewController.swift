@@ -17,16 +17,22 @@ final class HomeViewController: UIViewController {
         return searchBar
     }
     
-    private var viewModel = HomeViewModel()
+    private var viewModel: ImagePathLoadModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bind()
         setSearchBar()
+        viewModel = HomeViewModel()
+        bind()
+        
+    }
+    
+    private func setSearchBar() {
+        tabBarController?.navigationItem.titleView = searchBar
     }
     
     private func bind() {
-        viewModel.bind { [weak self] imageUrl in
+        viewModel?.bind { [weak self] imageUrl in
             self?.updateHeroImage(with: imageUrl)
         } errorHandler: { [weak self] error in
             self?.alertError(error: error)
@@ -42,11 +48,7 @@ final class HomeViewController: UIViewController {
         let alert = AlertFactory.create(error: customError)
         self.present(alert, animated: true, completion: nil)
     }
-    
-    private func setSearchBar() {
-        tabBarController?.navigationItem.titleView = searchBar
-    }
-    
+  
 }
 
 extension HomeViewController: UISearchBarDelegate {
@@ -59,7 +61,7 @@ extension HomeViewController: UISearchBarDelegate {
     private func pushNextViewController() {
         let nextStoryBoard = StoryboardFactory.create(.accomodationConditions)
         let popularLocationViewController = ViewControllerFactory.create(from: nextStoryBoard, type: PopularLocationViewController.self)
-        self.tabBarController?.navigationItem.backButtonTitle = viewModel.backButtonTitle
+        self.tabBarController?.navigationItem.backButtonTitle = HomeViewModel.ButtonTitle.back
         self.navigationController?.pushViewController(popularLocationViewController, animated: true)
     }
     

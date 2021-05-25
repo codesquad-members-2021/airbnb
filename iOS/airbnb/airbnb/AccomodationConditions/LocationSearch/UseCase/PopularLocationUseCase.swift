@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import Alamofire
 
-final class PopularLocationUseCase: PopularLocationCaseConfigurable {
+final class PopularLocationUseCase: PopularLocationLoadUseCase {
     
     enum EndPoint {
         static let popularLocations = "/아직없음"
@@ -28,16 +27,17 @@ final class PopularLocationUseCase: PopularLocationCaseConfigurable {
         self.init(networkManager: FakeNetworkManager(fakeData: fakeData), imageLoadManager: imageLoadManager)
     }
     
-    func loadPopularLocations(completionHandler: @escaping (Result<[PopularLocation], NetworkError>) -> Void) {
+    func execute(completionHandler: @escaping (Result<[PopularLocation], NetworkError>) -> Void) {
         let endPoint = EndPoint.popularLocations
         networkManager.get(decodingType: [PopularLocation].self, endPoint: endPoint) { dataResponse in
             completionHandler(dataResponse)
         }
     }
     
-    func loadPopularLocationImage(from imageUrl: String, completionHandler: @escaping (String) -> Void) {
+    func execute(with imageUrl: String, completionHandler: @escaping (String) -> Void) {
         imageLoadManager.load(from: imageUrl) { cachePath in
             completionHandler(cachePath)
         }
     }
+    
 }

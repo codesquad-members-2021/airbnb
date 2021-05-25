@@ -13,7 +13,7 @@ final class PopularLocationViewController: UIViewController {
     private var popularLocationTableViewDataSource: PopularLocationTableViewDataSource?
     private var searchController: LocationSearchController?
     private var searchResultUpdater: LocationSearchResultUpdating?
-    private var viewModel = PopularLocationViewModel()
+    private var viewModel: PopularLocationLoadModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,7 @@ final class PopularLocationViewController: UIViewController {
         searchController?.searchResultsUpdater = searchResultUpdater
         searchController?.searchBar.delegate = self
 
+        viewModel = PopularLocationViewModel()
         bind()
     }
     
@@ -39,7 +40,7 @@ final class PopularLocationViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel.bind { [weak self] popularLocation in
+        viewModel?.bind { [weak self] popularLocation in
             self?.updateTableView(with: popularLocation)
         } errorHandler: { [weak self] error in
             self?.alertError(error: error)
@@ -98,7 +99,8 @@ extension PopularLocationViewController: UISearchBarDelegate {
     
     private func setCancelBarButton() {
         guard navigationItem.rightBarButtonItem == nil else { return }
-        let cancelButtonItem = UIBarButtonItem(title: viewModel.cancelButtonTitle,
+        let buttonTitle = PopularLocationViewModel.ButtonTitle.cancel
+        let cancelButtonItem = UIBarButtonItem(title: buttonTitle,
                                                style: .done,
                                                target: self,
                                                action: #selector(searchCanceled))
@@ -119,7 +121,7 @@ extension PopularLocationViewController: SearchResultDelegate {
         let storyboard = self.storyboard ?? StoryboardFactory.create(.accomodationConditions)
         let nextViewController = ViewControllerFactory.create(from: storyboard, type: CalendarViewController.self)
         nextViewController.location = result
-        self.navigationItem.backButtonTitle = viewModel.backButtonTitle
+        self.navigationItem.backButtonTitle = PopularLocationViewModel.ButtonTitle.back
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     
