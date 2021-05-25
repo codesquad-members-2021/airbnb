@@ -20,6 +20,12 @@ export interface People {
     kids: number;
 }
 
+export interface PeopleCount {
+    adult: number;
+    children: number;
+    kids: number;
+}
+
 export interface ReservationContext {
     location: Location;
     checkIn: Date;

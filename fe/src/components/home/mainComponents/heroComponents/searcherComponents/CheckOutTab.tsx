@@ -17,6 +17,7 @@ const CheckOutTab = (): React.ReactElement => {
         searcherDispatch({ type: 'LOCATION_LAYER', state: false });
         searcherDispatch({ type: 'CHECKIN_CALENDAR_LAYER', state: false });
         searcherDispatch({ type: 'FEE_LAYER', state: false });
+        searcherDispatch({ type: 'PEOPLE_LAYER', state: false });
         searcherDispatch({ type: 'CHECKOUT_CALENDAR_LAYER', state: true });
     };
 

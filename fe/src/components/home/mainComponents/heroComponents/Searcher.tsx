@@ -1,10 +1,10 @@
 import React, { useReducer } from 'react';
 import styled from 'styled-components';
 import { SearcherContext } from '../../../../shared/interface';
-import LocationTab from './searcherComponents/LocationTab';
-import CheckInTab from './searcherComponents/CheckInTab';
 import { SearcherStateContext, SearcherDispatchContext } from '../../../../Contexts';
 import { searchReducer } from '../../../../shared/searchBarReducer';
+import LocationTab from './searcherComponents/LocationTab';
+import CheckInTab from './searcherComponents/CheckInTab';
 import CheckOutTab from './searcherComponents/CheckOutTab';
 import FeeTab from './searcherComponents/FeeTab';
 import PeopleTab from './searcherComponents/PeopleTab';
