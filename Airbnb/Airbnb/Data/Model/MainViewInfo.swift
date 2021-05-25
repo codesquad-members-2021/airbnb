@@ -1,7 +1,7 @@
 import Foundation
 import RxDataSources
 
-struct MainViewInfo {
+struct MainViewInfo: Equatable {
     let image: String
     let mainInfo: String
     let detailInfo: String?
