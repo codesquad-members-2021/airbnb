@@ -50,6 +50,7 @@ class FindingAccommdationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "숙소찾기"
         self.beforeButton.setTitle("", for: .normal)
         self.afterButton.setTitle("다음", for: .normal)
         initCalendarView()
@@ -70,7 +71,7 @@ class FindingAccommdationViewController: UIViewController {
     
     @IBAction func pressedNextButton(_ sender: Any) {
         if currentState == .people {
-            
+            performSegue(withIdentifier: "RoomInformationViewController", sender: nil)
             return
         }
         self.currentStateInt += 1
