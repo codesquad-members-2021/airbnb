@@ -34,8 +34,9 @@ public class BookingController {
     }
 
     @GetMapping("/bookings/{bookingId}/{userId}")
-    public BookingResponseDTO getBooking(@PathVariable Long bookingId) {
-        return createBookingResponseDTO(bookingId);
+    public BookingResponseDTO getBooking(@PathVariable Long bookingId, @PathVariable Long userId) {
+        bookingService.findBooking(userId, bookingId);
+        return null;
     }
 
     @DeleteMapping("/bookings/{bookingId}/{userId}")
