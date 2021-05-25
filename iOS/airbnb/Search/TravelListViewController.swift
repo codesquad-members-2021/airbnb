@@ -68,10 +68,7 @@ extension TravelListViewController {
 
 extension TravelListViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let viewController = FilterViewController.instantiate()
-        viewController.modalPresentationStyle = .fullScreen
-        self.navigationItem.backButtonTitle = "뒤로"
-        self.navigationController?.pushViewController(viewController, animated: true)
+        coordinator?.choosePlace()
     }
 }
 

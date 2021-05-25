@@ -208,6 +208,21 @@
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="83.705357142857139"/>
         </scene>
+        <!--Filter View Controller-->
+        <scene sceneID="ull-qA-WnE">
+            <objects>
+                <viewController storyboardIdentifier="FilterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="m7A-7X-hDI" customClass="FilterViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f4M-Fy-gmb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="P3R-ox-FVp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Os-E5-eHt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2010" y="84"/>
+        </scene>
     </scenes>
     <resources>
         <image name="hiro" width="375" height="488"/>
