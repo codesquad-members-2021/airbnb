@@ -120,5 +120,11 @@ public class PropertyDao {
         }, propertyId);
         return images;
     }
+
+    public List<Integer> findPricesByLocationId(Long locationId) {
+        String sql = "SELECT price FROM property where location_id = ?";
+
+        return jdbcTemplate.queryForList(sql, Integer.class, locationId);
+    }
 }
 

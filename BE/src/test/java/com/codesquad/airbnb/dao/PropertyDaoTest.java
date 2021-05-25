@@ -50,4 +50,13 @@ public class PropertyDaoTest {
                     property);
         }
     }
+
+    @Test
+    void propertyDao_findPricesTest() {
+        List<Integer> prices = propertyDao.findPricesByLocationId(1L);
+
+        assertThat(prices.size()).isEqualTo(6);
+        assertThat(prices.get(0)).isEqualTo(300000);
+        assertThat(prices.get(1)).isEqualTo(60000);
+    }
 }
