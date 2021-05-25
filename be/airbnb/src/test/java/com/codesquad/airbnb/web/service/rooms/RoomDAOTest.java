@@ -4,6 +4,7 @@ import com.codesquad.airbnb.web.domain.room.BathroomType;
 import com.codesquad.airbnb.web.domain.room.BedroomType;
 import com.codesquad.airbnb.web.domain.room.PricePolicy;
 import com.codesquad.airbnb.web.domain.room.Room;
+import com.codesquad.airbnb.web.dto.UserInput;
 import com.codesquad.airbnb.web.exceptions.RoomNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.geo.Point;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.List;
+
+import static com.codesquad.airbnb.web.dto.UserInput.DATE_TIME_FORMATTER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -65,6 +70,24 @@ class RoomDAOTest {
         assertThat(target.getCleanUpCost()).isEqualTo(expected.getCleanUpCost());
         assertThat(target.getServiceFee()).isEqualTo(expected.getServiceFee());
         assertThat(target.getWeeklyDiscount()).isEqualTo(expected.getWeeklyDiscount());
+    }
+
+    @Test
+    @DisplayName("숙소를 UserInput으로 조회할 수 있어야 합니다")
+    void searchRooms() {
+        UserInput userInput = UserInput.builder()
+                .location("서울특별시")
+                .checkIn(LocalDate.parse("2021-05-01", DATE_TIME_FORMATTER))
+                .checkOut(LocalDate.parse("2021-05-02", DATE_TIME_FORMATTER))
+                .priceMinimum(1)
+                .priceMaximum(10_000_000)
+                .adultCount(1)
+                .childCount(0)
+                .infantCount(0)
+                .build();
+        List<Room> rooms = roomDAO.findRoomsByUserInput(userInput);
+        rooms.forEach(System.out::println);
+
     }
 
     private Room createRoom() {

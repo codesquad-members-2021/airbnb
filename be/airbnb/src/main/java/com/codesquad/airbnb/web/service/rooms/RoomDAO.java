@@ -3,6 +3,7 @@ package com.codesquad.airbnb.web.service.rooms;
 import com.codesquad.airbnb.web.domain.room.PricePolicy;
 import com.codesquad.airbnb.web.domain.room.Room;
 import com.codesquad.airbnb.web.domain.room.RoomRepository;
+import com.codesquad.airbnb.web.dto.UserInput;
 import com.codesquad.airbnb.web.service.mapper.RoomMapper;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -11,6 +12,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -70,6 +72,43 @@ public class RoomDAO implements RoomRepository {
             return Optional.ofNullable(room);
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
+        }
+    }
+
+    @Override
+    public List<Room> findRoomsByUserInput(UserInput userInput) {
+        StringBuilder sqlBuilder = new StringBuilder().append(SEARCH_ROOMS_BY_LOCATION);
+        MapSqlParameterSource parameter = new MapSqlParameterSource()
+                .addValue("location_name", userInput.getLocation());
+
+        addCheckinFilter(userInput, sqlBuilder, parameter);
+        addGuestCountFilter(userInput, sqlBuilder, parameter);
+        addPriceRange(userInput, sqlBuilder, parameter);
+        sqlBuilder.append(";");
+        return jdbcTemplate.query(sqlBuilder.toString(), parameter, roomMapper);
+    }
+
+    private void addCheckinFilter(UserInput userInput, StringBuilder sqlBuilder, MapSqlParameterSource parameter) {
+        if (userInput.hasCheckinAndOut()) {
+            sqlBuilder.append(FILTERING_DATE);
+            parameter.addValue("stay_start", userInput.getCheckIn())
+                    .addValue("stay_end", userInput.getCheckOut());
+        }
+    }
+
+    private void addGuestCountFilter(UserInput userInput, StringBuilder sqlBuilder, MapSqlParameterSource parameter) {
+        if (userInput.hasGuestCount()) {
+            sqlBuilder.append(FILTERING_GUEST_COUNT);
+            parameter.addValue("guest_count", userInput.guestCount());
+        }
+    }
+
+    private void addPriceRange(UserInput userInput, StringBuilder sqlBuilder, MapSqlParameterSource parameter) {
+        if (userInput.hasPriceRange()) {
+            sqlBuilder.append(FILTERING_PRICE);
+            parameter.addValue("stay_day", userInput.stayDay())
+                    .addValue("cost_minimum", userInput.getPriceMinimum())
+                    .addValue("cost_maximum", userInput.getPriceMaximum());
         }
     }
 }

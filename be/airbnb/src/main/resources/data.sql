@@ -26,12 +26,12 @@ values (1, 4, '희망이 넘치는 발레노르 움막집', 5, 5, POINT(37.25235
        (5, 13, '먼지가 넘치는 모리아 골방', 0.5, 4, POINT(17.252352, 125.52532), '청소가 뭐예요?', 'SHARED_BATHROOM', 'BEDROOM', 5,
         '주방, 무선인터넷, 에어컨, 헤어드라이어');
 
-insert into room_price (room_id, service_fee, accomodation_tax, clean_up_cost, price_per_day)
-values (1, 500, 1000, 2500, 50000),
-       (2, 500, 1000, 2500, 50000),
-       (3, 500, 1000, 2500, 50000),
-       (4, 500, 1000, 2500, 50000),
-       (5, 500, 1000, 2500, 50000);
+insert into room_price (room_id, service_fee, accomodation_tax, clean_up_cost, price_per_day, weekly_discount)
+values (1, 500, 1000, 2500, 20000, 4),
+       (2, 500, 1000, 2500, 50000, 4),
+       (3, 500, 1000, 2500, 100000, 4),
+       (4, 500, 1000, 2500, 60000, 4),
+       (5, 500, 1000, 2500, 30000, 4);
 
 insert into reservation(id, room_id, guest_id, checkin_date_time, checkout_date_time, adult_count, child_count,
                         infant_count)
