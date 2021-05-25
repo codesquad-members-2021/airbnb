@@ -18,6 +18,7 @@ class LoginCoordinator : NSObject, Coordinator {
         navigationController.tabBarItem = UITabBarItem(title: "로그인", image: UIImage(named: "user"), tag: 2)
         super.init()
     }
+    
     func start() {
         
     }

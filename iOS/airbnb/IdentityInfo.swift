@@ -16,6 +16,7 @@ extension IdentityInfo {
     static var nibName: String {
         return String(describing: Self.self)
     }
+    
     static var reuseIdentifier: String {
         return String(describing: Self.self)
     }

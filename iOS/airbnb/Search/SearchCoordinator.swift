@@ -27,6 +27,7 @@ class SearchCoodinator : NSObject, Coordinator {
         navigationController.navigationItem.backButtonTitle = "뒤로"
         navigationController.pushViewController(travelListViewController, animated: true)
     }
+    
     func choosePlace(){
         let filterController = FilterViewController.instantiate()
         filterController.coordinator = self

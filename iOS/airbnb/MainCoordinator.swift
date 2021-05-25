@@ -20,11 +20,13 @@ class MainCoordinator: NSObject, Coordinator {
         subscription(type: WishListCoordinator.self)
         subscription(type: LoginCoordinator.self)
     }
+    
     func subscription(type : Coordinator.Type){
         let child = type.init()
         child.parentCoordinator = self
         childCoordinators.append(child)
     }
+    
     func start() {
         childCoordinators.forEach{ coordinator in
             if let search = coordinator as? SearchCoodinator {
@@ -38,6 +40,7 @@ class MainCoordinator: NSObject, Coordinator {
             }
         }
     }
+    
     func childDidFinish(_ child: Coordinator?) {
         for (index, coordinator) in childCoordinators.enumerated() {
             if coordinator === child {

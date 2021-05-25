@@ -18,6 +18,7 @@ class WishListCoordinator : NSObject, Coordinator {
         navigationController.tabBarItem = UITabBarItem(title: "위시리스트", image: UIImage(named: "heart"), tag: 1)
         super.init()
     }
+    
     func start() {
         
     }

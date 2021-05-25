@@ -17,6 +17,7 @@ class NearPlaceCell: UICollectionViewCell, IdentityInfo {
         super.awakeFromNib()
         config()
     }
+    
     func config(){
         thumbnail.layer.cornerRadius = 10
     }

@@ -14,6 +14,7 @@ class WishListViewController: UIViewController {
         view.backgroundColor = .green
     }
 }
+
 extension WishListViewController : Storyboarded {
     static func instantiate() -> Self {
         let fullName = NSStringFromClass(self)

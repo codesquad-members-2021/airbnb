@@ -30,14 +30,17 @@ class TravelListViewController: UIViewController {
         setUpSearchController()
         registerNib()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationItem.searchController?.isActive = true
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.dismiss(animated: false, completion: nil)
     }
+    
     @objc func didTapRemoveButton(){
         
     }
@@ -58,6 +61,7 @@ extension TravelListViewController {
         self.navigationItem.searchController = searchController
         self.navigationItem.searchController?.delegate = self
     }
+    
     func registerNib() {
         let nib = UINib(nibName: NearPlaceCell.nibName, bundle: nil)
         travelList?.register(nib, forCellWithReuseIdentifier: NearPlaceCell.reuseIdentifier)

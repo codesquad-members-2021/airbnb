@@ -22,7 +22,6 @@ class SearchViewController : UIViewController {
         return bar
     }()
     
-    // MARK: - DataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,9 +32,11 @@ class SearchViewController : UIViewController {
         themePlaceCollection.dataSource = themePlaceDataSource
         registerNib()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+    
     func registerNib() {
         let nib = UINib(nibName: NearPlaceCell.nibName, bundle: nil)
         nearPlaceCollection?.register(nib, forCellWithReuseIdentifier: NearPlaceCell.reuseIdentifier)
@@ -61,6 +62,7 @@ extension SearchViewController : UICollectionViewDelegateFlowLayout {
         let height: CGFloat = 28
         return CGSize(width: width, height: height)
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
     }
