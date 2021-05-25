@@ -4,7 +4,7 @@ import Header from "components/Header/Header";
 import SearchBar from "components/SearchBar/SearchBar";
 import Responsive from "components/common/Responsive";
 
-const MainPage = ({ link }) => {
+const MainPage = () => {
   const getToken = () => {
     // const params = new URLSearchParams(window.location.search);
     //코드만 매번 백엔드로 보내면 된다!!

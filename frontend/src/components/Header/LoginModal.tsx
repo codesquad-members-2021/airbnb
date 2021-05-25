@@ -4,7 +4,8 @@ const LoginModal = () => {
   const menuList = [
     {
       text: "Github으로 로그인하기",
-      url: "https://github.com/login/oauth/authorize?client_id=5064f641a3bfe7f785ab",
+      url:
+        "https://github.com/login/oauth/authorize?client_id=5064f641a3bfe7f785ab",
     },
     {
       text: "Google로 로그인하기",
@@ -17,11 +18,15 @@ const LoginModal = () => {
     {
       text: "위시 리스트",
       url: "",
-    }
-  ]
+    },
+  ];
   return (
     <LoginModalLayout className="login-modal">
-      {menuList.map(el => <li><a href={el.url}>{el.text}</a></li>)}
+      {menuList.map((el, idx) => (
+        <li key={`menu-${idx}`}>
+          <a href={el.url}>{el.text}</a>
+        </li>
+      ))}
     </LoginModalLayout>
   );
 };
@@ -33,7 +38,7 @@ const LoginModalLayout = styled.ul`
   width: 250px;
   background-color: #fff;
   border-radius: 15px;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #dddddd;
   cursor: pointer;
   box-shadow: rgb(0 0 0 12%) 0px 2px 16px;
   list-style: none;
@@ -43,8 +48,8 @@ const LoginModalLayout = styled.ul`
 
   & > li {
     padding: 1rem 0;
-    &:not(:last-child){
-      border-bottom: 1px solid #C4C4C4;
+    &:not(:last-child) {
+      border-bottom: 1px solid #c4c4c4;
     }
     a {
       text-decoration: none;
@@ -53,6 +58,6 @@ const LoginModalLayout = styled.ul`
       color: #333;
     }
   }
-`
+`;
 
 export default LoginModal;
