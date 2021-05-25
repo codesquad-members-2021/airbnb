@@ -4,6 +4,8 @@ import Router from './Router';
 import { ReservationContext } from './shared/interface';
 import reservationReducer from './shared/reservationReducer';
 import { ReservationStateContext, ReservationDispatchContext } from './Contexts';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './styles/theme';
 
 const initialState = {
     location: {
@@ -33,7 +35,9 @@ function App(): React.ReactElement {
     return (
         <ReservationDispatchContext.Provider value={reservationDispatch}>
             <ReservationStateContext.Provider value={reservationState}>
-                <Router />;
+                <ThemeProvider theme={theme}>
+                    <Router />
+                </ThemeProvider>
             </ReservationStateContext.Provider>
         </ReservationDispatchContext.Provider>
     );

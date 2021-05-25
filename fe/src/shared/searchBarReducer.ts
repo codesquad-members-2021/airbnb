@@ -6,9 +6,15 @@ export function searchReducer(state: SearcherContext, action: SearchAction): Sea
             return { ...state, locationList: action.list };
         case 'LOCATION_LAYER':
             return { ...state, locationLayer: action.state };
-        case 'CALENDAR_LAYER':
-            return { ...state, calendarLayer: action.state };
+        case 'CHECKIN_CALENDAR_LAYER':
+            return { ...state, checkInCalendarLayer: action.state };
+        case 'CHECKOUT_CALENDAR_LAYER':
+            return { ...state, checkOutCalendarLayer: action.state };
         case 'INPUTOFLOCATION':
             return { ...state, inputOfLocation: action.value };
+        case 'FEE_LAYER':
+            return { ...state, feeLayer: action.state };
+        case 'PEOPLE_LAYER':
+            return { ...state, peopleLayer: action.state };
     }
 }

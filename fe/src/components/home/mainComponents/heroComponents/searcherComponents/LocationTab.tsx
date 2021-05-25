@@ -4,15 +4,24 @@ import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/Sear
 import { LocationList, Location } from '../../../../../shared/interface';
 import { mockupLocationData } from '../../../../../data/location';
 import { useReservationDispatch } from '../../../../../hooks/ReservationHook';
+import { Container, Tab, Layer } from './shared.style';
 
 const LocationTab = (): React.ReactElement => {
-    const searcherDispatch = useSearcherDispatch();
     const reservationDispatch = useReservationDispatch();
+
     const searcherState = useSearcherState();
+    const searcherDispatch = useSearcherDispatch();
+
     const inputRef = useRef<HTMLInputElement>(null);
+
+    let debounceTimer: ReturnType<typeof setTimeout>;
+
     const { locationLayer, locationList } = searcherState;
 
     const handleInputLayer: React.MouseEventHandler<HTMLDivElement> = () => {
+        searcherDispatch({ type: 'CHECKIN_CALENDAR_LAYER', state: false });
+        searcherDispatch({ type: 'CHECKOUT_CALENDAR_LAYER', state: false });
+        searcherDispatch({ type: 'FEE_LAYER', state: false });
         if (inputRef?.current) {
             inputRef.current.disabled = false;
             inputRef.current.focus();
@@ -20,7 +29,8 @@ const LocationTab = (): React.ReactElement => {
     };
 
     const handleInputLocationList = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setTimeout(() => {
+        if (debounceTimer) clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
             if (!event.target.value) {
                 searcherDispatch({ type: 'LOCATION_LIST', list: [] });
                 return;
@@ -41,6 +51,7 @@ const LocationTab = (): React.ReactElement => {
             inputRef.current.blur();
         }
         searcherDispatch({ type: 'LOCATION_LAYER', state: false });
+        searcherDispatch({ type: 'CHECKIN_CALENDAR_LAYER', state: true });
     };
 
     return (
@@ -54,26 +65,20 @@ const LocationTab = (): React.ReactElement => {
                     disabled
                 />
             </Tab>
-            <LayerSection>
-                {locationLayer && (
-                    <LocationLayer>
-                        {locationList?.map((place: Location) => (
-                            <li onClick={() => setUpLocation(place)}>{place.city}</li>
-                        ))}
-                    </LocationLayer>
-                )}
-            </LayerSection>
+            {locationLayer && (
+                <Layer width={493} top={70} left={0}>
+                    {locationList?.map((place: Location) => (
+                        <li key={place.id} onClick={() => setUpLocation(place)}>
+                            {place.city}
+                        </li>
+                    ))}
+                </Layer>
+            )}
         </Container>
     );
 };
 
 export default LocationTab;
-
-const Container = styled.div`
-    display: flex;
-`;
-
-const Tab = styled.div``;
 
 const NavigatingText = styled.p`
     margin: 0;
@@ -81,16 +86,4 @@ const NavigatingText = styled.p`
 
 const LocationInput = styled.input`
     margin: 0;
-`;
-
-const LayerSection = styled.section`
-    position: absolute;
-    top: 70px;
-    left: 0;
-`;
-
-const LocationLayer = styled.ul`
-    border: 1px solid red;
-    width: 493px;
-    height: 364px;
 `;
