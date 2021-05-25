@@ -93,7 +93,8 @@ create table reservation
     baby        int,
     check_in    date,
     check_out   date,
-    total_price int
+    total_price int,
+    status      varchar(20)
 );
 
 create table wish_list

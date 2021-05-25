@@ -8,14 +8,16 @@ import com.codesquad.coco.image.Image;
 import com.codesquad.coco.image.ImageDTO;
 import com.codesquad.coco.room.model.*;
 import com.codesquad.coco.room.model.dto.*;
-import com.codesquad.coco.user.Reservation;
-import com.codesquad.coco.user.ReservationDateDTO;
+import com.codesquad.coco.user.model.Reservation;
+import com.codesquad.coco.user.model.dto.ReservationDateDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class DTOConverter {
 
+    private DTOConverter() {
+    }
 
     public static RoomPreviewDTO roomToRoomPreviewDTO(Room room, int fewNights) {
         return RoomPreviewDTO.of(
@@ -28,7 +30,7 @@ public class DTOConverter {
                 room.getThumbnailImage(),
                 locationToLocationDTO(room.getLocation()),
                 reviewToReviewDTO(room.getReview()),
-                room.getTotalPrice(fewNights)
+                room.calcTotalPrice(fewNights)
         );
     }
 

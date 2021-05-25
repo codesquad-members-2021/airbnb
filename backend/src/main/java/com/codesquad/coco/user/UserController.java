@@ -1,11 +1,9 @@
 package com.codesquad.coco.user;
 
+import com.codesquad.coco.user.model.dto.ReservationDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -20,14 +18,16 @@ public class UserController {
     }
 
     @PostMapping("/rooms/{roomId}/reservations")
-    public void reservation (@PathVariable Long roomId,@Valid @RequestBody ReservationDTO reservationDTO){
-
-        //todo : total가 맞는지 검사를 해야 한다. 클라이언트에서 보여주기 위한 계산을 하고 maxgust 도
-        //  또 해당 날짜에 예약이 가능한지 여부도 검증
-        //  여기서는 그 계산한 금액이 중간에 바뀌지 않고 잘 왔는지 검사를 한다.
-        //  user 도 추가되어야 한다.
-
+    public void reservation(@PathVariable Long roomId, @Valid @RequestBody ReservationDTO reservationDTO) {
+        //todo userId를 얻어서 같이 줘야함 일단 ID가 1인 유저
         logger.debug(reservationDTO.toString());
-        userService.reservation(roomId,reservationDTO);
+        userService.reservation(roomId, 1L, reservationDTO);
+    }
+
+    @DeleteMapping("/rooms/{roomId}/reservations/{reservationId}")
+    public void deleteReservation(@PathVariable Long roomId,
+                                  @PathVariable Long reservationId) {
+        //todo userId를 얻어서 같이 줘야함 일단 ID가 1인 유저
+        userService.cancelReservation(roomId, reservationId, 1L);
     }
 }

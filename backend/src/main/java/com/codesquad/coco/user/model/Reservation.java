@@ -1,6 +1,7 @@
-package com.codesquad.coco.user;
+package com.codesquad.coco.user.model;
 
 import com.codesquad.coco.room.model.Money;
+import com.codesquad.coco.utils.LocalDateUtil;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
@@ -28,6 +29,19 @@ public class Reservation {
         this.checkOut = builder.checkOut;
         this.totalPrice = builder.totalPrice;
     }
+
+    public boolean reservationDateCheck(LocalDate checkIn, LocalDate checkOut) {
+        //todo : 체크 아웃 날에는 체크인이 가능하다?
+        if (LocalDateUtil.betweenCheck(this.checkIn, checkIn, checkOut) ||
+                LocalDateUtil.betweenCheck(this.checkOut, checkIn, checkOut) ||
+                this.checkIn.isEqual(checkIn) ||
+                this.checkOut.isEqual(checkOut)
+        ) {
+            return false;
+        }
+        return true;
+    }
+
 
     public Long getId() {
         return id;

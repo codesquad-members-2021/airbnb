@@ -29,9 +29,9 @@ public class RoomService {
     public List<RoomPreviewDTO> findAllRoomPreviewDTO(SearchRoomDTO roomDTO) {
         List<Room> rooms = roomDAO.findAllBySearchRoomDTO(roomDTO);
 
-        //fixme : ?
         int fewNights = LocalDateUtil.getAccommodationDay(roomDTO.getCheckIn(), roomDTO.getCheckOut());
 
+        //fixme : ? 해당 로직 괜찮을까요?
         return rooms.stream()
                 .map(room -> DTOConverter.roomToRoomPreviewDTO(room, fewNights))
                 .collect(Collectors.toList());
