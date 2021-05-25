@@ -8,12 +8,16 @@ values ('서울', 'https://user-images.githubusercontent.com/59776016/118949618-
        ('제주', 'https://user-images.githubusercontent.com/59776016/118949756-830e8f80-b994-11eb-8e6a-273f6d875d22.png');
 
 INSERT INTO category (name, image_url)
-values ('Outdoor getaways', 'https://user-images.githubusercontent.com/59776016/118950055-ce28a280-b994-11eb-8c89-e0190cdeee68.png'),
-       ('Unique stays', 'https://user-images.githubusercontent.com/59776016/118950041-cb2db200-b994-11eb-8757-436f287bb805.png'),
-       ('Entire homes', 'https://user-images.githubusercontent.com/59776016/118950072-d1bc2980-b994-11eb-9392-e66b9b4bdd0b.png'),
-       ('Pets allowed', 'https://user-images.githubusercontent.com/59776016/118950087-d4b71a00-b994-11eb-9311-b7271e0fc3b3.png');
+values ('Outdoor getaways',
+        'https://user-images.githubusercontent.com/59776016/118950055-ce28a280-b994-11eb-8c89-e0190cdeee68.png'),
+       ('Unique stays',
+        'https://user-images.githubusercontent.com/59776016/118950041-cb2db200-b994-11eb-8757-436f287bb805.png'),
+       ('Entire homes',
+        'https://user-images.githubusercontent.com/59776016/118950072-d1bc2980-b994-11eb-9392-e66b9b4bdd0b.png'),
+       ('Pets allowed',
+        'https://user-images.githubusercontent.com/59776016/118950087-d4b71a00-b994-11eb-9311-b7271e0fc3b3.png');
 
-INSERT into property (name, price, location_id)
+INSERT into property (title, price, location_id)
 values ('☆Netflix☆Hongdae_Sangsu sta.20sec 갬성돋는 나만의 공간♡', 300000, 1),
        ('#2 Hongik Univ Stn 5mins Cozy & Quiet house', 60000, 1),
        ('대학로 Min''s House!!401', 70000, 1),
@@ -199,27 +203,51 @@ The house is clean and cozy, located in a safe and quiet residential area.',
         5, 54000, null, 2, 3, 'entire house', 34, 33.447873, 126.307671, 4.1);
 
 insert into property_category(name, image_url)
-values ('Outdoor getaways', 'https://user-images.githubusercontent.com/59776016/118950055-ce28a280-b994-11eb-8c89-e0190cdeee68.png'),
-       ('Unique stays','https://user-images.githubusercontent.com/59776016/118950041-cb2db200-b994-11eb-8757-436f287bb805.png'),
-       ('Entire homes','https://user-images.githubusercontent.com/59776016/118950072-d1bc2980-b994-11eb-9392-e66b9b4bdd0b.png'),
-       ('Pets allowed','https://user-images.githubusercontent.com/59776016/118950087-d4b71a00-b994-11eb-9311-b7271e0fc3b3.png');
+values ('Outdoor getaways',
+        'https://user-images.githubusercontent.com/59776016/118950055-ce28a280-b994-11eb-8c89-e0190cdeee68.png'),
+       ('Unique stays',
+        'https://user-images.githubusercontent.com/59776016/118950041-cb2db200-b994-11eb-8757-436f287bb805.png'),
+       ('Entire homes',
+        'https://user-images.githubusercontent.com/59776016/118950072-d1bc2980-b994-11eb-9392-e66b9b4bdd0b.png'),
+       ('Pets allowed',
+        'https://user-images.githubusercontent.com/59776016/118950087-d4b71a00-b994-11eb-9311-b7271e0fc3b3.png');
 
 insert into wish_list(property_id, bookmark)
 values (1, false),
-       (2,false),
-       (3,false),
-       (4,false),
+       (2, false),
+       (3, false),
+       (4, false),
        (5, false),
-       (6,false),
-       (7,false),
-       (8,false),
+       (6, false),
+       (7, false),
+       (8, false),
        (9, false),
-       (10,false),
-       (11,false),
-       (12,false),
+       (10, false),
+       (11, false),
+       (12, false),
        (13, false),
-       (14,false),
-       (15,false),
-       (16,false),
+       (14, false),
+       (15, false),
+       (16, false),
        (17, false),
-       (18,false);
+       (18, false);
+
+insert into host(property_id, name, email, image_url)
+values (1, '새리', 'sally@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119452644-8bd6db00-bd71-11eb-83fa-0a67447ce0f2.png'),
+       (2, '스타브', 'starve@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119452674-92655280-bd71-11eb-9d32-38563a72f3ce.png'),
+       (3, '민', 'min@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119452687-95f8d980-bd71-11eb-9ab6-28479a52105e.png'),
+       (4, '지지', 'zg@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119452702-9b562400-bd71-11eb-95b0-83b471a990fa.png'),
+       (5, '케이', 'k@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119452711-9e511480-bd71-11eb-8585-98a8d02680eb.png'),
+       (6, '펭도리', 'dong@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119452722-a14c0500-bd71-11eb-970d-0fc3b6de020c.png'),
+       (7, '제이슨', 'json@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119452729-a446f580-bd71-11eb-8d86-5fea7a5ca153.png'),
+       (8, '잭슨', 'jackson@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119452894-d5bfc100-bd71-11eb-99d5-11065a6450e2.png'),
+       (9, '호눅스', 'honux@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119452913-d9ebde80-bd71-11eb-9f50-169b942c58d3.png'),
+       (10, '큐', 'kyu@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119452922-dce6cf00-bd71-11eb-86b3-814318ea91a0.png'),
+       (11, '비비', 'bibi@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119452936-e07a5600-bd71-11eb-8c43-c4702730a799.png'),
+       (12, '마르코', 'marco@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119452947-e3754680-bd71-11eb-977a-3bc575db71a7.png'),
+       (13, '프레디', 'freddie@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119452971-e839fa80-bd71-11eb-930c-f00becaa8725.png'),
+       (14, '동', 'dong@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119452987-ecfeae80-bd71-11eb-814e-f6b38f95140b.png'),
+       (15, '연', 'yeon@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119452978-ea03be00-bd71-11eb-9b83-3b3e6d8e22fb.png'),
+       (16, '크롱', 'crong@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119453018-f38d2600-bd71-11eb-935a-12d78cc2b887.png'),
+       (17, '제이케이', 'jk@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119453031-f6881680-bd71-11eb-9456-8e26cfcf2a80.png'),
+       (18, '제인', 'jane@codesquad.com', 'https://user-images.githubusercontent.com/69128652/119453042-f8ea7080-bd71-11eb-9a9d-d76ee1c6a08f.png');
