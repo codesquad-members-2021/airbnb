@@ -10,4 +10,4 @@ else
     echo "@@@@ Tomcat is killed"
 fi
 
-java -jar ./build/libs/airbnb.jar & >> log.txt 2>&1
+java -jar ./build/libs/airbnb.jar & >> spring-log.txt 2>&1

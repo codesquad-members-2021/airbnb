@@ -16,3 +16,5 @@ docker rmi pyrodb:1.0
 docker-compose up --build
 
 docker-compose up -d
+
+exit 0
