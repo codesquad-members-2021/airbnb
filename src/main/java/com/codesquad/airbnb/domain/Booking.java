@@ -2,8 +2,6 @@ package com.codesquad.airbnb.domain;
 
 import org.springframework.data.annotation.Id;
 
-import java.util.Date;
-
 public class Booking {
 
     @Id
@@ -11,13 +9,13 @@ public class Booking {
 
     private Long roomId;
     private Long userId;
-    private Date checkIn;
-    private Date checkOut;
+    private String checkIn;
+    private String checkOut;
     private int adult;
     private int child;
     private int baby;
 
-    public Booking(Long id, Long roomId, Long userId, Date checkIn, Date checkOut, int adult, int child, int baby) {
+    public Booking(Long id, Long roomId, Long userId, String checkIn, String checkOut, int adult, int child, int baby) {
         this.id = id;
         this.roomId = roomId;
         this.userId = userId;
@@ -40,11 +38,11 @@ public class Booking {
         return id;
     }
 
-    public Date getCheckIn() {
+    public String getCheckIn() {
         return checkIn;
     }
 
-    public Date getCheckOut() {
+    public String getCheckOut() {
         return checkOut;
     }
 
@@ -62,5 +60,19 @@ public class Booking {
 
     public int getTotal() {
         return adult + child;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", roomId=" + roomId +
+                ", userId=" + userId +
+                ", checkIn=" + checkIn +
+                ", checkOut=" + checkOut +
+                ", adult=" + adult +
+                ", child=" + child +
+                ", baby=" + baby +
+                '}';
     }
 }
