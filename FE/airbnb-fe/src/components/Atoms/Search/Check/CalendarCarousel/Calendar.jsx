@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import SingleCalendar from './SingleCalendar';
-import TestSingleCalendar from './TestSingleCalendar';
 import YearMonth from './YearMonth';
 import DayViewTR from './DayViewTR';
+
 const Calendar = () => {
   const [calRange, setCalRange] = useState([-1, 0, 1, 2]);
   const [currentDistance, setCurrentDistance] = useState(-27.2); //가운데 = -27.2rem
@@ -77,7 +77,7 @@ const Calendar = () => {
 };
 
 const CalendarDiv = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -85,7 +85,7 @@ const CalendarDiv = styled.div`
 
 const CalendarTop = styled.div`
   display: flex;
-  border: 1px solid green;
+  /* border: 1px solid green; */
   font-size: 1rem;
   margin-bottom: 1.5rem;
   overflow: hidden;
@@ -101,7 +101,7 @@ const CalendarBottom = styled.div`
   display: flex;
   overflow: hidden;
 
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
 `;
 
 const CalendarMiddle = styled.div`
@@ -118,7 +118,7 @@ const YearMonthUL = styled.ul`
 const YearMonthLI = styled.li`
   width: 21rem;
   margin: 0 2.125rem;
-  border: 2px solid gray;
+  /* border: 2px solid gray; */
   color: ${({ theme }) => theme.colors.black};
   font-size: ${({ theme }) => theme.fontSizes.XS};
   font-weight: 700;

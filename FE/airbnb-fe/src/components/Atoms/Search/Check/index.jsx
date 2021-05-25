@@ -36,7 +36,6 @@ const CheckDiv = styled.div`
   justify-content: space-around;
   align-items: center;
   border-radius: 3rem;
-  /* border: solid 2px red; */
 `;
 const CheckIn = styled.div`
   display: flex;
