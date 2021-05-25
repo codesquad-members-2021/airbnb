@@ -4,7 +4,7 @@ import Alamofire
 
 class NetworkManager {
     
-    func reequest<T: Decodable>(url: String, completionHandler: @escaping (Result<T, Error>) -> Void) {
+    static func reequest<T: Decodable>(url: String, completionHandler: @escaping (Result<T, Error>) -> Void) {
         AF.request(url, method: .get)
             .validate(statusCode: 200..<300)
             .responseDecodable(of: T.self) { response in

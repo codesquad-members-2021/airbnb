@@ -9,8 +9,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var travelCollectionView: UICollectionView!
     @IBOutlet weak var recommendTravelCollectionView: UICollectionView!
   
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDataSource()

@@ -88,7 +88,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="38" id="K6m-A8-XoN"/>
-                                                    <constraint firstAttribute="width" constant="165" id="dBh-0y-CNU"/>
+                                                    <constraint firstAttribute="width" constant="165" id="KII-5W-OuD"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="여행 아이디어 얻기">
@@ -298,26 +298,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGX-2F-nqR">
-                                <rect key="frame" x="16" y="76" width="382" height="203.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGX-2F-nqR" customClass="FSCalendar">
+                                <rect key="frame" x="16" y="54" width="382" height="579"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giU-fq-pl1" userLabel="InformationView" customClass="InformationView" customModule="swift_airbnb" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="633" width="414" height="180"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="TGX-2F-nqR" secondAttribute="height" multiplier="15:8" id="cve-4G-afX"/>
+                                    <constraint firstAttribute="height" constant="180" id="pM1-h5-Bsi"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ut0-fR-OPs" customClass="TabBarView" customModule="swift_airbnb" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="813" width="414" height="83"/>
+                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="83" id="aXw-Yc-ngF"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KPH-WK-Hee"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="KPH-WK-Hee" firstAttribute="trailing" secondItem="TGX-2F-nqR" secondAttribute="trailing" constant="16" id="V1h-1d-1oY"/>
-                            <constraint firstItem="TGX-2F-nqR" firstAttribute="leading" secondItem="KPH-WK-Hee" secondAttribute="leading" constant="16" id="xSP-x3-w16"/>
-                            <constraint firstItem="TGX-2F-nqR" firstAttribute="top" secondItem="KPH-WK-Hee" secondAttribute="top" constant="32" id="zaC-5W-TD9"/>
+                            <constraint firstItem="KPH-WK-Hee" firstAttribute="trailing" secondItem="TGX-2F-nqR" secondAttribute="trailing" constant="16" id="0Bp-mR-BfQ"/>
+                            <constraint firstItem="Ut0-fR-OPs" firstAttribute="top" secondItem="giU-fq-pl1" secondAttribute="bottom" id="2Fs-qL-WJW"/>
+                            <constraint firstItem="giU-fq-pl1" firstAttribute="top" secondItem="TGX-2F-nqR" secondAttribute="bottom" id="C3K-cR-04k"/>
+                            <constraint firstItem="TGX-2F-nqR" firstAttribute="top" secondItem="KPH-WK-Hee" secondAttribute="top" constant="10" id="MmY-s0-rfd"/>
+                            <constraint firstItem="giU-fq-pl1" firstAttribute="leading" secondItem="KPH-WK-Hee" secondAttribute="leading" id="W7Z-ve-TWd"/>
+                            <constraint firstItem="KPH-WK-Hee" firstAttribute="trailing" secondItem="Ut0-fR-OPs" secondAttribute="trailing" id="gVf-gY-Sbf"/>
+                            <constraint firstItem="TGX-2F-nqR" firstAttribute="leading" secondItem="KPH-WK-Hee" secondAttribute="leading" constant="16" id="oN2-d4-ATJ"/>
+                            <constraint firstItem="giU-fq-pl1" firstAttribute="trailing" secondItem="KPH-WK-Hee" secondAttribute="trailing" id="p3i-md-1pl"/>
+                            <constraint firstItem="Ut0-fR-OPs" firstAttribute="leading" secondItem="KPH-WK-Hee" secondAttribute="leading" id="ufI-Yg-bk9"/>
+                            <constraint firstAttribute="bottom" secondItem="Ut0-fR-OPs" secondAttribute="bottom" id="vWZ-2k-W5V"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="calendarView" destination="TGX-2F-nqR" id="1Vy-s7-1NG"/>
+                        <outlet property="informationView" destination="giU-fq-pl1" id="Zx3-5w-CB6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDZ-xE-5R9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6396" y="-95"/>
+            <point key="canvasLocation" x="6395.652173913044" y="-95.089285714285708"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="xgw-jD-gbG">
