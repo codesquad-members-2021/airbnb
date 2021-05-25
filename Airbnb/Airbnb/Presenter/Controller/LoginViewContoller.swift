@@ -6,7 +6,6 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    private let viewModel = LoginViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

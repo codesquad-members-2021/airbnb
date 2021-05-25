@@ -12,5 +12,6 @@ target 'Airbnb' do
   pod 'Alamofire'
   pod 'RxDataSources'
   pod 'RxGesture'
+  pod 'FSCalendar'
 
 end

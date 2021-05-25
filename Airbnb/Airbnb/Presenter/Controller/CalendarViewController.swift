@@ -1,6 +1,7 @@
 import UIKit
+import FSCalendar
 
-class CalenderViewController: UIViewController {
+class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

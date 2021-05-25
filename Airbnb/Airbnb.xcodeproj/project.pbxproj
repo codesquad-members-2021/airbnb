@@ -34,7 +34,7 @@
 		71F65541265C9002008645B8 /* RegieonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65540265C9002008645B8 /* RegieonViewModel.swift */; };
 		71F65544265CB8FD008645B8 /* TravelInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */; };
 		71F65546265CB9D7008645B8 /* CommonViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65545265CB9D7008645B8 /* CommonViewModelType.swift */; };
-		71F65548265CC43E008645B8 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65547265CC43E008645B8 /* CalenderViewController.swift */; };
+		71F65548265CC43E008645B8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65547265CC43E008645B8 /* CalendarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,7 +68,7 @@
 		71F65540265C9002008645B8 /* RegieonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegieonViewModel.swift; sourceTree = "<group>"; };
 		71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelInfoViewModel.swift; sourceTree = "<group>"; };
 		71F65545265CB9D7008645B8 /* CommonViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModelType.swift; sourceTree = "<group>"; };
-		71F65547265CC43E008645B8 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
+		71F65547265CC43E008645B8 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		CCB98BA9F1F4A561BA5FBBA8 /* Pods-Airbnb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airbnb.debug.xcconfig"; path = "Target Support Files/Pods-Airbnb/Pods-Airbnb.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,7 +170,7 @@
 				71A67D2826539B6A00FC6689 /* MainViewController.swift */,
 				71B93A73265783410028C492 /* LoginViewContoller.swift */,
 				71B93A7B2657A0480028C492 /* SearchViewController.swift */,
-				71F65547265CC43E008645B8 /* CalenderViewController.swift */,
+				71F65547265CC43E008645B8 /* CalendarViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -368,7 +368,7 @@
 				71A67D2726539B6A00FC6689 /* SceneDelegate.swift in Sources */,
 				71B93A7C2657A0480028C492 /* SearchViewController.swift in Sources */,
 				7112E6E8265604E100F9AAD6 /* RegieonInfoCell.swift in Sources */,
-				71F65548265CC43E008645B8 /* CalenderViewController.swift in Sources */,
+				71F65548265CC43E008645B8 /* CalendarViewController.swift in Sources */,
 				7112E6EA2656054900F9AAD6 /* TravelInfoCell.swift in Sources */,
 				71DA183A2654E2FE00415EDD /* ThirdSectionView.swift in Sources */,
 				7157C8892654AC4000EF7977 /* MainViewModel.swift in Sources */,

@@ -159,10 +159,10 @@
             </objects>
             <point key="canvasLocation" x="1592.753623188406" y="87.723214285714278"/>
         </scene>
-        <!--Calender View Controller-->
+        <!--Calendar View Controller-->
         <scene sceneID="bnS-JS-HTE">
             <objects>
-                <viewController id="ZA2-Xb-Bt3" customClass="CalenderViewController" customModule="Airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="CanlendarVC" storyboardIdentifier="CanlendarVC" id="ZA2-Xb-Bt3" customClass="CalendarViewController" customModule="Airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jpc-7E-Ubz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

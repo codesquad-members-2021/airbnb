@@ -41,6 +41,17 @@ private extension SearchViewController {
     private func setupMainView() {
         regieonCollectionView.showsVerticalScrollIndicator = false
         travelSearchBar.addSubview(searchController.searchBar)
+        setupTabBar()
+    }
+    
+    private func setupTabBar() {
+        searchController.searchBar.rx.searchButtonClicked
+            .subscribe(onNext: { [weak self] _ in
+                let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "CanlendarVC") as! CalendarViewController
+                nextVC.modalPresentationStyle = .fullScreen
+                self?.dismiss(animated: true, completion: nil)
+                self?.present(nextVC, animated: true, completion: nil)
+            }).disposed(by: rx.disposeBag)
     }
 }
 
