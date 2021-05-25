@@ -28,9 +28,9 @@ public class BookingService {
         Booking booking = bookingDAO.findById(bookingId).orElseThrow(IllegalStateException::new);
     }
 
-    public void createBooking(@RequestBody BookingRequestDTO bookingRequestDTO, Long userId) {
+    public void createBooking(BookingRequestDTO bookingRequestDTO, Long userId) {
         Booking booking = bookingRequestDTO.toEntity();
-        booking.checkId(userId);
-        bookingDAO.bookReservation(booking, userId);
+        booking.checkUserId(userId);
+        bookingDAO.bookReservation(booking);
     }
 }
