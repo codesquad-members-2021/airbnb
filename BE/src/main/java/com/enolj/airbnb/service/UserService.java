@@ -44,19 +44,10 @@ public class UserService {
         return createUserResponseDTO(user, JwtUtil.createToken(user.getUserId()));
     }
 
-    public void logout(String authorization) {
-        String userId = JwtUtil.getUserIdFromToken(getTokenFromAuthorization(authorization));
+    public void logout(String userId) {
         User user = findByUserId(userId);
         user.removeToken();
         userDAO.update(user);
-    }
-
-    private String getTokenFromAuthorization(String authorization) {
-        String[] authArray = authorization.split(" ");
-        if (authArray.length < 2 || !authArray[0].equals("Beare")) {
-            throw new TokenException(ErrorMessage.INVALID_TOKEN);
-        }
-        return authArray[1];
     }
 
     private TokenDTO tokenRequestApi(String code, GitHubType gitHubType) {
