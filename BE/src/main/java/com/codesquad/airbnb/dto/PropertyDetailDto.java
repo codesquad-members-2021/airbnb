@@ -37,10 +37,10 @@ public class PropertyDetailDto {
         this.host = host;
     }
 
-    public static PropertyDetailDto of (String title, String description, String locationName,
-                      String propertyType, int maxOccupancy, int cleaningFee,
-                      int bedCount, int bathCount, int reviewCount, int pricePerNight,
-                      double latitude, double longitude, double rating, HostDto host) {
+    public static PropertyDetailDto of(String title, String description, String locationName,
+                                       String propertyType, int maxOccupancy, int cleaningFee,
+                                       int bedCount, int bathCount, int reviewCount, int pricePerNight,
+                                       double latitude, double longitude, double rating, HostDto host) {
         return new PropertyDetailDto(title, description, locationName, propertyType, maxOccupancy,
                 cleaningFee, bedCount, bathCount, reviewCount, pricePerNight, latitude, longitude, rating, host);
     }

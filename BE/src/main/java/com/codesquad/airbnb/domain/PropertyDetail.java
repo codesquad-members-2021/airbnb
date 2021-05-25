@@ -2,8 +2,6 @@ package com.codesquad.airbnb.domain;
 
 import org.springframework.data.annotation.Id;
 
-import java.time.LocalDate;
-
 public class PropertyDetail {
 
     @Id

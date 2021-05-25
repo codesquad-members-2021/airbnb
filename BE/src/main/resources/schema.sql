@@ -18,7 +18,7 @@ create table if not exists category
 create table if not exists property
 (
     id          bigint primary key auto_increment,
-    title        varchar(255),
+    title       varchar(255),
     price       int,
     location_id BIGINT,
     foreign key (location_id) references location (id)
@@ -43,10 +43,10 @@ create table if not exists property_detail
 
 create table if not exists image
 (
-    id        BIGINT Primary Key auto_increment,
-    image_url varchar(1000),
-    name      varchar(45),
-    thumbnail tinyint(1),
+    id          BIGINT Primary Key auto_increment,
+    image_url   varchar(1000),
+    name        varchar(45),
+    thumbnail   tinyint(1),
     property_id bigint,
     foreign key (property_id) references property (id)
 );
@@ -89,11 +89,11 @@ create table if not exists property_category
 
 create table if not exists host
 (
-    id bigint primary key auto_increment,
-    name      varchar(45),
-    email varchar(255),
-    image_url varchar(1000),
-    property_id    bigint,
+    id          bigint primary key auto_increment,
+    name        varchar(45),
+    email       varchar(255),
+    image_url   varchar(1000),
+    property_id bigint,
     foreign key (property_id) references property (id)
 );
 

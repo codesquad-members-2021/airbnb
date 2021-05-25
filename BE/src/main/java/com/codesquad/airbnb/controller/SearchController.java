@@ -21,15 +21,15 @@ public class SearchController {
     @GetMapping()
     public ResponseEntity<PropertiesResponseDto> propertiesSearch(
             @RequestParam(value = "locationId", required = false) Long locationId,
-            @RequestParam(value = "checkIn" , required = false)LocalDate checkIn,
-            @RequestParam(value = "checkOut" , required = false)LocalDate checkOut,
-            @RequestParam(value = "minPrice" , required = false, defaultValue = "0")int minPrice,
-            @RequestParam(value = "maxPrice" , required = false, defaultValue = "1000000")int maxPrice,
-            @RequestParam(value = "adult" , required = false, defaultValue = "0")int adult,
-            @RequestParam(value = "children" , required = false, defaultValue = "0")int children,
-            @RequestParam(value = "infant" , required = false, defaultValue = "0")int infant
-            ) {
-        PropertiesResponseDto propertiesResponseDto = propertyService.findBy(locationId,checkIn,checkOut,minPrice,maxPrice,adult,children,infant);
+            @RequestParam(value = "checkIn", required = false) LocalDate checkIn,
+            @RequestParam(value = "checkOut", required = false) LocalDate checkOut,
+            @RequestParam(value = "minPrice", required = false, defaultValue = "0") int minPrice,
+            @RequestParam(value = "maxPrice", required = false, defaultValue = "1000000") int maxPrice,
+            @RequestParam(value = "adult", required = false, defaultValue = "0") int adult,
+            @RequestParam(value = "children", required = false, defaultValue = "0") int children,
+            @RequestParam(value = "infant", required = false, defaultValue = "0") int infant
+    ) {
+        PropertiesResponseDto propertiesResponseDto = propertyService.findBy(locationId, checkIn, checkOut, minPrice, maxPrice, adult, children, infant);
         return ResponseEntity.ok().body(propertiesResponseDto);
     }
 
