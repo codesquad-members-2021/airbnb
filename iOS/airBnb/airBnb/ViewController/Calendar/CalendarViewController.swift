@@ -11,20 +11,32 @@ import Combine
 class CalendarViewController: UIViewController {
 
     @IBOutlet weak var calendarCollection: UICollectionView!
+    @IBOutlet weak var containerView: UIView!
     
     private var calendarManager = CalendarManager()
     private var calendarDataSource: CalendarDataSource?
     private let headerViewHight:CGFloat = 60
+    private let searchManager = SearchManager()
+    private let didSelectSubject = PassthroughSubject<Void,Never>()
+    private var cancellable = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addContainerView()
         createDataSoure()
         configure()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateSequseDates(_:)), name: CalendarManager.NotiName.selectDate, object: calendarManager)
+        bind()
     }
     
-    func relaySequenceDate() -> AnyPublisher<SequenceDates, Never> {
-        return calendarManager.$sequenceDates.eraseToAnyPublisher()
+    private func addContainerView() {
+        let storyboard = UIStoryboard(name: "LocationInfo", bundle: nil)
+        guard let bottomView = storyboard.instantiateViewController(withIdentifier: "LocationInfo") as? LocationInfoViewController else {
+            return
+        }
+        bottomView.inject(from: searchManager)
+        addChild(bottomView)
+        bottomView.view.frame = containerView.bounds
+        containerView.addSubview(bottomView.view)
     }
     
     private func configure() {
@@ -34,15 +46,14 @@ class CalendarViewController: UIViewController {
         calendarCollection.delegate = self
     }
     
-    func createDataSoure() {
-        calendarDataSource = CalendarDataSource(dates: calendarManager.dates, sequenceDates: calendarManager.sequenceDates)
+    private func createDataSoure() {
+        calendarDataSource = CalendarDataSource(dates: calendarManager.dates, sequenceDates: searchManager.selectDates)
     }
     
-    @objc func updateSequseDates(_ notification: Notification) {
-        guard let sequseDate = notification.userInfo?["sequenceDates"] as? SequenceDates else {
-            return
-        }
-        calendarDataSource?.sequenceDates = sequseDate
+    private func bind() {
+        didSelectSubject.sink { [weak self] _ in
+            self?.calendarDataSource?.sequenceDates = self?.searchManager.selectDates ?? SequenceDates.init()
+        }.store(in: &self.cancellable)
     }
 }
 
@@ -61,7 +72,8 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
         let month = CalendarHelper.month(index: indexPath.section)
         let day = calendarManager.dates[month]?[indexPath.row] ?? Date()
         if blockOldDaySelect(with: day) { return }
-        calendarManager.selectDay(with: day)
+        searchManager.selectDay(from: day)
+        didSelectSubject.send()
         collectionView.reloadData()
     }
     

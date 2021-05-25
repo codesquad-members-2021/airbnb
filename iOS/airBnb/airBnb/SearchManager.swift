@@ -9,15 +9,23 @@ import Foundation
 
 class SearchManager {
      
-    var location: String
-    var selectDates: SequenceDates
-    var price: String
-    var numberOfPleple: String
+    @Published var location: String
+    @Published private(set) var selectDates: SequenceDates
+    @Published var price: String
+    @Published var numberOfPleple: String
     
     init() {
         location = ""
         selectDates = .init(start: nil, end: nil)
         price = ""
         numberOfPleple = ""
+    }
+    
+    func selectDay(from day: Date) {
+        selectDates.selectDay(with: day)
+    }
+    
+    func selectDays(from dates: SequenceDates) {
+        selectDates = dates
     }
 }

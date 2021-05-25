@@ -20,11 +20,41 @@ struct SequenceDates {
         }
         return start.convertString() + " - " + end.convertString()
     }
+    
+    mutating func selectDay(with day: Date) {
+        let selectedDate = day
+        
+        if start == nil && end == nil {
+            start = selectedDate
+            end = nil
+        } else if let _ = start, let _ = end {
+            start = nil
+            end = nil
+        } else if let s = start, end == nil && start == selectedDate {
+            start = s
+            end = start
+        } else if let s = start, end == nil && start != selectedDate {
+            if selectedDate < s {
+                start = selectedDate
+                end = start
+            } else {
+                start = s
+                end = selectedDate
+            }
+        } else {
+            start = nil
+            end = nil
+        }
+    }
+    
+    mutating func clear() {
+        start = nil
+        end = nil
+    }
 }
 
 class CalendarManager {
     private(set) var dates: [String:[Date?]] = [:]
-    @Published private(set) var sequenceDates: SequenceDates
     
     enum NotiName {
         static let selectDate = Notification.Name("selectDate")
@@ -37,33 +67,5 @@ class CalendarManager {
     
     func makeCalendarDate() {
         dates = CalendarHelper.makeCalenderDate()
-    }
-    
-    func selectDay(with day: Date) {
-        let selectedDate = day
-        
-        if sequenceDates.start == nil && sequenceDates.end == nil {
-            sequenceDates.start = selectedDate
-            sequenceDates.end = nil
-        } else if let _ = sequenceDates.start, let _ = sequenceDates.end {
-            sequenceDates.start = nil
-            sequenceDates.end = nil
-        } else if let start = sequenceDates.start, sequenceDates.end == nil && start == selectedDate {
-            sequenceDates.start = start
-            sequenceDates.end = start
-        } else if let start = sequenceDates.start, sequenceDates.end == nil && start != selectedDate {
-            if selectedDate < start {
-                sequenceDates.start = selectedDate
-                sequenceDates.end = start
-            } else {
-                sequenceDates.start = start
-                sequenceDates.end = selectedDate
-            }
-        } else {
-            sequenceDates.start = nil
-            sequenceDates.end = nil
-        }
-        
-        NotificationCenter.default.post(name: NotiName.selectDate, object: self, userInfo: ["sequenceDates" : sequenceDates] )
     }
 }

@@ -7,8 +7,8 @@
 
 import UIKit
 import Combine
+class LocationInfoViewController: UIViewController{
 
-class LocationInfoViewController: UIViewController {
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var locationLabel: UILabel!
@@ -16,36 +16,26 @@ class LocationInfoViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var numOfPeopleLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var skipAndDeleteButton: UIButton!
     
     private var cancellable = Set<AnyCancellable>()
-    private var searchManager = SearchManager()
-    private var locationInfoViewModel = LocationInfoViewModel()
+    private var locationInfoViewModel: LocationInfoViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        add()
         bind()
     }
     
-    func add() {
-        let storyboard = UIStoryboard(name: "Calendar", bundle: nil)
-        guard let bottomView = storyboard.instantiateViewController(withIdentifier: "Calendar") as? CalendarViewController
-        else { return }
-        addChild(bottomView)
-        
-        bottomView.view.frame = containerView.bounds
-        bottomView.relaySequenceDate().sink { [weak self] (value) in
-            self?.locationInfoViewModel.receiveSelectDates(from: value)
-        }.store(in: &cancellable)
-        containerView.addSubview(bottomView.view)
+    func inject(from manager : SearchManager){
+        locationInfoViewModel = LocationInfoViewModel(from: manager)
     }
-    
+        
     func bind() {
-        locationInfoViewModel.releaseSelectDates().sink { [weak self] (selectDates) in
+        locationInfoViewModel?.releaseSelectDates().sink { [weak self] (selectDates) in
             self?.checkInOutLabel.text = selectDates
         }.store(in: &cancellable)
         
-        locationInfoViewModel.isEmptySelectDates().sink { [weak self] (enable) in
+        locationInfoViewModel?.isEmptySelectDates().sink { [weak self] (enable) in
             self?.nextButton.isEnabled = enable
         }.store(in: &cancellable)
         
@@ -67,6 +57,9 @@ class LocationInfoViewController: UIViewController {
         remove()
     }
     
+    @IBAction func skipAndDeleteButtonTouched(_ sender: UIButton) {
+        
+    }
     
 }
 
