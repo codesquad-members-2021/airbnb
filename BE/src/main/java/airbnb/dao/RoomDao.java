@@ -7,7 +7,10 @@ import airbnb.mapper.RoomMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class RoomDao {
@@ -26,5 +29,13 @@ public class RoomDao {
         List<Room> rooms = jdbcTemplate.query(sql, roomMapper);
         rooms.forEach(room -> room.setImages(imageDao.findByRoomId(room.getId())));
         return rooms;
+    }
+
+    public List<Integer> findAllPrice(){
+        List<Integer> prices = new ArrayList<>();
+        String sql = "SELECT price FROM room ORDER BY price";
+        List<Room> rooms = jdbcTemplate.query(sql, roomMapper);
+        rooms.forEach(room -> prices.add(room.getPrice()));
+        return prices;
     }
 }
