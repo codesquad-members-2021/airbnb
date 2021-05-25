@@ -16,7 +16,7 @@ enum EndPoint {
         case cities = "/cities"
     }
     
-    static func url(path: Path) -> String {
+    static func url(path: Path, queryItems: [URLQueryItem]? = nil) -> String {
         var component = URLComponents()
         component.scheme = scheme
         component.host = host
@@ -26,8 +26,25 @@ enum EndPoint {
             case .cities : return path.rawValue
             }
         }()
+        component.queryItems = queryItems
         guard let urlString = component.url?.absoluteString else { return "somethingwrong" }
         return urlString
     }
+}
+
+enum QueryItems {
+    case checkIn
+    case checkOut
+    case cityName
     
+    func assign(value: String) -> URLQueryItem {
+        switch self {
+        case .checkIn:
+            return URLQueryItem(name: "checkIn", value: value)
+        case .checkOut:
+            return URLQueryItem(name: "checkOut", value: value)
+        case .cityName:
+            return URLQueryItem(name: "cityName", value: value)
+        }
+    }
 }
