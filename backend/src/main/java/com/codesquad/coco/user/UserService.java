@@ -26,7 +26,7 @@ public class UserService {
         room.reservationAvailabilityCheck(reservationDTO.getCheckIn(), reservationDTO.getCheckOut());
         room.capacityCheck(reservationDTO.getAdult(), reservationDTO.getChild());
         if (totalPrice != reservationDTO.getTotalPrice()) {
-            throw new TotalPriceNonMatchException();
+            throw new TotalPriceNonMatchException(totalPrice);
         }
         reservationDAO.reservation(roomId, userId, reservationDTO);
     }
