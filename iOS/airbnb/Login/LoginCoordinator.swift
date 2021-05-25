@@ -7,9 +7,9 @@
 
 import UIKit
 
-class LoginCoordinator : NSObject, Coordinator {
+class LoginCoordinator : NSObject, ChildCoordinator {
     
-    var childCoordinators = [Coordinator]()
+    var childCoordinators = [ChildCoordinator]()
     weak var parentCoordinator: MainCoordinator?
     var navigationController: UINavigationController
     

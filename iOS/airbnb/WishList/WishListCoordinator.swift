@@ -7,9 +7,9 @@
 
 import UIKit
 
-class WishListCoordinator : NSObject, Coordinator {
+class WishListCoordinator : NSObject, ChildCoordinator {
     
-    var childCoordinators = [Coordinator]()
+    var childCoordinators = [ChildCoordinator]()
     weak var parentCoordinator: MainCoordinator?
     var navigationController: UINavigationController
     
