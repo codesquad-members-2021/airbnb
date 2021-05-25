@@ -57,4 +57,29 @@ public class Room {
     public Long getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", max=" + max +
+                ", name='" + name + '\'' +
+                ", rating=" + rating +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", bedroomCount=" + bedroomCount +
+                ", bedCount=" + bedCount +
+                ", bathroomCount=" + bathroomCount +
+                ", address='" + address + '\'' +
+                ", detailAddress='" + detailAddress + '\'' +
+                ", commentCount=" + commentCount +
+                ", originalPrice=" + originalPrice +
+                ", salePrice=" + salePrice +
+                ", flexibleRefund=" + flexibleRefund +
+                ", immediateBooking=" + immediateBooking +
+                ", thumbnails=" + thumbnails +
+                ", options=" + options +
+                ", badges=" + badges +
+                '}';
+    }
 }
