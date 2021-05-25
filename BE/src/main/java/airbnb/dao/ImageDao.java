@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public class ImageDao {
 
-    private NamedParameterJdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate jdbcTemplate;
     private final ImageMapper imageMapper = new ImageMapper();
 
     public ImageDao(NamedParameterJdbcTemplate jdbcTemplate) {

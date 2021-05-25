@@ -2,6 +2,8 @@ package airbnb.domain;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
+
 public class Room {
 
     @Id
@@ -11,6 +13,7 @@ public class Room {
     private String description;
     private RoomDetail roomDetail;
     private Tax tax;
+    private List<Image> images;
 
     private Room(Builder builder) {
         this.id = builder.id;
@@ -60,7 +63,7 @@ public class Room {
             return this;
         }
 
-        public Room build(){
+        public Room build() {
             return new Room(this);
         }
     }
@@ -87,5 +90,9 @@ public class Room {
 
     public Tax getTax() {
         return tax;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }
