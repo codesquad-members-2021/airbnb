@@ -18,7 +18,11 @@ const Check = ({ dispatch }) => {
       </CheckIn>
       <CheckOut onClick={() => dispatch({ type: 'CHECKINOUT' })}>
         <CheckTitle>체크아웃</CheckTitle>
-        <CheckInp>{`${calendarData.checkOut.month}월${calendarData.checkOut.day}일`}</CheckInp>
+        <CheckInp>
+          {calendarData.checkOut.month !== 0
+            ? `${calendarData.checkOut.month}월${calendarData.checkOut.day}일`
+            : `날짜 입력`}
+        </CheckInp>
       </CheckOut>
       {/* <CloseButton /> */}
       <LineDiv />
@@ -32,7 +36,6 @@ const CheckDiv = styled.div`
   justify-content: space-around;
   align-items: center;
   border-radius: 3rem;
-  /* border: solid 2px red; */
 `;
 const CheckIn = styled.div`
   display: flex;

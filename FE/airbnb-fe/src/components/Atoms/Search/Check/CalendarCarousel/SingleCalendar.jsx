@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { SearchContext } from '../..';
-
+//달력 생성
 const createMonthArray = (year, month) => {
   let monthArr = [];
   let weekArr = [];
@@ -11,7 +11,6 @@ const createMonthArray = (year, month) => {
   //이번달 마지막 날짜
   const lastDay = new Date(year, month, 0).getDate();
   // i: 1주 j:요일
-
   for (let i = 0; i < 7; i++) {
     for (let j = 0; j < 7; j++) {
       if (weekArr.length >= 7) {
@@ -62,41 +61,67 @@ const SingleCalendar = ({ range }) => {
       day: checkOutDay,
     } = calendarData.checkOut;
 
+    //채크인에 데이터가 있을 때
     if (checkInYear && checkInMonth && checkInDay) {
+      //체크아웃에 데이터가 있을 때
       if (checkOutYear && checkOutMonth && checkOutDay) {
-      } else if (
-        checkInYear > parseInt(dateArr[0]) ||
-        checkInMonth > parseInt(dateArr[1]) ||
-        checkInDay > parseInt(dateArr[2])
-      ) {
         //두번째로 누른 값이 저장된 checkIn 데이터보다 작을때
-        calDispatch({
-          type: 'ADD_CHECKIN_DATA',
-          payload: {
-            year: parseInt(dateArr[0]),
-            month: parseInt(dateArr[1]),
-            day: parseInt(dateArr[2]),
-          },
-        });
-        // calDispatch({
-        //   type: 'ADD_CHECKOUT_DATA',
-        //   payload: {
-        //     year: 0,
-        //     month: 0,
-        //     day: 0,
-        //   },
-        // });
+        if (
+          checkInYear > parseInt(dateArr[0]) ||
+          checkInMonth > parseInt(dateArr[1]) ||
+          checkInDay > parseInt(dateArr[2])
+        ) {
+          calDispatch({
+            type: 'ADD_CHECKIN_DATA',
+            payload: {
+              year: parseInt(dateArr[0]),
+              month: parseInt(dateArr[1]),
+              day: parseInt(dateArr[2]),
+            },
+          });
+          calDispatch({
+            type: 'RESET_CHECKOUT_DATA',
+          });
+          //두번째로 누른값이 저장된 checkIn데이터보다 클때
+        } else {
+          calDispatch({
+            type: 'ADD_CHECKOUT_DATA',
+            payload: {
+              year: parseInt(dateArr[0]),
+              month: parseInt(dateArr[1]),
+              day: parseInt(dateArr[2]),
+            },
+          });
+        }
+        //체크아웃에 데이터가 없을 때
       } else {
-        //두번째로 누른 값이 저장된 checkIn 데이터보다 클 때 ( 즉 정상 작동 )
-        calDispatch({
-          type: 'ADD_CHECKOUT_DATA',
-          payload: {
-            year: parseInt(dateArr[0]),
-            month: parseInt(dateArr[1]),
-            day: parseInt(dateArr[2]),
-          },
-        });
+        //두번째로 누른 값이 저장된 checkIn 데이터보다 작을때
+        if (
+          checkInYear > parseInt(dateArr[0]) ||
+          checkInMonth > parseInt(dateArr[1]) ||
+          checkInDay > parseInt(dateArr[2])
+        ) {
+          calDispatch({
+            type: 'ADD_CHECKIN_DATA',
+            payload: {
+              year: parseInt(dateArr[0]),
+              month: parseInt(dateArr[1]),
+              day: parseInt(dateArr[2]),
+            },
+          });
+        } else {
+          //두번째로 누른 값이 저장된 checkIn 데이터보다 클 때 ( 즉 정상 작동 )
+          calDispatch({
+            type: 'ADD_CHECKOUT_DATA',
+            payload: {
+              year: parseInt(dateArr[0]),
+              month: parseInt(dateArr[1]),
+              day: parseInt(dateArr[2]),
+            },
+          });
+        }
       }
+      //체크인에 데이터가 없을 때
     } else {
       calDispatch({
         type: 'ADD_CHECKIN_DATA',
@@ -134,8 +159,6 @@ const SingleCalendar = ({ range }) => {
 };
 
 const SingleCalDiv = styled.table`
-  /* height: 16.5rem; */
-  border: 1px solid #ff0000;
   width: 21rem;
   margin: 0 2.125rem;
 `;
@@ -149,13 +172,14 @@ const DayTdButton = styled.button`
   width: 100%;
   height: 100%;
   border-radius: 3rem;
-  font-size: ${({ theme }) => theme.fontSizes.TS};
+  font-size: ${({ theme }) => theme.fontSizes.XXS};
   font-weight: 700;
-  /* cursor: pointer; */
   background: none;
   &:hover {
     border: ${({ day, disabled }) =>
       day === ' ' || disabled ? 'none' : '1px solid gray'};
+    cursor: ${({ day, disabled }) =>
+      day === ' ' || disabled ? 'default' : 'pointer'};
   }
   /* &:click {
     background-color: ${({ theme }) => theme.colors.gray1};

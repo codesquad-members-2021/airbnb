@@ -18,11 +18,14 @@ const calendarReducer = (state, action) => {
           day: action.payload.day,
         },
       };
-    case 'RESET_CAL':
+    case 'RESET_CHECKOUT_DATA':
       return {
-        year: 0,
-        month: 0,
-        day: 0,
+        ...state,
+        checkOut: {
+          year: 0,
+          month: 0,
+          day: 0,
+        },
       };
     default:
       return;
