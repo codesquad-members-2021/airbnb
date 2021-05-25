@@ -1,18 +1,19 @@
 import styled from "styled-components";
-import { MainContext } from "../config/MainContextProvider";
+import { ResultContext } from "../config/ResultContextProvider";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import Main from "./Main/Main";
 import Result from "./Result/Result";
+import Modal from "./Result/Modal";
 import { useContext } from "react";
 
 const Root = () => {
-	const { isResult, isSearchBarFocused } = useContext(MainContext);
+	const { isResultOn, isSearching, isModalOn } = useContext(ResultContext);
 	return (
 		<>
 			<Header />
-			{isResult ? (
-				<ResultWrapper isSearchBarFocused={isSearchBarFocused}>
+			{isResultOn ? (
+				<ResultWrapper isSearching={isSearching}>
 					<Result />
 				</ResultWrapper>
 			) : (
@@ -22,6 +23,7 @@ const Root = () => {
 					<Footer />
 				</MainWrapper>
 			)}
+			{isModalOn && <Modal />}
 		</>
 	);
 };
@@ -33,10 +35,10 @@ const MainWrapper = styled.div`
 const ResultWrapper = styled.div`
 	position: absolute;
 	width: 100%;
-	top: ${({ isSearchBarFocused }) => (isSearchBarFocused ? "192px" : "94px")};
+	top: ${({ isSearching }) => (isSearching ? "192px" : "94px")};
 	transform: translateX(-50%);
+	background: #fff;
 `;
-
 const HeroImg = styled.div`
 	position: absolute;
 	width: 1440px;

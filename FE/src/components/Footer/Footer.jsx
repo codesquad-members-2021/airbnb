@@ -1,12 +1,9 @@
-import { useContext } from "react";
 import styled from "styled-components";
-import { MainContext } from "../../config/MainContextProvider";
 import { footerData, FNBData } from "../../json/data.json";
 
 const Footer = () => {
-	const { isResult } = useContext(MainContext);
 	return (
-		<FooterWrapper isResult={isResult}>
+		<FooterWrapper>
 			{footerData.map((el) => (
 				<FooterContent key={el} body={el} />
 			))}

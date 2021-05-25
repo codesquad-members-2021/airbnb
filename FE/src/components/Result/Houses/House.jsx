@@ -1,15 +1,20 @@
+import { useContext } from "react";
 import styled from "styled-components";
-import addComma from "../../util/addComma";
+import { ResultContext } from "../../../config/ResultContextProvider";
+import addComma from "../../../util/addComma";
 
-
-const House = ({ data }) => {
-	const { id, image, location, name, option, review, grade, charge, description } = data;
-
+const House = ({ data, period }) => {
+	const { id, image, name, option, review, grade, charge } = data;
+	const { fetchModal, setModalOn } = useContext(ResultContext);
+  const clickHandler = () => {
+    fetchModal(id)
+    setModalOn(true)
+  }
 	return (
-		<HouseWrapper>
+		<HouseWrapper onClick={clickHandler}>
 			<Image src={image} />
 			<Info>
-        <Local></Local>
+				<Local>서초구 아파트 전체</Local>
 				<Name>{name}</Name>
 				<Option>{option}</Option>
 			</Info>
@@ -19,7 +24,7 @@ const House = ({ data }) => {
 				<Grade>{grade}</Grade>
 				<Review>{`(후기 ${review}개)`}</Review>
 			</Point>
-			<Total>총액 ₩1,493,159</Total>
+			<Total>{Boolean(period) && `총액 ₩${addComma(period * charge)}`}</Total>
 			<Wish />
 		</HouseWrapper>
 	);

@@ -1,15 +1,15 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { MainContext } from "../../config/MainContextProvider";
+import { ResultContext } from "../../config/ResultContextProvider";
 import Logo from "./Logo";
 import Menu from "./Menu";
 import MyPage from "./MyPage";
 import SearchBar from "./SearchBar/SearchBar";
 
 const Header = () => {
-	const { isResult, isSearchBarFocused } = useContext(MainContext);
+	const { isResultOn, isSearching, isModalOn } = useContext(ResultContext);
 	return (
-		<HeaderWrapper isResult={isResult} isSearchBarFocused={isSearchBarFocused}>
+		<HeaderWrapper isResultOn={isResultOn} isSearching={isSearching} isModalOn={isModalOn}>
 			<Logo />
 			<Menu />
 			<MyPage />
@@ -19,11 +19,12 @@ const Header = () => {
 };
 
 const HeaderWrapper = styled.div`
-	position: ${({ isResult }) => (isResult ? "absolute" : "relative")};
-	width: ${({ isResult }) => (isResult ? "100%" : "1440px")};
-	height: ${({ isSearchBarFocused }) => (isSearchBarFocused ? "192px" : "94px")};
-	left: ${({ isResult }) => (isResult ? "0px" : "")};
-	background: ${({ isResult }) => (isResult ? "#FFF" : "")};
+	position: ${({ isResultOn }) => (isResultOn ? "absolute" : "relative")};
+	width: ${({ isResultOn }) => (isResultOn ? "100%" : "1440px")};
+	height: ${({ isSearching }) => (isSearching ? "192px" : "94px")};
+	filter: ${({ isModalOn }) => (isModalOn ? "brightness(60%)" : "")};
+	transform: ${({ isResultOn }) => (isResultOn ? "translateX(-50%)" : "")};
+	background: ${({ isResultOn }) => (isResultOn ? "#FFF" : "")};
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
