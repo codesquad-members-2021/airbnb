@@ -37,6 +37,14 @@ public class Join {
         return checkIn + " = " + checkOut;
     }
 
+    public String getCheckInTime() {
+        return checkIn.getYear() + "년 " + checkIn.getMonthValue() + "월 " + checkIn.getDayOfMonth() + "일 오후 4:00";
+    }
+
+    public String getCheckOutTime() {
+        return checkOut.getYear() + "년 " + checkOut.getMonthValue() + "월 " + checkOut.getDayOfMonth() + "일 오후 12:00";
+    }
+
     public Long getId() {
         return id;
     }

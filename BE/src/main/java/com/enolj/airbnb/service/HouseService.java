@@ -21,6 +21,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.enolj.airbnb.service.UserService.getUserFromAuthorization;
+import static com.enolj.airbnb.web.dto.ReservationDetailDTO.createReservationDetailDTO;
 import static com.enolj.airbnb.web.dto.ReservationInfoResponseDTO.createReservationInfoResponseDTO;
 import static com.enolj.airbnb.web.dto.ReservationResponseDTO.createReservationResponseDTO;
 import static com.enolj.airbnb.web.dto.SearchResponseDTO.createSearchResponseDTO;
@@ -104,13 +105,14 @@ public class HouseService {
                 .collect(Collectors.toList());
     }
 
-    public ReservationDetailDTO getReservationDetail(Long houseId) {
-        List<String> images = new ArrayList<>();
-        images.add("https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg");
-        images.add("https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg");
-        images.add("https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg");
-        return new ReservationDetailDTO(1L, images, "서초구, 서울, 한국", "Specious and Comfortable cozy house #4", "2021년 5월 17일 오후 4:00", "2021년 6월 4일 오후 12:00",
-                new Description("Jong님", "집전체 • 게스트 3명", 1488195));
+    public ReservationDetailDTO getReservationDetail(String authorization, Long houseId) {
+        User user = getUserFromAuthorization(userDAO, authorization);
+        House house = findHouseById(houseId);
+        Join join = findJoinByUserIdAndHouseId(user.getId(), house.getId());
+        List<String> images = imageDAO.findAll(house.getId()).stream()
+                .map(Image::getUrl)
+                .collect(Collectors.toList());
+        return createReservationDetailDTO(house, images, join);
     }
 
     public void cancelReservation(String authorization, Long houseId) {

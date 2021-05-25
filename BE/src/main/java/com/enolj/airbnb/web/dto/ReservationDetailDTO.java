@@ -1,6 +1,11 @@
 package com.enolj.airbnb.web.dto;
 
+import com.enolj.airbnb.domain.house.House;
+import com.enolj.airbnb.domain.join.Join;
+
 import java.util.List;
+
+import static com.enolj.airbnb.web.dto.Description.createDescription;
 
 public class ReservationDetailDTO {
 
@@ -20,6 +25,10 @@ public class ReservationDetailDTO {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.description = description;
+    }
+
+    public static ReservationDetailDTO createReservationDetailDTO(House house, List<String> images, Join join) {
+        return new ReservationDetailDTO(house.getId(), images, "서초구, 서울, 한국", house.getName(), join.getCheckInTime(), join.getCheckOutTime(), createDescription(house));
     }
 
     public Long getId() {

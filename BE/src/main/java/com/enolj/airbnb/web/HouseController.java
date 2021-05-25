@@ -62,9 +62,9 @@ public class HouseController {
     }
 
     @GetMapping("/reservation/{houseId}")
-    public ReservationDetailDTO getReservationDetail(@PathVariable Long houseId) {
+    public ReservationDetailDTO getReservationDetail(@RequestHeader String authorization, @PathVariable Long houseId) {
         logger.info("{}번 숙소의 디테일 예약정보 요청", houseId);
-        return houseService.getReservationDetail(houseId);
+        return houseService.getReservationDetail(authorization, houseId);
     }
 
     @DeleteMapping("/reservation/{houseId}")
