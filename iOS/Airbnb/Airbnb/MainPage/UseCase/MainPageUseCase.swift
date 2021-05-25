@@ -1,5 +1,5 @@
 //
-//  MainPageViewModel.swift
+//  MainPageUseCase.swift
 //  Airbnb
 //
 //  Created by Lia on 2021/05/20.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class MainPageViewModel{
+class MainPageUseCase {
     
     @Published var mainPage: MainPage!
     @Published var error: Error!
@@ -22,7 +22,7 @@ class MainPageViewModel{
     
 }
 
-extension MainPageViewModel {
+extension MainPageUseCase  {
     
     func requestMainPage() {
         networkManager.get(type: Main.self, url: EndPoint.url(path: "/main")!)

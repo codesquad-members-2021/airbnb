@@ -127,19 +127,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		AE0B5DF026563C54000B35E7 /* ViewModel */ = {
+		AE0B5DF026563C54000B35E7 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
 				AE0B5DE226560287000B35E7 /* MainPageUseCase.swift */,
 			);
-			path = ViewModel;
+			path = UseCase;
 			sourceTree = "<group>";
 		};
 		AE0B5DF526566D00000B35E7 /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
 				AE9AC6A4265C9AFF0038C198 /* Controller */,
-				AE0B5DF026563C54000B35E7 /* ViewModel */,
+				AE0B5DF026563C54000B35E7 /* UseCase */,
 				AE0B5DED26563275000B35E7 /* View */,
 				AE0B5DEC2656326B000B35E7 /* Model */,
 			);
