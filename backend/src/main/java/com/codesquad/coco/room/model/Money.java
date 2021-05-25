@@ -5,7 +5,6 @@ public class Money {
     private static final int MIN_PRICE = 0;
     private static final int MAX_PRICE = 999_999_999;
 
-
     private final int money;
 
     public Money(int money) {
