@@ -103,7 +103,6 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="collectionView" destination="5YB-RF-zvL" id="1Ca-A2-im8"/>
                         <outlet property="locationsCollectionView" destination="5YB-RF-zvL" id="0Jl-pG-KlC"/>
                     </connections>
                 </viewController>
