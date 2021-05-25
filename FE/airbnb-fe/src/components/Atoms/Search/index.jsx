@@ -42,7 +42,7 @@ const Search = () => {
 
   const [priceData, priceDispatch] = useReducer(priceReducer, {
     minPrice: 0,
-    maxPrice: 0,
+    maxPrice: 1000000,
   });
 
   const { checkInOut, price, people } = clicked;

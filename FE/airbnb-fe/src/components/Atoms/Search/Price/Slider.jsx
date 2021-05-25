@@ -6,8 +6,6 @@ const Slider = () => {
   const { priceData, priceDispatch } = useContext(SearchContext);
   const [min, max] = [0, 1000000];
   const [avg, setAvg] = useState((min + max) / 2);
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(1000000);
 
   const thumbSize = 24;
   const width = 365;
@@ -17,15 +15,13 @@ const Slider = () => {
   const rightWidth =
     thumbSize + ((max - avg) / (max - min)) * (width - 2 * thumbSize);
 
-  const leftPercent = ((minPrice - min) / (avg - min)) * 100;
-  const rightPercent = ((maxPrice - avg) / (max - avg)) * 100;
-  console.log(minPrice);
+  const leftPercent = ((priceData.minPrice - min) / (avg - min)) * 100;
+  const rightPercent = ((priceData.maxPrice - avg) / (max - avg)) * 100;
+  console.log(priceData.minPrice);
 
   useEffect(() => {
-    setAvg((maxPrice + minPrice) / 2);
-    priceDispatch({ type: 'SET_MIN', payload: minPrice });
-    priceDispatch({ type: 'SET_MAX', payload: maxPrice });
-  }, [minPrice, maxPrice]);
+    setAvg((priceData.maxPrice + priceData.minPrice) / 2);
+  }, [priceData.minPrice, priceData.maxPrice]);
 
   return (
     <SliderDiv>
@@ -35,8 +31,10 @@ const Slider = () => {
         max={avg}
         leftWidth={leftWidth}
         leftPercent={leftPercent}
-        value={minPrice}
-        onChange={({ target }) => setMinPrice(parseInt(target.value))}
+        value={priceData.minPrice}
+        onChange={({ target }) =>
+          priceDispatch({ type: 'SET_MIN', payload: parseInt(target.value) })
+        }
       />
       <RightInput
         type="range"
@@ -45,8 +43,10 @@ const Slider = () => {
         leftWidth={leftWidth}
         rightWidth={rightWidth}
         rightPercent={rightPercent}
-        value={maxPrice}
-        onChange={({ target }) => setMaxPrice(parseInt(target.value))}
+        value={priceData.maxPrice}
+        onChange={({ target }) =>
+          priceDispatch({ type: 'SET_MAX', payload: parseInt(target.value) })
+        }
       />
     </SliderDiv>
   );
