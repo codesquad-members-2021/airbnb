@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		100CD07E265B9A1C002224F1 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100CD07D265B9A1C002224F1 /* SearchCoordinator.swift */; };
+		100CD082265B9A3D002224F1 /* WishListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100CD081265B9A3D002224F1 /* WishListCoordinator.swift */; };
+		100CD084265BA979002224F1 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100CD083265BA979002224F1 /* LoginCoordinator.swift */; };
 		101C0EDF26575A7B0014D62B /* NearPlaceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101C0EDE26575A7B0014D62B /* NearPlaceDTO.swift */; };
 		101C0EE126575BF80014D62B /* NearPlaceDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101C0EE026575BF80014D62B /* NearPlaceDataSource.swift */; };
 		101C0EE326575D2B0014D62B /* ThemePlaceDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101C0EE226575D2B0014D62B /* ThemePlaceDataSource.swift */; };
@@ -34,6 +37,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		100CD07D265B9A1C002224F1 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
+		100CD081265B9A3D002224F1 /* WishListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListCoordinator.swift; sourceTree = "<group>"; };
+		100CD083265BA979002224F1 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		101C0EDE26575A7B0014D62B /* NearPlaceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearPlaceDTO.swift; sourceTree = "<group>"; };
 		101C0EE026575BF80014D62B /* NearPlaceDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearPlaceDataSource.swift; sourceTree = "<group>"; };
 		101C0EE226575D2B0014D62B /* ThemePlaceDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePlaceDataSource.swift; sourceTree = "<group>"; };
@@ -121,6 +127,7 @@
 		10D29C862653A5B800E71840 /* WishList */ = {
 			isa = PBXGroup;
 			children = (
+				100CD081265B9A3D002224F1 /* WishListCoordinator.swift */,
 				10D29C8C2653A61E00E71840 /* WishListViewController.swift */,
 				10D29C922653A8A600E71840 /* WishList.storyboard */,
 			);
@@ -130,6 +137,7 @@
 		10D29C872653A5BF00E71840 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				100CD083265BA979002224F1 /* LoginCoordinator.swift */,
 				10D29C8A2653A61500E71840 /* LoginViewController.swift */,
 				10D29C902653A89F00E71840 /* Login.storyboard */,
 			);
@@ -139,6 +147,7 @@
 		10D29C882653A5C300E71840 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				100CD07D265B9A1C002224F1 /* SearchCoordinator.swift */,
 				10D29C74265393F800E71840 /* SearchViewController.swift */,
 				10642204265641F1005B63FD /* TravelListViewController.swift */,
 				1049206C265782AD00AA2590 /* FilterViewController.swift */,
@@ -237,8 +246,10 @@
 			files = (
 				10D29C8D2653A61E00E71840 /* WishListViewController.swift in Sources */,
 				10D29C6126538C6800E71840 /* AppDelegate.swift in Sources */,
+				100CD084265BA979002224F1 /* LoginCoordinator.swift in Sources */,
 				10E1B17D265407680087B69B /* HeaderReusableView.swift in Sources */,
 				1049206D265782AD00AA2590 /* FilterViewController.swift in Sources */,
+				100CD07E265B9A1C002224F1 /* SearchCoordinator.swift in Sources */,
 				10E1B17A2653F49D0087B69B /* NearPlaceCell.swift in Sources */,
 				10D29C75265393F800E71840 /* SearchViewController.swift in Sources */,
 				102FA1FA265550CD00B761C7 /* IdentityInfo.swift in Sources */,
@@ -252,6 +263,7 @@
 				101C0EDF26575A7B0014D62B /* NearPlaceDTO.swift in Sources */,
 				10E1B1722653DE0D0087B69B /* Storyboarded.swift in Sources */,
 				10642205265641F1005B63FD /* TravelListViewController.swift in Sources */,
+				100CD082265B9A3D002224F1 /* WishListCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

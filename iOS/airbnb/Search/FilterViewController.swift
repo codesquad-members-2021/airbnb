@@ -8,6 +8,7 @@
 import UIKit
 
 class FilterViewController: UIViewController {
+    weak var coordinator: SearchCoodinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()

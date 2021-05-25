@@ -11,6 +11,7 @@ class TravelListViewController: UIViewController {
     
     @IBOutlet weak var travelList: UICollectionView!
     
+    weak var coordinator : SearchCoodinator?
     private var nearPlaceDataSource = NearPlaceDataSource()
     private let searchController = UISearchController(searchResultsController: nil)
     private let removeButton = UIBarButtonItem(title: "지우기",
@@ -32,6 +33,10 @@ class TravelListViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationItem.searchController?.isActive = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.dismiss(animated: false, completion: nil)
     }
     @objc func didTapRemoveButton(){
         

@@ -12,6 +12,7 @@ class SearchViewController : UIViewController {
     @IBOutlet weak var nearPlaceCollection: UICollectionView!
     @IBOutlet weak var themePlaceCollection: UICollectionView!
     
+    weak var coordinator : SearchCoodinator?
     private var nearPlaceDataSource = NearPlaceDataSource()
     private var themePlaceDataSource = ThemePlaceDataSource()
     
@@ -25,7 +26,7 @@ class SearchViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tabBarController?.navigationItem.titleView = searchBar
+        self.navigationItem.titleView = searchBar
         searchBar.delegate = self
         
         nearPlaceCollection.dataSource = nearPlaceDataSource
@@ -49,9 +50,7 @@ class SearchViewController : UIViewController {
 
 extension SearchViewController : UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        let travelListViewController = TravelListViewController.instantiate()
-        self.navigationItem.backButtonTitle = "뒤로"
-        self.navigationController?.pushViewController(travelListViewController, animated: true)
+        coordinator?.start()
         return false
     }
 }
