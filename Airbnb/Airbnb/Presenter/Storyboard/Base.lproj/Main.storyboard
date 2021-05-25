@@ -181,6 +181,9 @@
                             <constraint firstItem="IT2-q2-A9n" firstAttribute="leading" secondItem="vE8-fz-wtx" secondAttribute="leading" id="b2E-Vf-SdT"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="calendarView" destination="IT2-q2-A9n" id="t0i-8F-BSP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZV-yp-xQM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
