@@ -18,6 +18,7 @@ const Layer = styled.ul<LayerWidth>`
 const Container = styled.div`
     display: flex;
     flex: 1;
+    border: 1px solid green;
 `;
 
 const Tab = styled.div`

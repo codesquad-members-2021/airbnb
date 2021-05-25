@@ -3,10 +3,11 @@ import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/Sear
 import styled from 'styled-components';
 import Calendar from './calendar/Calendar';
 import { Container, Tab, NavigatingText } from './shared.style';
-import { useReservationState } from '../../../../../hooks/ReservationHook';
+import { useReservationDispatch, useReservationState } from '../../../../../hooks/ReservationHook';
 
 const CheckInTab = (): React.ReactElement => {
     const reservationState = useReservationState();
+    const reservationDispatch = useReservationDispatch();
     const { checkIn } = reservationState;
     const searcherState = useSearcherState();
     const searcherDispatch = useSearcherDispatch();
@@ -21,6 +22,10 @@ const CheckInTab = (): React.ReactElement => {
         searcherDispatch({ type: 'CHECKIN_CALENDAR_LAYER', state: true });
     };
 
+    const handleCancel = () => {
+        reservationDispatch({ type: 'CHECKIN', year: 0, month: 0, day: 0 });
+    };
+
     return (
         <Container>
             <Tab onClick={handleCalendarLayer}>
@@ -28,6 +33,7 @@ const CheckInTab = (): React.ReactElement => {
                 <CheckInDateText>
                     {checkIn.year}-{checkIn.month}-{checkIn.day}
                 </CheckInDateText>
+                <button onClick={handleCancel}>취소</button>
             </Tab>
             {checkInCalendarLayer && <Calendar isCheckIn={true} />}
         </Container>

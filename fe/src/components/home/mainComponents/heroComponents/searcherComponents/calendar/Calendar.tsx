@@ -5,7 +5,7 @@ import { Td, UsefulObject, CalendarType, DateType, Date as IDate } from '../../.
 import { useReservationDispatch, useReservationState } from '../../../../../../hooks/ReservationHook';
 import { useSearcherDispatch } from '../../../../../../hooks/SearcherHook';
 import { Container, Layer } from '../shared.style';
-import { getDateSum, isBefore, isPossibleToCheckDate, getTypeOfDate } from './calendarChecker';
+import { getDateSum, isBefore, isPossibleToCheckDate, getTypeOfDate, isNotCheckIn } from './calendarChecker';
 
 const dateTypeColor: UsefulObject = {
     checkIn: 'tomato',
@@ -51,7 +51,7 @@ const Calendar = ({ isCheckIn }: CalendarType): React.ReactElement => {
         });
         const checkInSum = getDateSum(checkIn);
 
-        if (!isCheckIn && isBefore(targetDateSum, checkInSum)) {
+        if (!isCheckIn && (isBefore(targetDateSum, checkInSum) || isNotCheckIn(checkIn))) {
             reservationDispatch({
                 type: 'CHECKIN',
                 year: targetDate.getFullYear(),
@@ -72,11 +72,11 @@ const Calendar = ({ isCheckIn }: CalendarType): React.ReactElement => {
     };
 
     return (
-        <Layer width={916} top={70} left={0}>
+        <Layer width={900} top={70} left={0}>
             <button onClick={() => handleCalendarButton(-1, 'prev')}>prev</button>
-            <Container>
+            <CalendarContainer>
                 <MonthsPresenter {...{ checkIn, checkOut, calendarQueue, handleDate }} />
-            </Container>
+            </CalendarContainer>
             <button onClick={() => handleCalendarButton(1, 'next')}>next</button>
         </Layer>
     );
@@ -84,7 +84,22 @@ const Calendar = ({ isCheckIn }: CalendarType): React.ReactElement => {
 
 export default Calendar;
 
-const CalendarBox = styled.div``;
+const CarouselBox = styled.div`
+    position: absolute;
+    border: 1px solid blue;
+`;
+
+const CalendarContainer = styled.div`
+    width: 500px;
+`;
+
+const CalendarList = styled.ul`
+    display: flex;
+`;
+
+const CalendarBox = styled.li`
+    margin: 0 10px;
+`;
 
 const CalendarTitle = styled.h3``;
 
@@ -118,7 +133,7 @@ interface MonthProps extends CalendarPresenterProps {
 function MonthsPresenter(props: MonthProps) {
     const { checkIn, checkOut, handleDate, calendarQueue } = props;
     return (
-        <>
+        <CalendarList>
             {calendarQueue.map((date) => {
                 const dateTable = loadYYMM(date);
                 return (
@@ -134,7 +149,7 @@ function MonthsPresenter(props: MonthProps) {
                     </CalendarBox>
                 );
             })}
-        </>
+        </CalendarList>
     );
 }
 
