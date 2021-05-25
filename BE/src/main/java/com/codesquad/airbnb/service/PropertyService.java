@@ -17,7 +17,7 @@ public class PropertyService {
         this.propertyDao = propertyDao;
     }
 
-    public int getAveragePrice(Long locationId) {
+    int getAveragePrice(Long locationId) {
         int average = 0;
         List<Integer> prices = propertyDao.findPricesByLocationId(locationId);
 
@@ -28,7 +28,7 @@ public class PropertyService {
         return average / prices.size();
     }
 
-    public int[] getPropertyCountsByPriceRange(Long locationId) {
+    int[] getPropertyCountsByPriceRange(Long locationId) {
         int[] priceCounts = new int[20];
         List<Integer> prices = propertyDao.findPricesByLocationId(locationId);
 
@@ -37,5 +37,13 @@ public class PropertyService {
         }
 
         return priceCounts;
+    }
+
+    public PriceSearchDTO priceSearch(Long locationId) {
+        PriceSearchDTO priceSearchDTO = new PriceSearchDTO();
+        priceSearchDTO.setAveragePrice(getAveragePrice(locationId));
+        priceSearchDTO.setNumberOfRooms(getPropertyCountsByPriceRange(locationId));
+
+        return priceSearchDTO;
     }
 }

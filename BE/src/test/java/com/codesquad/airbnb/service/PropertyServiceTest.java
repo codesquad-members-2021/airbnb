@@ -37,4 +37,11 @@ class PropertyServiceTest {
             System.out.print(i + " ");
         }
     }
+
+    @Test
+    void propertyService_priceSearch() {
+        PriceSearchDTO priceSearchDTO = propertyService.priceSearch(3L);
+
+        logger.info("Price Search for location 5L: " + priceSearchDTO);
+    }
 }
