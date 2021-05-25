@@ -8,8 +8,10 @@ import team01.airbnb.domain.accommodation.AccommodationCondition;
 import team01.airbnb.domain.accommodation.AccommodationPhoto;
 import team01.airbnb.dto.request.AccommodationSaveRequestDto;
 import team01.airbnb.dto.response.AccommodationResponseDto;
+import team01.airbnb.exception.ConditionNotFoundException;
 import team01.airbnb.repository.AccommodationRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,7 +28,18 @@ public class AccommodationService {
     }
 
     public List<AccommodationResponseDto> findAccommodationsBySearch() {
-        return accommodationRepository.findAccommodationsBySearch();
+        List<AccommodationResponseDto> accommodationResponseDtos = new ArrayList<>();
+        List<Accommodation> accommodations = accommodationRepository.findAllAccommodations();
+        for (Accommodation accommodation : accommodations) {
+            Long accommodationId = accommodation.getId();
+            List<String> photos = accommodationRepository.findPhotosByAccommodationId(accommodationId);
+            AccommodationCondition condition = accommodationRepository.findConditionByAccommodationId(accommodationId)
+                    .orElseThrow(ConditionNotFoundException::new);
+            List<String> amenities = accommodationRepository.findAmenitiesByAccommodationId(accommodationId);
+            accommodationResponseDtos.add(
+                    AccommodationResponseDto.of(accommodation, photos, condition, amenities));
+        }
+        return accommodationResponseDtos;
     }
 
     @Transactional

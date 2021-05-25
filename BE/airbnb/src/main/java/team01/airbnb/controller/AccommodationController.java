@@ -31,8 +31,8 @@ public class AccommodationController {
     }
 
     @PostMapping("/save")
-    public void save(AccommodationSaveRequestDto accommodationSaveRequestDto) {
-        System.out.println(accommodationSaveRequestDto.toString());
+    public ApiResult save(AccommodationSaveRequestDto accommodationSaveRequestDto) {
         accommodationService.save(accommodationSaveRequestDto);
+        return ApiResult.ok();
     }
 }

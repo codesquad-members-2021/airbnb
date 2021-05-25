@@ -5,7 +5,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.stereotype.Repository;
 import team01.airbnb.domain.Amenity;
 import team01.airbnb.domain.Reservation;
@@ -13,8 +12,6 @@ import team01.airbnb.domain.accommodation.Accommodation;
 import team01.airbnb.domain.accommodation.AccommodationAddress;
 import team01.airbnb.domain.accommodation.AccommodationCondition;
 import team01.airbnb.domain.accommodation.AccommodationPhoto;
-import team01.airbnb.dto.response.AccommodationResponseDto;
-import team01.airbnb.exception.ConditionNotFoundException;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -114,21 +111,6 @@ public class AccommodationRepository {
                         return amenityIds.size();
                     }
                 });
-    }
-
-    public List<AccommodationResponseDto> findAccommodationsBySearch() {
-        List<AccommodationResponseDto> accommodationResponseDtos = new ArrayList<>();
-        List<Accommodation> accommodations = findAllAccommodations();
-        for (Accommodation accommodation : accommodations) {
-            Long accommodationId = accommodation.getId();
-            List<String> photos = findPhotosByAccommodationId(accommodationId);
-            AccommodationCondition condition = findConditionByAccommodationId(accommodationId)
-                    .orElseThrow(ConditionNotFoundException::new);
-            List<String> amenities = findAmenitiesByAccommodationId(accommodationId);
-            accommodationResponseDtos.add(
-                    AccommodationResponseDto.of(accommodation, photos, condition, amenities));
-        }
-        return accommodationResponseDtos;
     }
 
     public List<Accommodation> findAllAccommodations() {
