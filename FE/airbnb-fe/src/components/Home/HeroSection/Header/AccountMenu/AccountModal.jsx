@@ -10,6 +10,7 @@ const AccountModal = () => {
 };
 
 const AccountModalDiv = styled.div`
+  z-index: 100;
   display: flex;
   position: absolute;
   padding: 1rem 0;

@@ -1,10 +1,4 @@
-import React, {
-  useReducer,
-  useRef,
-  useEffect,
-  createContext,
-  useState,
-} from 'react';
+import React, { useReducer, useRef, useEffect, createContext } from 'react';
 import styled from 'styled-components';
 import Price from './Price';
 import Check from './Check';
@@ -14,6 +8,8 @@ import PriceModal from './Price/PriceModal';
 import PeopleModal from './People/PeopleModal';
 import SearchBtn from './SearchBtn';
 import modalClickReducer from '../../utils/reducer/modalClickReducer';
+import peopleReducer from '../../utils/reducer/peopleReducer';
+import priceReducer from '../../utils/reducer/priceReducer';
 
 export const SearchContext = createContext();
 
@@ -38,38 +34,23 @@ const Search = () => {
     people: false,
   });
 
-  const peopleReducer = (state, action) => {
-    switch (action.type) {
-      case 'INCREASE':
-        return {
-          ...state,
-          [action.payload]: state[action.payload] + 1,
-        };
-      case 'DECREASE':
-        return {
-          ...state,
-          [action.payload]: state[action.payload] - 1,
-        };
-      case 'RESET':
-        return {
-          adult: 0,
-          child: 0,
-          baby: 0,
-        };
-      default:
-        return;
-    }
-  };
-
   const [peopleCount, peopleDispatch] = useReducer(peopleReducer, {
     adult: 0,
     child: 0,
     baby: 0,
   });
 
+  const [priceData, priceDispatch] = useReducer(priceReducer, {
+    minPrice: 0,
+    maxPrice: 1000000,
+  });
+
   const { checkInOut, price, people } = clicked;
+
   return (
-    <SearchContext.Provider value={{ peopleCount, peopleDispatch }}>
+    <SearchContext.Provider
+      value={{ peopleCount, peopleDispatch, priceDispatch, priceData }}
+    >
       <SearchDiv className="searchBar">
         <SearchWrap>
           <Check dispatch={modalDispatch}></Check>
