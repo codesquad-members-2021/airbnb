@@ -1,0 +1,22 @@
+<div>
+    <form method="post" action="/accommodations/save">
+        숙소명 <input name="name"></br>
+        설명 <input name="description"></br>
+        1박요금 <input name="chargePerNight" placeholder="ex : 35000"></br>
+        청소비 <input name="cleaningCharge" placeholder="ex : 5000"></br>
+        체크인 <input type="time" name="checkIn"></br>
+        체크아웃 <input type="time" name="checkOut"></br>
+        주소 <input name="address" placeholder="기본 : 한국, 서울" ></br>
+        최대인원 <input name="guests" placeholder="ex : 4"></br>
+        침실 <input name="bedroomCount" placeholder="ex : 1"></br>
+        침대 <input name="bedCount" placeholder="ex : 1"></br>
+        욕실 <input name="bathroomCount" placeholder="ex : 1"></br>
+        어매니티 </br>
+            <input type="checkbox" name="amenity1" value="주방">주방</br>
+            <input type="checkbox" name="amenity2" value="무선 인터넷">무선 인터넷</br>
+            <input type="checkbox" name="amenity3" value="에어컨">에어컨</br>
+            <input type="checkbox" name="amenity4" value="헤어드라이기">헤어드라이기</br>
+        사진 <input name="photo"></br>
+        <button type="submit">숙소 등록</button>
+    </form>
+</div>

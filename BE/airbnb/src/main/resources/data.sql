@@ -26,7 +26,7 @@ INSERT INTO accommodation_address (accommodation_id, country_id, city_id, addres
 VALUE (1, 1, 1, '서초구');
 
 INSERT INTO accommodation_condition (accommodation_id, guests, bedroom_count, bed_count, bathroom_count)
-VALUE (1, 3, 1, 1, 1);
+VALUE (1, 3, '원룸', '1', '1');
 
 INSERT INTO accommodation_photo (accommodation_id, `name`) VALUES (1, 'https://codesquad.kr/img/place/img_5225.jpg');
 
@@ -43,14 +43,14 @@ INSERT INTO accommodation_address (accommodation_id, country_id, city_id, addres
     VALUE (2, 1, 1, '강남구');
 
 INSERT INTO accommodation_condition (accommodation_id, guests, bedroom_count, bed_count, bathroom_count)
-    VALUE (2, 4, 2, 2, 2);
+    VALUE (2, 4, '2', '2', '2');
 
 INSERT INTO accommodation_photo (accommodation_id, `name`) VALUES (2, 'https://codesquad.kr/img/place/img_5225.jpg');
 
-INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (1, 1);
-INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (1, 2);
-INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (1, 3);
-INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (1, 4);
+INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (2, 1);
+INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (2, 2);
+INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (2, 3);
+INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (2, 4);
 
 -- id : 3
 INSERT INTO accommodation (host_id, `name`, description, charge_per_night, cleaning_charge, check_in, check_out)
@@ -60,14 +60,14 @@ INSERT INTO accommodation_address (accommodation_id, country_id, city_id, addres
     VALUE (3, 1, 1, '중구');
 
 INSERT INTO accommodation_condition (accommodation_id, guests, bedroom_count, bed_count, bathroom_count)
-    VALUE (3, 2, 1, 1, 1);
+    VALUE (3, 2, '원룸', '1', '1');
 
 INSERT INTO accommodation_photo (accommodation_id, `name`) VALUES (3, 'https://codesquad.kr/img/place/img_5225.jpg');
 
-INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (1, 1);
-INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (1, 2);
-INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (1, 3);
-INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (1, 4);
+INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (3, 1);
+INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (3, 2);
+INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (3, 3);
+INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (3, 4);
 
 -- 예약 등록
 INSERT INTO reservation (accommodation_id, user_id, check_in, check_out, guests, charge)

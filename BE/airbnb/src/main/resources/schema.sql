@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`accommodation_address` (
     `city_id` BIGINT NOT NULL,
     `address` TEXT NOT NULL,
     `latitude` VARCHAR(45) NULL,
-    `logitude` VARCHAR(45) NULL,
+    `longitude` VARCHAR(45) NULL,
     INDEX `fk_accommodation_address_accommodation1_idx` (`accommodation_id` ASC),
     PRIMARY KEY (`accommodation_id`),
     INDEX `fk_accommodation_address_countries1_idx` (`country_id` ASC),
