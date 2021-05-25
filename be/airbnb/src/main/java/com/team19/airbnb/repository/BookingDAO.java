@@ -71,7 +71,5 @@ public class BookingDAO {
     public void bookReservation(Booking booking, Long userId) {
         String query = "INSERT INTO booking (check_in, check_out, guest, total_price, user, room) VALUES (?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(query, booking.getCheckIn(), booking.getCheckOut(), booking.getGuest(), booking.getTotalPrice(), userId, booking.getRoom());
-        //user.book(booking);
-
     }
 }
