@@ -3,6 +3,7 @@ package com.codesquad.airbnb.service;
 import com.codesquad.airbnb.dao.PropertyDao;
 import com.codesquad.airbnb.dto.PriceSearchDTO;
 import com.codesquad.airbnb.dto.PropertiesResponseDto;
+import com.codesquad.airbnb.dto.PropertyDetailResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +52,9 @@ public class PropertyService {
 
     public PropertiesResponseDto findBy(Long locationId, LocalDate checkIn, LocalDate checkOut, int minPrice, int maxPrice, int adult, int children, int infant) {
         return propertyDao.findBy(locationId, checkIn, checkOut, minPrice, maxPrice, adult, children, infant);
+    }
+
+    public PropertyDetailResponseDto findPropertyDetailByPropertyId (Long propertyId) {
+        return propertyDao.findPropertyDetailByPropertyId(propertyId);
     }
 }

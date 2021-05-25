@@ -1,7 +1,7 @@
 package com.codesquad.airbnb.dao;
 
 import com.codesquad.airbnb.domain.Property;
-import com.codesquad.airbnb.dto.PropertiesDetailResponseDto;
+import com.codesquad.airbnb.dto.PropertyDetailResponseDto;
 import com.codesquad.airbnb.dto.PropertiesResponseDto;
 import com.codesquad.airbnb.dto.PropertyDto;
 import org.junit.jupiter.api.Test;
@@ -63,7 +63,7 @@ public class PropertyDaoTest {
 
     @Test
     void propertyDao_findPropertyDetailByPropertyId() {
-        PropertiesDetailResponseDto property = propertyDao.findPropertyDetailByPropertyId(1L);
+        PropertyDetailResponseDto property = propertyDao.findPropertyDetailByPropertyId(1L);
         assertThat(property).isNotNull();
         logger.info("Find property by propertyDao: {}",
                 property);
