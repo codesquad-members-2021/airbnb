@@ -12,13 +12,57 @@ public class Room {
     private RoomDetail roomDetail;
     private Tax tax;
 
-    public Room(Long id, int price, String title, String description, RoomDetail roomDetail, Tax tax) {
-        this.id = id;
-        this.price = price;
-        this.title = title;
-        this.description = description;
-        this.roomDetail = roomDetail;
-        this.tax = tax;
+    private Room(Builder builder) {
+        this.id = builder.id;
+        this.price = builder.price;
+        this.title = builder.title;
+        this.description = builder.description;
+        this.roomDetail = builder.roomDetail;
+        this.tax = builder.tax;
+    }
+
+    public static class Builder {
+
+        private final Long id;
+
+        private int price;
+        private String title;
+        private String description;
+        private RoomDetail roomDetail;
+        private Tax tax;
+
+        public Builder(Long id) {
+            this.id = id;
+        }
+
+        public Builder price(int price) {
+            this.price = price;
+            return this;
+        }
+
+        public Builder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder roomDetail(RoomDetail roomDetail) {
+            this.roomDetail = roomDetail;
+            return this;
+        }
+
+        public Builder tax(Tax tax) {
+            this.tax = tax;
+            return this;
+        }
+
+        public Room build(){
+            return new Room(this);
+        }
     }
 
     public Long getId() {
