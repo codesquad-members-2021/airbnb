@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { SearchContext } from '../..';
 
 const createMonthArray = (year, month) => {
   let monthArr = [];
@@ -35,6 +36,7 @@ const createMonthArray = (year, month) => {
 };
 
 const SingleCalendar = ({ range }) => {
+  const { calendarData, calDispatch } = useContext(SearchContext);
   const today = new Date(Date.now());
   const [year, month] = [today.getFullYear(), range + today.getMonth() + 1];
   const monthArr = createMonthArray(year, month);
@@ -46,8 +48,65 @@ const SingleCalendar = ({ range }) => {
   };
 
   const handleTdBtnClick = (e) => {
-    //
     console.log(e.target.dataset.day);
+    const dateArr = e.target.dataset.day.split('-').map(Number); // "2021-5-26"
+    const {
+      year: checkInYear,
+      month: checkInMonth,
+      day: checkInDay,
+    } = calendarData.checkIn;
+
+    const {
+      year: checkOutYear,
+      month: checkOutMonth,
+      day: checkOutDay,
+    } = calendarData.checkOut;
+
+    if (checkInYear && checkInMonth && checkInDay) {
+      if (checkOutYear && checkOutMonth && checkOutDay) {
+      } else if (
+        checkInYear > parseInt(dateArr[0]) ||
+        checkInMonth > parseInt(dateArr[1]) ||
+        checkInDay > parseInt(dateArr[2])
+      ) {
+        //두번째로 누른 값이 저장된 checkIn 데이터보다 작을때
+        calDispatch({
+          type: 'ADD_CHECKIN_DATA',
+          payload: {
+            year: parseInt(dateArr[0]),
+            month: parseInt(dateArr[1]),
+            day: parseInt(dateArr[2]),
+          },
+        });
+        // calDispatch({
+        //   type: 'ADD_CHECKOUT_DATA',
+        //   payload: {
+        //     year: 0,
+        //     month: 0,
+        //     day: 0,
+        //   },
+        // });
+      } else {
+        //두번째로 누른 값이 저장된 checkIn 데이터보다 클 때 ( 즉 정상 작동 )
+        calDispatch({
+          type: 'ADD_CHECKOUT_DATA',
+          payload: {
+            year: parseInt(dateArr[0]),
+            month: parseInt(dateArr[1]),
+            day: parseInt(dateArr[2]),
+          },
+        });
+      }
+    } else {
+      calDispatch({
+        type: 'ADD_CHECKIN_DATA',
+        payload: {
+          year: parseInt(dateArr[0]),
+          month: parseInt(dateArr[1]),
+          day: parseInt(dateArr[2]),
+        },
+      });
+    }
   };
 
   return (

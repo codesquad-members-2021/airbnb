@@ -1,7 +1,6 @@
 import React from 'react';
 
 const YearMonth = ({ range }) => {
-  console.log(range);
   const Today = new Date();
   const calcMonth = (year, mon) => {
     if (mon <= 0) {

@@ -10,6 +10,7 @@ import SearchBtn from './SearchBtn';
 import modalClickReducer from '../../utils/reducer/modalClickReducer';
 import peopleReducer from '../../utils/reducer/peopleReducer';
 import priceReducer from '../../utils/reducer/priceReducer';
+import calendarReducer from '../../utils/reducer/calendarReducer';
 
 export const SearchContext = createContext();
 
@@ -45,11 +46,23 @@ const Search = () => {
     maxPrice: 1000000,
   });
 
+  const [calendarData, calDispatch] = useReducer(calendarReducer, {
+    checkIn: { year: 0, month: 0, day: 0 },
+    checkOut: { year: 0, month: 0, day: 0 },
+  });
+
   const { checkInOut, price, people } = clicked;
 
   return (
     <SearchContext.Provider
-      value={{ peopleCount, peopleDispatch, priceDispatch, priceData }}
+      value={{
+        peopleCount,
+        peopleDispatch,
+        priceDispatch,
+        priceData,
+        calDispatch,
+        calendarData,
+      }}
     >
       <SearchDiv className="searchBar">
         <SearchWrap>

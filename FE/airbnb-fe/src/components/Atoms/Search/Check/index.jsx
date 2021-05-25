@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { SearchContext } from '..';
 import CloseButton from '../../buttons/CloseBtn';
 
 const Check = ({ dispatch }) => {
+  const { calendarData } = useContext(SearchContext);
+
   return (
     <CheckDiv>
       <CheckIn onClick={() => dispatch({ type: 'CHECKINOUT' })}>
         <CheckTitle>체크인</CheckTitle>
-        <CheckInp>날짜입력</CheckInp>
+        <CheckInp>
+          {calendarData.checkIn.month !== 0
+            ? `${calendarData.checkIn.month}월${calendarData.checkIn.day}일`
+            : `날짜 입력`}
+        </CheckInp>
       </CheckIn>
       <CheckOut onClick={() => dispatch({ type: 'CHECKINOUT' })}>
         <CheckTitle>체크아웃</CheckTitle>
-        <CheckInp>날짜입력</CheckInp>
+        <CheckInp>{`${calendarData.checkOut.month}월${calendarData.checkOut.day}일`}</CheckInp>
       </CheckOut>
       {/* <CloseButton /> */}
       <LineDiv />
