@@ -7,15 +7,15 @@ public class Property {
     @Id
     private Long id;
 
-    private String name;
+    private String title;
     private int price;
 
     public Property() {
     }
 
-    public Property(Long id, String name, int price) {
+    public Property(Long id, String title, int price) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.price = price;
     }
 
@@ -23,8 +23,8 @@ public class Property {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     public int getPrice() {
@@ -35,7 +35,7 @@ public class Property {
     public String toString() {
         return "Property{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + title + '\'' +
                 ", price=" + price +
                 '}';
     }
