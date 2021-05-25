@@ -2,6 +2,7 @@ package com.team19.airbnb.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.team19.airbnb.domain.Booking;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -27,6 +28,10 @@ public class BookingRequestDTO {
         this.checkOut = checkOut;
         this.guest = guest;
         this.totalPrice = totalPrice;
+    }
+
+    public Booking toEntiy() {
+        return Booking.create(checkIn, checkOut, guest, totalPrice, roomId);
     }
 
     @Override
