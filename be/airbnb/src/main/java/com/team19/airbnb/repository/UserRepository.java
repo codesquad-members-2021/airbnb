@@ -1,4 +1,7 @@
 package com.team19.airbnb.repository;
 
-public interface UserRepository {
+import com.team19.airbnb.domain.User;
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserRepository extends CrudRepository<User, Long> {
 }

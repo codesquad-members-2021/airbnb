@@ -2,7 +2,6 @@ package com.team19.airbnb.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
-import org.springframework.data.annotation.Persistent;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -55,5 +54,37 @@ public class Booking {
                 checkIn, checkOut,
                 guest, totalPrice,
                 user, room);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDate getCheckIn() {
+        return checkIn;
+    }
+
+    public LocalDate getCheckOut() {
+        return checkOut;
+    }
+
+    public Integer getGuest() {
+        return guest;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public Long getUser() {
+        return user;
+    }
+
+    public Long getRoom() {
+        return room;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

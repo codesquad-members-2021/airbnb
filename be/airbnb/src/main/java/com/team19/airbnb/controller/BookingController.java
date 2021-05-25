@@ -1,8 +1,9 @@
 package com.team19.airbnb.controller;
 
+import com.team19.airbnb.domain.room.Host;
 import com.team19.airbnb.dto.BookingRequestDTO;
 import com.team19.airbnb.dto.BookingResponseDTO;
-import com.team19.airbnb.domain.room.Host;
+import com.team19.airbnb.service.BookingService;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -12,6 +13,12 @@ import java.util.List;
 
 @RestController
 public class BookingController {
+
+    private final BookingService bookingService;
+
+    public BookingController(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
 
     @PostMapping("/bookings/{userId}")
     public void bookRoom(@RequestBody BookingRequestDTO bookingRequestDTO) {
@@ -27,8 +34,9 @@ public class BookingController {
     }
 
     @GetMapping("/bookings/{bookingId}/{userId}")
-    public BookingResponseDTO getBooking(@PathVariable Long bookingId) {
-        return createBookingResponseDTO(bookingId);
+    public BookingResponseDTO getBooking(@PathVariable Long bookingId, @PathVariable Long userId) {
+        bookingService.findBooking(userId, bookingId);
+        return null;
     }
 
     @DeleteMapping("/bookings/{bookingId}/{userId}")
@@ -56,5 +64,4 @@ public class BookingController {
                 guest,
                 totalPrice);
     }
-
 }
