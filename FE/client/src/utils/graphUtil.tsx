@@ -44,34 +44,34 @@ export const getAveragePrice = ({ rangeState: { left, right }, priceArray }: Gra
   return Math.floor(totalPrice / selectedPriceCount);
 }
 
-type priceCountArrayType = {
+type PriceCountArrayType = {
   priceCountArray: Array<number>;
 }
 
-export const getOnePriceSize = ({ priceCountArray }: priceCountArrayType) => {
+export const getOnePriceSize = ({ priceCountArray }: PriceCountArrayType) => {
   const maxSize = Math.max(...priceCountArray);
   const oneSize = 100 / maxSize;
   return oneSize;
 }
 
-type getLinesType = priceCountArrayType & {
+type LinesType = PriceCountArrayType & {
   oneSize: number;
 }
 
-export const getLines = ({ oneSize, priceCountArray }: getLinesType) => {
+export const getLines = ({ oneSize, priceCountArray }: LinesType) => {
   return `00, 100 \n ${priceCountArray.map((count, idx) => {
     return `${idx * 10}, ${count ? 100 - (count * oneSize) : 100}`;
   }).join('\n')}\n 500,100`;
 }
 
-type getSelectedLinesType = getLinesType & {
+type SelectedLinesType = LinesType & {
   rangeState: {
     left: number,
     right: number
   };
 };
 
-export const getSelectedLines = ({ priceCountArray, oneSize, rangeState: { left, right } }: getSelectedLinesType) => {
+export const getSelectedLines = ({ priceCountArray, oneSize, rangeState: { left, right } }: SelectedLinesType) => {
   const firstSelectIndex = priceCountArray.findIndex((_, idx) => {
     return left / (100 / priceCountArray.length) <= idx;
   })
