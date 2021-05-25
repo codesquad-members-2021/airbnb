@@ -34,10 +34,9 @@ const FNB = () => (
 
 const FooterWrapper = styled.div`
 	position: absolute;
-	width: ${({ isResult }) => (isResult ? "100%" : "1440px")};
+	width: 1440px;
 	height: 629px;
 	top: 1495px;
-	left: ${({ isResult }) => (isResult ? "0px" : "")};
 
 	display: flex;
 	justify-content: center;

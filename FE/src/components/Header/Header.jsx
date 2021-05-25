@@ -4,7 +4,6 @@ import { MainContext } from "../../config/MainContextProvider";
 import Logo from "./Logo";
 import Menu from "./Menu";
 import MyPage from "./MyPage";
-import SearchBarContextProvider from "../../config/SearchBarContextProvider";
 import SearchBar from "./SearchBar/SearchBar";
 
 const Header = () => {
@@ -14,9 +13,7 @@ const Header = () => {
 			<Logo />
 			<Menu />
 			<MyPage />
-			<SearchBarContextProvider>
-				<SearchBar />
-			</SearchBarContextProvider>
+			<SearchBar />
 		</HeaderWrapper>
 	);
 };

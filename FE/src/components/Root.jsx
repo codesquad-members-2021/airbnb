@@ -7,21 +7,21 @@ import Result from "./Result/Result";
 import { useContext } from "react";
 
 const Root = () => {
-	const { isResult } = useContext(MainContext);
+	const { isResult, isSearchBarFocused } = useContext(MainContext);
 	return (
 		<>
 			<Header />
 			{isResult ? (
-				<ResultWrapper>
+				<ResultWrapper isSearchBarFocused={isSearchBarFocused}>
 					<Result />
 				</ResultWrapper>
 			) : (
 				<MainWrapper>
 					<HeroImg />
 					<Main />
+					<Footer />
 				</MainWrapper>
 			)}
-			<Footer />
 		</>
 	);
 };
@@ -30,7 +30,12 @@ const MainWrapper = styled.div`
 	position: absolute;
 	top: 0px;
 `;
-const ResultWrapper = styled.div``;
+const ResultWrapper = styled.div`
+	position: absolute;
+	width: 100%;
+	top: ${({ isSearchBarFocused }) => (isSearchBarFocused ? "192px" : "94px")};
+	transform: translateX(-50%);
+`;
 
 const HeroImg = styled.div`
 	position: absolute;
