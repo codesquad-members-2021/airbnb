@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { SearchContext } from '..';
 
 const PriceDescription = () => {
+  const { priceData } = useContext(SearchContext);
   return (
     <PriceDescriptionDiv>
       <PriceTitle>가격 범위</PriceTitle>
       <PriceCaption>
-        <PriceCaptionRange>₩100,000 - ₩1,000,000+</PriceCaptionRange>
+        <PriceCaptionRange>{`₩${priceData.minPrice} - ₩${priceData.maxPrice}+`}</PriceCaptionRange>
         <PriceCaptionSpan>평균 1박 요금은 ₩165,556 입니다.</PriceCaptionSpan>
       </PriceCaption>
     </PriceDescriptionDiv>

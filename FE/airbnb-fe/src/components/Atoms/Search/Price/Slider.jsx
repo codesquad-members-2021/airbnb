@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
+import { SearchContext } from '..';
 
 const Slider = () => {
+  const { priceData, priceDispatch } = useContext(SearchContext);
   const [min, max] = [0, 1000000];
   const [avg, setAvg] = useState((min + max) / 2);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000000);
 
-  const thumbSize = 15;
+  const thumbSize = 24;
   const width = 365;
   const leftWidth =
     thumbSize + ((avg - min) / (max - min)) * (width - 2 * thumbSize);
@@ -18,8 +20,11 @@ const Slider = () => {
   const leftPercent = ((minPrice - min) / (avg - min)) * 100;
   const rightPercent = ((maxPrice - avg) / (max - avg)) * 100;
   console.log(minPrice);
+
   useEffect(() => {
     setAvg((maxPrice + minPrice) / 2);
+    priceDispatch({ type: 'SET_MIN', payload: minPrice });
+    priceDispatch({ type: 'SET_MAX', payload: maxPrice });
   }, [minPrice, maxPrice]);
 
   return (
@@ -31,7 +36,7 @@ const Slider = () => {
         leftWidth={leftWidth}
         leftPercent={leftPercent}
         value={minPrice}
-        onChange={({ target }) => setMinPrice(Number(target.value))}
+        onChange={({ target }) => setMinPrice(parseInt(target.value))}
       />
       <RightInput
         type="range"
@@ -41,7 +46,7 @@ const Slider = () => {
         rightWidth={rightWidth}
         rightPercent={rightPercent}
         value={maxPrice}
-        onChange={({ target }) => setMaxPrice(Number(target.value))}
+        onChange={({ target }) => setMaxPrice(parseInt(target.value))}
       />
     </SliderDiv>
   );

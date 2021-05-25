@@ -9,6 +9,7 @@ import PeopleModal from './People/PeopleModal';
 import SearchBtn from './SearchBtn';
 import modalClickReducer from '../../utils/reducer/modalClickReducer';
 import peopleReducer from '../../utils/reducer/peopleReducer';
+import priceReducer from '../../utils/reducer/priceReducer';
 
 export const SearchContext = createContext();
 
@@ -39,10 +40,17 @@ const Search = () => {
     baby: 0,
   });
 
+  const [priceData, priceDispatch] = useReducer(priceReducer, {
+    minPrice: 0,
+    maxPrice: 0,
+  });
+
   const { checkInOut, price, people } = clicked;
 
   return (
-    <SearchContext.Provider value={{ peopleCount, peopleDispatch }}>
+    <SearchContext.Provider
+      value={{ peopleCount, peopleDispatch, priceDispatch, priceData }}
+    >
       <SearchDiv className="searchBar">
         <SearchWrap>
           <Check dispatch={modalDispatch}></Check>
