@@ -143,54 +143,54 @@ VALUES ('https://user-images.githubusercontent.com/69128652/118953932-3cbb2f80-b
 
 insert into property_detail(property_id, description, max_occupancy,
                             cleaning_fee, occupied_date, bed_count, bath_count,
-                            room_type, review_count, latitude, longitude)
+                            room_type, review_count, latitude, longitude, rating)
 VALUES (1, '집 내부 전체를 리모델링한 분위기있는 공간입니다. 복잡한 홍대에서 조금만 걸으면 아기자기한 느낌의 상수동이에요. 6호선 상수역은 바로 앞이라 어디든 이용이 편리합니다',
-        6, 6400, null, 4, 2, 'entire house', 42, 37.5468631, 126.922349),
+        6, 6400, null, 4, 2, 'entire house', 42, 37.5468631, 126.922349, 4.7),
        (2, 'Hello! We are locted in 5 minutes walking distance from Hongik Univ station Exit 4. If you are a solo or a couple traveler I believe our house is perfect for you.
 The house is clean and cozy, located in a safe and quiet residential area.',
-        3, 7800, null, 1, 1, 'private room', 2, 37.555742, 126.931276),
+        3, 7800, null, 1, 1, 'private room', 2, 37.555742, 126.931276, 4.9),
        (3, '- 대중교통으로 대한민국의 모든 Hot Place를 "한번에" (명동, 인사동, 강남, 광화문, 동대문 등등).
 - 안전한 숙소 (숙소 1분 내 경찰서 위치).
 - 도심속 조용한 숙소.
 - 입실 전 / 후 캐리어 보관 서비스 제공.',
-        2, 4300, null, 1, 1, 'entire house', 19, 37.579678, 127.005000),
+        2, 4300, null, 1, 1, 'entire house', 19, 37.579678, 127.005000, 4.2),
        (4, '교통의 요지 선릉역에 위치한 신축건물',
-        4, 8900, null, 2, 1, 'private room', 104, 37.506602, 127.050994),
+        4, 8900, null, 2, 1, 'private room', 104, 37.506602, 127.050994, 4.6),
        (5, 'Room is right next to Gangnam station exit no.1',
-        6, 6400, null, 4, 2, 'entire house', 9, 37.496451, 127.030199),
+        6, 6400, null, 4, 2, 'entire house', 9, 37.496451, 127.030199, 4.5),
        (6, '여의도와 한강이 한눈에 보이는 전망입니다. 야경이 매우 아름답고 굉장히 꺠끗한 숙소 입니다.',
-        4, 12400, null, 2, 2, 'entire house', 251, 37.516869, 126.914027),
+        4, 12400, null, 2, 2, 'entire house', 251, 37.516869, 126.914027, 4.3),
 
        (7, '고층에서 송도 센트럴파크와 송도 시내 전망을 바라볼 수 있습니다.',
-        3, 7830, null, 3, 2, 'entire house', 234, 37.385845, 126.635701),
+        3, 7830, null, 3, 2, 'entire house', 234, 37.385845, 126.635701, 4.1),
        (8,
         'Bin''s House is a modern Mediterranean-style art building featuring fine views and works of art in Midan City, Yeongjongdo Island.',
-        6, 3249, null, 2, 1, 'entire house', 656, 37.515898, 126.531973),
+        6, 3249, null, 2, 1, 'entire house', 656, 37.515898, 126.531973, 4.8),
        (9, 'Main Equu는 [게스트하우스에쿠]가 대표할수있는 가장 전망과 시설이 좋은 방입니다',
-        8, 6890, null, 1, 1, 'entire house', 22, 37.539679, 126.643872),
+        8, 6890, null, 1, 1, 'entire house', 22, 37.539679, 126.643872, 3.9),
 
        (10, '깨끗하고 안락한 ''엄마의꿈''에서 편안하고 행복한 시간 보내세요',
-        2, 19850, null, 1, 1, 'entire house', 7, 35.869576, 128.602858),
+        2, 19850, null, 1, 1, 'entire house', 7, 35.869576, 128.602858, 4.2),
        (11,
         'JJun''S House #2입니다 >저희 숙소는 KTX동대구역, 동대구환승버스터미널,대구 1호선 도시철도, 신세계백화점에서 도보로 3분거리에 있는 저희 숙소의 특징은 아늑하고 편안한 공간를 즐길 수 있으며, 최대 2명까지 숙박이 가능합니다.',
-        2, 4580, null, 1, 1, 'entire house', 12, 35.882075, 128.626833),
+        2, 4580, null, 1, 1, 'entire house', 12, 35.882075, 128.626833, 4.5),
        (12, '저희 cosy하우스를 눈여겨봐주셔서 감사합니다.. 철저한 침구교체, 방역작업 및 청소는 기본이며 퀄리티 높은 가구과 가전에서 5성급 호텔 이상의 안락함과 편안함을 느껴보시길 바랍니다..',
-        2, 2340, null, 1, 1, 'entire house', 0, 35.859388, 128.625969),
+        2, 2340, null, 1, 1, 'entire house', 0, 35.859388, 128.625969, 0.0),
 
        (13, '♥︎ 2021년 5월 신규 오픈 ♥︎ 소중한 사람과 행복한 시간을 보내고 싶다면 …? 오아시스 하우스는 특별한 사람에게 좋은 추억을 선물하는 공간이 되고 싶습니다.',
-        4, 29960, null, 2, 2, 'entire house', 12, 35.158648, 126.849985),
+        4, 29960, null, 2, 2, 'entire house', 12, 35.158648, 126.849985, 4.7),
        (14, '제 숙소는 광주버스터미널에서 도보로 3분거리, 길건너에는 신세계백화점과 이마트, CGV, 터미널 식당가',
-        3, 36690, null, 1, 1, 'entire house', 87, 35.160874, 126.884962),
+        3, 36690, null, 1, 1, 'entire house', 87, 35.160874, 126.884962, 4.5),
        (15, '운천저수지 공원 뷰 (2021년 뷰는 지하철 공사가 일부 진행 중입니다:)',
-        2, 23348, null, 1, 12, 'private room', 567, 35.147699, 126.854781),
+        2, 23348, null, 1, 12, 'private room', 567, 35.147699, 126.854781, 4.9),
 
        (16, '제주만의 분위기가 물씬 나는 작고 조용한 저지예술인 마을에 위치한 숙소입니다. 감성적인 분위기 속에서 편안하고 즐겁게 쉬어갈 수 있습니다.',
-        4, 1273, null, 2, 2, 'entire house', 432, 33.342413, 126.256858),
+        4, 1273, null, 2, 2, 'entire house', 432, 33.342413, 126.256858, 4.6),
        (17,
         '제주도 동쪽 조용한 행원리 마을 안쪽에 위치한 "월정夜" 입니다. 돌담으로 둘러싸인 제주도의 예스러운 돌집과 따스한 햇빛이 비치는 마당이 있는 ''월정야''는 창문으로 보이는 한적하고 제주스런 시골 풍경과 함께 편안하게 머무르실 수 있는 숙소입니다.',
-        6, 5600, null, 4, 2, 'entire house', 67, 33.551302, 126.807569),
+        6, 5600, null, 4, 2, 'entire house', 67, 33.551302, 126.807569, 4.2),
        (18, '제주 애월읍 곽지해수욕장(과물해수욕장) 근처에 있는 독채 렌탈 하우스입니다.',
-        5, 54000, null, 2, 3, 'entire house', 34, 33.447873, 126.307671);
+        5, 54000, null, 2, 3, 'entire house', 34, 33.447873, 126.307671, 4.1);
 
 insert into property_category(name, image_url)
 values ('Outdoor getaways', 'https://user-images.githubusercontent.com/59776016/118950055-ce28a280-b994-11eb-8c89-e0190cdeee68.png'),
