@@ -1,6 +1,7 @@
 package com.codesquad.airbnb.dao;
 
 import com.codesquad.airbnb.domain.Reservation;
+import com.codesquad.airbnb.dto.ReservationDetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -69,5 +70,30 @@ public class ReservationDAO {
                 "FROM reservation WHERE property_id = ?";
 
         return jdbcTemplate.query(sql, new ReservationMapper(), propertyId);
+    }
+
+    public ReservationDetailDTO findDetailedReservation(Long id) {
+        String sql = "SELECT r.id, p.title, l.name, r.check_in_date, r.check_out_date, h.name as host_name, r.total_price, r.guest_count " +
+                "FROM reservation as r " +
+                "LEFT JOIN property as p " +
+                "on r.property_id = p.id " +
+                "LEFT JOIN location as l " +
+                "on l.id = p.location_id " +
+                "LEFT JOIN host as h " +
+                "on h.property_id = p.id " +
+                "where r.id = ?";
+
+        return jdbcTemplate.queryForObject(sql, ((rs, rowNum) -> {
+            ReservationDetailDTO reservationDetailDTO = new ReservationDetailDTO();
+            reservationDetailDTO.setId(rs.getLong("id"));
+            reservationDetailDTO.setLocation(rs.getString("name"));
+            reservationDetailDTO.setPropertyTitle(rs.getString("title"));
+            reservationDetailDTO.setCheckIn(rs.getDate("check_in_date").toLocalDate());
+            reservationDetailDTO.setCheckOut(rs.getDate("check_out_date").toLocalDate());
+            reservationDetailDTO.setHostName(rs.getString("host_name"));
+            reservationDetailDTO.setTotalPrice(rs.getInt("total_price"));
+            reservationDetailDTO.setGuestCount(rs.getInt("guest_count"));
+            return reservationDetailDTO;
+        }), id);
     }
 }
