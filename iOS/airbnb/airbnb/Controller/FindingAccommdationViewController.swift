@@ -27,7 +27,7 @@ class FindingAccommdationViewController: UIViewController {
     
     @IBOutlet weak var adultCountLabel: UILabel!
     
-    private var tableViewDataSource: ConditionViewTableViewDataSource!
+    private var tableViewDataSource: FindingAccommodationTableViewDataSource!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.currentStateInt = 0
@@ -44,7 +44,7 @@ class FindingAccommdationViewController: UIViewController {
         self.calendarDelegate = CalendarViewDelgate.init(conditionData: self.findingAccommdationCondition)
         self.currentState = .date
         self.calendarView = CalendarView.init()
-        self.tableViewDataSource = ConditionViewTableViewDataSource.init(condition: self.findingAccommdationCondition)
+        self.tableViewDataSource = FindingAccommodationTableViewDataSource.init(condition: self.findingAccommdationCondition)
         super.init(coder: coder)
     }
     
