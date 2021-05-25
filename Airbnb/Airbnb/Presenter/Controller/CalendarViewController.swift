@@ -7,6 +7,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet var calendarView: FSCalendar!
     
     private var locationInfo:String?
+    private var dateStroage:[String] = []
     
     private lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -52,10 +53,16 @@ private extension CalendarViewController {
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print(dateFormatter.string(from: date))
+        dateStroage.append(dateFormatter.string(from: date))
+        print(dateStroage)
     }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print(dateFormatter.string(from: date))
+        dateStroage.indices.forEach {
+            if dateStroage[$0] == dateFormatter.string(from: date) {
+                dateStroage.remove(at: $0)
+            }
+        }
+        print(dateStroage)
     }
 }
