@@ -1,12 +1,5 @@
 package com.codesquad.airbnb.dto;
 
-import com.codesquad.airbnb.domain.*;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 public class PropertyDto {
 
     private Long propertyId;
