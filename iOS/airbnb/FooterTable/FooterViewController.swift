@@ -23,6 +23,7 @@ class FooterViewController: UIViewController {
         footerTable.delegate = self
         footerTable.dataSource = self
         footerTable.isScrollEnabled = false
+        footerTable.tableFooterView = nil
     }
     
     func registerNib() {
