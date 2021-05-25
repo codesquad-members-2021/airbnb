@@ -33,4 +33,8 @@ public class BookingService {
         booking.checkId(userId);
         bookingDAO.bookReservation(booking, userId);
     }
+
+    public void deleteBooking(Long bookingId, Long userId) {
+        bookingDAO.deleteReservation(bookingId, userId);
+    }
 }

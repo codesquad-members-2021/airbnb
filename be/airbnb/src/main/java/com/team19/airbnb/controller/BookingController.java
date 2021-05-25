@@ -41,6 +41,7 @@ public class BookingController {
 
     @DeleteMapping("/bookings/{bookingId}/{userId}")
     public void deleteWishList(@PathVariable Long bookingId, @PathVariable Long userId) {
+        bookingService.deleteBooking(bookingId, userId);
     }
 
     private BookingResponseDTO createBookingResponseDTO(Long bookingId) {
