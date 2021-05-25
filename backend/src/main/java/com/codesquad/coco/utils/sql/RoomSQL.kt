@@ -30,10 +30,10 @@ inner join additional_cost ac on ac.id = rm.additional_cost_id
 left join wish_list wl on wl.room_id = rm.id
 where rm.id not in (select distinct rv.room_id
 					from reservation rv
-					where ( :check_in between rv.check_in and rv.check_out
-					or :check_out between rv.check_in and rv.check_out
-                    or rv.check_in  between :check_in and :check_out 
-                    or rv.check_out between :check_in and :check_out )
+					where ( :check_in between rv.check_in and date_sub(rv.check_out,interval 1 day)
+					or :check_out between date_add(rv.check_in,interval 1 day) and rv.check_out
+                    or rv.check_in  between :check_in and date_sub(:check_out,interval 1 day) 
+                    or rv.check_out between date_add(:check_in,interval 1 day) and :check_out )
                     and rv.status = 'RESERVED'
                     )
 and l.city_name = :city_name
