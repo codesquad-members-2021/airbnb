@@ -30,7 +30,7 @@ public class BookingRequestDTO {
         this.totalPrice = totalPrice;
     }
 
-    public Booking toEntiy() {
+    public Booking toEntity() {
         return Booking.create(checkIn, checkOut, guest, totalPrice, roomId);
     }
 
