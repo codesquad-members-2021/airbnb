@@ -1,6 +1,7 @@
 package com.team19.airbnb.domain.room;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.relational.core.mapping.Embedded;
 
 import java.math.BigDecimal;
@@ -29,6 +30,7 @@ public class Room {
     @Embedded.Empty
     private Host host;
 
+    @PersistenceConstructor
     Room(Long id,
                 String name, List<Image> images,
                 Double grade, Integer reviewer,
@@ -49,14 +51,32 @@ public class Room {
         this.host = host;
     }
 
+    Room(String name, List<Image> images,
+         Double grade, Integer reviewer,
+         Location location,
+         BigDecimal pricePerDay,
+         String roomType, String roomConfiguration, String description,
+         Host host) {
+        this.id = null;
+        this.name = name;
+        this.images = images;
+        this.grade = grade;
+        this.reviewer = reviewer;
+        this.location = location;
+        this.pricePerDay = pricePerDay;
+        this.roomType = roomType;
+        this.roomConfiguration = roomConfiguration;
+        this.description = description;
+        this.host = host;
+    }
+
     public static Room create(String name, List<Image> images,
                        Double grade, Integer reviewer,
                        Location location,
                        BigDecimal pricePerDay,
                        String roomType, String roomConfiguration, String description,
                        Host host) {
-        return new Room(null,
-                name, images,
+        return new Room(name, images,
                 grade, reviewer,
                 location,
                 pricePerDay,
