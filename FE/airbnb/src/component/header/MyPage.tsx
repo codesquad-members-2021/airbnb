@@ -6,7 +6,7 @@ import MyPageModal from "component/header/MyPageModal";
 import { toggleModal, closeModalByBodyClick, stopPropagation } from "hooks/modalHooks";
 
 function MyPage() {
-  const [isOpenMyPage, setIsOpenMyPage] = useState(false);
+  const [isOpenMyPage, setIsOpenMyPage] = useState<boolean>(false);
   const handleClickMyPage = (e: React.MouseEvent) => toggleModal({ e, setState: setIsOpenMyPage, state: isOpenMyPage });
   closeModalByBodyClick(setIsOpenMyPage);
   return (
