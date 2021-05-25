@@ -28,4 +28,13 @@ class PropertyServiceTest {
         assertThat(averagePrice).isGreaterThan(0);
         logger.info("Average Price of location 1L is: " + averagePrice);
     }
+
+    @Test
+    void propertyService_priceCountTest() {
+        int[] priceCount = propertyService.getPropertyCountsByPriceRange(1L);
+
+        for (int i : priceCount) {
+            System.out.print(i + " ");
+        }
+    }
 }
