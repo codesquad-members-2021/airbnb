@@ -66,10 +66,6 @@ public class RoomPreviewDTO {
         return coordinate;
     }
 
-    public ReviewDTO getReviewDTO() {
-        return review;
-    }
-
     public ReviewDTO getReview() {
         return review;
     }
