@@ -1,60 +1,60 @@
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
+import Day from './Day';
 
-import DayOfTheWeek from './DayOfTheWeek';
+type Props = {
+  calendarDate: {
+    year: number;
+    month: number;
+  };
+  idx: number;
+};
 
-const Calendar = () => {
+const Calendar = ({ calendarDate, idx }: Props) => {
+  const { year, month } = calendarDate;
+
+  const currentMonth = new Date(year, month + idx).getMonth() + 1;
+  const currentYear = new Date(year, month + idx).getFullYear();
+
+  const firstDay: number = new Date(year, month + idx).getDay();
+  const days: number = new Date(year, currentMonth, 0).getDate();
+
+  const getDayList = (): number[][] => {
+    const dayList: number[][] = [];
+    let week: number[] = new Array(7).fill(0);
+
+    for (let i = 1; i <= days; i++) {
+      const dayIndex: number = (firstDay + i - 1) % 7;
+      if (dayIndex % 7 === 0 || week[week.length - 1]) {
+        dayList.push(week);
+        week = new Array(7).fill(0);
+      }
+      week[dayIndex] = i;
+    }
+    dayList.push(week);
+    return dayList;
+  };
+
+  const dayList = getDayList();
+
   return (
     <StyledDiv>
-      <h3>2021년 5월</h3>
+      <h3>
+        {currentYear}년 {currentMonth}월
+      </h3>
       <DatesWrap>
-        <DayOfTheWeek />
         <table>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>5</td>
-              <td>6</td>
-              <td>7</td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>9</td>
-              <td>10</td>
-              <td>11</td>
-              <td>12</td>
-              <td>13</td>
-              <td>14</td>
-            </tr>
-            <tr>
-              <td>15</td>
-              <td>16</td>
-              <td>17</td>
-              <td>18</td>
-              <td>19</td>
-              <td>20</td>
-              <td>21</td>
-            </tr>
-            <tr>
-              <td>22</td>
-              <td>23</td>
-              <td>24</td>
-              <td>25</td>
-              <td>26</td>
-              <td>27</td>
-              <td>28</td>
-            </tr>
-            <tr>
-              <td>29</td>
-              <td>30</td>
-              <td>31</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+            {dayList.map((week, i) => {
+              return (
+                <tr key={uuidv4()}>
+                  {week.map((day) => {
+                    if (day === 0) return <td key={uuidv4()}></td>;
+                    return <Day key={day}>{day}</Day>;
+                  })}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </DatesWrap>
@@ -65,13 +65,14 @@ const Calendar = () => {
 export default Calendar;
 
 const StyledDiv = styled.div`
-  margin: 4rem 0;
+  margin: 4rem 3rem;
   width: 336px;
   height: 384px;
   text-align: center;
 `;
 
 const DatesWrap = styled.div`
+  margin: 48px 0;
   width: 336px;
   height: 336px;
 `;

@@ -11,7 +11,7 @@ const Date = () => {
 
   const handleClickDateSerach = (e: React.MouseEvent): void => {
     e.stopPropagation();
-    setIsOpenCalendar((state) => !state);
+    setIsOpenCalendar(true);
   };
 
   return (

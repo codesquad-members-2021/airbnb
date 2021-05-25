@@ -14,13 +14,15 @@ const DayOfTheWeek = () => {
 export default DayOfTheWeek;
 
 const WeekListWrap = styled.ul`
-  margin: 1.5rem 0;
+  margin: 0 3rem;
   display: flex;
-  width: 100%;
+  width: 336px;
+  height: 24px;
 `;
 
 const WeekList = styled.li`
   ${({ theme }) => theme.flexCenter}
   width: 48px;
   height: 24px;
+  font-size: ${({ theme }) => theme.fontSize.s};
 `;
