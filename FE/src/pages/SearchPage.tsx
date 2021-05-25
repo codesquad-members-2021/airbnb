@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import {ResponsiveFluid} from '../components/Common/ResponsiveFluid';
+import { ResponsiveFluid } from '../components/common/ResponsiveFluid';
+import Map from '../components/Map/Map';
 
 function SearchPage() {
   return (
@@ -8,7 +9,7 @@ function SearchPage() {
       
       {/* for test */}
       <SearchPageCardsSection />
-      <SearchPageMapSection />
+      <Map />
       {/* for test */}
 
     </SearchPageLayout>
@@ -16,7 +17,7 @@ function SearchPage() {
 }
 
 const SearchPageLayout = styled(ResponsiveFluid)`
-  
+  margin: auto;
 `;
 
 const SearchPageCardsSection = styled.section`
@@ -29,12 +30,6 @@ const SearchPageCardsSection = styled.section`
 
   /* for test  */
   background-color: blue;
-  height: 100vh;
-`
-
-const SearchPageMapSection = styled.section`
-  width: 100%;
-  background-color: red;
   height: 100vh;
 `
 
