@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 const LogInList = () => {
   return (
     <StyledLogInList>
-      <LogInItem>로그인</LogInItem>
+      <LogInItem><a href={process.env.REACT_APP_OAUTH_URL}>로그인</a></LogInItem>
     </StyledLogInList>
   );
 };
