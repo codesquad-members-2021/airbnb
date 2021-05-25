@@ -20,6 +20,7 @@ const CalendarDate = ({ monthData, calendarDate }: Props) => {
   // const [dateData, aDateDispatch] = useReducer(dateReducer, monthData);
 
   const [selectDate, setSelectDate] = useRecoilState(selectDateState);
+  const { checkIn: checkInTime, checkOut: checkOutTime } = selectDate;
   const selectedCheckBox = useRecoilValue(selectCheckBoxState);
 
   useEffect(() => {
@@ -31,46 +32,33 @@ const CalendarDate = ({ monthData, calendarDate }: Props) => {
     const value: number = +target.innerHTML;
     const dateWrapper = target.closest('.date__wrapper');
     const dateTime = new Date(year, month - 1, value).getTime();
-    const { checkIn: checkInTime, checkOut: checkOutTime } = selectDate;
     if (isNaN(value) || value === 0) return;
     if (!dateWrapper || (dateWrapper && dateWrapper.classList.contains('disable-date'))) return;
     if (selectedCheckBox === 'checkIn') {
-      if (!checkInTime) {
-        //time으로 selectDate setting
+      if (!checkInTime || checkInTime > dateTime) {
         setSelectDate((selectDate) => ({ ...selectDate, checkIn: dateTime }));
-        //클래스 추가해주기 위해 select 추가
-        //dateDispatch({type:checkIn,day:value})
         return;
       }
-      if (checkInTime === dateTime) {
-        //체크아웃 dateTime으로 setting
+      if (checkInTime === dateTime || checkInTime < dateTime) {
         setSelectDate((selectDate) => ({ ...selectDate, checkOut: dateTime }));
-      } else if (checkInTime < dateTime) {
-        //체크 아웃 setting
-        setSelectDate((selectDate) => ({ ...selectDate, checkOut: dateTime }));
-        //select도 새롭게 setting
-        //dateDispatch({type:checkOut,day:value})
-      } else if (checkInTime > dateTime) {
-        //checkInTime = dateTime setting
-        setSelectDate((selectDate) => ({ ...selectDate, checkIn: dateTime }));
-        //select도 새롭게 setting
-        //dateDispatch({type:checkIn,day:value})
       }
+      return;
     }
   };
 
   const getDateList = (weekData: dayType[]): ReactElement[] =>
     weekData.map(({ date, isAble }: dayType): ReactElement => {
       const dayTime = getTimes({ year, month, day: date });
-      const isCheckIn = dayTime === selectDate.checkIn;
-      const isCheckOut = dayTime === selectDate.checkOut;
-      if (isCheckIn) {
-        console.log(year, month, date);
-        console.log('dayTime', dayTime);
-        console.log('checkIn', selectDate.checkIn);
-      }
-      // const isBetween = dayTime > selectDate.checkIn && dayTime < selectDate.checkOut;
-      const dateWrapperClassName = getDateWrapperClassName({ date, isAble });
+      const isCheckIn = dayTime === checkInTime;
+      const isCheckOut = dayTime === checkOutTime;
+      const isBetween =
+        checkInTime && checkOutTime && dayTime > checkInTime && dayTime < checkOutTime;
+      const dateWrapperClassName = getDateWrapperClassName(
+        { date, isAble },
+        isCheckIn,
+        isCheckOut,
+        isBetween
+      );
       const dateClassName = getDateClassName({ date, isAble }, isCheckIn, isCheckOut);
       return (
         <div className={dateWrapperClassName}>
@@ -79,8 +67,16 @@ const CalendarDate = ({ monthData, calendarDate }: Props) => {
       );
     });
 
-  const getDateWrapperClassName = ({ date, isAble }: dayType): string => {
+  const getDateWrapperClassName = (
+    { date, isAble }: dayType,
+    isCheckIn: boolean,
+    isCheckOut: boolean,
+    isBetween: boolean | null | 0
+  ): string => {
     let dateWrapperClass: string = 'date__wrapper ';
+    if (isCheckIn) dateWrapperClass += 'checkIn-date__wrapper ';
+    if (isCheckOut) dateWrapperClass += 'checkOut-date__wrapper ';
+    if (isBetween) dateWrapperClass += 'between-date__wrapper ';
     if (!isAble && date) dateWrapperClass += 'disable-date date__wrapper ';
     else dateWrapperClass += 'able-date ';
     return dateWrapperClass;
@@ -142,9 +138,21 @@ const StyledCalendarDate = styled.div`
     .selectable-date:hover {
       border: 1px solid black;
     }
-    .checkIn-date {
+    .checkIn-date,
+    .checkOut-date {
       background-color: black;
       color: white;
     }
+  }
+  .checkIn-date__wrapper {
+    border-radius: 50% 0 0 50%;
+    background-color: ${({ theme }) => theme.colors.gray5};
+  }
+  .checkOut-date__wrapper {
+    border-radius: 0 50% 50% 0;
+    background-color: ${({ theme }) => theme.colors.gray5};
+  }
+  .between-date__wrapper {
+    background-color: ${({ theme }) => theme.colors.gray5};
   }
 `;
