@@ -23,6 +23,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.enolj.airbnb.web.dto.ReservationInfoResponseDTO.createReservationInfoResponseDTO;
+import static com.enolj.airbnb.web.dto.ReservationResponseDTO.createReservationResponseDTO;
 import static com.enolj.airbnb.web.dto.SearchResponseDTO.createSearchResponseDTO;
 import static com.enolj.airbnb.web.dto.WishResponseDTO.createWishResponseDTO;
 
@@ -105,15 +106,11 @@ public class HouseService {
         wishDAO.save(Wish.createWish(user, house));
     }
 
-    public List<ReservationResponseDTO> getReservationList() {
-        List<ReservationResponseDTO> reservationResponseDTOList = new ArrayList<>();
-        reservationResponseDTOList.add(new ReservationResponseDTO(1L, "https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg",
-                "2021년 5월 17일 - 2021년 6월 4일", "서초구, 서울, 한국", "Specious and Comfortable cozy house #4"));
-        reservationResponseDTOList.add(new ReservationResponseDTO(2L, "https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg",
-                "2021년 5월 17일 - 2021년 6월 4일", "서초구, 서울, 한국", "Specious and Comfortable cozy house #4"));
-        reservationResponseDTOList.add(new ReservationResponseDTO(3L, "https://user-images.githubusercontent.com/63284310/118603297-b2839780-b7ee-11eb-9096-c0fba9792163.jpeg",
-                "2021년 5월 17일 - 2021년 6월 4일", "서초구, 서울, 한국", "Specious and Comfortable cozy house #4"));
-        return reservationResponseDTOList;
+    public List<ReservationResponseDTO> getReservationList(String userId) {
+        User user = findUserByUserId(userId);
+        return joinDAO.findAllByUserId(user.getId()).stream()
+                .map(join -> createReservationResponseDTO(findHouseById(join.getUserId()), join, findOneImageByHouseId(join.getHouseId())))
+                .collect(Collectors.toList());
     }
 
     public ReservationDetailDTO getReservationDetail(Long houseId) {

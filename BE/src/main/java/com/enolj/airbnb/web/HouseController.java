@@ -56,9 +56,9 @@ public class HouseController {
     }
 
     @GetMapping("/reservation")
-    public List<ReservationResponseDTO> getReservationList() {
+    public List<ReservationResponseDTO> getReservationList(@RequestHeader String authorization) {
         logger.info("숙소 예약 리스트 요청");
-        return houseService.getReservationList();
+        return houseService.getReservationList(JwtUtil.getUserIdFromToken(JwtUtil.getTokenFromAuthorization(authorization)));
     }
 
     @GetMapping("/reservation/{houseId}")

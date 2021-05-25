@@ -33,6 +33,10 @@ public class Join {
         this.houseId = house.getId();
     }
 
+    public String makeDate() {
+        return checkIn + " = " + checkOut;
+    }
+
     public Long getId() {
         return id;
     }

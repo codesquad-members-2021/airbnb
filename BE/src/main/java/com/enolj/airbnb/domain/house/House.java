@@ -28,6 +28,10 @@ public class House {
                 && (longitude - 0.001 <= this.longitude && this.longitude <= longitude + 0.001);
     }
 
+    public String makeLocation() {
+        return "서초구, 서울, 한국";
+    }
+
     public Long getId() {
         return id;
     }
