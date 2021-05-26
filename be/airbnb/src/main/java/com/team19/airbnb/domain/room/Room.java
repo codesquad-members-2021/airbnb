@@ -1,4 +1,4 @@
-package com.team19.airbnb.entity;
+package com.team19.airbnb.domain.room;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Embedded;
@@ -11,7 +11,7 @@ public class Room {
     @Id
     private Long id;
 
-    private String Name;
+    private String name;
     private List<Image> images;
 
     private Double grade;
@@ -21,7 +21,6 @@ public class Room {
     private Location location;
 
     private BigDecimal pricePerDay;
-    private BigDecimal totalPrice;
 
     private String roomType;
     private String roomConfiguration;
@@ -34,37 +33,34 @@ public class Room {
                 String name, List<Image> images,
                 Double grade, Integer reviewer,
                 Location location,
-                BigDecimal pricePerDay, BigDecimal totalPrice,
+                BigDecimal pricePerDay,
                 String roomType, String roomConfiguration, String description,
                 Host host) {
         this.id = id;
-        Name = name;
+        this.name = name;
         this.images = images;
         this.grade = grade;
         this.reviewer = reviewer;
         this.location = location;
         this.pricePerDay = pricePerDay;
-        this.totalPrice = totalPrice;
         this.roomType = roomType;
         this.roomConfiguration = roomConfiguration;
         this.description = description;
         this.host = host;
     }
 
-    public Room create(Long id,
-                       String name, List<Image> images,
+    public static Room create(String name, List<Image> images,
                        Double grade, Integer reviewer,
                        Location location,
-                       BigDecimal pricePerDay, BigDecimal totalPrice,
+                       BigDecimal pricePerDay,
                        String roomType, String roomConfiguration, String description,
                        Host host) {
-        return new Room(id,
+        return new Room(null,
                 name, images,
                 grade, reviewer,
                 location,
-                pricePerDay, totalPrice,
+                pricePerDay,
                 roomType, roomConfiguration, description,
                 host);
     }
-
 }
