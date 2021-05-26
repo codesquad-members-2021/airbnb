@@ -85,9 +85,9 @@ public class AccommodationRepository {
         return result == 1;
     }
 
-    public List<Long> findAmenityIdsByNames(String... amenityNames) {
+    public List<Long> findAmenityIdsByNames(List<String> amenityNames) {
         String query = "SELECT * FROM amenity WHERE `name` IN (:names)";
-        SqlParameterSource namedParameters = new MapSqlParameterSource("names", Arrays.asList(amenityNames));
+        SqlParameterSource namedParameters = new MapSqlParameterSource("names", amenityNames);
         List<Long> ids = namedParameterJdbcTemplate.query(
                 query
                 , namedParameters

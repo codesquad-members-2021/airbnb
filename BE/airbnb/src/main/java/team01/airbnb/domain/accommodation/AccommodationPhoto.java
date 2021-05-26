@@ -1,7 +1,7 @@
 package team01.airbnb.domain.accommodation;
 
 import lombok.*;
-import team01.airbnb.dto.request.AccommodationSaveRequestDto;
+import team01.airbnb.dto.request.TotalAccommodationSaveRequestDto;
 
 @ToString
 @Getter
@@ -13,10 +13,10 @@ public class AccommodationPhoto {
     private Long accommodationId;
     private String name;
 
-    public static AccommodationPhoto fromSaveRequestDto(AccommodationSaveRequestDto accommodationSaveRequestDto) {
+    public static AccommodationPhoto fromSaveRequestDto(TotalAccommodationSaveRequestDto totalAccommodationSaveRequestDto) {
         return AccommodationPhoto.builder()
-                .accommodationId(accommodationSaveRequestDto.getId())
-                .name(accommodationSaveRequestDto.getPhoto())
+                .accommodationId(totalAccommodationSaveRequestDto.getId())
+                .name(totalAccommodationSaveRequestDto.getPhoto())
                 .build();
     }
 

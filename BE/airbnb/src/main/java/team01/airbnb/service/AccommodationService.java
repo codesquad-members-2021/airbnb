@@ -6,7 +6,7 @@ import team01.airbnb.domain.accommodation.Accommodation;
 import team01.airbnb.domain.accommodation.AccommodationAddress;
 import team01.airbnb.domain.accommodation.AccommodationCondition;
 import team01.airbnb.domain.accommodation.AccommodationPhoto;
-import team01.airbnb.dto.request.AccommodationSaveRequestDto;
+import team01.airbnb.dto.request.TotalAccommodationSaveRequestDto;
 import team01.airbnb.dto.response.AccommodationResponseDto;
 import team01.airbnb.exception.ConditionNotFoundException;
 import team01.airbnb.repository.AccommodationRepository;
@@ -43,22 +43,18 @@ public class AccommodationService {
     }
 
     @Transactional
-    public void save(AccommodationSaveRequestDto accommodationSaveRequestDto) {
+    public void save(TotalAccommodationSaveRequestDto totalAccommodationSaveRequestDto) {
         Long accommodationId = accommodationRepository.saveAccommodation(
-                Accommodation.fromSaveRequestDto(accommodationSaveRequestDto));
-        accommodationSaveRequestDto.setId(accommodationId);
+                Accommodation.fromSaveRequestDto(totalAccommodationSaveRequestDto));
+        totalAccommodationSaveRequestDto.setId(accommodationId);
         accommodationRepository.saveAccommodationAddress(
-                AccommodationAddress.fromSaveRequestDto(accommodationSaveRequestDto));
+                AccommodationAddress.fromSaveRequestDto(totalAccommodationSaveRequestDto));
         accommodationRepository.saveAccommodationCondition(
-                AccommodationCondition.fromSaveRequestDto(accommodationSaveRequestDto));
+                AccommodationCondition.fromSaveRequestDto(totalAccommodationSaveRequestDto));
         accommodationRepository.saveAccommodationPhoto(
-                AccommodationPhoto.fromSaveRequestDto(accommodationSaveRequestDto));
+                AccommodationPhoto.fromSaveRequestDto(totalAccommodationSaveRequestDto));
         List<Long> amenityIds = accommodationRepository.findAmenityIdsByNames(
-                accommodationSaveRequestDto.getAmenity1()
-                , accommodationSaveRequestDto.getAmenity2()
-                , accommodationSaveRequestDto.getAmenity3()
-                , accommodationSaveRequestDto.getAmenity4()
-        );
+                totalAccommodationSaveRequestDto.getAmenities());
         accommodationRepository.addAmenitiesToAccommodation(amenityIds, accommodationId);
     }
 }

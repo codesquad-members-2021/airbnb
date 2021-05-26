@@ -1,7 +1,7 @@
 package team01.airbnb.domain.accommodation;
 
 import lombok.*;
-import team01.airbnb.dto.request.AccommodationSaveRequestDto;
+import team01.airbnb.dto.request.TotalAccommodationSaveRequestDto;
 
 @ToString
 @Getter
@@ -15,13 +15,13 @@ public class AccommodationCondition {
     private int bedCount;
     private int bathroomCount;
 
-    public static AccommodationCondition fromSaveRequestDto(AccommodationSaveRequestDto accommodationSaveRequestDto) {
+    public static AccommodationCondition fromSaveRequestDto(TotalAccommodationSaveRequestDto totalAccommodationSaveRequestDto) {
         return AccommodationCondition.builder()
-                .accommodationId(accommodationSaveRequestDto.getId())
-                .guests(accommodationSaveRequestDto.getGuests())
-                .bedroomCount(accommodationSaveRequestDto.getBedroomCount())
-                .bedCount(accommodationSaveRequestDto.getBedCount())
-                .bathroomCount(accommodationSaveRequestDto.getBathroomCount())
+                .accommodationId(totalAccommodationSaveRequestDto.getId())
+                .guests(totalAccommodationSaveRequestDto.getConditionSaveRequestDto().getGuests())
+                .bedroomCount(totalAccommodationSaveRequestDto.getConditionSaveRequestDto().getBedroomCount())
+                .bedCount(totalAccommodationSaveRequestDto.getConditionSaveRequestDto().getBedCount())
+                .bathroomCount(totalAccommodationSaveRequestDto.getConditionSaveRequestDto().getBathroomCount())
                 .build();
     }
 
