@@ -6,25 +6,24 @@ import Responsive from "components/common/Responsive";
 
 const MainPage = () => {
   // const getToken = () => {
-  //   const params = new URLSearchParams(window.location.search);
-  //   const code = params.get("code");
-  //   console.log("code", code);
-  //   fetch("https://github.com/login/oauth/access_token", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({ code }),
-  //   })
-  //     .then(response => response.json())
-  //     .then(({ token }) => {
-  //       console.log(token);
-  //       // localStorage.setItem('token', token);
-  //       // location.href = 'http://localhost:8080/home.html';
-  //     });
-  // };
+  //   // const params = new URLSearchParams(window.location.search);
+  //   //코드만 매번 백엔드로 보내면 된다!!
+  //       const params = new URLSearchParams(window.location.search);
+  //       const code = params.get('code');
+  //       fetch('http://localhost:8080/api/auth', {
+  //           method: 'POST',
+  //           headers: { 'Content-Type': 'application/json' },
+  //           body: JSON.stringify({ code })
+  //       }).then(response => response.json())
+  //       .then(({ token }) => {
+  //           console.log("token입니다: ", token);
+  //           localStorage.setItem('token', token);
+  //       });
+  // }
 
   // useEffect(() => {
-  //   getToken();
-  // }, []);
+  //  getToken();
+  // }, [])
 
   return (
     <>
