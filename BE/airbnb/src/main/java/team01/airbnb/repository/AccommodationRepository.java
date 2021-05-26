@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import team01.airbnb.domain.Amenity;
 import team01.airbnb.domain.Reservation;
@@ -14,9 +16,7 @@ import team01.airbnb.domain.accommodation.AccommodationCondition;
 import team01.airbnb.domain.accommodation.AccommodationPhoto;
 import team01.airbnb.dto.Charge;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -36,18 +36,20 @@ public class AccommodationRepository {
         String query = "INSERT INTO accommodation " +
                 "(host_id, `name`, description, charge_per_night, cleaning_charge, check_in, check_out) " +
                 "VALUE (?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(query
-                , accommodation.getHostId()
-                , accommodation.getName()
-                , accommodation.getDescription()
-                , accommodation.getChargePerNight().getCharge()
-                , accommodation.getCleaningCharge().getCharge()
-                , accommodation.getCheckIn()
-                , accommodation.getCheckOut()
-        );
-        String returnIdQuery = "SELECT LAST_INSERT_ID()";
-        Long returnedId = jdbcTemplate.queryForObject(returnIdQuery, Long.class);
-        return returnedId;
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setLong(1, accommodation.getHostId());
+            ps.setString(2, accommodation.getName());
+            ps.setString(3, accommodation.getDescription());
+            ps.setInt(4, accommodation.getChargePerNight().getCharge());
+            ps.setInt(5, accommodation.getCleaningCharge().getCharge());
+            ps.setTime(6, Time.valueOf(accommodation.getCheckIn()));
+            ps.setTime(7, Time.valueOf(accommodation.getCheckOut()));
+            return ps;
+        }, keyHolder);
+        return keyHolder.getKey().longValue();
     }
 
     public boolean saveAccommodationAddress(AccommodationAddress address) {
