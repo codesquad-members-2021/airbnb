@@ -1,6 +1,7 @@
 package airbnb.Service;
 
 import airbnb.dao.RoomDao;
+import airbnb.domain.Room;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -18,5 +19,9 @@ public class RoomService {
 
     public List<Integer> findAllRoomPrice(){
         return roomDao.findAllPrice();
+    }
+
+    public List<Room> findAll(){
+        return roomDao.findAll();
     }
 }

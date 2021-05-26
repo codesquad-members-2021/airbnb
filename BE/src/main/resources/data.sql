@@ -26,6 +26,16 @@ values ('https://a0.muscache.com/im/pictures/36f53e61-db8d-403c-9122-5b761c0e426
        ('https://a0.muscache.com/im/pictures/7d82ca14-56e5-4465-8218-dcfa7d69b6ac.jpg?im_w=480','MAIN',3),
        ('https://a0.muscache.com/im/pictures/10a638e1-6aff-4313-8033-1275cec83987.jpg?im_w=480','MAIN',4);
 
+INSERT INTO image(url,image_type,room_id)
+values ('https://a0.muscache.com/im/pictures/c45d08e5-f560-44f0-83fc-83290ccd1670.jpg?im_w=1200', 'MAIN', 1),
+       ('https://a0.muscache.com/im/pictures/83ea7cb5-a925-4fc8-835f-da8df7f24bec.jpg?im_w=1200', 'MAIN', 2),
+       ('https://a0.muscache.com/im/pictures/miso/Hosting-44159716/original/04dc2ade-cd11-4599-a7fb-a6f4b6176f4e.jpeg?im_w=1200', 'MAIN', 3),
+       ('https://a0.muscache.com/im/pictures/42c6cd5c-512c-4f39-9e9c-9ed274f2f0e5.jpg?im_w=1200', 'MAIN', 4),
+       ('https://a0.muscache.com/im/pictures/miso/Hosting-44090615/original/c2904e87-4014-4d26-a977-b789248c77ce.jpeg?im_w=1200', 'MAIN', 5),
+       ('https://a0.muscache.com/im/pictures/miso/Hosting-47435529/original/82c508c8-e0b5-4da2-805f-8772ad9bfe9d.jpeg?im_w=1200', 'MAIN', 6),
+       ('https://a0.muscache.com/im/pictures/a63a845b-c16e-4a0f-b0ca-a124a677b3d2.jpg?im_w=1200', 'MAIN', 7),
+       ('https://a0.muscache.com/im/pictures/miso/Hosting-47897490/original/b0238603-d063-4f5c-9e10-c835132669e4.jpeg?im_w=1200', 'MAIN', 8);
+
 INSERT INTO room(price, title, description, people, oneroom, bed, bath, hair_dryer, air_conditioner, wifi, clean_tax, city_id, category_id)
 values (150000, '이태원에 아늑한 숙소 Y 하우스', '이태원역에서 도보로 4분거리에 위치하고 있고 대로변에서 상당히 가까운 지역에 위치하여 여성분들도 안전하게 머무시며 이태원을 만끽하실 수 있으세요.'
         , 2, false, 2, 1, true, true, true, 25000, 1, 1),

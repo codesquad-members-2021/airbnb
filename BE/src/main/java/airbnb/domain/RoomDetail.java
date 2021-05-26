@@ -60,6 +60,29 @@ public class RoomDetail {
         public RoomDetail build() {
             return new RoomDetail(this);
         }
+    }
 
+    public boolean isOneRoom() {
+        return oneRoom;
+    }
+
+    public int getBedCount() {
+        return bedCount;
+    }
+
+    public int getBathCount() {
+        return bathCount;
+    }
+
+    public boolean isHairDryer() {
+        return hairDryer;
+    }
+
+    public boolean isAirConditioner() {
+        return airConditioner;
+    }
+
+    public boolean isWiFi() {
+        return wiFi;
     }
 }

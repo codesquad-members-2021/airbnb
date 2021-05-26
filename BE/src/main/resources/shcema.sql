@@ -42,7 +42,7 @@ create table room(
 drop table image;
 create table image(
     id int not null auto_increment,
-    url varchar(100) not null,
+    url varchar(300) not null,
     room_id int,
     category_id int,
     city_id int,
