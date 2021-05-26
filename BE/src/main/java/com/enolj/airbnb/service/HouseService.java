@@ -20,6 +20,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.enolj.airbnb.service.UserService.getUserFromAuthorization;
+import static com.enolj.airbnb.web.dto.HouseDetailInfoResponseDTO.createHouseDetailInfoResponseDTO;
 import static com.enolj.airbnb.web.dto.ReservationDetailDTO.createReservationDetailDTO;
 import static com.enolj.airbnb.web.dto.ReservationInfoResponseDTO.createReservationInfoResponseDTO;
 import static com.enolj.airbnb.web.dto.ReservationResponseDTO.createReservationResponseDTO;
@@ -44,7 +45,6 @@ public class HouseService {
     }
 
     public List<SearchResponseDTO> searchHousesByCondition(SearchRequestDTO requestDTO) {
-        System.out.println(requestDTO);
         return houseDAO.findAll().stream()
                 .filter(house -> house.checkCharge(requestDTO.getMinCharge(), requestDTO.getMaxCharge()))
                 .filter((house -> house.checkLocation(requestDTO.getLatitude(), requestDTO.getLongitude())))
@@ -59,9 +59,18 @@ public class HouseService {
     }
 
     public List<Integer> searchChargesByCondition(SearchChargesRequestDTO requestDTO) {
-        System.out.println(requestDTO);
         return houseDAO.findAll().stream()
                 .map(House::getCharge)
+                .collect(Collectors.toList());
+    }
+
+    public HouseDetailInfoResponseDTO getHouseDetailInfo(Long houseId) {
+        return createHouseDetailInfoResponseDTO(findHouseById(houseId), findAllImageByHouseId(houseId));
+    }
+
+    private List<String> findAllImageByHouseId(Long houseId) {
+        return imageDAO.findAll(houseId).stream()
+                .map(Image::getUrl)
                 .collect(Collectors.toList());
     }
 
@@ -74,7 +83,6 @@ public class HouseService {
     }
 
     public void makeReservation(String authorization, Long houseId, ReservationRequestDTO requestDTO) {
-        System.out.println(requestDTO);
         Join join = requestDTO.toEntity();
         join.reservation(getUserFromAuthorization(userDAO, authorization), findHouseById(houseId));
         joinDAO.save(join);

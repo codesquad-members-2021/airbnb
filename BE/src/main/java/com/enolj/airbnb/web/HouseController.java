@@ -30,6 +30,12 @@ public class HouseController {
         return houseService.searchChargesByCondition(requestDTO);
     }
 
+    @GetMapping("/houses/detail/{houseId}")
+    public HouseDetailInfoResponseDTO getHouseDetail(@PathVariable Long houseId) {
+        logger.info("{}번 숙소의 디테일 페이지 요청", houseId);
+        return houseService.getHouseDetailInfo(houseId);
+    }
+
     @GetMapping("/houses/{houseId}")
     public ReservationInfoResponseDTO getReservationPage(@PathVariable Long houseId) {
         logger.info("{}번 숙소 예약 페이지 요청", houseId);

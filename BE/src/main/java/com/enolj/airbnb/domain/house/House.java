@@ -28,8 +28,8 @@ public class House {
     }
 
     public boolean checkLocation(double latitude, double longitude) {
-        return (latitude - 0.003 <= this.latitude && this.latitude <= latitude + 0.003)
-                && (longitude - 0.003 <= this.longitude && this.longitude <= longitude + 0.003);
+        return (latitude - 0.006 <= this.latitude && this.latitude <= latitude + 0.006)
+                && (longitude - 0.006 <= this.longitude && this.longitude <= longitude + 0.006);
     }
 
     public String makeLocation() {
@@ -46,6 +46,14 @@ public class House {
         options.add(String.join(" • ", splitOption.subList(0, 4)));
         options.add(String.join(" • ", splitOption.subList(4, 8)));
         return options;
+    }
+
+    public String makeHost() {
+        return "레지던스 전체 호스트: " + host + "님";
+    }
+
+    public String getHostImage() {
+        return "https://user-images.githubusercontent.com/63284310/119629402-f149cb00-be48-11eb-8fa5-c4415b37076d.jpeg";
     }
 
     public Long getId() {
