@@ -21,7 +21,17 @@ public class Wishlist {
         this.room = room;
     }
 
+    public static Wishlist create(Long id, Long room) {
+        return new Wishlist(id, room);
+    }
+
     public static Wishlist create(Long room) {
         return new Wishlist(room);
+    }
+
+    //test위한 getter 삭제 예정
+
+    public Long getRoom() {
+        return room;
     }
 }

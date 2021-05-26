@@ -86,7 +86,7 @@ DROP TABLE IF EXISTS `airbnb`.`wishlist` ;
 CREATE TABLE IF NOT EXISTS `airbnb`.`wishlist` (
   `id` INT AUTO_INCREMENT,
   `user` INT NOT NULL,
-  `user_key` INT NOT NULL,
+  `user_key` INT,
   `room` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_wishlist_user1_idx` (`user` ASC),
