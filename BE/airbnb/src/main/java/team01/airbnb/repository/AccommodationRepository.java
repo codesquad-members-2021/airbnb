@@ -37,7 +37,6 @@ public class AccommodationRepository {
                 "(host_id, `name`, description, charge_per_night, cleaning_charge, check_in, check_out) " +
                 "VALUE (?, ?, ?, ?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
-
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setLong(1, accommodation.getHostId());
@@ -88,7 +87,7 @@ public class AccommodationRepository {
     }
 
     public List<Long> findAmenityIdsByNames(List<String> amenityNames) {
-        String query = "SELECT * FROM amenity WHERE `name` IN (:names)";
+        String query = "SELECT id FROM amenity WHERE `name` IN (:names)";
         SqlParameterSource namedParameters = new MapSqlParameterSource("names", amenityNames);
         List<Long> ids = namedParameterJdbcTemplate.query(
                 query
@@ -117,7 +116,8 @@ public class AccommodationRepository {
     }
 
     public List<Accommodation> findAllAccommodations() {
-        String query = "SELECT * FROM accommodation";
+        String query = "SELECT id, host_id, `name`, description, charge_per_night, cleaning_charge, check_in, check_out " +
+                "FROM accommodation";
         List<Accommodation> accommodations = namedParameterJdbcTemplate.query(
                 query,
                 (rs, rowNum) -> Accommodation.builder()
@@ -135,7 +135,9 @@ public class AccommodationRepository {
     }
 
     public Optional<AccommodationAddress> findAddressByAccommodationId(Long accommodationId) {
-        String query = "SELECT * FROM accommodation_address WHERE accommodation_id = :accommodation_id";
+        String query = "SELECT accommodation_id, country_id, city_id, address, latitude, longitude " +
+                "FROM accommodation_address " +
+                "WHERE accommodation_id = :accommodation_id";
         SqlParameterSource namedParameters = new MapSqlParameterSource("accommodation_id", accommodationId);
         List<AccommodationAddress> accommodationAddresses = namedParameterJdbcTemplate.query(
                 query
@@ -153,7 +155,9 @@ public class AccommodationRepository {
     }
 
     public Optional<AccommodationCondition> findConditionByAccommodationId(Long accommodationId) {
-        String query = "SELECT * FROM accommodation_condition WHERE accommodation_id = :accommodation_id";
+        String query = "SELECT accommodation_id, guests, bedroom_count, bed_count, bathroom_count " +
+                "FROM accommodation_condition " +
+                "WHERE accommodation_id = :accommodation_id";
         SqlParameterSource namedParameters = new MapSqlParameterSource("accommodation_id", accommodationId);
         List<AccommodationCondition> accommodationConditions = namedParameterJdbcTemplate.query(
                 query
@@ -170,7 +174,7 @@ public class AccommodationRepository {
     }
 
     public List<String> findAmenitiesByAccommodationId(Long accommodationId) {
-        String query = "SELECT * FROM amenity " +
+        String query = "SELECT id, `name` FROM amenity " +
                 "WHERE id in(" +
                 "   SELECT amenity_id FROM airbnb.accommodation_has_amenity " +
                 "   WHERE accommodation_id = :accommodation_id" +
@@ -190,7 +194,7 @@ public class AccommodationRepository {
     }
 
     public List<String> findPhotosByAccommodationId(Long accommodationId) {
-        String query = "SELECT * FROM accommodation_photo " +
+        String query = "SELECT id, accommodation_id, name FROM accommodation_photo " +
                 "WHERE id in(" +
                 "   SELECT accommodation_id FROM accommodation_photo " +
                 "   WHERE accommodation_id = :accommodation_id" +
@@ -211,7 +215,8 @@ public class AccommodationRepository {
     }
 
     public Optional<Reservation> findReservationByAccommodationId(Long accommodationId) {
-        String query = "SELECT * FROM reservation WHERE accommodation_id = :accommodation_id";
+        String query = "SELECT id, accmmodation_id, user_id, check_in, check_out, guests, charge " +
+                "FROM reservation WHERE accommodation_id = :accommodation_id";
         SqlParameterSource namedParameters = new MapSqlParameterSource("accommodation_id", accommodationId);
         List<Reservation> reservations = namedParameterJdbcTemplate.query(
                 query
