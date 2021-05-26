@@ -1,42 +1,15 @@
 import { atom, selector } from 'recoil';
-import { ReactElement } from 'react';
-
-import LocationSearch from './LocationSearch/LocationSearch';
-import CalendarSlider from './CalendarSlider/CalendarSlider';
 
 export enum ReservationBarBtnType {
   Location = 'location',
   CheckIn = 'check-in',
   CheckOut = 'check-out',
+  PriceRange = 'price-range'
 };
 
 export const SelectedBtn = atom<ReservationBarBtnType|null>({
   key: 'SelectedBtn',
   default: null
-});
-
-export const DropPopupContent = selector<ReactElement|null>({
-  key: 'DropPopupContent',
-  get: ({ get }): (ReactElement|null) => {
-    const selectedBtnType: ReservationBarBtnType|null = get(SelectedBtn);
-
-    switch(selectedBtnType) {
-      case null:
-        return null;
-
-      case ReservationBarBtnType.Location:
-        return <LocationSearch/>;
-
-      case ReservationBarBtnType.CheckIn:
-      case ReservationBarBtnType.CheckOut:
-        return <CalendarSlider/>;
-
-      // TODO: PriceRange, Personnel
-
-      default:
-        throw new Error(`Not existing index ${selectedBtnType}`);
-    }
-  }
 });
 
 export const LocationSearchState = atom<string>({
@@ -75,4 +48,34 @@ export const CheckInOutString = selector<T_CheckInOutString>({
     }
   },
 });
+
+export type T_PriceRange = {
+  from: number|null,
+  to: number|null
+};
+
+export const PriceRange = atom<T_PriceRange>({
+  key: 'PriceRange',
+  default: {
+    from: null,
+    to: null
+  }
+});
+
+export type T_PriceRangeString = {
+  from: string|null,
+  to: string|null
+};
+
+export const PriceRangeString = selector<T_PriceRangeString>({
+  key: 'PriceRangeString',
+  get: ({ get }): T_PriceRangeString => {
+    const priceRange: T_PriceRange = get(PriceRange);
+
+    return {
+      from: priceRange.from?.toLocaleString('ko-KR', { style: 'currency', currency: 'KRW' }) ?? null,
+      to: priceRange.to?.toLocaleString('ko-KR', { style: 'currency', currency: 'KRW' }) ?? null
+    };
+  }
+})
 
