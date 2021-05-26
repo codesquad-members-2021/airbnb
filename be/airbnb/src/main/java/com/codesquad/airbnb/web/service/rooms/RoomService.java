@@ -2,8 +2,10 @@ package com.codesquad.airbnb.web.service.rooms;
 
 import com.codesquad.airbnb.web.domain.room.Room;
 import com.codesquad.airbnb.web.domain.room.RoomRepository;
+import com.codesquad.airbnb.web.dto.RoomDetail;
 import com.codesquad.airbnb.web.dto.RoomPreviews;
 import com.codesquad.airbnb.web.dto.UserInput;
+import com.codesquad.airbnb.web.exceptions.RoomNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +23,15 @@ public class RoomService {
 
     public RoomPreviews showRooms(UserInput userInput) {
         List<Room> rooms = roomRepository.findRoomsByUserInput(userInput);
-        return roomDtoConverter.roomsToRoomPreviews(rooms, userInput.calculateStayingDays());
+        return roomDtoConverter.roomsToRoomPreviews(rooms, userInput.stayDay());
+    }
+
+    public RoomDetail showRoomDetail(int roomId, UserInput userInput) {
+        Room room = findRoom(roomId);
+        return roomDtoConverter.roomToRoomDetail(room, userInput.stayDay());
+    }
+
+    public Room findRoom(int roomId) {
+        return roomRepository.findRoomById(roomId).orElseThrow(() -> new RoomNotFoundException(roomId));
     }
 }

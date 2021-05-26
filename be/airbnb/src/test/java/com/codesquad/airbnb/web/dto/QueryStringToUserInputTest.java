@@ -25,7 +25,7 @@ class QueryStringToUserInputTest {
                 .checkIn(LocalDate.parse(checkIn, DATE_TIME_FORMATTER))
                 .checkOut(LocalDate.parse(checkOut, DATE_TIME_FORMATTER))
                 .build();
-        long stayDay = userInput.calculateStayingDays();
+        long stayDay = userInput.stayDay();
         assertThat(stayDay).isEqualTo(stay);
     }
 

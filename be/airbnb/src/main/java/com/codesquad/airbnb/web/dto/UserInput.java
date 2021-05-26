@@ -74,7 +74,7 @@ public class UserInput {
         return DEFAULT_GUEST_COUNT;
     }
 
-    public int calculateStayingDays() {
+    public int stayDay() {
         if (checkStayDurationFilter()) {
             return Math.toIntExact(checkIn.until(checkOut, ChronoUnit.DAYS));
         } else return 1;
