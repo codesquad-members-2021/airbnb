@@ -23,6 +23,7 @@
 		D0A4F29F26539390009741B5 /* RegionCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A4F29E26539390009741B5 /* RegionCellModel.swift */; };
 		D0A4F2A32653BEA5009741B5 /* TravelStyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A4F2A22653BEA5009741B5 /* TravelStyleCollectionViewCell.swift */; };
 		D0A4F2AA26563BE1009741B5 /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A4F2A926563BE1009741B5 /* ResultsTableViewController.swift */; };
+		D0F0EDAF265D4FDC009E74AC /* ImageHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F0EDAE265D4FDC009E74AC /* ImageHeaderCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		D0A4F29E26539390009741B5 /* RegionCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionCellModel.swift; sourceTree = "<group>"; };
 		D0A4F2A22653BEA5009741B5 /* TravelStyleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelStyleCollectionViewCell.swift; sourceTree = "<group>"; };
 		D0A4F2A926563BE1009741B5 /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
+		D0F0EDAE265D4FDC009E74AC /* ImageHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		D02D783E26579A6700F5488B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D0F0EDAE265D4FDC009E74AC /* ImageHeaderCollectionReusableView.swift */,
 				D0A4F28D265377C8009741B5 /* HeaderCollectionReusableView.swift */,
 				D0A4F28A26537533009741B5 /* RegionCollectionViewCell.swift */,
 				D0A4F2A22653BEA5009741B5 /* TravelStyleCollectionViewCell.swift */,
@@ -205,6 +208,7 @@
 				D0A4F2702652A8A4009741B5 /* AppDelegate.swift in Sources */,
 				D0A4F28B26537533009741B5 /* RegionCollectionViewCell.swift in Sources */,
 				D0A4F29B2653934F009741B5 /* TravelStyleCell.swift in Sources */,
+				D0F0EDAF265D4FDC009E74AC /* ImageHeaderCollectionReusableView.swift in Sources */,
 				D0A4F2AA26563BE1009741B5 /* ResultsTableViewController.swift in Sources */,
 				D0A4F2872652B7A7009741B5 /* SearchViewController.swift in Sources */,
 				D0A4F29226538350009741B5 /* RegionCell.swift in Sources */,
