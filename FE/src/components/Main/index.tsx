@@ -18,7 +18,8 @@ const Main = () => {
   const { headerTexts, searchBarTexts } = TextTopBackground;
 
   return (
-    <>
+    <Background coverBody>
+
       <TopBackground
         headerTexts={headerTexts}
         searchBarTexts={searchBarTexts}
@@ -29,7 +30,8 @@ const Main = () => {
         <ContentInfo contentInfoItems={contentInfo} />
         <Footer footerItems={footerItems} />
       </Background>
-    </>
+
+    </Background>
   );
 };
 
