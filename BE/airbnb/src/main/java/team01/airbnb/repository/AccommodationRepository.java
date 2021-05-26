@@ -123,7 +123,8 @@ public class AccommodationRepository {
     }
 
     public boolean saveAccommodationCondition(AccommodationCondition condition) {
-        String query = "INSERT INTO accommodation_condition (accommodation_id, guests, bedroom_count, bed_count, bathroom_count) VALUE (?, ? ,? ,? ,?)";
+        String query = "INSERT INTO accommodation_condition (accommodation_id, guests, bedroom_count, bed_count, bathroom_count) " +
+                "VALUE (?, ? ,? ,? ,?)";
         int result = jdbcTemplate.update(
                 query
                 , condition.getAccommodationId()
@@ -192,7 +193,7 @@ public class AccommodationRepository {
                 query
                 , namedParameters
                 , ACCOMMODATION_ADDRESS_ROW_MAPPER);
-        return Optional.of(accommodationAddresses.get(0));
+        return accommodationAddresses.stream().findFirst();
     }
 
     public Optional<AccommodationCondition> findConditionByAccommodationId(Long accommodationId) {
@@ -204,7 +205,7 @@ public class AccommodationRepository {
                 query
                 , namedParameters
                 , ACCOMMODATION_CONDITION_ROW_MAPPER);
-        return Optional.of(accommodationConditions.get(0));
+        return accommodationConditions.stream().findFirst();
     }
 
     public List<String> findAmenitiesByAccommodationId(Long accommodationId) {
@@ -224,11 +225,8 @@ public class AccommodationRepository {
     }
 
     public List<String> findPhotosByAccommodationId(Long accommodationId) {
-        String query = "SELECT id, accommodation_id, name FROM accommodation_photo " +
-                "WHERE id in(" +
-                "   SELECT accommodation_id FROM accommodation_photo " +
-                "   WHERE accommodation_id = :accommodation_id" +
-                ")";
+        String query = "SELECT id, accommodation_id, `name` FROM accommodation_photo " +
+                "WHERE accommodation_id = :accommodation_id";
         SqlParameterSource namedParameters = new MapSqlParameterSource("accommodation_id", accommodationId);
         List<AccommodationPhoto> photos = namedParameterJdbcTemplate.query(
                 query
@@ -247,7 +245,7 @@ public class AccommodationRepository {
                 query
                 , namedParameters
                 , RESERVATION_ROW_MAPPER);
-        return Optional.of(reservations.get(0));
+        return reservations.stream().findFirst();
     }
 
 }
