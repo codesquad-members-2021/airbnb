@@ -31,7 +31,7 @@ const Calendar = ({ date }: CalendarType) => {
     <StyledCalender>
       <CalenderTitle>{`${date.year}년 ${date.mon}월`}</CalenderTitle>
       <CalendarTable
-        mon={date.mon}
+        date={date}
         columns={days}
         data={makeDate(nowDate, dateLast)}
       />

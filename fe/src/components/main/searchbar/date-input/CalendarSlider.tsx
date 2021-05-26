@@ -3,6 +3,7 @@ import { useReducer, MouseEvent } from "react";
 import Calendar from "./Calendar";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
+
 interface CalendarSliderType {
   CalendarType: "SINGLE" | "DOUBLE";
 }
@@ -86,6 +87,9 @@ export default CalendarSlider;
 const StyledCalendarSlider = styled.div`
   display: flex;
   width: 100%;
+  & + &.2021_5_26 {
+    background-color: gray;
+  }
 `;
 const CalendarSliderLeftBtn = styled.button`
   position: absolute;

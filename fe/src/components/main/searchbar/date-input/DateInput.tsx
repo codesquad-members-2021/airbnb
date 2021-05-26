@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import InputItem from "../InputItem";
 import { useState, MouseEvent } from "react";
 import Modal from "components/common/Modal";
-import Calendar from "./Calendar";
 import CalendarSlider from "./CalendarSlider";
 
 const DateInput = () => {
