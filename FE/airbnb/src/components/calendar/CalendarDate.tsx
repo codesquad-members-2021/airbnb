@@ -1,12 +1,12 @@
-import { ReactElement, MouseEvent, useState, useEffect, useReducer } from 'react';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { ReactElement, MouseEvent, useState, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { createPartiallyEmittedExpression } from 'typescript';
 import {
   calendarDateType,
   dayType,
   selectCheckBoxState,
   selectDateState,
+  hoverDateState,
 } from '../../recoil/calendarAtom';
 import { getTimes } from '../header/form/calendar/calendarDateFn';
 
@@ -17,16 +17,11 @@ interface Props {
 
 const CalendarDate = ({ monthData, calendarDate }: Props) => {
   const { year, month } = calendarDate;
-  const [dateData, setDateData] = useState<dayType[][]>(monthData);
-  // const [dateData, aDateDispatch] = useReducer(dateReducer, monthData);
 
   const [selectDate, setSelectDate] = useRecoilState(selectDateState);
   const { checkIn: checkInTime, checkOut: checkOutTime } = selectDate;
+  const [hoverDate, setHoverDate] = useRecoilState(hoverDateState);
   const [selectedCheckBox, setSelectedCheckBox] = useRecoilState(selectCheckBoxState);
-
-  useEffect(() => {
-    setDateData(monthData);
-  }, [monthData]);
 
   const handelClick = (event: MouseEvent<HTMLElement>): void => {
     const target = event.target as HTMLElement;
@@ -39,7 +34,6 @@ const CalendarDate = ({ monthData, calendarDate }: Props) => {
 
     if (selectedCheckBox === 'checkIn') clickCheckInBox(selectTime);
     if (selectedCheckBox === 'checkOut') clickCheckOutBox(selectTime);
-    return;
   };
 
   const clickCheckInBox = (selectTime: number): void => {
@@ -57,7 +51,6 @@ const CalendarDate = ({ monthData, calendarDate }: Props) => {
       setSelectDate((selectDate) => ({ ...selectDate, checkIn: selectTime }));
     }
     setSelectedCheckBox('checkOut');
-    return;
   };
 
   const clickCheckOutBox = (selectTime: number): void => {
@@ -75,16 +68,37 @@ const CalendarDate = ({ monthData, calendarDate }: Props) => {
       setSelectDate((selectDate) => ({ ...selectDate, checkIn: selectTime }));
     }
     setSelectedCheckBox('checkOut');
-    return;
   };
+
+  const handleMouseEnter = (event: MouseEvent<HTMLElement>): void => {
+    if (checkInTime && checkOutTime) return;
+    const target = event.target as HTMLElement;
+    const dateWrapper = target.closest('.date__wrapper');
+    if (!dateWrapper?.classList.contains('able-date')) return;
+    let value: number = +target.innerHTML;
+    if (dateWrapper && dateWrapper.firstElementChild && isNaN(value)) {
+      value = +dateWrapper.firstElementChild?.innerHTML;
+    }
+    const hoverTime = new Date(year, month - 1, value).getTime();
+    if (selectedCheckBox === 'checkIn') mouseEnterCheckInBox(hoverTime);
+    if (selectedCheckBox === 'checkOut') mouseEnterCheckOutBox(hoverTime);
+  };
+
+  const mouseEnterCheckInBox = (hoverTime: number): void => {
+    if (checkOutTime && hoverTime < checkOutTime) setHoverDate(hoverTime);
+  };
+  const mouseEnterCheckOutBox = (hoverTime: number): void => {
+    if (checkInTime && checkInTime < hoverTime) setHoverDate(hoverTime);
+  };
+
+  const handleMouseLeave = (): void => setHoverDate(null);
 
   const getDateList = (weekData: dayType[]): ReactElement[] =>
     weekData.map(({ date, isAble }: dayType): ReactElement => {
       const dayTime = getTimes({ year, month, day: date });
-      const isCheckIn = dayTime === checkInTime;
-      const isCheckOut = dayTime === checkOutTime;
-      const isBetween =
-        checkInTime && checkOutTime && dayTime > checkInTime && dayTime < checkOutTime;
+      const isCheckIn = getIsCheckIn(dayTime);
+      const isCheckOut = getIsCheckOut(dayTime);
+      const isBetween = getIsBetween(dayTime);
       const dateWrapperClassName = getDateWrapperClassName(
         { date, isAble },
         isCheckIn,
@@ -93,11 +107,32 @@ const CalendarDate = ({ monthData, calendarDate }: Props) => {
       );
       const dateClassName = getDateClassName({ date, isAble }, isCheckIn, isCheckOut);
       return (
-        <div className={dateWrapperClassName}>
+        <div
+          className={dateWrapperClassName}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <div className={dateClassName}>{date ? date : ''}</div>
         </div>
       );
     });
+
+  const getIsCheckIn = (dayTime: number): boolean => {
+    if (dayTime === checkInTime) return true;
+    if (hoverDate && checkOutTime && dayTime === hoverDate && hoverDate < checkOutTime) return true;
+    return false;
+  };
+  const getIsCheckOut = (dayTime: number): boolean => {
+    if (dayTime === checkOutTime) return true;
+    if (hoverDate && checkInTime && dayTime === hoverDate && checkInTime < hoverDate) return true;
+    return false;
+  };
+  const getIsBetween = (dayTime: number): boolean => {
+    if (hoverDate && checkInTime && checkInTime < dayTime && dayTime < hoverDate) return true;
+    if (hoverDate && checkOutTime && hoverDate < dayTime && dayTime < checkOutTime) return true;
+    if (checkInTime && checkOutTime && checkInTime < dayTime && dayTime < checkOutTime) return true;
+    return false;
+  };
 
   const getDateWrapperClassName = (
     { date, isAble }: dayType,

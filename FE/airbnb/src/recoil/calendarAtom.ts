@@ -47,3 +47,8 @@ export const selectDateState = atom<selectDateStateType>({
   key: 'selectDateState',
   default: { checkIn: null, checkOut: null },
 });
+
+export const hoverDateState = atom<number | null>({
+  key: 'hoverDateState',
+  default: null,
+});
