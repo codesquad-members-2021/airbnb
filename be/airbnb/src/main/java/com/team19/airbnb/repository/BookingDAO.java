@@ -6,7 +6,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -19,12 +18,10 @@ import java.util.Optional;
 public class BookingDAO {
 
     private final JdbcTemplate jdbcTemplate;
-    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Autowired
     public BookingDAO(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
     public Booking save(Booking booking) {
@@ -33,7 +30,7 @@ public class BookingDAO {
 
         SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(booking);
         Number key = jdbcInsert.executeAndReturnKey(sqlParameterSource);
-        booking.checkId(key.longValue());
+        booking.setId(key.longValue());
         return booking;
     }
 
@@ -68,7 +65,7 @@ public class BookingDAO {
 //    }
 
 
-    public void bookReservation(Booking booking, Long userId) {
+    public void bookReservation(Booking booking) {
         String query = "INSERT INTO booking (check_in, check_out, guest, total_price, user, room) VALUES (?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(query, booking.getCheckIn(), booking.getCheckOut(), booking.getGuest(), booking.getTotalPrice(), userId, booking.getRoom());
     }
