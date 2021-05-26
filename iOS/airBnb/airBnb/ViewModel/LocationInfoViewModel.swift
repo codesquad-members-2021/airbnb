@@ -8,23 +8,27 @@
 import Foundation
 import Combine
 
+enum State {
+    case location
+    case calerdar
+    case price
+    case people
+    case none
+}
+
 class LocationInfoViewModel {
     
     private var cancellable = Set<AnyCancellable>()
     private var searchManager: SearchManager
+    private var state: State
     
-    init(from searchManager: SearchManager) {
+    init(from searchManager: SearchManager,of state : State) {
         self.searchManager = searchManager
+        self.state = state
     }
-    
-    @Published var selectDates = SequenceDates(start: nil, end: nil)
     
     func receiveSelectDates(from dates: SequenceDates) {
         searchManager.selectDays(from: dates)
-    }
-    
-    func receiveSelectDates(from dates: Date) {
-        selectDates.selectDay(with: dates)
     }
     
     func releaseSelectDates() -> AnyPublisher<String, Never> {
@@ -41,6 +45,59 @@ class LocationInfoViewModel {
     }
     
     func deleteSelectDate() {
-        searchManager.resetDates()
+        switch state {
+        case .calerdar:
+            searchManager.resetDates()
+        case .location:
+            break
+        case .price:
+            break
+        case .people:
+            break
+        case .none:
+            break
+        }
+    }
+    
+    func skipAndDeleteString() -> AnyPublisher<String, Never> {
+        switch state {
+        case .calerdar:
+            return searchManager.$selectDates
+                .map { $0.start == nil ? "건너뛰기" : "지우기" }
+                .eraseToAnyPublisher()
+        case .location:
+            return searchManager.$location
+                .dropFirst()
+                .map { $0.isEmpty ? "건너뛰기" : "지우기" }
+                .eraseToAnyPublisher()
+        case .people:
+            return searchManager.$numberOfPleple
+                .dropFirst()
+                .map { $0.isEmpty ? "건너뛰기" : "지우기" }
+                .eraseToAnyPublisher()
+        case .price:
+            return searchManager.$price
+                .dropFirst()
+                .map { $0.isEmpty ? "건너뛰기" : "지우기" }
+                .eraseToAnyPublisher()
+        case .none:
+            return Just("건너뛰기")
+                .eraseToAnyPublisher()
+        }
+    }
+    
+    func setSkipAndDeleteAction() -> Bool {
+        switch state {
+        case .calerdar:
+          return searchManager.selectDates.start != nil ? true : false
+        case .location:
+            return false
+        case .people:
+            return false
+        case .price:
+            return false
+        case .none:
+            return false
+        }
     }
 }

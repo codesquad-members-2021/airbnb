@@ -27,11 +27,15 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addContainerView()
         createDataSoure()
         configure()
         bind()
         NotificationCenter.default.addObserver(self, selector: #selector(resetSelectDates(_:)), name: NotiName.reset, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        addContainerView()
     }
     
     private func addContainerView() {
@@ -39,7 +43,9 @@ class CalendarViewController: UIViewController {
         guard let InfoView = storyboard.instantiateViewController(withIdentifier: "LocationInfo") as? LocationInfoViewController else {
             return
         }
-        InfoView.inject(from: searchManager, subject: nextViewControllerSubject)
+        InfoView.inject(from: searchManager,
+                        subject: nextViewControllerSubject,
+                        state: .calerdar)
         addChild(InfoView)
         InfoView.view.frame = containerView.bounds
         containerView.addSubview(InfoView.view)
@@ -72,7 +78,6 @@ class CalendarViewController: UIViewController {
     func moveViewController() {
         nextViewControllerSubject.sink { [weak self] _ in
             self?.navigationController?.pushViewController(PriceSliderViewController(), animated: true)
-            
         }.store(in: &cancellable)
     }
 }

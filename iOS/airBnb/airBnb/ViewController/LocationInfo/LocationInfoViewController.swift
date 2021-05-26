@@ -7,9 +7,9 @@
 
 import UIKit
 import Combine
+
 class LocationInfoViewController: UIViewController{
 
-    
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var checkInOutLabel: UILabel!
@@ -21,22 +21,24 @@ class LocationInfoViewController: UIViewController{
     private var cancellable = Set<AnyCancellable>()
     private var locationInfoViewModel: LocationInfoViewModel?
     private var deleteDatesSubject = PassthroughSubject<Void, Never>()
-    private var nextViewControllerSubject: PassthroughSubject<Void, Never>?
-        
+    private var nextViewSubject: PassthroughSubject<Void, Never>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
     }
     
-    func inject(from manager : SearchManager, subject: PassthroughSubject<Void,Never>){
-        locationInfoViewModel = LocationInfoViewModel(from: manager)
-        nextViewControllerSubject = subject
+    func inject(from manager : SearchManager,
+                subject: PassthroughSubject<Void,Never>,
+                state: State){
+        locationInfoViewModel = LocationInfoViewModel(from: manager, of: state)
+        nextViewSubject = subject
         deleteDatesSubject.sink { [weak self] _ in
             self?.locationInfoViewModel?.deleteSelectDate()
         }.store(in: &cancellable)
     }
         
-    func bind() {
+    private func bind() {
         locationInfoViewModel?.releaseSelectDates().sink { [weak self] (selectDates) in
             self?.checkInOutLabel.text = selectDates
         }.store(in: &cancellable)
@@ -45,14 +47,22 @@ class LocationInfoViewController: UIViewController{
             self?.nextButton.isEnabled = enable
         }.store(in: &cancellable)
         
+        locationInfoViewModel?.skipAndDeleteString().sink { [weak self] (text) in
+            self?.skipAndDeleteButton.setTitle(text, for: .normal)
+        }.store(in: &cancellable)
     }
     
     @IBAction func nextButtonTouched(_ sender: UIButton) {
-        nextViewControllerSubject?.send()
+        nextViewSubject?.send()
     }
     
     @IBAction func skipAndDeleteButtonTouched(_ sender: UIButton) {
-        deleteDatesSubject.send()
+        guard let viewModel = locationInfoViewModel else {
+            return
+        }
+        viewModel.setSkipAndDeleteAction() ?
+            self.deleteDatesSubject.send() : self.nextViewSubject?.send()
+    
     }
     
 }
