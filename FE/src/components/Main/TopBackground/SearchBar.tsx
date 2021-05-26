@@ -1,11 +1,8 @@
-import React, {
-  useState,
-  FunctionComponent,
-  useEffect,
-  MouseEvent,
-} from 'react';
+import { FunctionComponent } from 'react';
 import styled, { css } from 'styled-components';
 import { FiSearch } from 'react-icons/fi';
+import { useMainDispatch, useMainState } from '../../../contexts/MainContext';
+
 import { cssTranslate } from '../../../util/styles/CommonStyledCSS';
 import { ResponsiveFluid } from '../../Common/ResponsiveFluid';
 import { ITextTopBackground } from '../../../util/reference';
@@ -18,25 +15,20 @@ const SearchBar: FunctionComponent<ITextTopBackground> = ({
   searchBarTexts,
 }) => {
   const { menuItems } = searchBarTexts;
-  const [clickedID, setClickedID] = useState<number>(-1);
 
-  const onExceptSearchBarClick = (e: MouseEvent | Event) => {
-    const target = e.target as HTMLElement;
-    !target.closest('.searchbar__list') && setClickedID(-1);
-  };
-
-  useEffect(() => {
-    document.querySelector('#root')?.addEventListener('click', onExceptSearchBarClick);
-    return () => document.querySelector('#root')?.removeEventListener('click', onExceptSearchBarClick);
-  }, []);
+  const { searchBarClickedIdx } = useMainState();
+  const mainDispatch = useMainDispatch();
 
   // searchMenuItem(li) 생성
   const searchMenuItems = menuItems.map((item, idx) => (
     <SearchMenuItem
       key={idx}
-      isClicked={idx === clickedID}
-      onClick={() =>
-        setClickedID((clickedID) => (clickedID === idx ? -1 : idx))
+      isClicked={idx === searchBarClickedIdx}
+      onClick={() => 
+        mainDispatch({
+          type: 'SET_SEARCHBAR_CLICKED_IDX',
+          payload: searchBarClickedIdx === idx ? -1 : idx,
+        })
       }
     >
       {/* 체크인 / 체크아웃, 요금, 인원 */}
@@ -46,7 +38,6 @@ const SearchBar: FunctionComponent<ITextTopBackground> = ({
           <p>{item.placeHolder}</p>
         </div>
       ))}
-
 
       {idx === menuItems.length - 1 && (
         <SearchButton>
@@ -94,7 +85,7 @@ const SearchMenuItem = styled.li<ISearchMenuItem>`
   &:after {
     height: 100%;
     content: ' ';
-    border-right: 1px solid ${({ theme }) => theme.colors.gray5};
+    border-right: 1px solid ${({ theme }) => theme.colors.gray6};
   }
 
   &:last-child {
@@ -114,9 +105,6 @@ const SearchMenuItem = styled.li<ISearchMenuItem>`
     css`
       background-color: ${({ theme }) => theme.colors.white};
       box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
-      &:after {
-        border-right: 1px solid transparent;
-      }
     `}
 
   div.item__info {
