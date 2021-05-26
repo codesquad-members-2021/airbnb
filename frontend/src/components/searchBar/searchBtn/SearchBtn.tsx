@@ -23,7 +23,7 @@ const SearchBtn = () => {
 	const checkIn = useRecoilValue(checkInMessage)
 	const checkOut = useRecoilValue(checkOutMessage)
 	const handleClick = () => {
-		//api검색요청
+		//api검색요청하기
 	}
 	if (placeToSearch !== defaultValue.placeToSearch) setSearchable(true)
 

@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components'
 import { Theme } from './style/Theme'
 import Header from './components/header/Header'
 import SearchBar from './components/searchBar/SearchBar'
+
 function App() {
 	return (
 		<div className='App'>
