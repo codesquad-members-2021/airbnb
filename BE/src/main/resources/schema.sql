@@ -20,7 +20,7 @@ USE `airbnb` ;
 DROP TABLE IF EXISTS `airbnb`.`user`;
 CREATE TABLE IF NOT EXISTS `airbnb`.`user` (
     `id` INT AUTO_INCREMENT NOT NULL,
-    `user_id` VARCHAR(45) NOT NULL,
+    `user_id` VARCHAR(45) UNIQUE KEY NOT NULL,
     `email` VARCHAR(45) NOT NULL,
     `name` VARCHAR(45) NULL,
     `token` VARCHAR(255) NULL,

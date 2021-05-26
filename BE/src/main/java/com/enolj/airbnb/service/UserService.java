@@ -36,7 +36,7 @@ public class UserService {
         if (verifyUser(userInfoDTO.getUserId())) {
             User user = findByUserId(userInfoDTO.getUserId());
             user.update(userInfoDTO, emailDTO, tokenDTO);
-            userDAO.update(user);
+            userDAO.save(user);
             return createUserResponseDTO(user, JwtUtil.createToken(user.getUserId()));
         }
         User user = createUser(userInfoDTO, emailDTO, tokenDTO);
@@ -47,7 +47,7 @@ public class UserService {
     public void logout(String authorization) {
         User user = getUserFromAuthorization(userDAO, authorization);
         user.removeToken();
-        userDAO.update(user);
+        userDAO.save(user);
     }
 
     private TokenDTO tokenRequestApi(String code, GitHubType gitHubType) {
