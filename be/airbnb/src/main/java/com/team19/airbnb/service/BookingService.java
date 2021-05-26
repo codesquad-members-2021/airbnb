@@ -2,6 +2,8 @@ package com.team19.airbnb.service;
 
 import com.team19.airbnb.domain.Booking;
 import com.team19.airbnb.domain.User;
+import com.team19.airbnb.exception.BookingNotFoundException;
+import com.team19.airbnb.exception.UserNotFoundException;
 import com.team19.airbnb.repository.BookingDAO;
 import com.team19.airbnb.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -24,8 +26,8 @@ public class BookingService {
     }
 
     public void findBooking(Long userId, Long bookingId) {
-        User user = userRepository.findById(userId).orElseThrow(IllegalStateException::new);
-        Booking booking = bookingDAO.findById(bookingId).orElseThrow(IllegalStateException::new);
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        Booking booking = bookingDAO.findById(bookingId).orElseThrow(BookingNotFoundException::new);
     }
 
     public void createBooking(BookingRequestDTO bookingRequestDTO, Long userId) {

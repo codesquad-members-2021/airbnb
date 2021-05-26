@@ -34,6 +34,18 @@ public class Booking {
         this.room = room;
     }
 
+    Booking(LocalDate checkIn, LocalDate checkOut,
+            Integer guest, BigDecimal totalPrice,
+            Long user, Long room) {
+        this.id = null;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.guest = guest;
+        this.totalPrice = totalPrice;
+        this.user = user;
+        this.room = room;
+    }
+
     public static Booking create(Long id,
                                  LocalDate checkIn, LocalDate checkOut,
                                  Integer guest, BigDecimal totalPrice,
@@ -47,8 +59,7 @@ public class Booking {
     public static Booking create(LocalDate checkIn, LocalDate checkOut,
                                  Integer guest, BigDecimal totalPrice,
                                  Long user, Long room) {
-        return new Booking(null,
-                checkIn, checkOut,
+        return new Booking(checkIn, checkOut,
                 guest, totalPrice,
                 user, room);
     }

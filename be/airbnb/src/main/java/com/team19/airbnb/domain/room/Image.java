@@ -8,7 +8,11 @@ public class Image {
         this.url = url;
     }
 
-    public Image create(String url, Long roomId) {
+    public Image create(String url) {
         return new Image(url);
+    }
+
+    public String getUrl() {
+        return url;
     }
 }

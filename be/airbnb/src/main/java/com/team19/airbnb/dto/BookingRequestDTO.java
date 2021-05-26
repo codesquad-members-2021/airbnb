@@ -8,11 +8,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class BookingRequestDTO {
-    // /bookings
+
     @JsonProperty("roomId")
     private Long roomId;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate checkIn;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate checkOut;
 

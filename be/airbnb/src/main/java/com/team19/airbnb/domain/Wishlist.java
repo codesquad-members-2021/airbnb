@@ -1,6 +1,7 @@
 package com.team19.airbnb.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 
 public class Wishlist {
 
@@ -9,12 +10,18 @@ public class Wishlist {
 
     private Long room;
 
+    @PersistenceConstructor
     Wishlist(Long id, Long room) {
         this.id = id;
         this.room = room;
     }
 
+    Wishlist(Long room) {
+        this.id = null;
+        this.room = room;
+    }
+
     public static Wishlist create(Long room) {
-        return new Wishlist(null, room);
+        return new Wishlist(room);
     }
 }

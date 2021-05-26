@@ -1,5 +1,6 @@
 package com.team19.airbnb.controller;
 
+import com.team19.airbnb.ResponseBody;
 import com.team19.airbnb.domain.room.Host;
 import com.team19.airbnb.dto.BookingRequestDTO;
 import com.team19.airbnb.dto.BookingResponseDTO;
@@ -27,23 +28,19 @@ public class BookingController {
 
     @GetMapping("/bookings/{userId}")
     public List<BookingResponseDTO> getBookings() {
-        List<BookingResponseDTO> bookings = new ArrayList<>();
-        bookings.add(createBookingResponseDTO(1L));
-        bookings.add(createBookingResponseDTO(2L));
-        return bookings;
+        return null;
     }
 
     @GetMapping("/bookings/{bookingId}/{userId}")
-    public BookingResponseDTO getBooking(@PathVariable Long bookingId, @PathVariable Long userId) {
-        bookingService.findBooking(userId, bookingId);
-        return null;
+    public ResponseBody<BookingResponseDTO> getBooking(@PathVariable Long bookingId, @PathVariable Long userId) {
+        return ResponseBody.ok(bookingService.findBooking(userId, bookingId));
     }
 
     @DeleteMapping("/bookings/{bookingId}/{userId}")
     public void deleteBooking(@PathVariable Long bookingId, @PathVariable Long userId) {
         bookingService.delete(bookingId, userId);
     }
-
+  
     private BookingResponseDTO createBookingResponseDTO(Long bookingId) {
         LocalDate checkIn = LocalDate.of(2020,3,20);
         LocalDate checkOut = LocalDate.of(2020, 4, 4);
@@ -65,5 +62,4 @@ public class BookingController {
                 guest,
                 totalPrice);
     }
-
 }

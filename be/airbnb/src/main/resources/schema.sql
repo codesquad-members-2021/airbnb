@@ -139,6 +139,7 @@ DROP TABLE IF EXISTS `airbnb`.`image` ;
 CREATE TABLE IF NOT EXISTS `airbnb`.`image` (
 `url` VARCHAR(255) NOT NULL,
 `room` INT NOT NULL,
+`room_key` INT,
 PRIMARY KEY (`url`),
 CONSTRAINT `fk_image_room`
 FOREIGN KEY (`room`)
