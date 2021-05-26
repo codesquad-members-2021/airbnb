@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import HeaderTab from './HeaderTab';
 
 const HeaderTabList = () => {
-  const TAB_LIST: string[] = ['숙소', '체험', '온라인 체험'];
+  const TAB_LIST = ['숙소', '체험', '온라인 체험'];
   const tabList: ReactElement[] = TAB_LIST.map((title: string, idx: number) => (
     <HeaderTab key={title + idx} {...{ title, idx }} />
   ));
