@@ -19,10 +19,11 @@ import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.*;
 
+//springboottEST아님
 @SpringBootTest
 @Transactional
-class BookingRepositoryTest {
-    private static final Logger logger = LoggerFactory.getLogger(BookingRepositoryTest.class);
+class BookingDAOTest {
+    private static final Logger logger = LoggerFactory.getLogger(BookingDAOTest.class);
 
     @Autowired
     UserRepository userRepository;

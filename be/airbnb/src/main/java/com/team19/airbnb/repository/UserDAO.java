@@ -39,6 +39,5 @@ public class UserDAO {
                     wishlists);
            return user;
         };
-
     }
 }

@@ -22,8 +22,7 @@ public class RoomController {
         images.add("img1");
         images.add("img2");
         Host host = Host.create("Tree", "treeImg");
-        return new RoomDetailResponseDTO(1L, "firstRoom", images, 4.5, 5, "서울시 양재",
-                new BigDecimal(10000), new BigDecimal(10000), "one room","one bed, no bathroom", "It is for test", host);
+        return null;
     }
 
     @GetMapping("/rooms/{roomId}/price")
