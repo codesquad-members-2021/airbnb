@@ -18,7 +18,7 @@ public class RoomPreview {
     private int personCapacity;
     private int reviewCount;
     private int pricePerDay;
-    private double totalPrice;
+    private int totalPrice;
     private String bedroomType;
     private int bedCount;
     private String bathroomType;

@@ -2,6 +2,8 @@ package com.codesquad.airbnb.web.service.rooms;
 
 import com.codesquad.airbnb.web.domain.room.PricePolicy;
 import com.codesquad.airbnb.web.domain.room.Room;
+import com.codesquad.airbnb.web.domain.user.Host;
+import com.codesquad.airbnb.web.dto.HostProfile;
 import com.codesquad.airbnb.web.dto.RoomPreview;
 import com.codesquad.airbnb.web.dto.RoomPreviews;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ public class RoomDtoConverter {
                 .map(room ->
                 {
                     PricePolicy pricePolicy = room.getPricePolicy();
+                    Host host = room.getHost();
                     return RoomPreview.builder()
                             .roomId(room.getId())
                             .name(room.getName())
@@ -32,7 +35,12 @@ public class RoomDtoConverter {
                             .amenity(room.getAmenity())
                             .personCapacity(room.getGuestCapacity())
                             .roomThumbnail(room.getThumbnail())
-                            //.host()
+                            .host(HostProfile.builder()
+                                    .hostId(host.getId())
+                                    .hostName(host.getName())
+                                    .isSuperhost(host.isSuperhost())
+                                    .profileImage(host.getProfileImage())
+                                    .build())
                             .build();
                 })
                 .collect(Collectors.toList());

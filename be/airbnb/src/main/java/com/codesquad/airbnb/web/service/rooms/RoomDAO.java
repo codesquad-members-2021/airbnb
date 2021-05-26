@@ -82,7 +82,7 @@ public class RoomDAO implements RoomRepository {
     public List<Room> findRoomsByUserInput(UserInput userInput) {
         StringBuilder sqlBuilder = new StringBuilder().append(SEARCH_ROOMS_BY_LOCATION);
         MapSqlParameterSource parameter = new MapSqlParameterSource()
-                .addValue("location_name", userInput.getLocation());
+                .addValue("location_name", userInput.lastLocation());
 
         addCheckinFilter(userInput, sqlBuilder, parameter);
         addGuestCountFilter(userInput, sqlBuilder, parameter);

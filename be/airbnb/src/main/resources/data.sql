@@ -14,24 +14,29 @@ VALUES (1, '대한민국', 'NATION', null, 1, 'ChIJzWXFYYuifDUR64Pq5LTtioU', POI
        (13, '동이리', 'VILLAGE', 11, 5, 'ChIJ01VA53nffDURt9m_xoktSJo', POINT(37.473553, 127.03067));
 
 insert into room(id, location_id, name, rating, guest_capacity, point, description, bathroom_type, bedroom_type,
-                 bed_count, amenity)
+                 bed_count, amenity, host_id, thumbnail)
 values (1, 4, '희망이 넘치는 발레노르 움막집', 5, 5, POINT(37.252352, 235.52532), '희망이 넘쳐요', 'PRIVATE_BATHROOM', 'ONE_ROOM', 2,
-        '주방, 무선인터넷, 에어컨, 헤어드라이어'),
+        '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
+        'https://pix10.agoda.net/hotelImages/8515928/-1/2757b14c0680924208c33f286eab4c46.jpg?s=1024x768'),
        (2, 4, '분노가 넘치는 블랙게이트 감시초소', 0.5, 3, POINT(31.25144, 935.52532), '오지마세요 제발', 'PRIVATE_BATHROOM', 'ONE_ROOM', 2,
-        '주방, 무선인터넷, 에어컨, 헤어드라이어'),
-       (3, 4, '유혹이 넘치는 바랏두르 제련소', 1.0, 1, POINT(27.252352, 235.52532), '춥진 않아요', 'SHARED_BATHROOM', 'BEDROOM', 3,
-        '주방, 무선인터넷, 에어컨, 헤어드라이어'),
+        '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
+        'https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?s=1024x768'),
+       (3, 4, '용암이 넘치는 바랏두르 제련소', 1.0, 1, POINT(27.252352, 235.52532), '춥진 않아요', 'SHARED_BATHROOM', 'BEDROOM', 3,
+        '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
+        'https://imgcy.trivago.com/c_lfill,d_dummy.jpeg,e_sharpen:60,f_auto,h_450,q_auto,w_450/itemimages/96/95/96959_v6.jpeg'),
        (4, 12, '전망이 멋진 미나스 티리스 펜션', 5, 2, POINT(37.252352, 235.52532), '정말 최고야', 'PRIVATE_BATHROOM', 'BEDROOM', 4,
-        '주방, 무선인터넷, 에어컨, 헤어드라이어'),
+        '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
+        'https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg'),
        (5, 13, '먼지가 넘치는 모리아 골방', 0.5, 4, POINT(17.252352, 125.52532), '청소가 뭐예요?', 'SHARED_BATHROOM', 'BEDROOM', 5,
-        '주방, 무선인터넷, 에어컨, 헤어드라이어');
+        '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
+        'https://media-cdn.tripadvisor.com/media/photo-s/15/a1/d2/af/hotel-r-de-paris.jpg');
 
 insert into room_price (room_id, service_fee, accomodation_tax, clean_up_cost, price_per_day, weekly_discount)
-values (1, 500, 1000, 2500, 20000, 4),
-       (2, 500, 1000, 2500, 50000, 4),
-       (3, 500, 1000, 2500, 100000, 4),
-       (4, 500, 1000, 2500, 60000, 4),
-       (5, 500, 1000, 2500, 30000, 4);
+values (1, 500, 1000, 2500, 20000, 5),
+       (2, 500, 1000, 2500, 50000, 5),
+       (3, 500, 1000, 2500, 100000, 5),
+       (4, 500, 1000, 2500, 60000, 5),
+       (5, 500, 1000, 2500, 30000, 5);
 
 insert into reservation(id, room_id, guest_id, checkin_date_time, checkout_date_time, adult_count, child_count,
                         infant_count)

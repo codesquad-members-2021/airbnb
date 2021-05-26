@@ -10,7 +10,7 @@ import static com.codesquad.airbnb.web.dto.UserInput.DATE_TIME_FORMATTER;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class UserInputTest {
+class QueryStringToUserInputTest {
 
     @Test
     @DisplayName("숙박기간 테스트")

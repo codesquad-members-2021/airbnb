@@ -16,8 +16,8 @@ public class PricePolicy {
     private int pricePerDay;
     private int weeklyDiscount;
 
-    public double totalPrice(int stayDay) {
-        return (totalPricePerDate() * stayDay) * discountPercentage(stayDay);
+    public int totalPrice(int stayDay) {
+        return (int) ((totalPricePerDate() * stayDay) * discountPercentage(stayDay));
     }
 
     private int totalPricePerDate() {
@@ -25,6 +25,6 @@ public class PricePolicy {
     }
 
     private float discountPercentage(int stayDay) {
-        return (100 - weeklyDiscount * (stayDay / 7.0f)) / 100;
+        return (100 - weeklyDiscount * (int)(stayDay / 7.0f)) / 100.0f;
     }
 }

@@ -7,12 +7,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
-import static com.codesquad.airbnb.web.exceptions.InvalidUserInputException.*;
+import static com.codesquad.airbnb.web.exceptions.InvalidUserInputException.NO_STAY_DAYS;
+import static com.codesquad.airbnb.web.exceptions.InvalidUserInputException.PRICE_RANGE_ERROR;
 
 @Getter
 @Builder
@@ -20,10 +22,14 @@ import static com.codesquad.airbnb.web.exceptions.InvalidUserInputException.*;
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class UserInput {
+    private static final String STRING_DATE_TIME_FORMAT = "yyyy-MM-dd";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final int DEFAULT_GUEST_COUNT = 1;
 
     private String location;
+    @DateTimeFormat(pattern = STRING_DATE_TIME_FORMAT)
     private LocalDate checkIn;
+    @DateTimeFormat(pattern = STRING_DATE_TIME_FORMAT)
     private LocalDate checkOut;
     private Integer adultCount;
     private Integer childCount;
@@ -32,8 +38,7 @@ public class UserInput {
     private Integer priceMaximum;
 
     public boolean checkStayDurationFilter() {
-        boolean isNotNull = checkIn != null && checkOut != null;
-        if(!isNotNull){
+        if (isStayDurationNull()) {
             return false;
         }
         long days = checkIn.until(checkOut, ChronoUnit.DAYS);
@@ -41,6 +46,10 @@ public class UserInput {
             throw new InvalidUserInputException(NO_STAY_DAYS);
         }
         return true;
+    }
+
+    private boolean isStayDurationNull() {
+        return checkIn == null || checkOut == null;
     }
 
     public boolean checkGuestCountFilter() {
@@ -59,10 +68,20 @@ public class UserInput {
     }
 
     public int guestCount() {
-        return adultCount + childCount + infantCount;
+        if (checkGuestCountFilter()) {
+            return adultCount + childCount + infantCount;
+        }
+        return DEFAULT_GUEST_COUNT;
     }
 
-    public long calculateStayingDays() {
-        return checkIn.until(checkOut, ChronoUnit.DAYS);
+    public int calculateStayingDays() {
+        if (checkStayDurationFilter()) {
+            return Math.toIntExact(checkIn.until(checkOut, ChronoUnit.DAYS));
+        } else return 1;
+    }
+
+    public String lastLocation() {
+        String[] locations = location.split(" ");
+        return locations[locations.length - 1];
     }
 }
