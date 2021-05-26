@@ -15,4 +15,16 @@ public class PricePolicy {
     private int cleanUpCost;
     private int pricePerDay;
     private int weeklyDiscount;
+
+    public double totalPrice(int stayDay) {
+        return (totalPricePerDate() * stayDay) * discountPercentage(stayDay);
+    }
+
+    private int totalPricePerDate() {
+        return pricePerDay + serviceFee + cleanUpCost;
+    }
+
+    private float discountPercentage(int stayDay) {
+        return (100 - weeklyDiscount * (stayDay / 7.0f)) / 100;
+    }
 }

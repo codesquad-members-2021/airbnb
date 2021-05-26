@@ -14,6 +14,7 @@ import org.springframework.data.geo.Point;
 public class Room {
     private int id;
     private int locationId;
+    private String locationName;
     private String name;
     private float rating;
     private int guestCapacity;

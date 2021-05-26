@@ -12,28 +12,29 @@ values (:room_id, :service_fee, :accomodation_tax, :clean_up_cost, :price_per_da
 
 const val FIND_ROOM: String = """
 select r.id, r.location_id, r.name, r.rating, r.guest_capacity, st_x(r.point), st_y(r.point), r.description, r.bathroom_type, r.bedroom_type, r.bed_count, r.amenity,
-rp.accomodation_tax, rp.clean_up_cost, rp.price_per_day, rp.service_fee, rp.weekly_discount
+rp.accomodation_tax, rp.clean_up_cost, rp.price_per_day, rp.service_fee, rp.weekly_discount, l.name
 from room r join room_price rp on r.id = rp.room_id
+    join location l on r.location_id = l.id  
 where r.id = :id;
 """
 
 const val SEARCH_ROOMS_BY_LOCATION = """
 select r.id, r.location_id, r.name, r.rating, r.guest_capacity, st_x(r.point), st_y(r.point), r.description, r.bathroom_type, r.bedroom_type, r.bed_count, r.amenity,
-       rp.accomodation_tax, rp.clean_up_cost, rp.price_per_day, rp.service_fee, rp.weekly_discount
+       rp.accomodation_tax, rp.clean_up_cost, rp.price_per_day, rp.service_fee, rp.weekly_discount, target_location.name
 from room r
          join room_price rp on r.id = rp.room_id,
      (
-         with recursive cte (id, parent_id, type) as (
-             select id, parent_id, type
+         with recursive cte (id, parent_id, type, name) as (
+             select id, parent_id, type, name
              from location
              where location.name = :location_name
              union
-             select recv_l.id, recv_l.parent_id, recv_l.type
+             select recv_l.id, recv_l.parent_id, recv_l.type, recv_l.name
              from location recv_l,
                   cte c
              where recv_l.parent_id = c.id
          )
-         select id
+         select id, name
          from cte
          where type = 'NEIGHBORHOOD'
             or type = 'VILLAGE') target_location

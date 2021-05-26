@@ -48,6 +48,7 @@ class RoomDAOTest {
         assertThat(testTarget.getBedroomType()).isEqualTo(expected.getBedroomType());
         assertThat(testTarget.getBedCount()).isEqualTo(expected.getBedCount());
         assertThat(testTarget.getAmenity()).isEqualTo(expected.getAmenity());
+        assertThat(testTarget.getLocationName()).isEqualTo(expected.getLocationName());
     }
 
     @Test
@@ -95,6 +96,7 @@ class RoomDAOTest {
         String description = "bbbb";
         int guestCapacity = 2;
         int locationId = 4;
+        String locationName = "오금동";
         Point point = new Point(37.252352, 235.52532);
         float rating = 0.5f;
         return Room.builder()
@@ -102,6 +104,7 @@ class RoomDAOTest {
                 .description(description)
                 .guestCapacity(guestCapacity)
                 .locationId(locationId)
+                .locationName(locationName)
                 .point(point)
                 .rating(rating)
                 .bathroomType(BathroomType.PRIVATE_BATHROOM)

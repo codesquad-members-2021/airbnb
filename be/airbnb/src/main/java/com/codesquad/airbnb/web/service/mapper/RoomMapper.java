@@ -34,6 +34,7 @@ public class RoomMapper implements RowMapper<Room> {
                         .serviceFee(rs.getInt(16))
                         .weeklyDiscount(rs.getInt(17))
                         .build())
+                .locationName(rs.getString(18))
                 .build();
     }
 }
