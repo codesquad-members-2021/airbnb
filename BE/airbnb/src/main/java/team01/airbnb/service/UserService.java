@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import team01.airbnb.dto.*;
 import team01.airbnb.domain.User;
+import team01.airbnb.dto.kakaoOauth.KakaoLogout;
+import team01.airbnb.dto.kakaoOauth.KakaoProfile;
+import team01.airbnb.dto.kakaoOauth.OAuthToken;
 import team01.airbnb.exception.NoResultSetException;
 import team01.airbnb.utils.KakaoLoginUtils;
 

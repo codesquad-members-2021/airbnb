@@ -1,7 +1,8 @@
-package team01.airbnb.dto;
+package team01.airbnb.dto.kakaoOauth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import team01.airbnb.dto.SocialProfile;
 
 @Data
 public class KakaoProfile implements SocialProfile {
