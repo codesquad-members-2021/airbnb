@@ -8,6 +8,7 @@
 import Foundation
 
 extension Date {
+    
     var year: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy"
@@ -25,4 +26,5 @@ extension Date {
         formatter.dateFormat = "dd"
         return formatter.string(from: self)
     }
+    
 }

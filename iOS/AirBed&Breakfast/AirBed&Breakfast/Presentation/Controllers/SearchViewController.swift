@@ -35,17 +35,14 @@ class SearchViewController: UIViewController {
         // UISearchController
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Candies"
+        searchController.searchBar.placeholder = "행선지 선택"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        
-        // forTest
-        let targetVC = self.storyboard?.instantiateViewController(identifier: "DateSelectionViewController") as! SetUpViewController
-        navigationController?.pushViewController(targetVC, animated: false)
-    
+
     }
 
     @IBAction func navigationBarBackButtonPressed(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: false, completion: nil)
     }
     
     @IBAction func navigationBarClearButtonPressed(_ sender: UIBarButtonItem) {
@@ -91,7 +88,6 @@ extension SearchViewController {
         
         dataSource = UICollectionViewDiffableDataSource<Section, String>(collectionView: self.searchResultCollectionView) {
             (collectionView: UICollectionView, indexPath: IndexPath, item: String) -> SearchResultCollectionViewCell? in
-            print(item)
             // Return the cell.
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
         }
@@ -105,24 +101,22 @@ extension SearchViewController {
 }
 
 extension SearchViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("\(indexPath) cell has been clicked")
+        let targetVC = self.storyboard?.instantiateViewController(identifier: String(describing: SetUpViewController.self)) as! SetUpViewController
+        
+        let cell = (collectionView.cellForItem(at: indexPath) as? SearchResultCollectionViewCell)
+        targetVC.designatedLocation = cell?.destinationNameLabel.text
+        navigationController?.pushViewController(targetVC, animated: false)
     }
+    
 }
 
 extension SearchViewController: UISearchResultsUpdating {
+    
     func updateSearchResults(for searchController: UISearchController) {
-        let searchBar = searchController.searchBar
-//        filterContentForSearchText(searchBar.text!)
 
     }
-
-//    func filterContentForSearchText(_ searchText: String) {
-//        filteredCandies = candies.filter { (destination: String) -> Bool in
-//            return candy.name.lowercased().contains(searchText.lowercased())
-//        }
-//        tableView.reloadData()
-//    }
     
 }
 

@@ -12,6 +12,7 @@ protocol PriceInfoReceivable {
 }
 
 class PriceSlideControlView: UIView {
+    
     private var minimumPrice: CGFloat?
     private var maximumPrice: CGFloat?
     private var rangeSlider: RangeSlider! = nil

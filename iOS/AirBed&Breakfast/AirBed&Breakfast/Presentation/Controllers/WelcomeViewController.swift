@@ -14,9 +14,5 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func searchButton(_ sender: UIButton) {
-
-    }
-    
 }
 

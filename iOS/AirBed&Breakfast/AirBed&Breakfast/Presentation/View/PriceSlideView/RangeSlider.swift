@@ -8,14 +8,14 @@
 import UIKit
 
 class RangeSlider: UIControl {
-
+    
     var minimumValue: CGFloat = 0.0
     var maximumValue: CGFloat = 1.0
     var lowerValue: CGFloat = 0.2
     var upperValue: CGFloat = 0.8
-
+    
     var thumbImage = UIImage(systemName: "circle.fill")!
-        
+    
     private let trackLayer = CALayer()
     private let lowerThumbImageView = UIImageView()
     private let upperThumbImageView = UIImageView()
@@ -26,9 +26,9 @@ class RangeSlider: UIControl {
             updateLayerFrames()
         }
     }
-        
+    
     override init(frame: CGRect) {
-      super.init(frame: frame)
+        super.init(frame: frame)
         trackLayer.backgroundColor = UIColor.yellow.cgColor
         layer.addSublayer(trackLayer)
         
@@ -38,9 +38,9 @@ class RangeSlider: UIControl {
         upperThumbImageView.image = thumbImage
         addSubview(upperThumbImageView)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func draw(_ rect: CGRect) {
@@ -48,7 +48,6 @@ class RangeSlider: UIControl {
     }
     
     private func updateLayerFrames() {
-        print("updating layer frames")
         trackLayer.frame = CGRect(x: 0, y: self.frame.height - 10, width: self.frame.width, height: 3)
         trackLayer.setNeedsDisplay()
         
@@ -59,9 +58,7 @@ class RangeSlider: UIControl {
     }
     
     func positionForValue(_ value: CGFloat) -> CGFloat {
-//        print(frame.width)
-//        print(value)
-      return frame.width * value
+        return frame.width * value
     }
     
     private func thumbOriginForValue(_ value: CGFloat) -> CGPoint {
@@ -73,6 +70,7 @@ class RangeSlider: UIControl {
 }
 
 extension RangeSlider {
+    
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         
         previousLocation = touch.location(in: self)
@@ -124,4 +122,5 @@ extension RangeSlider {
         lowerThumbImageView.isHighlighted = false
         upperThumbImageView.isHighlighted = false
     }
+    
 }

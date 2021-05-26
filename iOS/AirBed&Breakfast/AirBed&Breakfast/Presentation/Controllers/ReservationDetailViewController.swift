@@ -9,7 +9,7 @@ import UIKit
 
 protocol ReservationDetailViewControllerProtocol {
     func setContext(with description: String)
-    func changeLocation()
+    func changeLocation(with location: String)
     func changeDateRange(date: Date, isLowerDay: Bool)
     func changePriceRange(lowestPrice: CGFloat, highestPrice: CGFloat)
     func changeNumberOfHeads()
@@ -30,6 +30,7 @@ class ReservationDetailViewController: UIViewController {
     
     var currentContext: String?
     
+    var location: String?
     var lowerDate: Date?
     var upperDate: Date?
     var lowestPrice: CGFloat?
@@ -38,22 +39,18 @@ class ReservationDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Reservation Detail view loaded")
         reservationDetailTableView.register(ReservationDetailTableViewCell.nib, forCellReuseIdentifier: ReservationDetailTableViewCell.reuseIdentifier)
         
         reservationDetailTableView.dataSource = self
         reservationDetailTableView.delegate = self
-    }
-    
-    deinit {
-        print("Reservation Detail View Has Been deinit")
+        print("reservatinDetail did load")
     }
     
     @IBAction func deleteCurrentDetailButtonPressed(_ sender: UIButton) {
         switch currentContext {
         case String(describing: CalendarControlView.self):
             self.detailLabel(for: .date).text = ""
-//            (parent as? SetUpViewController)?.calendarControlView?.clearCalendarView()
+            (parent as? SetUpViewController)?.calendarControlView?.clearCalendarView()
         case String(describing: PriceSlideControlView.self):
             self.detailLabel(for: .price).text = ""
         default:
@@ -74,6 +71,9 @@ class ReservationDetailViewController: UIViewController {
 
         default: break
         }
+        
+        deleteCurrentDetailButton.isEnabled = false
+        nextButton.isEnabled = false
     }
     
     func detailLabel(for detail: Details) -> UILabel {
@@ -92,7 +92,10 @@ class ReservationDetailViewController: UIViewController {
         
         let cell = reservationDetailTableView.cellForRow(at: indexPath) as? ReservationDetailTableViewCell
         
-        guard let safeCell = cell else { return UILabel()}
+        guard let safeCell = cell else {
+            return UILabel()
+        }
+        
         return safeCell.detailContentsLabel
     }
     
@@ -103,8 +106,8 @@ extension ReservationDetailViewController: ReservationDetailViewControllerProtoc
         self.currentContext = description
     }
     
-    func changeLocation() {
-        print("Changed Location")
+    func changeLocation(with location: String) {
+        detailLabel(for: .location).text = location
     }
     
     func changeDateRange(date: Date, isLowerDay: Bool) {

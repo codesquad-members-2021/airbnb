@@ -14,7 +14,7 @@ protocol DateInfoReceivable {
 
 class CalendarControlView: UIView {
     
-    private let currentYear = Int(Date().year)!
+    private let currentYear = Int(Date().year)
     private let nextYear = Int(Date().year)! + 1
     private let currentMonth = Int(Date().month)!
     private let currentDay = Int(Date().day)!

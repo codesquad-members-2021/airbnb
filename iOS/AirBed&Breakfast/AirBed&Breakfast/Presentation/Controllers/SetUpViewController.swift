@@ -9,10 +9,12 @@ import UIKit
 import HorizonCalendar
 
 class SetUpViewController: UIViewController {
+    
+    public var designatedLocation: String! = nil
 
     private var reservationDetailViewController: ReservationDetailViewControllerProtocol!
-    private var calendarControlView: CalendarControlView! = nil
-    private var priceSlideControlView: PriceSlideControlView! = nil
+    public var calendarControlView: CalendarControlView! = nil
+    public var priceSlideControlView: PriceSlideControlView! = nil
     private var currentContextView: String! {
         didSet {
             guard self.currentContextView != nil else { return }
@@ -23,7 +25,10 @@ class SetUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCelendarControlView()
-        print(calendarControlView.bounds)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        reservationDetailViewController.changeLocation(with: self.designatedLocation)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
