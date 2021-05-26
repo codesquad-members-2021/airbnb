@@ -30,7 +30,6 @@ public class Wishlist {
     }
 
     //test위한 getter 삭제 예정
-
     public Long getRoom() {
         return room;
     }

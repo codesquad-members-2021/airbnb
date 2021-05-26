@@ -34,6 +34,7 @@ public class RoomDetailResponseDTO {
     private BigDecimal totalPrice;
 
     private RoomDetailResponseDTO(Builder builder) {
+
         this.roomId = builder.roomId;
 
         this.roomName = builder.roomName;
