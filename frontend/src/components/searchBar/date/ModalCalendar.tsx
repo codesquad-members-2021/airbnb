@@ -1,18 +1,11 @@
 import { useState } from 'react'
-import { checkInMessage, checkOutMessage } from '../../../customHook/atoms'
-import { useRecoilState } from 'recoil'
 import { Modal } from '../../../style/BarStyle'
 import Calendar from './Calendar'
 import styled, { css } from 'styled-components'
 interface ModalCalendarProps {
 	modalType: string
 }
-export interface ICheckProps {
-	year?: number
-	currentMonth?: number
-	dateEl?: number | null
-	nonClickable?: boolean
-}
+
 interface IDate {
 	transitionState: boolean
 	btnClicked: number
@@ -61,18 +54,6 @@ const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType 
 		}
 	}
 
-	//handleClick 안에서 사용하기
-	const [checkIn, setCheckIn] = useRecoilState(checkInMessage)
-	const [checkOut, setCheckOut] = useRecoilState(checkOutMessage)
-	const handleDateCLick = ({ year, currentMonth, dateEl, nonClickable }: ICheckProps): void => {
-		if (!nonClickable) return
-
-		const clickedDate = new Date(`${year}-${currentMonth}-${dateEl}`).valueOf()
-		if (checkIn === '날짜입력') setCheckIn(clickedDate)
-		if (checkIn !== '날짜입력' && checkIn <= clickedDate) setCheckOut(clickedDate)
-		if (checkIn !== '날짜입력' && checkIn > clickedDate) setCheckIn(clickedDate)
-	}
-
 	return (
 		<Modal modalType={modalType}>
 			<BtnBox>
@@ -93,7 +74,7 @@ const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType 
 				btnClicked={btnClicked}
 			>
 				{currentCalendar.map((cal, idx) => (
-					<Calendar key={idx} currentMonth={cal} handleDateCLick={handleDateCLick} />
+					<Calendar key={idx} currentMonth={cal} />
 				))}
 			</TransitionBox>
 		</Modal>

@@ -1,18 +1,22 @@
 import styled, { css } from 'styled-components'
 import { useRecoilState, useRecoilValue } from 'recoil'
+import { checkInMessage, checkOutMessage } from '../../../customHook/atoms'
 import { DateInfo } from '../../../customHook/useDateInfo'
-import { ICheckProps } from './ModalCalendar'
+interface ICheckProps {
+	year?: number
+	currentMonth?: number
+	dateEl?: number | null
+	nonClickable?: boolean
+}
 interface IDate {
 	currentMonth: number
-	handleDateCLick: (props: ICheckProps) => void
 }
-
 interface IClick {
 	nonClickable: boolean
 	onClick: () => void
 }
 
-const Calendar: React.FunctionComponent<IDate> = ({ currentMonth, handleDateCLick }) => {
+const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
 	const dayList: string[] = ['일', '월', '화', '수', '목', '금', '토']
 	const MonthList = Array.from({ length: 12 }, (_, i) => i + 1)
 
@@ -50,6 +54,18 @@ const Calendar: React.FunctionComponent<IDate> = ({ currentMonth, handleDateCLic
 			return true
 		}
 		return false
+	}
+
+	//handleClick 안에서 사용하기
+	const [checkIn, setCheckIn] = useRecoilState(checkInMessage)
+	const [checkOut, setCheckOut] = useRecoilState(checkOutMessage)
+	const handleDateCLick = ({ year, currentMonth, dateEl, nonClickable }: ICheckProps): void => {
+		if (!nonClickable) return
+
+		const clickedDate = new Date(`${year}-${currentMonth}-${dateEl}`).valueOf()
+		if (checkIn === '날짜입력') setCheckIn(clickedDate)
+		if (checkIn !== '날짜입력' && checkIn <= clickedDate) setCheckOut(clickedDate)
+		if (checkIn !== '날짜입력' && checkIn > clickedDate) setCheckIn(clickedDate)
 	}
 
 	return (
