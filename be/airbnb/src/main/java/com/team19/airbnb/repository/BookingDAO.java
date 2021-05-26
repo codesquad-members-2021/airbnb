@@ -35,20 +35,24 @@ public class BookingDAO {
     }
 
     public Optional<Booking> findById(Long id) {
-        String selectById = "SELECT * FROM booking WHERE id = ?";
+        String selectById = "SELECT `id`, `check_in`, `check_out`, `guest`, `total_price`, `user`, `room` FROM `booking` WHERE id = ?;";
         List<Booking> result = jdbcTemplate.query(selectById, bookingRowMapper(), id);
         return result.stream().findAny();
     }
 
+    public List<Booking> findAllByUser(Long user) {
+        String findAllByUser = "SELECT `id`, `check_in`, `check_out`, `guest`, `total_price`, `user`, `room` FROM `booking` WHERE `user` = ?;";
+        return jdbcTemplate.query(findAllByUser, bookingRowMapper(), user);
+    }
+
     private RowMapper<Booking> bookingRowMapper() {
         return (rs, rowNum) -> {
-            Booking booking = Booking.create(rs.getLong("id"),
+            return Booking.create(rs.getLong("id"),
             rs.getObject("check_in", LocalDate.class), rs.getObject("check_out", LocalDate.class),
             rs.getInt("guest"),
             rs.getBigDecimal("total_price"),
             rs.getLong("user"),
             rs.getLong("room"));
-            return booking;
         };
     }
 //    public Optional<Booking> findById(Long id) {
