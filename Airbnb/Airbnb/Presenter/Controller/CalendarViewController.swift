@@ -87,18 +87,17 @@ private extension CalendarViewController {
     private func setupSkipDeleteButton() {
         skipDeleteButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
-                self?.nextPage.asObservable()
-                    .subscribe(onNext: { [weak self] value in
-                        switch value {
-                        case true:
-                            self?.dateLabel.text = ""
-                            self?.dateStroage.removeAll()
-                            //캘린더 뷰 상에서 선택 해제 구현
-                        case false:
-                            print("다음뷰컨 이동 구현")
-                        }
-                    })
-                    .disposed(by: self!.rx.disposeBag)
+                switch self?.nextPage.value {
+                case true:
+                    self?.nextPage.accept(false)
+                    self?.dateLabel.text = ""
+                    self?.dateStroage.removeAll()
+                    self?.calendarView.selectedDates.forEach {
+                        self?.calendarView?.deselect($0)
+                    }
+                default:
+                    print("다음뷰컨이동구현")
+                }
             }).disposed(by: rx.disposeBag)
     }
     
@@ -114,7 +113,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         let checkIn = dateStroage.min() ?? ""
         let checkOut = dateStroage.max() ?? ""
         if checkIn == checkOut {
-            dateLabel.text = "\(checkIn) ~"
+            dateLabel.text = "\(checkIn)"
             nextPage.accept(false)
         } else {
             dateLabel.text = "\(checkIn) ~ \(checkOut)"
@@ -130,7 +129,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         let checkIn = dateStroage.min() ?? ""
         let checkOut = dateStroage.max() ?? ""
         if checkIn == checkOut {
-            dateLabel.text = "\(checkIn) ~"
+            dateLabel.text = "\(checkIn)"
             nextPage.accept(false)
         } else {
             dateLabel.text = "\(checkIn) ~ \(checkOut)"
