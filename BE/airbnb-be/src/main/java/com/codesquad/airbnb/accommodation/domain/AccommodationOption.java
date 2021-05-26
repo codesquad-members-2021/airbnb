@@ -16,10 +16,10 @@ public class AccommodationOption {
     private boolean hasAirconditioner;
     private boolean hasHairdrier;
 
-    public AccommodationOption() {
+    private AccommodationOption() {
     }
 
-    public AccommodationOption(int capacity, int pricePerNight, AccommodationType accommodationType, int bedroomCount, int restroomCount, RestroomType restroomType, boolean hasKitchen, boolean hasInternet, boolean hasAirconditioner, boolean hasHairdrier) {
+    protected AccommodationOption(int capacity, int pricePerNight, AccommodationType accommodationType, int bedroomCount, int restroomCount, RestroomType restroomType, boolean hasKitchen, boolean hasInternet, boolean hasAirconditioner, boolean hasHairdrier) {
         this.capacity = capacity;
         this.pricePerNight = pricePerNight;
         this.accommodationType = accommodationType;
@@ -40,48 +40,24 @@ public class AccommodationOption {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
     public int getPricePerNight() {
         return pricePerNight;
-    }
-
-    public void setPricePerNight(int pricePerNight) {
-        this.pricePerNight = pricePerNight;
     }
 
     public AccommodationType getAccommodationType() {
         return accommodationType;
     }
 
-    public void setAccommodationType(AccommodationType accommodationType) {
-        this.accommodationType = accommodationType;
-    }
-
     public int getBedroomCount() {
         return bedroomCount;
-    }
-
-    public void setBedroomCount(int bedroomCount) {
-        this.bedroomCount = bedroomCount;
     }
 
     public int getRestroomCount() {
         return restroomCount;
     }
 
-    public void setRestroomCount(int restroomCount) {
-        this.restroomCount = restroomCount;
-    }
-
     public RestroomType getRestroomType() {
         return restroomType;
-    }
-
-    public void setRestroomType(RestroomType restroomType) {
-        this.restroomType = restroomType;
     }
 
     @JsonProperty("hasKitchen")
@@ -89,17 +65,9 @@ public class AccommodationOption {
         return hasKitchen;
     }
 
-    public void setHasKitchen(boolean hasKitchen) {
-        this.hasKitchen = hasKitchen;
-    }
-
     @JsonProperty("hasInternet")
     public boolean hasInternet() {
         return hasInternet;
-    }
-
-    public void setHasInternet(boolean hasInternet) {
-        this.hasInternet = hasInternet;
     }
 
     @JsonProperty("hasAirconditioner")
@@ -107,17 +75,9 @@ public class AccommodationOption {
         return hasAirconditioner;
     }
 
-    public void setHasAirconditioner(boolean hasAirconditioner) {
-        this.hasAirconditioner = hasAirconditioner;
-    }
-
     @JsonProperty("hasHairdrier")
     public boolean hasHairdrier() {
         return hasHairdrier;
-    }
-
-    public void setHasHairdrier(boolean hasHairdrier) {
-        this.hasHairdrier = hasHairdrier;
     }
 
     @Override
@@ -136,16 +96,16 @@ public class AccommodationOption {
     @Override
     public String toString() {
         return "AccommodationOption{" +
-                "capacity=" + capacity +
-                ", pricePerNight=" + pricePerNight +
-                ", accommodationType='" + accommodationType + '\'' +
-                ", bedroomCount=" + bedroomCount +
-                ", restroomCount=" + restroomCount +
-                ", restroomType='" + restroomType + '\'' +
-                ", hasKitchen=" + hasKitchen +
-                ", hasInternet=" + hasInternet +
-                ", hasAirconditioner=" + hasAirconditioner +
-                ", hasHairdrier=" + hasHairdrier +
-                '}';
+                       "capacity=" + capacity +
+                       ", pricePerNight=" + pricePerNight +
+                       ", accommodationType='" + accommodationType + '\'' +
+                       ", bedroomCount=" + bedroomCount +
+                       ", restroomCount=" + restroomCount +
+                       ", restroomType='" + restroomType + '\'' +
+                       ", hasKitchen=" + hasKitchen +
+                       ", hasInternet=" + hasInternet +
+                       ", hasAirconditioner=" + hasAirconditioner +
+                       ", hasHairdrier=" + hasHairdrier +
+                       '}';
     }
 }
