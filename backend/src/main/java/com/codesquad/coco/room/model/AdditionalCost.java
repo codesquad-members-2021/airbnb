@@ -1,5 +1,6 @@
 package com.codesquad.coco.room.model;
 
+import com.codesquad.coco.utils.CalcUtil;
 import org.springframework.data.annotation.Id;
 
 public class AdditionalCost {
@@ -17,6 +18,22 @@ public class AdditionalCost {
         this.cleaningFee = cleaningFee;
         this.serviceFeePercent = serviceFeePercent;
         this.lodgmentFeePercent = lodgmentFeePercent;
+    }
+
+    public int calcWeekSale(int basicPrice) {
+        return CalcUtil.percentCalc(basicPrice, this.weekSalePercent);
+    }
+
+    public int calcServiceFee(int basicPrice) {
+        return CalcUtil.percentCalc(basicPrice, this.serviceFeePercent);
+    }
+
+    public int calcLodgmentFee(int basicPrice) {
+        return CalcUtil.percentCalc(basicPrice, this.lodgmentFeePercent);
+    }
+
+    public int calcCleaningFee(){
+        return this.cleaningFee;
     }
 
     public Long getId() {
@@ -49,4 +66,6 @@ public class AdditionalCost {
                 ", lodgmentFeePercent=" + lodgmentFeePercent +
                 '}';
     }
+
+
 }

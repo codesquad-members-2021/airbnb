@@ -68,10 +68,10 @@ public class Room {
         int basicPrice = fewNights * pricePerDate.getMoney();
         int additionalPrice = 0;
         if (fewNights >= ONE_WEEK) {
-            additionalPrice -= CalcUtil.percentCalc(basicPrice, additionalCost.getWeekSalePercent());
+            additionalPrice -= additionalCost.calcWeekSale(basicPrice);
         }
-        additionalPrice += CalcUtil.percentCalc(basicPrice, additionalCost.getServiceFeePercent());
-        additionalPrice += CalcUtil.percentCalc(basicPrice, additionalCost.getLodgmentFeePercent());
+        additionalPrice += additionalCost.calcServiceFee(basicPrice);
+        additionalPrice += additionalCost.calcLodgmentFee(basicPrice);
         additionalPrice += additionalCost.getCleaningFee();
 
         return basicPrice + additionalPrice;
