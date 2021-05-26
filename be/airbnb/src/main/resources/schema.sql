@@ -43,6 +43,7 @@ create table `room`
 (
     id             int primary key auto_increment,
     location_id    int references location (id),
+    host_id        int references host (user_id),
     name           varchar(60),
     rating         float,
     guest_capacity int,

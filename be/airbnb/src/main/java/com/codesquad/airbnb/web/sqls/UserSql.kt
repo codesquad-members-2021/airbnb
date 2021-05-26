@@ -5,6 +5,11 @@ insert into `user` (oauth_id, authenticated_by, nickname, name, profile_image, a
 values (:oauth_id, :authenticated_by, :nickname, :name, :profile_image, :access_token);
 """
 
+const val SAVE_HOST: String = """
+insert into host (user_id, is_superhost)
+values (:user_id, :is_superhost);
+"""
+
 const val FIND_USER_BY_ID: String = """
 select id, nickname, name, profile_image, access_token, oauth_id, authenticated_by
 from user

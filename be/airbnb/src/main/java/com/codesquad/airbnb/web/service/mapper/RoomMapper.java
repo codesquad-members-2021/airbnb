@@ -4,6 +4,7 @@ import com.codesquad.airbnb.web.domain.room.BathroomType;
 import com.codesquad.airbnb.web.domain.room.BedroomType;
 import com.codesquad.airbnb.web.domain.room.PricePolicy;
 import com.codesquad.airbnb.web.domain.room.Room;
+import com.codesquad.airbnb.web.domain.user.Host;
 import org.springframework.data.geo.Point;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,12 @@ public class RoomMapper implements RowMapper<Room> {
                 .locationName(rs.getString(18))
                 .reviewCount(rs.getInt(19))
                 .thumbnail(rs.getString(20))
+                .host(Host.builder()
+                        .id(rs.getInt(21))
+                        .name(rs.getString(22))
+                        .isSuperhost(rs.getBoolean(23))
+                        .profileImage(rs.getString(24))
+                        .build())
                 .build();
     }
 }

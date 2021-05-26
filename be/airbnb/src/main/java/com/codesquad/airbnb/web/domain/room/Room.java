@@ -1,5 +1,6 @@
 package com.codesquad.airbnb.web.domain.room;
 
+import com.codesquad.airbnb.web.domain.user.Host;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Builder;
@@ -27,6 +28,7 @@ public class Room {
     private String amenity;
     private int reviewCount;
     private String thumbnail;
+    private Host host;
 
     public void updateId(int id) {
         this.id = id;

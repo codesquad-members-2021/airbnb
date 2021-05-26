@@ -45,7 +45,8 @@ public class RoomDAO implements RoomRepository {
                 .addValue("bed_count", room.getBedCount())
                 .addValue("amenity", room.getAmenity())
                 .addValue("review_count", room.getReviewCount())
-                .addValue("thumbnail", room.getThumbnail());
+                .addValue("thumbnail", room.getThumbnail())
+                .addValue("host_id", room.getHost().getId());
         jdbcTemplate.update(SAVE_ROOM, parameter, keyHolder);
         room.updateId(Objects.requireNonNull(keyHolder.getKey()).intValue());
 

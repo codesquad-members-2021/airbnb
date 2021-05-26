@@ -4,6 +4,7 @@ import com.codesquad.airbnb.web.domain.room.BathroomType;
 import com.codesquad.airbnb.web.domain.room.BedroomType;
 import com.codesquad.airbnb.web.domain.room.PricePolicy;
 import com.codesquad.airbnb.web.domain.room.Room;
+import com.codesquad.airbnb.web.domain.user.Host;
 import com.codesquad.airbnb.web.dto.UserInput;
 import com.codesquad.airbnb.web.exceptions.RoomNotFoundException;
 import org.junit.jupiter.api.DisplayName;
@@ -76,6 +77,32 @@ class RoomDAOTest {
     }
 
     @Test
+    @DisplayName("숙소 호스트정보를 저장하고 조회할 수 있어야 함")
+    void testHost() {
+        Room room = createRoom();
+        roomDAO.save(room);
+        final int roomId = room.getId();
+        Room testRoom = roomDAO.findRoomById(roomId).orElseThrow(() -> new RoomNotFoundException(roomId));
+        assertThat(testRoom).isNotNull();
+        Host target = testRoom.getHost();
+        Host expected = Host.builder()
+                .id(1)
+                .name("Milo Kachinsky")
+                .isSuperhost(true)
+                .profileImage("https://static.wikia.nocookie.net/starcraft/images/d/d5/Kachinsky_SC2_Head1.jpg/revision/latest/top-crop/width/360/height/360?cb=20100722105327")
+                .build();
+        verifyHost(target, expected);
+    }
+
+    private void verifyHost(Host target, Host expected) {
+        assertThat(target).isNotNull();
+        assertThat(target.getId()).isEqualTo(expected.getId());
+        assertThat(target.getName()).isEqualTo(expected.getName());
+        assertThat(target.isSuperhost()).isEqualTo(expected.isSuperhost());
+        assertThat(target.getProfileImage()).isEqualTo(expected.getProfileImage());
+    }
+
+    @Test
     @DisplayName("숙소를 UserInput으로 조회할 수 있어야 합니다")
     void searchRooms() {
         UserInput userInput = UserInput.builder()
@@ -90,7 +117,6 @@ class RoomDAOTest {
                 .build();
         List<Room> rooms = roomDAO.findRoomsByUserInput(userInput);
         rooms.forEach(System.out::println);
-
     }
 
     private Room createRoom() {
@@ -116,6 +142,7 @@ class RoomDAOTest {
                 .pricePolicy(new PricePolicy(5000, 1000, 5000, 50000, 4))
                 .reviewCount(123)
                 .thumbnail("https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?s=1024x768")
+                .host(Host.builder().id(1).build())
                 .build();
     }
 }

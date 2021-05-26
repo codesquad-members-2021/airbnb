@@ -41,3 +41,11 @@ values (1, 1, 2, '2021-05-20 00:00:00', '2021-05-25 00:00:00', 2, 0, 0),
        (4, 2, 2, '2021-05-27 00:00:00', '2021-05-28 00:00:00', 2, 0, 0),
        (5, 3, 2, '2021-05-30 00:00:00', '2021-06-02 00:00:00', 2, 0, 0)
 ;
+
+insert into user (id, oauth_id, authenticated_by, nickname, name, profile_image, access_token)
+values (1, 'kachinsky', 'GITHUB', 'Kachinsky', 'Milo Kachinsky',
+        'https://static.wikia.nocookie.net/starcraft/images/d/d5/Kachinsky_SC2_Head1.jpg/revision/latest/top-crop/width/360/height/360?cb=20100722105327',
+        'kachinsky_token');
+
+insert into host (user_id, is_superhost)
+values (1, true);
