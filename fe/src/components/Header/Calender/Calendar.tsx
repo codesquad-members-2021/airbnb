@@ -1,5 +1,8 @@
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
+
+import { isCheckInOut, checkDate } from '@recoil/atoms/date';
 import Day from './Day';
 
 type Props = {
@@ -11,6 +14,10 @@ type Props = {
 };
 
 const Calendar = ({ calendarDate, idx }: Props) => {
+  const [checkState, setCheckState] = useRecoilState(isCheckInOut);
+  const [selectCheckState, setSelectCheckState] = useRecoilState(checkDate);
+  const { checkin, checkout } = checkState;
+
   const { year, month } = calendarDate;
 
   const currentMonth = new Date(year, month + idx).getMonth() + 1;
@@ -37,8 +44,42 @@ const Calendar = ({ calendarDate, idx }: Props) => {
 
   const dayList = getDayList();
 
+  const chooseCheckIn = (el: HTMLElement) => {
+    setCheckState({ ...checkState, checkin: true });
+    setSelectCheckState({
+      ...selectCheckState,
+      checkinDate: {
+        year: currentYear,
+        month: currentMonth,
+        day: Number(el.textContent),
+      },
+    });
+  };
+
+  const chooseCheckOut = (el: HTMLElement) => {
+    setCheckState({ ...checkState, checkout: true });
+    setSelectCheckState({
+      ...selectCheckState,
+      checkoutDate: {
+        year: currentYear,
+        month: currentMonth,
+        day: Number(el.textContent),
+      },
+    });
+  };
+
+  const handleClickDay = (e: React.MouseEvent) => {
+    const el = e.target as HTMLElement;
+    if (el.tagName !== 'TD') return;
+    if (checkin === false) {
+      chooseCheckIn(el);
+    } else if (checkin === true && checkout === false) {
+      chooseCheckOut(el);
+    }
+  };
+
   return (
-    <StyledDiv>
+    <StyledDiv onClick={handleClickDay}>
       <h3>
         {currentYear}년 {currentMonth}월
       </h3>

@@ -30,6 +30,7 @@ const ModalWrap = styled.div`
   justify-content: space-between;
   position: absolute;
   margin-top: 2rem;
+  top: 85%;
   right: 0;
   padding: 4rem;
   width: 400px;

@@ -2,16 +2,20 @@ import styled from 'styled-components';
 
 import { childProp } from './childType';
 
-const smallText = ({ children }: childProp) => {
-  return (
-    <TextWrap>
-      <Span>{children}</Span>
-    </TextWrap>
-  );
+const SmallText = ({ children }: childProp) => {
+  return <StyledDiv>{children}</StyledDiv>;
 };
 
-export default smallText;
+export default SmallText;
 
-const TextWrap = styled.div``;
-
-const Span = styled.span``;
+const StyledDiv = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  height: 23px;
+  color: ${({ theme }) => theme.color.gray3};
+  outline: 0;
+  border: 0;
+  font-size: ${({ theme }) => theme.fontSize.s};
+`;
