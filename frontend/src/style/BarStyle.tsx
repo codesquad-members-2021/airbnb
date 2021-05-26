@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 interface ClickProps {
-	clicked: boolean
+	clicked?: boolean
 	type?: string
 }
 interface ModalProps {
@@ -9,6 +9,7 @@ interface ModalProps {
 export const PlaceSection = styled.div`
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 `
 export const ModalWrapper = styled.div<ModalProps>`
 	position: absolute;
@@ -42,7 +43,7 @@ export const BarInnerWrapper = styled.div`
 	justify-content: space-between;
 `
 export const BarBlock = styled.div<ClickProps>`
-	width: ${(props) => (props.type ? props.theme.searchWidth[props.type] : '280px')};
+	width: 200px;
 	height: 76px;
 	cursor: pointer;
 	&: hover {

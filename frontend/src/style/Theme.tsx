@@ -27,6 +27,8 @@ export const Theme = {
 	modalWidth: {
 		place: 280,
 		date: 1120,
+		ModalFee: 620,
+		personnel: 400,
 	},
 	modalHeight: {
 		place: 'auto',
@@ -38,9 +40,8 @@ export const Theme = {
 	modalPosition: {
 		place: '210px',
 		date: '188px',
-	},
-	searchWidth: {
-		date: '200px',
+		ModalFee: '700px',
+		personnel: '920px',
 	},
 }
 

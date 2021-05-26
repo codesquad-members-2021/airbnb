@@ -115,12 +115,12 @@ const DateBlock = styled.div<IClick>`
 	width: 50px;
 	height: 50px;
 	margin-top: 4px;
-	font-weight: ${(props) => props.theme.fontWeight.w2};
-	font-size: ${(props) => props.theme.fontSize.super_sm};
+	font-weight: ${({ theme }) => theme.fontWeight.w2};
+	font-size: ${({ theme }) => theme.fontSize.super_sm};
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	color: ${(props) => props.theme.color.grey_2};
+	color: ${({ theme }) => theme.color.grey_2};
 	${(props) =>
 		props.nonClickable &&
 		css`
@@ -137,7 +137,7 @@ const NonFixedArea = styled.div`
 	text-align: center;
 `
 const YearMonth = styled.div`
-	font-weight: ${(props) => props.theme.fontWeight.w2};
+	font-weight: ${({ theme }) => theme.fontWeight.w2};
 `
 const DayBlock = styled.div`
 	display: flex;
@@ -145,8 +145,8 @@ const DayBlock = styled.div`
 	top: 125px;
 `
 const Day = styled.div`
-	color: ${(props) => props.theme.color.grey_3};
-	font-size: ${(props) => props.theme.fontSize.super_sm};
+	color: ${({ theme }) => theme.color.grey_3};
+	font-size: ${({ theme }) => theme.fontSize.super_sm};
 	width: 50px;
 	text-align: center;
 `

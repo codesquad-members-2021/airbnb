@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import styled from 'styled-components'
 import { PlaceSection, ModalWrapper } from '../../../style/BarStyle'
 import useModalCtrl from '../../../customHook/useModalCtrlArray'

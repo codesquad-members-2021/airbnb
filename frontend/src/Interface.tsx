@@ -7,3 +7,6 @@ export interface IProps {
 	checkOutToggle?: RefObject<HTMLDivElement>
 	onClick: () => void
 }
+export interface IModalPropType {
+	modalType: string
+}

@@ -1,12 +1,18 @@
 import styled from 'styled-components'
 import Place from './place/Place'
 import Date from './date/Date'
+import Fee from './fee/Fee'
+import Personnel from './personnel/Personnel'
+import SearchBtn from './searchBtn/SearchBtn'
 const SearchBar = () => {
 	return (
 		<BarWrapper>
 			<Bar>
 				<Place />
 				<Date />
+				<Fee />
+				<Personnel />
+				<SearchBtn />
 			</Bar>
 		</BarWrapper>
 	)
