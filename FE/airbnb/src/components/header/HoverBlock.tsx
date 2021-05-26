@@ -41,8 +41,8 @@ const StyledContainer = styled.div<StyleProps>`
     isSelected &&
     `0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);`};
   &:hover {
-    background-color: ${({ theme, color }) => theme.colors[color]};
-    background-color: ${({ isSelected, theme }) => isSelected && theme.colors.white};
+    background-color: ${({ isSelected, theme, isModal, color }) =>
+      isModal && isSelected ? theme.colors.white : theme.colors[color]};
   }
 `;
 
