@@ -1,8 +1,10 @@
 package com.codesquad.airbnb.domain;
 
 import java.util.List;
+import java.util.Optional;
 
 public class RoomBuilder {
+
     private Long id;
     private int max;
     private String name;
@@ -21,7 +23,7 @@ public class RoomBuilder {
     private boolean immediateBooking;
 
     private List<Thumbnail> thumbnails;
-    private List<Option> options;
+    private Optional<Option> option;
     private List<Badge> badges;
 
     public RoomBuilder setId(Long id) {
@@ -94,15 +96,13 @@ public class RoomBuilder {
         return this;
     }
 
-    public RoomBuilder setFlexibleRefund(int flexibleRefund) {
-        if (flexibleRefund == 1) this.flexibleRefund = true;
-        if (flexibleRefund == 0) this.flexibleRefund = false;
+    public RoomBuilder setFlexibleRefund(boolean flexibleRefund) {
+        this.flexibleRefund = flexibleRefund;
         return this;
     }
 
-    public RoomBuilder setImmediateBooking(int immediateBooking) {
-        if (immediateBooking == 1) this.immediateBooking = true;
-        if (immediateBooking == 0) this.immediateBooking = false;
+    public RoomBuilder setImmediateBooking(boolean immediateBooking) {
+        this.immediateBooking = immediateBooking;
         return this;
     }
 
@@ -111,8 +111,8 @@ public class RoomBuilder {
         return this;
     }
 
-    public RoomBuilder setOptions(List<Option> options) {
-        this.options = options;
+    public RoomBuilder setOptions(Optional<Option> option) {
+        this.option = option;
         return this;
     }
 
@@ -123,6 +123,7 @@ public class RoomBuilder {
 
     public Room build() {
         return new Room(id, max, name, rating, latitude, longitude, bedroomCount, bedCount, bathroomCount, address,
-                detailAddress, commentCount, originalPrice, salePrice, flexibleRefund, immediateBooking, thumbnails, options, badges);
+                detailAddress, commentCount, originalPrice, salePrice, flexibleRefund, immediateBooking,
+                thumbnails, option, badges);
     }
 }
