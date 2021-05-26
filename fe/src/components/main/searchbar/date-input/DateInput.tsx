@@ -3,27 +3,32 @@ import InputItem from "../InputItem";
 import { useState, MouseEvent } from "react";
 import Modal from "components/common/Modal";
 import CalendarSlider from "./CalendarSlider";
-
+import { useRecoilValue } from "recoil";
+import {
+  CalendarCheckOutSelector,
+  CalendarCheckInSelector,
+} from "atoms/searchbarAtom";
 const DateInput = () => {
   const [toggle, setToggle] = useState(false);
 
   const handleClick = (event: MouseEvent | Event) => {
     setToggle(!toggle);
   };
-
+  const CalendarCheckOut = useRecoilValue(CalendarCheckOutSelector);
+  const CalendarCheckIn = useRecoilValue(CalendarCheckInSelector);
   return (
     <>
       <StyledDateInput>
         <InputItem
           w="40%"
           title="체크인"
-          subtitle="날짜입력"
+          subtitle={CalendarCheckIn}
           onClick={handleClick}
         />
         <InputItem
           w="60%"
           title="체크아웃"
-          subtitle="날짜입력"
+          subtitle={CalendarCheckOut}
           onClick={handleClick}
         />
       </StyledDateInput>
