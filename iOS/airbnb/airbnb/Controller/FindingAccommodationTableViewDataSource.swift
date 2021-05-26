@@ -68,11 +68,11 @@ class FindingAccommodationTableViewDataSource: NSObject, UITableViewDataSource {
                 return FindingAccommodationTableViewCell()
             }
             cell.textLabel?.text = TableViewTitle.allCases[indexPath.row].description
-            guard let peoplecount = conditionData.people else {
+            if conditionData.people == 0 {
                 cell.update(value: "")
                 return cell
             }
-            cell.update(value: "게스트 " + String(peoplecount) + "명")
+            cell.update(value: "게스트 " + conditionData.peopleCount + "명")
             return cell
         }
         

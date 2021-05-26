@@ -323,19 +323,71 @@
         <!--Search View Controller-->
         <scene sceneID="lpJ-pW-nOU">
             <objects>
-                <tableViewController storyboardIdentifier="searchResultController" id="VKL-n8-dVM" customClass="SearchViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qKn-Ts-Ib1">
+                <tableViewController storyboardIdentifier="SearchViewController" id="VKL-n8-dVM" customClass="SearchViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qKn-Ts-Ib1">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchRegion" id="gF8-aR-dKD">
-                                <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchTableViewCell" rowHeight="80" id="gF8-aR-dKD" customClass="SearchTableViewCell" customModule="airbnb" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="390" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gF8-aR-dKD" id="N5q-NQ-mDn">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VDC-2o-yDx">
+                                            <rect key="frame" x="0.0" y="8" width="390" height="64"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u0r-iv-Yzo">
+                                                    <rect key="frame" x="16" y="0.0" width="64" height="64"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="u0r-iv-Yzo" secondAttribute="height" multiplier="1:1" id="J06-ob-MCa"/>
+                                                        <constraint firstAttribute="width" constant="64" id="ooE-ba-WC0"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khg-JI-o9D">
+                                                    <rect key="frame" x="96" y="25" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="systemGray3Color"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="day-sL-TEx">
+                                                    <rect key="frame" x="96" y="0.0" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="day-sL-TEx" firstAttribute="top" secondItem="VDC-2o-yDx" secondAttribute="top" id="4Jf-Zc-3UO"/>
+                                                <constraint firstItem="Khg-JI-o9D" firstAttribute="top" secondItem="day-sL-TEx" secondAttribute="bottom" constant="4" id="RiE-TS-Pa4"/>
+                                                <constraint firstItem="u0r-iv-Yzo" firstAttribute="top" secondItem="VDC-2o-yDx" secondAttribute="top" id="c9g-7x-AY1"/>
+                                                <constraint firstItem="u0r-iv-Yzo" firstAttribute="leading" secondItem="VDC-2o-yDx" secondAttribute="leading" constant="16" id="k5C-Mr-Rbf"/>
+                                                <constraint firstItem="day-sL-TEx" firstAttribute="leading" secondItem="u0r-iv-Yzo" secondAttribute="trailing" constant="16" id="lJt-b6-MwA"/>
+                                                <constraint firstItem="Khg-JI-o9D" firstAttribute="leading" secondItem="u0r-iv-Yzo" secondAttribute="trailing" constant="16" id="oRw-vU-CH7"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="VDC-2o-yDx" secondAttribute="trailing" id="4PR-zx-2Wt"/>
+                                        <constraint firstItem="VDC-2o-yDx" firstAttribute="leading" secondItem="N5q-NQ-mDn" secondAttribute="leading" id="8nb-E1-a9L"/>
+                                        <constraint firstAttribute="bottom" secondItem="VDC-2o-yDx" secondAttribute="bottom" constant="8" id="9Fw-yd-YZj"/>
+                                        <constraint firstItem="VDC-2o-yDx" firstAttribute="top" secondItem="N5q-NQ-mDn" secondAttribute="top" constant="8" id="FlY-0i-g9p"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="distanceLabel" destination="Khg-JI-o9D" id="bQb-vg-crr"/>
+                                    <outlet property="regionImageView" destination="u0r-iv-Yzo" id="xcS-TI-Oj9"/>
+                                    <outlet property="regionNameLabel" destination="day-sL-TEx" id="uB7-ze-Q44"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -352,7 +404,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2w2-ZT-Lsq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2740" y="88"/>
+            <point key="canvasLocation" x="2740" y="87.440758293838854"/>
         </scene>
         <!--Finding Accommdation View Controller-->
         <scene sceneID="0Df-QY-FhC">

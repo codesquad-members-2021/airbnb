@@ -17,9 +17,8 @@ class ViewController: UIViewController, UISearchBarDelegate {
     
     private var searchBar: UISearchBar!
     private let network = Network()
-    private let mainEndpoint = MainAPIEndPoint(path: "", httpMethod: .get)
+
     private var mainPage = MainPageDTO(locations: [], categories: [])
-    private var tripPlace: [TripPlace] = []
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.tripPlaceCollectionViewDataSource = TripPlaceCollectionViewDataSource(tripPlace: [])
@@ -44,11 +43,10 @@ class ViewController: UIViewController, UISearchBarDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTripPlaceCollectionView), name: NSNotification.Name(rawValue: "name"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadRecommendTripCollectionView), name: NSNotification.Name(rawValue: "name"), object: nil)
-        
-        
     }
     
     func fetchMainPage() {
+        let mainEndpoint = MainAPIEndPoint(path: "/main", httpMethod: .get)
         network.request(with: mainEndpoint, dataType: MainPageDTO.self) { (result) in
             switch result {
             case .failure(let error):
@@ -62,13 +60,20 @@ class ViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let nextViewController = segue.destination as? SearchViewController else {
+            return
+        }
+        nextViewController.configure(tripPlace: mainPage.locations)
+    }
+    
     @objc func reloadTripPlaceCollectionView() {
-        tripPlaceCollectionViewDataSource.updateTripPlace(tripPlace: self.mainPage.locations)
+        tripPlaceCollectionViewDataSource.updateTripPlace(tripPlace: mainPage.locations)
         tripPlaceCollectionView.reloadData()
     }
     
     @objc func reloadRecommendTripCollectionView() {
-        recommendTripCollectionViewDataSource.updateRecommendTrip(recommendTrip: self.mainPage.categories)
+        recommendTripCollectionViewDataSource.updateRecommendTrip(recommendTrip: mainPage.categories)
         recommendTripCollectionView.reloadData()
     }
     

@@ -81,10 +81,7 @@ class FindingAccommdationViewController: UIViewController {
     
     @objc func conditionDataUpdate() {
         self.conditionTableView.reloadData()
-        guard let peopleCount = self.findingAccommdationCondition.people else {
-            return
-        }
-        self.adultCountLabel.text = findingAccommdationCondition.convert(peopleCount: peopleCount)
+        self.adultCountLabel.text = findingAccommdationCondition.peopleCount
     }
     
     func takelocationBeforeController(location: String) {

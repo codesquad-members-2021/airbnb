@@ -13,7 +13,10 @@ final class FindingAccommdationCondition {
     private(set) var secondDate: String
     private(set) var minCost: String
     private(set) var maxCost: String
-    private(set) var people: Int?
+    private(set) var people: Int
+    var peopleCount: String {
+        return "\(people)"
+    }
     
     init(){
         location = ""
@@ -21,7 +24,7 @@ final class FindingAccommdationCondition {
         secondDate = ""
         minCost = ""
         maxCost = ""
-        people = nil
+        people = 0
     }
     
     func insertData(location: String) {
@@ -55,17 +58,14 @@ final class FindingAccommdationCondition {
     }
     
     func update(people: Int, isAdd: Bool) {
-        if self.people == nil {
-            self.people = 0
-        }
         if isAdd {
-            self.people! += people
+            self.people += people
         }
         else {
             if self.people == 0 {
                 return
             }
-            self.people! -= people
+            self.people -= people
         }
         NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
     }

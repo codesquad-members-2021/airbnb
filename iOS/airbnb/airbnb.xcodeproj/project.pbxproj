@@ -39,6 +39,7 @@
 		D4DDA758265DE4FF00FE52FA /* ImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA757265DE4FF00FE52FA /* ImageView+Extension.swift */; };
 		D4DDA761265DE53800FE52FA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D4DDA760265DE53800FE52FA /* Kingfisher */; };
 		D4DDA766265E2AE700FE52FA /* RecommendTripCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA765265E2AE700FE52FA /* RecommendTripCollectionViewCell.swift */; };
+		D4DDA76B265E3F2500FE52FA /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA76A265E3F2500FE52FA /* SearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		D4DDA751265DE35B00FE52FA /* TripPlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlaceCollectionViewCell.swift; sourceTree = "<group>"; };
 		D4DDA757265DE4FF00FE52FA /* ImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Extension.swift"; sourceTree = "<group>"; };
 		D4DDA765265E2AE700FE52FA /* RecommendTripCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTripCollectionViewCell.swift; sourceTree = "<group>"; };
+		D4DDA76A265E3F2500FE52FA /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 				D4DDA72A265BD9D400FE52FA /* RoomInformationCell.swift */,
 				D4DDA751265DE35B00FE52FA /* TripPlaceCollectionViewCell.swift */,
 				D4DDA765265E2AE700FE52FA /* RecommendTripCollectionViewCell.swift */,
+				D4DDA76A265E3F2500FE52FA /* SearchTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				D4DDA766265E2AE700FE52FA /* RecommendTripCollectionViewCell.swift in Sources */,
 				D4DDA721265BD86300FE52FA /* RoomInformationViewController.swift in Sources */,
 				82C402162657566A009CCE4B /* FindingAccommodationTableViewDataSource.swift in Sources */,
+				D4DDA76B265E3F2500FE52FA /* SearchTableViewCell.swift in Sources */,
 				D4DDA63A26524ECD00FE52FA /* SceneDelegate.swift in Sources */,
 				825745A7265A4A310021371B /* FindingAccommodationTableViewCell.swift in Sources */,
 				82817BD926577973007EA648 /* FindingAccommodationViewTableViewCell.swift in Sources */,
