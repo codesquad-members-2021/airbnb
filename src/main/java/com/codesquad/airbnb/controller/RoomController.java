@@ -24,4 +24,11 @@ public class RoomController {
         List<Room> rooms = roomRepository.findAll();
         return new Rooms(rooms);
     }
+
+//    @GetMapping
+//    public void searchRooms(@RequestParam("checkIn") Date checkIn, @RequestParam("checkOut") Date checkOut,
+//                             @RequestParam("minPrice") int minPrice, @RequestParam("maxPrice") int maxPrice,
+//                             @RequestParam("numberOfPeople") int numberOfPeople) {
+////        return new Rooms(rooms);
+//    }
 }
