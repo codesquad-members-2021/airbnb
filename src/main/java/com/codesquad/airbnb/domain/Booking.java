@@ -11,19 +11,26 @@ public class Booking {
     private Long userId;
     private String checkIn;
     private String checkOut;
-    private int adult;
-    private int child;
-    private int baby;
+    private int numberOfPeople;
+    private int totalPrice;
 
-    public Booking(Long id, Long roomId, Long userId, String checkIn, String checkOut, int adult, int child, int baby) {
+   public Booking(Long roomId, Long userId, String checkIn, String checkOut, int numberOfPeople, int totalPrice) {
+        this.roomId = roomId;
+        this.userId = userId;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.numberOfPeople = numberOfPeople;
+        this.totalPrice = totalPrice;
+    }
+
+    public Booking(Long id, Long roomId, Long userId, String checkIn, String checkOut, int numberOfPeople, int totalPrice) {
         this.id = id;
         this.roomId = roomId;
         this.userId = userId;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
-        this.adult = adult;
-        this.child = child;
-        this.baby = baby;
+        this.numberOfPeople = numberOfPeople;
+        this.totalPrice = totalPrice;
     }
 
     public Long getRoomId() {
@@ -46,20 +53,11 @@ public class Booking {
         return checkOut;
     }
 
-    public int getAdult() {
-        return adult;
+    public int getNumberOfPeople() {
+        return numberOfPeople;
     }
-
-    public int getChild() {
-        return child;
-    }
-
-    public int getBaby() {
-        return baby;
-    }
-
-    public int getTotal() {
-        return adult + child;
+    public int getTotalPrice() {
+        return totalPrice;
     }
 
     @Override
@@ -70,9 +68,8 @@ public class Booking {
                 ", userId=" + userId +
                 ", checkIn=" + checkIn +
                 ", checkOut=" + checkOut +
-                ", adult=" + adult +
-                ", child=" + child +
-                ", baby=" + baby +
+                ", numberOfPeople=" + numberOfPeople +
+                ", totalPrice=" + totalPrice +
                 '}';
     }
 }
