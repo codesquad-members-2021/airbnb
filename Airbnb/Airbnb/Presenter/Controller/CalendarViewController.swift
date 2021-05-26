@@ -1,4 +1,6 @@
 import UIKit
+import RxSwift
+import RxCocoa
 import FSCalendar
 
 class CalendarViewController: UIViewController {
@@ -12,6 +14,7 @@ class CalendarViewController: UIViewController {
     
     private var dateStroage:[String] = []
     private let viewModel = CalendarViewModel()
+    private var nextPage = BehaviorRelay(value: false)
     
     private lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -53,9 +56,30 @@ private extension CalendarViewController {
     }
     
     private func setupButton() {
+        setupBackButton()
+        setupNextButton()
+    }
+    
+    private func setupBackButton() {
         backButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 self?.dismiss(animated: true, completion: nil)
+            }).disposed(by: rx.disposeBag)
+    }
+    
+    private func setupNextButton() {
+        nextPage.asObservable()
+            .subscribe(onNext: { [weak self] value in
+                switch value {
+                case true:
+                    self?.nextButton.isEnabled = true
+                    self?.nextButton.setTitleColor(UIColor.black, for: .normal)
+                    self?.skipDeleteButton.setTitle("지우기", for: .normal)
+                case false:
+                    self?.nextButton.isEnabled = false
+                    self?.nextButton.setTitleColor(UIColor.systemGray2, for: .normal)
+                    self?.skipDeleteButton.setTitle("건너뛰기", for: .normal)
+                }
             }).disposed(by: rx.disposeBag)
     }
     
@@ -72,8 +96,10 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         let checkOut = dateStroage.max() ?? ""
         if checkIn == checkOut {
             dateLabel.text = "\(checkIn) ~"
+            nextPage.accept(false)
         } else {
             dateLabel.text = "\(checkIn) ~ \(checkOut)"
+            nextPage.accept(true)
         }
     }
     
@@ -86,8 +112,10 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         let checkOut = dateStroage.max() ?? ""
         if checkIn == checkOut {
             dateLabel.text = "\(checkIn) ~"
+            nextPage.accept(false)
         } else {
             dateLabel.text = "\(checkIn) ~ \(checkOut)"
+            nextPage.accept(true)
         }
     }
     
