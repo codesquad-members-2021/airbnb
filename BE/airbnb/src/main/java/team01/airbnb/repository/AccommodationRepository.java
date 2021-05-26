@@ -2,6 +2,7 @@ package team01.airbnb.repository;
 
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -22,6 +23,63 @@ import java.util.stream.Collectors;
 
 @Repository
 public class AccommodationRepository {
+
+    private static final RowMapper<Accommodation> ACCOMMODATION_ROW_MAPPER =
+            (rs, rowNum) -> Accommodation.builder()
+                    .id(rs.getLong("id"))
+                    .hostId(rs.getLong("host_id"))
+                    .name(rs.getString("name"))
+                    .description(rs.getString("description"))
+                    .chargePerNight(Charge.wons(rs.getInt("charge_per_night")))
+                    .cleaningCharge(Charge.wons(rs.getInt("cleaning_charge")))
+                    .checkIn(rs.getTime("check_in").toLocalTime())
+                    .checkOut(rs.getTime("check_out").toLocalTime())
+                    .build();
+
+    private static final RowMapper<AccommodationAddress> ACCOMMODATION_ADDRESS_ROW_MAPPER =
+            (rs, rowNum) -> AccommodationAddress.builder()
+                    .accommodationId(rs.getLong("accommodation_id"))
+                    .countryId(rs.getLong("country_id"))
+                    .cityId(rs.getLong("city_id"))
+                    .address(rs.getString("address"))
+                    .latitude(rs.getDouble("latitude"))
+                    .longitude(rs.getDouble("longitude"))
+                    .build();
+
+    private static final RowMapper<AccommodationCondition> ACCOMMODATION_CONDITION_ROW_MAPPER =
+            (rs, rowNum) -> AccommodationCondition.builder()
+                    .accommodationId(rs.getLong("accommodation_id"))
+                    .guests(rs.getInt("guests"))
+                    .bedroomCount(rs.getInt("bedroom_count"))
+                    .bedCount(rs.getInt("bed_count"))
+                    .bathroomCount(rs.getInt("bathroom_count"))
+                    .build();
+
+    private static final RowMapper<Amenity> AMENITY_ROW_MAPPER =
+            (rs, rowNum) -> Amenity.builder()
+                    .id(rs.getLong("id"))
+                    .name(rs.getString("name"))
+                    .build();
+
+    private static final RowMapper<AccommodationPhoto> ACCOMMODATION_PHOTO_ROW_MAPPER =
+            (rs, rowNum) -> AccommodationPhoto.builder()
+                    .id(rs.getLong("id"))
+                    .accommodationId(rs.getLong("accommodation_id"))
+                    .name(rs.getString("name"))
+                    .build();
+
+    private static final RowMapper<Reservation> RESERVATION_ROW_MAPPER =
+            (rs, rowNum) -> Reservation.builder()
+                    .id(rs.getLong("id"))
+                    .accommodationId(rs.getLong("accommodation_id"))
+                    .userId(rs.getLong("user_id"))
+                    .checkIn(rs.getDate("check_in").toLocalDate())
+                    .checkOut(rs.getDate("check_out").toLocalDate())
+                    .guests(rs.getInt("guests"))
+                    .charge(rs.getInt("charge"))
+                    .createdTime(
+                            new Timestamp(rs.getDate("created_time").getTime()).toLocalDateTime())
+                    .build();
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final JdbcTemplate jdbcTemplate;
@@ -52,7 +110,8 @@ public class AccommodationRepository {
     }
 
     public boolean saveAccommodationAddress(AccommodationAddress address) {
-        String query = "INSERT INTO accommodation_address (accommodation_id, country_id, city_id, address) VALUE (?, ?, ?, ?)";
+        String query = "INSERT INTO accommodation_address (accommodation_id, country_id, city_id, address) " +
+                "VALUE (?, ?, ?, ?)";
         int result = jdbcTemplate.update(
                 query
                 , address.getAccommodationId()
@@ -116,21 +175,11 @@ public class AccommodationRepository {
     }
 
     public List<Accommodation> findAllAccommodations() {
-        String query = "SELECT id, host_id, `name`, description, charge_per_night, cleaning_charge, check_in, check_out " +
-                "FROM accommodation";
+        String query = "SELECT id, host_id, `name`, description, charge_per_night" +
+                ", cleaning_charge, check_in, check_out FROM accommodation";
         List<Accommodation> accommodations = namedParameterJdbcTemplate.query(
                 query,
-                (rs, rowNum) -> Accommodation.builder()
-                        .id(rs.getLong("id"))
-                        .hostId(rs.getLong("host_id"))
-                        .name(rs.getString("name"))
-                        .description(rs.getString("description"))
-                        .chargePerNight(Charge.wons(rs.getInt("charge_per_night")))
-                        .cleaningCharge(Charge.wons(rs.getInt("cleaning_charge")))
-                        .checkIn(rs.getTime("check_in").toLocalTime())
-                        .checkOut(rs.getTime("check_out").toLocalTime())
-                        .build()
-        );
+                ACCOMMODATION_ROW_MAPPER);
         return accommodations;
     }
 
@@ -142,15 +191,7 @@ public class AccommodationRepository {
         List<AccommodationAddress> accommodationAddresses = namedParameterJdbcTemplate.query(
                 query
                 , namedParameters
-                , (rs, rowNum) -> AccommodationAddress.builder()
-                        .accommodationId(rs.getLong("accommodation_id"))
-                        .countryId(rs.getLong("country_id"))
-                        .cityId(rs.getLong("city_id"))
-                        .address(rs.getString("address"))
-                        .latitude(rs.getDouble("latitude"))
-                        .longitude(rs.getDouble("longitude"))
-                        .build()
-        );
+                , ACCOMMODATION_ADDRESS_ROW_MAPPER);
         return Optional.of(accommodationAddresses.get(0));
     }
 
@@ -162,14 +203,7 @@ public class AccommodationRepository {
         List<AccommodationCondition> accommodationConditions = namedParameterJdbcTemplate.query(
                 query
                 , namedParameters
-                , (rs, rowNum) -> AccommodationCondition.builder()
-                        .accommodationId(rs.getLong("accommodation_id"))
-                        .guests(rs.getInt("guests"))
-                        .bedroomCount(rs.getInt("bedroom_count"))
-                        .bedCount(rs.getInt("bed_count"))
-                        .bathroomCount(rs.getInt("bathroom_count"))
-                        .build()
-        );
+                , ACCOMMODATION_CONDITION_ROW_MAPPER);
         return Optional.of(accommodationConditions.get(0));
     }
 
@@ -183,11 +217,7 @@ public class AccommodationRepository {
         List<Amenity> amenities = namedParameterJdbcTemplate.query(
                 query
                 , namedParameters
-                , (rs, rowNum) -> Amenity.builder()
-                        .id(rs.getLong("id"))
-                        .name(rs.getString("name"))
-                        .build()
-        );
+                , AMENITY_ROW_MAPPER);
         return amenities.stream()
                 .map(amenity -> amenity.getName())
                 .collect(Collectors.toUnmodifiableList());
@@ -203,12 +233,7 @@ public class AccommodationRepository {
         List<AccommodationPhoto> photos = namedParameterJdbcTemplate.query(
                 query
                 , namedParameters
-                , (rs, rowNum) -> AccommodationPhoto.builder()
-                        .id(rs.getLong("id"))
-                        .accommodationId(rs.getLong("accommodation_id"))
-                        .name(rs.getString("name"))
-                        .build()
-        );
+                , ACCOMMODATION_PHOTO_ROW_MAPPER);
         return photos.stream()
                 .map(photo -> photo.getName())
                 .collect(Collectors.toUnmodifiableList());
@@ -221,18 +246,7 @@ public class AccommodationRepository {
         List<Reservation> reservations = namedParameterJdbcTemplate.query(
                 query
                 , namedParameters
-                , (rs, rowNum) -> Reservation.builder()
-                        .id(rs.getLong("id"))
-                        .accommodationId(rs.getLong("accommodation_id"))
-                        .userId(rs.getLong("user_id"))
-                        .checkIn(rs.getDate("check_in").toLocalDate())
-                        .checkOut(rs.getDate("check_out").toLocalDate())
-                        .guests(rs.getInt("guests"))
-                        .charge(rs.getInt("charge"))
-                        .createdTime(
-                                new Timestamp(rs.getDate("created_time").getTime()).toLocalDateTime())
-                        .build()
-        );
+                , RESERVATION_ROW_MAPPER);
         return Optional.of(reservations.get(0));
     }
 
