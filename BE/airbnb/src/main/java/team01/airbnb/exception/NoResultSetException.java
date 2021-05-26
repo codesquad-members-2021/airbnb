@@ -6,8 +6,8 @@ public class NoResultSetException extends RuntimeException{
         super("ResultSet 결과를 찾을 수 없습니다.");
     }
 
-    public NoResultSetException(String msg) {
-        super(msg);
+    public NoResultSetException(String message) {
+        super(message);
     }
 
     public NoResultSetException(Throwable cause) {

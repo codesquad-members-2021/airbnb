@@ -14,19 +14,19 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NoResultSetException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ApiResult noResultSetException(NoResultSetException nrse) {
-        return ApiResult.failed(nrse);
+    public ApiResult noResultSetException(NoResultSetException e) {
+        return ApiResult.failed(e);
     }
 
     @ExceptionHandler(NotProcessJsonException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiResult notProcessJsonException(NotProcessJsonException npje) {
-        return ApiResult.failed(npje);
+    public ApiResult notProcessJsonException(NotProcessJsonException e) {
+        return ApiResult.failed(e);
     }
 
     @ExceptionHandler(ConditionNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ApiResult conditionNotFoundException(ConditionNotFoundException cnfe) {
-        return ApiResult.failed(cnfe);
+    public ApiResult conditionNotFoundException(ConditionNotFoundException e) {
+        return ApiResult.failed(e);
     }
 }
