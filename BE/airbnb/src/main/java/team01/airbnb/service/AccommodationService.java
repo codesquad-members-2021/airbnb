@@ -27,7 +27,7 @@ public class AccommodationService {
         return accommodationRepository.findAllAccommodations();
     }
 
-    public List<AccommodationResponseDto> findAccommodationsBySearch() {
+    public List<AccommodationResponseDto> findAvailableAccommodationsForReservation() {
         List<AccommodationResponseDto> accommodationResponseDtos = new ArrayList<>();
         List<Accommodation> accommodations = accommodationRepository.findAllAccommodations();
         for (Accommodation accommodation : accommodations) {

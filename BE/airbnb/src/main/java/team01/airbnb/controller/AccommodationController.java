@@ -29,9 +29,8 @@ public class AccommodationController {
 
     // todo : 조건에 따른 param 추가 예정
     @GetMapping("/search")
-    public ApiResult<List<AccommodationResponseDto>> accommodationsBySearch() {
-        return ApiResult.succeed(accommodationService.findAccommodationsBySearch());
-
+    public ApiResult<List<AccommodationResponseDto>> availableAccommodationsForReservation() {
+        return ApiResult.succeed(accommodationService.findAvailableAccommodationsForReservation());
     }
 
     @PostMapping("/save")
