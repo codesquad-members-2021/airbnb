@@ -1,11 +1,11 @@
 import styled from 'styled-components';
+import { calendarDateType } from '../../recoil/calendarAtom';
 
 interface Props {
-  year: number;
-  month: number;
+  calendarDate: calendarDateType;
 }
 
-const CalendarHeader = ({ year, month }: Props) => {
+const CalendarHeader = ({ calendarDate: { year, month } }: Props) => {
   return (
     <StyledCalendarHeader>
       {year}년 {month}월
@@ -17,6 +17,7 @@ export default CalendarHeader;
 
 const StyledCalendarHeader = styled.div`
   text-align: center;
+  width: 336px;
   height: 23px;
   font-weight: 700;
   margin-bottom: 1rem;

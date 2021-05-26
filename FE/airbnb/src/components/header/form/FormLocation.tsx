@@ -8,11 +8,12 @@ import FormLocationToggle from './FormLocationToggle';
 const FormLocation = () => {
   const clickRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLDivElement>(null);
-  const open = useToggle({ clickRef, toggleRef });
+  const { open } = useToggle({ clickRef, toggleRef });
+
   return (
     <StyledLocationWrapper>
-      <StyledFormLocation ref={clickRef} open={open}>
-        <HoverBlock color='gray4' className='hover__location'>
+      <StyledFormLocation ref={clickRef} data-type='location'>
+        <HoverBlock color='gray4' className='hover__location' dataKey='location' isModal={open}>
           <FormColumn title='위치' description='어디로 여행가세요' isInput={true} />
         </HoverBlock>
       </StyledFormLocation>
@@ -27,13 +28,9 @@ const StyledLocationWrapper = styled.div`
   position: relative;
 `;
 
-interface styleProps {
-  open: boolean;
-}
-const StyledFormLocation = styled.div<styleProps>`
+const StyledFormLocation = styled.div`
   .hover__location {
     height: 100%;
-    background-color: ${({ open, theme }) => open && theme.colors.white};
     padding: 1rem;
     border-radius: 3rem;
     cursor: pointer;

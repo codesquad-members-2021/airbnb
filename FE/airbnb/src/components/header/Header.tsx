@@ -13,8 +13,10 @@ const Header = () => {
         <div className='logo'>LOGO</div>
         <HeaderTabList />
         <div className='nav'>
-          <HoverBlock color='white'>호스트 되기</HoverBlock>
-          <HoverBlock color='white'>
+          <HoverBlock color='white' dataKey='host'>
+            호스트 되기
+          </HoverBlock>
+          <HoverBlock color='white' dataKey='global'>
             <IoGlobeOutline />
           </HoverBlock>
           <HeaderNav />

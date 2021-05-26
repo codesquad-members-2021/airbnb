@@ -5,7 +5,7 @@ import FormColumn from './FormColumn';
 const FormPrice = () => {
   return (
     <StyledFormPrice>
-      <HoverBlock color='gray4' className='hover__price'>
+      <HoverBlock color='gray4' className='hover__price' dataKey='price'>
         <FormColumn title='요금' description='금액대 설정' />
       </HoverBlock>
     </StyledFormPrice>
