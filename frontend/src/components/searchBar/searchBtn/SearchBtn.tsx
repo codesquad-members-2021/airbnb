@@ -8,38 +8,38 @@ import { clickedPlace, checkInMessage, checkOutMessage } from '../../../customHo
 import { defaultValue } from '../../../customHook/atoms'
 
 const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		button: {
-			margin: theme.spacing(1),
-			borderRadius: 30,
-		},
-	})
+  createStyles({
+    button: {
+      margin: theme.spacing(1),
+      borderRadius: 30,
+    },
+  })
 )
 
 const SearchBtn = () => {
-	const classes = useStyles()
-	const [searchable, setSearchable] = useState(false)
-	const placeToSearch = useRecoilValue(clickedPlace)
-	const checkIn = useRecoilValue(checkInMessage)
-	const checkOut = useRecoilValue(checkOutMessage)
-	const handleClick = () => {
-		//api검색요청하기
-	}
-	if (placeToSearch !== defaultValue.placeToSearch) setSearchable(true)
+  const classes = useStyles()
+  const [searchable, setSearchable] = useState(false)
+  const placeToSearch = useRecoilValue(clickedPlace)
+  const checkIn = useRecoilValue(checkInMessage)
+  const checkOut = useRecoilValue(checkOutMessage)
+  const handleClick = () => {
+    //api검색요청하기
+  }
+  if (placeToSearch !== defaultValue.placeToSearch) setSearchable(true)
 
-	return (
-		<PlaceSection>
-			<Button
-				onClick={handleClick}
-				variant='contained'
-				color='secondary'
-				className={classes.button}
-				startIcon={<SearchIcon />}
-			>
-				검색
-			</Button>
-		</PlaceSection>
-	)
+  return (
+    <PlaceSection>
+      <Button
+        onClick={handleClick}
+        variant='contained'
+        color='secondary'
+        className={classes.button}
+        startIcon={<SearchIcon />}
+      >
+        검색
+      </Button>
+    </PlaceSection>
+  )
 }
 
 export default SearchBtn
