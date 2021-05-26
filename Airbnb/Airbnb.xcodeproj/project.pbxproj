@@ -103,10 +103,10 @@
 		7157C8872654AC3100EF7977 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				71F65545265CB9D7008645B8 /* CommonViewModelType.swift */,
 				7157C8882654AC4000EF7977 /* MainViewModel.swift */,
 				71F65540265C9002008645B8 /* RegieonViewModel.swift */,
 				71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */,
-				71F65545265CB9D7008645B8 /* CommonViewModelType.swift */,
 				7197A4AF265DE3E400729BCF /* CalendarViewModel.swift */,
 			);
 			path = ViewModel;

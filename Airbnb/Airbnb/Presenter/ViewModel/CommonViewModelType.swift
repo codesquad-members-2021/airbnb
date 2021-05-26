@@ -3,7 +3,7 @@ import RxSwift
 import RxCocoa
 
 protocol CommonViewModelType {
-    
-    func getViewData() -> Driver<[MainViewInfo]>
+    associatedtype ViewDataType
+    func getViewData() -> Driver<[ViewDataType]>
     
 }
