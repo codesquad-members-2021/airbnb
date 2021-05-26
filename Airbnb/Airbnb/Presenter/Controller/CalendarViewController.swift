@@ -69,4 +69,20 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         }
         print(dateStroage)
     }
+    
+    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
+        if date.compare(Date()) == .orderedAscending {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        if date.compare(Date()) == .orderedAscending {
+            return .systemGray3
+        } else {
+            return .black
+        }
+    }
 }
