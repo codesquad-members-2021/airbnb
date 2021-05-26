@@ -41,6 +41,9 @@ class CalendarDateCell: UICollectionViewCell {
 
         numberLabel.text = day.number
         accessibilityLabel = accessibilityDateFormatter.string(from: day.date)
+        if !day.isWithinDisplayedMonth {
+            numberLabel.textColor = .systemGray
+        }
       }
     }
     override init(frame: CGRect) {

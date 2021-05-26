@@ -16,6 +16,14 @@ class FooterViewController: UIViewController {
 
     @IBOutlet weak var footerTable: UITableView!
     
+    public var info: [String:String] = [
+        "위치" : "",
+        "체크인/체크아웃" : "",
+        "요금" : "",
+        "인원" : ""
+    ]
+    private let infoTitle = ["위치", "체크인/체크아웃", "요금", "인원"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNib()
@@ -47,6 +55,7 @@ extension FooterViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FooterTableViewCell.reuseIdentifier, for: indexPath) as! FooterTableViewCell
+        cell.title.text = infoTitle[indexPath.row]
         return cell
     }
 
