@@ -21,16 +21,22 @@ values (4, "숙소3", 4.82, 37.49784, 127.03029, 1, 1, 1, "서울특별시 강�
 insert into `user` (github_id)
 values ("bibi");
 
-insert into `booking` (user_id, room_id, check_in, check_out, adult, child, baby)
-values (1, 1, "2021-05-20", "2021-05-21", 2, 0, 0);
-insert into `booking` (user_id, room_id, check_in, check_out, adult, child, baby)
-values (1, 2, "2021-05-25", "2021-05-26", 2, 0, 0);
+insert into `booking` (user_id, room_id, check_in, check_out, number_of_people, total_price)
+values (1, 1, "2021-05-20", "2021-05-21", 2, 200000);
+insert into `booking` (user_id, room_id, check_in, check_out, number_of_people, total_price)
+values (1, 2, "2021-05-25", "2021-05-26", 2, 200000);
+insert into `booking` (user_id, room_id, check_in, check_out, number_of_people, total_price)
+values (1, 3, "2021-06-01", "2021-06-03", 2, 200000);
 
 insert into `wish` (room_id, user_id)
 values (1, 1);
 
 insert into `option` (room_id, kitchen, air_conditioner, wifi, free_parking_lot, hair_dryer)
 values (1, 1, 1, 1, 1, 1);
+insert into `option` (room_id, kitchen, air_conditioner, wifi, free_parking_lot, hair_dryer)
+values (2, 1, 1, 1, 1, 1);
+insert into `option` (room_id, kitchen, air_conditioner, wifi, free_parking_lot, hair_dryer)
+values (3, 1, 1, 1, 1, 1);
 
 insert into `thumbnail` (room_id, thumbnail)
 values (1, "https://a0.muscache.com/im/pictures/c45d08e5-f560-44f0-83fc-83290ccd1670.jpg?im_w=720");
