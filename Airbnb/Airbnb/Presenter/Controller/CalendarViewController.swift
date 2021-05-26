@@ -57,7 +57,8 @@ private extension CalendarViewController {
     
     private func setupButton() {
         setupBackButton()
-        setupNextButton()
+        setupButtonObserver()
+        setupSkipDeleteButton()
     }
     
     private func setupBackButton() {
@@ -67,7 +68,7 @@ private extension CalendarViewController {
             }).disposed(by: rx.disposeBag)
     }
     
-    private func setupNextButton() {
+    private func setupButtonObserver() {
         nextPage.asObservable()
             .subscribe(onNext: { [weak self] value in
                 switch value {
@@ -80,6 +81,24 @@ private extension CalendarViewController {
                     self?.nextButton.setTitleColor(UIColor.systemGray2, for: .normal)
                     self?.skipDeleteButton.setTitle("건너뛰기", for: .normal)
                 }
+            }).disposed(by: rx.disposeBag)
+    }
+    
+    private func setupSkipDeleteButton() {
+        skipDeleteButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.nextPage.asObservable()
+                    .subscribe(onNext: { [weak self] value in
+                        switch value {
+                        case true:
+                            self?.dateLabel.text = ""
+                            self?.dateStroage.removeAll()
+                            //캘린더 뷰 상에서 선택 해제 구현
+                        case false:
+                            print("다음뷰컨 이동 구현")
+                        }
+                    })
+                    .disposed(by: self!.rx.disposeBag)
             }).disposed(by: rx.disposeBag)
     }
     
