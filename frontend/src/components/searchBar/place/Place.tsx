@@ -13,6 +13,7 @@ import { TiDelete } from 'react-icons/ti'
 import IconButton from '@material-ui/core/IconButton'
 import useModalCtrl from '../../../customHook/useModalCtrlArray'
 import ModalPlace from './ModalPlace'
+import { clickPlace } from '../../../customHook/atoms'
 
 const Place = () => {
 	const PlaceToggle = useRef<HTMLDivElement>(null)
@@ -23,13 +24,14 @@ const Place = () => {
 		init: false,
 	})
 
+	const [placeClicked, setPlaceClicked] = useRecoilState(clickPlace)
+
 	const [placeToSearch, setPlaceToSearch] = useRecoilState(clickedPlace)
 	const defaultMsg = '어디로 여행가세요?'
-	// const [targetPlace, setTargetPlace] = useState<string>(defaultMsg)
 	const [viewX, setViewX] = useState(false)
 	const [clicked, setClicked] = useState(false)
 	const handleClick = () => {
-		setClicked((clicked) => {
+		setPlaceClicked((clicked) => {
 			if (!open) return true
 			return !clicked
 		})
@@ -44,7 +46,7 @@ const Place = () => {
 
 	return (
 		<PlaceSection>
-			<BarBlock clicked={clicked && open} onClick={handleClick} ref={PlaceToggle}>
+			<BarBlock clicked={placeClicked && open} onClick={handleClick} ref={PlaceToggle}>
 				<BarInnerWrapper>
 					<div>
 						<BarTitle>위치</BarTitle>
