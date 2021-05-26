@@ -4,14 +4,18 @@ import { SearchContext } from '..';
 
 const PriceDescription = () => {
   const { priceData } = useContext(SearchContext);
+
+  const priceRange = `₩${priceData.minPrice} - ₩${priceData.maxPrice}+`;
+  const priceAverage = `평균 1박 요금은 ₩${parseInt(
+    (priceData.minPrice + priceData.maxPrice) / 2
+  )} 입니다.`;
+
   return (
     <PriceDescriptionDiv>
       <PriceTitle>가격 범위</PriceTitle>
       <PriceCaption>
-        <PriceCaptionRange>{`₩${priceData.minPrice} - ₩${priceData.maxPrice}+`}</PriceCaptionRange>
-        <PriceCaptionSpan>{`평균 1박 요금은 ₩${parseInt(
-          (priceData.minPrice + priceData.maxPrice) / 2
-        )} 입니다.`}</PriceCaptionSpan>
+        <PriceCaptionRange>{priceRange}</PriceCaptionRange>
+        <PriceCaptionSpan>{priceAverage}</PriceCaptionSpan>
       </PriceCaption>
     </PriceDescriptionDiv>
   );

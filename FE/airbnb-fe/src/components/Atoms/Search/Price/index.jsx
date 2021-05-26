@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Price = ({ dispatch }) => {
   return (
     <PriceDiv>
-      <PriceWrap onClick={() => dispatch({ type: 'PRICE' })}>
+      <PriceWrap onClick={() => dispatch({ type: 'PRICE_MODAL_OFF' })}>
         <PriceTitle>요금</PriceTitle>
         <PriceInp>금액대 설정</PriceInp>
       </PriceWrap>

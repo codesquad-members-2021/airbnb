@@ -20,7 +20,7 @@ const Search = () => {
   useEffect(() => {
     const modalOff = (e) => {
       if (modalElement.current && !modalElement.current.contains(e.target)) {
-        modalDispatch({ type: 'ModalOff' });
+        modalDispatch({ type: 'EVERY_MODAL_OFF' });
       }
     };
     document.addEventListener('mousedown', modalOff);

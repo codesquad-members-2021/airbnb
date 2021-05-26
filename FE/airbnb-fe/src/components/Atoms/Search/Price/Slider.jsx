@@ -23,6 +23,13 @@ const Slider = () => {
     setAvg((priceData.maxPrice + priceData.minPrice) / 2);
   }, [priceData.minPrice, priceData.maxPrice]);
 
+  const handleMinSliderChange = ({ target }) =>
+    priceDispatch({ type: 'SET_MIN', payload: parseInt(target.value) });
+
+  const handleMaxSliderChange = ({ target }) => {
+    priceDispatch({ type: 'SET_MAX', payload: parseInt(target.value) });
+  };
+
   return (
     <SliderDiv>
       <LeftInput
@@ -32,9 +39,7 @@ const Slider = () => {
         leftWidth={leftWidth}
         leftPercent={leftPercent}
         value={priceData.minPrice}
-        onChange={({ target }) =>
-          priceDispatch({ type: 'SET_MIN', payload: parseInt(target.value) })
-        }
+        onChange={({ target }) => handleMinSliderChange({ target })}
       />
       <RightInput
         type="range"
@@ -44,9 +49,7 @@ const Slider = () => {
         rightWidth={rightWidth}
         rightPercent={rightPercent}
         value={priceData.maxPrice}
-        onChange={({ target }) =>
-          priceDispatch({ type: 'SET_MAX', payload: parseInt(target.value) })
-        }
+        onChange={({ target }) => handleMaxSliderChange({ target })}
       />
     </SliderDiv>
   );

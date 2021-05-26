@@ -9,7 +9,7 @@ const People = ({ dispatch }) => {
 
   return (
     <PeopleDiv>
-      <PeopleWrap onClick={() => dispatch({ type: 'PEOPLE' })}>
+      <PeopleWrap onClick={() => dispatch({ type: 'PEOPLE_MODAL_OFF' })}>
         <PeopleTitle>인원</PeopleTitle>
         <PeopleInp>
           {adult + child + baby
