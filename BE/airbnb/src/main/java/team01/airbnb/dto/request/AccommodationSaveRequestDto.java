@@ -17,9 +17,9 @@ public class AccommodationSaveRequestDto {
     private String checkOut;
     private String address;
     private int guests;
-    private String bedroomCount;
-    private String bedCount;
-    private String bathroomCount;
+    private int bedroomCount;
+    private int bedCount;
+    private int bathroomCount;
     private String amenity1;
     private String amenity2;
     private String amenity3;

@@ -12,6 +12,7 @@ import team01.airbnb.domain.accommodation.Accommodation;
 import team01.airbnb.domain.accommodation.AccommodationAddress;
 import team01.airbnb.domain.accommodation.AccommodationCondition;
 import team01.airbnb.domain.accommodation.AccommodationPhoto;
+import team01.airbnb.dto.Charge;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -39,8 +40,8 @@ public class AccommodationRepository {
                 , accommodation.getHostId()
                 , accommodation.getName()
                 , accommodation.getDescription()
-                , accommodation.getChargePerNight()
-                , accommodation.getCleaningCharge()
+                , accommodation.getChargePerNight().getCharge()
+                , accommodation.getCleaningCharge().getCharge()
                 , accommodation.getCheckIn()
                 , accommodation.getCheckOut()
         );
@@ -122,8 +123,8 @@ public class AccommodationRepository {
                         .hostId(rs.getLong("host_id"))
                         .name(rs.getString("name"))
                         .description(rs.getString("description"))
-                        .chargePerNight(rs.getInt("charge_per_night"))
-                        .cleaningCharge(rs.getInt("cleaning_charge"))
+                        .chargePerNight(Charge.wons(rs.getInt("charge_per_night")))
+                        .cleaningCharge(Charge.wons(rs.getInt("cleaning_charge")))
                         .checkIn(rs.getTime("check_in").toLocalTime())
                         .checkOut(rs.getTime("check_out").toLocalTime())
                         .build()
@@ -142,8 +143,8 @@ public class AccommodationRepository {
                         .countryId(rs.getLong("country_id"))
                         .cityId(rs.getLong("city_id"))
                         .address(rs.getString("address"))
-                        .latitude(rs.getString("latitude"))
-                        .longitude(rs.getString("longitude"))
+                        .latitude(rs.getDouble("latitude"))
+                        .longitude(rs.getDouble("longitude"))
                         .build()
         );
         return Optional.of(accommodationAddresses.get(0));
@@ -158,9 +159,9 @@ public class AccommodationRepository {
                 , (rs, rowNum) -> AccommodationCondition.builder()
                         .accommodationId(rs.getLong("accommodation_id"))
                         .guests(rs.getInt("guests"))
-                        .bedroomCount(rs.getString("bedroom_count"))
-                        .bedCount(rs.getString("bed_count"))
-                        .bathroomCount(rs.getString("bathroom_count"))
+                        .bedroomCount(rs.getInt("bedroom_count"))
+                        .bedCount(rs.getInt("bed_count"))
+                        .bathroomCount(rs.getInt("bathroom_count"))
                         .build()
         );
         return Optional.of(accommodationConditions.get(0));

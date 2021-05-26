@@ -11,9 +11,9 @@ public class AccommodationCondition {
 
     private Long accommodationId;
     private int guests;
-    private String bedroomCount;
-    private String bedCount;
-    private String bathroomCount;
+    private int bedroomCount;
+    private int bedCount;
+    private int bathroomCount;
 
     public static AccommodationCondition fromSaveRequestDto(AccommodationSaveRequestDto accommodationSaveRequestDto) {
         return AccommodationCondition.builder()

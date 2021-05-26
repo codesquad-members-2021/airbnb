@@ -11,4 +11,7 @@ public class Charge {
         this.charge = charge;
     }
 
+    public int getCharge() {
+        return this.charge;
+    }
 }

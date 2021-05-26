@@ -171,8 +171,8 @@ CREATE TABLE IF NOT EXISTS `airbnb`.`accommodation_address` (
     `country_id` BIGINT NOT NULL,
     `city_id` BIGINT NOT NULL,
     `address` TEXT NOT NULL,
-    `latitude` VARCHAR(45) NULL,
-    `longitude` VARCHAR(45) NULL,
+    `latitude` DOUBLE NULL,
+    `longitude` DOUBLE NULL,
     INDEX `fk_accommodation_address_accommodation1_idx` (`accommodation_id` ASC),
     PRIMARY KEY (`accommodation_id`),
     INDEX `fk_accommodation_address_countries1_idx` (`country_id` ASC),
@@ -238,9 +238,9 @@ DROP TABLE IF EXISTS `airbnb`.`accommodation_condition` ;
 CREATE TABLE IF NOT EXISTS `airbnb`.`accommodation_condition` (
     `accommodation_id` BIGINT NOT NULL,
     `guests` INT NOT NULL,
-    `bedroom_count` VARCHAR(45) NOT NULL,
-    `bed_count` VARCHAR(45) NOT NULL,
-    `bathroom_count` VARCHAR(45) NOT NULL,
+    `bedroom_count` INT NOT NULL,
+    `bed_count` INT NOT NULL,
+    `bathroom_count` INT NOT NULL,
     PRIMARY KEY (`accommodation_id`),
     INDEX `fk_accommodation_condition_accommodation1_idx` (`accommodation_id` ASC),
     CONSTRAINT `fk_accommodation_condition_accommodation1`
