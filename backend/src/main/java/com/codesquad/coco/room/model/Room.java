@@ -17,7 +17,6 @@ import java.util.List;
 public class Room {
 
     private static final String DEFAULT_THUMBNAIL_IMAGE = "https://a0.muscache.com/im/pictures/user/7822f895-df8a-4b0f-9035-0d3b3afbdc3d.jpg?aki_policy=profile_x_medium";
-    private static final int ONE_WEEK = 7;
 
     @Id
     private Long id;
@@ -63,17 +62,11 @@ public class Room {
                 .orElse(DEFAULT_THUMBNAIL_IMAGE);
     }
 
-
     public int calcTotalPrice(int fewNights) {
         int basicPrice = fewNights * pricePerDate.getMoney();
         int additionalPrice = 0;
-        if (fewNights >= ONE_WEEK) {
-            additionalPrice -= additionalCost.calcWeekSale(basicPrice);
-        }
-        additionalPrice += additionalCost.calcServiceFee(basicPrice);
-        additionalPrice += additionalCost.calcLodgmentFee(basicPrice);
-        additionalPrice += additionalCost.getCleaningFee();
-
+        additionalPrice -= additionalCost.calcWeekSale(basicPrice, fewNights);
+        additionalPrice += additionalCost.calcAdditionalCost(basicPrice);
         return basicPrice + additionalPrice;
     }
 

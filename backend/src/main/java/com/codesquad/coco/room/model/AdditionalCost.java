@@ -5,6 +5,9 @@ import org.springframework.data.annotation.Id;
 
 public class AdditionalCost {
 
+    private static final int ONE_WEEK = 7;
+
+
     @Id
     private Long id;
 
@@ -20,20 +23,19 @@ public class AdditionalCost {
         this.lodgmentFeePercent = lodgmentFeePercent;
     }
 
-    public int calcWeekSale(int basicPrice) {
-        return CalcUtil.percentCalc(basicPrice, this.weekSalePercent);
+    public int calcWeekSale(int basicPrice, int fewNights) {
+        if (fewNights >= ONE_WEEK) {
+            return CalcUtil.percentCalc(basicPrice, this.weekSalePercent);
+        }
+        return 0;
     }
 
-    public int calcServiceFee(int basicPrice) {
-        return CalcUtil.percentCalc(basicPrice, this.serviceFeePercent);
-    }
-
-    public int calcLodgmentFee(int basicPrice) {
-        return CalcUtil.percentCalc(basicPrice, this.lodgmentFeePercent);
-    }
-
-    public int calcCleaningFee(){
-        return this.cleaningFee;
+    public int calcAdditionalCost(int basicPrice) {
+        int additionalPrice = 0;
+        additionalPrice += CalcUtil.percentCalc(basicPrice, this.serviceFeePercent);
+        additionalPrice += CalcUtil.percentCalc(basicPrice, this.lodgmentFeePercent);
+        additionalPrice += this.cleaningFee;
+        return additionalPrice;
     }
 
     public Long getId() {
