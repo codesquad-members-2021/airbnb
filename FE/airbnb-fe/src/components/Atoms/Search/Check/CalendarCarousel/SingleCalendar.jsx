@@ -6,6 +6,20 @@ import { SearchContext } from '../..';
 
 const SingleCalendar = ({ range }) => {
   const { calendarData, calDispatch } = useContext(SearchContext);
+  const {
+    year: checkInYear,
+    month: checkInMonth,
+    day: checkInDay,
+  } = calendarData.checkIn;
+  const {
+    year: checkOutYear,
+    month: checkOutMonth,
+    day: checkOutDay,
+  } = calendarData.checkOut;
+
+  const checkInDate = new Date(checkInYear, checkInMonth, checkInDay);
+  const checkOutDate = new Date(checkOutYear, checkOutMonth, checkOutDay);
+
   const today = new Date(Date.now());
   const [year, month] = [today.getFullYear(), range + today.getMonth() + 1];
   const monthArr = createMonthArray(year, month);
@@ -20,13 +34,7 @@ const SingleCalendar = ({ range }) => {
     const [clickedYear, clickedMonth, clickedDay] = e.target.dataset.day
       .split('-')
       .map(Number); // "2021-5-26"
-    const {
-      year: checkInYear,
-      month: checkInMonth,
-      day: checkInDay,
-    } = calendarData.checkIn;
-    const { year: checkOutYear } = calendarData.checkOut;
-    const checkInDate = new Date(checkInYear, checkInMonth, checkInDay);
+
     const clickedDate = new Date(
       clickedYear,
       clickedMonth,
@@ -41,7 +49,9 @@ const SingleCalendar = ({ range }) => {
       month: clickedMonth,
       day: clickedDay,
     };
-
+    //함수에다 인자 4개의 변수로 만들어지는 경우의 수  -> 반환 하는 함수를 만들어서
+    //a -> dispatch  어우....... 어우 ..... 둘다.....
+    //type checkin d이냐 checkout이냐
     //채크인에 데이터가 있을 때
     if (checkInYear) {
       //체크아웃에 데이터가 있을 때
@@ -89,18 +99,27 @@ const SingleCalendar = ({ range }) => {
       <tbody>
         {monthArr?.map((week, idx) => (
           <DayTr key={idx}>
-            {week?.map((day, idx) => (
-              <DayTd key={idx}>
-                <DayTdButton
-                  disabled={handleDisabled(day)}
-                  day={day}
-                  data-day={`${year}-${month}-${day}`}
-                  onClick={(e) => handleTdBtnClick(e)}
-                >
-                  {day}
-                </DayTdButton>
-              </DayTd>
-            ))}
+            {week?.map((day, idx) => {
+              const checkInTime = checkInDate.getTime();
+              const checkOutTime = checkOutDate.getTime();
+              const clickedTime = new Date(year, month, day).getTime();
+              return (
+                <DayTd key={idx}>
+                  <DayTdButton
+                    disabled={handleDisabled(day)}
+                    day={day}
+                    data-day={`${year}-${month}-${day}`}
+                    onClick={(e) => handleTdBtnClick(e)}
+                    dayCliked={
+                      checkInTime === clickedTime ||
+                      checkOutTime === clickedTime
+                    }
+                  >
+                    {day}
+                  </DayTdButton>
+                </DayTd>
+              );
+            })}
           </DayTr>
         ))}
       </tbody>
@@ -125,6 +144,9 @@ const DayTdButton = styled.button`
   font-size: ${({ theme }) => theme.fontSizes.XXS};
   font-weight: 700;
   background: none;
+  background-color: ${({ dayCliked }) => (dayCliked ? '#333' : 'none')};
+  color: ${({ dayCliked }) => (dayCliked ? '#fff' : 'none')};
+
   &:hover {
     border: ${({ day, disabled }) =>
       day === ' ' || disabled ? 'none' : '1px solid gray'};
