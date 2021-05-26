@@ -47,6 +47,7 @@ private extension CalendarViewController {
         calendarView.appearance.todayColor = UIColor.black
         calendarView.appearance.weekdayTextColor = UIColor.systemGray
         calendarView.scrollDirection = .vertical
+        calendarView.pagingEnabled = false
         calendarView.delegate = self
         calendarView.dataSource = self
     }
@@ -69,7 +70,11 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         dateStroage.append(dateFormatter.string(from: date))
         let checkIn = dateStroage.min() ?? ""
         let checkOut = dateStroage.max() ?? ""
-        dateLabel.text = "\(checkIn)\(checkOut)"
+        if checkIn == checkOut {
+            dateLabel.text = "\(checkIn) ~"
+        } else {
+            dateLabel.text = "\(checkIn) ~ \(checkOut)"
+        }
     }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -77,6 +82,13 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
             if dateStroage[$0] == dateFormatter.string(from: date) {
                 dateStroage.remove(at: $0)
             }
+        }
+        let checkIn = dateStroage.min() ?? ""
+        let checkOut = dateStroage.max() ?? ""
+        if checkIn == checkOut {
+            dateLabel.text = "\(checkIn) ~"
+        } else {
+            dateLabel.text = "\(checkIn) ~ \(checkOut)"
         }
     }
     
