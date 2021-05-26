@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useState } from "react";
-import Calendar from "components/Calendar/Calendar";
-import Guests from "components/Guests/Guests";
-import RoomPrice from "components/RoomPrice/RoomPrice";
+import Calendar from "components/SearchBar/Calendar/Calendar";
+import Guests from "components/SearchBar/Guests/Guests";
+import RoomPrice from "components/SearchBar/RoomPrice/RoomPrice";
 import SearchFilter from "components/SearchBar/SearchFilter";
 
 type State = {
