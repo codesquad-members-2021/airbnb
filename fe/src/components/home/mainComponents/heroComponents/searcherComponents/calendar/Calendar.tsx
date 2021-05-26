@@ -23,8 +23,7 @@ const Calendar = ({ isCheckIn }: CalendarType): React.ReactElement => {
     const handleCalendarButton = (payload: number, direction: string) => {
         const currDate = direction === 'prev' ? calendarQueue[0] : calendarQueue[calendarQueue.length - 1];
         const newDate = new Date();
-        newDate.setDate(1);
-        newDate.setMonth(currDate.getMonth() + payload);
+        newDate.setFullYear(currDate.getFullYear(), currDate.getMonth() + payload, 1);
         const newCalendarQueue = [...calendarQueue];
 
         if (direction === 'prev') {
