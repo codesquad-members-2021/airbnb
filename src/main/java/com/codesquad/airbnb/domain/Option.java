@@ -14,4 +14,24 @@ public class Option {
         this.freeParkingLot = freeParkingLot;
         this.hairDryer = hairDryer;
     }
+
+    public boolean isKitchen() {
+        return kitchen;
+    }
+
+    public boolean isAirConditioner() {
+        return airConditioner;
+    }
+
+    public boolean isWifi() {
+        return wifi;
+    }
+
+    public boolean isFreeParkingLot() {
+        return freeParkingLot;
+    }
+
+    public boolean isHairDryer() {
+        return hairDryer;
+    }
 }
