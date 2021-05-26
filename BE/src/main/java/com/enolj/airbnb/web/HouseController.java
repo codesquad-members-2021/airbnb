@@ -2,7 +2,6 @@ package com.enolj.airbnb.web;
 
 import com.enolj.airbnb.service.HouseService;
 import com.enolj.airbnb.web.dto.*;
-import com.enolj.airbnb.web.utils.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
