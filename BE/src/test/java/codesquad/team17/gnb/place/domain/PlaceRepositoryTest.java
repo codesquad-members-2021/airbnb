@@ -47,11 +47,6 @@ class PlaceRepositoryTest {
     }
 
     @Test
-    void findAll() {
-        assertThat(placeRepository.findAll()).hasSize(2);
-    }
-
-    @Test
     void findByStayPeriod() {
         softly.assertThat(placeRepository
                 .findAllByStayPeriod(LocalDate.of(2021, 5, 22), LocalDate.of(2021, 5, 25)))

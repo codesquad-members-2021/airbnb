@@ -1,5 +1,6 @@
 package codesquad.team17.gnb.place.controller;
 
+import codesquad.team17.gnb.place.dto.PlaceQueries;
 import codesquad.team17.gnb.place.dto.PlaceSummary;
 import codesquad.team17.gnb.place.service.PlaceService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ public class PlaceController {
     }
 
     @GetMapping
-    public List<PlaceSummary> placeSummaries() {
-        return placeService.placeSummaries();
+    public List<PlaceSummary> placeSummaries(PlaceQueries placeQueries) {
+        return placeService.placeSummaries(placeQueries);
     }
 }

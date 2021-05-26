@@ -1,5 +1,7 @@
 package codesquad.team17.gnb.place.domain
 
+import codesquad.team17.gnb.place.dto.PlaceQueries
+
 class PlaceSql {
     public static final String FIND_ALL = """
         SELECT
@@ -34,11 +36,52 @@ class PlaceSql {
             SELECT place_id
             FROM reservation
             WHERE
-                (check_in <= :check_in AND check_out > :check_in)
+                (check_in <= :checkIn AND check_out > :checkIn)
             OR
-                (check_in < :check_out AND check_out >= :check_out)
+                (check_in < :checkOut AND check_out >= :checkOut)
             OR
-                (:check_in <= check_in AND check_in < :check_out)  
+                (:checkIn <= check_in AND check_in < :checkOut)  
         ) 
 """
+
+    static String findBy(PlaceQueries placeQueries) {
+        String SELECT_SQL = FIND_ALL + " WHERE maximum_number_of_people >= :people "
+
+        if (placeQueries.minPrice != null) {
+            SELECT_SQL += "AND price >= :minPrice "
+        }
+
+        if (placeQueries.maxPrice != null) {
+            SELECT_SQL += "AND price <= :maxPrice "
+        }
+
+        if (placeQueries.district != null) {
+            SELECT_SQL += "AND district LIKE :district "
+        }
+
+        if (placeQueries.checkIn != null || placeQueries.checkOut != null) {
+            SELECT_SQL += """
+            AND place_id NOT IN
+            (
+                SELECT place_id
+                FROM reservation
+                WHERE 1=0 
+            """
+            if (placeQueries.checkIn != null) {
+                SELECT_SQL += "OR (check_in <= :checkIn AND check_out > :checkIn) "
+            }
+
+            if (placeQueries.checkOut != null) {
+                SELECT_SQL += "OR (check_in < :checkOut AND check_out >= :checkOut) "
+            }
+
+            if (placeQueries.checkIn != null && placeQueries.checkOut != null) {
+                SELECT_SQL += "OR (:checkIn <= check_in AND check_in < :checkOut) "
+            }
+
+            SELECT_SQL += ")"
+        }
+
+        return SELECT_SQL
+    }
 }

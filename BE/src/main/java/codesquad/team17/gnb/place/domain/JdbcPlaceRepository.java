@@ -1,5 +1,6 @@
 package codesquad.team17.gnb.place.domain;
 
+import codesquad.team17.gnb.place.dto.PlaceQueries;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -54,15 +55,27 @@ public class JdbcPlaceRepository implements PlaceRepository {
     }
 
     @Override
-    public List<Place> findAll() {
-        return jdbcTemplate.query(PlaceSql.FIND_ALL, PLACE_ROWMAPPER);
+    public List<Place> findBy(PlaceQueries placeQueries) {
+        SqlParameterSource namedParameters = setNamedParametersByPlaceQueries(placeQueries);
+
+        return jdbcTemplate.query(PlaceSql.findBy(placeQueries), namedParameters, PLACE_ROWMAPPER);
+    }
+
+    private SqlParameterSource setNamedParametersByPlaceQueries(PlaceQueries placeQueries) {
+        return new MapSqlParameterSource()
+                .addValue("people", placeQueries.sumOfPeople())
+                .addValue("minPrice", placeQueries.getMinPrice())
+                .addValue("maxPrice", placeQueries.getMaxPrice())
+                .addValue("district", placeQueries.getDistrict() + "%")
+                .addValue("checkIn", placeQueries.getCheckIn())
+                .addValue("checkOut", placeQueries.getCheckOut());
     }
 
     @Override
     public List<Place> findAllByStayPeriod(LocalDate checkIn, LocalDate checkOut) {
         SqlParameterSource namedParameters = new MapSqlParameterSource()
-                .addValue("check_in", Date.valueOf(checkIn))
-                .addValue("check_out", Date.valueOf(checkOut));
+                .addValue("checkIn", Date.valueOf(checkIn))
+                .addValue("checkOut", Date.valueOf(checkOut));
 
         return jdbcTemplate.query(
                 PlaceSql.FIND_ALL_BY_STAY_PERIOD, namedParameters, PLACE_ROWMAPPER
