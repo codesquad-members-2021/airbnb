@@ -60,6 +60,39 @@ class FindingAccommdationViewController: UIViewController {
         self.conditionTableView.dataSource = tableViewDataSource
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: self)
+        guard let NextViewController = segue.destination as? RoomInformationViewController else {
+            return
+        }
+        requestAccommdation()
+    }
+    
+    private func requestAccommdation() {
+        let requestURL = MainAPIEndPoint.init(path: "/search", httpMethod: .get)
+        
+        Network.requestQueryString(with: requestURL, dataType: SearchResultData.self, queryParameter: self.findingAccommdationCondition) { result in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func takelocationBeforeController(location: String) {
+        self.findingAccommdationCondition.insertData(location: location)
+    }
+    
+    private func scrollPage() {
+        let totalWidth = CGFloat(findingAccommdationConditionView.contentSize.width)
+        let viewCount = CGFloat(self.content.subviews.count)
+        
+        
+        self.findingAccommdationConditionView.setContentOffset(CGPoint(x: totalWidth / viewCount * CGFloat(currentState.value), y: 0), animated: true)
+    }
+    
     @IBAction func pressedPreButton(_ sender: Any) {
         if self.currentState == .date {
             return
@@ -87,16 +120,12 @@ class FindingAccommdationViewController: UIViewController {
         self.adultCountLabel.text = findingAccommdationCondition.convert(peopleCount: peopleCount)
     }
     
-    func takelocationBeforeController(location: String) {
-        self.findingAccommdationCondition.insertData(location: location)
-    }
-    
     @IBAction func pressedMincost(_ sender: Any) {
-        self.findingAccommdationCondition.update(minCost: "₩1000")
+        self.findingAccommdationCondition.update(minCost: "10000")
     }
     
     @IBAction func pressedMaxCost(_ sender: Any) {
-        self.findingAccommdationCondition.update(maxCost: "₩150000")
+        self.findingAccommdationCondition.update(maxCost: "150000")
     }
     
     @IBAction func pressedPeopleMinus(_ sender: Any) {
@@ -105,14 +134,6 @@ class FindingAccommdationViewController: UIViewController {
     
     @IBAction func pressedPeoplePlus(_ sender: Any) {
         self.findingAccommdationCondition.update(people: 1, isAdd: true)
-    }
-    
-    private func scrollPage() {
-        let totalWidth = CGFloat(findingAccommdationConditionView.contentSize.width)
-        let viewCount = CGFloat(self.content.subviews.count)
-        
-        
-        self.findingAccommdationConditionView.setContentOffset(CGPoint(x: totalWidth / viewCount * CGFloat(currentState.value), y: 0), animated: true)
     }
 }
 

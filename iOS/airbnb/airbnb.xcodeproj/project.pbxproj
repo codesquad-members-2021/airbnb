@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8220C8BD2658C6CC00E3F3CA /* FindingAccommdationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8220C8BC2658C6CC00E3F3CA /* FindingAccommdationViewController.swift */; };
+		8255E5B7265E2F6100FD066D /* SearchResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255E5B5265E2F6100FD066D /* SearchResultData.swift */; };
+		8255E5B8265E2F6100FD066D /* RoomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255E5B6265E2F6100FD066D /* RoomData.swift */; };
 		825702E02653AE99009237BE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825702DF2653AE99009237BE /* SearchViewController.swift */; };
 		825745A7265A4A310021371B /* FindingAccommodationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825745A6265A4A310021371B /* FindingAccommodationTableViewCell.swift */; };
 		82817BD926577973007EA648 /* FindingAccommodationViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82817BD826577973007EA648 /* FindingAccommodationViewTableViewCell.swift */; };
@@ -57,6 +59,8 @@
 
 /* Begin PBXFileReference section */
 		8220C8BC2658C6CC00E3F3CA /* FindingAccommdationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindingAccommdationViewController.swift; sourceTree = "<group>"; };
+		8255E5B5265E2F6100FD066D /* SearchResultData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultData.swift; sourceTree = "<group>"; };
+		8255E5B6265E2F6100FD066D /* RoomData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomData.swift; sourceTree = "<group>"; };
 		825702DF2653AE99009237BE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		825745A6265A4A310021371B /* FindingAccommodationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindingAccommodationTableViewCell.swift; sourceTree = "<group>"; };
 		82817BD826577973007EA648 /* FindingAccommodationViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindingAccommodationViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 		825745AC265B8D690021371B /* SearchResultData */ = {
 			isa = PBXGroup;
 			children = (
+				8255E5B6265E2F6100FD066D /* RoomData.swift */,
+				8255E5B5265E2F6100FD066D /* SearchResultData.swift */,
 			);
 			path = SearchResultData;
 			sourceTree = "<group>";
@@ -417,6 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8255E5B8265E2F6100FD066D /* RoomData.swift in Sources */,
 				D4DDA63C26524ECD00FE52FA /* ViewController.swift in Sources */,
 				D4DDA6A0265376E500FE52FA /* MainPageDTO.swift in Sources */,
 				82FBF0D626538E07009B4A1F /* RecommendTripCollectionViewDataSource.swift in Sources */,
@@ -424,6 +431,7 @@
 				D4DDA72B265BD9D400FE52FA /* RoomInformationCell.swift in Sources */,
 				82FBF0D426538AB8009B4A1F /* TripPlaceCollectionViewDataSource.swift in Sources */,
 				D4DDA63826524ECD00FE52FA /* AppDelegate.swift in Sources */,
+				8255E5B7265E2F6100FD066D /* SearchResultData.swift in Sources */,
 				D4DDA726265BD94D00FE52FA /* RoomInformationViewDataSource.swift in Sources */,
 				D4DDA68E265375CF00FE52FA /* WishList.swift in Sources */,
 				825702E02653AE99009237BE /* SearchViewController.swift in Sources */,

@@ -8,9 +8,9 @@
 import Foundation
 
 class SearchResultData: Decodable {
-    private(set) var rooms: [RoomData]
+    private(set) var properties: [RoomData]
     
     init() {
-        self.rooms = []
+        self.properties = []
     }
 }
