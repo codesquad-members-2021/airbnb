@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Calendar from "component/searchBar/calendar/Calendar";
 import { ReactComponent as LeftButton } from "assets/left_arrow.svg";
@@ -10,30 +10,51 @@ function CalendarModal() {
   const today = new Date();
   const [year, setYear] = useState<number>(() => today.getFullYear());
   const [month, setMonth] = useState<number>(() => today.getMonth());
+  const [translate, setTranslate] = useState<string>("calc(-100% / 3)");
+  const [duration, setDuration] = useState<string>("all 400ms");
+  const [clickedArrow, setClickedArrow] = useState<string>("");
   // 날짜선택 O → 선택된 체크인 날짜 기준으로 달력 렌더
 
   const handleClickLeftBtn = (): void => {
-    if (month > 1) setMonth(month - 2);
-    else {
-      setYear(year - 1);
-      setMonth(month + 10);
-    }
+    setTranslate("17px");
+    setClickedArrow("left");
   };
+
   const handleClickRightBtn = (): void => {
-    if (month < 10) setMonth(month + 2);
-    else {
-      setYear(year + 1);
-      setMonth(month - 10);
-    }
+    setTranslate("calc(-200% / 3 - 17px)");
+    setClickedArrow("right");
   };
+
+  const handleTransitionEnd = (): void => {
+    if (clickedArrow === "right") {
+      if (month < 10) setMonth(month + 2);
+      else {
+        setYear(year + 1);
+        setMonth(month - 10);
+      }
+    }
+    if (clickedArrow === "left") {
+      if (month > 1) setMonth(month - 2);
+      else {
+        setYear(year - 1);
+        setMonth(month + 10);
+      }
+    }
+    setDuration("none");
+    setTranslate("calc(-100% / 3)");
+  };
+
+  useEffect((): void => {
+    setDuration("all 400ms");
+  }, [duration]);
 
   const theNumOfCalendar = new Array(6).fill(null);
   return (
     <Modal onClick={stopPropagation}>
       <ModalContent>
-        <CalendarWrap>
+        <CalendarWrap translateValue={translate} duration={duration} onTransitionEnd={handleTransitionEnd}>
           {theNumOfCalendar.map((_, i) => (
-            <Calendar year={year} month={month - 2 + i} />
+            <Calendar key={year + (month - 2 + i)} year={year} month={month - 2 + i} />
           ))}
         </CalendarWrap>
       </ModalContent>
@@ -81,9 +102,15 @@ const ModalContent = styled.div`
   /* overflow: hidden; */
 `;
 
-const CalendarWrap = styled.div`
+interface CalendarWrapProps {
+  translateValue: string;
+  duration: string;
+}
+
+const CalendarWrap = styled.div<CalendarWrapProps>`
   width: 300%;
-  transform: translateX(calc(-100% / 3));
+  transform: ${({ translateValue }) => `translateX(${translateValue})`};
+  transition: ${({ duration }) => duration};
   display: flex;
   justify-content: space-between;
 `;
