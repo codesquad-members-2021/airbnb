@@ -1,34 +1,25 @@
 package airbnb.dto;
 
+import airbnb.domain.Cost;
+import airbnb.domain.Schedule;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.LocalDate;
 
 public class RoomSearchRequest {
 
-    @JsonProperty(value = "city")
     private final Long cityId;
+    private final Schedule schedule;
+
+    @JsonProperty(value = "price")
+    private final Cost cost;
 
     @JsonProperty(value = "people")
     private final int maxPersonCount;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private final LocalDate checkIn;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private final LocalDate checkOut;
-
-    private final int maxPrice;
-    private final int minPrice;
-
-    public RoomSearchRequest(Long cityId, int maxPersonCount, LocalDate checkIn, LocalDate checkOut, int maxPrice, int minPrice) {
+    public RoomSearchRequest(Long cityId, int maxPersonCount, Schedule schedule, Cost cost) {
         this.cityId = cityId;
         this.maxPersonCount = maxPersonCount;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
-        this.maxPrice = maxPrice;
-        this.minPrice = minPrice;
+        this.schedule = schedule;
+        this.cost = cost;
     }
 
     public Long getCityId() {
@@ -39,19 +30,11 @@ public class RoomSearchRequest {
         return maxPersonCount;
     }
 
-    public LocalDate getCheckIn() {
-        return checkIn;
+    public Schedule getSchedule() {
+        return schedule;
     }
 
-    public LocalDate getCheckOut() {
-        return checkOut;
-    }
-
-    public int getMaxPrice() {
-        return maxPrice;
-    }
-
-    public int getMinPrice() {
-        return minPrice;
+    public Cost getPrice() {
+        return cost;
     }
 }

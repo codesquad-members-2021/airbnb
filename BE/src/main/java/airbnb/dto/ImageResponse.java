@@ -16,6 +16,4 @@ public class ImageResponse {
         this.mainImageUrl = mainImageUrl;
         this.detailImageUrls = detailImageUrls;
     }
-
-
 }

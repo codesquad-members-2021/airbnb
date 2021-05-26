@@ -11,8 +11,6 @@ public class City {
     private Long id;
     private String name;
     private List<Image> images;
-
-    @Embedded.Nullable
     private Location location;
 
     public City(Long id, String name, Location location) {

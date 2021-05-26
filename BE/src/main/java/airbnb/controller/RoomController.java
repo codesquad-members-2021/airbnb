@@ -2,6 +2,8 @@ package airbnb.controller;
 
 import airbnb.Service.RoomService;
 import airbnb.domain.Room;
+import airbnb.dto.PriceRequest;
+import airbnb.dto.RoomSearchRequest;
 import airbnb.wrapper.PricesWrapper;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,5 +32,15 @@ public class RoomController {
     @GetMapping("/test")
     public List<Room> test(){
         return roomService.findAll();
+    }
+
+    @PostMapping("/price")
+    public PriceRequest postTest(@RequestBody PriceRequest priceRequest){
+        return priceRequest;
+    }
+
+    @PostMapping
+    public RoomSearchRequest searchRequest(@RequestBody RoomSearchRequest roomSearchRequest){
+        return roomSearchRequest;
     }
 }

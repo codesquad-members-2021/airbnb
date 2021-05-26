@@ -20,7 +20,7 @@ create table category(
 drop tabel room;
 create table room(
     id int not null auto_increment,
-    price int not null,
+    cost int not null,
     title varchar (45) not null,
     description varchar (300),
     people int not null,

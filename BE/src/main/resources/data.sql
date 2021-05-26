@@ -36,7 +36,7 @@ values ('https://a0.muscache.com/im/pictures/c45d08e5-f560-44f0-83fc-83290ccd167
        ('https://a0.muscache.com/im/pictures/a63a845b-c16e-4a0f-b0ca-a124a677b3d2.jpg?im_w=1200', 'MAIN', 7),
        ('https://a0.muscache.com/im/pictures/miso/Hosting-47897490/original/b0238603-d063-4f5c-9e10-c835132669e4.jpeg?im_w=1200', 'MAIN', 8);
 
-INSERT INTO room(price, title, description, people, oneroom, bed, bath, hair_dryer, air_conditioner, wifi, clean_tax, city_id, category_id)
+INSERT INTO room(cost, title, description, people, oneroom, bed, bath, hair_dryer, air_conditioner, wifi, clean_tax, city_id, category_id)
 values (150000, '이태원에 아늑한 숙소 Y 하우스', '이태원역에서 도보로 4분거리에 위치하고 있고 대로변에서 상당히 가까운 지역에 위치하여 여성분들도 안전하게 머무시며 이태원을 만끽하실 수 있으세요.'
         , 2, false, 2, 1, true, true, true, 25000, 1, 1),
        (200000, '강남역 1번 출구 바로 옆 편리하고 깔끔한 숙소', '- 전철까지 도보 30초
