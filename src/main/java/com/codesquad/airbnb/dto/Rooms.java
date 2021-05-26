@@ -1,17 +1,15 @@
 package com.codesquad.airbnb.dto;
 
-import com.codesquad.airbnb.domain.Room;
-
 import java.util.List;
 
 public class Rooms {
-    private List<Room> rooms;
+    private List<RoomDTO> roomDTOS;
 
-    public Rooms(List<Room> rooms) {
-        this.rooms = rooms;
+    public Rooms(List<RoomDTO> roomDTOS) {
+        this.roomDTOS = roomDTOS;
     }
 
-    public List<Room> getRooms() {
-        return rooms;
+    public List<RoomDTO> getRooms() {
+        return roomDTOS;
     }
 }
