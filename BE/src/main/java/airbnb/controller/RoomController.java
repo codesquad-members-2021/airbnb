@@ -19,8 +19,8 @@ public class RoomController {
         return new PricesWrapper(roomService.findAllRoomPrice());
     }
 
-    @PostMapping("/price")
-    public PricesWrapper readPrices(@RequestBody PriceRequest priceRequest){
-        return new PricesWrapper(roomService.findSearchRoomsPrices(priceRequest));
-    }
+//    @PostMapping("/price")
+//    public PricesWrapper readPrices(@RequestBody PriceRequest priceRequest){
+//        return new PricesWrapper(roomService.findSearchRoomsPrices(priceRequest));
+//    }
 }

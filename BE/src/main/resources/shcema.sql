@@ -31,8 +31,6 @@ create table room(
     air_conditioner tinyint(1) not null default 0,
     wifi tinyint(1) not null default 0,
     clean_tax int ,
-    service_tax int ,
-    accommodation_tax int,
     city_id int not null,
     category_id int not null,
 

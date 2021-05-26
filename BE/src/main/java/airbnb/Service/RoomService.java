@@ -16,11 +16,7 @@ public class RoomService {
         this.roomDao = roomDao;
     }
 
-    public Map<String,Integer> findAllRoomPrice(){
-        List<Integer> prices = roomDao.findAllPrice();
-        for(Integer price : prices){
-            
-        }
-        return
+    public List<Integer> findAllRoomPrice(){
+        return roomDao.findAllPrice();
     }
 }

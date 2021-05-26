@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository
 public class RoomDao {
@@ -25,17 +26,15 @@ public class RoomDao {
     }
 
     public List<Room> findAll(){
-        String sql = "SELECT id, price, title, description, people, oneroom, bed, bath, hair_dryer, air_conditioner, wifi, clea_tax, service_tax, accommodation_tax  FROM city";
+        String sql = "SELECT id, price, title, description, people, oneroom, bed, bath, hair_dryer, air_conditioner, wifi, clean_tax FROM room";
         List<Room> rooms = jdbcTemplate.query(sql, roomMapper);
         rooms.forEach(room -> room.setImages(imageDao.findByRoomId(room.getId())));
         return rooms;
     }
 
     public List<Integer> findAllPrice(){
-        List<Integer> prices = new ArrayList<>();
-        String sql = "SELECT price FROM room ORDER BY price";
+        String sql = "SELECT id, price, title, description, people, oneroom, bed, bath, hair_dryer, air_conditioner, wifi, clean_tax FROM room ORDER BY price";
         List<Room> rooms = jdbcTemplate.query(sql, roomMapper);
-        rooms.forEach(room -> prices.add(room.getPrice()));
-        return prices;
+        return rooms.stream().map(Room::getPrice).collect(Collectors.toList());
     }
 }
