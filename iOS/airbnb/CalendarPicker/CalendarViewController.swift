@@ -32,14 +32,13 @@ class CalendarViewController: UIViewController {
         return layout
     }()
     
-    private var numberOfWeeksInBaseDate: Int {
-        calendar.range(of: .weekOfMonth, in: .month, for: baseDate)?.count ?? 0
-    }
-    
     private let calendar = Calendar(identifier: .gregorian)
     private var baseDate = Date()
     private lazy var days = generateDaysInMonth(for: baseDate)
     private lazy var dataSource = CalanderColleectionDataSource(with: days)
+    private var numberOfWeeksInBaseDate: Int {
+        calendar.range(of: .weekOfMonth, in: .month, for: baseDate)?.count ?? 0
+    }
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -53,7 +52,10 @@ class CalendarViewController: UIViewController {
 
 }
 
+// MARK: - Calculator days per a month
+
 extension CalendarViewController {
+    
     func monthMetadata(for baseDate: Date) throws -> MonthMetadata {
         guard
             let numerOfDaysInMonth = calendar.range(of: .day, in: .month, for: baseDate)?.count,
@@ -129,7 +131,6 @@ extension CalendarViewController {
 extension CalendarViewController: UICollectionViewDelegate {
     
 }
-
 
 extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     

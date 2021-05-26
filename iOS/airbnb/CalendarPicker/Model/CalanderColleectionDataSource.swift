@@ -13,6 +13,7 @@ class CalanderColleectionDataSource: NSObject, UICollectionViewDataSource {
     
     init(with days: [Day]){
         super.init()
+        
         days.forEach{
             let model = CalendarViewModel(day: $0)
             models.append(model)
