@@ -1,0 +1,50 @@
+[
+  {
+    "cityId": 1,
+    "name": "서울",
+    "distance": "차로 30분 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/71e23854-a3c7-491c-b715-6e86233a293f.jpg"
+  },
+  {
+    "cityId": 2,
+    "name": "의정부",
+    "distance": "차로 30분 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/558a403a-aeed-4829-83a6-c9b0ccf21866.jpg"
+  },
+  {
+    "cityId": 3,
+    "name": "인천",
+    "distance": "차로 1시간 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/31e445ed-8b69-477b-aefd-d04dae6d0bb1.jpg"
+  },
+  {
+    "cityId": 4,
+    "name": "대전",
+    "distance": "차로 2.5시간 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/a0eb36e7-b468-4c5e-93b2-819e793563b2.jpg"
+  },
+  {
+    "cityId": 5,
+    "name": "대구",
+    "distance": "차로 3.5시간 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/f7736f4a-f8b9-4527-b46c-d0d8df856984.jpg"
+  },
+  {
+    "cityId": 6,
+    "name": "광주",
+    "distance": "차로 4.5시간 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/087a8dff-a609-4084-86db-f45051c6f23a.jpg"
+  },
+  {
+    "cityId": 7,
+    "name": "수원시",
+    "distance": "차로 1시간 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/926d56aa-8b36-4138-8eae-ad991868b858.jpg"
+  },
+  {
+    "cityId": 8,
+    "name": "청주시",
+    "distance": "차로 2시간 거리",
+    "imgUrl": "https://a0.muscache.com/im/pictures/b0097a48-c16c-4869-84df-9bbe7d4e9eb0.jpg"
+  }
+]
