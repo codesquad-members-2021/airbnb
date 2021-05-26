@@ -113,37 +113,28 @@ private extension CalendarViewController {
         viewModel.locationData
             .drive(locationLabel.rx.text)
             .disposed(by: rx.disposeBag)
+        
+        viewModel.dateInfo
+            .drive(dateLabel.rx.text)
+            .disposed(by: rx.disposeBag)
     }
 }
 
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        dateStroage.append(dateFormatter.string(from: date))
-        let checkIn = dateStroage.min() ?? ""
-        let checkOut = dateStroage.max() ?? ""
-        if checkIn == checkOut {
-            dateLabel.text = "\(checkIn)"
-            nextPage.accept(false)
-        } else {
-            dateLabel.text = "\(checkIn) ~ \(checkOut)"
-            nextPage.accept(true)
+        viewModel.append(date: dateFormatter.string(from: date))
+        switch calendarView.selectedDates.count {
+        case 0...1: nextPage.accept(false)
+        default: nextPage.accept(true)
         }
     }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let selectedDate = dateFormatter.string(from: date)
-        if let index = dateStroage.firstIndex(of: selectedDate) {
-            dateStroage.remove(at: index)
-        }
-        let checkIn = dateStroage.min() ?? ""
-        let checkOut = dateStroage.max() ?? ""
-        if checkIn == checkOut {
-            dateLabel.text = "\(checkIn)"
-            nextPage.accept(false)
-        } else {
-            dateLabel.text = "\(checkIn) ~ \(checkOut)"
-            nextPage.accept(true)
+        viewModel.delete(date: dateFormatter.string(from: date))
+        switch calendarView.selectedDates.count {
+        case 0...1: nextPage.accept(false)
+        default: nextPage.accept(true)
         }
     }
     
