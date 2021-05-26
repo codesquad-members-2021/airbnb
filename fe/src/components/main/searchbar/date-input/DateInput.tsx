@@ -50,5 +50,4 @@ const StyledDateInput = styled.div`
 const ModalPosition = css`
   top: 115%;
   left: 0;
-  width: 100%;
 `;

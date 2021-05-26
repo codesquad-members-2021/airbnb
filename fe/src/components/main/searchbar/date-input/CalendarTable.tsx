@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 interface TableType {
   columns: string[];
   data: number[][];
@@ -6,28 +8,39 @@ interface TableType {
 
 const CalendarTable = ({ columns, data, mon }: TableType) => {
   return (
-    <table>
+    <StyldTable>
       <thead>
         <tr>
           {columns.map((column) => (
-            <th key={`${mon}${column}`}>{column}</th>
+            <StyldDay key={`${mon}${column}`}>{column}</StyldDay>
           ))}
         </tr>
       </thead>
       <tbody>
         {data.map((row, i) => (
-          <tr key={"tr"+  i}>
+          <tr key={"tr" + i}>
             {row.map((item, j) =>
               item ? (
-                <th key={`_${j}${i}${mon}`}>{item}</th>
+                <StyldTh key={`_${j}${i}${mon}`}>{item}</StyldTh>
               ) : (
-                <th key={`_${j}${i}${mon}`}></th>
+                <StyldTh key={`_${j}${i}${mon}`}></StyldTh>
               )
             )}
           </tr>
         ))}
       </tbody>
-    </table>
+    </StyldTable>
   );
 };
 export default CalendarTable;
+
+const StyldTable = styled.table``;
+
+const StyldDay = styled.th`
+  color: ${({ theme }) => theme.color.Gray4};
+`;
+
+const StyldTh = styled.th`
+  width: 4rem;
+  height: 4rem;
+`;

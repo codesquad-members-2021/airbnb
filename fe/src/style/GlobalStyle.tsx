@@ -13,6 +13,14 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0.5rem 0;
   }
+  button{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+  }
 `;
 
 export default GlobalStyle;

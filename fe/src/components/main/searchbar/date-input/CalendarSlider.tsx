@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useReducer, MouseEvent } from "react";
 import Calendar from "./Calendar";
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+
 interface CalendarSliderType {
   CalendarType: "SINGLE" | "DOUBLE";
 }
@@ -67,13 +69,15 @@ const CalendarSlider = ({ CalendarType }: CalendarSliderType) => {
 
   return (
     <StyledCalendarSlider>
-      <CalendarSliderLeftBtn onClick={handleLeftClick}></CalendarSliderLeftBtn>
+      <CalendarSliderLeftBtn onClick={handleLeftClick}>
+        <FaChevronLeft />
+      </CalendarSliderLeftBtn>
       {nowDate.map((v, i) => (
         <Calendar date={v} key={`cal${i}`} />
       ))}
-      <CalendarSliderRightBtn
-        onClick={handleRightClick}
-      ></CalendarSliderRightBtn>
+      <CalendarSliderRightBtn onClick={handleRightClick}>
+        <FaChevronRight />
+      </CalendarSliderRightBtn>
     </StyledCalendarSlider>
   );
 };
@@ -83,5 +87,17 @@ const StyledCalendarSlider = styled.div`
   display: flex;
   width: 100%;
 `;
-const CalendarSliderLeftBtn = styled.button``;
-const CalendarSliderRightBtn = styled.button``;
+const CalendarSliderLeftBtn = styled.button`
+  position: absolute;
+  top: 2.5rem;
+  background-color: transparent;
+  left: 4rem;
+  font-size: 1.4rem;
+`;
+const CalendarSliderRightBtn = styled.button`
+  position: absolute;
+  top: 2.5rem;
+  background-color: transparent;
+  right: 4rem;
+  font-size: 1.4rem;
+`;

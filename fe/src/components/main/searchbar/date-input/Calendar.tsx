@@ -30,15 +30,25 @@ const Calendar = ({ date }: CalendarType) => {
   return (
     <StyledCalender>
       <CalenderTitle>{`${date.year}년 ${date.mon}월`}</CalenderTitle>
-      <CalendarTable mon={date.mon} columns={days} data={makeDate(nowDate, dateLast)} />
+      <CalendarTable
+        mon={date.mon}
+        columns={days}
+        data={makeDate(nowDate, dateLast)}
+      />
     </StyledCalender>
   );
 };
 
 export default Calendar;
 
-const StyledCalender = styled.div``;
+const StyledCalender = styled.div`
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 2rem;
+`;
 const CalenderTitle = styled.h5`
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: 700;
+  margin-bottom: 2rem;
 `;
