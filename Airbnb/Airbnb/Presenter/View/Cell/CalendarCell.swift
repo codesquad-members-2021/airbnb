@@ -7,7 +7,8 @@ class CalendarCell: UITableViewCell {
     
     static let identifier = "CalendarCell"
     
-    func configure(_ text:String) {
-        titleLabel.text = text
+    func configure(_ info:[String]) {
+        titleLabel.text = info[0]
+        contentLabel.text = info[1]
     }
 }

@@ -26,7 +26,7 @@ class CalendarViewController: UIViewController {
     }
     
     func setupLocation(_ info:String) {
-        locationInfo = info
+        viewModel.add(location: info)
     }
     
     private func bind() {
