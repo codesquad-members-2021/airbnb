@@ -5,11 +5,7 @@ import CloseButton from '../../buttons/CloseBtn';
 
 const Check = ({ dispatch }) => {
   const { calendarData, calDispatch } = useContext(SearchContext);
-  const {
-    year: checkInYear,
-    month: checkInMonth,
-    day: checkInDay,
-  } = calendarData.checkIn;
+  const { year: checkInYear } = calendarData.checkIn;
 
   return (
     <CheckDiv>

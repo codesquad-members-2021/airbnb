@@ -14,7 +14,7 @@ const CalendarContainer = styled.div`
   width: 100%;
   height: 100%;
   padding: 4.0625rem 5.5rem;
-  border: 1px solid magenta;
+  /* border: 1px solid magenta; */
 `;
 
 export default CalendarCarousel;

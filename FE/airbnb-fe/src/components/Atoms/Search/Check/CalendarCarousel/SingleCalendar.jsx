@@ -34,7 +34,6 @@ const SingleCalendar = ({ range }) => {
     const [clickedYear, clickedMonth, clickedDay] = e.target.dataset.day
       .split('-')
       .map(Number); // "2021-5-26"
-
     const clickedDate = new Date(
       clickedYear,
       clickedMonth,
@@ -104,13 +103,19 @@ const SingleCalendar = ({ range }) => {
               const checkOutTime = checkOutDate.getTime();
               const clickedTime = new Date(year, month, day).getTime();
               return (
-                <DayTd key={idx}>
+                <DayTd
+                  key={idx}
+                  day={day}
+                  dayInterval={
+                    checkInTime < clickedTime && clickedTime < checkOutTime
+                  }
+                >
                   <DayTdButton
                     disabled={handleDisabled(day)}
                     day={day}
                     data-day={`${year}-${month}-${day}`}
                     onClick={(e) => handleTdBtnClick(e)}
-                    dayCliked={
+                    dayClicked={
                       checkInTime === clickedTime ||
                       checkOutTime === clickedTime
                     }
@@ -135,6 +140,14 @@ const SingleCalDiv = styled.table`
 const DayTd = styled.td`
   width: 3rem;
   height: 3rem;
+  box-sizing: border-box;
+
+  background: ${({ day, dayInterval }) =>
+    dayInterval && day !== ' ' ? '#ebe9e9' : 'none'};
+  box-shadow: ${({ day, dayInterval }) =>
+    dayInterval && day !== ' '
+      ? '0 0 4px 0 #f7f7f7, 4px 0 4px 0 #f7f7f7'
+      : 'none'};
 `;
 
 const DayTdButton = styled.button`
@@ -144,19 +157,13 @@ const DayTdButton = styled.button`
   font-size: ${({ theme }) => theme.fontSizes.XXS};
   font-weight: 700;
   background: none;
-  background-color: ${({ dayCliked }) => (dayCliked ? '#333' : 'none')};
-  color: ${({ dayCliked }) => (dayCliked ? '#fff' : 'none')};
-
-  &:hover {
-    border: ${({ day, disabled }) =>
-      day === ' ' || disabled ? 'none' : '1px solid gray'};
+  background-color: ${({ dayClicked }) => (dayClicked ? '#333' : 'none')};
+  color: ${({ dayClicked }) => (dayClicked ? '#fff' : 'none')};
+  :hover {
+    box-shadow: ${({ day }) => (day !== ' ' ? '0 0 0 1px #333 inset' : 'none')};
     cursor: ${({ day, disabled }) =>
       day === ' ' || disabled ? 'default' : 'pointer'};
   }
-  /* &:click {
-    background-color: ${({ theme }) => theme.colors.gray1};
-    color: ${({ theme }) => theme.colors.white};
-  } */
 `;
 
 const DayTr = styled.tr`
