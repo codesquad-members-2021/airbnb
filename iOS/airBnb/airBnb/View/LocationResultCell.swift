@@ -9,10 +9,6 @@ import UIKit
 
 class LocationResultCell: UITableViewCell {
     
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()

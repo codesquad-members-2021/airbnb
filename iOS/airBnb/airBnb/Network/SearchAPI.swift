@@ -8,11 +8,11 @@
 import Foundation
 import Combine
 
-protocol NetworkManageable {
+protocol SearchAPIable {
     func requestResource<T: Decodable>(from location: String) -> AnyPublisher<T,NetworkError>
 }
 
-final class NetworkManager: NetworkManageable {
+final class SearchAPI: SearchAPIable {
     
     func requestResource<T: Decodable>(from location: String) -> AnyPublisher<T,NetworkError> {
         guard let url = Endpoint.searchURL(text: location) else {
@@ -22,6 +22,9 @@ final class NetworkManager: NetworkManageable {
     }
     
     private func request<T : Decodable>(from url: URL) -> AnyPublisher<T, NetworkError> {
+        let decode = JSONDecoder()
+        decode.keyDecodingStrategy = .convertFromSnakeCase
+        
         return URLSession.shared.dataTaskPublisher(for: url)
             .mapError { _ in
                 NetworkError.invalidRequest
@@ -34,7 +37,7 @@ final class NetworkManager: NetworkManageable {
                     return Fail(error:NetworkError.invalidStatusCode(httpResponse.statusCode)).eraseToAnyPublisher()
                 }
                 return Just(data)
-                    .decode(type: T.self, decoder: JSONDecoder())
+                    .decode(type: T.self, decoder: decode)
                     .mapError { _ in
                         NetworkError.failParsing
                     }.eraseToAnyPublisher()

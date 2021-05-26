@@ -9,10 +9,6 @@ import UIKit
 
 class CalendarDayCell: UICollectionViewCell {
     
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
     private let dayLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -25,7 +21,7 @@ class CalendarDayCell: UICollectionViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = self.frame.width / 2
-        view.backgroundColor = UIColor(named: "CityColor")
+        view.backgroundColor = .cityColor
         view.isHidden = true
         return view
     }()
@@ -33,7 +29,7 @@ class CalendarDayCell: UICollectionViewCell {
     private let halfLeftBackGroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "SelectedRangeColor")
+        view.backgroundColor = .selectedColor
         view.isHidden = true
         return view
     }()
@@ -41,7 +37,7 @@ class CalendarDayCell: UICollectionViewCell {
     private let halfRightBackGroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "SelectedRangeColor")
+        view.backgroundColor = .selectedColor
         view.isHidden = true
         return view
     }()
@@ -98,7 +94,6 @@ class CalendarDayCell: UICollectionViewCell {
     
     private func hideDayCell(day: Date?) -> Bool {
         day == nil ? true : false
-        
     }
         
     func selectDay(dates: SequenceDates, day: Date?) {

@@ -32,7 +32,7 @@ class SearchManager {
     func resetDates() {
         selectDates.start = nil
         selectDates.end = nil
-        NotificationCenter.default.post(name: CalendarViewController.NotiName.reset, object: nil)
+        NotificationCenter.default.post(name: .seletDatesReset, object: nil)
     }
 
 }

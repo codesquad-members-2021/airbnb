@@ -25,11 +25,16 @@
 		BF4048F92659ED1400CA02B5 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4048F82659ED1400CA02B5 /* DateFormatter+Extension.swift */; };
 		BF404901265A17CC00CA02B5 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404900265A17CC00CA02B5 /* SearchManager.swift */; };
 		BF404906265A3F0000CA02B5 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404905265A3EFF00CA02B5 /* Endpoint.swift */; };
-		BF404909265A3F0A00CA02B5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404908265A3F0A00CA02B5 /* NetworkManager.swift */; };
+		BF404909265A3F0A00CA02B5 /* SearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404908265A3F0A00CA02B5 /* SearchAPI.swift */; };
 		BF40490C265A415300CA02B5 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40490B265A415300CA02B5 /* HTTPMethod.swift */; };
 		BF40490F265A417000CA02B5 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40490E265A417000CA02B5 /* NetworkError.swift */; };
 		BF404913265A7B6C00CA02B5 /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404912265A7B6C00CA02B5 /* SearchLocation.swift */; };
 		BF404919265A815400CA02B5 /* SearchLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404918265A815400CA02B5 /* SearchLocationUseCase.swift */; };
+		BF9F9509265DE6D4003CF475 /* UIStoryBoard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F9508265DE6D4003CF475 /* UIStoryBoard+Extension.swift */; };
+		BF9F950D265DE9DC003CF475 /* UICollectionCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F950C265DE9DC003CF475 /* UICollectionCell+Extension.swift */; };
+		BF9F9510265DEAFE003CF475 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F950F265DEAFE003CF475 /* UITableViewCell+Extension.swift */; };
+		BF9F9513265DED03003CF475 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F9512265DED03003CF475 /* UIColor+Extension.swift */; };
+		BF9F951E265DFD69003CF475 /* NotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F951D265DFD69003CF475 /* NotificationName+Extension.swift */; };
 		BFE430B42653902E00F4DA1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE430B32653902E00F4DA1C /* AppDelegate.swift */; };
 		BFE430B62653902E00F4DA1C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE430B52653902E00F4DA1C /* SceneDelegate.swift */; };
 		BFE430B82653902E00F4DA1C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE430B72653902E00F4DA1C /* MainViewController.swift */; };
@@ -61,11 +66,16 @@
 		BF4048F82659ED1400CA02B5 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		BF404900265A17CC00CA02B5 /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		BF404905265A3EFF00CA02B5 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		BF404908265A3F0A00CA02B5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BF404908265A3F0A00CA02B5 /* SearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
 		BF40490B265A415300CA02B5 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		BF40490E265A417000CA02B5 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BF404912265A7B6C00CA02B5 /* SearchLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocation.swift; sourceTree = "<group>"; };
 		BF404918265A815400CA02B5 /* SearchLocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationUseCase.swift; sourceTree = "<group>"; };
+		BF9F9508265DE6D4003CF475 /* UIStoryBoard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryBoard+Extension.swift"; sourceTree = "<group>"; };
+		BF9F950C265DE9DC003CF475 /* UICollectionCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionCell+Extension.swift"; sourceTree = "<group>"; };
+		BF9F950F265DEAFE003CF475 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
+		BF9F9512265DED03003CF475 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		BF9F951D265DFD69003CF475 /* NotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extension.swift"; sourceTree = "<group>"; };
 		BFE430B02653902E00F4DA1C /* airBnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = airBnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFE430B32653902E00F4DA1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFE430B52653902E00F4DA1C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +184,11 @@
 				BF4048F82659ED1400CA02B5 /* DateFormatter+Extension.swift */,
 				BF2FEADB265B71260022CB93 /* SearchTextField+Extension.swift */,
 				BF2FEAEF265C20220022CB93 /* Date+Extension.swift */,
+				BF9F9508265DE6D4003CF475 /* UIStoryBoard+Extension.swift */,
+				BF9F950C265DE9DC003CF475 /* UICollectionCell+Extension.swift */,
+				BF9F950F265DEAFE003CF475 /* UITableViewCell+Extension.swift */,
+				BF9F9512265DED03003CF475 /* UIColor+Extension.swift */,
+				BF9F951D265DFD69003CF475 /* NotificationName+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -194,7 +209,7 @@
 				BF404905265A3EFF00CA02B5 /* Endpoint.swift */,
 				BF40490B265A415300CA02B5 /* HTTPMethod.swift */,
 				BF40490E265A417000CA02B5 /* NetworkError.swift */,
-				BF404908265A3F0A00CA02B5 /* NetworkManager.swift */,
+				BF404908265A3F0A00CA02B5 /* SearchAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -327,7 +342,7 @@
 				BF2FEAD2265A83F30022CB93 /* SearchLocationViewModel.swift in Sources */,
 				BF404913265A7B6C00CA02B5 /* SearchLocation.swift in Sources */,
 				BF40490C265A415300CA02B5 /* HTTPMethod.swift in Sources */,
-				BF404909265A3F0A00CA02B5 /* NetworkManager.swift in Sources */,
+				BF404909265A3F0A00CA02B5 /* SearchAPI.swift in Sources */,
 				BF4048F526593DDB00CA02B5 /* CalendarHeaderView.swift in Sources */,
 				BF4048E42658FCAC00CA02B5 /* CalendarHelper.swift in Sources */,
 				BFE430B82653902E00F4DA1C /* MainViewController.swift in Sources */,
@@ -338,12 +353,17 @@
 				BF404919265A815400CA02B5 /* SearchLocationUseCase.swift in Sources */,
 				BFE430B62653902E00F4DA1C /* SceneDelegate.swift in Sources */,
 				BF4048CF2658CB4600CA02B5 /* LocationResultViewController.swift in Sources */,
+				BF9F950D265DE9DC003CF475 /* UICollectionCell+Extension.swift in Sources */,
 				BF40490F265A417000CA02B5 /* NetworkError.swift in Sources */,
 				BFE431172655948800F4DA1C /* LocationResultCell.swift in Sources */,
+				BF9F951E265DFD69003CF475 /* NotificationName+Extension.swift in Sources */,
 				BF2FEAE2265BBAED0022CB93 /* LocationInfoViewController.swift in Sources */,
+				BF9F9510265DEAFE003CF475 /* UITableViewCell+Extension.swift in Sources */,
+				BF9F9509265DE6D4003CF475 /* UIStoryBoard+Extension.swift in Sources */,
 				BF4048F12659335800CA02B5 /* CalendarDayCell.swift in Sources */,
 				BF4048D22658D8AA00CA02B5 /* CalendarViewController.swift in Sources */,
 				BF4048EB26592AAF00CA02B5 /* CalendarDataSource.swift in Sources */,
+				BF9F9513265DED03003CF475 /* UIColor+Extension.swift in Sources */,
 				BF2FEADC265B71260022CB93 /* SearchTextField+Extension.swift in Sources */,
 				BFE4311326557A2900F4DA1C /* LocationHeaderView.swift in Sources */,
 				BF4048F92659ED1400CA02B5 /* DateFormatter+Extension.swift in Sources */,

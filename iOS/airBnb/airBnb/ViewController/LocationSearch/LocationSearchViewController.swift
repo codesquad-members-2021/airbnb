@@ -10,6 +10,7 @@ import Combine
 
 class LocationSearchViewController: UITableViewController {
     
+    // TODO: - 더미 데이터
     private var cities = ["서울","광주","의정부시","수원시","대구","울산","부천시"]
     
     private lazy var deleteText: UIBarButtonItem = {
@@ -25,7 +26,7 @@ class LocationSearchViewController: UITableViewController {
     
     private var resultTableViewController = LocationResultViewController()
     private let searchViewModel = SearchLocationViewModel()
-    private var searchController: UISearchController!
+    private lazy var searchController = UISearchController(searchResultsController: resultTableViewController)
     private var cancellable = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -48,7 +49,6 @@ class LocationSearchViewController: UITableViewController {
     }
     
     private func setUpSearchController() {
-        searchController = UISearchController(searchResultsController: resultTableViewController)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.showsCancelButton = false
@@ -97,11 +97,7 @@ class LocationSearchViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyBoard = UIStoryboard(name: "Calendar", bundle: nil)
-        guard let calendarViewController = storyBoard.instantiateViewController(withIdentifier: "Calendar") as? CalendarViewController else {
-            return
-        }
-        
+        let calendarViewController = UIStoryboard.create(identifier: CalendarViewController.self, name: "Calendar")
         self.navigationController?.pushViewController(calendarViewController, animated: true)
     }
 }

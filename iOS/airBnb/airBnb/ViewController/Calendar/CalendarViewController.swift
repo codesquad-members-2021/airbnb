@@ -9,10 +9,6 @@ import UIKit
 import Combine
 
 class CalendarViewController: UIViewController {
-
-    enum NotiName {
-        static let reset = Notification.Name.init("reset")
-    }
     
     @IBOutlet weak var calendarCollection: UICollectionView!
     @IBOutlet weak var containerView: UIView!
@@ -30,7 +26,7 @@ class CalendarViewController: UIViewController {
         createDataSoure()
         configure()
         bind()
-        NotificationCenter.default.addObserver(self, selector: #selector(resetSelectDates(_:)), name: NotiName.reset, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resetSelectDates(_:)), name: .seletDatesReset, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,16 +35,13 @@ class CalendarViewController: UIViewController {
     }
     
     private func addContainerView() {
-        let storyboard = UIStoryboard(name: "LocationInfo", bundle: nil)
-        guard let InfoView = storyboard.instantiateViewController(withIdentifier: "LocationInfo") as? LocationInfoViewController else {
-            return
-        }
-        InfoView.inject(from: searchManager,
+        let locationInfoViewController = UIStoryboard.create(identifier: LocationInfoViewController.self, name: "LocationInfo")
+        locationInfoViewController.inject(from: searchManager,
                         subject: nextViewControllerSubject,
                         state: .calerdar)
-        addChild(InfoView)
-        InfoView.view.frame = containerView.bounds
-        containerView.addSubview(InfoView.view)
+        addChild(locationInfoViewController)
+        locationInfoViewController.view.frame = containerView.bounds
+        containerView.addSubview(locationInfoViewController.view)
     }
     
     private func configure() {

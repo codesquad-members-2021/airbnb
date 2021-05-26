@@ -21,7 +21,7 @@ final class SearchLocationViewModel {
     }
     
     convenience init() {
-        let networkManager = NetworkManager()
+        let networkManager = SearchAPI()
         self.init(searchLocation: SearchLocationUseCase(networkManage: networkManager))
     }
     
