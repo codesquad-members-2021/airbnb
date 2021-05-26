@@ -37,8 +37,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="searchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Soc-wG-dks"/>
-                                    <segue destination="gLk-Oh-cmb" kind="presentation" animates="NO" modalPresentationStyle="fullScreen" id="u4y-0l-oYS"/>
+                                    <segue destination="gLk-Oh-cmb" kind="presentation" modalPresentationStyle="fullScreen" id="hkk-y9-dsN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -138,10 +137,10 @@
             </objects>
             <point key="canvasLocation" x="1838" y="94"/>
         </scene>
-        <!--Date Selection View Controller-->
+        <!--Set Up View Controller-->
         <scene sceneID="UbO-1N-ah8">
             <objects>
-                <viewController storyboardIdentifier="DateSelectionViewController" id="lUP-AH-NX7" customClass="DateSelectionViewController" customModule="AirBed_Breakfast" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SetUpViewController" id="lUP-AH-NX7" customClass="SetUpViewController" customModule="AirBed_Breakfast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S3s-F0-6ZQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -220,7 +219,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKy-HX-7Tf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4155.072463768116" y="632.47767857142856"/>
+            <point key="canvasLocation" x="3423" y="643"/>
         </scene>
     </scenes>
     <resources>

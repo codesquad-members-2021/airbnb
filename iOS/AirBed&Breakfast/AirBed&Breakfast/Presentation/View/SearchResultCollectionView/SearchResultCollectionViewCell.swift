@@ -8,6 +8,7 @@
 import UIKit
 
 class SearchResultCollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet weak var destinationImageView: UIImageView!
     @IBOutlet weak var destinationNameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
