@@ -6,4 +6,8 @@ public class Badge {
     public Badge(String type) {
         this.type = type;
     }
+
+    public String getType() {
+        return type;
+    }
 }
