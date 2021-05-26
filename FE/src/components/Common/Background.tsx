@@ -1,15 +1,28 @@
-import styled from 'styled-components';
-import { IBackgroundProps } from '../../util/types';
+import { MouseEventHandler } from 'react';
+import styled, { css } from 'styled-components';
 
-const Background = ({ color, children }: IBackgroundProps) => (
-  <StyledBackground color={color}>{children}</StyledBackground>
+interface IBackground {
+  children?: React.ReactNode;
+  backgroundColor?: string | '';
+  onClick?: MouseEventHandler | undefined;
+}
+
+const Background = ({ children, backgroundColor, onClick }: IBackground) => (
+  <StyledBackground onClick={onClick} backgroundColor={backgroundColor}>
+    {children && children}
+  </StyledBackground>
 );
 
 export default Background;
 
 // --- Styled Components ---
-const StyledBackground = styled.div<{
-  color: string;
-}>`
-  background-color: ${({ theme, color }) => theme.colors[color || 'black1']};
+const StyledBackground = styled.div<IBackground>`
+  ${({ backgroundColor }) =>
+    backgroundColor &&
+    css`
+      background-color: ${({ theme }) =>
+        theme.colors[backgroundColor]
+          ? theme.colors[backgroundColor]
+          : backgroundColor};
+    `}
 `;

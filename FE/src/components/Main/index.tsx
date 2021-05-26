@@ -25,7 +25,7 @@ const Main = () => {
       />
       <Nearby nearbyItems={nearby} />
       <RoomType roomTypeItems={roomType} />
-      <Background color={'gray6'}>
+      <Background backgroundColor={'gray6'}>
         <ContentInfo contentInfoItems={contentInfo} />
         <Footer footerItems={footerItems} />
       </Background>
