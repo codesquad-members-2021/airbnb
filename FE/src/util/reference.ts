@@ -79,12 +79,11 @@ export const TextTopBackground: ITextTopBackground = {
 
   searchBarTexts: {
     menuItems: [
-      {text: '체크인', placeHolder: '날짜 입력'},
-      {text: '체크아웃', placeHolder: '날짜 입력'},
+      {text: '체크인|체크아웃', placeHolder: '날짜 입력'},
       {text: '요금', placeHolder: '금액대 설정'},
       {text: '인원', placeHolder: '게스트 추가'},
     ],
-    logoOrBtnCaption: '검색',
+    logoOrBtnCaption: '검색', // 미사용
   }
 };
 
