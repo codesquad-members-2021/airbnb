@@ -12,8 +12,8 @@ public class RoomOption {
         this.bathRoom = bathRoom;
     }
 
-    public boolean checkMaxGuest(int adult, int child) {
-        return maxGuest < adult + child;
+    public boolean capacityCheck(int adult, int child) {
+        return maxGuest >= adult + child;
     }
 
     public int getBed() {

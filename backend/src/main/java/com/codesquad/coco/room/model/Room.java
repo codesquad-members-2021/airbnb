@@ -6,7 +6,6 @@ import com.codesquad.coco.host.Host;
 import com.codesquad.coco.image.Image;
 import com.codesquad.coco.user.model.Reservation;
 import com.codesquad.coco.user.model.WishList;
-import com.codesquad.coco.utils.CalcUtil;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
@@ -71,7 +70,7 @@ public class Room {
     }
 
     public boolean capacityCheck(int adult, int child) {
-        if (roomOption.checkMaxGuest(adult , child)) {
+        if (!roomOption.capacityCheck(adult , child)) {
             throw new OvercapacityException();
         }
         return true;
