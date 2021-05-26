@@ -138,7 +138,7 @@ const CalendarDate = ({ monthData, calendarDate }: Props) => {
     { date, isAble }: dayType,
     isCheckIn: boolean,
     isCheckOut: boolean,
-    isBetween: boolean | null | 0
+    isBetween: boolean
   ): string => {
     let dateWrapperClass: string = 'date__wrapper ';
     if (isCheckIn) dateWrapperClass += 'checkIn-date__wrapper ';

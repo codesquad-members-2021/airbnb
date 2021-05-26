@@ -1,4 +1,6 @@
 import { RefObject, useState, useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
+import { selectCheckBoxState } from '../recoil/calendarAtom';
 
 interface refsType {
   clickRef: RefObject<HTMLDivElement> | RefObject<HTMLDivElement>[];
@@ -7,16 +9,20 @@ interface refsType {
 
 interface toggleStateTypes {
   open: boolean;
-  selectType: string | undefined;
 }
 
 const useToggle = ({ clickRef, toggleRef }: refsType): toggleStateTypes => {
+  const selectBox = useRecoilValue(selectCheckBoxState);
   const [open, setOpen] = useState<boolean>(false);
   const [selectType, setSelectType] = useState<string>();
   useEffect(() => {
     document.body.addEventListener('click', handleClick);
     return () => document.body.removeEventListener('click', handleClick);
   }, [selectType]);
+
+  useEffect(() => {
+    setSelectType(selectBox);
+  }, [selectBox]);
 
   const handleClick = (e: MouseEvent): void => {
     const { target } = e;
@@ -51,7 +57,7 @@ const useToggle = ({ clickRef, toggleRef }: refsType): toggleStateTypes => {
     return;
   };
 
-  return { open, selectType };
+  return { open };
 };
 
 export default useToggle;
