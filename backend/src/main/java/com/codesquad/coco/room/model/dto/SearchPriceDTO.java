@@ -8,8 +8,8 @@ import java.time.LocalDate;
 public class SearchPriceDTO {
 
     private static final String DEFAULT_CITY_NAME = "서울";
-    private static final LocalDate DEFAULT_CHECK_IN = LocalDate.of(1993, 6, 11);
-    private static final LocalDate DEFAULT_CHECK_OUT = LocalDate.of(2021, 10, 11);
+    private static final LocalDate DEFAULT_CHECK_IN = LocalDate.now();
+    private static final LocalDate DEFAULT_CHECK_OUT = LocalDate.now().plusMonths(3L);
 
     protected LocalDate checkIn;
     protected LocalDate checkOut;
