@@ -49,6 +49,8 @@ class RoomDAOTest {
         assertThat(testTarget.getBedCount()).isEqualTo(expected.getBedCount());
         assertThat(testTarget.getAmenity()).isEqualTo(expected.getAmenity());
         assertThat(testTarget.getLocationName()).isEqualTo(expected.getLocationName());
+        assertThat(testTarget.getThumbnail()).isEqualTo(expected.getThumbnail());
+        assertThat(testTarget.getReviewCount()).isEqualTo(expected.getReviewCount());
     }
 
     @Test
@@ -112,6 +114,8 @@ class RoomDAOTest {
                 .bedCount(2)
                 .amenity("주방, 무선인터넷, 에어컨, 헤어드라이어")
                 .pricePolicy(new PricePolicy(5000, 1000, 5000, 50000, 4))
+                .reviewCount(123)
+                .thumbnail("https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?s=1024x768")
                 .build();
     }
 }

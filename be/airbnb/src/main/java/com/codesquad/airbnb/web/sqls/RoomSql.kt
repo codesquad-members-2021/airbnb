@@ -1,8 +1,8 @@
 package com.codesquad.airbnb.web.sqls
 
 const val SAVE_ROOM: String = """
-insert into room(location_id, name, rating, guest_capacity, point, description, bathroom_type, bedroom_type, bed_count, amenity)
-values (:location_id, :name, :rating, :guest_capacity, point(:x, :y), :description, :bathroom_type, :bedroom_type, :bed_count, :amenity);
+insert into room(location_id, name, rating, guest_capacity, point, description, bathroom_type, bedroom_type, bed_count, amenity, review_count, thumbnail)
+values (:location_id, :name, :rating, :guest_capacity, point(:x, :y), :description, :bathroom_type, :bedroom_type, :bed_count, :amenity, :review_count, :thumbnail);
 """
 
 const val SAVE_PRICE_POLICY: String = """
