@@ -2,8 +2,10 @@ package com.codesquad.airbnb.web.service.rooms;
 
 import com.codesquad.airbnb.web.domain.room.PricePolicy;
 import com.codesquad.airbnb.web.domain.room.Room;
+import com.codesquad.airbnb.web.domain.room.RoomImage;
 import com.codesquad.airbnb.web.domain.room.RoomRepository;
 import com.codesquad.airbnb.web.dto.UserInput;
+import com.codesquad.airbnb.web.service.mapper.RoomImageMapper;
 import com.codesquad.airbnb.web.service.mapper.RoomMapper;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -23,10 +25,12 @@ public class RoomDAO implements RoomRepository {
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
     private final RoomMapper roomMapper;
+    private final RoomImageMapper roomImageMapper;
 
-    public RoomDAO(NamedParameterJdbcTemplate jdbcTemplate, RoomMapper roomMapper) {
+    public RoomDAO(NamedParameterJdbcTemplate jdbcTemplate, RoomMapper roomMapper, RoomImageMapper roomImageMapper) {
         this.jdbcTemplate = jdbcTemplate;
         this.roomMapper = roomMapper;
+        this.roomImageMapper = roomImageMapper;
     }
 
     @Override
@@ -51,6 +55,7 @@ public class RoomDAO implements RoomRepository {
         room.updateId(Objects.requireNonNull(keyHolder.getKey()).intValue());
 
         savePricePolicy(room);
+        saveRoomImages(room);
         return room;
     }
 
@@ -66,16 +71,37 @@ public class RoomDAO implements RoomRepository {
         jdbcTemplate.update(SAVE_PRICE_POLICY, parameter);
     }
 
+    private void saveRoomImages(Room room) {
+        MapSqlParameterSource[] parameters = room.getDetailImages().stream()
+                .map(image -> new MapSqlParameterSource()
+                        .addValue("room_id", room.getId())
+                        .addValue("image_url", image.getUrl())
+                        .addValue("image_index", image.getIndex()))
+                .toArray(MapSqlParameterSource[]::new);
+        jdbcTemplate.batchUpdate(SAVE_IMAGE, parameters);
+    }
+
     @Override
     public Optional<Room> findRoomById(int id) {
         MapSqlParameterSource parameter = new MapSqlParameterSource()
                 .addValue("id", id);
         try {
             Room room = jdbcTemplate.queryForObject(FIND_ROOM, parameter, roomMapper);
-            return Optional.ofNullable(room);
+            if (room == null) {
+                return Optional.empty();
+            }
+            List<RoomImage> roomImages = findRoomImages(room.getId());
+            room.addImages(roomImages);
+            return Optional.of(room);
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
+    }
+
+    private List<RoomImage> findRoomImages(int roomId) {
+        MapSqlParameterSource parameter = new MapSqlParameterSource()
+                .addValue("room_id", roomId);
+        return jdbcTemplate.query(FIND_IMAGES, parameter, roomImageMapper);
     }
 
     @Override

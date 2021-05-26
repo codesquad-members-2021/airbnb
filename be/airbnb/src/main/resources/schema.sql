@@ -70,9 +70,10 @@ create table `room_price`
 
 create table `room_image`
 (
-    id          int primary key auto_increment,
+    room_id     int references room (id),
     image_url   varchar(300),
-    image_index int
+    image_index int,
+    primary key (room_id, image_index)
 );
 
 create table `reservation`

@@ -5,9 +5,21 @@ insert into room(location_id, name, rating, guest_capacity, point, description, 
 values (:location_id, :name, :rating, :guest_capacity, point(:x, :y), :description, :bathroom_type, :bedroom_type, :bed_count, :amenity, :review_count, :thumbnail, :host_id);
 """
 
+const val SAVE_IMAGE: String = """
+insert into room_image(room_id, image_url, image_index)
+values (:room_id, :image_url, :image_index);
+"""
+
+
 const val SAVE_PRICE_POLICY: String = """
 insert into room_price (room_id, service_fee, accomodation_tax, clean_up_cost, price_per_day, weekly_discount)
 values (:room_id, :service_fee, :accomodation_tax, :clean_up_cost, :price_per_day, :weekly_discount);
+"""
+
+const val FIND_IMAGES: String = """
+select image_url, image_index from room_image
+where room_id = :room_id
+order by image_index;
 """
 
 const val FIND_ROOM: String = """

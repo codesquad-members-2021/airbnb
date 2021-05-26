@@ -31,6 +31,25 @@ values (1, 4, '희망이 넘치는 발레노르 움막집', 5, 5, POINT(37.25235
         '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
         'https://media-cdn.tripadvisor.com/media/photo-s/15/a1/d2/af/hotel-r-de-paris.jpg');
 
+insert into room_image(room_id, image_url, image_index)
+values (1, 'https://a0.muscache.com/im/pictures/f6e9a07a-8a17-4d14-8a42-4fc3e3b5f2bd.jpg?im_w=720', 1),
+       (1, 'https://a0.muscache.com/im/pictures/cc2371de-4386-4f2c-80ce-763ca32bc058.jpg?im_w=720', 2),
+       (1, 'https://a0.muscache.com/im/pictures/56cccaca-04fd-48d6-9877-13f41b037cab.jpg?im_w=1200', 3),
+       (2, 'https://a0.muscache.com/im/pictures/f6e9a07a-8a17-4d14-8a42-4fc3e3b5f2bd.jpg?im_w=720', 1),
+       (2, 'https://a0.muscache.com/im/pictures/cc2371de-4386-4f2c-80ce-763ca32bc058.jpg?im_w=720', 2),
+       (2, 'https://a0.muscache.com/im/pictures/56cccaca-04fd-48d6-9877-13f41b037cab.jpg?im_w=1200', 3),
+       (3, 'https://a0.muscache.com/im/pictures/f6e9a07a-8a17-4d14-8a42-4fc3e3b5f2bd.jpg?im_w=720', 1),
+       (3, 'https://a0.muscache.com/im/pictures/cc2371de-4386-4f2c-80ce-763ca32bc058.jpg?im_w=720', 2),
+       (3, 'https://a0.muscache.com/im/pictures/56cccaca-04fd-48d6-9877-13f41b037cab.jpg?im_w=1200', 3),
+       (4, 'https://a0.muscache.com/im/pictures/f6e9a07a-8a17-4d14-8a42-4fc3e3b5f2bd.jpg?im_w=720', 1),
+       (4, 'https://a0.muscache.com/im/pictures/cc2371de-4386-4f2c-80ce-763ca32bc058.jpg?im_w=720', 2),
+       (4, 'https://a0.muscache.com/im/pictures/56cccaca-04fd-48d6-9877-13f41b037cab.jpg?im_w=1200', 3),
+       (5, 'https://a0.muscache.com/im/pictures/f6e9a07a-8a17-4d14-8a42-4fc3e3b5f2bd.jpg?im_w=720', 1),
+       (5, 'https://a0.muscache.com/im/pictures/cc2371de-4386-4f2c-80ce-763ca32bc058.jpg?im_w=720', 2),
+       (5, 'https://a0.muscache.com/im/pictures/56cccaca-04fd-48d6-9877-13f41b037cab.jpg?im_w=1200', 3)
+;
+
+
 insert into room_price (room_id, service_fee, accomodation_tax, clean_up_cost, price_per_day, weekly_discount)
 values (1, 500, 1000, 2500, 20000, 5),
        (2, 500, 1000, 2500, 50000, 5),

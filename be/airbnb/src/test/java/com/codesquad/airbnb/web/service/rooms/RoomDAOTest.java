@@ -1,9 +1,6 @@
 package com.codesquad.airbnb.web.service.rooms;
 
-import com.codesquad.airbnb.web.domain.room.BathroomType;
-import com.codesquad.airbnb.web.domain.room.BedroomType;
-import com.codesquad.airbnb.web.domain.room.PricePolicy;
-import com.codesquad.airbnb.web.domain.room.Room;
+import com.codesquad.airbnb.web.domain.room.*;
 import com.codesquad.airbnb.web.domain.user.Host;
 import com.codesquad.airbnb.web.dto.UserInput;
 import com.codesquad.airbnb.web.exceptions.RoomNotFoundException;
@@ -103,7 +100,27 @@ class RoomDAOTest {
     }
 
     @Test
-    @DisplayName("숙소를 UserInput으로 조회할 수 있어야 합니다")
+    @DisplayName("숙소 이미지정보를 저장하고 조회할 수 있어야 함")
+    void testImages() {
+        Room room = createRoom();
+        roomDAO.save(room);
+        final int roomId = room.getId();
+        Room testRoom = roomDAO.findRoomById(roomId).orElseThrow(() -> new RoomNotFoundException(roomId));
+        assertThat(testRoom).isNotNull();
+        verifyImages(testRoom.getDetailImages(), room.getDetailImages());
+    }
+
+    private void verifyImages(List<RoomImage> target, List<RoomImage> expected) {
+        for (int i = 0; i < target.size(); i++) {
+            RoomImage targetImage = target.get(i);
+            RoomImage expectedImage = expected.get(i);
+            assertThat(targetImage.getUrl()).isEqualTo(expectedImage.getUrl());
+            assertThat(targetImage.getIndex()).isEqualTo(expectedImage.getIndex());
+        }
+    }
+
+    @Test
+    @DisplayName("숙소를 UserInput으로 조회할 수 있어야 함")
     void searchRooms() {
         UserInput userInput = UserInput.builder()
                 .location("서울특별시")
@@ -115,8 +132,7 @@ class RoomDAOTest {
                 .childCount(0)
                 .infantCount(0)
                 .build();
-        List<Room> rooms = roomDAO.findRoomsByUserInput(userInput);
-        rooms.forEach(System.out::println);
+        roomDAO.findRoomsByUserInput(userInput);
     }
 
     private Room createRoom() {
@@ -127,7 +143,7 @@ class RoomDAOTest {
         String locationName = "오금동";
         Point point = new Point(37.252352, 235.52532);
         float rating = 0.5f;
-        return Room.builder()
+        Room room = Room.builder()
                 .name(name)
                 .description(description)
                 .guestCapacity(guestCapacity)
@@ -144,5 +160,11 @@ class RoomDAOTest {
                 .thumbnail("https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?s=1024x768")
                 .host(Host.builder().id(1).build())
                 .build();
+        room.addImage(new RoomImage("https://a0.muscache.com/im/pictures/02ebf802-8599-4b9b-af42-d45eeea7989d.jpg?im_w=1200", 1))
+                .addImage(new RoomImage("https://a0.muscache.com/im/pictures/f6e9a07a-8a17-4d14-8a42-4fc3e3b5f2bd.jpg?im_w=720", 2))
+                .addImage(new RoomImage("https://a0.muscache.com/im/pictures/cc2371de-4386-4f2c-80ce-763ca32bc058.jpg?im_w=720", 3))
+                .addImage(new RoomImage("https://a0.muscache.com/im/pictures/56cccaca-04fd-48d6-9877-13f41b037cab.jpg?im_w=1200", 4))
+                .addImage(new RoomImage("https://a0.muscache.com/im/pictures/5a02e1f5-042b-4158-abbf-5396756e7f68.jpg?im_w=720", 5));
+        return room;
     }
 }

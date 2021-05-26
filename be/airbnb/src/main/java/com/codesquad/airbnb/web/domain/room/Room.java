@@ -8,6 +8,9 @@ import lombok.Getter;
 import lombok.ToString;
 import org.springframework.data.geo.Point;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Builder
 @ToString
@@ -29,8 +32,19 @@ public class Room {
     private int reviewCount;
     private String thumbnail;
     private Host host;
+    @Builder.Default
+    private List<RoomImage> detailImages = new ArrayList<>();
 
     public void updateId(int id) {
         this.id = id;
+    }
+
+    public Room addImage(RoomImage image) {
+        detailImages.add(image);
+        return this;
+    }
+
+    public void addImages(List<RoomImage> images) {
+        detailImages.addAll(images);
     }
 }
