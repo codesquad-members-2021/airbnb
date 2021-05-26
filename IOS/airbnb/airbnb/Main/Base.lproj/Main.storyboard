@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="V51-XS-8yb">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--로그인-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="BYZ-38-t0r" userLabel="로그인" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="로그인" id="yfC-zY-Q4R">
+                        <imageReference key="image" image="person" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="person" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1535" y="-35"/>
+        </scene>
+        <!--위시리스트-->
+        <scene sceneID="y70-QQ-Jao">
+            <objects>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="uB9-ij-poF" userLabel="위시리스트" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="D7S-TD-ggv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="myQ-I6-1bQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="위시리스트" id="yqz-89-ttH">
+                        <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="heart" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="477-BQ-uc2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="846" y="-35"/>
+        </scene>
+        <!--검색-->
+        <scene sceneID="vJI-5i-xpK">
+            <objects>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="YBE-yj-Bm8" userLabel="검색" customClass="HomeViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JqF-wV-wYB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DRb-al-wVs" userLabel="Hero Image Section">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="473"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d3g-cp-em3" userLabel="Hero Image View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="473"/>
+                                        <color key="backgroundColor" red="0.84633721279999996" green="0.81177633699999996" blue="0.96366003789999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="hIC-QV-CiQ" userLabel="Title Stack View">
+                                        <rect key="frame" x="30" y="92" width="138.5" height="99"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="슬기로운" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ran-Uc-duM">
+                                                <rect key="frame" x="0.0" y="0.0" width="138.5" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="자연생활" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkk-jl-S6J">
+                                                <rect key="frame" x="0.0" y="51" width="138.5" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCf-FW-074">
+                                        <rect key="frame" x="30" y="260" width="139" height="33"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="139" id="kQz-r7-qUj"/>
+                                            <constraint firstAttribute="height" constant="33" id="zBc-e4-Xzu"/>
+                                        </constraints>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="여행 아이디어 얻기"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="8ew-PJ-3AN" userLabel="Contents Stack View">
+                                        <rect key="frame" x="30" y="206" width="151" height="39"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="에어비앤비가 엄선한" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6N3-u9-K7K">
+                                                <rect key="frame" x="0.0" y="0.0" width="151" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="위시리스트를 만나보세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0M-nb-niH">
+                                                <rect key="frame" x="0.0" y="21" width="151" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="d3g-cp-em3" secondAttribute="trailing" id="5G3-45-nmQ"/>
+                                    <constraint firstItem="8ew-PJ-3AN" firstAttribute="leading" secondItem="DRb-al-wVs" secondAttribute="leading" constant="30" id="5QE-tj-Uqt"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="NCf-FW-074" secondAttribute="trailing" constant="245" id="7BX-6g-1Lp"/>
+                                    <constraint firstItem="NCf-FW-074" firstAttribute="top" secondItem="8ew-PJ-3AN" secondAttribute="bottom" constant="15" id="7sn-mH-GSA"/>
+                                    <constraint firstAttribute="width" secondItem="DRb-al-wVs" secondAttribute="height" multiplier="7:8" id="ES3-Ph-XUz"/>
+                                    <constraint firstItem="hIC-QV-CiQ" firstAttribute="top" secondItem="DRb-al-wVs" secondAttribute="top" constant="92" id="HBX-Ym-z4Z"/>
+                                    <constraint firstAttribute="bottom" secondItem="d3g-cp-em3" secondAttribute="bottom" id="LIk-Id-Zio"/>
+                                    <constraint firstItem="d3g-cp-em3" firstAttribute="top" secondItem="DRb-al-wVs" secondAttribute="top" id="RVh-fv-9oA"/>
+                                    <constraint firstItem="hIC-QV-CiQ" firstAttribute="leading" secondItem="DRb-al-wVs" secondAttribute="leading" constant="30" id="SEj-Ry-TmZ"/>
+                                    <constraint firstItem="8ew-PJ-3AN" firstAttribute="top" secondItem="hIC-QV-CiQ" secondAttribute="bottom" constant="15" id="eYR-UW-7ep"/>
+                                    <constraint firstItem="NCf-FW-074" firstAttribute="leading" secondItem="DRb-al-wVs" secondAttribute="leading" constant="30" id="hZJ-lp-665"/>
+                                    <constraint firstItem="d3g-cp-em3" firstAttribute="leading" secondItem="DRb-al-wVs" secondAttribute="leading" id="xg5-PX-1Mq"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nAw-Sq-gct"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DRb-al-wVs" firstAttribute="width" secondItem="JqF-wV-wYB" secondAttribute="width" id="Ai7-vm-JNB"/>
+                            <constraint firstItem="DRb-al-wVs" firstAttribute="top" secondItem="JqF-wV-wYB" secondAttribute="top" id="h3m-ni-d9T"/>
+                            <constraint firstItem="DRb-al-wVs" firstAttribute="trailing" secondItem="nAw-Sq-gct" secondAttribute="trailing" id="p4H-Ep-iyc"/>
+                            <constraint firstItem="DRb-al-wVs" firstAttribute="leading" secondItem="nAw-Sq-gct" secondAttribute="leading" id="ucL-mf-78x"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="검색" id="4mV-Cd-RGI">
+                        <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="magnifyingglass" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="JQx-Ei-Mj6"/>
+                    <connections>
+                        <outlet property="heroImageView" destination="d3g-cp-em3" id="pd3-IM-7t5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dXH-RG-Ldu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="155.07246376811597" y="-35.491071428571423"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XPb-1Z-wR4">
+            <objects>
+                <navigationController extendedLayoutIncludesOpaqueBars="YES" id="V51-XS-8yb" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="rsf-jX-Wfs">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="systemPinkColor"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" systemColor="labelColor"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="view.backgroundColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="Mh7-uZ-IJA" kind="relationship" relationship="rootViewController" id="VvW-S2-u3V"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cwM-Ia-Xy0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1257" y="-35"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="d88-Mn-AwA">
+            <objects>
+                <tabBarController id="Mh7-uZ-IJA" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="a2d-vd-5zy"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="u2C-M3-8Im">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="systemGray2Color"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="YBE-yj-Bm8" kind="relationship" relationship="viewControllers" id="iiE-AP-gGf"/>
+                        <segue destination="uB9-ij-poF" kind="relationship" relationship="viewControllers" id="9ah-eJ-kCk"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="IeL-Et-9oy"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qex-t9-Uvo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-601" y="-35"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="person" catalog="system" width="128" height="117"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
