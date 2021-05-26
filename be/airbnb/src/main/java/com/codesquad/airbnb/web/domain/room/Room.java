@@ -25,6 +25,7 @@ public class Room {
     private BathroomType bathroomType;
     private PricePolicy pricePolicy;
     private String amenity;
+    private int reviewCount;
 
     public void updateId(int id) {
         this.id = id;

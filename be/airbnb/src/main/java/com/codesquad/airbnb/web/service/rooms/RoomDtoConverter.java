@@ -23,7 +23,7 @@ public class RoomDtoConverter {
                             .latitude(room.getPoint().getX())
                             .longtitude(room.getPoint().getY())
                             .roomRating(room.getRating())
-                            //.reviewCount(0)
+                            .reviewCount(room.getReviewCount())
                             .pricePerDay(pricePolicy.getPricePerDay())
                             .totalPrice(pricePolicy.totalPrice(stayDay))
                             .bedroomType(room.getBedroomType().name())
