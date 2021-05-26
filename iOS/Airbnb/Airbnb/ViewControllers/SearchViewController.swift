@@ -81,12 +81,12 @@ extension SearchViewController: UICollectionViewDelegate {
 
 extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return RegionCellModelData.count
+        return regionCellModelData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RegionCell.reuseId, for: indexPath) as! RegionCell
-        let model = RegionCellModelData[indexPath.item]
+        let model = regionCellModelData[indexPath.item]
         cell.configure(model: model)
         return cell
     }
