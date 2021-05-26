@@ -1,5 +1,8 @@
-package codesquad.team17.gnb.place.domain;
+package codesquad.team17.gnb.place.repository;
 
+import codesquad.team17.gnb.place.domain.Location;
+import codesquad.team17.gnb.place.domain.Option;
+import codesquad.team17.gnb.place.domain.Place;
 import codesquad.team17.gnb.place.dto.PlaceQueries;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

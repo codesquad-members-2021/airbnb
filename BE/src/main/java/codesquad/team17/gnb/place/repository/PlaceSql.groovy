@@ -1,4 +1,4 @@
-package codesquad.team17.gnb.place.domain
+package codesquad.team17.gnb.place.repository
 
 import codesquad.team17.gnb.place.dto.PlaceQueries
 

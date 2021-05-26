@@ -1,6 +1,7 @@
-package codesquad.team17.gnb.place.domain;
+package codesquad.team17.gnb.place.repository;
 
 import codesquad.team17.gnb.exception.NotFoundException;
+import codesquad.team17.gnb.place.domain.Place;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

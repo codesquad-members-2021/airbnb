@@ -1,6 +1,6 @@
 package codesquad.team17.gnb.place.service;
 
-import codesquad.team17.gnb.place.domain.PlaceRepository;
+import codesquad.team17.gnb.place.repository.PlaceRepository;
 import codesquad.team17.gnb.place.dto.PlaceQueries;
 import codesquad.team17.gnb.place.dto.PlaceSummary;
 import org.springframework.stereotype.Service;
