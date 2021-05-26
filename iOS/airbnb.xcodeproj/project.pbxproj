@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,7 @@
 		10406B5D265D344F004F4AF9 /* CalendarDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10406B5C265D344F004F4AF9 /* CalendarDateCell.swift */; };
 		10466589265E6C03008B2F36 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10466588265E6C03008B2F36 /* CalendarViewModel.swift */; };
 		1046658B265E6DD4008B2F36 /* CalanderColleectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1046658A265E6DD4008B2F36 /* CalanderColleectionDataSource.swift */; };
+		104665A1265E9133008B2F36 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 104665A0265E9133008B2F36 /* Alamofire */; };
 		1049206D265782AD00AA2590 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1049206C265782AD00AA2590 /* ContainerViewController.swift */; };
 		105D4272265DE20E00FCF8F7 /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105D4271265DE20E00FCF8F7 /* CalendarHeader.swift */; };
 		10642205265641F1005B63FD /* TravelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10642204265641F1005B63FD /* TravelListViewController.swift */; };
@@ -93,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				104665A1265E9133008B2F36 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +127,13 @@
 				10466588265E6C03008B2F36 /* CalendarViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1046659C265E910C008B2F36 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		105D4273265DE84C00FCF8F7 /* View */ = {
@@ -185,6 +194,7 @@
 				10E1B1732653DE2F0087B69B /* MainCoordinator.swift */,
 				10E1B1712653DE0D0087B69B /* Storyboarded.swift */,
 				102FA1F9265550CD00B761C7 /* IdentityInfo.swift */,
+				1046659C265E910C008B2F36 /* Network */,
 				10BAF1A5265CD5660035D99B /* FooterTable */,
 				10BAF19E265CD32E0035D99B /* CalendarPicker */,
 				10D29C882653A5C300E71840 /* Search */,
@@ -256,6 +266,9 @@
 			dependencies = (
 			);
 			name = airbnb;
+			packageProductDependencies = (
+				104665A0265E9133008B2F36 /* Alamofire */,
+			);
 			productName = airbnb;
 			productReference = 10D29C5D26538C6800E71840 /* airbnb.app */;
 			productType = "com.apple.product-type.application";
@@ -283,6 +296,9 @@
 				Base,
 			);
 			mainGroup = 10D29C5426538C6800E71840;
+			packageReferences = (
+				1046659F265E9133008B2F36 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 10D29C5E26538C6800E71840 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -535,6 +551,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1046659F265E9133008B2F36 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		104665A0265E9133008B2F36 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1046659F265E9133008B2F36 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 10D29C5526538C6800E71840 /* Project object */;
 }
