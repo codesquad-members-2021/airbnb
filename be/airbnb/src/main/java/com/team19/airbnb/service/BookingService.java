@@ -10,7 +10,10 @@ import com.team19.airbnb.exception.UserNotFoundException;
 import com.team19.airbnb.repository.BookingDAO;
 import com.team19.airbnb.repository.RoomRepository;
 import com.team19.airbnb.repository.UserRepository;
+import com.team19.airbnb.dto.BookingRequestDTO;
+import com.team19.airbnb.repository.UserDAO;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,12 +22,14 @@ import java.util.stream.Collectors;
 public class BookingService {
 
     private final BookingDAO bookingDAO;
+    private final UserDAO userDAO;
     private final UserRepository userRepository;
     private final RoomRepository roomRepository;
-
-    public BookingService(BookingDAO bookingDAO, UserRepository userRepository, RoomRepository roomRepository) {
+    
+    public BookingService(BookingDAO bookingDAO, UserRepository userRepository, UserDAO userDAO, RoomRepository roomRepository) {
         this.bookingDAO = bookingDAO;
         this.userRepository = userRepository;
+        this.userDAO = userDAO;
         this.roomRepository = roomRepository;
     }
 
@@ -49,5 +54,20 @@ public class BookingService {
     private BookingResponseDTO toResponseDTO(Booking booking) {
         Room room = roomRepository.findById(booking.getRoom()).orElseThrow(RoomNotFoundException::new);
         return new BookingResponseDTO.Builder(booking, room).build();
+    }
+
+    public void createBooking(BookingRequestDTO bookingRequestDTO, Long userId) {
+        Booking booking = bookingRequestDTO.toEntity();
+        booking.checkUserId(userId);
+        bookingDAO.save(booking);
+    }
+
+    public void delete(Long bookingId, Long userId) {
+        Booking booking = bookingDAO.findById(bookingId).orElseThrow(IllegalArgumentException::new);
+        if(booking.getUser() != userId) {
+            //사용자 정의 예외처리 발생
+            throw new IllegalArgumentException();
+        }
+        bookingDAO.delete(bookingId);
     }
 }

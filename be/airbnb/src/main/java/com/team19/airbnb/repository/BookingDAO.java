@@ -1,6 +1,7 @@
 package com.team19.airbnb.repository;
 
 import com.team19.airbnb.domain.Booking;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -18,8 +19,9 @@ public class BookingDAO {
 
     private final JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public BookingDAO(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public Booking save(Booking booking) {
@@ -52,5 +54,22 @@ public class BookingDAO {
             rs.getLong("user"),
             rs.getLong("room"));
         };
+    }
+//    public Optional<Booking> findById(Long id) {
+//        List<Booking> result = jdbcTemplate.query("select * from booking where id = ?",
+//                bookingRowMapper(), id);
+//        return result.stream().findAny();
+//    }
+//
+//    private RowMapper<Booking> bookingRowMapper() {
+//        return (rs, rowNum) -> {
+//           return Booking.create(rs.getLong("id"), rs.getLong("user"),
+//                    rs.getObject("check_in", LocalDate.class), rs.getObject("check_out", LocalDate.class));
+//        };
+//    }
+
+    public void delete(Long bookingId) {
+        String query = "DELETE FROM booking WHERE id = ? ";
+        jdbcTemplate.update(query, bookingId);
     }
 }

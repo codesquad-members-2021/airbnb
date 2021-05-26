@@ -20,14 +20,11 @@ public class Booking {
     private Long user;
     private Long room;
 
-    Booking() {
-    }
-
     @PersistenceConstructor
     Booking(Long id,
-                   LocalDate checkIn, LocalDate checkOut,
-                   Integer guest, BigDecimal totalPrice,
-                   Long user, Long room) {
+            LocalDate checkIn, LocalDate checkOut,
+            Integer guest, BigDecimal totalPrice,
+            Long user, Long room) {
         this.id = id;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -67,6 +64,15 @@ public class Booking {
                 user, room);
     }
 
+    public static Booking create(LocalDate checkIn, LocalDate checkOut,
+                                 Integer guest, BigDecimal totalPrice,
+                                 Long room) {
+        return new Booking(null,
+                checkIn, checkOut,
+                guest, totalPrice,
+                null, room);
+    }
+
     public Long getId() {
         return id;
     }
@@ -98,4 +104,9 @@ public class Booking {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public void checkUserId(Long userId) {
+        this.user = userId;
+    }
+
 }
