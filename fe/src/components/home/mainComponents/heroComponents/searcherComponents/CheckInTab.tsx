@@ -1,9 +1,15 @@
 import React from 'react';
-import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/SearcherHook';
+import {
+    useSearcherDispatch,
+    useSearcherLayerDispatch,
+    useSearcherLayerState,
+    useSearcherState,
+} from '../../../../../hooks/SearcherHook';
 import styled from 'styled-components';
 import Calendar from './calendar/Calendar';
 import { Container, Tab, NavigatingText } from './shared.style';
 import { useReservationDispatch, useReservationState } from '../../../../../hooks/ReservationHook';
+import { isNotCheckedDate } from './calendar/calendarChecker';
 
 const CheckInTab = (): React.ReactElement => {
     const reservationState = useReservationState();
@@ -15,25 +21,26 @@ const CheckInTab = (): React.ReactElement => {
     const { checkInCalendarLayer } = searcherState;
 
     const handleCalendarLayer: React.MouseEventHandler<HTMLDivElement> = () => {
-        searcherDispatch({ type: 'LOCATION_LAYER', state: false });
-        searcherDispatch({ type: 'CHECKOUT_CALENDAR_LAYER', state: false });
-        searcherDispatch({ type: 'FEE_LAYER', state: false });
-        searcherDispatch({ type: 'PEOPLE_LAYER', state: false });
-        searcherDispatch({ type: 'CHECKIN_CALENDAR_LAYER', state: true });
+        // searcherLayerDispatch({ type: 'SELECT_CHECKIN_TAB' });
+        searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_CHECKOUT_CALENDAR_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_FEE_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_PEOPLE_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: true });
     };
 
     const handleCancel = () => {
         reservationDispatch({ type: 'CHECKIN', year: 0, month: 0, day: 0 });
     };
 
+    const { year, month, day } = checkIn;
+
     return (
         <Container>
             <Tab onClick={handleCalendarLayer}>
                 <NavigatingText>체크인</NavigatingText>
-                <CheckInDateText>
-                    {checkIn.year}-{checkIn.month}-{checkIn.day}
-                </CheckInDateText>
-                <button onClick={handleCancel}>취소</button>
+                <CheckInDateText>{!isNotCheckedDate(checkIn) && `${year} - ${month} - ${day}`}</CheckInDateText>
+                {!isNotCheckedDate(checkIn) && <button onClick={handleCancel}>취소</button>}
             </Tab>
             {checkInCalendarLayer && <Calendar isCheckIn={true} />}
         </Container>

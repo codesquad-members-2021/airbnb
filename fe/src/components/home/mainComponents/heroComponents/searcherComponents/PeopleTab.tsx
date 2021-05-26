@@ -29,11 +29,11 @@ const PeopleTab = (): React.ReactElement => {
     const { peopleLayer } = searcherState;
 
     const handlePeopleLayer: React.MouseEventHandler<HTMLDivElement> = () => {
-        searcherDispatch({ type: 'LOCATION_LAYER', state: false });
-        searcherDispatch({ type: 'CHECKOUT_CALENDAR_LAYER', state: false });
-        searcherDispatch({ type: 'FEE_LAYER', state: false });
-        searcherDispatch({ type: 'CHECKIN_CALENDAR_LAYER', state: false });
-        searcherDispatch({ type: 'PEOPLE_LAYER', state: true });
+        searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_CHECKOUT_CALENDAR_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_FEE_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_PEOPLE_LAYER', state: true });
     };
 
     const handleCount = (key: keyof PeopleCount, payload: number) => {
@@ -55,7 +55,7 @@ const PeopleTab = (): React.ReactElement => {
         const { adult, children, kids } = peopleCount;
         const guest = adult + children;
         reservationDispatch({ type: 'PEOPLE', guest, kids });
-        searcherDispatch({ type: 'PEOPLE_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_PEOPLE_LAYER', state: false });
     };
 
     const renderPeopleCountList = () => {

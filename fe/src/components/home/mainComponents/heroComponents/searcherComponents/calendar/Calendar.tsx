@@ -5,7 +5,7 @@ import { Td, UsefulObject, CalendarType, DateType, Date as IDate } from '../../.
 import { useReservationDispatch, useReservationState } from '../../../../../../hooks/ReservationHook';
 import { useSearcherDispatch } from '../../../../../../hooks/SearcherHook';
 import { Container, Layer } from '../shared.style';
-import { getDateSum, isBefore, isPossibleToCheckDate, getTypeOfDate, isNotCheckIn } from './calendarChecker';
+import { getDateSum, isBefore, isPossibleToCheckDate, getTypeOfDate, isNotCheckedDate } from './calendarChecker';
 
 const dateTypeColor: UsefulObject = {
     checkIn: 'tomato',
@@ -51,7 +51,7 @@ const Calendar = ({ isCheckIn }: CalendarType): React.ReactElement => {
         });
         const checkInSum = getDateSum(checkIn);
 
-        if (!isCheckIn && (isBefore(targetDateSum, checkInSum) || isNotCheckIn(checkIn))) {
+        if (!isCheckIn && (isBefore(targetDateSum, checkInSum) || isNotCheckedDate(checkIn))) {
             reservationDispatch({
                 type: 'CHECKIN',
                 year: targetDate.getFullYear(),
@@ -67,8 +67,8 @@ const Calendar = ({ isCheckIn }: CalendarType): React.ReactElement => {
             month: targetDate.getMonth() + 1,
             day: +dataSets[0],
         });
-        searcherDispatch({ type: 'CHECKIN_CALENDAR_LAYER', state: false });
-        searcherDispatch({ type: 'CHECKOUT_CALENDAR_LAYER', state: isCheckIn });
+        searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_CHECKOUT_CALENDAR_LAYER', state: isCheckIn });
     };
 
     return (

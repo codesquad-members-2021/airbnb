@@ -19,10 +19,10 @@ const LocationTab = (): React.ReactElement => {
     const { locationLayer, locationList } = searcherState;
 
     const handleInputLayer: React.MouseEventHandler<HTMLDivElement> = () => {
-        searcherDispatch({ type: 'CHECKIN_CALENDAR_LAYER', state: false });
-        searcherDispatch({ type: 'CHECKOUT_CALENDAR_LAYER', state: false });
-        searcherDispatch({ type: 'FEE_LAYER', state: false });
-        searcherDispatch({ type: 'PEOPLE_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_CHECKOUT_CALENDAR_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_FEE_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_PEOPLE_LAYER', state: false });
         if (inputRef?.current) {
             inputRef.current.disabled = false;
             inputRef.current.focus();
@@ -33,26 +33,26 @@ const LocationTab = (): React.ReactElement => {
         if (debounceTimer) clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
             if (!event.target.value) {
-                searcherDispatch({ type: 'LOCATION_LIST', list: [] });
+                searcherDispatch({ type: 'SHOW_LOCATION_LIST', list: [] });
                 return;
             }
             const currLocationList: LocationList = mockupLocationData.location.filter((el) =>
                 el.city.includes(event.target.value),
             );
-            searcherDispatch({ type: 'LOCATION_LIST', list: currLocationList });
-            searcherDispatch({ type: 'LOCATION_LAYER', state: true });
+            searcherDispatch({ type: 'SHOW_LOCATION_LIST', list: currLocationList });
+            searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: true });
         }, 200);
     };
 
     const setUpLocation = (place: Location) => {
         reservationDispatch({ type: 'LOCATION', id: place.id, city: place.city });
-        searcherDispatch({ type: 'INPUTOFLOCATION', value: place.city });
+        searcherDispatch({ type: 'SHOW_INPUTOFLOCATION', value: place.city });
         if (inputRef?.current) {
             inputRef.current.value = place.city;
             inputRef.current.blur();
         }
-        searcherDispatch({ type: 'LOCATION_LAYER', state: false });
-        searcherDispatch({ type: 'CHECKIN_CALENDAR_LAYER', state: true });
+        searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: true });
     };
 
     return (
@@ -61,7 +61,7 @@ const LocationTab = (): React.ReactElement => {
                 <NavigatingText>위치</NavigatingText>
                 <LocationInput
                     ref={inputRef}
-                    onFocus={() => searcherDispatch({ type: 'LOCATION_LAYER', state: true })}
+                    onFocus={() => searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: true })}
                     onChange={handleInputLocationList}
                     disabled
                 />

@@ -8,7 +8,7 @@ export const isBefore = (targetDateSum: number, criterionDateSum: number): boole
     return targetDateSum <= criterionDateSum;
 };
 
-export const isNotCheckIn = ({ year, month, day }: IDate): boolean => {
+export const isNotCheckedDate = ({ year, month, day }: IDate): boolean => {
     return year === 0 && month === 0 && day === 0;
 };
 
