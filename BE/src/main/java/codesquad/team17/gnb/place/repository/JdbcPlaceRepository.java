@@ -39,16 +39,16 @@ public class JdbcPlaceRepository implements PlaceRepository {
             .price(rs.getInt("price"))
             .build();
 
-    private final NamedParameterJdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public JdbcPlaceRepository(NamedParameterJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public JdbcPlaceRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
     @Override
     public Optional<Place> findById(Long id) {
         SqlParameterSource namedParameters = new MapSqlParameterSource("id", id);
-        List<Place> places = jdbcTemplate.query(PlaceSql.FIND_BY_ID, namedParameters, PLACE_ROWMAPPER);
+        List<Place> places = namedParameterJdbcTemplate.query(PlaceSql.FIND_BY_ID, namedParameters, PLACE_ROWMAPPER);
 
         if (places.isEmpty()) {
             return Optional.empty();
@@ -61,7 +61,7 @@ public class JdbcPlaceRepository implements PlaceRepository {
     public List<Place> findBy(PlaceQueries placeQueries) {
         SqlParameterSource namedParameters = setNamedParametersByPlaceQueries(placeQueries);
 
-        return jdbcTemplate.query(PlaceSql.findBy(placeQueries), namedParameters, PLACE_ROWMAPPER);
+        return namedParameterJdbcTemplate.query(PlaceSql.findBy(placeQueries), namedParameters, PLACE_ROWMAPPER);
     }
 
     private SqlParameterSource setNamedParametersByPlaceQueries(PlaceQueries placeQueries) {
@@ -80,7 +80,7 @@ public class JdbcPlaceRepository implements PlaceRepository {
                 .addValue("checkIn", Date.valueOf(checkIn))
                 .addValue("checkOut", Date.valueOf(checkOut));
 
-        return jdbcTemplate.query(
+        return namedParameterJdbcTemplate.query(
                 PlaceSql.FIND_ALL_BY_STAY_PERIOD, namedParameters, PLACE_ROWMAPPER
         );
     }

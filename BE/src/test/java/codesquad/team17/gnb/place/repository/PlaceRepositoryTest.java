@@ -19,14 +19,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class PlaceRepositoryTest {
 
     @Autowired
-    private NamedParameterJdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private PlaceRepository placeRepository;
 
     private SoftAssertions softly;
 
     @BeforeEach
     void setUp() {
-        placeRepository = new JdbcPlaceRepository(jdbcTemplate);
+        placeRepository = new JdbcPlaceRepository(namedParameterJdbcTemplate);
         softly = new SoftAssertions();
     }
 
