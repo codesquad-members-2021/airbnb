@@ -3,6 +3,7 @@ package com.codesquad.airbnb.domain;
 import org.springframework.data.annotation.Id;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Room {
 
@@ -26,13 +27,13 @@ public class Room {
     private boolean immediateBooking;
 
     private List<Thumbnail> thumbnails;
-    private List<Option> options;
+    private Optional<Option> option;
     private List<Badge> badges;
 
     public Room(Long id, int max, String name, double rating, double latitude, double longitude, int bedroomCount,
                 int bedCount, int bathroomCount, String address, String detailAddress, int commentCount,
                 int originalPrice, int salePrice, boolean flexibleRefund, boolean immediateBooking,
-                List<Thumbnail> thumbnails, List<Option> options, List<Badge> badges) {
+                List<Thumbnail> thumbnails, Optional<Option> option, List<Badge> badges) {
         this.id = id;
         this.max = max;
         this.name = name;
@@ -50,12 +51,96 @@ public class Room {
         this.flexibleRefund = flexibleRefund;
         this.immediateBooking = immediateBooking;
         this.thumbnails = thumbnails;
-        this.options = options;
+        this.option = option;
         this.badges = badges;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public int getMax() {
+        return max;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public int getBedroomCount() {
+        return bedroomCount;
+    }
+
+    public int getBedCount() {
+        return bedCount;
+    }
+
+    public int getBathroomCount() {
+        return bathroomCount;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getDetailAddress() {
+        return detailAddress;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public int getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public int getSalePrice() {
+        return salePrice;
+    }
+
+    public boolean isFlexibleRefund() {
+        return flexibleRefund;
+    }
+
+    public boolean isImmediateBooking() {
+        return immediateBooking;
+    }
+
+    public List<Thumbnail> getThumbnails() {
+        return thumbnails;
+    }
+
+    public void setThumbnails(List<Thumbnail> thumbnails) {
+        this.thumbnails = thumbnails;
+    }
+
+    public Optional<Option> getOption() {
+        return option;
+    }
+
+    public void setOption(Optional<Option> option) {
+        this.option = option;
+    }
+
+    public List<Badge> getBadges() {
+        return badges;
+    }
+
+    public void setBadges(List<Badge> badges) {
+        this.badges = badges;
     }
 
     @Override
@@ -78,7 +163,7 @@ public class Room {
                 ", flexibleRefund=" + flexibleRefund +
                 ", immediateBooking=" + immediateBooking +
                 ", thumbnails=" + thumbnails +
-                ", options=" + options +
+                ", options=" + option +
                 ", badges=" + badges +
                 '}';
     }
