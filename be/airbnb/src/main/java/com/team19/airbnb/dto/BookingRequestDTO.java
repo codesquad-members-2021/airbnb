@@ -18,6 +18,7 @@ public class BookingRequestDTO {
 
     @JsonProperty("personnel")
     private Integer guest;
+
     @JsonProperty("totalPrice")
     private BigDecimal totalPrice;
 

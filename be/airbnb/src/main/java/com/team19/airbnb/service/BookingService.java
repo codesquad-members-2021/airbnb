@@ -33,4 +33,13 @@ public class BookingService {
         booking.checkUserId(userId);
         bookingDAO.bookReservation(booking);
     }
+
+    public void delete(Long bookingId, Long userId) {
+        Booking booking = bookingDAO.findById(bookingId).orElseThrow(IllegalArgumentException::new);
+        if(booking.getUser() != userId) {
+            //사용자 정의 예외처리 발생
+            throw new IllegalArgumentException();
+        }
+        bookingDAO.delete(bookingId);
+    }
 }

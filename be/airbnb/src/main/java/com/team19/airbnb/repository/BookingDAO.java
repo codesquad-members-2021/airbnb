@@ -67,6 +67,11 @@ public class BookingDAO {
 
     public void bookReservation(Booking booking) {
         String query = "INSERT INTO booking (check_in, check_out, guest, total_price, user, room) VALUES (?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(query, booking.getCheckIn(), booking.getCheckOut(), booking.getGuest(), booking.getTotalPrice(), booking.getUser(), booking.getRoom());
+        jdbcTemplate.update(query, booking.getCheckIn(), booking.getCheckOut(), booking.getGuest(), booking.getTotalPrice(), userId, booking.getRoom());
+    }
+
+    public void delete(Long bookingId) {
+        String query = "DELETE FROM booking WHERE id = ? ";
+        jdbcTemplate.update(query, bookingId);
     }
 }
