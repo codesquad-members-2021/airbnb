@@ -30,7 +30,7 @@ public class BookingRepositoryTest {
 
     @Test
     void check() {
-        Booking newBooking = new Booking(3L, 2L, 1L, "2021-5-20", "2021-5-23", 2, 0, 0);
+        Booking newBooking = new Booking(3L, 2L, 1L, "2021-5-20", "2021-5-23", 2, 200000);
         bookingRepository.insert(newBooking);
     }
 }
