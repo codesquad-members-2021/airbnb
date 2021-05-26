@@ -6,4 +6,8 @@ public class Thumbnail {
     public Thumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
     }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
 }
