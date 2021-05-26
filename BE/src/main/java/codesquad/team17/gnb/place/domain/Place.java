@@ -9,11 +9,9 @@ public class Place {
     private final int price;
     private final int maximumNumberOfPeople;
     private final Option option;
-
-    private int likeCount;
-
     private final Long hostId;
     private final String description;
+    private int likeCount;
 
     public Place(Builder builder) {
         this.id = builder.id;
