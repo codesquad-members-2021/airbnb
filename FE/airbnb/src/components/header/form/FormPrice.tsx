@@ -16,7 +16,8 @@ const FormPrice = () => {
           <FormColumn title='요금' description='금액대 설정' />
         </HoverBlock>
       </StyledFormPrice>
-      {open && <PriceBar toggleRef={toggleRef} />}
+      {/* {open && <PriceBar toggleRef={toggleRef} />} */}
+      <PriceBar toggleRef={toggleRef} />
     </StyledFormPriceWrapper>
   );
 };
