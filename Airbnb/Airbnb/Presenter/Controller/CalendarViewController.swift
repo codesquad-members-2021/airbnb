@@ -78,10 +78,9 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        dateStroage.indices.forEach {
-            if dateStroage[$0] == dateFormatter.string(from: date) {
-                dateStroage.remove(at: $0)
-            }
+        let selectedDate = dateFormatter.string(from: date)
+        if let index = dateStroage.firstIndex(of: selectedDate) {
+            dateStroage.remove(at: index)
         }
         let checkIn = dateStroage.min() ?? ""
         let checkOut = dateStroage.max() ?? ""
@@ -93,7 +92,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     }
     
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
-        if date.compare(Date()) == .orderedAscending {
+        if date.compare(Date().addingTimeInterval(-86400)) == .orderedAscending {
             return false
         } else {
             return true
