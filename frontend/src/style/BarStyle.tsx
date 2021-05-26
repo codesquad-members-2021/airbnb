@@ -23,7 +23,7 @@ export const ModalWrapper = styled.div<ModalProps>`
 		css`
 			width: ${props.theme.modalWidth[props.modalType] + 40}px;
 			height: 550px;
-			// overflow: hidden;
+			overflow: hidden;
 		`}
 `
 export const BarTitle = styled.div`

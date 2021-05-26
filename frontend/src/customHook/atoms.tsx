@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
-//defaultValue
 
+//defaultValue
 export const defaultValue = {
 	placeToSearch: '어디로 여행가세요?',
 	checkIn: '날짜입력',
@@ -24,7 +24,13 @@ export const checkOutMessage = atom<string | number>({
 	default: defaultValue.checkOut,
 })
 
-//ClickCheck
+//ClickCheckPlaceToggle
+export const clickPlace = atom<boolean>({
+	key: 'placeClicked',
+	default: false,
+})
+
+//ClickCheckIn&Out
 export const clickCheckIn = atom<boolean>({
 	key: 'checkInClicked',
 	default: false,
