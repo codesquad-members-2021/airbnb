@@ -1,6 +1,7 @@
 package com.codesquad.airbnb.dao;
 
 import com.codesquad.airbnb.domain.Reservation;
+import com.codesquad.airbnb.dto.ReservationDetailDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,5 +41,13 @@ class ReservationDAOTest {
         List<Reservation> reservation = reservationDAO.findAllReservationsByUserId(1L);
 
         assertThat(reservation.get(0).getUserId()).isEqualTo(1L);
+    }
+
+    @Test
+    void reservationDAO_findDetailedReservationTest() {
+        ReservationDetailDTO reservationDetailDTO = reservationDAO.findDetailedReservation(1L);
+
+        assertThat(reservationDetailDTO.getHostName()).isEqualTo("새리");
+        assertThat(reservationDetailDTO.getGuestCount()).isEqualTo(4);
     }
 }
