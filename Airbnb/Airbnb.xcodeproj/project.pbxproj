@@ -13,6 +13,8 @@
 		7112E6EC26561CDE00F9AAD6 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112E6EB26561CDE00F9AAD6 /* HeaderView.swift */; };
 		7157C8862654A14500EF7977 /* FirstSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C8852654A14500EF7977 /* FirstSectionView.swift */; };
 		7157C8892654AC4000EF7977 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C8882654AC4000EF7977 /* MainViewModel.swift */; };
+		7197A4B0265DE3E400729BCF /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7197A4AF265DE3E400729BCF /* CalendarViewModel.swift */; };
+		7197A4B2265DE5B200729BCF /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7197A4B1265DE5B200729BCF /* CalendarCell.swift */; };
 		71A67D2526539B6A00FC6689 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D2426539B6A00FC6689 /* AppDelegate.swift */; };
 		71A67D2726539B6A00FC6689 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D2626539B6A00FC6689 /* SceneDelegate.swift */; };
 		71A67D2926539B6A00FC6689 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D2826539B6A00FC6689 /* MainViewController.swift */; };
@@ -47,6 +49,8 @@
 		7112E6EB26561CDE00F9AAD6 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		7157C8852654A14500EF7977 /* FirstSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSectionView.swift; sourceTree = "<group>"; };
 		7157C8882654AC4000EF7977 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		7197A4AF265DE3E400729BCF /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		7197A4B1265DE5B200729BCF /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		71A67D2126539B6A00FC6689 /* Airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71A67D2426539B6A00FC6689 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71A67D2626539B6A00FC6689 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 				71F65540265C9002008645B8 /* RegieonViewModel.swift */,
 				71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */,
 				71F65545265CB9D7008645B8 /* CommonViewModelType.swift */,
+				7197A4AF265DE3E400729BCF /* CalendarViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -235,6 +240,7 @@
 				7112E6E92656054900F9AAD6 /* TravelInfoCell.swift */,
 				71D133E026575AB000A71626 /* SecondSectionCell.swift */,
 				71B93A7126576CA10028C492 /* ThirdSectionCell.swift */,
+				7197A4B1265DE5B200729BCF /* CalendarCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -377,6 +383,7 @@
 				71B93A7C2657A0480028C492 /* SearchViewController.swift in Sources */,
 				7112E6E8265604E100F9AAD6 /* RegieonInfoCell.swift in Sources */,
 				71F65548265CC43E008645B8 /* CalendarViewController.swift in Sources */,
+				7197A4B2265DE5B200729BCF /* CalendarCell.swift in Sources */,
 				7112E6EA2656054900F9AAD6 /* TravelInfoCell.swift in Sources */,
 				71DA183A2654E2FE00415EDD /* ThirdSectionView.swift in Sources */,
 				7157C8892654AC4000EF7977 /* MainViewModel.swift in Sources */,
@@ -386,6 +393,7 @@
 				71B93A7226576CA10028C492 /* ThirdSectionCell.swift in Sources */,
 				71F65546265CB9D7008645B8 /* CommonViewModelType.swift in Sources */,
 				71B93A74265783410028C492 /* LoginViewContoller.swift in Sources */,
+				7197A4B0265DE3E400729BCF /* CalendarViewModel.swift in Sources */,
 				71B93A7826578C5A0028C492 /* APIService.swift in Sources */,
 				7112E6EC26561CDE00F9AAD6 /* HeaderView.swift in Sources */,
 			);

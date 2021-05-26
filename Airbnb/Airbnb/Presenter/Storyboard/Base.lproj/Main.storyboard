@@ -168,7 +168,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IT2-q2-A9n" customClass="FSCalendar">
-                                <rect key="frame" x="0.0" y="74" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="74" width="414" height="468"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxQ-LK-zPx">
@@ -176,23 +176,106 @@
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="chevron.backward.circle" catalog="system"/>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d8L-xs-HTX">
+                                <rect key="frame" x="0.0" y="542" width="414" height="264"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CalendarCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CalendarCell" id="fxB-BG-dOb" customClass="CalendarCell" customModule="Airbnb" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="32"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fxB-BG-dOb" id="o1I-rA-ycN">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="32"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="위치" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="P2C-fG-hm2">
+                                                    <rect key="frame" x="10" y="4" width="112" height="24"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3GR-A7-DQl">
+                                                    <rect key="frame" x="257" y="3.5" width="147" height="25"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" systemColor="systemGray3Color"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="3GR-A7-DQl" secondAttribute="trailing" constant="10" id="1FY-Rm-nsW"/>
+                                                <constraint firstItem="P2C-fG-hm2" firstAttribute="leading" secondItem="o1I-rA-ycN" secondAttribute="leading" constant="10" id="GsL-Jp-wt2"/>
+                                                <constraint firstItem="P2C-fG-hm2" firstAttribute="centerY" secondItem="o1I-rA-ycN" secondAttribute="centerY" id="JDp-a5-TJV"/>
+                                                <constraint firstItem="3GR-A7-DQl" firstAttribute="height" secondItem="o1I-rA-ycN" secondAttribute="height" multiplier="0.78125" id="OBq-jV-5sI"/>
+                                                <constraint firstItem="3GR-A7-DQl" firstAttribute="centerY" secondItem="o1I-rA-ycN" secondAttribute="centerY" id="PT1-L9-4Jz"/>
+                                                <constraint firstItem="P2C-fG-hm2" firstAttribute="height" secondItem="o1I-rA-ycN" secondAttribute="height" multiplier="0.761905" id="Sqp-My-60A"/>
+                                                <constraint firstItem="P2C-fG-hm2" firstAttribute="width" secondItem="o1I-rA-ycN" secondAttribute="width" multiplier="0.270531" id="nZu-D8-Xiv"/>
+                                                <constraint firstItem="3GR-A7-DQl" firstAttribute="width" secondItem="o1I-rA-ycN" secondAttribute="width" multiplier="0.355072" id="wpU-BP-dff"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentLabel" destination="3GR-A7-DQl" id="UGp-tV-KkZ"/>
+                                            <outlet property="titleLabel" destination="P2C-fG-hm2" id="55r-gU-CMv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Glw-0g-sRt">
+                                <rect key="frame" x="0.0" y="806" width="414" height="80"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ud-Eo-eKE">
+                                        <rect key="frame" x="25" y="16.5" width="68" height="47"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="건너뛰기">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="enu-8X-2Ur">
+                                        <rect key="frame" x="321" y="16.5" width="68" height="47"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="다음">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="enu-8X-2Ur" firstAttribute="height" secondItem="Glw-0g-sRt" secondAttribute="height" multiplier="0.5875" id="GKv-nG-geY"/>
+                                    <constraint firstItem="enu-8X-2Ur" firstAttribute="width" secondItem="Glw-0g-sRt" secondAttribute="width" multiplier="0.164251" id="P6u-yh-2PE"/>
+                                    <constraint firstAttribute="trailing" secondItem="enu-8X-2Ur" secondAttribute="trailing" constant="25" id="RAJ-sN-x1w"/>
+                                    <constraint firstItem="1ud-Eo-eKE" firstAttribute="height" secondItem="Glw-0g-sRt" secondAttribute="height" multiplier="0.5875" id="Y59-pa-wgO"/>
+                                    <constraint firstItem="1ud-Eo-eKE" firstAttribute="leading" secondItem="Glw-0g-sRt" secondAttribute="leading" constant="25" id="av5-XC-cDD"/>
+                                    <constraint firstItem="1ud-Eo-eKE" firstAttribute="width" secondItem="Glw-0g-sRt" secondAttribute="width" multiplier="0.164251" id="gAn-rd-ZE2"/>
+                                    <constraint firstItem="1ud-Eo-eKE" firstAttribute="centerY" secondItem="Glw-0g-sRt" secondAttribute="centerY" id="hZH-vS-Bd5"/>
+                                    <constraint firstItem="enu-8X-2Ur" firstAttribute="centerY" secondItem="Glw-0g-sRt" secondAttribute="centerY" id="sno-q2-On1"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vE8-fz-wtx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="IT2-q2-A9n" firstAttribute="height" secondItem="jpc-7E-Ubz" secondAttribute="height" multiplier="0.334821" id="8IT-X6-Vq9"/>
+                            <constraint firstItem="Glw-0g-sRt" firstAttribute="top" secondItem="d8L-xs-HTX" secondAttribute="bottom" id="5I4-Ap-SJN"/>
                             <constraint firstItem="IT2-q2-A9n" firstAttribute="top" secondItem="vE8-fz-wtx" secondAttribute="top" constant="30" id="8mI-Ib-oSK"/>
                             <constraint firstItem="xxQ-LK-zPx" firstAttribute="width" secondItem="jpc-7E-Ubz" secondAttribute="width" multiplier="0.0483092" id="9lH-TO-oD7"/>
+                            <constraint firstItem="d8L-xs-HTX" firstAttribute="top" secondItem="IT2-q2-A9n" secondAttribute="bottom" id="B08-Z8-7eh"/>
+                            <constraint firstItem="vE8-fz-wtx" firstAttribute="trailing" secondItem="d8L-xs-HTX" secondAttribute="trailing" id="ESf-Gg-7IQ"/>
+                            <constraint firstItem="IT2-q2-A9n" firstAttribute="height" secondItem="jpc-7E-Ubz" secondAttribute="height" multiplier="0.522321" id="EZM-IZ-k3V"/>
                             <constraint firstItem="vE8-fz-wtx" firstAttribute="trailing" secondItem="IT2-q2-A9n" secondAttribute="trailing" id="I4k-Lq-pvi"/>
                             <constraint firstItem="xxQ-LK-zPx" firstAttribute="leading" secondItem="vE8-fz-wtx" secondAttribute="leading" constant="10" id="K3j-6r-2ke"/>
+                            <constraint firstItem="Glw-0g-sRt" firstAttribute="leading" secondItem="vE8-fz-wtx" secondAttribute="leading" id="NDA-Ne-oSd"/>
                             <constraint firstItem="IT2-q2-A9n" firstAttribute="leading" secondItem="vE8-fz-wtx" secondAttribute="leading" id="b2E-Vf-SdT"/>
+                            <constraint firstItem="d8L-xs-HTX" firstAttribute="leading" secondItem="vE8-fz-wtx" secondAttribute="leading" id="fLY-IY-Ci2"/>
                             <constraint firstItem="xxQ-LK-zPx" firstAttribute="top" secondItem="vE8-fz-wtx" secondAttribute="top" id="har-iT-O78"/>
+                            <constraint firstItem="Glw-0g-sRt" firstAttribute="height" secondItem="jpc-7E-Ubz" secondAttribute="height" multiplier="0.0892857" id="kbz-3i-M8G"/>
+                            <constraint firstAttribute="bottom" secondItem="Glw-0g-sRt" secondAttribute="bottom" constant="10" id="lHz-rz-x9W"/>
                             <constraint firstItem="xxQ-LK-zPx" firstAttribute="height" secondItem="jpc-7E-Ubz" secondAttribute="height" multiplier="0.0245536" id="qZf-rU-f4f"/>
+                            <constraint firstItem="Glw-0g-sRt" firstAttribute="trailing" secondItem="vE8-fz-wtx" secondAttribute="trailing" id="vXu-wM-jUk"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="xxQ-LK-zPx" id="9um-qd-2zx"/>
                         <outlet property="calendarView" destination="IT2-q2-A9n" id="t0i-8F-BSP"/>
+                        <outlet property="infoTableVIew" destination="d8L-xs-HTX" id="ZE0-wS-tFi"/>
+                        <outlet property="nextButton" destination="enu-8X-2Ur" id="vqP-tC-E2v"/>
+                        <outlet property="skipDeleteButton" destination="1ud-Eo-eKE" id="V1R-uC-ych"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZV-yp-xQM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -377,6 +460,9 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

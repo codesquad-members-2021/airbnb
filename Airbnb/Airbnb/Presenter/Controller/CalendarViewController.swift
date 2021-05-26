@@ -3,11 +3,15 @@ import FSCalendar
 
 class CalendarViewController: UIViewController {
     
+    @IBOutlet var infoTableVIew: UITableView!
     @IBOutlet var backButton: UIButton!
     @IBOutlet var calendarView: FSCalendar!
     
+    @IBOutlet var nextButton: UIButton!
+    @IBOutlet var skipDeleteButton: UIButton!
     private var locationInfo:String?
     private var dateStroage:[String] = []
+    private let viewModel = CalendarViewModel()
     
     private lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -18,10 +22,20 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMainView()
+        bind()
     }
     
     func setupLocation(_ info:String) {
         locationInfo = info
+    }
+    
+    private func bind() {
+        viewModel.accommodationData()
+            .drive(infoTableVIew.rx.items(cellIdentifier: CalendarCell.identifier, cellType: CalendarCell.self)) { _, data, cell in
+                cell.configure(data)
+            }.disposed(by: rx.disposeBag)
+        
+        infoTableVIew.rx.setDelegate(self).disposed(by: rx.disposeBag)
     }
 }
 
@@ -84,5 +98,11 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         } else {
             return .black
         }
+    }
+}
+
+extension CalendarViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.frame.height/4
     }
 }
