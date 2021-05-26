@@ -24,14 +24,14 @@ public class User {
     }
 
     public static User createUser(UserInfoDTO userInfoDTO, EmailDTO emailDTO, TokenDTO tokenDTO) {
-        return new User(userInfoDTO.getLogin(), emailDTO.getEmail(), userInfoDTO.getName(), tokenDTO.getAccess_token());
+        return new User(userInfoDTO.getUserId(), emailDTO.getEmail(), userInfoDTO.getName(), tokenDTO.getAccessToken());
     }
 
     public void update(UserInfoDTO userInfoDTO, EmailDTO emailDTO, TokenDTO tokenDTO) {
-        this.userId = userInfoDTO.getLogin();
+        this.userId = userInfoDTO.getUserId();
         this.email = emailDTO.getEmail();
         this.name = userInfoDTO.getName();
-        this.token = tokenDTO.getAccess_token();
+        this.token = tokenDTO.getAccessToken();
     }
 
     public void removeToken() {

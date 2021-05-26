@@ -31,10 +31,10 @@ public class UserService {
 
     public UserResponseDTO login(String code, GitHubType gitHubType) {
         TokenDTO tokenDTO = tokenRequestApi(code, gitHubType);
-        UserInfoDTO userInfoDTO = userInfoRequestApi(tokenDTO.getAccess_token());
-        EmailDTO emailDTO = emailRequestApi(tokenDTO.getAccess_token());
-        if (verifyUser(userInfoDTO.getLogin())) {
-            User user = findByUserId(userInfoDTO.getLogin());
+        UserInfoDTO userInfoDTO = userInfoRequestApi(tokenDTO.getAccessToken());
+        EmailDTO emailDTO = emailRequestApi(tokenDTO.getAccessToken());
+        if (verifyUser(userInfoDTO.getUserId())) {
+            User user = findByUserId(userInfoDTO.getUserId());
             user.update(userInfoDTO, emailDTO, tokenDTO);
             userDAO.update(user);
             return createUserResponseDTO(user, JwtUtil.createToken(user.getUserId()));

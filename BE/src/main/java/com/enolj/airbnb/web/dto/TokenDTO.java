@@ -1,13 +1,16 @@
 package com.enolj.airbnb.web.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class TokenDTO {
 
-    private String access_token;
+    @JsonProperty("access_token")
+    private String accessToken;
     private String token_type;
     private String scope;
 
-    public void setAccess_token(String access_token) {
-        this.access_token = access_token;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
     public void setToken_type(String token_type) {
@@ -18,14 +21,14 @@ public class TokenDTO {
         this.scope = scope;
     }
 
-    public String getAccess_token() {
-        return access_token;
+    public String getAccessToken() {
+        return accessToken;
     }
 
     @Override
     public String toString() {
         return "TokenDTO{" +
-                "access_token='" + access_token + '\'' +
+                "access_token='" + accessToken + '\'' +
                 ", token_type='" + token_type + '\'' +
                 ", scope='" + scope + '\'' +
                 '}';

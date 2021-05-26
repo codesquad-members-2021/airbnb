@@ -1,16 +1,19 @@
 package com.enolj.airbnb.web.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class UserInfoDTO {
 
-    private String login;
+    @JsonProperty("login")
+    private String userId;
     private String name;
 
-    public String getLogin() {
-        return login;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -24,7 +27,7 @@ public class UserInfoDTO {
     @Override
     public String toString() {
         return "UserInfoDTO{" +
-                "login='" + login + '\'' +
+                "login='" + userId + '\'' +
                 ", name='" + name + '\'' +
                 '}';
     }
