@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getInitialDate, loadYYMM } from './calendarDate';
 import { Td, UsefulObject, CalendarType, DateType, Date as IDate } from '../../../../../../shared/interface';
@@ -20,21 +20,37 @@ const Calendar = ({ isCheckIn }: CalendarType): React.ReactElement => {
     const searcherDispatch = useSearcherDispatch();
     const [calendarQueue, setCalendarQueue] = useState<Date[]>(getInitialDate());
 
-    const handleCalendarButton = (payload: number, direction: string) => {
-        const currDate = direction === 'prev' ? calendarQueue[0] : calendarQueue[calendarQueue.length - 1];
-        const newDate = new Date();
-        newDate.setFullYear(currDate.getFullYear(), currDate.getMonth() + payload, 1);
-        const newCalendarQueue = [...calendarQueue];
+    // carousel
+    const transitionDefault = 'all .5s';
+    const panelWidth = 375;
 
-        if (direction === 'prev') {
-            newCalendarQueue.pop();
-            newCalendarQueue.unshift(newDate);
-        } else if (direction === 'next') {
-            newCalendarQueue.shift();
-            newCalendarQueue.push(newDate);
-        }
+    const [x, setX] = useState(-panelWidth);
+    const [moving, setMoving] = useState(false);
+    const [transitionValue, setTransitionValue] = useState(transitionDefault);
 
-        setCalendarQueue(newCalendarQueue);
+    // useEffect(() => {
+    //     if (transitionValue === 'none') setTransitionValue(transitionDefault);
+    // }, [x]);
+
+    console.log(x);
+
+    const handleCalendarButton = (direction: number) => {
+        setX((prevX) => prevX + direction * 375);
+        setMoving(true);
+        // const currDate = direction === -1 ? calendarQueue[0] : calendarQueue[calendarQueue.length - 1];
+        // const newDate = new Date();
+        // newDate.setFullYear(currDate.getFullYear(), currDate.getMonth() + direction, 1);
+        // const newCalendarQueue = [...calendarQueue];
+
+        // if (direction === -1) {
+        //     newCalendarQueue.pop();
+        //     newCalendarQueue.unshift(newDate);
+        // } else if (direction === 1) {
+        //     newCalendarQueue.shift();
+        //     newCalendarQueue.push(newDate);
+        // }
+
+        // setCalendarQueue(newCalendarQueue);
     };
 
     const handleCheckDate = (
@@ -78,13 +94,15 @@ const Calendar = ({ isCheckIn }: CalendarType): React.ReactElement => {
             <LayerContentContainer>
                 <CalendarContainer>
                     <div>
-                        <button onClick={() => handleCalendarButton(-1, 'prev')}>prev</button>
+                        <button onClick={() => handleCalendarButton(-1)}>◀</button>
                     </div>
                     <CarouselBox>
-                        <MonthsPresenter {...{ checkIn, checkOut, calendarQueue, handleCheckDate }} />
+                        <MonthsPresenter
+                            {...{ x, checkIn, checkOut, calendarQueue, handleCheckDate, transitionValue }}
+                        />
                     </CarouselBox>
                     <div>
-                        <button onClick={() => handleCalendarButton(1, 'next')}>next</button>
+                        <button onClick={() => handleCalendarButton(1)}>▶</button>
                     </div>
                 </CalendarContainer>
             </LayerContentContainer>
@@ -114,21 +132,28 @@ const ButtonSection = styled.div`
 `;
 
 const CarouselBox = styled.div`
-    width: 100%;
+    width: 750px;
     background: green;
     position: relative;
     overflow: hidden;
 `;
 
-const CalendarList = styled.ul`
+interface CalendarListType {
+    x: number;
+    transitionValue: string;
+}
+
+const CalendarList = styled.ul<CalendarListType>`
     display: flex;
     position: absolute;
-    left: -350px;
+    // left: -350px;
+    transform: ${({ x }) => `translate3d(${x}px, 0, 0)`};
+    transition: 300ms;
 `;
 
 const CalendarBox = styled.li`
-    width: 336px;
-    margin: 0 10px;
+    width: 375px;
+    padding: 0 10px;
     list-style: none;
 `;
 
@@ -179,12 +204,14 @@ interface WeekProps extends CalendarPresenterProps {
 
 interface MonthProps extends CalendarPresenterProps {
     calendarQueue: Date[];
+    x: number;
+    transitionValue: string;
 }
 
 function MonthsPresenter(props: MonthProps) {
-    const { checkIn, checkOut, handleCheckDate, calendarQueue } = props;
+    const { checkIn, checkOut, handleCheckDate, calendarQueue, x, transitionValue } = props;
     return (
-        <CalendarList>
+        <CalendarList x={x} transitionValue={transitionValue}>
             {calendarQueue.map((date) => {
                 const dateTable = loadYYMM(date);
                 return (

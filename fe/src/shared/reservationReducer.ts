@@ -2,6 +2,20 @@ import { ReservationContext, ReservationAction } from './interface';
 
 export default function reservationReducer(state: ReservationContext, action: ReservationAction): ReservationContext {
     switch (action.type) {
+        case 'RESET_DATE':
+            return {
+                ...state,
+                checkIn: {
+                    year: 0,
+                    month: 0,
+                    day: 0,
+                },
+                checkOut: {
+                    year: 0,
+                    month: 0,
+                    day: 0,
+                },
+            };
         case 'LOCATION':
             return {
                 ...state,

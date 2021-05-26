@@ -17,7 +17,7 @@ const CheckInTab = (): React.ReactElement => {
     };
 
     const handleCancel = () => {
-        reservationDispatch({ type: 'CHECKIN', year: 0, month: 0, day: 0 });
+        reservationDispatch({ type: 'RESET_DATE' });
     };
 
     const { year, month, day } = checkIn;

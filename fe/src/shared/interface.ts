@@ -39,7 +39,8 @@ export type ReservationAction =
     | { type: 'CHECKIN'; year: number; month: number; day: number }
     | { type: 'CHECKOUT'; year: number; month: number; day: number }
     | { type: 'PEOPLE'; guest: number; kids: number }
-    | { type: 'FEE'; fee: number[] | number };
+    | { type: 'FEE'; fee: number[] | number }
+    | { type: 'RESET_DATE' };
 
 export interface SearchContext {
     locationLayer: boolean;
@@ -62,15 +63,6 @@ export type SearchAction =
     | { type: 'SHOW_CHECKOUT_CALENDAR_LAYER'; state: boolean }
     | { type: 'SHOW_FEE_LAYER'; state: boolean }
     | { type: 'SHOW_PEOPLE_LAYER'; state: boolean };
-
-// export type SearchAction =
-//     | { type: 'SHOW_LOCATION_LIST'; list: Location[] | null }
-//     | { type: 'SHOW_LOCATION_LAYER' }
-//     | { type: 'SHOW_INPUTOFLOCATION'; value: string }
-//     | { type: 'SHOW_CHECKIN_CALENDAR_LAYER' }
-//     | { type: 'SHOW_CHECKOUT_CALENDAR_LAYER' }
-//     | { type: 'SHOW_FEE_LAYER' }
-//     | { type: 'SHOW_PEOPLE_LAYER' };
 
 export type SearcherLayerStateAction =
     | { type: 'SELECT_LOCATION_TAB' }
