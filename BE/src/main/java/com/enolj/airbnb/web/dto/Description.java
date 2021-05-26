@@ -1,6 +1,7 @@
 package com.enolj.airbnb.web.dto;
 
 import com.enolj.airbnb.domain.house.House;
+import com.enolj.airbnb.domain.join.Join;
 
 public class Description {
 
@@ -14,8 +15,8 @@ public class Description {
         this.charge = charge;
     }
 
-    public static Description createDescription(House house) {
-        return new Description(house.getHost(), house.getOption(), house.getCharge());
+    public static Description createDescription(House house, Join join) {
+        return new Description(house.getHost(), join.makeOption(), house.getCharge());
     }
 
     public String getHost() {

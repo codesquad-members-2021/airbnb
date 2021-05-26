@@ -2,6 +2,10 @@ package com.enolj.airbnb.domain.house;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class House {
 
     @Id
@@ -24,12 +28,24 @@ public class House {
     }
 
     public boolean checkLocation(double latitude, double longitude) {
-        return (latitude - 0.001 <= this.latitude && this.latitude <= latitude + 0.001)
-                && (longitude - 0.001 <= this.longitude && this.longitude <= longitude + 0.001);
+        return (latitude - 0.003 <= this.latitude && this.latitude <= latitude + 0.003)
+                && (longitude - 0.003 <= this.longitude && this.longitude <= longitude + 0.003);
     }
 
     public String makeLocation() {
         return "서초구, 서울, 한국";
+    }
+
+    public String makeLocal() {
+        return "서초구의 아파트 전체";
+    }
+
+    public List<String> makeOption() {
+        List<String> splitOption = Arrays.asList(option.split(","));
+        List<String> options = new ArrayList<>();
+        options.add(String.join(" • ", splitOption.subList(0, 4)));
+        options.add(String.join(" • ", splitOption.subList(4, 8)));
+        return options;
     }
 
     public Long getId() {

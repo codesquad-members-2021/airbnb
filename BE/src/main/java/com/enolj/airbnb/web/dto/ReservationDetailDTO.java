@@ -28,7 +28,7 @@ public class ReservationDetailDTO {
     }
 
     public static ReservationDetailDTO createReservationDetailDTO(House house, List<String> images, Join join) {
-        return new ReservationDetailDTO(house.getId(), images, "서초구, 서울, 한국", house.getName(), join.getCheckInTime(), join.getCheckOutTime(), createDescription(house));
+        return new ReservationDetailDTO(house.getId(), images, house.makeLocation(), house.getName(), join.getCheckInTime(), join.getCheckOutTime(), createDescription(house, join));
     }
 
     public Long getId() {

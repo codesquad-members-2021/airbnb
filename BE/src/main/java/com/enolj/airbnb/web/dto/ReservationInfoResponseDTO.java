@@ -8,16 +8,18 @@ public class ReservationInfoResponseDTO {
     private final double cleaningRatio;
     private final double serviceRatio;
     private final double discountRatio;
+    private final int review;
 
-    public ReservationInfoResponseDTO(int charge, double cleaningRatio, double serviceRatio, double discountRatio) {
+    public ReservationInfoResponseDTO(int charge, double cleaningRatio, double serviceRatio, double discountRatio, int review) {
         this.charge = charge;
         this.cleaningRatio = cleaningRatio;
         this.serviceRatio = serviceRatio;
         this.discountRatio = discountRatio;
+        this.review = review;
     }
 
     public static ReservationInfoResponseDTO createReservationInfoResponseDTO(House house) {
-        return new ReservationInfoResponseDTO(house.getCharge(), house.getCleaningRatio(), house.getServiceRatio(), house.getDiscountRatio());
+        return new ReservationInfoResponseDTO(house.getCharge(), house.getCleaningRatio(), house.getServiceRatio(), house.getDiscountRatio(), house.getReview());
     }
 
     public int getCharge() {
@@ -34,6 +36,10 @@ public class ReservationInfoResponseDTO {
 
     public double getDiscountRatio() {
         return discountRatio;
+    }
+
+    public int getReview() {
+        return review;
     }
 
     @Override
