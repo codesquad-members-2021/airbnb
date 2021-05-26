@@ -19,12 +19,17 @@ class LocationInfoViewController: UIViewController{
     @IBOutlet weak var skipAndDeleteButton: UIButton!
     
     private var cancellable = Set<AnyCancellable>()
-    private var locationInfoViewModel: LocationInfoViewModel?
     private var deleteDatesSubject = PassthroughSubject<Void, Never>()
     private var nextViewSubject: PassthroughSubject<Void, Never>?
     
+    private var locationInfoViewModel: LocationInfoViewModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         bind()
     }
     

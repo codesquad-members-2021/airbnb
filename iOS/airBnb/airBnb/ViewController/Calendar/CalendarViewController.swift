@@ -16,10 +16,13 @@ class CalendarViewController: UIViewController {
     private var calendarManager = CalendarManager()
     private var calendarDataSource: CalendarDataSource?
     private let headerViewHight:CGFloat = 60
-    private let searchManager = SearchManager()
+    
     private let didSelectSubject = PassthroughSubject<Void,Never>()
     private let nextViewControllerSubject = PassthroughSubject<Void,Never>()
     private var cancellable = Set<AnyCancellable>()
+    
+    private let searchManager = SearchManager()
+    private let locationInfoViewController = UIStoryboard.create(identifier: LocationInfoViewController.self, name: "LocationInfo")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +38,6 @@ class CalendarViewController: UIViewController {
     }
     
     private func addContainerView() {
-        let locationInfoViewController = UIStoryboard.create(identifier: LocationInfoViewController.self, name: "LocationInfo")
         locationInfoViewController.inject(from: searchManager,
                         subject: nextViewControllerSubject,
                         state: .calerdar)
@@ -68,9 +70,14 @@ class CalendarViewController: UIViewController {
         calendarCollection.reloadData()
     }
     
-    func moveViewController() {
+    private func moveViewController() {
         nextViewControllerSubject.sink { [weak self] _ in
-            self?.navigationController?.pushViewController(PriceSliderViewController(), animated: true)
+            guard let self = self else {
+                return
+            }
+            let priceViewController = UIStoryboard.create(identifier: PriceViewController.self, name: "Price")
+            priceViewController.setupSearchInfoViewController(for: self.searchManager, from: self.locationInfoViewController)
+            self.navigationController?.pushViewController(priceViewController, animated: true)
         }.store(in: &cancellable)
     }
 }

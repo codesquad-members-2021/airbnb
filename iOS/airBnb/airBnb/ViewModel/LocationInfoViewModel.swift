@@ -39,7 +39,6 @@ class LocationInfoViewModel {
     
     func isEmptySelectDates() -> AnyPublisher<Bool, Never> {
         return searchManager.$selectDates
-            .dropFirst()
             .map { $0.start != nil && $0.end != nil }
             .eraseToAnyPublisher()
     }
@@ -67,17 +66,14 @@ class LocationInfoViewModel {
                 .eraseToAnyPublisher()
         case .location:
             return searchManager.$location
-                .dropFirst()
                 .map { $0.isEmpty ? "건너뛰기" : "지우기" }
                 .eraseToAnyPublisher()
         case .people:
             return searchManager.$numberOfPleple
-                .dropFirst()
                 .map { $0.isEmpty ? "건너뛰기" : "지우기" }
                 .eraseToAnyPublisher()
         case .price:
             return searchManager.$price
-                .dropFirst()
                 .map { $0.isEmpty ? "건너뛰기" : "지우기" }
                 .eraseToAnyPublisher()
         case .none:
