@@ -67,7 +67,9 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         dateStroage.append(dateFormatter.string(from: date))
-        print(dateStroage)
+        let checkIn = dateStroage.min() ?? ""
+        let checkOut = dateStroage.max() ?? ""
+        dateLabel.text = "\(checkIn)\(checkOut)"
     }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -76,7 +78,6 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
                 dateStroage.remove(at: $0)
             }
         }
-        print(dateStroage)
     }
     
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
