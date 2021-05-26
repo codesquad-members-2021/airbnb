@@ -31,7 +31,7 @@ public class UserInput {
     private Integer priceMinimum;
     private Integer priceMaximum;
 
-    public boolean hasCheckinAndOut() {
+    public boolean checkStayDurationFilter() {
         boolean isNotNull = checkIn != null && checkOut != null;
         if(!isNotNull){
             return false;
@@ -43,11 +43,11 @@ public class UserInput {
         return true;
     }
 
-    public boolean hasGuestCount() {
+    public boolean checkGuestCountFilter() {
         return adultCount != null && childCount != null && infantCount != null;
     }
 
-    public boolean hasPriceRange() {
+    public boolean checkPriceRangeFilter() {
         boolean isNotNull = priceMinimum != null && priceMaximum != null;
         if (!isNotNull) {
             return false;
@@ -62,7 +62,7 @@ public class UserInput {
         return adultCount + childCount + infantCount;
     }
 
-    public long stayDay() {
+    public long calculateStayingDays() {
         return checkIn.until(checkOut, ChronoUnit.DAYS);
     }
 }

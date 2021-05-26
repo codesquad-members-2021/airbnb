@@ -89,7 +89,7 @@ public class RoomDAO implements RoomRepository {
     }
 
     private void addCheckinFilter(UserInput userInput, StringBuilder sqlBuilder, MapSqlParameterSource parameter) {
-        if (userInput.hasCheckinAndOut()) {
+        if (userInput.checkStayDurationFilter()) {
             sqlBuilder.append(FILTERING_DATE);
             parameter.addValue("stay_start", userInput.getCheckIn())
                     .addValue("stay_end", userInput.getCheckOut());
@@ -97,16 +97,16 @@ public class RoomDAO implements RoomRepository {
     }
 
     private void addGuestCountFilter(UserInput userInput, StringBuilder sqlBuilder, MapSqlParameterSource parameter) {
-        if (userInput.hasGuestCount()) {
+        if (userInput.checkGuestCountFilter()) {
             sqlBuilder.append(FILTERING_GUEST_COUNT);
             parameter.addValue("guest_count", userInput.guestCount());
         }
     }
 
     private void addPriceRange(UserInput userInput, StringBuilder sqlBuilder, MapSqlParameterSource parameter) {
-        if (userInput.hasPriceRange()) {
+        if (userInput.checkPriceRangeFilter()) {
             sqlBuilder.append(FILTERING_PRICE);
-            parameter.addValue("stay_day", userInput.stayDay())
+            parameter.addValue("stay_day", userInput.calculateStayingDays())
                     .addValue("cost_minimum", userInput.getPriceMinimum())
                     .addValue("cost_maximum", userInput.getPriceMaximum());
         }
