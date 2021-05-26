@@ -148,7 +148,7 @@ extension CalendarViewController: UICollectionViewDataSource{
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CalendarHeader.reuseIdentifier, for: indexPath)
             return headerView
         default :
-            assert(false, "there is no header")
+            assert(false, "there is no element")
         }
     }
 }
@@ -167,6 +167,6 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 40.0)
+        return CGSize(width: collectionView.frame.width, height: 50.0)
     }
 }

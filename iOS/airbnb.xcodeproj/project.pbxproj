@@ -114,13 +114,21 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		105D4273265DE84C00FCF8F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				10406B5C265D344F004F4AF9 /* CalendarDateCell.swift */,
+				105D4271265DE20E00FCF8F7 /* CalendarHeader.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		10BAF19E265CD32E0035D99B /* CalendarPicker */ = {
 			isa = PBXGroup;
 			children = (
 				10BAF19C265CD1DA0035D99B /* CalendarViewController.swift */,
-				10406B5C265D344F004F4AF9 /* CalendarDateCell.swift */,
-				105D4271265DE20E00FCF8F7 /* CalendarHeader.swift */,
 				10406B59265D2C19004F4AF9 /* Model */,
+				105D4273265DE84C00FCF8F7 /* View */,
 			);
 			path = CalendarPicker;
 			sourceTree = "<group>";
