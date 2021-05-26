@@ -12,7 +12,7 @@ values (:room_id, :service_fee, :accomodation_tax, :clean_up_cost, :price_per_da
 
 const val FIND_ROOM: String = """
 select r.id, r.location_id, r.name, r.rating, r.guest_capacity, st_x(r.point), st_y(r.point), r.description, r.bathroom_type, r.bedroom_type, r.bed_count, r.amenity,
-rp.accomodation_tax, rp.clean_up_cost, rp.price_per_day, rp.service_fee, rp.weekly_discount, l.name, r.review_count
+rp.accomodation_tax, rp.clean_up_cost, rp.price_per_day, rp.service_fee, rp.weekly_discount, l.name, r.review_count, r.thumbnail
 from room r join room_price rp on r.id = rp.room_id
     join location l on r.location_id = l.id  
 where r.id = :id;
@@ -20,7 +20,7 @@ where r.id = :id;
 
 const val SEARCH_ROOMS_BY_LOCATION = """
 select r.id, r.location_id, r.name, r.rating, r.guest_capacity, st_x(r.point), st_y(r.point), r.description, r.bathroom_type, r.bedroom_type, r.bed_count, r.amenity,
-       rp.accomodation_tax, rp.clean_up_cost, rp.price_per_day, rp.service_fee, rp.weekly_discount, target_location.name, r.review_count
+       rp.accomodation_tax, rp.clean_up_cost, rp.price_per_day, rp.service_fee, rp.weekly_discount, target_location.name, r.review_count, r.thumbnail
 from room r
          join room_price rp on r.id = rp.room_id,
      (

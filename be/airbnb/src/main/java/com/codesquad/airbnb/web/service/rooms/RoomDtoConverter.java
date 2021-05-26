@@ -31,7 +31,7 @@ public class RoomDtoConverter {
                             .bathroomType(room.getBathroomType().name())
                             .amenity(room.getAmenity())
                             .personCapacity(room.getGuestCapacity())
-                            //.roomThumbnail()
+                            .roomThumbnail(room.getThumbnail())
                             //.host()
                             .build();
                 })

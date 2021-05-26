@@ -36,6 +36,7 @@ public class RoomMapper implements RowMapper<Room> {
                         .build())
                 .locationName(rs.getString(18))
                 .reviewCount(rs.getInt(19))
+                .thumbnail(rs.getString(20))
                 .build();
     }
 }

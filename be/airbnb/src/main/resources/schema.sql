@@ -52,7 +52,8 @@ create table `room`
     bed_count      int,
     bathroom_type  varchar(20),
     amenity        varchar(50),
-    review_count   int
+    review_count   int,
+    thumbnail      varchar(300)
 );
 
 create table `room_price`

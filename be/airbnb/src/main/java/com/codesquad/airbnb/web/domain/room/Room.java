@@ -26,6 +26,7 @@ public class Room {
     private PricePolicy pricePolicy;
     private String amenity;
     private int reviewCount;
+    private String thumbnail;
 
     public void updateId(int id) {
         this.id = id;
