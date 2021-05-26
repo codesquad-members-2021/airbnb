@@ -83,7 +83,11 @@ const SingleCalendar = ({ range }) => {
             type: 'RESET_CHECKOUT_DATA',
           });
           //두번째로 누른값이 저장된 checkIn데이터보다 클때
-        } else {
+        } else if (
+          checkInYear <= parseInt(dateArr[0]) ||
+          checkInMonth <= parseInt(dateArr[1]) ||
+          checkInDay <= parseInt(dateArr[2])
+        ) {
           calDispatch({
             type: 'ADD_CHECKOUT_DATA',
             payload: {
@@ -93,9 +97,9 @@ const SingleCalendar = ({ range }) => {
             },
           });
         }
+
         //체크아웃에 데이터가 없을 때
       } else {
-        //두번째로 누른 값이 저장된 checkIn 데이터보다 작을때
         if (
           checkInYear > parseInt(dateArr[0]) ||
           checkInMonth > parseInt(dateArr[1]) ||
@@ -109,8 +113,11 @@ const SingleCalendar = ({ range }) => {
               day: parseInt(dateArr[2]),
             },
           });
+          calDispatch({
+            type: 'RESET_CHECKOUT_DATA',
+          });
+          //두번째로 누른값이 저장된 checkIn데이터보다 클때
         } else {
-          //두번째로 누른 값이 저장된 checkIn 데이터보다 클 때 ( 즉 정상 작동 )
           calDispatch({
             type: 'ADD_CHECKOUT_DATA',
             payload: {
@@ -121,7 +128,6 @@ const SingleCalendar = ({ range }) => {
           });
         }
       }
-      //체크인에 데이터가 없을 때
     } else {
       calDispatch({
         type: 'ADD_CHECKIN_DATA',
