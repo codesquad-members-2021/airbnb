@@ -46,10 +46,12 @@ const checkBetweenDate = (checkIn: IDate, checkOut: IDate) => (dataSets: string[
     return targetDateSum > checkInDateSum && targetDateSum < checkOutDateSum;
 };
 
+type UtilFnsType = (dataSets: string[] | null) => boolean;
+
 interface IUtilFns {
-    isCheckInDate: (dataSets: string[] | null) => boolean;
-    isCheckOutDate: (dataSets: string[] | null) => boolean;
-    isBetweenDate: (dataSets: string[] | null) => boolean;
+    isCheckInDate: UtilFnsType;
+    isCheckOutDate: UtilFnsType;
+    isBetweenDate: UtilFnsType;
 }
 
 const calendarUtilFns = (checkIn: IDate, checkOut: IDate): IUtilFns => {

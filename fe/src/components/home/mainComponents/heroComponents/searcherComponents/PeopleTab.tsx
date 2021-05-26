@@ -14,10 +14,9 @@ const peopleType = {
 };
 
 const PeopleTab = (): React.ReactElement => {
-    const reservationState = useReservationState();
     const reservationDispatch = useReservationDispatch();
 
-    const searcherState = useSearcherState();
+    const { peopleLayer } = useSearcherState();
     const searcherDispatch = useSearcherDispatch();
 
     const [peopleCount, setPeopleCount] = useState<PeopleCount>({
@@ -26,7 +25,7 @@ const PeopleTab = (): React.ReactElement => {
         kids: 0,
     });
 
-    const { peopleLayer } = searcherState;
+    // const { peopleLayer } = searcherState;
 
     const handlePeopleLayer: React.MouseEventHandler<HTMLDivElement> = () => {
         // searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: false });
@@ -91,7 +90,7 @@ const PeopleTab = (): React.ReactElement => {
                 </PeopleTabBox>
             </Tab>
             {peopleLayer && (
-                <Layer width={390} top={70} left={480}>
+                <Layer width={400} top={100} left={480} height={355}>
                     {renderPeopleCountList()}
                 </Layer>
             )}

@@ -13,4 +13,12 @@ export const theme: DefaultTheme = {
         display: 'flex',
         flexDirection: (direction: number | string | undefined) => `${direction}` || `row`,
     },
+    LayerSize: {
+        smHeight: 355,
+        smWidth: 400,
+        lgHeight: 916,
+        lgWidth: 512,
+        mdHeight: 355,
+        mdWidth: 493,
+    },
 };

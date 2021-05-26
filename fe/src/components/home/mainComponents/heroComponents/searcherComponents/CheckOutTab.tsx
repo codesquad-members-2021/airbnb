@@ -7,21 +7,13 @@ import { isNotCheckedDate } from './calendar/calendarChecker';
 import { Container, NavigatingText, Tab } from './shared.style';
 
 const CheckOutTab = (): React.ReactElement => {
-    const reservationState = useReservationState();
-    const { checkOut } = reservationState;
+    const { checkOut } = useReservationState();
     const reservationDispatch = useReservationDispatch();
     const { checkOutCalendarLayer } = useSearcherState();
     const searcherDispatch = useSearcherDispatch();
 
-    // const { checkOutCalendarLayer } = searcherState;
-
     const handleCalendarLayer: React.MouseEventHandler<HTMLDivElement> = () => {
         searcherDispatch({ type: 'SHOW_CHECKOUT_CALENDAR_LAYER', state: true });
-        // searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: false });
-        // searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: false });
-        // searcherDispatch({ type: 'SHOW_FEE_LAYER', state: false });
-        // searcherDispatch({ type: 'SHOW_PEOPLE_LAYER', state: false });
-        // searcherDispatch({ type: 'SHOW_CHECKOUT_CALENDAR_LAYER', state: true });
     };
 
     const handleCancel = () => {

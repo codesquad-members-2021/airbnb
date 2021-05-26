@@ -52,11 +52,6 @@ export interface SearchContext {
 export interface SearcherContext extends SearchContext {
     locationList: Location[] | null;
     inputOfLocation: string | null;
-    // locationLayer: boolean;
-    // checkInCalendarLayer: boolean;
-    // checkOutCalendarLayer: boolean;
-    // feeLayer: boolean;
-    // peopleLayer: boolean;
 }
 
 export type SearchAction =

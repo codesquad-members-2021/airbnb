@@ -1,11 +1,6 @@
 import { useContext } from 'react';
-import {
-    SearcherStateContext,
-    SearcherDispatchContext,
-    SearcherLayerStateContext,
-    SearcherLayerDispatchContext,
-} from '../Contexts';
-import { SearchContext, SearchDispatch, SearcherContext, SearchLayerDispatch } from '../shared/interface';
+import { SearcherStateContext, SearcherDispatchContext } from '../Contexts';
+import { SearchDispatch, SearcherContext } from '../shared/interface';
 
 export function useSearcherState(): SearcherContext {
     const state = useContext(SearcherStateContext);
@@ -19,14 +14,14 @@ export function useSearcherDispatch(): SearchDispatch {
     return dispatch;
 }
 
-export function useSearcherLayerState(): SearchContext {
-    const state = useContext(SearcherLayerStateContext);
-    if (!state) throw new Error('Cannot find SearcherLayerStateProvider');
-    return state;
-}
+// export function useSearcherLayerState(): SearchContext {
+//     const state = useContext(SearcherLayerStateContext);
+//     if (!state) throw new Error('Cannot find SearcherLayerStateProvider');
+//     return state;
+// }
 
-export function useSearcherLayerDispatch(): SearchLayerDispatch {
-    const dispatch = useContext(SearcherLayerDispatchContext);
-    if (!dispatch) throw new Error('Cannot find SearcherLayerDispatchProvider');
-    return dispatch;
-}
+// export function useSearcherLayerDispatch(): SearchLayerDispatch {
+//     const dispatch = useContext(SearcherLayerDispatchContext);
+//     if (!dispatch) throw new Error('Cannot find SearcherLayerDispatchProvider');
+//     return dispatch;
+// }

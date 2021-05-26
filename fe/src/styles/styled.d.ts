@@ -17,4 +17,12 @@ export interface DefaultTheme {
         display: string;
         flexDirection: IFn;
     };
+    LayerSize: {
+        smHeight: number;
+        smWidth: number;
+        lgHeight: number;
+        lgWidth: number;
+        mdHeight: number;
+        mdWidth: number;
+    };
 }

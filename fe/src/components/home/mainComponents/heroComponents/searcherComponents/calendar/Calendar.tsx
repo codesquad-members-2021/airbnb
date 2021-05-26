@@ -4,7 +4,7 @@ import { getInitialDate, loadYYMM } from './calendarDate';
 import { Td, UsefulObject, CalendarType, DateType, Date as IDate } from '../../../../../../shared/interface';
 import { useReservationDispatch, useReservationState } from '../../../../../../hooks/ReservationHook';
 import { useSearcherDispatch } from '../../../../../../hooks/SearcherHook';
-import { Container, Layer } from '../shared.style';
+import { Layer } from '../shared.style';
 import { getDateSum, isBefore, isPossibleToCheckDate, getTypeOfDate, isNotCheckedDate } from './calendarChecker';
 
 const dateTypeColor: UsefulObject = {
@@ -15,8 +15,7 @@ const dateTypeColor: UsefulObject = {
 };
 
 const Calendar = ({ isCheckIn }: CalendarType): React.ReactElement => {
-    const reservationState = useReservationState();
-    const { checkIn, checkOut } = reservationState;
+    const { checkIn, checkOut } = useReservationState();
     const reservationDispatch = useReservationDispatch();
     const searcherDispatch = useSearcherDispatch();
     const [calendarQueue, setCalendarQueue] = useState<Date[]>(getInitialDate());
@@ -27,18 +26,23 @@ const Calendar = ({ isCheckIn }: CalendarType): React.ReactElement => {
         newDate.setDate(1);
         newDate.setMonth(currDate.getMonth() + payload);
         const newCalendarQueue = [...calendarQueue];
+
         if (direction === 'prev') {
             newCalendarQueue.pop();
             newCalendarQueue.unshift(newDate);
-        }
-        if (direction === 'next') {
+        } else if (direction === 'next') {
             newCalendarQueue.shift();
             newCalendarQueue.push(newDate);
         }
+
         setCalendarQueue(newCalendarQueue);
     };
 
-    const handleDate = (event: React.MouseEvent<HTMLElement>, dataSets: string[] | null, possibleDate: boolean) => {
+    const handleCheckDate = (
+        event: React.MouseEvent<HTMLElement>,
+        dataSets: string[] | null,
+        possibleDate: boolean,
+    ) => {
         const $target = event.target as HTMLDivElement;
         const $day = $target.closest('.day');
         if (!$day || !dataSets || !possibleDate) return;
@@ -67,59 +71,107 @@ const Calendar = ({ isCheckIn }: CalendarType): React.ReactElement => {
             month: targetDate.getMonth() + 1,
             day: +dataSets[0],
         });
-        searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: false });
         searcherDispatch({ type: 'SHOW_CHECKOUT_CALENDAR_LAYER', state: isCheckIn });
     };
 
     return (
-        <Layer width={900} top={70} left={0}>
-            <button onClick={() => handleCalendarButton(-1, 'prev')}>prev</button>
-            <CalendarContainer>
-                <MonthsPresenter {...{ checkIn, checkOut, calendarQueue, handleDate }} />
-            </CalendarContainer>
-            <button onClick={() => handleCalendarButton(1, 'next')}>next</button>
+        <Layer width={916} top={100} left={0} height={512}>
+            <LayerContentContainer>
+                <CalendarContainer>
+                    <div>
+                        <button onClick={() => handleCalendarButton(-1, 'prev')}>prev</button>
+                    </div>
+                    <CarouselBox>
+                        <MonthsPresenter {...{ checkIn, checkOut, calendarQueue, handleCheckDate }} />
+                    </CarouselBox>
+                    <div>
+                        <button onClick={() => handleCalendarButton(1, 'next')}>next</button>
+                    </div>
+                </CalendarContainer>
+            </LayerContentContainer>
         </Layer>
     );
 };
 
 export default Calendar;
 
-const CarouselBox = styled.div`
-    position: absolute;
-    border: 1px solid blue;
+const CalendarContainer = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
 `;
 
-const CalendarContainer = styled.div`
-    width: 500px;
+const LayerContentContainer = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 60px;
+`;
+
+const ButtonSection = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+const CarouselBox = styled.div`
+    width: 100%;
+    background: green;
+    position: relative;
+    overflow: hidden;
 `;
 
 const CalendarList = styled.ul`
     display: flex;
+    position: absolute;
+    left: -350px;
 `;
 
 const CalendarBox = styled.li`
+    width: 336px;
     margin: 0 10px;
+    list-style: none;
 `;
 
-const CalendarTitle = styled.h3``;
+const CalendarTitle = styled.div`
+    background: violet;
+    margin-bottom: 24px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+`;
 
 const Week = styled.thead`
     display: grid;
     grid-template-columns: repeat(7, 1fr);
 `;
 
-const Days = styled.div``;
+const Dates = styled.div``;
+
+const DayName = styled.div`
+    width: 48px;
+    height: 24px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 
 const Day = styled.div`
-    // display: flex;
+    height: 48px;
+    margin: 4px 0;
     color: ${({ possible }: DateType) => (!possible ? '#ddd' : '#000')};
     background: ${({ typeOfDate }: DateType) => dateTypeColor[typeOfDate]};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
 `;
 
 interface CalendarPresenterProps {
     checkIn: IDate;
     checkOut: IDate;
-    handleDate: (event: React.MouseEvent<HTMLElement>, dataSets: string[] | null, possibleDate: boolean) => void;
+    handleCheckDate: (event: React.MouseEvent<HTMLElement>, dataSets: string[] | null, possibleDate: boolean) => void;
 }
 
 interface WeekProps extends CalendarPresenterProps {
@@ -131,7 +183,7 @@ interface MonthProps extends CalendarPresenterProps {
 }
 
 function MonthsPresenter(props: MonthProps) {
-    const { checkIn, checkOut, handleDate, calendarQueue } = props;
+    const { checkIn, checkOut, handleCheckDate, calendarQueue } = props;
     return (
         <CalendarList>
             {calendarQueue.map((date) => {
@@ -141,11 +193,16 @@ function MonthsPresenter(props: MonthProps) {
                         <CalendarTitle>
                             {date.getFullYear()}년 {date.getMonth() + 1}월
                         </CalendarTitle>
-                        <Days>
-                            {dateTable.map((days) => (
-                                <WeekPresenter {...{ days, checkIn, checkOut, handleDate }} />
+                        <Week>
+                            {['일', '월', '화', '수', '목', '금', '토'].map((day) => (
+                                <DayName>{day}</DayName>
                             ))}
-                        </Days>
+                        </Week>
+                        <Dates>
+                            {dateTable.map((days) => (
+                                <WeekPresenter {...{ days, checkIn, checkOut, handleCheckDate }} />
+                            ))}
+                        </Dates>
                     </CalendarBox>
                 );
             })}
@@ -154,7 +211,7 @@ function MonthsPresenter(props: MonthProps) {
 }
 
 function WeekPresenter(props: WeekProps) {
-    const { days, checkIn, checkOut, handleDate } = props;
+    const { days, checkIn, checkOut, handleCheckDate } = props;
     return (
         <Week>
             {days.map((day) => {
@@ -166,7 +223,7 @@ function WeekPresenter(props: WeekProps) {
                         className={className}
                         possible={possibleDate}
                         typeOfDate={getTypeOfDate(dataSets, checkIn, checkOut)}
-                        onClick={(e) => handleDate(e, dataSets, possibleDate)}
+                        onClick={(e) => handleCheckDate(e, dataSets, possibleDate)}
                     >
                         {countDay !== 0 && countDay}
                     </Day>

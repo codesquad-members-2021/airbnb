@@ -4,6 +4,7 @@ type LayerWidth = {
     width: number;
     top: number;
     left: number;
+    height: number;
 };
 
 const Layer = styled.ul<LayerWidth>`
@@ -12,7 +13,7 @@ const Layer = styled.ul<LayerWidth>`
     left: ${({ left }) => left}px;
     border: ${({ theme }) => theme.LayerTheme.border};
     width: ${({ width }) => width}px;
-    height: ${({ theme }) => theme.LayerTheme.height};
+    height: ${({ height }) => height}px;
 `;
 
 const Container = styled.div`

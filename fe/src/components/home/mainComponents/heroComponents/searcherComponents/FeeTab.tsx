@@ -6,24 +6,16 @@ import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/Sear
 import { Container, Layer, NavigatingText, Tab } from './shared.style';
 
 const FeeTab = (): React.ReactElement => {
-    const reservationState = useReservationState();
+    const { fee } = useReservationState();
     const reservationDispatch = useReservationDispatch();
 
-    const searcherState = useSearcherState();
+    const { feeLayer } = useSearcherState();
     const searcherDispatch = useSearcherDispatch();
-
-    const { fee } = reservationState;
-    const { feeLayer } = searcherState;
 
     const [feeValue, setFeeValue] = useState<number[] | number>([27, 35]);
 
     const handleFeeLayer: React.MouseEventHandler<HTMLDivElement> = () => {
         searcherDispatch({ type: 'SHOW_FEE_LAYER', state: true });
-        // searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: false });
-        // searcherDispatch({ type: 'SHOW_CHECKOUT_CALENDAR_LAYER', state: false });
-        // searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: false });
-        // searcherDispatch({ type: 'SHOW_PEOPLE_LAYER', state: false });
-        // searcherDispatch({ type: 'SHOW_FEE_LAYER', state: true });
     };
 
     const handleSliderChange = (event: React.ChangeEvent<unknown>, newValue: number[] | number) => {
@@ -43,7 +35,7 @@ const FeeTab = (): React.ReactElement => {
                 <PriceText>{typeof fee === 'number' ? `${fee}원` : `${fee[0]}만원 ${fee[1]}만원`}</PriceText>
             </Tab>
             {feeLayer && (
-                <Layer width={390} top={70} left={480}>
+                <Layer width={400} top={100} left={480} height={355}>
                     <Slider value={feeValue} onChange={handleSliderChange} valueLabelDisplay="auto" />
                     <button onClick={handleSubmitFee}>확인</button>
                 </Layer>

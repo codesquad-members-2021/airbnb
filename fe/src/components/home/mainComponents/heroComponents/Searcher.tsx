@@ -1,15 +1,10 @@
 import React, { useReducer } from 'react';
 import styled from 'styled-components';
-import { SearchContext, SearcherContext } from '../../../../shared/interface';
+import { SearcherContext } from '../../../../shared/interface';
 import LocationTab from './searcherComponents/LocationTab';
 import CheckInTab from './searcherComponents/CheckInTab';
-import {
-    SearcherStateContext,
-    SearcherDispatchContext,
-    SearcherLayerStateContext,
-    SearcherLayerDispatchContext,
-} from '../../../../Contexts';
-import { searchReducer, searcherTabReducer } from '../../../../shared/searchBarReducer';
+import { SearcherStateContext, SearcherDispatchContext } from '../../../../Contexts';
+import { searchReducer } from '../../../../shared/searchBarReducer';
 import CheckOutTab from './searcherComponents/CheckOutTab';
 import FeeTab from './searcherComponents/FeeTab';
 import PeopleTab from './searcherComponents/PeopleTab';
@@ -24,17 +19,8 @@ const initialSearcherState: SearcherContext = {
     peopleLayer: false,
 };
 
-const initialSearcherLayerState: SearchContext = {
-    locationLayer: false,
-    checkInCalendarLayer: false,
-    checkOutCalendarLayer: false,
-    feeLayer: false,
-    peopleLayer: false,
-};
-
 const Searcher = (): React.ReactElement => {
     const [searcherState, searcherDispatch] = useReducer(searchReducer, initialSearcherState);
-    // const [searcherLayerState, searcherLayerDispatch] = useReducer(searcherTabReducer, initialSearcherLayerState);
 
     return (
         <Search>
