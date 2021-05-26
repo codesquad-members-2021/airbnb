@@ -17,7 +17,7 @@ module.exports = {
 
   devtool: "source-map", // hidden-source-map (production 모드에선 이거쓰기)
   resolve: {
-    extensions: [".ts", ".tsx", ".js"],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
   module: {
     rules: [

@@ -1,5 +1,6 @@
 import { ThemeProvider } from 'styled-components';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+// import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from './util/MyRouter';
 
 import AppStyle from './common/styles/AppStyle';
 import theme from './common/styles/theme/theme';
