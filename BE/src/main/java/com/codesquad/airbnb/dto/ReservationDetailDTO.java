@@ -6,6 +6,7 @@ public class ReservationDetailDTO {
 
     private Long id;
     private String location;
+    private String image;
     private String propertyTitle;
     private LocalDate checkIn;
     private LocalDate checkOut;
@@ -27,6 +28,14 @@ public class ReservationDetailDTO {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getPropertyTitle() {
@@ -75,5 +84,20 @@ public class ReservationDetailDTO {
 
     public void setGuestCount(int guestCount) {
         this.guestCount = guestCount;
+    }
+
+    @Override
+    public String toString() {
+        return "ReservationDetailDTO{" +
+                "id=" + id +
+                ", location='" + location + '\'' +
+                ", image='" + image + '\'' +
+                ", propertyTitle='" + propertyTitle + '\'' +
+                ", checkIn=" + checkIn +
+                ", checkOut=" + checkOut +
+                ", hostName='" + hostName + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", guestCount=" + guestCount +
+                '}';
     }
 }
