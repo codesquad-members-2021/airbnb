@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { DateInfo } from '../../customHook/useDateInfo'
+import { DateInfo } from '../../../customHook/useDateInfo'
 
 interface IDate {
 	currentMonth: number

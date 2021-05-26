@@ -1,7 +1,7 @@
 import { RefObject } from 'react'
 import { useRecoilValue } from 'recoil'
-import { checkInMessage } from '../../customHook/atoms'
-import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../style/BarStyle'
+import { checkInMessage } from '../../../customHook/atoms'
+import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../../style/BarStyle'
 
 interface IProps {
 	clicked: boolean

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Button from '@material-ui/core/Button'
 import { FaMapMarkedAlt } from 'react-icons/fa'
-import { Modal } from '../../style/BarStyle'
+import { Modal } from '../../../style/BarStyle'
 interface IType {
 	modalType: string
 	setTargetPlace: any

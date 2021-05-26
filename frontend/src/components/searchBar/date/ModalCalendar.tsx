@@ -1,12 +1,7 @@
-import { useState, useEffect } from 'react'
-import {
-	checkInMessage,
-	checkOutMessage,
-	setCheckInMessage,
-	setCheckOutMessage,
-} from '../../customHook/atoms'
-import { useRecoilValue, useRecoilState } from 'recoil'
-import { Modal } from '../../style/BarStyle'
+import { useState } from 'react'
+import { checkInMessage, checkOutMessage } from '../../../customHook/atoms'
+import { useRecoilState } from 'recoil'
+import { Modal } from '../../../style/BarStyle'
 import Calendar from './Calendar'
 import styled, { css } from 'styled-components'
 interface ModalCalendarProps {
@@ -18,8 +13,6 @@ interface IDate {
 	btnClicked: number
 	Xposition: number
 }
-let i = 0
-let prev: null | number = null
 const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType }) => {
 	const today: Date = new Date()
 	const currentMonth: number = today.getMonth() + 1

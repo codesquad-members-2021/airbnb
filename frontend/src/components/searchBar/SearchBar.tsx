@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import Place from './Place'
-import Date from './Date'
+import Place from './place/Place'
+import Date from './date/Date'
 const SearchBar = () => {
 	return (
 		<BarWrapper>

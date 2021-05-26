@@ -6,10 +6,10 @@ import {
 	BarInnerWrapper,
 	BarTitle,
 	BarMessage,
-} from '../../style/BarStyle'
+} from '../../../style/BarStyle'
 import { TiDelete } from 'react-icons/ti'
 import IconButton from '@material-ui/core/IconButton'
-import useModalCtrl from '../../customHook/useModalCtrlArray'
+import useModalCtrl from '../../../customHook/useModalCtrlArray'
 import ModalPlace from './ModalPlace'
 
 const Place = () => {
