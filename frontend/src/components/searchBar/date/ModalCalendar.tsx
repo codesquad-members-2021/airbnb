@@ -16,15 +16,7 @@ const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType 
 	const currentMonth: number = today.getMonth() + 1
 	const [transitionState, setTransition] = useState(false)
 	const [Xposition, setXposition] = useState(-970)
-
-	const CalendarToRendar: number[] = [
-		currentMonth - 2,
-		currentMonth - 1,
-		currentMonth,
-		currentMonth + 1,
-		currentMonth + 2,
-		currentMonth + 3,
-	]
+	const CalendarToRendar: number[] = Array.from({ length: 6 }, (_, i) => currentMonth - 2 + i)
 
 	const [currentCalendar, setCalendar] = useState(CalendarToRendar)
 	const [btnClicked, setBtnClick] = useState<number>(0)
