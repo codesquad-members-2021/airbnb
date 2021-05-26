@@ -33,6 +33,7 @@ const theme: DefaultTheme = {
     gray5: '#E0E0E0',
     gray6: '#F5F5F7',
     primary: '#E84C60',
+    primaryHover: '#e31b60',
     secondary: '#118917',
   },
 };

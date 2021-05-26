@@ -15,8 +15,27 @@ export interface ITextAll {
         };
       };
 }
+// -----------------------------------------------------
 
-export interface IText {
+// [1] interface 정의
+// MainPage: 상단 헤더 & 검색바
+export interface ITextTopBackground {
+  [headerOrSearchBar : string]: {
+    menuItems: {
+      text: string,
+      placeHolder?: string,
+    }[];
+    logoOrBtnCaption: string;
+
+    authStatus?: {
+      noLogin: string[];
+      login: string[];
+    };
+  };
+}
+
+// MainPage: 근처 & 객실 형태
+export interface ITextNearbyRoomType {
   [name: string]: {
     subject: string;
     items: {
@@ -26,6 +45,7 @@ export interface IText {
   };
 }
 
+// MainPage: 하단의 사이트 맵
 export interface ITextCotnentInfo {
   [name: string]: {
     [subName: string]: {
@@ -35,11 +55,40 @@ export interface ITextCotnentInfo {
   };
 }
 
+// MainPage: 하단의 사이트 관련 정보 (Footer)
 export interface ITextFooter {
   [footerItems: string]: string[];
 }
 
-export const Text: IText = {
+// -----------------------------------------------------
+
+// [2] 내용 선언
+export const TextTopBackground: ITextTopBackground = {
+  headerTexts: {
+    menuItems: [
+      {text: '숙소'},
+      {text: '체험'},
+      {text: '온라인 체험'},
+    ],
+    logoOrBtnCaption: 'LOGO',
+    authStatus: {
+      noLogin: ['로그인'],
+      login: ['예약 취소', '위시 리스트', '로그아웃'],
+    },
+  },
+
+  searchBarTexts: {
+    menuItems: [
+      {text: '체크인', placeHolder: '날짜 입력'},
+      {text: '체크아웃', placeHolder: '날짜 입력'},
+      {text: '요금', placeHolder: '금액대 설정'},
+      {text: '인원', placeHolder: '게스트 추가'},
+    ],
+    logoOrBtnCaption: '검색',
+  }
+};
+
+export const Text: ITextNearbyRoomType = {
   nearby: {
     subject: '가까운 여행지 둘러보기',
     items: [

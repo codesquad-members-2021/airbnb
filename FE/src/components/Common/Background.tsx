@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IBackgroundProps } from '../../common/types';
+import { IBackgroundProps } from '../../util/types';
 
 const Background = ({ color, children }: IBackgroundProps) => (
   <StyledBackground color={color}>{children}</StyledBackground>

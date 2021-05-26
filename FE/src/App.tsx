@@ -1,8 +1,8 @@
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import AppStyle from './common/styles/AppStyle';
-import theme from './common/styles/theme/theme';
+import AppStyle from './util/styles/AppStyle';
+import theme from './util/styles/theme/theme';
 
 import MainPage from './pages/MainPage';
 import SearchPage from './pages/SearchPage';

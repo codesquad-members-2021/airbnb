@@ -21,7 +21,10 @@ export const cssImageAuto = css`
   }
 `;
 
-export const cssSectionSize = css`
-// 임시, 미디어쿼리쓰면 제거
-  width: 1440px;
+export const cssTranslate = css`
+    background-color: transparent;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    outline: none;
+    border: none;
 `;
