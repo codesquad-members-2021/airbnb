@@ -3,13 +3,13 @@ import FSCalendar
 
 class CalendarViewController: UIViewController {
     
-    @IBOutlet var infoTableVIew: UITableView!
     @IBOutlet var backButton: UIButton!
     @IBOutlet var calendarView: FSCalendar!
-    
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var locationLabel: UILabel!
     @IBOutlet var nextButton: UIButton!
     @IBOutlet var skipDeleteButton: UIButton!
-    private var locationInfo:String?
+    
     private var dateStroage:[String] = []
     private let viewModel = CalendarViewModel()
     
@@ -22,20 +22,10 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMainView()
-        bind()
     }
     
     func setupLocation(_ info:String) {
-        viewModel.add(location: info)
-    }
-    
-    private func bind() {
-        viewModel.accommodationData()
-            .drive(infoTableVIew.rx.items(cellIdentifier: CalendarCell.identifier, cellType: CalendarCell.self)) { _, data, cell in
-                cell.configure(data)
-            }.disposed(by: rx.disposeBag)
-        
-        infoTableVIew.rx.setDelegate(self).disposed(by: rx.disposeBag)
+        viewModel.setupLocationInfo(info)
     }
 }
 
@@ -44,6 +34,7 @@ private extension CalendarViewController {
     private func setupMainView() {
         setupCalendarView()
         setupButton()
+        setupLabel()
     }
     
     private func setupCalendarView() {
@@ -65,6 +56,10 @@ private extension CalendarViewController {
             .subscribe(onNext: { [weak self] _ in
                 self?.dismiss(animated: true, completion: nil)
             }).disposed(by: rx.disposeBag)
+    }
+    
+    private func setupLabel() {
+        locationLabel.text = viewModel.getLocationInfo()
     }
 }
 
