@@ -27,6 +27,19 @@ const calendarReducer = (state, action) => {
           day: 0,
         },
       };
+    case 'RESET_CAL':
+      return {
+        checkOut: {
+          year: 0,
+          month: 0,
+          day: 0,
+        },
+        checkIn: {
+          year: 0,
+          month: 0,
+          day: 0,
+        },
+      };
     default:
       return;
   }

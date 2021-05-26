@@ -48,82 +48,71 @@ const SingleCalendar = ({ range }) => {
 
   const handleTdBtnClick = (e) => {
     console.log(e.target.dataset.day);
-    const dateArr = e.target.dataset.day.split('-').map(Number); // "2021-5-26"
+    const [clickedYear, clickedMonth, clickedDay] = e.target.dataset.day
+      .split('-')
+      .map(Number); // "2021-5-26"
     const {
       year: checkInYear,
       month: checkInMonth,
       day: checkInDay,
     } = calendarData.checkIn;
-
-    const {
-      year: checkOutYear,
-      month: checkOutMonth,
-      day: checkOutDay,
-    } = calendarData.checkOut;
-
+    const { year: checkOutYear } = calendarData.checkOut;
+    const checkInDate = new Date(checkInYear, checkInMonth, checkInDay);
+    const clickedDate = new Date(
+      clickedYear,
+      clickedMonth,
+      clickedDay,
+      23,
+      59,
+      59
+    );
     //채크인에 데이터가 있을 때
-    if (checkInYear && checkInMonth && checkInDay) {
+    if (checkInYear) {
       //체크아웃에 데이터가 있을 때
-      if (checkOutYear && checkOutMonth && checkOutDay) {
+      if (checkOutYear) {
         //두번째로 누른 값이 저장된 checkIn 데이터보다 작을때
-        if (
-          checkInYear > parseInt(dateArr[0]) ||
-          checkInMonth > parseInt(dateArr[1]) ||
-          checkInDay > parseInt(dateArr[2])
-        ) {
+        if (checkInDate > clickedDate) {
           calDispatch({
             type: 'ADD_CHECKIN_DATA',
             payload: {
-              year: parseInt(dateArr[0]),
-              month: parseInt(dateArr[1]),
-              day: parseInt(dateArr[2]),
+              year: clickedYear,
+              month: clickedMonth,
+              day: clickedDay,
             },
           });
           calDispatch({
             type: 'RESET_CHECKOUT_DATA',
           });
           //두번째로 누른값이 저장된 checkIn데이터보다 클때
-        } else if (
-          checkInYear <= parseInt(dateArr[0]) ||
-          checkInMonth <= parseInt(dateArr[1]) ||
-          checkInDay <= parseInt(dateArr[2])
-        ) {
+        } else if (checkInDate <= clickedDate) {
           calDispatch({
             type: 'ADD_CHECKOUT_DATA',
             payload: {
-              year: parseInt(dateArr[0]),
-              month: parseInt(dateArr[1]),
-              day: parseInt(dateArr[2]),
+              year: clickedYear,
+              month: clickedMonth,
+              day: clickedDay,
             },
           });
         }
-
         //체크아웃에 데이터가 없을 때
       } else {
-        if (
-          checkInYear > parseInt(dateArr[0]) ||
-          checkInMonth > parseInt(dateArr[1]) ||
-          checkInDay > parseInt(dateArr[2])
-        ) {
+        if (checkInDate > clickedDate) {
           calDispatch({
             type: 'ADD_CHECKIN_DATA',
             payload: {
-              year: parseInt(dateArr[0]),
-              month: parseInt(dateArr[1]),
-              day: parseInt(dateArr[2]),
+              year: clickedYear,
+              month: clickedMonth,
+              day: clickedDay,
             },
-          });
-          calDispatch({
-            type: 'RESET_CHECKOUT_DATA',
           });
           //두번째로 누른값이 저장된 checkIn데이터보다 클때
         } else {
           calDispatch({
             type: 'ADD_CHECKOUT_DATA',
             payload: {
-              year: parseInt(dateArr[0]),
-              month: parseInt(dateArr[1]),
-              day: parseInt(dateArr[2]),
+              year: clickedYear,
+              month: clickedMonth,
+              day: clickedDay,
             },
           });
         }
@@ -132,14 +121,13 @@ const SingleCalendar = ({ range }) => {
       calDispatch({
         type: 'ADD_CHECKIN_DATA',
         payload: {
-          year: parseInt(dateArr[0]),
-          month: parseInt(dateArr[1]),
-          day: parseInt(dateArr[2]),
+          year: clickedYear,
+          month: clickedMonth,
+          day: clickedDay,
         },
       });
     }
   };
-
   return (
     <SingleCalDiv>
       <tbody>

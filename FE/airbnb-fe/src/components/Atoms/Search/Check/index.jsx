@@ -4,7 +4,12 @@ import { SearchContext } from '..';
 import CloseButton from '../../buttons/CloseBtn';
 
 const Check = ({ dispatch }) => {
-  const { calendarData } = useContext(SearchContext);
+  const { calendarData, calDispatch } = useContext(SearchContext);
+  const {
+    year: checkInYear,
+    month: checkInMonth,
+    day: checkInDay,
+  } = calendarData.checkIn;
 
   return (
     <CheckDiv>
@@ -24,7 +29,11 @@ const Check = ({ dispatch }) => {
             : `날짜 입력`}
         </CheckInp>
       </CheckOut>
-      {/* <CloseButton /> */}
+      {checkInYear ? (
+        <CloseButton fn={() => calDispatch({ type: 'RESET_CAL' })} />
+      ) : (
+        ''
+      )}
       <LineDiv />
     </CheckDiv>
   );
@@ -32,7 +41,7 @@ const Check = ({ dispatch }) => {
 
 const CheckDiv = styled.div`
   display: grid;
-  grid-template-columns: 7fr 9fr 0.1fr;
+  grid-template-columns: 7fr 9fr 2fr 0.1fr;
   justify-content: space-around;
   align-items: center;
   border-radius: 3rem;
