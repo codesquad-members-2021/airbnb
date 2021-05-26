@@ -35,8 +35,8 @@ public class RoomController {
     }
 
     @PostMapping("/price")
-    public PriceRequest postTest(@RequestBody PriceRequest priceRequest){
-        return priceRequest;
+    public PricesWrapper postTest(@RequestBody PriceRequest priceRequest){
+        return new PricesWrapper(roomService.findSearchRoomPrice(priceRequest));
     }
 
     @PostMapping
