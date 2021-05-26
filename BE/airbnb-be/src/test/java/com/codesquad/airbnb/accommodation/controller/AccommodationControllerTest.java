@@ -2,6 +2,7 @@ package com.codesquad.airbnb.accommodation.controller;
 
 import com.codesquad.airbnb.common.exception.ErrorResponse;
 import com.codesquad.airbnb.common.utils.DummyDataFactory;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -80,16 +83,17 @@ class AccommodationControllerTest {
 
     @ParameterizedTest
     @MethodSource("readAllValidationFailedProvider")
-    void readAllValidationFailed(String path, AccommodationRequestDTO accommodationRequestDTO, ErrorResponse expected) {
+    void readAllValidationFailed(String path, AccommodationRequestDTO accommodationRequestDTO, ErrorResponse expected) throws JsonProcessingException {
         ResponseEntity<ErrorResponse> responseEntity = restTemplate.exchange(
-                RequestEntity.get(uriComponentsOf(path, accommodationRequestDTO).toUriString()).build(),
+                RequestEntity.get(uriComponentsOf(path, accommodationRequestDTO).toUriString())
+                        .header(HttpHeaders.ACCEPT_LANGUAGE, Locale.KOREA.toLanguageTag())
+                        .build(),
                 ErrorResponse.class
         );
 
         ErrorResponse result = responseEntity.getBody();
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
-
         assertThat(result.getStatus()).isEqualTo(expected.getStatus());
         assertThat(result.getMessage()).isEqualTo(expected.getMessage());
         assertThat(result.getStatusCode()).isEqualTo(expected.getStatusCode());
