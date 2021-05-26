@@ -1,9 +1,31 @@
 import styled from "styled-components";
 import moment from "moment";
+import 'moment/locale/ko';
+moment.locale('ko');
 
 const Calendar = () => {
-  const startDay = moment().startOf("month").startOf("week");
-  console.log(startDay);
+  const value = moment().clone(); //clone을 해주는 이유 = 오리지날 Date 객체를 보존하기 위해.
+  const startDay = value.startOf("month").startOf("week");
+  const endDay = value.endOf("month").endOf("week");
+  const day = startDay.clone().subtract(1, "day");
+  // const calendar = [];
+
+  // const createCalendar = () => {
+  //   while(day.isBefore(endDay, "day")) {
+  //     calendar.push(Array(7).fill(0).map(() => day.add(1, "day").clone()));
+  //   }
+
+  //   return calendar.map(week => 
+  //     <div className="calendar">
+  //       {week.map((day) => {
+  //         <div>{day.format("D").toString()}</div>
+  //     })}
+  //     </div>
+  //   )
+  // }
+
+
+  console.log(startDay, endDay, day);
 
   return (
     <CalendarModal>
@@ -14,7 +36,7 @@ const Calendar = () => {
         </div>
       </CalendarSelector>
       <CalendarLayout>
-        
+        {startDay.format("MM/YY")} - {endDay.format("MM/YY")}
       </CalendarLayout>
     </CalendarModal>
   );
@@ -22,8 +44,6 @@ const Calendar = () => {
 
 
 const CalendarModal = styled.div`
-  /* position: absolute;
-   */
   width: 100%;
   right: 0;
   left: 0;
@@ -34,6 +54,10 @@ const CalendarModal = styled.div`
   background: #ffffff;
   box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
   border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 const CalendarSelector = styled.div`
@@ -70,6 +94,11 @@ const CalendarSelector = styled.div`
 
 const CalendarLayout = styled.div`
   border: 1px solid red;
+  width: 90%;
+  margin: 1rem;
+  padding: 1.5rem;
+
+  .calendar {}
 `
 
 export default Calendar;
