@@ -13,8 +13,8 @@ public class AccommodationAddress {
     private Long countryId;
     private Long cityId;
     private String address;
-    private String latitude;
-    private String longitude;
+    private double latitude;
+    private double longitude;
 
     // todo : 임시로 국가와 도시 고정함, 위경도 수정 요함
     public static AccommodationAddress fromSaveRequestDto(AccommodationSaveRequestDto saveRequestDto) {
