@@ -1,16 +1,17 @@
 import styled from 'styled-components'
+import { useRecoilState } from 'recoil'
+import { clickedPlace } from '../../../customHook/atoms'
 import Button from '@material-ui/core/Button'
 import { FaMapMarkedAlt } from 'react-icons/fa'
 import { Modal } from '../../../style/BarStyle'
-interface IType {
-	modalType: string
-	setTargetPlace: any
-	defaultMsg: string
-}
-const ModalPlace: React.FunctionComponent<IType> = ({ modalType, setTargetPlace, defaultMsg }) => {
+import { IModalPropType } from '../../../Interface'
+
+const ModalPlace: React.FunctionComponent<IModalPropType> = ({ modalType, defaultMsg }) => {
 	const locations = ['서울', '경기', '부산', '광주', '대전', '전주', '강원', '제주']
+	const [placeToSearch, setPlaceToSearch] = useRecoilState(clickedPlace)
+
 	const handleClick = (location: string | null) => {
-		setTargetPlace(typeof location === 'string' ? location : defaultMsg)
+		setPlaceToSearch(typeof location === 'string' ? location : defaultMsg)
 	}
 
 	return (

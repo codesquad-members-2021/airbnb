@@ -9,4 +9,5 @@ export interface IProps {
 }
 export interface IModalPropType {
 	modalType: string
+	defaultMsg?: string
 }

@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
+import { useRecoilState } from 'recoil'
+import { clickedPlace } from '../../../customHook/atoms'
 import {
 	PlaceSection,
 	ModalWrapper,
@@ -21,8 +23,9 @@ const Place = () => {
 		init: false,
 	})
 
+	const [placeToSearch, setPlaceToSearch] = useRecoilState(clickedPlace)
 	const defaultMsg = '어디로 여행가세요?'
-	const [targetPlace, setTargetPlace] = useState<string>(defaultMsg)
+	// const [targetPlace, setTargetPlace] = useState<string>(defaultMsg)
 	const [viewX, setViewX] = useState(false)
 	const [clicked, setClicked] = useState(false)
 	const handleClick = () => {
@@ -32,12 +35,12 @@ const Place = () => {
 		})
 	}
 	const X_handleClick = () => {
-		setTargetPlace(defaultMsg)
+		setPlaceToSearch(defaultMsg)
 	}
 
 	useEffect(() => {
-		targetPlace && targetPlace !== defaultMsg ? setViewX(true) : setViewX(false)
-	}, [targetPlace])
+		placeToSearch && placeToSearch !== defaultMsg ? setViewX(true) : setViewX(false)
+	}, [placeToSearch])
 
 	return (
 		<PlaceSection>
@@ -45,7 +48,7 @@ const Place = () => {
 				<BarInnerWrapper>
 					<div>
 						<BarTitle>위치</BarTitle>
-						<BarMessage>{targetPlace}</BarMessage>
+						<BarMessage>{placeToSearch}</BarMessage>
 					</div>
 					{viewX && (
 						<IconButton onClick={X_handleClick}>
@@ -56,7 +59,7 @@ const Place = () => {
 			</BarBlock>
 			{open && (
 				<ModalWrapper ref={PlaceModal} modalType='place'>
-					<ModalPlace modalType='place' {...{ setTargetPlace, defaultMsg }} />
+					<ModalPlace modalType='place' defaultMsg={defaultMsg} />
 				</ModalWrapper>
 			)}
 		</PlaceSection>

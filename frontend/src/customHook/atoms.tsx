@@ -1,13 +1,27 @@
 import { atom } from 'recoil'
+//defaultValue
+
+export const defaultValue = {
+	placeToSearch: '어디로 여행가세요?',
+	checkIn: '날짜입력',
+	checkOut: '날짜입력',
+}
+
+//Place
+export const clickedPlace = atom<string | undefined>({
+	key: 'placeToSearch',
+	default: defaultValue.placeToSearch,
+})
+
 //Calendar
 export const checkInMessage = atom<string | number>({
 	key: 'checkIn',
-	default: '날짜입력',
+	default: defaultValue.checkIn,
 })
 
 export const checkOutMessage = atom<string | number>({
 	key: 'checkOut',
-	default: '날짜입력',
+	default: defaultValue.checkOut,
 })
 
 //ClickCheck
