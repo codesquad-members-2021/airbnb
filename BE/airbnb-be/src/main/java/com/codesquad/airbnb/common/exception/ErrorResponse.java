@@ -28,7 +28,7 @@ public class ErrorResponse {
                 status.name(),
                 status.getReasonPhrase(),
                 errors.stream()
-                        .map(fieldError -> fieldError.getField() + " " + fieldError.getDefaultMessage())
+                        .map(fieldError -> fieldError.getField() + ": " + fieldError.getDefaultMessage())
                         .collect(Collectors.toList())
         );
     }

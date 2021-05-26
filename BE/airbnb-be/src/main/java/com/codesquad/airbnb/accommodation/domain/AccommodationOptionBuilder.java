@@ -70,17 +70,6 @@ public final class AccommodationOptionBuilder {
     }
 
     public AccommodationOption build() {
-        AccommodationOption accommodationOption = new AccommodationOption();
-        accommodationOption.setCapacity(capacity);
-        accommodationOption.setPricePerNight(pricePerNight);
-        accommodationOption.setAccommodationType(accommodationType);
-        accommodationOption.setBedroomCount(bedroomCount);
-        accommodationOption.setRestroomCount(restroomCount);
-        accommodationOption.setRestroomType(restroomType);
-        accommodationOption.setHasKitchen(hasKitchen);
-        accommodationOption.setHasInternet(hasInternet);
-        accommodationOption.setHasAirconditioner(hasAirconditioner);
-        accommodationOption.setHasHairdrier(hasHairdrier);
-        return accommodationOption;
+        return new AccommodationOption(capacity, pricePerNight, accommodationType, bedroomCount, restroomCount, restroomType, hasKitchen, hasInternet, hasAirconditioner, hasHairdrier);
     }
 }
