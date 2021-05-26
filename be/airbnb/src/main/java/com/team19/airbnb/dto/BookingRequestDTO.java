@@ -2,12 +2,14 @@ package com.team19.airbnb.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.team19.airbnb.domain.Booking;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class BookingRequestDTO {
 
+    @JsonProperty("roomId")
     private Long roomId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -19,10 +21,13 @@ public class BookingRequestDTO {
     @JsonProperty("personnel")
     private Integer guest;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    @JsonProperty("totalPrice")
     private BigDecimal totalPrice;
 
-    public BookingRequestDTO() {
+    public BookingRequestDTO() {}
+
+    public Booking toEntity() {
+        return Booking.create(checkIn, checkOut, guest, totalPrice, roomId);
     }
 
     @Override

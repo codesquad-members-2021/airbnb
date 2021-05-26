@@ -22,8 +22,8 @@ public class BookingController {
     }
 
     @PostMapping("/bookings/{userId}")
-    public void bookRoom(@RequestBody BookingRequestDTO bookingRequestDTO) {
-        System.out.println(bookingRequestDTO.toString());
+    public void bookRoom(@RequestBody BookingRequestDTO bookingRequestDTO, @PathVariable Long userId) {
+        bookingService.createBooking(bookingRequestDTO, userId);
     }
 
     @GetMapping("/bookings/{userId}")
@@ -37,6 +37,29 @@ public class BookingController {
     }
 
     @DeleteMapping("/bookings/{bookingId}/{userId}")
-    public void deleteWishList(@PathVariable Long bookingId, @PathVariable Long userId) {
+    public void deleteBooking(@PathVariable Long bookingId, @PathVariable Long userId) {
+        bookingService.delete(bookingId, userId);
+    }
+  
+    private BookingResponseDTO createBookingResponseDTO(Long bookingId) {
+        LocalDate checkIn = LocalDate.of(2020,3,20);
+        LocalDate checkOut = LocalDate.of(2020, 4, 4);
+        Long roomId = 1L;
+        String roomName = "코드스쿼드";
+        String roomType = "원룸";
+        List<String> images = new ArrayList<>();
+        images.add("image1");
+        images.add("image2");
+        images.add("image3");
+        Host host = Host.create("홍길동", "image");
+        int guest = 5;
+        BigDecimal totalPrice = new BigDecimal(100000);
+        return new BookingResponseDTO(bookingId,
+                checkIn, checkOut,
+                roomId, roomName, roomType,
+                images,
+                host,
+                guest,
+                totalPrice);
     }
 }
