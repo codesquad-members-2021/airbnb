@@ -7,13 +7,14 @@ const ResultContextProvider = ({ children }) => {
 	const [modalData, setModalData] = useState({ charge: 0, cleaningRatio: 0, serviceRatio: 0, discountRatio: 0 });
 	const [housesList, setHousesList] = useState([]);
 
-	const fetchHouses = (start, end, min, max, priceData, man, kid, baby) => {
+	const fetchHouses = (start, end, min, max, priceData, man, kid, baby, latitude = 37.490821, longitude = 127.0312283) => {
 		const url = `http://3.37.76.224:8080/houses?${start && end ? `checkIn=${start}&checkOut=${end}&` : ""}minCharge=${
 			priceData.minimumPrice + min * priceData.unit
-		}&maxCharge=${priceData.minimumPrice + (max - 20) * priceData.unit}&guest=${man + kid}&kid=${baby}&latitude=37.490821&longitude=127.0312283`;
+		}&maxCharge=${priceData.minimumPrice + (max - 20) * priceData.unit}&guest=${man + kid}&kid=${baby}&latitude=${latitude}&longitude=${longitude}`;
 		fetch(url)
 			.then((res) => res.json())
 			.then((json) => setHousesList(() => json))
+			.then(() => setSearching(false))
 			.catch((res) => console.log("fetch error in Houses : ", res));
 	};
 

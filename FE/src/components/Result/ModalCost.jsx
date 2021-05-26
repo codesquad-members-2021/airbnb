@@ -42,8 +42,8 @@ const ModalCost = () => {
 				<Body>₩{addComma(result)}</Body>
 			</TotalContent>
 			<Charge>
-				<Number>{`₩${addComma(result/period)}`}</Number>
-				<Unit>/ 박</Unit>
+				<ChargeNumber>{`₩${addComma(result/period)}`}</ChargeNumber>
+				<ChargeUnit>/ 박</ChargeUnit>
 			</Charge>
 		</CostWrapper>
 	);
@@ -93,7 +93,6 @@ const Line = styled.div`
 	background: #e0e0e0;
 	margin: 16px 0px;
 `;
-
 const Charge = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -103,14 +102,14 @@ const Charge = styled.div`
 	height: 29px;
 	top: -291px;
 `;
-const Number = styled.div`
+const ChargeNumber = styled.div`
 	height: 29px;
 	font-weight: bold;
 	font-size: 20px;
 	line-height: 29px;
 	color: #333333;
 `;
-const Unit = styled.div`
+const ChargeUnit = styled.div`
 	height: 20px;
 	font-size: 14px;
 	line-height: 20px;

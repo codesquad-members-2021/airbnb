@@ -32,6 +32,23 @@ const HousesWrapper = styled.div`
 	position: relative;
 	width: 50%;
 	padding: 24px;
+	overflow-y: hidden;
+	&:hover {
+		overflow-y: scroll;
+		::-webkit-scrollbar {
+			position: absolute;
+			float:right;
+			background-color: #a6a7ab;
+			width: 13px;
+			border-radius: 10px;
+		}
+		::-webkit-scrollbar-thumb:vertical {
+			background-color: #4c4c4c;
+			border-radius: 10px;
+			border: 2px solid transparent;
+			background-clip: padding-box;
+		}
+	}
 `;
 const Filter = styled.div`
 	position: relative;
