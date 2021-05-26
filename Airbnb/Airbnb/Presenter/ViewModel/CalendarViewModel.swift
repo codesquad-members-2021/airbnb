@@ -38,6 +38,13 @@ class CalendarViewModel {
         return Observable.just(info)
     }
     
+    @discardableResult
+    func deleteAll() -> Observable<[String]> {
+        dateStorage.removeAll()
+        dateList.onNext(dateStorage)
+        return Observable.just([])
+    }
+    
     private func transformDate(_ info: [String]) -> String {
         if info.isEmpty { return "" }
         let checkIn = info.min()!

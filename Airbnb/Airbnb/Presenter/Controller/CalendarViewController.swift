@@ -12,7 +12,6 @@ class CalendarViewController: UIViewController {
     @IBOutlet var nextButton: UIButton!
     @IBOutlet var skipDeleteButton: UIButton!
     
-    private var dateStroage:[String] = []
     private let viewModel = CalendarViewModel()
     private var nextPage = BehaviorRelay(value: false)
     
@@ -92,7 +91,7 @@ private extension CalendarViewController {
                 case true:
                     self?.nextPage.accept(false)
                     self?.dateLabel.text = ""
-                    self?.dateStroage.removeAll()
+                    self?.viewModel.deleteAll()
                     self?.calendarView.selectedDates.forEach {
                         self?.calendarView?.deselect($0)
                     }
