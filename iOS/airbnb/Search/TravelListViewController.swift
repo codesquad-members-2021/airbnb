@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 enum Section {
     case main
@@ -13,12 +14,15 @@ enum Section {
 
 class TravelListViewController: UIViewController {
     
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, NearPlaceDTO>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, NearPlaceDTO>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, NearPlace>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, NearPlace>
     
     @IBOutlet weak var travelList: UICollectionView!
+    
     weak var coordinator : SearchCoodinator?
     private lazy var dataSource = makeDataSource()
+    @Published private var nearPlaces = [NearPlace]()
+    private var cancellables = Set<AnyCancellable>()
     private let searchController = UISearchController(searchResultsController: nil)
     private let removeButton = UIBarButtonItem(title: "지우기",
                                                style: .plain,
@@ -37,6 +41,7 @@ class TravelListViewController: UIViewController {
         makeSectionHeader()
         setUpSearchController()
         registerNib()
+        fetchData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,17 +62,26 @@ class TravelListViewController: UIViewController {
 // MARK: - Functions
 
 extension TravelListViewController {
+    
     func makeDataSource() -> DataSource {
         let dataSource = DataSource(
             collectionView: travelList,
-            cellProvider: { ( collectionview, indexPath, card) -> UICollectionViewCell? in
-                let cell = collectionview.dequeueReusableCell(
-                    withReuseIdentifier: NearPlaceCell.reuseIdentifier,
-                    for: indexPath) as? NearPlaceCell
+            cellProvider: { [weak self] ( collectionview, indexPath, card) -> UICollectionViewCell? in
+                let cell = collectionview.dequeueReusableCell(withReuseIdentifier: NearPlaceCell.reuseIdentifier, for: indexPath)
+                    as? NearPlaceCell
+                cell?.areaTitle.text = self?.nearPlaces[indexPath.row].name
+                cell?.timeRequired.text = String(self?.nearPlaces[indexPath.row].distance ?? 0)
+                if let url = self?.nearPlaces[indexPath.row].avatarUrl {
+                    cell?.thumbnail.downloadImage(from: url){
+                        cell?.activityIndicator.stopAnimating()
+                        cell?.activityIndicator.isHidden = true
+                    }
+                }
                 return cell
             })
         return dataSource
     }
+    
     func makeSectionHeader(){
         self.dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
             guard kind == UICollectionView.elementKindSectionHeader else {
@@ -80,11 +94,28 @@ extension TravelListViewController {
             return headerView
         }
     }
+    
     func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
-        snapshot.appendItems(Dummy.nearPlaces)
+        snapshot.appendItems(nearPlaces)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+    }
+    
+    func fetchData(){
+        $nearPlaces.receive(on: DispatchQueue.main)
+            .sink(receiveValue: {[weak self] _ in
+                self?.applySnapshot()
+            })
+            .store(in: &cancellables)
+        
+        TravelListAPI.loadTravelList(type: .search)
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { places in
+                    for place in places {
+                        self.nearPlaces.append(place.toNearPlace())
+                    }
+                  }).store(in: &cancellables)
     }
     
     func setUpSearchController() {
@@ -117,6 +148,7 @@ extension TravelListViewController : UICollectionViewDelegate {
 }
 
 extension TravelListViewController: UISearchControllerDelegate {
+    
     func didPresentSearchController(_ searchController: UISearchController) {
         DispatchQueue.main.async {
             searchController.searchBar.becomeFirstResponder()
@@ -125,6 +157,7 @@ extension TravelListViewController: UISearchControllerDelegate {
 }
 
 extension TravelListViewController : UISearchResultsUpdating {
+    
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else {
             return
@@ -133,6 +166,7 @@ extension TravelListViewController : UISearchResultsUpdating {
 }
 
 extension TravelListViewController : Storyboarded {
+    
     static func instantiate() -> Self {
         let fullName = NSStringFromClass(self)
         let className = fullName.components(separatedBy: ".")[1]

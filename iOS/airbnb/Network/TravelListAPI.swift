@@ -11,7 +11,7 @@ import Combine
 
 class TravelListAPI {
 
-    static func loadTravelList(type : EndPoint) -> AnyPublisher<NearPlace, APIError> {
+    static func loadTravelList(type : EndPoint) -> AnyPublisher<[NearPlaceResponse], APIError> {
         let request = AF.request(type.url, method: .get)
         return API().run(request)
             .map(\.value)
