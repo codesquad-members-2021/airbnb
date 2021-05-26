@@ -39,9 +39,6 @@ const ModalPosition = css`
 `;
 
 const StyledAccountMenu = styled.button`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
   background-color: ${({ theme }) => theme.color.White};
   border-radius: 2rem;
   color: ${({ theme }) => theme.color.Gray3};

@@ -22,9 +22,4 @@ const StyledSearchBarBtn = styled.button`
   top: 0.6rem;
   right: 0.6rem;
   font-size: 1.4rem;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;

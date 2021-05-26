@@ -72,9 +72,6 @@ const PeopleNumber = styled.span`
 `;
 
 const PeopleBtn = styled.button`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
   background-color: ${({ theme }) => theme.color.White};
   border-radius: 50%;
   color: ${({ theme }) => theme.color.Gray4};
@@ -82,7 +79,6 @@ const PeopleBtn = styled.button`
   font-size: 3rem;
   width: 2.5rem;
   height: 2.5rem;
-  justify-content: center;
   &:hover {
     color: ${({ theme }) => theme.color.Black};
     border-color: ${({ theme }) => theme.color.Black};
