@@ -12,6 +12,10 @@ public class RoomOption {
         this.bathRoom = bathRoom;
     }
 
+    public boolean checkMaxGuest(int adult, int child) {
+        return maxGuest < adult + child;
+    }
+
     public int getBed() {
         return bed;
     }
@@ -33,4 +37,6 @@ public class RoomOption {
                 ", bathRoom=" + bathRoom +
                 '}';
     }
+
+
 }

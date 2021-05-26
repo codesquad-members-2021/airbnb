@@ -71,7 +71,7 @@ public class Room {
     }
 
     public boolean capacityCheck(int adult, int child) {
-        if (roomOption.getMaxGuest() < adult + child) {
+        if (roomOption.checkMaxGuest(adult , child)) {
             throw new OvercapacityException();
         }
         return true;
