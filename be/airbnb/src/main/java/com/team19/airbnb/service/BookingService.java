@@ -31,7 +31,7 @@ public class BookingService {
     public void createBooking(BookingRequestDTO bookingRequestDTO, Long userId) {
         Booking booking = bookingRequestDTO.toEntity();
         booking.checkUserId(userId);
-        bookingDAO.bookReservation(booking);
+        bookingDAO.save(booking);
     }
 
     public void delete(Long bookingId, Long userId) {
