@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -33,8 +34,8 @@ public class RoomDao {
     }
 
     public List<Integer> findAllPrice(){
-        String sql = "SELECT id, price, title, description, people, oneroom, bed, bath, hair_dryer, air_conditioner, wifi, clean_tax FROM room ORDER BY price";
+        String sql = "SELECT id, price, title, description, people, oneroom, bed, bath, hair_dryer, air_conditioner, wifi, clean_tax FROM room ";
         List<Room> rooms = jdbcTemplate.query(sql, roomMapper);
-        return rooms.stream().map(Room::getPrice).collect(Collectors.toList());
+        return rooms.stream().map(Room::getPrice).sorted().collect(Collectors.toList());
     }
 }
