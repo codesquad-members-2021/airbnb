@@ -110,7 +110,9 @@ private extension CalendarViewController {
     }
     
     private func setupLabel() {
-        locationLabel.text = viewModel.getLocationInfo()
+        viewModel.locationData
+            .drive(locationLabel.rx.text)
+            .disposed(by: rx.disposeBag)
     }
 }
 
