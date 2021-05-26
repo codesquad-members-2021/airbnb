@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CityService {
@@ -24,13 +25,8 @@ public class CityService {
 
     public List<CityResponse> createAllToCityResponseList() {
         Location codeSquadLocation = new Location(37.491016774047345, 127.03339554026415);
-        List<CityResponse> responseList = new ArrayList<>();
         List<City> cities = findAll();
-
-        for (City city : cities) {
-            CityResponse cityResponse = CityResponse.of(city, city.findMainImageUrl(),codeSquadLocation);
-            responseList.add(cityResponse);
-        }
-        return responseList;
+        return cities.stream().map(city -> CityResponse.of(city, city.findMainImageUrl(), codeSquadLocation))
+                .collect(Collectors.toList());
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryService {
@@ -22,14 +23,8 @@ public class CategoryService {
     }
 
     public List<CategoryResponse> createAllToCategoryResponseList() {
-
-        List<CategoryResponse> responsesList = new ArrayList<>();
         List<Category> categories = findAll();
-
-        for (Category category : categories) {
-            CategoryResponse categoryResponse = CategoryResponse.of(category, category.findMainImageUrl());
-            responsesList.add(categoryResponse);
-        }
-        return responsesList;
+        return categories.stream().map(category -> CategoryResponse.of(category, category.findMainImageUrl()))
+                .collect(Collectors.toList());
     }
 }
