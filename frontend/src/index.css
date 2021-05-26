@@ -3,7 +3,10 @@
    License: none (public domain)
 */
 
-html,
+html {
+  line-height: 1;
+  font-size: 10px;
+}
 body,
 div,
 span,
