@@ -5,14 +5,6 @@ drop table if exists location;
 drop table if exists room;
 drop table if exists reservation;
 drop table if exists room_price;
-drop table if exists amenity;
-drop table if exists room_amenity;
-drop table if exists bathroom;
-drop table if exists room_bathroom;
-drop table if exists bedroom;
-drop table if exists room_bedroom;
-drop table if exists discount;
-drop table if exists room_discount;
 drop table if exists room_image;
 
 create table `user`
@@ -71,46 +63,6 @@ create table `room_price`
     clean_up_cost    int,
     price_per_day    int,
     weekly_discount  int
-);
-
-create table `amenity`
-(
-    id   int primary key auto_increment,
-    name varchar(50)
-);
-
-create table `room_amenity`
-(
-    id         int primary key auto_increment,
-    room_id    int references room (id),
-    amenity_id int references amenity (id)
-);
-
-create table `bedroom`
-(
-    id            int primary key auto_increment,
-    bedroom_type  varchar(50),
-    bedroom_count int
-);
-
-create table `room_bedroom`
-(
-    id         int primary key auto_increment,
-    room_id    int references room (id),
-    bedroom_id int references bedroom (id)
-);
-
-create table `bathroom`
-(
-    id            int primary key auto_increment,
-    bathroom_type varchar(50)
-);
-
-create table `room_bathroom`
-(
-    id          int primary key auto_increment,
-    room_id     int references room (id),
-    bathroom_id int references bathroom (id)
 );
 
 create table `room_image`
