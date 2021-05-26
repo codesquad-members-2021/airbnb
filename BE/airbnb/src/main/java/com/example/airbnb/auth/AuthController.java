@@ -21,14 +21,11 @@ public class AuthController {
     private final Logger logger = LoggerFactory.getLogger(AuthController.class);
     private final String GITHUB_ACCESS_TOKEN_URI = "https://github.com/login/oauth/access_token";
     private final String GITHUB_USER_URI = "https://api.github.com/user";
-    private HttpSession httpSession;
     private final String ISSUER = "";
     private final String CLIENT_ID = "your client id";
     private final String CLIENT_SECRET = "your client secret";
-
-
     private final String CODE = "";
-
+    private HttpSession httpSession;
 
     @GetMapping
     public String hello() {

@@ -11,7 +11,7 @@ public class AccommodationDTO {
     private Integer reviewCount;
     private Integer charge;
     private String badge;
-    private String  image;
+    private String image;
     private Boolean isLike;
 
     public AccommodationDTO(Accommodation accommodation) {

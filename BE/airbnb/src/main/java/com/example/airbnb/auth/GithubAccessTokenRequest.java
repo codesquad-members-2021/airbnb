@@ -3,9 +3,9 @@ package com.example.airbnb.auth;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class GithubAccessTokenRequest {
-    private String clientId;
-    private String clientSecret;
-    private String code;
+    private final String clientId;
+    private final String clientSecret;
+    private final String code;
 
     public GithubAccessTokenRequest(String clientId, String clientSecret, String code) {
         this.clientId = clientId;

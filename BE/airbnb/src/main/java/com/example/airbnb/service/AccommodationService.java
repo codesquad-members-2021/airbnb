@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class AccommodationService {
 
-    private AccommodationDAO accommodationDAO;
+    private final AccommodationDAO accommodationDAO;
 
     public AccommodationService(AccommodationDAO accommodationDAO) {
         this.accommodationDAO = accommodationDAO;
@@ -42,10 +42,7 @@ public class AccommodationService {
         if (0 >= conditions.getChildren()) {
             return false;
         }
-        if (0 >= conditions.getInfants()) {
-            return false;
-        }
-        return true;
+        return 0 < conditions.getInfants();
     }
 
     private List<Accommodation> filterdPeopleCount(List<Accommodation> accommodationList) {

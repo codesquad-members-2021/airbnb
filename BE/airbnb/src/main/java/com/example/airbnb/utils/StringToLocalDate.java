@@ -3,15 +3,13 @@ package com.example.airbnb.utils;
 import com.example.airbnb.exception.UnExpectedTimeFormat;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class StringToLocalDate {
     public static LocalDate StringToLocalDate(String string) {
         // 2021-05-25
-        if(string.length() == 10) {
+        if (string.length() == 10) {
             return LocalDate.parse(string);
-        }
-        else {
+        } else {
             throw new UnExpectedTimeFormat();
         }
     }

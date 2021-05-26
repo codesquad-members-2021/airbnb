@@ -26,7 +26,7 @@ public class Accommodation {
 
     public Accommodation(Long id, String title, Double reviewRating,
                          Integer reviewCount, Integer charge, String badge,
-                          String image, Boolean isLike) {
+                         String image, Boolean isLike) {
         this.id = id;
         this.title = title;
         this.reviewRating = reviewRating;
@@ -59,14 +59,15 @@ public class Accommodation {
     public Double getReviewRating() {
         return this.reviewRating;
     }
-    //Integer reviewCount;
-    public Integer getReviewCount() {
-        return this.reviewCount;
-    }
 
     public Accommodation setReviewRating(Double reviewRating) {
         this.reviewRating = reviewRating;
         return this;
+    }
+
+    //Integer reviewCount;
+    public Integer getReviewCount() {
+        return this.reviewCount;
     }
 
     public Accommodation setReviewCount(Double reviewRating) {
@@ -78,6 +79,7 @@ public class Accommodation {
     public Integer getCharge() {
         return this.charge;
     }
+
     public Accommodation setCharge(Integer charge) {
         this.charge = charge;
         return this;
@@ -87,6 +89,7 @@ public class Accommodation {
     public String getBadge() {
         return this.badge;
     }
+
     public Accommodation setBadge(String badge) {
         this.badge = badge;
         return this;
@@ -96,6 +99,7 @@ public class Accommodation {
     public Boolean getIsLike() {
         return this.isLike;
     }
+
     public Accommodation setIsLike(Boolean isLike) {
         this.isLike = isLike;
         return this;
@@ -105,6 +109,7 @@ public class Accommodation {
     public String getImage() {
         return this.image;
     }
+
     public Accommodation setImage(String image) {
         this.image = image;
         return this;

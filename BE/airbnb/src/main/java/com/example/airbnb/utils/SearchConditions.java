@@ -1,7 +1,5 @@
 package com.example.airbnb.utils;
 
-import org.springframework.web.bind.annotation.RequestParam;
-
 public class SearchConditions {
 
     private String location;

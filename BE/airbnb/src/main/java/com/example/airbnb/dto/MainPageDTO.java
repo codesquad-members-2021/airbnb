@@ -5,6 +5,7 @@ import java.util.List;
 public class MainPageDTO {
     List<RecommendedDTO> recommendedList;
     List<ThemeDTO> themeList;
+
     public MainPageDTO(List<RecommendedDTO> recommendedDTOList, List<ThemeDTO> themeDTOList) {
         this.recommendedList = recommendedDTOList;
         this.themeList = themeDTOList;
