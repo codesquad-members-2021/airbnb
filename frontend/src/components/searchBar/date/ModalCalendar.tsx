@@ -7,7 +7,12 @@ import styled, { css } from 'styled-components'
 interface ModalCalendarProps {
 	modalType: string
 }
-
+export interface ICheckProps {
+	year?: number
+	currentMonth?: number
+	dateEl?: number | null
+	nonClickable?: boolean
+}
 interface IDate {
 	transitionState: boolean
 	btnClicked: number
@@ -30,7 +35,6 @@ const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType 
 
 	const [currentCalendar, setCalendar] = useState(CalendarToRendar)
 	const [btnClicked, setBtnClick] = useState<number>(0)
-
 	const handleMonth = (num: number): void => {
 		setBtnClick(num)
 		setTransition(true)
@@ -57,15 +61,11 @@ const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType 
 		}
 	}
 
-	// const [clicked, setClick] = useState(false) //회색글자 click state
-	const [activation, setActivation] = useState(false) //회색글자가 아닐 때만 handle함수를 호출하기 위해. state
-
 	//handleClick 안에서 사용하기
 	const [checkIn, setCheckIn] = useRecoilState(checkInMessage)
 	const [checkOut, setCheckOut] = useRecoilState(checkOutMessage)
-
-	const handleDateCLick = (year?: number, currentMonth?: number, dateEl?: number | null): void => {
-		if (!activation) return
+	const handleDateCLick = ({ year, currentMonth, dateEl, nonClickable }: ICheckProps): void => {
+		if (!nonClickable) return
 
 		const clickedDate = new Date(`${year}-${currentMonth}-${dateEl}`).valueOf()
 		if (checkIn === '날짜입력') setCheckIn(clickedDate)
@@ -93,12 +93,7 @@ const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType 
 				btnClicked={btnClicked}
 			>
 				{currentCalendar.map((cal, idx) => (
-					<Calendar
-						key={idx}
-						currentMonth={cal}
-						handleDateCLick={handleDateCLick}
-						setActivation={setActivation}
-					/>
+					<Calendar key={idx} currentMonth={cal} handleDateCLick={handleDateCLick} />
 				))}
 			</TransitionBox>
 		</Modal>

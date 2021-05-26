@@ -1,25 +1,37 @@
-import { RefObject } from 'react'
-import { useRecoilValue } from 'recoil'
-import { checkOutMessage } from '../../../customHook/atoms'
+import { RefObject, useState, useEffect } from 'react'
+import { useRecoilValue, useRecoilState } from 'recoil'
+import { checkOutMessage, clickCheckIn, clickCheckOut } from '../../../customHook/atoms'
 import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../../style/BarStyle'
+import { dateToString } from '../../../customHook/useDateInfo'
 
 interface IProps {
-	clicked: boolean
 	open: boolean
 	type: string
 	checkOutToggle: RefObject<HTMLDivElement>
-	onClick: () => void
 }
 
-const CheckOut: React.FunctionComponent<IProps> = ({ clicked, open, type, checkOutToggle }) => {
+const CheckOut: React.FunctionComponent<IProps> = ({ open, type, checkOutToggle }) => {
 	const checkOut = useRecoilValue(checkOutMessage)
-	const dateToString = (clickedDate: string | number) => {
-		if (clickedDate === '날짜입력') return '날짜입력'
-		const dateValue = Number(clickedDate)
-		return new Date(dateValue).getMonth() + 1 + '월' + new Date(dateValue).getDate() + '일'
+	const [checkInClicked, setCheckInClick] = useRecoilState(clickCheckIn)
+	const [checkOutnClicked, setCheckOutClick] = useRecoilState(clickCheckOut)
+	const clickTransfer = () => {
+		setCheckInClick(false)
+		setCheckOutClick(true)
 	}
+	const handleClick = () => {
+		clickTransfer()
+	}
+	useEffect(() => {
+		clickTransfer()
+	}, [checkOut])
+
 	return (
-		<BarBlock clicked={clicked && open} type={type} ref={checkOutToggle}>
+		<BarBlock
+			onClick={handleClick}
+			clicked={checkOutnClicked && open}
+			type={type}
+			ref={checkOutToggle}
+		>
 			<BarInnerWrapper>
 				<div>
 					<BarTitle>체크아웃</BarTitle>

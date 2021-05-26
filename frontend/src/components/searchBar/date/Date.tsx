@@ -16,32 +16,11 @@ const Date = () => {
 		init: false,
 	})
 
-	const [IN_clicked, IN_setClick] = useState(false)
-	const [OUT_clicked, OUT_setClick] = useState(false)
-	const IN_handleClick = () => {
-		IN_setClick((IN_clicked) => !IN_clicked)
-	}
-	const OUT_handleClick = () => {
-		OUT_setClick((OUT_clicked) => !OUT_clicked)
-	}
-
 	return (
 		<PlaceSection>
 			<DateFlexWrapper>
-				<CheckIn
-					onClick={IN_handleClick}
-					clicked={IN_clicked}
-					open={open}
-					type='date'
-					checkInToggle={checkInToggle}
-				/>
-				<CheckOut
-					onClick={OUT_handleClick}
-					clicked={OUT_clicked}
-					open={open}
-					type='date'
-					checkOutToggle={checkOutToggle}
-				/>
+				<CheckIn open={open} type='date' checkInToggle={checkInToggle} />
+				<CheckOut open={open} type='date' checkOutToggle={checkOutToggle} />
 			</DateFlexWrapper>
 			{open && (
 				<ModalWrapper ref={CalendarModal} modalType='date'>

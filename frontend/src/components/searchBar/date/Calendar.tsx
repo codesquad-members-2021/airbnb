@@ -1,24 +1,21 @@
 import styled, { css } from 'styled-components'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { DateInfo } from '../../../customHook/useDateInfo'
-
+import { ICheckProps } from './ModalCalendar'
 interface IDate {
 	currentMonth: number
-	handleDateCLick: (year?: number, currentMonth?: number, dateEl?: number | null) => void
-	setActivation: any
+	handleDateCLick: (props: ICheckProps) => void
 }
+
 interface IClick {
 	nonClickable: boolean
 	onClick: () => void
 }
 
-const Calendar: React.FunctionComponent<IDate> = ({
-	currentMonth,
-	handleDateCLick,
-	setActivation,
-}) => {
-	const MonthList = Array.from({ length: 12 }, (_, i) => i + 1)
+const Calendar: React.FunctionComponent<IDate> = ({ currentMonth, handleDateCLick }) => {
 	const dayList: string[] = ['일', '월', '화', '수', '목', '금', '토']
+	const MonthList = Array.from({ length: 12 }, (_, i) => i + 1)
+
 	let { year, month, date } = DateInfo(new Date())
 	let currentYear = year
 	let index
@@ -26,7 +23,8 @@ const Calendar: React.FunctionComponent<IDate> = ({
 		index = (currentMonth % 12) - 1
 		year += Math.floor(currentMonth / 12)
 		currentMonth = MonthList[index]
-	} else if (currentMonth < 1) {
+	}
+	if (currentMonth < 1) {
 		index = (currentMonth % 12) + 12
 		year =
 			currentMonth === 0
@@ -47,16 +45,13 @@ const Calendar: React.FunctionComponent<IDate> = ({
 				year < currentYear ||
 				(year === currentYear && currentMonth < month) ||
 				(year === currentYear && currentMonth === month && date > dateEl)
-			) {
-				setActivation(false)
+			)
 				return false
-			}
-			setActivation(true)
 			return true
 		}
-		setActivation(false)
 		return false
 	}
+
 	return (
 		<CalendarBox>
 			<DayBlock>
@@ -73,7 +68,14 @@ const Calendar: React.FunctionComponent<IDate> = ({
 						<DateBlock
 							key={idx}
 							nonClickable={nonClickableCheck(dateEl)}
-							onClick={() => handleDateCLick(year, currentMonth, dateEl)}
+							onClick={() =>
+								handleDateCLick({
+									year,
+									currentMonth,
+									dateEl,
+									nonClickable: nonClickableCheck(dateEl),
+								})
+							}
 						>
 							{dateEl}
 						</DateBlock>
