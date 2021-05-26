@@ -33,8 +33,8 @@ public class AccommodationController {
         return ApiResult.succeed(accommodationService.findAvailableAccommodationsForReservation());
     }
 
-    @PostMapping("/save")
-    public ApiResult save(AccommodationSaveRequestDto accommodationSaveRequestDto) {
+    @PostMapping("/")
+    public ApiResult createAccommodation(AccommodationSaveRequestDto accommodationSaveRequestDto) {
         accommodationService.save(accommodationSaveRequestDto);
         return ApiResult.ok();
     }
