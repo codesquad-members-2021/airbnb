@@ -1,14 +1,14 @@
-import { MouseEventHandler } from 'react';
+import { MouseEvent } from 'react';
 import styled, { css } from 'styled-components';
 
 interface IBackground {
   children?: React.ReactNode;
   backgroundColor?: string | '';
   coverBody?: boolean;
-  onClick?: MouseEventHandler | undefined;
+  onClick?: (event: MouseEvent | Event) => void;
 }
 
-const Background = ({ children, backgroundColor, coverBody, onClick }: IBackground) => (
+const Background = ({ children, backgroundColor, coverBody, onClick}: IBackground) => (
   <StyledBackground
     onClick={onClick}
     backgroundColor={backgroundColor}
