@@ -18,11 +18,12 @@ const FeeTab = (): React.ReactElement => {
     const [feeValue, setFeeValue] = useState<number[] | number>([27, 35]);
 
     const handleFeeLayer: React.MouseEventHandler<HTMLDivElement> = () => {
-        searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: false });
-        searcherDispatch({ type: 'SHOW_CHECKOUT_CALENDAR_LAYER', state: false });
-        searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: false });
-        searcherDispatch({ type: 'SHOW_PEOPLE_LAYER', state: false });
         searcherDispatch({ type: 'SHOW_FEE_LAYER', state: true });
+        // searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: false });
+        // searcherDispatch({ type: 'SHOW_CHECKOUT_CALENDAR_LAYER', state: false });
+        // searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: false });
+        // searcherDispatch({ type: 'SHOW_PEOPLE_LAYER', state: false });
+        // searcherDispatch({ type: 'SHOW_FEE_LAYER', state: true });
     };
 
     const handleSliderChange = (event: React.ChangeEvent<unknown>, newValue: number[] | number) => {

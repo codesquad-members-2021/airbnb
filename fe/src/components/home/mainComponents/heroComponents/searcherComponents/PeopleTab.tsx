@@ -29,10 +29,10 @@ const PeopleTab = (): React.ReactElement => {
     const { peopleLayer } = searcherState;
 
     const handlePeopleLayer: React.MouseEventHandler<HTMLDivElement> = () => {
-        searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: false });
-        searcherDispatch({ type: 'SHOW_CHECKOUT_CALENDAR_LAYER', state: false });
-        searcherDispatch({ type: 'SHOW_FEE_LAYER', state: false });
-        searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: false });
+        // searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: false });
+        // searcherDispatch({ type: 'SHOW_CHECKOUT_CALENDAR_LAYER', state: false });
+        // searcherDispatch({ type: 'SHOW_FEE_LAYER', state: false });
+        // searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: false });
         searcherDispatch({ type: 'SHOW_PEOPLE_LAYER', state: true });
     };
 

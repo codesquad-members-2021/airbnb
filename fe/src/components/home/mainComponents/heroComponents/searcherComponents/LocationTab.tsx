@@ -19,10 +19,11 @@ const LocationTab = (): React.ReactElement => {
     const { locationLayer, locationList } = searcherState;
 
     const handleInputLayer: React.MouseEventHandler<HTMLDivElement> = () => {
-        searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: false });
-        searcherDispatch({ type: 'SHOW_CHECKOUT_CALENDAR_LAYER', state: false });
-        searcherDispatch({ type: 'SHOW_FEE_LAYER', state: false });
-        searcherDispatch({ type: 'SHOW_PEOPLE_LAYER', state: false });
+        // searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: false });
+        // searcherDispatch({ type: 'SHOW_CHECKOUT_CALENDAR_LAYER', state: false });
+        // searcherDispatch({ type: 'SHOW_FEE_LAYER', state: false });
+        // searcherDispatch({ type: 'SHOW_PEOPLE_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: true });
         if (inputRef?.current) {
             inputRef.current.disabled = false;
             inputRef.current.focus();
@@ -40,7 +41,7 @@ const LocationTab = (): React.ReactElement => {
                 el.city.includes(event.target.value),
             );
             searcherDispatch({ type: 'SHOW_LOCATION_LIST', list: currLocationList });
-            searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: true });
+            // searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: true });
         }, 200);
     };
 
@@ -51,7 +52,7 @@ const LocationTab = (): React.ReactElement => {
             inputRef.current.value = place.city;
             inputRef.current.blur();
         }
-        searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: false });
+        // searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: false });
         searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: true });
     };
 
