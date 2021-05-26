@@ -19,6 +19,8 @@
 		10406B58265D2A5A004F4AF9 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10406B57265D2A5A004F4AF9 /* Day.swift */; };
 		10406B5B265D2C2D004F4AF9 /* MonthMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10406B5A265D2C2D004F4AF9 /* MonthMetadata.swift */; };
 		10406B5D265D344F004F4AF9 /* CalendarDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10406B5C265D344F004F4AF9 /* CalendarDateCell.swift */; };
+		10466589265E6C03008B2F36 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10466588265E6C03008B2F36 /* CalendarViewModel.swift */; };
+		1046658B265E6DD4008B2F36 /* CalanderColleectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1046658A265E6DD4008B2F36 /* CalanderColleectionDataSource.swift */; };
 		1049206D265782AD00AA2590 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1049206C265782AD00AA2590 /* ContainerViewController.swift */; };
 		105D4272265DE20E00FCF8F7 /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105D4271265DE20E00FCF8F7 /* CalendarHeader.swift */; };
 		10642205265641F1005B63FD /* TravelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10642204265641F1005B63FD /* TravelListViewController.swift */; };
@@ -57,6 +59,8 @@
 		10406B57265D2A5A004F4AF9 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		10406B5A265D2C2D004F4AF9 /* MonthMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthMetadata.swift; sourceTree = "<group>"; };
 		10406B5C265D344F004F4AF9 /* CalendarDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateCell.swift; sourceTree = "<group>"; };
+		10466588265E6C03008B2F36 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		1046658A265E6DD4008B2F36 /* CalanderColleectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderColleectionDataSource.swift; sourceTree = "<group>"; };
 		1049206C265782AD00AA2590 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		105D4271265DE20E00FCF8F7 /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
 		10642204265641F1005B63FD /* TravelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelListViewController.swift; sourceTree = "<group>"; };
@@ -110,8 +114,17 @@
 			children = (
 				10406B57265D2A5A004F4AF9 /* Day.swift */,
 				10406B5A265D2C2D004F4AF9 /* MonthMetadata.swift */,
+				1046658A265E6DD4008B2F36 /* CalanderColleectionDataSource.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		10466587265E6BF9008B2F36 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				10466588265E6C03008B2F36 /* CalendarViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		105D4273265DE84C00FCF8F7 /* View */ = {
@@ -128,6 +141,7 @@
 			children = (
 				10BAF19C265CD1DA0035D99B /* CalendarViewController.swift */,
 				10406B59265D2C19004F4AF9 /* Model */,
+				10466587265E6BF9008B2F36 /* ViewModel */,
 				105D4273265DE84C00FCF8F7 /* View */,
 			);
 			path = CalendarPicker;
@@ -321,6 +335,8 @@
 				10BAF19D265CD1DA0035D99B /* CalendarViewController.swift in Sources */,
 				10D29C6326538C6800E71840 /* SceneDelegate.swift in Sources */,
 				10E1B1702653DDEF0087B69B /* Coordinator.swift in Sources */,
+				10466589265E6C03008B2F36 /* CalendarViewModel.swift in Sources */,
+				1046658B265E6DD4008B2F36 /* CalanderColleectionDataSource.swift in Sources */,
 				101C0EE126575BF80014D62B /* NearPlaceDataSource.swift in Sources */,
 				10E1B1742653DE2F0087B69B /* MainCoordinator.swift in Sources */,
 				101C0EDF26575A7B0014D62B /* NearPlaceDTO.swift in Sources */,

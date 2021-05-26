@@ -24,36 +24,33 @@ class CalendarViewController: UIViewController {
         return dateFormatter
     }()
     
-    private let calendar = Calendar(identifier: .gregorian)
-    var baseDate: Date? {
-        didSet {
-            days = generateDaysInMonth(for: baseDate!)
-            collection.reloadData()
-        }
-    }
-    private var numberOfWeeksInBaseDate: Int {
-        calendar.range(of: .weekOfMonth, in: .month, for: baseDate!)?.count ?? 0
-    }
-    private lazy var days = generateDaysInMonth(for: baseDate!)
-    
-    // MARK: - View Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        collection.dataSource = self
-        collection.delegate = self
-        
-        self.baseDate = Date()
+    private let flowLayout : UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionHeadersPinToVisibleBounds = true
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        
-        collection.collectionViewLayout = layout
+        return layout
+    }()
+    
+    private var numberOfWeeksInBaseDate: Int {
+        calendar.range(of: .weekOfMonth, in: .month, for: baseDate)?.count ?? 0
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    private let calendar = Calendar(identifier: .gregorian)
+    private var baseDate = Date()
+    private lazy var days = generateDaysInMonth(for: baseDate)
+    private lazy var dataSource = CalanderColleectionDataSource(with: days)
+    
+    // MARK: - View Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        days = generateDaysInMonth(for: baseDate)
+        
+        collection.dataSource = dataSource
+        collection.delegate = self
+        collection.collectionViewLayout = flowLayout
     }
+
 }
 
 extension CalendarViewController {
@@ -129,30 +126,6 @@ extension CalendarViewController {
     
 }
 
-extension CalendarViewController: UICollectionViewDataSource{
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return days.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarDateCell.reuseIdentifier, for: indexPath) as! CalendarDateCell
-        cell.day = days[indexPath.row]
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CalendarHeader.reuseIdentifier, for: indexPath)
-            return headerView
-        default :
-            assert(false, "there is no element")
-        }
-    }
-}
-
 extension CalendarViewController: UICollectionViewDelegate {
     
 }
@@ -162,7 +135,7 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = Int(collectionView.frame.width / 7)
-        let height = Int(collectionView.frame.height) / numberOfWeeksInBaseDate
+        let height = Int(collectionView.frame.height) / numberOfWeeksInBaseDate - 10
         return CGSize(width: width, height: height)
     }
     
