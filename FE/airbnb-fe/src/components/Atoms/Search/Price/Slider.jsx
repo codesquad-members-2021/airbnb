@@ -17,7 +17,6 @@ const Slider = () => {
 
   const leftPercent = ((priceData.minPrice - min) / (avg - min)) * 100;
   const rightPercent = ((priceData.maxPrice - avg) / (max - avg)) * 100;
-  console.log(priceData.minPrice);
 
   useEffect(() => {
     setAvg((priceData.maxPrice + priceData.minPrice) / 2);
