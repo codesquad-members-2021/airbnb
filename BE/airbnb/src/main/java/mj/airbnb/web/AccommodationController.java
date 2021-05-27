@@ -20,8 +20,8 @@ public class AccommodationController {
     }
 
     @GetMapping
-    public List<AccommodationResponseDto> searchAccommodationsByConditions(SearchRequestDto requestDto) {
-        return accommodationService.findAllByConditions(requestDto);
+    public List<AccommodationResponseDto> viewAccommodationsByConditions(SearchRequestDto requestDto) {
+        return accommodationService.searchAccommodationsByConditions(requestDto);
     }
 
 }

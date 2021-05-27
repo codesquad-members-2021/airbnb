@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/destinations")
+@RequestMapping("/api/destinations")
 public class DestinationController {
 
-    private AccommodationService accommodationService;
+    private final AccommodationService accommodationService;
 
     public DestinationController(AccommodationService accommodationService) {
         this.accommodationService = accommodationService;

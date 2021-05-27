@@ -16,14 +16,6 @@ public class Accommodation {
     public Accommodation() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -52,10 +44,6 @@ public class Accommodation {
         return numOfBed;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
     public void setNumOfBed(int numOfBed) {
         this.numOfBed = numOfBed;
     }
@@ -74,6 +62,10 @@ public class Accommodation {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public void setAddress(String address) {

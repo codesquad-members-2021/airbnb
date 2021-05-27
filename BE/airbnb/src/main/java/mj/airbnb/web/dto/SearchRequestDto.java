@@ -8,20 +8,22 @@ import java.util.Optional;
 
 public class SearchRequestDto {
 
-    private final Optional<String> destination;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private final Optional<LocalDate> checkInDate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private final Optional<LocalDate> checkOutDate;
-    private final Optional<BigDecimal> minPrice;
-    private final Optional<BigDecimal> maxPrice;
-    private final Optional<Integer> numOfAdult;
-    private final Optional<Integer> numOfChild;
-    private final Optional<Integer> numOfInfant;
+    private final LocalDate checkInDate;
 
-    public SearchRequestDto(Optional<String> destination, Optional<LocalDate> checkInDate, Optional<LocalDate> checkOutDate,
-                            Optional<BigDecimal> minPrice, Optional<BigDecimal> maxPrice, Optional<Integer> numOfAdult,
-                            Optional<Integer> numOfChild, Optional<Integer> numOfInfant) {
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private final LocalDate checkOutDate;
+
+    private final String destination;
+    private final BigDecimal minPrice;
+    private final BigDecimal maxPrice;
+    private final Integer numOfAdult;
+    private final Integer numOfChild;
+    private final Integer numOfInfant;
+
+    public SearchRequestDto(String destination, LocalDate checkInDate, LocalDate checkOutDate,
+                            BigDecimal minPrice, BigDecimal maxPrice, Integer numOfAdult,
+                            Integer numOfChild, Integer numOfInfant) {
 
         this.destination = destination;
         this.checkInDate = checkInDate;
@@ -33,37 +35,35 @@ public class SearchRequestDto {
         this.numOfInfant = numOfInfant;
     }
 
-    public Optional<String> getDestination() {
+    public String getDestination() {
         return destination;
     }
 
-    public Optional<LocalDate> getCheckInDate() {
+    public LocalDate getCheckInDate() {
         return checkInDate;
     }
 
-    public Optional<LocalDate> getCheckOutDate() {
+    public LocalDate getCheckOutDate() {
         return checkOutDate;
     }
 
-    public Optional<BigDecimal> getMinPrice() {
+    public BigDecimal getMinPrice() {
         return minPrice;
     }
 
-    public Optional<BigDecimal> getMaxPrice() {
+    public BigDecimal getMaxPrice() {
         return maxPrice;
     }
 
-    public Optional<Integer> getNumOfAdult() {
+    public Integer getNumOfAdult() {
         return numOfAdult;
     }
 
-    public Optional<Integer> getNumOfChild() {
+    public Integer getNumOfChild() {
         return numOfChild;
     }
 
-    public Optional<Integer> getNumOfInfant() {
+    public Integer getNumOfInfant() {
         return numOfInfant;
     }
-
-
 }
