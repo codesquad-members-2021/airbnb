@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { checkoutDateState, hoverDateState } from "state/atoms/calendarAtoms";
 import Calendar from "component/searchBar/calendar/Calendar";
 import { ReactComponent as LeftButton } from "assets/left_arrow.svg";
 import { ReactComponent as RightButton } from "assets/right_arrow.svg";
 import { stopPropagation } from "hooks/modalHooks";
 
 function CalendarModal() {
-  // 날짜선택 X → 오늘 날짜 기준으로 달력 렌더
-  const today = new Date();
-  const [year, setYear] = useState<number>(() => today.getFullYear());
-  const [month, setMonth] = useState<number>(() => today.getMonth());
+  const [year, setYear] = useState<number>(() => new Date().getFullYear());
+  const [month, setMonth] = useState<number>(() => new Date().getMonth());
   const [translate, setTranslate] = useState<string>("calc(-100% / 3)");
   const [duration, setDuration] = useState<string>("all 400ms");
   const [clickedArrow, setClickedArrow] = useState<string>("");
+  const checkoutDate = useRecoilValue(checkoutDateState);
+  const setHoverDate = useSetRecoilState(hoverDateState);
+  // 날짜선택 X → 오늘 날짜 기준으로 달력 렌더
   // 날짜선택 O → 선택된 체크인 날짜 기준으로 달력 렌더
 
+  // ===== 달력 캐로셀 기능 =====
   const handleClickLeftBtn = (): void => {
     setTranslate("17px");
     setClickedArrow("left");
@@ -48,13 +52,27 @@ function CalendarModal() {
     setDuration("all 400ms");
   }, [duration]);
 
+  // =====오늘 날짜 구하기=====
+  const today = new Date();
+  const [todayMonth, todayDate] = [today.getMonth(), today.getDate()];
+  const yearStr = `${today.getFullYear()}`;
+  const monthStr = todayMonth < 9 ? `0${todayMonth + 1}` : `${todayMonth + 1}`;
+  const dateStr = todayDate < 10 ? `0${todayDate}` : `${todayDate}`;
+  const todayText = yearStr + monthStr + dateStr;
+
   const theNumOfCalendar = new Array(6).fill(null);
+
+  const handleMouseLeaveCalendar = (): void => {
+    if (checkoutDate !== "날짜 입력") return;
+    setHoverDate("");
+  };
+
   return (
     <Modal onClick={stopPropagation}>
-      <ModalContent>
+      <ModalContent onMouseLeave={handleMouseLeaveCalendar}>
         <CalendarWrap translateValue={translate} duration={duration} onTransitionEnd={handleTransitionEnd}>
           {theNumOfCalendar.map((_, i) => (
-            <Calendar key={year + (month - 2 + i)} year={year} month={month - 2 + i} />
+            <Calendar key={year + (month - 2 + i)} year={year} month={month - 2 + i} today={todayText} />
           ))}
         </CalendarWrap>
       </ModalContent>
@@ -99,7 +117,7 @@ const Modal = styled.div`
 
 const ModalContent = styled.div`
   width: 100%;
-  /* overflow: hidden; */
+  overflow: hidden;
 `;
 
 interface CalendarWrapProps {
