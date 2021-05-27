@@ -12,7 +12,6 @@ class SearchViewController : UIViewController {
     
     typealias DataSource = UICollectionViewDiffableDataSource<Section, NearPlace>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, NearPlace>
-    typealias CellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, NearPlace>
     
     @IBOutlet weak var nearPlaceCollection: UICollectionView!
     @IBOutlet weak var themePlaceCollection: UICollectionView!
@@ -24,7 +23,6 @@ class SearchViewController : UIViewController {
     }()
     
     weak var coordinator : SearchCoodinator?
-    private var cellregisration : CellRegistration? = nil
     private var nearPlaceDataSource : DataSource? = nil
     @Published private var places = [NearPlace]()
     private var themePlaceDataSource = ThemePlaceDataSource()
@@ -39,7 +37,6 @@ class SearchViewController : UIViewController {
         
         self.navigationItem.titleView = searchBar
         searchBar.delegate = self
-//        cellregisration = makeCellRegistration()
         nearPlaceDataSource = makeDataSource()
         nearPlaceCollection.dataSource = nearPlaceDataSource
         themePlaceCollection.dataSource = themePlaceDataSource
@@ -73,18 +70,7 @@ class SearchViewController : UIViewController {
             })
         return dataSource
     }
-    
-    func makeCellRegistration() -> CellRegistration {
-        let cellRegistration = CellRegistration { cell, indexPath, place in
-            var content = UIListContentConfiguration.cell()
-            content.directionalLayoutMargins = .zero
-            content.axesPreservingSuperviewLayoutMargins = []
-            
-            cell.contentConfiguration = content
-        }
-        return cellRegistration
-    }
-    
+
     func fetchData(){
         $places.receive(on: DispatchQueue.main)
             .sink(receiveValue: {[weak self] _ in
