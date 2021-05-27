@@ -28,4 +28,12 @@ const closeModalByBodyClick = (setState: (state: any) => void) => {
   });
 };
 
+// const setYear = useSetRecoilState(yearState);
+//     const setMonth = useSetRecoilState(monthState);
+//     if (useRecoilValue(checkoutDateState) !== "날짜 입력") {
+//       const checkinDate = useRecoilValue(checkinDateState);
+//       setYear(+checkinDate.substr(0, 4));
+//       setMonth(+checkinDate.substr(4, 2));
+//     }
+
 export { toggleModal, openModal, stopPropagation, closeModalByBodyClick };
