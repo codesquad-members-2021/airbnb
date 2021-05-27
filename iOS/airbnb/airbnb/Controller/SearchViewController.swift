@@ -93,7 +93,6 @@ class SearchViewController: UITableViewController {
     
     func configure(tripPlace: [TripPlace]) {
         self.tripPlace = tripPlace
-        print(self.tripPlace)
     }
 }
 

@@ -40,6 +40,8 @@
 		D4DDA761265DE53800FE52FA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D4DDA760265DE53800FE52FA /* Kingfisher */; };
 		D4DDA766265E2AE700FE52FA /* RecommendTripCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA765265E2AE700FE52FA /* RecommendTripCollectionViewCell.swift */; };
 		D4DDA76B265E3F2500FE52FA /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA76A265E3F2500FE52FA /* SearchTableViewCell.swift */; };
+		D4DDA773265E73CF00FE52FA /* CostGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA772265E73CF00FE52FA /* CostGraph.swift */; };
+		D4DDA778265E82F000FE52FA /* CostGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA777265E82F000FE52FA /* CostGraphView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		D4DDA757265DE4FF00FE52FA /* ImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Extension.swift"; sourceTree = "<group>"; };
 		D4DDA765265E2AE700FE52FA /* RecommendTripCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTripCollectionViewCell.swift; sourceTree = "<group>"; };
 		D4DDA76A265E3F2500FE52FA /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		D4DDA772265E73CF00FE52FA /* CostGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostGraph.swift; sourceTree = "<group>"; };
+		D4DDA777265E82F000FE52FA /* CostGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostGraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				82DD85F02658D3650007A29C /* FindingAccommdationCondition.swift */,
+				D4DDA772265E73CF00FE52FA /* CostGraph.swift */,
 			);
 			path = ConditionPageData;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 				D4DDA751265DE35B00FE52FA /* TripPlaceCollectionViewCell.swift */,
 				D4DDA765265E2AE700FE52FA /* RecommendTripCollectionViewCell.swift */,
 				D4DDA76A265E3F2500FE52FA /* SearchTableViewCell.swift */,
+				D4DDA777265E82F000FE52FA /* CostGraphView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -433,12 +439,14 @@
 				D4DDA63C26524ECD00FE52FA /* ViewController.swift in Sources */,
 				D4DDA6A0265376E500FE52FA /* MainPageDTO.swift in Sources */,
 				82FBF0D626538E07009B4A1F /* RecommendTripCollectionViewDataSource.swift in Sources */,
+				D4DDA778265E82F000FE52FA /* CostGraphView.swift in Sources */,
 				82DD85F12658D3650007A29C /* FindingAccommdationCondition.swift in Sources */,
 				D4DDA72B265BD9D400FE52FA /* RoomInformationCell.swift in Sources */,
 				82FBF0D426538AB8009B4A1F /* TripPlaceCollectionViewDataSource.swift in Sources */,
 				D4DDA63826524ECD00FE52FA /* AppDelegate.swift in Sources */,
 				D4DDA726265BD94D00FE52FA /* RoomInformationViewDataSource.swift in Sources */,
 				825702E02653AE99009237BE /* SearchViewController.swift in Sources */,
+				D4DDA773265E73CF00FE52FA /* CostGraph.swift in Sources */,
 				D4DDA6872653627100FE52FA /* EndPoint.swift in Sources */,
 				D4DDA6962653764700FE52FA /* TripPlace.swift in Sources */,
 				8220C8BD2658C6CC00E3F3CA /* FindingAccommdationViewController.swift in Sources */,

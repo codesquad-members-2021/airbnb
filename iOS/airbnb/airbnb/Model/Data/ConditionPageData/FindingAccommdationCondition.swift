@@ -52,11 +52,6 @@ final class FindingAccommdationCondition {
         NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
     }
     
-    func convert(peopleCount: Int) -> String {
-        let peopleCount: String = String(peopleCount)
-        return peopleCount
-    }
-    
     func update(people: Int, isAdd: Bool) {
         if isAdd {
             self.people += people
