@@ -10,9 +10,13 @@ public class MainResponseDTO {
     private List<HeroBanner> heroBanners;
     private List<NearDestination> nearDestinations;
 
-    public MainResponseDTO(List<HeroBanner> heroBanners, List<NearDestination> nearDestinations) {
+    private MainResponseDTO(List<HeroBanner> heroBanners, List<NearDestination> nearDestinations) {
         this.heroBanners = heroBanners;
         this.nearDestinations = nearDestinations;
+    }
+
+    public static MainResponseDTO create(List<HeroBanner> heroBanners, List<NearDestination> nearDestinations) {
+        return new MainResponseDTO(heroBanners, nearDestinations);
     }
 
     public List<HeroBanner> getHeroBanners() {
