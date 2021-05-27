@@ -47,16 +47,4 @@ const Select = styled.div`
   background-color: ${({ theme }) => theme.color.white};
   position: relative;
   cursor: pointer;
-
-  input {
-    height: 30px;
-    padding: 0;
-    color: ${({ theme }) => theme.color.black};
-    outline: 0;
-    border: 0;
-
-    &::placeholder {
-      font-size: ${({ theme }) => theme.fontSize.base};
-    }
-  }
 `;

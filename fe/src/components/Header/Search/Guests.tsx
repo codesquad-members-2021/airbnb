@@ -3,6 +3,8 @@ import { useRecoilState } from 'recoil';
 
 import { isOpenGuestModal } from '@recoil/atoms/guests';
 import GuestModal from './GuestModal';
+import SmallText from '@components/common/SmallText';
+import styled from 'styled-components';
 
 const Guests = () => {
   const [isOpenModalState, setIsOpenModalState] =
@@ -14,13 +16,25 @@ const Guests = () => {
 
   return (
     <>
-      <div onClick={handleGuestClick}>
+      <GuestWrap onClick={handleGuestClick}>
         <Title>인원</Title>
-        <input type="text" placeholder="게스트 추가" />
+        <SmallText>게스트 추가</SmallText>
         {isOpenModalState && <GuestModal />}
-      </div>
+      </GuestWrap>
     </>
   );
 };
 
 export default Guests;
+
+const GuestWrap = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 200px;
+  &:hover {
+    background-color: ${({ theme }) => theme.color.gray6};
+  }
+`;
