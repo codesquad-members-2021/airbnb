@@ -17,6 +17,9 @@
 		AE0B5DEF26563BE4000B35E7 /* RecommandedDestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DEE26563BE4000B35E7 /* RecommandedDestinationViewController.swift */; };
 		AE0B5DF3265642B2000B35E7 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DF1265642B2000B35E7 /* CategoryCell.swift */; };
 		AE0B5DF4265642B2000B35E7 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE0B5DF2265642B2000B35E7 /* CategoryCell.xib */; };
+		AE11F5AA265F3D250034779F /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11F5A9265F3D250034779F /* DayCell.swift */; };
+		AE11F5AC265F3D5F0034779F /* DateGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11F5AB265F3D5F0034779F /* DateGenerator.swift */; };
+		AE11F5AE265F3D920034779F /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11F5AD265F3D920034779F /* Date+extension.swift */; };
 		AE3FE07526574E7000A95177 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07426574E7000A95177 /* SearchCityViewController.swift */; };
 		AE3FE07726578F1700A95177 /* RegionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07626578F1700A95177 /* RegionData.swift */; };
 		AE3FE07A26579D3B00A95177 /* RegionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07826579D3B00A95177 /* RegionCell.swift */; };
@@ -29,6 +32,7 @@
 		AE8CD3C02653538800BCB8FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE8CD3BE2653538800BCB8FC /* LaunchScreen.storyboard */; };
 		AE8CD3CB2653538800BCB8FC /* AirbnbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3CA2653538800BCB8FC /* AirbnbTests.swift */; };
 		AE8CD3D62653538800BCB8FC /* AirbnbUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3D52653538800BCB8FC /* AirbnbUITests.swift */; };
+		AE9AC6A7265CCCBF0038C198 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9AC6A6265CCCBF0038C198 /* CalendarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,9 @@
 		AE0B5DEE26563BE4000B35E7 /* RecommandedDestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandedDestinationViewController.swift; sourceTree = "<group>"; };
 		AE0B5DF1265642B2000B35E7 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		AE0B5DF2265642B2000B35E7 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
+		AE11F5A9265F3D250034779F /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
+		AE11F5AB265F3D5F0034779F /* DateGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateGenerator.swift; sourceTree = "<group>"; };
+		AE11F5AD265F3D920034779F /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		AE3FE07426574E7000A95177 /* SearchCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
 		AE3FE07626578F1700A95177 /* RegionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionData.swift; sourceTree = "<group>"; };
 		AE3FE07826579D3B00A95177 /* RegionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionCell.swift; sourceTree = "<group>"; };
@@ -77,6 +84,7 @@
 		AE8CD3D12653538800BCB8FC /* AirbnbUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirbnbUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE8CD3D52653538800BCB8FC /* AirbnbUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbnbUITests.swift; sourceTree = "<group>"; };
 		AE8CD3D72653538800BCB8FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE9AC6A6265CCCBF0038C198 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +179,7 @@
 			children = (
 				AE8CD3B92653538700BCB8FC /* Main.storyboard */,
 				AE0B5DF526566D00000B35E7 /* MainPage */,
+				AE9AC6A5265CC1DE0038C198 /* ConditionPage */,
 				AE0B5DDE2655FCA0000B35E7 /* Network.swift */,
 				AE8CD3E32653543100BCB8FC /* SupportingFiles */,
 			);
@@ -216,6 +225,17 @@
 				AE0B5DEA265631D7000B35E7 /* DetailDestinationViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		AE9AC6A5265CC1DE0038C198 /* ConditionPage */ = {
+			isa = PBXGroup;
+			children = (
+				AE9AC6A6265CCCBF0038C198 /* CalendarViewController.swift */,
+				AE11F5AD265F3D920034779F /* Date+extension.swift */,
+				AE11F5AB265F3D5F0034779F /* DateGenerator.swift */,
+				AE11F5A9265F3D250034779F /* DayCell.swift */,
+			);
+			path = ConditionPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,11 +371,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE9AC6A7265CCCBF0038C198 /* CalendarViewController.swift in Sources */,
+				AE11F5AE265F3D920034779F /* Date+extension.swift in Sources */,
 				AE0B5DE326560287000B35E7 /* MainPageUseCase.swift in Sources */,
 				AE0B5DEF26563BE4000B35E7 /* RecommandedDestinationViewController.swift in Sources */,
 				AE0B5DE12655FE1F000B35E7 /* MainPageDTO.swift in Sources */,
 				AE3FE07A26579D3B00A95177 /* RegionCell.swift in Sources */,
 				AE3FE07526574E7000A95177 /* SearchCityViewController.swift in Sources */,
+				AE11F5AA265F3D250034779F /* DayCell.swift in Sources */,
+				AE11F5AC265F3D5F0034779F /* DateGenerator.swift in Sources */,
 				AE3FE07726578F1700A95177 /* RegionData.swift in Sources */,
 				AE0B5DEB265631D7000B35E7 /* DetailDestinationViewController.swift in Sources */,
 				AE0B5DDF2655FCA0000B35E7 /* Network.swift in Sources */,
