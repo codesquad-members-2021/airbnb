@@ -32,12 +32,22 @@ const PriceChart = () => {
     { x: chart.width - 1, y: chart.height - 2 },
   ];
 
-  const drawOver = (ctx, width) => {
+  const drawOver = (ctx, minPrice, maxPrice) => {
     ctx.globalCompositeOperation = 'destination-atop';
     //
     ctx.fillStyle = 'black';
+    let leftWidth = (minPrice * chart.width) / 1000000;
+    const rightWidth = (maxPrice * chart.width) / 1000000;
+    ctx.fillRect(1, 1, leftWidth, chart.height - 1);
+    ctx.fill();
+  };
 
-    ctx.fillRect(1, 1, width, chart.height - 1);
+  const drawMaxOver = (ctx, minPrice, maxPrice) => {
+    ctx.globalCompositeOperation = 'destination-atop';
+    //
+    ctx.fillStyle = 'black';
+    const rightWidth = (maxPrice * chart.width) / 1000000;
+    ctx.fillRect(rightWidth, 1, chart.width - 1, chart.height - 1);
     ctx.fill();
   };
 
@@ -71,11 +81,10 @@ const PriceChart = () => {
       width: chartRef.current.width,
       height: chartRef.current.height,
     });
-    console.log(chart);
     const ctx = chartRef.current.getContext('2d');
     chart.height && chart.width && drawChart(ctx, points);
-    drawOver(ctx, (priceData.minPrice * chart.width) / 1000000);
-  }, [chart.height, priceData.minPrice]);
+    drawOver(ctx, priceData.minPrice, priceData.maxPrice);
+  }, [chart.height, priceData.maxPrice, priceData.minPrice]);
 
   return (
     <PriceChartViewDiv>
