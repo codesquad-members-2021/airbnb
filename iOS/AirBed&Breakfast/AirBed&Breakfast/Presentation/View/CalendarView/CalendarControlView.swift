@@ -54,36 +54,45 @@ class CalendarControlView: UIView {
         print("Calendar View Has Been Removed")
     }
     
-    func setDaySelectionHandler() {
+    private func setDaySelectionHandler() {
         self.calendarView.daySelectionHandler = { [weak self] day in
             guard let self = self else { return }
-        
-            if day.components.year == self.currentYear && day.components.month! <= self.currentMonth && day.components.day! < self.currentDay {
-                return
+            guard self.isValidDayToSelect(day: day) else { return}
+            
+            self.updateDaySelection(with: day)
+            self.recreateCalendarContentIfNeeded()
+            
+        }
+    }
+    
+    private func updateDaySelection(with newDay: Day) {
+        if self.lowerDay == nil && self.upperDay == nil {
+            self.lowerDay = newDay
+            
+        } else if self.lowerDay != nil && self.upperDay == nil {
+            if newDay <= self.lowerDay! {
+                self.lowerDay = newDay
+            } else {
+                self.upperDay = newDay
             }
             
-            if self.lowerDay == nil && self.upperDay == nil {
-                self.lowerDay = day
-                
-            } else if self.lowerDay != nil && self.upperDay == nil {
-                if day <= self.lowerDay! {
-                    self.lowerDay = day
-                } else {
-                    self.upperDay = day
-                }
-                
-            } else {
-                self.lowerDay = day
-                self.upperDay = nil
-            }
-            
-            if self.lowerDay != nil && self.upperDay != nil {
-                let newContent = self.makeContentWithHighlightRange()
-                self.calendarView.setContent(newContent)
-            } else {
-                let newContent = self.makeContent()
-                self.calendarView.setContent(newContent)
-            }
+        } else {
+            self.lowerDay = newDay
+            self.upperDay = nil
+        }
+    }
+    
+    private func isValidDayToSelect(day: Day) -> Bool {
+        return day.components.year! >= self.currentYear! && day.components.month! >= self.currentMonth && day.components.day! >= self.currentDay
+    }
+    
+    private func recreateCalendarContentIfNeeded() {
+        if self.lowerDay != nil && self.upperDay != nil {
+            let newContent = self.makeContentWithHighlightRange()
+            self.calendarView.setContent(newContent)
+        } else {
+            let newContent = self.makeContent()
+            self.calendarView.setContent(newContent)
         }
     }
     
@@ -131,16 +140,16 @@ class CalendarControlView: UIView {
                     textColor: .darkGray,
                     backgroundColor: .clear)
                 
-                if day.components.year == self.currentYear && day.components.month! <= self.currentMonth && day.components.day! < self.currentDay {
+                if self.isValidDayToSelect(day: day) {
+                    if day == self.lowerDay {
+                        invariantViewProperties.textColor = .white
+                        invariantViewProperties.backgroundColor = .blue
+                    } else if day == self.upperDay {
+                        invariantViewProperties.textColor = .white
+                        invariantViewProperties.backgroundColor = .red
+                    }
+                } else {
                     invariantViewProperties.textColor = UIColor.red
-                }
-                
-                if day == self.lowerDay {
-                    invariantViewProperties.textColor = .white
-                    invariantViewProperties.backgroundColor = .blue
-                } else if day == self.upperDay {
-                    invariantViewProperties.textColor = .white
-                    invariantViewProperties.backgroundColor = .red
                 }
                 
                 return CalendarItemModel<DayLabel>(
