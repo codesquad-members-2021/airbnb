@@ -142,16 +142,24 @@ final class CalendarViewController: UIViewController {
         accommodationConditionTableView.dataSource = accommodationConditionTableViewDataSource
         calendarCollectionView.dataSource = calendarCollecionViewDataSource
         calendarCollectionView.delegate = self
+        
         viewModel = CalendarViewModel()
         bind()
-        
     }
     
     func bind() {
         viewModel?.bind(dataHandler: { [weak self] months in
             self?.calendarCollecionViewDataSource?.updateCalendar(with: months)
-            self?.calendarCollectionView.reloadData()
+            self?.updateCalendarView()
+        }, searchHandler: { [weak self] _ in
+            self?.updateCalendarView()
         })
+    }
+    
+    private func updateCalendarView() {
+        DispatchQueue.main.async {
+            self.calendarCollectionView.reloadData()
+        }
     }
     
     @objc private func pass(_ sender: UIBarButtonItem) {
@@ -188,6 +196,10 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         viewModel?.calendarUpdateNeeded()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel?.didCalendarCellSelected(at: indexPath)
     }
 
 }

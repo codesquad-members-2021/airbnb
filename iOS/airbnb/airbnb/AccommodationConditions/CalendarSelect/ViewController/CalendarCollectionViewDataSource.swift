@@ -9,7 +9,7 @@ import UIKit
 
 class CalendarCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    private var calendar = [Month]()
+    private(set) var calendar = [Month]()
     
     func updateCalendar(with months: [Month]) {
         self.calendar = months
@@ -29,9 +29,17 @@ class CalendarCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         let targetDay = calendar[indexPath.section].days[indexPath.row]
         cell.titleLabel.text = targetDay.title ?? ""
         
-        switch targetDay.status {
+        switch targetDay.timeStatus {
         case .future:
             cell.futureMode()
+            switch targetDay.selectStatus {
+            case .none:
+                cell.normalMode()
+            case .edge:
+                cell.selectedMode(isEdge: true)
+            case .middle:
+                cell.selectedMode(isEdge: false)
+            }
         case .past:
             cell.pastMode()
         case .empty:

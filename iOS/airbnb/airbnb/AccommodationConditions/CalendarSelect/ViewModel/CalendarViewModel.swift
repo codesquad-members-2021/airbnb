@@ -10,11 +10,19 @@ import Foundation
 class CalendarViewModel: CalendarManageModel {
 
     private var dataHandler: DataHandler?
+    private var searchResultHandler: SearchConditionHandler?
     
     private var calendar: [Month]? {
         didSet {
             guard let calendar = calendar else { return }
             dataHandler?(calendar)
+        }
+    }
+    
+    private var searchResult: [String]? {
+        didSet {
+            guard let searchResult = searchResult else { return }
+            searchResultHandler?(searchResult)
         }
     }
     
@@ -39,13 +47,25 @@ class CalendarViewModel: CalendarManageModel {
         fillCalendar(by: 6)
     }
     
-    func calendarUpdateNeeded() {
-        fillCalendar(by: 1)
+    func bind(dataHandler: @escaping DataHandler, searchHandler: @escaping SearchConditionHandler) {
+        self.dataHandler = dataHandler
+        self.searchResultHandler = searchHandler
+        fillCalendar(by: 6)
     }
     
     private func fillCalendar(by count: Int) {
         calendarManager.fillMonths(by: count)
         calendar = calendarManager.months
+    }
+    
+    func calendarUpdateNeeded() {
+        fillCalendar(by: 1)
+    }
+
+    func didCalendarCellSelected(at indexPath: IndexPath) {
+        calendarManager.selectDateAt(indexPath: indexPath)
+        calendar = calendarManager.months
+        searchResult = calendarManager.selectedDateIndexPaths.map { String($0.section) }
     }
     
 }

@@ -19,7 +19,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         return titleLabel
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -48,11 +48,30 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         titleLabel.isHidden = false
         titleLabel.textColor = .lightGray
         isUserInteractionEnabled = false
+        normalMode()
     }
     
     func emptyMode() {
         titleLabel.isHidden = true
         isUserInteractionEnabled = false
+        normalMode()
+    }
+    
+    func selectedMode(isEdge: Bool) {
+        if isEdge {
+            backgroundColor = .black
+            titleLabel.textColor = .white
+            layer.cornerRadius = frame.width * 0.5
+        } else {
+            backgroundColor = .lightGray
+            titleLabel.textColor = .black
+            layer.cornerRadius = 0
+        }
+    }
+    
+    func normalMode() {
+        backgroundColor = .white
+        layer.cornerRadius = 0
     }
     
 }

@@ -10,10 +10,19 @@ import Foundation
 struct Day {
     let date: Date?
     let title: String?
-    let status: Status
+    let timeStatus: TimeStatus
     
-    enum Status {
-        case past, future
+    enum TimeStatus {
+        case past
+        case future
         case empty
+    }
+    
+    var selectStatus: SelectStatus = .none
+
+    enum SelectStatus {
+        case none
+        case edge
+        case middle
     }
 }
