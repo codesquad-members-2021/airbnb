@@ -159,13 +159,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		105C73F1265F8D12001BF07A /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		105D4273265DE84C00FCF8F7 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,7 +216,6 @@
 				10E1B1732653DE2F0087B69B /* MainCoordinator.swift */,
 				10E1B1712653DE0D0087B69B /* Storyboarded.swift */,
 				102FA1F9265550CD00B761C7 /* IdentityInfo.swift */,
-				105C73F1265F8D12001BF07A /* Protocols */,
 				104665AE265E9FBE008B2F36 /* Extension */,
 				1046659C265E910C008B2F36 /* Network */,
 				10BAF1A5265CD5660035D99B /* FooterTable */,
