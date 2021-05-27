@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import Calendar, { OnClickResult } from "./Calendar";
+import Calendar, { OnClickResult, Controller } from "./Calendar";
 export default function Test() {
-  const onClickDay = (result: OnClickResult) => {
-    console.log(result);
-  };
+  const onClickDay = (result: OnClickResult) => {};
+
   return (
     <TestWrapper>
+      <Controller start>checkIn</Controller>
+      <Controller end>checkOut</Controller>
       <Calendar onClickDay={onClickDay} countOfMonth={2} />
     </TestWrapper>
   );

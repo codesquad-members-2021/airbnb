@@ -1,4 +1,4 @@
-import React, {useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { MESSAGE } from "./constant";
 import styled, { css, keyframes } from "styled-components";
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi";
@@ -8,39 +8,39 @@ import { useCalendarDispatch, useCalendarState } from "./CalendarProvider";
 type CarouselProps = {
   children: React.ReactNode;
   countOfItemToShow: number;
-  onClickHandler: (dir: Direction) => void;
 };
 
 export default function Carousel({
   children,
   countOfItemToShow,
-  onClickHandler,
 }: CarouselProps) {
+  const [x, setX] = useState(-1);
   const items = _createItems(children);
-  const state = useCalendarState();
-  const { x } = state;
-  const moving = useRef<boolean>(false);
   const dispatch = useCalendarDispatch();
+  const moving = useRef<boolean>(false);
 
   const onClickMove = (direction: Direction) => {
     if (moving.current) return;
     moving.current = true;
-    dispatch(
-      direction === -1
-        ? { type: "MOVE_LEFT", x: -2 }
-        : { type: "MOVE_RIGHT", x: 0 }
-    );
-    onClickHandler(direction);
+    if (direction === -1) {
+      setX(-2);
+      dispatch({ type: "MOVE_LEFT" });
+    } else {
+      setX(0);
+      dispatch({ type: "MOVE_RIGHT" });
+    }
   };
 
-  const onAnimationEnd = () => {
+  const onAnimationEnd = useCallback(() => {
     moving.current = false;
-  };
+    setX(-1);
+  }, []);
 
   const Slider = styled.div<{ x: number; count: number }>`
     width: 100%;
     display: flex;
     animation: ${({ x, count }) => {
+        console.log(x, count);
         return moveAni(x, count);
       }}
       0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;

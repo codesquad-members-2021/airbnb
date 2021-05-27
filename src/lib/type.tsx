@@ -10,10 +10,11 @@ export type Calendar = Date & {
 
 export type _OnClickResult = Date & {
   week: string;
+  type: Type;
 };
 
 export type Direction = 1 | -1;
-
+export type Type = "start" | "end";
 export type OnClickDay = {
   onClickDay?: (result: _OnClickResult) => void;
 };

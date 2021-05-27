@@ -1,26 +1,41 @@
 import React, { createContext, Dispatch, useContext, useReducer } from "react";
 import { MESSAGE } from "./constant";
-import { Calendar, OnClickDay } from "./type";
+import { Calendar, OnClickDay, Type } from "./type";
+
+type CalendarProviderProps = OnClickDay & {
+  children: React.ReactNode;
+  countOfMonth: number;
+  setType: (type: Type) => void;
+};
+
+type CalendarState = {
+  mode: string;
+  startDate: Date | null;
+  endDate: Date | null;
+  currentDay: CurrentDay;
+  calendarList: Calendar[];
+  countOfMonth: number;
+};
 
 export default function CalendarProvider({
   children,
   onClickDay,
   countOfMonth,
+  setType,
 }: CalendarProviderProps) {
   const [state, dispatch] = useReducer(reducer, {
     mode: "wait",
     startDate: null,
     endDate: null,
-    x: -1,
+    countOfMonth,
     currentDay: getCurrentDate(),
     calendarList: createCalendarList(countOfMonth),
-    countOfMonth,
   });
 
   return (
     <CalenderStateContext.Provider value={state}>
       <CalenderDispatchContext.Provider value={dispatch}>
-        <CalenderMethodContext.Provider value={{ onClickDay }}>
+        <CalenderMethodContext.Provider value={{ onClickDay, setType }}>
           {children}
         </CalenderMethodContext.Provider>
       </CalenderDispatchContext.Provider>
@@ -45,11 +60,17 @@ export function useCalendarMethod() {
   return method;
 }
 
-const CalenderStateContext = createContext<State | null>(null);
+const CalenderStateContext = createContext<CalendarState | null>(null);
 const CalenderDispatchContext = createContext<Dispatch<Action> | null>(null);
 const CalenderMethodContext = createContext<Method | null>(null);
 
-function reducer(state: State, action: Action): State {
+type Action =
+  | { type: "MOVE_LEFT" }
+  | { type: "MOVE_RIGHT" }
+  | { type: "CLICK_START_DAY"; startDate: Date | null }
+  | { type: "CLICK_END_DAY"; endDate: Date | null };
+
+function reducer(state: CalendarState, action: Action): CalendarState {
   const { calendarList, currentDay, countOfMonth } = state;
   const { year, month } = currentDay;
   const newCalendarList = calendarList.slice();
@@ -68,7 +89,6 @@ function reducer(state: State, action: Action): State {
         ...state,
         calendarList: newCalendarList,
         currentDay: newCurrentDay,
-        x: action.x,
       };
     case "MOVE_RIGHT":
       newCalendarList.shift();
@@ -82,7 +102,16 @@ function reducer(state: State, action: Action): State {
         ...state,
         calendarList: newCalendarList,
         currentDay: newCurrentDay,
-        x: action.x,
+      };
+    case "CLICK_START_DAY":
+      return {
+        ...state,
+        startDate: action.startDate,
+      };
+    case "CLICK_END_DAY":
+      return {
+        ...state,
+        endDate: action.endDate,
       };
     default:
       throw new Error(MESSAGE.ERROR.INVAILD_ACTION);
@@ -114,26 +143,11 @@ function getCurrentDate(): CurrentDay {
   return { year: current.getFullYear(), month: current.getMonth() };
 }
 
-type CalendarProviderProps = OnClickDay & {
-  children: React.ReactNode;
-  countOfMonth: number;
-};
 type CurrentDay = {
   year: number;
   month: number;
 };
-type State = {
-  mode: string;
-  startDate: string | null;
-  endDate: string | null;
-  x: number;
-  currentDay: CurrentDay;
-  calendarList: Calendar[];
-  countOfMonth: number;
+
+type Method = OnClickDay & {
+  setType: (type: Type) => void;
 };
-
-type Action =
-  | { type: "MOVE_LEFT"; x: number }
-  | { type: "MOVE_RIGHT"; x: number };
-
-type Method = OnClickDay & {};

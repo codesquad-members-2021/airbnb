@@ -2,6 +2,7 @@ import Menu from "./menu/Menu";
 import React from "react";
 import styled from "styled-components";
 import MyPage from "./MyPage";
+
 import { ReactComponent as Logo } from "../../assets/svg/img_logo.svg";
 const Header = () => {
   return (

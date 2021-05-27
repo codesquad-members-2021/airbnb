@@ -4,6 +4,8 @@ export const MESSAGE = {
       "You have to send direction prop(left or right) to <Controller>",
     BOTH_DIRECTION:
       "<Controller> can receive only one direction prop(left or right)",
+    BOTH_TYPE: "",
+    NO_TYPE: "",
     INVAILD_ACTION: "",
     INVAILD_PROVIDER: "Cannot find Provider!",
     INVAILD_RANGE_COUNT_OF_MONTH:
