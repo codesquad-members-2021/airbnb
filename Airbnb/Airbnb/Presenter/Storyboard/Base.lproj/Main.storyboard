@@ -664,10 +664,10 @@
             </objects>
             <point key="canvasLocation" x="3121.739130434783" y="87.723214285714278"/>
         </scene>
-        <!--View Controller-->
+        <!--Guest View Controller-->
         <scene sceneID="ihk-F6-bPH">
             <objects>
-                <viewController restorationIdentifier="GuestVC" storyboardIdentifier="GuestVC" id="tor-c1-ohY" sceneMemberID="viewController">
+                <viewController restorationIdentifier="GuestVC" storyboardIdentifier="GuestVC" id="tor-c1-ohY" customClass="GuestViewController" customModule="Airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="65L-pS-Oyi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

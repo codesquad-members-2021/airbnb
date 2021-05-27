@@ -38,7 +38,7 @@ private extension PriceViewController {
         setupButtonObserver()
         setupSkipDeleteButton()
         setupNextButton()
-        setupCharts()
+        setupCharts(viewModel.getPriceInfo())
     }
     
     private func setupPriceRangeControl() {
@@ -74,20 +74,28 @@ private extension PriceViewController {
                     self?.nextPage.accept(false)
                     self?.viewModel.deleteAll()
                 default:
-                    print("뷰컨 이동구현 데이터 전달 X")
+                    let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "GuestVC") as! GuestViewController
+                    nextVC.modalTransitionStyle = .crossDissolve
+                    nextVC.modalPresentationStyle = .fullScreen
+                    self?.present(nextVC, animated: true, completion: nil)
                 }
             }).disposed(by: rx.disposeBag)
     }
     
     private func setupNextButton() {
         nextButton.rx.tap
-            .subscribe(onNext: { _ in
-                print("뷰컨 이동궇견 데이터 전달 O")
+            .subscribe(onNext: { [weak self] _ in
+                let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "GuestVC") as! GuestViewController
+                nextVC.modalTransitionStyle = .crossDissolve
+                nextVC.modalPresentationStyle = .fullScreen
+                self?.present(nextVC, animated: true, completion: nil)
+                //데이터 넘겨야함
             }).disposed(by: rx.disposeBag)
     }
     
-    private func setupCharts() {
+    private func setupCharts(_ value:[Int]) {
         lineChartView.noDataText = "No Data"
+        //차트구현
     }
 }
 
