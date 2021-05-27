@@ -8,21 +8,23 @@
 import Foundation
 
 struct MainPageMock: MainPageInterface {
-    private(set) var curations: [Curation]
-    private(set) var nearbyDestinations: [NearbyDestination]
-    private(set) var variousDestinations: [VariousDestination]
+    var curations: [Curation]
+    var nearbyDestinations: [NearbyDestination]
+    var variousDestinations: [VariousDestination]
     
     init() {
         self.curations = []
         self.nearbyDestinations = []
         self.variousDestinations = []
-        
+    }
+    
+    mutating func makeMockData() {
         self.curations = makeMockCuration()
         self.nearbyDestinations = makeMockNearbyDestination()
         self.variousDestinations = makeMockVariousDestination()
     }
     
-    func makeMockCuration() -> [Curation] {
+    private func makeMockCuration() -> [Curation] {
         let imageArray = ["MainPageCurationImage"]
         var curations: [Curation] = []
         
@@ -32,7 +34,7 @@ struct MainPageMock: MainPageInterface {
         return curations
     }
     
-    func makeMockNearbyDestination() -> [NearbyDestination] {
+    private func makeMockNearbyDestination() -> [NearbyDestination] {
         let imageArray = ["Seoul", "Gwangju", "Uijeongbu", "Suwon", "Daegu", "Ulsan", "Daejeon", "Bucheon"]
         let cityNameArray = ["서울", "광주", "의정부시", "수원시", "대구", "울산", "대전", "부천시"]
         let distanceArray = ["30분", "4시간", "30분", "45분", "3.5시간", "4.5시간", "2시간", "30분"]
@@ -44,7 +46,7 @@ struct MainPageMock: MainPageInterface {
         return nearbyDestinations
     }
     
-    func makeMockVariousDestination() -> [VariousDestination] {
+    private func makeMockVariousDestination() -> [VariousDestination] {
         let imageArray = ["withNature", "FancySpace", "WholeHouse", "withPet"]
         let descriptionArray = ["자연생활을 만끽할 수\n있는 숙소", "독특한 공간\n", "집 전체\n", "반려동물 동반 가능\n"]
         var variousDestinations: [VariousDestination] = []

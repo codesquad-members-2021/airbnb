@@ -10,8 +10,15 @@ import UIKit
 class SearchPageViewController: UICollectionViewController {
 
     private var searchPageCollectionViewDataSource = SearchPageCollectionViewDataSource()
-    private var searchPageModel = SearchPageModel()
+    private var searchPageModel: SearchPageModel
     private var searchResultController = SearchResultCollectionViewController(collectionViewLayout: UICollectionViewLayout())
+    
+    required init?(coder: NSCoder) {
+        var searchPageMockData = SearchPageMock()
+        searchPageMockData.makeMockData()
+        self.searchPageModel = SearchPageModel(searchPageData: searchPageMockData)
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +27,7 @@ class SearchPageViewController: UICollectionViewController {
         configureCollectionViewLayout()
         configureCollectionViewCell()
         searchPageCollectionViewDataSource.setDataSource(collectionView: self.collectionView)
-        searchPageCollectionViewDataSource.applySnapshot(with: self.searchPageModel.nearbyPopularDestinations)
+        searchPageCollectionViewDataSource.applySnapshot(with: self.searchPageModel.searchPageInterface)
     }
     
     private func configureSearchController() {

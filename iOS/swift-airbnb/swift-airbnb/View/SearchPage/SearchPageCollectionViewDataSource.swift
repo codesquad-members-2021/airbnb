@@ -41,10 +41,10 @@ class SearchPageCollectionViewDataSource {
         }
     }
     
-    func applySnapshot(with model: [NearbyPopularDestination]) {
+    func applySnapshot(with model: SearchPageInterface) {
         var snapshot = self.dataSource.snapshot()
         snapshot.appendSections([.nearbyPopularDestination])
-        snapshot.appendItems(model, toSection: .nearbyPopularDestination)
+        snapshot.appendItems(model.nearbyPopularDestinations, toSection: .nearbyPopularDestination)
         self.dataSource.apply(snapshot)
     }
     

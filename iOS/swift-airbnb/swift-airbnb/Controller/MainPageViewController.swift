@@ -14,7 +14,8 @@ class MainPageViewController: UIViewController {
     private var mainPageModel: MainPageInterface
     
     required init?(coder: NSCoder) {
-        let mainPageMockData: MainPageInterface = MainPageMock()
+        var mainPageMockData = MainPageMock()
+        mainPageMockData.makeMockData()
         self.mainPageModel = MainPageModel(mainPageData: mainPageMockData)
         super.init(coder: coder)
     }

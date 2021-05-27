@@ -1,21 +1,25 @@
 //
-//  SearchPageModel.swift
+//  SearchPageMock.swift
 //  swift-airbnb
 //
-//  Created by user on 2021/05/21.
+//  Created by user on 2021/05/25.
 //
 
 import Foundation
 
-struct SearchPageModel {
-    private(set) var nearbyPopularDestinations: [NearbyPopularDestination]
+
+struct SearchPageMock: SearchPageInterface {
+    var nearbyPopularDestinations: [NearbyPopularDestination]
     
     init() {
         self.nearbyPopularDestinations = []
+    }
+    
+    mutating func makeMockData() {
         self.nearbyPopularDestinations = makeMockNearbyPopularDestination()
     }
     
-    private func makeMockNearbyPopularDestination() -> [NearbyPopularDestination] {
+    func makeMockNearbyPopularDestination() -> [NearbyPopularDestination] {
         let imageArray = ["Seoul", "Gwangju", "Uijeongbu", "Suwon", "Daegu", "Ulsan", "Daejeon", "Bucheon"]
         let cityNameArray = ["서울", "광주", "의정부시", "수원시", "대구", "울산", "대전", "부천시"]
         let distanceArray = ["30분", "4시간", "30분", "45분", "3.5시간", "4.5시간", "2시간", "30분"]

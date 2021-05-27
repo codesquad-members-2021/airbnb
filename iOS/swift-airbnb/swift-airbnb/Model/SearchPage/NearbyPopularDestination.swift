@@ -25,7 +25,7 @@ struct NearbyPopularDestination: NearbyDestinationInterface {
 
 extension NearbyPopularDestination: Equatable, Hashable {
     static func == (lhs: NearbyPopularDestination, rhs: NearbyPopularDestination) -> Bool {
-        return lhs.cityImage == rhs.cityName && lhs.cityName == rhs.cityName && lhs.distance == rhs.distance && lhs.x == rhs.x && lhs.y == rhs.y
+        return lhs.cityImage == rhs.cityImage && lhs.cityName == rhs.cityName && lhs.distance == rhs.distance && lhs.x == rhs.x && lhs.y == rhs.y
     }
     
     func hash(into hasher: inout Hasher) {
