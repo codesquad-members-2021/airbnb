@@ -36,7 +36,7 @@ const PriceChart = () => {
   const drawMaxOver = (ctx, minPrice, maxPrice) => {
     //
     ctx.globalCompositeOperation = 'source-atop';
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = '#333';
     let leftWidth = (minPrice * chart.width) / 1000000;
     const rightWidth = (maxPrice * chart.width) / 1000000;
     ctx.beginPath();
@@ -75,7 +75,7 @@ const PriceChart = () => {
       ctx.stroke();
     }
 
-    ctx.fillStyle = 'gray';
+    ctx.fillStyle = '#E5E5E5';
     ctx.fill();
   };
 
@@ -98,7 +98,6 @@ const PriceChart = () => {
 };
 const PriceChartViewDiv = styled.div`
   position: relative;
-  border: 1px solid red;
   margin-top: 2.31rem;
   height: 6.25rem;
 `;
@@ -107,7 +106,6 @@ const ChartCanvas = styled.canvas`
   display: flex;
   width: 100%;
   height: 100%;
-  border: 1px solid yellow;
 `;
 
 export default PriceChart;

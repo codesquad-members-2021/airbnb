@@ -60,7 +60,7 @@ const SliderDiv = styled.div`
   text-align: center;
   input {
     border: none;
-    height: 0.3rem;
+    height: 0.05rem;
   }
   input::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -69,7 +69,7 @@ const SliderDiv = styled.div`
     height: 1.5rem;
     background: white;
     cursor: pointer;
-    border: 2px solid #000000;
+    border: 2px solid #333;
     border-radius: 100%;
   }
 `;

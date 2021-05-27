@@ -7,15 +7,17 @@ const People = ({ dispatch }) => {
   const { peopleCount, peopleDispatch } = useContext(SearchContext);
   const { adult, child, baby } = peopleCount;
 
+  const peopleInputData = `${
+    adult + child + baby
+      ? `게스트 ${adult + child} 명 ${baby ? `유아 ${baby}명` : ''}`
+      : '게스트 추가'
+  }`;
+
   return (
     <PeopleDiv>
       <PeopleWrap onClick={() => dispatch({ type: 'PEOPLE_MODAL_OFF' })}>
         <PeopleTitle>인원</PeopleTitle>
-        <PeopleInp>
-          {adult + child + baby
-            ? `게스트 ${adult + child + baby} 명`
-            : '게스트 추가'}
-        </PeopleInp>
+        <PeopleInp>{peopleInputData}</PeopleInp>
       </PeopleWrap>
       {adult || child || baby ? (
         <CloseButton fn={() => peopleDispatch({ type: 'RESET' })} />
@@ -44,7 +46,12 @@ const PeopleTitle = styled.div`
   font-weight: bold;
 `;
 const PeopleInp = styled.div`
+  width: 90px;
+  height: 20px;
   color: ${({ theme }) => theme.colors.gray2};
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 export default People;

@@ -107,7 +107,7 @@ const SingleCalendar = ({ range }) => {
                   key={idx}
                   day={day}
                   dayInterval={
-                    checkInTime < clickedTime && clickedTime < checkOutTime
+                    checkInTime <= clickedTime && clickedTime <= checkOutTime
                   }
                 >
                   <DayTdButton
@@ -143,10 +143,10 @@ const DayTd = styled.td`
   box-sizing: border-box;
 
   background: ${({ day, dayInterval }) =>
-    dayInterval && day !== ' ' ? '#ebe9e9' : 'none'};
+    dayInterval && day !== ' ' ? '#f2f2f2' : 'none'};
   box-shadow: ${({ day, dayInterval }) =>
     dayInterval && day !== ' '
-      ? '0 0 4px 0 #f7f7f7, 4px 0 4px 0 #f7f7f7'
+      ? '0 0 4px 0 #F2F2F2, 4px 0 4px 0 #F2F2F2'
       : 'none'};
 `;
 
