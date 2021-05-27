@@ -37,7 +37,7 @@ const NavigatorList = styled.li`
   width: 8rem;
   text-align: center;
   padding: 10px;
-  font-size: 1rem;
+  font-size: 1.6rem;
   &:hover {
     font-weight: bold;
     text-decoration-line: underline;
