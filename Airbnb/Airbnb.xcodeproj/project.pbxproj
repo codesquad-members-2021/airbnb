@@ -27,6 +27,7 @@
 		71A67D422653AA9800FC6689 /* MainViewInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D412653AA9800FC6689 /* MainViewInfo.swift */; };
 		71A67D442653AD7400FC6689 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D432653AD7400FC6689 /* DataManager.swift */; };
 		71B5E9F0265F2CA800F58477 /* PriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5E9EF265F2CA800F58477 /* PriceViewController.swift */; };
+		71B5E9F2265F356D00F58477 /* PriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5E9F1265F356D00F58477 /* PriceViewModel.swift */; };
 		71B93A7226576CA10028C492 /* ThirdSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B93A7126576CA10028C492 /* ThirdSectionCell.swift */; };
 		71B93A74265783410028C492 /* LoginViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B93A73265783410028C492 /* LoginViewContoller.swift */; };
 		71B93A7826578C5A0028C492 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B93A7726578C5A0028C492 /* APIService.swift */; };
@@ -68,6 +69,7 @@
 		71A67D412653AA9800FC6689 /* MainViewInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewInfo.swift; sourceTree = "<group>"; };
 		71A67D432653AD7400FC6689 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		71B5E9EF265F2CA800F58477 /* PriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewController.swift; sourceTree = "<group>"; };
+		71B5E9F1265F356D00F58477 /* PriceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewModel.swift; sourceTree = "<group>"; };
 		71B93A7126576CA10028C492 /* ThirdSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionCell.swift; sourceTree = "<group>"; };
 		71B93A73265783410028C492 /* LoginViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewContoller.swift; sourceTree = "<group>"; };
 		71B93A7726578C5A0028C492 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				71F65540265C9002008645B8 /* RegieonViewModel.swift */,
 				71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */,
 				7197A4AF265DE3E400729BCF /* CalendarViewModel.swift */,
+				71B5E9F1265F356D00F58477 /* PriceViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				71A67D442653AD7400FC6689 /* DataManager.swift in Sources */,
 				71B93A7A26578E830028C492 /* LoginInfo.swift in Sources */,
 				71A67D3E2653A92100FC6689 /* FirstSectionCell.swift in Sources */,
+				71B5E9F2265F356D00F58477 /* PriceViewModel.swift in Sources */,
 				71A67D2726539B6A00FC6689 /* SceneDelegate.swift in Sources */,
 				71B93A7C2657A0480028C492 /* SearchViewController.swift in Sources */,
 				7112E6E8265604E100F9AAD6 /* RegieonInfoCell.swift in Sources */,
