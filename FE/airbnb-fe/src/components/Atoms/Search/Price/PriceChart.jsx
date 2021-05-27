@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { SearchContext } from '..';
 import Slider from './Slider';
 
 const PriceChart = () => {
@@ -8,26 +9,37 @@ const PriceChart = () => {
     height: 0,
   });
 
+  const { priceData } = useContext(SearchContext);
+
   const chartRef = useRef();
 
   const points = [
-    { x: 0, y: chart.height },
+    { x: 1, y: chart.height - 2 },
     { x: 60, y: chart.height - 3 },
     { x: 70, y: chart.height - 6 },
     { x: 80, y: chart.height - 10 },
-    // { x: 90, y: chart.height - 30 },
+    { x: 90, y: chart.height - 30 },
 
     { x: 110, y: chart.height - 100 },
     { x: 120, y: chart.height - 80 },
-    { x: 140, y: 0 },
+    { x: 140, y: 1 },
     { x: 150, y: chart.height - 110 },
     { x: 170, y: chart.height - 70 },
 
     { x: 210, y: chart.height - 20 },
     { x: 215, y: chart.height - 30 },
     { x: 225, y: chart.height - 15 },
-    { x: chart.width, y: chart.height },
+    { x: chart.width - 1, y: chart.height - 2 },
   ];
+
+  const drawOver = (ctx, width) => {
+    ctx.globalCompositeOperation = 'destination-atop';
+    //
+    ctx.fillStyle = 'black';
+
+    ctx.fillRect(1, 1, width, chart.height - 1);
+    ctx.fill();
+  };
 
   const drawChart = (ctx, points) => {
     ctx.beginPath();
@@ -38,7 +50,9 @@ const PriceChart = () => {
       var y_mid = (points[i].y + points[i + 1].y) / 2;
       var cp_x1 = (x_mid + points[i].x) / 2;
       var cp_x2 = (x_mid + points[i + 1].x) / 2;
+
       ctx.quadraticCurveTo(cp_x1, points[i].y, x_mid, y_mid);
+
       ctx.quadraticCurveTo(
         cp_x2,
         points[i + 1].y,
@@ -47,20 +61,25 @@ const PriceChart = () => {
       );
       ctx.stroke();
     }
+
+    ctx.fillStyle = 'gray';
+    ctx.fill();
   };
 
   useEffect(() => {
     setChart({
-      width: chartRef.current.offsetWidth,
+      width: chartRef.current.width,
       height: chartRef.current.height,
     });
+    console.log(chart);
     const ctx = chartRef.current.getContext('2d');
     chart.height && chart.width && drawChart(ctx, points);
-  }, [chart.height]);
+    drawOver(ctx, (priceData.minPrice * chart.width) / 1000000);
+  }, [chart.height, priceData.minPrice]);
 
   return (
     <PriceChartViewDiv>
-      <ChartCanvas ref={chartRef}></ChartCanvas>
+      <ChartCanvas width="365px" ref={chartRef}></ChartCanvas>
       <Slider />
     </PriceChartViewDiv>
   );
