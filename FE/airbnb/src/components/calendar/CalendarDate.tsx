@@ -73,7 +73,7 @@ const CalendarDate = ({ monthData, calendarDate }: Props) => {
     const dateWrapper = target.closest('.date__wrapper');
     if (!dateWrapper?.classList.contains('able-date')) return;
     let value: number = +target.innerHTML;
-    if (dateWrapper && dateWrapper.firstElementChild && isNaN(value)) {
+    if (dateWrapper?.firstElementChild && isNaN(value)) {
       value = +dateWrapper.firstElementChild?.innerHTML;
     }
     const hoverTime = new Date(year, month - 1, value).getTime();
