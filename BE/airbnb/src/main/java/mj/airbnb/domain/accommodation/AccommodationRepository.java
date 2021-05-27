@@ -1,6 +1,7 @@
 package mj.airbnb.domain.accommodation;
 
 import mj.airbnb.web.dto.SearchRequestDto;
+import static mj.airbnb.util.SqlQuery.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,18 +13,6 @@ import java.util.List;
 
 @Repository
 public class AccommodationRepository {
-
-    private static final String BASE_SQL = "SELECT name, max_num_of_people, type, num_of_bed, num_of_bathroom, price, address " +
-            "FROM accommodation ";
-    private static final String DESTINATION_CONDITION_SQL = "address LIKE ? ";
-    private static final String DATE_CONDITION_SQL = "id IN " +
-            "( " +
-            "   SELECT accommodation_id FROM reservation" +
-            "   WHERE (? >= check_out_date) OR (? <= check_in_date)" +
-            ") ";
-    private static final String PRICE_CONDITION_SQL = "(? <= price AND price <= ?) ";
-    private static final String PEOPLE_CONDITION_SQL = "max_num_of_people >= ? ";
-    private static final String ID_CONDITION_SQL = "id = ? ";
 
     private static final RowMapper<Accommodation> ACCOMMODATION_ROW_MAPPER = (rs, rowNum) -> {
         Accommodation accommodation = new Accommodation();
