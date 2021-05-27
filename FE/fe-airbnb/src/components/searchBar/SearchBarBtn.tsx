@@ -3,11 +3,12 @@ import { ReactElement } from 'react'
 
 type SearchBarBtnProps = {
   children: ReactElement[] | any;
+  onClick: () => void;
 }
 
-function SearchBarBtn({children}: SearchBarBtnProps): ReactElement {
+function SearchBarBtn({children, onClick}: SearchBarBtnProps): ReactElement {
   return (
-    <SearchBarBtnContainer>
+    <SearchBarBtnContainer onClick={onClick}>
       {children}
     </SearchBarBtnContainer>
   )
@@ -16,9 +17,8 @@ function SearchBarBtn({children}: SearchBarBtnProps): ReactElement {
 const SearchBarBtnContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 14px 24px; 
+  padding: 15px 24px; 
   width: 100%;
-  height: 76px;
   border-radius: ${({theme}) => theme.borders.XL};
 
   &:hover {

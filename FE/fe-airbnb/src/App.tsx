@@ -10,7 +10,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <Header />
       <SearchBar />
-      <CalendarModal />
     </ThemeProvider>
   );
 }

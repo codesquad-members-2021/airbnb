@@ -58,14 +58,4 @@ const Day = styled.td`
   font-size: ${({ theme }) => theme.fontSizes.XS};
 `;
 
-// const SelectedDay = styled.div`
-//   width: 48px;
-//   height: 48px;
-//   background-color: ${({ theme }) => theme.colors.gray4};
-//   border-radius: ${({ theme }) => theme.borders.M};
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// `;
-
 export default Calendar;

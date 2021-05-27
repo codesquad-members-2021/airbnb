@@ -101,7 +101,7 @@ const Controller = styled.div`
 
 const ViewArea = styled.div`
   width: 100%;
-  /* overflow: hidden; */
+  overflow: hidden;
 `;
 
 export default CalendarModal;
