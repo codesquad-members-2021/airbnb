@@ -7,6 +7,7 @@ class PriceViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var bakButton: UIButton!
     
     private let viewModel = PriceViewModel()
     
@@ -25,6 +26,7 @@ private extension PriceViewController {
     private func bind() {
         bindLocationLabel()
         bindDateLabel()
+        bindBackButton()
     }
     
     private func bindLocationLabel() {
@@ -37,5 +39,12 @@ private extension PriceViewController {
         viewModel.dateData
             .drive(dateLabel.rx.text)
             .disposed(by: rx.disposeBag)
+    }
+    
+    private func bindBackButton() {
+        bakButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.dismiss(animated: true, completion: nil)
+            }).disposed(by: rx.disposeBag)
     }
 }
