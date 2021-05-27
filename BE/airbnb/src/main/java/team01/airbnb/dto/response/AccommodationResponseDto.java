@@ -15,16 +15,18 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class AccommodationResponseDto {
 
+    private Long id;
     private String name;
     private String photo;
     private AccommodationCondition condition;
-    private List<String> amenities;
+    private String amenities;
     private Charge chargePerNight;
     private Charge totalCharge;
 
     public static AccommodationResponseDto of(Accommodation accommodation
-            , List<String> photos, AccommodationCondition condition, List<String> amenities) {
+            , List<String> photos, AccommodationCondition condition, String amenities) {
         return AccommodationResponseDto.builder()
+                .id(accommodation.getId())
                 .name(accommodation.getName())
                 .photo(photos.get(0))
                 .condition(condition)
@@ -39,7 +41,7 @@ public class AccommodationResponseDto {
     }
 
     public int getTotalCharge() {
-        return totalCharge.getCharge();
+        return 0;
     }
 
 }

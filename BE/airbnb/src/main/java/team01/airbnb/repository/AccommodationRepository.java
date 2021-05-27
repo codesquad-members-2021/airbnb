@@ -16,6 +16,7 @@ import team01.airbnb.domain.accommodation.AccommodationAddress;
 import team01.airbnb.domain.accommodation.AccommodationCondition;
 import team01.airbnb.domain.accommodation.AccommodationPhoto;
 import team01.airbnb.dto.Charge;
+import team01.airbnb.dto.response.AccommodationResponseDto;
 
 import java.sql.*;
 import java.util.*;
@@ -23,6 +24,22 @@ import java.util.stream.Collectors;
 
 @Repository
 public class AccommodationRepository {
+
+    private static final RowMapper<AccommodationResponseDto> ACCOMMODATION_RESPONSE_DTO_ROW_MAPPER =
+            (rs, rowNum) ->
+                    AccommodationResponseDto.builder()
+                            .id(rs.getLong("id"))
+                            .name(rs.getString("name"))
+                            .chargePerNight(Charge.wons(rs.getInt("charge_per_night")))
+                            .photo(rs.getString("photo"))
+                            .condition(AccommodationCondition.builder()
+                                    .guests(rs.getInt("guests"))
+                                    .bedroomCount(rs.getInt("bedroom_count"))
+                                    .bedCount(rs.getInt("bed_count"))
+                                    .bathroomCount(rs.getInt("bathroom_count"))
+                                    .build())
+                            .amenities(rs.getString("amenities"))
+                            .build();
 
     private static final RowMapper<Accommodation> ACCOMMODATION_ROW_MAPPER =
             (rs, rowNum) -> Accommodation.builder()
@@ -173,6 +190,27 @@ public class AccommodationRepository {
                         return amenityIds.size();
                     }
                 });
+    }
+
+    public List<AccommodationResponseDto> findAvailableAccommodationsForReservation() {
+        String query = "SELECT DISTINCT a.id, a.`name`, a.charge_per_night, p.`name` photo, c.guests" +
+                ", c.bedroom_count, c.bed_count, c.bathroom_count, " +
+                "(" +
+                "   SELECT GROUP_CONCAT(m.`name`) " +
+                "   FROM amenity m " +
+                "   WHERE m.id IN (" +
+                "       SELECT h.amenity_id " +
+                "       FROM accommodation_has_amenity h " +
+                "       WHERE h.accommodation_id = a.id " +
+                "   )" +
+                ") amenities " +
+                "FROM accommodation a " +
+                "JOIN accommodation_photo p " +
+                "JOIN accommodation_condition c " +
+                "on (a.id = p.accommodation_id) AND (a.id = c.accommodation_id)";
+        return namedParameterJdbcTemplate.query(
+                query,
+                ACCOMMODATION_RESPONSE_DTO_ROW_MAPPER);
     }
 
     public List<Accommodation> findAllAccommodations() {
