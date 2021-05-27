@@ -25,8 +25,6 @@ const SearchMap = () => {
           center={centerPosition}
           zoom={13}
         >
-          { /* Child components, such as markers, info windows, etc. */}
-          <></>
         </GoogleMap>
       </LoadScript>
     </SearchMapWrapper>

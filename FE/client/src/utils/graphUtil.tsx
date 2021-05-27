@@ -1,3 +1,5 @@
+import { RangeStateType } from "@/Components/commons/baseType";
+
 export const getConvertedChartPrices = (priceArray: Array<number>): Array<Array<number>> => {
   const sortedPrices = [...priceArray].sort((a, b) => a - b);
   const PRICE_POINT = 20000;
@@ -22,11 +24,7 @@ export const getConvertedChartPrices = (priceArray: Array<number>): Array<Array<
   return resultArray;
 }
 
-export type GraphType = {
-  rangeState: {
-    leftRange: number,
-    rightRange: number
-  };
+export type GraphType = RangeStateType & {
   priceArray: Array<Array<number>>
 }
 
@@ -66,12 +64,7 @@ export const getLines = ({ oneSize, priceCountArray }: LinesType) => {
   }).join('\n')}\n 500,100`;
 }
 
-type SelectedLinesType = LinesType & {
-  rangeState: {
-    leftRange: number,
-    rightRange: number
-  };
-};
+type SelectedLinesType = LinesType & RangeStateType;
 
 export const getSelectedLines = ({ priceCountArray, oneSize, rangeState: { leftRange, rightRange } }: SelectedLinesType) => {
   const firstSelectIndex = priceCountArray.findIndex((_, idx) => {

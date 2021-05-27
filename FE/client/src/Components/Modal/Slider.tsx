@@ -3,18 +3,16 @@ import styled from 'styled-components';
 import PauseCircleOutlineRoundedIcon from '@material-ui/icons/PauseCircleOutlineRounded';
 import { SetterOrUpdater } from 'recoil';
 import { RangeAtomType } from '@/recoil/atoms';
+import { RangeStateType } from '@Components/commons/baseType';
+import { makeStyles } from '@material-ui/core';
 
-type SliderType = {
-  rangeState: {
-    leftRange: number,
-    rightRange: number
-  },
+type SliderType = RangeStateType & {
   setRangeState: SetterOrUpdater<RangeAtomType>
 }
 
 const Slider = ({ rangeState, setRangeState }: SliderType) => {
   const { leftRange, rightRange } = rangeState;
-
+  const buttonStyle = ButtonStyle();
   const handleChange = (location: string): ChangeEventHandler<HTMLInputElement> => (event) => {
     const targetValue = parseInt(event.target.value, 10);
     const isLeft = location === 'left';
@@ -32,19 +30,27 @@ const Slider = ({ rangeState, setRangeState }: SliderType) => {
 
       <SliderTrack />
       <SliderRange style={{ left: `${leftRange}%`, right: `calc( ${100 - rightRange}%)` }} />
-      <PauseCircleOutlineRoundedIcon style={{
-        position: 'absolute', left: `calc(${leftRange}% - 2.5%)`,
-        top: '-7px', background: '#fff', borderRadius: '50%', zIndex: 1
-      }} />
+      <PauseCircleOutlineRoundedIcon
+        className={buttonStyle.slider}
+        style={{ left: `calc(${leftRange}% - 2.5%)` }} />
 
-      <PauseCircleOutlineRoundedIcon style={{
-        position: 'absolute', right: `calc(${100 - rightRange}% - 2.5%)`,
-        top: '-7px', background: '#fff', borderRadius: '50%', zIndex: 1
-      }} />
+      <PauseCircleOutlineRoundedIcon
+        className={buttonStyle.slider}
+        style={{ right: `calc(${100 - rightRange}% - 2.5%)` }} />
 
     </SliderWrapper>
   )
 }
+
+const ButtonStyle = makeStyles({
+  slider: {
+    position: 'absolute',
+    top: '-7px',
+    background: '#fff',
+    borderRadius: '50%',
+    zIndex: 1
+  }
+});
 
 const LeftRange = styled.input`
   position: absolute;
