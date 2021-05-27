@@ -78,7 +78,7 @@ const MyPageModal = ({ userInfo }) => (
 			</>
 		) : (
 			<ModalContent>
-				<a href={"https://github.com/login/oauth/authorize?client_id=830ef6707e92703260eb&scope=user&redirect_uri=http://localhost:3000"}>
+				<a href={"https://github.com/login/oauth/authorize?client_id=830ef6707e92703260eb&scope=user&redirect_uri=http://3.37.76.224"}>
 					로그인
 				</a>
 			</ModalContent>
