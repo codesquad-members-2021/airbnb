@@ -14,7 +14,7 @@ class CalendarViewModel {
     private lazy var dateList = BehaviorSubject(value: dateStorage)
     
     lazy var dateInfo: Driver<String> = {
-        return dateList.map{ self.transformDate($0) }
+        return dateList.map{ TransformManager.toString(from: $0) }
             .asDriver(onErrorJustReturn: "")
     }()
     
@@ -43,13 +43,5 @@ class CalendarViewModel {
         dateStorage.removeAll()
         dateList.onNext(dateStorage)
         return Observable.just([])
-    }
-    
-    private func transformDate(_ info: [String]) -> String {
-        if info.isEmpty { return "" }
-        let checkIn = info.min()!
-        let checkOut = info.max()!
-        let res = checkIn == checkOut ? checkIn:"\(checkIn) ~ \(checkOut)"
-        return res
     }
 }
