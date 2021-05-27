@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useContext, createContext } from 'react';
+import { useState, useEffect, useContext, createContext } from 'react';
+import styled from 'styled-components';
 
 interface IHistoryContext {
   history: History, 
@@ -79,9 +80,13 @@ const Link = ({ to, children }: ILink) => {
     BrowserContext.setCurrentPath(to);
   }
   return (
-    <div onClick={handleLinkClick}> {children} </div>
+    <LinkButton onClick={handleLinkClick}> {children} </LinkButton>
   )
-  // 리셋버튼으로 바꾼다.
 }
+
+// 리셋버튼으로 바꾼다.
+const LinkButton = styled.div`
+  cursor: pointer;
+`
 
 export { BrowserRouter, Switch, Route, Link };
