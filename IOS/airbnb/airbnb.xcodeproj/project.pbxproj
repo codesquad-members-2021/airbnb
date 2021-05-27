@@ -41,8 +41,10 @@
 		E4E63C6C265F335500F86104 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C6B265F335500F86104 /* Month.swift */; };
 		E4E63C6E265F34E700F86104 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C6D265F34E700F86104 /* Day.swift */; };
 		E4E63C70265F785000F86104 /* CalendarManageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C6F265F785000F86104 /* CalendarManageModel.swift */; };
-		E4E63C76265FAA2000F86104 /* AccommodationConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C75265FAA2000F86104 /* AccommodationConditions.swift */; };
+		E4E63C76265FAA2000F86104 /* ConditionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C75265FAA2000F86104 /* ConditionManager.swift */; };
 		E4E63C78265FAB5900F86104 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C77265FAB5900F86104 /* DateFormatter.swift */; };
+		E4E63C7A265FBC0100F86104 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C79265FBC0100F86104 /* Period.swift */; };
+		E4E63C7C265FBC3600F86104 /* Charge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C7B265FBC3600F86104 /* Charge.swift */; };
 		E4F302A32655F71E002C9770 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E4F302A22655F71E002C9770 /* Alamofire */; };
 		E4F302A52655F837002C9770 /* AlamofireRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302A42655F837002C9770 /* AlamofireRequestManager.swift */; };
 		E4F302A72655F84B002C9770 /* AlamofireNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302A62655F84B002C9770 /* AlamofireNetworkManager.swift */; };
@@ -56,7 +58,7 @@
 		E4F302BD26560E2D002C9770 /* PopularLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302BC26560E2D002C9770 /* PopularLocationUseCase.swift */; };
 		E4F302C4265642BA002C9770 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302C3265642BA002C9770 /* SearchResultViewModel.swift */; };
 		E4F302C6265642D8002C9770 /* SearchResultUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302C5265642D8002C9770 /* SearchResultUseCase.swift */; };
-		E4F302C826564431002C9770 /* LocationSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302C726564431002C9770 /* LocationSearchResult.swift */; };
+		E4F302C826564431002C9770 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302C726564431002C9770 /* Location.swift */; };
 		E4F302CD26564FCE002C9770 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302CC26564FCE002C9770 /* ViewControllerFactory.swift */; };
 		E4F302D1265652D9002C9770 /* StoryboardFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302D0265652D9002C9770 /* StoryboardFactory.swift */; };
 		E4F302DD2656746E002C9770 /* PopularLocationLoadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302DC2656746E002C9770 /* PopularLocationLoadUseCase.swift */; };
@@ -116,8 +118,10 @@
 		E4E63C6B265F335500F86104 /* Month.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
 		E4E63C6D265F34E700F86104 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		E4E63C6F265F785000F86104 /* CalendarManageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManageModel.swift; sourceTree = "<group>"; };
-		E4E63C75265FAA2000F86104 /* AccommodationConditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationConditions.swift; sourceTree = "<group>"; };
+		E4E63C75265FAA2000F86104 /* ConditionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionManager.swift; sourceTree = "<group>"; };
 		E4E63C77265FAB5900F86104 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		E4E63C79265FBC0100F86104 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
+		E4E63C7B265FBC3600F86104 /* Charge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charge.swift; sourceTree = "<group>"; };
 		E4F302A42655F837002C9770 /* AlamofireRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireRequestManager.swift; sourceTree = "<group>"; };
 		E4F302A62655F84B002C9770 /* AlamofireNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkManager.swift; sourceTree = "<group>"; };
 		E4F302A82655F890002C9770 /* AlamofireImageLoadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireImageLoadManager.swift; sourceTree = "<group>"; };
@@ -130,7 +134,7 @@
 		E4F302BC26560E2D002C9770 /* PopularLocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationUseCase.swift; sourceTree = "<group>"; };
 		E4F302C3265642BA002C9770 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		E4F302C5265642D8002C9770 /* SearchResultUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultUseCase.swift; sourceTree = "<group>"; };
-		E4F302C726564431002C9770 /* LocationSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResult.swift; sourceTree = "<group>"; };
+		E4F302C726564431002C9770 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		E4F302CC26564FCE002C9770 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		E4F302D0265652D9002C9770 /* StoryboardFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardFactory.swift; sourceTree = "<group>"; };
 		E4F302DC2656746E002C9770 /* PopularLocationLoadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationLoadUseCase.swift; sourceTree = "<group>"; };
@@ -188,8 +192,8 @@
 		E48148122654E6890069BE20 /* AccommodationConditions */ = {
 			isa = PBXGroup;
 			children = (
+				E4E63C7D265FBC7A00F86104 /* CommonModels */,
 				E4DB1D7926538BA800894DCB /* AccommodationConditions.storyboard */,
-				E4E63C75265FAA2000F86104 /* AccommodationConditions.swift */,
 				E4DB1D7826538AFE00894DCB /* LocationSearch */,
 				E48148112654E63F0069BE20 /* CalendarSelect */,
 			);
@@ -319,9 +323,19 @@
 			isa = PBXGroup;
 			children = (
 				E4F302B72656059C002C9770 /* PopularLocation.swift */,
-				E4F302C726564431002C9770 /* LocationSearchResult.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		E4E63C7D265FBC7A00F86104 /* CommonModels */ = {
+			isa = PBXGroup;
+			children = (
+				E4E63C75265FAA2000F86104 /* ConditionManager.swift */,
+				E4F302C726564431002C9770 /* Location.swift */,
+				E4E63C79265FBC0100F86104 /* Period.swift */,
+				E4E63C7B265FBC3600F86104 /* Charge.swift */,
+			);
+			path = CommonModels;
 			sourceTree = "<group>";
 		};
 		E4F302AE26560107002C9770 /* View */ = {
@@ -541,6 +555,7 @@
 				E42671AC265C8D79009323B8 /* ImagePathLoadModel.swift in Sources */,
 				E4E63C68265F314600F86104 /* AccommodationConditionTableViewDataSource.swift in Sources */,
 				E4DB1D7E2653916900894DCB /* PopularLocationTableViewCell.swift in Sources */,
+				E4E63C7A265FBC0100F86104 /* Period.swift in Sources */,
 				E4E63C64265F300400F86104 /* CalendarViewModel.swift in Sources */,
 				E4DB1D7C2653912F00894DCB /* PopularLocationViewController.swift in Sources */,
 				E4F302BA26560CC7002C9770 /* LocationSearchResultUpdating.swift in Sources */,
@@ -552,7 +567,7 @@
 				E4F302F42656B257002C9770 /* ImageLoadManagable.swift in Sources */,
 				E4F302FA2656B3EE002C9770 /* HeroImageUseCase.swift in Sources */,
 				E4F302A52655F837002C9770 /* AlamofireRequestManager.swift in Sources */,
-				E4E63C76265FAA2000F86104 /* AccommodationConditions.swift in Sources */,
+				E4E63C76265FAA2000F86104 /* ConditionManager.swift in Sources */,
 				E42671AE265C8DE2009323B8 /* PopularLocationLoadModel.swift in Sources */,
 				E481481626551B930069BE20 /* CalendarViewController.swift in Sources */,
 				E4F302B82656059C002C9770 /* PopularLocation.swift in Sources */,
@@ -566,6 +581,7 @@
 				E42671A6265BD357009323B8 /* SearchBarFactory.swift in Sources */,
 				E4E63C59265E71E300F86104 /* CalendarCollectionViewCell.swift in Sources */,
 				E4F302CD26564FCE002C9770 /* ViewControllerFactory.swift in Sources */,
+				E4E63C7C265FBC3600F86104 /* Charge.swift in Sources */,
 				E481480C265496930069BE20 /* LocationSearchController.swift in Sources */,
 				E4F302DD2656746E002C9770 /* PopularLocationLoadUseCase.swift in Sources */,
 				E4E63C5B265F1FA400F86104 /* MonthHeaderCollectionViewCell.swift in Sources */,
@@ -573,7 +589,7 @@
 				E4F302F82656B3E1002C9770 /* ImageLoadUseCase.swift in Sources */,
 				E4F302AD2655FD17002C9770 /* NetworkManagable.swift in Sources */,
 				E4E63C6C265F335500F86104 /* Month.swift in Sources */,
-				E4F302C826564431002C9770 /* LocationSearchResult.swift in Sources */,
+				E4F302C826564431002C9770 /* Location.swift in Sources */,
 				E4F302BD26560E2D002C9770 /* PopularLocationUseCase.swift in Sources */,
 				E4E63C6E265F34E700F86104 /* Day.swift in Sources */,
 				E4E63C70265F785000F86104 /* CalendarManageModel.swift in Sources */,

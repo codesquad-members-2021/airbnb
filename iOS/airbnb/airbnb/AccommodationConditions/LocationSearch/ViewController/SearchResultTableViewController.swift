@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SearchResultDelegate: AnyObject {
-    func didSelect(result: LocationSearchResult)
+    func didSelect(result: Location)
 }
 
 final class SearchResultTableViewController: UITableViewController {
@@ -34,7 +34,7 @@ final class SearchResultTableViewController: UITableViewController {
         }
     }
     
-    private func updateTableView(with searchResults: [LocationSearchResult]) {
+    private func updateTableView(with searchResults: [Location]) {
         self.searchResultTableViewDataSource?.updateResults(with: searchResults)
         DispatchQueue.main.async {
             self.tableView.reloadData()

@@ -9,13 +9,13 @@ import UIKit
 
 class SearchResultTableViewDataSource: NSObject, UITableViewDataSource {
 
-    private var searchResults = [LocationSearchResult]()
+    private var searchResults = [Location]()
     
-    func updateResults(with searchResults: [LocationSearchResult]) {
+    func updateResults(with searchResults: [Location]) {
         self.searchResults = searchResults
     }
     
-    func searchResult(for index: Int) -> LocationSearchResult {
+    func searchResult(for index: Int) -> Location {
         return searchResults[index]
     }
     

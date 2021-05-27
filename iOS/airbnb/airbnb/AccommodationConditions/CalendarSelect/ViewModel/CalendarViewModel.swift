@@ -27,7 +27,7 @@ class CalendarViewModel: CalendarManageModel {
     }
     
     private let calendarManager: CalendarManager
-    private let conditionManager: AccommodationConditions
+    private let conditionManager: ConditionManager
     
     enum ButtonTitle {
         static let backButton = "날짜 선택"
@@ -38,12 +38,12 @@ class CalendarViewModel: CalendarManageModel {
     static let weekdays = ["월", "화", "수", "목", "금", "토", "일"]
     static let conditionTitles = ["위치", "체크인/체크아웃", "요금", "인원"]
     
-    init(calendarManager: CalendarManager, conditionManager: AccommodationConditions) {
+    init(calendarManager: CalendarManager, conditionManager: ConditionManager) {
         self.calendarManager = calendarManager
         self.conditionManager = conditionManager
     }
     
-    convenience init(conditionManager: AccommodationConditions) {
+    convenience init(conditionManager: ConditionManager) {
         self.init(calendarManager: CalendarManager(), conditionManager: conditionManager)
     }
     

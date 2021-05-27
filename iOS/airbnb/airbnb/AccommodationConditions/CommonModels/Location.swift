@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LocationSearchResult: Decodable {
+struct Location: Decodable {
     let name: String
     let coordinate: Coordinate
 }

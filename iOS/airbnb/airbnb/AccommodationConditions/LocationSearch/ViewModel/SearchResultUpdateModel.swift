@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SearchResultUpdateModel {
-    typealias DataHandler = ([LocationSearchResult]) -> Void
+    typealias DataHandler = ([Location]) -> Void
     typealias ErrorHandler = (Error) -> Void
     func bind(dataHandler: @escaping DataHandler, errorHandler: @escaping ErrorHandler)
     func newData(with input: String)
