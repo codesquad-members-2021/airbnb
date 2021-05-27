@@ -3,10 +3,7 @@ package com.codesquad.airbnb.controller;
 import com.codesquad.airbnb.dto.RoomDTO;
 import com.codesquad.airbnb.dto.Rooms;
 import com.codesquad.airbnb.repository.RoomRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,7 +26,6 @@ public class RoomController {
         return new Rooms(roomDTOS);
     }
 
-    //Todo: 어노테이션 찾아보기
     @GetMapping("/filteredRooms")
     public Rooms searchRooms(@RequestParam("checkIn") String checkIn, @RequestParam("checkOut") String checkOut,
                              @RequestParam("minPrice") int minPrice, @RequestParam("maxPrice") int maxPrice,
