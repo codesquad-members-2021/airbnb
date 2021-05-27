@@ -73,7 +73,7 @@ const MyPageModal = ({ userInfo }) => (
 				<ModalContent>위시리스트</ModalContent>
 				<Line />
 				<ModalContent>
-					<a href={"http://localhost:3000"}>로그아웃</a>
+					<a href={"http://3.37.76.224"}>로그아웃</a>
 				</ModalContent>
 			</>
 		) : (

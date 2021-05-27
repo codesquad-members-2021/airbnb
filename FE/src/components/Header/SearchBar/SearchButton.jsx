@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { ResultContext } from "../../../config/ResultContextProvider";
 
 const SearchButton = () => {
-	const { isResultOn, setResultOn, isSearching, fetchHouses } = useContext(ResultContext);
+	const { isResultOn, setResultOn, isSearching, fetchHouses, latitude, longitude } = useContext(ResultContext);
 
 	const clickHandler = () => {
-		fetchHouses();
+		fetchHouses(latitude, longitude);
 		setResultOn(true);
 	};
 
