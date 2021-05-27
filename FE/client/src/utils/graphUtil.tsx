@@ -56,17 +56,27 @@ export const getOnePriceSize = ({ priceCountArray }: PriceCountArrayType) => {
 
 type LinesType = PriceCountArrayType & {
   oneSize: number;
+  viewBoxPosition: {
+    minX: number;
+    minY: number;
+    width: number;
+    height: number;
+  }
 }
 
-export const getLines = ({ oneSize, priceCountArray }: LinesType) => {
-  return `00, 100 \n ${priceCountArray.map((count, idx) => {
+export const getLines = ({ oneSize, priceCountArray, viewBoxPosition }: LinesType) => {
+  const { minY, width, height } = viewBoxPosition;
+  return `${minY}, ${height} \n ${priceCountArray.map((count, idx) => {
     return `${idx * 10}, ${count ? 100 - (count * oneSize) : 100}`;
-  }).join('\n')}\n 500,100`;
+  }).join('\n')}\n ${width},${height}`;
 }
 
 type SelectedLinesType = LinesType & RangeStateType;
 
-export const getSelectedLines = ({ priceCountArray, oneSize, rangeState: { leftRange, rightRange } }: SelectedLinesType) => {
+export const getSelectedLines = ({ priceCountArray, oneSize, rangeState, viewBoxPosition }: SelectedLinesType) => {
+  const { leftRange, rightRange } = rangeState;
+  const { minY, width, height } = viewBoxPosition;
+
   const firstSelectIndex = priceCountArray.findIndex((_, idx) => {
     return leftRange / (100 / priceCountArray.length) <= idx;
   })
@@ -75,12 +85,12 @@ export const getSelectedLines = ({ priceCountArray, oneSize, rangeState: { leftR
     return rightRange / (100 / priceCountArray.length) < idx + 2;
   })
 
-  const selectedLine = `00, 100 \n ${priceCountArray.map((count, idx) => {
+  const selectedLine = `${minY}, ${height} \n ${priceCountArray.map((count, idx) => {
     const isSelect = (leftRange / (100 / priceCountArray.length)) <= idx && idx < Math.floor(rightRange / (100 / priceCountArray.length));
-    const firstSelected = firstSelectIndex === idx ? `${idx * 10}, 100` : '';
-    const lastSelected = lastSelectIndex === idx ? `${idx * 10}, 100` : '';
+    const firstSelected = firstSelectIndex === idx ? `${idx * 10}, ${height}` : '';
+    const lastSelected = lastSelectIndex === idx ? `${idx * 10}, ${height}` : '';
     return `${firstSelected} ${idx * 10}, ${isSelect ? 100 - (count * oneSize) : 100} ${lastSelected}`;
-  }).join('\n')}\n 500,100`;
+  }).join('\n')}\n ${width},${height}`;
 
   return selectedLine;
 }

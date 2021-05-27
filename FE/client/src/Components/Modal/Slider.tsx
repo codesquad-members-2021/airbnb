@@ -16,8 +16,7 @@ const Slider = ({ rangeState, setRangeState }: SliderType) => {
   const handleChange = (location: string): ChangeEventHandler<HTMLInputElement> => (event) => {
     const targetValue = parseInt(event.target.value, 10);
     const isLeft = location === 'left';
-    const thisValue = isLeft ? Math.min(targetValue, rightRange) : Math.max(leftRange, targetValue);
-    const percent = (thisValue - 0) / (100 - 0) * 100;
+    const percent = isLeft ? Math.min(targetValue, rightRange) : Math.max(leftRange, targetValue);
     setRangeState((rangeState) => {
       return isLeft ? { ...rangeState, leftRange: percent } : { ...rangeState, rightRange: percent };
     })
