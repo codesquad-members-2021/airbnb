@@ -1,22 +1,8 @@
 import { atom, selector } from 'recoil';
 
-type dateType = {
-  year: number;
-  month: number;
-  day?: number;
-};
+import { calendarDate, checkINOUT, check } from '@recoil/types/dateType';
 
-type check = {
-  checkinDate: dateType;
-  checkoutDate: dateType;
-};
-
-type checkINOUT = {
-  checkin: boolean;
-  checkout: boolean;
-};
-
-const calendarDateState = atom<dateType>({
+const calendarDateState = atom<calendarDate>({
   key: 'calendarDateState',
   default: {
     year: new Date().getFullYear(),

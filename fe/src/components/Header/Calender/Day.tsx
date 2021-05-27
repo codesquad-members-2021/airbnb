@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
@@ -9,12 +9,17 @@ import {
   checkinNewDate,
   checkoutNewDate,
 } from '@recoil/atoms/date';
-import { useEffect, useState } from 'react';
 
 type Prop = {
-  children: React.ReactNode;
+  children: number;
   cYear: number;
   cMonth: number;
+};
+
+type dateTypes = {
+  year: number;
+  month: number;
+  day: number;
 };
 
 const Day = ({ children, cYear, cMonth }: Prop) => {
@@ -28,47 +33,51 @@ const Day = ({ children, cYear, cMonth }: Prop) => {
   const { checkin, checkout } = checkState;
   const { checkinDate, checkoutDate } = selectCheckState;
 
-  useEffect(() => {
-    if (checkin === false) return;
-    const { year, month, day } = checkinDate;
+  const changeClickState = (date: dateTypes) => {
+    const { year, month, day } = date;
+    const checkDate = '' + year + month + day;
+    const currentDate = '' + cYear + cMonth + children;
+    if (checkDate === currentDate) setIsClicked(true);
+  };
 
-    if (children === day && year === cYear && month === cMonth)
-      setIsClicked(true);
-  }, [cMonth, cYear, checkin, checkinDate, children]);
-
-  useEffect(() => {
-    if (checkout === false) return;
-    const { year, month, day } = checkoutDate;
-
-    if (children === day && year === cYear && month === cMonth)
-      setIsClicked(true);
-  }, [cMonth, cYear, checkout, checkoutDate, children]);
+  (function () {
+    if (isClicked === false) changeClickState(checkinDate);
+    if (isClicked === false && checkout === true)
+      changeClickState(checkoutDate);
+  })();
 
   const getThisDayTime = () => {
     const day: any = children;
     return new Date(cYear, cMonth, day).getTime();
   };
 
-  const renderClassName = (): string => {
-    const thisDay = getThisDayTime();
-    if (isClicked) return 'clicked';
-    if (thisDay < currentCheckinDate) return '';
-    else if (
+  const shouldPaintBetweenSelect = (thisDay: number) => {
+    return (
       0 < currentCheckOutDate &&
       currentCheckinDate < thisDay &&
       thisDay < currentCheckOutDate
-    ) {
-      return 'selected';
-    } else if (currentCheckOutDate > 0 && currentCheckOutDate < hoverDate) {
-      return '';
-    } else if (
+    );
+  };
+
+  const shouldPaintHoveringDate = (thisDay: number) => {
+    return (
       currentCheckinDate > 0 &&
       currentCheckinDate < hoverDate &&
       thisDay < hoverDate
-    ) {
-      return 'selected';
-    }
+    );
+  };
 
+  const shouldPaintNothing = () =>
+    currentCheckOutDate > 0 && currentCheckOutDate < hoverDate;
+
+  const renderClassName = () => {
+    const thisDay = getThisDayTime();
+
+    if (isClicked) return 'clicked';
+    if (thisDay < currentCheckinDate) return '';
+    else if (shouldPaintBetweenSelect(thisDay)) return 'selected';
+    else if (shouldPaintNothing()) return '';
+    else if (shouldPaintHoveringDate(thisDay)) return 'selected';
     return '';
   };
 
