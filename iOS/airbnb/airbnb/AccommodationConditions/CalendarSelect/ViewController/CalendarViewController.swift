@@ -34,6 +34,7 @@ final class CalendarViewController: UIViewController {
         tableView.rowHeight = 50
         tableView.isScrollEnabled = false
         tableView.allowsSelection = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         let cellId = AccommodationConditionTableViewCell.reuseIdentifier
         tableView.register(AccommodationConditionTableViewCell.self, forCellReuseIdentifier: cellId)
@@ -48,6 +49,7 @@ final class CalendarViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         let cellId = CalendarCollectionViewCell.reuseIdentifier
         collectionView.register(CalendarCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
@@ -62,6 +64,7 @@ final class CalendarViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         let weekdays = CalendarViewModel.weekdays
         weekdays.forEach { day in
@@ -69,6 +72,7 @@ final class CalendarViewController: UIViewController {
             label.text = day
             label.textColor = .gray
             label.textAlignment = .center
+            label.font = .systemFont(ofSize: 15, weight: .bold)
             stackView.addArrangedSubview(label)
         }
         return stackView
@@ -88,7 +92,6 @@ final class CalendarViewController: UIViewController {
     
     private func addToolBar() {
         view.addSubview(toolBar)
-        toolBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             toolBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             toolBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -98,7 +101,6 @@ final class CalendarViewController: UIViewController {
     
     private func addTableView() {
         view.addSubview(accommodationConditionTableView)
-        accommodationConditionTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             accommodationConditionTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             accommodationConditionTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
@@ -109,7 +111,6 @@ final class CalendarViewController: UIViewController {
     
     private func addStackView() {
         view.addSubview(weekdayStackView)
-        weekdayStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             weekdayStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             weekdayStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
@@ -120,7 +121,6 @@ final class CalendarViewController: UIViewController {
     
     private func addCollectionView() {
         view.addSubview(calendarCollectionView)
-        calendarCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             calendarCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             calendarCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),

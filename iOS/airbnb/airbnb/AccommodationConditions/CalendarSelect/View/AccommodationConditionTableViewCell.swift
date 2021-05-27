@@ -15,12 +15,15 @@ class AccommodationConditionTableViewCell: UITableViewCell {
     
     lazy var conditionTitle: UILabel = {
         let conditionTitle = UILabel()
+        conditionTitle.translatesAutoresizingMaskIntoConstraints = false
         return conditionTitle
     }()
     
     lazy var conditionContent: UILabel = {
         let conditionContent = UILabel()
         conditionContent.textColor = .gray
+        conditionContent.font = .systemFont(ofSize: 17, weight: .semibold)
+        conditionContent.translatesAutoresizingMaskIntoConstraints = false
         return conditionContent
     }()
     
@@ -41,7 +44,6 @@ class AccommodationConditionTableViewCell: UITableViewCell {
     
     private func addConditionTitle() {
         self.addSubview(conditionTitle)
-        conditionTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             conditionTitle.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             conditionTitle.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
@@ -50,7 +52,6 @@ class AccommodationConditionTableViewCell: UITableViewCell {
     
     private func addConditionContent() {
         self.addSubview(conditionContent)
-        conditionContent.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             conditionContent.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
             conditionContent.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)

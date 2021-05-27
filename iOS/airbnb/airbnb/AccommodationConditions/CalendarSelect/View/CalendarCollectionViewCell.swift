@@ -16,6 +16,7 @@ class CalendarCollectionViewCell: UICollectionViewCell {
     lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textAlignment = .center
+        titleLabel.font = .systemFont(ofSize: 14.5, weight: .bold)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         return titleLabel
     }()
