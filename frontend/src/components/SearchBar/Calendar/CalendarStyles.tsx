@@ -1,12 +1,13 @@
 import styled from "styled-components";
-import { RiArrowLeftSLine } from 'react-icons/ri';
-import { RiArrowRightSLine } from 'react-icons/ri';
+import { RiArrowLeftSLine } from "react-icons/ri";
+import { RiArrowRightSLine } from "react-icons/ri";
 
 const CalendarModalLayout = styled.div`
+  position: absolute; //relative는 SearchBarLayout 입니다
+  top: 100%;
   width: 100%;
   right: 0;
   left: 0;
-  top: 100%;
   z-index: 1;
   overflow: hidden;
   margin-top: 1.2rem;
@@ -49,9 +50,10 @@ const CalendarSelector = styled.div`
       }
     }
   }
-`
+`;
 
 const CalendarLayout = styled.div`
+  outline: red solid 1px;
   width: 90%;
   margin: 1rem;
   padding: 1.5rem;
@@ -59,12 +61,13 @@ const CalendarLayout = styled.div`
   font-weight: 600;
   display: flex;
 
-  .calendar {}
-`
+  .calendar {
+  }
+`;
 
 const LeftArrowBtn = styled.button`
   position: absolute;
-  left:0;
+  left: 0;
   top: 0;
   width: 2rem;
   height: 2rem;
@@ -72,7 +75,7 @@ const LeftArrowBtn = styled.button`
   border-radius: 99px;
   background-color: #fff;
 
-  &:hover{
+  &:hover {
     background-color: rgb(247, 247, 247);
   }
 
@@ -80,7 +83,7 @@ const LeftArrowBtn = styled.button`
     height: 1.2rem;
     width: 1.2rem;
   }
-`
+`;
 
 const RightArrowBtn = styled.button`
   position: absolute;
@@ -92,7 +95,7 @@ const RightArrowBtn = styled.button`
   border-radius: 99px;
   background-color: #fff;
 
-  &:hover{
+  &:hover {
     background-color: rgb(247, 247, 247);
   }
 
@@ -100,7 +103,7 @@ const RightArrowBtn = styled.button`
     height: 1.2rem;
     width: 1.2rem;
   }
-`
+`;
 
 const CurrentMonth = styled.div`
   display: flex;
@@ -109,12 +112,12 @@ const CurrentMonth = styled.div`
   text-align: center;
   flex-direction: column;
 
-    &:first-child {
-        position: relative;
-        display: flex;
-        border: 1px solid pink;
-        align-items: center;
-    }
+  &:first-child {
+    position: relative;
+    display: flex;
+    border: 1px solid pink;
+    align-items: center;
+  }
 
   .year_and_month {
     padding-top: 0.5rem;
@@ -122,7 +125,7 @@ const CurrentMonth = styled.div`
     width: auto;
     height: 2rem;
   }
-`
+`;
 
 const NextMonth = styled.div`
   display: flex;
@@ -132,11 +135,11 @@ const NextMonth = styled.div`
   flex-direction: column;
 
   &:last-child {
-        position: relative;
-        display: flex;
-        border: 1px solid pink;
-        align-items: center;
-    }
+    position: relative;
+    display: flex;
+    border: 1px solid pink;
+    align-items: center;
+  }
 
   .year_and_month {
     padding-top: 0.5rem;
@@ -144,11 +147,21 @@ const NextMonth = styled.div`
     width: auto;
     height: 2rem;
   }
-`
+`;
 const CalendarMatrix = styled.div`
   border: 1px solid blue;
   width: 100%;
-`
+`;
 
-export { CalendarModalLayout, CalendarSelector, CalendarLayout, LeftArrowBtn, RightArrowBtn, CurrentMonth, NextMonth, CalendarMatrix, RiArrowLeftSLine, RiArrowRightSLine };
-
+export {
+  CalendarModalLayout,
+  CalendarSelector,
+  CalendarLayout,
+  LeftArrowBtn,
+  RightArrowBtn,
+  CurrentMonth,
+  NextMonth,
+  CalendarMatrix,
+  RiArrowLeftSLine,
+  RiArrowRightSLine,
+};

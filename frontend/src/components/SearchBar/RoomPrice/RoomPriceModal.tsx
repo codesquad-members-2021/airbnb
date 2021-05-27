@@ -1,11 +1,5 @@
-import React from 'react'
+const RoomPriceModal = () => {
+  return <div></div>;
+};
 
-function RoomPriceModal() {
-    return (
-        <div>
-            
-        </div>
-    )
-}
-
-export default RoomPriceModal
+export default RoomPriceModal;
