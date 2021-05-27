@@ -15,7 +15,7 @@ class MonthHeaderCollectionViewCell: UICollectionViewCell {
     
     lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = .systemFont(ofSize: 23, weight: .semibold)
+        titleLabel.font = .systemFont(ofSize: 21, weight: .semibold)
         titleLabel.textAlignment = .left
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         return titleLabel

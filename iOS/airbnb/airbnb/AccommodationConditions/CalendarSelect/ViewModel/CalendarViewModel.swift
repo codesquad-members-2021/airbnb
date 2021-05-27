@@ -9,8 +9,8 @@ import Foundation
 
 class CalendarViewModel: CalendarManageModel {
 
-    private var calendarHandler: DataHandler?
-    private var conditionHandler: SearchConditionHandler?
+    private var calendarHandler: CalendarHandler?
+    private var conditionHandler: ConditionHandler?
     
     private var calendar: [Month]? {
         didSet {
@@ -47,7 +47,7 @@ class CalendarViewModel: CalendarManageModel {
         self.init(calendarManager: DateSelectionManager(), conditionManager: conditionManager)
     }
     
-    func bind(dataHandler: @escaping DataHandler, searchHandler: @escaping SearchConditionHandler) {
+    func bind(dataHandler: @escaping CalendarHandler, searchHandler: @escaping ConditionHandler) {
         self.calendarHandler = dataHandler
         self.conditionHandler = searchHandler
         fillCalendar(by: 6)

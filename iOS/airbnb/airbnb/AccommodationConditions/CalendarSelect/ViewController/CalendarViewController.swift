@@ -10,7 +10,7 @@ import UIKit
 final class CalendarViewController: UIViewController {
     
     private lazy var toolBar: UIToolbar = {
-        let tempFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        let tempFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
         let toolBar = UIToolbar(frame: tempFrame)
         toolBar.tintColor = .systemPink
         toolBar.translatesAutoresizingMaskIntoConstraints = false
@@ -18,12 +18,12 @@ final class CalendarViewController: UIViewController {
         let passButton = UIBarButtonItem(title: CalendarViewModel.ButtonTitle.pass,
                                          style: .plain,
                                          target: self,
-                                         action: #selector(pass))
+                                         action: #selector(passToCompleteScreen))
         let spacing = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let nextButton = UIBarButtonItem(title: CalendarViewModel.ButtonTitle.next,
                                          style: .plain,
                                          target: self,
-                                         action: #selector(nextScreen))
+                                         action: #selector(navigateToNextScreen))
         nextButton.isEnabled = false
         toolBar.setItems([passButton, spacing, nextButton], animated: true)
         return toolBar
@@ -31,7 +31,8 @@ final class CalendarViewController: UIViewController {
     
     private lazy var accommodationConditionTableView: UITableView = {
         let tableView = UITableView()
-        tableView.rowHeight = 50
+        tableView.layer.borderWidth = 0.5
+        tableView.layer.borderColor = UIColor.lightGray.cgColor
         tableView.isScrollEnabled = false
         tableView.allowsSelection = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -78,6 +79,18 @@ final class CalendarViewController: UIViewController {
         return stackView
     }()
     
+    private lazy var calendarInset: CGFloat = {
+        let viewWidth = view.frame.width
+        let remainder = viewWidth.remainder(dividingBy: 7)
+        let cellWidth = (viewWidth - remainder) / 7
+        return (remainder + cellWidth * 0.7) * 0.5
+    }()
+    
+    private lazy var tableCellHeight: CGFloat = {
+        let viewHeight = view.frame.height
+        return viewHeight / 20
+    }()
+    
     override func loadView() {
         super.loadView()
         configure()
@@ -101,20 +114,21 @@ final class CalendarViewController: UIViewController {
     
     private func addTableView() {
         view.addSubview(accommodationConditionTableView)
+        accommodationConditionTableView.rowHeight = tableCellHeight
         NSLayoutConstraint.activate([
             accommodationConditionTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             accommodationConditionTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             accommodationConditionTableView.bottomAnchor.constraint(equalTo: toolBar.topAnchor),
-            accommodationConditionTableView.heightAnchor.constraint(equalToConstant: accommodationConditionTableView.rowHeight * 4)
+            accommodationConditionTableView.heightAnchor.constraint(equalToConstant: tableCellHeight * 4)
         ])
     }
     
     private func addStackView() {
         view.addSubview(weekdayStackView)
         NSLayoutConstraint.activate([
-            weekdayStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            weekdayStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            weekdayStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            weekdayStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: calendarInset),
+            weekdayStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -calendarInset),
+            weekdayStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: calendarInset),
             weekdayStackView.heightAnchor.constraint(equalToConstant: accommodationConditionTableView.rowHeight)
         ])
     }
@@ -122,8 +136,8 @@ final class CalendarViewController: UIViewController {
     private func addCollectionView() {
         view.addSubview(calendarCollectionView)
         NSLayoutConstraint.activate([
-            calendarCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            calendarCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            calendarCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: calendarInset),
+            calendarCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -calendarInset),
             calendarCollectionView.bottomAnchor.constraint(equalTo: accommodationConditionTableView.topAnchor),
             calendarCollectionView.topAnchor.constraint(equalTo: weekdayStackView.bottomAnchor)
         ])
@@ -168,12 +182,12 @@ final class CalendarViewController: UIViewController {
         }
     }
     
-    @objc private func pass(_ sender: UIBarButtonItem) {
-        //검색 즉시 실행
+    @objc private func passToCompleteScreen(_ sender: UIBarButtonItem) {
+        
     }
     
-    @objc private func nextScreen(_ sender: UIBarButtonItem) {
-        //다음 화면으로
+    @objc private func navigateToNextScreen(_ sender: UIBarButtonItem) {
+
     }
 
 }
@@ -191,13 +205,13 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        return UIEdgeInsets(top: calendarInset, left: 0, bottom: calendarInset, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 60)
+        return CGSize(width: collectionView.frame.width, height: calendarInset * 3)
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

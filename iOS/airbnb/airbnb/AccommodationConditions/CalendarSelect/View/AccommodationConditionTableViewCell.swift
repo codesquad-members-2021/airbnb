@@ -27,6 +27,11 @@ class AccommodationConditionTableViewCell: UITableViewCell {
         return conditionContent
     }()
     
+    private lazy var labelInset: CGFloat = {
+        let tableWidth = frame.width
+        return tableWidth * 0.065
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
@@ -45,7 +50,7 @@ class AccommodationConditionTableViewCell: UITableViewCell {
     private func addConditionTitle() {
         self.addSubview(conditionTitle)
         NSLayoutConstraint.activate([
-            conditionTitle.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            conditionTitle.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: labelInset),
             conditionTitle.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
         ])
     }
@@ -53,7 +58,7 @@ class AccommodationConditionTableViewCell: UITableViewCell {
     private func addConditionContent() {
         self.addSubview(conditionContent)
         NSLayoutConstraint.activate([
-            conditionContent.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            conditionContent.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -labelInset),
             conditionContent.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
         ])
     }
