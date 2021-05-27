@@ -14,7 +14,8 @@ class SearchViewController: UIViewController {
         case main
     }
     
-    var searchResultCollectionView: UICollectionView! = nil
+    @IBOutlet weak var searchResultCollectionView: UICollectionView!
+    
     var dataSource: UICollectionViewDiffableDataSource<Section, String>! = nil
     // whenever value of this changes, will fetch relevant address info from the server.
     let searchController = UISearchController(searchResultsController: nil)
@@ -29,11 +30,9 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureHierarchy()
+        configureSearchResultCollectionView()
         configureDataSource()
         
-        // UISearchController
-        searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "행선지 선택"
         navigationItem.searchController = searchController
@@ -55,6 +54,8 @@ extension SearchViewController {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8),
                                              heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let inset: CGFloat = 10
+        item.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
 
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalWidth(0.2))
@@ -67,16 +68,8 @@ extension SearchViewController {
         return layout
     }
     
-    private func configureHierarchy() {
-        let searchBarHeight = self.searchController.searchBar.frame.height
-        let navigationBarHeight = self.navigationController?.navigationBar.frame.height ?? 0
-        let topPadding = UIApplication.shared.windows[0].safeAreaInsets.top
-        let collectionViewHeightAdjustment = searchBarHeight + navigationBarHeight + topPadding
-        
-        let collectionViewFrame = CGRect(x: 0, y: collectionViewHeightAdjustment, width: view.frame.width, height: view.frame.height - collectionViewHeightAdjustment)
-        searchResultCollectionView = UICollectionView(frame: collectionViewFrame, collectionViewLayout: createCollectionViewLayout())
-        searchResultCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        searchResultCollectionView.backgroundColor = .systemTeal
+    private func configureSearchResultCollectionView() {
+        searchResultCollectionView.collectionViewLayout = createCollectionViewLayout()
         searchResultCollectionView.delegate = self
         view.addSubview(searchResultCollectionView)
     }
@@ -109,14 +102,6 @@ extension SearchViewController: UICollectionViewDelegate {
         let cell = (collectionView.cellForItem(at: indexPath) as? SearchResultCollectionViewCell)
         targetVC.designatedLocation = cell?.destinationNameLabel.text
         navigationController?.pushViewController(targetVC, animated: false)
-    }
-    
-}
-
-extension SearchViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-
     }
     
 }

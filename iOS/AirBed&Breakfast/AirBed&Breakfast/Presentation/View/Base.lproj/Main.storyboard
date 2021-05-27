@@ -6,6 +6,7 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -70,8 +71,36 @@
                     <view key="view" contentMode="scaleToFill" id="qBL-t9-4XW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5qZ-QO-7pQ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xWo-TF-Tqh">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Cgt-fk-Rhs">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="oTq-uZ-rla">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="hTL-cl-uW0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5qZ-QO-7pQ" firstAttribute="top" secondItem="hTL-cl-uW0" secondAttribute="top" id="KJy-Fb-Fge"/>
+                            <constraint firstItem="5qZ-QO-7pQ" firstAttribute="leading" secondItem="hTL-cl-uW0" secondAttribute="leading" id="TIJ-I8-xeq"/>
+                            <constraint firstItem="hTL-cl-uW0" firstAttribute="bottom" secondItem="5qZ-QO-7pQ" secondAttribute="bottom" id="gw5-1L-rey"/>
+                            <constraint firstItem="hTL-cl-uW0" firstAttribute="trailing" secondItem="5qZ-QO-7pQ" secondAttribute="trailing" id="ylD-oK-kLN"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="숙소찾기" id="tf7-1S-hty">
                         <barButtonItem key="backBarButtonItem" title="뒤로" id="kMD-je-ng6"/>
@@ -88,6 +117,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchResultCollectionView" destination="5qZ-QO-7pQ" id="is0-cJ-2uL"/>
                         <segue destination="lUP-AH-NX7" kind="show" id="rYl-L1-ysz"/>
                     </connections>
                 </viewController>
