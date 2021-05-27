@@ -26,6 +26,9 @@ DerivedData/
 ## Gcc Patch
 /*.gcno
 
+## General
+.DS_Store
+
 ### Xcode Patch ###
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
