@@ -3,7 +3,7 @@ import * as T from './AtomTypes';
 
 
 export const searchBarToggleState = atom<T.SearchBarToggle>({
-    key: "",
+    key: "searchBarToggleState",
     default:{
         calendar: false,
         roomPrice: false,
@@ -49,7 +49,7 @@ export const roomPriceFilterState = atom<T.RoomPriceFilter>({
 })
 
 export const guestFilterState = atom<T.GuestsState>({
-    key: "geustFilterState",
+    key: "guestFilterState",
     default: {
         adult: null,
         child: null,
