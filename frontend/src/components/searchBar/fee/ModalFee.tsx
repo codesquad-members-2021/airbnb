@@ -8,12 +8,12 @@ interface IFeeType {
 const ModalFee: React.FunctionComponent<IFeeType> = ({ modalType }) => {
   const state = useAxios(getData)
   const { loading, error, data } = state
-  if (loading) return <div>로딩중</div>
-  if (error) return <div>에러발생</div>
-  if (!data) return null
 
   return (
     <>
+      {loading && <div>로딩중</div>}
+      {error && <div>요청에러</div>}
+      {!data && null}
       <Modal modalType={modalType}>
         {data.prices.map((el: number, idx: number) => (
           <li key={idx}>{el}</li>
