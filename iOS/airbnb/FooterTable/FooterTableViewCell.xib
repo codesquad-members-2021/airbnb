@@ -16,32 +16,32 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQS-Qi-nBl">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQu-hH-ALD">
                         <rect key="frame" x="16" y="11.5" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMF-6y-cCk">
-                        <rect key="frame" x="299.5" y="11.5" width="4.5" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oSp-PZ-bLp">
+                        <rect key="frame" x="262" y="11.5" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gQS-Qi-nBl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="2gK-JU-943"/>
-                    <constraint firstAttribute="trailing" secondItem="GMF-6y-cCk" secondAttribute="trailing" constant="16" id="4oO-qb-aLW"/>
-                    <constraint firstItem="GMF-6y-cCk" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5mE-mE-cjl"/>
-                    <constraint firstItem="gQS-Qi-nBl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="bhw-Hd-rwM"/>
+                    <constraint firstItem="oSp-PZ-bLp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UZ9-By-A0B"/>
+                    <constraint firstAttribute="trailing" secondItem="oSp-PZ-bLp" secondAttribute="trailing" constant="16" id="WFE-89-udw"/>
+                    <constraint firstItem="FQu-hH-ALD" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ioT-a2-SS2"/>
+                    <constraint firstItem="FQu-hH-ALD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="qMA-aA-ERQ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="content" destination="GMF-6y-cCk" id="agk-Ei-KGh"/>
-                <outlet property="title" destination="gQS-Qi-nBl" id="GLH-xv-yWj"/>
+                <outlet property="content" destination="oSp-PZ-bLp" id="lxV-bb-t49"/>
+                <outlet property="title" destination="FQu-hH-ALD" id="8eW-sQ-CEE"/>
             </connections>
-            <point key="canvasLocation" x="122" y="146"/>
+            <point key="canvasLocation" x="139" y="109"/>
         </tableViewCell>
     </objects>
 </document>

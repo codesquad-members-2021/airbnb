@@ -108,7 +108,7 @@ extension TravelListViewController {
                     for response in responses {
                         self.nearPlaces.append(response.toNearPlace())
                     }
-                  }).store(in: &cancellables)
+            }).store(in: &cancellables)
     }
     
     func setUpSearchController() {

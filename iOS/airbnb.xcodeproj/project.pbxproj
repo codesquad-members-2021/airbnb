@@ -29,12 +29,12 @@
 		104665AD265E9502008B2F36 /* NearPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665AC265E9502008B2F36 /* NearPlace.swift */; };
 		104665B0265E9FE6008B2F36 /* UIImageView+LoadFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665AF265E9FE6008B2F36 /* UIImageView+LoadFromURL.swift */; };
 		1049206D265782AD00AA2590 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1049206C265782AD00AA2590 /* ContainerViewController.swift */; };
+		1056C061265F45F000A10FA0 /* FooterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1056C060265F45F000A10FA0 /* FooterTableViewController.swift */; };
+		1056C066265F47A300A10FA0 /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1056C064265F47A300A10FA0 /* FooterTableViewCell.swift */; };
+		1056C067265F47A300A10FA0 /* FooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1056C065265F47A300A10FA0 /* FooterTableViewCell.xib */; };
 		105D4272265DE20E00FCF8F7 /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105D4271265DE20E00FCF8F7 /* CalendarHeader.swift */; };
 		10642205265641F1005B63FD /* TravelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10642204265641F1005B63FD /* TravelListViewController.swift */; };
 		10BAF19D265CD1DA0035D99B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAF19C265CD1DA0035D99B /* CalendarViewController.swift */; };
-		10BAF1A1265CD3E30035D99B /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAF19F265CD3E30035D99B /* FooterTableViewCell.swift */; };
-		10BAF1A2265CD3E30035D99B /* FooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10BAF1A0265CD3E30035D99B /* FooterTableViewCell.xib */; };
-		10BAF1A7265CE3030035D99B /* FooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAF1A6265CE3030035D99B /* FooterViewController.swift */; };
 		10D29C6126538C6800E71840 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D29C6026538C6800E71840 /* AppDelegate.swift */; };
 		10D29C6326538C6800E71840 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D29C6226538C6800E71840 /* SceneDelegate.swift */; };
 		10D29C6A26538C6900E71840 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10D29C6926538C6900E71840 /* Assets.xcassets */; };
@@ -75,12 +75,12 @@
 		104665AC265E9502008B2F36 /* NearPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearPlace.swift; sourceTree = "<group>"; };
 		104665AF265E9FE6008B2F36 /* UIImageView+LoadFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+LoadFromURL.swift"; sourceTree = "<group>"; };
 		1049206C265782AD00AA2590 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		1056C060265F45F000A10FA0 /* FooterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableViewController.swift; sourceTree = "<group>"; };
+		1056C064265F47A300A10FA0 /* FooterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableViewCell.swift; sourceTree = "<group>"; };
+		1056C065265F47A300A10FA0 /* FooterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterTableViewCell.xib; sourceTree = "<group>"; };
 		105D4271265DE20E00FCF8F7 /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
 		10642204265641F1005B63FD /* TravelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelListViewController.swift; sourceTree = "<group>"; };
 		10BAF19C265CD1DA0035D99B /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		10BAF19F265CD3E30035D99B /* FooterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableViewCell.swift; sourceTree = "<group>"; };
-		10BAF1A0265CD3E30035D99B /* FooterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterTableViewCell.xib; sourceTree = "<group>"; };
-		10BAF1A6265CE3030035D99B /* FooterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterViewController.swift; sourceTree = "<group>"; };
 		10D29C5D26538C6800E71840 /* airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10D29C6026538C6800E71840 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10D29C6226538C6800E71840 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,9 +184,9 @@
 		10BAF1A5265CD5660035D99B /* FooterTable */ = {
 			isa = PBXGroup;
 			children = (
-				10BAF19F265CD3E30035D99B /* FooterTableViewCell.swift */,
-				10BAF1A0265CD3E30035D99B /* FooterTableViewCell.xib */,
-				10BAF1A6265CE3030035D99B /* FooterViewController.swift */,
+				1056C060265F45F000A10FA0 /* FooterTableViewController.swift */,
+				1056C064265F47A300A10FA0 /* FooterTableViewCell.swift */,
+				1056C065265F47A300A10FA0 /* FooterTableViewCell.xib */,
 			);
 			path = FooterTable;
 			sourceTree = "<group>";
@@ -341,7 +341,7 @@
 			files = (
 				102FA1F826554C3900B761C7 /* ThemePlaceCell.xib in Resources */,
 				10D29C6D26538C6900E71840 /* LaunchScreen.storyboard in Resources */,
-				10BAF1A2265CD3E30035D99B /* FooterTableViewCell.xib in Resources */,
+				1056C067265F47A300A10FA0 /* FooterTableViewCell.xib in Resources */,
 				10D29C6A26538C6900E71840 /* Assets.xcassets in Resources */,
 				10D29C8F2653A89500E71840 /* Search.storyboard in Resources */,
 				10D29C912653A89F00E71840 /* Login.storyboard in Resources */,
@@ -359,6 +359,7 @@
 			files = (
 				10D29C8D2653A61E00E71840 /* WishListViewController.swift in Sources */,
 				10D29C6126538C6800E71840 /* AppDelegate.swift in Sources */,
+				1056C066265F47A300A10FA0 /* FooterTableViewCell.swift in Sources */,
 				105D4272265DE20E00FCF8F7 /* CalendarHeader.swift in Sources */,
 				10406B58265D2A5A004F4AF9 /* Day.swift in Sources */,
 				100CD084265BA979002224F1 /* LoginCoordinator.swift in Sources */,
@@ -367,11 +368,11 @@
 				100CD07E265B9A1C002224F1 /* SearchCoordinator.swift in Sources */,
 				10E1B17A2653F49D0087B69B /* NearPlaceCell.swift in Sources */,
 				10D29C75265393F800E71840 /* SearchViewController.swift in Sources */,
-				10BAF1A1265CD3E30035D99B /* FooterTableViewCell.swift in Sources */,
 				104665AD265E9502008B2F36 /* NearPlace.swift in Sources */,
 				104665A8265E915B008B2F36 /* EndPoint.swift in Sources */,
 				102FA1FA265550CD00B761C7 /* IdentityInfo.swift in Sources */,
 				10406B5D265D344F004F4AF9 /* CalendarDateCell.swift in Sources */,
+				1056C061265F45F000A10FA0 /* FooterTableViewController.swift in Sources */,
 				104665AB265E915B008B2F36 /* TravelListAPI.swift in Sources */,
 				10406B5B265D2C2D004F4AF9 /* MonthMetadata.swift in Sources */,
 				10D29C8B2653A61500E71840 /* LoginViewController.swift in Sources */,
@@ -389,7 +390,6 @@
 				10E1B1742653DE2F0087B69B /* MainCoordinator.swift in Sources */,
 				10E1B1722653DE0D0087B69B /* Storyboarded.swift in Sources */,
 				10642205265641F1005B63FD /* TravelListViewController.swift in Sources */,
-				10BAF1A7265CE3030035D99B /* FooterViewController.swift in Sources */,
 				104665A9265E915B008B2F36 /* API.swift in Sources */,
 				100CD082265B9A3D002224F1 /* WishListCoordinator.swift in Sources */,
 			);

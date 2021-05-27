@@ -2,12 +2,12 @@
 //  FooterTableViewCell.swift
 //  airbnb
 //
-//  Created by 박혜원 on 2021/05/25.
+//  Created by 박혜원 on 2021/05/27.
 //
 
 import UIKit
 
-class FooterTableViewCell: UITableViewCell, IdentityInfo {
+class FooterTableViewCell: UITableViewCell, IdentityInfo{
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var content: UILabel!
