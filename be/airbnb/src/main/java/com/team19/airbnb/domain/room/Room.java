@@ -1,7 +1,6 @@
 package com.team19.airbnb.domain.room;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.relational.core.mapping.Embedded;
 
 import java.math.BigDecimal;
@@ -17,16 +16,15 @@ public class Room {
 
     //최대인원 필요
 
-    private Double grade;
-    private Integer reviewer;
+    private Review review;
 
     @Embedded.Empty
     private Location location;
 
-    //enum으로 바꿨으면 집전체, 개인실, 호텔객실, 다인실
     private String roomType;
-    //이것도 욕실 몇 개 이런 것 (침대수, 침실 수, 욕실 수) RoomsAndBeds
-    private String roomConfiguration;
+
+    @Embedded.Empty
+    private RoomsAndBeds roomsAndBeds;
     private String description;
 
     @Embedded.Empty
@@ -34,39 +32,36 @@ public class Room {
 
     private BigDecimal pricePerDay;
 
-    @PersistenceConstructor
     Room(Long id,
          String name, List<Image> images,
-         Double grade, Integer reviewer,
+         Review review,
          Location location,
-         String roomType, String roomConfiguration, String description,
+         String roomType, RoomsAndBeds roomsAndBeds, String description,
          Host host,
          BigDecimal pricePerDay) {
         this.id = id;
         this.name = name;
         this.images = images;
-        this.grade = grade;
-        this.reviewer = reviewer;
+        this.review = review;
         this.location = location;
         this.roomType = roomType;
-        this.roomConfiguration = roomConfiguration;
+        this.roomsAndBeds = roomsAndBeds;
         this.description = description;
         this.host = host;
         this.pricePerDay = pricePerDay;
     }
 
     public static Room create(Long id,
-                              String name, List<Image> images,
-                              Double grade, Integer reviewer,
-                              Location location,
-                              String roomType, String roomConfiguration, String description,
-                              Host host,
-                              BigDecimal pricePerDay) {
+                       String name, List<Image> images,
+                       Review review,
+                       Location location,
+                       RoomType roomType, RoomsAndBeds roomsAndBeds, String description,
+                       Host host,
+                       BigDecimal pricePerDay) {
         return new Room(id,
                 name, images,
-                grade, reviewer,
-                location,
-                roomType, roomConfiguration, description,
+                review, location,
+                roomType.name(), roomsAndBeds, description,
                 host,
                 pricePerDay);
     }
@@ -83,28 +78,20 @@ public class Room {
         return images;
     }
 
-    public Double getGrade() {
-        return grade;
-    }
-
-    public Integer getReviewer() {
-        return reviewer;
+    public Review getReview() {
+        return review;
     }
 
     public Location getLocation() {
         return location;
     }
 
-    public BigDecimal getPricePerDay() {
-        return pricePerDay;
-    }
-
     public String getRoomType() {
         return roomType;
     }
 
-    public String getRoomConfiguration() {
-        return roomConfiguration;
+    public RoomsAndBeds getRoomsAndBeds() {
+        return roomsAndBeds;
     }
 
     public String getDescription() {
@@ -113,5 +100,9 @@ public class Room {
 
     public Host getHost() {
         return host;
+    }
+
+    public BigDecimal getPricePerDay() {
+        return pricePerDay;
     }
 }

@@ -20,19 +20,21 @@ USE `airbnb` ;
 DROP TABLE IF EXISTS `airbnb`.`room` ;
 
 CREATE TABLE IF NOT EXISTS `airbnb`.`room` (
-   `id` INT AUTO_INCREMENT,
-   `name` VARCHAR(45) NOT NULL,
-   `grade` DOUBLE NOT NULL,
-   `reviewer` INT NOT NULL,
-   `address` VARCHAR(45) NOT NULL,
-   `latitude` DOUBLE NOT NULL,
-   `longitude` DOUBLE NOT NULL,
-   `price_per_day` DECIMAL NOT NULL,
-   `room_type` VARCHAR(45) NOT NULL,
-   `room_configuration` VARCHAR(45) NOT NULL,
-   `description` TEXT NOT NULL,
-   `host_name` VARCHAR(45) NOT NULL,
-   `host_image` VARCHAR(255) NOT NULL,
+  `id` INT NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `score` DOUBLE NOT NULL,
+  `reviewers` INT NOT NULL,
+  `address` VARCHAR(45) NOT NULL,
+  `latitude` DOUBLE NOT NULL,
+  `longitude` DOUBLE NOT NULL,
+  `room_type` VARCHAR(45) NOT NULL,
+  `beds` INT NOT NULL,
+  `bedRooms` INT NOT NULL,
+  `bathRooms` INT NOT NULL,
+  `description` TEXT NOT NULL,
+  `host_name` VARCHAR(45) NOT NULL,
+  `host_image` VARCHAR(255) NOT NULL,
+  `price_per_day` DECIMAL NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 

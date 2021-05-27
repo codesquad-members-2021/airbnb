@@ -1,9 +1,6 @@
 package com.team19.airbnb.dto;
 
-import com.team19.airbnb.domain.room.Host;
-import com.team19.airbnb.domain.room.Image;
-import com.team19.airbnb.domain.room.Location;
-import com.team19.airbnb.domain.room.Room;
+import com.team19.airbnb.domain.room.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,8 +14,8 @@ public class RoomDetailResponseDTO {
 
     private List<String> images;
 
-    private Double grade;
-    private Integer reviewer;
+    private Double score;
+    private Integer reviewers;
 
     private String location;
     private String[] coordiante;
@@ -41,11 +38,11 @@ public class RoomDetailResponseDTO {
 
         this.images = builder.images;
 
-        this.grade = builder.grade;
-        this.reviewer = builder.reviewer;
+        this.score = builder.score;
+        this.reviewers = builder.reviewers;
 
         this.location = builder.location;
-        this.coordiante = builder.coordiante;
+        this.coordiante = builder.coordinate;
 
         this.roomType = builder.roomType;
         this.roomConfiguration = builder.roomConfiguration;;
@@ -64,17 +61,17 @@ public class RoomDetailResponseDTO {
         private final String roomName;
         private final List<String> images;
 
-        private final Double grade;
-        private final Integer reviewer;
+        private final Double score;
+        private final Integer reviewers;
 
         private final String location;
-        private final String[] coordiante;
+        private final String[] coordinate;
 
         private final String roomType;
         private final String roomConfiguration;
         private final String description;
 
-        private Host host;
+        private final Host host;
 
         private final BigDecimal pricePerDay;
         private BigDecimal totalPrice;
@@ -87,14 +84,14 @@ public class RoomDetailResponseDTO {
                     .map(Image::getUrl)
                     .collect(Collectors.toList());
 
-            this.grade = room.getGrade();
-            this.reviewer = room.getReviewer();
+            this.score = room.getReview().getScore();
+            this.reviewers = room.getReview().getReviewers();
 
             this.location = room.getLocation().getAddress();
-            this.coordiante = coordinate(room.getLocation());
+            this.coordinate = coordinate(room.getLocation());
 
             this.roomType = room.getRoomType();
-            this.roomConfiguration = room.getRoomConfiguration();
+            this.roomConfiguration = roomConfiguration(room.getRoomsAndBeds());
             this.description = room.getDescription();
 
             this.host = room.getHost();
@@ -108,6 +105,16 @@ public class RoomDetailResponseDTO {
             coordinate[0] = location.getLatitude().toString();
             coordinate[1] = location.getLatitude().toString();
             return coordinate;
+        }
+
+        private String roomConfiguration(RoomsAndBeds roomsAndBeds) {
+            StringBuilder stringBuilder = new StringBuilder();
+            return String.valueOf(stringBuilder.append("침구 : ")
+                    .append(roomsAndBeds.getBeds())
+                    .append(" 침실 : ")
+                    .append(roomsAndBeds.getBedRooms())
+                    .append(" 욕실: ")
+                    .append(roomsAndBeds.getBathRooms()));
         }
 
         public Builder totalPrice(BigDecimal totalPrice) {
@@ -132,12 +139,12 @@ public class RoomDetailResponseDTO {
         return images;
     }
 
-    public Double getGrade() {
-        return grade;
+    public Double getScore() {
+        return score;
     }
 
-    public Integer getReviewer() {
-        return reviewer;
+    public Integer getReviewers() {
+        return reviewers;
     }
 
     public String getLocation() {

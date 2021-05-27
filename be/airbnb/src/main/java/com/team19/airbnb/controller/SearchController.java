@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 public class SearchController {
 
+    //room으로 옮깁시다!
     @GetMapping("/search/price/{location}")
     //pathVariable이 아니라 파라미터로 받을 수 있는지?
     public int[] searchPriceRange(@PathVariable String location) {
