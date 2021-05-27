@@ -21,9 +21,7 @@ class PriceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
-        setupPriceRangeControl()
-        setupButtonObserver()
-        setupSkipDeleteButton()
+        setupMainView()
     }
     
     func setupInfo(of location:String, of date:String) {
@@ -32,6 +30,13 @@ class PriceViewController: UIViewController {
 }
 
 private extension PriceViewController {
+    
+    private func setupMainView() {
+        setupPriceRangeControl()
+        setupButtonObserver()
+        setupSkipDeleteButton()
+        setupNextButton()
+    }
     
     private func setupPriceRangeControl() {
         let min = viewModel.getPriceInfo().min() ?? 0
@@ -68,6 +73,13 @@ private extension PriceViewController {
                 default:
                     print("뷰컨 이동구현 데이터 전달 X")
                 }
+            }).disposed(by: rx.disposeBag)
+    }
+    
+    private func setupNextButton() {
+        nextButton.rx.tap
+            .subscribe(onNext: { _ in
+                print("뷰컨 이동궇견 데이터 전달 O")
             }).disposed(by: rx.disposeBag)
     }
 }
