@@ -1,7 +1,6 @@
 import { Modal } from '../../../style/BarStyle'
 import useAxios from '../../../customHook/useAxios'
 import getData from '../../../customHook/axiosAPI'
-import LinearBuffer from '../../../style/Loading'
 import Graph from './Graph'
 interface IFeeType {
   modalType: string

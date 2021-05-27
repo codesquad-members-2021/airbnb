@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { checkInMessage, checkOutMessage } from '../../../customHook/atoms'
 import { DateInfo } from '../../../customHook/useDateInfo'
 interface ICheckProps {
@@ -37,7 +37,6 @@ const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
     currentMonth = MonthList[index - 1]
   }
   const { day: dayOfFirst, dateOfLast } = DateInfo(new Date(`${year}-${currentMonth}-1`))
-  console.log(year, currentMonth, DateInfo(new Date(`${year}-${currentMonth}-1`)))
   const DateArray = Array.from({ length: dateOfLast + dayOfFirst }, (_, i) => {
     if (i < dayOfFirst) return null
     return i - dayOfFirst + 1

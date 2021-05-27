@@ -1,6 +1,9 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import styled from 'styled-components'
 import useModalCtrl from '../../customHook/useModalCtrlArray'
+interface IF_Img {
+  desc: string
+}
 
 const UserInfo = () => {
   const userInfoBtn = useRef<HTMLDivElement>(null)
@@ -10,10 +13,8 @@ const UserInfo = () => {
     modal: userInfoModal,
     init: false,
   })
-  interface IF_Img {
-    desc: string
-  }
-  const IMG: React.FunctionComponent<IF_Img> = ({ desc }) => {
+
+  const IMG = ({ desc }: IF_Img) => {
     return (
       <div>
         <img src={process.env.PUBLIC_URL + desc} alt={desc} />

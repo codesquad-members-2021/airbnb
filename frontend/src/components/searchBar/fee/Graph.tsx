@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { useRecoilState } from 'recoil'
 import { FeeMin, FeeMax } from '../../../customHook/atoms'
-
+import Slider from './Slider'
 interface IGraphProps {
   data: Map<number, number>
 }
@@ -28,11 +28,7 @@ function Graph({ data }: IGraphProps) {
           ))}
         </>
       </Canvas>
-      <CtrlSlide>
-        <MinBtn>⫴</MinBtn>
-        <MaxBtn>⫴</MaxBtn>
-        <Slide slideLength={dataArr.length}></Slide>
-      </CtrlSlide>
+      <Slider data={dataArr} />
       <PriceBox>
         <PriceTag>
           <span>최저요금</span>
@@ -47,33 +43,6 @@ function Graph({ data }: IGraphProps) {
     </GraphWrapper>
   )
 }
-interface ISlide {
-  slideLength: number
-}
-const MinBtn = styled.button`
-  border-radius: 30px;
-  border: 1px solid ${({ theme }) => theme.color.grey_2};
-  position: absolute;
-  left: 0%;
-`
-const MaxBtn = styled.button`
-  border-radius: 30px;
-  border: 1px solid ${({ theme }) => theme.color.grey_2};
-  position: absolute;
-  right: 0%;
-`
-const Slide = styled.div<ISlide>`
-  display: flex;
-  width: ${(props) => props.slideLength * 55}px;
-  height: 3px;
-  background-color: red;
-`
-const CtrlSlide = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
-  top: -20px;
-`
 const GraphWrapper = styled.div`
   display: flex;
   flex-direction: column;

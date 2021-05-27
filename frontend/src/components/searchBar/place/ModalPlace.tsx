@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 import { clickedPlace } from '../../../customHook/atoms'
 import Button from '@material-ui/core/Button'
 import { FaMapMarkedAlt } from 'react-icons/fa'
@@ -8,7 +8,7 @@ import { IModalPropType } from '../../../Interface'
 
 const ModalPlace: React.FunctionComponent<IModalPropType> = ({ modalType }) => {
   const locations = ['서울', '경기', '부산', '광주', '대전', '전주', '강원', '제주']
-  const [placeToSearch, setPlaceToSearch] = useRecoilState(clickedPlace)
+  const setPlaceToSearch = useSetRecoilState(clickedPlace)
   const defaultMsg = '가까운 여행지 둘러보기'
   const handleClick = (location: string) => {
     // console.log('여기에요!', location)
