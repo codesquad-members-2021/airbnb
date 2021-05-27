@@ -251,8 +251,15 @@ extension SearchCityViewController {
 extension SearchCityViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailViewController = DetailDestinationViewController()
-        self.navigationController?.pushViewController(detailViewController, animated: true)
+        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+        
+        if cell is CityCell {
+            let nextViewController = DetailDestinationViewController()
+            self.navigationController?.pushViewController(nextViewController, animated: true)
+        } else if cell is RegionCell {
+            let nextViewController = CalendarViewController()
+            self.navigationController?.pushViewController(nextViewController, animated: true)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
