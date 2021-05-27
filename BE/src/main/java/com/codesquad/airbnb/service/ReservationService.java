@@ -22,4 +22,8 @@ public class ReservationService {
     public Reservation browseReservationById(Long reservationId) {
         return reservationDAO.findReservationById(reservationId);
     }
+
+    public ReservationDetailDTO browseReservationDetailById(Long reservationId) {
+        return reservationDAO.findDetailedReservation(reservationId);
+    }
 }
