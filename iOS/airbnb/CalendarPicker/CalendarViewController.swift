@@ -70,6 +70,7 @@ extension CalendarViewController {
                              firstDay: firstDayOfMonth,
                              firstDayWeekday: firstDayWeekDay)
     }
+    
     func generateDaysInMonth(for baseDate: Date) -> [Day] {
         
         // TODO: Error Handling

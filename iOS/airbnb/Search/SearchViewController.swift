@@ -84,6 +84,7 @@ class SearchViewController : UIViewController {
                     self.places = responses.map{ $0.toNearPlace() }
             }).store(in: &cancellables)
     }
+    
     func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])

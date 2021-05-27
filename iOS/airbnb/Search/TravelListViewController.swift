@@ -144,7 +144,7 @@ extension TravelListViewController : UICollectionViewDelegate {
 
 extension TravelListViewController: UISearchControllerDelegate {
     
-    func didPresentSearchController(_ searchController: UISearchController) {
+func didPresentSearchController(_ searchController: UISearchController) {
         DispatchQueue.main.async {
             searchController.searchBar.becomeFirstResponder()
         }

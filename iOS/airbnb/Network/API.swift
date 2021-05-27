@@ -17,7 +17,6 @@ class API {
     }
     
     func run<T: Decodable>(_ request: DataRequest, _ decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<API.Response<T>, APIError> {
-
         return request
             .validate(contentType: ["application/json"])
             .validate()
@@ -42,6 +41,5 @@ class API {
             })
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
-        
     }
 }
