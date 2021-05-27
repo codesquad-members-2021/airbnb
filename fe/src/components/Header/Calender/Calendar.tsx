@@ -1,4 +1,5 @@
 import { useRecoilState } from 'recoil';
+import React from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -16,8 +17,8 @@ type Props = {
 const Calendar = ({ calendarDate, idx }: Props) => {
   const [checkState, setCheckState] = useRecoilState(isCheckInOut);
   const [selectCheckState, setSelectCheckState] = useRecoilState(checkDate);
-  const { checkin, checkout } = checkState;
 
+  const { checkin, checkout } = checkState;
   const { year, month } = calendarDate;
 
   const currentMonth = new Date(year, month + idx).getMonth() + 1;
@@ -44,7 +45,7 @@ const Calendar = ({ calendarDate, idx }: Props) => {
 
   const dayList = getDayList();
 
-  const chooseCheckIn = (el: HTMLElement) => {
+  const chooseCheckIn = (el: HTMLElement): void => {
     setCheckState({ ...checkState, checkin: true });
     setSelectCheckState({
       ...selectCheckState,
@@ -56,7 +57,7 @@ const Calendar = ({ calendarDate, idx }: Props) => {
     });
   };
 
-  const chooseCheckOut = (el: HTMLElement) => {
+  const chooseCheckOut = (el: HTMLElement): void => {
     setCheckState({ ...checkState, checkout: true });
     setSelectCheckState({
       ...selectCheckState,
@@ -68,30 +69,43 @@ const Calendar = ({ calendarDate, idx }: Props) => {
     });
   };
 
-  const handleClickDay = (e: React.MouseEvent) => {
+  const handleClickDay = (e: React.MouseEvent): void => {
     const el = e.target as HTMLElement;
     if (el.tagName !== 'TD') return;
-    if (checkin === false) {
-      chooseCheckIn(el);
-    } else if (checkin === true && checkout === false) {
-      chooseCheckOut(el);
+
+    if (checkin === false) chooseCheckIn(el);
+    else if (checkin === true && checkout === false) chooseCheckOut(el);
+    else if (checkin === true && checkout === true) {
+      const day = Number(el.textContent);
+      const clickedCurrentDate = new Date(currentYear, currentMonth, day);
+
     }
   };
 
+  const handleMouseOverDay = (e: React.MouseEvent) => {
+    const el = e.target as HTMLTableCellElement;
+    if (!el.closest('TD') || el.textContent === '') return;
+
+  };
+
   return (
-    <StyledDiv onClick={handleClickDay}>
+    <StyledDiv onClick={handleClickDay} onMouseOver={handleMouseOverDay}>
       <h3>
         {currentYear}년 {currentMonth}월
       </h3>
       <DatesWrap>
         <table>
           <tbody>
-            {dayList.map((week, i) => {
+            {dayList.map((week) => {
               return (
                 <tr key={uuidv4()}>
                   {week.map((day) => {
                     if (day === 0) return <td key={uuidv4()}></td>;
-                    return <Day key={day}>{day}</Day>;
+                    return (
+                      <Day key={day} cYear={currentYear} cMonth={currentMonth}>
+                        {day}
+                      </Day>
+                    );
                   })}
                 </tr>
               );
@@ -103,7 +117,7 @@ const Calendar = ({ calendarDate, idx }: Props) => {
   );
 };
 
-export default Calendar;
+export default React.memo(Calendar);
 
 const StyledDiv = styled.div`
   margin: 4rem 3rem;

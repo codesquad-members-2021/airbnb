@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 
 type dateType = {
   year: number;
@@ -45,4 +45,22 @@ const checkDate = atom<check>({
   },
 });
 
-export { calendarDateState, isCheckInOut, checkDate };
+const checkinNewDate = selector({
+  key: 'checkinNewDate',
+  get: ({get}) => {
+    const {checkinDate} = get(checkDate);
+    const {year, month, day} = checkinDate;
+    return new Date(year, month, day);
+  }
+})
+
+const checkoutNewDate = selector({
+  key: 'checkoutNewDate',
+  get: ({get}) => {
+    const {checkoutDate} = get(checkDate);
+    const {year, month, day} = checkoutDate;
+    return new Date(year, month, day);
+  }
+})
+
+export { calendarDateState, isCheckInOut, checkDate, checkinNewDate, checkoutNewDate };
