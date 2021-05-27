@@ -105,7 +105,7 @@ class AccommodationControllerTest {
         return Stream.of(
                 Arguments.arguments(
                         "/accommodations",
-                        new AccommodationRequestDTO(null, null, -1, 0, 0),
+                        new AccommodationRequestDTO(null, null, -1, -1, 0),
                         new ErrorResponse(
                                 400,
                                 "BAD_REQUEST",
@@ -113,7 +113,7 @@ class AccommodationControllerTest {
                                 Arrays.asList(
                                         "numberOfPeople: 0보다 커야 합니다",
                                         "startPrice: 0 이상이어야 합니다",
-                                        "endPrice: 0보다 커야 합니다"
+                                        "endPrice: 0 이상이어야 합니다"
                                 )
                         )
                 ), Arguments.arguments(
@@ -125,7 +125,19 @@ class AccommodationControllerTest {
                                 "Bad Request",
                                 Arrays.asList(
                                         "checkinDate: 현재 또는 미래의 날짜여야 합니다",
-                                        "checkoutDate: 현재 또는 미래의 날짜여야 합니다"
+                                        "checkoutDate: 현재 또는 미래의 날짜여야 합니다",
+                                        "checkInDateBeforeCheckOutDate: 체크인 날짜가 체크아웃 날짜 이전이어야 합니다."
+                                )
+                        )
+                ), Arguments.arguments(
+                        "/accommodations",
+                        new AccommodationRequestDTO(null, null, 10, 0, null),
+                        new ErrorResponse(
+                                400,
+                                "BAD_REQUEST",
+                                "Bad Request",
+                                Arrays.asList(
+                                        "startPriceLessThanOrEqualToEndPrice: 시작 금액이 종료 금액보다 작거나 같아야 합니다."
                                 )
                         )
                 )
