@@ -24,6 +24,11 @@ const calendarDateState = atom<dateType>({
   },
 });
 
+const currentHoverDate = atom<number>({
+  key: 'currentHoverDate',
+  default: 0,
+});
+
 const isCheckInOut = atom<checkINOUT>({
   key: 'isCheckInOut',
   default: { checkin: false, checkout: false },
@@ -47,20 +52,27 @@ const checkDate = atom<check>({
 
 const checkinNewDate = selector({
   key: 'checkinNewDate',
-  get: ({get}) => {
-    const {checkinDate} = get(checkDate);
-    const {year, month, day} = checkinDate;
-    return new Date(year, month, day);
-  }
-})
+  get: ({ get }) => {
+    const { checkinDate } = get(checkDate);
+    const { year, month, day } = checkinDate;
+    return new Date(year, month, day).getTime();
+  },
+});
 
 const checkoutNewDate = selector({
   key: 'checkoutNewDate',
-  get: ({get}) => {
-    const {checkoutDate} = get(checkDate);
-    const {year, month, day} = checkoutDate;
-    return new Date(year, month, day);
-  }
-})
+  get: ({ get }) => {
+    const { checkoutDate } = get(checkDate);
+    const { year, month, day } = checkoutDate;
+    return new Date(year, month, day).getTime();
+  },
+});
 
-export { calendarDateState, isCheckInOut, checkDate, checkinNewDate, checkoutNewDate };
+export {
+  calendarDateState,
+  isCheckInOut,
+  checkDate,
+  checkinNewDate,
+  checkoutNewDate,
+  currentHoverDate,
+};

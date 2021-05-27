@@ -1,9 +1,14 @@
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import React from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
-import { isCheckInOut, checkDate } from '@recoil/atoms/date';
+import {
+  isCheckInOut,
+  checkDate,
+  currentHoverDate,
+  checkinNewDate,
+} from '@recoil/atoms/date';
 import Day from './Day';
 
 type Props = {
@@ -17,6 +22,8 @@ type Props = {
 const Calendar = ({ calendarDate, idx }: Props) => {
   const [checkState, setCheckState] = useRecoilState(isCheckInOut);
   const [selectCheckState, setSelectCheckState] = useRecoilState(checkDate);
+  const [hoverDate, setHoverDate] = useRecoilState(currentHoverDate);
+  const currentCheckinDate = useRecoilValue(checkinNewDate);
 
   const { checkin, checkout } = checkState;
   const { year, month } = calendarDate;
@@ -57,7 +64,29 @@ const Calendar = ({ calendarDate, idx }: Props) => {
     });
   };
 
+  const resetCheckDate = (el: HTMLElement): void => {
+    setCheckState({ ...checkState, checkout: false });
+    setSelectCheckState({
+      checkinDate: {
+        year: currentYear,
+        month: currentMonth,
+        day: Number(el.textContent),
+      },
+      checkoutDate: {
+        year: 0,
+        month: 0,
+        day: 0,
+      },
+    });
+  };
+
+  const checkIfIsValidDate = (currDate: number): boolean => {
+    return currDate < hoverDate ? true : false;
+  };
+
   const chooseCheckOut = (el: HTMLElement): void => {
+    if (!checkIfIsValidDate(currentCheckinDate)) return chooseCheckIn(el);
+
     setCheckState({ ...checkState, checkout: true });
     setSelectCheckState({
       ...selectCheckState,
@@ -71,21 +100,21 @@ const Calendar = ({ calendarDate, idx }: Props) => {
 
   const handleClickDay = (e: React.MouseEvent): void => {
     const el = e.target as HTMLElement;
-    if (el.tagName !== 'TD') return;
+    if (el.tagName !== 'TD' || el.textContent === '') return;
 
     if (checkin === false) chooseCheckIn(el);
     else if (checkin === true && checkout === false) chooseCheckOut(el);
     else if (checkin === true && checkout === true) {
-      const day = Number(el.textContent);
-      const clickedCurrentDate = new Date(currentYear, currentMonth, day);
-
+      currentCheckinDate > hoverDate ? resetCheckDate(el) : chooseCheckOut(el);
     }
   };
 
   const handleMouseOverDay = (e: React.MouseEvent) => {
     const el = e.target as HTMLTableCellElement;
     if (!el.closest('TD') || el.textContent === '') return;
-
+    setHoverDate(
+      new Date(currentYear, currentMonth, Number(el.textContent)).getTime()
+    );
   };
 
   return (

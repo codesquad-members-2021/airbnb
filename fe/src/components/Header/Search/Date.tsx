@@ -27,21 +27,22 @@ const Date = () => {
     setIsOpenCalendar(true);
   };
 
-  const renderCheckDate = ({ year, month, day }: dateType): string => {
-    return `${year}년 ${month}월 ${day}일`;
+  const renderCheckDate = (
+    isChecked: boolean,
+    { year, month, day }: dateType
+  ): string => {
+    return isChecked ? `${year}년 ${month}월 ${day}일` : '날짜 입력!!!!';
   };
 
   return (
     <DateWrap onClick={handleClickDateSerach}>
       <DateStyeld>
         <Title>체크인</Title>
-        <SmallText>{checkin ? renderCheckDate(checkinDate) : '날짜'}</SmallText>
+        <SmallText>{renderCheckDate(checkin, checkinDate)}</SmallText>
       </DateStyeld>
       <DateStyeld>
         <Title>체크아웃</Title>
-        <SmallText>
-          {checkout ? renderCheckDate(checkoutDate) : '날짜'}
-        </SmallText>
+        <SmallText>{renderCheckDate(checkout, checkoutDate)}</SmallText>
       </DateStyeld>
     </DateWrap>
   );

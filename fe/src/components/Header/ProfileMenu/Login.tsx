@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { useSetRecoilState } from 'recoil';
+import styled from 'styled-components';
 
 import { isOpenProfileModal } from '@recoil/atoms/profileModal';
 
@@ -7,6 +7,9 @@ type MouseClick = React.MouseEvent<HTMLElement>;
 
 const Login = () => {
   const setOpenModal = useSetRecoilState(isOpenProfileModal);
+  const clientID = process.env.REACT_APP_CLIENT_ID;
+  const LOGINURL =
+    'https://github.com/login/oauth/authorize?client_id=' + clientID;
 
   const handleModalClick = (e: MouseClick): void => {
     e.stopPropagation();
@@ -16,7 +19,14 @@ const Login = () => {
   return (
     <LoginWrap onClick={handleModalClick}>
       <li>
-        <span>로그인</span>
+        <a href="">
+          <span>회원가입</span>
+        </a>
+      </li>
+      <li>
+        <a href={LOGINURL}>
+          <span>로그인</span>
+        </a>
       </li>
     </LoginWrap>
   );
@@ -28,7 +38,7 @@ const LoginWrap = styled.ul`
   top: 80%;
   right: 25%;
   width: 200px;
-  height: 87px;
+  height: auto;
   background-color: ${({ theme }) => theme.color.white};
   position: absolute;
   border-radius: 10px;
@@ -37,11 +47,15 @@ const LoginWrap = styled.ul`
   z-index: 2;
 
   li {
-    margin: 1rem 0;
-    padding: 1rem 2rem;
-
     &:hover {
       background-color: rgba(51, 51, 51, 0.1);
+    }
+
+    a {
+      display: block;
+      padding: 1rem 1.6rem;
+      text-decoration: none;
+      color: ${({ theme }) => theme.color.black};
     }
   }
 `;
