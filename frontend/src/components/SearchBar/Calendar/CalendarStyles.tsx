@@ -28,7 +28,7 @@ const CalendarSelector = styled.div`
   & > div {
     background-color: #e6e6e6;
     border-radius: 100px;
-    margin-top: 1rem;
+    margin-top: 1.6rem;
     & > button {
       border-radius: 100px;
       border: none;
@@ -55,9 +55,9 @@ const CalendarSelector = styled.div`
 const CalendarLayout = styled.div`
   outline: red solid 1px;
   width: 90%;
-  margin: 1rem;
+  margin: 1.6rem;
   padding: 1.5rem;
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: 600;
   display: flex;
 

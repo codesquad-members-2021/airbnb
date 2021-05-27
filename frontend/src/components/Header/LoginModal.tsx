@@ -33,7 +33,7 @@ const LoginModal = () => {
 
 const LoginModalLayout = styled.ul`
   position: absolute;
-  margin-top: 1rem;
+  margin-top: 1.6rem;
   right: 0%;
   width: 250px;
   background-color: #fff;
@@ -42,12 +42,12 @@ const LoginModalLayout = styled.ul`
   cursor: pointer;
   box-shadow: rgb(0 0 0 12%) 0px 2px 16px;
   list-style: none;
-  padding: 1rem 2rem;
-  font-size: 1rem;
+  padding: 1.6rem 2rem;
+  font-size: 1.6rem;
   z-index: 99;
 
   & > li {
-    padding: 1rem 0;
+    padding: 1.6rem 0;
     &:not(:last-child) {
       border-bottom: 1px solid #c4c4c4;
     }

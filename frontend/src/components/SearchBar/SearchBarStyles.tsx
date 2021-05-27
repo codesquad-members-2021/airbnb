@@ -7,7 +7,7 @@ type TSearchBarBox = {
 const SearchBarTitle = styled.div`
   font-size: 1.2rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 1.6rem;
   padding: 0 10%;
 `;
 const SearchBarText = styled.div`
