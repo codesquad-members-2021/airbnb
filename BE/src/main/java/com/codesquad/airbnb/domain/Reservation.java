@@ -18,8 +18,7 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(Long id, LocalDate checkIn, LocalDate checkOut, int totalPrice, int guestCount, Long userId, Long propertyId) {
-        this.id = id;
+    public Reservation(LocalDate checkIn, LocalDate checkOut, int totalPrice, int guestCount, Long userId, Long propertyId) {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.totalPrice = totalPrice;

@@ -29,13 +29,14 @@ public class ReservationDAO {
 
     private static class ReservationMapper implements RowMapper<Reservation> {
         public Reservation mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
-            return new Reservation(resultSet.getLong("id"),
-                    resultSet.getDate("check_in_date").toLocalDate(),
+            Reservation reservation = new Reservation(resultSet.getDate("check_in_date").toLocalDate(),
                     resultSet.getDate("check_out_date").toLocalDate(),
                     resultSet.getInt("total_price"),
                     resultSet.getInt("guest_count"),
                     resultSet.getLong("user_id"),
                     resultSet.getLong("property_id"));
+            reservation.setId(resultSet.getLong("id"));
+            return reservation;
         }
     }
 
