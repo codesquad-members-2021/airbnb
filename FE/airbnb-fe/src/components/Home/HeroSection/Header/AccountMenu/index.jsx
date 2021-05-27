@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import AccountIcon from './AccountIcon.jsx';
 import AccountModal from './AccountModal.jsx';
@@ -6,21 +6,37 @@ import AccountModal from './AccountModal.jsx';
 import MenuIcon from './MenuIcon.jsx';
 
 const AccountMenu = () => {
+  const AccountModalElement = useRef();
+
   const [isAccountClicked, setIsAccountClicked] = useState(false);
   const handleAccountMenuClick = () => {
-    setIsAccountClicked((isAccountClicked) => !isAccountClicked);
+    setIsAccountClicked(!isAccountClicked);
   };
 
+  useEffect(() => {
+    const modalOff = (e) => {
+      if (isAccountClicked && !AccountModalElement.current.contains(e.target)) {
+        setIsAccountClicked(false);
+      }
+    };
+    document.addEventListener('mousedown', modalOff);
+    return () => {
+      document.removeEventListener('mousedown', modalOff);
+    };
+  }, [isAccountClicked]);
+
   return (
-    <>
+    <AccountMenuDiv ref={AccountModalElement}>
       <IconContainer onClick={() => handleAccountMenuClick()}>
         <MenuIcon />
         <AccountIcon />
       </IconContainer>
-      {isAccountClicked && <AccountModal />}
-    </>
+      <ModalDiv>{isAccountClicked && <AccountModal />}</ModalDiv>
+    </AccountMenuDiv>
   );
 };
+
+const AccountMenuDiv = styled.div``;
 
 const IconContainer = styled.div`
   display: flex;
@@ -34,6 +50,11 @@ const IconContainer = styled.div`
   &:hover {
     cursor: pointer;
   }
+`;
+const ModalDiv = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 
 export default AccountMenu;

@@ -62,6 +62,7 @@ const Search = () => {
         priceData,
         calDispatch,
         calendarData,
+        clicked,
       }}
     >
       <SearchDiv className="searchBar">

@@ -13,7 +13,7 @@ const Calendar = () => {
   const preventClick = () => {
     setTimeout(() => {
       setDisabled(false);
-    }, 300);
+    }, 200);
   };
 
   const handleLeftClick = () => {
@@ -95,7 +95,7 @@ const CalTableWrapper = styled.div`
   display: flex;
   transform: ${({ currentDistance }) => `translateX(${currentDistance}rem)`};
   transition: ${({ currentDistance }) =>
-    currentDistance === -27.2 ? '' : '0.3s ease-in'};
+    currentDistance === -27.2 ? '' : '0.2s ease-in-out'};
 `;
 const CalendarBottom = styled.div`
   display: flex;
@@ -112,7 +112,7 @@ const YearMonthUL = styled.ul`
   display: flex;
   transform: ${({ currentDistance }) => `translateX(${currentDistance}rem)`};
   transition: ${({ currentDistance }) =>
-    currentDistance === -27.2 ? '' : '0.3s ease-in'};
+    currentDistance === -27.2 ? '' : '0.2s ease-in-out'};
 `;
 
 const YearMonthLI = styled.li`

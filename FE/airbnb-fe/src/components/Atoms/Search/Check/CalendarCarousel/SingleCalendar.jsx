@@ -20,8 +20,24 @@ const SingleCalendar = ({ range }) => {
   const checkInDate = new Date(checkInYear, checkInMonth, checkInDay);
   const checkOutDate = new Date(checkOutYear, checkOutMonth, checkOutDay);
 
+  const calcMonth = (year, mon) => {
+    if (mon <= 0) {
+      const count = Math.floor(Math.abs(mon / 12)) + 1;
+      mon += 12 * count;
+      year = year - count;
+    } else if (mon >= 13) {
+      const count = Math.ceil(Math.abs(mon / 12)) - 1;
+      mon -= 12 * count;
+      year = year + count;
+    }
+    return [year, mon];
+  };
+
   const today = new Date(Date.now());
-  const [year, month] = [today.getFullYear(), range + today.getMonth() + 1];
+  const [year, month] = calcMonth(
+    today.getFullYear(),
+    today.getMonth() + 1 + range
+  );
   const monthArr = createMonthArray(year, month);
 
   const handleDisabled = (day) => {
