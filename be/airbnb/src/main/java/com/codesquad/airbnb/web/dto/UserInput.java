@@ -13,8 +13,8 @@ import java.time.temporal.ChronoUnit;
 import static com.codesquad.airbnb.web.exceptions.InvalidUserInputException.*;
 
 @Getter
+@Setter
 @Builder
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
