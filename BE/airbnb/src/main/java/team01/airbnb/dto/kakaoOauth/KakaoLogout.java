@@ -1,4 +1,4 @@
-package team01.airbnb.dto;
+package team01.airbnb.dto.kakaoOauth;
 
 import lombok.Getter;
 import lombok.ToString;
