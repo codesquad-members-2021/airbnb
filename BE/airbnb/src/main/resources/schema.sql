@@ -67,26 +67,6 @@ CREATE TABLE IF NOT EXISTS `airbnb_db`.`reservation` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `airbnb_db`.`reservation_date`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `airbnb_db`.`reservation_date`;
-CREATE TABLE IF NOT EXISTS `airbnb_db`.`reservation_date` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `reserved_date` DATE NULL,
-  `reservation_id` INT NOT NULL,
-  `reservation_accommodation_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `reservation_id`, `reservation_accommodation_id`),
-  INDEX `fk_reservation_date_reservation1_idx` (`reservation_id` ASC, `reservation_accommodation_id` ASC) VISIBLE,
-  CONSTRAINT `fk_reservation_date_reservation1`
-    FOREIGN KEY (`reservation_id` , `reservation_accommodation_id`)
-    REFERENCES `airbnb_db`.`reservation` (`id` , `accommodation_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

@@ -1,5 +1,4 @@
 package mj.airbnb.domain.accommodation;
-import mj.airbnb.service.AccommodationService;
 import mj.airbnb.web.dto.SearchRequestDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +7,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -89,13 +87,6 @@ public class AccommodationRepository {
         }
 
         return jdbcTemplate.query(BASE_SQL, accommodationRowMapper());
-    }
-
-    public List<Accommodation> findAllByDestination(String destination) {
-        String sqlQuery = "SELECT id, name, max_num_of_people, type, num_of_bed, num_of_bathroom, price, address " +
-                "FROM accommodation " +
-                "WHERE address LIKE ? ";
-        return jdbcTemplate.query(sqlQuery, accommodationRowMapper(), "%" + destination + "%");
     }
 
     public List<Accommodation> findPopularDestinations(String destination) {

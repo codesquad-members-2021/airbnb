@@ -66,6 +66,4 @@ public class SearchRequestDto {
     public Integer getNumOfInfant() {
         return numOfInfant;
     }
-
-
 }

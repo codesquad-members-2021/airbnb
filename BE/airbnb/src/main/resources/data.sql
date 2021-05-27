@@ -16,25 +16,3 @@ INSERT INTO reservation (check_in_date, check_out_date, accommodation_id) VALUES
 INSERT INTO reservation (check_in_date, check_out_date, accommodation_id) VALUES ('2021-05-03', '2021-05-05', 1);
 INSERT INTO reservation (check_in_date, check_out_date, accommodation_id) VALUES ('2021-01-21', '2021-01-23', 2);
 INSERT INTO reservation (check_in_date, check_out_date, accommodation_id) VALUES ('2021-02-01', '2021-02-03', 2);
-
--- -----------------------------------------------------
--- reservation_date 초기값 추가
--- -----------------------------------------------------
-
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2021-04-21', 1, 1);
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2021-04-22', 1, 1);
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2021-05-01', 2, 1);
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2021-05-02', 2, 1);
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2021-01-21', 3, 2);
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2021-01-22', 3, 2);
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2021-02-01', 4, 2);
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2021-02-02', 4, 2);
-
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-21', 1, 1);
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-22', 1, 1);
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-01', 2, 1);
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-02', 2, 1);
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-21', 3, 2);
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-22', 3, 2);
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-01', 4, 2);
-INSERT INTO reservation_date (reserved_date, reservation_id, reservation_accommodation_id) VALUES ('2020-11-02', 4, 2);
