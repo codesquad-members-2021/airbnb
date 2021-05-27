@@ -20,13 +20,13 @@ const DateInput = () => {
     <>
       <StyledDateInput>
         <InputItem
-          w="40%"
+          w="50%"
           title="체크인"
           subtitle={CalendarCheckIn}
           onClick={handleClick}
         />
         <InputItem
-          w="60%"
+          w="50%"
           title="체크아웃"
           subtitle={CalendarCheckOut}
           onClick={handleClick}
@@ -54,4 +54,5 @@ const StyledDateInput = styled.div`
 const ModalPosition = css`
   top: 115%;
   left: 0;
+  width: 100%;
 `;

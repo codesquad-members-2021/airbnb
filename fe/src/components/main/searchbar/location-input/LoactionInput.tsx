@@ -3,6 +3,7 @@ import Modal from "components/common/Modal";
 import { css } from "styled-components";
 import { useState } from "react";
 import { MouseEvent } from "react";
+import LocationDefalut from "./LocationDefalut";
 
 const LocationInput = () => {
   const [toggle, setToggle] = useState<Boolean>(false);
@@ -25,7 +26,7 @@ const LocationInput = () => {
         br="40px"
         position={ModalPosition}
       >
-        <div></div>
+        <LocationDefalut />
       </Modal>
     </>
   );
@@ -35,5 +36,5 @@ export default LocationInput;
 
 const ModalPosition = css`
   top: 115%;
-  right: 35%;
+  left: 0;
 `;

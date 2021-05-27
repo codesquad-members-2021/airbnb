@@ -16,7 +16,7 @@ const PeopleInput = () => {
   return (
     <>
       <InputItem
-        w="30%"
+        w="20%"
         title="인원수"
         subtitle={PeopleData}
         onClick={handleClick}

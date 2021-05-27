@@ -35,5 +35,5 @@ export default PriceInput;
 
 const ModalPosition = css`
   top: 115%;
-  right: 35%;
+  right: 21%;
 `;
