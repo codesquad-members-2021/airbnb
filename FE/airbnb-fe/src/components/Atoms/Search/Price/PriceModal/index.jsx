@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import PriceDescription from '../PriceDescription';
-import PriceChart from '../PriceChart';
+import PriceDescription from './PriceDescription';
+import PriceChart from './PriceChart';
 const PriceModal = () => {
   return (
     <PriceModalDiv>

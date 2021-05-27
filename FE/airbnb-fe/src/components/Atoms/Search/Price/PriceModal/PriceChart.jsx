@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import styled from 'styled-components';
-import { SearchContext } from '..';
-import Slider from './Slider';
+import { SearchContext } from '../..';
+import Slider from '../Slider';
 
 const PriceChart = () => {
   const [chart, setChart] = useState({

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { SearchContext } from '..';
+import { SearchContext } from '../..';
 
 const PriceDescription = () => {
   const { priceData } = useContext(SearchContext);
