@@ -57,6 +57,7 @@ private extension MainViewController {
             .when(.ended)
             .subscribe(onNext: { [weak self] _ in
                 let searchVC = self?.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchViewController
+                searchVC.modalTransitionStyle = .crossDissolve
                 searchVC.modalPresentationStyle = .fullScreen
                 self?.present(searchVC, animated: true, completion: nil)
             }).disposed(by: rx.disposeBag)
@@ -97,6 +98,7 @@ extension MainViewController: SecondSectionCellDelegate {
     func move(_ info: String) {
         let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "CanlendarVC") as! CalendarViewController
         nextVC.setupLocation(info)
+        nextVC.modalTransitionStyle = .crossDissolve
         nextVC.modalPresentationStyle = .fullScreen
         self.present(nextVC, animated: true, completion: nil)
     }
