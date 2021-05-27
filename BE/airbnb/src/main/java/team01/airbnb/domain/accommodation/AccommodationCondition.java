@@ -17,14 +17,4 @@ public class AccommodationCondition {
     private int bedCount;
     private int bathroomCount;
 
-    public static AccommodationCondition fromSaveRequestDto(TotalAccommodationSaveRequestDto totalAccommodationSaveRequestDto) {
-        return AccommodationCondition.builder()
-                .accommodationId(totalAccommodationSaveRequestDto.getId())
-                .guests(totalAccommodationSaveRequestDto.getConditionSaveRequestDto().getGuests())
-                .bedroomCount(totalAccommodationSaveRequestDto.getConditionSaveRequestDto().getBedroomCount())
-                .bedCount(totalAccommodationSaveRequestDto.getConditionSaveRequestDto().getBedCount())
-                .bathroomCount(totalAccommodationSaveRequestDto.getConditionSaveRequestDto().getBathroomCount())
-                .build();
-    }
-
 }

@@ -13,11 +13,4 @@ public class AccommodationPhoto {
     private Long accommodationId;
     private String name;
 
-    public static AccommodationPhoto fromSaveRequestDto(TotalAccommodationSaveRequestDto totalAccommodationSaveRequestDto) {
-        return AccommodationPhoto.builder()
-                .accommodationId(totalAccommodationSaveRequestDto.getId())
-                .name(totalAccommodationSaveRequestDto.getPhoto())
-                .build();
-    }
-
 }

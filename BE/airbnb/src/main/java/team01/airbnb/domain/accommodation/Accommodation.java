@@ -23,15 +23,4 @@ public class Accommodation {
     private LocalTime checkIn;
     private LocalTime checkOut;
 
-    public static Accommodation fromSaveRequestDto(TotalAccommodationSaveRequestDto saveRequestDto) {
-        return Accommodation.builder()
-                .hostId(2L) // 임시로 2 고정
-                .name(saveRequestDto.getAccommodationSaveRequestDto().getName())
-                .description(saveRequestDto.getAccommodationSaveRequestDto().getDescription())
-                .chargePerNight(Charge.wons(saveRequestDto.getAccommodationSaveRequestDto().getChargePerNight()))
-                .cleaningCharge(Charge.wons(saveRequestDto.getAccommodationSaveRequestDto().getCleaningCharge()))
-                .checkIn(LocalTime.parse(saveRequestDto.getAccommodationSaveRequestDto().getCheckIn()))
-                .checkOut(LocalTime.parse(saveRequestDto.getAccommodationSaveRequestDto().getCheckOut()))
-                .build();
-    }
 }
