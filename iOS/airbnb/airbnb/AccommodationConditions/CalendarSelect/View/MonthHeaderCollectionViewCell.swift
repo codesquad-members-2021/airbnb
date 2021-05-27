@@ -13,7 +13,13 @@ class MonthHeaderCollectionViewCell: UICollectionViewCell {
         return String(describing: self)
     }
     
-    private weak var month: UILabel?
+    lazy var titleLabel: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.font = .systemFont(ofSize: 23, weight: .semibold)
+        titleLabel.textAlignment = .left
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        return titleLabel
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,16 +31,11 @@ class MonthHeaderCollectionViewCell: UICollectionViewCell {
         configure()
     }
     
-    func configure() {
-        let month = UILabel()
-        self.addSubview(month)
-        self.month = month
-        month.text = "2021년 5월"
-        month.textAlignment = .left
-        month.translatesAutoresizingMaskIntoConstraints = false
+    private func configure() {
+        self.addSubview(titleLabel)
         NSLayoutConstraint.activate([
-            month.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            month.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
+            titleLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     

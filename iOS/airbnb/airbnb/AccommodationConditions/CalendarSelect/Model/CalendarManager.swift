@@ -51,7 +51,7 @@ class CalendarManager {
         for i in 0..<numberOfDays {
             let date = calendar.date(byAdding: .day, value: i, to: firstDay) ?? Date()
             let title = DateFormatter.dateToString(format: DateFormat.day, date: date)
-            let status = isPast(date: date) ? Day.Status.past : Day.Status.future
+            let status = isFuture(date: date) ? Day.Status.future : Day.Status.past
             days.append(Day(date: date, title: title, status: status))
         }
         
@@ -59,10 +59,14 @@ class CalendarManager {
         return Month(title: title, days: days)
     }
     
-    private func isPast(date: Date, compareTo: Date = Date()) -> Bool {
+    private func isFuture(date: Date, compareTo: Date = Date()) -> Bool {
+        return date > compareTo || isSameDay(date: date)
+    }
+    
+    private func isSameDay(date: Date, compareTo: Date = Date()) -> Bool {
         let day = calendar.dateComponents([.day], from: date).day!
         let dayToCompare = calendar.dateComponents([.day], from: compareTo).day!
-        return day < dayToCompare
+        return day == dayToCompare
     }
 
 }

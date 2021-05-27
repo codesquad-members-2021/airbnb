@@ -13,7 +13,12 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         return String(describing: self)
     }
     
-    private weak var day: UILabel?
+    lazy var titleLabel: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.textAlignment = .center
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        return titleLabel
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,17 +30,29 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         configure()
     }
     
-    func configure() {
-        let day = UILabel()
-        self.addSubview(day)
-        self.day = day
-        day.text = "39"
-        day.textAlignment = .center
-        day.translatesAutoresizingMaskIntoConstraints = false
+    private func configure() {
+        self.addSubview(titleLabel)
         NSLayoutConstraint.activate([
-            day.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
-            day.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
+            titleLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
         ])
+    }
+
+    func futureMode() {
+        titleLabel.isHidden = false
+        titleLabel.textColor = .black
+        isUserInteractionEnabled = true
+    }
+    
+    func pastMode() {
+        titleLabel.isHidden = false
+        titleLabel.textColor = .lightGray
+        isUserInteractionEnabled = false
+    }
+    
+    func emptyMode() {
+        titleLabel.isHidden = true
+        isUserInteractionEnabled = false
     }
     
 }
