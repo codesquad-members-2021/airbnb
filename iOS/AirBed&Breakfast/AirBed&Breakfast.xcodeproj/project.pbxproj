@@ -20,8 +20,6 @@
 		885CEB522653957A00B3291F /* SearchResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885CEB502653957A00B3291F /* SearchResultCollectionViewCell.xib */; };
 		885CEB5E2656355200B3291F /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB5D2656355200B3291F /* SetUpViewController.swift */; };
 		885CEB65265639FF00B3291F /* ReservationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB64265639FF00B3291F /* ReservationDetailViewController.swift */; };
-		885CEB6A26563A8200B3291F /* ReservationDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB6826563A8200B3291F /* ReservationDetailTableViewCell.swift */; };
-		885CEB6B26563A8200B3291F /* ReservationDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885CEB6926563A8200B3291F /* ReservationDetailTableViewCell.xib */; };
 		885CEB7026564EDB00B3291F /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 885CEB6F26564EDB00B3291F /* HorizonCalendar */; };
 		886061322657964A00681808 /* DayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886061312657964A00681808 /* DayLabel.swift */; };
 		88606136265796AA00681808 /* DayRangeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88606135265796AA00681808 /* DayRangeIndicatorView.swift */; };
@@ -59,8 +57,6 @@
 		885CEB502653957A00B3291F /* SearchResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCollectionViewCell.xib; sourceTree = "<group>"; };
 		885CEB5D2656355200B3291F /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
 		885CEB64265639FF00B3291F /* ReservationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDetailViewController.swift; sourceTree = "<group>"; };
-		885CEB6826563A8200B3291F /* ReservationDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDetailTableViewCell.swift; sourceTree = "<group>"; };
-		885CEB6926563A8200B3291F /* ReservationDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReservationDetailTableViewCell.xib; sourceTree = "<group>"; };
 		886061312657964A00681808 /* DayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayLabel.swift; sourceTree = "<group>"; };
 		88606135265796AA00681808 /* DayRangeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRangeIndicatorView.swift; sourceTree = "<group>"; };
 		8860613B265A337C00681808 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
@@ -167,7 +163,6 @@
 			children = (
 				8843A7C226523EA80068B4E3 /* Main.storyboard */,
 				885CEB5526539C7500B3291F /* SearchResultCollectionView */,
-				885CEB612656393700B3291F /* ReservationDetailTableView */,
 				886061302657962100681808 /* CalendarView */,
 				8860615D265BED4E00681808 /* PriceSlideView */,
 			);
@@ -202,15 +197,6 @@
 				885CEB502653957A00B3291F /* SearchResultCollectionViewCell.xib */,
 			);
 			path = SearchResultCollectionView;
-			sourceTree = "<group>";
-		};
-		885CEB612656393700B3291F /* ReservationDetailTableView */ = {
-			isa = PBXGroup;
-			children = (
-				885CEB6826563A8200B3291F /* ReservationDetailTableViewCell.swift */,
-				885CEB6926563A8200B3291F /* ReservationDetailTableViewCell.xib */,
-			);
-			path = ReservationDetailTableView;
 			sourceTree = "<group>";
 		};
 		8860612D2657958600681808 /* ViewModel */ = {
@@ -326,7 +312,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8843A7C926523EAA0068B4E3 /* LaunchScreen.storyboard in Resources */,
-				885CEB6B26563A8200B3291F /* ReservationDetailTableViewCell.xib in Resources */,
 				8843A7C626523EAA0068B4E3 /* Assets.xcassets in Resources */,
 				8843A805265241200068B4E3 /* README.md in Resources */,
 				885CEB522653957A00B3291F /* SearchResultCollectionViewCell.xib in Resources */,
@@ -361,7 +346,6 @@
 				8843A7BF26523EA80068B4E3 /* SceneDelegate.swift in Sources */,
 				885CEB512653957A00B3291F /* SearchResultCollectionViewCell.swift in Sources */,
 				88606167265BF5A300681808 /* RangeSlider.swift in Sources */,
-				885CEB6A26563A8200B3291F /* ReservationDetailTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

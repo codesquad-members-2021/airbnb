@@ -43,7 +43,7 @@ class SetUpViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "containerViewSegue" {
+        if segue.identifier == "ContainerViewSegue" {
             reservationDetailViewController = segue.destination as? ReservationDetailViewControllerProtocol
             reservationDetailViewController.setDetailSetUpViewInitializer(as: self)
         }
