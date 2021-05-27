@@ -106,10 +106,10 @@ public class RoomDAO implements RoomRepository {
 
     @Override
     public List<Room> findRoomsByUserInput(UserInput userInput) {
+        userInput.checkLocationAvailable();
         StringBuilder sqlBuilder = new StringBuilder().append(SEARCH_ROOMS_BY_LOCATION);
         MapSqlParameterSource parameter = new MapSqlParameterSource()
                 .addValue("location_name", userInput.lastLocation());
-
         addCheckinFilter(userInput, sqlBuilder, parameter);
         addGuestCountFilter(userInput, sqlBuilder, parameter);
         addPriceRange(userInput, sqlBuilder, parameter);
@@ -118,7 +118,7 @@ public class RoomDAO implements RoomRepository {
     }
 
     private void addCheckinFilter(UserInput userInput, StringBuilder sqlBuilder, MapSqlParameterSource parameter) {
-        if (userInput.checkStayDurationFilter()) {
+        if (userInput.checkStayDurationAvailable()) {
             sqlBuilder.append(FILTERING_DATE);
             parameter.addValue("stay_start", userInput.getCheckIn())
                     .addValue("stay_end", userInput.getCheckOut());
@@ -126,14 +126,14 @@ public class RoomDAO implements RoomRepository {
     }
 
     private void addGuestCountFilter(UserInput userInput, StringBuilder sqlBuilder, MapSqlParameterSource parameter) {
-        if (userInput.checkGuestCountFilter()) {
+        if (userInput.checkGuestCountAvailable()) {
             sqlBuilder.append(FILTERING_GUEST_COUNT);
             parameter.addValue("guest_count", userInput.guestCount());
         }
     }
 
     private void addPriceRange(UserInput userInput, StringBuilder sqlBuilder, MapSqlParameterSource parameter) {
-        if (userInput.checkPriceRangeFilter()) {
+        if (userInput.checkPriceRangeAvailable()) {
             sqlBuilder.append(FILTERING_PRICE);
             parameter.addValue("stay_day", userInput.stayDay())
                     .addValue("cost_minimum", userInput.getPriceMinimum())

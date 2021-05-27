@@ -22,3 +22,9 @@ update user
 set access_token = :access_token
 where id = :id;
 """
+
+const val FIND_GUEST: String = """
+select u.id, u.name, u.profile_image from guest
+join user u on u.id = guest.user_id
+where user_id = :guest_id;
+"""

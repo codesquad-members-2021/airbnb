@@ -36,7 +36,7 @@ class QueryStringToUserInputTest {
                 .checkIn(LocalDate.parse("2021-05-01", DATE_TIME_FORMATTER))
                 .checkOut(LocalDate.parse("2021-04-01", DATE_TIME_FORMATTER))
                 .build();
-        assertThatThrownBy(userInput::checkStayDurationFilter)
+        assertThatThrownBy(userInput::checkStayDurationAvailable)
                 .isInstanceOf(InvalidUserInputException.class)
                 .hasMessageContaining(InvalidUserInputException.NO_STAY_DAYS);
     }
@@ -46,7 +46,7 @@ class QueryStringToUserInputTest {
     void testHasCheckInAndOut1() {
         UserInput userInput = UserInput.builder()
                 .build();
-        assertThat(userInput.checkStayDurationFilter()).isFalse();
+        assertThat(userInput.checkStayDurationAvailable()).isFalse();
     }
 
     @Test
@@ -55,7 +55,7 @@ class QueryStringToUserInputTest {
         UserInput userInput = UserInput.builder()
                 .checkIn(LocalDate.parse("2021-05-01"))
                 .build();
-        assertThat(userInput.checkStayDurationFilter()).isFalse();
+        assertThat(userInput.checkStayDurationAvailable()).isFalse();
     }
 
     @Test
@@ -64,7 +64,7 @@ class QueryStringToUserInputTest {
         UserInput userInput = UserInput.builder()
                 .adultCount(2)
                 .build();
-        assertThat(userInput.checkGuestCountFilter()).isFalse();
+        assertThat(userInput.checkGuestCountAvailable()).isFalse();
     }
 
     @Test
@@ -75,7 +75,7 @@ class QueryStringToUserInputTest {
                 .childCount(0)
                 .infantCount(0)
                 .build();
-        assertThat(userInput.checkGuestCountFilter()).isTrue();
+        assertThat(userInput.checkGuestCountAvailable()).isTrue();
         assertThat(userInput.guestCount()).isEqualTo(2);
     }
 
@@ -85,7 +85,7 @@ class QueryStringToUserInputTest {
         UserInput userInput = UserInput.builder()
                 .priceMinimum(100)
                 .build();
-        assertThat(userInput.checkPriceRangeFilter()).isFalse();
+        assertThat(userInput.checkPriceRangeAvailable()).isFalse();
     }
 
     @Test
@@ -95,7 +95,7 @@ class QueryStringToUserInputTest {
                 .priceMinimum(1000)
                 .priceMaximum(10000)
                 .build();
-        assertThat(userInput.checkPriceRangeFilter()).isTrue();
+        assertThat(userInput.checkPriceRangeAvailable()).isTrue();
     }
 
     @Test
@@ -105,7 +105,7 @@ class QueryStringToUserInputTest {
                 .priceMinimum(10000)
                 .priceMaximum(1000)
                 .build();
-        assertThatThrownBy(userInput::checkPriceRangeFilter)
+        assertThatThrownBy(userInput::checkPriceRangeAvailable)
                 .isInstanceOf(InvalidUserInputException.class)
                 .hasMessageContaining(InvalidUserInputException.PRICE_RANGE_ERROR);
     }

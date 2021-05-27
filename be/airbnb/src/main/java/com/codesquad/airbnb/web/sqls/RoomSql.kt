@@ -70,12 +70,9 @@ and r.guest_capacity >= :guest_count
 const val FILTERING_DATE: String = """
 and (
     select if(count(id) = 0, true, false) reservationable
-    from (select *
-          from reservation
-          where room_id = (select id from room where id = r.id)
-         ) reservation
-    where (:stay_start between reservation.checkin_date_time and reservation.checkout_date_time
-        and
-           :stay_end between reservation.checkin_date_time and reservation.checkout_date_time)
+from reservation rsv
+where rsv.room_id = r.id
+  and rsv.checkin_date_time < :stay_end
+  and rsv.checkout_date_time > :stay_start
 )
 """

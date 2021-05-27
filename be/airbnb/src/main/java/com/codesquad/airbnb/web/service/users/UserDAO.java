@@ -1,8 +1,10 @@
 package com.codesquad.airbnb.web.service.users;
 
+import com.codesquad.airbnb.web.domain.user.Guest;
 import com.codesquad.airbnb.web.domain.user.OAuthAuthenticater;
 import com.codesquad.airbnb.web.domain.user.User;
 import com.codesquad.airbnb.web.domain.user.UserRepository;
+import com.codesquad.airbnb.web.service.mapper.GuestMapper;
 import com.codesquad.airbnb.web.service.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -23,10 +25,12 @@ public class UserDAO implements UserRepository {
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
     private final UserMapper userMapper;
+    private final GuestMapper guestMapper;
 
-    public UserDAO(NamedParameterJdbcTemplate jdbcTemplate, UserMapper userMapper) {
+    public UserDAO(NamedParameterJdbcTemplate jdbcTemplate, UserMapper userMapper, GuestMapper guestMapper) {
         this.jdbcTemplate = jdbcTemplate;
         this.userMapper = userMapper;
+        this.guestMapper = guestMapper;
     }
 
     @Override
@@ -63,5 +67,17 @@ public class UserDAO implements UserRepository {
                 .addValue("id", id)
                 .addValue("access_token", newToken);
         jdbcTemplate.update(UPDATE_TOKEN, mapSqlParameterSource);
+    }
+
+    @Override
+    public Optional<Guest> findGuest(int guestId) {
+        MapSqlParameterSource parameter = new MapSqlParameterSource()
+                .addValue("guest_id", guestId);
+        try {
+            Guest guest = jdbcTemplate.queryForObject(FIND_GUEST, parameter, guestMapper);
+            return Optional.ofNullable(guest);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 }

@@ -8,4 +8,6 @@ public interface UserRepository {
     Optional<User> findUserByAuthenticatedByAndOauthId(OAuthAuthenticater oAuthAuthenticater, String oauthId);
 
     void updateAccessToken(int id, String newToken);
+
+    Optional<Guest> findGuest(int guestId);
 }

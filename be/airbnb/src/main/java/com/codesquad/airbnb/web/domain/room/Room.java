@@ -1,6 +1,7 @@
 package com.codesquad.airbnb.web.domain.room;
 
 import com.codesquad.airbnb.web.domain.user.Host;
+import com.codesquad.airbnb.web.exceptions.ReservationFailedException;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Builder;
@@ -10,6 +11,8 @@ import org.springframework.data.geo.Point;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.codesquad.airbnb.web.exceptions.ReservationFailedException.GUEST_CAPACITY_EXCEED;
 
 @Getter
 @Builder
@@ -46,5 +49,11 @@ public class Room {
 
     public void addImages(List<RoomImage> images) {
         detailImages.addAll(images);
+    }
+
+    public void checkGuestCapacity(int guestCount) {
+        if (guestCapacity < guestCount) {
+            throw new ReservationFailedException(GUEST_CAPACITY_EXCEED);
+        }
     }
 }

@@ -59,17 +59,23 @@ values (1, 500, 1000, 2500, 20000, 5),
 
 insert into reservation(id, room_id, guest_id, checkin_date_time, checkout_date_time, adult_count, child_count,
                         infant_count)
-values (1, 1, 2, '2021-05-20 00:00:00', '2021-05-25 00:00:00', 2, 0, 0),
-       (2, 1, 2, '2021-05-27 00:00:00', '2021-05-28 00:00:00', 2, 0, 0),
-       (3, 1, 2, '2021-05-30 00:00:00', '2021-06-02 00:00:00', 2, 0, 0),
-       (4, 2, 2, '2021-05-27 00:00:00', '2021-05-28 00:00:00', 2, 0, 0),
-       (5, 3, 2, '2021-05-30 00:00:00', '2021-06-02 00:00:00', 2, 0, 0)
+values (1, 1, 2, '2021-05-20', '2021-05-25', 2, 0, 0),
+       (2, 1, 2, '2021-05-27', '2021-05-28', 2, 0, 0),
+       (3, 1, 2, '2021-05-30', '2021-06-02', 2, 0, 0),
+       (4, 2, 2, '2021-05-27', '2021-05-28', 2, 0, 0),
+       (5, 3, 2, '2021-05-30', '2021-06-02', 2, 0, 0)
 ;
 
 insert into user (id, oauth_id, authenticated_by, nickname, name, profile_image, access_token)
 values (1, 'kachinsky', 'GITHUB', 'Kachinsky', 'Milo Kachinsky',
         'https://static.wikia.nocookie.net/starcraft/images/d/d5/Kachinsky_SC2_Head1.jpg/revision/latest/top-crop/width/360/height/360?cb=20100722105327',
-        'kachinsky_token');
+        'kachinsky_token')
+        ,(2, 'doctor', 'GITHUB', 'capaldiDoctor', 'peter capaldi',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfMhZZ18nRIxY6J-BF-n45XD21XNKzw1xh1A&usqp=CAU',
+        'doctor_token');
 
 insert into host (user_id, is_superhost)
 values (1, true);
+
+insert into guest (user_id)
+values (2);

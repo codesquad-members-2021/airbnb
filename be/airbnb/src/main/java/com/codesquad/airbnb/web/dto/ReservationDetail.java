@@ -1,0 +1,22 @@
+package com.codesquad.airbnb.web.dto;
+
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import lombok.Builder;
+import lombok.Getter;
+
+import java.time.LocalDate;
+
+@Getter
+@Builder
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+public class ReservationDetail {
+    private int id;
+    private int guestId;
+    private int roomId;
+    private LocalDate checkinDateTime;
+    private LocalDate checkoutDateTime;
+    private int adultCount;
+    private int childCount;
+    private int infantCount;
+}

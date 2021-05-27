@@ -3,23 +3,20 @@ package com.codesquad.airbnb.web.dto;
 import com.codesquad.airbnb.web.exceptions.InvalidUserInputException;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
-import static com.codesquad.airbnb.web.exceptions.InvalidUserInputException.NO_STAY_DAYS;
-import static com.codesquad.airbnb.web.exceptions.InvalidUserInputException.PRICE_RANGE_ERROR;
+import static com.codesquad.airbnb.web.exceptions.InvalidUserInputException.*;
 
 @Getter
 @Builder
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class UserInput {
     private static final String STRING_DATE_TIME_FORMAT = "yyyy-MM-dd";
@@ -37,7 +34,14 @@ public class UserInput {
     private Integer priceMinimum;
     private Integer priceMaximum;
 
-    public boolean checkStayDurationFilter() {
+    public void checkLocationAvailable() {
+        boolean isAvailable = location != null && !location.isEmpty();
+        if (!isAvailable) {
+            throw new InvalidUserInputException(NO_LOCATION_INFORMATION);
+        }
+    }
+
+    public boolean checkStayDurationAvailable() {
         if (isStayDurationNull()) {
             return false;
         }
@@ -52,11 +56,11 @@ public class UserInput {
         return checkIn == null || checkOut == null;
     }
 
-    public boolean checkGuestCountFilter() {
+    public boolean checkGuestCountAvailable() {
         return adultCount != null && childCount != null && infantCount != null;
     }
 
-    public boolean checkPriceRangeFilter() {
+    public boolean checkPriceRangeAvailable() {
         boolean isNotNull = priceMinimum != null && priceMaximum != null;
         if (!isNotNull) {
             return false;
@@ -67,15 +71,20 @@ public class UserInput {
         return true;
     }
 
+    public void verifyUserInputIsReservationable() {
+        checkGuestCountAvailable();
+        checkStayDurationAvailable();
+    }
+
     public int guestCount() {
-        if (checkGuestCountFilter()) {
+        if (checkGuestCountAvailable()) {
             return adultCount + childCount + infantCount;
         }
         return DEFAULT_GUEST_COUNT;
     }
 
     public int stayDay() {
-        if (checkStayDurationFilter()) {
+        if (checkStayDurationAvailable()) {
             return Math.toIntExact(checkIn.until(checkOut, ChronoUnit.DAYS));
         } else return 1;
     }
