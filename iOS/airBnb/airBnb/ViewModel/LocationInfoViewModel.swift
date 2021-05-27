@@ -33,13 +33,19 @@ class LocationInfoViewModel {
     
     func releaseSelectDates() -> AnyPublisher<String, Never> {
         return searchManager.$selectDates
-            .map { $0.convertDateString() }
+            .map { $0.show() }
             .eraseToAnyPublisher()
     }
     
     func isEmptySelectDates() -> AnyPublisher<Bool, Never> {
         return searchManager.$selectDates
             .map { $0.start != nil && $0.end != nil }
+            .eraseToAnyPublisher()
+    }
+    
+    func releasePriceRange() -> AnyPublisher<String, Never> {
+        return searchManager.$priceRange
+            .map { $0.show() }
             .eraseToAnyPublisher()
     }
     
@@ -73,8 +79,7 @@ class LocationInfoViewModel {
                 .map { $0.isEmpty ? "건너뛰기" : "지우기" }
                 .eraseToAnyPublisher()
         case .price:
-            return searchManager.$price
-                .map { $0.isEmpty ? "건너뛰기" : "지우기" }
+            return Just("건너뛰기")
                 .eraseToAnyPublisher()
         case .none:
             return Just("건너뛰기")

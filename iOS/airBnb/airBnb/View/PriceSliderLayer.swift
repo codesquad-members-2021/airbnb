@@ -49,7 +49,7 @@ class RangeSliderTrackLayer: CALayer {
         graphPath.lineJoinStyle = .round
         graphPath.lineWidth = 1
         ctx.addPath(graphPath.cgPath)
-        ctx.setFillColor(slider.trackTintColor)
+        ctx.setFillColor(UIColor.darkGray.cgColor)
         ctx.fillPath()
         
         rangeGraphPath.lineCapStyle = .round
@@ -57,7 +57,7 @@ class RangeSliderTrackLayer: CALayer {
         rangeGraphPath.lineWidth = 1
         
         ctx.addPath(rangeGraphPath.cgPath)
-        ctx.setFillColor(slider.trackHighlightTintColor)
+        ctx.setFillColor(UIColor.black.cgColor)
         ctx.fillPath()
     }
 }

@@ -11,13 +11,13 @@ class SearchManager {
      
     @Published var location: String
     @Published private(set) var selectDates: SequenceDates
-    @Published var price: String
+    @Published private(set) var priceRange: PriceRange
     @Published var numberOfPleple: String
     
     init() {
         location = ""
         selectDates = .init(start: nil, end: nil)
-        price = ""
+        priceRange = .init()
         numberOfPleple = ""
     }
     
@@ -30,9 +30,12 @@ class SearchManager {
     }
      
     func resetDates() {
-        selectDates.start = nil
-        selectDates.end = nil
+        selectDates.reset()
         NotificationCenter.default.post(name: .seletDatesReset, object: nil)
+    }
+    
+    func changePrice(from price: priceSlider){
+        priceRange.change(from: price)
     }
 
 }

@@ -11,11 +11,15 @@ import Combine
 class PriceViewController: UIViewController {
     
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var priceRangeLabel: UILabel!
+    @IBOutlet weak var priceMinLabel: UILabel!
+    @IBOutlet weak var priceMaxLabel: UILabel!
     @IBOutlet weak var priceAgeLabel: UILabel!
     private lazy var rangeSlider: priceSlider = {
         let slider = priceSlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.addTarget(self,
+                         action: #selector(priceSliderValueChanged(_:)),
+                         for: .valueChanged)
         return slider
     }()
     
@@ -64,5 +68,13 @@ class PriceViewController: UIViewController {
         addChild(controller)
         controller.view.frame = containerView.bounds
         containerView.addSubview(controller.view)
+    }
+    
+    @objc private func priceSliderValueChanged(_ priceSlider: priceSlider) {
+        searchManager?.changePrice(from: priceSlider)
+        DispatchQueue.main.async { [weak self] in
+            self?.priceMinLabel.text = priceSlider.lowerValue.converNumberFormatter()
+            self?.priceMaxLabel.text = priceSlider.upperValue.converNumberFormatter()
+        }
     }
 }

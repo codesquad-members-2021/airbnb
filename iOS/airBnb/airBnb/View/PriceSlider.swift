@@ -8,21 +8,33 @@
 import UIKit
 
 class priceSlider: UIControl {
-    override var frame: CGRect {
+
+    private static var minRange:CGFloat = 11000
+    private static var maxRange:CGFloat = 1000000
+    private(set) var minimumValue: CGFloat = minRange/maxRange {
         didSet {
-            updateLayerFrames()
+          updateLayerFrames()
         }
     }
-    var trackTintColor = UIColor.darkGray.cgColor
-    var trackHighlightTintColor = UIColor.black.cgColor
-    var minimumValue: CGFloat = 0
-    var maximumValue: CGFloat = 1
-    var lowerValue: CGFloat = 0
-    var upperValue: CGFloat = 1
+    private(set) var maximumValue: CGFloat = maxRange/maxRange {
+        didSet {
+          updateLayerFrames()
+        }
+    }
+    private(set) var lowerValue: CGFloat = minRange/maxRange {
+        didSet {
+          updateLayerFrames()
+        }
+    }
+    private(set) var upperValue: CGFloat = maxRange/maxRange {
+        didSet {
+          updateLayerFrames()
+        }
+    }
     
-    var thumbImage = #imageLiteral(resourceName: "pause-circle")
-    let lowerThumbImageView = UIImageView()
-    let upperThumbImageView = UIImageView()
+    private var thumbImage = #imageLiteral(resourceName: "pause-circle")
+    private let lowerThumbImageView = UIImageView()
+    private let upperThumbImageView = UIImageView()
     
     private var previousLocation = CGPoint()
     private let trackLayer = RangeSliderTrackLayer()
@@ -103,12 +115,7 @@ extension priceSlider {
                                     upperValue: maximumValue)
         }
         
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        
-        updateLayerFrames()
-        CATransaction.commit()
-        
+        sendActions(for: .valueChanged)
         return true
     }
     

@@ -55,6 +55,10 @@ class LocationInfoViewController: UIViewController{
         locationInfoViewModel?.skipAndDeleteString().sink { [weak self] (text) in
             self?.skipAndDeleteButton.setTitle(text, for: .normal)
         }.store(in: &cancellable)
+        
+        locationInfoViewModel?.releasePriceRange().sink { [weak self] (price) in
+            self?.priceLabel.text = price
+        }.store(in: &cancellable)
     }
     
     @IBAction func nextButtonTouched(_ sender: UIButton) {
