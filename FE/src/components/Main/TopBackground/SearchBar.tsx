@@ -1,35 +1,33 @@
-import { FunctionComponent } from 'react';
 import styled, { css } from 'styled-components';
 import { FiSearch } from 'react-icons/fi';
 import { useMainDispatch, useMainState } from '../../../contexts/MainContext';
-
-import { cssTranslate } from '../../../util/styles/CommonStyledCSS';
-import { ResponsiveFluid } from '../../Common/ResponsiveFluid';
 import { ITextTopBackground } from '../../../util/reference';
+
+import { ResponsiveFluid } from '../../Common/ResponsiveFluid';
+import DefaultButton from '../../Common/DefaultButton';
 
 interface ISearchMenuItem {
   isClicked?: boolean;
 }
 
-const SearchBar: FunctionComponent<ITextTopBackground> = ({
-  searchBarTexts,
-}) => {
+const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
   const { menuItems } = searchBarTexts;
 
   const { searchBarClickedIdx } = useMainState();
   const mainDispatch = useMainDispatch();
+
+  const handleSearchMenuItemClick = (idx: number) =>
+    mainDispatch({
+      type: 'CHANGE_SEARCHBAR_CLICKED_IDX',
+      payload: searchBarClickedIdx === idx ? -1 : idx,
+    });
 
   // searchMenuItem(li) 생성
   const searchMenuItems = menuItems.map((item, idx) => (
     <SearchMenuItem
       key={idx}
       isClicked={idx === searchBarClickedIdx}
-      onClick={() => 
-        mainDispatch({
-          type: 'SET_SEARCHBAR_CLICKED_IDX',
-          payload: searchBarClickedIdx === idx ? -1 : idx,
-        })
-      }
+      onClick={() => handleSearchMenuItemClick(idx)}
     >
       {/* 체크인 / 체크아웃, 요금, 인원 */}
       {item.text.split('|').map((txt, i) => (
@@ -50,9 +48,16 @@ const SearchBar: FunctionComponent<ITextTopBackground> = ({
 
   return (
     <SearchBarLayout>
-      <SearchMenuList className="searchbar__list">
-        {searchMenuItems}
-      </SearchMenuList>
+
+      <SearchBarBlock>
+        {/* 검색바 */}
+        <SearchBarRow>
+          <SearchMenuList>{searchMenuItems}</SearchMenuList>
+        </SearchBarRow>
+
+
+      </SearchBarBlock>
+
     </SearchBarLayout>
   );
 };
@@ -64,6 +69,18 @@ const SearchBarLayout = styled(ResponsiveFluid)`
   margin: 0 auto;
   justify-content: center;
   align-items: center;
+`;
+
+const SearchBarBlock = styled.div`
+  position: relative;
+`;
+
+const SearchBarRow = styled.div`
+  & + & {
+    margin-top: 8px;
+  }
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const SearchMenuList = styled.ul`
@@ -125,16 +142,10 @@ const SearchMenuItem = styled.li<ISearchMenuItem>`
       color: ${({ theme }) => theme.colors.gray3};
       min-width: 140px;
     }
-
-    input {
-      ${cssTranslate};
-      padding: 0;
-    }
   }
 `;
 
-const SearchButton = styled.button`
-  ${cssTranslate};
+const SearchButton = styled(DefaultButton)`
   cursor: pointer;
 
   display: flex;
