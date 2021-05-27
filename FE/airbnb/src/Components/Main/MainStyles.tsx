@@ -7,9 +7,33 @@ const Main = {
     position: relative;
   `,
 
-  HiroImage: styled.img`
+  HeroImage: styled.img`
     width: 100%;
     height: 800px;
+  `,
+  HeroText: styled.div`
+    position: absolute;
+    top: 15%;
+    left: 4%;
+  `,
+  HeroMainText: styled.div`
+    width: 250px;
+    line-height: 70px;
+    font-size: 60px;
+    font-weight: 700;
+  `,
+  HeroSubText: styled.div`
+    font-size: 20px;
+    margin: 16px 0px;
+  `,
+  HeroButton: styled.button`
+    color: ${theme.COLOR.WHITE};
+    background: ${theme.COLOR.GRAY1};
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
   `,
 };
 

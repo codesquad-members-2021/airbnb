@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { mainState, errorState } from "./MainRecoil";
+import { mainState, errorState } from "./MainStore";
 import GNB from "@/Components/GNB/GNB";
+import HeroText from "./HeroText";
 import Cities from "./Cities/Cities";
 import Accomodations from "./Accomodations/Accomodations";
 import Footer from "./Footer/Footer";
@@ -28,7 +29,8 @@ const Main = () => {
   return (
     <S.Main>
       <GNB />
-      <S.HiroImage src={mainData.hiroImage} alt="hiroImage" />
+      <HeroText />
+      <S.HeroImage src={mainData.hiroImage} alt="heroImage" />
       <Cities cities={mainData.cities} />
       <Accomodations accomodations={mainData.categories} />
       <Footer />

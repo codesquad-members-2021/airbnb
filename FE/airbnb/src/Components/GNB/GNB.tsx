@@ -12,7 +12,6 @@ const GNB = () => {
       <Menu />
       <MyPage />
       <SearchBar />
-      {/* <MiniSearchBar /> */}
     </S.GNB>
   );
 };

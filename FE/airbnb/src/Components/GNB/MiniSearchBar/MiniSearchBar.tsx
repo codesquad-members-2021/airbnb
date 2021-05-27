@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { selectedInfoState } from "@/Components/GNB/GNBRecoil";
+import { selectedInfoState } from "@/Components/GNB/GNBStore";
 import SearchButton from "./SearchButton";
 import SelectedInfo from "./SelectedInfo";
 import { MiniSearchBar as S } from "@/Components/GNB/GNBStlyes";

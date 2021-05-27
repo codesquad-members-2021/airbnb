@@ -59,7 +59,7 @@ const Footer = () => {
     <S.Footer>
       <S.FooterCardWrapper>
         {footerCardList.map((card) => (
-          <FooterCard card={card} />
+          <FooterCard key={card.title} card={card} />
         ))}
       </S.FooterCardWrapper>
       <FooterBottom />

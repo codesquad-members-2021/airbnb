@@ -12,7 +12,10 @@ const Accomodations = ({ accomodations }: Props) => {
       <Title />
       <S.AccomodationCardGrid>
         {accomodations.map((accomodation) => (
-          <AccomodationCard accomodation={accomodation} />
+          <AccomodationCard
+            key={accomodation.category}
+            accomodation={accomodation}
+          />
         ))}
       </S.AccomodationCardGrid>
     </S.Accomodations>
