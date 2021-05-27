@@ -21,8 +21,10 @@ class TravelListViewController: UIViewController {
     
     weak var coordinator : SearchCoodinator?
     private lazy var dataSource = makeDataSource()
+    
     @Published private var nearPlaces = [NearPlace]()
     private var cancellables = Set<AnyCancellable>()
+    
     private let searchController = UISearchController(searchResultsController: nil)
     private let removeButton = UIBarButtonItem(title: "지우기",
                                                style: .plain,

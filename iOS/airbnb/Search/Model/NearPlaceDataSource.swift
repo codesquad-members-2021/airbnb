@@ -9,7 +9,7 @@ import UIKit
 
 class NearPlaceDataSource: NSObject, UICollectionViewDataSource {
     
-    var places = [NearPlace]()
+    @Published var places = [NearPlace]()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return places.count

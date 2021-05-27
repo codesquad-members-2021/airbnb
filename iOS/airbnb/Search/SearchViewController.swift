@@ -6,15 +6,16 @@
 //
 
 import UIKit
+import Combine
 
 class SearchViewController : UIViewController {
     
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, NearPlace>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, NearPlace>
+    typealias CellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, NearPlace>
+    
     @IBOutlet weak var nearPlaceCollection: UICollectionView!
     @IBOutlet weak var themePlaceCollection: UICollectionView!
-    
-    weak var coordinator : SearchCoodinator?
-    private var nearPlaceDataSource = NearPlaceDataSource()
-    private var themePlaceDataSource = ThemePlaceDataSource()
     
     private let searchBar : UISearchBar = {
         let bar = UISearchBar()
@@ -22,14 +23,28 @@ class SearchViewController : UIViewController {
         return bar
     }()
     
+    weak var coordinator : SearchCoodinator?
+    private var cellregisration : CellRegistration? = nil
+    private var nearPlaceDataSource : DataSource? = nil
+    @Published private var places = [NearPlace]()
+    private var themePlaceDataSource = ThemePlaceDataSource()
+    private var cancellables = Set<AnyCancellable>()
+    
+    // MARK: - Constant
+    
+    private let limitCountOfNearPlace = 6
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.titleView = searchBar
         searchBar.delegate = self
-        
+//        cellregisration = makeCellRegistration()
+        nearPlaceDataSource = makeDataSource()
         nearPlaceCollection.dataSource = nearPlaceDataSource
         themePlaceCollection.dataSource = themePlaceDataSource
+        
+        fetchData()
         registerNib()
     }
     
@@ -46,6 +61,48 @@ class SearchViewController : UIViewController {
         let specialNib = UINib(nibName: ThemePlaceCell.nibName, bundle: nil)
         themePlaceCollection?.register(specialNib, forCellWithReuseIdentifier: ThemePlaceCell.reuseIdentifier)
         themePlaceCollection?.register(headerNib, forCellWithReuseIdentifier: HeaderReusableView.reuseIdentifier)
+    }
+
+    func makeDataSource() -> DataSource {
+        let dataSource = DataSource(
+            collectionView: nearPlaceCollection,
+            cellProvider: { ( collectionview, indexPath, card) -> UICollectionViewCell? in
+                let cell = collectionview.dequeueReusableCell(withReuseIdentifier: NearPlaceCell.reuseIdentifier, for: indexPath) as? NearPlaceCell
+                cell?.bind(with: self.places[indexPath.row])
+                return cell
+            })
+        return dataSource
+    }
+    
+    func makeCellRegistration() -> CellRegistration {
+        let cellRegistration = CellRegistration { cell, indexPath, place in
+            var content = UIListContentConfiguration.cell()
+            content.directionalLayoutMargins = .zero
+            content.axesPreservingSuperviewLayoutMargins = []
+            
+            cell.contentConfiguration = content
+        }
+        return cellRegistration
+    }
+    
+    func fetchData(){
+        $places.receive(on: DispatchQueue.main)
+            .sink(receiveValue: {[weak self] _ in
+                self?.applySnapshot()
+            })
+            .store(in: &cancellables)
+        
+        TravelListAPI.loadTravelList(type: .search, with: limitCountOfNearPlace)
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { responses in
+                    self.places = responses.map{ $0.toNearPlace() }
+            }).store(in: &cancellables)
+    }
+    func applySnapshot(animatingDifferences: Bool = true) {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(places)
+        nearPlaceDataSource?.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
 
