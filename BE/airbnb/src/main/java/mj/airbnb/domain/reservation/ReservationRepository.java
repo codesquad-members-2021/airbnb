@@ -1,4 +1,5 @@
 package mj.airbnb.domain.reservation;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -7,6 +8,17 @@ import javax.sql.DataSource;
 
 @Repository
 public class ReservationRepository {
+
+    private static RowMapper<Reservation> RESERVATION_ROW_MAPPER() {
+        return (rs, rowNum) -> {
+            Reservation reservation = new Reservation();
+            reservation.setAccommodationId(rs.getLong("accommodation_id"));
+            reservation.setCheckInDate(rs.getDate("check_in_date").toLocalDate());
+            reservation.setCheckOutDate(rs.getDate("check_out_date").toLocalDate());
+
+            return reservation;
+        };
+    }
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -18,17 +30,6 @@ public class ReservationRepository {
         String sqlQuery = "check_in_date, check_out_date, accommodation_id " +
                 "FROM reservation " +
                 "WHERE id = ?";
-        return jdbcTemplate.queryForObject(sqlQuery, reservationRowMapper(), id);
-    }
-
-    private RowMapper<Reservation> reservationRowMapper() {
-        return (rs, rowNum) -> {
-            Reservation reservation = new Reservation();
-            reservation.setAccommodationId(rs.getLong("accommodation_id"));
-            reservation.setCheckInDate(rs.getDate("check_in_date").toLocalDate());
-            reservation.setCheckOutDate(rs.getDate("check_out_date").toLocalDate());
-
-            return reservation;
-        };
+        return jdbcTemplate.queryForObject(sqlQuery, RESERVATION_ROW_MAPPER(), id);
     }
 }

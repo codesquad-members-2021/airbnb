@@ -1,4 +1,5 @@
 package mj.airbnb.domain.accommodation;
+
 import mj.airbnb.web.dto.SearchRequestDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,91 +13,18 @@ import java.util.List;
 @Repository
 public class AccommodationRepository {
 
-    private final JdbcTemplate jdbcTemplate;
-    private final Logger logger = LoggerFactory.getLogger(AccommodationRepository.class);
-
     private static final String BASE_SQL = "SELECT name, max_num_of_people, type, num_of_bed, num_of_bathroom, price, address " +
-                                           "FROM accommodation ";
+                                            "FROM accommodation ";
     private static final String DESTINATION_CONDITION_SQL = "address LIKE ? ";
     private static final String DATE_CONDITION_SQL = "id IN " +
-                                                     "( " +
-                                                     "   SELECT accommodation_id FROM reservation" +
-                                                     "   WHERE (? >= check_out_date) OR (? <= check_in_date)" +
-                                                     ") ";
+                                                    "( " +
+                                                    "   SELECT accommodation_id FROM reservation" +
+                                                    "   WHERE (? >= check_out_date) OR (? <= check_in_date)" +
+                                                    ") ";
     private static final String PRICE_CONDITION_SQL = "(? <= price AND price <= ?) ";
     private static final String PEOPLE_CONDITION_SQL = "max_num_of_people >= ? ";
 
-    public AccommodationRepository(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
-    }
-
-    public List<Accommodation> findAll() {
-        String sqlQuery = "SELECT id, name, max_num_of_people, type, num_of_bed, num_of_bathroom, price, address " +
-                "FROM accommodation";
-        return jdbcTemplate.query(sqlQuery, accommodationRowMapper());
-    }
-
-    public List<Accommodation> findAllByConditions(SearchRequestDto conditions) {
-
-        if (isPresentOfDestination(conditions) && isPresentOfDate(conditions) &&
-                isPresentOfPrice(conditions) && isPresentOfPeople(conditions)) {
-
-            logger.info("지역, 날짜, 가격, 인원 조건 따라 숙소 조회 ");
-
-            String sqlQuery = BASE_SQL +
-                    "WHERE " + DESTINATION_CONDITION_SQL +
-                    "AND " + DATE_CONDITION_SQL +
-                    "AND " + PRICE_CONDITION_SQL +
-                    "AND " + PEOPLE_CONDITION_SQL;
-            return jdbcTemplate.query(sqlQuery, accommodationRowMapper(), "%" + conditions.getDestination() + "%",
-                    conditions.getCheckInDate(), conditions.getCheckOutDate(), conditions.getMinPrice(), conditions.getMaxPrice(),
-                    conditions.getNumOfAdult() + conditions.getNumOfChild() + conditions.getNumOfInfant());
-        }
-
-        if (isPresentOfDestination(conditions) && isPresentOfDate(conditions) && isPresentOfPrice(conditions)) {
-
-            logger.info("지역, 날짜, 가격 조건에 따라 숙소 조회 ");
-
-            String sqlQuery = BASE_SQL +
-                    "WHERE " + DESTINATION_CONDITION_SQL +
-                    "AND " + DATE_CONDITION_SQL +
-                    "AND " + PRICE_CONDITION_SQL;
-            return jdbcTemplate.query(sqlQuery, accommodationRowMapper(), "%" + conditions.getDestination() + "%",
-                    conditions.getCheckInDate(), conditions.getCheckOutDate(), conditions.getMinPrice(), conditions.getMaxPrice());
-        }
-
-        if (isPresentOfDestination(conditions) && isPresentOfDate(conditions)) {
-
-            logger.info("지역, 날짜 조건에 따라 숙소 조회 ");
-
-            String sqlQuery = BASE_SQL +
-                    "WHERE " + DESTINATION_CONDITION_SQL +
-                    "AND " + DATE_CONDITION_SQL;
-            return jdbcTemplate.query(sqlQuery, accommodationRowMapper(), "%" + conditions.getDestination() + "%",
-                    conditions.getCheckInDate(), conditions.getCheckOutDate());
-        }
-
-        if (isPresentOfDestination(conditions)) {
-
-            logger.info("지역 조건에 따라 숙소 조회 ");
-
-            String sqlQuery = BASE_SQL +
-                    "WHERE " + DESTINATION_CONDITION_SQL;
-
-            return jdbcTemplate.query(sqlQuery, accommodationRowMapper(), "%" + conditions.getDestination() + "%");
-        }
-
-        return jdbcTemplate.query(BASE_SQL, accommodationRowMapper());
-    }
-
-    public List<Accommodation> findPopularDestinations(String destination) {
-        String sqlQuery = "SELECT address " +
-                "FROM accommodation " +
-                "WHERE address LIKE ? ";
-        return jdbcTemplate.query(sqlQuery, addressMapper(), "%" + destination + "%");
-    }
-
-    private RowMapper<Accommodation> accommodationRowMapper() {
+    private static RowMapper<Accommodation> ACCOMMODATION_ROW_MAPPER() {
         return (rs, rowNum) -> {
             Accommodation accommodation = new Accommodation();
             accommodation.setName(rs.getString("name"));
@@ -111,13 +39,80 @@ public class AccommodationRepository {
         };
     }
 
-    private RowMapper<Accommodation> addressMapper() {
+    private static RowMapper<Accommodation> ADDRESS_ROW_MAPPER() {
         return (rs, rowNum) -> {
             Accommodation accommodation = new Accommodation();
             accommodation.setAddress(rs.getString("address"));
 
             return accommodation;
         };
+    }
+
+    private final JdbcTemplate jdbcTemplate;
+    private final Logger logger = LoggerFactory.getLogger(AccommodationRepository.class);
+
+    public AccommodationRepository(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    public List<Accommodation> findAllByConditions(SearchRequestDto conditions) {
+
+        if (isPresentOfDestination(conditions) && isPresentOfDate(conditions) &&
+                isPresentOfPrice(conditions) && isPresentOfPeople(conditions)) {
+
+            logger.info("지역, 날짜, 가격, 인원 조건 따라 숙소 조회 ");
+
+            String sqlQuery = BASE_SQL +
+                    "WHERE " + DESTINATION_CONDITION_SQL +
+                    "AND " + DATE_CONDITION_SQL +
+                    "AND " + PRICE_CONDITION_SQL +
+                    "AND " + PEOPLE_CONDITION_SQL;
+            return jdbcTemplate.query(sqlQuery, ACCOMMODATION_ROW_MAPPER(), "%" + conditions.getDestination() + "%",
+                    conditions.getCheckInDate(), conditions.getCheckOutDate(), conditions.getMinPrice(), conditions.getMaxPrice(),
+                    conditions.getNumOfAdult() + conditions.getNumOfChild() + conditions.getNumOfInfant());
+        }
+
+        if (isPresentOfDestination(conditions) && isPresentOfDate(conditions) && isPresentOfPrice(conditions)) {
+
+            logger.info("지역, 날짜, 가격 조건에 따라 숙소 조회 ");
+
+            String sqlQuery = BASE_SQL +
+                    "WHERE " + DESTINATION_CONDITION_SQL +
+                    "AND " + DATE_CONDITION_SQL +
+                    "AND " + PRICE_CONDITION_SQL;
+            return jdbcTemplate.query(sqlQuery, ACCOMMODATION_ROW_MAPPER(), "%" + conditions.getDestination() + "%",
+                    conditions.getCheckInDate(), conditions.getCheckOutDate(), conditions.getMinPrice(), conditions.getMaxPrice());
+        }
+
+        if (isPresentOfDestination(conditions) && isPresentOfDate(conditions)) {
+
+            logger.info("지역, 날짜 조건에 따라 숙소 조회 ");
+
+            String sqlQuery = BASE_SQL +
+                    "WHERE " + DESTINATION_CONDITION_SQL +
+                    "AND " + DATE_CONDITION_SQL;
+            return jdbcTemplate.query(sqlQuery, ACCOMMODATION_ROW_MAPPER(), "%" + conditions.getDestination() + "%",
+                    conditions.getCheckInDate(), conditions.getCheckOutDate());
+        }
+
+        if (isPresentOfDestination(conditions)) {
+
+            logger.info("지역 조건에 따라 숙소 조회 ");
+
+            String sqlQuery = BASE_SQL +
+                    "WHERE " + DESTINATION_CONDITION_SQL;
+
+            return jdbcTemplate.query(sqlQuery, ACCOMMODATION_ROW_MAPPER(), "%" + conditions.getDestination() + "%");
+        }
+
+        return jdbcTemplate.query(BASE_SQL, ACCOMMODATION_ROW_MAPPER());
+    }
+
+    public List<Accommodation> findPopularDestinations(String destination) {
+        String sqlQuery = "SELECT address " +
+                        "FROM accommodation " +
+                        "WHERE address LIKE ? ";
+        return jdbcTemplate.query(sqlQuery, ADDRESS_ROW_MAPPER(), "%" + destination + "%");
     }
 
     private boolean isPresentOfDestination(SearchRequestDto requestDto) {
