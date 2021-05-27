@@ -9,16 +9,15 @@ import javax.sql.DataSource;
 @Repository
 public class ReservationRepository {
 
-    private static RowMapper<Reservation> RESERVATION_ROW_MAPPER() {
-        return (rs, rowNum) -> {
-            Reservation reservation = new Reservation();
-            reservation.setAccommodationId(rs.getLong("accommodation_id"));
-            reservation.setCheckInDate(rs.getDate("check_in_date").toLocalDate());
-            reservation.setCheckOutDate(rs.getDate("check_out_date").toLocalDate());
+    private static final RowMapper<Reservation> RESERVATION_ROW_MAPPER = (rs, rowNum) -> {
+        Reservation reservation = new Reservation();
+        reservation.setAccommodationId(rs.getLong("accommodation_id"));
+        reservation.setCheckInDate(rs.getDate("check_in_date").toLocalDate());
+        reservation.setCheckOutDate(rs.getDate("check_out_date").toLocalDate());
 
-            return reservation;
-        };
-    }
+        return reservation;
+    };
+
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -30,6 +29,6 @@ public class ReservationRepository {
         String sqlQuery = "check_in_date, check_out_date, accommodation_id " +
                 "FROM reservation " +
                 "WHERE id = ?";
-        return jdbcTemplate.queryForObject(sqlQuery, RESERVATION_ROW_MAPPER(), id);
+        return jdbcTemplate.queryForObject(sqlQuery, RESERVATION_ROW_MAPPER, id);
     }
 }
