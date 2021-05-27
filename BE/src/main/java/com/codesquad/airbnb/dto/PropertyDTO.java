@@ -10,22 +10,26 @@ public class PropertyDTO {
     private long totalPrice;
     private int reviewCount;
     private double rating;
+    private double latitude;
+    private double longitude;
 
     public PropertyDTO() {
     }
 
-    public PropertyDTO(Long propertyId, String title, boolean bookmark, int pricePerNight, int reviewCount, double rating) {
+    public PropertyDTO(Long propertyId, String title, boolean bookmark, int pricePerNight, int reviewCount, double rating, double latitude, double longitude) {
         this.propertyId = propertyId;
         this.title = title;
         this.bookmark = bookmark;
         this.pricePerNight = pricePerNight;
         this.reviewCount = reviewCount;
         this.rating = rating;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
-    public static PropertyDTO of(Long propertyId, String propertyTitle, boolean bookmark, int price, int reviewCount, double rating) {
+    public static PropertyDTO of(Long propertyId, String propertyTitle, boolean bookmark, int price, int reviewCount, double rating, double latitude, double longitude) {
         return new PropertyDTO(propertyId, propertyTitle, bookmark, price,
-                reviewCount, rating);
+                reviewCount, rating, latitude, longitude);
     }
 
     public void setImages(String images) {
@@ -70,15 +74,17 @@ public class PropertyDTO {
 
     @Override
     public String toString() {
-        return "PropertyDto{" +
+        return "PropertyDTO{" +
                 "propertyId=" + propertyId +
-                ", images=" + images +
+                ", images='" + images + '\'' +
                 ", title='" + title + '\'' +
                 ", bookmark=" + bookmark +
                 ", pricePerNight=" + pricePerNight +
                 ", totalPrice=" + totalPrice +
                 ", reviewCount=" + reviewCount +
                 ", rating=" + rating +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
                 '}';
     }
 }
