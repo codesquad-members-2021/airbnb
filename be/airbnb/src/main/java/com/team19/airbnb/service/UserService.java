@@ -1,7 +1,6 @@
 package com.team19.airbnb.service;
 
 import com.team19.airbnb.domain.User;
-import com.team19.airbnb.domain.Wishlist;
 import com.team19.airbnb.exception.UserNotFoundException;
 import com.team19.airbnb.repository.UserDAO;
 import org.springframework.stereotype.Service;
@@ -17,8 +16,7 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
-    public List<Wishlist> showWishLists(Long userId) {
-        userDAO.findById(userId).orElseThrow(UserNotFoundException::new).getWishlists();
-
+    public User findUser(Long id) {
+        return userDAO.findById(id).orElseThrow(UserNotFoundException::new);
     }
 }
