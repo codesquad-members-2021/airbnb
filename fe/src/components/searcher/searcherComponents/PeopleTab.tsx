@@ -7,6 +7,7 @@ import { useSearcherDispatch, useSearcherState } from '../../../hooks/SearcherHo
 import { PeopleCount } from '../../../shared/interface';
 import { useReservationDispatch, useReservationState } from '../../../hooks/ReservationHook';
 import ModalLayer from './common/ModalLayer';
+import { theme } from '../../../styles/theme';
 
 const peopleType = {
     adult: '성인',
@@ -93,7 +94,14 @@ const PeopleTab = (): React.ReactElement => {
                 </PeopleTabBox>
             </Tab>
             {peopleLayer && (
-                <ModalLayer options={{ width: 400, top: 100, left: 515, height: 355 }}>
+                <ModalLayer
+                    options={{
+                        width: theme.LayerSize.smWidth,
+                        top: theme.LayerLocation.top,
+                        left: theme.LayerLocation.far_left,
+                        height: theme.LayerSize.smHeight,
+                    }}
+                >
                     {renderPeopleCountList()}
                 </ModalLayer>
             )}

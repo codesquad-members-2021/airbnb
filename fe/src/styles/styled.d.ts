@@ -25,4 +25,10 @@ export interface DefaultTheme {
         mdHeight: number;
         mdWidth: number;
     };
+    LayerLocation: {
+        top: number;
+        left: number;
+        md_left: number;
+        far_left: number;
+    };
 }

@@ -41,7 +41,7 @@ const Map = (props: IMap) => {
 
     const defaultMapStart = (): void => {
         const defaultAddress = new google.maps.LatLng(12.2, 13.3);
-        initMap(4, defaultAddress);
+        initMap(5, defaultAddress);
     };
 
     return (

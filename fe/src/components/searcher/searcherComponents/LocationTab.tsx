@@ -6,6 +6,7 @@ import { mockupLocationData } from '../../../data/location';
 import { useReservationDispatch } from '../../../hooks/ReservationHook';
 import { Container, Tab } from './common/shared.style';
 import ModalLayer from './common/ModalLayer';
+import { theme } from '../../../styles/theme';
 
 const LocationTab = (): React.ReactElement => {
     const reservationDispatch = useReservationDispatch();
@@ -64,7 +65,14 @@ const LocationTab = (): React.ReactElement => {
                 />
             </Tab>
             {locationLayer && (
-                <ModalLayer options={{ width: 493, top: 100, left: 0, height: 355 }}>
+                <ModalLayer
+                    options={{
+                        width: theme.LayerSize.mdWidth,
+                        top: theme.LayerLocation.top,
+                        left: 0,
+                        height: theme.LayerSize.mdHeight,
+                    }}
+                >
                     {locationList?.map((place: Location) => (
                         <li key={place.address_id} onClick={() => setUpLocation(place)}>
                             {place.address}

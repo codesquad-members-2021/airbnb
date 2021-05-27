@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useReservationDispatch, useReservationState } from '../../../hooks/ReservationHook';
 import { useSearcherDispatch, useSearcherState } from '../../../hooks/SearcherHook';
+import { theme } from '../../../styles/theme';
 import ModalLayer from './common/ModalLayer';
 import { Container, NavigatingText, Tab } from './common/shared.style';
 
@@ -36,7 +37,14 @@ const FeeTab = (): React.ReactElement => {
                 <PriceText>{typeof fee === 'number' ? `${fee}원` : `${fee[0]}만원 ${fee[1]}만원`}</PriceText>
             </Tab>
             {feeLayer && (
-                <ModalLayer options={{ width: 400, top: 100, left: 480, height: 355 }}>
+                <ModalLayer
+                    options={{
+                        width: theme.LayerSize.smWidth,
+                        top: theme.LayerLocation.top,
+                        left: theme.LayerLocation.far_left,
+                        height: theme.LayerSize.smHeight,
+                    }}
+                >
                     <Slider value={feeValue} onChange={handleSliderChange} valueLabelDisplay="auto" />
                     <button onClick={handleSubmitFee}>확인</button>
                 </ModalLayer>
