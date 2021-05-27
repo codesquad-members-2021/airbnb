@@ -30,6 +30,8 @@
 		BF40490F265A417000CA02B5 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40490E265A417000CA02B5 /* NetworkError.swift */; };
 		BF404913265A7B6C00CA02B5 /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404912265A7B6C00CA02B5 /* SearchLocation.swift */; };
 		BF404919265A815400CA02B5 /* SearchLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404918265A815400CA02B5 /* SearchLocationUseCase.swift */; };
+		BF7E2E3B265FA2DF00A810BE /* PriceSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E3A265FA2DF00A810BE /* PriceSlider.swift */; };
+		BF7E2E3E265FA36F00A810BE /* PriceSliderLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E3D265FA36F00A810BE /* PriceSliderLayer.swift */; };
 		BF9F9509265DE6D4003CF475 /* UIStoryBoard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F9508265DE6D4003CF475 /* UIStoryBoard+Extension.swift */; };
 		BF9F950D265DE9DC003CF475 /* UICollectionCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F950C265DE9DC003CF475 /* UICollectionCell+Extension.swift */; };
 		BF9F9510265DEAFE003CF475 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F950F265DEAFE003CF475 /* UITableViewCell+Extension.swift */; };
@@ -72,6 +74,8 @@
 		BF40490E265A417000CA02B5 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BF404912265A7B6C00CA02B5 /* SearchLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocation.swift; sourceTree = "<group>"; };
 		BF404918265A815400CA02B5 /* SearchLocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationUseCase.swift; sourceTree = "<group>"; };
+		BF7E2E3A265FA2DF00A810BE /* PriceSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSlider.swift; sourceTree = "<group>"; };
+		BF7E2E3D265FA36F00A810BE /* PriceSliderLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSliderLayer.swift; sourceTree = "<group>"; };
 		BF9F9508265DE6D4003CF475 /* UIStoryBoard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryBoard+Extension.swift"; sourceTree = "<group>"; };
 		BF9F950C265DE9DC003CF475 /* UICollectionCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionCell+Extension.swift"; sourceTree = "<group>"; };
 		BF9F950F265DEAFE003CF475 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
@@ -150,6 +154,8 @@
 				BFE4311226557A2900F4DA1C /* LocationHeaderView.swift */,
 				BF4048F02659335800CA02B5 /* CalendarDayCell.swift */,
 				BF4048F426593DDA00CA02B5 /* CalendarHeaderView.swift */,
+				BF7E2E3A265FA2DF00A810BE /* PriceSlider.swift */,
+				BF7E2E3D265FA36F00A810BE /* PriceSliderLayer.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -363,11 +369,13 @@
 				BF9F951E265DFD69003CF475 /* NotificationName+Extension.swift in Sources */,
 				BF2FEAE2265BBAED0022CB93 /* LocationInfoViewController.swift in Sources */,
 				BF9F9510265DEAFE003CF475 /* UITableViewCell+Extension.swift in Sources */,
+				BF7E2E3B265FA2DF00A810BE /* PriceSlider.swift in Sources */,
 				BF9F9509265DE6D4003CF475 /* UIStoryBoard+Extension.swift in Sources */,
 				BF4048F12659335800CA02B5 /* CalendarDayCell.swift in Sources */,
 				BF4048D22658D8AA00CA02B5 /* CalendarViewController.swift in Sources */,
 				BF4048EB26592AAF00CA02B5 /* CalendarDataSource.swift in Sources */,
 				BF9F9513265DED03003CF475 /* UIColor+Extension.swift in Sources */,
+				BF7E2E3E265FA36F00A810BE /* PriceSliderLayer.swift in Sources */,
 				BF2FEADC265B71260022CB93 /* SearchTextField+Extension.swift in Sources */,
 				BFE4311326557A2900F4DA1C /* LocationHeaderView.swift in Sources */,
 				BF4048F92659ED1400CA02B5 /* DateFormatter+Extension.swift in Sources */,

@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,26 +20,55 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQh-Ej-KJO">
                                 <rect key="frame" x="0.0" y="582.5" width="414" height="313.5"/>
                             </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가격 범위" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ouz-Ub-7KH">
+                                <rect key="frame" x="16" y="76" width="63" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="평균 1박 요금은 ₩165,566원 입니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrx-sH-uGs">
+                                <rect key="frame" x="16" y="141" width="249" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="BoardColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₩11,000 - ₩1,000,000+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUq-mG-eCc">
+                                <rect key="frame" x="16" y="112.5" width="181.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aeB-xV-hj4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="MQh-Ej-KJO" firstAttribute="leading" secondItem="aeB-xV-hj4" secondAttribute="leading" id="7HR-om-byg"/>
                             <constraint firstItem="MQh-Ej-KJO" firstAttribute="height" secondItem="zSM-OL-wFS" secondAttribute="height" multiplier="0.35" id="BUL-rY-9Ck"/>
+                            <constraint firstItem="ouz-Ub-7KH" firstAttribute="leading" secondItem="aeB-xV-hj4" secondAttribute="leading" constant="16" id="HHK-pw-a0C"/>
                             <constraint firstAttribute="bottom" secondItem="MQh-Ej-KJO" secondAttribute="bottom" id="W8B-Bg-32Y"/>
                             <constraint firstItem="aeB-xV-hj4" firstAttribute="trailing" secondItem="MQh-Ej-KJO" secondAttribute="trailing" id="anU-rP-zLK"/>
+                            <constraint firstItem="oUq-mG-eCc" firstAttribute="top" secondItem="ouz-Ub-7KH" secondAttribute="bottom" constant="16" id="eOW-pz-u3f"/>
+                            <constraint firstItem="Lrx-sH-uGs" firstAttribute="top" secondItem="oUq-mG-eCc" secondAttribute="bottom" constant="8" id="n1z-lT-ki7"/>
+                            <constraint firstItem="ouz-Ub-7KH" firstAttribute="top" secondItem="aeB-xV-hj4" secondAttribute="top" constant="32" id="rwp-ga-P53"/>
+                            <constraint firstItem="oUq-mG-eCc" firstAttribute="leading" secondItem="ouz-Ub-7KH" secondAttribute="leading" id="stq-te-d9B"/>
+                            <constraint firstItem="Lrx-sH-uGs" firstAttribute="leading" secondItem="ouz-Ub-7KH" secondAttribute="leading" id="uQH-FI-THX"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="containerView" destination="MQh-Ej-KJO" id="WSo-G6-vSH"/>
+                        <outlet property="priceAgeLabel" destination="Lrx-sH-uGs" id="JXh-ZO-2JC"/>
+                        <outlet property="priceRangeLabel" destination="oUq-mG-eCc" id="Ilm-H0-vch"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9oY-Nu-0MC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-229" y="-24"/>
+            <point key="canvasLocation" x="-230.43478260869566" y="-24.107142857142858"/>
         </scene>
     </scenes>
     <resources>
+        <namedColor name="BoardColor">
+            <color red="0.50999999046325684" green="0.50999999046325684" blue="0.50999999046325684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

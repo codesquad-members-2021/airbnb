@@ -9,8 +9,15 @@ import UIKit
 import Combine
 
 class PriceViewController: UIViewController {
-
+    
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var priceRangeLabel: UILabel!
+    @IBOutlet weak var priceAgeLabel: UILabel!
+    private lazy var rangeSlider: priceSlider = {
+        let slider = priceSlider()
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        return slider
+    }()
     
     private let nextViewControllerSubject = PassthroughSubject<Void,Never>()
     private var cancellable = Set<AnyCancellable>()
@@ -20,16 +27,30 @@ class PriceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureRangeView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addContainerView()
     }
+
+    override func viewDidLayoutSubviews() {
+        rangeSlider.updateLayerFrames()
+    }
     
     func setupSearchInfoViewController(for search: SearchManager, from viewController: LocationInfoViewController) {
         self.searchManager = search
         self.locationInfoViewController = viewController
+    }
+    
+    private func configureRangeView() {
+        view.addSubview(rangeSlider)
+        rangeSlider.translatesAutoresizingMaskIntoConstraints = false
+        rangeSlider.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
+        rangeSlider.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+        rangeSlider.topAnchor.constraint(equalTo: priceAgeLabel.bottomAnchor, constant: 50).isActive = true
+        rangeSlider.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
     
     private func addContainerView() {
