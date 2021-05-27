@@ -1,20 +1,18 @@
 import CssBaseline from '@material-ui/core/CssBaseline'; //https://material-ui.com/components/css-baseline/
-import MainPage from './Components/Pages/MainPage';
 import { RecoilRoot } from 'recoil';
 import { Switch, Route } from 'react-router-dom';
-import SearchMapPage from './Components/Pages/SearchMapPage';
+import MainPage from '@Components/Pages/MainPage';
+import SearchMapPage from '@Components/Pages/SearchMapPage';
+import Page404 from '@Components/Pages/Page404';
 
 const App = () => {
   return (
     <RecoilRoot>
       <CssBaseline />
       <Switch>
-        <Route path="/searchMap">
-          <SearchMapPage />
-        </Route>
-        <Route path="/">
-          <MainPage />
-        </Route>
+        <Route exact path="/searchMap" component={SearchMapPage} />
+        <Route exact path="/"  component={MainPage} />
+        <Route component={Page404} />
       </Switch>
     </RecoilRoot>
   );
