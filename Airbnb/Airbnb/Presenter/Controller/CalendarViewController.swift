@@ -5,21 +5,15 @@ import FSCalendar
 
 class CalendarViewController: UIViewController {
     
-    @IBOutlet var backButton: UIButton!
     @IBOutlet var calendarView: FSCalendar!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
+    @IBOutlet var backButton: UIButton!
     @IBOutlet var nextButton: UIButton!
     @IBOutlet var skipDeleteButton: UIButton!
     
     private let viewModel = CalendarViewModel()
     private var nextPage = BehaviorRelay(value: false)
-    
-    private lazy var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,7 +116,7 @@ private extension CalendarViewController {
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        viewModel.append(date: dateFormatter.string(from: date))
+        viewModel.append(date: TransformManager.toString(from: date))
         switch calendarView.selectedDates.count {
         case 0...1: nextPage.accept(false)
         default: nextPage.accept(true)
@@ -130,7 +124,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        viewModel.delete(date: dateFormatter.string(from: date))
+        viewModel.delete(date: TransformManager.toString(from: date))
         switch calendarView.selectedDates.count {
         case 0...1: nextPage.accept(false)
         default: nextPage.accept(true)
