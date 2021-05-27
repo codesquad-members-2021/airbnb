@@ -37,7 +37,7 @@ public class BookingService {
     public BookingResponseDTO showBooking(Long userId, Long bookingId) {
         //userService를 참조할지 userRepository를 참조할지 고민 (삭제할 부분이라 repository 참조)
         //OAuth 구현식 삭제될 user 체크
-        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        User user = userDAO.findById(userId).orElseThrow(UserNotFoundException::new);
 
         Booking booking = bookingDAO.findById(bookingId).orElseThrow(BookingNotFoundException::new);
         return toResponseDTO(booking);
@@ -45,7 +45,7 @@ public class BookingService {
 
     public List<BookingResponseDTO> showBookings(Long userId) {
         //OAuth 구현식 삭제될 user 체크
-        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        User user = userDAO.findById(userId).orElseThrow(UserNotFoundException::new);
 
         return bookingDAO.findAllByUser(userId).stream()
                 .map(this::toResponseDTO)
@@ -53,10 +53,12 @@ public class BookingService {
     }
 
     private BookingResponseDTO toResponseDTO(Booking booking) {
-        Room room = roomRepository.findById(booking.getRoom()).orElseThrow(RoomNotFoundException::new);
-        return new BookingResponseDTO.Builder(booking, room).build();
+//        Room room = roomDAO.findById(booking.getRoom()).orElseThrow(RoomNotFoundException::new);
+//        return new BookingResponseDTO.Builder(booking, room).build();
+        return null;
     }
 
+    //메서드명 book이 어떨지, user체크 하는 부분 추가
     public void createBooking(BookingRequestDTO bookingRequestDTO, Long userId) {
         Booking booking = bookingRequestDTO.toEntity();
         booking.checkUserId(userId);
