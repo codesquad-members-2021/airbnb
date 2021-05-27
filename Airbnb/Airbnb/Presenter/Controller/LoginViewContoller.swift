@@ -8,6 +8,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet var logInButton: UIButton!
     
+    private lazy var loginView: LogInView = {
+        let login = LogInView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height*0.5))
+        return login
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMainView()
@@ -39,10 +44,11 @@ private extension LoginViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let url = URL(string: Login.post) else { return }
                 APIService.post(url, parameter: LoginInfo(userId: self!.idTextField.text!, password: self!.passwordTextField.text!))
-                    .subscribe(onNext: { [weak self] _ in
-                        let tabBarController = self?.storyboard?.instantiateViewController(withIdentifier: "TabBarController")
-                        tabBarController?.modalPresentationStyle = .fullScreen
-                        self?.present(tabBarController!, animated: true, completion: nil)
+                    .subscribe(onNext: { [weak self] data in
+                        self?.view.subviews.forEach {
+                            $0.removeFromSuperview()
+                        }
+                        self?.view.addSubview(self!.loginView)
                     }, onError: { error in
                         print(error.localizedDescription)
                     })
@@ -56,9 +62,10 @@ private extension LoginViewController {
                 guard let url = URL(string: Login.post) else { return }
                 APIService.post(url, parameter: LoginInfo(userId: self!.idTextField.text!, password: self!.passwordTextField.text!))
                     .subscribe(onNext: { [weak self] _ in
-                        let tabBarController = self?.storyboard?.instantiateViewController(withIdentifier: "TabBarController")
-                        tabBarController?.modalPresentationStyle = .fullScreen
-                        self?.present(tabBarController!, animated: true, completion: nil)
+                        self?.view.subviews.forEach {
+                            $0.removeFromSuperview()
+                        }
+                        self?.view.addSubview(self!.loginView)
                     }, onError: { error in
                         print(error.localizedDescription)
                     })

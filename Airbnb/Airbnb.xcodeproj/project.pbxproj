@@ -12,6 +12,7 @@
 		7112E6EA2656054900F9AAD6 /* TravelInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112E6E92656054900F9AAD6 /* TravelInfoCell.swift */; };
 		7112E6EC26561CDE00F9AAD6 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112E6EB26561CDE00F9AAD6 /* HeaderView.swift */; };
 		713D478B265F17C8007DDFFD /* TransformManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713D478A265F17C8007DDFFD /* TransformManager.swift */; };
+		713D478D265F1AC6007DDFFD /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713D478C265F1AC6007DDFFD /* LogInView.swift */; };
 		7157C8862654A14500EF7977 /* FirstSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C8852654A14500EF7977 /* FirstSectionView.swift */; };
 		7157C8892654AC4000EF7977 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C8882654AC4000EF7977 /* MainViewModel.swift */; };
 		7197A4B0265DE3E400729BCF /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7197A4AF265DE3E400729BCF /* CalendarViewModel.swift */; };
@@ -49,6 +50,7 @@
 		7112E6E92656054900F9AAD6 /* TravelInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelInfoCell.swift; sourceTree = "<group>"; };
 		7112E6EB26561CDE00F9AAD6 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		713D478A265F17C8007DDFFD /* TransformManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformManager.swift; sourceTree = "<group>"; };
+		713D478C265F1AC6007DDFFD /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		7157C8852654A14500EF7977 /* FirstSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSectionView.swift; sourceTree = "<group>"; };
 		7157C8882654AC4000EF7977 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		7197A4AF265DE3E400729BCF /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				71DA18352654CACC00415EDD /* SecondSectionView.swift */,
 				71DA18392654E2FE00415EDD /* ThirdSectionView.swift */,
 				7112E6EB26561CDE00F9AAD6 /* HeaderView.swift */,
+				713D478C265F1AC6007DDFFD /* LogInView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				713D478D265F1AC6007DDFFD /* LogInView.swift in Sources */,
 				71A67D2926539B6A00FC6689 /* MainViewController.swift in Sources */,
 				7157C8862654A14500EF7977 /* FirstSectionView.swift in Sources */,
 				713D478B265F17C8007DDFFD /* TransformManager.swift in Sources */,
