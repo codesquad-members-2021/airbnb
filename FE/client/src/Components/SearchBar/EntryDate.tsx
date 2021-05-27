@@ -3,7 +3,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { IconButton } from "@material-ui/core";
 import { useRecoilState } from 'recoil';
 import DateKind from './DateKind';
-import { CalendarType } from '@Components/commons/searchBarType';
+import { CalendarType } from '@Components/commons/baseType';
 import { calendarClickAtom } from '@/recoil/atoms';
 
 type EntryDateType = CalendarType & {

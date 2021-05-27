@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import Slider from './Slider';
 import Graph from './Graph';
-import { ChargeType } from '@Components/commons/searchBarType';
+import { ChargeType } from '@Components/commons/baseType';
 import { RangeAtom } from '@/recoil/atoms';
 import { fetchPriceListSelector } from '@/recoil/fetchAtoms';
 import { getConvertedChartPrices } from '@/utils/graphUtil';
@@ -11,7 +11,7 @@ import { getAveragePrice } from '@/utils/graphUtil';
 
 const ChargeModal = ({ charge }: ChargeType) => {
   const [rangeState, setRangeState] = useRecoilState(RangeAtom);
-  const { left, right } = rangeState;
+  const { leftRange, rightRange } = rangeState;
   const priceLoadable = useRecoilValueLoadable(fetchPriceListSelector);
   const [priceArray, setPriceArray] = useState([[0]]);
   const averagePrice = getAveragePrice({ rangeState, priceArray });
@@ -27,8 +27,8 @@ const ChargeModal = ({ charge }: ChargeType) => {
       <PriceRangeTitle>가격범위</PriceRangeTitle>
 
       <PriceRange>
-        ₩{(left * 10000).toLocaleString()} - ₩{(right * 10000).toLocaleString()}
-        {right === 100 && '+'}
+        ₩{(leftRange * 10000).toLocaleString()} - ₩{(rightRange * 10000).toLocaleString()}
+        {rightRange === 100 && '+'}
       </PriceRange>
 
       {priceLoadable.state === 'hasValue' &&

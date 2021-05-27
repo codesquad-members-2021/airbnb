@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
 import Month from './Month';
-import { CalendarType } from '@Components/commons/searchBarType';
+import { CalendarType } from '@Components/commons/baseType';
 import { calendarStateSelector } from '@/recoil/atoms';
 
 const Calendar = ({entryDate} : CalendarType) => {

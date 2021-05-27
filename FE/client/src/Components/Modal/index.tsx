@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import Calendar from './Calendar';
 import ChargeModal from './ChargeModal';
 import PersonnelModal from './PersonnelModal';
-import { SearchBarType } from '@Components/commons/searchBarType';
+import { SearchBarType } from '@Components/commons/baseType';
 import { searchBarFocusAtom } from '@/recoil/atoms';
 
 const Modal = () => {

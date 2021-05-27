@@ -62,14 +62,14 @@ export const PersonnelAtom = atom<PersonnelAtomType>({
 })
 
 export type RangeAtomType = {
-  left: number;
-  right: number;
+  leftRange: number;
+  rightRange: number;
 }
 
 export const RangeAtom = atom<RangeAtomType>({
   key: 'RangeAtom',
   default : {
-    left: 0,
-    right: 100
+    leftRange: 0,
+    rightRange: 100
   }
 })

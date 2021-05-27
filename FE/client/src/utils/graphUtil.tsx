@@ -24,17 +24,17 @@ export const getConvertedChartPrices = (priceArray: Array<number>): Array<Array<
 
 export type GraphType = {
   rangeState: {
-    left: number,
-    right: number
+    leftRange: number,
+    rightRange: number
   };
   priceArray: Array<Array<number>>
 }
 
-export const getAveragePrice = ({ rangeState: { left, right }, priceArray }: GraphType) => {
+export const getAveragePrice = ({ rangeState: { leftRange, rightRange }, priceArray }: GraphType) => {
   const priceArrayLength = priceArray.length;
 
   const selectedPriceArray = priceArray.map((count, idx) => {
-    const isSelect = (left / (100 / priceArrayLength)) <= idx && idx < Math.floor(right / (100 / priceArrayLength));
+    const isSelect = (leftRange / (100 / priceArrayLength)) <= idx && idx < Math.floor(rightRange / (100 / priceArrayLength));
     return isSelect ? count : 0;
   });
 
@@ -68,22 +68,22 @@ export const getLines = ({ oneSize, priceCountArray }: LinesType) => {
 
 type SelectedLinesType = LinesType & {
   rangeState: {
-    left: number,
-    right: number
+    leftRange: number,
+    rightRange: number
   };
 };
 
-export const getSelectedLines = ({ priceCountArray, oneSize, rangeState: { left, right } }: SelectedLinesType) => {
+export const getSelectedLines = ({ priceCountArray, oneSize, rangeState: { leftRange, rightRange } }: SelectedLinesType) => {
   const firstSelectIndex = priceCountArray.findIndex((_, idx) => {
-    return left / (100 / priceCountArray.length) <= idx;
+    return leftRange / (100 / priceCountArray.length) <= idx;
   })
 
   const lastSelectIndex = [...priceCountArray].reverse().findIndex((_, idx) => {
-    return right / (100 / priceCountArray.length) < idx + 2;
+    return rightRange / (100 / priceCountArray.length) < idx + 2;
   })
 
   const selectedLine = `00, 100 \n ${priceCountArray.map((count, idx) => {
-    const isSelect = (left / (100 / priceCountArray.length)) <= idx && idx < Math.floor(right / (100 / priceCountArray.length));
+    const isSelect = (leftRange / (100 / priceCountArray.length)) <= idx && idx < Math.floor(rightRange / (100 / priceCountArray.length));
     const firstSelected = firstSelectIndex === idx ? `${idx * 10}, 100` : '';
     const lastSelected = lastSelectIndex === idx ? `${idx * 10}, 100` : '';
     return `${firstSelected} ${idx * 10}, ${isSelect ? 100 - (count * oneSize) : 100} ${lastSelected}`;

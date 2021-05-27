@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { DivisionContent, DivisionTitle } from './../commons/base';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { IconButton } from "@material-ui/core";
-import { PersonnelType } from '@Components/commons/searchBarType';
+import { PersonnelType } from '@Components/commons/baseType';
 import { useRecoilState } from 'recoil';
 import { PersonnelAtom } from '@/recoil/atoms';
 

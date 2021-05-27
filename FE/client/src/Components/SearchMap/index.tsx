@@ -9,7 +9,7 @@ const containerStyle = {
   height: '89vh',
 };
 
-const center = {
+const centerPosition = {
   lat: 37,
   lng: 127
 };
@@ -22,7 +22,7 @@ const SearchMap = () => {
       >
         <GoogleMap
           mapContainerStyle={containerStyle}
-          center={center}
+          center={centerPosition}
           zoom={13}
         >
           { /* Child components, such as markers, info windows, etc. */}

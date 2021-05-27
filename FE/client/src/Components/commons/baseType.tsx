@@ -13,3 +13,10 @@ export type CalendarType = {
 export type SearchBarType = {
   focus: boolean;
 }
+
+export type RangeStateType = {
+  rangeState: {
+    leftRange: number;
+    rightRange: number;
+  }
+}

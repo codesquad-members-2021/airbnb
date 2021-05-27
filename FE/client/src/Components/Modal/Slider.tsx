@@ -6,39 +6,39 @@ import { RangeAtomType } from '@/recoil/atoms';
 
 type SliderType = {
   rangeState: {
-    left: number,
-    right: number
+    leftRange: number,
+    rightRange: number
   },
   setRangeState: SetterOrUpdater<RangeAtomType>
 }
 
 const Slider = ({ rangeState, setRangeState }: SliderType) => {
-  const { left, right } = rangeState;
+  const { leftRange, rightRange } = rangeState;
 
   const handleChange = (location: string): ChangeEventHandler<HTMLInputElement> => (event) => {
     const targetValue = parseInt(event.target.value, 10);
     const isLeft = location === 'left';
-    const thisValue = isLeft ? Math.min(targetValue, right) : Math.max(left, targetValue);
+    const thisValue = isLeft ? Math.min(targetValue, rightRange) : Math.max(leftRange, targetValue);
     const percent = (thisValue - 0) / (100 - 0) * 100;
     setRangeState((rangeState) => {
-      return isLeft ? { ...rangeState, left: percent } : { ...rangeState, right: percent };
+      return isLeft ? { ...rangeState, leftRange: percent } : { ...rangeState, rightRange: percent };
     })
   }
 
   return (
     <SliderWrapper>
-      <LeftRange type="range" min="0" max="100" onChange={handleChange('left')} value={left} />
-      <RightRange type="range" min="0" max="100" onChange={handleChange('right')} value={right} />
+      <LeftRange type="range" min="0" max="100" onChange={handleChange('left')} value={leftRange} />
+      <RightRange type="range" min="0" max="100" onChange={handleChange('right')} value={rightRange} />
 
       <SliderTrack />
-      <SliderRange style={{ left: `${left}%`, right: `calc( ${100 - right}%)` }} />
+      <SliderRange style={{ left: `${leftRange}%`, right: `calc( ${100 - rightRange}%)` }} />
       <PauseCircleOutlineRoundedIcon style={{
-        position: 'absolute', left: `calc(${left}% - 2.5%)`,
+        position: 'absolute', left: `calc(${leftRange}% - 2.5%)`,
         top: '-7px', background: '#fff', borderRadius: '50%', zIndex: 1
       }} />
 
       <PauseCircleOutlineRoundedIcon style={{
-        position: 'absolute', right: `calc(${100 - right}% - 2.5%)`,
+        position: 'absolute', right: `calc(${100 - rightRange}% - 2.5%)`,
         top: '-7px', background: '#fff', borderRadius: '50%', zIndex: 1
       }} />
 

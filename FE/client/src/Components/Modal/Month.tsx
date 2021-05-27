@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { IconButton } from "@material-ui/core";
-import { useRecoilState } from 'recoil';
+import {useRecoilState, useSetRecoilState } from 'recoil';
 import { monthIndexAtom, calendarClickAtom } from '@/recoil/atoms';
 import { getYearAndMonth, getDayArray } from '@/utils/calendarUtil';
 
@@ -14,7 +14,7 @@ type MonthProps = {
 }
 
 const Month = ({ left, right, date }: MonthProps) => {
-  const [, setMonthIndex] = useRecoilState(monthIndexAtom);
+  const setMonthIndex = useSetRecoilState(monthIndexAtom);
   const [calendarClickState, setCalendarClickState] = useRecoilState(calendarClickAtom);
   const [checkInTime, checkOutTime] = calendarClickState;
 
