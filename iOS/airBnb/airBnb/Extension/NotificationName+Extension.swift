@@ -9,4 +9,5 @@ import Foundation
 
 extension Notification.Name {
     static let seletDatesReset = Notification.Name("selectDatesReset")
+    static let priceReset = Notification.Name("priceReset")
 }

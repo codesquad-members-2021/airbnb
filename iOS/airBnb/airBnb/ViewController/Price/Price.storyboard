@@ -17,23 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQh-Ej-KJO">
-                                <rect key="frame" x="0.0" y="582.5" width="414" height="313.5"/>
-                            </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가격 범위" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ouz-Ub-7KH">
                                 <rect key="frame" x="16" y="76" width="63" height="20.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="평균 1박 요금은 ₩165,566원 입니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrx-sH-uGs">
-                                <rect key="frame" x="16" y="141" width="249" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="BoardColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQh-Ej-KJO">
+                                <rect key="frame" x="0.0" y="582.5" width="414" height="313.5"/>
+                            </containerView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zty-8L-fwo">
-                                <rect key="frame" x="16" y="112.5" width="193.5" height="20.5"/>
+                                <rect key="frame" x="16" y="112.5" width="183.5" height="20.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₩11,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUq-mG-eCc">
                                         <rect key="frame" x="0.0" y="0.0" width="64.5" height="20.5"/>
@@ -47,10 +41,33 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₩1,000,000+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZB5-d8-8Cd">
-                                        <rect key="frame" x="92.5" y="0.0" width="101" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₩1,000,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZB5-d8-8Cd">
+                                        <rect key="frame" x="92.5" y="0.0" width="91" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="jNn-cC-yEH">
+                                <rect key="frame" x="16" y="141" width="241.5" height="20.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="평균 1박 요금은" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3I-E2-xAy">
+                                        <rect key="frame" x="0.0" y="0.0" width="104.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="BoardColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₩505,499" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrx-sH-uGs">
+                                        <rect key="frame" x="110.5" y="0.0" width="80.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="BoardColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="입니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="112-Hv-qIL">
+                                        <rect key="frame" x="197" y="0.0" width="44.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="BoardColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -66,14 +83,14 @@
                             <constraint firstAttribute="bottom" secondItem="MQh-Ej-KJO" secondAttribute="bottom" id="W8B-Bg-32Y"/>
                             <constraint firstItem="aeB-xV-hj4" firstAttribute="trailing" secondItem="MQh-Ej-KJO" secondAttribute="trailing" id="anU-rP-zLK"/>
                             <constraint firstItem="Zty-8L-fwo" firstAttribute="top" secondItem="ouz-Ub-7KH" secondAttribute="bottom" constant="16" id="b7u-sL-AX1"/>
+                            <constraint firstItem="jNn-cC-yEH" firstAttribute="leading" secondItem="ouz-Ub-7KH" secondAttribute="leading" id="l3u-ks-QRW"/>
+                            <constraint firstItem="jNn-cC-yEH" firstAttribute="top" secondItem="Zty-8L-fwo" secondAttribute="bottom" constant="8" id="mFf-bI-213"/>
                             <constraint firstItem="ouz-Ub-7KH" firstAttribute="top" secondItem="aeB-xV-hj4" secondAttribute="top" constant="32" id="rwp-ga-P53"/>
-                            <constraint firstItem="Lrx-sH-uGs" firstAttribute="leading" secondItem="ouz-Ub-7KH" secondAttribute="leading" id="uQH-FI-THX"/>
-                            <constraint firstItem="Lrx-sH-uGs" firstAttribute="top" secondItem="Zty-8L-fwo" secondAttribute="bottom" constant="8" id="uRe-fg-QO3"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="containerView" destination="MQh-Ej-KJO" id="WSo-G6-vSH"/>
-                        <outlet property="priceAgeLabel" destination="Lrx-sH-uGs" id="JXh-ZO-2JC"/>
+                        <outlet property="priceAvgLabel" destination="Lrx-sH-uGs" id="JXh-ZO-2JC"/>
                         <outlet property="priceMaxLabel" destination="ZB5-d8-8Cd" id="kcV-hb-9fj"/>
                         <outlet property="priceMinLabel" destination="oUq-mG-eCc" id="9e4-Lx-Pft"/>
                     </connections>

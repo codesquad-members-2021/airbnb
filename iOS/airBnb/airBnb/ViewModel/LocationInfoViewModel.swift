@@ -62,8 +62,7 @@ class LocationInfoViewModel {
                 .map { self.skipAndDeleteString(to: $0.emptyStartValued()) }
                 .eraseToAnyPublisher()
         case .location:
-            return searchManager.$location
-                .map { $0.isEmpty ? "건너뛰기" : "지우기" }
+            return Just("건너뛰기")
                 .eraseToAnyPublisher()
         case .people:
             return searchManager.$numberOfPleple
@@ -88,7 +87,7 @@ class LocationInfoViewModel {
         case .people:
             return false
         case .price:
-            return searchManager.priceRange.hasValued()
+            return searchManager.priceRange.noticeChanged()
         case .none:
             return false
         }

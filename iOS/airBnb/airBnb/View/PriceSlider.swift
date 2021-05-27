@@ -9,24 +9,22 @@ import UIKit
 
 class priceSlider: UIControl {
 
-    private static var minRange:CGFloat = 11000
-    private static var maxRange:CGFloat = 1000000
-    private(set) var minimumValue: CGFloat = minRange/maxRange {
+    private(set) var minimumValue: CGFloat = 0.011 {
         didSet {
           updateLayerFrames()
         }
     }
-    private(set) var maximumValue: CGFloat = maxRange/maxRange {
+    private(set) var maximumValue: CGFloat = 1.0 {
         didSet {
           updateLayerFrames()
         }
     }
-    private(set) var lowerValue: CGFloat = minRange/maxRange {
+    private(set) var lowerValue: CGFloat = 0.011 {
         didSet {
           updateLayerFrames()
         }
     }
-    private(set) var upperValue: CGFloat = maxRange/maxRange {
+    private(set) var upperValue: CGFloat = 1.0 {
         didSet {
           updateLayerFrames()
         }
@@ -79,6 +77,15 @@ class priceSlider: UIControl {
     private func thumbOriginForValue(_ value: CGFloat) -> CGPoint {
         let x = positionForValue(value) - thumbImage.size.width / 2.0
         return CGPoint(x: x, y: (bounds.height - 12))
+    }
+    
+    func reset() {
+        lowerValue = 0.011
+        upperValue = 1.0
+    }
+    
+    func calculateAvg() -> CGFloat {
+        return (lowerValue + upperValue) / 2
     }
 }
 

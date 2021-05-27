@@ -13,7 +13,7 @@ class PriceViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var priceMinLabel: UILabel!
     @IBOutlet weak var priceMaxLabel: UILabel!
-    @IBOutlet weak var priceAgeLabel: UILabel!
+    @IBOutlet weak var priceAvgLabel: UILabel!
     private lazy var rangeSlider: priceSlider = {
         let slider = priceSlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
@@ -32,6 +32,8 @@ class PriceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureRangeView()
+        bind()
+        NotificationCenter.default.addObserver(self, selector: #selector(resetPriceSlider(_:)), name: .priceReset, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,7 +55,7 @@ class PriceViewController: UIViewController {
         rangeSlider.translatesAutoresizingMaskIntoConstraints = false
         rangeSlider.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
         rangeSlider.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        rangeSlider.topAnchor.constraint(equalTo: priceAgeLabel.bottomAnchor, constant: 50).isActive = true
+        rangeSlider.topAnchor.constraint(equalTo: priceAvgLabel.bottomAnchor, constant: 50).isActive = true
         rangeSlider.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
     
@@ -72,15 +74,28 @@ class PriceViewController: UIViewController {
     
     private func bind() {
         nextViewControllerSubject.sink { _ in
-            
+            print("넘어감")
         }.store(in: &cancellable)
+    }
+    
+    private func calculatePriceAvg(with priceSlider: priceSlider) {
+
     }
     
     @objc private func priceSliderValueChanged(_ priceSlider: priceSlider) {
         searchManager?.changePrice(from: priceSlider)
+        
         DispatchQueue.main.async { [weak self] in
             self?.priceMinLabel.text = priceSlider.lowerValue.converNumberFormatter()
             self?.priceMaxLabel.text = priceSlider.upperValue.converNumberFormatter()
+            self?.priceAvgLabel.text = priceSlider.calculateAvg().converNumberFormatter()
         }
+    }
+    
+    @objc private func resetPriceSlider(_ notification: Notification) {
+        rangeSlider.reset()
+        priceMinLabel.text = "₩11,000"
+        priceMaxLabel.text = "₩1,000,000"
+        priceAvgLabel.text = "₩505,499"
     }
 }

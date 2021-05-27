@@ -34,6 +34,7 @@ class SearchManager {
             break
         case .price:
             priceRange.reset()
+            NotificationCenter.default.post(name: .priceReset, object: nil)
         case .people:
             break
         case .none:
