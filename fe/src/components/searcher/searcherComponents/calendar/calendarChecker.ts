@@ -1,4 +1,4 @@
-import { Date as IDate } from '../../../../../../shared/interface';
+import { Date as IDate } from '../../../../shared/interface';
 
 export const getDateSum = ({ year, month, day }: IDate): number => {
     return year * 365 + month * 31 + day;

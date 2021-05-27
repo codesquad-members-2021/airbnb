@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { MonthsPresenter } from './calendar.presenter';
 import { getInitialDate } from './calendarDate';
-import { CalendarType } from '../../../../../../shared/interface';
-import { useReservationDispatch, useReservationState } from '../../../../../../hooks/ReservationHook';
-import { useSearcherDispatch } from '../../../../../../hooks/SearcherHook';
+import { CalendarType } from '../../../../shared/interface';
+import { useReservationDispatch, useReservationState } from '../../../../hooks/ReservationHook';
+import { useSearcherDispatch } from '../../../../hooks/SearcherHook';
 
 import { getDateSum, isBefore, isNotCheckedDate } from './calendarChecker';
 import ModalLayer from '../common/ModalLayer';

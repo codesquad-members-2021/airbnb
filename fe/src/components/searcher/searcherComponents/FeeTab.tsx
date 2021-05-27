@@ -1,8 +1,8 @@
 import { Slider } from '@material-ui/core';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useReservationDispatch, useReservationState } from '../../../../../hooks/ReservationHook';
-import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/SearcherHook';
+import { useReservationDispatch, useReservationState } from '../../../hooks/ReservationHook';
+import { useSearcherDispatch, useSearcherState } from '../../../hooks/SearcherHook';
 import ModalLayer from './common/ModalLayer';
 import { Container, NavigatingText, Tab } from './common/shared.style';
 

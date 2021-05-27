@@ -1,18 +1,64 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import styled from 'styled-components';
+import { ReservationDispatchContext, ReservationStateContext } from '../../Contexts';
 import { mockupAccomodationData } from '../../data/searchAccomodation.js';
+import { ReservationContext } from '../../shared/interface';
+import reservationReducer from '../../shared/reservationReducer';
+import Header from '../header/Header';
+import Searcher from '../searcher/Searcher';
 import AccomodationList from './accomodationComponents/AccomodationList';
 
+const initialState = {
+    location: {
+        province_id: 0,
+        town_id: 0,
+        address_id: 0,
+        address: '',
+    },
+    checkIn: {
+        year: 0,
+        month: 0,
+        day: 0,
+    },
+    checkOut: {
+        year: 0,
+        month: 0,
+        day: 0,
+    },
+    fee: 0,
+    people: {
+        adult: 0,
+        children: 0,
+        kids: 0,
+    },
+} as ReservationContext;
+
 const Accomodation = (): React.ReactElement => {
+    const tmpReservationState = localStorage.getItem('reservationState');
+    const initialReservationState = tmpReservationState !== null ? JSON.parse(tmpReservationState) : initialState;
+    const [reservationState, reservationDispatch] = useReducer(reservationReducer, initialReservationState);
+
     return (
-        <AccomodationSection>
-            <AccomodationList rooms={mockupAccomodationData.rooms} />
-            <div>Map</div>
-        </AccomodationSection>
+        <ReservationDispatchContext.Provider value={reservationDispatch}>
+            <ReservationStateContext.Provider value={reservationState}>
+                <HeaderSection>
+                    <Header />
+                    <Searcher />
+                </HeaderSection>
+                <AccomodationSection>
+                    <AccomodationList rooms={mockupAccomodationData.rooms} />
+                    <div>Map</div>
+                </AccomodationSection>
+            </ReservationStateContext.Provider>
+        </ReservationDispatchContext.Provider>
     );
 };
 
 export default Accomodation;
+
+const HeaderSection = styled.section`
+    background: #ddd;
+`;
 
 const AccomodationSection = styled.section`
     display: flex;

@@ -1,4 +1,4 @@
-import { Td } from '../../../../../../shared/interface';
+import { Td } from '../../../../shared/interface';
 
 export const getInitialDate = (): Date[] => {
     const monthForChange = new Date().getMonth();

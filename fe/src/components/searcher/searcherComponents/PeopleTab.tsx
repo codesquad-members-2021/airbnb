@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import SearchIcon from '@material-ui/icons/Search';
 import { Container, NavigatingText, Tab } from './common/shared.style';
 import { Link } from 'react-router-dom';
-import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/SearcherHook';
-import { PeopleCount } from '../../../../../shared/interface';
-import { useReservationDispatch, useReservationState } from '../../../../../hooks/ReservationHook';
+import { useSearcherDispatch, useSearcherState } from '../../../hooks/SearcherHook';
+import { PeopleCount } from '../../../shared/interface';
+import { useReservationDispatch, useReservationState } from '../../../hooks/ReservationHook';
 import ModalLayer from './common/ModalLayer';
 
 const peopleType = {
@@ -17,16 +17,14 @@ const peopleType = {
 const PeopleTab = (): React.ReactElement => {
     const reservationState = useReservationState();
     const reservationDispatch = useReservationDispatch();
-
-    const { location, checkIn, checkOut, fee, people } = reservationState;
-
+    const { adult, children, kids } = reservationState.people;
     const { peopleLayer } = useSearcherState();
     const searcherDispatch = useSearcherDispatch();
 
     const [peopleCount, setPeopleCount] = useState<PeopleCount>({
-        adult: 0,
-        children: 0,
-        kids: 0,
+        adult,
+        children,
+        kids,
     });
 
     const handlePeopleLayer: React.MouseEventHandler<HTMLDivElement> = () => {
@@ -50,8 +48,7 @@ const PeopleTab = (): React.ReactElement => {
 
     const handleSubmitPeopleCount = () => {
         const { adult, children, kids } = peopleCount;
-        const guest = adult + children;
-        reservationDispatch({ type: 'PEOPLE', guest, kids });
+        reservationDispatch({ type: 'PEOPLE', adult, children, kids });
         searcherDispatch({ type: 'SHOW_PEOPLE_LAYER', state: false });
     };
 
@@ -72,9 +69,10 @@ const PeopleTab = (): React.ReactElement => {
         );
     };
 
-    const handleSearchWithAllReservationInfo = () => {
+    const handleSearchWithAllReservationInfo = (e: React.MouseEvent<HTMLElement>) => {
+        e.stopPropagation();
         localStorage.clear();
-        localStorage.setItem('resercationState', JSON.stringify(reservationState));
+        localStorage.setItem('reservationState', JSON.stringify(reservationState));
     };
 
     return (

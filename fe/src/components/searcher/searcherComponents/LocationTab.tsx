@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/SearcherHook';
-import { LocationList, Location } from '../../../../../shared/interface';
-import { mockupLocationData } from '../../../../../data/location';
-import { useReservationDispatch } from '../../../../../hooks/ReservationHook';
+import { useSearcherDispatch, useSearcherState } from '../../../hooks/SearcherHook';
+import { LocationList, Location } from '../../../shared/interface';
+import { mockupLocationData } from '../../../data/location';
+import { useReservationDispatch } from '../../../hooks/ReservationHook';
 import { Container, Tab } from './common/shared.style';
 import ModalLayer from './common/ModalLayer';
 

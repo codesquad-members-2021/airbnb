@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useReservationDispatch, useReservationState } from '../../../../../hooks/ReservationHook';
-import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/SearcherHook';
+import { useReservationDispatch, useReservationState } from '../../../hooks/ReservationHook';
+import { useSearcherDispatch, useSearcherState } from '../../../hooks/SearcherHook';
 import Calendar from './calendar/Calendar';
 import { isNotCheckedDate } from './calendar/calendarChecker';
 import { Container, NavigatingText, Tab } from './common/shared.style';

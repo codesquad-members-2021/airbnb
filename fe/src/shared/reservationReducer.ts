@@ -48,7 +48,8 @@ export default function reservationReducer(state: ReservationContext, action: Re
             return {
                 ...state,
                 people: {
-                    guest: action.guest,
+                    adult: action.adult,
+                    children: action.children,
                     kids: action.kids,
                 },
             };

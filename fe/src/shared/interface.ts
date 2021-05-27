@@ -33,14 +33,14 @@ export interface ReservationContext {
     checkIn: Date;
     checkOut: Date;
     fee: number[] | number;
-    people: People;
+    people: PeopleCount;
 }
 
 export type ReservationAction =
     | { type: 'LOCATION'; province_id: number; town_id: number; address_id: number; address: string }
     | { type: 'CHECKIN'; year: number; month: number; day: number }
     | { type: 'CHECKOUT'; year: number; month: number; day: number }
-    | { type: 'PEOPLE'; guest: number; kids: number }
+    | { type: 'PEOPLE'; adult: number; children: number; kids: number }
     | { type: 'FEE'; fee: number[] | number }
     | { type: 'RESET_DATE' };
 

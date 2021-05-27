@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ModalLayerType, LayerSpecType } from '../../../../../../shared/interface';
+import { ModalLayerType, LayerSpecType } from '../../../../shared/interface';
 
 const ModalLayer = ({ children, options }: ModalLayerType): React.ReactElement => {
     const { top, left, width, height } = options;

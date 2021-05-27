@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { ReservationDispatchContext, ReservationStateContext } from '../../../Contexts';
 import { ReservationContext } from '../../../shared/interface';
 import reservationReducer from '../../../shared/reservationReducer';
-import Header from './heroComponents/Header';
-import Searcher from './heroComponents/Searcher';
+import Header from '../../header/Header';
+import Searcher from '../../searcher/Searcher';
 
 const initialState = {
     location: {
@@ -25,7 +25,8 @@ const initialState = {
     },
     fee: 0,
     people: {
-        guest: 0,
+        adult: 0,
+        children: 0,
         kids: 0,
     },
 } as ReservationContext;

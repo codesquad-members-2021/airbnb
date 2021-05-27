@@ -1,9 +1,9 @@
 import React from 'react';
-import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/SearcherHook';
+import { useSearcherDispatch, useSearcherState } from '../../../hooks/SearcherHook';
 import styled from 'styled-components';
 import Calendar from './calendar/Calendar';
 import { Container, Tab, NavigatingText } from './common/shared.style';
-import { useReservationDispatch, useReservationState } from '../../../../../hooks/ReservationHook';
+import { useReservationDispatch, useReservationState } from '../../../hooks/ReservationHook';
 import { isNotCheckedDate } from './calendar/calendarChecker';
 
 const CheckInTab = (): React.ReactElement => {
