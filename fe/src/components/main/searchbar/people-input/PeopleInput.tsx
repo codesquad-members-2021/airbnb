@@ -4,10 +4,11 @@ import { useState } from "react";
 import { MouseEvent } from "react";
 import InputItem from "../InputItem";
 import PeopleList from "./PeopleList";
-
+import { useRecoilValue } from "recoil";
+import { PeopleDataSelector } from "atoms/searchbarAtom";
 const PeopleInput = () => {
   const [toggle, setToggle] = useState<Boolean>(false);
-
+  const PeopleData = useRecoilValue(PeopleDataSelector);
   const handleClick = (event: MouseEvent | Event) => {
     setToggle(!toggle);
   };
@@ -17,7 +18,7 @@ const PeopleInput = () => {
       <InputItem
         w="30%"
         title="인원수"
-        subtitle="게스트 추가"
+        subtitle={PeopleData}
         onClick={handleClick}
       />
       <Modal

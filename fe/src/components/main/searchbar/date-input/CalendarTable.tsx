@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { MouseEvent, useState } from "react";
+import styled, { css } from "styled-components";
+import { MouseEvent } from "react";
 import { useRecoilState } from "recoil";
 import { CalendarData } from "atoms/searchbarAtom";
 
@@ -44,19 +44,31 @@ const CalendarTable = ({ columns, data, date }: TableType) => {
               const nowDayTime = new Date().getTime();
               return item ? (
                 <StyldTd
-                  onClick={MouseEvent}
-                  aria-selected={
-                    checkInTime === dayTime || checkOutTime === dayTime
-                  }
-                  aria-checked={checkInTime < dayTime && dayTime < checkOutTime}
-                  data-date={dayTime}
-                  aria-disabled={checkInTime > dayTime || nowDayTime > dayTime}
                   key={`${date.year}_${date.mon}_${item}`}
+                  aria-checked={checkInTime < dayTime && dayTime < checkOutTime}
+                  checkIn={checkInTime === dayTime && checkOutTime !== undefined}
+                  checkOut={checkOutTime === dayTime}
                 >
-                  {item}
+                  <StyldBtn
+                    aria-selected={
+                      checkInTime === dayTime || checkOutTime === dayTime
+                    }
+                    onClick={MouseEvent}
+                    data-date={dayTime}
+                    aria-disabled={checkInTime > dayTime}
+                    disabled={nowDayTime > dayTime}
+                    key={`${date.year}_${date.mon}_${item}btn`}
+                  >
+                    {item}
+                  </StyldBtn>
                 </StyldTd>
               ) : (
-                <StyldTd aria-disabled={true} key={`null_${j}${i}`}></StyldTd>
+                <StyldTd
+                  aria-disabled={true}
+                  checkIn={false}
+                  checkOut={false}
+                  key={`null_${j}${i}`}
+                ></StyldTd>
               );
             })}
           </tr>
@@ -72,25 +84,21 @@ const StyldTable = styled.table`
   & > tbody {
     & > tr {
       & > td {
-        &[aria-disabled="true"] {
-          color: ${({ theme }) => theme.color.Gray4};
-          cursor: default;
-          &:hover {
-            background-color: ${({ theme }) => theme.color.White};
-            border-radius: 0;
+        & > button {
+          &[aria-disabled="true"] {
+            color: ${({ theme }) => theme.color.Gray4};
           }
-        }
-        &[aria-selected="true"] {
-          background-color: ${({ theme }) => theme.color.Black};
-          border-radius: 50%;
-
-          color: ${({ theme }) => theme.color.White};
+          &[aria-selected="true"] {
+            background-color: ${({ theme }) => theme.color.Black};
+            color: ${({ theme }) => theme.color.White};
+            border-radius: 50%;
+          }
         }
         &[aria-checked="true"] {
           background-color: ${({ theme }) => theme.color.Gray5};
           &:hover {
-            background-color: ${({ theme }) => theme.color.Gray5};
             border-radius: 0;
+            border: none;
             color: ${({ theme }) => theme.color.White};
           }
         }
@@ -99,18 +107,40 @@ const StyldTable = styled.table`
   }
 `;
 
+const StyldBtn = styled.button`
+  width: 100%;
+  height: 100%;
+  background: transparent;
+
+  &:hover {
+    border: 2px solid black;
+    border-radius: 50%;
+  }
+`;
+
 const StyldDay = styled.th`
   color: ${({ theme }) => theme.color.Gray4};
 `;
 
-const StyldTd = styled.td`
+const StyldTd = styled.td<{ checkIn: boolean; checkOut: boolean }>`
   width: 4rem;
   height: 4rem;
   text-align: center;
   cursor: pointer;
-  &:hover {
-    background-color: black;
-    border-radius: 50%;
-    color: white;
-  }
+
+  ${({ checkIn, checkOut, theme }) => {
+    const checkInCss = css`
+      background: ${theme.color.Gray5};
+      border-bottom-left-radius: 50%;
+      border-top-left-radius: 50%; ;
+    `;
+    const checkOutCss = css`
+      background: ${theme.color.Gray5};
+      border-bottom-right-radius: 50%;
+      border-top-right-radius: 50%; ;
+    `;
+    if (checkIn) return checkInCss;
+
+    if (checkOut) return checkOutCss;
+  }}
 `;
