@@ -1,7 +1,7 @@
 import { useCallback, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { GoogleMap, useJsApiLoader, LoadScript } from '@react-google-maps/api';
-import GOOGLE_MAP_API_KEY from '../../utils/googleMapAPIKey';
+import GOOGLE_MAP_API_KEY from '@/utils/googleMapAPIKey';
 
 
 const containerStyle = {

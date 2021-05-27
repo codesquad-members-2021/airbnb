@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import Calendar from './Calendar';
 import { useRecoilState } from 'recoil';
-import { searchBarFocusAtom } from '../../recoil/atoms';
+import Calendar from './Calendar';
 import ChargeModal from './ChargeModal';
 import PersonnelModal from './PersonnelModal';
-import { SearchBarType } from '../commons/searchBarType';
+import { SearchBarType } from '@Components/commons/searchBarType';
+import { searchBarFocusAtom } from '@/recoil/atoms';
 
 const Modal = () => {
   const [searchBarState, setSearchBarState] = useRecoilState(searchBarFocusAtom);

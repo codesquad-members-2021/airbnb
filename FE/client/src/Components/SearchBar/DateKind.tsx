@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
-import { getMonthAndDay } from '../../utils/calendarUtil';
-import { DivisionContent, DivisionTitle } from '../commons/base';
+import { DivisionContent, DivisionTitle } from '@Components/commons/base';
+import { getMonthAndDay } from '@/utils/calendarUtil';
 
 type CheckDateType = {
   checkInTime?: number;

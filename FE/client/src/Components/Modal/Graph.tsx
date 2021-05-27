@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import { getOnePriceSize, GraphType, getLines, getSelectedLines } from '../../utils/graphUtil';
+import { getOnePriceSize, GraphType, getLines, getSelectedLines } from '@/utils/graphUtil';
 
 const Graph = ({ rangeState, priceArray }: GraphType) => {
   const priceCountArray = priceArray.map(price => price.length);

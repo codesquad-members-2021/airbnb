@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import airbnbMainImage from '../../Images/airbnbMain.jpg';
-import GNB from '../GNB';
-import SearchBar from '../SearchBar';
-import Modal from '../Modal';
+import GNB from '@Components/GNB';
+import SearchBar from '@Components/SearchBar';
+import Modal from '@Components/Modal';
+import airbnbMainImage from '@/Images/airbnbMain.jpg';
 
 const MainPage = () => {
   return (

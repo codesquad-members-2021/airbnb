@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import GNB from '../GNB';
-import HotelList from './../HotelList/index';
-import SearchMap from './../SearchMap/index';
+import GNB from '@Components/GNB';
+import HotelList from '@Components/HotelList/index';
+import SearchMap from '@Components/SearchMap/index';
 
 const SearchMapPage = () => {
   return (

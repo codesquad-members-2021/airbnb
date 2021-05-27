@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { IconButton } from "@material-ui/core";
-import { monthIndexAtom, calendarClickAtom } from '../../recoil/atoms';
 import { useRecoilState } from 'recoil';
-import { getYearAndMonth, getDayArray } from '../../utils/calendarUtil';
+import { monthIndexAtom, calendarClickAtom } from '@/recoil/atoms';
+import { getYearAndMonth, getDayArray } from '@/utils/calendarUtil';
 
 type MonthProps = {
   left?: string;

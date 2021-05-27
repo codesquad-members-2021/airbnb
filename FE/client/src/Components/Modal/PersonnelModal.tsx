@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { PersonnelType } from '../commons/searchBarType';
-import PersonnelKind from './PersonnelKind';
 import { useRecoilState } from 'recoil';
-import { PersonnelAtom } from './../../recoil/atoms';
+import PersonnelKind from './PersonnelKind';
+import { PersonnelType } from '@Components/commons/searchBarType';
+import { PersonnelAtom } from '@/recoil/atoms';
 
 export type handleCountType = {
   count: number;

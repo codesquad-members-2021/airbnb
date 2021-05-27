@@ -2,7 +2,7 @@ import { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
 import PauseCircleOutlineRoundedIcon from '@material-ui/icons/PauseCircleOutlineRounded';
 import { SetterOrUpdater } from 'recoil';
-import { RangeAtomType } from '../../recoil/atoms';
+import { RangeAtomType } from '@/recoil/atoms';
 
 type SliderType = {
   rangeState: {

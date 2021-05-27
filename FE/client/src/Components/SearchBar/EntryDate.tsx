@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { IconButton } from "@material-ui/core";
 import { useRecoilState } from 'recoil';
-import { calendarClickAtom } from '../../recoil/atoms';
-import { CalendarType } from '../commons/searchBarType';
 import DateKind from './DateKind';
+import { CalendarType } from '@Components/commons/searchBarType';
+import { calendarClickAtom } from '@/recoil/atoms';
 
 type EntryDateType = CalendarType & {
   handleClickShowModal: (clickTarget: string) => () => void;

@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { DivisionContent, DivisionTitle } from './../commons/base';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { IconButton } from "@material-ui/core";
-import { PersonnelType } from '../commons/searchBarType';
+import { PersonnelType } from '@Components/commons/searchBarType';
 import { useRecoilState } from 'recoil';
-import { PersonnelAtom } from './../../recoil/atoms';
+import { PersonnelAtom } from '@/recoil/atoms';
 
 type PersonnelModalType = PersonnelType & {
   handleClickShowModal: (clickTarget: string) => () => void;

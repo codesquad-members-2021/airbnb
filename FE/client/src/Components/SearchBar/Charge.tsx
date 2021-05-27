@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { DivisionContent, DivisionTitle } from './../commons/base';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { IconButton } from "@material-ui/core";
-import { ChargeType } from '../commons/searchBarType';
 import { useRecoilState } from 'recoil';
-import { RangeAtom } from '../../recoil/atoms';
+import { ChargeType } from '@Components/commons/searchBarType';
+import { RangeAtom } from '@/recoil/atoms';
 
 type ChargeModalType = ChargeType & {
   handleClickShowModal: (clickTarget: string) => () => void;
