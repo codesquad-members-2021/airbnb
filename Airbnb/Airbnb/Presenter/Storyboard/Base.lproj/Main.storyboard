@@ -562,35 +562,67 @@
                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="chevron.backward.circle" catalog="system"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가격범위" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="x1m-yP-FmM">
+                                <rect key="frame" x="10" y="74" width="107" height="40"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₩100,000 - ₩1,000,000+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BYk-H5-9qI">
+                                <rect key="frame" x="10" y="122" width="254" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="평균 1박 요금은 ₩165,000원 입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NdP-G2-V55">
+                                <rect key="frame" x="10" y="162" width="254" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="systemGray2Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mha-lq-Irb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="IsL-Ra-j05" firstAttribute="width" secondItem="BPH-ax-3Iw" secondAttribute="width" id="0VV-sf-rRw"/>
+                            <constraint firstItem="BYk-H5-9qI" firstAttribute="width" secondItem="BPH-ax-3Iw" secondAttribute="width" multiplier="0.613527" id="6yN-el-LHu"/>
+                            <constraint firstItem="BYk-H5-9qI" firstAttribute="leading" secondItem="mha-lq-Irb" secondAttribute="leading" constant="10" id="75O-1k-VFn"/>
                             <constraint firstItem="IsL-Ra-j05" firstAttribute="trailing" secondItem="mha-lq-Irb" secondAttribute="trailing" id="Aox-Fb-Idf"/>
+                            <constraint firstItem="x1m-yP-FmM" firstAttribute="height" secondItem="BPH-ax-3Iw" secondAttribute="height" multiplier="0.0446429" id="FEZ-96-XD4"/>
                             <constraint firstItem="IsL-Ra-j05" firstAttribute="top" secondItem="bt3-PZ-A9e" secondAttribute="bottom" id="GoQ-yS-3lD"/>
                             <constraint firstItem="IsL-Ra-j05" firstAttribute="leading" secondItem="mha-lq-Irb" secondAttribute="leading" id="JF7-UB-RWS"/>
+                            <constraint firstItem="x1m-yP-FmM" firstAttribute="leading" secondItem="mha-lq-Irb" secondAttribute="leading" constant="10" id="JVa-fC-XU6"/>
+                            <constraint firstItem="BYk-H5-9qI" firstAttribute="height" secondItem="BPH-ax-3Iw" secondAttribute="height" multiplier="0.0446429" id="PYX-Dk-AhJ"/>
+                            <constraint firstItem="x1m-yP-FmM" firstAttribute="top" secondItem="tJa-og-Zmf" secondAttribute="bottom" constant="8" id="Pqf-cC-lhq"/>
+                            <constraint firstItem="BYk-H5-9qI" firstAttribute="top" secondItem="x1m-yP-FmM" secondAttribute="bottom" constant="8" symbolic="YES" id="SkT-XZ-Spd"/>
+                            <constraint firstItem="NdP-G2-V55" firstAttribute="top" secondItem="BYk-H5-9qI" secondAttribute="bottom" id="XMB-g3-C1p"/>
                             <constraint firstAttribute="bottom" secondItem="IsL-Ra-j05" secondAttribute="bottom" id="bD1-eo-s9H"/>
                             <constraint firstItem="bt3-PZ-A9e" firstAttribute="leading" secondItem="mha-lq-Irb" secondAttribute="leading" id="epJ-mh-D3j"/>
+                            <constraint firstItem="NdP-G2-V55" firstAttribute="width" secondItem="BPH-ax-3Iw" secondAttribute="width" multiplier="0.613527" id="ewR-x4-Vlj"/>
                             <constraint firstItem="tJa-og-Zmf" firstAttribute="height" secondItem="BPH-ax-3Iw" secondAttribute="height" multiplier="0.0245536" id="faO-WJ-c4Q"/>
                             <constraint firstItem="tJa-og-Zmf" firstAttribute="width" secondItem="BPH-ax-3Iw" secondAttribute="width" multiplier="0.0483092" id="iQD-8X-rvo"/>
                             <constraint firstItem="bt3-PZ-A9e" firstAttribute="trailing" secondItem="mha-lq-Irb" secondAttribute="trailing" id="jGc-Dt-0dS"/>
+                            <constraint firstItem="NdP-G2-V55" firstAttribute="height" secondItem="BPH-ax-3Iw" secondAttribute="height" multiplier="0.0379464" id="pT0-qm-PfA"/>
+                            <constraint firstItem="NdP-G2-V55" firstAttribute="leading" secondItem="mha-lq-Irb" secondAttribute="leading" constant="10" id="qyb-a5-tFJ"/>
                             <constraint firstItem="tJa-og-Zmf" firstAttribute="top" secondItem="mha-lq-Irb" secondAttribute="top" id="shV-DQ-APv"/>
+                            <constraint firstItem="x1m-yP-FmM" firstAttribute="width" secondItem="BPH-ax-3Iw" secondAttribute="width" multiplier="0.258454" id="syW-UL-iQC"/>
                             <constraint firstItem="tJa-og-Zmf" firstAttribute="leading" secondItem="mha-lq-Irb" secondAttribute="leading" constant="10" id="vUD-jf-AEf"/>
                             <constraint firstItem="bt3-PZ-A9e" firstAttribute="top" secondItem="mha-lq-Irb" secondAttribute="top" constant="498" id="xJM-Y6-bTH"/>
                             <constraint firstItem="IsL-Ra-j05" firstAttribute="height" secondItem="BPH-ax-3Iw" secondAttribute="height" multiplier="0.100446" id="xwO-2t-MnH"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="averagePriceLabel" destination="NdP-G2-V55" id="EHY-Jx-HYm"/>
                         <outlet property="bakButton" destination="tJa-og-Zmf" id="aXe-8X-VVY"/>
                         <outlet property="dateLabel" destination="TlB-hp-yOR" id="wRz-Fo-4fF"/>
                         <outlet property="locationLabel" destination="7zR-f2-1VB" id="nxC-Yc-zE2"/>
                         <outlet property="priceLabel" destination="sJr-MH-TCm" id="7r3-Jj-ZmW"/>
+                        <outlet property="serverPriceLabel" destination="BYk-H5-9qI" id="Seu-bs-GNA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAw-fN-dJe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3122" y="88"/>
+            <point key="canvasLocation" x="3121.739130434783" y="87.723214285714278"/>
         </scene>
         <!--위시리스트-->
         <scene sceneID="vch-nN-zRH">

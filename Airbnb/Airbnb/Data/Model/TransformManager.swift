@@ -2,7 +2,6 @@ import Foundation
 
 class TransformManager {
     
-    
     static func toString(from date:Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -15,5 +14,28 @@ class TransformManager {
         let checkOut = strArr.max()!
         let res = checkIn == checkOut ? checkIn:"\(checkIn) ~ \(checkOut)"
         return res
+    }
+    
+    static func toString(from intArr:[Int]) -> String {
+        if intArr.isEmpty { return "" }
+        let minPrice = intArr.first!.formattedWithSeparator
+        let maxPrice = intArr.last!.formattedWithSeparator
+        let res = minPrice == maxPrice ? "₩\(minPrice)":"₩\(minPrice) - ₩\(maxPrice)"
+        return res
+    }
+}
+
+extension Formatter {
+    static let withSeparator: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = ","
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+}
+
+extension IntegerLiteralType {
+    var formattedWithSeparator: String {
+        return Formatter.withSeparator.string(for: self) ?? ""
     }
 }
