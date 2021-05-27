@@ -30,6 +30,10 @@ public class AccommodationService {
                 .collect(Collectors.toList());
     }
 
+    public AccommodationResponseDto findAccommodationById(Long id) {
+        return new AccommodationResponseDto(accommodationRepository.findById(id));
+    }
+
     public List<String> findAllPopularDestinations(String destination) {
         return accommodationRepository.findPopularDestinations(destination).stream()
                 .map(Accommodation::getAddress)

@@ -23,6 +23,7 @@ public class AccommodationRepository {
             ") ";
     private static final String PRICE_CONDITION_SQL = "(? <= price AND price <= ?) ";
     private static final String PEOPLE_CONDITION_SQL = "max_num_of_people >= ? ";
+    private static final String ID_CONDITION_SQL = "id = ? ";
 
     private static final RowMapper<Accommodation> ACCOMMODATION_ROW_MAPPER = (rs, rowNum) -> {
         Accommodation accommodation = new Accommodation();
@@ -109,6 +110,13 @@ public class AccommodationRepository {
                 "FROM accommodation " +
                 "WHERE address LIKE ? ";
         return jdbcTemplate.query(sqlQuery, ADDRESS_ROW_MAPPER, "%" + destination + "%");
+    }
+
+    public Accommodation findById(Long id) {
+        String sqlQuery = BASE_SQL +
+                "WHERE " + ID_CONDITION_SQL;
+
+        return jdbcTemplate.queryForObject(sqlQuery, ACCOMMODATION_ROW_MAPPER, id);
     }
 
     private boolean isPresentOfDestination(SearchRequestDto requestDto) {
