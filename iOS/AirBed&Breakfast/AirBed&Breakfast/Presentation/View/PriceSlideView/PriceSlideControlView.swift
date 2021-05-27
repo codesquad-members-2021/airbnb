@@ -51,6 +51,10 @@ class PriceSlideControlView: UIView {
         ])
     }
     
+    public func clearRangeSlider() {
+        self.rangeSlider.clear()
+    }
+    
     @objc func rangeSliderValueChanged(_ rangeSlider: RangeSlider) {
         // for test
         self.minimumPrice = 10_000

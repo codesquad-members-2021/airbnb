@@ -46,6 +46,7 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func navigationBarClearButtonPressed(_ sender: UIBarButtonItem) {
+        self.searchController.searchBar.text = ""
     }
 }
 

@@ -8,6 +8,7 @@
 import UIKit
 
 protocol ReservationDetailViewControllerProtocol {
+    func setDetailSetUpViewInitializer(as initializer: DetailSetUpViewInitializable)
     func setContext(with description: String)
     func changeLocation(with location: String)
     func changeDateRange(date: Date, isLowerDay: Bool)
@@ -28,8 +29,8 @@ class ReservationDetailViewController: UIViewController {
     @IBOutlet weak var deleteCurrentDetailButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
+    var detailSetUpViewInitializer: DetailSetUpViewInitializable? = nil
     var currentContext: String?
-    
     var location: String?
     var lowerDate: Date?
     var upperDate: Date?
@@ -43,16 +44,17 @@ class ReservationDetailViewController: UIViewController {
         
         reservationDetailTableView.dataSource = self
         reservationDetailTableView.delegate = self
-        print("reservatinDetail did load")
+        
     }
     
     @IBAction func deleteCurrentDetailButtonPressed(_ sender: UIButton) {
         switch currentContext {
         case String(describing: CalendarControlView.self):
             self.detailLabel(for: .date).text = ""
-            (parent as? SetUpViewController)?.calendarControlView?.clearCalendarView()
+            self.detailSetUpViewInitializer?.clearCalendarControlView()
         case String(describing: PriceSlideControlView.self):
             self.detailLabel(for: .price).text = ""
+            self.detailSetUpViewInitializer?.clearPriceSlideControlView()
         default:
             return
         }
@@ -64,11 +66,11 @@ class ReservationDetailViewController: UIViewController {
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         switch currentContext {
         case String(describing: CalendarControlView.self):
-            (parent as? SetUpViewController)?.deinitializeCalendarControlView()
-            (parent as? SetUpViewController)?.configurePriceControlView()
+            detailSetUpViewInitializer?.deinitializeCalendarControlView()
+            detailSetUpViewInitializer?.configurePriceControlView()
         case String(describing: PriceSlideControlView.self):
-            (parent as? SetUpViewController)?.deinitializePriceControlView()
-
+            detailSetUpViewInitializer?.deinitializePriceControlView()
+            
         default: break
         }
         
@@ -102,6 +104,10 @@ class ReservationDetailViewController: UIViewController {
 }
 
 extension ReservationDetailViewController: ReservationDetailViewControllerProtocol {
+    func setDetailSetUpViewInitializer(as initializer: DetailSetUpViewInitializable) {
+        self.detailSetUpViewInitializer = initializer
+    }
+    
     func setContext(with description: String) {
         self.currentContext = description
     }
@@ -143,6 +149,7 @@ extension ReservationDetailViewController: ReservationDetailViewControllerProtoc
 }
 
 extension ReservationDetailViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
@@ -160,10 +167,13 @@ extension ReservationDetailViewController: UITableViewDataSource {
         
         return cell
     }
+    
 }
 
 extension ReservationDetailViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.reservationDetailTableView.frame.height/4
     }
+    
 }

@@ -57,7 +57,7 @@ class RangeSlider: UIControl {
                                            size: thumbImage.size)
     }
     
-    func positionForValue(_ value: CGFloat) -> CGFloat {
+    private func positionForValue(_ value: CGFloat) -> CGFloat {
         return frame.width * value
     }
     
@@ -65,6 +65,12 @@ class RangeSlider: UIControl {
         let xPosition = positionForValue(value) - thumbImage.size.width / 2.0
         let yPosition = ((self.frame.height - 10) - (thumbImage.size.height) / 2.0)
         return CGPoint(x: xPosition, y: yPosition)
+    }
+    
+    public func clear() {
+        self.lowerValue = 0.2
+        self.upperValue = 0.8
+        self.updateLayerFrames()
     }
     
 }
