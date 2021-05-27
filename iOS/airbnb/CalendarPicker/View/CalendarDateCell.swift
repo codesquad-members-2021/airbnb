@@ -34,18 +34,7 @@ class CalendarDateCell: UICollectionViewCell {
         dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, MMMM d")
         return dateFormatter
     }()
-    
-    var day: Day? {
-      didSet {
-        guard let day = day else { return }
 
-        numberLabel.text = day.number
-        accessibilityLabel = accessibilityDateFormatter.string(from: day.date)
-        if !day.isWithinDisplayedMonth {
-            numberLabel.textColor = .systemGray
-        }
-      }
-    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         config()
