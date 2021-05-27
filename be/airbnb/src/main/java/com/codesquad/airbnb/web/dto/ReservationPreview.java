@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Getter
 @Builder
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class ReservationDetail {
+public class ReservationPreview {
     private int id;
     private int guestId;
     private int roomId;

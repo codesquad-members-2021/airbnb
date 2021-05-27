@@ -3,7 +3,7 @@ package com.codesquad.airbnb.web.service.rooms;
 import com.codesquad.airbnb.web.domain.reservation.Reservation;
 import com.codesquad.airbnb.web.domain.room.Room;
 import com.codesquad.airbnb.web.domain.room.RoomRepository;
-import com.codesquad.airbnb.web.dto.ReservationDetail;
+import com.codesquad.airbnb.web.dto.ReservationPreview;
 import com.codesquad.airbnb.web.dto.RoomDetail;
 import com.codesquad.airbnb.web.dto.RoomPreviews;
 import com.codesquad.airbnb.web.dto.UserInput;
@@ -52,7 +52,7 @@ public class RoomService {
     }
 
     @Transactional
-    public ReservationDetail makeReservation(int roomId, int guestId, UserInput userInput) {
+    public ReservationPreview makeReservation(int roomId, int guestId, UserInput userInput) {
         userInput.verifyUserInputIsReservationable();
         Room room = findRoom(roomId);
         room.checkGuestCapacity(userInput.guestCount());
