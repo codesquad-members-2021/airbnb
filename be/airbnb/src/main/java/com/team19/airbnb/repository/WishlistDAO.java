@@ -27,7 +27,7 @@ public class WishlistDAO {
     }
 
     public List<Wishlist> findAllByUser(Long user) {
-        String selectByUser = "SELECT `id`, `room` FROM `wishlist` WHERE `user` = ?;";
+        String selectByUser = "SELECT `id`, `room` FROM `wishlist` WHERE `user` = ?";
         return jdbcTemplate.query(selectByUser, wishlistRowMapper(), user);
     }
 
