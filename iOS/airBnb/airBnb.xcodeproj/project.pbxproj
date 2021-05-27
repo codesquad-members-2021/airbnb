@@ -35,6 +35,8 @@
 		BF7E2E42265FBC5300A810BE /* SequenceDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E41265FBC5300A810BE /* SequenceDates.swift */; };
 		BF7E2E46265FBC8C00A810BE /* PriceRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E45265FBC8C00A810BE /* PriceRange.swift */; };
 		BF7E2E4A265FCF6D00A810BE /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E49265FCF6D00A810BE /* CGFloat+Extension.swift */; };
+		BF7E2E54266027E400A810BE /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E53266027E400A810BE /* PeopleViewController.swift */; };
+		BF7E2E572660280700A810BE /* People.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF7E2E562660280700A810BE /* People.storyboard */; };
 		BF9F9509265DE6D4003CF475 /* UIStoryBoard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F9508265DE6D4003CF475 /* UIStoryBoard+Extension.swift */; };
 		BF9F950D265DE9DC003CF475 /* UICollectionCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F950C265DE9DC003CF475 /* UICollectionCell+Extension.swift */; };
 		BF9F9510265DEAFE003CF475 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F950F265DEAFE003CF475 /* UITableViewCell+Extension.swift */; };
@@ -82,6 +84,8 @@
 		BF7E2E41265FBC5300A810BE /* SequenceDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceDates.swift; sourceTree = "<group>"; };
 		BF7E2E45265FBC8C00A810BE /* PriceRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRange.swift; sourceTree = "<group>"; };
 		BF7E2E49265FCF6D00A810BE /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
+		BF7E2E53266027E400A810BE /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
+		BF7E2E562660280700A810BE /* People.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = People.storyboard; sourceTree = "<group>"; };
 		BF9F9508265DE6D4003CF475 /* UIStoryBoard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryBoard+Extension.swift"; sourceTree = "<group>"; };
 		BF9F950C265DE9DC003CF475 /* UICollectionCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionCell+Extension.swift"; sourceTree = "<group>"; };
 		BF9F950F265DEAFE003CF475 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
@@ -260,6 +264,8 @@
 		BF7E2E4D2660276900A810BE /* People */ = {
 			isa = PBXGroup;
 			children = (
+				BF7E2E53266027E400A810BE /* PeopleViewController.swift */,
+				BF7E2E562660280700A810BE /* People.storyboard */,
 			);
 			path = People;
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				BFE430C02653903000F4DA1C /* LaunchScreen.storyboard in Resources */,
 				BFE430BD2653903000F4DA1C /* Assets.xcassets in Resources */,
 				BF9F9522265E01F0003CF475 /* Price.storyboard in Resources */,
+				BF7E2E572660280700A810BE /* People.storyboard in Resources */,
 				BFE430BB2653902E00F4DA1C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,6 +413,7 @@
 				BF7E2E3E265FA36F00A810BE /* PriceSliderLayer.swift in Sources */,
 				BF2FEADC265B71260022CB93 /* SearchTextField+Extension.swift in Sources */,
 				BFE4311326557A2900F4DA1C /* LocationHeaderView.swift in Sources */,
+				BF7E2E54266027E400A810BE /* PeopleViewController.swift in Sources */,
 				BF4048F92659ED1400CA02B5 /* DateFormatter+Extension.swift in Sources */,
 				BF2FEAED265BEFDB0022CB93 /* PriceViewController.swift in Sources */,
 				BFE430D526541D2B00F4DA1C /* LocationSearchViewController.swift in Sources */,

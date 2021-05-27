@@ -73,8 +73,9 @@ class PriceViewController: UIViewController {
     }
     
     private func bind() {
-        nextViewControllerSubject.sink { _ in
-            print("넘어감")
+        nextViewControllerSubject.sink { [weak self] _ in
+            let peopleViewController = UIStoryboard.create(identifier: PeopleViewController.self, name: "People")
+            self?.navigationController?.pushViewController(peopleViewController, animated: true)
         }.store(in: &cancellable)
     }
     
