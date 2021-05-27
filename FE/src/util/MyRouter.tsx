@@ -1,43 +1,25 @@
-import React, { useState, useEffect, useContext, createContext } from 'react';
+import { useState, useEffect, useContext, createContext } from 'react';
+import styled from 'styled-components';
 
-const HistoryContext = createContext(null);
+interface IHistoryContext {
+  history: History, 
+  currentPath: string, 
+  setCurrentPath: React.Dispatch<React.SetStateAction<string>>
+}
+interface IRoute {
+  path: string, 
+  component: () => React.ReactNode, 
+  exact?: boolean
+}
+interface ILink {
+  to: string,
+  children: React.ReactNode
+}
 
-// for test
-// const withRotuer = ({...props}) => {
-  
-//   const [location, setLocation] = useState(null);
-  
-//   useEffect(() => {
-//     /*
-//       {
-//         key: 'ac3df4', // not with HashHistory!
-//         pathname: '/somewhere',
-//         search: '?some=search-string',
-//         hash: '#howdy',
-//         state: {
-//           [userDefined]: true
-//         }
-//       }
-
-//     */
-//     const a = new URLSearchParams(window.location.search)
-//     const currentLocation = window.location;
-//     currentLocation
-
-//     setLocation({
-//       pathname: currentLocation.pathname
-//     })
-//   }, [])
-  
-//   return (
-//     <>
-//       {props.children}
-//     </>
-//   )
-// }
+const HistoryContext = createContext<IHistoryContext|null>(null);
 
 const BrowserRouter = ({...props}) => {
-  const [currentPath, setCurrentPath] = useState(null);
+  const [currentPath, setCurrentPath] = useState<string>('');
   const history = window.history;
 
   useEffect(() => {
@@ -47,6 +29,12 @@ const BrowserRouter = ({...props}) => {
     }
     const firstPath = window.location.pathname.split("/")[1];
     setCurrentPath(`/${firstPath}`);
+
+    window.addEventListener("popstate", (e) => {
+      // var style = document.querySelector(".view").style;
+      // style.backgroundColor = event.state.color;
+      setCurrentPath(`/${e}`);
+  });
   }, [currentPath]);
 
   return (
@@ -65,8 +53,8 @@ const Switch = ({...props}) => {
   )
 }
 
-const Route = ({path, component, exact, ...props}) => {
-  const BrowserContext = useContext(HistoryContext);
+const Route = ({path, component, exact}: IRoute) => {
+  const BrowserContext = useContext(HistoryContext)!;
   
   useEffect(() => {
     console.log("Route", path, BrowserContext.currentPath, BrowserContext.currentPath === path )
@@ -79,11 +67,26 @@ const Route = ({path, component, exact, ...props}) => {
         BrowserContext.currentPath === path 
         && component()
       }
-      {/* {...props.children} */}
     </>
   )
 }
 
-const Link = () => {}
+const Link = ({ to, children }: ILink) => {
+  // 무슨 상태를 저장?
+  const BrowserContext = useContext(HistoryContext)!;
+
+  const handleLinkClick = () => {
+    history.pushState({ state: '' }, "", to);
+    BrowserContext.setCurrentPath(to);
+  }
+  return (
+    <LinkButton onClick={handleLinkClick}> {children} </LinkButton>
+  )
+}
+
+// 리셋버튼으로 바꾼다.
+const LinkButton = styled.div`
+  cursor: pointer;
+`
 
 export { BrowserRouter, Switch, Route, Link };
