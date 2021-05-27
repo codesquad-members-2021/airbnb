@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
@@ -25,9 +25,10 @@ class ReservationDAOTest {
 
     @Test
     void reservationDAO_insertTest() {
-        Reservation reservation = new Reservation(1L, LocalDate.of(2021, 9, 13),
+        Reservation reservation = new Reservation(LocalDate.of(2021, 9, 13),
                 LocalDate.of(2021, 9, 20),
                 200000, 4, 1L, 1L);
+        reservation.setId(1L);
 
         assertThat(reservationDAO.insertReservation(reservation)).isEqualTo(1);
     }
