@@ -2,6 +2,8 @@ import { useMainDispatch, useMainState } from '../../contexts/MainContext';
 import { Text, TextContentInfo, TextFooter, TextTopBackground } from '../../util/reference';
 
 import Background from '../Common/Background';
+import BackgroundFluid from '../Common/BackgroundFluid';
+
 import TopBackground from './TopBackground';
 import Nearby from './Nearby';
 import RoomType from './RoomType';
@@ -16,24 +18,27 @@ const Main = () => {
 
   const { searchBarClickedIdx } = useMainState();
   const mainDispatch = useMainDispatch();
-  const onMainRootBackgroundClick = () => {
+  const handleBackgroundFluidClick = () => {
     if (searchBarClickedIdx < 0) return;
-    mainDispatch({ type: 'SET_SEARCHBAR_CLICKED_IDX', payload: -1 });
+    mainDispatch({ type: 'CHANGE_SEARCHBAR_CLICKED_IDX', payload: -1 });
   };
 
   return (
-    <Background coverBody onClick={onMainRootBackgroundClick}>
+    <BackgroundFluid onClick={handleBackgroundFluidClick}>
+
       <TopBackground
         headerTexts={headerTexts}
         searchBarTexts={searchBarTexts}
       />
       <Nearby nearbyItems={nearby} />
       <RoomType roomTypeItems={roomType} />
+
       <Background backgroundColor={'gray6'}>
         <ContentInfo contentInfoItems={contentInfo} />
         <Footer footerItems={footerItems} />
       </Background>
-    </Background>
+
+    </BackgroundFluid>
   );
 };
 

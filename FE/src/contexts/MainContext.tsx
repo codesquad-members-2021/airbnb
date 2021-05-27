@@ -21,7 +21,7 @@ const initialState: MainState = {
 const MainStateContext = createContext<MainState | undefined>(undefined);
 
 type MainAction = {
-  type: 'SET_SEARCHBAR_CLICKED_IDX';
+  type: 'CHANGE_SEARCHBAR_CLICKED_IDX';
   payload: number;
 } /* | {} */;
 
@@ -33,7 +33,7 @@ const MainDispatchContext = createContext<MainDispatch | undefined>(undefined);
 // 리듀서 정의
 const mainReducer = (state: MainState, action: MainAction): MainState => {
   switch (action.type) {
-    case 'SET_SEARCHBAR_CLICKED_IDX':
+    case 'CHANGE_SEARCHBAR_CLICKED_IDX':
       return {
         ...state,
         searchBarClickedIdx: action.payload,
