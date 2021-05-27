@@ -16,6 +16,7 @@ import java.util.List;
 public class SearchController {
 
     @GetMapping("/search/price/{location}")
+    //pathVariable이 아니라 파라미터로 받을 수 있는지?
     public int[] searchPriceRange(@PathVariable String location) {
         int[] ranges = new int[2];
         ranges[0] = 10000;

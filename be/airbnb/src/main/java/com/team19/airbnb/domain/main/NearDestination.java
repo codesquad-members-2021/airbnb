@@ -1,5 +1,6 @@
 package com.team19.airbnb.domain.main;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 
 import java.sql.Time;
@@ -11,6 +12,8 @@ public class NearDestination {
     private Long id;
 
     private String destination;
+
+    @JsonFormat(pattern = "HH:mm")
     private LocalTime timeDistance;
     private String image;
 
