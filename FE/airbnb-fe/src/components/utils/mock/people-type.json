@@ -1,0 +1,14 @@
+{
+  "adult": {
+    "title": "성인",
+    "contents": "만 13세 이상"
+  },
+  "child": {
+    "title": "어린이",
+    "contents": "만 2~12세"
+  },
+  "baby": {
+    "title": "유아",
+    "contents": "만 2세 미만"
+  }
+}

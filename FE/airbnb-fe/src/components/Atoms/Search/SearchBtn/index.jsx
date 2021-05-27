@@ -5,10 +5,8 @@ import SearchButtonSvg from './SearchButtonSvg';
 
 const SearchBtn = () => {
   const { clicked } = useContext(SearchContext);
-
   const isModalClicked = clicked.checkInOut || clicked.price || clicked.people;
 
-  console.log(clicked.checkInOut);
   return (
     <SearchBtnDiv isModalClicked={isModalClicked}>
       <SearchSvgDiv>
