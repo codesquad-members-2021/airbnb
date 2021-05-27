@@ -35,9 +35,11 @@
 		E4E63C59265E71E300F86104 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C58265E71E300F86104 /* CalendarCollectionViewCell.swift */; };
 		E4E63C5B265F1FA400F86104 /* MonthHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C5A265F1FA400F86104 /* MonthHeaderCollectionViewCell.swift */; };
 		E4E63C64265F300400F86104 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C63265F300400F86104 /* CalendarViewModel.swift */; };
-		E4E63C66265F302A00F86104 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C65265F302A00F86104 /* Calendar.swift */; };
+		E4E63C66265F302A00F86104 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C65265F302A00F86104 /* CalendarManager.swift */; };
 		E4E63C68265F314600F86104 /* AccommodationConditionTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C67265F314600F86104 /* AccommodationConditionTableViewDataSource.swift */; };
 		E4E63C6A265F315800F86104 /* CalendarCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C69265F315800F86104 /* CalendarCollectionViewDataSource.swift */; };
+		E4E63C6C265F335500F86104 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C6B265F335500F86104 /* Month.swift */; };
+		E4E63C6E265F34E700F86104 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C6D265F34E700F86104 /* Day.swift */; };
 		E4F302A32655F71E002C9770 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E4F302A22655F71E002C9770 /* Alamofire */; };
 		E4F302A52655F837002C9770 /* AlamofireRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302A42655F837002C9770 /* AlamofireRequestManager.swift */; };
 		E4F302A72655F84B002C9770 /* AlamofireNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302A62655F84B002C9770 /* AlamofireNetworkManager.swift */; };
@@ -105,9 +107,11 @@
 		E4E63C58265E71E300F86104 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		E4E63C5A265F1FA400F86104 /* MonthHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		E4E63C63265F300400F86104 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
-		E4E63C65265F302A00F86104 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		E4E63C65265F302A00F86104 /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		E4E63C67265F314600F86104 /* AccommodationConditionTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationConditionTableViewDataSource.swift; sourceTree = "<group>"; };
 		E4E63C69265F315800F86104 /* CalendarCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		E4E63C6B265F335500F86104 /* Month.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
+		E4E63C6D265F34E700F86104 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		E4F302A42655F837002C9770 /* AlamofireRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireRequestManager.swift; sourceTree = "<group>"; };
 		E4F302A62655F84B002C9770 /* AlamofireNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkManager.swift; sourceTree = "<group>"; };
 		E4F302A82655F890002C9770 /* AlamofireImageLoadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireImageLoadManager.swift; sourceTree = "<group>"; };
@@ -296,7 +300,9 @@
 		E4E63C60265F2FA600F86104 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E4E63C65265F302A00F86104 /* Calendar.swift */,
+				E4E63C65265F302A00F86104 /* CalendarManager.swift */,
+				E4E63C6B265F335500F86104 /* Month.swift */,
+				E4E63C6D265F34E700F86104 /* Day.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -529,7 +535,7 @@
 				E4E63C64265F300400F86104 /* CalendarViewModel.swift in Sources */,
 				E4DB1D7C2653912F00894DCB /* PopularLocationViewController.swift in Sources */,
 				E4F302BA26560CC7002C9770 /* LocationSearchResultUpdating.swift in Sources */,
-				E4E63C66265F302A00F86104 /* Calendar.swift in Sources */,
+				E4E63C66265F302A00F86104 /* CalendarManager.swift in Sources */,
 				E4F302A72655F84B002C9770 /* AlamofireNetworkManager.swift in Sources */,
 				E4F302EC26568C0D002C9770 /* FakeNetworkManager.swift in Sources */,
 				E4F302DF26567480002C9770 /* SearchResultFetchUseCase.swift in Sources */,
@@ -555,8 +561,10 @@
 				E4F302C6265642D8002C9770 /* SearchResultUseCase.swift in Sources */,
 				E4F302F82656B3E1002C9770 /* ImageLoadUseCase.swift in Sources */,
 				E4F302AD2655FD17002C9770 /* NetworkManagable.swift in Sources */,
+				E4E63C6C265F335500F86104 /* Month.swift in Sources */,
 				E4F302C826564431002C9770 /* LocationSearchResult.swift in Sources */,
 				E4F302BD26560E2D002C9770 /* PopularLocationUseCase.swift in Sources */,
+				E4E63C6E265F34E700F86104 /* Day.swift in Sources */,
 				E4F302AB2655F970002C9770 /* AlamofireRequestManagable.swift in Sources */,
 				E481481026549C980069BE20 /* SearchResultTableViewCell.swift in Sources */,
 				E4F303042656B9DB002C9770 /* HomeViewModel.swift in Sources */,
