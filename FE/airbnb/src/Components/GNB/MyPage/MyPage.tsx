@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { loginState, dropDownState } from "@/Components/GNB/GNBRecoil";
+import { loginState, dropDownState } from "@/Components/GNB/GNBStore";
 import MyMenuIcon from "./MyMenuIcon";
 import MyImage from "./MyImage";
 import DropDown from "./DropDown/DropDown";
