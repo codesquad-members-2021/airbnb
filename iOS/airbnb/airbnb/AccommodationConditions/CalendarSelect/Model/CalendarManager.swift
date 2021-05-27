@@ -14,7 +14,6 @@ class CalendarManager {
     
     init() {
         self.months = []
-        fillMonths(by: 6)
     }
     
     func fillMonths(by count: Int) {
@@ -27,7 +26,6 @@ class CalendarManager {
                 createMonth(startAt: today)
             }
         }
-        //리필됐다고 노티보내야함
     }
     
     private func createMonth(startAt: Date) {
@@ -37,11 +35,6 @@ class CalendarManager {
         let startingWeekday = calendar.component(.weekday, from: firstDay)
         let month = createDays(with: firstDay, numberOfDays, startingWeekday)
         months.append(month)
-    }
-    
-    enum DateFormat {
-        static let month = "M월 YYYY"
-        static let day = "d"
     }
     
     private func createDays(with firstDay: Date, _ numberOfDays: Int, _ startingWeekDay: Int) -> Month {
@@ -69,6 +62,11 @@ class CalendarManager {
         return day == dayToCompare
     }
 
+}
+
+enum DateFormat {
+    static let month = "M월 YYYY"
+    static let day = "d"
 }
 
 extension DateFormatter {

@@ -9,28 +9,26 @@ import UIKit
 
 class CalendarCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    private var calendarManager: CalendarManager
+    private var calendar = [Month]()
     
-    init(calendarManager: CalendarManager) {
-        self.calendarManager = calendarManager
+    func updateCalendar(with months: [Month]) {
+        self.calendar = months
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return calendarManager.months.count 
+        return calendar.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if calendarManager.months.count == section - 1 {
-            calendarManager.fillMonths(by: 6)
-        }
-        return calendarManager.months[section].days.count
+        return calendar[section].days.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellId = CalendarCollectionViewCell.reuseIdentifier
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? CalendarCollectionViewCell ?? CalendarCollectionViewCell()
-        let targetDay = calendarManager.months[indexPath.section].days[indexPath.row]
+        let targetDay = calendar[indexPath.section].days[indexPath.row]
         cell.titleLabel.text = targetDay.title ?? ""
+        
         switch targetDay.status {
         case .future:
             cell.futureMode()
@@ -39,6 +37,7 @@ class CalendarCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         case .empty:
             cell.emptyMode()
         }
+        
         return cell
     }
     
@@ -49,7 +48,7 @@ class CalendarCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         case UICollectionView.elementKindSectionHeader:
             let headerId = MonthHeaderCollectionViewCell.reuseIdentifier
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as? MonthHeaderCollectionViewCell ?? MonthHeaderCollectionViewCell()
-            let thisMonth = calendarManager.months[indexPath.section]
+            let thisMonth = calendar[indexPath.section]
             header.titleLabel.text = thisMonth.title
             return header
         default:

@@ -8,21 +8,19 @@
 import UIKit
 
 final class CalendarViewController: UIViewController {
-
-    private let backButtonTitle = "날짜 선택"
-
+    
     private lazy var toolBar: UIToolbar = {
         let tempFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
         let toolBar = UIToolbar(frame: tempFrame)
         toolBar.tintColor = .systemPink
         toolBar.translatesAutoresizingMaskIntoConstraints = false
         
-        let passButton = UIBarButtonItem(title: "건너뛰기",
+        let passButton = UIBarButtonItem(title: CalendarViewModel.ButtonTitle.pass,
                                          style: .plain,
                                          target: self,
                                          action: #selector(pass))
         let spacing = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let nextButton = UIBarButtonItem(title: "다음",
+        let nextButton = UIBarButtonItem(title: CalendarViewModel.ButtonTitle.next,
                                          style: .plain,
                                          target: self,
                                          action: #selector(nextScreen))
@@ -75,26 +73,9 @@ final class CalendarViewController: UIViewController {
         return stackView
     }()
     
-    private var tableViewDataSource: AccommodationConditionTableViewDataSource?
-    private var collecionViewDataSource: CalendarCollectionViewDataSource?
-    
-    private var calendarManager: CalendarManager?
-    
-    var location: LocationSearchResult?
-    
     override func loadView() {
         super.loadView()
         configure()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.calendarManager = CalendarManager()
-        self.tableViewDataSource = AccommodationConditionTableViewDataSource()
-        self.collecionViewDataSource = CalendarCollectionViewDataSource(calendarManager: calendarManager!)
-        accommodationConditionTableView.dataSource = tableViewDataSource
-        calendarCollectionView.dataSource = collecionViewDataSource
-        calendarCollectionView.delegate = self
     }
     
     private func configure() {
@@ -147,6 +128,32 @@ final class CalendarViewController: UIViewController {
         ])
     }
     
+    private var accommodationConditionTableViewDataSource: AccommodationConditionTableViewDataSource?
+    private var calendarCollecionViewDataSource: CalendarCollectionViewDataSource?
+    
+    private var viewModel: CalendarManageModel?
+    
+    var location: LocationSearchResult?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.accommodationConditionTableViewDataSource = AccommodationConditionTableViewDataSource()
+        self.calendarCollecionViewDataSource = CalendarCollectionViewDataSource()
+        accommodationConditionTableView.dataSource = accommodationConditionTableViewDataSource
+        calendarCollectionView.dataSource = calendarCollecionViewDataSource
+        calendarCollectionView.delegate = self
+        viewModel = CalendarViewModel()
+        bind()
+        
+    }
+    
+    func bind() {
+        viewModel?.bind(dataHandler: { [weak self] months in
+            self?.calendarCollecionViewDataSource?.updateCalendar(with: months)
+            self?.calendarCollectionView.reloadData()
+        })
+    }
+    
     @objc private func pass(_ sender: UIBarButtonItem) {
         //검색 즉시 실행
     }
@@ -176,7 +183,11 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 80)
+        return CGSize(width: collectionView.frame.width, height: 60)
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        viewModel?.calendarUpdateNeeded()
     }
 
 }

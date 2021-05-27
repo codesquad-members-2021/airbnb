@@ -13,8 +13,16 @@ class AccommodationConditionTableViewCell: UITableViewCell {
         return String(describing: self)
     }
     
-    private weak var conditionTitle: UILabel?
-    private weak var conditionContent: UILabel?
+    private lazy var conditionTitle: UILabel = {
+        let conditionTitle = UILabel()
+        return conditionTitle
+    }()
+    
+    private lazy var conditionContent: UILabel = {
+        let conditionContent = UILabel()
+        conditionContent.textColor = .gray
+        return conditionContent
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -26,22 +34,22 @@ class AccommodationConditionTableViewCell: UITableViewCell {
         configure()
     }
     
-    func configure() {
-        let conditionTitle = UILabel()
+    private func configure() {
+        addConditionTitle()
+        addConditionContent()
+    }
+    
+    private func addConditionTitle() {
         self.addSubview(conditionTitle)
-        self.conditionTitle = conditionTitle
-        conditionTitle.text = "테스트"
         conditionTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             conditionTitle.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             conditionTitle.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
         ])
-        
-        let conditionContent = UILabel()
+    }
+    
+    private func addConditionContent() {
         self.addSubview(conditionContent)
-        self.conditionContent = conditionContent
-        conditionContent.text = "test"
-        conditionContent.textColor = .gray
         conditionContent.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             conditionContent.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
