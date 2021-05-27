@@ -5,8 +5,10 @@ export interface UsefulObject {
 }
 
 export interface Location {
-    id: number;
-    city: string;
+    province_id: number;
+    town_id: number;
+    address_id: number;
+    address: string;
 }
 
 export interface Date {
@@ -35,7 +37,7 @@ export interface ReservationContext {
 }
 
 export type ReservationAction =
-    | { type: 'LOCATION'; id: number; city: string }
+    | { type: 'LOCATION'; province_id: number; town_id: number; address_id: number; address: string }
     | { type: 'CHECKIN'; year: number; month: number; day: number }
     | { type: 'CHECKOUT'; year: number; month: number; day: number }
     | { type: 'PEOPLE'; guest: number; kids: number }
@@ -92,4 +94,16 @@ export type CalendarType = {
 export type DateType = {
     possible: boolean;
     typeOfDate: string;
+};
+
+export type LayerSpecType = {
+    width: number;
+    top: number;
+    left: number;
+    height: number;
+};
+
+export type ModalLayerType = {
+    children: React.ReactNode;
+    options: LayerSpecType;
 };

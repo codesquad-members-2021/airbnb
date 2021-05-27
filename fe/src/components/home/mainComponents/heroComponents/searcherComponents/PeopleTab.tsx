@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import SearchIcon from '@material-ui/icons/Search';
-import { Container, Layer, NavigatingText, Tab } from './shared.style';
+import { Container, NavigatingText, Tab } from './common/shared.style';
 import { Link } from 'react-router-dom';
 import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/SearcherHook';
 import { PeopleCount } from '../../../../../shared/interface';
 import { useReservationDispatch, useReservationState } from '../../../../../hooks/ReservationHook';
+import ModalLayer from './common/ModalLayer';
 
 const peopleType = {
     adult: '성인',
@@ -14,7 +15,10 @@ const peopleType = {
 };
 
 const PeopleTab = (): React.ReactElement => {
+    const reservationState = useReservationState();
     const reservationDispatch = useReservationDispatch();
+
+    const { location, checkIn, checkOut, fee, people } = reservationState;
 
     const { peopleLayer } = useSearcherState();
     const searcherDispatch = useSearcherDispatch();
@@ -25,13 +29,7 @@ const PeopleTab = (): React.ReactElement => {
         kids: 0,
     });
 
-    // const { peopleLayer } = searcherState;
-
     const handlePeopleLayer: React.MouseEventHandler<HTMLDivElement> = () => {
-        // searcherDispatch({ type: 'SHOW_LOCATION_LAYER', state: false });
-        // searcherDispatch({ type: 'SHOW_CHECKOUT_CALENDAR_LAYER', state: false });
-        // searcherDispatch({ type: 'SHOW_FEE_LAYER', state: false });
-        // searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: false });
         searcherDispatch({ type: 'SHOW_PEOPLE_LAYER', state: true });
     };
 
@@ -74,25 +72,32 @@ const PeopleTab = (): React.ReactElement => {
         );
     };
 
+    const handleSearchWithAllReservationInfo = () => {
+        localStorage.clear();
+        localStorage.setItem('resercationState', JSON.stringify(reservationState));
+    };
+
     return (
         <Container>
             <Tab onClick={handlePeopleLayer}>
                 <PeopleTabBox>
-                    <NavigatingText>인원</NavigatingText>
                     <PeopleText>
-                        게스트: {peopleCount.adult + peopleCount.children}, 유아: {peopleCount.kids}
+                        <NavigatingText>인원</NavigatingText>
+                        <p>
+                            게스트: {peopleCount.adult + peopleCount.children}, 유아: {peopleCount.kids}
+                        </p>
                     </PeopleText>
                     <Link to="/accomodation">
-                        <SearchButton>
+                        <SearchButton onClick={handleSearchWithAllReservationInfo}>
                             <SearchIcon />
                         </SearchButton>
                     </Link>
                 </PeopleTabBox>
             </Tab>
             {peopleLayer && (
-                <Layer width={400} top={100} left={480} height={355}>
+                <ModalLayer options={{ width: 400, top: 100, left: 515, height: 355 }}>
                     {renderPeopleCountList()}
-                </Layer>
+                </ModalLayer>
             )}
         </Container>
     );

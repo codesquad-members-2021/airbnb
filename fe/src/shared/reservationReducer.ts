@@ -20,8 +20,10 @@ export default function reservationReducer(state: ReservationContext, action: Re
             return {
                 ...state,
                 location: {
-                    id: action.id,
-                    city: action.city,
+                    province_id: action.province_id,
+                    town_id: action.town_id,
+                    address_id: action.address_id,
+                    address: action.address,
                 },
             };
         case 'CHECKIN':

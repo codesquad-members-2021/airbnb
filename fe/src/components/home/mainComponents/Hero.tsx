@@ -8,8 +8,10 @@ import Searcher from './heroComponents/Searcher';
 
 const initialState = {
     location: {
-        id: 0,
-        city: '',
+        province_id: 0,
+        town_id: 0,
+        address_id: 0,
+        address: '',
     },
     checkIn: {
         year: 0,

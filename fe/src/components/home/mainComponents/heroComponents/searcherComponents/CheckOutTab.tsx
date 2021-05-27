@@ -4,7 +4,7 @@ import { useReservationDispatch, useReservationState } from '../../../../../hook
 import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/SearcherHook';
 import Calendar from './calendar/Calendar';
 import { isNotCheckedDate } from './calendar/calendarChecker';
-import { Container, NavigatingText, Tab } from './shared.style';
+import { Container, NavigatingText, Tab } from './common/shared.style';
 
 const CheckOutTab = (): React.ReactElement => {
     const { checkOut } = useReservationState();

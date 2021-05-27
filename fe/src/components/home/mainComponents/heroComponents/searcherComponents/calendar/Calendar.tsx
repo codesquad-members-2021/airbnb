@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { getInitialDate, loadYYMM } from './calendarDate';
-import { Td, UsefulObject, CalendarType, DateType, Date as IDate } from '../../../../../../shared/interface';
+import { MonthsPresenter } from './calendar.presenter';
+import { getInitialDate } from './calendarDate';
+import { CalendarType } from '../../../../../../shared/interface';
 import { useReservationDispatch, useReservationState } from '../../../../../../hooks/ReservationHook';
 import { useSearcherDispatch } from '../../../../../../hooks/SearcherHook';
-import { Layer } from '../shared.style';
-import { getDateSum, isBefore, isPossibleToCheckDate, getTypeOfDate, isNotCheckedDate } from './calendarChecker';
 
-const dateTypeColor: UsefulObject = {
-    checkIn: 'tomato',
-    checkOut: 'tomato',
-    between: '#d5c5b4',
-    default: '#fff',
-};
+import { getDateSum, isBefore, isNotCheckedDate } from './calendarChecker';
+import ModalLayer from '../common/ModalLayer';
+import { CalendarContainer, CarouselBox, LayerContentContainer } from './calendar.style';
 
 const Calendar = ({ isCheckIn }: CalendarType): React.ReactElement => {
     const { checkIn, checkOut } = useReservationState();
@@ -100,7 +95,7 @@ const Calendar = ({ isCheckIn }: CalendarType): React.ReactElement => {
     };
 
     return (
-        <Layer width={916} top={100} left={0} height={512}>
+        <ModalLayer options={{ width: 916, top: 100, left: 0, height: 512 }}>
             <LayerContentContainer>
                 <CalendarContainer>
                     <div>
@@ -116,149 +111,8 @@ const Calendar = ({ isCheckIn }: CalendarType): React.ReactElement => {
                     </div>
                 </CalendarContainer>
             </LayerContentContainer>
-        </Layer>
+        </ModalLayer>
     );
 };
 
 export default Calendar;
-
-const CalendarContainer = styled.div`
-    display: flex;
-    width: 100%;
-    width: 100%;
-    height: 100%;
-    padding: 60px;
-`;
-
-const LayerContentContainer = styled.div`
-    position: relative;
-    width: 100%;
-    height: 100%;
-`;
-
-const CarouselBox = styled.div`
-    width: 750px;
-    background: green;
-    position: relative;
-    overflow: hidden;
-`;
-
-interface CalendarListType {
-    x: number;
-    transitionValue: string;
-}
-
-const CalendarList = styled.ul<CalendarListType>`
-    display: flex;
-    position: absolute;
-    transform: ${({ x }) => `translate3d(${x}px, 0, 0)`};
-    transition: ${({ transitionValue }) => transitionValue};
-`;
-
-const CalendarBox = styled.li`
-    width: 375px;
-    padding: 0 10px;
-    list-style: none;
-`;
-
-const CalendarTitle = styled.div`
-    background: violet;
-    margin-bottom: 24px;
-    font-size: 16px;
-    font-weight: 700;
-    text-align: center;
-`;
-
-const Week = styled.thead`
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-`;
-
-const Dates = styled.div``;
-
-const DayName = styled.div`
-    width: 48px;
-    height: 24px;
-    font-size: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const Day = styled.div`
-    height: 48px;
-    margin: 4px 0;
-    color: ${({ possible }: DateType) => (!possible ? '#ddd' : '#000')};
-    background: ${({ typeOfDate }: DateType) => dateTypeColor[typeOfDate]};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-`;
-
-interface CalendarPresenterProps {
-    checkIn: IDate;
-    checkOut: IDate;
-    handleCheckDate: (event: React.MouseEvent<HTMLElement>, dataSets: string[] | null, possibleDate: boolean) => void;
-}
-
-interface WeekProps extends CalendarPresenterProps {
-    days: Td[];
-}
-
-interface MonthProps extends CalendarPresenterProps {
-    calendarQueue: Date[];
-    x: number;
-    transitionValue: string;
-}
-
-function MonthsPresenter(props: MonthProps) {
-    const { checkIn, checkOut, handleCheckDate, calendarQueue, x, transitionValue } = props;
-    return (
-        <CalendarList x={x} transitionValue={transitionValue}>
-            {calendarQueue.map((date) => {
-                const dateTable = loadYYMM(date);
-                return (
-                    <CalendarBox>
-                        <CalendarTitle>
-                            {date.getFullYear()}년 {date.getMonth() + 1}월
-                        </CalendarTitle>
-                        <Week>
-                            {['일', '월', '화', '수', '목', '금', '토'].map((day) => (
-                                <DayName>{day}</DayName>
-                            ))}
-                        </Week>
-                        <Dates>
-                            {dateTable.map((days) => (
-                                <WeekPresenter {...{ days, checkIn, checkOut, handleCheckDate }} />
-                            ))}
-                        </Dates>
-                    </CalendarBox>
-                );
-            })}
-        </CalendarList>
-    );
-}
-
-function WeekPresenter(props: WeekProps) {
-    const { days, checkIn, checkOut, handleCheckDate } = props;
-    return (
-        <Week>
-            {days.map((day) => {
-                const { classNames, countDay, dataSets } = day;
-                const className = classNames?.reduce((acc, val) => acc + ` ${val}`, ``);
-                const possibleDate = isPossibleToCheckDate(dataSets);
-                return (
-                    <Day
-                        className={className}
-                        possible={possibleDate}
-                        typeOfDate={getTypeOfDate(dataSets, checkIn, checkOut)}
-                        onClick={(e) => handleCheckDate(e, dataSets, possibleDate)}
-                    >
-                        {countDay !== 0 && countDay}
-                    </Day>
-                );
-            })}
-        </Week>
-    );
-}

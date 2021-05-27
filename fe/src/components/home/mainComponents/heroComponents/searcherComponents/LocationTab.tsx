@@ -4,7 +4,8 @@ import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/Sear
 import { LocationList, Location } from '../../../../../shared/interface';
 import { mockupLocationData } from '../../../../../data/location';
 import { useReservationDispatch } from '../../../../../hooks/ReservationHook';
-import { Container, Tab, Layer } from './shared.style';
+import { Container, Tab } from './common/shared.style';
+import ModalLayer from './common/ModalLayer';
 
 const LocationTab = (): React.ReactElement => {
     const reservationDispatch = useReservationDispatch();
@@ -33,18 +34,19 @@ const LocationTab = (): React.ReactElement => {
                 searcherDispatch({ type: 'SHOW_LOCATION_LIST', list: [] });
                 return;
             }
-            const currLocationList: LocationList = mockupLocationData.location.filter((el) =>
-                el.city.includes(event.target.value),
+            const currLocationList: LocationList = mockupLocationData.city_info_list.filter((el) =>
+                el.address.includes(event.target.value),
             );
             searcherDispatch({ type: 'SHOW_LOCATION_LIST', list: currLocationList });
         }, 200);
     };
 
     const setUpLocation = (place: Location) => {
-        reservationDispatch({ type: 'LOCATION', id: place.id, city: place.city });
-        searcherDispatch({ type: 'SHOW_INPUTOFLOCATION', value: place.city });
+        const { province_id, town_id, address_id, address } = place;
+        reservationDispatch({ type: 'LOCATION', province_id, town_id, address_id, address });
+        searcherDispatch({ type: 'SHOW_INPUTOFLOCATION', value: place.address });
         if (inputRef?.current) {
-            inputRef.current.value = place.city;
+            inputRef.current.value = place.address;
             inputRef.current.blur();
         }
         searcherDispatch({ type: 'SHOW_CHECKIN_CALENDAR_LAYER', state: true });
@@ -62,13 +64,13 @@ const LocationTab = (): React.ReactElement => {
                 />
             </Tab>
             {locationLayer && (
-                <Layer width={493} top={100} left={0} height={355}>
+                <ModalLayer options={{ width: 493, top: 100, left: 0, height: 355 }}>
                     {locationList?.map((place: Location) => (
-                        <li key={place.id} onClick={() => setUpLocation(place)}>
-                            {place.city}
+                        <li key={place.address_id} onClick={() => setUpLocation(place)}>
+                            {place.address}
                         </li>
                     ))}
-                </Layer>
+                </ModalLayer>
             )}
         </Container>
     );

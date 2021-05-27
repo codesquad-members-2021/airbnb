@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useReservationDispatch, useReservationState } from '../../../../../hooks/ReservationHook';
 import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/SearcherHook';
-import { Container, Layer, NavigatingText, Tab } from './shared.style';
+import ModalLayer from './common/ModalLayer';
+import { Container, NavigatingText, Tab } from './common/shared.style';
 
 const FeeTab = (): React.ReactElement => {
     const { fee } = useReservationState();
@@ -35,10 +36,10 @@ const FeeTab = (): React.ReactElement => {
                 <PriceText>{typeof fee === 'number' ? `${fee}원` : `${fee[0]}만원 ${fee[1]}만원`}</PriceText>
             </Tab>
             {feeLayer && (
-                <Layer width={400} top={100} left={480} height={355}>
+                <ModalLayer options={{ width: 400, top: 100, left: 480, height: 355 }}>
                     <Slider value={feeValue} onChange={handleSliderChange} valueLabelDisplay="auto" />
                     <button onClick={handleSubmitFee}>확인</button>
-                </Layer>
+                </ModalLayer>
             )}
         </Container>
     );

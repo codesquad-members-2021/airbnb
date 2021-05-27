@@ -1,24 +1,28 @@
 const mockupLocationData = {
-    location: [
+    city_info_list: [
         {
-            id: 1,
-            city: '서울특별시',
+            province_id: 1,
+            town_id: 1,
+            address_id: 1,
+            address: '서울특별시 강남구 ',
         },
         {
-            id: 2,
-            city: '서울 강남구',
+            province_id: 1,
+            town_id: 2,
+            address_id: 1,
+            address: '서울특별시 종로구 ',
         },
         {
-            id: 3,
-            city: '서울 송파구',
+            province_id: 1,
+            town_id: 3,
+            address_id: 1,
+            address: '서울특별시 마포구 ',
         },
         {
-            id: 4,
-            city: '서울 종로구',
-        },
-        {
-            id: 5,
-            city: '서울 마포구',
+            province_id: 1,
+            town_id: 4,
+            address_id: 1,
+            address: '서울특별시 서초구 양재동',
         },
     ],
 };
