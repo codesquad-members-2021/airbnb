@@ -8,17 +8,16 @@ const MyPage = () => {
 
 	useEffect(() => {
 		if (userInfo) return;
-		if (window.location.search)
-			fetch(`http://3.37.76.224:8080/login?code=${window.location.search.replace("?code=", "")}&typeCode=1`, { method: "POST" })
+		const code = window.location.search;
+		if (code)
+			fetch(`http://3.37.76.224:8080/login?code=${code.replace("?code=", "")}&typeCode=1`, { method: "POST" })
 				.then((res) => res.json())
 				.then((json) => setUserInfo(() => json))
 				.catch((res) => console.error("fetch error in login : ", res));
 	});
 
 	useEffect(() => {
-		const blur = ({ target }) => {
-			if (currentDOM.current && !currentDOM.current.contains(target)) setOn(false);
-		};
+		const blur = ({ target }) => !currentDOM.current?.contains(target) && setOn(false);
 		document.addEventListener("click", blur);
 		return () => document.removeEventListener("click", blur);
 	});
@@ -74,12 +73,12 @@ const MyPageModal = ({ userInfo }) => (
 				<ModalContent>위시리스트</ModalContent>
 				<Line />
 				<ModalContent>
-					<a href={"http://localhost:3000"}>로그아웃</a>
+					<a href={"http://3.37.76.224"}>로그아웃</a>
 				</ModalContent>
 			</>
 		) : (
 			<ModalContent>
-				<a href={"https://github.com/login/oauth/authorize?client_id=830ef6707e92703260eb&scope=user&redirect_uri=http://localhost:3000"}>
+				<a href={"https://github.com/login/oauth/authorize?client_id=830ef6707e92703260eb&scope=user&redirect_uri=http://3.37.76.224"}>
 					로그인
 				</a>
 			</ModalContent>

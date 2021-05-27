@@ -27,7 +27,6 @@ const fixMonth = (year, month) => {
 const Calendar = ({ modifier }) => {
 	const now = new Date(Date.now());
 	const [year, month] = fixMonth(now.getFullYear(), now.getMonth() + modifier);
-	const monthArray = makeMonthArray(year, month);
 	return (
 		<CalendarWrapper>
 			<CalendarTitle>{`${year}년 ${month + 1}월`}</CalendarTitle>
@@ -44,7 +43,7 @@ const Calendar = ({ modifier }) => {
 					</tr>
 				</Week>
 				<tbody>
-					{monthArray.map((el) => (
+					{makeMonthArray(year, month).map((el) => (
 						<tr key={el}>
 							{el.map((v) => (
 								<Day date={new Date(year, month, v)} key={v}>

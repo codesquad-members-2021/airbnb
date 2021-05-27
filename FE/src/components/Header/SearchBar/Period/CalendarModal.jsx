@@ -4,12 +4,12 @@ import Calendar from "./Calendar/Calendar";
 import delay from "../../../../util/delay";
 
 const CalendarModal = () => {
-	const [currentModifier, setCurrentModifier] = useState([-2, -1, 0, 1, 2, 3]);
+	const [currentModifier, setCurrentModifier] = useState([-1, 0, 1, 2]);
 	const [containerState, setContainerState] = useState("CENTER");
 
 	const slideEvent = async (type) => {
 		await delay(() => setContainerState(type), 400);
-		setCurrentModifier((arr) => arr.map((el) => el + (type === "LEFT" ? -2 : 2)));
+		setCurrentModifier((arr) => arr.map((el) => el + (type === "LEFT" ? -1 : 1)));
 		setContainerState("CENTER");
 	};
 
@@ -62,8 +62,8 @@ const ShowWindow = styled.div`
 `;
 const xLocation = {
 	LEFT: "translateX(0)",
-	CENTER: "translateX(-772px)",
-	RIGHT: "translateX(-1545px)",
+	CENTER: "translateX(-386px)",
+	RIGHT: "translateX(-772px)",
 };
 const Container = styled.div`
 	position: absolute;

@@ -8,18 +8,15 @@ const Period = () => {
 	const { start, setStart, end, setEnd } = useContext(SearchBarContext);
 
 	const [isOn, setOn] = useState(false);
+	const currentDOM = useRef();
 
 	const resetEvent = () => {
 		setStart("");
 		setEnd("");
 	};
 
-	const currentDOM = useRef();
-
 	useEffect(() => {
-		const blur = ({ target }) => {
-			if (currentDOM.current && !currentDOM.current.contains(target)) setOn(false);
-		};
+		const blur = ({ target }) => !currentDOM.current?.contains(target) && setOn(false);
 		document.addEventListener("click", blur);
 		return () => document.removeEventListener("click", blur);
 	});

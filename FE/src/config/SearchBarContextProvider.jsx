@@ -28,20 +28,25 @@ const SearchBarContextProvider = ({ children }) => {
 	const [start, setStart] = useState("");
 	const [end, setEnd] = useState("");
 
+	const sliderPixel = 300;
+	const sliderWidth = 20;
 	const [min, setMin] = useState(0);
-	const [max, setMax] = useState(321);
+	const [max, setMax] = useState(sliderPixel + sliderWidth + 1);
 
 	useEffect(() => {
-		if (max - min < 20) setMin(() => max - 20);
+		if (max - min < sliderWidth) setMin(() => max - sliderWidth);
 		if (min < 0) setMin(0);
-		if (max < 20) setMax(20);
-		if (max > 320) setMax(320);
+		if (max < sliderWidth) setMax(sliderWidth);
+		if (max > sliderPixel + sliderWidth) setMax(sliderPixel + sliderWidth);
 	}, [min, max]);
 
-	const [data, setData] = useState([]);
-	const [priceData, setPriceData] = useState(priceDataParser([], 300));
-
-	useEffect(() => setPriceData(priceDataParser(data, 300)), [data]);
+	const [priceData, setPriceData] = useState(priceDataParser([], sliderPixel));
+	useEffect(() => {
+		fetch(`http://3.37.76.224:8080/houses/charges?checkIn=2021-05-18&checkOut=2021-05-25&latitude=37.566826&longitude=126.9786567`)
+			.then((res) => res.json())
+			.then((json) => setPriceData(priceDataParser(json, sliderPixel)))
+			.catch((res) => console.log("fetch error : ", res));
+	}, []);
 
 	const [man, setMan] = useState(0);
 	const [kid, setKid] = useState(0);
@@ -62,7 +67,8 @@ const SearchBarContextProvider = ({ children }) => {
 				setMin,
 				max,
 				setMax,
-				setData,
+				sliderPixel,
+				sliderWidth,
 				priceData,
 				man,
 				setMan,

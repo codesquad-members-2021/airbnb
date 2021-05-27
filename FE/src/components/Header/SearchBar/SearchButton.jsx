@@ -1,13 +1,19 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { MainContext } from "../../../config/MainContextProvider";
+import { ResultContext } from "../../../config/ResultContextProvider";
 
 const SearchButton = () => {
-	const { isResult, setResult, isSearchBarFocused } = useContext(MainContext);
+	const { isResultOn, setResultOn, isSearching, fetchHouses, latitude, longitude } = useContext(ResultContext);
+
+	const clickHandler = () => {
+		fetchHouses(latitude, longitude);
+		setResultOn(true);
+	};
+
 	return (
-		<SearchButtonWrapper isSearchBarFocused={isSearchBarFocused} isResult={isResult} onClick={() => setResult(true)}>
+		<SearchButtonWrapper isSearching={isSearching} isResultOn={isResultOn} onClick={clickHandler}>
 			<Glass />
-			{isSearchBarFocused && <SearchButtonContent>검색</SearchButtonContent>}
+			{isSearching && <SearchButtonContent>검색</SearchButtonContent>}
 		</SearchButtonWrapper>
 	);
 };
@@ -27,10 +33,10 @@ const Glass = () => (
 
 const SearchButtonWrapper = styled.div`
 	position: absolute;
-	width: ${({ isSearchBarFocused }) => (isSearchBarFocused ? "90px" : "40px")};
+	width: ${({ isSearching }) => (isSearching ? "90px" : "40px")};
 	height: 40px;
-	right: ${({ isResult, isSearchBarFocused }) => (!isResult || isSearchBarFocused ? "18px" : "4px")};
-	top: ${({ isResult, isSearchBarFocused }) => (!isResult || isSearchBarFocused ? "18px" : "4px")};
+	right: ${({ isResultOn, isSearching }) => (!isResultOn || isSearching ? "18px" : "4px")};
+	top: ${({ isResultOn, isSearching }) => (!isResultOn || isSearching ? "18px" : "4px")};
 	display: flex;
 	justify-content: center;
 	align-items: center;
