@@ -20,7 +20,7 @@ const CalendarTable = ({ columns, data, date }: TableType) => {
     setCalendarDataState(([checkInTime, checkOutTime]) => {
       if (!checkInTime) return [targetTime];
       if (checkOutTime === targetTime || checkInTime === targetTime)
-        return [targetTime];
+        return [];
       if (targetTime < checkInTime) return [targetTime];
       return [checkInTime, targetTime];
     });
@@ -54,7 +54,7 @@ const CalendarTable = ({ columns, data, date }: TableType) => {
                       checkInTime === dayTime || checkOutTime === dayTime
                     }
                     onClick={MouseEvent}
-                    data-date={dayTime}
+                    data-date={dayTime} //dom에다가 데이터 저장 
                     aria-disabled={checkInTime > dayTime}
                     disabled={nowDayTime > dayTime}
                     key={`${date.year}_${date.mon}_${item}btn`}
