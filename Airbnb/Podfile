@@ -14,5 +14,6 @@ target 'Airbnb' do
   pod 'RxGesture'
   pod 'FSCalendar'
   pod 'RangeSeekSlider'
+  pod 'Charts'
 
 end

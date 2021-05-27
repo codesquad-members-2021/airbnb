@@ -18,8 +18,8 @@ class TransformManager {
     
     static func toString(from intArr:[Int]) -> String {
         if intArr.isEmpty { return "" }
-        let minPrice = intArr.first!.formattedWithSeparator
-        let maxPrice = intArr.last!.formattedWithSeparator
+        let minPrice = intArr.min()!.formattedWithSeparator
+        let maxPrice = intArr.max()!.formattedWithSeparator
         let res = minPrice == maxPrice ? "₩\(minPrice)":"₩\(minPrice) - ₩\(maxPrice)"
         return res
     }

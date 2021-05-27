@@ -6,7 +6,7 @@ class PriceViewModel {
     
     private var locationInfo:String?
     private var dateInfo:String?
-    private var apiPriceInfo:[Int] = [200000, 800000]
+    private var apiPriceInfo:[Int] = PriceInfo.accommodation
     private var userPriceInfo:[Int] = []
     
     private lazy var priceList = BehaviorSubject(value: userPriceInfo)

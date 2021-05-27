@@ -2,9 +2,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RangeSeekSlider
+import Charts
 
 class PriceViewController: UIViewController {
     
+    @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var priceRangeControl: RangeSeekSlider!
     @IBOutlet weak var averagePriceLabel: UILabel!
     @IBOutlet weak var serverPriceLabel: UILabel!
@@ -17,7 +19,7 @@ class PriceViewController: UIViewController {
     
     private let viewModel = PriceViewModel()
     private let nextPage = BehaviorRelay(value: false)
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
@@ -36,6 +38,7 @@ private extension PriceViewController {
         setupButtonObserver()
         setupSkipDeleteButton()
         setupNextButton()
+        setupCharts()
     }
     
     private func setupPriceRangeControl() {
@@ -81,6 +84,10 @@ private extension PriceViewController {
             .subscribe(onNext: { _ in
                 print("뷰컨 이동궇견 데이터 전달 O")
             }).disposed(by: rx.disposeBag)
+    }
+    
+    private func setupCharts() {
+        lineChartView.noDataText = "No Data"
     }
 }
 

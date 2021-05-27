@@ -48,3 +48,7 @@ enum ControllerPage {
     static let main = 0
     static let search = 1
 }
+
+enum PriceInfo {
+    static let accommodation = [2000000, 2000000, 2000000, 2000000, 50000, 50000, 50000, 50000, 50000, 800000, 800000, 800000]
+}
