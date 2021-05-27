@@ -21,36 +21,46 @@ const Calendar = ({ isCheckIn }: CalendarType): React.ReactElement => {
     const [calendarQueue, setCalendarQueue] = useState<Date[]>(getInitialDate());
 
     // carousel
-    const transitionDefault = 'all .5s';
+    const transitionDefault = '500ms';
     const panelWidth = 375;
 
     const [x, setX] = useState(-panelWidth);
     const [moving, setMoving] = useState(false);
     const [transitionValue, setTransitionValue] = useState(transitionDefault);
+    const [addedDate, setAddedDate] = useState<Date | null>(null);
+    const [lastDirection, setLastDirection] = useState(0);
 
-    // useEffect(() => {
-    //     if (transitionValue === 'none') setTransitionValue(transitionDefault);
-    // }, [x]);
+    useEffect(() => {
+        if (addedDate === null) return;
+        const timer = setTimeout(() => {
+            const currDate = lastDirection < 0 ? calendarQueue[0] : calendarQueue[calendarQueue.length - 1];
+            const newCalendarQueue = [...calendarQueue];
+            const newDate = new Date();
+            newDate.setFullYear(currDate.getFullYear(), currDate.getMonth() + lastDirection, 1);
+            if (lastDirection < 0) {
+                newCalendarQueue.unshift(newDate);
+                newCalendarQueue.pop();
+            } else {
+                newCalendarQueue.push(newDate);
+                newCalendarQueue.shift();
+            }
+            setCalendarQueue(newCalendarQueue);
+            setX(-panelWidth);
+            setTransitionValue('0ms');
+        }, 500);
 
-    console.log(x);
+        return () => clearTimeout(timer);
+    }, [addedDate]);
 
     const handleCalendarButton = (direction: number) => {
-        setX((prevX) => prevX + direction * 375);
+        setX((prevX) => prevX - direction * 375);
         setMoving(true);
-        // const currDate = direction === -1 ? calendarQueue[0] : calendarQueue[calendarQueue.length - 1];
-        // const newDate = new Date();
-        // newDate.setFullYear(currDate.getFullYear(), currDate.getMonth() + direction, 1);
-        // const newCalendarQueue = [...calendarQueue];
-
-        // if (direction === -1) {
-        //     newCalendarQueue.pop();
-        //     newCalendarQueue.unshift(newDate);
-        // } else if (direction === 1) {
-        //     newCalendarQueue.shift();
-        //     newCalendarQueue.push(newDate);
-        // }
-
-        // setCalendarQueue(newCalendarQueue);
+        setLastDirection(direction);
+        if (transitionValue === '0ms') setTransitionValue(transitionDefault);
+        const currDate = direction < 0 ? calendarQueue[0] : calendarQueue[calendarQueue.length - 1];
+        const newDate = new Date();
+        newDate.setFullYear(currDate.getFullYear(), currDate.getMonth() + direction, 1);
+        setAddedDate(currDate);
     };
 
     const handleCheckDate = (
@@ -115,20 +125,15 @@ export default Calendar;
 const CalendarContainer = styled.div`
     display: flex;
     width: 100%;
+    width: 100%;
     height: 100%;
-    justify-content: space-between;
+    padding: 60px;
 `;
 
 const LayerContentContainer = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
-    padding: 60px;
-`;
-
-const ButtonSection = styled.div`
-    display: flex;
-    justify-content: space-between;
 `;
 
 const CarouselBox = styled.div`
@@ -146,9 +151,8 @@ interface CalendarListType {
 const CalendarList = styled.ul<CalendarListType>`
     display: flex;
     position: absolute;
-    // left: -350px;
     transform: ${({ x }) => `translate3d(${x}px, 0, 0)`};
-    transition: 300ms;
+    transition: ${({ transitionValue }) => transitionValue};
 `;
 
 const CalendarBox = styled.li`

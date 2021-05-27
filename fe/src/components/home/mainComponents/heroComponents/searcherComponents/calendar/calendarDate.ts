@@ -3,10 +3,10 @@ import { Td } from '../../../../../../shared/interface';
 export const getInitialDate = (): Date[] => {
     const monthForChange = new Date().getMonth();
     const queue = [];
-    for (let i = -1; i < 4; i++) {
+    for (let i = -1; i < 3; i++) {
         const currDate = new Date();
         currDate.setDate(1);
-        currDate.setMonth(monthForChange + i);
+        currDate.setFullYear(currDate.getFullYear(), monthForChange + i);
         queue.push(currDate);
     }
     return queue;
