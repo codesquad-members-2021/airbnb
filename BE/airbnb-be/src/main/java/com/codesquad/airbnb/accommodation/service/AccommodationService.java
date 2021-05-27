@@ -6,10 +6,25 @@ import com.codesquad.airbnb.common.utils.DummyDataFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AccommodationService {
     public List<AccommodationResponseDTO> readAll(AccommodationRequestDTO accommodationRequestDTO) {
-        return DummyDataFactory.accommodationResponseDTOsWithId();
+        List<AccommodationResponseDTO> result = DummyDataFactory.accommodationResponseDTOsWithId();
+
+        if (accommodationRequestDTO.getStartPrice() != null) {
+            result = result.stream()
+                             .filter(accommodationResponseDTO -> accommodationRequestDTO.getStartPrice() <= accommodationResponseDTO.pricePerNight())
+                             .collect(Collectors.toList());
+        }
+
+        if (accommodationRequestDTO.getEndPrice() != null) {
+            result = result.stream()
+                             .filter(accommodationResponseDTO -> accommodationResponseDTO.pricePerNight() <= accommodationRequestDTO.getEndPrice())
+                             .collect(Collectors.toList());
+        }
+
+        return result;
     }
 }
