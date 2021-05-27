@@ -18,7 +18,12 @@ class NearPlaceDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = places[indexPath.row]
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NearPlaceCell.reuseIdentifier, for: indexPath) as! NearPlaceCell
+        guard let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: NearPlaceCell.reuseIdentifier,
+                                     for: indexPath) as? NearPlaceCell
+        else {
+            return UICollectionViewCell()
+        }
         cell.areaTitle.text = item.name
         cell.timeRequired.text = "차로 \(item.distance) 시간 거리"
         return cell

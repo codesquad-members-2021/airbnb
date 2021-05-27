@@ -26,8 +26,12 @@ class CalanderColleectionDataSource: NSObject, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let model = models[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarDateCell.reuseIdentifier,
-                                                      for: indexPath) as! CalendarDateCell
+        guard let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: CalendarDateCell.reuseIdentifier,
+                                     for: indexPath) as? CalendarDateCell
+        else {
+            return UICollectionViewCell()
+        }
         model.setup(cell, in: collectionView, at: indexPath)
         return cell
     }

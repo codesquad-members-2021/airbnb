@@ -33,7 +33,12 @@ class FooterTableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FooterTableViewCell.reuseIdentifier, for: indexPath) as! FooterTableViewCell
+        guard let cell = tableView
+                .dequeueReusableCell(withIdentifier: FooterTableViewCell.reuseIdentifier,
+                                     for: indexPath) as? FooterTableViewCell
+        else {
+            return UITableViewCell()
+        }
         cell.title.text = "위치"
         cell.content.text = "서울"
         return cell
