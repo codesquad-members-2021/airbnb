@@ -38,6 +38,7 @@ private extension SearchViewController {
             .subscribe(onNext: { [weak self] info in
                 let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "CanlendarVC") as! CalendarViewController
                 nextVC.setupLocation(info.mainInfo)
+                nextVC.modalTransitionStyle = .crossDissolve
                 nextVC.modalPresentationStyle = .fullScreen
                 self?.present(nextVC, animated: true, completion: nil)
             }).disposed(by: rx.disposeBag)
@@ -57,6 +58,7 @@ private extension SearchViewController {
             .subscribe(onNext: { [weak self] _ in
                 let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "CanlendarVC") as! CalendarViewController
                 nextVC.setupLocation(self!.searchController.searchBar.text!)
+                nextVC.modalTransitionStyle = .crossDissolve
                 nextVC.modalPresentationStyle = .fullScreen
                 self?.dismiss(animated: true, completion: nil)
                 self?.present(nextVC, animated: true, completion: nil)

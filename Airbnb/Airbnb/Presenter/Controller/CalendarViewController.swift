@@ -90,6 +90,7 @@ private extension CalendarViewController {
                     }
                 default:
                     let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "PriceVC") as! PriceViewController
+                    nextVC.modalTransitionStyle = .crossDissolve
                     nextVC.modalPresentationStyle = .fullScreen
                     self?.present(nextVC, animated: true, completion: nil)
                 }
@@ -100,6 +101,7 @@ private extension CalendarViewController {
         nextButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "PriceVC") as! PriceViewController
+                nextVC.modalTransitionStyle = .crossDissolve
                 nextVC.modalPresentationStyle = .fullScreen
                 nextVC.setupInfo(of: self!.locationLabel.text!, of: self!.dateLabel.text!)
                 self?.present(nextVC, animated: true, completion: nil)
