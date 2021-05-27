@@ -5,6 +5,22 @@ import { SearchContext } from '..';
 const PeopleCard = ({ type: peopleType, title, contents }) => {
   const { peopleCount, peopleDispatch } = useContext(SearchContext);
 
+  const setCountDisable = () =>
+    peopleCount['adult'] + peopleCount['child'] >= 8;
+
+  const handleBabyClick = (type) => {
+    if (type === 'baby') {
+      if (!peopleCount.adult) {
+        peopleDispatch({ type: 'INCREASE', payload: 'baby' });
+        peopleDispatch({ type: 'INCREASE', payload: 'adult' });
+      } else {
+        peopleDispatch({ type: 'INCREASE', payload: 'baby' });
+      }
+    } else {
+      peopleDispatch({ type: 'INCREASE', payload: `${type}` });
+    }
+  };
+
   return (
     <PeopleCardDiv>
       <PeopleLabel>
@@ -22,9 +38,8 @@ const PeopleCard = ({ type: peopleType, title, contents }) => {
         </CountButton>
         <CountNumber>{peopleCount[peopleType]}</CountNumber>
         <CountButton
-          onClick={() =>
-            peopleDispatch({ type: 'INCREASE', payload: `${peopleType}` })
-          }
+          disabled={setCountDisable()}
+          onClick={() => handleBabyClick(peopleType)}
         >
           +
         </CountButton>
