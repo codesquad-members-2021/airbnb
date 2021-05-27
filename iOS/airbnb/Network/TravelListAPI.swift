@@ -17,4 +17,14 @@ class TravelListAPI {
             .map(\.value)
             .eraseToAnyPublisher()
     }
+    
+    static func loadTravelList(type : EndPoint, with limit : Int) -> AnyPublisher<[NearPlaceResponse], APIError> {
+        let parameter: Parameters = [
+            "limit" : String(limit)
+        ]
+        let request = AF.request(type.url, method: .get, parameters: parameter)
+        return API().run(request)
+            .map(\.value)
+            .eraseToAnyPublisher()
+    }
 }
