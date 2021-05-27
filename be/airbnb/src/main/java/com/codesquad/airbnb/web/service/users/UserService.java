@@ -1,8 +1,10 @@
 package com.codesquad.airbnb.web.service.users;
 
-import com.codesquad.airbnb.web.domain.User;
-import com.codesquad.airbnb.web.domain.UserRepository;
+import com.codesquad.airbnb.web.domain.user.Guest;
+import com.codesquad.airbnb.web.domain.user.User;
+import com.codesquad.airbnb.web.domain.user.UserRepository;
 import com.codesquad.airbnb.web.dto.UserWithToken;
+import com.codesquad.airbnb.web.exceptions.notfound.UserNotFoundException;
 import com.codesquad.airbnb.web.service.oauth.TokenService;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +45,11 @@ public class UserService {
     }
 
     private User save(User user) {
-        return userRepository.save(user);
+        return userRepository.saveAsGuest(user);
+    }
+
+    public Guest findGuest(int guestId) {
+        return userRepository.findGuest(guestId)
+                .orElseThrow(() -> new UserNotFoundException(UserNotFoundException.GUEST_NOT_FOUND, guestId));
     }
 }

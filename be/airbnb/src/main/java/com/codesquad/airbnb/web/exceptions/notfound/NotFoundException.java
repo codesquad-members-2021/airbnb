@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.web.exceptions;
+package com.codesquad.airbnb.web.exceptions.notfound;
 
 public class NotFoundException extends RuntimeException{
     public NotFoundException(String message) {

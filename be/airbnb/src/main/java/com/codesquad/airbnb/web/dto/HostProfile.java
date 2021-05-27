@@ -2,15 +2,15 @@ package com.codesquad.airbnb.web.dto;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
 
 @Getter
-@Setter
-@NoArgsConstructor
+@Builder
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-@ToString
-public class ReceivedAccessToken {
-    private String accessToken;
-    private String scope;
-    private String tokenType;
+public class HostProfile {
+    private int hostId;
+    private String hostName;
+    private boolean isSuperhost;
+    private String profileImage;
 }

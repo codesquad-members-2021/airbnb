@@ -1,11 +1,12 @@
 package com.codesquad.airbnb.web.service.users;
 
-import com.codesquad.airbnb.web.domain.OAuthAuthenticater;
-import com.codesquad.airbnb.web.domain.User;
-import com.codesquad.airbnb.web.domain.UserRepository;
+import com.codesquad.airbnb.web.domain.user.Guest;
+import com.codesquad.airbnb.web.domain.user.OAuthAuthenticater;
+import com.codesquad.airbnb.web.domain.user.User;
+import com.codesquad.airbnb.web.domain.user.UserRepository;
+import com.codesquad.airbnb.web.service.mapper.GuestMapper;
 import com.codesquad.airbnb.web.service.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -24,14 +25,16 @@ public class UserDAO implements UserRepository {
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
     private final UserMapper userMapper;
+    private final GuestMapper guestMapper;
 
-    public UserDAO(NamedParameterJdbcTemplate jdbcTemplate, UserMapper userMapper) {
+    public UserDAO(NamedParameterJdbcTemplate jdbcTemplate, UserMapper userMapper, GuestMapper guestMapper) {
         this.jdbcTemplate = jdbcTemplate;
         this.userMapper = userMapper;
+        this.guestMapper = guestMapper;
     }
 
     @Override
-    public User save(User user) {
+    public User saveAsGuest(User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
                 .addValue("nickname", user.getNickname())
@@ -42,6 +45,7 @@ public class UserDAO implements UserRepository {
                 .addValue("authenticated_by", user.getAuthenticatedBy().name());
         jdbcTemplate.update(SAVE_USER, mapSqlParameterSource, keyHolder);
         user.setId(Objects.requireNonNull(keyHolder.getKey()).intValue());
+        jdbcTemplate.update(SAVE_GUEST, new MapSqlParameterSource().addValue("user_id", user.getId()));
         return user;
     }
 
@@ -64,5 +68,17 @@ public class UserDAO implements UserRepository {
                 .addValue("id", id)
                 .addValue("access_token", newToken);
         jdbcTemplate.update(UPDATE_TOKEN, mapSqlParameterSource);
+    }
+
+    @Override
+    public Optional<Guest> findGuest(int guestId) {
+        MapSqlParameterSource parameter = new MapSqlParameterSource()
+                .addValue("guest_id", guestId);
+        try {
+            Guest guest = jdbcTemplate.queryForObject(FIND_GUEST, parameter, guestMapper);
+            return Optional.ofNullable(guest);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 }

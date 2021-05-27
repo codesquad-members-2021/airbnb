@@ -2,7 +2,7 @@ package com.codesquad.airbnb.web.service.oauth.github;
 
 import com.codesquad.airbnb.web.config.properties.GithubApi;
 import com.codesquad.airbnb.web.config.properties.OAuthSecret;
-import com.codesquad.airbnb.web.domain.User;
+import com.codesquad.airbnb.web.domain.user.User;
 import com.codesquad.airbnb.web.dto.GithubProfile;
 import com.codesquad.airbnb.web.dto.ReceivedAccessToken;
 import com.codesquad.airbnb.web.dto.RequestAccessToken;
