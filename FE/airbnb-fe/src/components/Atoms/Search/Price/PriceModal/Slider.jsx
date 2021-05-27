@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
-import { SearchContext } from '..';
+import { SearchContext } from '../..';
 
 const Slider = () => {
   const { priceData, priceDispatch } = useContext(SearchContext);

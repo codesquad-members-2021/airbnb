@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import styled from 'styled-components';
 import { SearchContext } from '../..';
-import Slider from '../Slider';
+import Slider from '../PriceModal/Slider.jsx';
 
 const PriceChart = () => {
   const [chart, setChart] = useState({
@@ -33,7 +33,7 @@ const PriceChart = () => {
     { x: chart.width - 1, y: chart.height - 2 },
   ];
 
-  const drawMaxOver = (ctx, minPrice, maxPrice) => {
+  const drawOver = (ctx, minPrice, maxPrice) => {
     //
     ctx.globalCompositeOperation = 'source-atop';
     ctx.fillStyle = '#333';
@@ -88,7 +88,7 @@ const PriceChart = () => {
 
   const ctx = chartRef.current?.getContext('2d');
   ctx && chart.height && chart.width && drawChart(ctx, points);
-  ctx && drawMaxOver(ctx, priceData.minPrice, priceData.maxPrice);
+  ctx && drawOver(ctx, priceData.minPrice, priceData.maxPrice);
   return (
     <PriceChartViewDiv>
       <ChartCanvas width="365px" id="canvas" ref={chartRef}></ChartCanvas>
