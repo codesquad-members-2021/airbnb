@@ -2,11 +2,11 @@ package com.codesquad.airbnb.controller;
 
 import com.codesquad.airbnb.domain.Booking;
 import com.codesquad.airbnb.dto.BookingRequest;
+import com.codesquad.airbnb.exception.BookingNotAvailableException;
 import com.codesquad.airbnb.repository.BookingRepository;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/booking")
@@ -19,9 +19,14 @@ public class BookingController {
     }
 
     @PostMapping
-    public void booking(BookingRequest bookingRequest) {
+    public void booking(@RequestBody BookingRequest bookingRequest) {
         Booking booking = bookingRequest.toBooking();
-
+        // 예약 가능한 room 반환 -> service 에서 이 List가 not empty면 예약 가능, empty면 불가능
+        List<Booking> readList = bookingRepository.read(booking);
+        if (readList.isEmpty()) {
+            throw new BookingNotAvailableException();
+        }
+        bookingRepository.insert(booking);
     }
 
     @DeleteMapping

@@ -4,14 +4,17 @@ import com.codesquad.airbnb.domain.Booking;
 
 public class BookingRequest {
 
-    private Long userId;
     private Long roomId;
+    private Long userId;
     private String checkIn;
     private String checkOut;
     private int numberOfPeople;
     private int totalPrice;
 
-    public BookingRequest(Long userId, Long roomId, String checkIn, String checkOut, int numberOfPeople, int totalPrice) {
+    public BookingRequest() {
+    }
+
+    public BookingRequest(Long roomId, Long userId, String checkIn, String checkOut, int numberOfPeople, int totalPrice) {
         this.userId = userId;
         this.roomId = roomId;
         this.checkIn = checkIn;
@@ -21,7 +24,7 @@ public class BookingRequest {
     }
 
     public Booking toBooking() {
-        return new Booking(userId, roomId, checkIn, checkOut, numberOfPeople, totalPrice);
+        return new Booking(roomId, userId, checkIn, checkOut, numberOfPeople, totalPrice);
     }
 
     public Long getUserId() {
