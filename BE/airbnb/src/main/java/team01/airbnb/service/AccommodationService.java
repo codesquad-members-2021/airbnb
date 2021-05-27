@@ -31,17 +31,22 @@ public class AccommodationService {
 
     @Transactional
     public void save(TotalAccommodationSaveRequestDto totalAccommodationSaveRequestDto) {
-        Long accommodationId = accommodationRepository.saveAccommodation(
-                Accommodation.fromSaveRequestDto(totalAccommodationSaveRequestDto));
+        // request dto에서 Accommodation 숙소도메인을 얻고 숙소를 등록한다. 반환된 id값을 request dto에 저장한다.
+        Accommodation accommodation = totalAccommodationSaveRequestDto.toAccommodation();
+        Long accommodationId = accommodationRepository.saveAccommodation(accommodation);
         totalAccommodationSaveRequestDto.setId(accommodationId);
-        accommodationRepository.saveAccommodationAddress(
-                AccommodationAddress.fromSaveRequestDto(totalAccommodationSaveRequestDto));
-        accommodationRepository.saveAccommodationCondition(
-                AccommodationCondition.fromSaveRequestDto(totalAccommodationSaveRequestDto));
-        accommodationRepository.saveAccommodationPhoto(
-                AccommodationPhoto.fromSaveRequestDto(totalAccommodationSaveRequestDto));
-        List<Long> amenityIds = accommodationRepository.findAmenityIdsByNames(
-                totalAccommodationSaveRequestDto.getAmenities());
+
+        // request dto에서 숙소정보 도메인들을 얻는다. (숙박정보, 주소, 사진, 어메니티)
+        AccommodationCondition condition = totalAccommodationSaveRequestDto.toCondition();
+        AccommodationAddress address = totalAccommodationSaveRequestDto.toAddress();
+        AccommodationPhoto photo = totalAccommodationSaveRequestDto.toPhoto();
+        List<String> amenities = totalAccommodationSaveRequestDto.getAmenities();
+
+        // 숙소정보(숙박정보, 주소, 사진, 어메니티)를 각 테이블에 저장한다.
+        accommodationRepository.saveAccommodationCondition(condition);
+        accommodationRepository.saveAccommodationAddress(address);
+        accommodationRepository.saveAccommodationPhoto(photo);
+        List<Long> amenityIds = accommodationRepository.findAmenityIdsByNames(amenities);
         accommodationRepository.addAmenitiesToAccommodation(amenityIds, accommodationId);
     }
 }
