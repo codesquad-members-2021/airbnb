@@ -1,14 +1,12 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { ResultContext } from "../../../config/ResultContextProvider";
-import { SearchBarContext } from "../../../config/SearchBarContextProvider";
 
 const SearchButton = () => {
-	const { isResultOn, setResultOn, isSearching, fetchHouses } = useContext(ResultContext);
-	const { start, end, min, max, priceData, man, kid, baby } = useContext(SearchBarContext);
+	const { isResultOn, setResultOn, isSearching, fetchHouses, latitude, longitude } = useContext(ResultContext);
 
 	const clickHandler = () => {
-		fetchHouses(start, end, min, max, priceData, man, kid, baby);
+		fetchHouses(latitude, longitude);
 		setResultOn(true);
 	};
 

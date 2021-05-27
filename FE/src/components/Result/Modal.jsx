@@ -16,7 +16,6 @@ const Modal = () => {
 
 	return (
 		<ModalWrapper ref={currentDOM}>
-			<Review>후기 127개</Review>
 			<ModalInfo />
 			<Button>예약하기</Button>
 			<Caption>예약 확정 전에는 요금이 청구되지 않습니다.</Caption>
@@ -35,18 +34,6 @@ const ModalWrapper = styled.div`
 	background: #ffffff;
 	box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
 	border-radius: 10px;
-`;
-const Review = styled.div`
-	position: absolute;
-	height: 17px;
-	top: 30px;
-	right: 23px;
-	font-weight: bold;
-	font-size: 12px;
-	line-height: 17px;
-	text-align: right;
-	text-decoration-line: underline;
-	color: #828282;
 `;
 const Button = styled.button`
 	display: flex;

@@ -4,12 +4,12 @@ import SearchBarContextProvider from "./config/SearchBarContextProvider";
 import Root from "./components/Root";
 
 const App = () => (
-	<ResultContextProvider>
-		<SearchBarContextProvider>
+	<SearchBarContextProvider>
+		<ResultContextProvider>
 			<GlobalStyle />
 			<Root />
-		</SearchBarContextProvider>
-	</ResultContextProvider>
+		</ResultContextProvider>
+	</SearchBarContextProvider>
 );
 
 export default App;

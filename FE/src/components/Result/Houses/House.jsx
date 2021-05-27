@@ -4,7 +4,7 @@ import { ResultContext } from "../../../config/ResultContextProvider";
 import addComma from "../../../util/addComma";
 
 const House = ({ data, period }) => {
-	const { id, image, name, option, review, grade, charge } = data;
+	const { id, image, name, options, review, grade, charge, local } = data;
 	const { fetchModal, setModalOn } = useContext(ResultContext);
   const clickHandler = () => {
     fetchModal(id)
@@ -14,9 +14,9 @@ const House = ({ data, period }) => {
 		<HouseWrapper onClick={clickHandler}>
 			<Image src={image} />
 			<Info>
-				<Local>서초구 아파트 전체</Local>
+				<Local>{local}</Local>
 				<Name>{name}</Name>
-				<Option>{option}</Option>
+				<Option>{options[0]}<br />{options[1]}</Option>
 			</Info>
 			<Charge>{`₩${addComma(charge)} / 박`}</Charge>
 			<Point>

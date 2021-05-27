@@ -8,10 +8,10 @@ import { SearchBarContext } from "../../../../config/SearchBarContextProvider";
 const Price = () => {
 	const [isOn, setOn] = useState(false);
 
-	const { min, setMin, max, setMax, priceData } = useContext(SearchBarContext);
+	const { min, setMin, max, setMax, priceData, sliderPixel, sliderWidth } = useContext(SearchBarContext);
 	const { minimumPrice, unit, average } = priceData;
 
-	const isActivated = Boolean(min !== 0 || max !== 320);
+	const isActivated = Boolean(min !== 0 || max !== sliderPixel + sliderWidth);
 
 	const currentDOM = useRef();
 
@@ -23,10 +23,10 @@ const Price = () => {
 
 	const resetEvent = () => {
 		setMin(0);
-		setMax(321);
+		setMax(sliderPixel + sliderWidth + 1);
 	};
 
-	const range = `₩${addComma(minimumPrice + min * unit)} ~ ₩${addComma(minimumPrice + (max - 20) * unit)}`;
+	const range = `₩${addComma(minimumPrice + min * unit)} ~ ₩${addComma(minimumPrice + (max - sliderWidth) * unit)}`;
 
 	return (
 		<PriceWrapper ref={currentDOM} onClick={() => setOn(true)}>

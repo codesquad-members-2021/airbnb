@@ -1,46 +1,56 @@
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { ResultContext } from "../../config/ResultContextProvider";
-import { SearchBarContext } from "../../config/SearchBarContextProvider";
 import addComma from "../../util/addComma";
 const { kakao } = window;
+const { maps } = kakao;
 
 const Map = () => {
 	const [map, setMap] = useState();
-	const [latitude, setLatitude] = useState(37.490821);
-	const [longitude, setLongitude] = useState(127.0312283);
 	const [isDragOn, setDragOn] = useState(true);
-	const { housesList, fetchHouses } = useContext(ResultContext);
-	const { start, end, min, max, priceData, man, kid, baby } = useContext(SearchBarContext);
+	const [newOverlay, setNewOverlay] = useState([]);
+	const [oldOverlay, setOldOverlay] = useState([]);
+	const { housesList, fetchHouses, latitude, setLatitude, longitude, setLongitude } = useContext(ResultContext);
 
 	useEffect(() => {
+		if (map) return;
 		const container = document.getElementById("map");
-		const options = { center: new kakao.maps.LatLng(latitude, longitude), level: 4 };
-		const map = new kakao.maps.Map(container, options);
+		const options = { center: new maps.LatLng(latitude, longitude), level: 4 };
+		const newMap = new maps.Map(container, options);
+		setMap(() => newMap);
+	}, [latitude, longitude, map]);
 
-		housesList.forEach(({ location, charge }) => {
-			const content = `<div class="label">₩${addComma(charge)}</div>`;
-			const customOverlay = new kakao.maps.CustomOverlay({
-				position: new kakao.maps.LatLng(location.latitude, location.longitude),
-				content: content,
-			});
-			customOverlay.setMap(map);
-		});
+	useEffect(() => {
+		setNewOverlay(() =>
+			housesList.map(
+				({ location, charge }) =>
+					new maps.CustomOverlay({
+						position: new maps.LatLng(location.latitude, location.longitude),
+						content: `<div class="label">₩${addComma(charge)}</div>`,
+					})
+			)
+		);
+	}, [housesList]);
+
+	useEffect(() => {
+		if (!map) return;
 
 		const dragHandler = () => {
 			setLatitude(() => map.getCenter().getLat());
 			setLongitude(() => map.getCenter().getLng());
 			if (!isDragOn) return;
-			fetchHouses(start, end, min, max, priceData, man, kid, baby, map.getCenter().getLat(), map.getCenter().getLng());
+			fetchHouses(map.getCenter().getLat(), map.getCenter().getLng());
 		};
 
-		kakao.maps.event.addListener(map, "dragend", dragHandler);
+		maps.event.addListener(map, "dragend", dragHandler);
+		return () => maps.event.removeListener(map, "dragend", dragHandler);
+	}, [housesList, isDragOn, fetchHouses, map, setLongitude, setLatitude]);
 
-		if (!isDragOn) return;
-		setMap(() => map);
-
-		return () => kakao.maps.event.removeListener(map, "dragend", dragHandler);
-	}, [housesList, isDragOn]);
+	useEffect(() => {
+		oldOverlay.map((el) => el.setMap(null));
+		newOverlay.map((el) => el.setMap(map));
+		setOldOverlay(() => newOverlay);
+	}, [newOverlay, oldOverlay, map]);
 
 	const zoomIn = () => map.setLevel(map.getLevel() - 1);
 
@@ -113,15 +123,12 @@ const Zoom = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-evenly;
-
 	position: absolute;
 	width: 40px;
 	height: 81px;
 	right: 32px;
 	top: 32px;
-
 	z-index: 2;
-
 	background: #ffffff;
 	box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
 	border-radius: 8px;
