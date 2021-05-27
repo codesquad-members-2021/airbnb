@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TravelStyleCell" id="gTV-IL-0wX" customClass="TravelStyleCell" customModule="Airbnb" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="277" height="349"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="277" height="349"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j0z-Jw-Kz2">
+                        <rect key="frame" x="0.0" y="0.0" width="277" height="277"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="j0z-Jw-Kz2" secondAttribute="height" multiplier="1:1" id="0EO-ep-vF9"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="자연생활을 만끽할 수 있는 숙소" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOo-X7-dcB">
+                        <rect key="frame" x="0.0" y="277" width="277" height="72"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="YOo-X7-dcB" secondAttribute="bottom" id="CF2-IF-pjk"/>
+                <constraint firstItem="j0z-Jw-Kz2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="HN3-nz-Vh6"/>
+                <constraint firstAttribute="trailing" secondItem="YOo-X7-dcB" secondAttribute="trailing" id="JWh-EM-HXr"/>
+                <constraint firstItem="j0z-Jw-Kz2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Q28-8O-9ri"/>
+                <constraint firstAttribute="trailing" secondItem="j0z-Jw-Kz2" secondAttribute="trailing" id="Tzp-pK-skZ"/>
+                <constraint firstItem="YOo-X7-dcB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="uRS-N7-NnS"/>
+                <constraint firstItem="YOo-X7-dcB" firstAttribute="top" secondItem="j0z-Jw-Kz2" secondAttribute="bottom" id="yMR-Tc-fsD"/>
+            </constraints>
+            <size key="customSize" width="277" height="349"/>
+            <connections>
+                <outlet property="content" destination="YOo-X7-dcB" id="r4h-yh-6WS"/>
+                <outlet property="imageView" destination="j0z-Jw-Kz2" id="mH7-UC-QQP"/>
+            </connections>
+            <point key="canvasLocation" x="-26.811594202898554" y="215.95982142857142"/>
+        </collectionViewCell>
+    </objects>
+</document>
