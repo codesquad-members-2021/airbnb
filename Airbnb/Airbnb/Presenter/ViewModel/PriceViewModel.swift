@@ -30,4 +30,8 @@ class PriceViewModel {
         locationInfo = location
         dateInfo = date
     }
+    
+    func getPriceInfo() -> [Int] {
+        return priceInfo
+    }
 }

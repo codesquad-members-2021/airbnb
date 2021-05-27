@@ -30,9 +30,11 @@ class PriceViewController: UIViewController {
 private extension PriceViewController {
     
     private func setupPriceRangeControl() {
-        priceRangeControl.minValue = 100000
-        priceRangeControl.maxValue = 1000000
-        priceRangeControl.selectedMaxValue = 1000000
+        let min = viewModel.getPriceInfo().min() ?? 0
+        let max = viewModel.getPriceInfo().max() ?? 0
+        priceRangeControl.minValue = CGFloat(min)
+        priceRangeControl.maxValue = CGFloat(max)
+        priceRangeControl.selectedMaxValue = CGFloat(max)
     }
 }
 
