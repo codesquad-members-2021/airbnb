@@ -21,7 +21,6 @@ const Button = styled.button`
   border-radius: ${({ theme }) => theme.borders.M};
   width: ${({ size }) => (size === 'compact' ? '40px' : '90px')};
   height: 40px;
-  padding: 8px 16px 8px 8px;
 
   span {
     margin-left: 5px;

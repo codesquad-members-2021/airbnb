@@ -14,7 +14,7 @@ const DayNames = (props) => {
   );
 };
 
-const DayName = styled.li`
+const DayName = styled.th`
   color: ${({ theme }) => theme.colors.gray3};
   font-size: ${({ theme }) => theme.fontSizes.XS};
   width: 48px;

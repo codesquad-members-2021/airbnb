@@ -11,15 +11,15 @@ const CalendarHeader = ({ calendar }) => {
   }
 
   return (
-    <Flex>
-      <Title>
+    <Title>
+      <Flex>
         {currYear()}년 {currMonthName()}월
-      </Title>
-    </Flex>
+      </Flex>
+    </Title>
   );
 };
 
-const Title = styled.div`
+const Title = styled.caption`
   width: 336px;
   display: flex;
   justify-content: center;

@@ -34,9 +34,9 @@ const Calendar = ({ calendar }) => {
   );
 };
 
-const CalendarContainer = styled.div``;
+const CalendarContainer = styled.table``;
 
-const CalendarBody = styled.div`
+const CalendarBody = styled.tbody`
   display: flex;
   flex-direction: column;
 
@@ -44,11 +44,11 @@ const CalendarBody = styled.div`
   gap: 4px 0px;
 `;
 
-const Week = styled.div`
+const Week = styled.tr`
   display: flex;
 `;
 
-const Day = styled.div`
+const Day = styled.td`
   display: flex;
   align-items: center;
   justify-content: center;
