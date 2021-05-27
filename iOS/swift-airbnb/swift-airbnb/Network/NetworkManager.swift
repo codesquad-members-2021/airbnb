@@ -19,9 +19,6 @@ class NetworkManager {
         AF.request(url, method: .get, parameters: parameter, headers: headers).responseData { (response) in
             switch response.result {
             case .success(let data):
-                print(data)
-                print(String(data: data, encoding: String.Encoding.utf8))
-                
                 result(data)
             case .failure(_):
                 result(nil)
