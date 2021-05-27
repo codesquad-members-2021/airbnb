@@ -27,6 +27,15 @@
           "revision": "44450a8f564d7c0165f736ba2250649ff8d3e556",
           "version": "6.3.0"
         }
+      },
+      {
+        "package": "SwiftCharts",
+        "repositoryURL": "https://github.com/godrm/SwiftCharts.git",
+        "state": {
+          "branch": "master",
+          "revision": "b7c8d2f0515018280c2241575397522cd2feb6d8",
+          "version": null
+        }
       }
     ]
   },

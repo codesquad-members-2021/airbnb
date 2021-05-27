@@ -63,6 +63,7 @@ class FindingAccommdationViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(conditionDataUpdate), name: FindingAccommdationViewController.conditionDataUpdate, object: findingAccommdationCondition)
         costGraphView.update(minCost: "₩10000", maxCost: "₩160000", averageCost: "qweqweqwe")
         self.conditionTableView.dataSource = tableViewDataSource
+        self.costGraphView.chartinit()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
