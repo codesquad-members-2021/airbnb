@@ -17,12 +17,19 @@ class NearPlaceCell: UICollectionViewCell, IdentityInfo {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        config()
+        thumbnail.layer.cornerRadius = 10
         self.activityIndicator.startAnimating()
     }
-    
-    func config(){
-        thumbnail.layer.cornerRadius = 10
+
+    func bind(with place : NearPlace?){
+        guard let place = place else { return }
+        self.areaTitle.text = place.name
+        self.timeRequired.text = "차로 \(place.distance)분 소요"
+        guard let url = place.avatarUrl else { return }
+        self.thumbnail.downloadImage(from: url, completion: { [weak self] in
+            self?.activityIndicator.stopAnimating()
+            self?.activityIndicator.isHidden = true
+        })
     }
 
 }

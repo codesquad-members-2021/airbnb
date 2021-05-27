@@ -69,14 +69,7 @@ extension TravelListViewController {
             cellProvider: { [weak self] ( collectionview, indexPath, card) -> UICollectionViewCell? in
                 let cell = collectionview.dequeueReusableCell(withReuseIdentifier: NearPlaceCell.reuseIdentifier, for: indexPath)
                     as? NearPlaceCell
-                cell?.areaTitle.text = self?.nearPlaces[indexPath.row].name
-                cell?.timeRequired.text = String(self?.nearPlaces[indexPath.row].distance ?? 0)
-                if let url = self?.nearPlaces[indexPath.row].avatarUrl {
-                    cell?.thumbnail.downloadImage(from: url){
-                        cell?.activityIndicator.stopAnimating()
-                        cell?.activityIndicator.isHidden = true
-                    }
-                }
+                cell?.bind(with: self?.nearPlaces[indexPath.row])
                 return cell
             })
         return dataSource
@@ -111,9 +104,9 @@ extension TravelListViewController {
         
         TravelListAPI.loadTravelList(type: .search)
             .sink(receiveCompletion: { _ in },
-                  receiveValue: { places in
-                    for place in places {
-                        self.nearPlaces.append(place.toNearPlace())
+                  receiveValue: { responses in
+                    for response in responses {
+                        self.nearPlaces.append(response.toNearPlace())
                     }
                   }).store(in: &cancellables)
     }
@@ -159,7 +152,7 @@ extension TravelListViewController: UISearchControllerDelegate {
 extension TravelListViewController : UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else {
+        guard let _ = searchController.searchBar.text else {
             return
         }
     }
