@@ -5,58 +5,100 @@ import PriceChart from './PriceChart';
 import { btnPositionType, priceSectionType } from './priceType';
 import { ReactComponent as PauseBtn } from '../../../../assets/svg/Property 1=pause-circle.svg';
 import { priceData as sampleData } from './sampleData';
+import { createSolutionBuilderHost } from 'typescript';
+
+const PRICE_DATA = {
+  WIDTH: 365,
+  DEFAULT_MIN_PRICE: 10000,
+  DEFAULT_MAX_PRICE: 1000000,
+  DEFAULT_LEFT: 1000,
+  DEFAULT_RIGHT: 1350,
+};
 
 interface Props {
   toggleRef: RefObject<HTMLDivElement>;
 }
 const PriceBar = ({ toggleRef }: Props) => {
+  const { WIDTH, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_LEFT, DEFAULT_RIGHT } = PRICE_DATA;
   const [isBtnDown, setIsBtnDown] = useState(false);
   const [downBtnType, setDownBtnType] = useState({ left: false, right: false });
-  const [btnPosition, setBtnPosition] = useState({ left: 110, right: 0 });
+  const [btnPosition, setBtnPosition] = useState({ left: 0, right: 0 });
+  const [btnLastPosition, setBtnLastPosition] = useState({ left: 0, right: 0 });
+  const [clickPosition, setClickPosition] = useState(0);
   const [priceData, setPriceData] = useState(sampleData);
+  const [priceRange, setPriceRange] = useState({ min: DEFAULT_MIN_PRICE, max: DEFAULT_MAX_PRICE });
 
-  const minPrice = getNumberWithComma(Math.min(...priceData));
+  const minPrice = getNumberWithComma(priceRange.min);
+  const maxPrice = getNumberWithComma(priceRange.max);
   const priceAverage = getNumberWithComma(getPriceAverage(priceData));
   const priceSection = getSectionHeight(priceData);
+
   const handleMouseDown = (e: MouseEvent): void => {
     const target = e.target as SVGAElement;
-    const btnWrapper = target.closest('.pause-btn') as HTMLDivElement;
-    const btnType = btnWrapper.dataset.type as string;
+    const btnWrapper: HTMLDivElement | null = target.closest('.pause-btn');
+    if (!btnWrapper) return;
+    const btnType: string | undefined = btnWrapper.dataset.type;
+    if (!btnType) return;
     setIsBtnDown(true);
     setDownBtnType({ ...downBtnType, [btnType]: true });
+    setClickPosition(e.pageX);
   };
+
   const handleMouseMove = (e: MouseEvent): void => {
     if (!isBtnDown) return;
-    console.log(e);
+    const move = e.pageX - clickPosition;
+    const priceGap = DEFAULT_MAX_PRICE - DEFAULT_MIN_PRICE;
+    if (downBtnType.left) {
+      const position = btnLastPosition.left + move;
+      if (position < 0) return;
+      const newBtnPosition = { left: position, right: btnLastPosition.right };
+      if (isOverlap(newBtnPosition)) return;
+      setBtnPosition(newBtnPosition);
+      const minPrice = Math.floor(DEFAULT_MIN_PRICE + priceGap * (position / WIDTH));
+      setPriceRange((priceRange) => ({ ...priceRange, min: minPrice }));
+    }
+    if (downBtnType.right) {
+      const position = btnLastPosition.right + move;
+      if (position > 0) return;
+      const newBtnPosition = { left: btnLastPosition.left, right: position };
+      if (isOverlap(newBtnPosition)) return;
+      setBtnPosition(newBtnPosition);
+      const maxPrice = Math.floor(DEFAULT_MAX_PRICE - priceGap * ((position / WIDTH) * -1));
+      setPriceRange((priceRange) => ({ ...priceRange, max: maxPrice }));
+    }
   };
-  const handleMouseUp = (): void => {
+
+  const handleMouseUp = (e: MouseEvent): void => {
+    if (!isBtnDown) return;
     setIsBtnDown(false);
     setDownBtnType({ left: false, right: false });
+    setBtnLastPosition({ ...btnPosition });
   };
+
+  const isOverlap = (position: btnPositionType): boolean =>
+    DEFAULT_LEFT + position.left > DEFAULT_RIGHT + position.right;
+
   return (
-    <StyledPriceBar ref={toggleRef} btnPosition={btnPosition}>
+    <StyledPriceBar
+      ref={toggleRef}
+      btnPosition={btnPosition}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+    >
       <div className='title'>가격범위</div>
-      <div className='price-range'>￦{minPrice} ~ ￦1,000,000+</div>
+      <div className='price-range'>
+        ￦{minPrice} ~ ￦{maxPrice}+
+      </div>
       <div className='average'>평균 1박 요금은 ￦{priceAverage}입니다.</div>
       <div className='chart'>
         <div className='leftBox'></div>
         <PriceChart priceSection={priceSection} />
         <div className='rightBox'></div>
       </div>
-      <PauseBtn
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
-        className='pause-btn left__pause-btn'
-        data-type='left'
-      />
-      <PauseBtn
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
-        className='pause-btn right__pause-btn'
-        data-type='right'
-      />
+      <PauseBtn className='pause-btn left__pause-btn' data-type='left' />
+      <PauseBtn className='pause-btn right__pause-btn' data-type='right' />
     </StyledPriceBar>
   );
 };
@@ -82,7 +124,6 @@ const getSectionHeight = (data: number[]): priceSectionType => {
     else acc[section] = 1;
     return acc;
   }, initPriceSection);
-
   return priceSection;
 };
 
@@ -113,15 +154,14 @@ const StyledPriceBar = styled.div<StyledProps>`
   .chart {
     position: relative;
     height: 170px;
-    /* overflow: hidden; */
+    overflow: hidden;
     .leftBox,
     .rightBox {
       position: absolute;
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: ${({ theme }) => theme.colors.green};
-      /* background-color: ${({ theme }) => theme.colors.white}; */
+      background-color: ${({ theme }) => theme.colors.white};
       opacity: 0.5;
     }
     .leftBox {

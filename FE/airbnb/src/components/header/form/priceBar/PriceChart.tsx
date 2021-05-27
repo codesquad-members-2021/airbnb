@@ -24,7 +24,7 @@ const PriceChart = ({ priceSection }: Props) => {
     const canvasHeight = canvas.height;
     const sectionWidth = canvasWidth / 21;
     const maxPriceCount = Math.max(...Object.values(priceSection));
-    const priceEntries = [...Object.entries(priceSection), [21, 0]];
+    const priceEntries = Object.entries(priceSection);
     const dots = priceEntries.map(([section, count]) => ({
       x: +section * sectionWidth,
       y: (1 - count / maxPriceCount) * canvasHeight,
@@ -55,7 +55,6 @@ const PriceChart = ({ priceSection }: Props) => {
     ctx.lineTo(prevX, prevY);
     ctx.lineTo(canvasWidth, canvasHeight);
     ctx.lineTo(0, canvasHeight);
-    ctx.stroke();
     ctx.fill();
     ctx.closePath();
   };
@@ -76,7 +75,7 @@ const PriceChart = ({ priceSection }: Props) => {
   return <StyledPriceChart ref={canvasRef}></StyledPriceChart>;
 };
 
-export default PriceChart;
+export default React.memo(PriceChart);
 
 const StyledPriceChart = styled.canvas`
   z-index: 11;
