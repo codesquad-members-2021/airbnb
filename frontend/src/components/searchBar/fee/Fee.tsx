@@ -6,8 +6,8 @@ import {
   BarTitle,
   BarMessage,
 } from '../../../style/BarStyle'
-import useModalCtrl from '../../../customHook/useModalCtrlArray'
 import ModalFee from './ModalFee'
+import useModalCtrl from '../../../customHook/useModalCtrlArray'
 const Fee = () => {
   const FeeToggle = useRef<HTMLDivElement>(null)
   const FeeModal = useRef<HTMLDivElement>(null)

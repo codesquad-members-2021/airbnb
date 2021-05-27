@@ -1,6 +1,7 @@
 import { Modal } from '../../../style/BarStyle'
 import useAxios from '../../../customHook/useAxios'
 import getData from '../../../customHook/axiosAPI'
+import LinearBuffer from '../../../style/Loading'
 import Graph from './Graph'
 interface IFeeType {
   modalType: string
@@ -19,7 +20,7 @@ const filteredFee = (fee: Array<number>): Map<number, number> => {
 const ModalFee: React.FunctionComponent<IFeeType> = ({ modalType }) => {
   const state = useAxios(getData)
   const { loading, error, data } = state
-  if (loading) return <div>로딩중</div>
+  if (loading) return <div>Loading...💭</div>
   if (error) return <div>에러발생</div>
   if (!data) return null
   const result = filteredFee(data.prices)

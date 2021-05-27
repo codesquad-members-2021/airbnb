@@ -39,3 +39,13 @@ export const clickCheckOut = atom<boolean>({
   key: 'checkOutnClicked',
   default: false,
 })
+
+//Fee
+export const FeeMin = atom<number>({
+  key: 'minFeeState',
+  default: 0,
+})
+export const FeeMax = atom<number>({
+  key: 'maxFeeState',
+  default: 1000000,
+})
