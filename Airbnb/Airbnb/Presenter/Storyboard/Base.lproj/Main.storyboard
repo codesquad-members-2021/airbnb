@@ -568,9 +568,15 @@
                             <constraint firstAttribute="bottom" secondItem="IsL-Ra-j05" secondAttribute="bottom" id="bD1-eo-s9H"/>
                             <constraint firstItem="bt3-PZ-A9e" firstAttribute="leading" secondItem="mha-lq-Irb" secondAttribute="leading" id="epJ-mh-D3j"/>
                             <constraint firstItem="bt3-PZ-A9e" firstAttribute="trailing" secondItem="mha-lq-Irb" secondAttribute="trailing" id="jGc-Dt-0dS"/>
+                            <constraint firstItem="bt3-PZ-A9e" firstAttribute="top" secondItem="mha-lq-Irb" secondAttribute="top" constant="498" id="xJM-Y6-bTH"/>
                             <constraint firstItem="IsL-Ra-j05" firstAttribute="height" secondItem="BPH-ax-3Iw" secondAttribute="height" multiplier="0.100446" id="xwO-2t-MnH"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="TlB-hp-yOR" id="wRz-Fo-4fF"/>
+                        <outlet property="locationLabel" destination="7zR-f2-1VB" id="nxC-Yc-zE2"/>
+                        <outlet property="priceLabel" destination="sJr-MH-TCm" id="7r3-Jj-ZmW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAw-fN-dJe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
