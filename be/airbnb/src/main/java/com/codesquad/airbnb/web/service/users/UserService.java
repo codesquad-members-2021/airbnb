@@ -45,7 +45,7 @@ public class UserService {
     }
 
     private User save(User user) {
-        return userRepository.save(user);
+        return userRepository.saveAsGuest(user);
     }
 
     public Guest findGuest(int guestId) {

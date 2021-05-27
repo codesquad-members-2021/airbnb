@@ -34,7 +34,7 @@ public class UserDAO implements UserRepository {
     }
 
     @Override
-    public User save(User user) {
+    public User saveAsGuest(User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
                 .addValue("nickname", user.getNickname())
@@ -45,6 +45,7 @@ public class UserDAO implements UserRepository {
                 .addValue("authenticated_by", user.getAuthenticatedBy().name());
         jdbcTemplate.update(SAVE_USER, mapSqlParameterSource, keyHolder);
         user.setId(Objects.requireNonNull(keyHolder.getKey()).intValue());
+        jdbcTemplate.update(SAVE_GUEST, new MapSqlParameterSource().addValue("user_id", user.getId()));
         return user;
     }
 

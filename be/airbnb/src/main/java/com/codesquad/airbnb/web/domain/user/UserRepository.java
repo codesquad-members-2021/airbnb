@@ -3,7 +3,7 @@ package com.codesquad.airbnb.web.domain.user;
 import java.util.Optional;
 
 public interface UserRepository {
-    User save(User user);
+    User saveAsGuest(User user);
 
     Optional<User> findUserByAuthenticatedByAndOauthId(OAuthAuthenticater oAuthAuthenticater, String oauthId);
 
