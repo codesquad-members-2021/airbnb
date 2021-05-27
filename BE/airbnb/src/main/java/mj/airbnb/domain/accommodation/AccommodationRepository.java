@@ -4,6 +4,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -21,11 +22,28 @@ public class AccommodationRepository {
         return jdbcTemplate.query(sqlQuery, accommodationRowMapper());
     }
 
+    public List<Accommodation> findByConditions() {
+        String sqlQuery = "SELECT id, name, max_num_of_people, type, num_of_bed, num_of_bathroom, price, address " +
+                "FROM accommodation";
+        return jdbcTemplate.query(sqlQuery, accommodationRowMapper());
+    }
+
     public List<Accommodation> findAllByDestination(String destination) {
         String sqlQuery = "SELECT id, name, max_num_of_people, type, num_of_bed, num_of_bathroom, price, address " +
                 "FROM accommodation " +
                 "WHERE address LIKE ? ";
         return jdbcTemplate.query(sqlQuery, accommodationRowMapper(), "%" + destination + "%");
+    }
+
+    public List<Accommodation> findAllByDestinationAndPriceAndPeople(String destination, BigDecimal minPrice,
+                                                                     BigDecimal maxPrice,int people) {
+        String sqlQuery = "SELECT id, name, max_num_of_people, type, num_of_bed, num_of_bathroom, price, address " +
+                "FROM accommodation " +
+                "WHERE address LIKE ? " +
+                "AND price <= ? AND >= ? " +
+                "AND people <= ? ";
+        return jdbcTemplate.query(sqlQuery, accommodationRowMapper(), "%" + destination + "%",
+                                  minPrice, maxPrice, people);
     }
 
     public List<Accommodation> findPopularDestinations(String destination) {
@@ -38,7 +56,6 @@ public class AccommodationRepository {
     private RowMapper<Accommodation> accommodationRowMapper() {
         return (rs, rowNum) -> {
             Accommodation accommodation = new Accommodation();
-            accommodation.setId(rs.getLong("id"));
             accommodation.setName(rs.getString("name"));
             accommodation.setMaxNumOfPeople(rs.getInt("max_num_of_people"));
             accommodation.setType(rs.getString("type"));

@@ -13,7 +13,7 @@ INSERT INTO accommodation (name, max_num_of_people, type, num_of_bed, num_of_bat
 -- -----------------------------------------------------
 
 INSERT INTO reservation (check_in_date, check_out_date, accommodation_id) VALUES ('2021-04-21', '2021-04-23', 1);
-INSERT INTO reservation (check_in_date, check_out_date, accommodation_id) VALUES ('2021-05-01', '2021-05-03', 1);
+INSERT INTO reservation (check_in_date, check_out_date, accommodation_id) VALUES ('2021-05-03', '2021-05-05', 1);
 INSERT INTO reservation (check_in_date, check_out_date, accommodation_id) VALUES ('2021-01-21', '2021-01-23', 2);
 INSERT INTO reservation (check_in_date, check_out_date, accommodation_id) VALUES ('2021-02-01', '2021-02-03', 2);
 

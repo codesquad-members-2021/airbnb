@@ -27,31 +27,31 @@ public class AccommodationService {
         this.reservationRepository = reservationRepository;
     }
 
-    public List<AccommodationResponseDto> findAllByConditions(SearchRequestDto requestDto) {
+    public List<AccommodationResponseDto> searchAccommodationsByConditions(SearchRequestDto conditions) {
 
-        if (isPresentOfDestination(requestDto) && isPresentOfDate(requestDto) &&
-                isPresentOfPrice(requestDto) && isPresentOfPeople(requestDto)) {
+        if (isPresentOfDestination(conditions) && isPresentOfDate(conditions) &&
+                isPresentOfPrice(conditions) && isPresentOfPeople(conditions)) {
 
             logger.info("지역, 날짜, 가격, 인원 조건 따라 숙소 조회 ");
-            return findAllByDestinationAndDateAndPriceAndPeople(requestDto);
+            return findAllByDestinationAndDateAndPriceAndPeople(conditions);
         }
 
-        if (isPresentOfDestination(requestDto) && isPresentOfDate(requestDto) && isPresentOfPrice(requestDto)) {
+        if (isPresentOfDestination(conditions) && isPresentOfDate(conditions) && isPresentOfPrice(conditions)) {
 
             logger.info("지역, 날짜, 가격 조건에 따라 숙소 조회 ");
-            return findAllByDestinationAndDateAndPrice(requestDto);
+            return findAllByDestinationAndDateAndPrice(conditions);
         }
 
-        if (isPresentOfDestination(requestDto) && isPresentOfDate(requestDto)) {
+        if (isPresentOfDestination(conditions) && isPresentOfDate(conditions)) {
 
             logger.info("지역, 날짜 조건에 따라 숙소 조회 ");
-            return findAllByDestinationAndDate(requestDto);
+            return findAllByDestinationAndDate(conditions);
         }
 
-        if (isPresentOfDestination(requestDto)) {
+        if (isPresentOfDestination(conditions)) {
 
             logger.info("지역 조건에 따라 숙소 조회 ");
-            return findAllByDestination(requestDto);
+            return findAllByDestination(conditions);
         }
 
         logger.info("모든 숙소 조회 ");
@@ -72,14 +72,14 @@ public class AccommodationService {
 
 
     private List<AccommodationResponseDto> findAllByDestination(SearchRequestDto requestDto) {
-        return accommodationRepository.findAllByDestination(requestDto.getDestination().get()).stream()
+        return accommodationRepository.findAllByDestination(requestDto.getDestination()).stream()
                 .map(AccommodationResponseDto::new)
                 .collect(Collectors.toList());
     }
 
     private List<AccommodationResponseDto> findAllByDestinationAndDate(SearchRequestDto requestDto) {
 
-        return accommodationRepository.findAllByDestination(requestDto.getDestination().get()).stream()
+        return accommodationRepository.findAllByDestination(requestDto.getDestination()).stream()
                 .filter(accommodation -> isAvailableDate(accommodation.getId(), requestDto))
                 .map(AccommodationResponseDto::new)
                 .collect(Collectors.toList());
@@ -87,7 +87,7 @@ public class AccommodationService {
 
     private List<AccommodationResponseDto> findAllByDestinationAndDateAndPrice(SearchRequestDto requestDto) {
 
-        return accommodationRepository.findAllByDestination(requestDto.getDestination().get()).stream()
+        return accommodationRepository.findAllByDestination(requestDto.getDestination()).stream()
                 .filter(accommodation -> isAvailableDate(accommodation.getId(), requestDto)
                         && isAvailableCost(accommodation.getPrice(), requestDto))
                 .map(AccommodationResponseDto::new)
@@ -96,7 +96,7 @@ public class AccommodationService {
 
     private List<AccommodationResponseDto> findAllByDestinationAndDateAndPriceAndPeople(SearchRequestDto requestDto) {
 
-        return accommodationRepository.findAllByDestination(requestDto.getDestination().get()).stream()
+        return accommodationRepository.findAllByDestination(requestDto.getDestination()).stream()
                 .filter(accommodation -> isAvailableDate(accommodation.getId(), requestDto)
                         && isAvailableCost(accommodation.getPrice(), requestDto)
                         && isAvailableNumOfPeople(accommodation.getMaxNumOfPeople(), requestDto))
@@ -105,18 +105,18 @@ public class AccommodationService {
     }
 
     private boolean isAvailableNumOfPeople(Integer maxPeople, SearchRequestDto requestDto) {
-        return maxPeople >= (requestDto.getNumOfAdult().get() + requestDto.getNumOfChild().get() + requestDto.getNumOfInfant().get());
+        return maxPeople >= (requestDto.getNumOfAdult() + requestDto.getNumOfChild() + requestDto.getNumOfInfant());
     }
 
     private boolean isAvailableCost(BigDecimal price, SearchRequestDto requestDto) {
-        return (price.compareTo(requestDto.getMinPrice().get()) == 0 || price.compareTo(requestDto.getMinPrice().get()) > 0)
-                && (price.compareTo(requestDto.getMaxPrice().get()) == 0 || price.compareTo(requestDto.getMaxPrice().get()) < 0);
+        return (price.compareTo(requestDto.getMinPrice()) == 0 || price.compareTo(requestDto.getMinPrice()) > 0)
+                && (price.compareTo(requestDto.getMaxPrice()) == 0 || price.compareTo(requestDto.getMaxPrice()) < 0);
     }
 
     // 해당 숙소의 reservedDate이 checkInDate과 checkOutDate 사이에 없다면 예약 가능
     private boolean isAvailableDate(Long accommodationId, SearchRequestDto requestDto) {
-        LocalDate checkIn = requestDto.getCheckInDate().get();
-        LocalDate checkOut = requestDto.getCheckOutDate().get();
+        LocalDate checkIn = requestDto.getCheckInDate();
+        LocalDate checkOut = requestDto.getCheckOutDate();
 
         return reservationRepository.findAllReservationDateByAccommodationId(accommodationId).stream()
                 .map(reservationDate -> reservationDate.getReservedDate())
@@ -125,19 +125,19 @@ public class AccommodationService {
     }
 
     private boolean isPresentOfDestination(SearchRequestDto requestDto) {
-        return requestDto.getDestination().isPresent();
+        return requestDto.getDestination() != null;
     }
 
     private boolean isPresentOfDate(SearchRequestDto requestDto) {
-        return requestDto.getCheckInDate().isPresent() && requestDto.getCheckOutDate().isPresent();
+        return requestDto.getCheckInDate() != null && requestDto.getCheckOutDate() != null;
     }
 
     private boolean isPresentOfPrice(SearchRequestDto requestDto) {
-        return requestDto.getMinPrice().isPresent() && requestDto.getMaxPrice().isPresent();
+        return requestDto.getMinPrice() != null && requestDto.getMaxPrice() != null;
     }
 
     private boolean isPresentOfPeople(SearchRequestDto requestDto) {
-        return requestDto.getNumOfAdult().isPresent() && requestDto.getNumOfChild().isPresent() && requestDto.getNumOfInfant().isPresent();
+        return requestDto.getNumOfAdult() != null && requestDto.getNumOfChild() != null && requestDto.getNumOfInfant() != null;
     }
 
 }
