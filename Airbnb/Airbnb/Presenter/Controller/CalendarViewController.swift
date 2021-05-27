@@ -90,15 +90,20 @@ private extension CalendarViewController {
                         self?.calendarView?.deselect($0)
                     }
                 default:
-                    print("다음뷰컨이동구현 날짜 데이터 전달X")
+                    let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "PriceVC") as! PriceViewController
+                    nextVC.modalPresentationStyle = .fullScreen
+                    self?.present(nextVC, animated: true, completion: nil)
                 }
             }).disposed(by: rx.disposeBag)
     }
     
     private func setupNextButton() {
         nextButton.rx.tap
-            .subscribe(onNext: { _ in
-                print("다음뷰컨이동구현 날짜 데이터 전달O")
+            .subscribe(onNext: { [weak self] _ in
+                let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "PriceVC") as! PriceViewController
+                nextVC.modalPresentationStyle = .fullScreen
+                nextVC.setupInfo(of: self!.locationLabel.text!, of: self!.dateLabel.text!)
+                self?.present(nextVC, animated: true, completion: nil)
             }).disposed(by: rx.disposeBag)
     }
     
