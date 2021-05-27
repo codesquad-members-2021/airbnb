@@ -8,7 +8,7 @@ import parseDate from "../../util/parseDate";
 const ModalCost = () => {
 	const { modalData } = useContext(ResultContext);
 	const { start, end } = useContext(SearchBarContext);
-	const { charge, cleaningRatio, serviceRatio, discountRatio } = modalData;
+	const { charge, cleaningRatio, serviceRatio, discountRatio, review } = modalData;
 	const period = (new Date(parseDate(end)) - new Date(parseDate(start))) / 1000 / 60 / 60 / 24 || 1;
 	const total = charge * period;
 	const result = (total * (100 + cleaningRatio + 1.1 * serviceRatio - (period > 6 ? discountRatio : 0))) / 100;
@@ -42,9 +42,10 @@ const ModalCost = () => {
 				<Body>₩{addComma(result)}</Body>
 			</TotalContent>
 			<Charge>
-				<ChargeNumber>{`₩${addComma(result/period)}`}</ChargeNumber>
+				<ChargeNumber>{`₩${addComma(result / period)}`}</ChargeNumber>
 				<ChargeUnit>/ 박</ChargeUnit>
 			</Charge>
+			<Review>{`리뷰 ${review}개`}</Review>
 		</CostWrapper>
 	);
 };
@@ -115,6 +116,18 @@ const ChargeUnit = styled.div`
 	line-height: 20px;
 	color: #333333;
 	margin-left: 4px;
+`;
+const Review = styled.div`
+	position: absolute;
+	height: 17px;
+	top: -285px;
+	right: 0px;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 17px;
+	text-align: right;
+	text-decoration-line: underline;
+	color: #828282;
 `;
 
 export default ModalCost;
