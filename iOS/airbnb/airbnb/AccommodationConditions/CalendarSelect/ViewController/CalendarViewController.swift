@@ -33,6 +33,7 @@ final class CalendarViewController: UIViewController {
         let tableView = UITableView()
         tableView.rowHeight = 50
         tableView.isScrollEnabled = false
+        tableView.allowsSelection = false
         
         let cellId = AccommodationConditionTableViewCell.reuseIdentifier
         tableView.register(AccommodationConditionTableViewCell.self, forCellReuseIdentifier: cellId)
@@ -62,7 +63,7 @@ final class CalendarViewController: UIViewController {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         
-        let weekdays = ["S", "M", "T", "W", "T", "F", "S"]
+        let weekdays = CalendarViewModel.weekdays
         weekdays.forEach { day in
             let label = UILabel()
             label.text = day
@@ -131,29 +132,34 @@ final class CalendarViewController: UIViewController {
     private var accommodationConditionTableViewDataSource: AccommodationConditionTableViewDataSource?
     private var calendarCollecionViewDataSource: CalendarCollectionViewDataSource?
     
-    private var viewModel: CalendarManageModel?
-    
-    var location: LocationSearchResult?
+    var viewModel: CalendarManageModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.accommodationConditionTableViewDataSource = AccommodationConditionTableViewDataSource()
         self.calendarCollecionViewDataSource = CalendarCollectionViewDataSource()
         accommodationConditionTableView.dataSource = accommodationConditionTableViewDataSource
+        accommodationConditionTableViewDataSource?.updateTitles(with: CalendarViewModel.conditionTitles)
         calendarCollectionView.dataSource = calendarCollecionViewDataSource
         calendarCollectionView.delegate = self
-        
-        viewModel = CalendarViewModel()
         bind()
     }
     
-    func bind() {
+    private func bind() {
         viewModel?.bind(dataHandler: { [weak self] months in
             self?.calendarCollecionViewDataSource?.updateCalendar(with: months)
             self?.updateCalendarView()
-        }, searchHandler: { [weak self] _ in
+        }, searchHandler: { [weak self] conditions in
+            self?.accommodationConditionTableViewDataSource?.updateContents(with: conditions)
+            self?.updateConditionView()
             self?.updateCalendarView()
         })
+    }
+    
+    private func updateConditionView() {
+        DispatchQueue.main.async {
+            self.accommodationConditionTableView.reloadData()
+        }
     }
     
     private func updateCalendarView() {

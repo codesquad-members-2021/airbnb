@@ -41,6 +41,8 @@
 		E4E63C6C265F335500F86104 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C6B265F335500F86104 /* Month.swift */; };
 		E4E63C6E265F34E700F86104 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C6D265F34E700F86104 /* Day.swift */; };
 		E4E63C70265F785000F86104 /* CalendarManageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C6F265F785000F86104 /* CalendarManageModel.swift */; };
+		E4E63C76265FAA2000F86104 /* AccommodationConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C75265FAA2000F86104 /* AccommodationConditions.swift */; };
+		E4E63C78265FAB5900F86104 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C77265FAB5900F86104 /* DateFormatter.swift */; };
 		E4F302A32655F71E002C9770 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E4F302A22655F71E002C9770 /* Alamofire */; };
 		E4F302A52655F837002C9770 /* AlamofireRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302A42655F837002C9770 /* AlamofireRequestManager.swift */; };
 		E4F302A72655F84B002C9770 /* AlamofireNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302A62655F84B002C9770 /* AlamofireNetworkManager.swift */; };
@@ -114,6 +116,8 @@
 		E4E63C6B265F335500F86104 /* Month.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
 		E4E63C6D265F34E700F86104 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		E4E63C6F265F785000F86104 /* CalendarManageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManageModel.swift; sourceTree = "<group>"; };
+		E4E63C75265FAA2000F86104 /* AccommodationConditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationConditions.swift; sourceTree = "<group>"; };
+		E4E63C77265FAB5900F86104 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		E4F302A42655F837002C9770 /* AlamofireRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireRequestManager.swift; sourceTree = "<group>"; };
 		E4F302A62655F84B002C9770 /* AlamofireNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkManager.swift; sourceTree = "<group>"; };
 		E4F302A82655F890002C9770 /* AlamofireImageLoadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireImageLoadManager.swift; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				E4DB1D7926538BA800894DCB /* AccommodationConditions.storyboard */,
+				E4E63C75265FAA2000F86104 /* AccommodationConditions.swift */,
 				E4DB1D7826538AFE00894DCB /* LocationSearch */,
 				E48148112654E63F0069BE20 /* CalendarSelect */,
 			);
@@ -370,6 +375,7 @@
 				E4F302CC26564FCE002C9770 /* ViewControllerFactory.swift */,
 				E4F302E726567B1C002C9770 /* AlertFactory.swift */,
 				E42671A5265BD357009323B8 /* SearchBarFactory.swift */,
+				E4E63C77265FAB5900F86104 /* DateFormatter.swift */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -542,9 +548,11 @@
 				E4F302A72655F84B002C9770 /* AlamofireNetworkManager.swift in Sources */,
 				E4F302EC26568C0D002C9770 /* FakeNetworkManager.swift in Sources */,
 				E4F302DF26567480002C9770 /* SearchResultFetchUseCase.swift in Sources */,
+				E4E63C78265FAB5900F86104 /* DateFormatter.swift in Sources */,
 				E4F302F42656B257002C9770 /* ImageLoadManagable.swift in Sources */,
 				E4F302FA2656B3EE002C9770 /* HeroImageUseCase.swift in Sources */,
 				E4F302A52655F837002C9770 /* AlamofireRequestManager.swift in Sources */,
+				E4E63C76265FAA2000F86104 /* AccommodationConditions.swift in Sources */,
 				E42671AE265C8DE2009323B8 /* PopularLocationLoadModel.swift in Sources */,
 				E481481626551B930069BE20 /* CalendarViewController.swift in Sources */,
 				E4F302B82656059C002C9770 /* PopularLocation.swift in Sources */,

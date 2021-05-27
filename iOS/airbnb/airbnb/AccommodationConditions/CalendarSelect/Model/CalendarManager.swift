@@ -19,6 +19,20 @@ class CalendarManager {
         self.selectedDateIndexPaths = []
     }
     
+    func dateSelected() -> [Date?] {
+        var dates = [Date?]()
+        let orderedIndexPath = selectedDateIndexPaths.sorted()
+        let startIndexPath = orderedIndexPath[0]
+        let startDate = months[startIndexPath.section].days[startIndexPath.row].date
+        dates.append(startDate)
+        if orderedIndexPath.count == 2 {
+            let endIndexPath = orderedIndexPath[1]
+            let endDate = months[endIndexPath.section].days[endIndexPath.row].date
+            dates.append(endDate)
+        }
+        return dates
+    }
+    
     func fillMonths(by count: Int) {
         (1...count).forEach { _ in
             if let lastMonthDate = months.last?.days.last?.date,
@@ -110,7 +124,7 @@ class CalendarManager {
             days.append(Day(date: date, title: title, timeStatus: status))
         }
         
-        let title = DateFormatter.dateToString(format: DateFormat.month, date: firstDay)
+        let title = DateFormatter.dateToString(format: DateFormat.monthYear, date: firstDay)
         return Month(title: title, days: days)
     }
     
@@ -124,17 +138,4 @@ class CalendarManager {
         return day == dayToCompare
     }
 
-}
-
-enum DateFormat {
-    static let month = "M월 YYYY"
-    static let day = "d"
-}
-
-extension DateFormatter {
-    static func dateToString(format: String, date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = format
-        return formatter.string(from: date)
-    }
 }

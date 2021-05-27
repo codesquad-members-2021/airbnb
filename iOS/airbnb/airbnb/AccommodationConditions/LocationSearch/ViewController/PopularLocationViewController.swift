@@ -121,7 +121,8 @@ extension PopularLocationViewController: SearchResultDelegate {
     private func pushNextViewController(with result: LocationSearchResult) {
         let storyboard = self.storyboard ?? StoryboardFactory.create(.accommodationConditions)
         let nextViewController = ViewControllerFactory.create(from: storyboard, type: CalendarViewController.self)
-        nextViewController.location = result
+        let accommodationConditions = AccommodationConditions(location: result)
+        nextViewController.viewModel = CalendarViewModel(conditionManager: accommodationConditions)
         self.navigationItem.backButtonTitle = PopularLocationViewModel.ButtonTitle.back
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }

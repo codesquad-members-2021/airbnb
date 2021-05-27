@@ -13,12 +13,12 @@ class AccommodationConditionTableViewCell: UITableViewCell {
         return String(describing: self)
     }
     
-    private lazy var conditionTitle: UILabel = {
+    lazy var conditionTitle: UILabel = {
         let conditionTitle = UILabel()
         return conditionTitle
     }()
     
-    private lazy var conditionContent: UILabel = {
+    lazy var conditionContent: UILabel = {
         let conditionContent = UILabel()
         conditionContent.textColor = .gray
         return conditionContent

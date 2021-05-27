@@ -9,24 +9,25 @@ import Foundation
 
 class CalendarViewModel: CalendarManageModel {
 
-    private var dataHandler: DataHandler?
-    private var searchResultHandler: SearchConditionHandler?
+    private var calendarHandler: DataHandler?
+    private var conditionHandler: SearchConditionHandler?
     
     private var calendar: [Month]? {
         didSet {
             guard let calendar = calendar else { return }
-            dataHandler?(calendar)
+            calendarHandler?(calendar)
         }
     }
     
-    private var searchResult: [String]? {
+    private var accommodationConditions: [String]? {
         didSet {
-            guard let searchResult = searchResult else { return }
-            searchResultHandler?(searchResult)
+            guard let searchResult = accommodationConditions else { return }
+            conditionHandler?(searchResult)
         }
     }
     
     private let calendarManager: CalendarManager
+    private let conditionManager: AccommodationConditions
     
     enum ButtonTitle {
         static let backButton = "날짜 선택"
@@ -34,28 +35,32 @@ class CalendarViewModel: CalendarManageModel {
         static let next = "다음"
     }
     
-    init(calendarManager: CalendarManager) {
+    static let weekdays = ["월", "화", "수", "목", "금", "토", "일"]
+    static let conditionTitles = ["위치", "체크인/체크아웃", "요금", "인원"]
+    
+    init(calendarManager: CalendarManager, conditionManager: AccommodationConditions) {
         self.calendarManager = calendarManager
+        self.conditionManager = conditionManager
     }
     
-    convenience init() {
-        self.init(calendarManager: CalendarManager())
-    }
-    
-    func bind(dataHandler: @escaping DataHandler) {
-        self.dataHandler = dataHandler
-        fillCalendar(by: 6)
+    convenience init(conditionManager: AccommodationConditions) {
+        self.init(calendarManager: CalendarManager(), conditionManager: conditionManager)
     }
     
     func bind(dataHandler: @escaping DataHandler, searchHandler: @escaping SearchConditionHandler) {
-        self.dataHandler = dataHandler
-        self.searchResultHandler = searchHandler
+        self.calendarHandler = dataHandler
+        self.conditionHandler = searchHandler
         fillCalendar(by: 6)
+        updateConditions()
     }
     
     private func fillCalendar(by count: Int) {
         calendarManager.fillMonths(by: count)
         calendar = calendarManager.months
+    }
+    
+    private func updateConditions() {
+        accommodationConditions = conditionManager.gettableInfos()
     }
     
     func calendarUpdateNeeded() {
@@ -65,7 +70,9 @@ class CalendarViewModel: CalendarManageModel {
     func didCalendarCellSelected(at indexPath: IndexPath) {
         calendarManager.selectDateAt(indexPath: indexPath)
         calendar = calendarManager.months
-        searchResult = calendarManager.selectedDateIndexPaths.map { String($0.section) }
+        let newDates = calendarManager.dateSelected()
+        conditionManager.updatePeriod(with: newDates)
+        updateConditions()
     }
     
 }
