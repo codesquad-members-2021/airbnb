@@ -64,11 +64,13 @@ const CalenderStateContext = createContext<CalendarState | null>(null);
 const CalenderDispatchContext = createContext<Dispatch<Action> | null>(null);
 const CalenderMethodContext = createContext<Method | null>(null);
 
-type Action =
+export type Action =
   | { type: "MOVE_LEFT" }
   | { type: "MOVE_RIGHT" }
-  | { type: "CLICK_START_DAY"; startDate: Date | null }
-  | { type: "CLICK_END_DAY"; endDate: Date | null };
+  | { type: "CASE_SET_START"; startDate: Date | null }
+  | { type: "CASE_SET_END"; endDate: Date | null }
+  | { type: "CASE_SET_START_CLEAR_END"; startDate: Date | null }
+  | { type: "CASE_CLEAR_BOTH" };
 
 function reducer(state: CalendarState, action: Action): CalendarState {
   const { calendarList, currentDay, countOfMonth } = state;
@@ -77,6 +79,14 @@ function reducer(state: CalendarState, action: Action): CalendarState {
   const newCurrentDay = { year: 0, month: 0 };
 
   switch (action.type) {
+    case "CASE_SET_START":
+      return { ...state, startDate: action.startDate };
+    case "CASE_SET_END":
+      return { ...state, endDate: action.endDate };
+    case "CASE_SET_START_CLEAR_END":
+      return { ...state, startDate: action.startDate, endDate: null };
+    case "CASE_CLEAR_BOTH":
+      return { ...state, startDate: null, endDate: null };
     case "MOVE_LEFT":
       newCalendarList.pop();
       newCalendarList.unshift(createCalendar(year, month - 2));
@@ -102,16 +112,6 @@ function reducer(state: CalendarState, action: Action): CalendarState {
         ...state,
         calendarList: newCalendarList,
         currentDay: newCurrentDay,
-      };
-    case "CLICK_START_DAY":
-      return {
-        ...state,
-        startDate: action.startDate,
-      };
-    case "CLICK_END_DAY":
-      return {
-        ...state,
-        endDate: action.endDate,
       };
     default:
       throw new Error(MESSAGE.ERROR.INVAILD_ACTION);

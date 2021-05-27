@@ -1,8 +1,10 @@
+import { Dispatch } from "react";
 import styled, { css } from "styled-components";
 import {
   useCalendarDispatch,
   useCalendarMethod,
   useCalendarState,
+  Action,
 } from "./CalendarProvider";
 import { DAYS } from "./constant";
 import { Calendar, Type } from "./type";
@@ -40,10 +42,12 @@ function createDays(day: number): number[] {
   const days = Array.from({ length: day }, (_, i) => i + 1);
   return days;
 }
+
 function createEmpty(firstDay: number): string[] {
   const empty = Array.from({ length: firstDay }, () => " ");
   return empty;
 }
+
 function getTypeOfDay(
   startDate: Date | null,
   endDate: Date | null,
@@ -55,6 +59,7 @@ function getTypeOfDay(
     return "between";
   return "none";
 }
+
 function Day({
   year,
   month,
@@ -83,34 +88,15 @@ function Day({
             week: getWeek(firstDay, day),
             type,
           };
-          setType("end");
-          if (!done) {
-          } else {
-          }
-          if (type === "start") {
-            dispatch({
-              type: "CLICK_START_DAY",
-              startDate: thisDate,
-            });
-            if (endDate && thisDate > endDate) {
-              dispatch({
-                type: "CLICK_END_DAY",
-                endDate: null,
-              });
-            }
-          } else if (type === "end") {
-            dispatch({
-              type: "CLICK_END_DAY",
-              endDate: thisDate,
-            });
-            if (startDate && thisDate < startDate) {
-              dispatch({
-                type: "CLICK_START_DAY",
-                startDate: null,
-              });
-            }
-          }
-
+          const caseType = specifyCase({ thisDate, startDate, endDate, type });
+          const action = actionByCase({
+            dispatch,
+            startDate,
+            endDate,
+            thisDate,
+            setType,
+          });
+          action(caseType);
           if (!onClickDay) return;
           onClickDay(result);
         }}
@@ -120,6 +106,108 @@ function Day({
     </DayWrapper>
   );
 }
+
+type SpecifyCaseProps = {
+  thisDate: Date;
+  startDate: Date | null;
+  endDate: Date | null;
+  type: Type;
+};
+
+function specifyCase({ thisDate, startDate, endDate, type }: SpecifyCaseProps) {
+  if (!startDate && !endDate) {
+    if (type === "start") {
+      return "CASE_SET_START";
+    } else if (type === "end") {
+      return "CASE_SET_END";
+    }
+  }
+  if (startDate && !endDate) {
+    if (thisDate < startDate || type === "start") {
+      return "CASE_SET_START";
+    }
+    return "CASE_SET_END";
+  }
+  if (!startDate && endDate) {
+    if (thisDate > endDate || type === "end") {
+      return "CASE_SET_END";
+    }
+    return "CASE_SET_START";
+  }
+  if (startDate && endDate) {
+    if (
+      thisDate.getTime() === startDate.getTime() ||
+      thisDate.getTime() === endDate.getTime()
+    ) {
+      return "CASE_CLEAR_BOTH";
+    }
+    if (thisDate < startDate) {
+      return "CASE_SET_START_CLEAR_END";
+    } else if (thisDate > endDate) {
+      if (type === "start") {
+        return "CASE_SET_START_CLEAR_END";
+      } else if (type === "end") {
+        return "CASE_SET_END";
+      }
+    }
+    return "CASE_SET_END";
+  }
+}
+
+type Case =
+  | "CASE_SET_START"
+  | "CASE_SET_END"
+  | "CASE_SET_START_CLEAR_END"
+  | "CASE_CLEAR_BOTH"
+  | undefined;
+
+type ActionByCaseProps = {
+  dispatch: Dispatch<Action>;
+  startDate: Date | null;
+  endDate: Date | null;
+  thisDate: Date;
+  setType: (type: Type) => void;
+};
+const actionByCase =
+  ({ dispatch, startDate, endDate, thisDate, setType }: ActionByCaseProps) =>
+  (caseType: Case) => {
+    if (caseType === "CASE_SET_START") {
+      dispatch({ type: caseType, startDate: thisDate });
+      setType("end");
+      return;
+    }
+    if (caseType === "CASE_SET_END") {
+      dispatch({ type: caseType, endDate: thisDate });
+      if (!startDate) {
+        setType("start");
+      }
+      setType("end");
+      return;
+    }
+    if (caseType === "CASE_SET_START_CLEAR_END") {
+      dispatch({ type: caseType, startDate: thisDate });
+      setType("end");
+      return;
+    }
+    if (caseType === "CASE_CLEAR_BOTH") {
+      dispatch({ type: caseType });
+      setType("start");
+      return;
+    }
+  };
+
+// function getSelectState(start: Date | null, end: Date | null) {
+//   if (!start && !end) {
+//     return "WAITING";
+//   }
+//   if (start && !end) {
+//     return "SELECTED_START";
+//   }
+//   if (!start && end) {
+//     return "SELECTED_END";
+//   }
+//   return "SELECTED_BOTH";
+// }
 
 function getWeek(firstDay: number, day: number): string {
   const i = (firstDay + day - 1) % 7;

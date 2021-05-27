@@ -40,7 +40,6 @@ export default function Carousel({
     width: 100%;
     display: flex;
     animation: ${({ x, count }) => {
-        console.log(x, count);
         return moveAni(x, count);
       }}
       0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
