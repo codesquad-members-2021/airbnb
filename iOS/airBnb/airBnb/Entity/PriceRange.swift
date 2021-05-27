@@ -10,11 +10,13 @@ import UIKit
 struct PriceRange {
     private var minimunValue: CGFloat? = nil
     private var maximumValue: CGFloat? = nil
-    private let fixedMinimunValue: CGFloat = 11000
-    private let fixedMaximumValue: CGFloat = 1000000
+    private let fixedMinimunValue: CGFloat = 0.011
+    private let fixedMaximumValue: CGFloat = 1.0
     
     func noticeChanged() -> Bool {
-        return minimunValue != fixedMinimunValue && maximumValue != fixedMaximumValue
+        return emptyValued() ||
+            minimunValue == fixedMinimunValue &&
+            maximumValue == fixedMaximumValue
     }
     
     mutating func change(from slider: priceSlider) {
@@ -25,6 +27,14 @@ struct PriceRange {
     mutating func reset() {
         self.minimunValue = nil
         self.maximumValue = nil
+    }
+    
+    func emptyValued() -> Bool {
+        return minimunValue == nil || maximumValue == nil
+    }
+    
+    func hasValued() -> Bool {
+        return minimunValue != nil || maximumValue != nil
     }
     
     func show() -> String {

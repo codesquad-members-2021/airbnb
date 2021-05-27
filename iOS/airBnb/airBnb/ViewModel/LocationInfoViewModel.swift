@@ -26,11 +26,7 @@ class LocationInfoViewModel {
         self.searchManager = searchManager
         self.state = state
     }
-    
-    func receiveSelectDates(from dates: SequenceDates) {
-        searchManager.selectDays(from: dates)
-    }
-    
+        
     func releaseSelectDates() -> AnyPublisher<String, Never> {
         return searchManager.$selectDates
             .map { $0.show() }
@@ -39,7 +35,7 @@ class LocationInfoViewModel {
     
     func isEmptySelectDates() -> AnyPublisher<Bool, Never> {
         return searchManager.$selectDates
-            .map { $0.start != nil && $0.end != nil }
+            .map { $0.hasValued() }
             .eraseToAnyPublisher()
     }
     
@@ -49,26 +45,21 @@ class LocationInfoViewModel {
             .eraseToAnyPublisher()
     }
     
-    func deleteSelectDate() {
-        switch state {
-        case .calerdar:
-            searchManager.resetDates()
-        case .location:
-            break
-        case .price:
-            break
-        case .people:
-            break
-        case .none:
-            break
-        }
+    func allowNextButton() -> AnyPublisher<Bool, Never> {
+        return searchManager.$priceRange
+            .map { $0.hasValued() }
+            .eraseToAnyPublisher()
+    }
+    
+    func deleteData() {
+        searchManager.reset(in: state)
     }
     
     func skipAndDeleteString() -> AnyPublisher<String, Never> {
         switch state {
         case .calerdar:
             return searchManager.$selectDates
-                .map { $0.start == nil ? "건너뛰기" : "지우기" }
+                .map { self.skipAndDeleteString(to: $0.emptyStartValued()) }
                 .eraseToAnyPublisher()
         case .location:
             return searchManager.$location
@@ -79,7 +70,8 @@ class LocationInfoViewModel {
                 .map { $0.isEmpty ? "건너뛰기" : "지우기" }
                 .eraseToAnyPublisher()
         case .price:
-            return Just("건너뛰기")
+            return searchManager.$priceRange
+                .map { self.skipAndDeleteString(to: $0.noticeChanged()) }
                 .eraseToAnyPublisher()
         case .none:
             return Just("건너뛰기")
@@ -90,15 +82,19 @@ class LocationInfoViewModel {
     func setSkipAndDeleteAction() -> Bool {
         switch state {
         case .calerdar:
-          return searchManager.selectDates.start != nil ? true : false
+          return searchManager.selectDates.emptyStartValued()
         case .location:
             return false
         case .people:
             return false
         case .price:
-            return false
+            return searchManager.priceRange.hasValued()
         case .none:
             return false
         }
+    }
+    
+    private func skipAndDeleteString(to bool: Bool) -> String {
+        return bool ? "건너뛰기" : "지우기"
     }
 }

@@ -59,14 +59,17 @@ class CalendarViewController: UIViewController {
     
     private func bind() {
         didSelectSubject.sink { [weak self] _ in
-            self?.calendarDataSource?.sequenceDates = self?.searchManager.selectDates ?? SequenceDates.init()
+            guard let self = self else {
+                return
+            }
+            self.calendarDataSource?.sequenceDates = self.searchManager.selectDates
         }.store(in: &self.cancellable)
         
         moveViewController()
     }
     
     @objc func resetSelectDates(_ notification: Notification) {
-        didSelectSubject.send()
+        self.calendarDataSource?.resetSelectDates()
         calendarCollection.reloadData()
     }
     

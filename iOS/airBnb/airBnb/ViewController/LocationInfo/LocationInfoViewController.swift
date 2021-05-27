@@ -39,7 +39,7 @@ class LocationInfoViewController: UIViewController{
         locationInfoViewModel = LocationInfoViewModel(from: manager, of: state)
         nextViewSubject = subject
         deleteDatesSubject.sink { [weak self] _ in
-            self?.locationInfoViewModel?.deleteSelectDate()
+            self?.locationInfoViewModel?.deleteData()
         }.store(in: &cancellable)
     }
         
@@ -59,6 +59,10 @@ class LocationInfoViewController: UIViewController{
         locationInfoViewModel?.releasePriceRange().sink { [weak self] (price) in
             self?.priceLabel.text = price
         }.store(in: &cancellable)
+        
+        locationInfoViewModel?.allowNextButton().sink { [weak self] (allow) in
+            self?.nextButton.isEnabled = allow
+        }.store(in: &cancellable)
     }
     
     @IBAction func nextButtonTouched(_ sender: UIButton) {
@@ -70,7 +74,7 @@ class LocationInfoViewController: UIViewController{
             return
         }
         viewModel.setSkipAndDeleteAction() ?
-            self.deleteDatesSubject.send() : self.nextViewSubject?.send()
+            self.nextViewSubject?.send() : self.deleteDatesSubject.send()
     
     }
     

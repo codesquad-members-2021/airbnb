@@ -25,13 +25,20 @@ class SearchManager {
         selectDates.selectDay(with: day)
     }
     
-    func selectDays(from dates: SequenceDates) {
-        selectDates = dates
-    }
-     
-    func resetDates() {
-        selectDates.reset()
-        NotificationCenter.default.post(name: .seletDatesReset, object: nil)
+    func reset(in state: State) {
+        switch state {
+        case .calerdar:
+            selectDates.reset()
+            NotificationCenter.default.post(name: .seletDatesReset, object: nil)
+        case .location:
+            break
+        case .price:
+            priceRange.reset()
+        case .people:
+            break
+        case .none:
+            break
+        }
     }
     
     func changePrice(from price: priceSlider){

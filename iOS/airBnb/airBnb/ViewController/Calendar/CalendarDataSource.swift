@@ -46,4 +46,8 @@ class CalendarDataSource: NSObject, UICollectionViewDataSource {
         headerview.updateLabel(text: month)
         return headerview
     }
+    
+    func resetSelectDates() {
+        sequenceDates.reset()
+    }
 }

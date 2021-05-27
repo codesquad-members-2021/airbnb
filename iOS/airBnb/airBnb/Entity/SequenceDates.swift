@@ -8,7 +8,8 @@
 import Foundation
 
 struct SequenceDates {
-    var start,end: Date?
+    var start: Date?
+    var end: Date?
     
     func show() -> String {
         guard let start = start else {
@@ -49,5 +50,13 @@ struct SequenceDates {
     mutating func reset() {
         start = nil
         end = nil
+    }
+    
+    func hasValued() -> Bool {
+       return start != nil && end != nil
+    }
+    
+    func emptyStartValued() -> Bool {
+       return start == nil
     }
 }

@@ -70,6 +70,12 @@ class PriceViewController: UIViewController {
         containerView.addSubview(controller.view)
     }
     
+    private func bind() {
+        nextViewControllerSubject.sink { _ in
+            
+        }.store(in: &cancellable)
+    }
+    
     @objc private func priceSliderValueChanged(_ priceSlider: priceSlider) {
         searchManager?.changePrice(from: priceSlider)
         DispatchQueue.main.async { [weak self] in
