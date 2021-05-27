@@ -4,7 +4,7 @@ import com.codesquad.airbnb.web.domain.user.Guest;
 import com.codesquad.airbnb.web.domain.user.User;
 import com.codesquad.airbnb.web.domain.user.UserRepository;
 import com.codesquad.airbnb.web.dto.UserWithToken;
-import com.codesquad.airbnb.web.exceptions.UserNotFoundException;
+import com.codesquad.airbnb.web.exceptions.notfound.UserNotFoundException;
 import com.codesquad.airbnb.web.service.oauth.TokenService;
 import org.springframework.stereotype.Service;
 

@@ -3,7 +3,7 @@ package com.codesquad.airbnb.web.service.rooms;
 import com.codesquad.airbnb.web.domain.room.*;
 import com.codesquad.airbnb.web.domain.user.Host;
 import com.codesquad.airbnb.web.dto.UserInput;
-import com.codesquad.airbnb.web.exceptions.RoomNotFoundException;
+import com.codesquad.airbnb.web.exceptions.notfound.RoomNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

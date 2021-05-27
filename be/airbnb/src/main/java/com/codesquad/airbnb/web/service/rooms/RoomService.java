@@ -7,7 +7,7 @@ import com.codesquad.airbnb.web.dto.ReservationPreview;
 import com.codesquad.airbnb.web.dto.RoomDetail;
 import com.codesquad.airbnb.web.dto.RoomPreviews;
 import com.codesquad.airbnb.web.dto.UserInput;
-import com.codesquad.airbnb.web.exceptions.RoomNotFoundException;
+import com.codesquad.airbnb.web.exceptions.notfound.RoomNotFoundException;
 import com.codesquad.airbnb.web.service.reservation.ReservationDtoConverter;
 import com.codesquad.airbnb.web.service.reservation.ReservationService;
 import com.codesquad.airbnb.web.service.users.UserService;

@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.web.exceptions;
+package com.codesquad.airbnb.web.exceptions.notfound;
 
 public class UserNotFoundException extends NotFoundException {
     public static final String GUEST_NOT_FOUND = "게스트를 찾을 수 없습니다 id : ";
