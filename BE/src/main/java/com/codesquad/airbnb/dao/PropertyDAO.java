@@ -111,9 +111,14 @@ public class PropertyDAO {
                         }
                 );
 
-        PropertiesResponseDTO propertyDtos = new PropertiesResponseDTO(propertyDto);
+    public List<PropertyDTO> findByWishList() {
+        String sql = "SELECT p.id, p.title, wl.bookmark, p.price, pd.review_count, "  +
+                "pd.rating, pd.latitude, pd.longitude from property as p " +
+                "left JOIN property_detail pd on pd.property_id = p.id " +
+                "left JOIN wish_list wl on wl.property_id = p.id " +
+                "where wl.bookmark = true " ;
 
-        return propertyDtos;
+        return jdbcTemplate.query(sql, new PropertyDTORowMapper());
     }
 
     public PropertyDetailResponseDTO findPropertyDetailByPropertyId(Long propertyId) {
