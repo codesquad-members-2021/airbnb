@@ -644,9 +644,11 @@
                         <outlet property="bakButton" destination="tJa-og-Zmf" id="aXe-8X-VVY"/>
                         <outlet property="dateLabel" destination="TlB-hp-yOR" id="wRz-Fo-4fF"/>
                         <outlet property="locationLabel" destination="7zR-f2-1VB" id="nxC-Yc-zE2"/>
+                        <outlet property="nextButton" destination="F5u-Du-e6h" id="zaT-Mg-OAo"/>
                         <outlet property="priceLabel" destination="sJr-MH-TCm" id="7r3-Jj-ZmW"/>
                         <outlet property="priceRangeControl" destination="lPW-dE-k6p" id="JMM-qy-FiQ"/>
                         <outlet property="serverPriceLabel" destination="BYk-H5-9qI" id="Seu-bs-GNA"/>
+                        <outlet property="skipDeleteButton" destination="o1P-Lu-ivV" id="fxt-SZ-MZo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAw-fN-dJe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

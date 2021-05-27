@@ -44,9 +44,16 @@ class PriceViewModel {
     }
     
     @discardableResult
-    func append(_ price:[Int]) ->Observable<[Int]> {
+    func append(_ price:[Int]) -> Observable<[Int]> {
         userPriceInfo = price
         priceList.onNext(userPriceInfo)
         return Observable.just(price)
+    }
+    
+    @discardableResult
+    func deleteAll() -> Observable<[Int]> {
+        userPriceInfo.removeAll()
+        priceList.onNext(userPriceInfo)
+        return Observable.just([])
     }
 }

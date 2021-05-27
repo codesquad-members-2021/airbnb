@@ -84,7 +84,6 @@ private extension CalendarViewController {
                 switch self?.nextPage.value {
                 case true:
                     self?.nextPage.accept(false)
-                    self?.dateLabel.text = ""
                     self?.viewModel.deleteAll()
                     self?.calendarView.selectedDates.forEach {
                         self?.calendarView?.deselect($0)
