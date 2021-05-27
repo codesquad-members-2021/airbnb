@@ -13,22 +13,40 @@ class AccomodationConditionTableViewCell: UITableViewCell {
         return String(describing: self)
     }
     
-    private var conditionTitle = UILabel()
-    private var conditionContent = UILabel()
+    private weak var conditionTitle: UILabel?
+    private weak var conditionContent: UILabel?
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configure()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        configure()
+    }
     
     func configure() {
+        let conditionTitle = UILabel()
         self.addSubview(conditionTitle)
+        self.conditionTitle = conditionTitle
         conditionTitle.text = "테스트"
         conditionTitle.translatesAutoresizingMaskIntoConstraints = false
-        conditionTitle.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        conditionTitle.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            conditionTitle.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            conditionTitle.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
+        ])
         
+        let conditionContent = UILabel()
         self.addSubview(conditionContent)
+        self.conditionContent = conditionContent
         conditionContent.text = "test"
         conditionContent.textColor = .gray
         conditionContent.translatesAutoresizingMaskIntoConstraints = false
-        conditionContent.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        conditionContent.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            conditionContent.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            conditionContent.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
+        ])
     }
 
 }

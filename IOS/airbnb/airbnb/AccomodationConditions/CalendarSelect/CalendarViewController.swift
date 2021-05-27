@@ -11,19 +11,23 @@ final class CalendarViewController: UIViewController {
 
     private let backButtonTitle = "날짜 선택"
 
-    private var toolBar: UIToolbar?
-    private var tableView: UITableView?
-    private var collectionView: UICollectionView?
-    private var stackView: UIStackView?
+    private weak var toolBar: UIToolbar?
+    private weak var tableView: UITableView?
+    private weak var collectionView: UICollectionView?
+    private weak var stackView: UIStackView?
     
     var location: LocationSearchResult?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
+        super.loadView()
         addToolBar()
         addTableView()
         addStackView()
         addCollectionView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
     private func addToolBar() {
@@ -34,9 +38,12 @@ final class CalendarViewController: UIViewController {
         self.toolBar = toolBar
         
         toolBar.translatesAutoresizingMaskIntoConstraints = false
-        toolBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        toolBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        toolBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        
+        NSLayoutConstraint.activate([
+            toolBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            toolBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            toolBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
         
         let passButton = UIBarButtonItem(title: "건너뛰기",
                                          style: .plain,
@@ -67,9 +74,11 @@ final class CalendarViewController: UIViewController {
         self.tableView = tableView
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: toolBar!.topAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: toolBar!.topAnchor)
+        ])
         tableView.rowHeight = 50
         let tableHeight = tableView.rowHeight * 4
         tableView.heightAnchor.constraint(equalToConstant: tableHeight).isActive = true
@@ -83,11 +92,12 @@ final class CalendarViewController: UIViewController {
         self.stackView = stackView
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        stackView.heightAnchor.constraint(equalToConstant: tableView!.rowHeight).isActive = true
-        
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            stackView.heightAnchor.constraint(equalToConstant: tableView!.rowHeight)
+        ])
         let days = ["M", "T", "W", "T", "F", "S", "S"]
         days.forEach { day in
             let label = UILabel()
@@ -101,44 +111,106 @@ final class CalendarViewController: UIViewController {
     }
     
     private func addCollectionView() {
-        let tempFrame = CGRect(x: 0, y: 0, width: 300, height: 100)
-        let layout = UICollectionViewLayout() //<-요것부터 시작하자!
-        let collectionView = UICollectionView(frame: tempFrame, collectionViewLayout: layout)
+        let layout = UICollectionViewFlowLayout() //<-요것부터 시작하자!
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         let cellId = CalendarCollectionViewCell.reuseIdentifier
         collectionView.register(CalendarCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        let headerId = MonthHeaderCollectionViewCell.reuseIdentifier
+        collectionView.register(MonthHeaderCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+        collectionView.backgroundColor = .white
         view.addSubview(collectionView)
         self.collectionView = collectionView
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: tableView!.topAnchor).isActive = true
-        collectionView.topAnchor.constraint(equalTo: stackView!.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            collectionView.bottomAnchor.constraint(equalTo: tableView!.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: stackView!.bottomAnchor)
+        ])
         collectionView.dataSource = self
+        collectionView.delegate = self
     }
 
 }
 
 extension CalendarViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = AccomodationConditionTableViewCell()
-        cell.configure()
+        let cellId = AccomodationConditionTableViewCell.reuseIdentifier
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? AccomodationConditionTableViewCell ?? AccomodationConditionTableViewCell()
         return cell
     }
+    
 }
 
 extension CalendarViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 31
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = CalendarCollectionViewCell()
-        cell.configure()
+        let cellId = CalendarCollectionViewCell.reuseIdentifier
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? CalendarCollectionViewCell ?? CalendarCollectionViewCell()
         return cell
     }
+    
+}
+
+extension CalendarViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = collectionView.frame.width / 7
+        let cellHeight = cellWidth
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let headerId = MonthHeaderCollectionViewCell.reuseIdentifier
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as? MonthHeaderCollectionViewCell ?? MonthHeaderCollectionViewCell()
+            return header
+        default:
+            assert(false)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 50)
+    }
+    
 }

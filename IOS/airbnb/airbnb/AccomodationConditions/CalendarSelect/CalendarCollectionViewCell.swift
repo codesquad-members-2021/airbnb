@@ -13,14 +13,29 @@ class CalendarCollectionViewCell: UICollectionViewCell {
         return String(describing: self)
     }
     
-    private var day = UILabel()
+    private weak var day: UILabel?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        configure()
+    }
     
     func configure() {
+        let day = UILabel()
         self.addSubview(day)
+        self.day = day
         day.text = "39"
+        day.textAlignment = .center
         day.translatesAutoresizingMaskIntoConstraints = false
-        day.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
-        day.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            day.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            day.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
+        ])
     }
     
 }
