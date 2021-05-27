@@ -1,9 +1,11 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RangeSeekSlider
 
 class PriceViewController: UIViewController {
     
+    @IBOutlet weak var priceRangeControl: RangeSeekSlider!
     @IBOutlet weak var averagePriceLabel: UILabel!
     @IBOutlet weak var serverPriceLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -17,10 +19,20 @@ class PriceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        setupPriceRangeControl()
     }
     
     func setupInfo(of location:String, of date:String) {
         viewModel.setupInfo(of: location, of: date)
+    }
+}
+
+private extension PriceViewController {
+    
+    private func setupPriceRangeControl() {
+        priceRangeControl.minValue = 100000
+        priceRangeControl.maxValue = 1000000
+        priceRangeControl.selectedMaxValue = 1000000
     }
 }
 
