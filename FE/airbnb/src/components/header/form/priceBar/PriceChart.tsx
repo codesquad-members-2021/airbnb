@@ -11,13 +11,11 @@ const PriceChart = ({ priceSection }: Props) => {
   const [canvas, setCanvas] = useState<HTMLCanvasElement | null>(null);
   const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  console.log(priceSection);
   useEffect(() => {
     if (!canvasRef.current) return;
     const canvas: HTMLCanvasElement = canvasRef.current;
     setCanvas(canvas);
     setCtx(canvas.getContext('2d'));
-    clearCanvas();
   }, []);
 
   const getDots = (priceSection: priceSectionType): void | Array<dotType> => {
@@ -39,7 +37,7 @@ const PriceChart = ({ priceSection }: Props) => {
     const canvasWidth = canvas.width;
     const canvasHeight = canvas.height;
     ctx.beginPath();
-    ctx.fillStyle = 'rgba(0,0,0,0.3)';
+    ctx.fillStyle = 'rgba(0,0,0,0.7)';
 
     let prevX = dots[0].x;
     let prevY = dots[0].y;
@@ -57,6 +55,7 @@ const PriceChart = ({ priceSection }: Props) => {
     ctx.lineTo(prevX, prevY);
     ctx.lineTo(canvasWidth, canvasHeight);
     ctx.lineTo(0, canvasHeight);
+    ctx.stroke();
     ctx.fill();
     ctx.closePath();
   };
@@ -68,6 +67,7 @@ const PriceChart = ({ priceSection }: Props) => {
   };
 
   const drawChart = (): void => {
+    clearCanvas();
     const dots = getDots(priceSection);
     if (dots) drawDotsLine(dots);
   };
@@ -79,6 +79,7 @@ const PriceChart = ({ priceSection }: Props) => {
 export default PriceChart;
 
 const StyledPriceChart = styled.canvas`
+  z-index: 11;
   width: 100%;
   height: 100%;
 `;
