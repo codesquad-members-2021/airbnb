@@ -1,30 +1,43 @@
 import styled from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import SearchMapNav from './SearchMapNav';
 
-const GNB = () => {
+type GNBType = {
+  isMain: boolean;
+}
+
+const GNB = ({ isMain }: GNBType) => {
   return (
-    <GNBWrapper>
+    <GNBWrapper isMain={isMain}>
       <Logo>LOGO</Logo>
-      <Nav>
-        <NavItem>숙소</NavItem>
-        <NavItem>체험</NavItem>
-        <NavItem>온라인 체험</NavItem>
-      </Nav>
-      <Menu>
+      {isMain
+        ? (<Nav>
+          <NavItem>숙소</NavItem>
+          <NavItem>체험</NavItem>
+          <NavItem>온라인 체험</NavItem>
+        </Nav>)
+        : (<SearchMapNav />)
+      }
+
+      <Menu isMain={isMain}>
         <MenuIcon />
-        <AccountCircleIcon fontSize="large"/>
+        <AccountCircleIcon fontSize="large" />
       </Menu>
     </GNBWrapper>
   )
 }
 
-const GNBWrapper = styled.div`
+const GNBWrapper = styled.div<GNBType>`
+  position: ${({isMain}) => isMain ? '' : 'fixed'};
   display: flex;
-  margin:  0 auto;
-  padding-top: 1rem;
-  width: 90%;
-  justify-content: space-between;
+  padding: 1rem 0;
+  width: 100%;
+  justify-content: space-around;
+  box-shadow: ${({isMain}) => isMain ? '' : '0px 0px 4px rgba(204, 204, 204, 0.5), 0px 2px 4px rgba(0, 0, 0, 0.25)'}; 
+  background: ${({isMain}) => isMain ? 'none' : '#fff'};
+  gap:10rem;
+  z-index: ${({isMain}) => isMain ? '0' : '1'};
 `;
 
 const Logo = styled.span`
@@ -50,18 +63,22 @@ const NavItem = styled.span`
   }
 `;
 
-const Menu = styled.div`
+const Menu = styled.div<GNBType>`
   display:flex;
   background: #fff;
   width: 6rem;
   height: 3rem;
   place-self: center;
   border-radius: 2rem;
+  border: ${({ isMain }) => isMain ? 'none' : '1px solid #BDBDBD'};
   place-content: center;
   place-items: center;
   gap: 1rem;
+
   &:hover{
     cursor: pointer;
   }
 `;
+
+
 export default GNB;

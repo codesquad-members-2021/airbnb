@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import Calendar from './Calendar';
 import { useRecoilState } from 'recoil';
@@ -14,13 +14,13 @@ const Modal = () => {
   const handleClickHideModal = (event: MouseEvent) => {
     const targetList = (event.target as HTMLElement);
     const checkTarget = targetList.closest('.Modal') || targetList.closest('.SearchBar');
-    if (!checkTarget && focus) setSearchBarState(searchBar => ({ ...searchBar, focus: false }));
+    if (!checkTarget && focus) setSearchBarState({ entryDate: false, charge: false, personnel: false, focus: false });
   }
 
   useEffect(() => {
     document.addEventListener('click', handleClickHideModal);
     return () => document.removeEventListener('click', handleClickHideModal);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focus]);
 
   return (
