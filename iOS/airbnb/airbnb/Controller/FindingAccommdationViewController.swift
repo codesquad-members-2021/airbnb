@@ -10,7 +10,7 @@ import UIKit
 class FindingAccommdationViewController: UIViewController {
     
     @IBOutlet weak var findingAccommdationConditionView: UIScrollView!
-
+    
     private var findingAccommdationCondition: FindingAccommdationCondition
     
     private var calendarView: CalendarView
@@ -63,7 +63,6 @@ class FindingAccommdationViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(conditionDataUpdate), name: FindingAccommdationViewController.conditionDataUpdate, object: findingAccommdationCondition)
         costGraphView.update(minCost: "₩10000", maxCost: "₩160000", averageCost: "qweqweqwe")
         self.conditionTableView.dataSource = tableViewDataSource
-        self.costGraphView.chartinit()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -98,6 +97,14 @@ class FindingAccommdationViewController: UIViewController {
         self.findingAccommdationConditionView.setContentOffset(CGPoint(x: totalWidth / viewCount * CGFloat(currentState.value), y: 0), animated: true)
     }
     
+    func mappingGraphValue() -> [(Int, Int)] {
+        var array: [(Int, Int)] = []
+        for index in 0..<costGraph.numberOfRooms.count {
+            array.append((index*5, costGraph.numberOfRooms[index]))
+        }
+        return array
+    }
+    
     @IBAction func pressedPreButton(_ sender: Any) {
         if self.currentState == .date {
             return
@@ -122,16 +129,16 @@ class FindingAccommdationViewController: UIViewController {
         self.adultCountLabel.text = findingAccommdationCondition.peopleCount
     }
     
-//    @objc func costGraphDataUpdate() {
-//        costGraphView.update(minCost: "₩10000", maxCost: "₩160000", averageCost: "qweqweqwe")
-//    }
+    //    @objc func costGraphDataUpdate() {
+    //        costGraphView.update(minCost: "₩10000", maxCost: "₩160000", averageCost: "qweqweqwe")
+    //    }
     
     @IBAction func pressedMincost(_ sender: Any) {
-        self.findingAccommdationCondition.update(minCost: "10000")
+        self.findingAccommdationCondition.update(minCost: 10000)
     }
     
     @IBAction func pressedMaxCost(_ sender: Any) {
-        self.findingAccommdationCondition.update(maxCost: "150000")
+        self.findingAccommdationCondition.update(maxCost: 150000)
     }
     
     @IBAction func pressedPeopleMinus(_ sender: Any) {
@@ -183,6 +190,7 @@ extension FindingAccommdationViewController {
                 print(error)
             case .success(let data):
                 self.costGraph = data
+                self.costGraphView.chartinit(data: self.mappingGraphValue())
             }
         }
     }

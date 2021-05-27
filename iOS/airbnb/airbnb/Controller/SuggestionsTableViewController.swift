@@ -72,7 +72,6 @@ extension SuggestionsTableViewController {
             
             cell.textLabel?.text = suggestion.title
             cell.detailTextLabel?.text = suggestion.subtitle
-
             cell.textLabel?.attributedText = createHighlightedString(text: suggestion.title, rangeValues: suggestion.titleHighlightRanges)
             cell.detailTextLabel?.attributedText = createHighlightedString(text: suggestion.subtitle, rangeValues: suggestion.subtitleHighlightRanges)
         }

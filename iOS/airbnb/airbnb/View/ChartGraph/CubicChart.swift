@@ -37,6 +37,8 @@ class CubicLinesExample: UIViewController {
         let settings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.black, linesWidth: ExamplesDefaults.guidelinesWidth)
         let guidelinesLayer = ChartGuideLinesDottedLayer(xAxisLayer: xAxisLayer, yAxisLayer: yAxisLayer, settings: settings)
         
+        
+        
         let chart = Chart(
             frame: chartFrame,
             innerFrame: innerFrame,

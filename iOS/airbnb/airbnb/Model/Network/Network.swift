@@ -37,8 +37,8 @@ class Network {
         
         let Parameters = [
             "locationId": "1",
-            "minPrice": queryParameter.minCost,
-            "maxPrice": queryParameter.maxCost,
+            "minPrice": "\(queryParameter.minCost)",
+            "maxPrice": "\(queryParameter.maxCost)",
             "adult": queryParameter.peopleCount
         ]
         

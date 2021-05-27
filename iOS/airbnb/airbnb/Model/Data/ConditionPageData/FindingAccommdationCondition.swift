@@ -11,19 +11,26 @@ final class FindingAccommdationCondition {
     private(set) var location: String
     private(set) var firstDate: String
     private(set) var secondDate: String
-    private(set) var minCost: String
-    private(set) var maxCost: String
+    private(set) var minCost: Int
+    private(set) var maxCost: Int
     private(set) var people: Int
     var peopleCount: String {
         return "\(people)"
+    }
+    var minCostDescription: String {
+        return minCost == 0 ? "" : "₩\(minCost)"
+    }
+    
+    var maxCostDescription: String {
+        return maxCost == 0 ? "" : "₩\(maxCost)"
     }
     
     init(){
         location = ""
         firstDate = ""
         secondDate = ""
-        minCost = ""
-        maxCost = ""
+        minCost = 0
+        maxCost = 0
         people = 0
     }
     
@@ -42,12 +49,12 @@ final class FindingAccommdationCondition {
         NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
     }
     
-    func update(minCost: String) {
+    func update(minCost: Int) {
         self.minCost = minCost
         NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
     }
     
-    func update(maxCost: String) {
+    func update(maxCost: Int) {
         self.maxCost = maxCost
         NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
     }

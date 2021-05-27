@@ -29,16 +29,15 @@ class CostGraphView: UIView {
         minimumCostLabel.text = minCost
         maximumCostLabel.text = maxCost
         averageCostLabel.text = averageCost
-        graphView.backgroundColor = .red
     }
     
-    func chartinit() {
+    func chartinit(data: [(Int, Int)]) {
         let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
 
-        let chartPoints = [(0, 0), (4, 4), (8, 11), (9, 2), (11, 10), (12, 3), (15, 18), (18, 10), (20, 15)].map{ChartPoint(x: ChartAxisValueInt($0.0, labelSettings: labelSettings), y: ChartAxisValueInt($0.1))}
+        let chartPoints = data.map{ChartPoint(x: ChartAxisValueInt($0.0, labelSettings: labelSettings), y: ChartAxisValueInt($0.1))}
         
         let xValues = chartPoints.map{$0.x}
-        let yValues = ChartAxisValuesStaticGenerator.generateYAxisValuesWithChartPoints(chartPoints, minSegmentCount: 10, maxSegmentCount: 20, multiple: 2, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
+        let yValues = ChartAxisValuesStaticGenerator.generateYAxisValuesWithChartPoints(chartPoints, minSegmentCount: 1, maxSegmentCount: 2, multiple: 2, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: true)
         
         let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: "Axis title", settings: labelSettings))
         let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Axis title", settings: labelSettings.defaultVertical()))
@@ -46,29 +45,29 @@ class CostGraphView: UIView {
         
         let chartSettings = ExamplesDefaults.chartSettingsWithPanZoom
 
-//        let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
-//        let (xAxisLayer, yAxisLayer, innerFrame) = (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
+        let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
+        let (xAxisLayer, yAxisLayer, innerFrame) = (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
         
-        let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: UIColor.purple, lineWidth: 2, animDuration: 1, animDelay: 0)
+        let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: UIColor.black, lineWidth: 2, animDuration: 1, animDelay: 0)
 //        let chartPointsLineLayer = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModel], pathGenerator: CatmullPathGenerator()) // || CubicLinePathGenerator
         
-        let settings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.black, linesWidth: ExamplesDefaults.guidelinesWidth)
-//        let guidelinesLayer = ChartGuideLinesDottedLayer(xAxisLayer: xAxisLayer, yAxisLayer: yAxisLayer, settings: settings)
+//        let IOBLine = ChartPointsLineLayer(xAxis: xAxis, yAxis: yAxis, lineModels: [lineModel], pathGenerator: StraightLinePathGenerator())
+        
+        let settings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.clear, linesWidth: ExamplesDefaults.guidelinesWidth)
+        let _ = ChartGuideLinesDottedLayer(xAxisLayer: xAxisLayer, yAxisLayer: yAxisLayer, settings: settings)
+        
+        let chartPointsLineLayer = ChartPointsAreaLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints, areaColors: [UIColor(cgColor: UIColor.black.cgColor).withAlphaComponent(1), UIColor.black], animDuration: 0, animDelay: 0, addContainerPoints: false, pathGenerator: CatmullPathGenerator())
         
         let chart = Chart(
             frame: chartFrame,
-//            innerFrame: innerFrame,
+            innerFrame: innerFrame,
             settings: chartSettings,
             layers: [
-//                xAxisLayer,
-//                yAxisLayer,
-//                guidelinesLayer,
-//                chartPointsLineLayer
+                chartPointsLineLayer,
             ]
         )
         
         self.graphView.addSubview(chart.view)
         self.chart = chart
-        self.chart!.view.frame = CGRect(x: 0, y: 0, width: self.graphView.frame.width, height: self.graphView.frame.height)
     }
 }
