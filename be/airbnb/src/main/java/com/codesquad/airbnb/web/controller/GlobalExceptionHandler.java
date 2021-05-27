@@ -5,9 +5,11 @@ import com.codesquad.airbnb.web.dto.ErrorResponse;
 import com.codesquad.airbnb.web.exceptions.InvalidSqlResultException;
 import com.codesquad.airbnb.web.exceptions.InvalidUserInputException;
 import com.codesquad.airbnb.web.exceptions.ReservationFailedException;
+import com.codesquad.airbnb.web.exceptions.jwt.JwtTokenException;
 import com.codesquad.airbnb.web.exceptions.notfound.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -46,5 +48,17 @@ public class GlobalExceptionHandler {
     public ErrorResponse handleUnknownError(Exception exception) {
         log.error(exception.getMessage());
         return new ErrorResponse(GlobalErrorMessageConstants.ERROR_OCCURED_FROM_SERVER);
+    }
+
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ErrorResponse handleMethodNotAllowed(HttpRequestMethodNotSupportedException exception) {
+        return new ErrorResponse(exception.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(JwtTokenException.class)
+    public ErrorResponse handleNoJwtTokenException(JwtTokenException exception) {
+        return new ErrorResponse(exception.getMessage());
     }
 }

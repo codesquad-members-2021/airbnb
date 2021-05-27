@@ -3,6 +3,7 @@ package com.codesquad.airbnb.web.service.oauth;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.codesquad.airbnb.web.config.properties.JwtSecret;
 import org.springframework.stereotype.Service;
 
@@ -37,9 +38,12 @@ public class TokenService {
         return Date.from(localDateTime.toInstant(ZoneOffset.of("+9")));
     }
 
-    public void verifyToken(String jwt) {
-        jwtVerifier.verify(jwt);
+    public String extractUserIdFromToken(String jwt) {
+        DecodedJWT decodedJWT = decodeToken(jwt);
+        return decodedJWT.getClaim(CLAIM_KEY_USER_ID).asString();
     }
 
-
+    private DecodedJWT decodeToken(String jwt) {
+        return jwtVerifier.verify(jwt);
+    }
 }

@@ -1,5 +1,6 @@
 package com.codesquad.airbnb.web.controller;
 
+import com.codesquad.airbnb.web.config.annotation.CertifiedUser;
 import com.codesquad.airbnb.web.dto.ReservationPreview;
 import com.codesquad.airbnb.web.dto.UserInput;
 import com.codesquad.airbnb.web.service.rooms.RoomService;
@@ -18,7 +19,7 @@ public class ReservationController {
     }
 
     @PostMapping
-    public ReservationPreview roomDetail(@PathVariable int roomId, @RequestBody UserInput userInput) {
-        return roomService.makeReservation(roomId, 2, userInput);
+    public ReservationPreview roomDetail(@PathVariable int roomId, @RequestBody UserInput userInput, @CertifiedUser int userId) {
+        return roomService.makeReservation(roomId, userId, userInput);
     }
 }
