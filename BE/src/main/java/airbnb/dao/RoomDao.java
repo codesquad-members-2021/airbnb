@@ -36,8 +36,8 @@ public class RoomDao {
     }
 
     public List<Room> findByCityIdAndSchedule(Long cityId, Schedule schedule) {
-        String sql = "SELECT id, price, title, description, people, oneroom, bed, bath, hair_dryer, air_conditioner, wifi, clean_tax FROM room " +
-                "WHERE city_id = :cityId AND (check_in >= :checkOut OR check_out <= :checkIn)";
+        String sql = "SELECT a.id, price, title, description, people, oneroom, bed, bath, hair_dryer, air_conditioner, wifi, clean_tax FROM room AS a left join reservation AS b ON a.id = b.room_id " +
+                "WHERE b.id IS NULL OR ((b.check_in NOT BETWEEN :checkIn AND :checkOut) AND (b.check_out NOT BETWEEN :checkIn AND :checkOut))";
         LocalDate chekIn = schedule.getCheckIn();
         LocalDate chekOut = schedule.getCheckOut();
 
