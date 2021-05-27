@@ -11,3 +11,5 @@ else
 fi
 
 java -jar ./build/libs/airbnb.jar >> spring-log.txt 2>&1 &
+
+echo "@@@@ Tomcat is restarted"
