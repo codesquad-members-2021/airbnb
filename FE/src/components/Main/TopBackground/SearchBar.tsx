@@ -5,6 +5,7 @@ import { ITextTopBackground } from '../../../util/reference';
 
 import { ResponsiveFluid } from '../../Common/ResponsiveFluid';
 import DefaultButton from '../../Common/DefaultButton';
+import CalendarModal from './Modals/CalendarModal';
 
 interface ISearchMenuItem {
   isClicked?: boolean;
@@ -48,16 +49,20 @@ const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
 
   return (
     <SearchBarLayout>
-
       <SearchBarBlock>
         {/* 검색바 */}
         <SearchBarRow>
           <SearchMenuList>{searchMenuItems}</SearchMenuList>
         </SearchBarRow>
 
-
+        {/* 검색바의 Item의 Modal들 */}
+        {/* 추후 flag로 렌더링 여부결정 */}
+        {true && (
+          <SearchBarRow>
+            <CalendarModal />
+          </SearchBarRow>
+        )}
       </SearchBarBlock>
-
     </SearchBarLayout>
   );
 };
