@@ -38,9 +38,9 @@ public class TokenService {
         return Date.from(localDateTime.toInstant(ZoneOffset.of("+9")));
     }
 
-    public String extractUserIdFromToken(String jwt) {
+    public int extractUserIdFromToken(String jwt) {
         DecodedJWT decodedJWT = decodeToken(jwt);
-        return decodedJWT.getClaim(CLAIM_KEY_USER_ID).asString();
+        return decodedJWT.getClaim(CLAIM_KEY_USER_ID).as(Integer.class);
     }
 
     private DecodedJWT decodeToken(String jwt) {

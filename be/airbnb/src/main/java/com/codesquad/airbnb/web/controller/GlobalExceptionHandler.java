@@ -43,13 +43,6 @@ public class GlobalExceptionHandler {
         return new ErrorResponse(GlobalErrorMessageConstants.ERROR_OCCURED_FROM_SERVER);
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(Exception.class)
-    public ErrorResponse handleUnknownError(Exception exception) {
-        log.error(exception.getMessage());
-        return new ErrorResponse(GlobalErrorMessageConstants.ERROR_OCCURED_FROM_SERVER);
-    }
-
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ErrorResponse handleMethodNotAllowed(HttpRequestMethodNotSupportedException exception) {
@@ -60,5 +53,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(JwtTokenException.class)
     public ErrorResponse handleNoJwtTokenException(JwtTokenException exception) {
         return new ErrorResponse(exception.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Exception.class)
+    public ErrorResponse handleUnknownError(Exception exception) {
+        exception.printStackTrace();
+        log.error(exception.getMessage());
+        return new ErrorResponse(GlobalErrorMessageConstants.ERROR_OCCURED_FROM_SERVER);
     }
 }

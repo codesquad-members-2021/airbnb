@@ -43,7 +43,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     private void onAuthAnnotation(HttpServletRequest request) {
         String token = extractTokenFromHeader(request);
-        int userId = Integer.parseInt(tokenService.extractUserIdFromToken(token));
+        int userId = tokenService.extractUserIdFromToken(token);
         request.setAttribute(CLAIM_KEY_USER_ID, userId);
     }
 
