@@ -4,7 +4,7 @@ export const getConvertedChartPrices = (priceArray: Array<number>): Array<Array<
   const MAX_PRICE = 1000000;
   let currentPrice = 0;
 
-  const resultArray = sortedPrices.reduce((acc: Array<Array<number>>, price) => {
+  const priceList = sortedPrices.reduce((acc: Array<Array<number>>, price) => {
     if (currentPrice === MAX_PRICE) {
       acc[acc.length - 1].push(price);
       return acc;
@@ -17,6 +17,8 @@ export const getConvertedChartPrices = (priceArray: Array<number>): Array<Array<
     return acc;
   }, [[]]);
 
+  const lengthToFill = 51 - priceList.length;
+  const resultArray = [...priceList, ...Array.from({ length: lengthToFill }, () => [])];
   return resultArray;
 }
 
