@@ -11,7 +11,6 @@ const PriceBar = ({ toggleRef }: Props) => {
   const [priceData, setPriceData] = useState(sampleData);
 
   const priceSection = getSectionHeight(priceData);
-  console.log(priceSection);
 
   return (
     <StyledPriceBar ref={toggleRef}>
@@ -19,7 +18,7 @@ const PriceBar = ({ toggleRef }: Props) => {
       <div className='price-range'>￦0 ~ ￦1,000,000+</div>
       <div className='average'>평균 1박 요금은 ￦165,556입니다.</div>
       <div className='chart'>
-        <PriceChart />
+        <PriceChart priceSection={priceSection} />
       </div>
     </StyledPriceBar>
   );
@@ -27,15 +26,20 @@ const PriceBar = ({ toggleRef }: Props) => {
 
 const getSectionHeight = (data: Array<number>): priceSectionType => {
   const UNIT = 50000;
-  const priceSection = data.reduce(
-    (acc: priceSectionType, price) => {
-      const section = Math.floor(price / UNIT) < 20 ? Math.floor(price / UNIT) : 20;
-      if (section in acc) acc[section]++;
-      else acc[section] = 1;
-      return acc;
-    },
-    { 0: 0 }
-  );
+  const TOTAL_SECTION = 21;
+
+  const initPriceSection: priceSectionType = {};
+  for (let i = 0; i <= TOTAL_SECTION; i++) {
+    initPriceSection[i] = 0;
+  }
+
+  const priceSection = data.reduce((acc: priceSectionType, price) => {
+    const section = Math.ceil(price / UNIT) < 20 ? Math.ceil(price / UNIT) : 20;
+    if (section in acc) acc[section]++;
+    else acc[section] = 1;
+    return acc;
+  }, initPriceSection);
+
   return priceSection;
 };
 
@@ -61,7 +65,6 @@ const StyledPriceBar = styled.div`
   }
   .chart {
     height: 170px;
-    border: 1px solid red;
   }
   .average {
     font-size: ${({ theme }) => theme.fontSize.small};
