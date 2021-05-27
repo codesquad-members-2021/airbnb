@@ -33,22 +33,23 @@ const PriceChart = () => {
     { x: chart.width - 1, y: chart.height - 2 },
   ];
 
-  const drawOver = (ctx, minPrice, maxPrice) => {
-    ctx.globalCompositeOperation = 'destination-atop';
+  const drawMaxOver = (ctx, minPrice, maxPrice) => {
     //
+    ctx.globalCompositeOperation = 'source-atop';
     ctx.fillStyle = 'black';
     let leftWidth = (minPrice * chart.width) / 1000000;
     const rightWidth = (maxPrice * chart.width) / 1000000;
-    ctx.fillRect(1, 1, leftWidth, chart.height - 1);
-    ctx.fill();
-  };
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(0, chart.height);
+    ctx.lineTo(leftWidth, chart.height);
+    ctx.lineTo(leftWidth, 2);
+    ctx.lineTo(rightWidth, 2);
+    ctx.lineTo(rightWidth, chart.height);
+    ctx.lineTo(chart.width, chart.height);
+    ctx.lineTo(0, chart.width);
+    ctx.lineTo(0, 0);
 
-  const drawMaxOver = (ctx, minPrice, maxPrice) => {
-    ctx.globalCompositeOperation = 'destination-atop';
-    //
-    ctx.fillStyle = 'black';
-    const rightWidth = (maxPrice * chart.width) / 1000000;
-    ctx.fillRect(rightWidth, 1, chart.width - 1, chart.height - 1);
     ctx.fill();
   };
 
@@ -70,6 +71,7 @@ const PriceChart = () => {
         points[i + 1].x,
         points[i + 1].y
       );
+      ctx.strokeStyle = 'lightGray';
       ctx.stroke();
     }
 
@@ -82,14 +84,14 @@ const PriceChart = () => {
       width: chartRef.current.width,
       height: chartRef.current.height,
     });
-    const ctx = chartRef.current.getContext('2d');
-    chart.height && chart.width && drawChart(ctx, points);
-    drawOver(ctx, priceData.minPrice, priceData.maxPrice);
-  }, [chart.height, priceData.maxPrice, priceData.minPrice]);
+  }, [chart.height]);
 
+  const ctx = chartRef.current?.getContext('2d');
+  ctx && chart.height && chart.width && drawChart(ctx, points);
+  ctx && drawMaxOver(ctx, priceData.minPrice, priceData.maxPrice);
   return (
     <PriceChartViewDiv>
-      <ChartCanvas width="365px" ref={chartRef}></ChartCanvas>
+      <ChartCanvas width="365px" id="canvas" ref={chartRef}></ChartCanvas>
       <Slider />
     </PriceChartViewDiv>
   );
