@@ -8,7 +8,7 @@ public class Image {
         this.url = url;
     }
 
-    public Image create(String url) {
+    public static Image create(String url) {
         return new Image(url);
     }
 
