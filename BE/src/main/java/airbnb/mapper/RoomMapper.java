@@ -10,8 +10,8 @@ public class RoomMapper implements RowMapper<Room> {
     @Override
     public Room mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Room.Builder(rs.getLong("id")).price(rs.getInt("price"))
-                .title(rs.getString("title")).description(rs.getString("description"))
-                .roomDetail(createRoomDetail(rs)).tax(Tax.of(rs.getInt("clean_tax"),rs.getInt("price"))).build();
+                .title(rs.getString("title")).description(rs.getString("description")).maxPeopleCount(rs.getInt("people"))
+                .roomDetail(createRoomDetail(rs)).tax(Tax.of(rs.getInt("clean_tax"), rs.getInt("price"))).build();
     }
 
     private RoomDetail createRoomDetail(ResultSet rs) throws SQLException {

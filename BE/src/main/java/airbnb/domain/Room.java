@@ -14,6 +14,7 @@ public class Room {
     private RoomDetail roomDetail;
     private Tax tax;
     private List<Image> images;
+    private int maxPeopleCount;
 
     private Room(Builder builder) {
         this.id = builder.id;
@@ -22,6 +23,7 @@ public class Room {
         this.description = builder.description;
         this.roomDetail = builder.roomDetail;
         this.tax = builder.tax;
+        this.maxPeopleCount = builder.maxPeopleCount;
     }
 
     public static class Builder {
@@ -33,6 +35,7 @@ public class Room {
         private String description;
         private RoomDetail roomDetail;
         private Tax tax;
+        private int maxPeopleCount;
 
         public Builder(Long id) {
             this.id = id;
@@ -60,6 +63,11 @@ public class Room {
 
         public Builder tax(Tax tax) {
             this.tax = tax;
+            return this;
+        }
+
+        public Builder maxPeopleCount(int maxPeopleCount) {
+            this.maxPeopleCount = maxPeopleCount;
             return this;
         }
 
@@ -94,6 +102,10 @@ public class Room {
 
     public List<Image> getImages() {
         return images;
+    }
+
+    public int getMaxPeopleCount() {
+        return maxPeopleCount;
     }
 
     public void setImages(List<Image> images) {

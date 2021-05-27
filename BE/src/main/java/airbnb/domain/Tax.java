@@ -23,7 +23,7 @@ public class Tax {
         return accommodationTax;
     }
 
-    public static Tax of (int cleanTax, int price){
-        return new Tax (cleanTax, (int)Math.round(price*0.15), (int)Math.round(price*0.015));
+    public static Tax of(int cleanTax, int price) {
+        return new Tax(cleanTax, (int) Math.round(price * 0.15), (int) Math.round(price * 0.015));
     }
 }

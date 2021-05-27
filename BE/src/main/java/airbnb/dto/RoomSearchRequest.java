@@ -34,7 +34,7 @@ public class RoomSearchRequest {
         return schedule;
     }
 
-    public Cost getPrice() {
+    public Cost getCost() {
         return cost;
     }
 }

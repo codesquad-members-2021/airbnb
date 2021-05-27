@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Cost {
     @JsonProperty(value = "max")
     private int maxCost;
-    @JsonProperty(value ="min")
+    @JsonProperty(value = "min")
     private int minCost;
 
     public Cost(int maxPrice, int minPrice) {

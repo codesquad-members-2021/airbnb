@@ -5,6 +5,7 @@ import airbnb.domain.Room;
 import airbnb.dto.PriceRequest;
 import airbnb.dto.RoomSearchRequest;
 import airbnb.wrapper.PricesWrapper;
+import airbnb.wrapper.RoomResponseWrapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,27 +21,17 @@ public class RoomController {
     }
 
     @GetMapping("/price")
-    public PricesWrapper readAllRoomPrices(){
+    public PricesWrapper readAllRoomPrices() {
         return new PricesWrapper(roomService.findAllRoomPrice());
     }
 
-//    @PostMapping("/price")
-//    public PricesWrapper readPrices(@RequestBody PriceRequest priceRequest){
-//        return new PricesWrapper(roomService.findSearchRoomsPrices(priceRequest));
-//    }
-
-    @GetMapping("/test")
-    public List<Room> test(){
-        return roomService.findAll();
-    }
-
     @PostMapping("/price")
-    public PricesWrapper postTest(@RequestBody PriceRequest priceRequest){
+    public PricesWrapper readSearchRoomPrices(@RequestBody PriceRequest priceRequest) {
         return new PricesWrapper(roomService.findSearchRoomPrice(priceRequest));
     }
 
     @PostMapping
-    public RoomSearchRequest searchRequest(@RequestBody RoomSearchRequest roomSearchRequest){
-        return roomSearchRequest;
+    public RoomResponseWrapper searchRooms(@RequestBody RoomSearchRequest roomSearchRequest) {
+        return new RoomResponseWrapper(roomService.SearchRoomToRoomResponseList(roomSearchRequest));
     }
 }
