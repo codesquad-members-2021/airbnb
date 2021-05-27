@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("api/destinations")
 public class DestinationController {
 
-    private AccommodationService accommodationService;
+    private final AccommodationService accommodationService;
 
     public DestinationController(AccommodationService accommodationService) {
         this.accommodationService = accommodationService;
