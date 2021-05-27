@@ -1,23 +1,32 @@
 import { Modal } from '../../../style/BarStyle'
 import useAxios from '../../../customHook/useAxios'
 import getData from '../../../customHook/axiosAPI'
+import Graph from './Graph'
 interface IFeeType {
   modalType: string
+}
+
+const filteredFee = (fee: Array<number>): Map<number, number> => {
+  fee.sort((a, b) => a - b)
+  const filtered = fee.reduce((acc, curr) => {
+    acc.get(curr) ? acc.set(curr, acc.get(curr) + 1) : acc.set(curr, 1)
+    return acc
+  }, new Map())
+
+  return filtered
 }
 
 const ModalFee: React.FunctionComponent<IFeeType> = ({ modalType }) => {
   const state = useAxios(getData)
   const { loading, error, data } = state
-
+  if (loading) return <div>로딩중</div>
+  if (error) return <div>에러발생</div>
+  if (!data) return null
+  const result = filteredFee(data.prices)
   return (
     <>
-      {loading && <div>로딩중</div>}
-      {error && <div>요청에러</div>}
-      {!data && null}
       <Modal modalType={modalType}>
-        {data.prices.map((el: number, idx: number) => (
-          <li key={idx}>{el}</li>
-        ))}
+        <Graph data={result} />
       </Modal>
     </>
   )

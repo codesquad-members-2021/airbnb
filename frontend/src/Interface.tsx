@@ -9,7 +9,6 @@ export interface IProps {
 }
 export interface IModalPropType {
   modalType: string
-  defaultMsg?: string
 }
 export interface IAction {
   type: string

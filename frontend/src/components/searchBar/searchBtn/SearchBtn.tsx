@@ -25,7 +25,7 @@ const SearchBtn = () => {
   const handleClick = () => {
     //api검색요청하기
   }
-  if (placeToSearch !== defaultValue.placeToSearch) setSearchable(true)
+  if (placeToSearch !== defaultValue.placeToSearch && !searchable) setSearchable(true)
 
   return (
     <PlaceSection>

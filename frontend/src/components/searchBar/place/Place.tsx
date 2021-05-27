@@ -61,7 +61,7 @@ const Place = () => {
       </BarBlock>
       {open && (
         <ModalWrapper ref={PlaceModal} modalType='place'>
-          <ModalPlace modalType='place' defaultMsg={defaultMsg} />
+          <ModalPlace modalType='place' />
         </ModalWrapper>
       )}
     </PlaceSection>

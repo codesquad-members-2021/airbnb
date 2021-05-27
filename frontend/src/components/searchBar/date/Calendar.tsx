@@ -18,7 +18,7 @@ interface IClick {
 
 const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
   const dayList: string[] = ['일', '월', '화', '수', '목', '금', '토']
-  const MonthList = Array.from({ length: 12 }, (_, i) => i + 1)
+  const MonthList = Array.from({ length: 12 }, (_, i) => i + 1) // 1 ~ 12
 
   let { year, month, date } = DateInfo(new Date())
   let currentYear = year
@@ -37,7 +37,7 @@ const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
     currentMonth = MonthList[index - 1]
   }
   const { day: dayOfFirst, dateOfLast } = DateInfo(new Date(`${year}-${currentMonth}-1`))
-
+  console.log(year, currentMonth, DateInfo(new Date(`${year}-${currentMonth}-1`)))
   const DateArray = Array.from({ length: dateOfLast + dayOfFirst }, (_, i) => {
     if (i < dayOfFirst) return null
     return i - dayOfFirst + 1

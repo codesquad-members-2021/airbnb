@@ -6,19 +6,21 @@ import { FaMapMarkedAlt } from 'react-icons/fa'
 import { Modal } from '../../../style/BarStyle'
 import { IModalPropType } from '../../../Interface'
 
-const ModalPlace: React.FunctionComponent<IModalPropType> = ({ modalType, defaultMsg }) => {
+const ModalPlace: React.FunctionComponent<IModalPropType> = ({ modalType }) => {
   const locations = ['서울', '경기', '부산', '광주', '대전', '전주', '강원', '제주']
   const [placeToSearch, setPlaceToSearch] = useRecoilState(clickedPlace)
-
-  const handleClick = (location: string | null) => {
-    setPlaceToSearch(typeof location === 'string' ? location : defaultMsg)
+  const defaultMsg = '가까운 여행지 둘러보기'
+  const handleClick = (location: string) => {
+    // console.log('여기에요!', location)
+    // setPlaceToSearch(typeof location === 'string' ? location : defaultMsg)
+    setPlaceToSearch(location)
   }
 
   return (
     <>
       <Modal modalType={modalType}>
         <ContentsWrapper>
-          <Button fullWidth onClick={() => handleClick(null)}>
+          <Button fullWidth onClick={() => handleClick('가까운 여행지 둘러보기')}>
             <FaMapMarkedAlt />
             &nbsp;&nbsp;{defaultMsg}
           </Button>
