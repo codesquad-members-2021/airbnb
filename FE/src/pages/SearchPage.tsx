@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { Link } from '../util/MyRouter';
 import { ResponsiveFluid } from '../components/Common/ResponsiveFluid';
 import Map from '../components/Map/Map';
 
@@ -7,7 +7,7 @@ function SearchPage() {
   return (
     <SearchPageLayout>
       
-      {/* for test */}
+      <Link to={'/'}> main test </Link> {/* for test*/}
       <SearchPageCardsSection />
       <Map />
       {/* for test */}
