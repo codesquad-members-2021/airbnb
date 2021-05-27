@@ -129,13 +129,27 @@ extension CalendarViewController: UICollectionViewDelegate {
         case 1:
             cell.selectedType = .one
         case 2:
-            let minCell = collectionView.cellForItem(at: selectedIndexs.min()!) as? DayCell ?? DayCell()
-            let maxCell = collectionView.cellForItem(at: selectedIndexs.max()!) as? DayCell ?? DayCell()
+            let minIndex = selectedIndexs.min()!
+            let maxIndex = selectedIndexs.max()!
+            let minCell = collectionView.cellForItem(at: minIndex) as? DayCell ?? DayCell()
+            let maxCell = collectionView.cellForItem(at: maxIndex) as? DayCell ?? DayCell()
             minCell.selectedType = .min
             maxCell.selectedType = .max
+            for index in minIndex.row + 1..<maxIndex.row {
+                let intervalIndex = IndexPath(row: index, section: indexPath.section)
+                let intervalCell = collectionView.cellForItem(at: intervalIndex) as? DayCell ?? DayCell()
+                intervalCell.selectedType = .interval
+            }
         default:
             selectedIndexs.forEach { index in
                 collectionView.deselectItem(at: index, animated: false)
+            }
+            let minIndex = selectedIndexs.min()!
+            let maxIndex = selectedIndexs.max()!
+            for index in minIndex.row + 1..<maxIndex.row {
+                let intervalIndex = IndexPath(row: index, section: indexPath.section)
+                let intervalCell = collectionView.cellForItem(at: intervalIndex) as? DayCell ?? DayCell()
+                intervalCell.isSelected = false
             }
         }
     }

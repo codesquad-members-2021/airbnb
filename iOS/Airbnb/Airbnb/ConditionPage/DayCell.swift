@@ -13,15 +13,17 @@ class DayCell: UICollectionViewCell {
         case one
         case min
         case max
+        case interval
     }
     
     static let reuseIdentifier = "DayCell"
     let dayLabel = UILabel()
+    let backView = UIView()
     private(set) var date: Date!
     
     override var isSelected: Bool {
         didSet {
-            if date != nil && !self.isSelected {
+            if !isSelected && selectedType != .interval {
                 dayLabel.textColor = .black
                 let backgroundView = UIView()
                 self.selectedBackgroundView = backgroundView
@@ -31,7 +33,7 @@ class DayCell: UICollectionViewCell {
     
     var selectedType: SelectedType! {
         didSet {
-            if self.isSelected {
+            if date != nil {
                 updateUI(selectedType: self.selectedType)
             }
         }
@@ -53,6 +55,7 @@ class DayCell: UICollectionViewCell {
 extension DayCell {
     
     private func configure() {
+        addSubview(backView)
         addSubview(dayLabel)
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
         dayLabel.adjustsFontForContentSizeCategory = true
@@ -79,31 +82,39 @@ extension DayCell {
         let backgroundView = UIView()
         let highlightLayer = CALayer()
         let circleLayer = CALayer()
-        
-        dayLabel.textColor = .white
+       
         self.selectedBackgroundView = backgroundView
                 
-        switch selectedType {
-        case .one:
-            break
-        case .min:
-            let b = backgroundView.bounds
-            highlightLayer.frame = CGRect(x: b.width/2, y: 0, width: b.width/2, height: b.height)
-            highlightLayer.backgroundColor = UIColor.lightGray.cgColor
-            backgroundView.layer.addSublayer(highlightLayer)
-        case .max:
-            let b = backgroundView.bounds
-            highlightLayer.frame = CGRect(x: 0, y: 0, width: b.width/2, height: b.height)
-            highlightLayer.backgroundColor = UIColor.lightGray.cgColor
-            backgroundView.layer.addSublayer(highlightLayer)
-        }
-        
-        circleLayer.frame = backgroundView.bounds
+        let bound = backgroundView.bounds
+        circleLayer.frame = bound
         circleLayer.backgroundColor = UIColor.black.cgColor
         circleLayer.masksToBounds = true
         circleLayer.cornerRadius = backgroundView.frame.width / 2
         
-        backgroundView.layer.addSublayer(circleLayer)
+        switch selectedType {
+        case .one:
+            dayLabel.textColor = .white
+            backgroundView.layer.addSublayer(circleLayer)
+        case .min:
+            dayLabel.textColor = .white
+            highlightLayer.frame = CGRect(x: bound.width/2, y: 0, width: bound.width/2, height: bound.height)
+            highlightLayer.backgroundColor = UIColor.lightGray.cgColor
+
+            backgroundView.layer.addSublayer(highlightLayer)
+            backgroundView.layer.addSublayer(circleLayer)
+        case .max:
+            dayLabel.textColor = .white
+            highlightLayer.frame = CGRect(x: 0, y: 0, width: bound.width/2, height: bound.height)
+            highlightLayer.backgroundColor = UIColor.lightGray.cgColor
+
+            backgroundView.layer.addSublayer(highlightLayer)
+            backgroundView.layer.addSublayer(circleLayer)
+        case .interval:
+            isSelected = true
+            backgroundView.backgroundColor = .lightGray
+            print("😡 running interval : ", dayLabel.text ?? "")
+        }
+        
     }
     
 }
