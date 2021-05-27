@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AccomodationConditionTableViewCell: UITableViewCell {
+class AccommodationConditionTableViewCell: UITableViewCell {
 
     static var reuseIdentifier: String {
         return String(describing: self)

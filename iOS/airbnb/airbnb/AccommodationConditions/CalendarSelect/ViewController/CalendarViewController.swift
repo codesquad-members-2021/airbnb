@@ -16,6 +16,9 @@ final class CalendarViewController: UIViewController {
     private weak var collectionView: UICollectionView?
     private weak var stackView: UIStackView?
     
+    private var tableViewDataSource: AccommodationConditionTableViewDataSource?
+    private var collecionViewDataSource: CalendarCollectionViewDataSource?
+    
     var location: LocationSearchResult?
     
     override func loadView() {
@@ -28,6 +31,11 @@ final class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableViewDataSource = AccommodationConditionTableViewDataSource()
+        self.collecionViewDataSource = CalendarCollectionViewDataSource()
+        tableView?.dataSource = tableViewDataSource
+        collectionView?.dataSource = collecionViewDataSource
+        collectionView?.delegate = self
     }
     
     private func addToolBar() {
@@ -68,8 +76,8 @@ final class CalendarViewController: UIViewController {
     
     private func addTableView() {
         let tableView = UITableView()
-        let cellId = AccomodationConditionTableViewCell.reuseIdentifier
-        tableView.register(AccomodationConditionTableViewCell.self, forCellReuseIdentifier: cellId)
+        let cellId = AccommodationConditionTableViewCell.reuseIdentifier
+        tableView.register(AccommodationConditionTableViewCell.self, forCellReuseIdentifier: cellId)
         view.addSubview(tableView)
         self.tableView = tableView
         
@@ -83,7 +91,6 @@ final class CalendarViewController: UIViewController {
         let tableHeight = tableView.rowHeight * 4
         tableView.heightAnchor.constraint(equalToConstant: tableHeight).isActive = true
         tableView.isScrollEnabled = false
-        tableView.dataSource = self
     }
     
     private func addStackView() {
@@ -128,42 +135,8 @@ final class CalendarViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: tableView!.topAnchor),
             collectionView.topAnchor.constraint(equalTo: stackView!.bottomAnchor)
         ])
-        collectionView.dataSource = self
-        collectionView.delegate = self
     }
 
-}
-
-extension CalendarViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellId = AccomodationConditionTableViewCell.reuseIdentifier
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? AccomodationConditionTableViewCell ?? AccomodationConditionTableViewCell()
-        return cell
-    }
-    
-}
-
-extension CalendarViewController: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 31
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellId = CalendarCollectionViewCell.reuseIdentifier
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? CalendarCollectionViewCell ?? CalendarCollectionViewCell()
-        return cell
-    }
-    
 }
 
 extension CalendarViewController: UICollectionViewDelegateFlowLayout {
