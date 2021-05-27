@@ -9,14 +9,15 @@ import UIKit
 
 class FooterTableViewController: UITableViewController {
 
+    let infoTitle = ["위치", "체크인/체크아웃", "요금", "인원"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerNib()
+        register()
     }
 
-    private func registerNib(){
-        let cell = UINib(nibName: FooterTableViewCell.nibName, bundle: Bundle.main)
-        self.tableView.register(cell, forCellReuseIdentifier: FooterTableViewCell.reuseIdentifier)
+    private func register(){
+        tableView.register(FooterTableViewCell.self, forCellReuseIdentifier: FooterTableViewCell.reuseIdentifier)
     }
     
     // MARK: - Table view data source
@@ -39,8 +40,7 @@ class FooterTableViewController: UITableViewController {
         else {
             return UITableViewCell()
         }
-        cell.title.text = "위치"
-        cell.content.text = "서울"
+        cell.title.text = infoTitle[indexPath.row]
         return cell
     }
     
