@@ -1,18 +1,26 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { ChargeType } from '../commons/searchBarType';
+import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import Slider from './Slider';
 import Graph from './Graph';
-import { useRecoilState } from 'recoil';
-import { RangeAtom } from '../../recoil/atoms';
-import graphData from '../../utils/graphData';
-import { getConvertedChartPrices } from '../../utils/graphUtil';
-import { getAveragePrice } from './../../utils/graphUtil';
+import { ChargeType } from '@Components/commons/searchBarType';
+import { RangeAtom } from '@/recoil/atoms';
+import { fetchPriceListSelector } from '@/recoil/fetchAtoms';
+import { getConvertedChartPrices } from '@/utils/graphUtil';
+import { getAveragePrice } from '@/utils/graphUtil';
 
 const ChargeModal = ({ charge }: ChargeType) => {
   const [rangeState, setRangeState] = useRecoilState(RangeAtom);
   const { left, right } = rangeState;
-  const priceArray = getConvertedChartPrices(graphData);
-  const averagePrice = getAveragePrice({rangeState, priceArray});
+  const priceLoadable = useRecoilValueLoadable(fetchPriceListSelector);
+  const [priceArray, setPriceArray] = useState([[0]]);
+  const averagePrice = getAveragePrice({ rangeState, priceArray });
+
+  useEffect(() => {
+    if (priceLoadable.state !== 'hasValue') return;
+    setPriceArray(getConvertedChartPrices(priceLoadable.contents.prices));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [priceLoadable.state]);
 
   return (
     <ChargeModalWrapper {...{ charge }}>
@@ -22,15 +30,25 @@ const ChargeModal = ({ charge }: ChargeType) => {
         ₩{(left * 10000).toLocaleString()} - ₩{(right * 10000).toLocaleString()}
         {right === 100 && '+'}
       </PriceRange>
-      <PriceRangeDesc>
-        {averagePrice   
-         ? `평균 1박요금은 ₩${averagePrice.toLocaleString()} 입니다`
-         :  `범위를 다시 지정해주세요`}
-        
-      </PriceRangeDesc>
-      <Graph {...{ rangeState,priceArray }} />
-      <Slider {...{ rangeState, setRangeState  }} />
-    </ChargeModalWrapper>
+
+      {priceLoadable.state === 'hasValue' &&
+        <>
+          <PriceRangeDesc>
+            {averagePrice && averagePrice
+              ? `평균 1박요금은 ₩${averagePrice.toLocaleString()} 입니다`
+              : `범위를 다시 지정해주세요`}
+
+          </PriceRangeDesc>
+          <Graph {...{ rangeState, priceArray }} />
+        </>
+      }
+
+      {priceLoadable.state === 'loading' && <>loading...</>}
+
+      {priceLoadable.state === 'hasError' && <>error...</>}
+
+      <Slider {...{ rangeState, setRangeState }} />
+    </ChargeModalWrapper >
   )
 }
 
