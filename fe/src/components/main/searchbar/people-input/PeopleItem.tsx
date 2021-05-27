@@ -1,31 +1,56 @@
 import { Box } from "@material-ui/core";
 import { useState } from "react";
-import { Dispatch } from "react";
 import styled from "styled-components";
-import { AiOutlinePlus } from "react-icons/ai";
-import { AiOutlineMinus } from "react-icons/ai";
+import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import { useSetRecoilState } from "recoil";
+import { PeopleData } from "atoms/searchbarAtom";
+
 interface PeopleItemProps {
-  title: String;
+  title: "성인" | "어린이" | "유아";
   subtitle: String;
-  // dispatch : Dispatch<> = () => void
+  max: number;
+  min: number;
+  number: number;
 }
 
-const PeopleItem = ({ title, subtitle }: PeopleItemProps) => {
-  const [number, setNumber] = useState<number>(0);
-  const [pluseDisable, setPluseDisable] = useState<boolean>(false);
-  const [minusDisable, setMinusDisable] = useState<boolean>(true);
+const PeopleItem = ({ title, subtitle, max, min, number }: PeopleItemProps) => {
+  const setPeopleNumber = useSetRecoilState(PeopleData);
+
+  const [pluseDisable, setPluseDisable] = useState<boolean>(number === max);
+  const [minusDisable, setMinusDisable] = useState<boolean>(number === min);
   const clickPlus = () => {
-    if (number === 0) setMinusDisable(false);
-    if (number === 7) setPluseDisable(true);
-    setNumber((number) => number + 1);
-    console.log(number);
+    if (number === min) setMinusDisable(false);
+    if (number === max - 1) setPluseDisable(true);
+    setPeopleNumber(({ adult, teen, kids }) => {
+      switch (title) {
+        case "성인":
+          return { adult: adult + 1, teen, kids };
+        case "어린이":
+          if (!adult) return { adult: 1, teen: teen + 1, kids };
+          return { adult: adult, teen: teen + 1, kids };
+        case "유아":
+          if (!adult) return { adult: 1, teen, kids: kids + 1 };
+          return { adult: adult, teen, kids: kids + 1 };
+      }
+    });
   };
 
   const clickMinus = () => {
-    if (number === 8) setPluseDisable(false);
-    if (number === 1) setMinusDisable(true);
-    setNumber((number) => number - 1);
+    if (number === max) setPluseDisable(false);
+    if (number === min + 1) setMinusDisable(true);
+    setPeopleNumber(({ adult, teen, kids }) => {
+      switch (title) {
+        case "성인":
+          if (adult - 1 === 0) return { adult: 0, teen: 0, kids: 0 };
+          return { adult: adult - 1, teen, kids };
+        case "어린이":
+          return { adult: adult, teen: teen - 1, kids };
+        case "유아":
+          return { adult: adult, teen, kids: kids - 1 };
+      }
+    });
   };
+
   return (
     <StyledPeopleItem>
       <Box display="flex" flexDirection="column">
