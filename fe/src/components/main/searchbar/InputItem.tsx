@@ -8,10 +8,11 @@ type InputItemProps = {
 };
 
 const InputItem = ({ w, title, subtitle,onClick }: InputItemProps) => {
+  
   return (
     <FlexBox {...{ w }} onClick={onClick} >
       <InputTitle>{title}</InputTitle>
-      <InputSubtitle>{subtitle}</InputSubtitle>
+      <InputSubtitle aria-disabled={subtitle==="날짜입력"}>{subtitle}</InputSubtitle>
     </FlexBox>
   );
 };
@@ -27,6 +28,9 @@ const InputSubtitle = styled.div`
   font-weight: 400;
   font-size: 1rem;
   color: ${({ theme }) => theme.color.Gray3};
+  &[aria-disabled="false"]{
+    color: ${({ theme }) => theme.color.Black};
+  }
 `;
 
 const FlexBox = styled.div<{ w: String }>`

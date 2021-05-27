@@ -73,25 +73,25 @@ const StyldTable = styled.table`
     & > tr {
       & > td {
         &[aria-disabled="true"] {
-          color: #bdbdbd;
+          color: ${({ theme }) => theme.color.Gray4};
           cursor: default;
           &:hover {
-            background-color: white;
+            background-color: ${({ theme }) => theme.color.White};
             border-radius: 0;
           }
         }
         &[aria-selected="true"] {
-          background-color: black;
+          background-color: ${({ theme }) => theme.color.Black};
           border-radius: 50%;
 
-          color: white;
+          color: ${({ theme }) => theme.color.White};
         }
         &[aria-checked="true"] {
-          background-color: #bdbdbd;
+          background-color: ${({ theme }) => theme.color.Gray5};
           &:hover {
-            background-color: #bdbdbd;
+            background-color: ${({ theme }) => theme.color.Gray5};
             border-radius: 0;
-            color: white;
+            color: ${({ theme }) => theme.color.White};
           }
         }
       }

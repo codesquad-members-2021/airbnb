@@ -17,7 +17,7 @@ export const CalendarCheckInSelector = selector({
     if(!get(CalendarData)[0]) return '날짜입력'
     const date = new Date(get(CalendarData)[0])
 
-    return `${date.getMonth()+1} 월 ${date.getDate()} 일`;
+    return `${date.getMonth()+1}월 ${date.getDate()}일`;
   }
 });
 
@@ -27,6 +27,6 @@ export const CalendarCheckOutSelector = selector({
     if(!get(CalendarData)[1]) return '날짜입력'
     const date = new Date(get(CalendarData)[1])
 
-    return `${date.getMonth()+1} 월 ${date.getDate()} 일`;
+    return `${date.getMonth()+1}월 ${date.getDate()}일`;
   }
 });
