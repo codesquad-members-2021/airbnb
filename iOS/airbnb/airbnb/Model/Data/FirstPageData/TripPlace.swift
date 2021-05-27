@@ -8,7 +8,7 @@
 import Foundation
 
 struct TripPlace: Decodable {
-    private (set) var imageURL: String
-    private (set) var region: String
-    private (set) var distance: String
+    private (set) var id: Int
+    private (set) var name: String
+    private (set) var imageUrl: String
 }

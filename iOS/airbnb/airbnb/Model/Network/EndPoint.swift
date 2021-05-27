@@ -16,6 +16,21 @@ protocol Requestable {
 }
 
 struct MainAPIEndPoint: Requestable {
+    var baseURL = "http://13.124.136.233:8080/main"
+    var path: String
+    var httpMethod: HTTPMethod
+    
+    init(path: String, httpMethod: HTTPMethod) {
+        self.path = path
+        self.httpMethod = httpMethod
+    }
+    
+    func url() -> URL? {
+        return URL(string: baseURL + path)
+    }
+}
+
+struct SearchResultAPIEndPoint: Requestable {
     var baseURL = "http://13.124.136.233:8080"
     var path: String
     var httpMethod: HTTPMethod

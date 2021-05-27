@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RoomData: Decodable {
+struct RoomEntity: Decodable {
     
     private(set) var propertyId: Int
     private(set) var images: String

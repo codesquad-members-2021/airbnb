@@ -24,7 +24,7 @@ final class FindingAccommdationCondition {
         people = nil
     }
     
-    func insertData(location: String) {
+    func insert(location: String) {
         self.location = location
         NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
     }

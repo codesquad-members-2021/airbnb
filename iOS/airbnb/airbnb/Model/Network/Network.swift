@@ -9,8 +9,7 @@ import Foundation
 import Alamofire
 
 class Network {
-        
-    func request<T: Decodable> (with endPoint: Requestable, completion: @escaping (Result<T,AFError>) -> Void) {
+    func request<T: Decodable> (with endPoint: Requestable, dataType: T.Type, completion: @escaping (Result<T,AFError>) -> Void) {
         
         guard let url = endPoint.url() else {
             completion(.failure(AFError.createURLRequestFailed(error: NetworkError.url(description: ("Couldn't Create URL")))))

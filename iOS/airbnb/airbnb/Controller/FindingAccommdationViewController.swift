@@ -11,7 +11,7 @@ class FindingAccommdationViewController: UIViewController {
     
     @IBOutlet weak var findingAccommdationConditionView: UIScrollView!
 
-    private let findingAccommdationCondition: FindingAccommdationCondition
+    private var findingAccommdationCondition: FindingAccommdationCondition
     
     private var calendarView: CalendarView
     private let calendarDelegate: CalendarViewDelgate
@@ -50,13 +50,11 @@ class FindingAccommdationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(conditionDataUpdate), name: FindingAccommdationViewController.conditionDataUpdate, object: findingAccommdationCondition)
         self.navigationItem.title = "숙소찾기"
         self.beforeButton.setTitle("", for: .normal)
         self.afterButton.setTitle("다음", for: .normal)
         initCalendarView()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(conditionDataUpdate), name: FindingAccommdationViewController.conditionDataUpdate, object: findingAccommdationCondition)
-        
         self.conditionTableView.dataSource = tableViewDataSource
     }
     
@@ -65,16 +63,16 @@ class FindingAccommdationViewController: UIViewController {
         guard let NextViewController = segue.destination as? RoomInformationViewController else {
             return
         }
-        requestAccommdation()
+        requestAccommdation(nextViewController: NextViewController)
     }
     
-    private func requestAccommdation() {
-        let requestURL = MainAPIEndPoint.init(path: "/search", httpMethod: .get)
+    private func requestAccommdation(nextViewController: RoomInformationViewController) {
+        let requestURL = SearchResultAPIEndPoint.init(path: "/search", httpMethod: .get)
         
-        Network.requestQueryString(with: requestURL, dataType: SearchResultData.self, queryParameter: self.findingAccommdationCondition) { result in
+        Network.requestQueryString(with: requestURL, dataType: SearchResult.self, queryParameter: self.findingAccommdationCondition) { result in
             switch result {
             case .success(let data):
-                print(data)
+                nextViewController.insert(searchResult: data)
             case .failure(let error):
                 print(error)
             }
@@ -82,7 +80,7 @@ class FindingAccommdationViewController: UIViewController {
     }
     
     func takelocationBeforeController(location: String) {
-        self.findingAccommdationCondition.insertData(location: location)
+        self.findingAccommdationCondition.insert(location: location)
     }
     
     private func scrollPage() {

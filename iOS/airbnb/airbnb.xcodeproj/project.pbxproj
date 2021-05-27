@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8220C8BD2658C6CC00E3F3CA /* FindingAccommdationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8220C8BC2658C6CC00E3F3CA /* FindingAccommdationViewController.swift */; };
-		8255E5B7265E2F6100FD066D /* SearchResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255E5B5265E2F6100FD066D /* SearchResultData.swift */; };
-		8255E5B8265E2F6100FD066D /* RoomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255E5B6265E2F6100FD066D /* RoomData.swift */; };
+		8255E5B7265E2F6100FD066D /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255E5B5265E2F6100FD066D /* SearchResult.swift */; };
+		8255E5B8265E2F6100FD066D /* RoomEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255E5B6265E2F6100FD066D /* RoomEntity.swift */; };
 		825702E02653AE99009237BE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825702DF2653AE99009237BE /* SearchViewController.swift */; };
 		825745A7265A4A310021371B /* FindingAccommodationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825745A6265A4A310021371B /* FindingAccommodationTableViewCell.swift */; };
 		82817BD926577973007EA648 /* FindingAccommodationViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82817BD826577973007EA648 /* FindingAccommodationViewTableViewCell.swift */; };
@@ -29,7 +29,6 @@
 		D4DDA66C26535F5500FE52FA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D4DDA66B26535F5500FE52FA /* Alamofire */; };
 		D4DDA67F265361BE00FE52FA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA67E265361BE00FE52FA /* Network.swift */; };
 		D4DDA6872653627100FE52FA /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA6862653627100FE52FA /* EndPoint.swift */; };
-		D4DDA68E265375CF00FE52FA /* WishList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA68D265375CF00FE52FA /* WishList.swift */; };
 		D4DDA6962653764700FE52FA /* TripPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA6952653764700FE52FA /* TripPlace.swift */; };
 		D4DDA69B2653767B00FE52FA /* RecommendTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA69A2653767B00FE52FA /* RecommendTrip.swift */; };
 		D4DDA6A0265376E500FE52FA /* MainPageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA69F265376E500FE52FA /* MainPageDTO.swift */; };
@@ -38,6 +37,10 @@
 		D4DDA721265BD86300FE52FA /* RoomInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA720265BD86300FE52FA /* RoomInformationViewController.swift */; };
 		D4DDA726265BD94D00FE52FA /* RoomInformationViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA725265BD94D00FE52FA /* RoomInformationViewDataSource.swift */; };
 		D4DDA72B265BD9D400FE52FA /* RoomInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA72A265BD9D400FE52FA /* RoomInformationCell.swift */; };
+		D4DDA752265DE35B00FE52FA /* TripPlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA751265DE35B00FE52FA /* TripPlaceCollectionViewCell.swift */; };
+		D4DDA758265DE4FF00FE52FA /* ImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA757265DE4FF00FE52FA /* ImageView+Extension.swift */; };
+		D4DDA761265DE53800FE52FA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D4DDA760265DE53800FE52FA /* Kingfisher */; };
+		D4DDA766265E2AE700FE52FA /* RecommendTripCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA765265E2AE700FE52FA /* RecommendTripCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +62,8 @@
 
 /* Begin PBXFileReference section */
 		8220C8BC2658C6CC00E3F3CA /* FindingAccommdationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindingAccommdationViewController.swift; sourceTree = "<group>"; };
-		8255E5B5265E2F6100FD066D /* SearchResultData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultData.swift; sourceTree = "<group>"; };
-		8255E5B6265E2F6100FD066D /* RoomData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomData.swift; sourceTree = "<group>"; };
+		8255E5B5265E2F6100FD066D /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		8255E5B6265E2F6100FD066D /* RoomEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomEntity.swift; sourceTree = "<group>"; };
 		825702DF2653AE99009237BE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		825745A6265A4A310021371B /* FindingAccommodationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindingAccommodationTableViewCell.swift; sourceTree = "<group>"; };
 		82817BD826577973007EA648 /* FindingAccommodationViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindingAccommodationViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -84,7 +87,6 @@
 		D4DDA65B26524ECF00FE52FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4DDA67E265361BE00FE52FA /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		D4DDA6862653627100FE52FA /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
-		D4DDA68D265375CF00FE52FA /* WishList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishList.swift; sourceTree = "<group>"; };
 		D4DDA6952653764700FE52FA /* TripPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlace.swift; sourceTree = "<group>"; };
 		D4DDA69A2653767B00FE52FA /* RecommendTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTrip.swift; sourceTree = "<group>"; };
 		D4DDA69F265376E500FE52FA /* MainPageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageDTO.swift; sourceTree = "<group>"; };
@@ -94,6 +96,9 @@
 		D4DDA720265BD86300FE52FA /* RoomInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInformationViewController.swift; sourceTree = "<group>"; };
 		D4DDA725265BD94D00FE52FA /* RoomInformationViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInformationViewDataSource.swift; sourceTree = "<group>"; };
 		D4DDA72A265BD9D400FE52FA /* RoomInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInformationCell.swift; sourceTree = "<group>"; };
+		D4DDA751265DE35B00FE52FA /* TripPlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlaceCollectionViewCell.swift; sourceTree = "<group>"; };
+		D4DDA757265DE4FF00FE52FA /* ImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Extension.swift"; sourceTree = "<group>"; };
+		D4DDA765265E2AE700FE52FA /* RecommendTripCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTripCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4DDA761265DE53800FE52FA /* Kingfisher in Frameworks */,
 				D4DDA66C26535F5500FE52FA /* Alamofire in Frameworks */,
 				829DB9C4265645DB0083D153 /* FSCalendar in Frameworks */,
 			);
@@ -134,17 +140,10 @@
 		825745AC265B8D690021371B /* SearchResultData */ = {
 			isa = PBXGroup;
 			children = (
-				8255E5B6265E2F6100FD066D /* RoomData.swift */,
-				8255E5B5265E2F6100FD066D /* SearchResultData.swift */,
+				8255E5B6265E2F6100FD066D /* RoomEntity.swift */,
+				8255E5B5265E2F6100FD066D /* SearchResult.swift */,
 			);
 			path = SearchResultData;
-			sourceTree = "<group>";
-		};
-		825A03BF265A32B400EAF611 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 		82DD85EF2658D3530007A29C /* ConditionPageData */ = {
@@ -179,7 +178,7 @@
 		D4DDA63626524ECD00FE52FA /* airbnb */ = {
 			isa = PBXGroup;
 			children = (
-				825A03BF265A32B400EAF611 /* Extension */,
+				D4DDA756265DE4F300FE52FA /* Extension */,
 				D4DDA6792653616900FE52FA /* LifeCycle */,
 				D4DDA6782653614600FE52FA /* Controller */,
 				D4DDA6772653613E00FE52FA /* View */,
@@ -226,6 +225,8 @@
 				82817BD826577973007EA648 /* FindingAccommodationViewTableViewCell.swift */,
 				825745A6265A4A310021371B /* FindingAccommodationTableViewCell.swift */,
 				D4DDA72A265BD9D400FE52FA /* RoomInformationCell.swift */,
+				D4DDA751265DE35B00FE52FA /* TripPlaceCollectionViewCell.swift */,
+				D4DDA765265E2AE700FE52FA /* RecommendTripCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -278,11 +279,18 @@
 		D4DDA68C265375BD00FE52FA /* FirstPageData */ = {
 			isa = PBXGroup;
 			children = (
-				D4DDA68D265375CF00FE52FA /* WishList.swift */,
 				D4DDA6952653764700FE52FA /* TripPlace.swift */,
 				D4DDA69A2653767B00FE52FA /* RecommendTrip.swift */,
 			);
 			path = FirstPageData;
+			sourceTree = "<group>";
+		};
+		D4DDA756265DE4F300FE52FA /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D4DDA757265DE4FF00FE52FA /* ImageView+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +312,7 @@
 			packageProductDependencies = (
 				D4DDA66B26535F5500FE52FA /* Alamofire */,
 				829DB9C3265645DB0083D153 /* FSCalendar */,
+				D4DDA760265DE53800FE52FA /* Kingfisher */,
 			);
 			productName = airbnb;
 			productReference = D4DDA63426524ECD00FE52FA /* airbnb.app */;
@@ -379,6 +388,7 @@
 			packageReferences = (
 				D4DDA66A26535F5500FE52FA /* XCRemoteSwiftPackageReference "Alamofire" */,
 				829DB9C2265645DB0083D153 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				D4DDA75F265DE53800FE52FA /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = D4DDA63526524ECD00FE52FA /* Products */;
 			projectDirPath = "";
@@ -423,7 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8255E5B8265E2F6100FD066D /* RoomData.swift in Sources */,
+				8255E5B8265E2F6100FD066D /* RoomEntity.swift in Sources */,
 				D4DDA63C26524ECD00FE52FA /* ViewController.swift in Sources */,
 				D4DDA6A0265376E500FE52FA /* MainPageDTO.swift in Sources */,
 				82FBF0D626538E07009B4A1F /* RecommendTripCollectionViewDataSource.swift in Sources */,
@@ -431,15 +441,17 @@
 				D4DDA72B265BD9D400FE52FA /* RoomInformationCell.swift in Sources */,
 				82FBF0D426538AB8009B4A1F /* TripPlaceCollectionViewDataSource.swift in Sources */,
 				D4DDA63826524ECD00FE52FA /* AppDelegate.swift in Sources */,
-				8255E5B7265E2F6100FD066D /* SearchResultData.swift in Sources */,
+				8255E5B7265E2F6100FD066D /* SearchResult.swift in Sources */,
 				D4DDA726265BD94D00FE52FA /* RoomInformationViewDataSource.swift in Sources */,
-				D4DDA68E265375CF00FE52FA /* WishList.swift in Sources */,
 				825702E02653AE99009237BE /* SearchViewController.swift in Sources */,
 				D4DDA6872653627100FE52FA /* EndPoint.swift in Sources */,
 				D4DDA6962653764700FE52FA /* TripPlace.swift in Sources */,
 				8220C8BD2658C6CC00E3F3CA /* FindingAccommdationViewController.swift in Sources */,
+				D4DDA758265DE4FF00FE52FA /* ImageView+Extension.swift in Sources */,
 				D4DDA67F265361BE00FE52FA /* Network.swift in Sources */,
+				D4DDA752265DE35B00FE52FA /* TripPlaceCollectionViewCell.swift in Sources */,
 				D4DDA6D126563CA400FE52FA /* SuggestionsTableViewController.swift in Sources */,
+				D4DDA766265E2AE700FE52FA /* RecommendTripCollectionViewCell.swift in Sources */,
 				D4DDA721265BD86300FE52FA /* RoomInformationViewController.swift in Sources */,
 				82C402162657566A009CCE4B /* FindingAccommodationTableViewDataSource.swift in Sources */,
 				D4DDA63A26524ECD00FE52FA /* SceneDelegate.swift in Sources */,
@@ -797,6 +809,14 @@
 				minimumVersion = 5.4.3;
 			};
 		};
+		D4DDA75F265DE53800FE52FA /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -809,6 +829,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D4DDA66A26535F5500FE52FA /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		D4DDA760265DE53800FE52FA /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4DDA75F265DE53800FE52FA /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
