@@ -35,6 +35,7 @@ private extension PriceViewController {
         priceRangeControl.minValue = CGFloat(min)
         priceRangeControl.maxValue = CGFloat(max)
         priceRangeControl.selectedMaxValue = CGFloat(max)
+        priceRangeControl.delegate = self
     }
 }
 
@@ -61,8 +62,12 @@ private extension PriceViewController {
     }
     
     private func bindPriceLabel() {
-        viewModel.priceData
+        viewModel.apiPriceData
             .drive(serverPriceLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.userPriceData
+            .drive(priceLabel.rx.text)
             .disposed(by: rx.disposeBag)
     }
     
@@ -77,5 +82,12 @@ private extension PriceViewController {
             .subscribe(onNext: { [weak self] _ in
                 self?.dismiss(animated: true, completion: nil)
             }).disposed(by: rx.disposeBag)
+    }
+}
+
+extension PriceViewController: RangeSeekSliderDelegate {
+    func rangeSeekSlider(_ slider: RangeSeekSlider, didChange minValue: CGFloat, maxValue: CGFloat) {
+        let priceRange = [Int(minValue), Int(maxValue)]
+        viewModel.append(priceRange)
     }
 }

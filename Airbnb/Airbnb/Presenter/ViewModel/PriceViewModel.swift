@@ -6,7 +6,15 @@ class PriceViewModel {
     
     private var locationInfo:String?
     private var dateInfo:String?
-    private var priceInfo:[Int] = [200000, 800000]
+    private var apiPriceInfo:[Int] = [200000, 800000]
+    private var userPriceInfo:[Int] = []
+    
+    private lazy var priceList = BehaviorSubject(value: userPriceInfo)
+    
+    lazy var userPriceData:Driver<String> = {
+        return priceList.map{TransformManager.toString(from: $0)}
+            .asDriver(onErrorJustReturn: "")
+    }()
     
     lazy var locationData:Driver<String> = {
         return Observable.just(locationInfo ?? "").asDriver(onErrorJustReturn: "")
@@ -16,13 +24,13 @@ class PriceViewModel {
         return Observable.just(dateInfo ?? "").asDriver(onErrorJustReturn: "")
     }()
     
-    lazy var priceData:Driver<String> = {
-        return Observable.just(TransformManager.toString(from: priceInfo)).asDriver(onErrorJustReturn: "")
+    lazy var apiPriceData:Driver<String> = {
+        return Observable.just(TransformManager.toString(from: apiPriceInfo)).asDriver(onErrorJustReturn: "")
     }()
     
     lazy var averagePriceData:Driver<String> = {
-        let average = [priceInfo.reduce(0, +)/priceInfo.count]
-        return Observable.just(TransformManager.toString(from: average))
+        let average = [apiPriceInfo.reduce(0, +)/apiPriceInfo.count]
+        return Observable.just("평균 1박 요금은 \(TransformManager.toString(from: average)) 입니다.")
             .asDriver(onErrorJustReturn: "")
     }()
     
@@ -32,6 +40,13 @@ class PriceViewModel {
     }
     
     func getPriceInfo() -> [Int] {
-        return priceInfo
+        return apiPriceInfo
+    }
+    
+    @discardableResult
+    func append(_ price:[Int]) ->Observable<[Int]> {
+        userPriceInfo = price
+        priceList.onNext(userPriceInfo)
+        return Observable.just(price)
     }
 }
