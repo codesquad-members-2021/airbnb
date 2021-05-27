@@ -18,6 +18,7 @@ const Layer = styled.ul<LayerSpecType>`
     border: ${({ theme }) => theme.LayerTheme.border};
     width: ${({ width }) => width}px;
     height: ${({ height }) => height}px;
+    background: #fff;
 `;
 
 export default ModalLayer;
