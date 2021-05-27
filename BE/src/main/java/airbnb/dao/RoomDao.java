@@ -53,11 +53,11 @@ public class RoomDao {
         return rooms;
     }
 
-    public List<Room> findSearchRooms(Long cityId, Schedule schedule, Cost cost, int maxPeopleCount) {
+    public List<Room> findSearchRooms(Long cityId, Schedule schedule, Cost cost, int reservationPeopleCount) {
         String sql = "SELECT a.id, price, title, description, people, oneroom, bed, bath, hair_dryer, air_conditioner, wifi, clean_tax FROM room AS a left join reservation AS b ON a.id = b.room_id " +
                 "WHERE (b.id IS NULL OR ((b.check_in NOT BETWEEN :checkIn AND :checkOut) AND (b.check_out NOT BETWEEN :checkIn AND :checkOut))) " +
                 "AND (a.price between :minCost AND :maxCost) " +
-                "AND (a.people <= :maxPeopleCount) " +
+                "AND (a.people >= :reservationPeopleCount) " +
                 "AND (a.city_id = :cityId)";
 
         LocalDate chekIn = schedule.getCheckIn();
@@ -70,7 +70,7 @@ public class RoomDao {
         parameter.addValue("checkOut", chekOut);
         parameter.addValue("minCost", minCost);
         parameter.addValue("maxCost", maxCost);
-        parameter.addValue("maxPeopleCount", maxPeopleCount);
+        parameter.addValue("reservationPeopleCount", reservationPeopleCount);
 
         List<Room> rooms = jdbcTemplate.query(sql, parameter, roomMapper);
         rooms.forEach(room -> room.setImages(imageDao.findByRoomId(room.getId())));

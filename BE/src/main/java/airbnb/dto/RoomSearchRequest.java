@@ -13,11 +13,11 @@ public class RoomSearchRequest {
     private final Cost cost;
 
     @JsonProperty(value = "people")
-    private final int maxPersonCount;
+    private final int reservationPeopleCount;
 
-    public RoomSearchRequest(Long cityId, int maxPersonCount, Schedule schedule, Cost cost) {
+    public RoomSearchRequest(Long cityId, int reservationPeopleCount, Schedule schedule, Cost cost) {
         this.cityId = cityId;
-        this.maxPersonCount = maxPersonCount;
+        this.reservationPeopleCount = reservationPeopleCount;
         this.schedule = schedule;
         this.cost = cost;
     }
@@ -26,8 +26,8 @@ public class RoomSearchRequest {
         return cityId;
     }
 
-    public int getMaxPersonCount() {
-        return maxPersonCount;
+    public int getReservationPeopleCount() {
+        return reservationPeopleCount;
     }
 
     public Schedule getSchedule() {

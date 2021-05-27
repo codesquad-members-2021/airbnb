@@ -35,7 +35,7 @@ public class RoomService {
 
     public List<RoomResponse> SearchRoomToRoomResponseList(RoomSearchRequest roomSearchRequest) {
         List<Room> rooms = roomDao.findSearchRooms(roomSearchRequest.getCityId(), roomSearchRequest.getSchedule(),
-                roomSearchRequest.getCost(), roomSearchRequest.getMaxPersonCount());
+                roomSearchRequest.getCost(), roomSearchRequest.getReservationPeopleCount());
         return rooms.stream().map(RoomResponse::of).collect(Collectors.toList());
     }
 }
