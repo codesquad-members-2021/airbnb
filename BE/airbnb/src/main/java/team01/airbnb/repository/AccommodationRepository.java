@@ -174,9 +174,9 @@ public class AccommodationRepository {
         return ids;
     }
 
-    public int[] addAmenitiesToAccommodation(List<Long> amenityIds, Long accommodationId) {
+    public boolean addAmenitiesToAccommodation(List<Long> amenityIds, Long accommodationId) {
         String query = "INSERT INTO accommodation_has_amenity (accommodation_id, amenity_id) VALUE (?, ?)";
-        return jdbcTemplate.batchUpdate(query
+        int[] result = jdbcTemplate.batchUpdate(query
                 , new BatchPreparedStatementSetter() {
                     @Override
                     public void setValues(PreparedStatement ps, int i) throws SQLException {
@@ -190,6 +190,7 @@ public class AccommodationRepository {
                         return amenityIds.size();
                     }
                 });
+         return result.length == amenityIds.size();
     }
 
     public List<AccommodationResponseDto> findAvailableAccommodationsForReservation() {

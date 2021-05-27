@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import team01.airbnb.dto.Charge;
-import team01.airbnb.dto.request.TotalAccommodationSaveRequestDto;
 
 import java.time.LocalTime;
 

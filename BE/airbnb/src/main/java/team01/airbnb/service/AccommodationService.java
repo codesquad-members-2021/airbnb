@@ -32,21 +32,33 @@ public class AccommodationService {
     @Transactional
     public void save(TotalAccommodationSaveRequestDto totalAccommodationSaveRequestDto) {
         // request dto에서 Accommodation 숙소도메인을 얻고 숙소를 등록한다. 반환된 id값을 request dto에 저장한다.
-        Accommodation accommodation = totalAccommodationSaveRequestDto.toAccommodation();
-        Long accommodationId = accommodationRepository.saveAccommodation(accommodation);
+        Long accommodationId = saveAccommodation(totalAccommodationSaveRequestDto.toAccommodation());
         totalAccommodationSaveRequestDto.setId(accommodationId);
+        // 숙소에 대한 부가 정보(숙박정보, 주소, 사진, 어메니티)를 테이블에 등록한다.
+        saveAccommodationCondition(totalAccommodationSaveRequestDto.toCondition());
+        saveAccoommodationAddress(totalAccommodationSaveRequestDto.toAddress());
+        saveAccommodationPhoto(totalAccommodationSaveRequestDto.toPhoto());
+        addAmenitiesToAccommodation(totalAccommodationSaveRequestDto.getAmenities(), accommodationId);
+    }
 
-        // request dto에서 숙소정보 도메인들을 얻는다. (숙박정보, 주소, 사진, 어메니티)
-        AccommodationCondition condition = totalAccommodationSaveRequestDto.toCondition();
-        AccommodationAddress address = totalAccommodationSaveRequestDto.toAddress();
-        AccommodationPhoto photo = totalAccommodationSaveRequestDto.toPhoto();
-        List<String> amenities = totalAccommodationSaveRequestDto.getAmenities();
+    private Long saveAccommodation(Accommodation accommodation) {
+        return accommodationRepository.saveAccommodation(accommodation);
+    }
 
-        // 숙소정보(숙박정보, 주소, 사진, 어메니티)를 각 테이블에 저장한다.
-        accommodationRepository.saveAccommodationCondition(condition);
-        accommodationRepository.saveAccommodationAddress(address);
-        accommodationRepository.saveAccommodationPhoto(photo);
+    private boolean saveAccommodationCondition(AccommodationCondition condition) {
+        return accommodationRepository.saveAccommodationCondition(condition);
+    }
+
+    private boolean saveAccoommodationAddress(AccommodationAddress address) {
+        return accommodationRepository.saveAccommodationAddress(address);
+    }
+
+    private boolean saveAccommodationPhoto(AccommodationPhoto photo) {
+        return accommodationRepository.saveAccommodationPhoto(photo);
+    }
+
+    private boolean addAmenitiesToAccommodation(List<String> amenities, Long accommodationId) {
         List<Long> amenityIds = accommodationRepository.findAmenityIdsByNames(amenities);
-        accommodationRepository.addAmenitiesToAccommodation(amenityIds, accommodationId);
+        return accommodationRepository.addAmenitiesToAccommodation(amenityIds, accommodationId);
     }
 }

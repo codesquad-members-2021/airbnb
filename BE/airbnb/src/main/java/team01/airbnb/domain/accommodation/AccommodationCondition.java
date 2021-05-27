@@ -2,7 +2,6 @@ package team01.airbnb.domain.accommodation;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import team01.airbnb.dto.request.TotalAccommodationSaveRequestDto;
 
 @ToString
 @Getter
