@@ -8,11 +8,13 @@ import java.util.Optional;
 
 public class SearchRequestDto {
 
-    private final String destination;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private final LocalDate checkInDate;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private final LocalDate checkOutDate;
+
+    private final String destination;
     private final BigDecimal minPrice;
     private final BigDecimal maxPrice;
     private final Integer numOfAdult;

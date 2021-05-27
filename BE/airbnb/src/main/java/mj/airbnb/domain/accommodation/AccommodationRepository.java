@@ -1,4 +1,8 @@
 package mj.airbnb.domain.accommodation;
+import mj.airbnb.service.AccommodationService;
+import mj.airbnb.web.dto.SearchRequestDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -11,6 +15,18 @@ import java.util.List;
 public class AccommodationRepository {
 
     private final JdbcTemplate jdbcTemplate;
+    private final Logger logger = LoggerFactory.getLogger(AccommodationRepository.class);
+
+    private static final String BASE_SQL = "SELECT name, max_num_of_people, type, num_of_bed, num_of_bathroom, price, address " +
+                                           "FROM accommodation ";
+    private static final String DESTINATION_CONDITION_SQL = "address LIKE ? ";
+    private static final String DATE_CONDITION_SQL = "id IN " +
+                                                     "( " +
+                                                     "   SELECT accommodation_id FROM reservation" +
+                                                     "   WHERE (? >= check_out_date) OR (? <= check_in_date)" +
+                                                     ") ";
+    private static final String PRICE_CONDITION_SQL = "(? <= price AND price <= ?) ";
+    private static final String PEOPLE_CONDITION_SQL = "max_num_of_people >= ? ";
 
     public AccommodationRepository(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
@@ -22,10 +38,57 @@ public class AccommodationRepository {
         return jdbcTemplate.query(sqlQuery, accommodationRowMapper());
     }
 
-    public List<Accommodation> findByConditions() {
-        String sqlQuery = "SELECT id, name, max_num_of_people, type, num_of_bed, num_of_bathroom, price, address " +
-                "FROM accommodation";
-        return jdbcTemplate.query(sqlQuery, accommodationRowMapper());
+    public List<Accommodation> findAllByConditions(SearchRequestDto conditions) {
+
+        if (isPresentOfDestination(conditions) && isPresentOfDate(conditions) &&
+                isPresentOfPrice(conditions) && isPresentOfPeople(conditions)) {
+
+            logger.info("지역, 날짜, 가격, 인원 조건 따라 숙소 조회 ");
+
+            String sqlQuery = BASE_SQL +
+                    "WHERE " + DESTINATION_CONDITION_SQL +
+                    "AND " + DATE_CONDITION_SQL +
+                    "AND " + PRICE_CONDITION_SQL +
+                    "AND " + PEOPLE_CONDITION_SQL;
+            return jdbcTemplate.query(sqlQuery, accommodationRowMapper(), "%" + conditions.getDestination() + "%",
+                    conditions.getCheckInDate(), conditions.getCheckOutDate(), conditions.getMinPrice(), conditions.getMaxPrice(),
+                    conditions.getNumOfAdult() + conditions.getNumOfChild() + conditions.getNumOfInfant());
+        }
+
+        if (isPresentOfDestination(conditions) && isPresentOfDate(conditions) && isPresentOfPrice(conditions)) {
+
+            logger.info("지역, 날짜, 가격 조건에 따라 숙소 조회 ");
+
+            String sqlQuery = BASE_SQL +
+                    "WHERE " + DESTINATION_CONDITION_SQL +
+                    "AND " + DATE_CONDITION_SQL +
+                    "AND " + PRICE_CONDITION_SQL;
+            return jdbcTemplate.query(sqlQuery, accommodationRowMapper(), "%" + conditions.getDestination() + "%",
+                    conditions.getCheckInDate(), conditions.getCheckOutDate(), conditions.getMinPrice(), conditions.getMaxPrice());
+        }
+
+        if (isPresentOfDestination(conditions) && isPresentOfDate(conditions)) {
+
+            logger.info("지역, 날짜 조건에 따라 숙소 조회 ");
+
+            String sqlQuery = BASE_SQL +
+                    "WHERE " + DESTINATION_CONDITION_SQL +
+                    "AND " + DATE_CONDITION_SQL;
+            return jdbcTemplate.query(sqlQuery, accommodationRowMapper(), "%" + conditions.getDestination() + "%",
+                    conditions.getCheckInDate(), conditions.getCheckOutDate());
+        }
+
+        if (isPresentOfDestination(conditions)) {
+
+            logger.info("지역 조건에 따라 숙소 조회 ");
+
+            String sqlQuery = BASE_SQL +
+                    "WHERE " + DESTINATION_CONDITION_SQL;
+
+            return jdbcTemplate.query(sqlQuery, accommodationRowMapper(), "%" + conditions.getDestination() + "%");
+        }
+
+        return jdbcTemplate.query(BASE_SQL, accommodationRowMapper());
     }
 
     public List<Accommodation> findAllByDestination(String destination) {
@@ -33,17 +96,6 @@ public class AccommodationRepository {
                 "FROM accommodation " +
                 "WHERE address LIKE ? ";
         return jdbcTemplate.query(sqlQuery, accommodationRowMapper(), "%" + destination + "%");
-    }
-
-    public List<Accommodation> findAllByDestinationAndPriceAndPeople(String destination, BigDecimal minPrice,
-                                                                     BigDecimal maxPrice,int people) {
-        String sqlQuery = "SELECT id, name, max_num_of_people, type, num_of_bed, num_of_bathroom, price, address " +
-                "FROM accommodation " +
-                "WHERE address LIKE ? " +
-                "AND price <= ? AND >= ? " +
-                "AND people <= ? ";
-        return jdbcTemplate.query(sqlQuery, accommodationRowMapper(), "%" + destination + "%",
-                                  minPrice, maxPrice, people);
     }
 
     public List<Accommodation> findPopularDestinations(String destination) {
@@ -75,6 +127,22 @@ public class AccommodationRepository {
 
             return accommodation;
         };
+    }
+
+    private boolean isPresentOfDestination(SearchRequestDto requestDto) {
+        return requestDto.getDestination() != null;
+    }
+
+    private boolean isPresentOfDate(SearchRequestDto requestDto) {
+        return requestDto.getCheckInDate() != null && requestDto.getCheckOutDate() != null;
+    }
+
+    private boolean isPresentOfPrice(SearchRequestDto requestDto) {
+        return requestDto.getMinPrice() != null && requestDto.getMaxPrice() != null;
+    }
+
+    private boolean isPresentOfPeople(SearchRequestDto requestDto) {
+        return requestDto.getNumOfAdult() != null && requestDto.getNumOfChild() != null && requestDto.getNumOfInfant() != null;
     }
 
 }
