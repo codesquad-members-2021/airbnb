@@ -26,7 +26,7 @@ class CalendarViewModel: CalendarManageModel {
         }
     }
     
-    private let calendarManager: CalendarManager
+    private let calendarManager: DateSelectionManager
     private let conditionManager: ConditionManager
     
     enum ButtonTitle {
@@ -38,13 +38,13 @@ class CalendarViewModel: CalendarManageModel {
     static let weekdays = ["월", "화", "수", "목", "금", "토", "일"]
     static let conditionTitles = ["위치", "체크인/체크아웃", "요금", "인원"]
     
-    init(calendarManager: CalendarManager, conditionManager: ConditionManager) {
+    init(calendarManager: DateSelectionManager, conditionManager: ConditionManager) {
         self.calendarManager = calendarManager
         self.conditionManager = conditionManager
     }
     
     convenience init(conditionManager: ConditionManager) {
-        self.init(calendarManager: CalendarManager(), conditionManager: conditionManager)
+        self.init(calendarManager: DateSelectionManager(), conditionManager: conditionManager)
     }
     
     func bind(dataHandler: @escaping DataHandler, searchHandler: @escaping SearchConditionHandler) {
@@ -55,8 +55,8 @@ class CalendarViewModel: CalendarManageModel {
     }
     
     private func fillCalendar(by count: Int) {
-        calendarManager.fillMonths(by: count)
-        calendar = calendarManager.months
+        calendarManager.loadMoreMonths(by: count)
+        calendar = calendarManager.allMonths()
     }
     
     private func updateConditions() {
@@ -68,9 +68,9 @@ class CalendarViewModel: CalendarManageModel {
     }
 
     func didCalendarCellSelected(at indexPath: IndexPath) {
-        calendarManager.selectDateAt(indexPath: indexPath)
-        calendar = calendarManager.months
-        let newDates = calendarManager.dateSelected()
+        calendarManager.newDateSelected(at: indexPath)
+        calendar = calendarManager.allMonths()
+        let newDates = calendarManager.selectedDates()
         conditionManager.updatePeriod(with: newDates)
         updateConditions()
     }

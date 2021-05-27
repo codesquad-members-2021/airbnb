@@ -26,6 +26,7 @@ class CalendarCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellId = CalendarCollectionViewCell.reuseIdentifier
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? CalendarCollectionViewCell ?? CalendarCollectionViewCell()
+        
         let targetDay = calendar[indexPath.section].days[indexPath.row]
         cell.titleLabel.text = targetDay.title ?? ""
         
@@ -45,7 +46,6 @@ class CalendarCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         case .empty:
             cell.emptyMode()
         }
-        
         return cell
     }
     

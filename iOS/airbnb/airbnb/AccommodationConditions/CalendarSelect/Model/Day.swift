@@ -19,10 +19,4 @@ struct Day {
     }
     
     var selectStatus: SelectStatus = .none
-
-    enum SelectStatus {
-        case none
-        case edge
-        case middle
-    }
 }

@@ -9,22 +9,15 @@ import Foundation
 
 class ConditionManager {
     
-    private(set) var location: Location
-    private(set) var period: Period
-    private(set) var charge: Charge
-    private(set) var headcount: Int?
+    private var location: Location
+    private var period: Period
+    private var charge: Charge
+    private var headcount: Int?
     
     init(location: Location) {
         self.location = location
         self.period = Period()
         self.charge = Charge()
-    }
-    
-    enum Key: CaseIterable {
-        case location
-        case period
-        case charge
-        case headcount
     }
     
     func gettableInfos() -> [String] {

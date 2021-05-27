@@ -27,6 +27,7 @@ class AccommodationConditionTableViewDataSource: NSObject, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellId = AccommodationConditionTableViewCell.reuseIdentifier
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? AccommodationConditionTableViewCell ?? AccommodationConditionTableViewCell()
+        
         let targetIndex = indexPath.row
         cell.conditionTitle.text = titles[targetIndex]
         cell.conditionContent.text = contents[targetIndex]
