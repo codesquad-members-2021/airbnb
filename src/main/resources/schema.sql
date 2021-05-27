@@ -24,61 +24,61 @@ create table `room`
     `sale_price`        int          not null,
     `flexible_refund`   tinyint(1) not null,
     `immediate_booking` tinyint(1) not null,
-    primary key (id)
+    primary key (`id`)
 );
 
 create table `user`
 (
-    id        int         not null auto_increment,
-    github_id varchar(45) not null,
-    primary key (id)
+    `id`        int         not null auto_increment,
+    `github_id` varchar(45) not null,
+    primary key (`id`)
 );
 
 create table `booking`
 (
-    id               int         not null auto_increment,
-    room_id          int         not null,
-    user_id          int         not null,
-    check_in         varchar(20) not null,
-    check_out        varchar(20) not null,
-    number_of_people int         not null,
-    total_price      int         not null,
-    primary key (id),
-    foreign key (user_id) references user (id),
-    foreign key (room_id) references room (id)
-);
-
-create table `wish`
-(
-    id      int not null auto_increment,
-    room_id int not null,
-    user_id int not null,
-    primary key (id),
-    foreign key (user_id) references user (id),
-    foreign key (room_id) references room (id)
+    `id`               int         not null auto_increment,
+    `room_id`          int         not null,
+    `user_id`          int         not null,
+    `check_in`         varchar(20) not null,
+    `check_out`        varchar(20) not null,
+    `number_of_people` int         not null,
+    `total_price`      int         not null,
+    primary key (`id`),
+    foreign key (`room_id`) references `room` (`id`),
+    foreign key (`user_id`) references `user` (`id`)
 );
 
 create table `option`
 (
-    room_id          int not null,
-    kitchen          tinyint(1) not null,
-    air_conditioner  tinyint(1) not null,
-    wifi             tinyint(1) not null,
-    free_parking_lot tinyint(1) not null,
-    hair_dryer       tinyint(1) not null,
-    foreign key (room_id) references room (id)
+    `room_id`          int not null,
+    `kitchen`          tinyint(1) not null,
+    `air_conditioner`  tinyint(1) not null,
+    `wifi`             tinyint(1) not null,
+    `free_parking_lot` tinyint(1) not null,
+    `hair_dryer`       tinyint(1) not null,
+    foreign key (`room_id`) references `room` (`id`)
+);
+
+create table `wish`
+(
+    `id`      int not null auto_increment,
+    `room_id` int not null,
+    `user_id` int not null,
+    primary key (`id`),
+    foreign key (`room_id`) references `room` (`id`),
+    foreign key (`user_id`) references `user` (`id`)
 );
 
 create table `thumbnail`
 (
-    room_id   int          not null,
-    thumbnail varchar(200) not null,
-    foreign key (room_id) references room (id)
+    `room_id`   int          not null,
+    `thumbnail` varchar(200) not null,
+    foreign key (`room_id`) references `room` (`id`)
 );
 
 create table `badge`
 (
-    room_id int         not null,
-    type    varchar(64) not null,
-    foreign key (room_id) references room (id)
+    `room_id` int         not null,
+    `type`    varchar(64) not null,
+    foreign key (`room_id`) references `room` (`id`)
 );
