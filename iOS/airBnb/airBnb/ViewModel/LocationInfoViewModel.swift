@@ -22,6 +22,9 @@ class LocationInfoViewModel {
     private var searchManager: SearchManager
     private var state: State
     
+    private let skip = "건너뛰기"
+    private let delete = "지우기"
+    
     init(from searchManager: SearchManager,of state : State) {
         self.searchManager = searchManager
         self.state = state
@@ -62,18 +65,17 @@ class LocationInfoViewModel {
                 .map { self.skipAndDeleteString(to: $0.emptyStartValued()) }
                 .eraseToAnyPublisher()
         case .location:
-            return Just("건너뛰기")
+            return Just(skip)
                 .eraseToAnyPublisher()
         case .people:
-            return searchManager.$numberOfPleple
-                .map { $0.isEmpty ? "건너뛰기" : "지우기" }
+            return Just(skip)
                 .eraseToAnyPublisher()
         case .price:
             return searchManager.$priceRange
                 .map { self.skipAndDeleteString(to: $0.noticeChanged()) }
                 .eraseToAnyPublisher()
         case .none:
-            return Just("건너뛰기")
+            return Just(skip)
                 .eraseToAnyPublisher()
         }
     }
@@ -94,6 +96,6 @@ class LocationInfoViewModel {
     }
     
     private func skipAndDeleteString(to bool: Bool) -> String {
-        return bool ? "건너뛰기" : "지우기"
+        return bool ? skip : delete
     }
 }

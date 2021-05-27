@@ -143,6 +143,7 @@
 		BF4048D72658F48D00CA02B5 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				BF7E2E4D2660276900A810BE /* People */,
 				BF2FEAEB265BEFAE0022CB93 /* Price */,
 				BF2FEADF265BB8EE0022CB93 /* LocationInfo */,
 				BF4048E826592A3D00CA02B5 /* Main */,
@@ -254,6 +255,13 @@
 				BF7E2E45265FBC8C00A810BE /* PriceRange.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		BF7E2E4D2660276900A810BE /* People */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = People;
 			sourceTree = "<group>";
 		};
 		BFE430A72653902E00F4DA1C = {

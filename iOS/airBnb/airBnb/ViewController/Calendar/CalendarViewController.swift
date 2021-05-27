@@ -16,6 +16,7 @@ class CalendarViewController: UIViewController {
     private var calendarManager = CalendarManager()
     private var calendarDataSource: CalendarDataSource?
     private let headerViewHight:CGFloat = 60
+    private let splitCount:CGFloat = 7
     
     private let didSelectSubject = PassthroughSubject<Void,Never>()
     private let nextViewControllerSubject = PassthroughSubject<Void,Never>()
@@ -62,7 +63,7 @@ class CalendarViewController: UIViewController {
             guard let self = self else {
                 return
             }
-            self.calendarDataSource?.sequenceDates = self.searchManager.selectDates
+            self.calendarDataSource?.updateSelectedDate(from: self.searchManager.selectDates)
         }.store(in: &self.cancellable)
         
         moveViewController()
@@ -88,8 +89,8 @@ class CalendarViewController: UIViewController {
 extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width / 7,
-                      height: collectionView.frame.size.width / 7)
+        return CGSize(width: collectionView.frame.size.width / splitCount,
+                      height: collectionView.frame.size.width / splitCount)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

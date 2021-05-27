@@ -78,10 +78,6 @@ class PriceViewController: UIViewController {
         }.store(in: &cancellable)
     }
     
-    private func calculatePriceAvg(with priceSlider: priceSlider) {
-
-    }
-    
     @objc private func priceSliderValueChanged(_ priceSlider: priceSlider) {
         searchManager?.changePrice(from: priceSlider)
         

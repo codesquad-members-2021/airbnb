@@ -9,8 +9,8 @@ import UIKit
 
 class CalendarDataSource: NSObject, UICollectionViewDataSource {
     
-    let dates: [String:[Date?]]
-    var sequenceDates: SequenceDates
+    private let dates: [String:[Date?]]
+    private var sequenceDates: SequenceDates
     
     init(dates: [String:[Date?]], sequenceDates: SequenceDates) {
         self.dates = dates
@@ -49,5 +49,9 @@ class CalendarDataSource: NSObject, UICollectionViewDataSource {
     
     func resetSelectDates() {
         sequenceDates.reset()
+    }
+    
+    func updateSelectedDate(from dates: SequenceDates) {
+        self.sequenceDates = dates
     }
 }
