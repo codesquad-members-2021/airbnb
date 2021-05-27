@@ -29,13 +29,14 @@ public class ReservationDAO {
 
     private static class ReservationMapper implements RowMapper<Reservation> {
         public Reservation mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
-            return new Reservation(resultSet.getLong("id"),
-                    resultSet.getDate("check_in_date").toLocalDate(),
+            Reservation reservation = new Reservation(resultSet.getDate("check_in_date").toLocalDate(),
                     resultSet.getDate("check_out_date").toLocalDate(),
                     resultSet.getInt("total_price"),
                     resultSet.getInt("guest_count"),
                     resultSet.getLong("user_id"),
                     resultSet.getLong("property_id"));
+            reservation.setId(resultSet.getLong("id"));
+            return reservation;
         }
     }
 
@@ -59,7 +60,7 @@ public class ReservationDAO {
     }
 
     public List<Reservation> findAllReservationsByUserId(Long userId) {
-        String sql = "SELECT id, check_in_date, check_out_date, total_price, guest_count " +
+        String sql = "SELECT id, check_in_date, check_out_date, total_price, guest_count, user_id, property_id " +
                 "FROM reservation WHERE user_id = ?";
 
         return jdbcTemplate.query(sql, new ReservationMapper(), userId);
@@ -73,7 +74,7 @@ public class ReservationDAO {
     }
 
     public ReservationDetailDTO findDetailedReservation(Long id) {
-        String sql = "SELECT r.id, p.title, l.name, r.check_in_date, r.check_out_date, h.name as host_name, r.total_price, r.guest_count " +
+        String sql = "SELECT r.id, p.title, i.image_url, l.name, r.check_in_date, r.check_out_date, h.name as host_name, r.total_price, r.guest_count " +
                 "FROM reservation as r " +
                 "LEFT JOIN property as p " +
                 "on r.property_id = p.id " +
@@ -81,12 +82,15 @@ public class ReservationDAO {
                 "on l.id = p.location_id " +
                 "LEFT JOIN host as h " +
                 "on h.property_id = p.id " +
-                "where r.id = ?";
+                "LEFT JOIN image as i " +
+                "on i.property_id = p.id " +
+                "where r.id = ? and i.thumbnail = true";
 
         return jdbcTemplate.queryForObject(sql, ((rs, rowNum) -> {
             ReservationDetailDTO reservationDetailDTO = new ReservationDetailDTO();
             reservationDetailDTO.setId(rs.getLong("id"));
             reservationDetailDTO.setLocation(rs.getString("name"));
+            reservationDetailDTO.setImage(rs.getString("image_url"));
             reservationDetailDTO.setPropertyTitle(rs.getString("title"));
             reservationDetailDTO.setCheckIn(rs.getDate("check_in_date").toLocalDate());
             reservationDetailDTO.setCheckOut(rs.getDate("check_out_date").toLocalDate());

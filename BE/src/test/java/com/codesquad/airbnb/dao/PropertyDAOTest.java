@@ -1,9 +1,9 @@
 package com.codesquad.airbnb.dao;
 
 import com.codesquad.airbnb.domain.Property;
-import com.codesquad.airbnb.dto.PropertyDetailResponseDTO;
 import com.codesquad.airbnb.dto.PropertiesResponseDTO;
 import com.codesquad.airbnb.dto.PropertyDTO;
+import com.codesquad.airbnb.dto.PropertyDetailResponseDTO;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;
-
 
 import static org.assertj.core.api.Assertions.assertThat;
 

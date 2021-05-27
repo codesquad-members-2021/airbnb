@@ -3,6 +3,8 @@ package com.codesquad.airbnb.dao;
 import com.codesquad.airbnb.domain.Reservation;
 import com.codesquad.airbnb.dto.ReservationDetailDTO;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,20 +12,23 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
 class ReservationDAOTest {
+
+    private Logger logger = LoggerFactory.getLogger(ReservationDAOTest.class);
 
     @Autowired
     ReservationDAO reservationDAO;
 
     @Test
     void reservationDAO_insertTest() {
-        Reservation reservation = new Reservation(1L, LocalDate.of(2021, 9, 13),
+        Reservation reservation = new Reservation(LocalDate.of(2021, 9, 13),
                 LocalDate.of(2021, 9, 20),
                 200000, 4, 1L, 1L);
+        reservation.setId(1L);
 
         assertThat(reservationDAO.insertReservation(reservation)).isEqualTo(1);
     }
@@ -49,5 +54,7 @@ class ReservationDAOTest {
 
         assertThat(reservationDetailDTO.getHostName()).isEqualTo("새리");
         assertThat(reservationDetailDTO.getGuestCount()).isEqualTo(4);
+
+        logger.info(reservationDetailDTO.toString());
     }
 }
