@@ -1,6 +1,9 @@
 import { RefObject } from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { calendarOpenState, selectDateState } from '../../../recoil/calendarAtom';
 import HoverBlock from '../HoverBlock';
+import { getDateByTime } from './calendar/calendarDateFn';
 import FormColumn from './FormColumn';
 
 interface Props {
@@ -8,10 +11,16 @@ interface Props {
 }
 
 const FormCheckOut = ({ checkOutRef }: Props) => {
+  const open = useRecoilValue(calendarOpenState);
+  const selectDate = useRecoilValue(selectDateState);
+
+  const date = getDateByTime(selectDate.checkOut);
+  const description = date ? `${date.month}월 ${date.day}일` : '날짜';
+
   return (
-    <StyledFormCheckOut ref={checkOutRef}>
-      <HoverBlock color='gray4' className='hover__checkOut'>
-        <FormColumn title='체크아웃' description='날짜' />
+    <StyledFormCheckOut ref={checkOutRef} data-type='checkOut'>
+      <HoverBlock color='gray4' className='hover__checkOut' dataKey='checkOut' isModal={open}>
+        <FormColumn title='체크아웃' description={description} />
       </HoverBlock>
     </StyledFormCheckOut>
   );

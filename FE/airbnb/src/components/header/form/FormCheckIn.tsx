@@ -1,8 +1,15 @@
-import { useRef, RefObject } from 'react';
+import { useRef, RefObject, useEffect } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useToggle from '../../../hooks/useToggle';
+import {
+  calendarOpenState,
+  selectCheckBoxState,
+  selectDateState,
+} from '../../../recoil/calendarAtom';
 import HoverBlock from '../HoverBlock';
-import FormCalendar from './FormCalendar';
+import { getDateByTime } from './calendar/calendarDateFn';
+import FormCalendar from './calendar/FormCalendar';
 import FormColumn from './FormColumn';
 
 interface Props {
@@ -12,15 +19,26 @@ interface Props {
 const FormCheckIn = ({ checkOutRef }: Props) => {
   const checkInRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLDivElement>(null);
-  const open = useToggle({ clickRef: [checkInRef, checkOutRef], toggleRef });
+  const selectDate = useRecoilValue(selectDateState);
+  const selectBox = useRecoilValue(selectCheckBoxState);
+  const setIsCalendarOpen = useSetRecoilState(calendarOpenState);
+  const isChekcInSelected = selectBox === 'checkIn';
+  const { open } = useToggle({ clickRef: [checkInRef, checkOutRef], toggleRef, isChekcInSelected });
+
+  useEffect(() => {
+    setIsCalendarOpen(open);
+  }, [open]);
+
+  const date = getDateByTime(selectDate.checkIn);
+  const description = date ? `${date.month}월 ${date.day}일` : '날짜';
+
   return (
     <StyledCheckInWrapper>
-      <StyledFormCheckIn ref={checkInRef}>
-        <HoverBlock color='gray4' className='hover__checkIn'>
-          <FormColumn title='체크인' description='날짜' />
+      <StyledFormCheckIn ref={checkInRef} data-type='checkIn'>
+        <HoverBlock color='gray4' className='hover__checkIn' dataKey='checkIn' isModal={open}>
+          <FormColumn title='체크인' description={description} />
         </HoverBlock>
       </StyledFormCheckIn>
-      {/* <FormCalendar toggleRef={toggleRef} /> */}
       {open && <FormCalendar toggleRef={toggleRef} />}
     </StyledCheckInWrapper>
   );

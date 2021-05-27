@@ -5,7 +5,6 @@ import FormGuest from './FormGuest';
 import FormCheckIn from './FormCheckIn';
 import FormCheckOut from './FormCheckOut';
 import FormPrice from './FormPrice';
-import useToggle from '../../../hooks/useToggle';
 
 const HeaderForm = () => {
   const checkOutRef = useRef<HTMLDivElement>(null);

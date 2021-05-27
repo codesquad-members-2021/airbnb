@@ -6,7 +6,7 @@ import { IoSearch } from 'react-icons/io5';
 const FormGuest = () => {
   return (
     <StyledFormGuest>
-      <HoverBlock color='gray4' className='hover__guest'>
+      <HoverBlock color='gray4' className='hover__guest' dataKey='guest'>
         <FormColumn title='인원' description='게스트 추가' />
         <div className='search-icon'>
           <IoSearch />
