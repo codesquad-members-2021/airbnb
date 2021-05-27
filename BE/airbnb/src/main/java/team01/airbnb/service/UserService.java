@@ -1,12 +1,7 @@
 package team01.airbnb.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
@@ -14,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import team01.airbnb.dto.*;
 import team01.airbnb.domain.User;
+import team01.airbnb.dto.kakaoOauth.KakaoLogout;
+import team01.airbnb.dto.kakaoOauth.KakaoProfile;
+import team01.airbnb.dto.kakaoOauth.OAuthToken;
 import team01.airbnb.exception.NoResultSetException;
-import team01.airbnb.exception.NotProcessJsonException;
 import team01.airbnb.utils.KakaoLoginUtils;
 
 @Slf4j
@@ -24,20 +21,17 @@ public class UserService {
 
     private final JdbcTemplate jdbcTemplate;
     private final KakaoLoginUtils kakaoLoginUtils;
-    private final ObjectMapper objectMapper;
 
     public UserService(JdbcTemplate jdbcTemplate
-            , KakaoLoginUtils kakaoLoginUtils
-            , ObjectMapper objectMapper) {
+            , KakaoLoginUtils kakaoLoginUtils) {
         this.jdbcTemplate = jdbcTemplate;
         this.kakaoLoginUtils = kakaoLoginUtils;
-        this.objectMapper = objectMapper;
     }
 
     @Transactional
     public User findByUser(User targetUser) {
         String username = targetUser.getUsername(); // todo : 더 강화된 정책 필요
-        String query = "SELECT * FROM user WHERE username = ?";
+        String query = "SELECT * FROM `user` WHERE username = ?";
         try {
             return jdbcTemplate.queryForObject(
                     query, new Object[]{username}, (rs, rowNum) -> {
@@ -46,7 +40,6 @@ public class UserService {
                         user.setUsername(rs.getString("username"));
                         user.setEmail(rs.getString("email"));
                         user.setRole(RoleType.valueOf(rs.getString("role")));
-                        user.setCreateDate(rs.getDate("created_date").toLocalDate());
                         return user;
                     });
         } catch (EmptyResultDataAccessException e) {
@@ -67,7 +60,7 @@ public class UserService {
                 , kakaoLoginUtils.getTokenRequestEntity(code)
                 , OAuthToken.class);
         log.info("oauthToken : {}", oauthToken.toString());
-        return oauthToken.getAccess_token();
+        return oauthToken.getAccessToken();
     }
 
     public SocialProfile getKakaoProfile(String accessToken) {
