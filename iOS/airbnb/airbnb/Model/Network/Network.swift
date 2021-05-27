@@ -39,7 +39,7 @@ class Network {
             "locationId": "1",
             "minPrice": queryParameter.minCost,
             "maxPrice": queryParameter.maxCost,
-            "adult": queryParameter.convert(peopleCount: queryParameter.people ?? 0)
+            "adult": queryParameter.peopleCount
         ]
         
         AF.request(url, method: endPoint.httpMethod, parameters: Parameters, encoding: URLEncoding.queryString)

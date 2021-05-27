@@ -16,7 +16,7 @@ protocol Requestable {
 }
 
 struct MainAPIEndPoint: Requestable {
-    var baseURL = "http://13.124.136.233:8080/main"
+    var baseURL = "http://13.124.136.233:8080"
     var path: String
     var httpMethod: HTTPMethod
     

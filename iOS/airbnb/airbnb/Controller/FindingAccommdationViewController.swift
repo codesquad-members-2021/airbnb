@@ -16,6 +16,7 @@ class FindingAccommdationViewController: UIViewController {
     private var calendarView: CalendarView
     private let calendarDelegate: CalendarViewDelgate
     
+    @IBOutlet weak var costGraphView: CostGraphView!
     private var currentStateInt: Int
     private var currentState: CurrentState
     
@@ -28,6 +29,9 @@ class FindingAccommdationViewController: UIViewController {
     @IBOutlet weak var adultCountLabel: UILabel!
     
     private var tableViewDataSource: FindingAccommodationTableViewDataSource!
+    private var costGraph = CostGraph(averagePrice: 0, numberOfRooms: [])
+    
+    private var network = Network()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.currentStateInt = 0
@@ -50,11 +54,14 @@ class FindingAccommdationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(conditionDataUpdate), name: FindingAccommdationViewController.conditionDataUpdate, object: findingAccommdationCondition)
         self.navigationItem.title = "숙소찾기"
         self.beforeButton.setTitle("", for: .normal)
         self.afterButton.setTitle("다음", for: .normal)
         initCalendarView()
+        self.conditionTableView.dataSource = tableViewDataSource
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(conditionDataUpdate), name: FindingAccommdationViewController.conditionDataUpdate, object: findingAccommdationCondition)
+        costGraphView.update(minCost: "₩10000", maxCost: "₩160000", averageCost: "qweqweqwe")
         self.conditionTableView.dataSource = tableViewDataSource
     }
     
@@ -87,7 +94,6 @@ class FindingAccommdationViewController: UIViewController {
         let totalWidth = CGFloat(findingAccommdationConditionView.contentSize.width)
         let viewCount = CGFloat(self.content.subviews.count)
         
-        
         self.findingAccommdationConditionView.setContentOffset(CGPoint(x: totalWidth / viewCount * CGFloat(currentState.value), y: 0), animated: true)
     }
     
@@ -112,11 +118,12 @@ class FindingAccommdationViewController: UIViewController {
     
     @objc func conditionDataUpdate() {
         self.conditionTableView.reloadData()
-        guard let peopleCount = self.findingAccommdationCondition.people else {
-            return
-        }
-        self.adultCountLabel.text = findingAccommdationCondition.convert(peopleCount: peopleCount)
+        self.adultCountLabel.text = findingAccommdationCondition.peopleCount
     }
+    
+//    @objc func costGraphDataUpdate() {
+//        costGraphView.update(minCost: "₩10000", maxCost: "₩160000", averageCost: "qweqweqwe")
+//    }
     
     @IBAction func pressedMincost(_ sender: Any) {
         self.findingAccommdationCondition.update(minCost: "10000")
@@ -157,6 +164,7 @@ extension FindingAccommdationViewController {
             self.currentState = .cost
             self.beforeButton.setTitle("이전", for: .normal)
             self.afterButton.setTitle("다음", for: .normal)
+            fetchCostGraph()
         case 2:
             self.currentState = .people
             self.beforeButton.setTitle("이전", for: .normal)
@@ -165,10 +173,23 @@ extension FindingAccommdationViewController {
             break
         }
     }
+    
+    func fetchCostGraph() {
+        let endPoint = MainAPIEndPoint(path: "/search/1", httpMethod: .get)
+        network.request(with: endPoint, dataType: CostGraph.self) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let data):
+                self.costGraph = data
+            }
+        }
+    }
 }
 
 extension FindingAccommdationViewController {
     static let conditionDataUpdate = Notification.Name("conditionDataUpdate")
+    static let costGraphDataUpdate = Notification.Name("costGraphDataUpdate")
 }
 
 extension FindingAccommdationViewController {

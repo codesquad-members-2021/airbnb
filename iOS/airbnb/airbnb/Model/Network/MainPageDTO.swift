@@ -29,7 +29,7 @@ struct MainPageDTO: Decodable {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "name"), object: self)
     }
 
-    mutating func update(locations: [TripPlace]) {
+    mutating func update(locations: inout [TripPlace]) {
         self.locations = locations
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "name"), object: self)
     }
