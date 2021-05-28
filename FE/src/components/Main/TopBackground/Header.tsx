@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import DefaultButton from '../../Common/DefaultButton';
 import { ResponsiveFluid } from '../../Common/ResponsiveFluid';
 import { FiMenu, FiUser } from 'react-icons/fi';
-import { cssTranslate } from '../../../util/styles/CommonStyledCSS';
 import { ITextTopBackground } from '../../../util/reference';
+
 
 const Header = ({ headerTexts }: ITextTopBackground) => {
   const { logoOrBtnCaption: logo, menuItems, authStatus } = headerTexts;
@@ -63,8 +64,7 @@ const HeaderMenuItem = styled.li`
   }
 `;
 
-const AuthButton = styled.button`
-  ${cssTranslate};
+const AuthButton = styled(DefaultButton)`
   cursor: pointer;
 
   display: flex;

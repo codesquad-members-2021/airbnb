@@ -20,11 +20,3 @@ export const cssImageAuto = css`
     height: auto;
   }
 `;
-
-export const cssTranslate = css`
-    background-color: transparent;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    outline: none;
-    border: none;
-`;

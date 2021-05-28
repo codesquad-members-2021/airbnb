@@ -4,24 +4,23 @@ import styled, { css } from 'styled-components';
 interface IBackground {
   children?: React.ReactNode;
   backgroundColor?: string | '';
-  coverBody?: boolean;
   onClick?: (event: MouseEvent | Event) => void;
 }
 
-const Background = ({ children, backgroundColor, coverBody, onClick}: IBackground) => (
-  <StyledBackground
+const Background = ({ children, backgroundColor, onClick, ...props}: IBackground) => (
+  <BackgroundLayout
+    {...props}
     onClick={onClick}
     backgroundColor={backgroundColor}
-    coverBody={coverBody}
   >
-    {children && children}
-  </StyledBackground>
+    {children}
+  </BackgroundLayout>
 );
 
 export default Background;
 
 // --- Styled Components ---
-const StyledBackground = styled.div<IBackground>`
+const BackgroundLayout = styled.div<IBackground>`
   ${({ backgroundColor }) =>
     backgroundColor &&
     css`
@@ -29,15 +28,5 @@ const StyledBackground = styled.div<IBackground>`
         theme.colors[backgroundColor]
           ? theme.colors[backgroundColor]
           : backgroundColor};
-    `}
-
-  ${({ coverBody }) =>
-    coverBody &&
-    css`
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
     `}
 `;
