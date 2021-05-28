@@ -1,24 +1,24 @@
 import React from "react";
-interface toggleModal {
+interface toggleModalType {
   e: React.MouseEvent;
   setState: (state: boolean) => void;
   state: boolean;
 }
 
-interface openModal {
+interface openModalType {
   e: React.MouseEvent;
   open: (state: boolean) => void;
   close: { (state: boolean): void }[];
 }
 
 // 모달 토글
-const toggleModal = ({ e, setState, state }: toggleModal): void => {
+const toggleModal = ({ e, setState, state }: toggleModalType): void => {
   e.stopPropagation();
   setState(!state);
 };
 
 // 누르면 무조건 열리게
-const openModal = ({ e, open, close }: openModal): void => {
+const openModal = ({ e, open, close }: openModalType): void => {
   e.stopPropagation();
   open(true);
   close.forEach((setState) => setState(false));
