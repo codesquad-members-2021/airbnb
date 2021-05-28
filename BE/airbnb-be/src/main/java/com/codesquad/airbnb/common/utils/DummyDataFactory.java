@@ -5,6 +5,7 @@ import com.codesquad.airbnb.accommodation.domain.Accommodation;
 import com.codesquad.airbnb.accommodation.domain.AccommodationOption;
 import com.codesquad.airbnb.accommodation.domain.AccommodationType;
 import com.codesquad.airbnb.accommodation.domain.RestroomType;
+import com.codesquad.airbnb.reservation.controller.ReservationDTO;
 
 import java.util.Arrays;
 import java.util.List;
@@ -158,5 +159,13 @@ public class DummyDataFactory {
                        .totalPrice(1488195)
                        .reviewCounts(127)
                        .build();
+    }
+
+    public static List<ReservationDTO> reservations() {
+        return Arrays.asList(DummyDataFactory.reservation(), DummyDataFactory.reservation());
+    }
+
+    public static ReservationDTO reservation() {
+        return new ReservationDTO(1L, AccommodationResponse.from(accommodationTypeSuiteroom()));
     }
 }
