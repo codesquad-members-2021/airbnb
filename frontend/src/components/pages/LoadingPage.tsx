@@ -17,6 +17,7 @@ const LoadingPage = () => {
     .then(({ token }) => {
         console.log("token입니다: ", token);
         localStorage.setItem('token', token);
+        window.location.href="http://localhost:3000";
         //mainpage로 돌아가는 로직 필요
     });
   }
