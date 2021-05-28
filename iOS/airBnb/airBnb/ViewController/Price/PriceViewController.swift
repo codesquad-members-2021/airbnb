@@ -26,7 +26,7 @@ class PriceViewController: UIViewController {
     private let nextViewControllerSubject = PassthroughSubject<Void,Never>()
     private var cancellable = Set<AnyCancellable>()
     
-    private var locationInfoViewController : LocationInfoViewController?
+    private var locationInfoViewController: LocationInfoViewController?
     private var searchManager: SearchManager?
     
     override func viewDidLoad() {
@@ -74,8 +74,12 @@ class PriceViewController: UIViewController {
     
     private func bind() {
         nextViewControllerSubject.sink { [weak self] _ in
+            guard let self = self, let searchManager = self.searchManager, let locationInfo = self.locationInfoViewController else {
+                return
+            }
             let peopleViewController = UIStoryboard.create(identifier: PeopleViewController.self, name: "People")
-            self?.navigationController?.pushViewController(peopleViewController, animated: true)
+            peopleViewController.setupSearchInfoViewController(for: searchManager, from: locationInfo)
+            self.navigationController?.pushViewController(peopleViewController, animated: true)
         }.store(in: &cancellable)
     }
     

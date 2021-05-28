@@ -574,10 +574,18 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oo7-vz-OL4">
                                 <rect key="frame" x="0.0" y="548.66666666666663" width="390" height="295.33333333333337"/>
                             </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S7w-Tg-1Xd">
+                                <rect key="frame" x="0.0" y="547.66666666666663" width="390" height="1"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="lDH-E7-mxN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7zR-2W-SFn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Oo7-vz-OL4" firstAttribute="top" secondItem="S7w-Tg-1Xd" secondAttribute="bottom" id="1U5-MD-zLd"/>
                             <constraint firstAttribute="bottom" secondItem="Oo7-vz-OL4" secondAttribute="bottom" id="92I-On-GMp"/>
                             <constraint firstItem="7zR-2W-SFn" firstAttribute="trailing" secondItem="JMy-ns-T2U" secondAttribute="trailing" constant="16" id="C9v-Ml-fiI"/>
                             <constraint firstItem="JMy-ns-T2U" firstAttribute="top" secondItem="7zR-2W-SFn" secondAttribute="top" constant="30" id="Dau-pz-s2i"/>
@@ -585,6 +593,8 @@
                             <constraint firstItem="7zR-2W-SFn" firstAttribute="trailing" secondItem="Oo7-vz-OL4" secondAttribute="trailing" id="IWv-UL-dft"/>
                             <constraint firstItem="7zR-2W-SFn" firstAttribute="trailing" secondItem="w2H-gx-LgQ" secondAttribute="trailing" constant="16" id="Jgg-IL-iqM"/>
                             <constraint firstItem="Oo7-vz-OL4" firstAttribute="top" secondItem="w2H-gx-LgQ" secondAttribute="bottom" id="dXe-Jq-vwc"/>
+                            <constraint firstItem="7zR-2W-SFn" firstAttribute="trailing" secondItem="S7w-Tg-1Xd" secondAttribute="trailing" id="fnN-Zd-x53"/>
+                            <constraint firstItem="S7w-Tg-1Xd" firstAttribute="leading" secondItem="7zR-2W-SFn" secondAttribute="leading" id="gMT-zO-Pfu"/>
                             <constraint firstItem="Oo7-vz-OL4" firstAttribute="leading" secondItem="7zR-2W-SFn" secondAttribute="leading" id="kWU-BT-ekD"/>
                             <constraint firstItem="JMy-ns-T2U" firstAttribute="leading" secondItem="7zR-2W-SFn" secondAttribute="leading" constant="16" id="mQJ-wz-JZ7"/>
                             <constraint firstItem="Oo7-vz-OL4" firstAttribute="height" secondItem="Lbg-ok-3lz" secondAttribute="height" multiplier="0.35" id="wMX-xv-VmY"/>
@@ -598,7 +608,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pg7-L2-KZ6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1242" y="714"/>
+            <point key="canvasLocation" x="-1243.0769230769231" y="713.74407582938386"/>
         </scene>
     </scenes>
     <resources>

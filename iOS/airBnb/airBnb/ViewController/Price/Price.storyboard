@@ -72,6 +72,13 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mqo-td-WHh">
+                                <rect key="frame" x="0.0" y="581.5" width="414" height="1"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="sGf-7V-Cgd"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aeB-xV-hj4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -79,10 +86,13 @@
                             <constraint firstItem="Zty-8L-fwo" firstAttribute="leading" secondItem="ouz-Ub-7KH" secondAttribute="leading" id="5UQ-eJ-CXV"/>
                             <constraint firstItem="MQh-Ej-KJO" firstAttribute="leading" secondItem="aeB-xV-hj4" secondAttribute="leading" id="7HR-om-byg"/>
                             <constraint firstItem="MQh-Ej-KJO" firstAttribute="height" secondItem="zSM-OL-wFS" secondAttribute="height" multiplier="0.35" id="BUL-rY-9Ck"/>
+                            <constraint firstItem="MQh-Ej-KJO" firstAttribute="top" secondItem="mqo-td-WHh" secondAttribute="bottom" id="DgO-xH-rH7"/>
                             <constraint firstItem="ouz-Ub-7KH" firstAttribute="leading" secondItem="aeB-xV-hj4" secondAttribute="leading" constant="16" id="HHK-pw-a0C"/>
+                            <constraint firstItem="aeB-xV-hj4" firstAttribute="trailing" secondItem="mqo-td-WHh" secondAttribute="trailing" id="RCW-La-NHp"/>
                             <constraint firstAttribute="bottom" secondItem="MQh-Ej-KJO" secondAttribute="bottom" id="W8B-Bg-32Y"/>
                             <constraint firstItem="aeB-xV-hj4" firstAttribute="trailing" secondItem="MQh-Ej-KJO" secondAttribute="trailing" id="anU-rP-zLK"/>
                             <constraint firstItem="Zty-8L-fwo" firstAttribute="top" secondItem="ouz-Ub-7KH" secondAttribute="bottom" constant="16" id="b7u-sL-AX1"/>
+                            <constraint firstItem="mqo-td-WHh" firstAttribute="leading" secondItem="aeB-xV-hj4" secondAttribute="leading" id="cGF-H3-q6r"/>
                             <constraint firstItem="jNn-cC-yEH" firstAttribute="leading" secondItem="ouz-Ub-7KH" secondAttribute="leading" id="l3u-ks-QRW"/>
                             <constraint firstItem="jNn-cC-yEH" firstAttribute="top" secondItem="Zty-8L-fwo" secondAttribute="bottom" constant="8" id="mFf-bI-213"/>
                             <constraint firstItem="ouz-Ub-7KH" firstAttribute="top" secondItem="aeB-xV-hj4" secondAttribute="top" constant="32" id="rwp-ga-P53"/>
@@ -106,6 +116,9 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
