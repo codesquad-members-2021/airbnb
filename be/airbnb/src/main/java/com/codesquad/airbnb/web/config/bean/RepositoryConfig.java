@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.web.config;
+package com.codesquad.airbnb.web.config.bean;
 
 import com.codesquad.airbnb.web.domain.reservation.ReservationRepository;
 import com.codesquad.airbnb.web.domain.room.RoomRepository;
