@@ -19,8 +19,8 @@ import static com.codesquad.airbnb.web.exceptions.InvalidUserInputException.*;
 @NoArgsConstructor
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class UserInput {
-    private static final String STRING_DATE_TIME_FORMAT = "yyyy-MM-dd";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final String STRING_DATE_TIME_FORMAT = "yyyy-MM-dd";
     private static final int DEFAULT_GUEST_COUNT = 1;
 
     private String location;

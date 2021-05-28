@@ -1,6 +1,5 @@
 package com.codesquad.airbnb.web.service.mapper;
 
-import com.codesquad.airbnb.web.domain.user.User;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 

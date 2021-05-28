@@ -25,6 +25,6 @@ public class PricePolicy {
     }
 
     private float discountPercentage(int stayDay) {
-        return (100 - weeklyDiscount * (int)(stayDay / 7.0f)) / 100.0f;
+        return (100 - weeklyDiscount * (int) (stayDay / 7.0f)) / 100.0f;
     }
 }

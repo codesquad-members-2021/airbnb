@@ -19,7 +19,7 @@ public class ReservationService {
 
     public void checkReservationable(int roomId, UserInput userInput) {
         boolean result = reservationRepository.isReservationable(roomId, userInput);
-        if(!result) {
+        if (!result) {
             throw new ReservationFailedException(RESERVATION_DATE_DUPLICATED);
         }
     }

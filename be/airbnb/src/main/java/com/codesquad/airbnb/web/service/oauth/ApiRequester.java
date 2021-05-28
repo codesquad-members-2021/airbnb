@@ -15,7 +15,7 @@ public class ApiRequester {
         this.restTemplate = restTemplate;
     }
 
-    public  <T> T callApi(String url, HttpMethod method, HttpHeaders headers, Object body, Class<T> responseType) {
+    public <T> T callApi(String url, HttpMethod method, HttpHeaders headers, Object body, Class<T> responseType) {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Object> httpEntity = new HttpEntity<>(body, headers);
         return restTemplate.exchange(url, method, httpEntity, responseType).getBody();
