@@ -2,33 +2,42 @@ import styled from 'styled-components';
 import HoverBlock from '../HoverBlock';
 import FormColumn from './FormColumn';
 import { IoSearch } from 'react-icons/io5';
-import { useEffect, useRef } from 'react';
+import { MouseEvent, useEffect, useRef } from 'react';
 import useToggle from '../../../hooks/useToggle';
 import FormGuestToggle from './guestToggle/FormGuestToggle';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { guestState, isFormOpenedState } from '../../../recoil/headerAtom';
+import { ReactComponent as DeleteBtn } from '../../../assets/svg/Property 1=x-circle.svg';
 
 const FormGuest = () => {
   const clickRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLDivElement>(null);
   const { open } = useToggle({ clickRef, toggleRef });
   const guestCount = useRecoilValue(guestState);
+  const resetGuestCount = useResetRecoilState(guestState);
   const [isFormOpened, setIsFormOpened] = useRecoilState(isFormOpenedState);
+  const totalCount = Object.values(guestCount).reduce((acc, cur) => acc + cur);
+  const isShowDeleteBtn = totalCount !== 0 && open;
 
   useEffect(() => {
     if (open) setIsFormOpened(true);
+    else setIsFormOpened(false);
   }, [open]);
 
   const getGuestDesc = () => {
-    const total = Object.values(guestCount).reduce((acc, cur) => acc + cur);
     if (guestCount.infants > 0) {
       const infants = guestCount.infants;
-      return `게스트 ${total - infants}명, 유아 ${infants}명`;
+      return `게스트 ${totalCount - infants}명, 유아 ${infants}명`;
     }
 
-    if (total === 0) return `게스트 추가`;
+    if (totalCount === 0) return `게스트 추가`;
 
-    return `게스트 ${total}명`;
+    return `게스트 ${totalCount}명`;
+  };
+
+  const handleDeleteClick = (e: MouseEvent): void => {
+    e.stopPropagation();
+    resetGuestCount();
   };
 
   return (
@@ -36,6 +45,7 @@ const FormGuest = () => {
       <StyledFormGuest ref={clickRef} isFormOpened={isFormOpened}>
         <HoverBlock color='gray4' className='hover__guest' dataKey='guest' isModal={open}>
           <FormColumn title='인원' description={getGuestDesc()} />
+          {isShowDeleteBtn && <DeleteBtn onClick={handleDeleteClick} />}
           <div className='search-icon'>
             <IoSearch />
             {isFormOpened && <div className='search'>검색</div>}

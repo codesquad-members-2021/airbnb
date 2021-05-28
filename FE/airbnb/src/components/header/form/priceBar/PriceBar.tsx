@@ -12,7 +12,7 @@ import {
   priceState,
 } from '../../../../recoil/headerAtom';
 
-const PRICE_DATA = {
+export const PRICE_DATA = {
   WIDTH: 365,
   DEFAULT_MIN_PRICE: 10000,
   DEFAULT_MAX_PRICE: 1000000,
