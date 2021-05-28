@@ -16,16 +16,18 @@ function Graph({ data }: IGraphProps) {
     <GraphWrapper>
       <span>평균 1박 요금은 ₩{averageFee} 입니다.</span>
       <Canvas>
-        <>
-          {dataArr.map((v, idx) => (
-            <Stick key={idx} count={v[1]}></Stick>
-          ))}
-        </>
+        {dataArr.map((v, idx) => (
+          <WholeStick key={idx}>
+            <Stick className='stick' count={v[1]}></Stick>
+            <BgStick className='bg' count={v[1]}></BgStick>
+          </WholeStick>
+        ))}
       </Canvas>
       <Slider data={dataArr} />
     </GraphWrapper>
   )
 }
+
 const GraphWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,20 +43,18 @@ const Canvas = styled.div`
   padding: 20px;
   align-items: flex-end;
 `
-const Stick = styled.div<IStickProps>`
+const WholeStick = styled.div`
+  height: 265px;
   width: 50px;
+  display: flex;
+  flex-direction: column-reverse;
+`
+const Stick = styled.div<IStickProps>`
   height: ${(props) => props.count * 10}px;
   background-color: red;
-  z-index: 1;
-  // &::after {
-  //   content: '';
-  //   color: rgba(0, 0, 0, 0);
-  //   width: 50px;
-  //   height: ${(props) => 260 - props.count * 10}px;
-  //   background-color: pink;
-  //   position: absolute;
-  //   top: 25px;
-  //   z-index: 5;
-  // }
+`
+const BgStick = styled.div<IStickProps>`
+  height: ${(props) => 260 - props.count * 10}px;
+  z-index: 3;
 `
 export default Graph

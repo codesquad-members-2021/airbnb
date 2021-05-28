@@ -88,15 +88,11 @@ function Slider({ data }: ISliderProps) {
       <SliderBox slideLength={slideLength}>
         <Input ref={inputLeft} type='range' min='10' max='100' defaultValue='0' />
         <Input ref={inputRight} type='range' min='0' max='100' defaultValue='100' />
-        <SliderView className='slider'>
-          <Track className='track' />
-          <Range ref={range} className='range' />
-          <BtnLeft ref={btnLeft} className='thumb_left'>
-            ⫴
-          </BtnLeft>
-          <BtnRight ref={btnRight} className='thumb_right'>
-            ⫴
-          </BtnRight>
+        <SliderView>
+          <Track />
+          <Range ref={range} />
+          <BtnLeft ref={btnLeft}>⫴</BtnLeft>
+          <BtnRight ref={btnRight}>⫴</BtnRight>
         </SliderView>
       </SliderBox>
 
