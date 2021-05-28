@@ -4,7 +4,7 @@ import Price from './Price';
 import Check from './Check';
 import People from './People';
 import CheckModal from '../Modal/CheckModal';
-import PriceModal from '../Modal/PeopleModal';
+import PriceModal from '../Modal/PriceModal';
 import PeopleModal from '../Modal/PeopleModal';
 import SearchBtn from './SearchBtn';
 import modalClickReducer from '../../utils/reducer/modalClickReducer';
