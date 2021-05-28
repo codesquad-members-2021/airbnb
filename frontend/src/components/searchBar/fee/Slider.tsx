@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
-import { useRecoilState } from 'recoil'
-import { FeeMin, FeeMax } from '../../../customHook/atoms'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { FeeMaxChange, FeeMinChange, FeeMin, FeeMax } from '../../../customHook/atoms'
 interface ISliderProps {
   data: any[]
 }
@@ -10,12 +10,15 @@ interface IBoxProps {
   slideLength: number
 }
 function Slider({ data }: ISliderProps) {
-  const [minFeeState, setMinFeeState] = useRecoilState(FeeMin)
-  const [maxFeeState, setMaxFeeState] = useRecoilState(FeeMax)
+  const [minFeePercecnt, setMinFeePercecnt] = useRecoilState(FeeMinChange)
+  const [maxFeePercecnt, setMaxFeePercecnt] = useRecoilState(FeeMaxChange)
 
   let slideLength = data.length * 50
   let minValue = data[0][0]
   let maxValue = data[data.length - 1][0]
+
+  const [feeMin, setFeeMin] = useRecoilState(FeeMin)
+  const setFeeMax = useSetRecoilState(FeeMax)
 
   let inputRightVal: string
   let inputLeftVal: string
@@ -58,7 +61,8 @@ function Slider({ data }: ISliderProps) {
     if (range && range.current) {
       range.current.style.left = percent + '%'
     }
-    setMinFeeState(Math.ceil((percent / 100) * (maxValue - minValue)))
+    setMinFeePercecnt(Math.ceil((percent / 100) * (maxValue - minValue)))
+    setFeeMin(minValue + minFeePercecnt)
   }
 
   function setMaxValue(target: HTMLInputElement | null) {
@@ -75,7 +79,8 @@ function Slider({ data }: ISliderProps) {
     if (range && range.current) {
       range.current.style.right = percent + '%'
     }
-    setMaxFeeState(Math.ceil(percent / 100) * (maxValue - minValue))
+    setMaxFeePercecnt(Math.ceil((percent / 100) * (maxValue - minValue)))
+    setFeeMax(maxValue + maxFeePercecnt)
   }
 
   return (
@@ -98,12 +103,12 @@ function Slider({ data }: ISliderProps) {
       <PriceBox>
         <PriceTag>
           <span>최저요금</span>
-          <input value={minValue + minFeeState}></input>
+          <input value={minValue + minFeePercecnt}></input>
         </PriceTag>
         &nbsp;-&nbsp;
         <PriceTag>
           <span>최고요금</span>
-          <input value={maxValue - maxFeeState}></input>
+          <input value={maxValue - maxFeePercecnt}></input>
         </PriceTag>
       </PriceBox>
     </>
@@ -153,15 +158,15 @@ const Track = styled.div`
   background-color: red;
 `
 const Range = styled.div`
-  height: 346px;
+  height: 265px;
   position: absolute;
   z-index: 2;
   left: 0%;
   right: 0%;
-  top: -336px;
+  top: -255px;
   bottom: 0;
   border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(1, 1, 1, 0.5);
 `
 const Btn = styled.div`
   position: absolute;

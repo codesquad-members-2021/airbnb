@@ -9,16 +9,16 @@ interface IStickProps {
 
 function Graph({ data }: IGraphProps) {
   const dataArr = Array.from(data)
-
+  const averageFee = Math.ceil(
+    dataArr.reduce((acc, curr) => (acc = acc + curr[0]), 0) / dataArr.length
+  )
   return (
     <GraphWrapper>
-      <span>평균 1박 요금은 ₩100,000 입니다.</span>
+      <span>평균 1박 요금은 ₩{averageFee} 입니다.</span>
       <Canvas>
         <>
           {dataArr.map((v, idx) => (
-            <Stick key={idx} count={v[1]}>
-              {v[1]}
-            </Stick>
+            <Stick key={idx} count={v[1]}></Stick>
           ))}
         </>
       </Canvas>
@@ -45,5 +45,16 @@ const Stick = styled.div<IStickProps>`
   width: 50px;
   height: ${(props) => props.count * 10}px;
   background-color: red;
+  z-index: 1;
+  // &::after {
+  //   content: '';
+  //   color: rgba(0, 0, 0, 0);
+  //   width: 50px;
+  //   height: ${(props) => 260 - props.count * 10}px;
+  //   background-color: pink;
+  //   position: absolute;
+  //   top: 25px;
+  //   z-index: 5;
+  // }
 `
 export default Graph

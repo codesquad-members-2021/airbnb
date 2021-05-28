@@ -41,11 +41,19 @@ export const clickCheckOut = atom<boolean>({
 })
 
 //Fee
-export const FeeMin = atom<number>({
-  key: 'minFeeState',
+export const FeeMin = atom<string | number>({
+  key: 'FeeMin',
+  default: '금액대 설정',
+})
+export const FeeMax = atom<null | number>({
+  key: 'FeeMax',
+  default: null,
+})
+export const FeeMinChange = atom<number>({
+  key: 'minFeePercecnt',
   default: 0,
 })
-export const FeeMax = atom<number>({
-  key: 'maxFeeState',
+export const FeeMaxChange = atom<number>({
+  key: 'maxFeePercecnt',
   default: 0,
 })

@@ -8,6 +8,9 @@ import {
 } from '../../../style/BarStyle'
 import ModalFee from './ModalFee'
 import useModalCtrl from '../../../customHook/useModalCtrlArray'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { FeeMin, FeeMax } from '../../../customHook/atoms'
+
 const Fee = () => {
   const FeeToggle = useRef<HTMLDivElement>(null)
   const FeeModal = useRef<HTMLDivElement>(null)
@@ -16,6 +19,10 @@ const Fee = () => {
     modal: FeeModal,
     init: false,
   })
+
+  //!바에 표현할 부분: 금액대 설정
+  const [feeMin, setFeeMin] = useRecoilState(FeeMin)
+  const setFeeMax = useSetRecoilState(FeeMax)
 
   return (
     <>
