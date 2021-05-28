@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import PersonnelKind from './PersonnelKind';
@@ -13,14 +14,14 @@ const PersonnelModal = ({ personnel }: PersonnelType) => {
   const [personnelState, setPersonnelState] = useRecoilState(PersonnelAtom);
   const { adult, child, baby } = personnelState;
 
-  const handleClickUpDownCount = ({ count, kind }: handleCountType) => () => {
+  const handleClickUpDownCount = useCallback(({ count, kind }: handleCountType) => () => {
     setPersonnelState((personnel) => {
       const checkYoung = kind === 'child' || kind === 'baby';
-      const checkParents = adult === 0;
+      const checkParents = personnel.adult === 0;
       const result = { ...personnel, [kind]: personnel[kind] + count };
       return (checkYoung && checkParents && count === 1) ? { ...result, adult: 1 } : result;
-    });
-  }
+    })
+  }, []);
 
   return (
     <PersonnelModalWrapper {...{ personnel }}>

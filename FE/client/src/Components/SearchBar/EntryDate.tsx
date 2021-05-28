@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 import DateKind from './DateKind';
 import { CalendarType } from '@Components/commons/baseType';
 import { calendarClickAtom } from '@/recoil/atoms';
+import { useCallback } from 'react';
 
 type EntryDateType = CalendarType & {
   handleClickShowModal: (clickTarget: string) => () => void;
@@ -14,12 +15,12 @@ const EntryDate = ({ handleClickShowModal, entryDate }: EntryDateType) => {
   const [calendarClickState, setCalendarClickState] = useRecoilState(calendarClickAtom);
   const [checkInTime, checkOutTime] = calendarClickState;
 
-  const handleClickDayReset = () => setCalendarClickState([]);
+  const handleClickDayReset = useCallback(() => setCalendarClickState([]), []);
 
   return (
     <EntryDateWrapper onClick={handleClickShowModal('entryDate')}>
-      <DateKind kind="체크인" checkInTime={checkInTime}/>
-      <DateKind kind="체크아웃" checkOutTime={checkOutTime}/>
+      <DateKind kind="체크인" checkInTime={checkInTime} />
+      <DateKind kind="체크아웃" checkOutTime={checkOutTime} />
       <IconButton onClick={handleClickDayReset} style={{ visibility: entryDate ? 'visible' : 'hidden' }}>
         <HighlightOffIcon />
       </IconButton>

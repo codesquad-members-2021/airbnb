@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, useCallback } from 'react';
 import styled from 'styled-components';
 import PauseCircleOutlineRoundedIcon from '@material-ui/icons/PauseCircleOutlineRounded';
 import { SetterOrUpdater } from 'recoil';
@@ -13,14 +13,16 @@ type SliderType = RangeStateType & {
 const Slider = ({ rangeState, setRangeState }: SliderType) => {
   const { leftRange, rightRange } = rangeState;
   const buttonStyle = ButtonStyle();
-  const handleChange = (location: string): ChangeEventHandler<HTMLInputElement> => (event) => {
+
+  const handleChange = useCallback((location: string): ChangeEventHandler<HTMLInputElement> => (event) => {
     const targetValue = parseInt(event.target.value, 10);
     const isLeft = location === 'left';
-    const percent = isLeft ? Math.min(targetValue, rightRange) : Math.max(leftRange, targetValue);
     setRangeState((rangeState) => {
+      const { leftRange, rightRange } = rangeState;
+      const percent = isLeft ? Math.min(targetValue, rightRange) : Math.max(leftRange, targetValue);
       return isLeft ? { ...rangeState, leftRange: percent } : { ...rangeState, rightRange: percent };
     })
-  }
+  }, []);
 
   return (
     <SliderWrapper>

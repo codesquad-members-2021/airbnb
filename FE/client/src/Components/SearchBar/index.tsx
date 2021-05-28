@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SearchIcon from '@material-ui/icons/Search';
@@ -12,7 +13,7 @@ const SearchBar = () => {
   const [searchBarState, setSearchBarState] = useRecoilState(searchBarFocusAtom);
   const { entryDate, charge, personnel, focus } = searchBarState;
 
-  const handleClickShowModal = (clickTarget: string) => () => {
+  const handleClickShowModal = useCallback((clickTarget: string) => () => {
     setSearchBarState({
       entryDate: false,
       charge: false,
@@ -20,7 +21,7 @@ const SearchBar = () => {
       focus: true,
       [clickTarget]: true
     });
-  }
+  }, []);
 
   return (
     <SearchBarWrapper className='SearchBar'>

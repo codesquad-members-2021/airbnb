@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import styled from 'styled-components';
 import { DivisionContent, DivisionTitle } from './../commons/base';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
@@ -13,9 +14,9 @@ type ChargeModalType = ChargeType & {
 const Charge = ({ handleClickShowModal, charge }: ChargeModalType) => {
   const setRangeState = useSetRecoilState(RangeAtom);
 
-  const handleClickResetCharge = () => {
+  const handleClickResetCharge = useCallback(() => {
     setRangeState({ leftRange: 0, rightRange: 100 });
-  }
+  }, []);
 
   return (
     <ChargeWrapper onClick={handleClickShowModal('charge')}>
