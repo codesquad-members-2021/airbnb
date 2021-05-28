@@ -17,7 +17,7 @@ public class ReservationService {
         this.reservationRepository = reservationRepository;
     }
 
-    public List<ReservationResponseDto> findById(Long userId) {
+    public List<ReservationResponseDto> findByUserId(Long userId) {
         return reservationRepository.findAllByUserId(userId).stream()
                 .map(ReservationResponseDto::new)
                 .collect(Collectors.toList());

@@ -19,6 +19,6 @@ public class ReservationController {
 
     @GetMapping
     public List<ReservationResponseDto> viewReservation(@RequestParam Long userId) {
-        return reservationService.findById(userId);
+        return reservationService.findByUserId(userId);
     }
 }
