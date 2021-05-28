@@ -56,7 +56,7 @@ const SearchBarList = styled.ul`
   li {
     position: relative;
   }
-  li:not(li:last-child)::after {
+  .betweenBorder::after {
     content: "";
     display: block;
     position: absolute;
