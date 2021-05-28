@@ -1,6 +1,8 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useToggle from '../../../hooks/useToggle';
+import { isFormOpenedState } from '../../../recoil/headerAtom';
 import HoverBlock from '../HoverBlock';
 import FormColumn from './FormColumn';
 import FormLocationToggle from './FormLocationToggle';
@@ -9,6 +11,11 @@ const FormLocation = () => {
   const clickRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLDivElement>(null);
   const { open } = useToggle({ clickRef, toggleRef });
+  const setIsFormOpened = useSetRecoilState(isFormOpenedState);
+
+  useEffect(() => {
+    if (open) setIsFormOpened(true);
+  }, [open]);
 
   return (
     <StyledLocationWrapper>

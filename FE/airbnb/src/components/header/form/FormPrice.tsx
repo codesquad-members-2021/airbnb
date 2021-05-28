@@ -1,8 +1,8 @@
-import { useRef } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useEffect, useRef } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useToggle from '../../../hooks/useToggle';
-import { priceState } from '../../../recoil/headerAtom';
+import { isFormOpenedState, priceState } from '../../../recoil/headerAtom';
 import { getNumberWithComma } from '../../util/util';
 import HoverBlock from '../HoverBlock';
 import FormColumn from './FormColumn';
@@ -13,6 +13,12 @@ const FormPrice = () => {
   const toggleRef = useRef<HTMLDivElement>(null);
   const { open } = useToggle({ clickRef, toggleRef });
   const priceRange = useRecoilValue(priceState);
+
+  const setIsFormOpened = useSetRecoilState(isFormOpenedState);
+
+  useEffect(() => {
+    if (open) setIsFormOpened(true);
+  }, [open]);
 
   const minPrice = getNumberWithComma(priceRange.min);
   const maxPrice = getNumberWithComma(priceRange.max);

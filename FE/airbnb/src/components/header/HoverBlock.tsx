@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { selectCheckBoxState } from '../../recoil/calendarAtom';
+import { selectCheckBoxState } from '../../recoil/headerAtom';
 
 interface Props {
   children: JSX.Element[] | JSX.Element | string;

@@ -2,11 +2,8 @@ import { useRef, RefObject, useEffect } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useToggle from '../../../hooks/useToggle';
-import {
-  calendarOpenState,
-  selectCheckBoxState,
-  selectDateState,
-} from '../../../recoil/calendarAtom';
+import { calendarOpenState, selectDateState } from '../../../recoil/calendarAtom';
+import { isFormOpenedState, selectCheckBoxState } from '../../../recoil/headerAtom';
 import HoverBlock from '../HoverBlock';
 import { getDateByTime } from './calendar/calendarDateFn';
 import FormCalendar from './calendar/FormCalendar';
@@ -24,9 +21,11 @@ const FormCheckIn = ({ checkOutRef }: Props) => {
   const setIsCalendarOpen = useSetRecoilState(calendarOpenState);
   const isChekcInSelected = selectBox === 'checkIn';
   const { open } = useToggle({ clickRef: [checkInRef, checkOutRef], toggleRef, isChekcInSelected });
+  const setIsFormOpened = useSetRecoilState(isFormOpenedState);
 
   useEffect(() => {
     setIsCalendarOpen(open);
+    if (open) setIsFormOpened(true);
   }, [open]);
 
   const date = getDateByTime(selectDate.checkIn);

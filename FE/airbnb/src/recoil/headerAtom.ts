@@ -6,6 +6,16 @@ export const tabSelectedState = atom<boolean[]>({
   default: [true, false, false],
 });
 
+export const selectCheckBoxState = atom<string>({
+  key: 'selectCheckBoxState',
+  default: '',
+});
+
+export const isFormOpenedState = atom<boolean>({
+  key: 'isFormOpenedState',
+  default: false,
+});
+
 export const priceState = atom({
   key: 'priceState',
   default: { min: 10000, max: 1000000 },
