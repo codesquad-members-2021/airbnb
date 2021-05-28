@@ -25,12 +25,12 @@ const FormGuest = () => {
   }, [open]);
 
   const getGuestDesc = () => {
+    if (totalCount === 0) return `게스트 추가`;
+
     if (guestCount.infants > 0) {
       const infants = guestCount.infants;
       return `게스트 ${totalCount - infants}명, 유아 ${infants}명`;
     }
-
-    if (totalCount === 0) return `게스트 추가`;
 
     return `게스트 ${totalCount}명`;
   };

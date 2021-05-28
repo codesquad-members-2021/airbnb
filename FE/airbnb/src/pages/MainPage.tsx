@@ -6,9 +6,9 @@ const MainPage = () => {
     <StyledMain>
       <main className='main'>
         <Header></Header>
-        <div className='main-background'></div>
+        <div className='main__background'></div>
       </main>
-      <div className='main-sections'></div>
+      <div className='main__sections'></div>
     </StyledMain>
   );
 };
@@ -16,7 +16,23 @@ const MainPage = () => {
 export default MainPage;
 
 const StyledMain = styled.div`
-  .main-sections {
+  height: 100%;
+  width: 100%;
+  .main {
+    height: 100%;
+    width: 100%;
+  }
+  .main__sections {
     padding: 0 5rem;
+  }
+  .main__background {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: url('./image/hero-img.png');
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 `;

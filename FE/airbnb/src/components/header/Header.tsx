@@ -31,7 +31,6 @@ const StyledHeader = styled(CenterContainer)`
   justify-content: space-between;
   height: 6rem;
   padding: 0 5rem;
-  background-color: ${({ theme }) => theme.colors.red};
   .logo {
     font-size: ${({ theme }) => theme.fontSize.largest};
     font-weight: 700;
@@ -39,7 +38,7 @@ const StyledHeader = styled(CenterContainer)`
   .nav {
     display: flex;
     justify-content: space-between;
-    width: 14rem;
+    width: 14.1rem;
     font-size: ${({ theme }) => theme.fontSize.small};
     font-weight: 600;
     & > div {

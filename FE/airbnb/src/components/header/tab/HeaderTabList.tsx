@@ -13,6 +13,7 @@ const HeaderTabList = () => {
 export default HeaderTabList;
 
 const StyledHeaderTabList = styled.div`
+  margin-left: 200px;
   cursor: pointer;
   width: 11rem;
   display: flex;
