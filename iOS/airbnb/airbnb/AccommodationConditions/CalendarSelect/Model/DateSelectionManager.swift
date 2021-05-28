@@ -107,4 +107,16 @@ class DateSelectionManager {
         calendarManager.changeSingleDay(monthIndex: monthIndex, rowIndex: rowIndex, to: status)
     }
     
+    func clearAll() {
+        switch selectedDateIndexPaths.count {
+        case 2:
+            fillBetween(selectedDateIndexPaths[0], selectedDateIndexPaths[1], to: .none)
+        case 1:
+            fill(at: selectedDateIndexPaths[0], to: .none)
+        default:
+            assert(false)
+        }
+        selectedDateIndexPaths.removeAll()
+    }
+    
 }

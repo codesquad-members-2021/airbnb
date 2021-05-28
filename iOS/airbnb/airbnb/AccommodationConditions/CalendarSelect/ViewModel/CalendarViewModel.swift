@@ -33,6 +33,7 @@ class CalendarViewModel: CalendarManageModel {
         static let backButton = "날짜 선택"
         static let pass = "건너뛰기"
         static let next = "다음"
+        static let cancel = "지우기"
     }
     
     static let weekdays = ["월", "화", "수", "목", "금", "토", "일"]
@@ -56,6 +57,10 @@ class CalendarViewModel: CalendarManageModel {
     
     private func fillCalendar(by count: Int) {
         dateSelectionManager.loadMoreMonths(by: count)
+        updateCalendar()
+    }
+    
+    private func updateCalendar() {
         calendar = dateSelectionManager.allMonths()
     }
     
@@ -69,10 +74,18 @@ class CalendarViewModel: CalendarManageModel {
 
     func didCalendarCellSelected(at indexPath: IndexPath) {
         dateSelectionManager.newDateSelected(at: indexPath)
-        calendar = dateSelectionManager.allMonths()
+        updateCalendar()
         
         let newDates = dateSelectionManager.selectedDates()
         conditionManager.updatePeriod(with: newDates)
+        updateConditions()
+    }
+    
+    func didAllSelectionCanceled() {
+        dateSelectionManager.clearAll()
+        updateCalendar()
+        
+        conditionManager.updatePeriod(with: [])
         updateConditions()
     }
     

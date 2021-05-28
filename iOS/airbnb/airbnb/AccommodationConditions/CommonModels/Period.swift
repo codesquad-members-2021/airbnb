@@ -14,6 +14,11 @@ class Period {
     var checkIn: Date?
     var checkOut: Date?
 
+    func resetAll() {
+        checkIn = nil
+        checkOut = nil
+    }
+    
     private func checkInString() -> String? {
         guard let checkIn = checkIn else { return nil }
         return DateFormatter.dateToString(format: dateFormat, date: checkIn)

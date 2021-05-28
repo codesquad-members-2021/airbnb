@@ -30,7 +30,10 @@ class ConditionManager {
     
     func updatePeriod(with dates: [Date?]) {
         let dates = dates.compactMap{ $0 }
-        guard !dates.isEmpty else { return }
+        guard !dates.isEmpty else {
+            period.resetAll()
+            return
+        }
         period.checkIn = dates[0]
         if dates.count == 2 { period.checkOut = dates[1] }
     }

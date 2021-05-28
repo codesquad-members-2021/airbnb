@@ -167,6 +167,7 @@ final class CalendarViewController: UIViewController {
             self?.accommodationConditionTableViewDataSource?.updateContents(with: conditions)
             self?.updateConditionView()
             self?.updateCalendarView()
+            if conditions[1] != "" { self?.setCancelBarButton() }
         })
     }
     
@@ -182,12 +183,31 @@ final class CalendarViewController: UIViewController {
         }
     }
     
-    @objc private func passToCompleteScreen(_ sender: UIBarButtonItem) {
-        
+    private func setCancelBarButton() {
+        guard navigationItem.rightBarButtonItem == nil else { return }
+        let buttonTitle = CalendarViewModel.ButtonTitle.cancel
+        let cancelButtonItem = UIBarButtonItem(title: buttonTitle,
+                                               style: .done,
+                                               target: self,
+                                               action: #selector(selectionCanceled))
+        navigationItem.setRightBarButton(cancelButtonItem, animated: false)
+    }
+    
+    private func unsetCancelBarButton() {
+        navigationItem.setRightBarButton(nil, animated: false)
+    }
+    
+    @objc private func selectionCanceled(_ sender: UIBarButtonItem) {
+        viewModel?.didAllSelectionCanceled()
+        unsetCancelBarButton()
     }
     
     @objc private func navigateToNextScreen(_ sender: UIBarButtonItem) {
 
+    }
+    
+    @objc private func passToCompleteScreen(_ sender: UIBarButtonItem) {
+        
     }
 
 }

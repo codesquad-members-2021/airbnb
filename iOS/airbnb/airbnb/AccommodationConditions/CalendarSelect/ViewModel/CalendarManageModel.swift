@@ -13,4 +13,5 @@ protocol CalendarManageModel {
     func bind(dataHandler: @escaping CalendarHandler, searchHandler: @escaping ConditionHandler)
     func calendarUpdateNeeded()
     func didCalendarCellSelected(at indexPath: IndexPath)
+    func didAllSelectionCanceled()
 }
