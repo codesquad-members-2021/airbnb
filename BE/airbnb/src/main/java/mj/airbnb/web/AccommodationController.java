@@ -1,6 +1,7 @@
 package mj.airbnb.web;
 
 import mj.airbnb.service.AccommodationService;
+import mj.airbnb.web.dto.AccommodationInDetailResponseDto;
 import mj.airbnb.web.dto.AccommodationResponseDto;
 import mj.airbnb.web.dto.SearchRequestDto;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class AccommodationController {
     }
 
     @GetMapping("/{accommodationId}")
-    public AccommodationResponseDto viewAccommodationById(@PathVariable Long accommodationId) {
+    public AccommodationInDetailResponseDto viewAccommodationById(@PathVariable Long accommodationId) {
         return accommodationService.findAccommodationById(accommodationId);
     }
 

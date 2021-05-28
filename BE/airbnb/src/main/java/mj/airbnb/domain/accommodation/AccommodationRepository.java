@@ -1,7 +1,9 @@
 package mj.airbnb.domain.accommodation;
 
 import mj.airbnb.web.dto.SearchRequestDto;
+
 import static mj.airbnb.util.SqlQuery.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,6 +25,21 @@ public class AccommodationRepository {
         accommodation.setNumOfBathroom(rs.getInt("num_of_bathroom"));
         accommodation.setPrice(rs.getBigDecimal("price"));
         accommodation.setAddress(rs.getString("address"));
+
+        return accommodation;
+    };
+
+    private static final RowMapper<Accommodation> ACCOMMODATION_DETAIL_ROW_MAPPER = (rs, rowNum) -> {
+        Accommodation accommodation = new Accommodation();
+        accommodation.setName(rs.getString("name"));
+        accommodation.setMaxNumOfPeople(rs.getInt("max_num_of_people"));
+        accommodation.setType(rs.getString("type"));
+        accommodation.setNumOfBed(rs.getInt("num_of_bed"));
+        accommodation.setNumOfBathroom(rs.getInt("num_of_bathroom"));
+        accommodation.setPrice(rs.getBigDecimal("price"));
+        accommodation.setAddress(rs.getString("address"));
+        accommodation.setHostName(rs.getString("host_name"));
+        accommodation.setDescription(rs.getString("description"));
 
         return accommodation;
     };
@@ -102,10 +119,12 @@ public class AccommodationRepository {
     }
 
     public Accommodation findById(Long id) {
-        String sqlQuery = BASE_SQL +
-                "WHERE " + ID_CONDITION_SQL;
+        String sqlQuery = "SELECT in_detail.host_name, in_detail.description, acc.name, acc.max_num_of_people, acc.type, acc.num_of_bed, acc.num_of_bathroom, acc.price, acc.address " +
+                "FROM accommodation acc INNER JOIN accommodation_detail in_detail " +
+                "ON acc.id = in_detail.accommodation_id " +
+                "WHERE acc.id = ?; ";
 
-        return jdbcTemplate.queryForObject(sqlQuery, ACCOMMODATION_ROW_MAPPER, id);
+        return jdbcTemplate.queryForObject(sqlQuery, ACCOMMODATION_DETAIL_ROW_MAPPER, id);
     }
 
     private boolean isPresentOfDestination(SearchRequestDto requestDto) {
