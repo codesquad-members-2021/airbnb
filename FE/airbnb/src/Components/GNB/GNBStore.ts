@@ -184,3 +184,27 @@ export const calendarState = {
     }),
   },
 };
+
+export const priceState = {
+  prices: atom({
+    key: "priceState",
+    default: [0],
+  }),
+  error: atom({
+    key: "error",
+    default: null,
+  }),
+  lowerLimit: atom({
+    key: "lowerLimit",
+    default: 0,
+  }),
+  upperLimit: atom({
+    key: "upperLimit",
+    default: 1000000,
+  }),
+};
+
+export const peopleState = atom({
+  key: "peopleState",
+  default: 0,
+});

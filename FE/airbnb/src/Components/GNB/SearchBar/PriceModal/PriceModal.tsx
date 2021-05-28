@@ -1,20 +1,41 @@
-import { useRecoilValue } from "recoil";
-import { modalShowState } from "@/Components/GNB/GNBStore";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { useEffect } from "react";
+import { modalShowState, priceState } from "@/Components/GNB/GNBStore";
+import Title from "./Title";
+import RangeText from "./RangeText";
+import Description from "./Description";
+import RangeChart from "./RangeChart/RangeChart";
+import { getAPI } from "@/Utils/api";
 import { PriceModal as S } from "@/Components/GNB/GNBStlyes";
 
 const PriceModal = () => {
   const isShow = useRecoilValue(modalShowState.priceModalShowState);
+  const [prices, setPrices] = useRecoilState(priceState.prices);
+  const [error, setError] = useRecoilState(priceState.error);
+
+  useEffect(() => {
+    getAPI
+      .price()
+      .then((res) => res.json())
+      .then((json) => {
+        if (json) setPrices(json.prices.sort((a: number, b: number) => a - b));
+        else throw Error();
+      })
+      .catch((err) => setError(err));
+  }, [setPrices, setError]);
+
+  if (error || !prices) return null;
+
   return (
     <S.PriceModalWrapper $isShow={isShow}>
-      <S.PriceModal>가격 모달</S.PriceModal>
+      <S.PriceModal>
+        <Title />
+        <RangeText />
+        <Description prices={prices} />
+        <RangeChart prices={prices} />
+      </S.PriceModal>
     </S.PriceModalWrapper>
   );
 };
 
 export default PriceModal;
-
-/*
-1. 가격 범위로 해주세요
-2. input range onInput || onChange에 따른 state변화
-3. 변화하면 앞의 큰 wrapper의 색상 변화
-*/

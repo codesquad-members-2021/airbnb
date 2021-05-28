@@ -5,7 +5,6 @@ import CalendarTable from "./CalendarTable/CalendarTable";
 import { CalendarModal as S } from "@/Components/GNB/GNBStlyes";
 
 const CalendarModal = () => {
-  // 캘린더 날짜를 눌렀을때 setInput
   const isShow = useRecoilValue(modalShowState.calendarModalShowState);
   const [prevYear, setPrevYear] = useRecoilState(calendarState.prev.year);
   const [prevMonth, setPrevMonth] = useRecoilState(calendarState.prev.month);
