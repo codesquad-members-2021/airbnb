@@ -27,6 +27,8 @@ insert into `booking` (user_id, room_id, check_in, check_out, number_of_people, 
 values (1, 2, "2021-05-25", "2021-05-26", 2, 200000);
 insert into `booking` (user_id, room_id, check_in, check_out, number_of_people, total_price)
 values (1, 3, "2021-06-01", "2021-06-03", 2, 200000);
+insert into `booking` (user_id, room_id, check_in, check_out, number_of_people, total_price)
+values (1, 3, "2021-06-04", "2021-06-05", 2, 200000);
 
 insert into `wish` (room_id, user_id)
 values (1, 1);
