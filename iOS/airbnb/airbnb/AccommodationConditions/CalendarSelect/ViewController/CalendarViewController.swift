@@ -146,7 +146,7 @@ final class CalendarViewController: UIViewController {
     private var accommodationConditionTableViewDataSource: AccommodationConditionTableViewDataSource?
     private var calendarCollecionViewDataSource: CalendarCollectionViewDataSource?
     
-    var viewModel: CalendarManageModel?
+    var viewModel: (AnySearchConditionHandleModel<[Month]> & CalendarManageModel)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,7 +163,7 @@ final class CalendarViewController: UIViewController {
         viewModel?.bind(dataHandler: { [weak self] months in
             self?.calendarCollecionViewDataSource?.updateCalendar(with: months)
             self?.updateCalendarView()
-        }, searchHandler: { [weak self] conditions in
+        }, conditionHandler: { [weak self] conditions in
             self?.accommodationConditionTableViewDataSource?.updateContents(with: conditions)
             self?.updateConditionView()
             self?.updateCalendarView()
@@ -198,7 +198,7 @@ final class CalendarViewController: UIViewController {
     }
     
     @objc private func selectionCanceled(_ sender: UIBarButtonItem) {
-        viewModel?.didAllSelectionCanceled()
+        viewModel?.didSelectionCanceled()
         unsetCancelBarButton()
     }
     
@@ -235,11 +235,11 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        viewModel?.calendarUpdateNeeded()
+        viewModel?.calendarCreationNeeded()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel?.didCalendarCellSelected(at: indexPath)
+        viewModel?.didNewDateSelected(at: indexPath)
     }
 
 }

@@ -17,7 +17,7 @@ final class HomeViewController: UIViewController {
         return searchBar
     }
     
-    private var viewModel: ImagePathLoadModel?
+    private var viewModel: AnyResultHandleModel<String>?
     
     override func viewDidLoad() {
         super.viewDidLoad()

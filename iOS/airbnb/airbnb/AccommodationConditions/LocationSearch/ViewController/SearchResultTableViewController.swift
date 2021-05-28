@@ -15,7 +15,7 @@ final class SearchResultTableViewController: UITableViewController {
 
     @IBOutlet var searchResultTable: UITableView!
     private var searchResultTableViewDataSource: SearchResultTableViewDataSource?
-    private var viewModel: SearchResultUpdateModel?
+    private var viewModel: (AnyResultHandleModel<[Location]> & SearchResultUpdateModel)?
     weak var delegate: SearchResultDelegate?
     
     override func viewDidLoad() {

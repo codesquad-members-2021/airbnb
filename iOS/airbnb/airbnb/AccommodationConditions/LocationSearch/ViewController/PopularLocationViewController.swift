@@ -13,7 +13,7 @@ final class PopularLocationViewController: UIViewController {
     private var popularLocationTableViewDataSource: PopularLocationTableViewDataSource?
     private var searchController: LocationSearchController?
     private var searchResultUpdater: LocationSearchResultUpdating?
-    private var viewModel: PopularLocationLoadModel?
+    private var viewModel: AnyResultHandleModel<[PopularLocation]>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
