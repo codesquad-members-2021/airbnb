@@ -47,5 +47,5 @@ export const FeeMin = atom<number>({
 })
 export const FeeMax = atom<number>({
   key: 'maxFeeState',
-  default: 1000000,
+  default: 0,
 })

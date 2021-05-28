@@ -1,6 +1,4 @@
 import styled from 'styled-components'
-import { useRecoilState } from 'recoil'
-import { FeeMin, FeeMax } from '../../../customHook/atoms'
 import Slider from './Slider'
 interface IGraphProps {
   data: Map<number, number>
@@ -11,10 +9,6 @@ interface IStickProps {
 
 function Graph({ data }: IGraphProps) {
   const dataArr = Array.from(data)
-  const [minFeeVal, setMinFeeVal] = useRecoilState(FeeMin)
-  const [maxFeeVal, setMaxFeeVal] = useRecoilState(FeeMax)
-  setMinFeeVal(dataArr[0][0])
-  setMaxFeeVal(dataArr[dataArr.length - 1][0])
 
   return (
     <GraphWrapper>
@@ -29,17 +23,6 @@ function Graph({ data }: IGraphProps) {
         </>
       </Canvas>
       <Slider data={dataArr} />
-      <PriceBox>
-        <PriceTag>
-          <span>최저요금</span>
-          <input value={minFeeVal}></input>
-        </PriceTag>
-        &nbsp;-&nbsp;
-        <PriceTag>
-          <span>최고요금</span>
-          <input value={maxFeeVal}></input>
-        </PriceTag>
-      </PriceBox>
     </GraphWrapper>
   )
 }
@@ -51,30 +34,6 @@ const GraphWrapper = styled.div`
   & > span {
     fontsize: ${({ theme }) => theme.fontSize.super_sm};
     color: ${({ theme }) => theme.color.grey_4};
-  }
-`
-const PriceBox = styled.div`
-  display: flex;
-  align-items: center;
-`
-const PriceTag = styled.div`
-  display: flex;
-  flex-direction: column;
-  border: 1px solid ${({ theme }) => theme.color.grey_2};
-  border-radius: 10px;
-  padding: 0 10px;
-  span {
-    display: inline-block;
-    font-size: ${({ theme }) => theme.fontSize.x_sm};
-    color: ${({ theme }) => theme.color.grey_3};
-  }
-  input {
-    width: 100px;
-    height: 30px;
-    border: none;
-    &:focus {
-      outline: none;
-    }
   }
 `
 const Canvas = styled.div`

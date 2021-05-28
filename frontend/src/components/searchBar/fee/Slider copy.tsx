@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
-import { useRecoilState } from 'recoil'
-import { FeeMin, FeeMax } from '../../../customHook/atoms'
+
 interface ISliderProps {
   data: any[]
 }
@@ -10,13 +9,7 @@ interface IBoxProps {
   slideLength: number
 }
 function Slider({ data }: ISliderProps) {
-  const [minFeeState, setMinFeeState] = useRecoilState(FeeMin)
-  const [maxFeeState, setMaxFeeState] = useRecoilState(FeeMax)
-
-  let slideLength = data.length * 50
-  let minValue = data[0][0]
-  let maxValue = data[data.length - 1][0]
-
+  const [rightBtnMin, setRightBtnMin] = useState(0)
   let inputRightVal: string
   let inputLeftVal: string
   const range = useRef<HTMLDivElement | null>(null)
@@ -25,6 +18,9 @@ function Slider({ data }: ISliderProps) {
   const inputLeft = useRef<HTMLInputElement | null>(null)
   const inputRight = useRef<HTMLInputElement | null>(null)
 
+  let slideLength = data.length * 50
+  let minValue = data[0][0]
+  let maxValue = data[data.length - 1][0]
   useEffect(() => {
     if (inputRight && inputRight.current) {
       inputRightVal = inputRight.current.value
@@ -50,6 +46,7 @@ function Slider({ data }: ISliderProps) {
     let min = parseInt(ctrlTarget.min)
     let max = parseInt(ctrlTarget.max)
     ctrlTarget.value = String(Math.min(parseInt(ctrlTarget.value), parseInt(inputRightVal)))
+    setRightBtnMin(parseInt(ctrlTarget.value))
     let percent = ((parseInt(ctrlTarget.value) - min) / (max - min)) * 100
 
     if (btnLeft && btnLeft.current) {
@@ -58,7 +55,6 @@ function Slider({ data }: ISliderProps) {
     if (range && range.current) {
       range.current.style.left = percent + '%'
     }
-    setMinFeeState(Math.ceil((percent / 100) * (maxValue - minValue)))
   }
 
   function setMaxValue(target: HTMLInputElement | null) {
@@ -75,37 +71,20 @@ function Slider({ data }: ISliderProps) {
     if (range && range.current) {
       range.current.style.right = percent + '%'
     }
-    setMaxFeeState(Math.ceil(percent / 100) * (maxValue - minValue))
   }
 
   return (
     <>
       <SliderBox slideLength={slideLength}>
-        <Input ref={inputLeft} type='range' min='10' max='100' defaultValue='0' />
-        <Input ref={inputRight} type='range' min='0' max='100' defaultValue='100' />
+        <Input ref={inputLeft} type='range' min={minValue} max={maxValue} defaultValue='0' />
+        <Input ref={inputRight} type='range' min={minValue} max={maxValue} defaultValue='100' />
         <SliderView className='slider'>
           <Track className='track' />
           <Range ref={range} className='range' />
-          <BtnLeft ref={btnLeft} className='thumb_left'>
-            ⫴
-          </BtnLeft>
-          <BtnRight ref={btnRight} className='thumb_right'>
-            ⫴
-          </BtnRight>
+          <BtnLeft ref={btnLeft}>⫴</BtnLeft>
+          <BtnRight ref={btnRight}>⫴</BtnRight>
         </SliderView>
       </SliderBox>
-
-      <PriceBox>
-        <PriceTag>
-          <span>최저요금</span>
-          <input value={minValue + minFeeState}></input>
-        </PriceTag>
-        &nbsp;-&nbsp;
-        <PriceTag>
-          <span>최고요금</span>
-          <input value={maxValue - maxFeeState}></input>
-        </PriceTag>
-      </PriceBox>
     </>
   )
 }
@@ -113,10 +92,7 @@ function Slider({ data }: ISliderProps) {
 const SliderBox = styled.div<IBoxProps>`
   position: relative;
   width: ${(props) => props.slideLength}px;
-  top: -23px;
   max-width: 500px;
-  display: flex;
-  flex-direction: column;
 `
 const Input = styled.input`
   position: absolute;
@@ -153,12 +129,11 @@ const Track = styled.div`
   background-color: red;
 `
 const Range = styled.div`
-  height: 346px;
   position: absolute;
   z-index: 2;
   left: 0%;
   right: 0%;
-  top: -336px;
+  top: 0;
   bottom: 0;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.5);
@@ -182,28 +157,4 @@ const BtnLeft = styled(Btn)`
   transform: translate(0px, -10px);
 `
 
-const PriceBox = styled.div`
-  display: flex;
-  align-items: center;
-`
-const PriceTag = styled.div`
-  display: flex;
-  flex-direction: column;
-  border: 1px solid ${({ theme }) => theme.color.grey_2};
-  border-radius: 10px;
-  padding: 0 10px;
-  span {
-    display: inline-block;
-    font-size: ${({ theme }) => theme.fontSize.x_sm};
-    color: ${({ theme }) => theme.color.grey_3};
-  }
-  input {
-    width: 100px;
-    height: 30px;
-    border: none;
-    &:focus {
-      outline: none;
-    }
-  }
-`
 export default Slider
