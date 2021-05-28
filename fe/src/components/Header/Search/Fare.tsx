@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
@@ -6,7 +7,9 @@ import Title from '@components/common/Title';
 import ChartModal from '@components/Header/PriceChart/ChartModal';
 
 import { isOpenPriceChart } from '@recoil/atoms/modalState';
-import { useEffect } from 'react';
+
+//http://3.35.3.106:8080/accomodation/price
+
 const Fare = () => {
   const [isOpenModalChart, setIsOpenModalChart] =
     useRecoilState(isOpenPriceChart);
