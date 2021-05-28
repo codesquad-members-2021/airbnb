@@ -15,6 +15,7 @@
 - FE/feature/play-view: 프론트엔드의 기능 구현 브랜치
 
 # N 주차 목표
+- 보다 구체적인 목표는 issue 참고
 
  ## 1 주차 목표
  
@@ -25,7 +26,25 @@
     - 배포서버 밑작업 API 문서 완성 
   
   - 프론트 엔드
-    - 메인 레이아웃 , GNB 검색 UI 생성. API 요청에 대한 로직 IOS
+    - 메인 레이아웃, GNB 검색 UI 생성. API 요청에 대한 로직 
+    
+  - IOS
+    - 메인 화면, 검색 화면 구현
+
+ ## 2 주차 목표
+
+  - 백엔드
+    - OAuth 로그인
+    - DB 설계 및 적용
+    - DB 연동
+    
+  - 프론트 엔드
+    - 검색바 에 있는 기능 구현
+    - recoil 을 이용한 상태관리
+    
+  - IOS
+    - 검색 조건 필터 화면 구현
+
 
 # 회의 시간 & 장소
 [Gather 8번방](https://gather.town/app/7eVeaoIMyEM2SNIk/rrrrrrrrr
