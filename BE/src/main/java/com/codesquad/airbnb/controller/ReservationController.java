@@ -1,8 +1,8 @@
 package com.codesquad.airbnb.controller;
 
-import com.codesquad.airbnb.dto.PriceInfoDTO;
-import com.codesquad.airbnb.dto.ReservationDetailDTO;
-import com.codesquad.airbnb.dto.ReservationRequestDTO;
+import com.codesquad.airbnb.dto.price.PriceInfoDTO;
+import com.codesquad.airbnb.dto.reservation.ReservationDetailDTO;
+import com.codesquad.airbnb.dto.reservation.ReservationRequestDTO;
 import com.codesquad.airbnb.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

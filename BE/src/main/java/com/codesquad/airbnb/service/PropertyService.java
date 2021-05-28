@@ -1,10 +1,10 @@
 package com.codesquad.airbnb.service;
 
 import com.codesquad.airbnb.dao.PropertyDAO;
-import com.codesquad.airbnb.dto.PriceSearchDTO;
-import com.codesquad.airbnb.dto.PropertiesResponseDTO;
-import com.codesquad.airbnb.dto.PropertyDTO;
-import com.codesquad.airbnb.dto.PropertyDetailResponseDTO;
+import com.codesquad.airbnb.dto.price.PriceSearchDTO;
+import com.codesquad.airbnb.dto.property.PropertiesResponseDTO;
+import com.codesquad.airbnb.dto.property.PropertyDTO;
+import com.codesquad.airbnb.dto.property.PropertyDetailResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

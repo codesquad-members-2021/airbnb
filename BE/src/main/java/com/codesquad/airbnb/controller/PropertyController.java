@@ -1,6 +1,6 @@
 package com.codesquad.airbnb.controller;
 
-import com.codesquad.airbnb.dto.PropertyDetailResponseDTO;
+import com.codesquad.airbnb.dto.property.PropertyDetailResponseDTO;
 import com.codesquad.airbnb.service.PropertyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
