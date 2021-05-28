@@ -1,7 +1,6 @@
 package com.codesquad.airbnb.dao;
 
 import com.codesquad.airbnb.domain.Property;
-import com.codesquad.airbnb.dto.PropertiesResponseDTO;
 import com.codesquad.airbnb.dto.PropertyDTO;
 import com.codesquad.airbnb.dto.PropertyDetailResponseDTO;
 import org.junit.jupiter.api.Test;
@@ -42,9 +41,19 @@ public class PropertyDAOTest {
 
     @Test
     void propertyDao_findBy() {
-        PropertiesResponseDTO properties = propertyDao.findBy(1L, LocalDate.of(2021, 5, 20), LocalDate.of(2021, 5, 23),
-                10000, 100000, 2, 0, 0);
-        for (PropertyDTO property : properties.getProperties()) {
+        List<PropertyDTO> properties = propertyDao.findBy(1L, LocalDate.of(2021, 5, 20), LocalDate.of(2021, 5, 23),
+                10000, 100000, 2);
+        for (PropertyDTO property : properties) {
+            assertThat(property).isNotNull();
+            logger.info("Find property by propertyDao: {}",
+                    property);
+        }
+    }
+
+    @Test
+    void propertyDao_findByWishList() {
+        List<PropertyDTO> properties = propertyDao.findByWishList();
+        for (PropertyDTO property : properties) {
             assertThat(property).isNotNull();
             logger.info("Find property by propertyDao: {}",
                     property);

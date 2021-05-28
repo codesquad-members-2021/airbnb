@@ -3,11 +3,13 @@ package com.codesquad.airbnb.service;
 import com.codesquad.airbnb.dao.PropertyDAO;
 import com.codesquad.airbnb.dto.PriceSearchDTO;
 import com.codesquad.airbnb.dto.PropertiesResponseDTO;
+import com.codesquad.airbnb.dto.PropertyDTO;
 import com.codesquad.airbnb.dto.PropertyDetailResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -51,10 +53,41 @@ public class PropertyService {
     }
 
     public PropertiesResponseDTO findBy(Long locationId, LocalDate checkIn, LocalDate checkOut, int minPrice, int maxPrice, int adult, int children, int infant) {
-        return propertyDao.findBy(locationId, checkIn, checkOut, minPrice, maxPrice, adult, children, infant);
+        long diff = 1;
+
+        if (checkIn != null && checkOut != null) {
+            diff = ChronoUnit.DAYS.between(checkIn, checkOut);
+        }
+
+        int maxOccupancy = adult + children + infant;
+
+        List<PropertyDTO> propertyDTOS = propertyDao.findBy(locationId, checkIn, checkOut, minPrice,
+                maxPrice, maxOccupancy);
+
+        long finalDiff = diff;
+
+        propertyDTOS.stream()
+                .forEach(propertyDTO1 -> {
+                            propertyDTO1.setImages(propertyDao.findImageByPropertyId(propertyDTO1.getPropertyId()));
+                            propertyDTO1.setTotalPrice(finalDiff);
+                        }
+                );
+
+        PropertiesResponseDTO propertyDtos = new PropertiesResponseDTO(propertyDTOS);
+        return propertyDtos;
     }
 
-    public PropertyDetailResponseDTO findPropertyDetailByPropertyId (Long propertyId) {
+    public PropertiesResponseDTO findByWishList() {
+        List<PropertyDTO> propertyDTOS = propertyDao.findByWishList();
+        propertyDTOS.stream()
+                .forEach(propertyDTO1 -> {
+                            propertyDTO1.setImages(propertyDao.findImageByPropertyId(propertyDTO1.getPropertyId()));
+                        }
+                );
+        return new PropertiesResponseDTO(propertyDTOS);
+    }
+
+    public PropertyDetailResponseDTO findPropertyDetailByPropertyId(Long propertyId) {
         return propertyDao.findPropertyDetailByPropertyId(propertyId);
     }
 }
