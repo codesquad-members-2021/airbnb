@@ -12,7 +12,7 @@ final class SearchResultViewModel: SearchResultUpdateModel {
     private var dataHandler: DataHandler?
     private var errorHandler: ErrorHandler?
     
-    private var searchResults: [LocationSearchResult]? {
+    private var searchResults: [Location]? {
         didSet {
             guard let searchResults = searchResults else { return }
             dataHandler?(searchResults)

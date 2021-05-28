@@ -15,7 +15,7 @@ struct StoryboardFactory {
 
 enum Storyboard: String {
     case main = "Main"
-    case accomodationConditions = "AccomodationConditions"
+    case accommodationConditions = "AccommodationConditions"
     
     var id: String {
         return rawValue

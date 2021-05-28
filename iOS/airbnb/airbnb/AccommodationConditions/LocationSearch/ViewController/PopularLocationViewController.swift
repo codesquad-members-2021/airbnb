@@ -31,7 +31,7 @@ final class PopularLocationViewController: UIViewController {
     }
     
     private func setNavigationSearchController() {
-        let storyboard = self.storyboard ?? StoryboardFactory.create(.accomodationConditions)
+        let storyboard = self.storyboard ?? StoryboardFactory.create(.accommodationConditions)
         let searchResultViewController = ViewControllerFactory.create(from: storyboard, type: SearchResultTableViewController.self)
         searchController = LocationSearchController(searchResultsController: searchResultViewController)
         searchResultViewController.delegate = self
@@ -112,16 +112,19 @@ extension PopularLocationViewController: UISearchBarDelegate {
 
 extension PopularLocationViewController: SearchResultDelegate {
     
-    func didSelect(result: LocationSearchResult) {
+    func didSelect(result: Location) {
         pushNextViewController(with: result)
         inactiveSearchController()
         unsetCancelBarButton()
     }
     
-    private func pushNextViewController(with result: LocationSearchResult) {
-        let storyboard = self.storyboard ?? StoryboardFactory.create(.accomodationConditions)
+    private func pushNextViewController(with result: Location) {
+        let storyboard = self.storyboard ?? StoryboardFactory.create(.accommodationConditions)
         let nextViewController = ViewControllerFactory.create(from: storyboard, type: CalendarViewController.self)
-        nextViewController.location = result
+        
+        let accommodationConditions = ConditionManager(location: result)
+        nextViewController.viewModel = CalendarViewModel(conditionManager: accommodationConditions)
+        
         self.navigationItem.backButtonTitle = PopularLocationViewModel.ButtonTitle.back
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }

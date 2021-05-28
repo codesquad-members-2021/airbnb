@@ -9,5 +9,5 @@ import Foundation
 
 protocol SearchResultFetchUseCase {
     func execute(for keyword: String,
-                 completionHandler: @escaping (Result<[LocationSearchResult], NetworkError>) -> Void)
+                 completionHandler: @escaping (Result<[Location], NetworkError>) -> Void)
 }
