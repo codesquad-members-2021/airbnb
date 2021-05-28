@@ -1,14 +1,78 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 import * as T from "./AtomTypes";
 
-export const searchBarToggleState = atom<T.SearchBarToggle>({
-  key: "searchBarToggleState",
-  default: {
-    calendar: false,
-    roomPrice: false,
-    guests: false,
+export const checkInClickState = atom({
+  key: "checkInClickState",
+  default: false,
+});
+export const checkOutClickState = atom({
+  key: "checkOutClickState",
+  default: false,
+});
+
+export const roomPriceClickState = atom({
+  key: "roomPriceClickState",
+  default: false,
+});
+
+export const guestsClickState = atom({
+  key: "guestsClickState",
+  default: false,
+});
+export const searchBarClickState = selector({
+  key: "searchBarClickState",
+  get: ({ get }) => {
+    const roomPrice = get(roomPriceClickState);
+    const checkIn = get(checkInClickState);
+    const checkOut = get(checkOutClickState);
+    const guests = get(guestsClickState);
+  },
+  set: ({ set }, clickedFilter) => {
+    // 2번째 파라미터 에는 추가로 받을 인자를 나타냅니다.
+    switch (clickedFilter) {
+      case "IN":
+        set(checkInClickState, true);
+        set(checkOutClickState, false);
+        set(roomPriceClickState, false);
+        set(guestsClickState, false);
+        break;
+      case "OUT":
+        set(checkInClickState, false);
+        set(checkOutClickState, true);
+        set(roomPriceClickState, false);
+        set(guestsClickState, false);
+        break;
+      case "PRICE":
+        set(checkInClickState, false);
+        set(checkOutClickState, false);
+        set(roomPriceClickState, true);
+        set(guestsClickState, false);
+        break;
+      case "GUESTS":
+        set(checkInClickState, false);
+        set(checkOutClickState, false);
+        set(roomPriceClickState, false);
+        set(guestsClickState, true);
+        break;
+      case "RESET":
+        set(checkInClickState, false);
+        set(checkOutClickState, false);
+        set(roomPriceClickState, false);
+        set(guestsClickState, false);
+        break;
+      default:
+        throw new Error("Unhandled Filter Type");
+    }
   },
 });
+// export const calendarToggleState = atom<T.SearchBarToggle>({
+//   key: "calendarToggleState",
+//   default: {
+//     calendar: false,
+//     roomPrice: false,
+//     guests: false,
+//   },
+// });
 
 export const calendarModalState = atom<T.CalendarModal>({
   key: "calendarModalState",
