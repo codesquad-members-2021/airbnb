@@ -1,7 +1,6 @@
 package com.codesquad.airbnb.wishlist;
 
 import com.codesquad.airbnb.common.utils.DummyDataFactory;
-import com.codesquad.airbnb.reservation.controller.ReservationDTO;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -19,7 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class WishlistControllerTest {
