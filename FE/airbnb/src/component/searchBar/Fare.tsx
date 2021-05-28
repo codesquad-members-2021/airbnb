@@ -7,7 +7,7 @@ interface Props {
 
 function Fare({ onClick }: Props) {
   return (
-    <FareContainer onClick={onClick}>
+    <FareContainer onClick={onClick} className="betweenBorder">
       <Title>요금</Title>
       <Content>금액대 설정</Content>
     </FareContainer>

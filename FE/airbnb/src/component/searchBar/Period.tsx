@@ -16,11 +16,11 @@ function Period({ onClick }: Props) {
     checkoutDate !== "날짜 입력" ? `${checkoutDate.substr(4, 2)}월 ${checkoutDate.substr(6, 2)}일` : checkoutDate;
   return (
     <>
-      <CheckInContainer onClick={onClick}>
+      <CheckInContainer onClick={onClick} className="betweenBorder">
         <Title>체크인</Title>
         <Content>{checkinText}</Content>
       </CheckInContainer>
-      <CheckOutContainer onClick={onClick}>
+      <CheckOutContainer onClick={onClick} className="betweenBorder">
         <Title>체크아웃</Title>
         <Content>{checkoutText}</Content>
       </CheckOutContainer>
