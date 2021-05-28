@@ -27,6 +27,7 @@ public class UserRepository {
             pstmt.setString(2, user.getName());
             pstmt.setString(3, user.getName());
             pstmt.executeUpdate();
+            pstmt.close();
         } catch (SQLException e) {
             throw new SqlException("유저 저장에 실패했습니다.");
         }
