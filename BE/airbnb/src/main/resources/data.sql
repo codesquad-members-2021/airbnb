@@ -20,7 +20,7 @@ INSERT INTO accommodation_detail (host_name, description, accommodation_id) VALU
 -- reservation 초기값 추가
 -- -----------------------------------------------------
 
-INSERT INTO reservation (check_in_date, check_out_date, accommodation_id) VALUES ('2021-04-21', '2021-04-23', 1);
-INSERT INTO reservation (check_in_date, check_out_date, accommodation_id) VALUES ('2021-05-03', '2021-05-05', 1);
-INSERT INTO reservation (check_in_date, check_out_date, accommodation_id) VALUES ('2021-01-21', '2021-01-23', 2);
-INSERT INTO reservation (check_in_date, check_out_date, accommodation_id) VALUES ('2021-02-01', '2021-02-03', 2);
+INSERT INTO reservation (check_in_date, check_out_date, accommodation_id, user_id) VALUES ('2021-04-21', '2021-04-23', 1, 16694346);
+INSERT INTO reservation (check_in_date, check_out_date, accommodation_id, user_id) VALUES ('2021-05-03', '2021-05-05', 1, 16694346);
+INSERT INTO reservation (check_in_date, check_out_date, accommodation_id, user_id) VALUES ('2021-01-21', '2021-01-23', 2, 16694346);
+INSERT INTO reservation (check_in_date, check_out_date, accommodation_id, user_id) VALUES ('2021-02-01', '2021-02-03', 2, 16694346);

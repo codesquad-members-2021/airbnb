@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `airbnb_db`.`reservation` (
   `check_in_date` DATE NULL,
   `check_out_date` DATE NULL,
   `accommodation_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`id`, `accommodation_id`),
   INDEX `fk_reservation_accommodation1_idx` (`accommodation_id` ASC) VISIBLE,
   CONSTRAINT `fk_reservation_accommodation1`
