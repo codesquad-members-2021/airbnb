@@ -9,7 +9,7 @@ import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class AccommodationRequestDTO {
+public class AccommodationRequest {
 
     @FutureOrPresent
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -28,7 +28,7 @@ public class AccommodationRequestDTO {
     @Positive
     private Integer numberOfPeople;
 
-    public AccommodationRequestDTO(LocalDate checkinDate, LocalDate checkoutDate, Integer startPrice, Integer endPrice, Integer numberOfPeople) {
+    public AccommodationRequest(LocalDate checkinDate, LocalDate checkoutDate, Integer startPrice, Integer endPrice, Integer numberOfPeople) {
         this.checkinDate = checkinDate;
         this.checkoutDate = checkoutDate;
         this.startPrice = startPrice;
@@ -78,7 +78,7 @@ public class AccommodationRequestDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AccommodationRequestDTO that = (AccommodationRequestDTO) o;
+        AccommodationRequest that = (AccommodationRequest) o;
         return Objects.equals(checkinDate, that.checkinDate) && Objects.equals(checkoutDate, that.checkoutDate) && Objects.equals(startPrice, that.startPrice) && Objects.equals(endPrice, that.endPrice) && Objects.equals(numberOfPeople, that.numberOfPeople);
     }
 

@@ -1,6 +1,7 @@
 package com.codesquad.airbnb.accommodation.controller;
 
 import com.codesquad.airbnb.common.exception.ErrorResponse;
+import com.codesquad.airbnb.common.exception.NotFoundException;
 import com.codesquad.airbnb.common.utils.DummyDataFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -40,10 +41,10 @@ class AccommodationControllerTest {
 
     @ParameterizedTest
     @MethodSource("readAllProvider")
-    void readAll(String path, AccommodationRequestDTO accommodationRequestDTO, List<AccommodationResponseDTO> expected) {
-        ResponseEntity<List<AccommodationResponseDTO>> responseEntity = restTemplate.exchange(
-                RequestEntity.get(uriComponentsOf(path, accommodationRequestDTO).toUriString()).build(),
-                new ParameterizedTypeReference<List<AccommodationResponseDTO>>() {
+    void readAll(String path, AccommodationRequest accommodationRequest, List<AccommodationResponse> expected) {
+        ResponseEntity<List<AccommodationResponse>> responseEntity = restTemplate.exchange(
+                RequestEntity.get(uriComponentsOf(path, accommodationRequest).toUriString()).build(),
+                new ParameterizedTypeReference<List<AccommodationResponse>>() {
                 }
         );
 
@@ -56,23 +57,23 @@ class AccommodationControllerTest {
         return Stream.of(
                 Arguments.arguments(
                         "/accommodations",
-                        new AccommodationRequestDTO(null, null, null, null, null),
+                        new AccommodationRequest(null, null, null, null, null),
                         DummyDataFactory.accommodationResponseDTOsWithId()
                 ), Arguments.arguments(
                         "/accommodations",
-                        new AccommodationRequestDTO(null, null, null, 300000, null),
+                        new AccommodationRequest(null, null, null, 300000, null),
                         DummyDataFactory.accommodationResponseDTOsWithId().stream()
                                 .filter(accommodationResponseDTO -> accommodationResponseDTO.pricePerNight() <= 300000)
                                 .collect(Collectors.toList())
                 ), Arguments.arguments(
                         "/accommodations",
-                        new AccommodationRequestDTO(null, null, 100000, null, null),
+                        new AccommodationRequest(null, null, 100000, null, null),
                         DummyDataFactory.accommodationResponseDTOsWithId().stream()
                                 .filter(accommodationResponseDTO -> 100000 <= accommodationResponseDTO.pricePerNight())
                                 .collect(Collectors.toList())
                 ), Arguments.arguments(
                         "/accommodations",
-                        new AccommodationRequestDTO(null, null, 100000, 300000, null),
+                        new AccommodationRequest(null, null, 100000, 300000, null),
                         DummyDataFactory.accommodationResponseDTOsWithId().stream()
                                 .filter(accommodationResponseDTO -> 100000 <= accommodationResponseDTO.pricePerNight())
                                 .filter(accommodationResponseDTO -> accommodationResponseDTO.pricePerNight() <= 300000)
@@ -83,9 +84,9 @@ class AccommodationControllerTest {
 
     @ParameterizedTest
     @MethodSource("readAllValidationFailedProvider")
-    void readAllValidationFailed(String path, AccommodationRequestDTO accommodationRequestDTO, ErrorResponse expected) throws JsonProcessingException {
+    void readAllValidationFailed(String path, AccommodationRequest accommodationRequest, ErrorResponse expected) throws JsonProcessingException {
         ResponseEntity<ErrorResponse> responseEntity = restTemplate.exchange(
-                RequestEntity.get(uriComponentsOf(path, accommodationRequestDTO).toUriString())
+                RequestEntity.get(uriComponentsOf(path, accommodationRequest).toUriString())
                         .header(HttpHeaders.ACCEPT_LANGUAGE, Locale.KOREA.toLanguageTag())
                         .build(),
                 ErrorResponse.class
@@ -105,7 +106,7 @@ class AccommodationControllerTest {
         return Stream.of(
                 Arguments.arguments(
                         "/accommodations",
-                        new AccommodationRequestDTO(null, null, -1, -1, 0),
+                        new AccommodationRequest(null, null, -1, -1, 0),
                         new ErrorResponse(
                                 400,
                                 "BAD_REQUEST",
@@ -118,7 +119,7 @@ class AccommodationControllerTest {
                         )
                 ), Arguments.arguments(
                         "/accommodations",
-                        new AccommodationRequestDTO(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1), null, null, null),
+                        new AccommodationRequest(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1), null, null, null),
                         new ErrorResponse(
                                 400,
                                 "BAD_REQUEST",
@@ -131,7 +132,7 @@ class AccommodationControllerTest {
                         )
                 ), Arguments.arguments(
                         "/accommodations",
-                        new AccommodationRequestDTO(null, null, 10, 0, null),
+                        new AccommodationRequest(null, null, 10, 0, null),
                         new ErrorResponse(
                                 400,
                                 "BAD_REQUEST",
@@ -144,13 +145,44 @@ class AccommodationControllerTest {
         );
     }
 
-    private UriComponents uriComponentsOf(String path, AccommodationRequestDTO accommodationRequestDTO) {
+    private UriComponents uriComponentsOf(String path, AccommodationRequest accommodationRequest) {
         return UriComponentsBuilder.fromHttpUrl(BASE_URL).path(path).port(port)
-                       .queryParamIfPresent("checkinDate", Optional.ofNullable(accommodationRequestDTO.getCheckinDate()))
-                       .queryParamIfPresent("checkoutDate", Optional.ofNullable(accommodationRequestDTO.getCheckoutDate()))
-                       .queryParamIfPresent("startPrice", Optional.ofNullable(accommodationRequestDTO.getStartPrice()))
-                       .queryParamIfPresent("endPrice", Optional.ofNullable(accommodationRequestDTO.getEndPrice()))
-                       .queryParamIfPresent("numberOfPeople", Optional.ofNullable(accommodationRequestDTO.getNumberOfPeople()))
+                       .queryParamIfPresent("checkinDate", Optional.ofNullable(accommodationRequest.getCheckinDate()))
+                       .queryParamIfPresent("checkoutDate", Optional.ofNullable(accommodationRequest.getCheckoutDate()))
+                       .queryParamIfPresent("startPrice", Optional.ofNullable(accommodationRequest.getStartPrice()))
+                       .queryParamIfPresent("endPrice", Optional.ofNullable(accommodationRequest.getEndPrice()))
+                       .queryParamIfPresent("numberOfPeople", Optional.ofNullable(accommodationRequest.getNumberOfPeople()))
                        .build();
+    }
+
+    @ParameterizedTest
+    @MethodSource("readOneProvider")
+    void readOne(String path, long id, AccommodationDTO expected) {
+
+        UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl(BASE_URL)
+                                              .path(path)
+                                              .port(port)
+                                              .buildAndExpand(id);
+
+        ResponseEntity<AccommodationDTO> responseEntity = restTemplate.getForEntity(
+                uriComponents.toUri(),
+                AccommodationDTO.class
+        );
+
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(responseEntity.getBody()).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> readOneProvider() {
+        return Stream.of(
+                Arguments.of(
+                        "/accommodations/{id}",
+                        1,
+                        DummyDataFactory.accommodationDTOsWithId().stream()
+                                .filter(accommodationDTO -> accommodationDTO.getId() == 1)
+                                .findAny()
+                                .orElseThrow(() -> new NotFoundException())
+                )
+        );
     }
 }
