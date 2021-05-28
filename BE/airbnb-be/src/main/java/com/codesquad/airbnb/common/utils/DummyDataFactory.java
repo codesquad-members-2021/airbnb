@@ -6,6 +6,7 @@ import com.codesquad.airbnb.accommodation.domain.AccommodationOption;
 import com.codesquad.airbnb.accommodation.domain.AccommodationType;
 import com.codesquad.airbnb.accommodation.domain.RestroomType;
 import com.codesquad.airbnb.reservation.controller.ReservationDTO;
+import com.codesquad.airbnb.wishlist.WishlistItemDTO;
 
 import java.util.Arrays;
 import java.util.List;
@@ -167,5 +168,13 @@ public class DummyDataFactory {
 
     public static ReservationDTO reservation() {
         return new ReservationDTO(1L, AccommodationResponse.from(accommodationTypeSuiteroom()));
+    }
+
+    public static List<WishlistItemDTO> wishlist() {
+        return Arrays.asList(DummyDataFactory.wishlistItem(), DummyDataFactory.wishlistItem());
+    }
+
+    public static WishlistItemDTO wishlistItem() {
+        return new WishlistItemDTO(1L, AccommodationResponse.from(accommodationTypeSuiteroom()));
     }
 }
