@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.web.service.interceptor;
+package com.codesquad.airbnb.web.config.interceptor;
 
 import com.codesquad.airbnb.web.exceptions.jwt.InvalidJwtTokenException;
 import com.codesquad.airbnb.web.exceptions.jwt.NoJwtTokenException;

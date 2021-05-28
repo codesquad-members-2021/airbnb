@@ -1,7 +1,7 @@
 package com.codesquad.airbnb.web.config;
 
-import com.codesquad.airbnb.web.service.interceptor.AuthInterceptor;
-import com.codesquad.airbnb.web.service.resolver.CertifiedUserResolver;
+import com.codesquad.airbnb.web.config.interceptor.AuthInterceptor;
+import com.codesquad.airbnb.web.config.resolver.CertifiedUserResolver;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

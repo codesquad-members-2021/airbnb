@@ -1,6 +1,6 @@
 package com.codesquad.airbnb.web.config.bean;
 
-import com.codesquad.airbnb.web.service.resolver.CertifiedUserResolver;
+import com.codesquad.airbnb.web.config.resolver.CertifiedUserResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

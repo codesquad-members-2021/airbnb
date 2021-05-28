@@ -1,6 +1,6 @@
 package com.codesquad.airbnb.web.config.bean;
 
-import com.codesquad.airbnb.web.service.interceptor.AuthInterceptor;
+import com.codesquad.airbnb.web.config.interceptor.AuthInterceptor;
 import com.codesquad.airbnb.web.service.oauth.TokenService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
