@@ -11,20 +11,15 @@ import {
   useSetRecoilState,
 } from "recoil";
 import React, { useState, useEffect } from "react";
-import { searchBarClickState, checkInClickState } from "recoil/Atoms";
+import { searchBarClickState } from "recoil/Atoms";
 
 const SearchBar = () => {
   // const Reset = useResetRecoilState(searchBarClickState);
   const setsSearchBarClick = useSetRecoilState(searchBarClickState);
-  const checkInTest = useRecoilValue(checkInClickState);
 
   useEffect(() => {
-    console.log(checkInTest);
-    if (checkInTest) document.body.addEventListener("click", ClosePopup);
-    return function cleanup() {
-      document.body.removeEventListener("click", ClosePopup);
-    };
-  }, [checkInTest]);
+    document.body.addEventListener("click", ClosePopup);
+  }, []);
 
   const ClosePopup = (e: MouseEvent): void => {
     console.log(33);

@@ -110,10 +110,10 @@ export const roomPriceFilterState = atom<T.RoomPriceFilter>({
 });
 
 export const guestFilterState = atom<T.GuestsState>({
-  key: "guestFilterState",
-  default: {
-    adult: null,
-    child: null,
-    toddler: null,
-  },
-});
+    key: "guestFilterState",
+    default: {
+        adult: null,
+        child: null,
+        toddler:null
+    }
+})
