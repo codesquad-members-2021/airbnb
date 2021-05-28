@@ -32,9 +32,10 @@ const CalendarSelector = styled.div`
     & > button {
       border-radius: 100px;
       border: none;
-      font-size: 0.9rem;
+      font-size: 1.3rem;
+      font-weight: 600;
       line-height: 1.8rem;
-      font-weight: 400;
+      font-weight: 600;
       background: #fff;
       color: rgb(34, 34, 34);
       padding: 3px 14px;
@@ -43,9 +44,13 @@ const CalendarSelector = styled.div`
       cursor: pointer;
       &:last-child {
         background-color: #e6e6e6;
+        font-weight: 600;
         &:hover {
           background-color: #fff;
           transition: background-color 0.4s;
+        }
+        &:not(hover) {
+          transition: background-color 0.2s;
         }
       }
     }
@@ -53,15 +58,16 @@ const CalendarSelector = styled.div`
 `;
 
 const CalendarLayout = styled.div`
-  outline: red solid 1px;
+  /* outline: red solid 1px; */
   width: 90%;
   margin: 1.6rem;
   padding: 1.5rem;
   font-size: 1.6rem;
   font-weight: 600;
-  display: flex;
 
-  .calendar {
+  .title-container {
+    width: 100%;
+    display: flex;
   }
 `;
 
@@ -112,10 +118,13 @@ const CurrentMonth = styled.div`
   text-align: center;
   flex-direction: column;
 
+  .calendar-container {
+    width: 100%;
+  }
+
   &:first-child {
     position: relative;
     display: flex;
-    border: 1px solid pink;
     align-items: center;
   }
 
@@ -124,6 +133,33 @@ const CurrentMonth = styled.div`
     margin: 0 auto;
     width: auto;
     height: 2rem;
+  }
+
+  .days {
+    width: 100%;
+    font-weight: 300;
+    font-size: 1.2rem;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+
+    & > span {
+      display: flex;
+      align-items: center; 
+      height: 2em;
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  .dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    justify-items: center; //grid
+    
+    & > div {
+      display: flex;
+      align-items: center; //flex
+      height: 5rem;
+    }
   }
 `;
 
@@ -137,7 +173,7 @@ const NextMonth = styled.div`
   &:last-child {
     position: relative;
     display: flex;
-    border: 1px solid pink;
+    /* border: 1px solid pink; */
     align-items: center;
   }
 
@@ -148,10 +184,6 @@ const NextMonth = styled.div`
     height: 2rem;
   }
 `;
-const CalendarMatrix = styled.div`
-  border: 1px solid blue;
-  width: 100%;
-`;
 
 export {
   CalendarModalLayout,
@@ -161,7 +193,6 @@ export {
   RightArrowBtn,
   CurrentMonth,
   NextMonth,
-  CalendarMatrix,
   RiArrowLeftSLine,
   RiArrowRightSLine,
 };

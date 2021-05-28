@@ -1,33 +1,16 @@
+import { useRecoilValue } from 'recoil';
+import { calendarModalState } from 'recoil/Atoms';
 import * as S from "components/SearchBar/Calendar/CalendarStyles";
-import moment, { Moment } from "moment";
-import 'moment/locale/ko';
-moment.locale('ko');
 
 const CalendarModal = () => {
-  const value = moment(); //현재 날짜값 가져오기
-  const startDay = value.clone().startOf("month").startOf("week");//clone을 해주는 이유 = 원본 now Date를 보존하기 위해.
-  const endDay = value.clone().endOf("month").endOf("week");
-  const day = startDay.clone().subtract(1, "day"); //시작일에서 하루 빼기
-  const calendar:Array<Moment[]> = [];
-
-  //들어오는 day 값이 endDay 이전 값인지 체크.
-  const createCalendar = () => {
-    while(day.isBefore(endDay, "day")) {
-      calendar.push(Array(7).fill(0).map(() => day.add(1, "day").clone()));
-    }
-    //format()을 하면 moment 객체에서 string으로 바꿔줌.
-    //[[1, 2, 3, 4, 5, 6, 7], [8, 9, 10, 11, 12, 13, 14], [],,]
-    return calendar.map(week =>
-      <div className="calendar">
-        {week.map((day) => {
-          <div>{day.format("D").toString()}</div>
-      })}
-      </div>
-    )
-  }
-
-  console.log(startDay.format("D").toString(), endDay.format("D").toString(), day.format("D").toString());
-
+  const { year, month, today } = useRecoilValue(calendarModalState);
+  const daysOfWeek: string[] = ["일", "월", "화", "수", "목", "금", "토"];
+  const startDay: number = new Date(year, month, 1).getDay();
+  const endDate: number = new Date(year, month, 0).getDate();
+  const emptyDates: (number | string)[] = Array(startDay).fill("");
+  const filledDates = Array.from({ length : endDate },(_, i) => i + 1);
+  const dates = [...emptyDates, ...filledDates];
+  const calendarTemplate = dates.map((date, idx) => <div key={'date-' + idx}>{date}</div>)
   return (
     <S.CalendarModalLayout>
       <S.CalendarSelector>
@@ -37,24 +20,26 @@ const CalendarModal = () => {
         </div>
       </S.CalendarSelector>
       <S.CalendarLayout>
-        <S.CurrentMonth>
-          <div>
-            <S.LeftArrowBtn>
-              <S.RiArrowLeftSLine/>
-            </S.LeftArrowBtn>
-            <div className="year_and_month">{startDay.format("YYYY")}년 {startDay.format("MM")}월</div>
-          </div>
-          <S.CalendarMatrix></S.CalendarMatrix>
-        </S.CurrentMonth>
-        <S.NextMonth>
-          <div>
-            <div className="year_and_month">{endDay.format("YYYY")}년 {endDay.format("MM")}월</div>
-            <S.RightArrowBtn>
-              <S.RiArrowRightSLine/>
-            </S.RightArrowBtn>
-          </div>
-          <S.CalendarMatrix></S.CalendarMatrix>
-        </S.NextMonth>
+        <div className="title-container">
+          <S.CurrentMonth>
+            <div className="calendar-container" style={{ width: "100%" }}>
+              <S.LeftArrowBtn>
+                <S.RiArrowLeftSLine/>
+              </S.LeftArrowBtn>
+              <div className="year_and_month">{year}년 {month}월</div>
+              <div className="days">{daysOfWeek.map(day => <span>{day}</span>)}</div>
+              <div className="dates">{calendarTemplate}</div>
+            </div>
+          </S.CurrentMonth>
+          <S.NextMonth>
+            <div>
+              <div className="year_and_month">{year}년 {month + 1}월</div>
+              <S.RightArrowBtn>
+                <S.RiArrowRightSLine/>
+              </S.RightArrowBtn>
+            </div>
+          </S.NextMonth>
+        </div>
       </S.CalendarLayout>
     </S.CalendarModalLayout>
   );
