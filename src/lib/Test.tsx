@@ -1,13 +1,15 @@
 import styled from "styled-components";
-import Calendar, { OnClickResult, Controller } from "./Calendar";
+import InnerCalendar, { OnClickResult, Controller } from "./calendar/Calendar";
 export default function Test() {
-  const onClickDay = (result: OnClickResult) => {};
+  const onClickDay = (result: OnClickResult) => {
+    console.log(result.nextClickTarget);
+  };
 
   return (
     <TestWrapper>
       <Controller start>checkIn</Controller>
       <Controller end>checkOut</Controller>
-      <Calendar onClickDay={onClickDay} countOfMonth={2} />
+      <InnerCalendar onClickDay={onClickDay} countOfMonth={2} />
     </TestWrapper>
   );
 }
