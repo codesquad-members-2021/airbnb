@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.web.sqls
+package com.codesquad.airbnb.web.statement
 
 const val SAVE_USER: String = """
 insert into `user` (oauth_id, authenticated_by, nickname, name, profile_image, access_token)

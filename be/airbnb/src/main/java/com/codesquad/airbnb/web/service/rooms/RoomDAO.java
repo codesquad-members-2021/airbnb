@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.codesquad.airbnb.web.sqls.RoomSqlKt.*;
+import static com.codesquad.airbnb.web.statement.RoomSqlKt.*;
 
 @Service
 public class RoomDAO implements RoomRepository {

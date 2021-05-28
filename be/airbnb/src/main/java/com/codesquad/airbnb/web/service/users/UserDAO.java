@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.codesquad.airbnb.web.sqls.UserSqlKt.*;
+import static com.codesquad.airbnb.web.statement.UserSqlKt.*;
 
 @Slf4j
 @Service

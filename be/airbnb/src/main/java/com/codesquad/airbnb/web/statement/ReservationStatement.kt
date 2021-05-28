@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.web.sqls
+package com.codesquad.airbnb.web.statement
 
 const val SAVE_RESERVATION: String = """
 insert into reservation(room_id, guest_id, checkin_date_time, checkout_date_time, adult_count, child_count,infant_count)
