@@ -178,4 +178,7 @@ gradle-app.setting
 ### Gradle Patch ###
 **/build/
 
+### oauth 정보 ##
+src/main/resources/oauth.properties
+
 # End of https://www.toptal.com/developers/gitignore/api/gradle,java,macos,intellij
