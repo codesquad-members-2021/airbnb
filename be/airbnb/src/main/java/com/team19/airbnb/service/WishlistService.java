@@ -21,7 +21,6 @@ public class WishlistService {
         this.wishlistDAO = wishlistDAO;
     }
 
-    @Transactional
     public void addWishList(WishListRequestDTO wishListRequestDTO, Long userId) {
         User user = userService.findUser(userId);
         List<Wishlist> wishlists = user.getWishlists();
@@ -33,8 +32,7 @@ public class WishlistService {
     public void deleteWishlist(WishListRequestDTO wishListRequestDTO, Long userId) {
         User user = userService.findUser(userId);
         Wishlist wishlist = wishListRequestDTO.toEntity();
-        List<Wishlist> wishlists = user.getWishlists();
-        wishlists.remove(wishlist);
+        user.removeWishlist(wishlist);
         wishlistDAO.removeWishlist(user, wishlist);
 
     }
