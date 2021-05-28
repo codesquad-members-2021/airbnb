@@ -189,7 +189,6 @@ class AccommodationControllerTest {
     @ParameterizedTest
     @MethodSource("priceStatsProvider")
     void priceStats(String path, List<AccommodationPriceStats> expected) {
-
         UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl(BASE_URL)
                                               .path(path)
                                               .port(port)
@@ -205,6 +204,7 @@ class AccommodationControllerTest {
         assertThat(responseEntity.getBody()).isEqualTo(expected);
     }
 
+    @SuppressWarnings("unused")
     static Stream<Arguments> priceStatsProvider() {
         return Stream.of(
                 Arguments.of(
@@ -217,7 +217,6 @@ class AccommodationControllerTest {
     @ParameterizedTest
     @MethodSource("reservationRequestInfoProvider")
     void reservationRequestInfo(String path, long id, int nights, AccommodationReservationInfo expected) {
-
         UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl(BASE_URL)
                                               .path(path)
                                               .port(port)
