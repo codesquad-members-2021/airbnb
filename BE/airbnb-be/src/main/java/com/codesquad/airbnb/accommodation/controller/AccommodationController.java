@@ -35,7 +35,7 @@ public class AccommodationController {
     }
 
     @GetMapping("/accommodations/{id}/reservation")
-    public AccommodationReservationInfo reservationRequestInfo(@PathVariable long id, @RequestParam int nigths) {
+    public AccommodationReservationInfo reservationRequestInfo(@PathVariable long id, @RequestParam int nights) {
         //TODO: nights로 박수 계산
         return DummyDataFactory.accommodationReservationInfo();
     }
