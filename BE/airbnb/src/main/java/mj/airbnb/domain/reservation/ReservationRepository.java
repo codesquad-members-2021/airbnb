@@ -26,9 +26,9 @@ public class ReservationRepository {
     }
 
     public Reservation findById(Long id) {
-        String sqlQuery = "check_in_date, check_out_date, accommodation_id " +
+        String sqlQuery = "SELECT check_in_date, check_out_date, accommodation_id " +
                 "FROM reservation " +
-                "WHERE id = ?";
+                "WHERE id = ? ";
         return jdbcTemplate.queryForObject(sqlQuery, RESERVATION_ROW_MAPPER, id);
     }
 }
