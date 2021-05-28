@@ -10,18 +10,26 @@ import Combine
 
 class PeopleManager {
     
-    private var adult = AdultCountState()
-    private var kid = KidCountState()
-    private var baby = BabyCountState()
+    private var adult: AdultCountState
+    private var kid: KidCountState
+    private var baby: BabyCountState
     
     private var peopleMapper: [PeopleTypes: CountStatable]
-    var cancellable = Set<AnyCancellable>()
+    private lazy var people: [CountStatable] = [adult,kid,baby]
+    
+    private var cancellable = Set<AnyCancellable>()
     
     init() {
-        let people: [CountStatable] = [adult,kid,baby]
-        self.peopleMapper = Dictionary(uniqueKeysWithValues: zip(PeopleTypes.allCases, people))
+        self.adult = AdultCountState()
+        self.kid = KidCountState()
+        self.baby = BabyCountState()
+        self.peopleMapper = [:]
+        createMapper()
     }
     
+    private func createMapper() {
+        self.peopleMapper = Dictionary(uniqueKeysWithValues: zip(PeopleTypes.allCases, people))
+    }
     func increasePeople(from people: PeopleTypes) {
         peopleMapper[people]?.increase()
     }
