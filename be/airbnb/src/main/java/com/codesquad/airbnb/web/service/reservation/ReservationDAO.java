@@ -18,7 +18,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import static com.codesquad.airbnb.web.exceptions.InvalidSqlResultException.RESERVATION_DUPLICATE_CHECK_ERROR;
-import static com.codesquad.airbnb.web.statement.ReservationSqlKt.*;
+import static com.codesquad.airbnb.web.statement.ReservationStatementKt.*;
 
 @Service
 @Transactional(readOnly = true)
