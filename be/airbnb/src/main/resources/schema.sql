@@ -125,7 +125,7 @@ DROP TABLE IF EXISTS `airbnb`.`near_destination` ;
 CREATE TABLE IF NOT EXISTS `airbnb`.`near_destination` (
   `id` INT AUTO_INCREMENT,
   `destination` VARCHAR(45) NOT NULL,
-  `time_distance` DOUBLE NOT NULL,
+  `time_distance` TIME NOT NULL,
   `image` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;

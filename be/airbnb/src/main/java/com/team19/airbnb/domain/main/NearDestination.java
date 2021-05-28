@@ -2,31 +2,34 @@ package com.team19.airbnb.domain.main;
 
 import org.springframework.data.annotation.Id;
 
+import java.sql.Time;
+import java.time.LocalTime;
+
 public class NearDestination {
 
     @Id
     private Long id;
 
     private String destination;
-    private Double timeDistance;
+    private LocalTime timeDistance;
     private String image;
 
-    NearDestination(Long id, String destination, Double timeDistance, String image) {
+    NearDestination(Long id, String destination, LocalTime timeDistance, String image) {
         this.id = id;
         this.destination = destination;
         this.timeDistance = timeDistance;
         this.image = image;
     }
 
-    public static NearDestination create(String destination, Double timeDistance, String image) {
-        return new NearDestination(null, destination, timeDistance, image);
+    public static NearDestination create(Long id, String destination, LocalTime timeDistance, String image) {
+        return new NearDestination(id, destination, timeDistance, image);
     }
 
     public String getDestination() {
         return destination;
     }
 
-    public Double getTimeDistance() {
+    public LocalTime getTimeDistance() {
         return timeDistance;
     }
 
