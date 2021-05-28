@@ -1,9 +1,6 @@
 package com.codesquad.airbnb.common.utils;
 
-import com.codesquad.airbnb.accommodation.controller.AccommodationDTO;
-import com.codesquad.airbnb.accommodation.controller.AccommodationHost;
-import com.codesquad.airbnb.accommodation.controller.AccommodationPriceStats;
-import com.codesquad.airbnb.accommodation.controller.AccommodationResponse;
+import com.codesquad.airbnb.accommodation.controller.*;
 import com.codesquad.airbnb.accommodation.domain.Accommodation;
 import com.codesquad.airbnb.accommodation.domain.AccommodationOption;
 import com.codesquad.airbnb.accommodation.domain.AccommodationType;
@@ -147,5 +144,19 @@ public class DummyDataFactory {
                 new AccommodationPriceStats(30000, 11),
                 new AccommodationPriceStats(20000, 21)
         );
+    }
+
+    public static AccommodationReservationInfo accommodationReservationInfo() {
+        return AccommodationReservationInfo.builder()
+                       .id(1L)
+                       .pricePerNight(71466)
+                       .priceForNights(1322396)
+                       .salePrice(55948)
+                       .cleaningPrice(25996)
+                       .serviceFee(8188)
+                       .accommodationTax(819)
+                       .totalPrice(1488195)
+                       .reviewCounts(127)
+                       .build();
     }
 }

@@ -3,7 +3,6 @@ package com.codesquad.airbnb.accommodation.controller;
 import com.codesquad.airbnb.common.exception.ErrorResponse;
 import com.codesquad.airbnb.common.exception.NotFoundException;
 import com.codesquad.airbnb.common.utils.DummyDataFactory;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -31,7 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class AccommodationControllerTest {
-    private String BASE_URL = "http://localhost";
+    private static final String BASE_URL = "http://localhost";
 
     @LocalServerPort
     private int port;
@@ -84,7 +83,7 @@ class AccommodationControllerTest {
 
     @ParameterizedTest
     @MethodSource("readAllValidationFailedProvider")
-    void readAllValidationFailed(String path, AccommodationRequest accommodationRequest, ErrorResponse expected) throws JsonProcessingException {
+    void readAllValidationFailed(String path, AccommodationRequest accommodationRequest, ErrorResponse expected)  {
         ResponseEntity<ErrorResponse> responseEntity = restTemplate.exchange(
                 RequestEntity.get(uriComponentsOf(path, accommodationRequest).toUriString())
                         .header(HttpHeaders.ACCEPT_LANGUAGE, Locale.KOREA.toLanguageTag())
@@ -173,6 +172,7 @@ class AccommodationControllerTest {
         assertThat(responseEntity.getBody()).isEqualTo(expected);
     }
 
+    @SuppressWarnings("unused")
     static Stream<Arguments> readOneProvider() {
         return Stream.of(
                 Arguments.of(
@@ -210,6 +210,37 @@ class AccommodationControllerTest {
                 Arguments.of(
                         "/accommodationPriceStats",
                         DummyDataFactory.accommodationPriceStats()
+                )
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("reservationRequestInfoProvider")
+    void reservationRequestInfo(String path, long id, int nights, AccommodationReservationInfo expected) {
+
+        UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl(BASE_URL)
+                                              .path(path)
+                                              .port(port)
+                                              .queryParam("nights", nights)
+                                              .buildAndExpand(id);
+
+        ResponseEntity<AccommodationReservationInfo> responseEntity = restTemplate.getForEntity(
+                uriComponents.toUri(),
+                AccommodationReservationInfo.class
+        );
+
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(responseEntity.getBody()).isEqualTo(expected);
+    }
+
+    @SuppressWarnings("unused")
+    static Stream<Arguments> reservationRequestInfoProvider() {
+        return Stream.of(
+                Arguments.of(
+                        "/accommodations/{id}/reservation",
+                        1L,
+                        18,
+                        DummyDataFactory.accommodationReservationInfo()
                 )
         );
     }

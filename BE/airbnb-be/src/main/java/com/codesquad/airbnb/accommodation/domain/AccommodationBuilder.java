@@ -15,6 +15,11 @@ public final class AccommodationBuilder {
     private List<String> images;
     private String description;
     private AccommodationHost accommodationHost;
+    private int priceForNights;
+    private int salePrice;
+    private int cleaningPrice;
+    private int serviceFee;
+    private int accommodationTax;
 
     private AccommodationBuilder() {
     }
@@ -73,7 +78,32 @@ public final class AccommodationBuilder {
         return this;
     }
 
+    public AccommodationBuilder priceForNights(int priceForNights) {
+        this.priceForNights = priceForNights;
+        return this;
+    }
+
+    public AccommodationBuilder salePrice(int salePrice) {
+        this.salePrice = salePrice;
+        return this;
+    }
+
+    public AccommodationBuilder cleaningPrice(int cleaningPrice) {
+        this.cleaningPrice = cleaningPrice;
+        return this;
+    }
+
+    public AccommodationBuilder serviceFee(int serviceFee) {
+        this.serviceFee = serviceFee;
+        return this;
+    }
+
+    public AccommodationBuilder accommodationTax(int accommodationTax) {
+        this.accommodationTax = accommodationTax;
+        return this;
+    }
+
     public Accommodation build() {
-        return new Accommodation(id, name, accommodationOption, totalPrice, reviewRating, reviewCounts, mainImage, images, description, accommodationHost);
+        return new Accommodation(id, name, accommodationOption, totalPrice, reviewRating, reviewCounts, mainImage, images, description, accommodationHost, priceForNights, salePrice, cleaningPrice, serviceFee, accommodationTax);
     }
 }

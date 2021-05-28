@@ -4,6 +4,7 @@ import com.codesquad.airbnb.accommodation.service.AccommodationService;
 import com.codesquad.airbnb.common.utils.DummyDataFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -31,5 +32,11 @@ public class AccommodationController {
     @GetMapping("/accommodationPriceStats")
     public List<AccommodationPriceStats> priceStats() {
         return DummyDataFactory.accommodationPriceStats();
+    }
+
+    @GetMapping("/accommodations/{id}/reservation")
+    public AccommodationReservationInfo reservationRequestInfo(@PathVariable long id, @RequestParam int nigths) {
+        //TODO: nights로 박수 계산
+        return DummyDataFactory.accommodationReservationInfo();
     }
 }
