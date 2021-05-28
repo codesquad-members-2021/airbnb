@@ -14,9 +14,12 @@ protocol DetailSetUpViewInitializable {
     func deinitializeCalendarControlView()
     func configurePriceControlView()
     func deinitializePriceControlView()
+    func configureNumberOfHeadSelectionView()
+    func deinitializeNumberOfHeadSelectionView()
     
     func clearCalendarControlView()
     func clearPriceSlideControlView()
+    func clearNumberOfHeadSelectionView()
 }
 
 class SetUpViewController: UIViewController {
@@ -26,6 +29,7 @@ class SetUpViewController: UIViewController {
     private var reservationDetailViewController: ReservationDetailViewControllerProtocol!
     public var calendarControlView: CalendarControlView! = nil
     public var priceSlideControlView: PriceSlideControlView! = nil
+    public var numberOfHeadSelectionView: NumberOfHeadSelectionView! = nil
     private var currentContextView: String! {
         didSet {
             guard self.currentContextView != nil else { return }
@@ -115,12 +119,31 @@ extension SetUpViewController: DetailSetUpViewInitializable {
         self.currentContextView = nil
     }
     
+    func configureNumberOfHeadSelectionView() {
+        self.currentContextView = String(describing: NumberOfHeadSelectionView.self)
+        
+        self.numberOfHeadSelectionView = NumberOfHeadSelectionView()
+        numberOfHeadSelectionView.backgroundColor = .brown
+        view.addSubview(numberOfHeadSelectionView)
+        numberOfHeadSelectionView.translatesAutoresizingMaskIntoConstraints = false
+        configureDetailSubViewLayout(of: numberOfHeadSelectionView)
+
+    }
+    
+    func deinitializeNumberOfHeadSelectionView() {
+        // todo
+    }
+    
     func clearPriceSlideControlView() {
         self.priceSlideControlView.clearRangeSlider()
     }
     
     func clearCalendarControlView() {
         self.calendarControlView.clearCalendarView()
+    }
+    
+    func clearNumberOfHeadSelectionView() {
+        // todo
     }
     
 }

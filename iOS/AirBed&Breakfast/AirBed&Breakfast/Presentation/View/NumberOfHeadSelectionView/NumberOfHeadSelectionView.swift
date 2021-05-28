@@ -8,8 +8,6 @@
 import UIKit
 
 class NumberOfHeadSelectionView: UIView {
-
-    @IBOutlet weak var adultNumberView: UIView!
         
     private var adultNumberAdjustmentView: NumberAdjustmentView?
     private var childNumberAdjustmentView: NumberAdjustmentView?

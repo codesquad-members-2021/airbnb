@@ -64,7 +64,7 @@ class ReservationDetailViewController: UIViewController {
             detailSetUpViewInitializer?.configurePriceControlView()
         case String(describing: PriceSlideControlView.self):
             detailSetUpViewInitializer?.deinitializePriceControlView()
-            
+            detailSetUpViewInitializer?.configureNumberOfHeadSelectionView()
         default: break
         }
         
