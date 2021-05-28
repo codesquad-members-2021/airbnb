@@ -1,13 +1,34 @@
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import SmallText from '@components/common/SmallText';
 import Title from '@components/common/Title';
+import ChartModal from '@components/Header/PriceChart/ChartModal';
 
+import { isOpenPriceChart } from '@recoil/atoms/modalState';
+import { useEffect } from 'react';
 const Fare = () => {
+  const [isOpenModalChart, setIsOpenModalChart] =
+    useRecoilState(isOpenPriceChart);
+
+  const handleClickPriceChart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsOpenModalChart(true);
+  };
+
+  useEffect(() => {
+    const handleClickOutsidePriceChart = (): void => setIsOpenModalChart(false);
+    document.addEventListener('click', handleClickOutsidePriceChart);
+    return () => {
+      document.removeEventListener('click', handleClickOutsidePriceChart);
+    };
+  }, [setIsOpenModalChart]);
+
   return (
-    <FareWrap>
+    <FareWrap onClick={handleClickPriceChart}>
       <Title>요금</Title>
       <SmallText>금액대 설정</SmallText>
+      {isOpenModalChart && <ChartModal />}
     </FareWrap>
   );
 };
@@ -20,6 +41,7 @@ const FareWrap = styled.div`
   justify-content: center;
   height: 100%;
   width: 256px;
+  position: relative;
   &:hover {
     background-color: ${({ theme }) => theme.color.gray6};
   }

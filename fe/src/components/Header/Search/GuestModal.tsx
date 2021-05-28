@@ -2,21 +2,22 @@ import styled from 'styled-components';
 import GuestItem from './GuestItem';
 
 type guests = {
-  type: string;
-  subType: string;
+  id: string;
+  category: string;
+  description: string;
 };
 
 const GuestModal = () => {
   const guestTypes: guests[] = [
-    { type: '성인', subType: '만 13세 이상' },
-    { type: '어린이', subType: '만 2~13세 미만' },
-    { type: '유아', subType: '만 2세 미만' },
+    { id: 'adult', category: '성인', description: '만 13세 이상' },
+    { id: 'child', category: '어린이', description: '만 2~13세 미만' },
+    { id: 'baby', category: '유아', description: '만 2세 미만' },
   ];
 
   return (
     <ModalWrap>
-      {guestTypes.map((guestType: guests) => (
-        <GuestItem key={guestType.type} guestType={guestType} />
+      {guestTypes.map((type: guests) => (
+        <GuestItem key={type.id} guestType={type} />
       ))}
     </ModalWrap>
   );

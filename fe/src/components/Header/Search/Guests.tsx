@@ -1,24 +1,35 @@
-import Title from '@components/common/Title';
-import { useRecoilState } from 'recoil';
-
-import { isOpenGuestModal } from '@recoil/atoms/guests';
-import GuestModal from './GuestModal';
-import SmallText from '@components/common/SmallText';
+import React, { useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+
+import GuestModal from './GuestModal';
+import Title from '@components/common/Title';
+import { isOpenGuestModal, totalGuestState } from '@recoil/atoms/guests';
 
 const Guests = () => {
   const [isOpenModalState, setIsOpenModalState] =
     useRecoilState(isOpenGuestModal);
 
-  const handleGuestClick = () => {
+  const guestCounts = useRecoilValue(totalGuestState);
+
+  const handleGuestClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setIsOpenModalState(true);
   };
+
+  useEffect(() => {
+    const handleClickOutsideGuestModal = (): void => setIsOpenModalState(false);
+    document.addEventListener('click', handleClickOutsideGuestModal);
+    return () => {
+      document.removeEventListener('click', handleClickOutsideGuestModal);
+    };
+  }, [setIsOpenModalState]);
 
   return (
     <>
       <GuestWrap onClick={handleGuestClick}>
         <Title>인원</Title>
-        <SmallText>게스트 추가</SmallText>
+        <Desc>{guestCounts}</Desc>
         {isOpenModalState && <GuestModal />}
       </GuestWrap>
     </>
@@ -37,4 +48,16 @@ const GuestWrap = styled.div`
   &:hover {
     background-color: ${({ theme }) => theme.color.gray6};
   }
+`;
+
+const Desc = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  height: 23px;
+  color: ${({ theme }) => theme.color.gray3};
+  outline: 0;
+  border: 0;
+  font-size: ${({ theme }) => theme.fontSize.s};
 `;

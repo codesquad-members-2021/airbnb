@@ -38,6 +38,7 @@ const flexCenter = css`
 
 const fontWeight = {
   base: 700,
+  bold: 'bold',
 };
 
 const theme = {
