@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,7 @@ public class RoomRepository implements JdbcRepository<Room> {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Room> getFilteredRooms(String checkIn, String checkOut, int minPrice, int maxPrice, int numberOfPeople) {
+    public List<Room> getFilteredRooms(LocalDate checkIn, LocalDate checkOut, int minPrice, int maxPrice, int numberOfPeople) {
         String sql = "select room.id, `max`, `name`, `rating`, `latitude`, `longitude`, `bedroom_count`, `bed_count`, " +
                 "`bathroom_count`, `address`, `detail_address`, `comment_count`, `original_price`, `sale_price`, " +
                 "`flexible_refund`, `immediate_booking` from room " +

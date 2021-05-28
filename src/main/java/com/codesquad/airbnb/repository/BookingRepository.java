@@ -36,13 +36,19 @@ public class BookingRepository implements JdbcRepository<Booking> {
                 booking.getCheckOut(), booking.getNumberOfPeople(), booking.getTotalPrice());
     }
 
-    public List<Booking> read(Booking booking) {
-        // 예약 가능한 room 반환 -> service 에서 이 List가 not empty면 예약 가능, empty면 불가능
-        String sql = "select booking.id, room_id, user_id, check_in, check_out, number_of_people, total_price from `room` " +
-                "left join `booking` on room.id = room_id where room.id = ? and" +
-                "(date_format(?, '%Y-%m-%d') not between date_format(check_in, '%Y-%m-%d') and date_format(check_out, '%Y-%m-%d') and " +
-                "date_format(?, '%Y-%m-%d') not between date_format(check_in, '%Y-%m-%d') and date_format(check_out, '%Y-%m-%d')) or " +
-                "(check_in is null and check_out is null) ";
+    public List<Booking> findFilteredBooking(Booking booking) {
+        //-- controller에서..
+        // 날짜 겹치는 Booking 쿼리로 조회
+        //    -> 날짜 겹침 -> List not empty -> "false" (= 예약 불가능)
+        //    -> 날짜 겹치지 않음 -> List empty -> "true" (= 예약 가능)
+        String sql = "select booking.id, room_id, user_id, check_in, check_out, number_of_people, total_price" +
+                " from `booking` left join `room` on room_id = room.id" +
+                " where room_id = ? and" +
+                " (? between check_in and check_out and ? > check_out) or" +
+                " (? < check_in and ? between check_in and check_out) or" +
+                " (? between check_in and check_out and ? between check_in and check_out) or" +
+                " (? < check_in and ? > check_out)";
+
 
         return jdbcTemplate.query(sql, bookingRowMapper(), booking.getRoomId(), booking.getCheckIn(), booking.getCheckOut());
     }
@@ -50,7 +56,7 @@ public class BookingRepository implements JdbcRepository<Booking> {
     private RowMapper<Booking> bookingRowMapper() {
         return (resultSet, rowNum) -> {
             Booking booking = new Booking(resultSet.getLong("id"), resultSet.getLong("room_id"), resultSet.getLong("user_id"),
-                    resultSet.getString("check_in"), resultSet.getString("check_out"), resultSet.getInt("number_of_people"),
+                    resultSet.getDate("check_in").toLocalDate(), resultSet.getDate("check_out").toLocalDate(), resultSet.getInt("number_of_people"),
                     resultSet.getInt("total_price"));
             return booking;
         };

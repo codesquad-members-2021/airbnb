@@ -63,6 +63,10 @@ public class Booking {
         return totalPrice;
     }
 
+    public boolean hasRoom(Long roomId) {
+       return this.roomId == roomId;
+    }
+
     @Override
     public String toString() {
         return "Booking{" +

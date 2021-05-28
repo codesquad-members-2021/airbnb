@@ -4,8 +4,10 @@ import com.codesquad.airbnb.dto.RoomDTO;
 import com.codesquad.airbnb.dto.Rooms;
 import com.codesquad.airbnb.repository.RoomRepository;
 import com.codesquad.airbnb.repository.WishRepository;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,8 +31,9 @@ public class RoomController {
         return new Rooms(roomDTOS);
     }
 
-    @GetMapping("/filtered")
-    public Rooms searchRooms(@RequestParam("checkIn") String checkIn, @RequestParam("checkOut") String checkOut,
+    @GetMapping(params = {"checkIn", "checkOut", "minPrice", "maxPrice", "numberOfPeople"})
+    public Rooms searchRooms(@RequestParam("checkIn") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkIn,
+                             @RequestParam("checkOut") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkOut,
                              @RequestParam("minPrice") int minPrice, @RequestParam("maxPrice") int maxPrice,
                              @RequestParam("numberOfPeople") int numberOfPeople) {
         List<RoomDTO> roomDTOS = roomRepository.getFilteredRooms(checkIn, checkOut, minPrice, maxPrice, numberOfPeople).stream()
