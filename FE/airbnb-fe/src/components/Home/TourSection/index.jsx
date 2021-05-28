@@ -1,9 +1,16 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CityTour from './CityTour';
 import RoomTour from './RoomTour';
+import API from '../../utils/API';
 
 const TourSection = () => {
+  // const [homeData, setHomeData] = useState();
+  // useEffect(() => {
+  //   setHomeData(API.get.home());
+  // }, []);
+  // console.log('home', homeData);
+
   return (
     <TourSectionDiv>
       <CityTour></CityTour>
