@@ -7,10 +7,12 @@ import com.codesquad.airbnb.web.dto.RoomPreviews;
 import com.codesquad.airbnb.web.dto.UserInput;
 import com.codesquad.airbnb.web.exceptions.notfound.RoomNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class RoomService {
 
     private final RoomRepository roomRepository;
