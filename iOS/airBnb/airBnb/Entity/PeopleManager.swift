@@ -25,21 +25,12 @@ class PeopleManager {
         self.baby = BabyCountState()
         self.peopleMapper = [:]
         createMapper()
-        
-                adult.$count.sink { (v) in
-                    print("ad",v)
-                }.store(in: &cancellable)
-                kid.$count.sink { (v) in
-                    print("kd",v)
-                }.store(in: &cancellable)
-                baby.$count.sink { (v) in
-                    print("bb",v)
-                }.store(in: &cancellable)
     }
     
     private func createMapper() {
         self.peopleMapper = Dictionary(uniqueKeysWithValues: zip(PeopleTypes.allCases, people))
     }
+    
     func increasePeople(from people: PeopleTypes) {
         peopleMapper[people]?.increase()
         existOnlyChildren()
@@ -61,7 +52,13 @@ class PeopleManager {
         return baby.$count.eraseToAnyPublisher()
     }
     
-    func existOnlyChildren() {
+    func relayTotalCount() -> AnyPublisher<Int, Never>{
+        return adult.$count.combineLatest(kid.$count)
+            .map { $0 + $1 }
+            .eraseToAnyPublisher()
+    }
+    
+    private func existOnlyChildren() {
         if adult.isZero() && (baby.isNotZero() || kid.isNotZero()) {
             adult.count += 1
         }

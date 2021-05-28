@@ -63,6 +63,10 @@ class LocationInfoViewController: UIViewController{
         locationInfoViewModel?.allowNextButton().sink { [weak self] (allow) in
             self?.nextButton.isEnabled = allow
         }.store(in: &cancellable)
+        
+        locationInfoViewModel?.showPeopleTotal().sink { [weak self] (people) in
+            self?.numOfPeopleLabel.text = "게스트 \(people)명"
+        }.store(in: &cancellable)
     }
     
     @IBAction func nextButtonTouched(_ sender: UIButton) {

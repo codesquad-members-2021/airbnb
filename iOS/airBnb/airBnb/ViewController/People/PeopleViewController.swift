@@ -11,6 +11,9 @@ import Combine
 class PeopleViewController: UIViewController {
     
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var adultCountLabel: UILabel!
+    @IBOutlet weak var kidCountLabel: UILabel!
+    @IBOutlet weak var babyCountLabel: UILabel!
     
     private let nextViewControllerSubject = PassthroughSubject<Void,Never>()
     private var cancellable = Set<AnyCancellable>()
@@ -49,13 +52,26 @@ class PeopleViewController: UIViewController {
     }
     
     private func bind() {
-        buttonsViewModel.bind { (type, action) in
+        buttonsViewModel.bind { [weak self] (type, action) in
             switch action {
             case .plus:
-                self.searchManager?.increasePeople(from: type)
+                self?.searchManager?.increasePeople(from: type)
             case .minus:
-                self.searchManager?.decreasePeoeple(from: type)
+                self?.searchManager?.decreasePeoeple(from: type)
             }
         }
+        
+        searchManager?.bindAuldtCount().sink { [weak self] (adultCount) in
+            self?.adultCountLabel.text = "\(adultCount)"
+        }.store(in: &cancellable)
+        
+        searchManager?.bindKidCount().sink { [weak self] kidCount in
+            self?.kidCountLabel.text = "\(kidCount)"
+        }.store(in: &cancellable)
+        
+        searchManager?.bindBabyCount().sink { [weak self] babyCount in
+            self?.babyCountLabel.text = "\(babyCount)"
+        }.store(in: &cancellable)
     }
+    
 }

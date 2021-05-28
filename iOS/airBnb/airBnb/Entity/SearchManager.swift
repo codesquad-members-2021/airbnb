@@ -14,12 +14,17 @@ class SearchManager {
     @Published private(set) var selectDates: SequenceDates
     @Published private(set) var priceRange: PriceRange
     @Published var numberOfPleple: PeopleManager
+    @Published private(set) var totlaPeople: Int
+    
+    private var cancell: AnyCancellable?
     
     init() {
         location = ""
         selectDates = .init(start: nil, end: nil)
         priceRange = .init()
         numberOfPleple = .init()
+        totlaPeople = 0
+        bind()
     }
     
     func selectDay(from day: Date) {
@@ -66,4 +71,11 @@ class SearchManager {
     func bindBabyCount() -> AnyPublisher<Int, Never> {
         return numberOfPleple.relayBabyCount()
     }
+    
+    private func bind() {
+        cancell = numberOfPleple.relayTotalCount().sink { (total) in
+            self.totlaPeople = total
+        }
+    }
+    
 }

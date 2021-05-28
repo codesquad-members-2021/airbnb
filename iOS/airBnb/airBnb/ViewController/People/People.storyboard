@@ -259,8 +259,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="adultCountLabel" destination="3vz-Ux-LzY" id="IIh-yR-zry"/>
+                        <outlet property="babyCountLabel" destination="jvK-LD-zyN" id="JCJ-QP-ynW"/>
                         <outlet property="buttonsViewModel" destination="a2k-ry-CeF" id="Z39-Ds-fC3"/>
                         <outlet property="containerView" destination="IqN-Ko-rkg" id="SYw-CV-nh0"/>
+                        <outlet property="kidCountLabel" destination="EPc-TK-j6A" id="J2T-2L-p94"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VR4-gl-0fi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

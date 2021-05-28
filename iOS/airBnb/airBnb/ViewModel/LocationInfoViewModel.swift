@@ -54,6 +54,12 @@ class LocationInfoViewModel {
             .eraseToAnyPublisher()
     }
     
+    func showPeopleTotal() -> AnyPublisher<Int, Never> {
+        return searchManager.$totlaPeople
+            .dropFirst()
+            .eraseToAnyPublisher()
+    }
+    
     func deleteData() {
         searchManager.reset(in: state)
     }
