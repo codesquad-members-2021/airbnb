@@ -1,35 +1,47 @@
 import styled from "styled-components";
-import { useState } from "react";
 import Calendar from "components/SearchBar/Calendar/Calendar";
 import Guests from "components/SearchBar/Guests/Guests";
 import RoomPrice from "components/SearchBar/RoomPrice/RoomPrice";
 import { ReactComponent as largeSearchBtn } from "image/largeSearchBtn.svg";
 import { ReactComponent as smallSearchBtn } from "image/smallSearchBtn.svg";
-const initialState = {
-  calendar: { month: 0, date: 0 },
-  price: { min: 0, max: 0 },
-  guests: { guest: 0, toddler: 0 },
-};
-
-enum FilterKind {
-  checkIn = "CHECK_IN",
-  checkOut = "CHECK_OUT",
-  price = "PRICE",
-  guest = "GUESTS",
-}
-const SEARCH_FILTER = ["CHECK_IN", "CHECK_OUT", "PRICE", "GUESTS"];
+import {
+  useRecoilState,
+  useRecoilValue,
+  useResetRecoilState,
+  useSetRecoilState,
+} from "recoil";
+import React, { useState, useEffect } from "react";
+import { searchBarClickState, checkInClickState } from "recoil/Atoms";
 
 const SearchBar = () => {
-  //취소 버튼 눌렀을 때 상태 리셋을 어떻게 할 것인가?
+  // const Reset = useResetRecoilState(searchBarClickState);
+  const setsSearchBarClick = useSetRecoilState(searchBarClickState);
+  const checkInTest = useRecoilValue(checkInClickState);
 
-  //state따로 있는데 reducer함수 같이 써도 되나요..?
+  useEffect(() => {
+    console.log(checkInTest);
+    if (checkInTest) document.body.addEventListener("click", ClosePopup);
+    return function cleanup() {
+      document.body.removeEventListener("click", ClosePopup);
+    };
+  }, [checkInTest]);
+
+  const ClosePopup = (e: MouseEvent): void => {
+    console.log(33);
+    const target = e.target as HTMLElement;
+    if (!target.closest(".search-bar")) {
+      console.log("Sss");
+
+      setsSearchBarClick("RESET"); //recoil reset 으로 바꿀 수 있을 듯
+    }
+  };
   return (
     <SearchBarLayout>
-      <SearchBarContainer>
+      <SearchBarContainer className="search-bar">
         <Calendar />
         <RoomPrice />
         <Guests />
-        <SearchBarButton>검색</SearchBarButton>
+        <SearchBarButton />
       </SearchBarContainer>
     </SearchBarLayout>
   );
@@ -40,6 +52,7 @@ const SearchBarButton = styled(smallSearchBtn)`
   position: absolute;
   right: 1.6rem;
   top: 1.7rem;
+  cursor: pointer;
 `;
 
 const SearchBarContainer = styled.div`
@@ -60,7 +73,7 @@ const SearchBarContainer = styled.div`
 
 const SearchBarLayout = styled.div`
   position: relative; //여기
-  width: 55%;
+  width: 65%;
   display: flex;
   margin: 0 auto;
   flex-direction: column;
@@ -68,3 +81,8 @@ const SearchBarLayout = styled.div`
 `;
 
 export default SearchBar;
+// const initialState = {
+//   calendar: { month: 0, date: 0 },
+//   price: { min: 0, max: 0 },
+//   guests: { guest: 0, toddler: 0 },
+// };
