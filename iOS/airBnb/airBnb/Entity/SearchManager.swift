@@ -12,13 +12,13 @@ class SearchManager {
     @Published var location: String
     @Published private(set) var selectDates: SequenceDates
     @Published private(set) var priceRange: PriceRange
-    @Published var numberOfPleple: String
+    @Published var numberOfPleple: PeopleManager
     
     init() {
         location = ""
         selectDates = .init(start: nil, end: nil)
         priceRange = .init()
-        numberOfPleple = ""
+        numberOfPleple = .init()
     }
     
     func selectDay(from day: Date) {
@@ -45,5 +45,12 @@ class SearchManager {
     func changePrice(from price: priceSlider){
         priceRange.change(from: price)
     }
+    
+    func increasePeople(from type: PeopleTypes){
+        numberOfPleple.increasePeople(from: type)
+    }
 
+    func decreasePeoeple(from type: PeopleTypes){
+        numberOfPleple.decreasePeople(from: type)
+    }
 }

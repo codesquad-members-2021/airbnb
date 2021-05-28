@@ -17,9 +17,12 @@ class PeopleViewController: UIViewController {
     
     private var locationInfoViewController : LocationInfoViewController?
     private var searchManager: SearchManager?
+    @IBOutlet var buttonsViewModel: ButtonsViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        buttonsViewModel.makeButtonsMapper()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,5 +46,16 @@ class PeopleViewController: UIViewController {
     func setupSearchInfoViewController(for search: SearchManager, from viewController: LocationInfoViewController) {
         self.searchManager = search
         self.locationInfoViewController = viewController
+    }
+    
+    private func bind() {
+        buttonsViewModel.bind { (type, action) in
+            switch action {
+            case .plus:
+                self.searchManager?.increasePeople(from: type)
+            case .minus:
+                self.searchManager?.decreasePeoeple(from: type)
+            }
+        }
     }
 }

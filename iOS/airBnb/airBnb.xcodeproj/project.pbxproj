@@ -37,6 +37,13 @@
 		BF7E2E4A265FCF6D00A810BE /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E49265FCF6D00A810BE /* CGFloat+Extension.swift */; };
 		BF7E2E54266027E400A810BE /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E53266027E400A810BE /* PeopleViewController.swift */; };
 		BF7E2E572660280700A810BE /* People.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF7E2E562660280700A810BE /* People.storyboard */; };
+		BF7E2E5A2660B22B00A810BE /* AdultCountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E592660B22B00A810BE /* AdultCountState.swift */; };
+		BF7E2E5D2660B23E00A810BE /* KidCountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E5C2660B23E00A810BE /* KidCountState.swift */; };
+		BF7E2E612660B25400A810BE /* BabyCountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E602660B25400A810BE /* BabyCountState.swift */; };
+		BF7E2E652660B2B200A810BE /* CountSatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E642660B2B200A810BE /* CountSatable.swift */; };
+		BF7E2E692660B6BF00A810BE /* PeopleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E682660B6BF00A810BE /* PeopleManager.swift */; };
+		BF7E2E6D2660B8EB00A810BE /* ButtonsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E6C2660B8EB00A810BE /* ButtonsViewModel.swift */; };
+		BF7E2E702660BC0500A810BE /* ButtonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E6F2660BC0500A810BE /* ButtonMapper.swift */; };
 		BF9F9509265DE6D4003CF475 /* UIStoryBoard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F9508265DE6D4003CF475 /* UIStoryBoard+Extension.swift */; };
 		BF9F950D265DE9DC003CF475 /* UICollectionCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F950C265DE9DC003CF475 /* UICollectionCell+Extension.swift */; };
 		BF9F9510265DEAFE003CF475 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F950F265DEAFE003CF475 /* UITableViewCell+Extension.swift */; };
@@ -86,6 +93,13 @@
 		BF7E2E49265FCF6D00A810BE /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
 		BF7E2E53266027E400A810BE /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		BF7E2E562660280700A810BE /* People.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = People.storyboard; sourceTree = "<group>"; };
+		BF7E2E592660B22B00A810BE /* AdultCountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultCountState.swift; sourceTree = "<group>"; };
+		BF7E2E5C2660B23E00A810BE /* KidCountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidCountState.swift; sourceTree = "<group>"; };
+		BF7E2E602660B25400A810BE /* BabyCountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyCountState.swift; sourceTree = "<group>"; };
+		BF7E2E642660B2B200A810BE /* CountSatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountSatable.swift; sourceTree = "<group>"; };
+		BF7E2E682660B6BF00A810BE /* PeopleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleManager.swift; sourceTree = "<group>"; };
+		BF7E2E6C2660B8EB00A810BE /* ButtonsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsViewModel.swift; sourceTree = "<group>"; };
+		BF7E2E6F2660BC0500A810BE /* ButtonMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonMapper.swift; sourceTree = "<group>"; };
 		BF9F9508265DE6D4003CF475 /* UIStoryBoard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryBoard+Extension.swift"; sourceTree = "<group>"; };
 		BF9F950C265DE9DC003CF475 /* UICollectionCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionCell+Extension.swift"; sourceTree = "<group>"; };
 		BF9F950F265DEAFE003CF475 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
@@ -257,6 +271,8 @@
 				BF404900265A17CC00CA02B5 /* SearchManager.swift */,
 				BF7E2E41265FBC5300A810BE /* SequenceDates.swift */,
 				BF7E2E45265FBC8C00A810BE /* PriceRange.swift */,
+				BF7E2E682660B6BF00A810BE /* PeopleManager.swift */,
+				BF7E2E632660B27F00A810BE /* PeopleCount */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -266,8 +282,21 @@
 			children = (
 				BF7E2E53266027E400A810BE /* PeopleViewController.swift */,
 				BF7E2E562660280700A810BE /* People.storyboard */,
+				BF7E2E6C2660B8EB00A810BE /* ButtonsViewModel.swift */,
+				BF7E2E6F2660BC0500A810BE /* ButtonMapper.swift */,
 			);
 			path = People;
+			sourceTree = "<group>";
+		};
+		BF7E2E632660B27F00A810BE /* PeopleCount */ = {
+			isa = PBXGroup;
+			children = (
+				BF7E2E592660B22B00A810BE /* AdultCountState.swift */,
+				BF7E2E602660B25400A810BE /* BabyCountState.swift */,
+				BF7E2E5C2660B23E00A810BE /* KidCountState.swift */,
+				BF7E2E642660B2B200A810BE /* CountSatable.swift */,
+			);
+			path = PeopleCount;
 			sourceTree = "<group>";
 		};
 		BFE430A72653902E00F4DA1C = {
@@ -383,6 +412,7 @@
 			files = (
 				BF2FEAD2265A83F30022CB93 /* SearchLocationViewModel.swift in Sources */,
 				BF404913265A7B6C00CA02B5 /* SearchLocation.swift in Sources */,
+				BF7E2E692660B6BF00A810BE /* PeopleManager.swift in Sources */,
 				BF7E2E46265FBC8C00A810BE /* PriceRange.swift in Sources */,
 				BF40490C265A415300CA02B5 /* HTTPMethod.swift in Sources */,
 				BF404909265A3F0A00CA02B5 /* SearchAPI.swift in Sources */,
@@ -393,16 +423,20 @@
 				BF7E2E42265FBC5300A810BE /* SequenceDates.swift in Sources */,
 				BFE4310626554B3600F4DA1C /* LocationCell.swift in Sources */,
 				BF2FEAF0265C20230022CB93 /* Date+Extension.swift in Sources */,
+				BF7E2E5A2660B22B00A810BE /* AdultCountState.swift in Sources */,
 				BFE430B42653902E00F4DA1C /* AppDelegate.swift in Sources */,
 				BF404919265A815400CA02B5 /* SearchLocationUseCase.swift in Sources */,
 				BFE430B62653902E00F4DA1C /* SceneDelegate.swift in Sources */,
+				BF7E2E652660B2B200A810BE /* CountSatable.swift in Sources */,
 				BF4048CF2658CB4600CA02B5 /* LocationResultViewController.swift in Sources */,
 				BF9F950D265DE9DC003CF475 /* UICollectionCell+Extension.swift in Sources */,
 				BF40490F265A417000CA02B5 /* NetworkError.swift in Sources */,
 				BFE431172655948800F4DA1C /* LocationResultCell.swift in Sources */,
 				BF7E2E4A265FCF6D00A810BE /* CGFloat+Extension.swift in Sources */,
+				BF7E2E612660B25400A810BE /* BabyCountState.swift in Sources */,
 				BF9F951E265DFD69003CF475 /* NotificationName+Extension.swift in Sources */,
 				BF2FEAE2265BBAED0022CB93 /* LocationInfoViewController.swift in Sources */,
+				BF7E2E6D2660B8EB00A810BE /* ButtonsViewModel.swift in Sources */,
 				BF9F9510265DEAFE003CF475 /* UITableViewCell+Extension.swift in Sources */,
 				BF7E2E3B265FA2DF00A810BE /* PriceSlider.swift in Sources */,
 				BF9F9509265DE6D4003CF475 /* UIStoryBoard+Extension.swift in Sources */,
@@ -411,12 +445,14 @@
 				BF4048EB26592AAF00CA02B5 /* CalendarDataSource.swift in Sources */,
 				BF9F9513265DED03003CF475 /* UIColor+Extension.swift in Sources */,
 				BF7E2E3E265FA36F00A810BE /* PriceSliderLayer.swift in Sources */,
+				BF7E2E5D2660B23E00A810BE /* KidCountState.swift in Sources */,
 				BF2FEADC265B71260022CB93 /* SearchTextField+Extension.swift in Sources */,
 				BFE4311326557A2900F4DA1C /* LocationHeaderView.swift in Sources */,
 				BF7E2E54266027E400A810BE /* PeopleViewController.swift in Sources */,
 				BF4048F92659ED1400CA02B5 /* DateFormatter+Extension.swift in Sources */,
 				BF2FEAED265BEFDB0022CB93 /* PriceViewController.swift in Sources */,
 				BFE430D526541D2B00F4DA1C /* LocationSearchViewController.swift in Sources */,
+				BF7E2E702660BC0500A810BE /* ButtonMapper.swift in Sources */,
 				BF4048DB2658F53C00CA02B5 /* CalendarManager.swift in Sources */,
 				BF404906265A3F0000CA02B5 /* Endpoint.swift in Sources */,
 				BF404901265A17CC00CA02B5 /* SearchManager.swift in Sources */,
