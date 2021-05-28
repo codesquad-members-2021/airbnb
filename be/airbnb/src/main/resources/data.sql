@@ -15,28 +15,28 @@ VALUES (1, '대한민국', 'NATION', null, 1, 'ChIJzWXFYYuifDUR64Pq5LTtioU', POI
 
 insert into room(id, location_id, name, rating, guest_capacity, point, description, bathroom_type, bedroom_type,
                  bed_count, amenity, host_id, thumbnail)
-values (1, 4, '발레노르 움막집', 5, 5, POINT(37.252352, 235.52532), '그냥 그래요', 'PRIVATE_BATHROOM', 'ONE_ROOM', 2,
+values (1, 4, '숙소 A', 5, 5, POINT(37.252352, 235.52532), '숙소 A 소개', 'PRIVATE_BATHROOM', 'ONE_ROOM', 2,
         '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
         'https://pix10.agoda.net/hotelImages/8515928/-1/2757b14c0680924208c33f286eab4c46.jpg?s=1024x768'),
-       (2, 4, '블랙게이트 감시초소', 0.5, 3, POINT(31.25144, 935.52532), '많이 추워요', 'PRIVATE_BATHROOM', 'ONE_ROOM', 2,
+       (2, 4, '숙소 B', 0.5, 3, POINT(31.25144, 935.52532), '숙소 B 소개', 'PRIVATE_BATHROOM', 'ONE_ROOM', 2,
         '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
         'https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?s=1024x768'),
-       (3, 4, '바랏두르 제련소', 1.0, 1, POINT(27.252352, 235.52532), '춥진 않아요', 'SHARED_BATHROOM', 'BEDROOM', 3,
+       (3, 4, '숙소 C', 1.0, 1, POINT(27.252352, 235.52532), '숙소 C 소개', 'SHARED_BATHROOM', 'BEDROOM', 3,
         '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
         'https://imgcy.trivago.com/c_lfill,d_dummy.jpeg,e_sharpen:60,f_auto,h_450,q_auto,w_450/itemimages/96/95/96959_v6.jpeg'),
-       (4, 12, '미나스 티리스 펜션', 5, 2, POINT(37.252352, 235.52532), '정말 최고야', 'PRIVATE_BATHROOM', 'BEDROOM', 4,
+       (4, 12, '숙소 D', 5, 2, POINT(37.252352, 235.52532), '숙소 D 소개', 'PRIVATE_BATHROOM', 'BEDROOM', 4,
         '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
         'https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg'),
-       (5, 13, '모리아 골방', 0.5, 4, POINT(17.252352, 125.52532), '좀 그래요', 'SHARED_BATHROOM', 'BEDROOM', 5,
+       (5, 13, '숙소 E', 0.5, 4, POINT(17.252352, 125.52532), '숙소 E 소개', 'SHARED_BATHROOM', 'BEDROOM', 5,
         '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
         'https://media-cdn.tripadvisor.com/media/photo-s/15/a1/d2/af/hotel-r-de-paris.jpg'),
-       (6, 5, '숙소 A', 0.5, 4, POINT(17.252352, 125.52532), '숙소 A 소개', 'SHARED_BATHROOM', 'BEDROOM', 5,
+       (6, 5, '숙소 F', 0.5, 4, POINT(17.252352, 125.52532), '숙소 F 소개', 'SHARED_BATHROOM', 'BEDROOM', 5,
         '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
         'https://media-cdn.tripadvisor.com/media/photo-s/15/a1/d2/af/hotel-r-de-paris.jpg'),
-       (7, 6, '숙소 B', 0.5, 4, POINT(17.252352, 125.52532), '숙소 B 소개', 'SHARED_BATHROOM', 'BEDROOM', 5,
+       (7, 6, '숙소 G', 0.5, 4, POINT(17.252352, 125.52532), '숙소 G 소개', 'SHARED_BATHROOM', 'BEDROOM', 5,
         '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
         'https://media-cdn.tripadvisor.com/media/photo-s/15/a1/d2/af/hotel-r-de-paris.jpg'),
-       (8, 8, '숙소 C', 0.5, 4, POINT(17.252352, 125.52532), '숙소 C 소개', 'SHARED_BATHROOM', 'BEDROOM', 5,
+       (8, 8, '숙소 H', 0.5, 4, POINT(17.252352, 125.52532), '숙소 H 소개', 'SHARED_BATHROOM', 'BEDROOM', 5,
         '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
         'https://media-cdn.tripadvisor.com/media/photo-s/15/a1/d2/af/hotel-r-de-paris.jpg')
 ;
@@ -74,19 +74,19 @@ values (1, 500, 1000, 2500, 20000, 5),
        (2, 500, 1000, 2500, 50000, 5),
        (3, 500, 1000, 2500, 100000, 5),
        (4, 500, 1000, 2500, 60000, 5),
-       (5, 500, 1000, 2500, 30000, 5),
-       (6, 500, 1000, 2500, 30000, 5),
-       (7, 500, 1000, 2500, 30000, 5),
-       (8, 500, 1000, 2500, 30000, 5)
+       (5, 500, 1000, 2500, 50000, 5),
+       (6, 500, 1000, 2500, 50000, 5),
+       (7, 500, 1000, 2500, 50000, 5),
+       (8, 500, 1000, 2500, 50000, 5)
 ;
 
 insert into reservation(id, room_id, guest_id, checkin_date_time, checkout_date_time, adult_count, child_count,
                         infant_count)
-values (1, 1, 2, '2021-05-20', '2021-05-25', 2, 0, 0),
-       (2, 1, 2, '2021-05-27', '2021-05-28', 2, 0, 0),
-       (3, 1, 2, '2021-05-30', '2021-06-02', 2, 0, 0),
-       (4, 2, 2, '2021-05-27', '2021-05-28', 2, 0, 0),
-       (5, 3, 2, '2021-05-30', '2021-06-02', 2, 0, 0)
+values (1, 1, 2, '2021-06-20', '2021-06-25', 2, 0, 0),
+       (2, 1, 2, '2021-06-27', '2021-06-28', 2, 0, 0),
+       (3, 1, 2, '2021-06-30', '2021-06-02', 2, 0, 0),
+       (4, 2, 2, '2021-06-27', '2021-06-28', 2, 0, 0),
+       (5, 3, 2, '2021-06-30', '2021-07-02', 2, 0, 0)
 ;
 
 insert into user (id, oauth_id, authenticated_by, nickname, name, profile_image, access_token)
