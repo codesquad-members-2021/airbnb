@@ -15,14 +15,14 @@ public class AirbnbInitializer implements CommandLineRunner {
     private final GithubApi githubApi;
     private final JwtSecret jwtSecret;
 
-    public AirbnbInitializer(com.codesquad.airbnb.web.config.properties.OAuthSecret OAuthSecret, GithubApi githubApi, JwtSecret jwtSecret) {
+    public AirbnbInitializer(OAuthSecret OAuthSecret, GithubApi githubApi, JwtSecret jwtSecret) {
         this.OAuthSecret = OAuthSecret;
         this.githubApi = githubApi;
         this.jwtSecret = jwtSecret;
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         log.info("Start Airbnb initializer");
         log.info("serverSecret : {}", OAuthSecret);
         log.info("githubApi : {}", githubApi);
