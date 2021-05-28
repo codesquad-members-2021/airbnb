@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.ToString;
 import org.springframework.data.geo.Point;
 
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import static com.codesquad.airbnb.web.exceptions.ReservationFailedException.GUE
 
 @Getter
 @Builder
-@ToString
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Room {
     private int id;
