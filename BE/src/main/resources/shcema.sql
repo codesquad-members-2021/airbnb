@@ -20,7 +20,7 @@ create table category(
 drop tabel room;
 create table room(
     id int not null auto_increment,
-    price int not null,
+    cost int not null,
     title varchar (45) not null,
     description varchar (300),
     people int not null,
@@ -31,8 +31,6 @@ create table room(
     air_conditioner tinyint(1) not null default 0,
     wifi tinyint(1) not null default 0,
     clean_tax int ,
-    service_tax int ,
-    accommodation_tax int,
     city_id int not null,
     category_id int not null,
 
@@ -44,7 +42,7 @@ create table room(
 drop table image;
 create table image(
     id int not null auto_increment,
-    url varchar(100) not null,
+    url varchar(300) not null,
     room_id int,
     category_id int,
     city_id int,

@@ -1,6 +1,7 @@
 package airbnb.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Embedded;
 
 import java.util.List;
 
@@ -10,10 +11,12 @@ public class City {
     private Long id;
     private String name;
     private List<Image> images;
+    private Location location;
 
-    public City(Long id, String name) {
+    public City(Long id, String name, Location location) {
         this.id = id;
         this.name = name;
+        this.location = location;
     }
 
     public Long getId() {
@@ -26,6 +29,10 @@ public class City {
 
     public List<Image> getImages() {
         return images;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
     public void addImage(Image image) {

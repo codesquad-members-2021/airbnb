@@ -1,7 +1,7 @@
 package airbnb.domain;
 
 public enum ImageType {
-    HIRO,
+    HERO,
     MAIN,
     DETAIL
 }

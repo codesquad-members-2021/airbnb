@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public class ImageDao {
 
-    private NamedParameterJdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate jdbcTemplate;
     private final ImageMapper imageMapper = new ImageMapper();
 
     public ImageDao(NamedParameterJdbcTemplate jdbcTemplate) {
@@ -39,6 +39,14 @@ public class ImageDao {
                 "WHERE image_type = :imageType";
         MapSqlParameterSource parameter = new MapSqlParameterSource();
         parameter.addValue("imageType", imageType);
+        return jdbcTemplate.query(sql, parameter, imageMapper);
+    }
+
+    public List<Image> findByRoomId(Long roomId) {
+        String sql = "SELECT id, url, room_id, city_id, category_id, image_type FROM image " +
+                "WHERE room_id = :roomId ORDER BY FIELD(image_type, 'MAIN', 'DETAIL')";
+        MapSqlParameterSource parameter = new MapSqlParameterSource();
+        parameter.addValue("roomId", roomId);
         return jdbcTemplate.query(sql, parameter, imageMapper);
     }
 }

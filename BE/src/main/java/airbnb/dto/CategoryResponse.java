@@ -1,10 +1,12 @@
 package airbnb.dto;
 
 import airbnb.domain.Category;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CategoryResponse {
 
+    @JsonIgnore
     private final Long id;
 
     @JsonProperty(value = "Category")

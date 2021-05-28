@@ -14,7 +14,7 @@ public class ImageService {
         this.imageDao = imageDao;
     }
 
-    public Image findHiroImage() {
-        return imageDao.findByType(ImageType.HIRO.name()).get(0);
+    public Image findHeroImage() {
+        return imageDao.findByType(ImageType.HERO.name()).get(0);
     }
 }

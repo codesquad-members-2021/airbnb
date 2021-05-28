@@ -6,18 +6,18 @@ import java.util.List;
 
 public class MainPageResponse {
 
-    private final String hiroImage;
+    private final String heroImage;
     private final List<CityResponse> cities;
     private final List<CategoryResponse> categories;
 
-    private MainPageResponse(String hiroImage, List<CityResponse> cities, List<CategoryResponse> categories) {
-        this.hiroImage = hiroImage;
+    private MainPageResponse(String heroImage, List<CityResponse> cities, List<CategoryResponse> categories) {
+        this.heroImage = heroImage;
         this.cities = cities;
         this.categories = categories;
     }
 
-    public String getHiroImage() {
-        return hiroImage;
+    public String getHeroImage() {
+        return heroImage;
     }
 
     public List<CityResponse> getCities() {
@@ -28,7 +28,7 @@ public class MainPageResponse {
         return categories;
     }
 
-    public static MainPageResponse of(Image hiroImage, List<CityResponse> cities, List<CategoryResponse> categories) {
-        return new MainPageResponse(hiroImage.getUrl(), cities, categories);
+    public static MainPageResponse of(Image heroImage, List<CityResponse> cities, List<CategoryResponse> categories) {
+        return new MainPageResponse(heroImage.getUrl(), cities, categories);
     }
 }

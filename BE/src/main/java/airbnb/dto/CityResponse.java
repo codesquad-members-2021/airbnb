@@ -1,19 +1,23 @@
 package airbnb.dto;
 
 import airbnb.domain.City;
+import airbnb.domain.Location;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CityResponse {
 
     private final Long id;
     private final String name;
     private final String image;
-    private final int distance;
+
+    @JsonProperty(value = "distance")
+    private final long travelTime;
 
     private CityResponse(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.image = builder.image;
-        this.distance = builder.distance;
+        this.travelTime = builder.travelTime;
     }
 
     public static class Builder {
@@ -22,7 +26,7 @@ public class CityResponse {
         private final String name;
 
         private String image;
-        private int distance = 10;
+        private long travelTime;
 
         public Builder(Long id, String name) {
             this.id = id;
@@ -34,8 +38,8 @@ public class CityResponse {
             return this;
         }
 
-        public Builder distance(int distance) {
-            this.distance = distance;
+        public Builder travelTime(long travelTime) {
+            this.travelTime = travelTime;
             return this;
         }
 
@@ -56,12 +60,12 @@ public class CityResponse {
         return image;
     }
 
-    public int getDistance() {
-        return distance;
+    public long getTravelTime() {
+        return travelTime;
     }
 
-    public static CityResponse of(City city, String imageUrl) {
-        return new CityResponse.Builder(city.getId(), city.getName())
-                .image(imageUrl).build();
+    public static CityResponse of(City city, String imageUrl, Location location) {
+        return new Builder(city.getId(), city.getName())
+                .image(imageUrl).travelTime(location.calculatorTravelTime(city.getLocation())).build();
     }
 }

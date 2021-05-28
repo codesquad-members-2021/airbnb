@@ -2,11 +2,13 @@ package airbnb.Service;
 
 import airbnb.dao.CityDao;
 import airbnb.domain.City;
+import airbnb.domain.Location;
 import airbnb.dto.CityResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CityService {
@@ -22,14 +24,9 @@ public class CityService {
     }
 
     public List<CityResponse> createAllToCityResponseList() {
-
-        List<CityResponse> responseList = new ArrayList<>();
+        Location codeSquadLocation = new Location(37.491016774047345, 127.03339554026415);
         List<City> cities = findAll();
-
-        for (City city : cities) {
-            CityResponse cityResponse = CityResponse.of(city, city.findMainImageUrl());
-            responseList.add(cityResponse);
-        }
-        return responseList;
+        return cities.stream().map(city -> CityResponse.of(city, city.findMainImageUrl(), codeSquadLocation))
+                .collect(Collectors.toList());
     }
 }

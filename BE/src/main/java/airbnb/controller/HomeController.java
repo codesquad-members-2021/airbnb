@@ -23,7 +23,7 @@ public class HomeController {
 
     @GetMapping
     public MainPageWrapper home() {
-        MainPageResponse mainPageResponse = MainPageResponse.of(imageService.findHiroImage(), cityService.createAllToCityResponseList(),
+        MainPageResponse mainPageResponse = MainPageResponse.of(imageService.findHeroImage(), cityService.createAllToCityResponseList(),
                 categoryService.createAllToCategoryResponseList());
         return new MainPageWrapper(mainPageResponse);
     }
