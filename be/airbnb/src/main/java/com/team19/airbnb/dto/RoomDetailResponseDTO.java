@@ -14,8 +14,8 @@ public class RoomDetailResponseDTO {
 
     private List<String> images;
 
-    private Double score;
-    private Integer reviewers;
+    private Double grade;
+    private Integer reviewer;
 
     private String location;
     private String[] coordiante;
@@ -38,8 +38,8 @@ public class RoomDetailResponseDTO {
 
         this.images = builder.images;
 
-        this.score = builder.score;
-        this.reviewers = builder.reviewers;
+        this.grade = builder.grade;
+        this.reviewer = builder.reviewer;
 
         this.location = builder.location;
         this.coordiante = builder.coordinate;
@@ -61,8 +61,8 @@ public class RoomDetailResponseDTO {
         private final String roomName;
         private final List<String> images;
 
-        private final Double score;
-        private final Integer reviewers;
+        private final Double grade;
+        private final Integer reviewer;
 
         private final String location;
         private final String[] coordinate;
@@ -84,8 +84,8 @@ public class RoomDetailResponseDTO {
                     .map(Image::getUrl)
                     .collect(Collectors.toList());
 
-            this.score = room.getReview().getScore();
-            this.reviewers = room.getReview().getReviewers();
+            this.grade = room.getReview().getGrade();
+            this.reviewer = room.getReview().getReviewer();
 
             this.location = room.getLocation().getAddress();
             this.coordinate = coordinate(room.getLocation());
@@ -110,11 +110,11 @@ public class RoomDetailResponseDTO {
         private String roomConfiguration(RoomsAndBeds roomsAndBeds) {
             StringBuilder stringBuilder = new StringBuilder();
             return String.valueOf(stringBuilder.append("침구 : ")
-                    .append(roomsAndBeds.getBeds())
+                    .append(roomsAndBeds.getBed())
                     .append(" 침실 : ")
-                    .append(roomsAndBeds.getBedRooms())
+                    .append(roomsAndBeds.getBedRoom())
                     .append(" 욕실: ")
-                    .append(roomsAndBeds.getBathRooms()));
+                    .append(roomsAndBeds.getBathRoom()));
         }
 
         public Builder totalPrice(BigDecimal totalPrice) {
@@ -139,12 +139,12 @@ public class RoomDetailResponseDTO {
         return images;
     }
 
-    public Double getScore() {
-        return score;
+    public Double getGrade() {
+        return grade;
     }
 
-    public Integer getReviewers() {
-        return reviewers;
+    public Integer getReviewer() {
+        return reviewer;
     }
 
     public String getLocation() {

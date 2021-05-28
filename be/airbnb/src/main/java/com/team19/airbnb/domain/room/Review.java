@@ -1,23 +1,23 @@
 package com.team19.airbnb.domain.room;
 
 public class Review {
-    private Double score;
-    private Integer reviewers;
+    private Double grade;
+    private Integer reviewer;
 
-    Review(Double score, Integer reviewers) {
-        this.score = score;
-        this.reviewers = reviewers;
+    Review(Double grade, Integer reviewer) {
+        this.grade = grade;
+        this.reviewer = reviewer;
     }
 
-    public static Review create(Double score, Integer reviewers) {
-        return new Review(score, reviewers);
+    public static Review create(Double grade, Integer reviewers) {
+        return new Review(grade, reviewers);
     }
 
-    public Double getScore() {
-        return score;
+    public Double getGrade() {
+        return grade;
     }
 
-    public Integer getReviewers() {
-        return reviewers;
+    public Integer getReviewer() {
+        return reviewer;
     }
 }

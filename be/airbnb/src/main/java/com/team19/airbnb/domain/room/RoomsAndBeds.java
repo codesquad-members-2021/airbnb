@@ -1,29 +1,29 @@
 package com.team19.airbnb.domain.room;
 
 public class RoomsAndBeds {
-    private int beds;
-    private int bedRooms;
-    private int bathRooms;
+    private int bed;
+    private int bedRoom;
+    private int bathRoom;
 
-    RoomsAndBeds(int beds, int bedRooms, int bathRooms) {
-        this.beds = beds;
-        this.bedRooms = bedRooms;
-        this.bathRooms = bathRooms;
+    RoomsAndBeds(int bed, int bedRoom, int bathRoom) {
+        this.bed = bed;
+        this.bedRoom = bedRoom;
+        this.bathRoom = bathRoom;
     }
 
-    public static RoomsAndBeds create(int beds, int bedRooms, int bathRooms) {
-        return new RoomsAndBeds(beds, bedRooms, bathRooms);
+    public static RoomsAndBeds create(int bed, int bedRoom, int bathRoom) {
+        return new RoomsAndBeds(bed, bedRoom, bathRoom);
     }
 
-    public int getBeds() {
-        return beds;
+    public int getBed() {
+        return bed;
     }
 
-    public int getBedRooms() {
-        return bedRooms;
+    public int getBedRoom() {
+        return bedRoom;
     }
 
-    public int getBathRooms() {
-        return bathRooms;
+    public int getBathRoom() {
+        return bathRoom;
     }
 }
