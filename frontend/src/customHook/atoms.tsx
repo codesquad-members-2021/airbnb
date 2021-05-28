@@ -57,3 +57,17 @@ export const FeeMaxChange = atom<number>({
   key: 'maxFeePercecnt',
   default: 0,
 })
+
+//personnel
+export const personnelAudult = atom<number>({
+  key: 'adult',
+  default: 0,
+})
+export const personnelChild = atom<number>({
+  key: 'child',
+  default: 0,
+})
+export const personnelBaby = atom<number>({
+  key: 'baby',
+  default: 0,
+})
