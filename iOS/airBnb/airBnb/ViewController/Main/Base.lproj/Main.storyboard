@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7wA-kI-XBG">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="HXa-k2-IrQ">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="7wA-kI-XBG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hWi-XB-QdT">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Z6f-HR-LXz" kind="relationship" relationship="viewControllers" id="ZuY-2O-kod"/>
+                        <segue destination="RwC-Rx-5fJ" kind="relationship" relationship="viewControllers" id="0bZ-EB-Y2H"/>
+                        <segue destination="r1X-Xl-ZlI" kind="relationship" relationship="viewControllers" id="WHi-W1-5NN"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3CD-GA-Zhb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-954" y="158"/>
+        </scene>
+        <!--검색-->
+        <scene sceneID="Bmw-h9-aJY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Z6f-HR-LXz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" id="DgF-w9-Kyb"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="M2Q-Jc-k5k">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ar4-KE-pev" kind="relationship" relationship="rootViewController" id="7bv-Dh-rwU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Civ-Dv-9fi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="297" y="135"/>
+        </scene>
+        <!--홈-->
+        <scene sceneID="P56-NS-xKU">
+            <objects>
+                <viewController storyboardIdentifier="main" title="홈" id="Ar4-KE-pev" customClass="MainViewController" customModule="airBnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YSL-O0-4Px">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainImage" translatesAutoresizingMaskIntoConstraints="NO" id="YnR-Ne-vQ0">
+                                <rect key="frame" x="0.0" y="87.999999999999972" width="375" height="365.33333333333326"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="슬기로운 노예생활" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8h-kg-QjJ">
+                                <rect key="frame" x="29.999999999999986" y="145.33333333333334" width="242.66666666666663" height="40.666666666666657"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D25-Yx-8xL">
+                                <rect key="frame" x="30" y="230.33333333333334" width="165" height="38.000000000000028"/>
+                                <color key="backgroundColor" name="CityColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="xBB-52-BGf"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="165" id="xKG-X1-dTe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="여행 아이디어 얻기">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="에어비엔비가 엄선한 위시리스트를 만나보세요." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6i-OU-tDQ">
+                                <rect key="frame" x="30" y="194" width="312" height="20.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="CityColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Gqd-nq-7DM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Gqd-nq-7DM" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="h8h-kg-QjJ" secondAttribute="trailing" id="83V-F0-3TI"/>
+                            <constraint firstItem="YnR-Ne-vQ0" firstAttribute="trailing" secondItem="Gqd-nq-7DM" secondAttribute="trailing" id="I2T-pO-rC1"/>
+                            <constraint firstItem="c6i-OU-tDQ" firstAttribute="leading" secondItem="h8h-kg-QjJ" secondAttribute="leading" id="QLE-9a-px0"/>
+                            <constraint firstItem="h8h-kg-QjJ" firstAttribute="leading" secondItem="Gqd-nq-7DM" secondAttribute="leading" constant="30" id="QRi-Yo-5r1"/>
+                            <constraint firstItem="D25-Yx-8xL" firstAttribute="leading" secondItem="c6i-OU-tDQ" secondAttribute="leading" id="RdK-UD-lpU"/>
+                            <constraint firstItem="YnR-Ne-vQ0" firstAttribute="top" secondItem="Gqd-nq-7DM" secondAttribute="top" id="XTY-rS-oUo"/>
+                            <constraint firstItem="D25-Yx-8xL" firstAttribute="top" secondItem="c6i-OU-tDQ" secondAttribute="bottom" constant="16" id="aK6-Dx-v2u"/>
+                            <constraint firstItem="Gqd-nq-7DM" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="c6i-OU-tDQ" secondAttribute="trailing" id="dxN-Qe-ey7"/>
+                            <constraint firstItem="h8h-kg-QjJ" firstAttribute="top" secondItem="Gqd-nq-7DM" secondAttribute="top" multiplier="1.65" id="eB5-2A-RQC"/>
+                            <constraint firstItem="Gqd-nq-7DM" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="D25-Yx-8xL" secondAttribute="trailing" id="hby-G6-Dbn"/>
+                            <constraint firstItem="c6i-OU-tDQ" firstAttribute="top" secondItem="h8h-kg-QjJ" secondAttribute="bottom" constant="8" id="kPK-Xv-eXW"/>
+                            <constraint firstItem="YnR-Ne-vQ0" firstAttribute="leading" secondItem="Gqd-nq-7DM" secondAttribute="leading" id="stI-ON-mJk"/>
+                            <constraint firstItem="YnR-Ne-vQ0" firstAttribute="height" secondItem="YSL-O0-4Px" secondAttribute="height" multiplier="0.45" id="tse-aR-H4P"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="9gn-Uc-gmy"/>
+                    <connections>
+                        <outlet property="tripIdeaButton" destination="D25-Yx-8xL" id="VIx-BM-Cdz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B5p-Y5-JBL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1123" y="135"/>
+        </scene>
+        <!--위시리스트-->
+        <scene sceneID="9V7-y8-CQU">
+            <objects>
+                <viewController id="RwC-Rx-5fJ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ylc-Xj-0vS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="jMZ-Wh-c6v"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="위시리스트" id="h3H-Lz-YDd">
+                        <imageReference key="image" image="suit.heart" catalog="system" renderingMode="template"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2kO-0v-qlB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="415" y="851"/>
+        </scene>
+        <!--로그인-->
+        <scene sceneID="g19-Wk-LYQ">
+            <objects>
+                <viewController id="r1X-Xl-ZlI" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vbw-47-s7H">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="e40-RY-VJg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="로그인" image="person" catalog="system" id="w2K-he-zm3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rql-wt-qNE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="296" y="-591"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="MainImage" width="250" height="325.33334350585938"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="person" catalog="system" width="128" height="117"/>
+        <image name="suit.heart" catalog="system" width="128" height="109"/>
+        <namedColor name="CityColor">
+            <color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
