@@ -8,9 +8,9 @@
 import Foundation
 
 protocol CalendarManageModel {
-    typealias DataHandler = ([Month]) -> Void
-    typealias SearchConditionHandler = ([String]) -> Void
-    func bind(dataHandler: @escaping DataHandler, searchHandler: @escaping SearchConditionHandler)
+    typealias CalendarHandler = ([Month]) -> Void
+    typealias ConditionHandler = ([String]) -> Void
+    func bind(dataHandler: @escaping CalendarHandler, searchHandler: @escaping ConditionHandler)
     func calendarUpdateNeeded()
     func didCalendarCellSelected(at indexPath: IndexPath)
 }

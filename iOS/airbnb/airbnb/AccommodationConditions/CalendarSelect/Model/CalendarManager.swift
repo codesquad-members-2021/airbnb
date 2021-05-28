@@ -12,8 +12,8 @@ class CalendarManager {
     private let calendar = Calendar(identifier: .gregorian)
     private(set) var months: [Month]
     
-    init() {
-        self.months = []
+    init(months: [Month] = []) {
+        self.months = months
     }
     
     func findDate(of monthIndex: Int, _ dayIndex: Int) -> Date? {
@@ -75,8 +75,8 @@ class CalendarManager {
     }
     
     private func isSameDay(date: Date, compareTo: Date = Date()) -> Bool {
-        let day = calendar.dateComponents([.day], from: date).day!
-        let dayToCompare = calendar.dateComponents([.day], from: compareTo).day!
+        let day = calendar.dateComponents([.day], from: date).day
+        let dayToCompare = calendar.dateComponents([.day], from: compareTo).day
         return day == dayToCompare
     }
     

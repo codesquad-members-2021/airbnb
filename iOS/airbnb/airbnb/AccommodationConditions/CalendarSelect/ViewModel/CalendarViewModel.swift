@@ -26,7 +26,7 @@ class CalendarViewModel: CalendarManageModel {
         }
     }
     
-    private let calendarManager: DateSelectionManager
+    private let dateSelectionManager: DateSelectionManager
     private let conditionManager: ConditionManager
     
     enum ButtonTitle {
@@ -38,13 +38,13 @@ class CalendarViewModel: CalendarManageModel {
     static let weekdays = ["월", "화", "수", "목", "금", "토", "일"]
     static let conditionTitles = ["위치", "체크인/체크아웃", "요금", "인원"]
     
-    init(calendarManager: DateSelectionManager, conditionManager: ConditionManager) {
-        self.calendarManager = calendarManager
+    init(dateSelectionManager: DateSelectionManager, conditionManager: ConditionManager) {
+        self.dateSelectionManager = dateSelectionManager
         self.conditionManager = conditionManager
     }
     
     convenience init(conditionManager: ConditionManager) {
-        self.init(calendarManager: DateSelectionManager(), conditionManager: conditionManager)
+        self.init(dateSelectionManager: DateSelectionManager(), conditionManager: conditionManager)
     }
     
     func bind(dataHandler: @escaping CalendarHandler, searchHandler: @escaping ConditionHandler) {
@@ -55,8 +55,8 @@ class CalendarViewModel: CalendarManageModel {
     }
     
     private func fillCalendar(by count: Int) {
-        calendarManager.loadMoreMonths(by: count)
-        calendar = calendarManager.allMonths()
+        dateSelectionManager.loadMoreMonths(by: count)
+        calendar = dateSelectionManager.allMonths()
     }
     
     private func updateConditions() {
@@ -68,9 +68,10 @@ class CalendarViewModel: CalendarManageModel {
     }
 
     func didCalendarCellSelected(at indexPath: IndexPath) {
-        calendarManager.newDateSelected(at: indexPath)
-        calendar = calendarManager.allMonths()
-        let newDates = calendarManager.selectedDates()
+        dateSelectionManager.newDateSelected(at: indexPath)
+        calendar = dateSelectionManager.allMonths()
+        
+        let newDates = dateSelectionManager.selectedDates()
         conditionManager.updatePeriod(with: newDates)
         updateConditions()
     }
