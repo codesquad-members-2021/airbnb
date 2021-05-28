@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.web.service.resolver;
+package com.codesquad.airbnb.web.config.resolver;
 
 import com.codesquad.airbnb.web.config.annotation.CertifiedUser;
 import org.springframework.core.MethodParameter;

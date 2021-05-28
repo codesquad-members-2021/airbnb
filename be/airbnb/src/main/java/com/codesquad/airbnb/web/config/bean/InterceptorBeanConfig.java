@@ -1,27 +1,21 @@
-package com.codesquad.airbnb.web.config;
+package com.codesquad.airbnb.web.config.bean;
 
-import com.codesquad.airbnb.web.service.interceptor.AuthInterceptor;
+import com.codesquad.airbnb.web.config.interceptor.AuthInterceptor;
 import com.codesquad.airbnb.web.service.oauth.TokenService;
-import com.codesquad.airbnb.web.service.resolver.CertifiedUserResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class BeanRegistConfig {
+public class InterceptorBeanConfig {
 
     private final TokenService tokenService;
 
-    public BeanRegistConfig(TokenService tokenService) {
+    public InterceptorBeanConfig(TokenService tokenService) {
         this.tokenService = tokenService;
     }
 
     @Bean
     public AuthInterceptor authInterceptor() {
         return new AuthInterceptor(tokenService);
-    }
-
-    @Bean
-    public CertifiedUserResolver certifiedUserResolver() {
-        return new CertifiedUserResolver();
     }
 }

@@ -122,6 +122,8 @@ class RoomDAOTest {
     @Test
     @DisplayName("숙소를 UserInput으로 조회할 수 있어야 함")
     void searchRooms() {
+        Room room = createRoom();
+        roomDAO.save(room);
         UserInput userInput = UserInput.builder()
                 .location("서울특별시")
                 .checkIn(LocalDate.parse("2021-05-01", DATE_TIME_FORMATTER))
@@ -132,7 +134,8 @@ class RoomDAOTest {
                 .childCount(0)
                 .infantCount(0)
                 .build();
-        roomDAO.findRoomsByUserInput(userInput);
+        List<Room> rooms = roomDAO.findRoomsByUserInput(userInput);
+        assertThat(rooms.size() > 0).isTrue();
     }
 
     private Room createRoom() {
@@ -155,7 +158,13 @@ class RoomDAOTest {
                 .bedroomType(BedroomType.BEDROOM)
                 .bedCount(2)
                 .amenity("주방, 무선인터넷, 에어컨, 헤어드라이어")
-                .pricePolicy(new PricePolicy(5000, 1000, 5000, 50000, 4))
+                .pricePolicy(PricePolicy.builder()
+                        .pricePerDay(50000)
+                        .weeklyDiscount(5)
+                        .serviceFee(1000)
+                        .cleanUpCost(5000)
+                        .accomodationTax(5000)
+                        .build())
                 .reviewCount(123)
                 .thumbnail("https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?s=1024x768")
                 .host(Host.builder().id(1).build())

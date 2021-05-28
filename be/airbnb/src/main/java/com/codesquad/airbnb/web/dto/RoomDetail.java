@@ -1,6 +1,5 @@
 package com.codesquad.airbnb.web.dto;
 
-import com.codesquad.airbnb.web.domain.room.RoomImage;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Builder;

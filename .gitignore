@@ -1,2 +1,3 @@
 **/.DS_Store
 be/airbnb/src/main/resources/secret.properties
+be/airbnb/src/main/resources/dev_secret.properties
