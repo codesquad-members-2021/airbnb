@@ -42,7 +42,7 @@ const ResponsiveLayout = styled.div`
 const ResponsiveFluidLayout = styled.div`
   display: flex;
 
-  @media (min-width: 1400px) {
+  @media (min-width: 1440px) {
     width: 1440px;
   }
 `;
