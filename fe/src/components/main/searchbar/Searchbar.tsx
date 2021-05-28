@@ -16,7 +16,6 @@ const SearchBar = () => {
         <PriceInput />
         <SeparateBar />
         <PeopleInput />
-
         <SearchBarBtn />
       </StyledSearchBar>
     </Box>
@@ -31,7 +30,7 @@ const StyledSearchBar = styled.div`
   flex-direction: row;
   align-items: center;
   background-color: ${({ theme }) => theme.color.White};
-  width: 76rem;
+  width: 65rem;
   height: 5rem;
   border-radius: 3.7rem;
   position: relative;

@@ -1,5 +1,6 @@
 import { Box } from "@material-ui/core";
 import styled from "styled-components";
+import PriceSlider from "./PriceSlider";
 
 const PriceContent = () => {
   return (
@@ -7,6 +8,7 @@ const PriceContent = () => {
       <PriceTitle>가격 범위</PriceTitle>
       <PriceRange>100000 ~ 100000000+</PriceRange>
       <PriceSubtitle>평균 1박요금은 입니다.</PriceSubtitle>
+      <PriceSlider />
     </Box>
   );
 };
@@ -26,5 +28,5 @@ const PriceRange = styled.span`
 const PriceSubtitle = styled.span`
   font-size: 0.8rem;
   font-weight: 400;
-  color:${({theme}) => theme.color.Gray3}
+  color: ${({ theme }) => theme.color.Gray3};
 `;

@@ -14,7 +14,7 @@ const PriceInput = () => {
   return (
     <>
       <InputItem
-        w="30%"
+        w="20%"
         title="요금"
         subtitle="금액대 설정"
         onClick={handleClick}

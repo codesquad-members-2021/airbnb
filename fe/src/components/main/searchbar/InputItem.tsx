@@ -1,18 +1,19 @@
 import styled from "styled-components";
-import { MouseEvent } from "react"
+import { MouseEvent } from "react";
 type InputItemProps = {
   w: String;
   title: String;
   subtitle: String;
-  onClick?: (event: MouseEvent | Event) => void
+  onClick?: (event: MouseEvent | Event) => void;
 };
 
-const InputItem = ({ w, title, subtitle,onClick }: InputItemProps) => {
-  
+const InputItem = ({ w, title, subtitle, onClick }: InputItemProps) => {
   return (
-    <FlexBox {...{ w }} onClick={onClick} >
+    <FlexBox {...{ w }} onClick={onClick}>
       <InputTitle>{title}</InputTitle>
-      <InputSubtitle aria-disabled={subtitle==="날짜입력"}>{subtitle}</InputSubtitle>
+      <InputSubtitle aria-disabled={subtitle === "날짜입력"}>
+        {subtitle}
+      </InputSubtitle>
     </FlexBox>
   );
 };
@@ -24,11 +25,16 @@ const InputTitle = styled.div`
   font-size: 1rem;
   margin-bottom: 0.3rem;
 `;
+
 const InputSubtitle = styled.div`
   font-weight: 400;
   font-size: 1rem;
   color: ${({ theme }) => theme.color.Gray3};
-  &[aria-disabled="false"]{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+  &[aria-disabled="false"] {
     color: ${({ theme }) => theme.color.Black};
   }
 `;
