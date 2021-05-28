@@ -10,13 +10,14 @@ public class HeroBanner {
     private String title;
     private String image;
 
-    HeroBanner(String title, String image) {
+    HeroBanner(Long id, String title, String image) {
+        this.id = id;
         this.title = title;
         this.image = image;
     }
 
-    public static HeroBanner create(String title, String image) {
-        return new HeroBanner(title, image);
+    public static HeroBanner create(Long id, String title, String image) {
+        return new HeroBanner(id, title, image);
     }
 
     public String getTitle() {

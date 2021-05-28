@@ -24,34 +24,33 @@ public class BookingResponseDTO {
     private List<String> images;
     private Host host;
 
-    private BookingResponseDTO(Long bookingId, LocalDate checkIn, LocalDate checkOut, Integer guest, BigDecimal totalPrice,
-                               Long roomId, String roomName, String roomType, List<String> images, Host host) {
-        this.bookingId = bookingId;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
-        this.guest = guest;
-        this.totalPrice = totalPrice;
+    private BookingResponseDTO(Builder builder) {
+        this.bookingId = builder.bookingId;
+        this.checkIn = builder.checkIn;
+        this.checkOut = builder.checkOut;
+        this.guest = builder.guest;
+        this.totalPrice = builder.totalPrice;
 
-        this.roomId = roomId;
-        this.roomName = roomName;
-        this.roomType = roomType;
-        this.images = images;
-        this.host = host;
+        this.roomId = builder.roomId;
+        this.roomName = builder.roomName;
+        this.roomType = builder.roomType;
+        this.images = builder.images;
+        this.host = builder.host;
     }
 
     public static class Builder {
 
-        private Long bookingId;
-        private LocalDate checkIn;
-        private LocalDate checkOut;
-        private Integer guest;
-        private BigDecimal totalPrice;
+        private final Long bookingId;
+        private final LocalDate checkIn;
+        private final LocalDate checkOut;
+        private final Integer guest;
+        private final BigDecimal totalPrice;
 
-        private Long roomId;
-        private String roomName;
-        private String roomType;
-        private List<String> images;
-        private Host host;
+        private final Long roomId;
+        private final String roomName;
+        private final String roomType;
+        private final List<String> images;
+        private final Host host;
 
         public Builder(Booking booking, Room room) {
 
@@ -71,8 +70,7 @@ public class BookingResponseDTO {
         }
 
         public BookingResponseDTO build() {
-            return new BookingResponseDTO(bookingId, checkIn, checkOut, guest, totalPrice,
-                    roomId, roomName, roomType, images, host);
+            return new BookingResponseDTO(this);
         }
     }
 

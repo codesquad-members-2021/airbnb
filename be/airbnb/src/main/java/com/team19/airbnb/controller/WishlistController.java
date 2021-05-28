@@ -21,17 +21,15 @@ public class WishlistController {
 
     @GetMapping("/wishlist/{userId}")
     public ResponseBody<List<RoomDetailResponseDTO>> getWishList(@PathVariable Long userId) {
-        return null;
+        return ResponseBody.ok(userService.showWishLists(userId));
     }
 
     @PostMapping("/wishlist/{userId}")
     public void postWishList(@RequestBody WishListRequestDTO wishListRequestDTO, @PathVariable Long userId) {
         wishlistService.addWishList(wishListRequestDTO, userId);
-
     }
 
     @DeleteMapping("/wishlist/{userId}")
     public void deleteWishList(@PathVariable Long userId, @RequestBody WishListRequestDTO wishListRequestDTO) {
-
     }
 }
