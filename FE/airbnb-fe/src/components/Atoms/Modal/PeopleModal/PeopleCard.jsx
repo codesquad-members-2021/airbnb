@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { SearchContext } from '..';
 import peopleTypeJson from '../../../utils/mock/people-type.json';
+import { SearchContext } from '../../Search';
 
 const PeopleCard = ({ type: peopleType }) => {
   const { peopleCount, peopleDispatch } = useContext(SearchContext);

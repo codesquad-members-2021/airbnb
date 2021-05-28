@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { SearchContext } from '../../../Search';
 import createMonthArray from './createMonthArray';
-import { SearchContext } from '../..';
+
 //달력 생성
 
 const SingleCalendar = ({ range }) => {

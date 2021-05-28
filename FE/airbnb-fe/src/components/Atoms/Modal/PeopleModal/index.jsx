@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PeopleCard from '../PeopleCard';
+import PeopleCard from './PeopleCard';
 
 const PeopleModal = () => {
   return (
