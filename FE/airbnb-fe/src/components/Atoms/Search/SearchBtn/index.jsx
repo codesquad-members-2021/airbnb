@@ -13,16 +13,21 @@ const SearchBtn = () => {
     history.push('/reservation');
   }; //http://3.35.226.74/airbnb/?location=soul&checkin=2021-05-28&checkout=2021-06-02&adults=2&children=1&infants=1
   return (
-    <Link to="/reservation">
-      <SearchBtnDiv isModalClicked={isModalClicked}>
-        <SearchSvgDiv>
-          <SearchSvg>
-            <SearchButtonSvg />
-          </SearchSvg>
-        </SearchSvgDiv>
-        {isModalClicked ? <SearchWordDiv>검색</SearchWordDiv> : null}
-      </SearchBtnDiv>
-    </Link>
+    // <Link to={
+    //   pathname: '',
+    //     state = {
+
+    //     }
+    // }>
+    <SearchBtnDiv isModalClicked={isModalClicked}>
+      <SearchSvgDiv>
+        <SearchSvg>
+          <SearchButtonSvg />
+        </SearchSvg>
+      </SearchSvgDiv>
+      {isModalClicked ? <SearchWordDiv>검색</SearchWordDiv> : null}
+    </SearchBtnDiv>
+    // </Link>
   );
 };
 
