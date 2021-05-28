@@ -1,7 +1,6 @@
 package com.team19.airbnb.repository;
 
 import com.team19.airbnb.domain.Booking;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -19,7 +18,6 @@ public class BookingDAO {
 
     private final JdbcTemplate jdbcTemplate;
 
-    @Autowired
     public BookingDAO(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }

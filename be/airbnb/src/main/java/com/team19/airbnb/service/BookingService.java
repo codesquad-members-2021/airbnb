@@ -23,6 +23,7 @@ public class BookingService {
 
     private final BookingDAO bookingDAO;
     private final UserDAO userDAO;
+    //Repository 삭제해야한다
     private final UserRepository userRepository;
     private final RoomRepository roomRepository;
     
