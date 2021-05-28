@@ -50,7 +50,9 @@ public class BookingRepository implements JdbcRepository<Booking> {
                 " (? < check_in and ? > check_out)";
 
 
-        return jdbcTemplate.query(sql, bookingRowMapper(), booking.getRoomId(), booking.getCheckIn(), booking.getCheckOut());
+        return jdbcTemplate.query(sql, bookingRowMapper(), booking.getRoomId(),
+                booking.getCheckIn(), booking.getCheckOut(), booking.getCheckIn(), booking.getCheckOut(),
+                booking.getCheckIn(), booking.getCheckOut(),booking.getCheckIn(), booking.getCheckOut());
     }
 
     private RowMapper<Booking> bookingRowMapper() {
