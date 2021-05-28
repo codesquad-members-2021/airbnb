@@ -1,4 +1,5 @@
 import { atom, selector } from 'recoil';
+import { guestStateType } from '../components/header/form/guestToggle/guestType';
 
 export const tabSelectedState = atom<boolean[]>({
   key: 'tabSelectedState',
@@ -18,4 +19,9 @@ export const pauseBtnPositionState = atom({
 export const pauseBtnLastPositionState = atom({
   key: 'pauseBtnLastPositionState',
   default: { left: 0, right: 0 },
+});
+
+export const guestState = atom<guestStateType>({
+  key: 'guestState',
+  default: { adult: 0, child: 0, infants: 0 },
 });

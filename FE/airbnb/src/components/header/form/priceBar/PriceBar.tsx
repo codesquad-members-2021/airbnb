@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactElement, RefObject, useEffect, useRef, useState } from 'react';
+import { MouseEvent, RefObject, useState } from 'react';
 import styled from 'styled-components';
 import { getNumberWithComma } from '../../../util/util';
 import PriceChart from './PriceChart';
