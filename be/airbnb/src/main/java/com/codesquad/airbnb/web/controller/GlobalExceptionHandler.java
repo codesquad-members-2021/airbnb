@@ -1,5 +1,6 @@
 package com.codesquad.airbnb.web.controller;
 
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.codesquad.airbnb.web.constants.GlobalErrorMessageConstants;
 import com.codesquad.airbnb.web.dto.ErrorResponse;
 import com.codesquad.airbnb.web.exceptions.InvalidSqlResultException;
@@ -52,6 +53,12 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(JwtTokenException.class)
     public ErrorResponse handleNoJwtTokenException(JwtTokenException exception) {
+        return new ErrorResponse(exception.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(JWTVerificationException.class)
+    public ErrorResponse handleJWTVerificationException(JWTVerificationException exception) {
         return new ErrorResponse(exception.getMessage());
     }
 
