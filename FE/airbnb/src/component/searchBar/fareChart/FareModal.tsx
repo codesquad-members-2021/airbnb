@@ -6,4 +6,9 @@ function FareModal() {
 
 export default FareModal;
 
-const Modal = styled.div``;
+const Modal = styled.div`
+  ${({ theme }) => theme.modal}
+  left: 50%;
+  width: 50%;
+  padding: 60px 80px;
+`;

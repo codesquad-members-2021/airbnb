@@ -1,21 +1,27 @@
 import React from "react";
-
-interface eventAndSetstate {
+interface toggleModal {
   e: React.MouseEvent;
   setState: (state: boolean) => void;
-  state?: boolean;
+  state: boolean;
+}
+
+interface openModal {
+  e: React.MouseEvent;
+  open: (state: boolean) => void;
+  close: { (state: boolean): void }[];
 }
 
 // 모달 토글
-const toggleModal = ({ e, setState, state }: eventAndSetstate): void => {
+const toggleModal = ({ e, setState, state }: toggleModal): void => {
   e.stopPropagation();
   setState(!state);
 };
 
 // 누르면 무조건 열리게
-const openModal = ({ e, setState }: eventAndSetstate): void => {
+const openModal = ({ e, open, close }: openModal): void => {
   e.stopPropagation();
-  setState(true);
+  open(true);
+  close.forEach((setState) => setState(false));
 };
 
 // 해당 모달을 클릭했을 때 닫히지 않도록(body Click X)

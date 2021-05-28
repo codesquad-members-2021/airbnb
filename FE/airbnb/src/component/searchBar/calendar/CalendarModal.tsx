@@ -85,14 +85,11 @@ function CalendarModal() {
 export default CalendarModal;
 
 const Modal = styled.div`
-  position: absolute;
-  top: 100px;
+  ${({ theme }) => theme.modal}
   left: 0;
-  box-sizing: border-box;
-  width: 916px;
+  /* width: 916px; */
+  width: 100%;
   padding: 60px 80px;
-  background-color: #fff;
-  border-radius: ${({ theme }) => theme.borderRadius.calendar};
 
   .arrow {
     position: absolute;

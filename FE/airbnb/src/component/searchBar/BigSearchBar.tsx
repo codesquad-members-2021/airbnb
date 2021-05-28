@@ -13,9 +13,12 @@ function BigSearchBar() {
   const [isOpenCalendar, setIsOpenCalendar] = useState<boolean>(false);
   const [isOpenFare, setIsOpenFare] = useState<boolean>(false);
   const [isOpenGuest, setIsOpenGuest] = useState<boolean>(false);
-  const handleClickPeriod = (e: React.MouseEvent) => openModal({ e, setState: setIsOpenCalendar });
-  const handleClickFare = (e: React.MouseEvent) => openModal({ e, setState: setIsOpenFare });
-  const handleClickGuest = (e: React.MouseEvent) => openModal({ e, setState: setIsOpenGuest });
+  const handleClickPeriod = (e: React.MouseEvent) =>
+    openModal({ e, open: setIsOpenCalendar, close: [setIsOpenFare, setIsOpenGuest] });
+  const handleClickFare = (e: React.MouseEvent) =>
+    openModal({ e, open: setIsOpenFare, close: [setIsOpenCalendar, setIsOpenGuest] });
+  const handleClickGuest = (e: React.MouseEvent) =>
+    openModal({ e, open: setIsOpenGuest, close: [setIsOpenCalendar, setIsOpenFare] });
   closeModalByBodyClick(setIsOpenCalendar, setIsOpenFare, setIsOpenGuest);
   return (
     <SearchBarContainer>
