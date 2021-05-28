@@ -305,6 +305,46 @@ const PriceModal = {
     border-radius: 40px;
     z-index: 999;
   `,
+  Title: styled.div`
+    font-weight: 700;
+    margin-bottom: 16px;
+  `,
+  Description: styled.div`
+    color: ${theme.COLOR.GRAY3};
+    font-size: 14px;
+    margin-top: 4px;
+  `,
+  RangeText: styled.div`
+    font-size: 18px;
+  `,
+  RangeChart: styled(BOX.FLEX_ROW_BOX)`
+    align-items: flex-end;
+    width: 100%;
+    height: 70%;
+    overflow: hidden;
+  `,
+  RangeController: styled.div`
+    position: relative;
+    margin-top: 8px;
+  `,
+  RangeLowerController: styled.input`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  `,
+  RangeUpperController: styled.input`
+    position: absolute;
+    top: 15px;
+    right: -1%;
+    width: 100%;
+  `,
+  ChartLine: styled.div<{ $isRangeOut: boolean; $height: number }>`
+    height: ${(props) => `${props.$height}0%`};
+    width: 100%;
+    background: ${(props) =>
+      props.$isRangeOut ? theme.COLOR.GRAY4 : theme.COLOR.GRAY1};
+  `,
 };
 
 const PeopleModal = {
