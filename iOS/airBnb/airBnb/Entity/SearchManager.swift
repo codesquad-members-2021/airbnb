@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class SearchManager {
      
@@ -52,5 +53,17 @@ class SearchManager {
 
     func decreasePeoeple(from type: PeopleTypes){
         numberOfPleple.decreasePeople(from: type)
+    }
+    
+    func bindAuldtCount() -> AnyPublisher<Int, Never> {
+        return numberOfPleple.relayAuldtCount()
+    }
+    
+    func bindKidCount() -> AnyPublisher<Int, Never> {
+        return numberOfPleple.relayKidCount()
+    }
+    
+    func bindBabyCount() -> AnyPublisher<Int, Never> {
+        return numberOfPleple.relayBabyCount()
     }
 }

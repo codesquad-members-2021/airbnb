@@ -20,7 +20,12 @@ class KidCountState: CountStatable {
     }
     
     func decrease() {
-        count -= 1
+        if isDecreaseEnable() {
+            count -= 1
+        }
     }
-
+    
+    func isDecreaseEnable() -> Bool {
+        return count > 0
+    }
 }

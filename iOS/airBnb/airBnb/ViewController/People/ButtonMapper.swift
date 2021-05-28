@@ -16,7 +16,7 @@ enum PeopleTypes: CaseIterable {
 
 class ButtonMapper {
 
-    private var map: [UIButton : PeopleTypes]
+    private var map: [UIButton: PeopleTypes]
     
     init(from buttons: [UIButton]) {
         self.map = Dictionary(uniqueKeysWithValues: zip(buttons, PeopleTypes.allCases))
