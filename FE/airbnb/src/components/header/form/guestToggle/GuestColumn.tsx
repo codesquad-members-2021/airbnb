@@ -18,7 +18,7 @@ const GuestColumn = ({ guestData: { type, title, description } }: Props) => {
 
   const handlePlusClick = () => {
     setGuestCount((guestCount) => ({ ...guestCount, [type]: guestCount[type] + 1 }));
-    if (type === 'child' || (type === 'infants' && guestCount.adult === 0)) {
+    if ((type === 'child' || type === 'infants') && guestCount.adult === 0) {
       setGuestCount((guestCount) => ({ ...guestCount, adult: guestCount.adult + 1 }));
     }
   };
