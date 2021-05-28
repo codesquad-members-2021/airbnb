@@ -22,9 +22,9 @@ const openModal = ({ e, setState }: eventAndSetstate): void => {
 const stopPropagation = (e: React.MouseEvent) => e.stopPropagation();
 
 // 모달 외의 영역 클릭하면 닫히게
-const closeModalByBodyClick = (setState: (state: any) => void) => {
+const closeModalByBodyClick = (...setState: { (state: any): void }[]) => {
   return document.body.addEventListener("click", () => {
-    setState(false);
+    setState.forEach((f) => f(false));
   });
 };
 
