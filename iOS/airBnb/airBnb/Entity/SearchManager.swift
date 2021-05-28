@@ -72,6 +72,14 @@ class SearchManager {
         return numberOfPleple.relayBabyCount()
     }
     
+    func bindMinusButtonisEnanbled() -> AnyPublisher<(Bool, Bool, Bool), Never> {
+        return numberOfPleple.isDectedZero()
+    }
+    
+    func bindPlusButtonisEnanbled() -> AnyPublisher<(Bool, Bool, Bool), Never> {
+        return numberOfPleple.isDectedFull()
+    }
+    
     private func bind() {
         cancell = numberOfPleple.relayTotalCount().sink { (total) in
             self.totlaPeople = total

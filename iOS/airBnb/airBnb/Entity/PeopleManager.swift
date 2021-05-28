@@ -38,8 +38,9 @@ class PeopleManager {
     
     func decreasePeople(from people: PeopleTypes) {
         peopleMapper[people]?.decrease()
+        existOnlyChildren()
     }
-
+    
     func relayAuldtCount() -> AnyPublisher<Int, Never> {
         return adult.$count.eraseToAnyPublisher()
     }
@@ -52,10 +53,36 @@ class PeopleManager {
         return baby.$count.eraseToAnyPublisher()
     }
     
-    func relayTotalCount() -> AnyPublisher<Int, Never>{
+    func relayTotalCount() -> AnyPublisher<Int, Never> {
         return adult.$count.combineLatest(kid.$count)
             .map { $0 + $1 }
             .eraseToAnyPublisher()
+    }
+    
+    func isDectedZero() -> AnyPublisher<(Bool, Bool, Bool), Never> {
+        adult.$count.combineLatest(kid.$count, baby.$count)
+            .map {
+                (self.isNotZero(count: $0),
+                 self.isNotZero(count: $1),
+                 self.isNotZero(count: $2))
+            }.eraseToAnyPublisher()
+    }
+    
+    private func isNotZero(count: Int) -> Bool {
+        return count != 0
+    }
+    
+    func isDectedFull() -> AnyPublisher<(Bool, Bool, Bool), Never> {
+        adult.$count.combineLatest(kid.$count, baby.$count)
+            .map {
+                (self.isNotFull(count: $0),
+                 self.isNotFull(count: $1),
+                 self.isNotFull(count: $2))
+            }.eraseToAnyPublisher()
+    }
+    
+    private func isNotFull(count: Int) -> Bool {
+        return count != 8
     }
     
     private func existOnlyChildren() {

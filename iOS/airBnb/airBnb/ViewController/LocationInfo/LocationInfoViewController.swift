@@ -65,7 +65,8 @@ class LocationInfoViewController: UIViewController{
         }.store(in: &cancellable)
         
         locationInfoViewModel?.showPeopleTotal().sink { [weak self] (people) in
-            self?.numOfPeopleLabel.text = "게스트 \(people)명"
+            self?.numOfPeopleLabel.text =
+                people == 0 ? "" : "게스트 \(people)명"
         }.store(in: &cancellable)
     }
     

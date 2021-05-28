@@ -48,4 +48,18 @@ class ButtonsViewModel: NSObject {
     func bind(action: @escaping (PeopleTypes, Action) -> ()) {
         self.buttonTouchedHandler = action
     }
+    
+    func canMinusButtonTouched(adult: Bool, kid: Bool, baby: Bool) {
+        let enabled = [adult,kid,baby]
+        _ = zip(minusButtons, enabled).map { (button, bool) in
+            button.isEnabled = bool
+        }
+    }
+    
+    func canPlusButtonTouched(adult: Bool, kid: Bool, baby: Bool) {
+        let enabled = [adult,kid,baby]
+        _ = zip(plusButtons, enabled).map { (button, bool) in
+            button.isEnabled = bool
+        }
+    }
 }

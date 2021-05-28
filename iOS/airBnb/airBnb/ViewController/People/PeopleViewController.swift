@@ -72,6 +72,14 @@ class PeopleViewController: UIViewController {
         searchManager?.bindBabyCount().sink { [weak self] babyCount in
             self?.babyCountLabel.text = "\(babyCount)"
         }.store(in: &cancellable)
+        
+        searchManager?.bindMinusButtonisEnanbled().sink { [weak self] in
+            self?.buttonsViewModel.canMinusButtonTouched(adult: $0, kid: $1, baby: $2)
+        }.store(in: &cancellable)
+        
+        searchManager?.bindPlusButtonisEnanbled().sink { [weak self] in
+            self?.buttonsViewModel.canPlusButtonTouched(adult: $0, kid: $1, baby: $2)
+        }.store(in: &cancellable)
     }
     
 }
