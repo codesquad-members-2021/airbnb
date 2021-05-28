@@ -57,7 +57,7 @@ const CalendarSelector = styled.div`
 const CalendarLayout = styled.div`
   /* outline: red solid 1px; */
   /*margin: 1.6rem;*/
-  padding: 1.5rem;
+  padding: 2.5rem;
   font-size: 1.6rem;
   font-weight: 600;
 
@@ -134,8 +134,9 @@ const CurrentMonth = styled.div`
     grid-template-columns: repeat(7, 1fr);
 
     & > span {
+      justify-content: center;
       display: flex;
-      align-items: center; 
+      align-items: center;
       height: 2em;
       padding: 0.5rem 1rem;
     }
