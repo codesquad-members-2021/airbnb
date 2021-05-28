@@ -43,7 +43,7 @@ class AccommodationControllerTest {
     @MethodSource("readAllProvider")
     void readAll(String path, AccommodationRequest accommodationRequest, List<AccommodationResponse> expected) {
         ResponseEntity<List<AccommodationResponse>> responseEntity = restTemplate.exchange(
-                RequestEntity.get(uriComponentsOf(path, accommodationRequest).toUriString()).build(),
+                RequestEntity.get(uriComponentsOf(path, accommodationRequest).toUri()).build(),
                 new ParameterizedTypeReference<List<AccommodationResponse>>() {
                 }
         );
@@ -182,6 +182,34 @@ class AccommodationControllerTest {
                                 .filter(accommodationDTO -> accommodationDTO.getId() == 1)
                                 .findAny()
                                 .orElseThrow(() -> new NotFoundException())
+                )
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("priceStatsProvider")
+    void priceStats(String path, List<AccommodationPriceStats> expected) {
+
+        UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl(BASE_URL)
+                                              .path(path)
+                                              .port(port)
+                                              .build();
+
+        ResponseEntity<List<AccommodationPriceStats>> responseEntity = restTemplate.exchange(
+                RequestEntity.get(uriComponents.toUri()).build(),
+                new ParameterizedTypeReference<List<AccommodationPriceStats>>() {
+                }
+        );
+
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(responseEntity.getBody()).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> priceStatsProvider() {
+        return Stream.of(
+                Arguments.of(
+                        "/accommodationPriceStats",
+                        DummyDataFactory.accommodationPriceStats()
                 )
         );
     }

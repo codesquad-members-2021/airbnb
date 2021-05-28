@@ -1,6 +1,7 @@
 package com.codesquad.airbnb.accommodation.controller;
 
 import com.codesquad.airbnb.accommodation.service.AccommodationService;
+import com.codesquad.airbnb.common.utils.DummyDataFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,5 +26,10 @@ public class AccommodationController {
     @GetMapping("/accommodations/{id}")
     public AccommodationDTO readOne(@PathVariable long id) {
         return accommodationService.readOne(id);
+    }
+
+    @GetMapping("/accommodationPriceStats")
+    public List<AccommodationPriceStats> priceStats() {
+        return DummyDataFactory.accommodationPriceStats();
     }
 }

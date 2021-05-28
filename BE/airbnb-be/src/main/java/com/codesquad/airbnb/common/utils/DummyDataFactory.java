@@ -2,6 +2,7 @@ package com.codesquad.airbnb.common.utils;
 
 import com.codesquad.airbnb.accommodation.controller.AccommodationDTO;
 import com.codesquad.airbnb.accommodation.controller.AccommodationHost;
+import com.codesquad.airbnb.accommodation.controller.AccommodationPriceStats;
 import com.codesquad.airbnb.accommodation.controller.AccommodationResponse;
 import com.codesquad.airbnb.accommodation.domain.Accommodation;
 import com.codesquad.airbnb.accommodation.domain.AccommodationOption;
@@ -138,5 +139,13 @@ public class DummyDataFactory {
         }
 
         return accommodationDTO;
+    }
+
+    public static List<AccommodationPriceStats> accommodationPriceStats() {
+        return Arrays.asList(
+                new AccommodationPriceStats(10000, 10),
+                new AccommodationPriceStats(30000, 11),
+                new AccommodationPriceStats(20000, 21)
+        );
     }
 }
