@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NumberOfHeadSelectionView" customModule="AirBed_Breakfast" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="614" height="470"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q79-Do-tVM">
+                    <rect key="frame" x="0.0" y="0.0" width="614" height="156.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="성인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QsF-Yc-kMc">
+                            <rect key="frame" x="20" y="23.5" width="64.5" height="62.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="37"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="만 13세 이상" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3e-IH-sNx">
+                            <rect key="frame" x="20" y="101" width="149" height="47"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                            <color key="textColor" red="0.55294117649999996" green="0.55294117649999996" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="QsF-Yc-kMc" firstAttribute="height" secondItem="Q79-Do-tVM" secondAttribute="height" multiplier="0.4" id="Q14-1A-PEQ"/>
+                        <constraint firstItem="i3e-IH-sNx" firstAttribute="height" secondItem="Q79-Do-tVM" secondAttribute="height" multiplier="0.3" id="TJr-H3-F7v"/>
+                        <constraint firstItem="i3e-IH-sNx" firstAttribute="leading" secondItem="Q79-Do-tVM" secondAttribute="leading" constant="20" id="cnG-AG-gx9"/>
+                        <constraint firstItem="i3e-IH-sNx" firstAttribute="top" secondItem="QsF-Yc-kMc" secondAttribute="bottom" constant="15" id="dBB-by-AhN"/>
+                        <constraint firstItem="QsF-Yc-kMc" firstAttribute="centerY" secondItem="Q79-Do-tVM" secondAttribute="centerY" multiplier="0.7" id="g9k-YP-FIH"/>
+                        <constraint firstItem="QsF-Yc-kMc" firstAttribute="leading" secondItem="Q79-Do-tVM" secondAttribute="leading" constant="20" id="m0C-4S-Ts3"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Q79-Do-tVM" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.333" id="0Wi-ls-PQ0"/>
+                <constraint firstItem="Q79-Do-tVM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="I4k-RK-Fn5"/>
+                <constraint firstAttribute="trailing" secondItem="Q79-Do-tVM" secondAttribute="trailing" id="KkB-43-eRh"/>
+                <constraint firstItem="Q79-Do-tVM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eMF-0L-BUO"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="adultNumberView" destination="Q79-Do-tVM" id="mxc-Ch-Exa"/>
+            </connections>
+            <point key="canvasLocation" x="-185.50724637681162" y="-28.125"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

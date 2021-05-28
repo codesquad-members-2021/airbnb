@@ -32,6 +32,9 @@ class ReservationDetailViewController: UIViewController {
     var upperDate: Date?
     var lowestPrice: CGFloat?
     var highestPrice: CGFloat?
+    var numberOfHead: [String: Int] = ["성인": 0,
+                                       "어린이": 0,
+                                       "유아": 0]
     
     override func viewDidLoad() {
         super.viewDidLoad()
