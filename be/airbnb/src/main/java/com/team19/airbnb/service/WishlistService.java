@@ -29,4 +29,13 @@ public class WishlistService {
         Wishlist wishlist = wishListRequestDTO.toEntity();
         wishlistDAO.updateWishlist(user, wishlist);
     }
+
+    public void deleteWishlist(WishListRequestDTO wishListRequestDTO, Long userId) {
+        User user = userService.findUser(userId);
+        Wishlist wishlist = wishListRequestDTO.toEntity();
+        List<Wishlist> wishlists = user.getWishlists();
+        wishlists.remove(wishlist);
+        wishlistDAO.removeWishlist(user, wishlist);
+
+    }
 }
