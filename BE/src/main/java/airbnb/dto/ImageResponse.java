@@ -1,6 +1,7 @@
 package airbnb.dto;
 
 import airbnb.domain.Image;
+import airbnb.domain.ImageType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -20,7 +21,9 @@ public class ImageResponse {
     }
 
     public static ImageResponse of(List<Image> images) {
+        String mainImageUrl = images.stream().filter(image -> ImageType.MAIN.equals(image.getImageType())).findFirst()
+                .orElseThrow(NullPointerException::new).getUrl();
         List<String> imageUrls = images.stream().map(Image::getUrl).collect(Collectors.toList());
-        return new ImageResponse(imageUrls.get(0), imageUrls);
+        return new ImageResponse(mainImageUrl, imageUrls);
     }
 }
