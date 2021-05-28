@@ -1,20 +1,22 @@
 package com.team19.airbnb.controller;
 
-import com.team19.airbnb.ResponseBody;
 import com.team19.airbnb.dto.RoomDetailResponseDTO;
 import com.team19.airbnb.dto.WishListRequestDTO;
-import com.team19.airbnb.service.UserService;
+import com.team19.airbnb.domain.room.Host;
+import com.team19.airbnb.service.WishlistService;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class WishlistController {
 
-    private final UserService userService;
+    private final WishlistService wishlistService;
 
-    public WishlistController(UserService userService) {
-        this.userService = userService;
+    public WishlistController(WishlistService wishlistService) {
+        this.wishlistService = wishlistService;
     }
 
     @GetMapping("/wishlist/{userId}")
@@ -23,7 +25,8 @@ public class WishlistController {
     }
 
     @PostMapping("/wishlist/{userId}")
-    public void postWishList(@PathVariable Long userId, @RequestBody WishListRequestDTO wishListRequestDTO) {
+    public void postWishList(@RequestBody WishListRequestDTO wishListRequestDTO, @PathVariable Long userId) {
+        wishlistService.addWishList(wishListRequestDTO, userId);
     }
 
     @DeleteMapping("/wishlist/{userId}")

@@ -23,6 +23,10 @@ public class UserService {
         this.roomRepository = roomRepository;
     }
 
+    public User findUser(Long id) {
+        return userDAO.findById(id).orElseThrow(UserNotFoundException::new);
+    }
+  
     public List<RoomDetailResponseDTO> showWishLists(Long userId) {
         List<Wishlist> wishlists = userDAO.findById(userId).orElseThrow(UserNotFoundException::new).getWishlists();
         return wishlists.stream().map(Wishlist::getRoom)

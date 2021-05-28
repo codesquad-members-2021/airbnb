@@ -1,9 +1,13 @@
 package com.team19.airbnb.repository;
 
 import com.team19.airbnb.domain.Booking;
+import com.team19.airbnb.domain.User;
 import com.team19.airbnb.domain.Wishlist;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -37,5 +41,20 @@ public class WishlistDAO {
                     rs.getLong("room"));
         };
     }
+
+    public Wishlist save(Wishlist wishlist) {
+        SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        jdbcInsert.withTableName("wishlist").usingGeneratedKeyColumns("id");
+        SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(wishlist);
+        Number key = jdbcInsert.executeAndReturnKey(sqlParameterSource);
+        return wishlist;
+    }
+
+    public void updateWishlist(User user, Wishlist wishlist) {
+        String query = "insert into wishlist (user, user_key, room) values(?,?,?)";
+        jdbcTemplate.update(query, user.getId(), user.getWishlists().size() - 1, wishlist.getRoom());
+    }
+
+
 
 }
