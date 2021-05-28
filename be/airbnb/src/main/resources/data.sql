@@ -29,7 +29,17 @@ values (1, 4, '발레노르 움막집', 5, 5, POINT(37.252352, 235.52532), '그�
         'https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg'),
        (5, 13, '모리아 골방', 0.5, 4, POINT(17.252352, 125.52532), '좀 그래요', 'SHARED_BATHROOM', 'BEDROOM', 5,
         '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
-        'https://media-cdn.tripadvisor.com/media/photo-s/15/a1/d2/af/hotel-r-de-paris.jpg');
+        'https://media-cdn.tripadvisor.com/media/photo-s/15/a1/d2/af/hotel-r-de-paris.jpg'),
+       (6, 5, '숙소 A', 0.5, 4, POINT(17.252352, 125.52532), '숙소 A 소개', 'SHARED_BATHROOM', 'BEDROOM', 5,
+        '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
+        'https://media-cdn.tripadvisor.com/media/photo-s/15/a1/d2/af/hotel-r-de-paris.jpg'),
+       (7, 6, '숙소 B', 0.5, 4, POINT(17.252352, 125.52532), '숙소 B 소개', 'SHARED_BATHROOM', 'BEDROOM', 5,
+        '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
+        'https://media-cdn.tripadvisor.com/media/photo-s/15/a1/d2/af/hotel-r-de-paris.jpg'),
+       (8, 8, '숙소 C', 0.5, 4, POINT(17.252352, 125.52532), '숙소 C 소개', 'SHARED_BATHROOM', 'BEDROOM', 5,
+        '주방, 무선인터넷, 에어컨, 헤어드라이어', 1,
+        'https://media-cdn.tripadvisor.com/media/photo-s/15/a1/d2/af/hotel-r-de-paris.jpg')
+;
 
 insert into room_image(room_id, image_url, image_index)
 values (1, 'https://a0.muscache.com/im/pictures/f6e9a07a-8a17-4d14-8a42-4fc3e3b5f2bd.jpg?im_w=720', 1),
@@ -46,7 +56,16 @@ values (1, 'https://a0.muscache.com/im/pictures/f6e9a07a-8a17-4d14-8a42-4fc3e3b5
        (4, 'https://a0.muscache.com/im/pictures/56cccaca-04fd-48d6-9877-13f41b037cab.jpg?im_w=1200', 3),
        (5, 'https://a0.muscache.com/im/pictures/f6e9a07a-8a17-4d14-8a42-4fc3e3b5f2bd.jpg?im_w=720', 1),
        (5, 'https://a0.muscache.com/im/pictures/cc2371de-4386-4f2c-80ce-763ca32bc058.jpg?im_w=720', 2),
-       (5, 'https://a0.muscache.com/im/pictures/56cccaca-04fd-48d6-9877-13f41b037cab.jpg?im_w=1200', 3)
+       (5, 'https://a0.muscache.com/im/pictures/56cccaca-04fd-48d6-9877-13f41b037cab.jpg?im_w=1200', 3),
+       (6, 'https://a0.muscache.com/im/pictures/f6e9a07a-8a17-4d14-8a42-4fc3e3b5f2bd.jpg?im_w=720', 1),
+       (6, 'https://a0.muscache.com/im/pictures/cc2371de-4386-4f2c-80ce-763ca32bc058.jpg?im_w=720', 2),
+       (6, 'https://a0.muscache.com/im/pictures/56cccaca-04fd-48d6-9877-13f41b037cab.jpg?im_w=1200', 3),
+       (7, 'https://a0.muscache.com/im/pictures/f6e9a07a-8a17-4d14-8a42-4fc3e3b5f2bd.jpg?im_w=720', 1),
+       (7, 'https://a0.muscache.com/im/pictures/cc2371de-4386-4f2c-80ce-763ca32bc058.jpg?im_w=720', 2),
+       (7, 'https://a0.muscache.com/im/pictures/56cccaca-04fd-48d6-9877-13f41b037cab.jpg?im_w=1200', 3),
+       (8, 'https://a0.muscache.com/im/pictures/f6e9a07a-8a17-4d14-8a42-4fc3e3b5f2bd.jpg?im_w=720', 1),
+       (8, 'https://a0.muscache.com/im/pictures/cc2371de-4386-4f2c-80ce-763ca32bc058.jpg?im_w=720', 2),
+       (8, 'https://a0.muscache.com/im/pictures/56cccaca-04fd-48d6-9877-13f41b037cab.jpg?im_w=1200', 3)
 ;
 
 
@@ -55,7 +74,11 @@ values (1, 500, 1000, 2500, 20000, 5),
        (2, 500, 1000, 2500, 50000, 5),
        (3, 500, 1000, 2500, 100000, 5),
        (4, 500, 1000, 2500, 60000, 5),
-       (5, 500, 1000, 2500, 30000, 5);
+       (5, 500, 1000, 2500, 30000, 5),
+       (6, 500, 1000, 2500, 30000, 5),
+       (7, 500, 1000, 2500, 30000, 5),
+       (8, 500, 1000, 2500, 30000, 5)
+;
 
 insert into reservation(id, room_id, guest_id, checkin_date_time, checkout_date_time, adult_count, child_count,
                         infant_count)
