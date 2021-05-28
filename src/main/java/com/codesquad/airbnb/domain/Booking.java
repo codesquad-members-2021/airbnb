@@ -2,6 +2,8 @@ package com.codesquad.airbnb.domain;
 
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDate;
+
 public class Booking {
 
     @Id
@@ -9,12 +11,12 @@ public class Booking {
 
     private Long roomId;
     private Long userId;
-    private String checkIn;
-    private String checkOut;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
     private int numberOfPeople;
     private int totalPrice;
 
-   public Booking(Long roomId, Long userId, String checkIn, String checkOut, int numberOfPeople, int totalPrice) {
+   public Booking(Long roomId, Long userId, LocalDate checkIn, LocalDate checkOut, int numberOfPeople, int totalPrice) {
         this.roomId = roomId;
         this.userId = userId;
         this.checkIn = checkIn;
@@ -23,7 +25,7 @@ public class Booking {
         this.totalPrice = totalPrice;
     }
 
-    public Booking(Long id, Long roomId, Long userId, String checkIn, String checkOut, int numberOfPeople, int totalPrice) {
+    public Booking(Long id, Long roomId, Long userId, LocalDate checkIn, LocalDate checkOut, int numberOfPeople, int totalPrice) {
         this.id = id;
         this.roomId = roomId;
         this.userId = userId;
@@ -45,17 +47,18 @@ public class Booking {
         return id;
     }
 
-    public String getCheckIn() {
+    public LocalDate getCheckIn() {
         return checkIn;
     }
 
-    public String getCheckOut() {
+    public LocalDate getCheckOut() {
         return checkOut;
     }
 
     public int getNumberOfPeople() {
         return numberOfPeople;
     }
+
     public int getTotalPrice() {
         return totalPrice;
     }

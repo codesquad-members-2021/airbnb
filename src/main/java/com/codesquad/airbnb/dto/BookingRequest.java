@@ -2,19 +2,21 @@ package com.codesquad.airbnb.dto;
 
 import com.codesquad.airbnb.domain.Booking;
 
+import java.time.LocalDate;
+
 public class BookingRequest {
 
     private Long roomId;
     private Long userId;
-    private String checkIn;
-    private String checkOut;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
     private int numberOfPeople;
     private int totalPrice;
 
     public BookingRequest() {
     }
 
-    public BookingRequest(Long roomId, Long userId, String checkIn, String checkOut, int numberOfPeople, int totalPrice) {
+    public BookingRequest(Long roomId, Long userId, LocalDate checkIn, LocalDate checkOut, int numberOfPeople, int totalPrice) {
         this.userId = userId;
         this.roomId = roomId;
         this.checkIn = checkIn;
@@ -35,11 +37,11 @@ public class BookingRequest {
         return roomId;
     }
 
-    public String getCheckIn() {
+    public LocalDate getCheckIn() {
         return checkIn;
     }
 
-    public String getCheckOut() {
+    public LocalDate getCheckOut() {
         return checkOut;
     }
 

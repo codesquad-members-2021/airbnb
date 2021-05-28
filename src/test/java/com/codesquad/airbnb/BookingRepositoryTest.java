@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -30,7 +31,10 @@ public class BookingRepositoryTest {
 
     @Test
     void check() {
-        Booking newBooking = new Booking(3L, 2L, 1L, "2021-5-20", "2021-5-23", 2, 200000);
+        Booking newBooking = new Booking(3L, 2L, 1L,
+                LocalDate.of(2021, 5, 20),
+                LocalDate.of(2021, 5, 23),
+                2, 200000);
         bookingRepository.insert(newBooking);
     }
 }

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -32,7 +33,8 @@ public class RoomRepositoryTest {
     @Test
     @DisplayName("검색 조건에 맞는 room들을 조회한다.")
     void checkJoinedAndFilteredTable() {
-        List<Room> rooms = roomRepository.getFilteredRooms("2021-5-20", "2021-5-21",
+        List<Room> rooms = roomRepository.getFilteredRooms(LocalDate.of(2021, 5, 20),
+                LocalDate.of(2021, 5, 21),
                 55000, 80000, 2);
 
         rooms.forEach(System.out::println);
