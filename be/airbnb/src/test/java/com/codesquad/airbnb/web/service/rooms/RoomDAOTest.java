@@ -122,6 +122,8 @@ class RoomDAOTest {
     @Test
     @DisplayName("숙소를 UserInput으로 조회할 수 있어야 함")
     void searchRooms() {
+        Room room = createRoom();
+        roomDAO.save(room);
         UserInput userInput = UserInput.builder()
                 .location("서울특별시")
                 .checkIn(LocalDate.parse("2021-05-01", DATE_TIME_FORMATTER))
@@ -132,7 +134,8 @@ class RoomDAOTest {
                 .childCount(0)
                 .infantCount(0)
                 .build();
-        roomDAO.findRoomsByUserInput(userInput);
+        List<Room> rooms = roomDAO.findRoomsByUserInput(userInput);
+        assertThat(rooms.size() > 0).isTrue();
     }
 
     private Room createRoom() {
