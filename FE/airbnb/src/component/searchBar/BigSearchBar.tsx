@@ -1,23 +1,31 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Period from "component/searchBar/Period";
-import CalendarModal from "component/searchBar/calendar/CalendarModal";
 import Fare from "component/searchBar/Fare";
 import Guest from "component/searchBar/Guest";
 import SearchBtn from "component/searchBar/SearchBtn";
+import CalendarModal from "component/searchBar/calendar/CalendarModal";
+import FareModal from "component/searchBar/fareChart/FareModal";
+import GuestModal from "component/searchBar/guestList/GuestModal";
 import { openModal, closeModalByBodyClick } from "hooks/modalHooks";
 
 function BigSearchBar() {
   const [isOpenCalendar, setIsOpenCalendar] = useState<boolean>(false);
+  const [isOpenFare, setIsOpenFare] = useState<boolean>(false);
+  const [isOpenGuest, setIsOpenGuest] = useState<boolean>(false);
   const handleClickPeriod = (e: React.MouseEvent) => openModal({ e, setState: setIsOpenCalendar });
-  closeModalByBodyClick(setIsOpenCalendar);
+  const handleClickFare = (e: React.MouseEvent) => openModal({ e, setState: setIsOpenFare });
+  const handleClickGuest = (e: React.MouseEvent) => openModal({ e, setState: setIsOpenGuest });
+  closeModalByBodyClick(setIsOpenCalendar, setIsOpenFare, setIsOpenGuest);
   return (
     <SearchBarContainer>
       <SearchBarList>
         <Period onClick={handleClickPeriod} />
         {isOpenCalendar && <CalendarModal />}
-        <Fare />
-        <Guest />
+        <Fare onClick={handleClickFare} />
+        {isOpenFare && <FareModal />}
+        <Guest onClick={handleClickGuest} />
+        {isOpenGuest && <GuestModal />}
         <SearchBtn />
       </SearchBarList>
     </SearchBarContainer>
