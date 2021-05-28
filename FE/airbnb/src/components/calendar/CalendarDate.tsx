@@ -57,7 +57,7 @@ const CalendarDate = ({ monthData, calendarDate }: Props) => {
     }
     if (checkInTime === selectTime) setCheckOutSelectDate(selectTime);
     else if (checkInTime < selectTime) setCheckOutSelectDate(selectTime);
-    else if (selectTime < checkInTime) setCheckInSelectDate(selectTime);
+    else if (selectTime < checkInTime) setSelectDate({ checkIn: selectTime, checkOut: null });
 
     setSelectedCheckBox('checkOut');
   };

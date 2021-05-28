@@ -1,11 +1,16 @@
-import React, { MouseEvent, ReactElement, RefObject, useEffect, useRef, useState } from 'react';
+import { MouseEvent, RefObject, useState } from 'react';
 import styled from 'styled-components';
 import { getNumberWithComma } from '../../../util/util';
 import PriceChart from './PriceChart';
 import { btnPositionType, priceSectionType } from './priceType';
 import { ReactComponent as PauseBtn } from '../../../../assets/svg/Property 1=pause-circle.svg';
 import { priceData as sampleData } from './sampleData';
-import { createSolutionBuilderHost } from 'typescript';
+import { useRecoilState } from 'recoil';
+import {
+  pauseBtnLastPositionState,
+  pauseBtnPositionState,
+  priceState,
+} from '../../../../recoil/headerAtom';
 
 const PRICE_DATA = {
   WIDTH: 365,
@@ -22,11 +27,11 @@ const PriceBar = ({ toggleRef }: Props) => {
   const { WIDTH, DEFAULT_MIN_PRICE, DEFAULT_MAX_PRICE, DEFAULT_LEFT, DEFAULT_RIGHT } = PRICE_DATA;
   const [isBtnDown, setIsBtnDown] = useState(false);
   const [downBtnType, setDownBtnType] = useState({ left: false, right: false });
-  const [btnPosition, setBtnPosition] = useState({ left: 0, right: 0 });
-  const [btnLastPosition, setBtnLastPosition] = useState({ left: 0, right: 0 });
   const [clickPosition, setClickPosition] = useState(0);
+  const [btnPosition, setBtnPosition] = useRecoilState(pauseBtnPositionState);
+  const [btnLastPosition, setBtnLastPosition] = useRecoilState(pauseBtnLastPositionState);
+  const [priceRange, setPriceRange] = useRecoilState(priceState);
   const [priceData, setPriceData] = useState(sampleData);
-  const [priceRange, setPriceRange] = useState({ min: DEFAULT_MIN_PRICE, max: DEFAULT_MAX_PRICE });
 
   const minPrice = getNumberWithComma(priceRange.min);
   const maxPrice = getNumberWithComma(priceRange.max);
