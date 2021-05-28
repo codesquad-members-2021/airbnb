@@ -51,8 +51,12 @@ public class User {
     public static User create(Long id, String github, List<Wishlist> wishlists) {
         return new User(id, github, wishlists);
     }
-
+  
     public void addWishlist(Wishlist wishlist) {
         wishlists.add(wishlist);
+    }
+  
+    public void removeWishlist(Wishlist wishlist) {
+        wishlists.remove(wishlist);
     }
 }

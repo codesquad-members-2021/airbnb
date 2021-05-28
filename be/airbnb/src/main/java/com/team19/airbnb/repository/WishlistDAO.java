@@ -55,6 +55,8 @@ public class WishlistDAO {
         jdbcTemplate.update(query, user.getId(), user.getWishlists().size() - 1, wishlist.getRoom());
     }
 
-
-
+    public void removeWishlist(User user, Wishlist wishlist) {
+        String query = "delete from wishlist where user = ? and room = ?";
+        jdbcTemplate.update(query, user.getId(), wishlist.getRoom());
+    }
 }
