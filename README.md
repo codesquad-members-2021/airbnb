@@ -1,16 +1,10 @@
 # 숙소예약 서비스
 ## 시연
 ### Web Front
-- 달력
-<img width="80%" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b65a94ea-ebb5-4371-bcfd-fc5c81283ca4/airbnb_calendar.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210528%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210528T075048Z&X-Amz-Expires=86400&X-Amz-Signature=7062b2fc17e8ed8e64596269d468b59fd6f24ee4a2c2cac0ce74bf601dcd47fa&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22airbnb_calendar.gif%22"/>
+<img width="50%" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b65a94ea-ebb5-4371-bcfd-fc5c81283ca4/airbnb_calendar.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210528%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210528T075048Z&X-Amz-Expires=86400&X-Amz-Signature=7062b2fc17e8ed8e64596269d468b59fd6f24ee4a2c2cac0ce74bf601dcd47fa&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22airbnb_calendar.gif%22"/>
 
 ### iOS
-- 달력
-<img width="20%" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e544810a-51ba-4451-92d4-fdf2c977a166/CaledarScene.gif?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210528%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210528T075615Z&X-Amz-Expires=86400&X-Amz-Signature=2b93706b0084a85ef98e464de88e15062dc50abde5325a5e94eb7df643cd131e&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22CaledarScene.gif%22"/>
-
-- 검색
-<img width="20%" src="https://user-images.githubusercontent.com/16694346/119949753-26832400-bfd5-11eb-8498-7f02cc75eb4f.gif"/>
-
+<img width="20%" src="https://user-images.githubusercontent.com/16694346/119956348-f9863f80-bfdb-11eb-916f-8c76d55523ff.gif"/>
 
 
 ### BE
