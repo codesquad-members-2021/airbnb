@@ -2,6 +2,7 @@ package com.example.airbnb.auth;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.example.airbnb.exception.JWTCreationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.RequestEntity;
@@ -31,15 +32,6 @@ public class AuthController {
     public String hello() {
         return "index";
     }
-
-    /*
-    @GetMapping("/setup")
-    public String getcode(@RequestParam String code) {
-        this.CODE = code;
-        System.out.println("input : " + this.CODE);
-        return "redirect:https://www.naver.com/";
-    }*/
-
 
     @GetMapping("/github/callback")
     public ResponseEntity<Jwt> auth(String code) {
