@@ -1,6 +1,5 @@
 package com.codesquad.airbnb.reservation.controller;
 
-import com.codesquad.airbnb.accommodation.controller.AccommodationPriceStats;
 import com.codesquad.airbnb.common.utils.DummyDataFactory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
