@@ -16,22 +16,26 @@ class AdultCountState: CountStatable {
     }
     
     func increase() {
-        if isIncreaseEnable() {
+        if isIncreaseEnabled() {
             count += 1
         }
     }
     
     func decrease() {
-        if isDecreaseEnable() {
+        if isDecreaseEnabled() {
             count -= 1
         }
     }
     
-    private func isDecreaseEnable() -> Bool {
+    private func isDecreaseEnabled() -> Bool {
         return count > 0
     }
     
-    private func isIncreaseEnable() -> Bool {
-        return count < 9
+    private func isIncreaseEnabled() -> Bool {
+        return count < 8
+    }
+    
+    func isZero() -> Bool {
+        return count == 0
     }
 }
