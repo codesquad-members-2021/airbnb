@@ -1,3 +1,5 @@
+export {};
+/*
 import * as S from "components/SearchBar/Calendar/CalendarStyles";
 import moment, { Moment } from "moment";
 import 'moment/locale/ko';
@@ -60,3 +62,4 @@ const CalendarModal = () => {
 
 export default CalendarModal;
 
+*/
