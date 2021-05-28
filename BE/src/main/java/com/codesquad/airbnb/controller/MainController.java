@@ -3,6 +3,7 @@ package com.codesquad.airbnb.controller;
 import com.codesquad.airbnb.dto.MainDTO;
 import com.codesquad.airbnb.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public MainDTO getMain() {
-        return mainService.browseMainDTO();
+    public ResponseEntity<MainDTO> getMain() {
+        return ResponseEntity.ok().body(mainService.browseMainDTO());
     }
 }
