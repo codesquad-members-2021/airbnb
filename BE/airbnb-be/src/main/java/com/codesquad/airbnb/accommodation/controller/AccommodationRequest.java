@@ -26,14 +26,26 @@ public class AccommodationRequest {
     private Integer endPrice;
 
     @Positive
-    private Integer numberOfPeople;
+    private Integer numberOfAdults;
 
-    public AccommodationRequest(LocalDate checkinDate, LocalDate checkoutDate, Integer startPrice, Integer endPrice, Integer numberOfPeople) {
+    @PositiveOrZero
+    private Integer numberOfChildren;
+
+    @PositiveOrZero
+    private Integer numberOfBabies;
+
+    public AccommodationRequest(LocalDate checkinDate, LocalDate checkoutDate, Integer startPrice, Integer endPrice, Integer numberOfAdults, Integer numberOfChildren, Integer numberOfBabies) {
         this.checkinDate = checkinDate;
         this.checkoutDate = checkoutDate;
         this.startPrice = startPrice;
         this.endPrice = endPrice;
-        this.numberOfPeople = numberOfPeople;
+        this.numberOfAdults = numberOfAdults != null ? numberOfAdults : 1;
+        this.numberOfChildren = numberOfChildren != null ? numberOfChildren : 0;
+        this.numberOfBabies = numberOfBabies != null ? numberOfBabies : 0;
+    }
+
+    public static AccommodationRequestBuilder builder() {
+        return AccommodationRequestBuilder.anAccommodationRequest();
     }
 
     @AssertTrue(message = "체크인 날짜가 체크아웃 날짜 이전이어야 합니다.")
@@ -70,8 +82,16 @@ public class AccommodationRequest {
         return endPrice;
     }
 
-    public Integer getNumberOfPeople() {
-        return numberOfPeople;
+    public Integer getNumberOfAdults() {
+        return numberOfAdults;
+    }
+
+    public Integer getNumberOfChildren() {
+        return numberOfChildren;
+    }
+
+    public Integer getNumberOfBabies() {
+        return numberOfBabies;
     }
 
     @Override
@@ -79,22 +99,24 @@ public class AccommodationRequest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccommodationRequest that = (AccommodationRequest) o;
-        return Objects.equals(checkinDate, that.checkinDate) && Objects.equals(checkoutDate, that.checkoutDate) && Objects.equals(startPrice, that.startPrice) && Objects.equals(endPrice, that.endPrice) && Objects.equals(numberOfPeople, that.numberOfPeople);
+        return Objects.equals(checkinDate, that.checkinDate) && Objects.equals(checkoutDate, that.checkoutDate) && Objects.equals(startPrice, that.startPrice) && Objects.equals(endPrice, that.endPrice) && Objects.equals(numberOfAdults, that.numberOfAdults) && Objects.equals(numberOfChildren, that.numberOfChildren) && Objects.equals(numberOfBabies, that.numberOfBabies);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(checkinDate, checkoutDate, startPrice, endPrice, numberOfPeople);
+        return Objects.hash(checkinDate, checkoutDate, startPrice, endPrice, numberOfAdults, numberOfChildren, numberOfBabies);
     }
 
     @Override
     public String toString() {
-        return "AccommodationRequestDTO{" +
-                       "checkin=" + checkinDate +
-                       ", checkout=" + checkoutDate +
+        return "AccommodationRequest{" +
+                       "checkinDate=" + checkinDate +
+                       ", checkoutDate=" + checkoutDate +
                        ", startPrice=" + startPrice +
                        ", endPrice=" + endPrice +
-                       ", numberOfPeople=" + numberOfPeople +
+                       ", numberOfAdults=" + numberOfAdults +
+                       ", numberOfChildren=" + numberOfChildren +
+                       ", numberOfBabies=" + numberOfBabies +
                        '}';
     }
 }

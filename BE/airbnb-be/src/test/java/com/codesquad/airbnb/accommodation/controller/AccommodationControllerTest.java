@@ -58,23 +58,23 @@ class AccommodationControllerTest {
         return Stream.of(
                 Arguments.arguments(
                         "/accommodations",
-                        new AccommodationRequest(null, null, null, null, null),
+                        AccommodationRequest.builder().build(),
                         DummyDataFactory.accommodationResponseDTOsWithId()
                 ), Arguments.arguments(
                         "/accommodations",
-                        new AccommodationRequest(null, null, null, 300000, null),
+                        AccommodationRequest.builder().endPrice(300000).build(),
                         DummyDataFactory.accommodationResponseDTOsWithId().stream()
                                 .filter(accommodationResponseDTO -> accommodationResponseDTO.pricePerNight() <= 300000)
                                 .collect(Collectors.toList())
                 ), Arguments.arguments(
                         "/accommodations",
-                        new AccommodationRequest(null, null, 100000, null, null),
+                        AccommodationRequest.builder().startPrice(100000).build(),
                         DummyDataFactory.accommodationResponseDTOsWithId().stream()
                                 .filter(accommodationResponseDTO -> 100000 <= accommodationResponseDTO.pricePerNight())
                                 .collect(Collectors.toList())
                 ), Arguments.arguments(
                         "/accommodations",
-                        new AccommodationRequest(null, null, 100000, 300000, null),
+                        AccommodationRequest.builder().startPrice(100000).endPrice(300000).build(),
                         DummyDataFactory.accommodationResponseDTOsWithId().stream()
                                 .filter(accommodationResponseDTO -> 100000 <= accommodationResponseDTO.pricePerNight())
                                 .filter(accommodationResponseDTO -> accommodationResponseDTO.pricePerNight() <= 300000)
@@ -85,7 +85,7 @@ class AccommodationControllerTest {
 
     @ParameterizedTest
     @MethodSource("readAllValidationFailedProvider")
-    void readAllValidationFailed(String path, AccommodationRequest accommodationRequest, ErrorResponse expected)  {
+    void readAllValidationFailed(String path, AccommodationRequest accommodationRequest, ErrorResponse expected) {
         ResponseEntity<ErrorResponse> responseEntity = restTemplate.exchange(
                 RequestEntity.get(uriComponentsOf(path, accommodationRequest).toUriString())
                         .header(HttpHeaders.ACCEPT_LANGUAGE, Locale.KOREA.toLanguageTag())
@@ -107,20 +107,20 @@ class AccommodationControllerTest {
         return Stream.of(
                 Arguments.arguments(
                         "/accommodations",
-                        new AccommodationRequest(null, null, -1, -1, 0),
+                        AccommodationRequest.builder().startPrice(-1).endPrice(-1).numberOfAdults(0).build(),
                         new ErrorResponse(
                                 400,
                                 "BAD_REQUEST",
                                 "Bad Request",
                                 Arrays.asList(
-                                        "numberOfPeople: 0보다 커야 합니다",
+                                        "numberOfAdults: 0보다 커야 합니다",
                                         "startPrice: 0 이상이어야 합니다",
                                         "endPrice: 0 이상이어야 합니다"
                                 )
                         )
                 ), Arguments.arguments(
                         "/accommodations",
-                        new AccommodationRequest(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1), null, null, null),
+                        AccommodationRequest.builder().checkinDate(LocalDate.now().minusDays(1)).checkoutDate(LocalDate.now().minusDays(1)).build(),
                         new ErrorResponse(
                                 400,
                                 "BAD_REQUEST",
@@ -133,7 +133,7 @@ class AccommodationControllerTest {
                         )
                 ), Arguments.arguments(
                         "/accommodations",
-                        new AccommodationRequest(null, null, 10, 0, null),
+                        AccommodationRequest.builder().startPrice(10).endPrice(0).build(),
                         new ErrorResponse(
                                 400,
                                 "BAD_REQUEST",
@@ -152,7 +152,9 @@ class AccommodationControllerTest {
                        .queryParamIfPresent("checkoutDate", Optional.ofNullable(accommodationRequest.getCheckoutDate()))
                        .queryParamIfPresent("startPrice", Optional.ofNullable(accommodationRequest.getStartPrice()))
                        .queryParamIfPresent("endPrice", Optional.ofNullable(accommodationRequest.getEndPrice()))
-                       .queryParamIfPresent("numberOfPeople", Optional.ofNullable(accommodationRequest.getNumberOfPeople()))
+                       .queryParamIfPresent("numberOfAdults", Optional.ofNullable(accommodationRequest.getNumberOfAdults()))
+                       .queryParamIfPresent("numberOfChildren", Optional.ofNullable(accommodationRequest.getNumberOfChildren()))
+                       .queryParamIfPresent("numberOfBabies", Optional.ofNullable(accommodationRequest.getNumberOfBabies()))
                        .build();
     }
 
