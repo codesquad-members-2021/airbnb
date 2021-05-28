@@ -14,7 +14,7 @@ const LogIn = (props: any) => {
   useEffect(() => {
     if (isSuccess) {
       localStorage.setItem("token", JSON.stringify(data));
-      localStorage.setItem("isLogin", JSON.stringify(true));
+      localStorage.setItem("isLogIn", JSON.stringify(true));
       props.history.push("/");
     }
   });

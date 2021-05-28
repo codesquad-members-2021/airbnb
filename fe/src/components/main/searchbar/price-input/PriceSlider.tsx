@@ -1,16 +1,34 @@
 import styled from "styled-components";
-import { useRef, useEffect,MouseEvent } from "react";
+import { useRef, useEffect, MouseEvent, useState } from "react";
 const PriceSlider = () => {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     console.dir(ref.current?.clientWidth);
   }, [ref]);
-const ClickHandler = ({ target } : MouseEvent<HTMLElement>) => {
 
-}
+  const [start, setStart] = useState<number | null>(null);
+  const [offsetX, setOffsetX] = useState<number>(0);
+  const ClickHandler = ({ pageX, currentTarget }: MouseEvent<HTMLElement>) => {
+    setStart(pageX - currentTarget.offsetLeft);
+    console.log(offsetX);
+  };
+
+  const Click = ({ pageX, currentTarget }: MouseEvent<HTMLElement>) => {
+    setStart(null);
+  };
+  const MouseClickHandler = ({ pageX }: MouseEvent<HTMLElement>) => {
+    if (start) setOffsetX((offsetX) => pageX - start);
+  };
+
   return (
     <StyledSlider ref={ref}>
-      <StyledBtn onClick={ClickHandler}/>
+      <StyledBtn
+        offsetX={offsetX}
+        onMouseDown={ClickHandler}
+        onMouseMove={MouseClickHandler}
+        onMouseUp={Click}
+        onMouseLeave={Click}
+      />
     </StyledSlider>
   );
 };
@@ -24,6 +42,10 @@ const StyledSlider = styled.div`
   position: relative;
 `;
 
-const StyledBtn = styled.div`
+const StyledBtn = styled.div<{ offsetX: number }>`
   position: absolute;
+  left: ${({ offsetX }) => `${offsetX}px`};
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: black;
 `;
