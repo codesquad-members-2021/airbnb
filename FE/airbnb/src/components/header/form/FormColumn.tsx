@@ -22,7 +22,7 @@ const FormColumn = ({ title, description, isInput }: Props) => {
 export default FormColumn;
 
 const StyledFormColumn = styled.div`
-  min-width: 8rem;
+  min-width: 7rem;
   .title {
     font-weight: 600;
     margin-bottom: 0.3rem;

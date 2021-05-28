@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import {
   calendarDateType,
   dayType,
-  selectCheckBoxState,
   selectDateState,
   hoverDateState,
 } from '../../recoil/calendarAtom';
+import { selectCheckBoxState } from '../../recoil/headerAtom';
 import { getTimes } from '../header/form/calendar/calendarDateFn';
 
 interface Props {

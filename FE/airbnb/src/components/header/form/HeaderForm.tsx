@@ -24,7 +24,7 @@ interface StyleProps {}
 
 const StyledHeaderForm = styled.div<StyleProps>`
   display: grid;
-  grid-template-columns: 0.7fr 0.5fr 0.5fr 0.5fr 0.6fr;
+  grid-template-columns: 0.7fr 0.5fr 0.5fr 0.6fr 0.6fr;
   margin: 0 auto;
   max-width: 1100px;
   border: ${({ theme }) => `1px solid ${theme.colors.gray4}`};

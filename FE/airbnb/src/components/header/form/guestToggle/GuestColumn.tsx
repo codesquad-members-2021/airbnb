@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { ReactComponent as MinusBtn } from '../../../../assets/svg/Property 1=minus-circle.svg';

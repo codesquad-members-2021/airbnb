@@ -13,6 +13,9 @@ function App() {
   );
 }
 
-const StyledApp = styled.div``;
+const StyledApp = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
 export default App;
