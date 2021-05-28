@@ -1,14 +1,15 @@
 import styled from "styled-components";
+import { stopPropagation } from "hooks/modalHooks";
 
 function FareModal() {
-  return <Modal></Modal>;
+  return <Modal onClick={stopPropagation}></Modal>;
 }
 
 export default FareModal;
 
 const Modal = styled.div`
   ${({ theme }) => theme.modal}
-  left: 50%;
+  right: 0;
   width: 50%;
-  padding: 60px 80px;
+  padding: 50px 60px;
 `;
