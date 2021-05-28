@@ -28,14 +28,20 @@ const LoadingPage = () => {
 
   return (
     <Test>
-      <div>로딩중~~~</div>
+      <img src="https://thumbs.gfycat.com/GeneralUnpleasantApisdorsatalaboriosa-max-1mb.gif"/>
     </Test>
   );
 };
 
 const Test = styled.div`
-  background-color: red;
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 100%;
+  padding-top: 30rem;
+
+  & > img {
+  }
 `;
+
 export default LoadingPage;
