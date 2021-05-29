@@ -1,5 +1,6 @@
 package com.codesquad.coco.user;
 
+import com.codesquad.coco.global.auth.Auth;
 import com.codesquad.coco.oauth.ServerKey;
 import com.codesquad.coco.oauth.gitoauth.GitOauth;
 import com.codesquad.coco.oauth.gitoauth.GitUserInfoDTO;
@@ -40,6 +41,7 @@ public class UserController {
 
     }
 
+    @Auth
     @PostMapping("/rooms/{roomId}/reservations")
     public void reservation(@PathVariable Long roomId, @Valid @RequestBody ReservationDTO reservationDTO) {
         //todo userId를 얻어서 같이 줘야함 일단 ID가 1인 유저
@@ -47,6 +49,7 @@ public class UserController {
         userService.reservation(roomId, 1L, reservationDTO);
     }
 
+    @Auth
     @DeleteMapping("/rooms/{roomId}/reservations/{reservationId}")
     public void deleteReservation(@PathVariable Long roomId,
                                   @PathVariable Long reservationId) {
