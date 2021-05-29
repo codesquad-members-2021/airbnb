@@ -11,7 +11,7 @@ class CalendarDateCell: UICollectionViewCell {
     
     static let reuseIdentifier = String(describing: CalendarDateCell.self)
     
-    private lazy var selectionBackgroundView: UIView = {
+    private var selectionBackgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
@@ -19,7 +19,7 @@ class CalendarDateCell: UICollectionViewCell {
         return view
     }()
     
-     lazy var numberLabel: UILabel = {
+    var numberLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
@@ -28,7 +28,7 @@ class CalendarDateCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var accessibilityDateFormatter: DateFormatter = {
+    private var accessibilityDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = Calendar(identifier: .gregorian)
         dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, MMMM d")

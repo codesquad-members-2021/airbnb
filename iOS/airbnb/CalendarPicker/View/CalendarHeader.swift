@@ -20,7 +20,7 @@ class CalendarHeader: UICollectionReusableView {
       return label
     }()
     
-    private lazy var dateFormatter: DateFormatter = {
+    private var dateFormatter: DateFormatter = {
       let dateFormatter = DateFormatter()
       dateFormatter.calendar = Calendar(identifier: .gregorian)
       dateFormatter.locale = Locale.autoupdatingCurrent

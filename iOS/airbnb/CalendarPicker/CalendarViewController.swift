@@ -17,7 +17,7 @@ class CalendarViewController: UIViewController {
     
     // MARK: - Properties
     
-    private lazy var dateFormatter: DateFormatter = {
+    private var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d"
         dateFormatter.locale = Locale(identifier: "ko")

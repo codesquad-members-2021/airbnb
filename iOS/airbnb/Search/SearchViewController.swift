@@ -73,15 +73,15 @@ class SearchViewController : UIViewController {
 
     func fetchData(){
         $places.receive(on: DispatchQueue.main)
-            .sink(receiveValue: {[weak self] _ in
+            .sink(receiveValue: { [weak self] _ in
                 self?.applySnapshot()
             })
             .store(in: &cancellables)
-        
+       
         TravelListAPI.loadTravelList(type: .search, with: limitCountOfNearPlace)
             .sink(receiveCompletion: { _ in },
-                  receiveValue: { responses in
-                    self.places = responses.map{ $0.toNearPlace() }
+                  receiveValue: { [weak self] responses in
+                    self?.places = responses.map{ $0.toNearPlace() }
             }).store(in: &cancellables)
     }
     

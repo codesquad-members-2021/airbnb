@@ -19,7 +19,6 @@ class API {
     func run<T: Decodable>(_ request: DataRequest, _ decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<API.Response<T>, APIError> {
         return request
             .validate(contentType: ["application/json"])
-            .validate()
             .publishData(emptyResponseCodes: [200, 204, 205])
             .tryMap { result -> API.Response<T> in
                 // TODO: Error Handling
