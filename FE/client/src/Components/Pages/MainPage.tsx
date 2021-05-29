@@ -7,7 +7,7 @@ import airbnbMainImage from '@/Images/airbnbMain.jpg';
 const MainPage = () => {
   return (
     <MainPageWrapper>
-      <GNB isMain/>
+      <GNB isMain />
       <SearchBar />
       <Modal />
     </MainPageWrapper>

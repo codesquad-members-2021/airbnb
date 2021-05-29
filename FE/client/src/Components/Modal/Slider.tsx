@@ -22,6 +22,7 @@ const Slider = ({ rangeState, setRangeState }: SliderType) => {
       const percent = isLeft ? Math.min(targetValue, rightRange) : Math.max(leftRange, targetValue);
       return isLeft ? { ...rangeState, leftRange: percent } : { ...rangeState, rightRange: percent };
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

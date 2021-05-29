@@ -6,10 +6,10 @@ import { getMonthAndDay } from '@/utils/calendarUtil';
 type CheckDateType = {
   checkInTime?: number;
   checkOutTime?: number;
-  kind : string;
+  kind: string;
 }
 
-const CheckDate = ({ checkInTime, checkOutTime, kind } : CheckDateType) => {
+const CheckDate = ({ checkInTime, checkOutTime, kind }: CheckDateType) => {
   return (
     <CheckDateWrapper>
       <DivisionTitle>{kind}</DivisionTitle>

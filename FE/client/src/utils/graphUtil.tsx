@@ -66,9 +66,13 @@ type LinesType = PriceCountArrayType & {
 
 export const getLines = ({ oneSize, priceCountArray, viewBoxPosition }: LinesType) => {
   const { minY, width, height } = viewBoxPosition;
-  return `${minY}, ${height} \n ${priceCountArray.map((count, idx) => {
-    return `${idx * 10}, ${count ? 100 - (count * oneSize) : 100}`;
-  }).join('\n')}\n ${width},${height}`;
+  return `M${minY}, ${height} \n ${priceCountArray.map((count, idx, array) => {
+    const currentCount = count ? 100 - (count * oneSize) : 100;
+    const nextCount = array[idx + 1] ? 100 - (array[idx + 1] * oneSize) : 100;
+    return `C${idx * 10 + 5}, ${currentCount}
+              ${idx * 10 + 5}, ${nextCount}
+            ${idx * 10 + 10}, ${nextCount}`;
+  }).join('\n')}\n L${width},${height}`;
 }
 
 type SelectedLinesType = LinesType & RangeStateType;
@@ -77,20 +81,18 @@ export const getSelectedLines = ({ priceCountArray, oneSize, rangeState, viewBox
   const { leftRange, rightRange } = rangeState;
   const { minY, width, height } = viewBoxPosition;
 
-  const firstSelectIndex = priceCountArray.findIndex((_, idx) => {
-    return leftRange / (100 / priceCountArray.length) <= idx;
-  })
+  const selectedLine = `M${minY}, ${height} \n ${priceCountArray.map((count, idx, array) => {
+    const isSelect = (leftRange / (100 / priceCountArray.length)) <= idx
+      && idx < Math.floor(rightRange / (100 / priceCountArray.length));
+    const isNextSelect = (leftRange / (100 / priceCountArray.length)) <= idx + 1
+      && idx + 1 < Math.floor(rightRange / (100 / priceCountArray.length));
+    const currentCount = isSelect ? 100 - (count * oneSize) : 100;
+    const nextCount = isNextSelect ? 100 - (array[idx + 1] * oneSize) : 100;
 
-  const lastSelectIndex = [...priceCountArray].reverse().findIndex((_, idx) => {
-    return rightRange / (100 / priceCountArray.length) < idx + 2;
-  })
-
-  const selectedLine = `${minY}, ${height} \n ${priceCountArray.map((count, idx) => {
-    const isSelect = (leftRange / (100 / priceCountArray.length)) <= idx && idx < Math.floor(rightRange / (100 / priceCountArray.length));
-    const firstSelected = firstSelectIndex === idx ? `${idx * 10}, ${height}` : '';
-    const lastSelected = lastSelectIndex === idx ? `${idx * 10}, ${height}` : '';
-    return `${firstSelected} ${idx * 10}, ${isSelect ? 100 - (count * oneSize) : 100} ${lastSelected}`;
-  }).join('\n')}\n ${width},${height}`;
+    return `C${idx * 10 + 5}, ${currentCount}
+                ${idx * 10 + 5}, ${nextCount}
+                ${idx * 10 + 10}, ${nextCount}`;
+  }).join('\n')}\n L${width},${height}`;
 
   return selectedLine;
 }

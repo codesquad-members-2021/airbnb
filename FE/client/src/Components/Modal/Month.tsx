@@ -20,6 +20,7 @@ const Month = ({ left, right, date }: MonthProps) => {
 
   const handleClickMonthMove = useCallback((moveCount: number) => () => {
     setMonthIndex(month => month + moveCount * 2);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClickDaySelect = ({ currentTarget }: React.MouseEvent<HTMLElement>) => {

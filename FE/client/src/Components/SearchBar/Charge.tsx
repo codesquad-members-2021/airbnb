@@ -16,6 +16,7 @@ const Charge = ({ handleClickShowModal, charge }: ChargeModalType) => {
 
   const handleClickResetCharge = useCallback(() => {
     setRangeState({ leftRange: 0, rightRange: 100 });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -21,6 +21,7 @@ const PersonnelModal = ({ personnel }: PersonnelType) => {
       const result = { ...personnel, [kind]: personnel[kind] + count };
       return (checkYoung && checkParents && count === 1) ? { ...result, adult: 1 } : result;
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

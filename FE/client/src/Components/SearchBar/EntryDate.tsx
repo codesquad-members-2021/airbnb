@@ -15,6 +15,7 @@ const EntryDate = ({ handleClickShowModal, entryDate }: EntryDateType) => {
   const [calendarClickState, setCalendarClickState] = useRecoilState(calendarClickAtom);
   const [checkInTime, checkOutTime] = calendarClickState;
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleClickDayReset = useCallback(() => setCalendarClickState([]), []);
 
   return (

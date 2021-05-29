@@ -18,13 +18,13 @@ const Graph = ({ rangeState, priceArray }: GraphType) => {
   return (
     <GraphWrapper>
       <svg viewBox={`${minX} ${minY} ${width} ${height}`} >
-        <polyline
+        <path
           fill="#E5E5E5"
-          points={line}
+          d={line}
         />
-        <polyline
+        <path
           fill="#000"
-          points={selectedLine}
+          d={selectedLine}
         />
       </svg>
     </GraphWrapper>
