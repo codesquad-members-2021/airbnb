@@ -5,7 +5,7 @@ import {
   createYearMonthText,
 } from './calendar';
 
-interface ICalendarState {
+interface IState {
   arrDates: number[];
   arrDays: string[];
   strYearMonth: string;
@@ -13,7 +13,7 @@ interface ICalendarState {
   nMouthOption: number;
 }
 
-const initialState: ICalendarState = {
+const initialState: IState = {
   arrDates: [],
   arrDays: ['일', '월', '화', '수', '목', '금', '토'],
   strYearMonth: '',
@@ -21,30 +21,32 @@ const initialState: ICalendarState = {
   nMouthOption: 0,
 };
 
-type CalendarAction =
-  | { type: 'CREATE_INIT_CALENDAR' }
-  | { type: 'UPDATE_CALENDAR' }
+type Action =
+  | { type: 'CREATE_CALENDAR'; payloadMouthOption: number }
+  // 사용안함
   | { type: 'INCREASE_MOUTH_OPTION' }
   | { type: 'DECREASE_MOUTH_OPTION' };
+  // ---
 
 // Calendar 리듀서
 const calendarReducer = (
-  state: ICalendarState,
-  action: CalendarAction,
-): ICalendarState => {
+  state: IState,
+  action: Action,
+): IState => {
   switch (action.type) {
-    case 'CREATE_INIT_CALENDAR': {
-      const monthDate = createMonthStartFromFirstDay();
+    case 'CREATE_CALENDAR': {
+      const monthDate = createMonthStartFromFirstDay(action.payloadMouthOption);
       const strYearMonth = createYearMonthText(monthDate);
       const arrDates = createDates(monthDate);
-      return { ...state, arrDates, strYearMonth, monthDate };
+      return {
+        ...state,
+        arrDates,
+        strYearMonth,
+        monthDate,
+        nMouthOption: action.payloadMouthOption,
+      };
     }
-    case 'UPDATE_CALENDAR': {
-      const monthDate = createMonthStartFromFirstDay(state.nMouthOption);
-      const strYearMonth = createYearMonthText(monthDate);
-      const arrDates = createDates(monthDate);
-      return { ...state, arrDates, strYearMonth, monthDate };
-    }
+    // 사용안함
     case 'INCREASE_MOUTH_OPTION': {
       return {
         ...state,
@@ -57,18 +59,19 @@ const calendarReducer = (
         nMouthOption: state.nMouthOption - 1,
       };
     }
+    // -------
 
     default:
-      throw new Error('Calendar : Unhandled action');
+      throw new Error('useCalendar : Unhandled action');
   }
 };
 
 const useCalendar = () => {
-  const [calendarState, calendarDispatch] = useReducer(
+  const [state, dispatch] = useReducer(
     calendarReducer,
     initialState,
   );
-  return { calendarState, calendarDispatch };
+  return { state, dispatch };
 };
 
 export default useCalendar;

@@ -5,14 +5,14 @@ interface IDateList {
   arrDates: number[];
 }
 
-const DateList = ({arrDays, arrDates} : IDateList) => {
-  const dayItems = arrDays.map((day) => <DayItem>{day}</DayItem>);
+const DateList = ({arrDays, arrDates, ...props} : IDateList) => {
+  const dayItems = arrDays.map((day, i) => <DayItem key={i}>{day}</DayItem>);
 
   return (
-    <DateListLayout>
+    <DateListLayout {...props}>
       {dayItems}
-      {arrDates.map((date) => (
-        <DateItem>{date || ''}</DateItem>
+      {arrDates.map((date, i) => (
+        <DateItem key={i}>{date || ''}</DateItem>
       ))}
     </DateListLayout>
   );
@@ -24,7 +24,6 @@ export default DateList;
 const DateListLayout = styled.ul`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  outline: 1px solid black;
 `;
 
 const Item = styled.li`
