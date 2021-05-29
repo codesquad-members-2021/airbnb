@@ -32,9 +32,7 @@ public class RoomController {
         return new RoomPriceResponseDTO(new BigDecimal(5000), new BigDecimal(3500), new BigDecimal(12000), new BigDecimal(7000), new BigDecimal(50000));
     }
     
-    //여기부터 search 
     @GetMapping("/rooms/price")
-    //pathVariable이 아니라 파라미터로 받을 수 있는지?
     public int[] searchPriceRange(@RequestParam String location) {
         int[] ranges = new int[2];
         ranges[0] = 10000;

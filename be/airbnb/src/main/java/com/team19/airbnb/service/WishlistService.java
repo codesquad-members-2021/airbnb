@@ -18,16 +18,16 @@ public class WishlistService {
         this.wishlistDAO = wishlistDAO;
     }
 
-    public void addWishList(WishListRequestDTO wishListRequestDTO, Long userId) {
+    public void addWishList(Long roomId, Long userId) {
         User user = userService.findUser(userId);
-        Wishlist wishlist = wishListRequestDTO.toEntity();
+        Wishlist wishlist = Wishlist.create(roomId);
         user.addWishlist(wishlist);
         wishlistDAO.updateWishlist(user, wishlist);
     }
 
-    public void deleteWishlist(WishListRequestDTO wishListRequestDTO, Long userId) {
+    public void deleteWishlist(Long roomId, Long userId) {
         User user = userService.findUser(userId);
-        Wishlist wishlist = wishListRequestDTO.toEntity();
+        Wishlist wishlist = Wishlist.create(roomId);
         user.removeWishlist(wishlist);
         wishlistDAO.removeWishlist(user, wishlist);
 

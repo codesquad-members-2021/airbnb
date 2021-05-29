@@ -19,20 +19,13 @@ import java.util.List;
 public class MainController {
 
     private final MainService mainService;
-    private final UserDAO userDAO;
 
-    public MainController(MainService mainService, UserDAO userDAO) {
+    public MainController(MainService mainService) {
         this.mainService = mainService;
-        this.userDAO = userDAO;
     }
 
     @GetMapping("/main")
     public ResponseBody<MainResponseDTO> main() {
         return ResponseBody.ok(mainService.main());
-    }
-
-    @GetMapping("/test")
-    public Long test() {
-       return userDAO.findById(1L).get().getWishlists().get(0).getRoom();
     }
 }
