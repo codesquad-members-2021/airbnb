@@ -2,9 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from './header/Header';
 import SearchBar from '../searchBar/SearchBar';
-import SearchButton from '../searchBar/SearchButton';
-import CloseButton from '../searchBar/CloseButton';
-
 const Main = () => {
     return (
         <MainWrapper>

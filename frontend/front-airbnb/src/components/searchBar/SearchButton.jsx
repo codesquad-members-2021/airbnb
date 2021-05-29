@@ -1,16 +1,23 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import styled from 'styled-components';
 import { FaSearch } from "react-icons/fa";
 
-const SearchButton = () => {
+
+
+const SearchButton = ({isFocus}) => {
     return (
-        <SearchButtonWrapper>
+            <SearchBtn>
             <FaSearch/>
-        </SearchButtonWrapper>
+            { !isFocus && <SearchTitle>검색</SearchTitle>}
+            </SearchBtn>
     );
 }
 
-const SearchButtonWrapper = styled.button`
+const SearchButtonWrapper = styled.div`
+
+`;
+
+const SearchBtn = styled.button`
 background-color: red;
 border-radius: 100px;
 padding: 15px;
@@ -27,5 +34,9 @@ font-size:25px;
     background-color: #fd733d;
 }
 `;
-const SearchTitle = styled.div``;
+const SearchTitle = styled.div`
+margin-left: 5px;
+font-size:20px;
+font-weight: 800;
+`;
 export default SearchButton;
