@@ -33,14 +33,14 @@ public class LoginController {
     }
 
 
-    @PostMapping("/user/auth")
+    @PostMapping("/v1/auth")
     public JWT loginDeskTop(@RequestParam String code) {
         GitUserInfoDTO userInfo = userService.loginByGitOauth(deskTopGitGitOauth, code);
         String jwt = JWTUtils.createJWTTypeBearer(userInfo, serverKey.getJwtServerKey());
         return new JWT(jwt);
     }
 
-    @PostMapping("/user/auth/app")
+    @PostMapping("/v1/auth/app")
     public JWT loginIOS(@RequestParam String code) {
         GitUserInfoDTO userInfo = userService.loginByGitOauth(iOSGitGitOauth, code);
         String jwt = JWTUtils.createJWTTypeBearer(userInfo, serverKey.getJwtServerKey());
