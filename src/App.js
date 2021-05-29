@@ -8,7 +8,7 @@ import Test from "./lib/Test";
 export default function App() {
   return (
     <>
-      <GlobalStyle />
+      {/* <GlobalStyle /> */}
       {/* <Header></Header> */}
       <Switch>
         {/* <Route path="/" component={HomePage} exact /> */}

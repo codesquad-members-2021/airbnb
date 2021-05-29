@@ -6,6 +6,7 @@ import CalendarProvider, { useCalendarState } from "./CalendarProvider";
 import { OnClickDay, _OnClickResult, ClickTargetType } from "../utils/types";
 import { useState } from "react";
 import { renderWeeks } from "../utils/renderFn";
+import { GlobalStyle } from "../utils/styled";
 
 function calendarContext() {
   let calendarTypeChanger: (type: ClickTargetType) => void;
@@ -28,6 +29,7 @@ function calendarContext() {
         countOfMonth={countOfMonth}
         setClickTarget={setClickTarget}
       >
+        <GlobalStyle />
         <InnerCalendar countOfMonth={countOfMonth} clickTarget={clickTarget} />
       </CalendarProvider>
     );

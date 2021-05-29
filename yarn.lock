@@ -1477,10 +1477,10 @@
     "@types/yargs" "^15.0.0"
     "chalk" "^4.0.0"
 
-"@jjunyjjuny/react-calendar@^0.1.0":
-  "integrity" "sha512-5RrqLynVcdgyiKqJ9W/izmQdroFQvQkq7a9qNIsD8/EfPzvFbGdEUJJJxf3nOEtTL2npyFjXy5MYZw2yjeTEAA=="
-  "resolved" "https://registry.npmjs.org/@jjunyjjuny/react-calendar/-/react-calendar-0.1.0.tgz"
-  "version" "0.1.0"
+"@jjunyjjuny/react-calendar@^0.1.2":
+  "integrity" "sha512-NBUvNvfhH8X4ps2OJjqhhTa3vnQIGlnWYsfj4n9ejjkxc4W8rBRIQzoUMZvPTF/KtQL0iumIE9KLQykQxVnNIg=="
+  "resolved" "https://registry.npmjs.org/@jjunyjjuny/react-calendar/-/react-calendar-0.1.2.tgz"
+  "version" "0.1.2"
 
 "@material-ui/core@^4.11.4":
   "integrity" "sha512-oqb+lJ2Dl9HXI9orc6/aN8ZIAMkeThufA5iZELf2LQeBn2NtjVilF5D2w7e9RpntAzDb4jK5DsVhkfOvFY/8fg=="
