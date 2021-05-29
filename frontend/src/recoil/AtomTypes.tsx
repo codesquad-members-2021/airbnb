@@ -11,9 +11,10 @@ export type Date = {
 }
 
 export type CalendarModal = {
-    year: number,
-    month: number,
-    today: Date
+    year: number  ,
+    month: number ,
+    nextMonth: number,
+    today: Date,
 }
 
 export type CalendarFilter = {

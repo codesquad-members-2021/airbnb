@@ -1,6 +1,11 @@
 import { atom, selector } from "recoil";
 import * as T from "./AtomTypes";
 
+export const clickCountState = atom({
+  key : "clickCountState",
+  default:0
+})
+
 export const checkInClickState = atom({
   key: "checkInClickState",
   default: false,
@@ -78,7 +83,8 @@ export const calendarModalState = atom<T.CalendarModal>({
   key: "calendarModalState",
   default: {
     year: new Date().getFullYear(), //2021
-    month: new Date().getMonth() + 1, //5
+    month: new Date().getMonth(), //5
+    nextMonth : new Date().getMonth(),
     today: {
       year: new Date().getFullYear(),
       month: new Date().getMonth() + 1,
