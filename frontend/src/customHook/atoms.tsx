@@ -1,10 +1,14 @@
 import { atom } from 'recoil'
-
+interface ITotalTypes {
+  [key: string]: string | number | undefined
+}
 //defaultValue
 export const defaultValue = {
   placeToSearch: '어디로 여행가세요?',
   checkIn: '날짜입력',
   checkOut: '날짜입력',
+  fee: '금액대 설정',
+  guest: '게스트 추가',
 }
 
 //Place
@@ -43,7 +47,7 @@ export const clickCheckOut = atom<boolean>({
 //Fee
 export const FeeMin = atom<string | number>({
   key: 'FeeMin',
-  default: '금액대 설정',
+  default: defaultValue.fee,
 })
 export const FeeMax = atom<null | number>({
   key: 'FeeMax',
@@ -70,4 +74,9 @@ export const personnelChild = atom<number>({
 export const personnelBaby = atom<number>({
   key: 'baby',
   default: 0,
+})
+
+export const personnelMessage = atom<string>({
+  key: 'guestMsg',
+  default: defaultValue.guest,
 })

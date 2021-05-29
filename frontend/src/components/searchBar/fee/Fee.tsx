@@ -8,8 +8,9 @@ import {
 } from '../../../style/BarStyle'
 import ModalFee from './ModalFee'
 import useModalCtrl from '../../../customHook/useModalCtrlArray'
-import { useRecoilState, useSetRecoilState } from 'recoil'
-import { FeeMin, FeeMax } from '../../../customHook/atoms'
+import { useRecoilValue, useRecoilState } from 'recoil'
+import { FeeMin, FeeMax, defaultValue } from '../../../customHook/atoms'
+import useXclick from '../../../customHook/useXclick'
 
 const Fee = () => {
   const FeeToggle = useRef<HTMLDivElement>(null)
@@ -20,18 +21,20 @@ const Fee = () => {
     init: false,
   })
 
-  //!바에 표현할 부분: 금액대 설정
   const [feeMin, setFeeMin] = useRecoilState(FeeMin)
-  const setFeeMax = useSetRecoilState(FeeMax)
+  const feeMax = useRecoilValue(FeeMax)
+  let feeMsg = typeof feeMin === 'string' ? feeMin : `${feeMin} ~ ${feeMax}원`
 
+  const RenderXbtn = useXclick(feeMin, [setFeeMin], defaultValue.fee)
   return (
     <>
       <BarBlock ref={FeeToggle}>
         <BarInnerWrapper>
           <div>
             <BarTitle>요금</BarTitle>
-            <BarMessage>금액대 설정</BarMessage>
+            <BarMessage>{feeMsg}</BarMessage>
           </div>
+          <RenderXbtn />
         </BarInnerWrapper>
       </BarBlock>
       {open && (

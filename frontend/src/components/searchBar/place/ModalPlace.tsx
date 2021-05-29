@@ -11,8 +11,6 @@ const ModalPlace: React.FunctionComponent<IModalPropType> = ({ modalType }) => {
   const setPlaceToSearch = useSetRecoilState(clickedPlace)
   const defaultMsg = '가까운 여행지 둘러보기'
   const handleClick = (location: string) => {
-    // console.log('여기에요!', location)
-    // setPlaceToSearch(typeof location === 'string' ? location : defaultMsg)
     setPlaceToSearch(location)
   }
 

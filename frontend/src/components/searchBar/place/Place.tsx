@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
-import { clickedPlace } from '../../../customHook/atoms'
+import { clickedPlace, defaultValue } from '../../../customHook/atoms'
 import {
   PlaceSection,
   ModalWrapper,
@@ -9,11 +9,10 @@ import {
   BarTitle,
   BarMessage,
 } from '../../../style/BarStyle'
-import { TiDelete } from 'react-icons/ti'
-import IconButton from '@material-ui/core/IconButton'
 import useModalCtrl from '../../../customHook/useModalCtrlArray'
 import ModalPlace from './ModalPlace'
 import { clickPlace } from '../../../customHook/atoms'
+import useXclick from '../../../customHook/useXclick'
 
 const Place = () => {
   const PlaceToggle = useRef<HTMLDivElement>(null)
@@ -26,8 +25,7 @@ const Place = () => {
 
   const [placeClicked, setPlaceClicked] = useRecoilState(clickPlace)
   const [placeToSearch, setPlaceToSearch] = useRecoilState(clickedPlace)
-  const defaultMsg = '어디로 여행가세요?'
-  const [viewX, setViewX] = useState(false)
+  const defaultMsg = defaultValue.placeToSearch
 
   const handleClick = () => {
     setPlaceClicked((clicked) => {
@@ -36,13 +34,7 @@ const Place = () => {
     })
   }
 
-  const X_handleClick = () => {
-    setPlaceToSearch(defaultMsg)
-  }
-
-  useEffect(() => {
-    placeToSearch && placeToSearch !== defaultMsg ? setViewX(true) : setViewX(false)
-  }, [placeToSearch])
+  const RenderXbtn = useXclick(placeToSearch, [setPlaceToSearch], defaultMsg)
 
   return (
     <PlaceSection>
@@ -52,11 +44,7 @@ const Place = () => {
             <BarTitle>위치</BarTitle>
             <BarMessage>{placeToSearch}</BarMessage>
           </div>
-          {viewX && (
-            <IconButton onClick={X_handleClick}>
-              <TiDelete />
-            </IconButton>
-          )}
+          <RenderXbtn />
         </BarInnerWrapper>
       </BarBlock>
       {open && (

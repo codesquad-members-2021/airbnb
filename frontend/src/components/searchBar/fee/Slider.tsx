@@ -80,7 +80,7 @@ function Slider({ data }: ISliderProps) {
       range.current.style.right = percent + '%'
     }
     setMaxFeePercecnt(Math.ceil((percent / 100) * (maxValue - minValue)))
-    setFeeMax(maxValue + maxFeePercecnt)
+    setFeeMax(maxValue - maxFeePercecnt)
   }
 
   return (
