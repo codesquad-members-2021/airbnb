@@ -1,6 +1,6 @@
 package com.codesquad.coco.room;
 
-import com.codesquad.coco.exception.common.NotFoundRoomException;
+import com.codesquad.coco.global.exception.common.NotFoundRoomException;
 import com.codesquad.coco.image.ImageDAO;
 import com.codesquad.coco.room.model.Room;
 import com.codesquad.coco.room.model.dto.SearchPriceDTO;

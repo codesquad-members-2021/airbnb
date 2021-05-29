@@ -1,6 +1,6 @@
-package com.codesquad.coco.exception.business;
+package com.codesquad.coco.global.exception.business;
 
-public class BusinessException extends RuntimeException{
+public class BusinessException extends RuntimeException {
 
     public BusinessException() {
     }

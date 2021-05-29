@@ -1,6 +1,6 @@
-package com.codesquad.coco.exception.business;
+package com.codesquad.coco.global.exception.business;
 
-public class OvercapacityException extends BusinessException{
+public class OvercapacityException extends BusinessException {
 
     private static final String MESSAGE = "수용 인원 초과";
 

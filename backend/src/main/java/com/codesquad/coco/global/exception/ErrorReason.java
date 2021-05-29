@@ -1,4 +1,4 @@
-package com.codesquad.coco.exception;
+package com.codesquad.coco.global.exception;
 
 public class ErrorReason {
     

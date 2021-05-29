@@ -1,4 +1,4 @@
-package com.codesquad.coco.exception.business;
+package com.codesquad.coco.global.exception.business;
 
 public class TotalPriceNonMatchException extends BusinessException {
 

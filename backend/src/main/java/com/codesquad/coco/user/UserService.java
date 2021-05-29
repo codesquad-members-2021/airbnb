@@ -1,6 +1,6 @@
 package com.codesquad.coco.user;
 
-import com.codesquad.coco.exception.business.TotalPriceNonMatchException;
+import com.codesquad.coco.global.exception.business.TotalPriceNonMatchException;
 import com.codesquad.coco.oauth.gitoauth.GitOauth;
 import com.codesquad.coco.oauth.gitoauth.GitUserInfoDTO;
 import com.codesquad.coco.room.RoomDAO;

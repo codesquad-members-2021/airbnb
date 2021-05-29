@@ -1,6 +1,6 @@
 package com.codesquad.coco;
 
-import com.codesquad.coco.exception.business.NonReservationException;
+import com.codesquad.coco.global.exception.business.NonReservationException;
 import com.codesquad.coco.room.model.AdditionalCost;
 import com.codesquad.coco.room.model.Money;
 import com.codesquad.coco.room.model.Room;

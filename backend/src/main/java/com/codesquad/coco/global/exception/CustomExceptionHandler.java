@@ -1,15 +1,13 @@
-package com.codesquad.coco.exception;
+package com.codesquad.coco.global.exception;
 
 
-import com.codesquad.coco.exception.business.BusinessException;
-import com.codesquad.coco.exception.common.NotFoundException;
+import com.codesquad.coco.global.exception.business.BusinessException;
+import com.codesquad.coco.global.exception.common.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import javax.validation.ConstraintViolationException;
 
 @RestControllerAdvice
 public class CustomExceptionHandler {

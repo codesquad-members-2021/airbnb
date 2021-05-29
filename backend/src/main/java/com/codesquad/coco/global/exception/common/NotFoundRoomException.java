@@ -1,6 +1,6 @@
-package com.codesquad.coco.exception.common;
+package com.codesquad.coco.global.exception.common;
 
-public class NotFoundRoomException extends NotFoundException{
+public class NotFoundRoomException extends NotFoundException {
 
     private static final String MESSAGE = "찾는 방이 없습니다.";
 
