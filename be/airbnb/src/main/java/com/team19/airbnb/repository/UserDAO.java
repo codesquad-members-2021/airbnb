@@ -1,6 +1,5 @@
 package com.team19.airbnb.repository;
 
-import com.team19.airbnb.domain.Booking;
 import com.team19.airbnb.domain.User;
 import com.team19.airbnb.domain.Wishlist;
 import org.springframework.jdbc.core.JdbcTemplate;
