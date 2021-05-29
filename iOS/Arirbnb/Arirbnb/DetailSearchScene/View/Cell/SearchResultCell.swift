@@ -13,7 +13,7 @@ class SearchResultCell: UICollectionViewCell {
     static func nib() -> UINib {
         return UINib(nibName: reuseIdentifier, bundle: nil)
     }
-    @IBOutlet weak var searchResultLabel: UILabel!
+    @IBOutlet private weak var searchResultLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -36,7 +36,7 @@ class MainSearchViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var mainCollectionView: UICollectionView!
+    @IBOutlet private weak var mainCollectionView: UICollectionView!
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Destination>! = nil
     private var action: MainSearchViewControllerAction!

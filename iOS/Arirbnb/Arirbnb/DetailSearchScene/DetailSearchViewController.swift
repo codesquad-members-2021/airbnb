@@ -28,7 +28,7 @@ class DetailSearchViewController: UIViewController{
         }
     }
     
-    @IBOutlet weak var destinationsCollectionView: UICollectionView!
+    @IBOutlet private weak var destinationsCollectionView: UICollectionView!
     private var searchController: UISearchController!
 
     private var destinations: [[Destination]] = [MockAdjacentDestination.mockDatas, MockSearchedDestinaion.mockDatas]

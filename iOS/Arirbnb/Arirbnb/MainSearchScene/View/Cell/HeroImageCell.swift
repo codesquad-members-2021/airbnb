@@ -10,7 +10,7 @@ import UIKit
 class HeroImageCell: UICollectionViewCell {
     static let reuseIdentifier = "HeroImageCell"
     
-    var heroImageView =  UIImageView()
+    private var heroImageView =  UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

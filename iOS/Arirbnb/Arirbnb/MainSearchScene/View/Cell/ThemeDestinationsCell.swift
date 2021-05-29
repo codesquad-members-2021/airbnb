@@ -14,8 +14,8 @@ class ThemeDestinationsCell: UICollectionViewCell {
         return UINib(nibName: reuseIdentifier, bundle: nil)
     }
     
-    @IBOutlet weak var themeDestinationImageView: UIImageView!
-    @IBOutlet weak var themeDestinationLabel: UILabel!
+    @IBOutlet private weak var themeDestinationImageView: UIImageView!
+    @IBOutlet private weak var themeDestinationLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
