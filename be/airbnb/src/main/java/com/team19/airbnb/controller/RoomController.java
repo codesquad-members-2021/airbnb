@@ -33,11 +33,16 @@ public class RoomController {
     }
     
     @GetMapping("/rooms/price")
-    public int[] searchPriceRange(@RequestParam String location) {
-        int[] ranges = new int[2];
-        ranges[0] = 10000;
-        ranges[1] = 15000;
-        return ranges;
+    public BigDecimal[] searchPriceRange(@RequestParam String address) {
+        return roomService.searchPriceRange(address);
+    }
+
+//    private Double latitude;
+//    private Double longitude;
+
+    @GetMapping("/rooms/price/test")
+    public List<BigDecimal> searchPriceRangeTest(@RequestParam Double latitude, @RequestParam Double longitude ) {
+        return roomService.searchPriceRangeTest(latitude, longitude);
     }
 
     @GetMapping("/rooms")

@@ -1,23 +1,28 @@
 package com.team19.airbnb.repository;
 
 import com.team19.airbnb.domain.room.*;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class RoomDAO {
 
     private final JdbcTemplate jdbcTemplate;
     private final ImageDao imageDao;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public RoomDAO(JdbcTemplate jdbcTemplate, ImageDao imageDao) {
+    public RoomDAO(JdbcTemplate jdbcTemplate, ImageDao imageDao, DataSource dataSource) {
         this.jdbcTemplate = jdbcTemplate;
         this.imageDao = imageDao;
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
     public Optional<Room> findById(Long id) {
@@ -40,5 +45,25 @@ public class RoomDAO {
                     Host.create(rs.getString("host_name"), rs.getString("host_image")),
                     rs.getObject("price_per_day", BigDecimal.class));
         };
+    }
+
+
+    //+- 0.006 으로 설정
+    public BigDecimal[] findPriceByAddress(String address) {
+        String query = "SELECT price_per_day FROM room WHERE address LIKE ?";
+        String wrappedAddress = String.format("%%%s%%", address);
+
+        List<Room> selectedPrice = jdbcTemplate.query(query, new BeanPropertyRowMapper<>(Room.class),  wrappedAddress);
+        BigDecimal[] result = new BigDecimal[selectedPrice.size()];
+
+        for(int i = 0 ; i < selectedPrice.size() ; i++) {
+            result[i] = selectedPrice.get(i).getPricePerDay();
+        }
+        return result;
+    }
+
+    public List<Room> findPriceByAddressTest() {
+        String sql = "SELECT * FROM room";
+        return jdbcTemplate.query(sql, roomRowMapper());
     }
 }
