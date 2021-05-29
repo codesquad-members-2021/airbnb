@@ -7,16 +7,11 @@
 
 import UIKit
 
-class AdjacentDestinationsCell: UICollectionViewCell {
-
-    static let reuseIdentifier = "AdjacentDestinationsCell"
-    static var nib: UINib {
-        return UINib(nibName: reuseIdentifier, bundle: Bundle.main)
-    }
+class AdjacentDestinationsCell: UICollectionViewCell, UINibCreateable {
     
-    @IBOutlet weak var destinationImageView: UIImageView!
-    @IBOutlet weak var destinationLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet private weak var destinationImageView: UIImageView!
+    @IBOutlet private weak var destinationLabel: UILabel!
+    @IBOutlet private weak var distanceLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

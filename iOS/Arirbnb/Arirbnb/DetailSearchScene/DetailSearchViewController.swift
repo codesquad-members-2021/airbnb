@@ -9,7 +9,6 @@ import UIKit
 
 class DetailSearchViewController: UIViewController, ViewControllerIdentifierable{
     static func create(_ destinations: [[Destination]] = []) -> DetailSearchViewController {
-        let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
         guard let vc = storyboard.instantiateViewController(identifier: storyboardID) as? DetailSearchViewController else {
             return DetailSearchViewController()
         }

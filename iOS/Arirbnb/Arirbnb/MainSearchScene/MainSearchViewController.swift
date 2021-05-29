@@ -15,7 +15,6 @@ class MainSearchViewController: UIViewController, ViewControllerIdentifierable {
     static let sectionHeaderElementKind = "MainViewSectionHeaderElement"
  
     static func create(_ action: MainSearchViewControllerAction, _ destinations: [[Destination]] = []) -> MainSearchViewController {
-        let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
         guard let vc = storyboard.instantiateViewController(identifier: storyboardID) as? MainSearchViewController else {
             return MainSearchViewController()
         }

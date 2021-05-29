@@ -7,11 +7,9 @@
 
 import UIKit
 
-class HeaderView: UICollectionReusableView {
-
-    static let reuseIdentifier = "HeaderView"
-    
-    var headerLabel = UILabel()
+class HeaderView: UICollectionReusableView, ReuseIdentifierable {
+   
+    private var headerLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
