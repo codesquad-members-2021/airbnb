@@ -19,7 +19,7 @@ public class RoomResponses {
         this.filteredRooms = filteredRooms;
     }
 
-    public static RoomResponses getFilteredRoomsFrom(List<RoomResponse> roomResponses) {
+    public static RoomResponses getRoomsCategorizedByCity(List<RoomResponse> roomResponses) {
         List<String> cities = roomResponses.stream()
                 .map(RoomResponse::getCity).collect(Collectors.toList());
         Map<String, List<RoomResponse>> cityRoomWrapped = new HashMap<>();

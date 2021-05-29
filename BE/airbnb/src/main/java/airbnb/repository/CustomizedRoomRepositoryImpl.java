@@ -19,7 +19,7 @@ public class CustomizedRoomRepositoryImpl implements CustomizedRoomRepository {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<Room> findFilteredRooms(SearchRequest searchRequest) {
+    public List<Room> findRoomsFilteredBy(SearchRequest searchRequest) {
         return queryFactory
                 .selectFrom(room)
                 .leftJoin(booking).on(room.id.eq(booking.id))

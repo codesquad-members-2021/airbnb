@@ -6,5 +6,5 @@ import airbnb.request.SearchRequest;
 import java.util.List;
 
 public interface CustomizedRoomRepository {
-    List<Room> findFilteredRooms(SearchRequest searchRequest);
+    List<Room> findRoomsFilteredBy(SearchRequest searchRequest);
 }

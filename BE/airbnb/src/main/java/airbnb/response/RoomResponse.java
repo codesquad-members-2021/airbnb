@@ -8,17 +8,16 @@ import java.util.List;
 
 @Getter
 @Builder
-@AllArgsConstructor
 public class RoomResponse {
     @JsonIgnore
-    private String city;
-    private String location;
-    private String propertyType;
-    private List<String> roomImages;
-    private Double averageRating;
-    private String title;
-    private Integer maximumNumberOfGuests;
-    private RoomAndBedOption roomAndBedOption;
-    private List<String> amenities;
-    private Integer pricePerNight;
+    private final String city;
+    private final String location;
+    private final String propertyType;
+    private final List<String> roomImages;
+    private final Double averageRating;
+    private final String title;
+    private final Integer maximumNumberOfGuests;
+    private final RoomAndBedOption roomAndBedOption;
+    private final List<String> amenities;
+    private final Integer pricePerNight;
 }

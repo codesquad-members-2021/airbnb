@@ -1,5 +1,6 @@
 package airbnb.domain;
 
+import airbnb.response.RoomDetailPageResponse;
 import airbnb.response.RoomResponse;
 import lombok.*;
 
@@ -19,13 +20,15 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    protected String name;
+    private String name;
+
+    private String detailInfo;
 
     @Embedded
     private Location location;
 
     @OneToOne
-    protected City city;
+    private City city;
 
     @Embedded
     private Rule rule;
@@ -58,7 +61,7 @@ public class Room {
     @CollectionTable(name = "image", joinColumns = @JoinColumn(name = "room_id"))
     private final List<Image> images = new ArrayList<>();
 
-    public static RoomResponse of(Room room) {
+    public static RoomResponse createRoomResponse(Room room) {
         return RoomResponse.builder()
                 .city(room.city.getName())
                 .location(room.location.getPlaceId())
@@ -69,6 +72,17 @@ public class Room {
                 .maximumNumberOfGuests(room.maximumNumberOfGuests)
                 .roomAndBedOption(room.roomAndBedOption)
                 .amenities(AmenityEnum.getAmenityList(room.amenity))
+                .pricePerNight(room.pricePerNight)
+                .build();
+    }
+
+    public static RoomDetailPageResponse createDetailPageResponse(Room room) {
+        return RoomDetailPageResponse.builder()
+                .roomImages(room.images.stream().map(Image::getImage).collect(Collectors.toList()))
+                .title(room.name)
+                .roomDescription(room.detailInfo)
+                .averageRating(room.averageRating)
+                .host(room.host)
                 .pricePerNight(room.pricePerNight)
                 .build();
     }
