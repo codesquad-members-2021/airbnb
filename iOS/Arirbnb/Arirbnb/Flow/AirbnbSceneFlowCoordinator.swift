@@ -13,7 +13,7 @@ public class AirbnbSceneFlowCoordinator {
 
     func start() -> UITabBarController {
         let mainSearchViewControllerAction = MainSearchViewControllerAction(showDetailSearchView: showDetailSearchView)
-        let mainSearchVC = MainSearchViewController.create(mainSearchViewControllerAction)
+        let mainSearchVC = MainSearchViewController.create(mainSearchViewControllerAction, [[Destination.init(destinationName: "HeroImage")],MockAdjacentDestination.mockDatas, MockThemeDestination.mockDatas])
         searachSceneNavigationController = UINavigationController(rootViewController: mainSearchVC)
         let wishListVC = WishListViewController.create()
         let myreservationVC = MyReserVationViewController()
@@ -23,7 +23,7 @@ public class AirbnbSceneFlowCoordinator {
     }
     
     func showDetailSearchView() {
-        let detailSerchVC = DetailSearchViewController.create()
+        let detailSerchVC = DetailSearchViewController.create([MockAdjacentDestination.mockDatas, MockSearchedDestinaion.mockDatas])
         searachSceneNavigationController?.pushViewController(detailSerchVC, animated: true)
         searachSceneNavigationController?.setNavigationBarHidden(false, animated: true)
     }

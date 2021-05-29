@@ -8,11 +8,12 @@
 import UIKit
 
 class DetailSearchViewController: UIViewController, ViewControllerIdentifierable{
-    static func create() -> DetailSearchViewController {
+    static func create(_ destinations: [[Destination]] = []) -> DetailSearchViewController {
         let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
         guard let vc = storyboard.instantiateViewController(identifier: storyboardID) as? DetailSearchViewController else {
             return DetailSearchViewController()
         }
+        vc.destinations = destinations
         return vc
     }
     
@@ -27,10 +28,10 @@ class DetailSearchViewController: UIViewController, ViewControllerIdentifierable
     }
     
     @IBOutlet private weak var destinationsCollectionView: UICollectionView!
-    private var searchController: UISearchController!
+    private lazy var searchController = UISearchController()
 
-    private var destinations: [[Destination]] = [MockAdjacentDestination.mockDatas, MockSearchedDestinaion.mockDatas]
-    private var filteredDestinations: [Destination]!
+    private var destinations: [[Destination]] = []
+    private var filteredDestinations: [Destination] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,6 @@ class DetailSearchViewController: UIViewController, ViewControllerIdentifierable
     
     private func configureNavigation() {
         navigationItem.title = "숙소 찾기"
-        searchController = UISearchController()
         searchController.searchResultsUpdater = self
         searchController.becomeFirstResponder()
         
