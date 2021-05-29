@@ -12,7 +12,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -21,7 +20,6 @@ import static com.codesquad.airbnb.web.exceptions.InvalidSqlResultException.RESE
 import static com.codesquad.airbnb.web.statement.ReservationStatementKt.*;
 
 @Service
-@Transactional(readOnly = true)
 public class ReservationDAO implements ReservationRepository {
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
@@ -35,7 +33,6 @@ public class ReservationDAO implements ReservationRepository {
     }
 
     @Override
-    @Transactional
     public Reservation save(Reservation reservation) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         MapSqlParameterSource parameter = new MapSqlParameterSource()

@@ -13,7 +13,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -22,7 +21,6 @@ import static com.codesquad.airbnb.web.statement.UserStatementKt.*;
 
 @Slf4j
 @Service
-@Transactional(readOnly = true)
 public class UserDAO implements UserRepository {
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
@@ -36,7 +34,6 @@ public class UserDAO implements UserRepository {
     }
 
     @Override
-    @Transactional
     public User saveAsGuest(User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
@@ -66,7 +63,6 @@ public class UserDAO implements UserRepository {
     }
 
     @Override
-    @Transactional
     public void updateAccessToken(int id, String newToken) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
                 .addValue("id", id)

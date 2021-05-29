@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static com.codesquad.airbnb.web.exceptions.ReservationFailedException.RESERVATION_DATE_DUPLICATED;
 
 @Service
+@Transactional(readOnly = true)
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;

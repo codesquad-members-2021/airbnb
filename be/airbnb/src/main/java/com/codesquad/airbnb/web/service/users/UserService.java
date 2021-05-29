@@ -7,10 +7,12 @@ import com.codesquad.airbnb.web.dto.UserWithToken;
 import com.codesquad.airbnb.web.exceptions.notfound.UserNotFoundException;
 import com.codesquad.airbnb.web.service.oauth.TokenService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
+@Transactional(readOnly = true)
 public class UserService {
     private final UserRepository userRepository;
     private final TokenService tokenService;
@@ -22,6 +24,7 @@ public class UserService {
         this.userDtoConverter = userDtoConverter;
     }
 
+    @Transactional
     public UserWithToken processLogin(User loginRequester) {
         User user = createIfNotFound(loginRequester);
         updateWithNewToken(user);
