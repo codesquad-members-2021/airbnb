@@ -1,8 +1,8 @@
 INSERT INTO user(`id`, `github`) VALUES(1, 'tree');
 INSERT INTO user(`id`, `github`) VALUES(2, 'BONGF');
-INSERT INTO room(`id`, `name`, `score`, `reviewers`, `address`, `latitude`, `longitude`, `room_type`, `beds`, `bedRooms`, `bathRooms`, `description`, `host_name`, `host_image`,  `price_per_day`)
+INSERT INTO room(`id`, `name`, `score`, `reviewers`, `address`, `latitude`, `longitude`, `room_type`, `beds`, `bed_rooms`, `bath_rooms`, `description`, `host_name`, `host_image`,  `price_per_day`)
 VALUES (1, 'the-k seoul', 4.5, 100, '서울특별시 서초구 양재2동 바우뫼로12길 70', 37.4661237, 127.0304784, 'ENTIRE_PLACE', 1, 1, 1, '양재역에 위치한 더케이서울입니다.', 'the-k', 'https://lh3.googleusercontent.com/p/AF1QipPFnRnv-rbPGS06Gyi4PQOm6be8vKawm7O4Oqzy=w296-h202-n-k-rw-no-v1', 60000);
-INSERT INTO room(`id`, `name`, `score`, `reviewers`, `address`, `latitude`, `longitude`, `room_type`, `beds`, `bedRooms`, `bathRooms`, `description`, `host_name`, `host_image`,  `price_per_day`)
+INSERT INTO room(`id`, `name`, `score`, `reviewers`, `address`, `latitude`, `longitude`, `room_type`, `beds`, `bed_rooms`, `bath_rooms`, `description`, `host_name`, `host_image`,  `price_per_day`)
 VALUES (2, 'the-k seoul', 4.5, 100, '서울특별시 서초구 양재2동 바우뫼로12길 70', 37.4661237, 127.0304784, 'ENTIRE_PLACE', 1, 1, 1, '양재역에 위치한 더케이서울입니다.', 'the-k', 'https://lh3.googleusercontent.com/p/AF1QipPFnRnv-rbPGS06Gyi4PQOm6be8vKawm7O4Oqzy=w296-h202-n-k-rw-no-v1', 60000);
 INSERT INTO `image`(`url`, `room`)
 VALUES ('url1', 1);

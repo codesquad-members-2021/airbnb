@@ -1,5 +1,6 @@
 package com.team19.airbnb.repository;
 
+import com.team19.airbnb.domain.Booking;
 import com.team19.airbnb.domain.User;
 import com.team19.airbnb.domain.Wishlist;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,7 +29,7 @@ public class UserDAO {
     }
 
     public Optional<User> findById(Long id) {
-        String selectById = "SELECT `id`, `github` FROM `user` WHERE id = ?";
+        String selectById = "SELECT `id`, `github` FROM `user` WHERE `id` = ?";
         List<User> result = jdbcTemplate.query(selectById, userRowMapper(), id);
         return result.stream().findAny();
     }

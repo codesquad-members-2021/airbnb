@@ -53,9 +53,8 @@ public class BookingService {
     }
 
     private BookingResponseDTO toResponseDTO(Booking booking) {
-//        Room room = roomDAO.findById(booking.getRoom()).orElseThrow(RoomNotFoundException::new);
-//        return new BookingResponseDTO.Builder(booking, room).build();
-        return null;
+        Room room = roomRepository.findById(booking.getRoom()).orElseThrow(RoomNotFoundException::new);
+        return BookingResponseDTO.create(booking, room);
     }
 
     //메서드명 book이 어떨지, user체크 하는 부분 추가
