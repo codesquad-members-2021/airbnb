@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import styled, { css, createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
 
 export const DayWrapper = styled.li<{ typeOfDay: string; done?: boolean }>`
   & > div:hover {
@@ -51,4 +52,32 @@ export const DayWrapper = styled.li<{ typeOfDay: string; done?: boolean }>`
     display: block;
     padding-bottom: 100%;
   }
+`;
+
+export const GlobalStyle = createGlobalStyle`
+     ${reset};
+     a, a:link,a:visited ,a:active,a:hover {
+               text-decoration: none;
+               color: black
+          };
+     input {
+          width: 100%;
+     };
+     input[type='text'] {
+          border: none;
+          padding: 0;
+          background: none;
+     };
+     input[type="text"]:focus {
+          outline: none;
+     };
+     button {
+          background: none;
+          border:none;
+          box-shadow: none;
+          border-radius: 0;
+          padding: 0;
+          overflow: visible;
+          cursor: pointer;
+     }
 `;
