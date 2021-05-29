@@ -17,10 +17,15 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        if (((HandlerMethod) handler).hasMethodAnnotation(LoginRequired.class)) {
+        if (isLoginRequired(handler)) {
             authenticate(request);
         }
         return true;
+    }
+
+    private boolean isLoginRequired(Object handler) {
+        return handler instanceof HandlerMethod
+                && ((HandlerMethod) handler).hasMethodAnnotation(LoginRequired.class);
     }
 
     private void authenticate(HttpServletRequest request) {

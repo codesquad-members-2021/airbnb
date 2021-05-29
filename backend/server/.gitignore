@@ -1,4 +1,4 @@
-log.txt
+*.txt
 nohup.out
 HELP.md
 .gradle

@@ -4,22 +4,33 @@
 
 ## 프로젝트 실행법
 
-**Docker Desktop 을 꼬옥! 미리 실행한다.**
+### Docker Desktop 을 꼬옥! 미리 실행한다.
+
+### 환경변수를 설정한다.
+
+```sh
+git revert e9e0339ed6a8b1b0f6ef768509fa08b7237334ad
+```
+
+환경변수가 어렵다면 경우 위의 커밋을 revert 한다.
+아니라면, 아래대로 환경변수를 설정한다.
+
+```sh
+export GITHUB_CLIENT_ID="5064f641a3bfe7f785ab"
+export GITHUB_CLIENT_SECRET="7ce7abff2a00db87a0d7c145af0b1aef1afe6da8"
+export SPRING_DATASOURCE_URL="jdbc:mysql://localhost:12345/pyrodb?autoReconnect=true&useUnicode=true&characterEncoding=UTF8&serverTimeZone=Asia/Seoul"
+export SPRING_DATASOURCE_USERNAME="pyro"
+export SPRING_DATASOURCE_PASSWORD="pyro1234"
+export SPRING_REDIS_HOST="localhost"
+export SPRING_REDIS_PORT="6379"
+export SPRING_REDIS_PASSWORD="redis1234"
+```
+
+### backend/start.sh 스크립트를 실행한다.
 
 backend 디렉토리로 이동해서, start.sh 를 실행한다.
 
-M1 맥북에서는 sudo 권한이 없으면 제대로 동작하지 않는다. 주의하자.
-
 ```
 cd ./backend
-sudo sh ./start.sh
+sh ./start.sh
 ```
-
-## Oauth 작동 확인법
-
-1. start.sh 를 통해 프로젝트를 실행한다.
-2. `http://localhost:8080` 에 브라우저로 접근한다.
-3. "GitHub Login" 을 클릭한다.
-4. 못생긴 로딩스크린이 사라질때까지 기다린다.
-5. 로딩 스크린이 사라지면, "Hello World!" 버튼을 클릭한다.
-6. "안녕하세요! 로그인 한 유저는 언제나 환영합니다!" 라고 뜨면 성공이다.

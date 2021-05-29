@@ -1,18 +1,18 @@
 package com.airbnb.service;
 
-import com.airbnb.dao.UserDao;
 import com.airbnb.dto.UserDto;
+import com.airbnb.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-    private final UserDao userDao;
+    private final UserRepository userRepository;
 
-    public UserService(UserDao userDao) {
-        this.userDao = userDao;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public void save(UserDto userDto) {
-        userDao.save(userDto.toUser());
+        userRepository.save(userDto.toUser());
     }
 }
