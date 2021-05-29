@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		BF2FEAD2265A83F30022CB93 /* SearchLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAD1265A83F30022CB93 /* SearchLocationViewModel.swift */; };
 		BF2FEADC265B71260022CB93 /* SearchTextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEADB265B71260022CB93 /* SearchTextField+Extension.swift */; };
-		BF2FEAE2265BBAED0022CB93 /* LocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAE1265BBAED0022CB93 /* LocationInfoViewController.swift */; };
-		BF2FEAE6265BBB960022CB93 /* LocationInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF2FEAE5265BBB960022CB93 /* LocationInfo.storyboard */; };
-		BF2FEAE9265BE0730022CB93 /* LocationInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAE8265BE0720022CB93 /* LocationInfoViewModel.swift */; };
+		BF2FEAE2265BBAED0022CB93 /* SearchConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAE1265BBAED0022CB93 /* SearchConditionViewController.swift */; };
+		BF2FEAE6265BBB960022CB93 /* SearchCondition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF2FEAE5265BBB960022CB93 /* SearchCondition.storyboard */; };
+		BF2FEAE9265BE0730022CB93 /* SearchConditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAE8265BE0720022CB93 /* SearchConditionViewModel.swift */; };
 		BF2FEAED265BEFDB0022CB93 /* PriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAEC265BEFDB0022CB93 /* PriceViewController.swift */; };
 		BF2FEAF0265C20230022CB93 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAEF265C20220022CB93 /* Date+Extension.swift */; };
 		BF4048CF2658CB4600CA02B5 /* LocationResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4048CE2658CB4600CA02B5 /* LocationResultViewController.swift */; };
@@ -65,9 +65,9 @@
 /* Begin PBXFileReference section */
 		BF2FEAD1265A83F30022CB93 /* SearchLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewModel.swift; sourceTree = "<group>"; };
 		BF2FEADB265B71260022CB93 /* SearchTextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchTextField+Extension.swift"; sourceTree = "<group>"; };
-		BF2FEAE1265BBAED0022CB93 /* LocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoViewController.swift; sourceTree = "<group>"; };
-		BF2FEAE5265BBB960022CB93 /* LocationInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationInfo.storyboard; sourceTree = "<group>"; };
-		BF2FEAE8265BE0720022CB93 /* LocationInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoViewModel.swift; sourceTree = "<group>"; };
+		BF2FEAE1265BBAED0022CB93 /* SearchConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConditionViewController.swift; sourceTree = "<group>"; };
+		BF2FEAE5265BBB960022CB93 /* SearchCondition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchCondition.storyboard; sourceTree = "<group>"; };
+		BF2FEAE8265BE0720022CB93 /* SearchConditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConditionViewModel.swift; sourceTree = "<group>"; };
 		BF2FEAEC265BEFDB0022CB93 /* PriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewController.swift; sourceTree = "<group>"; };
 		BF2FEAEF265C20220022CB93 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		BF4048CE2658CB4600CA02B5 /* LocationResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResultViewController.swift; sourceTree = "<group>"; };
@@ -135,18 +135,18 @@
 			isa = PBXGroup;
 			children = (
 				BF2FEAD1265A83F30022CB93 /* SearchLocationViewModel.swift */,
-				BF2FEAE8265BE0720022CB93 /* LocationInfoViewModel.swift */,
+				BF2FEAE8265BE0720022CB93 /* SearchConditionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		BF2FEADF265BB8EE0022CB93 /* LocationInfo */ = {
+		BF2FEADF265BB8EE0022CB93 /* SearchCondition */ = {
 			isa = PBXGroup;
 			children = (
-				BF2FEAE1265BBAED0022CB93 /* LocationInfoViewController.swift */,
-				BF2FEAE5265BBB960022CB93 /* LocationInfo.storyboard */,
+				BF2FEAE1265BBAED0022CB93 /* SearchConditionViewController.swift */,
+				BF2FEAE5265BBB960022CB93 /* SearchCondition.storyboard */,
 			);
-			path = LocationInfo;
+			path = SearchCondition;
 			sourceTree = "<group>";
 		};
 		BF2FEAEB265BEFAE0022CB93 /* Price */ = {
@@ -163,7 +163,7 @@
 			children = (
 				BF7E2E4D2660276900A810BE /* People */,
 				BF2FEAEB265BEFAE0022CB93 /* Price */,
-				BF2FEADF265BB8EE0022CB93 /* LocationInfo */,
+				BF2FEADF265BB8EE0022CB93 /* SearchCondition */,
 				BF4048E826592A3D00CA02B5 /* Main */,
 				BF4048E626592A3300CA02B5 /* LocationSearch */,
 				BF4048FE2659F52E00CA02B5 /* Calendar */,
@@ -394,7 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF4048D52658D8C500CA02B5 /* Calendar.storyboard in Resources */,
-				BF2FEAE6265BBB960022CB93 /* LocationInfo.storyboard in Resources */,
+				BF2FEAE6265BBB960022CB93 /* SearchCondition.storyboard in Resources */,
 				BFE430C02653903000F4DA1C /* LaunchScreen.storyboard in Resources */,
 				BFE430BD2653903000F4DA1C /* Assets.xcassets in Resources */,
 				BF9F9522265E01F0003CF475 /* Price.storyboard in Resources */,
@@ -419,7 +419,7 @@
 				BF4048F526593DDB00CA02B5 /* CalendarHeaderView.swift in Sources */,
 				BF4048E42658FCAC00CA02B5 /* CalendarHelper.swift in Sources */,
 				BFE430B82653902E00F4DA1C /* MainViewController.swift in Sources */,
-				BF2FEAE9265BE0730022CB93 /* LocationInfoViewModel.swift in Sources */,
+				BF2FEAE9265BE0730022CB93 /* SearchConditionViewModel.swift in Sources */,
 				BF7E2E42265FBC5300A810BE /* SequenceDates.swift in Sources */,
 				BFE4310626554B3600F4DA1C /* LocationCell.swift in Sources */,
 				BF2FEAF0265C20230022CB93 /* Date+Extension.swift in Sources */,
@@ -435,7 +435,7 @@
 				BF7E2E4A265FCF6D00A810BE /* CGFloat+Extension.swift in Sources */,
 				BF7E2E612660B25400A810BE /* BabyCountState.swift in Sources */,
 				BF9F951E265DFD69003CF475 /* NotificationName+Extension.swift in Sources */,
-				BF2FEAE2265BBAED0022CB93 /* LocationInfoViewController.swift in Sources */,
+				BF2FEAE2265BBAED0022CB93 /* SearchConditionViewController.swift in Sources */,
 				BF7E2E6D2660B8EB00A810BE /* ButtonsViewModel.swift in Sources */,
 				BF9F9510265DEAFE003CF475 /* UITableViewCell+Extension.swift in Sources */,
 				BF7E2E3B265FA2DF00A810BE /* PriceSlider.swift in Sources */,

@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class LocationInfoViewController: UIViewController{
+class SearchConditionViewController: UIViewController{
 
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var checkInOutLabel: UILabel!
@@ -21,7 +21,7 @@ class LocationInfoViewController: UIViewController{
     private var deleteDatesSubject = PassthroughSubject<Void, Never>()
     private var nextViewSubject: PassthroughSubject<Void, Never>?
     
-    private var locationInfoViewModel: LocationInfoViewModel?
+    private var locationInfoViewModel: SearchConditionViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +34,8 @@ class LocationInfoViewController: UIViewController{
     
     func inject(from manager : SearchManager?,
                 subject: PassthroughSubject<Void,Never>,
-                state: State){
-        locationInfoViewModel = LocationInfoViewModel(from: manager ?? .init(), of: state)
+                state: State) {
+        locationInfoViewModel = SearchConditionViewModel(from: manager ?? .init(), of: state)
         nextViewSubject = subject
         deleteDatesSubject.sink { [weak self] _ in
             self?.locationInfoViewModel?.deleteData()

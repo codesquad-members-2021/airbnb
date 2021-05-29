@@ -23,7 +23,7 @@ class CalendarViewController: UIViewController {
     private var cancellable = Set<AnyCancellable>()
     
     private var searchManager: SearchManager?
-    private let locationInfoViewController = UIStoryboard.create(identifier: LocationInfoViewController.self, name: "LocationInfo")
+    private let searchConditionViewController = UIStoryboard.create(identifier: SearchConditionViewController.self, name: "SearchCondition")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,12 +43,12 @@ class CalendarViewController: UIViewController {
     }
     
     private func addContainerView() {
-        locationInfoViewController.inject(from: searchManager,
+        searchConditionViewController.inject(from: searchManager,
                         subject: nextViewControllerSubject,
                         state: .calerdar)
-        addChild(locationInfoViewController)
-        locationInfoViewController.view.frame = containerView.bounds
-        containerView.addSubview(locationInfoViewController.view)
+        addChild(searchConditionViewController)
+        searchConditionViewController.view.frame = containerView.bounds
+        containerView.addSubview(searchConditionViewController.view)
     }
     
     private func configureCollectionView() {
@@ -84,7 +84,7 @@ class CalendarViewController: UIViewController {
                 return
             }
             let priceViewController = UIStoryboard.create(identifier: PriceViewController.self, name: "Price")
-            priceViewController.configure(for: manager, from: self.locationInfoViewController)
+            priceViewController.configure(for: manager, from: self.searchConditionViewController)
             self.navigationController?.pushViewController(priceViewController, animated: true)
         }.store(in: &cancellable)
     }

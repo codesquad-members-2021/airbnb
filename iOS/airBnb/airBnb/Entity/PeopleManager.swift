@@ -13,6 +13,7 @@ class PeopleManager {
     private var adult: AdultCountState
     private var kid: KidCountState
     private var baby: BabyCountState
+    @Published private var totalPeople: (Int, Int)
     
     private var peopleMapper: [PeopleTypes: CountStatable]
     private lazy var people: [CountStatable] = [adult,kid,baby]
@@ -24,7 +25,9 @@ class PeopleManager {
         self.kid = KidCountState()
         self.baby = BabyCountState()
         self.peopleMapper = [:]
+        self.totalPeople = (0, 0)
         createMapper()
+        collectPeople()
     }
     
     private func createMapper() {
@@ -54,12 +57,17 @@ class PeopleManager {
     }
     
     func relayTotalCount() -> AnyPublisher<(Int,Int), Never> {
+        return $totalPeople.eraseToAnyPublisher()
+    }
+    
+    private func collectPeople() {
         return adult.$count.combineLatest(kid.$count)
             .map { $0 + $1 }.combineLatest(baby.$count)
             .map { (guest, baby) in
                 return (guest, baby)
-            }
-            .eraseToAnyPublisher()
+            }.sink { (guest, baby) in
+                self.totalPeople = (guest ,baby)
+            }.store(in: &cancellable)
     }
     
     func isDectedZero() -> AnyPublisher<(Bool, Bool, Bool), Never> {

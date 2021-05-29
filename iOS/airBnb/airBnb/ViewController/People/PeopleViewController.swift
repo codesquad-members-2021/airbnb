@@ -18,7 +18,7 @@ class PeopleViewController: UIViewController {
     private let nextViewControllerSubject = PassthroughSubject<Void,Never>()
     private var cancellable = Set<AnyCancellable>()
     
-    private var locationInfoViewController : LocationInfoViewController?
+    private var searchConditionViewController : SearchConditionViewController?
     private var searchManager: SearchManager?
     @IBOutlet var buttonsViewModel: ButtonsViewModel!
     
@@ -34,7 +34,7 @@ class PeopleViewController: UIViewController {
     }
     
     private func addContainerView() {
-        guard let controller = locationInfoViewController,
+        guard let controller = searchConditionViewController,
               let searchManager = searchManager else {
             return
         }
@@ -46,9 +46,9 @@ class PeopleViewController: UIViewController {
         containerView.addSubview(controller.view)
     }
     
-    func configure(for search: SearchManager, from viewController: LocationInfoViewController) {
+    func configure(for search: SearchManager, from viewController: SearchConditionViewController) {
         self.searchManager = search
-        self.locationInfoViewController = viewController
+        self.searchConditionViewController = viewController
     }
     
     private func bind() {

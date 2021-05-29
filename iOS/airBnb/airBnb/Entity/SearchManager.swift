@@ -14,7 +14,6 @@ class SearchManager {
     @Published private(set) var selectDates: SequenceDates
     @Published private(set) var priceRange: PriceRange
     @Published private(set) var numberOfPleple: PeopleManager
-    @Published private(set) var totlaPeople: (Int, Int)
     
     private var cancell: AnyCancellable?
     
@@ -23,14 +22,6 @@ class SearchManager {
         selectDates = .init(start: nil, end: nil)
         priceRange = .init()
         numberOfPleple = .init()
-        totlaPeople = (0, 0)
-        bind()
-    }
-    
-    private func bind() {
-        cancell = numberOfPleple.relayTotalCount().sink { (guest, baby) in
-            self.totlaPeople = (guest, baby)
-        }
     }
     
     func selectLocation(from location: String) {
@@ -46,8 +37,6 @@ class SearchManager {
         case .calerdar:
             selectDates.reset()
             NotificationCenter.default.post(name: .seletDatesReset, object: nil)
-        case .location:
-            break
         case .price:
             priceRange.reset()
             NotificationCenter.default.post(name: .priceReset, object: nil)
@@ -78,6 +67,10 @@ class SearchManager {
     
     func bindBabyCount() -> AnyPublisher<Int, Never> {
         return numberOfPleple.relayBabyCount()
+    }
+    
+    func bindTotalCount() -> AnyPublisher<(Int, Int), Never> {
+        return numberOfPleple.relayTotalCount()
     }
     
     func bindMinusButtonisEnanbled() -> AnyPublisher<(Bool, Bool, Bool), Never> {

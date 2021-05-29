@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Location Info View Controller-->
+        <!--Search Condition View Controller-->
         <scene sceneID="xVT-UV-S3Q">
             <objects>
-                <viewController storyboardIdentifier="LocationInfo" id="fBp-PC-pPS" customClass="LocationInfoViewController" customModule="airBnb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchCondition" id="fBp-PC-pPS" customClass="SearchConditionViewController" customModule="airBnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F6y-Ju-MxI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

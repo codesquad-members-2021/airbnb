@@ -26,7 +26,7 @@ class PriceViewController: UIViewController {
     private let nextViewControllerSubject = PassthroughSubject<Void,Never>()
     private var cancellable = Set<AnyCancellable>()
     
-    private var locationInfoViewController: LocationInfoViewController?
+    private var searchConditionViewController: SearchConditionViewController?
     private var searchManager: SearchManager?
     
     override func viewDidLoad() {
@@ -45,9 +45,9 @@ class PriceViewController: UIViewController {
         rangeSlider.updateLayerFrames()
     }
     
-    func configure(for search: SearchManager, from viewController: LocationInfoViewController) {
+    func configure(for search: SearchManager, from viewController: SearchConditionViewController) {
         self.searchManager = search
-        self.locationInfoViewController = viewController
+        self.searchConditionViewController = viewController
     }
     
     private func configureRangeView() {
@@ -60,7 +60,7 @@ class PriceViewController: UIViewController {
     }
     
     private func addContainerView() {
-        guard let controller = locationInfoViewController,
+        guard let controller = searchConditionViewController,
               let searchManager = searchManager else {
             return
         }
@@ -74,7 +74,7 @@ class PriceViewController: UIViewController {
     
     private func bind() {
         nextViewControllerSubject.sink { [weak self] _ in
-            guard let self = self, let searchManager = self.searchManager, let locationInfo = self.locationInfoViewController else {
+            guard let self = self, let searchManager = self.searchManager, let locationInfo = self.searchConditionViewController else {
                 return
             }
             let peopleViewController = UIStoryboard.create(identifier: PeopleViewController.self, name: "People")

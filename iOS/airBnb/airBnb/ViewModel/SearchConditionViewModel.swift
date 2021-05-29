@@ -9,13 +9,12 @@ import Foundation
 import Combine
 
 enum State {
-    case location
     case calerdar
     case price
     case people
 }
 
-class LocationInfoViewModel {
+class SearchConditionViewModel {
     
     private var cancellable = Set<AnyCancellable>()
     private var searchManager: SearchManager
@@ -59,7 +58,7 @@ class LocationInfoViewModel {
     }
     
     func showPeopleTotal() -> AnyPublisher<(Int, Int), Never> {
-        return searchManager.$totlaPeople
+        return searchManager.bindTotalCount()
             .dropFirst()
             .eraseToAnyPublisher()
     }
@@ -78,9 +77,6 @@ class LocationInfoViewModel {
             return searchManager.$selectDates
                 .map { self.skipAndDeleteString(to: $0.emptyStartValued()) }
                 .eraseToAnyPublisher()
-        case .location:
-            return Just(skip)
-                .eraseToAnyPublisher()
         case .people:
             return Just(skip)
                 .eraseToAnyPublisher()
@@ -95,8 +91,6 @@ class LocationInfoViewModel {
         switch state {
         case .calerdar:
           return searchManager.selectDates.emptyStartValued()
-        case .location:
-            return false
         case .people:
             return true
         case .price:
