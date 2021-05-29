@@ -1,11 +1,13 @@
 package com.codesquad.coco.oauth;
 
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import static com.codesquad.coco.oauth.gitoauth.GitHubTypeKey.DESKTOP;
 import static com.codesquad.coco.oauth.gitoauth.GitHubTypeKey.IOS;
 
+@PropertySource("classpath:/secretKey.properties")
 @Component
 public class ServerKey {
 

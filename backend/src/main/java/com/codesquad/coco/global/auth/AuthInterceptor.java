@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class AuthInterceptor implements HandlerInterceptor {
 
-    private static final String HEADER_TYPE = "Authorization";
     private ServerKey serverKey;
 
     public AuthInterceptor(ServerKey serverKey) {
@@ -25,7 +24,7 @@ public class AuthInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Auth auth = ((HandlerMethod) handler).getMethodAnnotation(Auth.class);
         if (auth == null) {
-            return false;
+            return true;
         }
         String jwt = getJWT(request);
         JWTUtils.validateJWT(jwt, serverKey.getJwtServerKey());
@@ -38,7 +37,7 @@ public class AuthInterceptor implements HandlerInterceptor {
     }
 
     private String getJWT(HttpServletRequest request) {
-        String jwt = request.getHeader(HEADER_TYPE);
+        String jwt = request.getHeader(JWTUtils.HEADER_TYPE);
         if (jwt == null) {
             throw new NotLoggedInException();
         }

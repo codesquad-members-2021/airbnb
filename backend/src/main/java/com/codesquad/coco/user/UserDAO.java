@@ -2,7 +2,6 @@ package com.codesquad.coco.user;
 
 import com.codesquad.coco.oauth.gitoauth.GitUserInfoDTO;
 import oauth.AccessToken;
-import oauth.UserInfoDTO;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -29,9 +28,9 @@ public class UserDAO {
         template.update(INSERT_USER, parameter);
     }
 
-    public int countUserById(UserInfoDTO userInfoDTO) {
+    public int countUserByGitId(Long userId) {
         MapSqlParameterSource parameter = new MapSqlParameterSource()
-                .addValue("github_id", userInfoDTO.getId());
+                .addValue("github_id", userId);
         Integer count = template.queryForObject(FIND_USER_COUNT_BY_GITHUB_ID, parameter, Integer.class);
         return count;
     }

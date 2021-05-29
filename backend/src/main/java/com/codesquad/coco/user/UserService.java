@@ -1,6 +1,7 @@
 package com.codesquad.coco.user;
 
 import com.codesquad.coco.global.exception.business.TotalPriceNonMatchException;
+import com.codesquad.coco.global.exception.common.NotFoundUser;
 import com.codesquad.coco.oauth.gitoauth.GitOauth;
 import com.codesquad.coco.oauth.gitoauth.GitUserInfoDTO;
 import com.codesquad.coco.room.RoomDAO;
@@ -26,6 +27,10 @@ public class UserService {
 
     public void reservation(Long roomId, Long userId, ReservationDTO reservationDTO) {
 
+        if (userDAO.countUserByGitId(userId) == 0) {
+            throw new NotFoundUser();
+        }
+
         Room room = roomDAO.findById(roomId);
         int fewNights = LocalDateUtil.getAccommodationDay(reservationDTO.getCheckIn(), reservationDTO.getCheckOut());
         int totalPrice = room.calcTotalPrice(fewNights);
@@ -35,15 +40,20 @@ public class UserService {
         if (totalPrice != reservationDTO.getTotalPrice()) {
             throw new TotalPriceNonMatchException(totalPrice);
         }
+
         reservationDAO.reservation(roomId, userId, reservationDTO, ReservationStatus.RESERVED);
     }
 
     public void cancelReservation(Long roomId, Long reservationId, Long userId) {
+
+        if (userDAO.countUserByGitId(userId) == 0) {
+            throw new NotFoundUser();
+        }
         reservationDAO.cancelReservation(roomId, reservationId, userId, ReservationStatus.CANCEL);
     }
 
     public void insertUser(GitUserInfoDTO userInfo, AccessToken accessToken) {
-        if (userDAO.countUserById(userInfo) != 0) {
+        if (userDAO.countUserByGitId(userInfo.getId()) != 0) {
             userDAO.updateUser(userInfo, accessToken);
             return;
         }

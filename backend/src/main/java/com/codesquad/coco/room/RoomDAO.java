@@ -50,6 +50,7 @@ public class RoomDAO {
                 .addValue("price_max", roomDTO.getPriceMax());
         List<Room> rooms = template.query(FIND_ALL_ROOM_BY_SEARCH_REQUIREMENT, parameter, new RoomMapper());
         for (Room room : rooms) {
+            //todo n+1 을 만들것인가?
             fillRoomWithImage(room);
             fillRoomWithReservation(room);
         }
