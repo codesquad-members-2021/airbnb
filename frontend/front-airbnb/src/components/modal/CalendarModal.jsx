@@ -1,6 +1,6 @@
 import React, { useState ,useRef, useEffect, useContext} from 'react';
 import styled from 'styled-components';
-import { FaArrowLeft, FaArrowRight} from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaPiggyBank} from "react-icons/fa";
 import { PostsContext } from '../searchBar/SearchBar';
 
 const CalendarModal = () => {
@@ -29,7 +29,6 @@ const CalendarModal = () => {
 const Calendar = ({date})=> {
     const {periodInfo, setPeriodInfo} = useContext(PostsContext);
     const {year, month} = date // year:YYYY, month:MM
-    // console.log('년',year, month);
     const fristDay = new Date(year, month, 1).getDay();
     const lastDate = new Date(year, month+1, 0).getDate();
     let rowCnt = Math.ceil((fristDay+lastDate)/7);
@@ -49,7 +48,6 @@ const Calendar = ({date})=> {
     totalArr.push(eachArr);
     } 
 
-    // const monthArr; // 이중배열
     const fixMonth =(year,month) => {
         if(month<0) return fixMonth(year-1, month+12)
         if (month>11) return fixMonth(year+1, month-12)
@@ -57,7 +55,7 @@ const Calendar = ({date})=> {
     }
     const title = fixMonth(year, month);
     const makeFormat = (date) => {
-        let fullData = `${year}-${month+1}-${date}`
+        let fullData = `${year}-${month+1}-${date}`;
         if(periodInfo[0].input === '날짜입력') createCheckIn(fullData);
         else checkINOUT(fullData);
     }
@@ -70,31 +68,25 @@ const Calendar = ({date})=> {
         }
         return newData
     }
-
-
     const checkINOUT = (afterData) => {
-        console.log('인아웃')
         let newArr = [...periodInfo];
         if(makeData(newArr[0].input) >= makeData(afterData)) {
-            console.log('s')
             checkInToOut(newArr[0].input, afterData)
         }
         else if(newArr[1].input !== "날짜입력" && (makeData(newArr[1].input)>= makeData(afterData))) {
             createCheckIn(afterData);
         }
         else {
-            console.log('s')
+
             createOut(afterData);
         }
     }
     const checkInToOut = (outData, inData) => {
-        console.log('체크인 투 아웃', outData, inData)
         setPeriodInfo(info => {
             let newArr = [...info];
             if(newArr[1].input === '날짜입력' || (makeData(outData) >= makeData(newArr[1].input))){
                 newArr[1].input = outData;
             }
-            // newArr[1].input = outData;
             console.log(outData)
             console.log(newArr[1].input)
             newArr[0].input = inData;
@@ -116,18 +108,39 @@ const Calendar = ({date})=> {
         })
     }
     const weekDay = ['일','월','화','수','목','금','토'];
+    const setCheckIn = () => {
+        let newArr = [...periodInfo];
+        if(newArr[0].input === '날짜입력') return;
+        return makeData(newArr[0].input).join('')
+    }
+    const setCheckOut = () => {
+        let newArr = [...periodInfo];
+        if(newArr[1].input === '날짜입력') return;
+        return makeData(newArr[1].input).join('')
+    }
+
+    const setLine = (date) => {
+        let data = `${year}-${month+1}-${date}`;
+        return makeData(data).join('');
+    }
     return (
     <CalendarWrapper>
         <CalendarTable>
         <CalendarTitle>{title}</CalendarTitle>
         <thead><tr>{weekDay.map(e => <WeekTd>{e}</WeekTd>)}</tr></thead>
         <tbody>
-            {totalArr.map((line, idx)=> <tr>{line.map((data, idx) =><TableTd onClick={()=>makeFormat(data)} 
-            key={idx}>{data}</TableTd>)}</tr>)}
+            {totalArr.map((line, idx)=> <tr>{line.map((data, idx) => {
+                console.log(setLine(data), setCheckIn(), setLine(data) === setCheckIn(), setCheckOut());
+            return <TableTd start={setCheckIn()} end={setCheckOut()} date={setLine(data)}onClick={()=>makeFormat(data)} 
+            key={idx}>{data}</TableTd>
+            })}</tr>)}
         </tbody>
         </CalendarTable>
     </CalendarWrapper>)
 }
+
+
+const DayWrapper = styled.div``;
 const WeekTd = styled.td`
 font-size:20px;
 padding: 12px;
@@ -148,28 +161,48 @@ padding: 8px;
 width: 20px;
 height: 20px;
 text-align: center;
-`
+position: relative;
+border-radius:${({start,end,date})=>{
+        if(date===start || date===end) return "50px" 
+        return "0px"
+    }};
+background-color:${({start,end,date})=>{
+        if(date===start || date===end) return "black" 
+    }};
+color:${({start,end,date})=>{
+    if(date<start) return "gray" 
+    if(date===start || date===end) return "white"
+}};
+    &::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 0;
+        opacity: 0.25;
+        background-color:${({start,end,date})=>{
+            if(date.length === 6) return;
+            if(date>=start && date<=end) return "gray" 
+        }};
+        border-radius:${({start,end,date})=>
+            date===start ? "50% 0 0 50%": date===end ? "0 50% 50% 0": "0" 
+        };
+    }
+`;
 
 const CalendarWrapper = styled.li`
 margin:50px;
-/* border: 1px solid red; */
 `;
 
-const Day = styled.td`
-    color:${({start,end,date})=>{
-        if(date===start || date===end) return "red" 
-        if(date>start || date<end) return "blue" 
-        if(date<start) return "white" 
-    }}
-`
-
 const CalendarTable = styled.table`
-/* border: 1px solid red; */
 width: 300px;
 display: flex;
 flex-direction: column;
 justify-content: start;
 align-items: center;
+border: none;
 `;
 
 const PreBtn = styled.button`
@@ -207,9 +240,7 @@ const CalendarModalWrapper = styled.div`
     overflow: hidden;
 `;
 const CalendarList = styled.ul`
-    /* border:1px solid blue; */
     position: absolute;
-    /* width: 600px; */
     display: flex;
     top:-4%;
 `;

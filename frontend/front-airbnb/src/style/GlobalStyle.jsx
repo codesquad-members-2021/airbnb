@@ -16,5 +16,8 @@ button {
     outline: 0;
     background-color: transparent;
 }
+table {
+    border-collapse:collapse;
+}
 `
 export default GlobalStyle

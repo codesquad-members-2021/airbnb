@@ -30,7 +30,7 @@ const Period = ({isFocus}) => {
     );
 }
 const PeriodWrapper = styled.div`
-border: 1px solid red;
+/* border: 1px solid red; */
 flex: 20%;
 .Btn {
     position: absolute;
