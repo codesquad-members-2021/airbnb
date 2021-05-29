@@ -48,7 +48,7 @@ class LocationInfoViewController: UIViewController{
             self?.checkInOutLabel.text = selectDates
         }.store(in: &cancellable)
         
-        locationInfoViewModel?.isEmptySelectDates().sink { [weak self] (enable) in
+        locationInfoViewModel?.allowSelectDates().sink { [weak self] (enable) in
             self?.nextButton.isEnabled = enable
         }.store(in: &cancellable)
         
@@ -60,13 +60,20 @@ class LocationInfoViewController: UIViewController{
             self?.priceLabel.text = price
         }.store(in: &cancellable)
         
-        locationInfoViewModel?.allowNextButton().sink { [weak self] (allow) in
-            self?.nextButton.isEnabled = allow
+        locationInfoViewModel?.allowPriceNextButton().sink { [weak self] (enable) in
+            self?.nextButton.isEnabled = enable
         }.store(in: &cancellable)
         
-        locationInfoViewModel?.showPeopleTotal().sink { [weak self] (people) in
+        locationInfoViewModel?.showPeopleTotal().sink { [weak self] (guest, baby) in
+            let guest = guest == 0 ? "" : "게스트 \(guest)명"
+            let baby = baby == 0 ? "" : "유아 \(baby)명"
             self?.numOfPeopleLabel.text =
-                people == 0 ? "" : "게스트 \(people)명"
+                guest + " " + baby
+        }.store(in: &cancellable)
+        
+        locationInfoViewModel?.allowPeopleNextButton().sink { [weak self] (enable) in
+            self?.nextButton.isEnabled = enable
+            enable ? self?.nextButton.setTitle("검색", for: .normal) : self?.nextButton.setTitle("다음", for: .normal)
         }.store(in: &cancellable)
     }
     
@@ -80,9 +87,5 @@ class LocationInfoViewController: UIViewController{
         }
         viewModel.setSkipAndDeleteAction() ?
             self.nextViewSubject?.send() : self.deleteDatesSubject.send()
-    
     }
-    
 }
-
-

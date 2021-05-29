@@ -13,7 +13,6 @@ enum State {
     case calerdar
     case price
     case people
-    case none
 }
 
 class LocationInfoViewModel {
@@ -36,7 +35,7 @@ class LocationInfoViewModel {
             .eraseToAnyPublisher()
     }
     
-    func isEmptySelectDates() -> AnyPublisher<Bool, Never> {
+    func allowSelectDates() -> AnyPublisher<Bool, Never> {
         return searchManager.$selectDates
             .map { $0.hasValued() }
             .eraseToAnyPublisher()
@@ -48,16 +47,20 @@ class LocationInfoViewModel {
             .eraseToAnyPublisher()
     }
     
-    func allowNextButton() -> AnyPublisher<Bool, Never> {
+    func allowPriceNextButton() -> AnyPublisher<Bool, Never> {
         return searchManager.$priceRange
             .map { $0.hasValued() }
             .eraseToAnyPublisher()
     }
     
-    func showPeopleTotal() -> AnyPublisher<Int, Never> {
+    func showPeopleTotal() -> AnyPublisher<(Int, Int), Never> {
         return searchManager.$totlaPeople
             .dropFirst()
             .eraseToAnyPublisher()
+    }
+    
+    func allowPeopleNextButton() -> AnyPublisher<Bool, Never> {
+        return searchManager.bindPeopleNextButtonisEnabled()
     }
     
     func deleteData() {
@@ -80,9 +83,6 @@ class LocationInfoViewModel {
             return searchManager.$priceRange
                 .map { self.skipAndDeleteString(to: $0.noticeChanged()) }
                 .eraseToAnyPublisher()
-        case .none:
-            return Just(skip)
-                .eraseToAnyPublisher()
         }
     }
     
@@ -93,11 +93,9 @@ class LocationInfoViewModel {
         case .location:
             return false
         case .people:
-            return false
+            return true
         case .price:
             return searchManager.priceRange.noticeChanged()
-        case .none:
-            return false
         }
     }
     

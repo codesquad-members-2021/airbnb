@@ -53,9 +53,12 @@ class PeopleManager {
         return baby.$count.eraseToAnyPublisher()
     }
     
-    func relayTotalCount() -> AnyPublisher<Int, Never> {
+    func relayTotalCount() -> AnyPublisher<(Int,Int), Never> {
         return adult.$count.combineLatest(kid.$count)
-            .map { $0 + $1 }
+            .map { $0 + $1 }.combineLatest(baby.$count)
+            .map { (guest, baby) in
+                return (guest, baby)
+            }
             .eraseToAnyPublisher()
     }
     
@@ -89,5 +92,11 @@ class PeopleManager {
         if adult.isZero() && (baby.isNotZero() || kid.isNotZero()) {
             adult.count += 1
         }
+    }
+    
+    func isNotZeroPeople() -> AnyPublisher<Bool, Never> {
+        return adult.$count.map {
+            self.isNotZero(count: $0)
+        }.eraseToAnyPublisher()
     }
 }
