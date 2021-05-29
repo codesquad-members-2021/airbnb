@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import { priceRange, selectedPrice } from '@recoil/atoms/price';
 
@@ -113,9 +113,30 @@ const Graph = ({ priceContents }: any) => {
     return firstPoint + points + lastPoint;
   };
 
-  const handleSliderPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLeftSlider = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    const priceCap = sliderPriceRange.MAX_PRICE;
 
+    if (Number(value) > priceCap) preventSliderMove(name, priceCap);
+    else moveSlider(name, value);
+  };
+
+  const handleRightSlider = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    const priceCap = sliderPriceRange.MIN_PRICE;
+
+    if (Number(value) < priceCap) preventSliderMove(name, priceCap);
+    else moveSlider(name, value);
+  };
+
+  const preventSliderMove = (name: string, priceCap: number) => {
+    setSliderPriceRange({
+      ...sliderPriceRange,
+      [name]: priceCap,
+    });
+  };
+
+  const moveSlider = (name: string, value: string) => {
     setSliderPriceRange({
       ...sliderPriceRange,
       [name]: Number(value),
@@ -137,15 +158,10 @@ const Graph = ({ priceContents }: any) => {
     <GraphContainer>
       <svg viewBox={`${minWidth} ${minHeight} ${width} ${height}`}>
         <polyline
-          fill="gray"
-          stroke="#11283b"
-          strokeWidth="2"
+          fill="#cca6a663"
           points={`${minWidth}, ${height} ${chartPriceList} ${width}, ${height}`}
         />
-        <polyline
-          fill="rgba(0,0,0,0.5)"
-          points={`${minWidth}, ${height} ${select}`}
-        />
+        <polyline fill="#e2a5a5" points={`${minWidth}, ${height} ${select}`} />
       </svg>
       <Slider>
         <LeftSlider
@@ -153,18 +169,18 @@ const Graph = ({ priceContents }: any) => {
           step="10"
           min="0"
           max={maxPrice}
-          defaultValue="500"
+          value={sliderPriceRange.MIN_PRICE}
           name="MIN_PRICE"
-          onChange={handleSliderPrice}
+          onChange={handleLeftSlider}
         />
         <RightSlider
           type="range"
           step="10"
           min="0"
           max={maxPrice}
-          defaultValue={maxPrice}
+          value={sliderPriceRange.MAX_PRICE}
           name="MAX_PRICE"
-          onChange={handleSliderPrice}
+          onChange={handleRightSlider}
         />
       </Slider>
     </GraphContainer>
@@ -181,6 +197,7 @@ const Slider = styled.div`
   input[type='range'] {
     width: 110%;
     height: 1px;
+    background: transparent;
     pointer-events: none;
     position: absolute;
     bottom: -14%;
@@ -192,7 +209,7 @@ const Slider = styled.div`
   input[type='range']::-webkit-slider-thumb {
     pointer-events: all;
     position: relative;
-    z-index: 1;
+    z-index: 3;
     -webkit-appearance: none;
     width: 25px;
     height: 25px;

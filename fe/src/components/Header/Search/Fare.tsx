@@ -1,37 +1,30 @@
-import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import SmallText from '@components/common/SmallText';
 import Title from '@components/common/Title';
 import ChartModal from '@components/Header/PriceChart/ChartModal';
 
-import { isOpenPriceChart } from '@recoil/atoms/modalState';
-
-//http://3.35.3.106:8080/accomodation/price
+import { modalStates } from '@recoil/atoms/modalState';
 
 const Fare = () => {
-  const [isOpenModalChart, setIsOpenModalChart] =
-    useRecoilState(isOpenPriceChart);
+  const [isOpenModal, setIsOpenModal] = useRecoilState(modalStates);
 
   const handleClickPriceChart = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsOpenModalChart(true);
+    setIsOpenModal({
+      ...isOpenModal,
+      price: true,
+      calendar: false,
+      guest: false,
+    });
   };
-
-  useEffect(() => {
-    const handleClickOutsidePriceChart = (): void => setIsOpenModalChart(false);
-    document.addEventListener('click', handleClickOutsidePriceChart);
-    return () => {
-      document.removeEventListener('click', handleClickOutsidePriceChart);
-    };
-  }, [setIsOpenModalChart]);
 
   return (
     <FareWrap onClick={handleClickPriceChart}>
       <Title>요금</Title>
       <SmallText>금액대 설정</SmallText>
-      {isOpenModalChart && <ChartModal />}
+      {isOpenModal.price && <ChartModal />}
     </FareWrap>
   );
 };

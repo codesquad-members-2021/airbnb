@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
 import { averagePrice, priceList, priceRange } from '@recoil/atoms/price';
+import { LoadingDefaultChart } from '@components/common/Loading';
 
 import Graph from './Graph';
 
@@ -23,7 +24,7 @@ const ChartModal = () => {
       {state === 'hasValue' ? (
         <Graph priceContents={contents} />
       ) : (
-        <div>Loading...</div>
+        <LoadingDefaultChart />
       )}
     </ModalWrap>
   );

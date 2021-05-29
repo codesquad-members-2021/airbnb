@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { dateSearchClick } from '@recoil/atoms/calendarState';
+import { useRecoilState } from 'recoil';
 import { calendarDateState } from '@recoil/atoms/date';
+import { modalStates } from '@recoil/atoms/modalState';
 
 import Calendar from './Calendar';
 import DayOfTheWeek from './DayOfTheWeek';
@@ -15,11 +15,14 @@ const CalendarWrap = () => {
   const [duration, setDuration] = useState<number>(0.3);
   const [clickDirection, setClickDirection] = useState<string>('');
   const [calendarDate, setCalendarDate] = useRecoilState(calendarDateState);
-  const setIsOpenCalendar = useSetRecoilState(dateSearchClick);
+  const [isOpenModal, setIsOpenModal] = useRecoilState(modalStates);
 
   const handleClickOpenCalendar = (e: React.MouseEvent): void => {
     e.stopPropagation();
-    setIsOpenCalendar(true);
+    setIsOpenModal({
+      ...isOpenModal,
+      calendar: true,
+    });
   };
 
   const handleClickRightArrow = (): void => {

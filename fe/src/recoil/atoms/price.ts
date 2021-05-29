@@ -6,10 +6,6 @@ interface price {
   [key: string]: number;
 }
 
-// interface priceData {
-//     content:
-// }
-
 const priceRange = atom<price>({
   key: 'priceRange',
   default: {

@@ -7,16 +7,18 @@ interface modal {
   [foucs: string]: boolean;
 }
 
-export const isOpenPriceChart = atom<boolean>({
+const isOpenPriceChart = atom<boolean>({
   key: 'isOpenPriceChart',
   default: false,
 });
 
-export const modalState = atom<modal>({
-  key: 'isOpenPriceChart',
+const modalStates = atom<modal>({
+  key: 'modalStates',
   default: {
     calendar: false,
     price: false,
     guest: false,
   },
 });
+
+export { isOpenPriceChart, modalStates };

@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { dateSearchClick } from '@recoil/atoms/calendarState';
 import { isCheckInOut, checkDate } from '@recoil/atoms/date';
+import { modalStates } from '@recoil/atoms/modalState';
 
 import Title from '@components/common/Title';
 import SmallText from '@components/common/SmallText';
@@ -15,16 +16,21 @@ type dateType = {
 };
 
 const Date = () => {
-  const setIsOpenCalendar = useSetRecoilState(dateSearchClick);
   const checkState = useRecoilValue(isCheckInOut);
   const selectCheckState = useRecoilValue(checkDate);
+  const [isOpenModal, setIsOpenModal] = useRecoilState(modalStates);
 
   const { checkin, checkout } = checkState;
   const { checkinDate, checkoutDate } = selectCheckState;
 
   const handleClickDateSerach = (e: React.MouseEvent): void => {
     e.stopPropagation();
-    setIsOpenCalendar(true);
+    setIsOpenModal({
+      ...isOpenModal,
+      calendar: true,
+      price: false,
+      guest: false,
+    });
   };
 
   const renderCheckDate = (
