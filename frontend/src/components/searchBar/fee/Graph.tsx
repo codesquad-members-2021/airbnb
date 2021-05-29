@@ -51,10 +51,11 @@ const WholeStick = styled.div`
 `
 const Stick = styled.div<IStickProps>`
   height: ${(props) => props.count * 10}px;
-  background-color: red;
+  background-color: ${({ theme }) => theme.color.grey_2};
 `
 const BgStick = styled.div<IStickProps>`
   height: ${(props) => 260 - props.count * 10}px;
   z-index: 3;
+  background-color: ${({ theme }) => theme.color.white};
 `
 export default Graph

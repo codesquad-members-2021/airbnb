@@ -62,7 +62,8 @@ function Slider({ data }: ISliderProps) {
       range.current.style.left = percent + '%'
     }
     setMinFeePercecnt(Math.ceil((percent / 100) * (maxValue - minValue)))
-    setFeeMin(minValue + minFeePercecnt)
+    console.log('여기 안와!', feeMin, minValue + minFeePercecnt)
+    setFeeMin(() => Number(feeMin) + minFeePercecnt)
   }
 
   function setMaxValue(target: HTMLInputElement | null) {
@@ -133,7 +134,7 @@ const Input = styled.input`
     pointer-events: all;
     width: 30px;
     height: 30px;
-    background-color: red;
+    background-color: grey;
     -webkit-appearance: none;
   }
 `
@@ -151,7 +152,7 @@ const Track = styled.div`
   top: 0;
   bottom: 0;
   border-radius: 5px;
-  background-color: red;
+  background-color: ${({ theme }) => theme.color.grey_2}; ;
 `
 const Range = styled.div`
   height: 265px;

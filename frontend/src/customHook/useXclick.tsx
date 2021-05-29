@@ -22,7 +22,6 @@ function useXclick(state: any, setStates: SetterOrUpdater<any>[], defaultValue: 
       </IconButton>
     ) : null
   }
-
   return RenderXbtn
 }
 
