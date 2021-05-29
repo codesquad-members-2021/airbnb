@@ -5,13 +5,13 @@ import com.codesquad.coco.oauth.gitoauth.GitOauth;
 import com.codesquad.coco.oauth.gitoauth.GitUserInfoDTO;
 import jwt.JWT;
 import jwt.JWTUtils;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import static com.codesquad.coco.oauth.gitoauth.GitURI.*;
 
-@Controller
+@RestController
 public class LoginController {
 
     private ServerKey serverKey;
