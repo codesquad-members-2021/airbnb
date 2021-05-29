@@ -16,6 +16,7 @@ const Personnel = () => {
     );
 }
 
+
 const PersonnelWrapper = styled.div`
 flex: auto;
 `;

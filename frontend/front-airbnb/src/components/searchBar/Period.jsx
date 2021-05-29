@@ -2,27 +2,26 @@ import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CalendarModal from '../modal/CalendarModal';
 import useComponentVisible from "../modal/Modal"
+import { PostsContext } from './SearchBar';
+import { GrFormClose } from "react-icons/gr";
 
-const Period = () => {
+const Period = ({isFocus}) => {
+    const {periodInfo, setPeriodInfo} = useContext(PostsContext);
     const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
-    const periodData = [
-        {
-            id: 1,
-            name: '체크인',
-            input: '날짜입력'
-        },
-        {
-            id: 2,
-            name: '체크아웃',
-            input: '날짜입력'
-        },
-    ]
-    const [peroidInfo, setPeriodInfo] = useState(periodData);
-    const periodList = peroidInfo.map((e, idx) => {
+    const periodList = periodInfo.map((e, idx) => {
         return <CheckBox key={idx}><Title>{e.name}</Title><View>{e.input}</View></CheckBox>
     })
+    const resetCheckInOut = () => {
+        setPeriodInfo(info => {
+            let newArr = [...info];
+            newArr[0].input = '날짜입력';
+            newArr[1].input = '날짜입력';
+            return newArr;
+        })
+    }
     return (
         <PeriodWrapper ref={ref}>
+            { !isComponentVisible && <GrFormClose className="Btn"onClick={() => resetCheckInOut()}/>}
             <PeriodBtn onClick={() => setIsComponentVisible(!isComponentVisible)}>
             {periodList}
             {!isComponentVisible && <CalendarModal/>}
@@ -30,12 +29,18 @@ const Period = () => {
         </PeriodWrapper>
     );
 }
-
 const PeriodWrapper = styled.div`
+border: 1px solid red;
 flex: 20%;
+.Btn {
+    position: absolute;
+    top:35%;
+    left: 28%;
+    font-size: 30px;
+}
 `;
 
-const PeriodBtn = styled.button`
+const PeriodBtn = styled.div`
 display:flex;
 border-radius: 100px;
 width: 100%;
