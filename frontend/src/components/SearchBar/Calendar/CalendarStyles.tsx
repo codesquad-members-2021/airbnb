@@ -9,7 +9,7 @@ const CalendarModalLayout = styled.div`
   right: 0;
   left: 0;
   z-index: 1;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin-top: 1.2rem;
   background: #ffffff;
   box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
@@ -149,17 +149,24 @@ const CurrentMonth = styled.div`
     
     & > div {
       display: flex;
-      align-items: center; //flex
+      align-items: center; //flegx
       height: 5rem;
     }
   }
 `;
+
+type TCalendarContainer = {
+  _translate : number;
+  flag:boolean;
+}
 
 const MonthlyCalendarContainer = styled.div`
   //각 달의 달력들을 가로로 쭈욱 가지고 있는 애
   display: grid;
   width: 200%;
   grid-template-columns: repeat(4, 1fr);
+  transform: translateX(${(props:TCalendarContainer) => props._translate}%);
+  transition: ${(props: TCalendarContainer)=> props.flag &&"transform 0.5s"};
 `
 
 export {
