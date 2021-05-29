@@ -37,9 +37,6 @@ public class RoomController {
         return roomService.searchPriceRange(address);
     }
 
-//    private Double latitude;
-//    private Double longitude;
-
     @GetMapping("/rooms/price/test")
     public List<BigDecimal> searchPriceRangeTest(@RequestParam Double latitude, @RequestParam Double longitude ) {
         return roomService.searchPriceRangeTest(latitude, longitude);
