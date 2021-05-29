@@ -46,6 +46,7 @@ public class Booking {
         this.room = room;
     }
 
+    //create 이름 바꿔줘야 할듯
     public static Booking create(Long id,
                                  LocalDate checkIn, LocalDate checkOut,
                                  Integer guest, BigDecimal totalPrice,

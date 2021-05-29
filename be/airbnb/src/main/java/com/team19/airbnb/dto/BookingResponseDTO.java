@@ -12,66 +12,50 @@ import java.util.stream.Collectors;
 
 public class BookingResponseDTO {
 
-    private Long bookingId;
-    private LocalDate checkIn;
-    private LocalDate checkOut;
-    private Integer guest;
-    private BigDecimal totalPrice;
+    private final Long bookingId;
+    private final LocalDate checkIn;
+    private final LocalDate checkOut;
+    private final Integer guest;
+    private final BigDecimal totalPrice;
 
-    private Long roomId;
-    private String roomName;
-    private String roomType;
-    private List<String> images;
-    private Host host;
+    private final Long roomId;
+    private final String roomName;
+    private final List<String> images;
+    private final String roomType;
+    private final Host host;
 
-    private BookingResponseDTO(Builder builder) {
-        this.bookingId = builder.bookingId;
-        this.checkIn = builder.checkIn;
-        this.checkOut = builder.checkOut;
-        this.guest = builder.guest;
-        this.totalPrice = builder.totalPrice;
-
-        this.roomId = builder.roomId;
-        this.roomName = builder.roomName;
-        this.roomType = builder.roomType;
-        this.images = builder.images;
-        this.host = builder.host;
+    private BookingResponseDTO(Long bookingId,
+                              LocalDate checkIn, LocalDate checkOut,
+                              Integer guest,
+                              BigDecimal totalPrice,
+                              Long roomId,
+                              String roomName, List<String> images,
+                              String roomType,
+                              Host host) {
+        this.bookingId = bookingId;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.guest = guest;
+        this.totalPrice = totalPrice;
+        this.roomId = roomId;
+        this.roomName = roomName;
+        this.images = images;
+        this.roomType = roomType;
+        this.host = host;
     }
 
-    public static class Builder {
-
-        private final Long bookingId;
-        private final LocalDate checkIn;
-        private final LocalDate checkOut;
-        private final Integer guest;
-        private final BigDecimal totalPrice;
-
-        private final Long roomId;
-        private final String roomName;
-        private final String roomType;
-        private final List<String> images;
-        private final Host host;
-
-        public Builder(Booking booking, Room room) {
-
-            this.bookingId = booking.getId();
-            this.checkIn = booking.getCheckIn();
-            this.checkOut = booking.getCheckOut();
-            this.guest = booking.getGuest();
-            this.totalPrice = booking.getTotalPrice();
-
-            this.roomId = room.getId();
-            this.roomName = room.getName();
-            this.roomType = room.getRoomType();
-            this.images = room.getImages().stream()
-                    .map(Image::getUrl)
-                    .collect(Collectors.toList());
-            this.host = room.getHost();
-        }
-
-        public BookingResponseDTO build() {
-            return new BookingResponseDTO(this);
-        }
+    public static BookingResponseDTO create(Booking booking, Room room) {
+        return new BookingResponseDTO(booking.getId(),
+                booking.getCheckIn(), booking.getCheckOut(),
+                booking.getGuest(),
+                booking.getTotalPrice(),
+                room.getId(),
+                room.getName(),
+                room.getImages().stream()
+                        .map(Image::getUrl)
+                        .collect(Collectors.toList()),
+                room.getRoomType(),
+                room.getHost());
     }
 
     public Long getBookingId() {
