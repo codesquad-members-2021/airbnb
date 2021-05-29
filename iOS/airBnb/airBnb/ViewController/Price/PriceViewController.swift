@@ -45,7 +45,7 @@ class PriceViewController: UIViewController {
         rangeSlider.updateLayerFrames()
     }
     
-    func setupSearchInfoViewController(for search: SearchManager, from viewController: LocationInfoViewController) {
+    func configure(for search: SearchManager, from viewController: LocationInfoViewController) {
         self.searchManager = search
         self.locationInfoViewController = viewController
     }
@@ -78,7 +78,7 @@ class PriceViewController: UIViewController {
                 return
             }
             let peopleViewController = UIStoryboard.create(identifier: PeopleViewController.self, name: "People")
-            peopleViewController.setupSearchInfoViewController(for: searchManager, from: locationInfo)
+            peopleViewController.configure(for: searchManager, from: locationInfo)
             self.navigationController?.pushViewController(peopleViewController, animated: true)
         }.store(in: &cancellable)
     }

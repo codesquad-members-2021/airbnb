@@ -29,6 +29,8 @@ class LocationSearchViewController: UITableViewController {
     private lazy var searchController = UISearchController(searchResultsController: resultTableViewController)
     private var cancellable = Set<AnyCancellable>()
     
+    private let searchManager = SearchManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -98,6 +100,8 @@ class LocationSearchViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let calendarViewController = UIStoryboard.create(identifier: CalendarViewController.self, name: "Calendar")
+        searchManager.selectLocation(from: cities[indexPath.row])
+        calendarViewController.configure(from: searchManager)
         self.navigationController?.pushViewController(calendarViewController, animated: true)
     }
 }

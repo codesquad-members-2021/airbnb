@@ -22,13 +22,13 @@ class CalendarViewController: UIViewController {
     private let nextViewControllerSubject = PassthroughSubject<Void,Never>()
     private var cancellable = Set<AnyCancellable>()
     
-    private let searchManager = SearchManager()
+    private var searchManager: SearchManager?
     private let locationInfoViewController = UIStoryboard.create(identifier: LocationInfoViewController.self, name: "LocationInfo")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createDataSoure()
-        configure()
+        configureCollectionView()
         bind()
         NotificationCenter.default.addObserver(self, selector: #selector(resetSelectDates(_:)), name: .seletDatesReset, object: nil)
     }
@@ -36,6 +36,10 @@ class CalendarViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addContainerView()
+    }
+    
+    func configure(from manager: SearchManager) {
+        self.searchManager = manager
     }
     
     private func addContainerView() {
@@ -47,7 +51,7 @@ class CalendarViewController: UIViewController {
         containerView.addSubview(locationInfoViewController.view)
     }
     
-    private func configure() {
+    private func configureCollectionView() {
         calendarCollection.register(CalendarDayCell.self, forCellWithReuseIdentifier: CalendarDayCell.identifier)
         calendarCollection.register(CalendarHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CalendarHeaderView.identifier)
         calendarCollection.dataSource = calendarDataSource
@@ -55,15 +59,15 @@ class CalendarViewController: UIViewController {
     }
     
     private func createDataSoure() {
-        calendarDataSource = CalendarDataSource(dates: calendarManager.dates, sequenceDates: searchManager.selectDates)
+        calendarDataSource = CalendarDataSource(dates: calendarManager.dates, sequenceDates: searchManager?.selectDates)
     }
     
     private func bind() {
         didSelectSubject.sink { [weak self] _ in
-            guard let self = self else {
+            guard let self = self, let manager = self.searchManager else {
                 return
             }
-            self.calendarDataSource?.updateSelectedDate(from: self.searchManager.selectDates)
+            self.calendarDataSource?.updateSelectedDate(from: manager.selectDates)
         }.store(in: &self.cancellable)
         
         moveViewController()
@@ -76,11 +80,11 @@ class CalendarViewController: UIViewController {
     
     private func moveViewController() {
         nextViewControllerSubject.sink { [weak self] _ in
-            guard let self = self else {
+            guard let self = self, let manager = self.searchManager else {
                 return
             }
             let priceViewController = UIStoryboard.create(identifier: PriceViewController.self, name: "Price")
-            priceViewController.setupSearchInfoViewController(for: self.searchManager, from: self.locationInfoViewController)
+            priceViewController.configure(for: manager, from: self.locationInfoViewController)
             self.navigationController?.pushViewController(priceViewController, animated: true)
         }.store(in: &cancellable)
     }
@@ -101,7 +105,7 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
         let month = CalendarHelper.month(index: indexPath.section)
         let day = calendarManager.dates[month]?[indexPath.row] ?? Date()
         if blockOldDaySelect(with: day) { return }
-        searchManager.selectDay(from: day)
+        searchManager?.selectDay(from: day)
         didSelectSubject.send()
         collectionView.reloadData()
     }

@@ -14,7 +14,7 @@ class LocationResultViewController: UITableViewController {
     private var searchViewModel: SearchLocationViewModel?
     private var cancell: AnyCancellable?
     
-    lazy var emptyHeaderView: UIView = {
+    private lazy var emptyHeaderView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 15))
         view.backgroundColor = .clear
         return view

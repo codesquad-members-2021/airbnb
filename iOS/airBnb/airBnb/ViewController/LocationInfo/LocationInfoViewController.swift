@@ -32,10 +32,10 @@ class LocationInfoViewController: UIViewController{
         bind()
     }
     
-    func inject(from manager : SearchManager,
+    func inject(from manager : SearchManager?,
                 subject: PassthroughSubject<Void,Never>,
                 state: State){
-        locationInfoViewModel = LocationInfoViewModel(from: manager, of: state)
+        locationInfoViewModel = LocationInfoViewModel(from: manager ?? .init(), of: state)
         nextViewSubject = subject
         deleteDatesSubject.sink { [weak self] _ in
             self?.locationInfoViewModel?.deleteData()
@@ -43,6 +43,10 @@ class LocationInfoViewController: UIViewController{
     }
         
     private func bind() {
+        locationInfoViewModel?.releaseSelectLocation().sink { [weak self] (selectLocation) in
+            self?.locationLabel.text = selectLocation
+        }.store(in: &cancellable)
+        
         locationInfoViewModel?.releaseSelectDates().sink { [weak self] (selectDates) in
             self?.checkInOutLabel.text = selectDates
         }.store(in: &cancellable)

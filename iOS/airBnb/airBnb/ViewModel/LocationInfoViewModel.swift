@@ -28,7 +28,12 @@ class LocationInfoViewModel {
         self.searchManager = searchManager
         self.state = state
     }
-        
+    
+    func releaseSelectLocation() -> AnyPublisher<String, Never> {
+        return searchManager.$location
+            .eraseToAnyPublisher()
+    }
+    
     func releaseSelectDates() -> AnyPublisher<String, Never> {
         return searchManager.$selectDates
             .map { $0.show() }

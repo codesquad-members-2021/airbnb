@@ -12,9 +12,9 @@ class CalendarDataSource: NSObject, UICollectionViewDataSource {
     private let dates: [String:[Date?]]
     private var sequenceDates: SequenceDates
     
-    init(dates: [String:[Date?]], sequenceDates: SequenceDates) {
+    init(dates: [String:[Date?]], sequenceDates: SequenceDates?) {
         self.dates = dates
-        self.sequenceDates = sequenceDates
+        self.sequenceDates = sequenceDates ?? .init()
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

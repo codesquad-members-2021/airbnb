@@ -10,7 +10,7 @@ import Combine
 
 class SearchManager {
      
-    @Published var location: String
+    @Published private(set) var location: String
     @Published private(set) var selectDates: SequenceDates
     @Published private(set) var priceRange: PriceRange
     @Published private(set) var numberOfPleple: PeopleManager
@@ -31,6 +31,10 @@ class SearchManager {
         cancell = numberOfPleple.relayTotalCount().sink { (guest, baby) in
             self.totlaPeople = (guest, baby)
         }
+    }
+    
+    func selectLocation(from location: String) {
+        self.location = location
     }
     
     func selectDay(from day: Date) {

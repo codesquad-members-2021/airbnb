@@ -46,7 +46,7 @@ class PeopleViewController: UIViewController {
         containerView.addSubview(controller.view)
     }
     
-    func setupSearchInfoViewController(for search: SearchManager, from viewController: LocationInfoViewController) {
+    func configure(for search: SearchManager, from viewController: LocationInfoViewController) {
         self.searchManager = search
         self.locationInfoViewController = viewController
     }
