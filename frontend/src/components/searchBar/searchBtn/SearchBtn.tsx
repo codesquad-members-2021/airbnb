@@ -4,8 +4,12 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import SearchIcon from '@material-ui/icons/Search'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { clickedPlace, checkInMessage, checkOutMessage } from '../../../customHook/atoms'
-import { defaultValue } from '../../../customHook/atoms'
+import {
+  clickedPlace,
+  checkInMessage,
+  checkOutMessage,
+  defaultValue,
+} from '../../../customHook/atoms'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,9 +23,17 @@ const useStyles = makeStyles((theme: Theme) =>
 const SearchBtn = () => {
   const classes = useStyles()
   const [searchable, setSearchable] = useState(false)
+
   const placeToSearch = useRecoilValue(clickedPlace)
-  const checkIn = useRecoilValue(checkInMessage)
-  const checkOut = useRecoilValue(checkOutMessage)
+  // const checkIn = useRecoilValue(checkInMessage)
+  // const checkOut = useRecoilValue(checkOutMessage)
+  // const FeeMin = useRecoilValue(FeeMin)
+  // const FeeMax = useRecoilValue(FeeMax)
+  // const adult = useRecoilValue(personnelAudult)
+  // const adult = useRecoilValue(personnelAudult)
+  // const child = useRecoilValue(personnelChild)
+  // const baby = useRecoilValue(personnelBaby)
+
   const handleClick = () => {
     //api검색요청하기
   }

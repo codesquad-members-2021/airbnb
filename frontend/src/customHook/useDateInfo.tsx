@@ -18,5 +18,15 @@ export const DateInfo = (today: Date): IDate => {
 export const dateToString = (clickedDate: string | number) => {
   if (typeof clickedDate === 'string') return '날짜입력'
   const dateValue = Number(clickedDate)
+
   return new Date(dateValue).getMonth() + 1 + '월' + new Date(dateValue).getDate() + '일'
+}
+
+export const dateToDateForm = (dateNumber: number | string) => {
+  if (typeof dateNumber === 'string') return null
+  const year = new Date(dateNumber).getFullYear()
+  const month = new Date(dateNumber).getMonth() + 1
+
+  const date = new Date(dateNumber).getDate()
+  return `${year}-${month < 10 ? '0' + month : month}-${date < 10 ? '0' + date : date}`
 }

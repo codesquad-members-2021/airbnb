@@ -1,7 +1,9 @@
 import { Modal } from '../../../style/BarStyle'
 import useAxios from '../../../customHook/useAxios'
-import getData from '../../../customHook/axiosAPI'
+import getFeeData from '../../../customHook/axiosAPI'
 import Graph from './Graph'
+import { useRecoilValue } from 'recoil'
+import { clickedPlace, checkInMessage, checkOutMessage } from '../../../customHook/atoms'
 interface IFeeType {
   modalType: string
 }
@@ -17,7 +19,11 @@ const filteredFee = (fee: Array<number>): Map<number, number> => {
 }
 
 const ModalFee: React.FunctionComponent<IFeeType> = ({ modalType }) => {
-  const state = useAxios(getData)
+  const placeToSearch = useRecoilValue(clickedPlace)
+  const checkIn = useRecoilValue(checkInMessage)
+  const checkOut = useRecoilValue(checkOutMessage)
+  const state = useAxios(() => getFeeData(placeToSearch, checkIn, checkOut))
+
   const { loading, error, data } = state
   if (loading) return <div>Loading...💭</div>
   if (error) return <div>에러발생</div>
