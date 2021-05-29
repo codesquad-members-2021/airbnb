@@ -19,9 +19,9 @@ public class ReservationController {
     }
 
     @PostMapping
-    public ReservationPreview roomDetail(@PathVariable int roomId,
-                                         @RequestBody UserInput userInput,
-                                         @CertifiedUser int userId) {
+    public ReservationPreview makeReservation(@PathVariable int roomId,
+                                              @RequestBody UserInput userInput,
+                                              @CertifiedUser int userId) {
         return reservationService.makeReservation(roomId, userId, userInput);
     }
 }
