@@ -6,7 +6,8 @@
         MainDispatchContext는 디스패치 전용 Context
         ▶ 두 개의 Context 를 만들면 렌더링이 낭비되는 것을 방지
 */
-import React, { createContext, Dispatch, useReducer, useContext } from 'react';
+import { createContext, Dispatch, useReducer, useContext } from 'react';
+import { ICustomProps } from '../util/types';
 
 type MainState = {
   searchBarClickedIdx: number;
@@ -44,16 +45,7 @@ const mainReducer = (state: MainState, action: MainAction): MainState => {
 };
 
 // Provider 정의
-interface IMainProviderProps {
-  children:
-    | React.ReactNode
-    | React.ReactChild
-    | React.ReactChild[]
-    | React.ReactChildren
-    | React.ReactChildren[];
-}
-
-export const MainContextProvider = ({ children }: IMainProviderProps) => {
+export const MainContextProvider = ({ children }: ICustomProps) => {
   const [mainState, mainDispatch] = useReducer(mainReducer, initialState);
 
   return (
@@ -68,12 +60,12 @@ export const MainContextProvider = ({ children }: IMainProviderProps) => {
 // MainStateContext는 <MainState | undefined> 임. 유효한지 확인 후 실행하기 위해 커스텀 훅 생성 (MainDispatchContext도 마찬가지)
 export const useMainState = () => {
   const mainState = useContext(MainStateContext);
-  if (!mainState) throw new Error('MainContextProvider not found');
+  if (!mainState) throw new Error('MainContextProvider(State) not found');
   return mainState;
 };
 
 export const useMainDispatch = () => {
   const mainDispatch = useContext(MainDispatchContext);
-  if (!mainDispatch) throw new Error('MainContextProvider not found');
+  if (!mainDispatch) throw new Error('MainContextProvider(Dispatch) not found');
   return mainDispatch;
 };
