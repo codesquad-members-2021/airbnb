@@ -3,12 +3,17 @@ import Header from './Header';
 import SearchBar from './SearchBar';
 import { cssMainChildren } from '../../../util/styles/CommonStyledCSS';
 import { ITextTopBackground } from '../../../util/reference';
+import SearchBarContextProvider from '../../../contexts/SearchBarContext';
 
 const TopBackground = ({ headerTexts, searchBarTexts }: ITextTopBackground) => {
   return (
     <TopBackgroundLayout>
       <Header headerTexts={headerTexts} />
-      <SearchBar searchBarTexts={searchBarTexts} />
+
+      <SearchBarContextProvider>
+        <SearchBar searchBarTexts={searchBarTexts} />
+      </SearchBarContextProvider>
+
     </TopBackgroundLayout>
   );
 };
