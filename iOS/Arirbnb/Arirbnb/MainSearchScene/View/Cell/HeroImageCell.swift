@@ -7,9 +7,7 @@
 
 import UIKit
 
-class HeroImageCell: UICollectionViewCell {
-    static let reuseIdentifier = "HeroImageCell"
-    
+class HeroImageCell: UICollectionViewCell, ReuseIdentifierable {    
     private var heroImageView =  UIImageView()
     
     override init(frame: CGRect) {

@@ -7,12 +7,10 @@
 
 import UIKit
 
-class DetailSearchViewController: UIViewController{
-    static let storyboardName = "Main"
-    static let storybardID = "DetailSearchViewController"
+class DetailSearchViewController: UIViewController, ViewControllerIdentifierable{
     static func create() -> DetailSearchViewController {
         let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
-        guard let vc = storyboard.instantiateViewController(identifier: storybardID) as? DetailSearchViewController else {
+        guard let vc = storyboard.instantiateViewController(identifier: storyboardID) as? DetailSearchViewController else {
             return DetailSearchViewController()
         }
         return vc
@@ -61,7 +59,7 @@ class DetailSearchViewController: UIViewController{
     
     private func registerSubViews() {
         destinationsCollectionView.register(AdjacentDestinationsCell.nib, forCellWithReuseIdentifier: AdjacentDestinationsCell.reuseIdentifier)
-        destinationsCollectionView.register(SearchResultCell.nib(), forCellWithReuseIdentifier: SearchResultCell.reuseIdentifier)
+        destinationsCollectionView.register(SearchResultCell.nib, forCellWithReuseIdentifier: SearchResultCell.reuseIdentifier)
         destinationsCollectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.reuseIdentifier)
     }
 }

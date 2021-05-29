@@ -11,11 +11,9 @@ struct MainSearchViewControllerAction {
     let showDetailSearchView : () -> ()
 }
 
-class MainSearchViewController: UIViewController {
+class MainSearchViewController: UIViewController, ViewControllerIdentifierable {
     static let sectionHeaderElementKind = "MainViewSectionHeaderElement"
-    static let storyboardName = "Main"
-    static let storyboardID = "MainSearchViewController"
-    
+ 
     static func create(_ action: MainSearchViewControllerAction) -> MainSearchViewController {
         let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
         guard let vc = storyboard.instantiateViewController(identifier: storyboardID) as? MainSearchViewController else {

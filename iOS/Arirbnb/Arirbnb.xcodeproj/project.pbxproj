@@ -33,6 +33,9 @@
 		FF665D2E2657841000130ABB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FF665D2D2657841000130ABB /* Kingfisher */; };
 		FF665D302657845700130ABB /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D2F2657845700130ABB /* UIImageView+Extension.swift */; };
 		FF665D3C265B78B200130ABB /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D3B265B78B200130ABB /* Destination.swift */; };
+		FFAB2ACD26620C4A008AEB31 /* ReuseIdentifierable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB2ACC26620C4A008AEB31 /* ReuseIdentifierable.swift */; };
+		FFAB2ACF26620DAB008AEB31 /* ViewControllerIdentifierable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB2ACE26620DAB008AEB31 /* ViewControllerIdentifierable.swift */; };
+		FFAB2AD126620E5F008AEB31 /* UINibCreateable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB2AD026620E5F008AEB31 /* UINibCreateable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +87,9 @@
 		FF665D1C26574E4200130ABB /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		FF665D2F2657845700130ABB /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		FF665D3B265B78B200130ABB /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
+		FFAB2ACC26620C4A008AEB31 /* ReuseIdentifierable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifierable.swift; sourceTree = "<group>"; };
+		FFAB2ACE26620DAB008AEB31 /* ViewControllerIdentifierable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerIdentifierable.swift; sourceTree = "<group>"; };
+		FFAB2AD026620E5F008AEB31 /* UINibCreateable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINibCreateable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +141,7 @@
 		FF5767612652490C00F46A43 /* Arirbnb */ = {
 			isa = PBXGroup;
 			children = (
+				FFAB2ACB26620C2B008AEB31 /* Protocols */,
 				FF5767D02653A5F700F46A43 /* Flow */,
 				FF665D202657538000130ABB /* Model */,
 				FF5767A82652A1F500F46A43 /* MainSearchScene */,
@@ -317,6 +324,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		FFAB2ACB26620C2B008AEB31 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FFAB2ACC26620C4A008AEB31 /* ReuseIdentifierable.swift */,
+				FFAB2AD026620E5F008AEB31 /* UINibCreateable.swift */,
+				FFAB2ACE26620DAB008AEB31 /* ViewControllerIdentifierable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -459,8 +476,10 @@
 				FF5767CC2653A28D00F46A43 /* MyReserVationViewController.swift in Sources */,
 				FF5767DC2653AC3000F46A43 /* FlowTabBarController.swift in Sources */,
 				FF5767E32653B48700F46A43 /* DetailSearchViewController.swift in Sources */,
+				FFAB2ACF26620DAB008AEB31 /* ViewControllerIdentifierable.swift in Sources */,
 				FF5767D22653A60800F46A43 /* AirbnbSceneFlowCoordinator.swift in Sources */,
 				FF5767D82653A9EB00F46A43 /* WishListViewModel.swift in Sources */,
+				FFAB2ACD26620C4A008AEB31 /* ReuseIdentifierable.swift in Sources */,
 				FF5767CF2653A2AE00F46A43 /* WishListViewController.swift in Sources */,
 				FF665D1D26574E4200130ABB /* SearchResultCell.swift in Sources */,
 				FF665D302657845700130ABB /* UIImageView+Extension.swift in Sources */,
@@ -469,6 +488,7 @@
 				FF5767A22652935F00F46A43 /* AdjacentDestinationsCell.swift in Sources */,
 				FF5767672652490C00F46A43 /* MainSearchViewController.swift in Sources */,
 				FF5767632652490C00F46A43 /* AppDelegate.swift in Sources */,
+				FFAB2AD126620E5F008AEB31 /* UINibCreateable.swift in Sources */,
 				FF5767D52653A99400F46A43 /* MyReserVationViewModel.swift in Sources */,
 				FF5767652652490C00F46A43 /* SceneDelegate.swift in Sources */,
 				FF5767BC26535AC200F46A43 /* HeroImageCell.swift in Sources */,
