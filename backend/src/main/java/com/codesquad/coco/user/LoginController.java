@@ -41,7 +41,7 @@ public class LoginController {
     }
 
     @PostMapping("/user/auth/app")
-    public JWT loginIOS(String code) {
+    public JWT loginIOS(@RequestParam String code) {
         GitUserInfoDTO userInfo = userService.loginByGitOauth(iOSGitGitOauth, code);
         String jwt = JWTUtils.createJWTTypeBearer(userInfo, serverKey.getJwtServerKey());
         return new JWT(jwt);
