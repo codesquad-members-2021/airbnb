@@ -57,7 +57,7 @@ class LocationResultCell: UITableViewCell {
         ])
     }
     
-    func configure(city: CityInfoList) {
+    func configure(city: LocationList) {
         locationLabel.text = city.address
     }
 }

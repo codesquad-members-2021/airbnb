@@ -8,10 +8,10 @@
 import Foundation
 
 struct SearchLoaction: Decodable {
-    let cityInfoList: [CityInfoList]
+    let locationList: [LocationList]
 }
 
-struct CityInfoList: Decodable {
-    let provinceId, townId, addressId: Int
+struct LocationList: Decodable {
+    let id: Int
     let address: String
 }

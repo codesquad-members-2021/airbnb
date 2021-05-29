@@ -8,8 +8,8 @@
 import Foundation
 
 enum Endpoint {
-    private static let scheme = "https"
-    private static let host = "enigmatic-island-37630.herokuapp.com"
+    private static let scheme = "http"
+    private static let host = "airbnb.clone.r-e.kr"
     private static let searchPath = "/api/search/"
     
     static func searchURL(text: String) -> URL? {

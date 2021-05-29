@@ -13,7 +13,7 @@ final class SearchLocationViewModel {
     private let searchLocationUseCase: SearchLocationConfigurable
     private var cancellable = Set<AnyCancellable>()
     
-    @Published private var searchResult:[CityInfoList] = []
+    @Published private var searchResult:[LocationList] = []
     @Published private var errorMessage = ""
     
     init(searchLocation: SearchLocationConfigurable) {
@@ -28,13 +28,13 @@ final class SearchLocationViewModel {
     func requestSearch(from location: String) {
         searchLocationUseCase.requestSearchLocation(from: location)
             .timeout(.seconds(10), scheduler: DispatchQueue.global())
-            .replaceError(with: SearchLoaction.init(cityInfoList: []))
+            .replaceError(with: SearchLoaction.init(locationList: []))
             .sink(receiveValue: { [weak self] (result) in
-                self?.searchResult = result.cityInfoList
+                self?.searchResult = result.locationList
             }).store(in: &cancellable)
     }
     
-    func fetchSearchResult() -> AnyPublisher<[CityInfoList], Never> {
+    func fetchSearchResult() -> AnyPublisher<[LocationList], Never> {
         return $searchResult
             .eraseToAnyPublisher()
     }

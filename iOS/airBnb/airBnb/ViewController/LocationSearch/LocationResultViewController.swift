@@ -10,7 +10,7 @@ import Combine
 
 class LocationResultViewController: UITableViewController {
 
-    private var resultCities: [CityInfoList] = []
+    private var resultCities: [LocationList] = []
     private var searchViewModel: SearchLocationViewModel?
     private var cancell: AnyCancellable?
     

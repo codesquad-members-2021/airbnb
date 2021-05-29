@@ -10,7 +10,6 @@ import Combine
 
 class LocationInfoViewController: UIViewController{
 
-    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var checkInOutLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
