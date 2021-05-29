@@ -1,10 +1,8 @@
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 
-import { prices } from './testPrice';
-
-interface price {
-  [key: number]: number;
-}
+import { priceRange, selectedPrice } from '@recoil/atoms/price';
 
 interface positionY {
   value: number;
@@ -16,7 +14,15 @@ interface positionX {
   maxXcount: number;
 }
 
-const Graph = () => {
+const Graph = ({ priceContents }: any) => {
+  const [priceSelectedByUser, setPriceSelectedByUser] =
+    useRecoilState(selectedPrice);
+  const [sliderPriceRange, setSliderPriceRange] = useRecoilState(priceRange);
+
+  useEffect(() => {
+    setPriceSelectedByUser(priceContents);
+  }, []);
+
   const viewBoxData = {
     minWidth: '0',
     minHeight: '0',
@@ -24,29 +30,15 @@ const Graph = () => {
     height: '100',
   };
 
-  //get Xscale = width / 50
-  const DIVIDER = 1000;
-
+  const prices: number[] = [...priceContents];
   const { minWidth, minHeight, width, height } = viewBoxData;
-
   const sortedPrice = prices.sort((a, b) => a - b).filter((n) => n !== 0);
-  const maxPrice = sortedPrice[sortedPrice.length - 1];
+  const maxPrice = 100000;
 
-  const getAveragePrice = () => {
-    const sum = sortedPrice.reduce((prev, curr) => prev + curr, 0);
-    return Math.ceil(sum / sortedPrice.length);
-  };
-
-  //   const getAxisGridNumber = (num: number) => Number(width) / num;
-
-  const getPriceRangeCount = () => {
-    // const girdXLineNumber = getAxisGridNumber(DIVIDER);
-    // const xScale = Number(width) / girdXLineNumber;
-    let minPrice = sortedPrice[0];
-    if (minPrice < 2500) minPrice = 2500;
-
+  const getPriceRangeCount = (priceList: number[]) => {
+    const minPrice = 2500;
     const scope = minPrice;
-    const priceSet = sortedPrice.reduce((acc: any, price) => {
+    const priceSet = priceList.reduce((acc: any, price) => {
       let value = Math.floor(price / scope);
 
       if (!acc[value]) {
@@ -81,30 +73,78 @@ const Graph = () => {
     return { maxXcount, maxYcount };
   };
 
-  const getChartPoints = () => {
+  const getChartPoints = (priceList: any) => {
     let points = '';
-    const priceSet = getPriceRangeCount();
+    const priceSet = getPriceRangeCount(priceList);
     const { maxXcount, maxYcount } = getMaxCount(priceSet);
-    console.log(maxYcount);
-    // const XScale = Number(width) / DIVIDER;
     for (const [key, value] of Object.entries(priceSet)) {
       if (typeof value !== 'number') break;
       const positionY = getPointPosition({ value, maxYcount });
       const xAxis = getXAxis({ key, maxXcount });
-      //   const xAxis = `${Number(key) * XScale}`;
       points += `${xAxis}, ${positionY} `;
     }
     return points;
   };
 
+  const getSelectedLine = (pricesSelected: number[]) => {
+    if (pricesSelected.length === 0) return [];
+
+    let points = '';
+    const priceSet = getPriceRangeCount(sortedPrice);
+    const selectedPriceSet = getPriceRangeCount(pricesSelected);
+    const { maxXcount, maxYcount } = getMaxCount(priceSet);
+
+    for (const [key, value] of Object.entries(selectedPriceSet)) {
+      if (typeof value !== 'number') break;
+      const positionY = getPointPosition({ value, maxYcount });
+      const xAxis = getXAxis({ key, maxXcount });
+      points += `${xAxis},${positionY} `;
+    }
+
+    const finalPoint = paintTheLastPoint(points);
+    return finalPoint;
+  };
+
+  const paintTheLastPoint = (points: string) => {
+    const pointSplited = points.split(' ');
+    const firstPoint = pointSplited[0].split(',')[0] + ', 100 ';
+    let lastPoint =
+      pointSplited.slice(0, -1).slice(-1)[0].split(',')[0] + ',100';
+    return firstPoint + points + lastPoint;
+  };
+
+  const handleSliderPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setSliderPriceRange({
+      ...sliderPriceRange,
+      [name]: Number(value),
+    });
+  };
+
+  useEffect(() => {
+    const { MIN_PRICE, MAX_PRICE } = sliderPriceRange;
+    const newSelectPriceList = prices.filter(
+      (price) => MIN_PRICE < price && price < MAX_PRICE
+    );
+    setPriceSelectedByUser(newSelectPriceList);
+  }, [sliderPriceRange]);
+
+  const chartPriceList = getChartPoints(sortedPrice);
+  const select = getSelectedLine(priceSelectedByUser);
+
   return (
     <GraphContainer>
       <svg viewBox={`${minWidth} ${minHeight} ${width} ${height}`}>
         <polyline
-          fill="black"
+          fill="gray"
           stroke="#11283b"
-          //   strokeWidth="2"
-          points={`${minWidth}, ${height} ${getChartPoints()} ${width}, ${height}`}
+          strokeWidth="2"
+          points={`${minWidth}, ${height} ${chartPriceList} ${width}, ${height}`}
+        />
+        <polyline
+          fill="rgba(0,0,0,0.5)"
+          points={`${minWidth}, ${height} ${select}`}
         />
       </svg>
       <Slider>
@@ -114,7 +154,8 @@ const Graph = () => {
           min="0"
           max={maxPrice}
           defaultValue="500"
-          name="leftSlider"
+          name="MIN_PRICE"
+          onChange={handleSliderPrice}
         />
         <RightSlider
           type="range"
@@ -122,7 +163,8 @@ const Graph = () => {
           min="0"
           max={maxPrice}
           defaultValue={maxPrice}
-          name="rightSlider"
+          name="MAX_PRICE"
+          onChange={handleSliderPrice}
         />
       </Slider>
     </GraphContainer>

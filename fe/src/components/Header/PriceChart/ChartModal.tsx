@@ -1,15 +1,30 @@
 import styled from 'styled-components';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
+
+import { averagePrice, priceList, priceRange } from '@recoil/atoms/price';
+
 import Graph from './Graph';
 
 const ChartModal = () => {
+  const { MIN_PRICE, MAX_PRICE } = useRecoilValue(priceRange);
+  const averPrice = useRecoilValue(averagePrice);
+  const priceListLoadable = useRecoilValueLoadable(priceList);
+  const { state, contents } = priceListLoadable;
+
   return (
     <ModalWrap>
       <ModalInfo>
         <h4>가격 범위</h4>
-        <Text title="true">$1,000 - $1,000,000+</Text>
-        <Text title="">평균 1박 요금은 $10,000 입니다.</Text>
+        <Text title="true">
+          `${MIN_PRICE.toLocaleString()} - ${MAX_PRICE.toLocaleString()}+`
+        </Text>
+        <Text title="">평균 1박 요금은 ${averPrice} 입니다.</Text>
       </ModalInfo>
-      <Graph />
+      {state === 'hasValue' ? (
+        <Graph priceContents={contents} />
+      ) : (
+        <div>Loading...</div>
+      )}
     </ModalWrap>
   );
 };
