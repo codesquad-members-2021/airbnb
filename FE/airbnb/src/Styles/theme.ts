@@ -9,6 +9,7 @@ const COLOR = {
   GRAY6: "#F5F5F7",
   SEARCH_BUTTON: "#E84C60",
   DISCOUNT: "#118917",
+  LINE: "#C4C4C4",
 };
 
 const theme = {

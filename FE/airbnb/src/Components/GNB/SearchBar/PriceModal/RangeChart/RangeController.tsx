@@ -13,22 +13,30 @@ const RangeController = () => {
   const setPriceInput = useSetRecoilState(selectInputState.price);
 
   const handleLowerOnInput = (e: any) => {
-    if (e.target.value > upperLimit) {
-      return;
+    let value = Number(e.target.value);
+    if (value > upperLimit) {
+      e.target.value = String(upperLimit);
+      e.preventDefault();
     } else {
       setPriceCancleButton(true);
-      setLowerLimit(e.target.value);
-      setPriceInput(`₩${lowerLimit} ~ ${upperLimit}`);
+      setLowerLimit(value);
+      setPriceInput(
+        `₩${value.toLocaleString()} ~ ${upperLimit.toLocaleString()}`
+      );
     }
   };
 
   const handleUpperOnInput = (e: any) => {
-    if (e.target.value < lowerLimit) {
-      return;
+    let value = Number(e.target.value);
+    if (value < lowerLimit) {
+      e.target.value = String(lowerLimit);
+      e.preventDefault();
     } else {
       setPriceCancleButton(true);
-      setUpperLimit(e.target.value);
-      setPriceInput(`₩${lowerLimit} ~ ${upperLimit}`);
+      setUpperLimit(value);
+      setPriceInput(
+        `₩${lowerLimit.toLocaleString()} ~ ${value.toLocaleString()}`
+      );
     }
   };
 
@@ -39,6 +47,7 @@ const RangeController = () => {
         min="0"
         max="1000000"
         step="10000"
+        defaultValue="0"
         onInput={handleLowerOnInput}
       ></S.RangeLowerController>
       <S.RangeUpperController

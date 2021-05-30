@@ -6,12 +6,10 @@ interface MainData {
   categories: Array<object>;
 }
 
-interface Args {
-  setDataFn: (json: MainData | null) => void;
-  setErrorFn: (err: object | null) => void;
-}
+type Resolve = (json: MainData | null) => void;
+type Reject = (err: object | null) => void;
 
-const getData = async ({ setDataFn, setErrorFn }: Args) => {
+const getMainData = async (setDataFn: Resolve, setErrorFn: Reject) => {
   await getAPI
     .main()
     .then((res) => res.json())
@@ -23,5 +21,4 @@ const getData = async ({ setDataFn, setErrorFn }: Args) => {
     .catch((err) => setErrorFn(err));
 };
 
-export default getData;
-// export {};
+export { getMainData };
