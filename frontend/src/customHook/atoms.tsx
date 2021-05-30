@@ -1,7 +1,6 @@
+import { RefObject } from 'react'
 import { atom, useRecoilValue } from 'recoil'
-interface ITotalTypes {
-  [key: string]: string | number | undefined
-}
+
 //defaultValue________________________________________
 export const defaultValue = {
   placeToSearch: '어디로 여행가세요?',
