@@ -64,7 +64,6 @@ public class RoomDAO {
     }
 
     public List<Room> findPriceByAddressTest(Double latitude, Double longitude) {
-
         String sql = "SELECT price_per_day, (6371*acos(cos(radians(?))*cos(radians(latitude))*cos(radians(longitude) -radians(?))+sin(radians(?))*sin(radians(latitude)))) AS distance FROM room HAVING distance <= 0.5 ORDER BY distance";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Room.class), latitude, longitude, latitude);
     }
@@ -81,7 +80,6 @@ public class RoomDAO {
     }
 
     public String makeSqlSentence(SearchRequestDTO searchRequestDTO) {
-
         String sql = "SELECT *, (6371*acos(cos(radians(:latitude))*cos(radians(latitude))*cos(radians(longitude) -radians(:longitude))+sin(radians(:latitude))*sin(radians(latitude)))) AS distance FROM room WHERE 1=1 ";
         if(searchRequestDTO.getMaxPrice() != null) {
             sql += "AND price_per_day <= :maxPrice ";
@@ -113,17 +111,9 @@ public class RoomDAO {
         return sql;
     }
 
-
-
     public List<Room> findRoomsByCondition(SearchRequestDTO searchRequestDTO) {
-
         String query = makeSqlSentence(searchRequestDTO);
-        System.out.println("query = " + query);
-        System.out.println("searchRequestDTO = " + searchRequestDTO);
         SqlParameterSource namedParameter = setNamedParametersBySearchRequestDTO(searchRequestDTO);
-
         return namedParameterJdbcTemplate.query(query, namedParameter, roomRowMapper());
     }
-
-
 }
