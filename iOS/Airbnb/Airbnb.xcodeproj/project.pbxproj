@@ -232,13 +232,21 @@
 		AE9AC6A5265CC1DE0038C198 /* ConditionPage */ = {
 			isa = PBXGroup;
 			children = (
+				AEC52F6A2663F28100D8F802 /* Calendar */,
+			);
+			path = ConditionPage;
+			sourceTree = "<group>";
+		};
+		AEC52F6A2663F28100D8F802 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
 				AE9AC6A6265CCCBF0038C198 /* CalendarViewController.swift */,
 				AE53DF082660885600A72A87 /* CalendarViewModel.swift */,
 				AE11F5AD265F3D920034779F /* Date+extension.swift */,
 				AE11F5AB265F3D5F0034779F /* DateGenerator.swift */,
 				AE11F5A9265F3D250034779F /* DayCell.swift */,
 			);
-			path = ConditionPage;
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
