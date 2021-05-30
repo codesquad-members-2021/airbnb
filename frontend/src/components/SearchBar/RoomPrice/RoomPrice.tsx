@@ -5,7 +5,6 @@ import { useState } from "react";
 import { roomPriceClickState, searchBarClickState } from "recoil/Atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 const RoomPrice = () => {
-  // const [isClicked, setClick] = useState(false);
   const setsSearchBarClick = useSetRecoilState(searchBarClickState);
   const isClicked = useRecoilValue(roomPriceClickState);
   const handleClick = () => {
@@ -22,7 +21,7 @@ const RoomPrice = () => {
       >
         <S.SearchBarTitle>요금</S.SearchBarTitle>
         <S.SearchBarText>100,000~1,000,000</S.SearchBarText>
-        <CancelButton />
+        <CancelButton type="GUESTS" />
       </S.SearchBarBox>
       <RoomPriceModal />
     </>

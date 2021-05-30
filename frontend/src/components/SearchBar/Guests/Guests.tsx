@@ -22,7 +22,7 @@ const Guests = () => {
       >
         <S.SearchBarTitle>인원</S.SearchBarTitle>
         <S.SearchBarText _overFlow={true}>게스트 추가</S.SearchBarText>
-        <CancelButton _right="30%" />
+        <CancelButton _right="30%" type={"GUESTS"} />
       </S.SearchBarBox>
       {isClicked && <GuestsModal />}
     </>
