@@ -19,7 +19,7 @@ const CalendarHeader = ({ calendar }) => {
   );
 };
 
-const Title = styled.caption`
+const Title = styled.div`
   width: 336px;
   display: flex;
   justify-content: center;

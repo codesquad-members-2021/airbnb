@@ -4,17 +4,17 @@ import { dayNames } from '../../constant';
 
 const DayNames = (props) => {
   return (
-    <ul>
+    <div>
       <Flex>
         {dayNames.map((dayName, i) => (
           <DayName key={i}>{dayName}</DayName>
         ))}
       </Flex>
-    </ul>
+    </div>
   );
 };
 
-const DayName = styled.th`
+const DayName = styled.div`
   color: ${({ theme }) => theme.colors.gray3};
   font-size: ${({ theme }) => theme.fontSizes.XS};
   width: 48px;

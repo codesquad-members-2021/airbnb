@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 import Calendar from './Calendar';
-import { CalendarContext } from './CalendarModal';
+import { CalendarContext } from '@components/searchBar/SearchBar';
 
 const CalendarList = ({ x, onTransitionEnd, leftSlide, rightSlide }) => {
   const { calendars } = useContext(CalendarContext);

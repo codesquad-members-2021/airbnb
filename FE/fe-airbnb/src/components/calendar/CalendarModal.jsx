@@ -1,31 +1,16 @@
-import { useState, createContext, useEffect } from 'react';
-import moment from 'moment';
+import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Flex, Spacer } from '@chakra-ui/layout';
 import { ReactComponent as LeftArrowIcon } from '../../icon/chevron-left.svg';
 import { ReactComponent as RightArrowIcon } from '../../icon/chevron-right.svg';
 import CalendarList from './CalendarList';
-
-export const CalendarContext = createContext();
+import { CalendarContext } from '@components/searchBar/SearchBar';
 
 const CalendarModal = (props) => {
-  const initialCalendars = [
-    moment().add(-1, 'M'),
-    moment(),
-    moment().add(1, 'M'),
-    moment().add(2, 'M'),
-  ];
+  const { calendars, setCalendars } = useContext(CalendarContext);
 
   const gap = 68;
   const calendarWidth = 336;
-  const [calendars, setCalendars] = useState(initialCalendars);
-
-  const calendarState = {
-    values: {
-      calendars,
-      setCalendars,
-    },
-  };
 
   const [x, setX] = useState(-(calendarWidth + gap));
   const [leftSlide, setLeftSlide] = useState(false);
@@ -34,17 +19,14 @@ const CalendarModal = (props) => {
   const handleClickLeft = () => {
     setLeftSlide(true);
     setX(x + 336 + gap);
-    console.log('왼쪽 클릭');
   };
 
   const handleClickRight = () => {
     setRightSlide(true);
     setX(x - 336 - gap);
-    console.log('오른쪽 클릭');
   };
 
   const handleTransitionEnd = () => {
-    console.log('트랜지션 끝');
     if (leftSlide) {
       setLeftSlide(false);
       setX(x - 336 - gap);
@@ -58,28 +40,26 @@ const CalendarModal = (props) => {
   };
 
   return (
-    <CalendarContext.Provider value={calendarState.values}>
-      <CalendarModalContainer>
-        <ViewArea>
-          <CalendarList
-            x={x}
-            onTransitionEnd={handleTransitionEnd}
-            leftSlide={leftSlide}
-            rightSlide={rightSlide}
-          />
-        </ViewArea>
+    <CalendarModalContainer>
+      <ViewArea>
+        <CalendarList
+          x={x}
+          onTransitionEnd={handleTransitionEnd}
+          leftSlide={leftSlide}
+          rightSlide={rightSlide}
+        />
+      </ViewArea>
 
-        <Flex justify="center">
-          <Controller>
-            <Flex>
-              <LeftArrowIcon onClick={handleClickLeft} />
-              <Spacer />
-              <RightArrowIcon onClick={handleClickRight} />
-            </Flex>
-          </Controller>
-        </Flex>
-      </CalendarModalContainer>
-    </CalendarContext.Provider>
+      <Flex justify="center">
+        <Controller>
+          <Flex>
+            <LeftArrowIcon onClick={handleClickLeft} />
+            <Spacer />
+            <RightArrowIcon onClick={handleClickRight} />
+          </Flex>
+        </Controller>
+      </Flex>
+    </CalendarModalContainer>
   );
 };
 

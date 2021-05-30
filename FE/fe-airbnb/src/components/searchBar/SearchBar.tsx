@@ -1,5 +1,6 @@
-import { ReactElement, useState } from 'react';
+import { createContext, Dispatch, ReactElement, SetStateAction, useState } from 'react';
 import styled from 'styled-components';
+import moment, { Moment } from 'moment';
 import { Center, Flex } from '@chakra-ui/layout';
 
 import CalendarModal from '@components/calendar/CalendarModal';
@@ -9,14 +10,49 @@ import SearchButton from '../SearchButton';
 import SearchBarBtn from './SearchBarBtn';
 import { SearchBarBtnType, SelectedContentProps } from './searchBarTypes';
 
+export type CalendarContextType = {
+  calendars: Moment[];
+  setCalendars: Dispatch<SetStateAction<Moment[]>>;
+  checkInMoment: Moment | null;
+  setCheckInMoment: Dispatch<SetStateAction<Moment | null>>;
+  checkOutMoment: Moment | null;
+  setCheckOutMoment: Dispatch<SetStateAction<Moment | null>>;
+}
+
+export const CalendarContext = createContext<CalendarContextType | null >(null);
+
 function SearchBar() {
   const [selectedBtn, setSelectedBtn] = useState<string | null>(null);
+
+  const initialCalendars = [
+    moment().add(-1, 'M'),
+    moment(),
+    moment().add(1, 'M'),
+    moment().add(2, 'M'),
+  ];
+
+  const [calendars, setCalendars] = useState(initialCalendars);
+  const [checkInMoment, setCheckInMoment] = useState<Moment | null>(null);
+  const [checkOutMoment, setCheckOutMoment] = useState<Moment | null>(null);
+
+  const calendarState = {
+    values: {
+      calendars,
+      setCalendars,
+      checkInMoment,
+      setCheckInMoment,
+      checkOutMoment,
+      setCheckOutMoment
+    },
+  };
 
   const renderModal = (): ReactElement | void => {
     switch (selectedBtn) {
       case SearchBarBtnType.CHECK_IN_OUT:
         return (
-          <CalendarModal />
+          <CalendarContext.Provider value={calendarState.values}>
+            <CalendarModal />
+          </CalendarContext.Provider>
         );
 
       case SearchBarBtnType.PRICE:
@@ -44,12 +80,20 @@ function SearchBar() {
             <CheckInOut>
               <Flex direction="column">
                 <SearchBarSubTitle>체크인</SearchBarSubTitle>
-                <SelectedContent contentType="placeholder">날짜 입력</SelectedContent>
+                {
+                  checkInMoment 
+                    ? <SelectedContent contentType="date">{checkInMoment.format('YYYY-MM-DD')}</SelectedContent> 
+                    : <SelectedContent contentType="placeholder">날짜 입력</SelectedContent>
+                }
               </Flex>
               <CustomSpacer />
               <Flex direction="column">
                 <SearchBarSubTitle>체크아웃</SearchBarSubTitle>
-                <SelectedContent contentType="placeholder">날짜 입력</SelectedContent>
+                {
+                  checkOutMoment 
+                    ? <SelectedContent contentType="date">{checkOutMoment.format('YYYY-MM-DD')}</SelectedContent> 
+                    : <SelectedContent contentType="placeholder">날짜 입력</SelectedContent>
+                }
               </Flex>
             </CheckInOut>
           </SearchBarBtn>

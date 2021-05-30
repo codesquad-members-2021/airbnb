@@ -3,7 +3,6 @@ import './App.css';
 import Header from '@components/header/Header'
 import SearchBar from '@components/searchBar/SearchBar';
 import theme from './theme';
-import CalendarModal from './components/calendar/CalendarModal';
 
 function App() {
   return (
