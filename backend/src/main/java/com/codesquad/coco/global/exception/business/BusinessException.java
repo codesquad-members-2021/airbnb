@@ -1,12 +1,22 @@
 package com.codesquad.coco.global.exception.business;
 
+import com.codesquad.coco.global.exception.ErrorCode;
+
 public class BusinessException extends RuntimeException {
 
-    public BusinessException() {
+    private final ErrorCode errorCode;
+
+    public BusinessException(ErrorCode errorCode) {
+        super(errorCode.getMessage());
+        this.errorCode = errorCode;
     }
 
-    public BusinessException(String message) {
-        super(message);
+    public BusinessException(ErrorCode errorCode, String message) {
+        super(errorCode.getMessage() + message);
+        this.errorCode = errorCode;
     }
 
+    public ErrorCode getErrorCode() {
+        return errorCode;
+    }
 }

@@ -1,11 +1,11 @@
 package com.codesquad.coco.global.exception.business;
 
+import com.codesquad.coco.global.exception.ErrorCode;
+
 public class TotalPriceNonMatchException extends BusinessException {
 
-    private static final String MESSAGE = "클라이언트의 총액과 일치하지 않음 : ";
-
     public TotalPriceNonMatchException(int totalPrice) {
-        super(MESSAGE + totalPrice);
+        super(ErrorCode.TOTAL_PRICE_NON_MATCH, String.valueOf(totalPrice));
     }
 
 }

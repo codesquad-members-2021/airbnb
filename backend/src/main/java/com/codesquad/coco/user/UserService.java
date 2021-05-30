@@ -1,7 +1,7 @@
 package com.codesquad.coco.user;
 
 import com.codesquad.coco.global.exception.business.TotalPriceNonMatchException;
-import com.codesquad.coco.global.exception.common.NotFoundUser;
+import com.codesquad.coco.global.exception.business.notfound.NotFoundUser;
 import com.codesquad.coco.oauth.gitoauth.GitHubDeviceType;
 import com.codesquad.coco.oauth.gitoauth.GitOauth;
 import com.codesquad.coco.oauth.gitoauth.GitUserInfoDTO;
@@ -46,7 +46,6 @@ public class UserService {
     }
 
     public void cancelReservation(Long roomId, Long reservationId, Long userId) {
-
         membershipCheck(userId);
         reservationDAO.cancelReservation(roomId, reservationId, userId, ReservationStatus.CANCEL);
     }
