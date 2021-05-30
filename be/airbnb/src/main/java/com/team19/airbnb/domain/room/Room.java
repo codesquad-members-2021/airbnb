@@ -32,6 +32,8 @@ public class Room {
 
     private BigDecimal pricePerDay;
 
+    public Room() {}
+
     Room(Long id,
          String name, List<Image> images,
          Review review,
@@ -104,5 +106,45 @@ public class Room {
 
     public BigDecimal getPricePerDay() {
         return pricePerDay;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public void setReview(Review review) {
+        this.review = review;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    public void setRoomsAndBeds(RoomsAndBeds roomsAndBeds) {
+        this.roomsAndBeds = roomsAndBeds;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setHost(Host host) {
+        this.host = host;
+    }
+
+    public void setPricePerDay(BigDecimal pricePerDay) {
+        this.pricePerDay = pricePerDay;
     }
 }
