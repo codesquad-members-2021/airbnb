@@ -19,12 +19,17 @@ final class HomeViewController: UIViewController {
     
     private var viewModel: AnyResultHandleModel<String>?
     
+    static func create(with viewModel: AnyResultHandleModel<String>) -> HomeViewController {
+        let storyboard = StoryboardFactory.create(.main)
+        let homeViewController = ViewControllerFactory.create(from: storyboard, type: HomeViewController.self)
+        homeViewController.viewModel = viewModel
+        return homeViewController
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setSearchBar()
-        viewModel = HomeViewModel()
         bind()
-        
     }
     
     private func setSearchBar() {
