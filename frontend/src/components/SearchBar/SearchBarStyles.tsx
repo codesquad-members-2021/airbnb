@@ -9,19 +9,24 @@ type TSearchBar = {
 const SearchBarTitle = styled.div`
   font-size: 1.2rem;
   font-weight: bold;
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.2rem;
 `;
 const SearchBarText = styled.div`
   font-size: 1.6rem;
   text-overflow: ${(props: TSearchBar) => props._overFlow && "ellipsis"};
   overflow: ${(props: TSearchBar) => props._overFlow && "hidden"};
+  padding-top: 0.2rem;
   white-space: ${(props: TSearchBar) => props._overFlow && "noWrap"};
 `;
 
 const SearchBarBox = styled.div`
   position: relative;
   width: ${(props: TSearchBar) => props._width};
-  padding: 1rem 2rem;
+  padding: 1.5rem;
+  padding-left: 2rem;
+  &:first-child {
+    padding-left: 3rem;
+  }
   border-radius: 60px;
   box-shadow: ${(props: TSearchBar) =>
     props._clicked
