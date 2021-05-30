@@ -1,6 +1,5 @@
 package com.codesquad.coco.user;
 
-import com.codesquad.coco.global.exception.business.TotalPriceNonMatchException;
 import com.codesquad.coco.global.exception.business.notfound.NotFoundUser;
 import com.codesquad.coco.oauth.gitoauth.GitHubDeviceType;
 import com.codesquad.coco.oauth.gitoauth.GitOauth;
@@ -9,7 +8,6 @@ import com.codesquad.coco.room.RoomDAO;
 import com.codesquad.coco.room.model.Room;
 import com.codesquad.coco.user.model.ReservationStatus;
 import com.codesquad.coco.user.model.dto.ReservationDTO;
-import com.codesquad.coco.utils.LocalDateUtil;
 import oauth.AccessToken;
 import org.springframework.stereotype.Service;
 
@@ -31,17 +29,8 @@ public class UserService {
     public void reservation(Long roomId, Long userId, ReservationDTO reservationDTO) {
 
         membershipCheck(userId);
-
         Room room = roomDAO.findById(roomId);
-        int fewNights = LocalDateUtil.getAccommodationDay(reservationDTO.getCheckIn(), reservationDTO.getCheckOut());
-        int totalPrice = room.calcTotalPrice(fewNights);
-
-        room.reservationAvailabilityCheck(reservationDTO.getCheckIn(), reservationDTO.getCheckOut());
-        room.capacityCheck(reservationDTO.getAdult(), reservationDTO.getChild());
-        if (totalPrice != reservationDTO.getTotalPrice()) {
-            throw new TotalPriceNonMatchException(totalPrice);
-        }
-
+        room.reservationAvailability(reservationDTO);
         reservationDAO.reservation(roomId, userId, reservationDTO, ReservationStatus.RESERVED);
     }
 
