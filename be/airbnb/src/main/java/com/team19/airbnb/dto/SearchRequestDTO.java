@@ -1,7 +1,6 @@
 package com.team19.airbnb.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.team19.airbnb.domain.Booking;
 import com.team19.airbnb.domain.room.Location;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;

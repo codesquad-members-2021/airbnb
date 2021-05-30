@@ -1,6 +1,6 @@
 package com.team19.airbnb.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.team19.airbnb.domain.Booking.Booking;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -39,5 +39,9 @@ public class RoomPriceRequestDTO {
 
     public void setGuest(Integer guest) {
         this.guest = guest;
+    }
+
+    public Booking toEntity(Long roomId) {
+        return Booking.create(checkIn, checkOut, guest, roomId);
     }
 }
