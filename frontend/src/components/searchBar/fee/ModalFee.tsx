@@ -1,9 +1,8 @@
-import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 import { Modal } from '../../../style/BarStyle'
+import { RecoilValueGroup } from '../../../customHook/atoms'
 import useAxios from '../../../customHook/useAxios'
 import getFeeData from '../../../customHook/axiosAPI'
-import { clickedPlace, checkInMessage, checkOutMessage } from '../../../customHook/atoms'
 import Graph from './Graph'
 import Slider from './Slider'
 
@@ -17,14 +16,11 @@ const filteredFee = (fee: Array<number>): Map<number, number> => {
     acc.get(curr) ? acc.set(curr, acc.get(curr) + 1) : acc.set(curr, 1)
     return acc
   }, new Map())
-
   return filtered
 }
 
-const ModalFee: React.FunctionComponent<IFeeType> = ({ modalType }) => {
-  const placeToSearch = useRecoilValue(clickedPlace)
-  const checkIn = useRecoilValue(checkInMessage)
-  const checkOut = useRecoilValue(checkOutMessage)
+function ModalFee({ modalType }: IFeeType) {
+  const { placeToSearch, checkIn, checkOut } = RecoilValueGroup()
   const state = useAxios(() => getFeeData(placeToSearch, checkIn, checkOut))
 
   const { loading, error, data } = state

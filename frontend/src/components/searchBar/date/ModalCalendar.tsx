@@ -2,16 +2,14 @@ import { useState } from 'react'
 import { Modal } from '../../../style/BarStyle'
 import Calendar from './Calendar'
 import styled, { css } from 'styled-components'
-interface ModalCalendarProps {
-  modalType: string
-}
+import { IModalPropType } from '../../../Interface'
 
 interface IDate {
   transitionState: boolean
   btnClicked: number
   Xposition: number
 }
-const ModalCalendar: React.FunctionComponent<ModalCalendarProps> = ({ modalType }) => {
+function ModalCalendar({ modalType }: IModalPropType) {
   const today: Date = new Date()
   const currentMonth: number = today.getMonth() + 1
   const [transitionState, setTransition] = useState(false)

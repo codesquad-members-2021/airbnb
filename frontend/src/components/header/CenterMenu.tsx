@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { AlignTextCenter } from '../../style/Theme'
-const CenterMenu = () => {
+
+function CenterMenu() {
   return (
     <FlexBox>
       <Menu>숙소</Menu>

@@ -5,7 +5,7 @@ interface IF_Img {
   desc: string
 }
 
-const UserInfo = () => {
+function UserInfo() {
   const userInfoBtn = useRef<HTMLDivElement>(null)
   const userInfoModal = useRef<HTMLDivElement>(null)
   const open = useModalCtrl({

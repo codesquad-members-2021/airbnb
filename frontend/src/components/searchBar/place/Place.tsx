@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import { useRecoilState } from 'recoil'
 import { clickedPlace, defaultValue } from '../../../customHook/atoms'
 import {

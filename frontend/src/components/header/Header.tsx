@@ -3,7 +3,7 @@ import Logo from './Logo'
 import CenterMenu from './CenterMenu'
 import UserInfo from './UserInfo'
 
-const Header = () => {
+function Header() {
   return (
     <FlexBox>
       <Logo />

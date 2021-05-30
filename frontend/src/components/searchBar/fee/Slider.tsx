@@ -5,24 +5,21 @@ import { FeeMaxChange, FeeMinChange, FeeMin, FeeMax } from '../../../customHook/
 interface IGraphProps {
   dataArr: Array<number[]>
 }
-
 interface IBoxProps {
   slideLength: number
 }
+
 function Slider({ dataArr }: IGraphProps) {
   const [minFeePercecnt, setMinFeePercecnt] = useRecoilState(FeeMinChange)
   const [maxFeePercecnt, setMaxFeePercecnt] = useRecoilState(FeeMaxChange)
-  const [priceMin, setPriceMin] = useRecoilState(FeeMin)
-  const [priceMax, setPriceMax] = useRecoilState(FeeMax)
+  const setPriceMin = useSetRecoilState(FeeMin)
+  const setPriceMax = useSetRecoilState(FeeMax)
 
   let slideLength = dataArr.length
   let minValue = dataArr[0][0]
   let maxValue = dataArr[dataArr.length - 1][0]
-
   setPriceMin(minValue)
   setPriceMax(maxValue)
-
-  const setFeeMax = useSetRecoilState(FeeMax)
 
   let inputRightVal: string
   let inputLeftVal: string
@@ -51,7 +48,7 @@ function Slider({ dataArr }: IGraphProps) {
     }
   }, [])
 
-  function setMinValue(target: HTMLInputElement | null) {
+  const setMinValue = (target: HTMLInputElement | null) => {
     if (!target) return
     let ctrlTarget = target
     let min = parseInt(ctrlTarget.min)
@@ -65,12 +62,10 @@ function Slider({ dataArr }: IGraphProps) {
     if (range && range.current) {
       range.current.style.left = percent + '%'
     }
-    console.log('continue')
     setMinFeePercecnt(Math.ceil((percent / 100) * (maxValue - minValue)))
-    // MIN_PRICE = minValue+minFeePercecnt
   }
 
-  function setMaxValue(target: HTMLInputElement | null) {
+  const setMaxValue = (target: HTMLInputElement | null) => {
     if (!target) return
     let ctrlTarget = target
     let min = parseInt(ctrlTarget.min)
@@ -85,7 +80,6 @@ function Slider({ dataArr }: IGraphProps) {
       range.current.style.right = percent + '%'
     }
     setMaxFeePercecnt(Math.ceil((percent / 100) * (maxValue - minValue)))
-    setFeeMax(maxValue - maxFeePercecnt)
   }
 
   return (

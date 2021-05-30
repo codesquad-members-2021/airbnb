@@ -9,13 +9,9 @@ import {
 import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../../style/BarStyle'
 import { dateToString } from '../../../customHook/useDateInfo'
 import useXclick from '../../../customHook/useXclick'
-interface IProps {
-  open: boolean
-  type: string
-  checkInToggle: RefObject<HTMLDivElement>
-}
+import { IProps } from '../../../Interface'
 
-const CheckIn: React.FunctionComponent<IProps> = ({ open, type, checkInToggle }) => {
+function CheckIn({ open, type, checkInToggle }: IProps) {
   const [checkIn, setCheckIn] = useRecoilState(checkInMessage)
   const [checkInClicked, setCheckInClick] = useRecoilState(clickCheckIn)
   const setCheckOutClick = useSetRecoilState(clickCheckOut)
