@@ -1,34 +1,90 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import { FaPlus, FaMinus } from "react-icons/fa";
+const guestData = [
+    {
+        id: 1,
+        title: '성인',
+        detail: '만 13세 이상',
+        input: 0
+    },
+    {
+        id: 2,
+        title: '어린이',
+        detail: '만 2~12세',
+        input: 0
+    },
+    {
+        id: 3,
+        title: '유아',
+        detail: '만 2세 미만',
+        input: 0
+    },
+]
 
 const PersonnelModal = () => {
-    const personelData = [
-        {
-            id: 1,
-            name: '체크인',
-            input: '날짜입력'
-        },
-        {
-            id: 2,
-            name: '체크아웃',
-            input: '날짜입력'
-        }
-    ];
-    const [periodInfo, setPeriodInfo] = useState(personelData);
+    const [guestInfo, setGuestInfo] = useState(guestData);
+    const modalList = guestInfo.map((e, idx) => {
+        return <ModalContainer>
+                <Title>{e.title}</Title>
+                <Detail>{e.detail}</Detail>
+                <CntInfo>
+                <Input><MinusBtn disabled><FaMinus/></MinusBtn></Input>
+                <Input>{e.input}</Input>
+                <Input><PlusBtn><FaPlus/></PlusBtn></Input>
+                </CntInfo>
+        </ModalContainer>
+    })
     return (
         <PersonnelModalWrapper onClick={e => e.stopPropagation()}>
+            {modalList}
         </PersonnelModalWrapper>
     );
 }
-
+const CntInfo = styled.ul`
+position: absolute;
+left: 50%;
+top: 15%;
+display: flex;
+align-items: center;
+`;
+const PersonnelBtn = styled.button`
+padding: 15px;
+border-radius: 50%;
+`
+const PlusBtn = styled(PersonnelBtn)`
+`;
+const MinusBtn = styled(PersonnelBtn)`
+`;
+const Input = styled.li`
+font-size: 30px;
+margin:10px;
+left: 75%;
+top: 30%;
+`;
+const Title = styled.div`
+font-size:25px;
+`;
+const Detail = styled.div`
+font-size: 20px;
+color: gray;
+`;
+const ModalContainer = styled.div`
+padding: 20px;
+border-bottom: 1px solid gray;
+position: relative;
+`;
 const PersonnelModalWrapper = styled.div`
     position: absolute;
     width: 50%;
-    height: 500px;
     border-radius: 50px;
-    background-color: #c4ec9e;
+    background-color: white;
     top:120%;
     left:45%;
+    padding: 20px;
+    & > *:last-child {
+    border:none;
+}
 `;
 
 export default PersonnelModal;

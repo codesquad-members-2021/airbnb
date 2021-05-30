@@ -5,7 +5,7 @@ import useComponentVisible from "../modal/Modal"
 import { PostsContext } from './SearchBar';
 import { GrFormClose } from "react-icons/gr";
 
-const Period = ({isFocus}) => {
+const Period = () => {
     const {periodInfo, setPeriodInfo} = useContext(PostsContext);
     const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
     const periodList = periodInfo.map((e, idx) => {
