@@ -1,33 +1,33 @@
 import styled from 'styled-components'
-import Slider from './Slider'
+
 interface IGraphProps {
-  data: Map<number, number>
+  dataArr: Array<number[]>
 }
 interface IStickProps {
   count: number
 }
+interface ILength {
+  length: number
+}
 
-function Graph({ data }: IGraphProps) {
-  const dataArr = Array.from(data)
+function Graph({ dataArr }: IGraphProps) {
   const averageFee = Math.ceil(
     dataArr.reduce((acc, curr) => (acc = acc + curr[0]), 0) / dataArr.length
   )
   return (
     <GraphWrapper>
       <span>평균 1박 요금은 ₩{averageFee} 입니다.</span>
-      <Canvas>
+      <Canvas length={dataArr.length}>
         {dataArr.map((v, idx) => (
           <WholeStick key={idx}>
-            <Stick className='stick' count={v[1]}></Stick>
-            <BgStick className='bg' count={v[1]}></BgStick>
+            <Stick count={v[1]}></Stick>
+            <BgStick count={v[1]}></BgStick>
           </WholeStick>
         ))}
       </Canvas>
-      <Slider data={dataArr} />
     </GraphWrapper>
   )
 }
-
 const GraphWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -38,10 +38,11 @@ const GraphWrapper = styled.div`
     color: ${({ theme }) => theme.color.grey_4};
   }
 `
-const Canvas = styled.div`
+const Canvas = styled.div<ILength>`
   display: flex;
-  padding: 20px;
   align-items: flex-end;
+  width: ${(props) => props.length * 50}px;
+  max-width: 500px;
 `
 const WholeStick = styled.div`
   height: 265px;

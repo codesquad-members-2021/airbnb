@@ -2,22 +2,26 @@ import { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { FeeMaxChange, FeeMinChange, FeeMin, FeeMax } from '../../../customHook/atoms'
-interface ISliderProps {
-  data: any[]
+interface IGraphProps {
+  dataArr: Array<number[]>
 }
 
 interface IBoxProps {
   slideLength: number
 }
-function Slider({ data }: ISliderProps) {
+function Slider({ dataArr }: IGraphProps) {
   const [minFeePercecnt, setMinFeePercecnt] = useRecoilState(FeeMinChange)
   const [maxFeePercecnt, setMaxFeePercecnt] = useRecoilState(FeeMaxChange)
+  const [priceMin, setPriceMin] = useRecoilState(FeeMin)
+  const [priceMax, setPriceMax] = useRecoilState(FeeMax)
 
-  let slideLength = data.length * 50
-  let minValue = data[0][0]
-  let maxValue = data[data.length - 1][0]
+  let slideLength = dataArr.length
+  let minValue = dataArr[0][0]
+  let maxValue = dataArr[dataArr.length - 1][0]
 
-  const [feeMin, setFeeMin] = useRecoilState(FeeMin)
+  setPriceMin(minValue)
+  setPriceMax(maxValue)
+
   const setFeeMax = useSetRecoilState(FeeMax)
 
   let inputRightVal: string
@@ -61,9 +65,9 @@ function Slider({ data }: ISliderProps) {
     if (range && range.current) {
       range.current.style.left = percent + '%'
     }
+    console.log('continue')
     setMinFeePercecnt(Math.ceil((percent / 100) * (maxValue - minValue)))
-    console.log('여기 안와!', feeMin, minValue + minFeePercecnt)
-    setFeeMin(() => Number(feeMin) + minFeePercecnt)
+    // MIN_PRICE = minValue+minFeePercecnt
   }
 
   function setMaxValue(target: HTMLInputElement | null) {
@@ -85,9 +89,9 @@ function Slider({ data }: ISliderProps) {
   }
 
   return (
-    <>
+    <SliderWrapper className='wrapper'>
       <SliderBox slideLength={slideLength}>
-        <Input ref={inputLeft} type='range' min='10' max='100' defaultValue='0' />
+        <Input ref={inputLeft} type='range' min='0' max='100' defaultValue='0' />
         <Input ref={inputRight} type='range' min='0' max='100' defaultValue='100' />
         <SliderView>
           <Track />
@@ -108,13 +112,20 @@ function Slider({ data }: ISliderProps) {
           <input value={maxValue - maxFeePercecnt}></input>
         </PriceTag>
       </PriceBox>
-    </>
+    </SliderWrapper>
   )
 }
-
+const SliderWrapper = styled.div`
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+  top: -17px;
+`
 const SliderBox = styled.div<IBoxProps>`
   position: relative;
-  width: ${(props) => props.slideLength}px;
+  width: ${(props) => props.slideLength * 50}px;
   top: -23px;
   max-width: 500px;
   display: flex;

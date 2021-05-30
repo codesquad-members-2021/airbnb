@@ -32,6 +32,7 @@ export const Theme = {
   },
   modalHeight: {
     place: 'auto',
+    fee: 'auto',
     date: '530px',
   },
   modalPadding: {

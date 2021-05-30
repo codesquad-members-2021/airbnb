@@ -23,8 +23,6 @@ async function getFeeData(
     (acc, curr, idx) => acc + curr + (idx >= 0 && idx < query.length - 1 ? '&' : ''),
     `http://13.125.140.183/search/prices?`
   )
-
-  console.log(url)
   const response = await axios.get(`http://13.125.140.183/search/prices`)
   //기본 `http://13.125.140.183/search/prices`
   //지역 `http://13.125.140.183/search/prices?city-name=:city-name`
@@ -35,3 +33,5 @@ async function getFeeData(
 }
 
 export default getFeeData
+
+// /search?check-in=:check-in&check-out=:check-out&city-name=:city-name&adult=:adult&child=:child&baby=:baby&price-min=:price-min&price-max=:price-max

@@ -1,9 +1,12 @@
+import { useRecoilValue } from 'recoil'
+import styled from 'styled-components'
 import { Modal } from '../../../style/BarStyle'
 import useAxios from '../../../customHook/useAxios'
 import getFeeData from '../../../customHook/axiosAPI'
-import Graph from './Graph'
-import { useRecoilValue } from 'recoil'
 import { clickedPlace, checkInMessage, checkOutMessage } from '../../../customHook/atoms'
+import Graph from './Graph'
+import Slider from './Slider'
+
 interface IFeeType {
   modalType: string
 }
@@ -29,13 +32,18 @@ const ModalFee: React.FunctionComponent<IFeeType> = ({ modalType }) => {
   if (error) return <div>에러발생</div>
   if (!data) return null
   const result = filteredFee(data.prices)
+  const dataArr = Array.from(result)
   return (
     <>
       <Modal modalType={modalType}>
-        <Graph data={result} />
+        <FeeContents className='contents'>
+          <Graph dataArr={dataArr} />
+          <Slider dataArr={dataArr} />
+        </FeeContents>
       </Modal>
     </>
   )
 }
 
+const FeeContents = styled.div``
 export default ModalFee

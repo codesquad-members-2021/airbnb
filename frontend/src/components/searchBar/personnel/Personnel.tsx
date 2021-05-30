@@ -30,10 +30,12 @@ const Personnel = () => {
   const [baby, setBaby] = useRecoilState(personnelBaby)
 
   const [guestMsg, setGuestMsg] = useRecoilState(personnelMessage)
-  adult + child + baby === 0
-    ? setGuestMsg(defaultValue.guest)
-    : setGuestMsg(`게스트 ${adult + child}명, 유아${baby}명`)
-  const RenderXbtn = useXclick(guestMsg, [setAdult, setChild, setBaby], defaultValue.guest)
+  if (adult + child + baby !== 0) setGuestMsg(`게스트 ${adult + child}명, 유아${baby}명`)
+  const RenderXbtn = useXclick(
+    guestMsg,
+    [setGuestMsg, setAdult, setChild, setBaby],
+    defaultValue.guest
+  )
 
   return (
     <>

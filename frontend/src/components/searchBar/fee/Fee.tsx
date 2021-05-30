@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import {
   ModalWrapper,
   BarBlock,
@@ -9,10 +9,11 @@ import {
 import ModalFee from './ModalFee'
 import useModalCtrl from '../../../customHook/useModalCtrlArray'
 import { useRecoilValue, useRecoilState } from 'recoil'
-import { FeeMin, FeeMax, defaultValue } from '../../../customHook/atoms'
+import { FeeMin, FeeMax, defaultValue, FeeMinChange, FeeMaxChange } from '../../../customHook/atoms'
 import useXclick from '../../../customHook/useXclick'
 
 const Fee = () => {
+  let feeMsg
   const FeeToggle = useRef<HTMLDivElement>(null)
   const FeeModal = useRef<HTMLDivElement>(null)
   const open = useModalCtrl({
@@ -21,11 +22,23 @@ const Fee = () => {
     init: false,
   })
 
-  const [feeMin, setFeeMin] = useRecoilState(FeeMin)
-  const feeMax = useRecoilValue(FeeMax)
-  let feeMsg = typeof feeMin === 'string' ? feeMin : `${feeMin} ~ ${feeMax}원`
+  const [minFeePercecnt, setMinFeePercent] = useRecoilState(FeeMinChange)
+  const [maxFeePercecnt, setMaxFeePercent] = useRecoilState(FeeMaxChange)
+  const [priceMin, setPriceMin] = useRecoilState(FeeMin)
+  const priceMax = useRecoilValue(FeeMax)
 
-  const RenderXbtn = useXclick(feeMin, [setFeeMin], defaultValue.fee)
+  const feeMax = useRecoilValue(FeeMax)
+
+  feeMsg =
+    typeof priceMin === 'string'
+      ? priceMin
+      : `${priceMin + minFeePercecnt} ~ ${priceMax - maxFeePercecnt}원`
+
+  const RenderXbtn = useXclick(
+    priceMin,
+    [setPriceMin, setMinFeePercent, setMaxFeePercent],
+    defaultValue.fee
+  )
   return (
     <>
       <BarBlock ref={FeeToggle}>
