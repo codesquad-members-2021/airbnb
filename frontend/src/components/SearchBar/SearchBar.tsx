@@ -4,15 +4,10 @@ import Guests from "components/SearchBar/Guests/Guests";
 import RoomPrice from "components/SearchBar/RoomPrice/RoomPrice";
 import { ReactComponent as largeSearchBtn } from "image/largeSearchBtn.svg";
 import { ReactComponent as smallSearchBtn } from "image/smallSearchBtn.svg";
-import {
-  useRecoilState,
-  useRecoilValue,
-  useResetRecoilState,
-  useSetRecoilState,
-} from "recoil";
-import React, { useState, useEffect } from "react";
+import { useSetRecoilState } from "recoil";
+import React, { useEffect } from "react";
 import { searchBarClickState } from "recoil/Atoms";
-
+import { search } from "util/enum";
 const SearchBar = () => {
   const setsSearchBarClick = useSetRecoilState(searchBarClickState);
 
@@ -22,7 +17,7 @@ const SearchBar = () => {
 
   const ClosePopup = (e: MouseEvent): void => {
     const target = e.target as HTMLElement;
-    if (!target.closest(".search-bar")) setsSearchBarClick("RESET"); //recoil reset 으로 ?
+    if (!target.closest(".search-bar")) setsSearchBarClick(search.reset);
   };
   return (
     <SearchBarLayout>

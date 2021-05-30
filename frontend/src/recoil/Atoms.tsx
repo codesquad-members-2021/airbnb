@@ -36,19 +36,19 @@ export const searchBarClickState = selector({
   set: ({ set }, clicked) => {
     // 2번째 파라미터 에는 추가로 받을 인자를 나타냅니다.
     switch (clicked) {
-      case "IN":
+      case "CHECK_IN":
         set(checkInClickState, true);
         set(checkOutClickState, false);
         set(roomPriceClickState, false);
         set(guestsClickState, false);
         break;
-      case "OUT":
+      case "CHECK_OUT":
         set(checkInClickState, false);
         set(checkOutClickState, true);
         set(roomPriceClickState, false);
         set(guestsClickState, false);
         break;
-      case "PRICE":
+      case "ROOM_PRICE":
         set(checkInClickState, false);
         set(checkOutClickState, false);
         set(roomPriceClickState, true);
@@ -109,7 +109,22 @@ export const calendarState = atom<T.Calendar>({
     },
   },
 });
-
+export const checkInState = atom<T.Date>({
+  key: "checkInState",
+  default: {
+    month: null,
+    date: null,
+    dateObj: new Date(),
+  },
+});
+export const checkOutState = atom<T.Date>({
+  key: "checkOutState",
+  default: {
+    month: null,
+    date: null,
+    dateObj: new Date(),
+  },
+});
 export const roomPriceState = atom<T.RoomPrice>({
   key: "roomPriceState",
   default: {
@@ -125,4 +140,9 @@ export const guestState = atom<T.GuestsState>({
     child: null,
     toddler: null,
   },
+});
+
+export const defaultState = atom({
+  key: "defaultState",
+  default: null,
 });

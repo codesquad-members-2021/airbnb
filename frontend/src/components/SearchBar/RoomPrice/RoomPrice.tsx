@@ -1,16 +1,12 @@
 import RoomPriceModal from "components/SearchBar/RoomPrice/RoomPriceModal";
 import * as S from "components/SearchBar/SearchBarStyles";
 import CancelButton from "components/common/CancelButton";
-import { useState } from "react";
 import { roomPriceClickState, searchBarClickState } from "recoil/Atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
+import { search } from "util/enum";
 const RoomPrice = () => {
-  // const [isClicked, setClick] = useState(false);
   const setsSearchBarClick = useSetRecoilState(searchBarClickState);
   const isClicked = useRecoilValue(roomPriceClickState);
-  const handleClick = () => {
-    setsSearchBarClick("PRICE");
-  };
 
   return (
     <>
@@ -18,11 +14,13 @@ const RoomPrice = () => {
         _width="30%"
         className="price"
         _clicked={isClicked}
-        onClick={handleClick}
+        onClick={() => {
+          setsSearchBarClick(search.room);
+        }}
       >
         <S.SearchBarTitle>요금</S.SearchBarTitle>
         <S.SearchBarText>100,000~1,000,000</S.SearchBarText>
-        <CancelButton />
+        <CancelButton type={search.room} />
       </S.SearchBarBox>
       <RoomPriceModal />
     </>
