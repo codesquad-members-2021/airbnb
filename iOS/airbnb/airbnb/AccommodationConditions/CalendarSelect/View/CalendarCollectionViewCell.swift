@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CalendarCollectionViewCell: UICollectionViewCell {
+final class CalendarCollectionViewCell: UICollectionViewCell {
     
     static var reuseIdentifier: String {
         return String(describing: self)

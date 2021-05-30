@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CalendarCollectionViewDataSource: NSObject, UICollectionViewDataSource {
+final class CalendarCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     private(set) var calendar = [Month]()
     

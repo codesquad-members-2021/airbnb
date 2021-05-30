@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DateSelectionManager {
+final class DateSelectionManager {
     
     private var calendarManager: CalendarManager
     private var selectedDateIndexPaths: [IndexPath]

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MonthHeaderCollectionViewCell: UICollectionViewCell {
+final class MonthHeaderCollectionViewCell: UICollectionViewCell {
     
     static var reuseIdentifier: String {
         return String(describing: self)

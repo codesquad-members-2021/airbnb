@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Month {
+final class Month {
     
     let title: String
     var days: [Day]
