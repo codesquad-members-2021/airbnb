@@ -28,3 +28,12 @@ export const getCalendarMonth = (type: string, month: number) => {
       return 0;
   }
 };
+
+export const getValidDateClassName = (
+  year: number,
+  currentMonth: number,
+  date: number
+) => {
+  const calendarDate = new Date(year, currentMonth, date);
+  return !date || calendarDate < new Date() ? "invalid-date" : "valid-date";
+};

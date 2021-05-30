@@ -1,9 +1,18 @@
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { useState } from "react";
-import { calendarModalState, calendarFilterState } from "recoil/Atoms";
+import {
+  calendarModalState,
+  calendarState,
+  searchBarClickState,
+} from "recoil/Atoms";
 import * as S from "components/SearchBar/Calendar/CalendarStyles";
-import DateBlock from "./DateBlock";
-import { daysOfWeek, getDateList, getCalendarMonth } from "util/Calendar";
+import {
+  daysOfWeek,
+  getDateList,
+  getCalendarMonth,
+  getValidDateClassName,
+} from "util/Calendar";
+
 interface MonthProps {
   monthType: string;
 }
@@ -11,33 +20,58 @@ interface MonthProps {
 const MonthlyCalendar: React.FunctionComponent<MonthProps> = ({
   monthType,
 }) => {
-  const { year, month, nextMonth, today } = useRecoilValue(calendarModalState);
-  const [checkInOut, setCheckInOut] = useRecoilState(calendarFilterState);
+  const setsSearchBarClick = useSetRecoilState(searchBarClickState);
+  const { year, month, today } = useRecoilValue(calendarModalState);
+  const [checkInOut, setCheckInOut] = useRecoilState(calendarState);
   const { checkIn, checkOut } = checkInOut;
   const currentMonth = getCalendarMonth(monthType, month);
   const dates = getDateList(year, currentMonth);
-  const checkValidDate = (date: number) => {
-    const calendarDate = new Date(year, currentMonth, date);
-    return !date || calendarDate < new Date() ? "invalid-date" : "valid-date";
-  };
-
   const realMonth = new Date(year, currentMonth).getMonth() + 1;
   const realYear = new Date(year, currentMonth).getFullYear();
 
   const handleDateClick = (e: React.MouseEvent<Element, MouseEvent>): void => {
     const targetDate = Number(e.currentTarget.textContent);
+    const targetDateObj = new Date(year, currentMonth, targetDate);
+    console.log(targetDateObj);
     if (!checkIn.month) {
       setCheckInOut({
         ...checkInOut,
-        checkIn: { month: month + 1, date: targetDate },
+        checkIn: {
+          month: currentMonth + 1,
+          date: targetDate,
+          dateObj: new Date(year, currentMonth, targetDate),
+        },
       });
+      setsSearchBarClick("OUT");
+    } else {
+      if (targetDateObj < checkIn.dateObj) {
+        setsSearchBarClick("IN");
+        setCheckInOut({
+          ...checkInOut,
+          checkIn: {
+            month: currentMonth + 1,
+            date: targetDate,
+            dateObj: targetDateObj,
+          },
+        });
+      } else {
+        setsSearchBarClick("OUT");
+        setCheckInOut({
+          ...checkInOut,
+          checkOut: {
+            month: currentMonth + 1,
+            date: targetDate,
+            dateObj: new Date(year, currentMonth, targetDate),
+          },
+        });
+      }
+      //check in으로 정한 날짜랑 지금 선택한 날짜랑 비교하는 식 필요 date 객체로 비교해야함
     }
-    console.log(year, month);
   };
 
   const calendarTemplate = dates.map((date, idx) => (
     <div
-      className={checkValidDate(date)}
+      className={getValidDateClassName(year, currentMonth, date)}
       key={"date-" + idx}
       onClick={handleDateClick}
     >

@@ -5,7 +5,8 @@ export type SearchBarToggle = {
 };
 
 export type Date = {
-  year?: number | null;
+  year?: number;
+  dateObj: Object;
   month: number | null;
   date: number | null;
 };
@@ -13,16 +14,15 @@ export type Date = {
 export type CalendarModal = {
   year: number;
   month: number;
-  nextMonth: number;
   today: Date;
 };
 
-export type CalendarFilter = {
+export type Calendar = {
   checkIn: Date;
   checkOut: Date;
 };
 
-export type RoomPriceFilter = {
+export type RoomPrice = {
   min: number | null;
   max: number | null;
 };
