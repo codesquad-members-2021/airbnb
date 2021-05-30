@@ -20,7 +20,7 @@ class ButtonsViewModel: NSObject {
     private var plusMapper: ButtonMapper?
     private var minusMapper: ButtonMapper?
     
-    private var buttonTouchedHandler : (PeopleTypes, Action) -> ()
+    private var buttonTouchedHandler: (PeopleTypes, Action) -> ()
     
     override init() {
         buttonTouchedHandler = { _,_ in }

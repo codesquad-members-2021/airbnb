@@ -13,7 +13,7 @@ struct PriceRange {
     private let fixedMinimunValue: CGFloat = 0.011
     private let fixedMaximumValue: CGFloat = 1.0
     
-    func noticeChanged() -> Bool {
+    func detectChanged() -> Bool {
         return emptyValued() ||
             minimunValue == fixedMinimunValue &&
             maximumValue == fixedMaximumValue

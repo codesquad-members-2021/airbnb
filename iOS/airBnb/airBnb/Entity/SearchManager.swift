@@ -45,6 +45,14 @@ class SearchManager {
         }
     }
     
+    func emptySelectDateStartValued() -> Bool {
+        return selectDates.emptyStartValued()
+    }
+    
+    func detectPriceChanged() -> Bool {
+        return priceRange.detectChanged()
+    }
+    
     func changePrice(from price: priceSlider){
         priceRange.change(from: price)
     }

@@ -20,8 +20,8 @@ class SearchConditionViewController: UIViewController{
     private var cancellable = Set<AnyCancellable>()
     private var deleteDatesSubject = PassthroughSubject<Void, Never>()
     private var nextViewSubject: PassthroughSubject<Void, Never>?
-    
-    private var locationInfoViewModel: SearchConditionViewModel?
+
+    private var searchConditionViewModel = SearchConditionViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,48 +35,49 @@ class SearchConditionViewController: UIViewController{
     func inject(from manager : SearchManager?,
                 subject: PassthroughSubject<Void,Never>,
                 state: State) {
-        locationInfoViewModel = SearchConditionViewModel(from: manager ?? .init(), of: state)
+        searchConditionViewModel.update(from: manager, of: state)
         nextViewSubject = subject
         deleteDatesSubject.sink { [weak self] _ in
-            self?.locationInfoViewModel?.deleteData()
+            self?.searchConditionViewModel.deleteData()
         }.store(in: &cancellable)
     }
         
     private func bind() {
-        locationInfoViewModel?.releaseSelectLocation().sink { [weak self] (selectLocation) in
+        searchConditionViewModel.releaseSelectLocation()?.sink { [weak self] (selectLocation) in
             self?.locationLabel.text = selectLocation
         }.store(in: &cancellable)
         
-        locationInfoViewModel?.releaseSelectDates().sink { [weak self] (selectDates) in
+        searchConditionViewModel.releaseSelectDates()?.sink { [weak self] (selectDates) in
             self?.checkInOutLabel.text = selectDates
         }.store(in: &cancellable)
         
-        locationInfoViewModel?.allowSelectDates().sink { [weak self] (enable) in
+        searchConditionViewModel.allowSelectDates()?.sink { [weak self] (enable) in
             self?.nextButton.isEnabled = enable
         }.store(in: &cancellable)
         
-        locationInfoViewModel?.skipAndDeleteString().sink { [weak self] (text) in
+        searchConditionViewModel.showSkipDeleteText()?.sink { [weak self] (text) in
             self?.skipAndDeleteButton.setTitle(text, for: .normal)
         }.store(in: &cancellable)
         
-        locationInfoViewModel?.releasePriceRange().sink { [weak self] (price) in
+        searchConditionViewModel.releasePriceRange()?.sink { [weak self] (price) in
             self?.priceLabel.text = price
         }.store(in: &cancellable)
         
-        locationInfoViewModel?.allowPriceNextButton().sink { [weak self] (enable) in
+        searchConditionViewModel.allowPriceNextButton()?.sink { [weak self] (enable) in
             self?.nextButton.isEnabled = enable
         }.store(in: &cancellable)
         
-        locationInfoViewModel?.showPeopleTotal().sink { [weak self] (guest, baby) in
+        searchConditionViewModel.showPeopleTotal()?.sink { [weak self] (guest, baby) in
             let guest = guest == 0 ? "" : "게스트 \(guest)명"
             let baby = baby == 0 ? "" : "유아 \(baby)명"
             self?.numOfPeopleLabel.text =
                 guest + " " + baby
         }.store(in: &cancellable)
         
-        locationInfoViewModel?.allowPeopleNextButton().sink { [weak self] (enable) in
+        searchConditionViewModel.allowPeopleNextButton()?.sink { [weak self] (enable) in
             self?.nextButton.isEnabled = enable
-            enable ? self?.nextButton.setTitle("검색", for: .normal) : self?.nextButton.setTitle("다음", for: .normal)
+            enable ? self?.nextButton.setTitle("검색", for: .normal) :
+                self?.nextButton.setTitle("다음", for: .normal)
         }.store(in: &cancellable)
     }
     
@@ -85,10 +86,7 @@ class SearchConditionViewController: UIViewController{
     }
     
     @IBAction func skipAndDeleteButtonTouched(_ sender: UIButton) {
-        guard let viewModel = locationInfoViewModel else {
-            return
-        }
-        viewModel.setSkipAndDeleteAction() ?
+        searchConditionViewModel.setSkipAndDeleteAction() ?
             self.nextViewSubject?.send() : self.deleteDatesSubject.send()
     }
 }
