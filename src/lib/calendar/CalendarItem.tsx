@@ -1,8 +1,9 @@
+import React from 'react'
 import styled from "styled-components";
+import Day from "./Day";
 import { DayWrapper } from "../utils/styled";
 import { LAST_DAYS, FIRST_DAYS } from "../utils/constant";
 import { Calendar, ClickTargetType } from "../utils/types";
-import Day from "./Day";
 
 export default function CalendarItem({
   year,

@@ -1,22 +1,21 @@
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi";
-import { useCalendarDispatch } from "../calendar/CalendarProvider";
+import {
+  useCalendarDispatch,
+  useConstantState,
+} from "../calendar/CalendarProvider";
 import { MESSAGE } from "../utils/constant";
 import { Direction } from "../utils/types";
 
 type CarouselProps = {
   children: React.ReactNode;
-  countOfItemToShow: number;
 };
 
-export default function Carousel({
-  children,
-  countOfItemToShow,
-}: CarouselProps) {
+export default function Carousel({ children }: CarouselProps) {
   const [x, setX] = useState(-1);
   const items = useMemo(() => createItems(children), [children]);
-
+  const { countOfMonth } = useConstantState();
   const dispatch = useCalendarDispatch();
   const moving = useRef<boolean>(false);
 
@@ -50,9 +49,9 @@ export default function Carousel({
   return (
     <CarouselWarpper>
       <CarouselContainer>
-        <Slider {...{ x, onAnimationEnd, count: countOfItemToShow }}>
+        <Slider {...{ x, onAnimationEnd, count: countOfMonth }}>
           {items.map((el) => (
-            <Item count={countOfItemToShow}>{el}</Item>
+            <Item count={countOfMonth}>{el}</Item>
           ))}
         </Slider>
       </CarouselContainer>
@@ -73,7 +72,7 @@ export default function Carousel({
 }
 
 Carousel.defaultProps = {
-  countOfItemToShow: 2,
+  countOfMonth: 2,
 };
 
 function createItems(children: React.ReactNode) {

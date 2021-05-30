@@ -15,7 +15,10 @@ export const MESSAGE = {
   },
 };
 
-export const DAYS = ["SON", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+export const DAYS: { [key: string]: string[] } = {
+  en: ["SON", "MON", "TUE", "WED", "THU", "FRI", "SAT"],
+  ko: ["일", "월", "화", "수", "목", "금", "토"],
+};
 
 export const LAST_DAYS: { [key: number]: number[] } = {
   "28": createDays(28),

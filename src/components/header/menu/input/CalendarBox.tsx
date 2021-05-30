@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Calendar from "@jjunyjjuny/react-calendar";
+import Calendar from "../../../../lib/calendar/Calendar";
 
 const CalendarBox = () => {
   return <Calendar />;
