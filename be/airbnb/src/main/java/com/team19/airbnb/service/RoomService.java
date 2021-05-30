@@ -45,4 +45,9 @@ public class RoomService {
                 .map(Room::getPricePerDay)
                 .collect(Collectors.toList());
     }
+
+    public RoomDetailResponseDTO showRoomDetail() {
+        final Room room = roomDAO.findById(1L).orElseThrow(RoomNotFoundException::new);
+        return new RoomDetailResponseDTO.Builder(room).totalPrice(BigDecimal.valueOf(1000)).build();
+    }
 }

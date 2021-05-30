@@ -120,9 +120,8 @@ public class Booking {
         this.user = userId;
     }
 
-    //영어 표현 맞는지 모르곘지만
-    public void calculateTotalPrice() {
-
+    public void calculateTotalPrice(BigDecimal roomPricePerDay) {
+        this.totalPrice = new Price.Builder(countDays(), roomPricePerDay).build().getTotalPrice();
     }
 
     public Long countDays() {
