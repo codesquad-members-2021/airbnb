@@ -1,10 +1,10 @@
-import Carousel from "../carousel/Carousel";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { MESSAGE } from "../utils/constant";
+import Carousel from "../carousel/Carousel";
 import CalendarItem from "./CalendarItem";
 import CalendarProvider, { useCalendarState } from "./CalendarProvider";
 import { OnClickDay, _OnClickResult, ClickTargetType } from "../utils/types";
-import { useState } from "react";
+import { MESSAGE } from "../utils/constant";
 import { renderWeeks } from "../utils/renderFn";
 import { GlobalStyle } from "../utils/styled";
 
@@ -13,9 +13,10 @@ function calendarContext() {
 
   type CalendarProps = OnClickDay & {
     countOfMonth: number;
+    lang: string;
   };
 
-  function Calendar({ onClickDay, countOfMonth }: CalendarProps) {
+  function Calendar({ onClickDay, countOfMonth, lang }: CalendarProps) {
     if (countOfMonth < 1 || countOfMonth > 12) {
       throw new Error(MESSAGE.ERROR.INVALID_RANGE_COUNT_OF_MONTH);
     }
@@ -24,13 +25,13 @@ function calendarContext() {
     calendarTypeChanger = setClickTarget;
 
     return (
-      <CalendarProvider
-        onClickDay={onClickDay}
-        countOfMonth={countOfMonth}
-        setClickTarget={setClickTarget}
-      >
+      <CalendarProvider {...{ onClickDay, countOfMonth, setClickTarget, lang }}>
         <GlobalStyle />
-        <InnerCalendar countOfMonth={countOfMonth} clickTarget={clickTarget} />
+        <InnerCalendar
+          countOfMonth={countOfMonth}
+          lang={lang}
+          clickTarget={clickTarget}
+        />
       </CalendarProvider>
     );
   }
@@ -38,6 +39,7 @@ function calendarContext() {
   Calendar.defaultProps = {
     countOfMonth: 2,
     type: "start",
+    lang: "en",
   };
 
   type ControllerProps = {
@@ -78,16 +80,18 @@ function calendarContext() {
 function InnerCalendar({
   countOfMonth,
   clickTarget,
+  lang,
 }: {
   countOfMonth: number;
   clickTarget: ClickTargetType;
+  lang: string;
 }) {
   const { calendarList } = useCalendarState();
 
   return (
     <CalendarWrapper>
-      {renderWeeks(countOfMonth)}
-      <Carousel countOfItemToShow={countOfMonth}>
+      {renderWeeks(lang, countOfMonth)}
+      <Carousel>
         {calendarList.map((calendar) => (
           <CalendarItem {...calendar} clickTarget={clickTarget} />
         ))}

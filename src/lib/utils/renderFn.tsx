@@ -1,19 +1,17 @@
+import React from "react";
 import styled from "styled-components";
+import { DAYS } from "./constant";
 
-export const renderWeeks = (count: number) => {
+export const renderWeeks = (lang: string, count: number) => {
   return (
     <WeeksContainer>
       {Array(count)
         .fill(null)
         .map((el) => (
           <Weeks count={count}>
-            <li>일</li>
-            <li>월</li>
-            <li>화</li>
-            <li>수</li>
-            <li>목</li>
-            <li>금</li>
-            <li>토</li>
+            {DAYS[lang].map((day) => (
+              <li>{day}</li>
+            ))}
           </Weeks>
         ))}
     </WeeksContainer>

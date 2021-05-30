@@ -1,13 +1,14 @@
-import { Dispatch } from "react";
+import React, { Dispatch } from "react";
 import styled from "styled-components";
 import {
   useDatesDispatch,
   useCalendarMethod,
   useDatesState,
+  useConstantState,
 } from "./CalendarProvider";
+import { DatesAction } from "./CalendarReducer";
 import { DAYS, MESSAGE } from "../utils/constant";
 import { Calendar, ClickTargetType } from "../utils/types";
-import { DatesAction } from "./CalendarReducer";
 import { DayWrapper } from "../utils/styled";
 
 export default function Day({
@@ -21,6 +22,7 @@ export default function Day({
 }) {
   const { onClickDay, setClickTarget } = useCalendarMethod();
   const { startDate, endDate } = useDatesState();
+  const { lang } = useConstantState();
   const thisDate = new Date(year, month - 1, day);
   const done = Boolean(startDate && endDate);
   const dispatch = useDatesDispatch();
@@ -48,7 +50,7 @@ export default function Day({
             year,
             month,
             day,
-            week: getWeek(firstDay, day),
+            week: getWeek(lang, firstDay, day),
             nextClickTarget: resultType,
           });
         }}
@@ -173,9 +175,9 @@ const actionByCase =
     }
   };
 
-function getWeek(firstDay: number, day: number): string {
+function getWeek(lang: string, firstDay: number, day: number): string {
   const i = (firstDay + day - 1) % 7;
-  return DAYS[i];
+  return DAYS[lang][i];
 }
 
 const DayCircle = styled.div`

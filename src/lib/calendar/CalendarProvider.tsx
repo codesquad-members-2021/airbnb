@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useReducer,
 } from "react";
-import { MESSAGE } from "../utils/constant";
+import { DAYS, MESSAGE } from "../utils/constant";
 import {
   Calendar,
   CurrentDay,
@@ -25,6 +25,7 @@ type CalendarProviderProps = OnClickDay & {
   children: React.ReactNode;
   countOfMonth: number;
   setClickTarget: (clickTarget: ClickTargetType) => void;
+  lang: string;
 };
 
 const TODAY = getCurrentDate();
@@ -34,6 +35,7 @@ export default function CalendarProvider({
   onClickDay,
   countOfMonth,
   setClickTarget,
+  lang,
 }: CalendarProviderProps) {
   const [dates, datesDispatch] = useReducer(datesReducer, {
     startDate: null,
@@ -46,8 +48,13 @@ export default function CalendarProvider({
     calendarList: useMemo(() => createCalendarList(countOfMonth, TODAY), []),
   });
 
+  const constant = {
+    lang: lang,
+    countOfMonth,
+  };
+
   return (
-    <StateContext.Provider value={{ dates, calendar }}>
+    <StateContext.Provider value={{ dates, calendar, constant }}>
       <DispatchContext.Provider value={{ datesDispatch, calendarDispatch }}>
         <MethodContext.Provider value={{ onClickDay, setClickTarget }}>
           {children}
@@ -67,6 +74,11 @@ export function useDatesState() {
   if (!state) throw new Error(MESSAGE.ERROR.INVALID_PROVIDER);
   return state.dates;
 }
+export function useConstantState() {
+  const state = useContext(StateContext);
+  if (!state) throw new Error(MESSAGE.ERROR.INVALID_PROVIDER);
+  return state.constant;
+}
 export function useDatesDispatch() {
   const dispatch = useContext(DispatchContext);
   if (!dispatch) throw new Error(MESSAGE.ERROR.INVALID_PROVIDER);
@@ -83,7 +95,11 @@ export function useCalendarMethod() {
   return method;
 }
 
-type State = { dates: DatesState; calendar: CalendarState };
+type State = {
+  dates: DatesState;
+  calendar: CalendarState;
+  constant: { countOfMonth: number; lang: string };
+};
 const StateContext = createContext<State | null>(null);
 
 type Dispatches = {
