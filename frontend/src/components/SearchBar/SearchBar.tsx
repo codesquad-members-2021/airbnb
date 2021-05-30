@@ -22,13 +22,8 @@ const SearchBar = () => {
   }, []);
 
   const ClosePopup = (e: MouseEvent): void => {
-    console.log(33);
     const target = e.target as HTMLElement;
-    if (!target.closest(".search-bar")) {
-      console.log("Sss");
-
-      setsSearchBarClick("RESET"); //recoil reset 으로 바꿀 수 있을 듯
-    }
+    if (!target.closest(".search-bar")) setsSearchBarClick("RESET"); //recoil reset 으로 바꿀 수 있을 듯
   };
   return (
     <SearchBarLayout>

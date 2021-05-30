@@ -9,12 +9,11 @@ const CalendarModalLayout = styled.div`
   right: 0;
   left: 0;
   z-index: 1;
-  /* overflow: hidden; */
+  overflow: hidden;
   margin-top: 1.2rem;
   background: #ffffff;
   box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px;
   border-radius: 40px;
-
 `;
 
 const CalendarSelector = styled.div`
@@ -55,8 +54,6 @@ const CalendarSelector = styled.div`
 `;
 
 const CalendarLayout = styled.div`
-  /* outline: red solid 1px; */
-  /*margin: 1.6rem;*/
   padding: 2.5rem;
   font-size: 1.6rem;
   font-weight: 600;
@@ -70,11 +67,12 @@ const LeftArrowBtn = styled.button`
   position: absolute;
   left: 3rem;
   top: 2rem;
-  width: 2rem;
-  height: 2rem;
+  width: 3rem;
+  height: 3rem;
   border: none;
   border-radius: 99px;
   background-color: #fff;
+  cursor: pointer;
 
   &:hover {
     background-color: rgb(247, 247, 247);
@@ -89,11 +87,12 @@ const RightArrowBtn = styled.button`
   position: absolute;
   right: 3rem;
   top: 2rem;
-  width: 2rem;
-  height: 2rem;
+  width: 3rem;
+  height: 3rem;
   border: none;
   border-radius: 99px;
   background-color: #fff;
+  cursor: pointer;
 
   &:hover {
     background-color: rgb(247, 247, 247);
@@ -107,7 +106,7 @@ const RightArrowBtn = styled.button`
 
 const CurrentMonth = styled.div`
   /*border: 1px solid green;*/
-  
+
   .calendar-container {
     width: 100%;
   }
@@ -145,29 +144,46 @@ const CurrentMonth = styled.div`
   .dates {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    justify-items: center; //grid
-    
+    justify-items: center;
+    cursor: pointer;
+
+    .invalid-date {
+      color: #bdbdbd;
+      pointer-events: none;
+    }
+
     & > div {
-      display: flex;
-      align-items: center; //flegx
-      height: 5rem;
+      // 달력 개별 일자
+      height: 4.8rem;
+      width: 4.8rem;
+      text-align: center;
+      line-height: 4.8rem; // hight와 같게하여 수직 정렬하였음
+      font-size: 1.3rem;
+      font-weight: bold;
+      border: 1px solid white;
+      &:hover {
+        height: 4.8rem;
+        width: 4.8rem;
+        border: 1px black solid;
+        border-radius: 50px;
+      }
     }
   }
 `;
 
 type TCalendarContainer = {
-  _translate : number;
-  flag:boolean;
-}
+  _translate: number;
+  flag: boolean;
+};
 
 const MonthlyCalendarContainer = styled.div`
   //각 달의 달력들을 가로로 쭈욱 가지고 있는 애
   display: grid;
   width: 200%;
   grid-template-columns: repeat(4, 1fr);
-  transform: translateX(${(props:TCalendarContainer) => props._translate}%);
-  transition: ${(props: TCalendarContainer)=> props.flag &&"transform 0.5s"};
-`
+  transform: translateX(${(props: TCalendarContainer) => props._translate}%);
+  transition: ${(props: TCalendarContainer) => props.flag && "transform 0.5s"};
+`;
 
 export {
   CalendarModalLayout,
@@ -178,5 +194,5 @@ export {
   CurrentMonth,
   RiArrowLeftSLine,
   RiArrowRightSLine,
-  MonthlyCalendarContainer
+  MonthlyCalendarContainer,
 };

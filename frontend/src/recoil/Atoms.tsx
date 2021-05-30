@@ -2,9 +2,9 @@ import { atom, selector } from "recoil";
 import * as T from "./AtomTypes";
 
 export const clickCountState = atom({
-  key : "clickCountState",
-  default:0
-})
+  key: "clickCountState",
+  default: 0,
+});
 
 export const checkInClickState = atom({
   key: "checkInClickState",
@@ -84,7 +84,7 @@ export const calendarModalState = atom<T.CalendarModal>({
   default: {
     year: new Date().getFullYear(), //2021
     month: new Date().getMonth(), //5
-    nextMonth : new Date().getMonth(),
+    nextMonth: new Date().getMonth(),
     today: {
       year: new Date().getFullYear(),
       month: new Date().getMonth() + 1,
@@ -116,10 +116,10 @@ export const roomPriceFilterState = atom<T.RoomPriceFilter>({
 });
 
 export const guestFilterState = atom<T.GuestsState>({
-    key: "guestFilterState",
-    default: {
-        adult: null,
-        child: null,
-        toddler:null
-    }
-})
+  key: "guestFilterState",
+  default: {
+    adult: null,
+    child: null,
+    toddler: null,
+  },
+});
