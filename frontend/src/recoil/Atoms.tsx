@@ -109,7 +109,22 @@ export const calendarState = atom<T.Calendar>({
     },
   },
 });
-
+export const checkInState = atom<T.Date>({
+  key: "checkInState",
+  default: {
+    month: null,
+    date: null,
+    dateObj: new Date(),
+  },
+});
+export const checkOutState = atom<T.Date>({
+  key: "checkOutState",
+  default: {
+    month: null,
+    date: null,
+    dateObj: new Date(),
+  },
+});
 export const roomPriceState = atom<T.RoomPrice>({
   key: "roomPriceState",
   default: {
@@ -125,4 +140,9 @@ export const guestState = atom<T.GuestsState>({
     child: null,
     toddler: null,
   },
+});
+
+export const defaultState = atom({
+  key: "defaultState",
+  default: null,
 });

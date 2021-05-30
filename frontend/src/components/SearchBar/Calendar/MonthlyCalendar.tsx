@@ -2,7 +2,8 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { useState } from "react";
 import {
   calendarModalState,
-  calendarState,
+  checkInState,
+  checkOutState,
   searchBarClickState,
 } from "recoil/Atoms";
 import * as S from "components/SearchBar/Calendar/CalendarStyles";
@@ -22,8 +23,9 @@ const MonthlyCalendar: React.FunctionComponent<MonthProps> = ({
 }) => {
   const setsSearchBarClick = useSetRecoilState(searchBarClickState);
   const { year, month, today } = useRecoilValue(calendarModalState);
-  const [checkInOut, setCheckInOut] = useRecoilState(calendarState);
-  const { checkIn, checkOut } = checkInOut;
+  const [checkIn, setCheckIn] = useRecoilState(checkInState);
+  const [checkOut, setCheckOut] = useRecoilState(checkOutState);
+
   const currentMonth = getCalendarMonth(monthType, month);
   const dates = getDateList(year, currentMonth);
   const realMonth = new Date(year, currentMonth).getMonth() + 1;
@@ -34,35 +36,26 @@ const MonthlyCalendar: React.FunctionComponent<MonthProps> = ({
     const targetDateObj = new Date(year, currentMonth, targetDate);
     console.log(targetDateObj);
     if (!checkIn.month) {
-      setCheckInOut({
-        ...checkInOut,
-        checkIn: {
-          month: currentMonth + 1,
-          date: targetDate,
-          dateObj: new Date(year, currentMonth, targetDate),
-        },
+      setCheckIn({
+        month: currentMonth + 1,
+        date: targetDate,
+        dateObj: new Date(year, currentMonth, targetDate),
       });
       setsSearchBarClick("OUT");
     } else {
       if (targetDateObj < checkIn.dateObj) {
         setsSearchBarClick("IN");
-        setCheckInOut({
-          ...checkInOut,
-          checkIn: {
-            month: currentMonth + 1,
-            date: targetDate,
-            dateObj: targetDateObj,
-          },
+        setCheckIn({
+          month: currentMonth + 1,
+          date: targetDate,
+          dateObj: targetDateObj,
         });
       } else {
         setsSearchBarClick("OUT");
-        setCheckInOut({
-          ...checkInOut,
-          checkOut: {
-            month: currentMonth + 1,
-            date: targetDate,
-            dateObj: new Date(year, currentMonth, targetDate),
-          },
+        setCheckOut({
+          month: currentMonth + 1,
+          date: targetDate,
+          dateObj: new Date(year, currentMonth, targetDate),
         });
       }
       //check in으로 정한 날짜랑 지금 선택한 날짜랑 비교하는 식 필요 date 객체로 비교해야함
