@@ -84,8 +84,6 @@ const SearchBarRow = styled.div`
   & + & {
     margin-top: 8px;
   }
-  display: flex;
-  justify-content: flex-end;
 `;
 
 const SearchMenuList = styled.ul`

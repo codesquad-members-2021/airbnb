@@ -4,6 +4,7 @@ import {
   useSearchBarDispatch,
   useSearchBarState,
 } from '../../../../../contexts/SearchBarContext';
+import CalendarCarousel from './CalendarCarousel';
 import Modal from '../../../../Common/Modal';
 import Calendar from './Calendar';
 
@@ -16,7 +17,7 @@ const CalendarModal = () => {
   );
   const calendarNextKey = useRef(4);
 
-  const { calendar } = useSearchBarState();
+  const state = useSearchBarState();
   const dispatch = useSearchBarDispatch();
 
   // =======
@@ -45,14 +46,14 @@ const CalendarModal = () => {
   const updateOnNext = (monthOption : number) =>
     setCalendars((calendars) => {
       const arrCalendars = calendars.filter((_, i) => i !== 0);
-      const lastInsert = <Calendar key={calendarNextKey.current}initMouthOption={monthOption} />
+      const lastInsert = <Calendar key={calendarNextKey.current} initMouthOption={monthOption} />
       calendarNextKey.current++;
       return [...arrCalendars, lastInsert];
     });
 
 
   useEffect(() => {
-    const { firstMonthOption, lastMonthOption } = calendar;
+    const { firstMonthOption, lastMonthOption } = state.calendar;
     if (!firstMonthOption && !lastMonthOption) return;
 
     const firstCalendar = calendars.find((cal) => cal.props.initMouthOption === firstMonthOption);
@@ -63,19 +64,21 @@ const CalendarModal = () => {
     // ▶ 클릭 시, lastCalendar는 없는 상태가 됨. 만들어야 함 | 맨 처음에 있는 Calendar는 사라져야함.
     else if (!lastCalendar) updateOnNext(lastMonthOption);
 
-  }, [calendar]);
+  }, [state.calendar]);
 
   // =======
 
   // 3. Events
-  const handlePrevMonthClick = () => dispatch({ type: 'DECREASE_CALENDAR_MOUTH_OPTION' });
-  const handleNextMonthClick = () => dispatch({ type: 'INCREASE_CALENDAR_MOUTH_OPTION' });
+  const carouselOptions = {
+    handleLeftClick: () => dispatch({ type: 'DECREASE_CALENDAR_MOUTH_OPTION' }),
+    handleRightClick: () => dispatch({ type: 'INCREASE_CALENDAR_MOUTH_OPTION' })
+  }
 
   return (
     <CalendarModalLayout>
-      <button onClick={handlePrevMonthClick}>{"<"}</button>
-      {calendars}
-      <button onClick={handleNextMonthClick}>{">"}</button>
+      <CalendarCarousel {...carouselOptions}>
+        {calendars}
+      </CalendarCarousel>
       {/* 여기서 버튼 이전 & 다음 눌러서 컨트롤 */}
     </CalendarModalLayout>
   );
@@ -85,12 +88,16 @@ export default CalendarModal;
 
 // --- Styled Components ---
 const CalendarModalLayout = styled(Modal)`
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  /* width: 100%; */
+
   justify-content: center;
   align-items: flex-start;
-  column-gap: 48px;
-
-  width: 100%;
-  padding: 70px 43px;
+  column-gap: 24px;
+  padding: 36px 24px 32px;
   border-radius: 40px;
   background-color: ${({ theme }) => theme.colors.white};
 `;

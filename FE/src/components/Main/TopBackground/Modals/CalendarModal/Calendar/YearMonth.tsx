@@ -14,5 +14,5 @@ const YearMonthLayout = styled.div`
   align-items: center;
   font-weight: ${({theme}) => theme.fontWeight.bold};
   font-size: ${({theme}) => theme.fontSize.L};
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 `;

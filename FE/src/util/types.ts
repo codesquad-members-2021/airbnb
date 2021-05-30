@@ -5,6 +5,8 @@ export type CustomChildren =
   | React.ReactChildren
   | React.ReactChildren[];
 
+export type CustomOnClick = (e: React.MouseEvent<HTMLElement>) => void;
+
 export interface ICustomProps {
   children?: CustomChildren;
 }
