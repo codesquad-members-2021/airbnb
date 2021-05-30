@@ -5,15 +5,12 @@ import Month from './Month';
 import { CalendarType } from '@Components/commons/baseType';
 import { calendarStateSelector, monthIndexAtom } from '@/recoil/atoms';
 import { getDate } from '@/utils/calendarUtil';
+import { delay } from './../../utils/serviceUtils';
 
 const Calendar = ({ entryDate }: CalendarType) => {
   const calendarState = useRecoilValue(calendarStateSelector);
   const setMonthIndex = useSetRecoilState(monthIndexAtom);
   const [moveLocationState, setMoveLocationState] = useState(0);
-
-  function delay(ms : number) {
-    return new Promise((_) => setTimeout(_, ms));
-  }
 
   const handleClickMonthMove = useCallback((moveCount: number) => async () => {
     setMoveLocationState(-moveCount * 110);
@@ -24,22 +21,20 @@ const Calendar = ({ entryDate }: CalendarType) => {
   }, []);
 
   return (
-    <>
-      <CalendarWrapper {...{ entryDate }}>
-        <CalendarDataWrapper {...{ moveLocationState }}>
-          <LeftCalendarWrapper>
-            <Month left='0%' date={getDate(calendarState.leftMonthDate, -2)}  {...{ handleClickMonthMove }} />
-            <Month right='0%' date={getDate(calendarState.leftMonthDate, -1)}  {...{ handleClickMonthMove }} />
-          </LeftCalendarWrapper>
-          <Month left='0%' date={calendarState.leftMonthDate} {...{ handleClickMonthMove }} />
-          <Month right='0%' date={calendarState.rightMonthDate} {...{ handleClickMonthMove }} />
-          <RightCalendarWrapper>
-            <Month left='0%' date={getDate(calendarState.rightMonthDate, 1)}  {...{ handleClickMonthMove }} />
-            <Month right='0%' date={getDate(calendarState.rightMonthDate, 2)}  {...{ handleClickMonthMove }} />
-          </RightCalendarWrapper>
-        </CalendarDataWrapper>
-      </CalendarWrapper>
-    </>
+    <CalendarWrapper {...{ entryDate }}>
+      <CalendarDataWrapper {...{ moveLocationState }}>
+        <LeftCalendarWrapper>
+          <Month left='0%' date={getDate(calendarState.leftMonthDate, -2)}  {...{ handleClickMonthMove }} />
+          <Month right='0%' date={getDate(calendarState.leftMonthDate, -1)}  {...{ handleClickMonthMove }} />
+        </LeftCalendarWrapper>
+        <Month left='0%' date={calendarState.leftMonthDate} {...{ handleClickMonthMove }} />
+        <Month right='0%' date={calendarState.rightMonthDate} {...{ handleClickMonthMove }} />
+        <RightCalendarWrapper>
+          <Month left='0%' date={getDate(calendarState.rightMonthDate, 1)}  {...{ handleClickMonthMove }} />
+          <Month right='0%' date={getDate(calendarState.rightMonthDate, 2)}  {...{ handleClickMonthMove }} />
+        </RightCalendarWrapper>
+      </CalendarDataWrapper>
+    </CalendarWrapper>
   )
 }
 
@@ -64,7 +59,7 @@ const CalendarDataWrapper = styled.div<MoveLocationType>`
   display:flex;
   width: 100%;
   transform: ${({ moveLocationState }) => moveLocationState ? `translateX(${moveLocationState}%)` : `translateX(0%)`};
-  transition:${({ moveLocationState }) =>  moveLocationState ? 'all 0.5s ease-out' : 'none'}; 
+  transition:${({ moveLocationState }) => moveLocationState ? 'all 0.5s ease-out' : 'none'}; 
 `;
 
 const LeftCalendarWrapper = styled.div`

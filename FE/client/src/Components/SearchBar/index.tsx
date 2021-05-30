@@ -21,6 +21,7 @@ const SearchBar = () => {
       focus: true,
       [clickTarget]: true
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
