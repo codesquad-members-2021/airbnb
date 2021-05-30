@@ -30,8 +30,7 @@ public class RoomService {
     }
 
     public List<BigDecimal> searchPriceRangeTest(Double latitude, Double longitude) {
-        return roomDAO.findPriceByAddressTest().stream()
-                .filter(room -> room.getLocation().checkLocation(latitude, longitude))
+        return roomDAO.findPriceByAddressTest(latitude, longitude).stream()
                 .map(room -> room.getPricePerDay())
                 .collect(Collectors.toList());
     }

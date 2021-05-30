@@ -62,8 +62,9 @@ public class RoomDAO {
         return result;
     }
 
-    public List<Room> findPriceByAddressTest() {
-        String sql = "SELECT * FROM room";
-        return jdbcTemplate.query(sql, roomRowMapper());
+    public List<Room> findPriceByAddressTest(Double latitude, Double longitude) {
+
+        String sql = "SELECT * , (6371*acos(cos(radians(?))*cos(radians(latitude))*cos(radians(longitude) -radians(?))+sin(radians(?))*sin(radians(latitude)))) AS distance FROM room HAVING distance <= 0.5 ORDER BY distance";
+        return jdbcTemplate.query(sql, roomRowMapper(), latitude, longitude, latitude);
     }
 }
