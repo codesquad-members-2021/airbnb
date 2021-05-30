@@ -7,7 +7,7 @@ import {
   checkInClickState,
   checkOutClickState,
   searchBarClickState,
-  calendarFilterState,
+  calendarState,
 } from "recoil/Atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
@@ -15,7 +15,7 @@ const Calendar = () => {
   const setsSearchBarClick = useSetRecoilState(searchBarClickState);
   const isCheckInClicked = useRecoilValue(checkInClickState);
   const isCheckOutClicked = useRecoilValue(checkOutClickState);
-  const { checkIn, checkOut } = useRecoilValue(calendarFilterState);
+  const { checkIn, checkOut } = useRecoilValue(calendarState);
   return (
     <>
       <CalendarLayout>
@@ -29,7 +29,9 @@ const Calendar = () => {
         >
           <S.SearchBarTitle>체크인</S.SearchBarTitle>
           <S.SearchBarText>
-            {checkIn.month}월{checkIn.date}일
+            {checkIn.month
+              ? `${checkIn.month}월${checkIn.date}일`
+              : "날짜 입력"}
           </S.SearchBarText>
           <CancelButton />
         </S.SearchBarBox>
@@ -42,7 +44,11 @@ const Calendar = () => {
           }}
         >
           <S.SearchBarTitle>체크아웃</S.SearchBarTitle>
-          <S.SearchBarText>날짜 입력</S.SearchBarText>
+          <S.SearchBarText>
+            {checkOut.month
+              ? `${checkOut.month}월${checkOut.date}일`
+              : "날짜 입력"}
+          </S.SearchBarText>
           <CancelButton />
         </S.SearchBarBox>
       </CalendarLayout>

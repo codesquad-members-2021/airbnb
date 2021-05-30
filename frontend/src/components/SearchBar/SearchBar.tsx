@@ -14,7 +14,6 @@ import React, { useState, useEffect } from "react";
 import { searchBarClickState } from "recoil/Atoms";
 
 const SearchBar = () => {
-  // const Reset = useResetRecoilState(searchBarClickState);
   const setsSearchBarClick = useSetRecoilState(searchBarClickState);
 
   useEffect(() => {
@@ -23,7 +22,7 @@ const SearchBar = () => {
 
   const ClosePopup = (e: MouseEvent): void => {
     const target = e.target as HTMLElement;
-    if (!target.closest(".search-bar")) setsSearchBarClick("RESET"); //recoil reset 으로 바꿀 수 있을 듯
+    if (!target.closest(".search-bar")) setsSearchBarClick("RESET"); //recoil reset 으로 ?
   };
   return (
     <SearchBarLayout>
@@ -36,7 +35,6 @@ const SearchBar = () => {
     </SearchBarLayout>
   );
 };
-//검색 이라는 글씨를 넣었다 뺐다해야됨
 
 const SearchBarButton = styled(smallSearchBtn)`
   position: absolute;
@@ -46,7 +44,7 @@ const SearchBarButton = styled(smallSearchBtn)`
 `;
 
 const SearchBarContainer = styled.div`
-  position: relative; //여기
+  position: relative;
   display: flex;
   width: 100%;
   height: 76px;
@@ -71,8 +69,3 @@ const SearchBarLayout = styled.div`
 `;
 
 export default SearchBar;
-// const initialState = {
-//   calendar: { month: 0, date: 0 },
-//   price: { min: 0, max: 0 },
-//   guests: { guest: 0, toddler: 0 },
-// };

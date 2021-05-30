@@ -24,6 +24,7 @@ export const guestsClickState = atom({
   key: "guestsClickState",
   default: false,
 });
+
 export const searchBarClickState = selector({
   key: "searchBarClickState",
   get: ({ get }) => {
@@ -32,9 +33,9 @@ export const searchBarClickState = selector({
     const checkOut = get(checkOutClickState);
     const guests = get(guestsClickState);
   },
-  set: ({ set }, clickedFilter) => {
+  set: ({ set }, clicked) => {
     // 2번째 파라미터 에는 추가로 받을 인자를 나타냅니다.
-    switch (clickedFilter) {
+    switch (clicked) {
       case "IN":
         set(checkInClickState, true);
         set(checkOutClickState, false);
@@ -66,7 +67,7 @@ export const searchBarClickState = selector({
         set(guestsClickState, false);
         break;
       default:
-        throw new Error("Unhandled Filter Type");
+        throw new Error("Unhandled  Type");
     }
   },
 });
@@ -84,39 +85,41 @@ export const calendarModalState = atom<T.CalendarModal>({
   default: {
     year: new Date().getFullYear(), //2021
     month: new Date().getMonth(), //5
-    nextMonth: new Date().getMonth(),
     today: {
       year: new Date().getFullYear(),
       month: new Date().getMonth() + 1,
       date: new Date().getDate(),
+      dateObj: new Date(),
     },
   },
 });
 
-export const calendarFilterState = atom<T.CalendarFilter>({
-  key: "calendarFilterState",
+export const calendarState = atom<T.Calendar>({
+  key: "calendarState",
   default: {
     checkIn: {
       month: null,
       date: null,
+      dateObj: new Date(),
     },
     checkOut: {
-      month: null,
+      month: null, //보여지는 그대로 month +1 로 저장됨
       date: null,
+      dateObj: new Date(),
     },
   },
 });
 
-export const roomPriceFilterState = atom<T.RoomPriceFilter>({
-  key: "roomPriceFilterState",
+export const roomPriceState = atom<T.RoomPrice>({
+  key: "roomPriceState",
   default: {
     min: null,
     max: null,
   },
 });
 
-export const guestFilterState = atom<T.GuestsState>({
-  key: "guestFilterState",
+export const guestState = atom<T.GuestsState>({
+  key: "guestState",
   default: {
     adult: null,
     child: null,

@@ -105,8 +105,6 @@ const RightArrowBtn = styled.button`
 `;
 
 const CurrentMonth = styled.div`
-  /*border: 1px solid green;*/
-
   .calendar-container {
     width: 100%;
   }
@@ -150,6 +148,11 @@ const CurrentMonth = styled.div`
     .invalid-date {
       color: #bdbdbd;
       pointer-events: none;
+    }
+    .clickedDate {
+      background-color: black;
+      color: white;
+      border-radius: 50px;
     }
 
     & > div {

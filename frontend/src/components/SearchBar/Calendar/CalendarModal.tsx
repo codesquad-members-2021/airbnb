@@ -12,7 +12,7 @@ const CalendarModal = () => {
     "MONTH_AFTER_NEXT",
   ];
   const [currentMonth, setCurrentMonth] = useRecoilState(calendarModalState);
-  const { year, month, today } = currentMonth;
+  const { year } = currentMonth;
   const [locationX, setLocationX] = useState(-25);
   const [direction, setDirection] = useState("");
   const [transitionFlag, setTransitionFlag] = useState(false);
@@ -43,7 +43,7 @@ const CalendarModal = () => {
       setTransitionFlag(false);
     } else {
       setLocationX(-25);
-      console.log(transitionFlag);
+
       if (transitionFlag) {
         setCurrentMonth({
           ...currentMonth,
