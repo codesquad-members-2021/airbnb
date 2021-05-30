@@ -145,8 +145,14 @@ final class CalendarViewController: UIViewController {
     
     private var accommodationConditionTableViewDataSource: AccommodationConditionTableViewDataSource?
     private var calendarCollecionViewDataSource: CalendarCollectionViewDataSource?
+    private var viewModel: (AnySearchConditionHandleModel<[Month]> & CalendarManageModel)?
     
-    var viewModel: (AnySearchConditionHandleModel<[Month]> & CalendarManageModel)?
+    static func create(with viewModel: AnySearchConditionHandleModel<[Month]> & CalendarManageModel) -> CalendarViewController {
+        let storyboard = StoryboardFactory.create(.accommodationConditions)
+        let calendarViewController = ViewControllerFactory.create(from: storyboard, type: CalendarViewController.self)
+        calendarViewController.viewModel = viewModel
+        return calendarViewController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

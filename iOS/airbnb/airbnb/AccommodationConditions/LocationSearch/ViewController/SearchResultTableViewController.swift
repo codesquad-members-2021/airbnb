@@ -18,11 +18,17 @@ final class SearchResultTableViewController: UITableViewController {
     private var viewModel: (AnyResultHandleModel<[Location]> & SearchResultUpdateModel)?
     weak var delegate: SearchResultDelegate?
     
+    static func create(with viewModel: AnyResultHandleModel<[Location]> & SearchResultUpdateModel) -> SearchResultTableViewController {
+        let storyboard = StoryboardFactory.create(.accommodationConditions)
+        let searchResultTableViewController = ViewControllerFactory.create(from: storyboard, type: SearchResultTableViewController.self)
+        searchResultTableViewController.viewModel = viewModel
+        return searchResultTableViewController
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchResultTableViewDataSource = SearchResultTableViewDataSource()
         searchResultTable.dataSource = searchResultTableViewDataSource
-        viewModel = SearchResultViewModel()
         bind()
     }
 

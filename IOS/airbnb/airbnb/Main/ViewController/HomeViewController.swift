@@ -64,8 +64,8 @@ extension HomeViewController: UISearchBarDelegate {
     }
     
     private func pushNextViewController() {
-        let nextStoryBoard = StoryboardFactory.create(.accommodationConditions)
-        let popularLocationViewController = ViewControllerFactory.create(from: nextStoryBoard, type: PopularLocationViewController.self)
+        let popularLocationViewModel = PopularLocationViewModel()
+        let popularLocationViewController = PopularLocationViewController.create(with: popularLocationViewModel)
         self.tabBarController?.navigationItem.backButtonTitle = HomeViewModel.ButtonTitle.back
         self.navigationController?.pushViewController(popularLocationViewController, animated: true)
     }
