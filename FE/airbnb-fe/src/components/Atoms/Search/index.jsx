@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import Price from './Price';
 import Check from './Check';
 import People from './People';
-import CheckModal from './Check/CheckModal';
-import PriceModal from './Price/PriceModal';
-import PeopleModal from './People/PeopleModal';
+import CheckModal from '../Modal/CheckModal';
+import PriceModal from '../Modal/PriceModal';
+import PeopleModal from '../Modal/PeopleModal';
 import SearchBtn from './SearchBtn';
 import modalClickReducer from '../../utils/reducer/modalClickReducer';
 import peopleReducer from '../../utils/reducer/peopleReducer';
@@ -62,6 +62,7 @@ const Search = () => {
         priceData,
         calDispatch,
         calendarData,
+        clicked,
       }}
     >
       <SearchDiv className="searchBar">

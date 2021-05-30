@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import PeopleCard from '../PeopleCard';
+import PeopleCard from './PeopleCard';
 
 const PeopleModal = () => {
   return (
     <PeopleModalDiv>
-      <PeopleCard title={'성인'} type="adult" contents={'만 13세 이상'} />
+      <PeopleCard type="adult" />
       <LineDivider />
-      <PeopleCard title={'어린이'} type="child" contents={'만 2~12세'} />
+      <PeopleCard type="child" />
       <LineDivider />
-      <PeopleCard title={'유아'} type="baby" contents={'만 2세 미만'} />
+      <PeopleCard type="baby" />
     </PeopleModalDiv>
   );
 };

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import AccountMenu from './AccountMenu';
 import NavRadio from './NavRadio';
 import AirbnbIcon from './AirbnbIcon';
-import AccountModal from './AccountMenu/AccountModal';
 
 const Header = () => {
   return (

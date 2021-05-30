@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
-import { SearchContext } from '..';
+import { SearchContext } from '../../Search';
 
 const Slider = () => {
   const { priceData, priceDispatch } = useContext(SearchContext);
@@ -17,7 +17,6 @@ const Slider = () => {
 
   const leftPercent = ((priceData.minPrice - min) / (avg - min)) * 100;
   const rightPercent = ((priceData.maxPrice - avg) / (max - avg)) * 100;
-  console.log(priceData.minPrice);
 
   useEffect(() => {
     setAvg((priceData.maxPrice + priceData.minPrice) / 2);
@@ -61,7 +60,7 @@ const SliderDiv = styled.div`
   text-align: center;
   input {
     border: none;
-    height: 0.3rem;
+    height: 0.05rem;
   }
   input::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -70,7 +69,7 @@ const SliderDiv = styled.div`
     height: 1.5rem;
     background: white;
     cursor: pointer;
-    border: 2px solid #000000;
+    border: 2px solid #333;
     border-radius: 100%;
   }
 `;

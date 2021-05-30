@@ -1,7 +1,11 @@
 import React from 'react';
-
+import Search from '../Atoms/Search';
 const Reservation = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Search></Search>
+    </div>
+  );
 };
 
 export default Reservation;

@@ -1,15 +1,33 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { SearchContext } from '..';
+import peopleTypeJson from '../../../utils/mock/people-type.json';
+import { SearchContext } from '../../Search';
 
-const PeopleCard = ({ type: peopleType, title, contents }) => {
+const PeopleCard = ({ type: peopleType }) => {
   const { peopleCount, peopleDispatch } = useContext(SearchContext);
+  const peopleTypeContent = peopleTypeJson[peopleType];
+
+  const setCountDisable = () =>
+    peopleCount['adult'] + peopleCount['child'] >= 8;
+
+  const handleBabyClick = (type) => {
+    if (type === 'baby') {
+      if (!peopleCount.adult) {
+        peopleDispatch({ type: 'INCREASE', payload: 'baby' });
+        peopleDispatch({ type: 'INCREASE', payload: 'adult' });
+      } else {
+        peopleDispatch({ type: 'INCREASE', payload: 'baby' });
+      }
+    } else {
+      peopleDispatch({ type: 'INCREASE', payload: `${type}` });
+    }
+  };
 
   return (
     <PeopleCardDiv>
       <PeopleLabel>
-        <PeopleLabelTitle>{title}</PeopleLabelTitle>
-        <PeopleLabelCaption>{contents}</PeopleLabelCaption>
+        <PeopleLabelTitle>{peopleTypeContent.title}</PeopleLabelTitle>
+        <PeopleLabelCaption>{peopleTypeContent.contents}</PeopleLabelCaption>
       </PeopleLabel>
       <PeopleCountSpace>
         <CountButton
@@ -22,9 +40,8 @@ const PeopleCard = ({ type: peopleType, title, contents }) => {
         </CountButton>
         <CountNumber>{peopleCount[peopleType]}</CountNumber>
         <CountButton
-          onClick={() =>
-            peopleDispatch({ type: 'INCREASE', payload: `${peopleType}` })
-          }
+          disabled={setCountDisable()}
+          onClick={() => handleBabyClick(peopleType)}
         >
           +
         </CountButton>
@@ -36,7 +53,6 @@ const PeopleCard = ({ type: peopleType, title, contents }) => {
 const PeopleCardDiv = styled.div`
   display: flex;
   justify-content: space-between;
-  /* border: 1px solid magenta; */
 `;
 
 const PeopleLabel = styled.div`

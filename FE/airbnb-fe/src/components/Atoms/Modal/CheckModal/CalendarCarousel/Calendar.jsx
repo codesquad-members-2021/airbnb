@@ -13,7 +13,7 @@ const Calendar = () => {
   const preventClick = () => {
     setTimeout(() => {
       setDisabled(false);
-    }, 300);
+    }, 200);
   };
 
   const handleLeftClick = () => {
@@ -77,7 +77,6 @@ const Calendar = () => {
 };
 
 const CalendarDiv = styled.div`
-  /* border: 1px solid blue; */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -85,7 +84,6 @@ const CalendarDiv = styled.div`
 
 const CalendarTop = styled.div`
   display: flex;
-  /* border: 1px solid green; */
   font-size: 1rem;
   margin-bottom: 1.5rem;
   overflow: hidden;
@@ -95,13 +93,11 @@ const CalTableWrapper = styled.div`
   display: flex;
   transform: ${({ currentDistance }) => `translateX(${currentDistance}rem)`};
   transition: ${({ currentDistance }) =>
-    currentDistance === -27.2 ? '' : '0.3s ease-in'};
+    currentDistance === -27.2 ? '' : '0.2s ease-in-out'};
 `;
 const CalendarBottom = styled.div`
   display: flex;
   overflow: hidden;
-
-  /* border: 1px solid yellow; */
 `;
 
 const CalendarMiddle = styled.div`
@@ -112,13 +108,12 @@ const YearMonthUL = styled.ul`
   display: flex;
   transform: ${({ currentDistance }) => `translateX(${currentDistance}rem)`};
   transition: ${({ currentDistance }) =>
-    currentDistance === -27.2 ? '' : '0.3s ease-in'};
+    currentDistance === -27.2 ? '' : '0.2s ease-in-out'};
 `;
 
 const YearMonthLI = styled.li`
   width: 21rem;
   margin: 0 2.125rem;
-  /* border: 2px solid gray; */
   color: ${({ theme }) => theme.colors.black};
   font-size: ${({ theme }) => theme.fontSizes.XS};
   font-weight: 700;

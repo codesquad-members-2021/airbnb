@@ -1,7 +1,8 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import theme from './components/utils/theme';
 import Home from './components/Home';
+import Reservation from './components/Reservation';
 import './index.css';
 
 export const GlobalStyle = createGlobalStyle`
@@ -24,12 +25,15 @@ export const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    <div className="App">
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Home />
-      </ThemeProvider>
-    </div>
+    <Router>
+      <Switch>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Route exact path="/" component={Home} />
+          <Route path="/reservation" component={Reservation} />
+        </ThemeProvider>
+      </Switch>
+    </Router>
   );
 }
 
