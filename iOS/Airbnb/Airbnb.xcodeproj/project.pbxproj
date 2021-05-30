@@ -34,6 +34,8 @@
 		AE8CD3CB2653538800BCB8FC /* AirbnbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3CA2653538800BCB8FC /* AirbnbTests.swift */; };
 		AE8CD3D62653538800BCB8FC /* AirbnbUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3D52653538800BCB8FC /* AirbnbUITests.swift */; };
 		AE9AC6A7265CCCBF0038C198 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9AC6A6265CCCBF0038C198 /* CalendarViewController.swift */; };
+		AEC52F6E2663FEB200D8F802 /* ConditionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC52F6D2663FEB200D8F802 /* ConditionTableViewController.swift */; };
+		AEC52F712663FF3600D8F802 /* ConditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC52F6F2663FF3600D8F802 /* ConditionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		AE8CD3D52653538800BCB8FC /* AirbnbUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbnbUITests.swift; sourceTree = "<group>"; };
 		AE8CD3D72653538800BCB8FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE9AC6A6265CCCBF0038C198 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		AEC52F6D2663FEB200D8F802 /* ConditionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionTableViewController.swift; sourceTree = "<group>"; };
+		AEC52F6F2663FF3600D8F802 /* ConditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +236,7 @@
 		AE9AC6A5265CC1DE0038C198 /* ConditionPage */ = {
 			isa = PBXGroup;
 			children = (
+				AEC52F6C2663FDEB00D8F802 /* Condition */,
 				AEC52F6A2663F28100D8F802 /* Calendar */,
 			);
 			path = ConditionPage;
@@ -247,6 +252,15 @@
 				AE11F5A9265F3D250034779F /* DayCell.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		AEC52F6C2663FDEB00D8F802 /* Condition */ = {
+			isa = PBXGroup;
+			children = (
+				AEC52F6D2663FEB200D8F802 /* ConditionTableViewController.swift */,
+				AEC52F6F2663FF3600D8F802 /* ConditionCell.swift */,
+			);
+			path = Condition;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,6 +403,7 @@
 				AE0B5DE12655FE1F000B35E7 /* MainPageDTO.swift in Sources */,
 				AE3FE07A26579D3B00A95177 /* RegionCell.swift in Sources */,
 				AE3FE07526574E7000A95177 /* SearchCityViewController.swift in Sources */,
+				AEC52F712663FF3600D8F802 /* ConditionCell.swift in Sources */,
 				AE11F5AA265F3D250034779F /* DayCell.swift in Sources */,
 				AE11F5AC265F3D5F0034779F /* DateGenerator.swift in Sources */,
 				AE3FE07726578F1700A95177 /* RegionData.swift in Sources */,
@@ -401,6 +416,7 @@
 				AE0B5DE62656073E000B35E7 /* CityCell.swift in Sources */,
 				AE8CD3B62653538700BCB8FC /* SceneDelegate.swift in Sources */,
 				AE0B5DF3265642B2000B35E7 /* CategoryCell.swift in Sources */,
+				AEC52F6E2663FEB200D8F802 /* ConditionTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
