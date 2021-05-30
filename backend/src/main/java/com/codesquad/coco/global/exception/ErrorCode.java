@@ -26,6 +26,8 @@ public enum ErrorCode {
      **/
     NOT_LOGGED_ID(401, "로그인 상태가 아닙니다"),
     UNKNOWN_DEVICE(404, "올바른 device 접근이 아닙니다"),
+    UNAUTHORIZED_JWT(404, "jwt를 확인 하세요"),
+
 
     /**
      * 기타 에러
@@ -49,4 +51,8 @@ public enum ErrorCode {
         return message;
     }
 
+    public ErrorCode plusMessage(String valueOf) {
+        this.message += valueOf;
+        return this;
+    }
 }
