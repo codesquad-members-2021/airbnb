@@ -12,7 +12,7 @@ const CalendarModal = () => {
   // 1. 초기 값 설정
   const [calendars, setCalendars] = useState(() =>
     Array.from({ length: 4 }, (_, i) => (
-      <Calendar key={i}initMouthOption={i - 1} />
+      <Calendar key={i} initMouthOption={i - 1} />
     )),
   );
   const calendarNextKey = useRef(4);
@@ -38,7 +38,7 @@ const CalendarModal = () => {
   const updateOnPrev = (monthOption : number) =>
     setCalendars((calendars) => {
       const arrCalendars = calendars.filter((_, i) => i !== calendars.length - 1);
-      const firstInsert = ( <Calendar key={calendarNextKey.current} initMouthOption={monthOption} /> );
+      const firstInsert = <Calendar key={calendarNextKey.current} initMouthOption={monthOption} />;
       calendarNextKey.current++;
       return [firstInsert, ...arrCalendars];
     });
@@ -46,7 +46,7 @@ const CalendarModal = () => {
   const updateOnNext = (monthOption : number) =>
     setCalendars((calendars) => {
       const arrCalendars = calendars.filter((_, i) => i !== 0);
-      const lastInsert = <Calendar key={calendarNextKey.current} initMouthOption={monthOption} />
+      const lastInsert = <Calendar key={calendarNextKey.current} initMouthOption={monthOption} />;
       calendarNextKey.current++;
       return [...arrCalendars, lastInsert];
     });

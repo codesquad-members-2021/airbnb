@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import DefaultButton from '../../../../Common/DefaultButton';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface ICalendarCarousel {
   itemsPerCnt?: number;
@@ -33,14 +33,14 @@ const CalendarCarousel = ({
   const handleArrowLeftClick = () => {
     setLocationX(`calc(-1 * (100% / ${itemsPerCnt} + ${itemGap}))`);
     setDirection('L');
-    setIsUpdate(true);
   };
   const handleArrowRightClick = () => {
     setLocationX(`calc((100% / ${itemsPerCnt} + ${itemGap}))`);
     setDirection('R');
-    setIsUpdate(true);
   };
-  const handleListTransitionEnd = () => {
+  const handleListTransitionEnd = () => setIsUpdate(true);
+
+  useEffect(() => {
     if (!isUpdate) return;
     setLocationX('0');
 
@@ -48,7 +48,7 @@ const CalendarCarousel = ({
     if (direction === 'L') handleLeftClick();
     else if (direction == 'R') handleRightClick();
     setIsUpdate(false);
-  };
+  }, [isUpdate]);
 
   return (
     <CalendarCarouselLayout {...props}>

@@ -3,11 +3,12 @@ import { CustomOnClick, CustomChildren } from '../../util/types';
 
 interface IDefaultButton {
   onClick?: CustomOnClick;
+  disabled?: boolean;
   children?: CustomChildren;
 }
 
-const DefaultButton = ({ children, onClick, ...props }: IDefaultButton) => (
-  <DefaultButtonLayout {...props} onClick={onClick}>
+const DefaultButton = ({ onClick, disabled, children, ...props }: IDefaultButton) => (
+  <DefaultButtonLayout {...props} onClick={onClick} disabled={disabled}>
     {children}
   </DefaultButtonLayout>
 );
