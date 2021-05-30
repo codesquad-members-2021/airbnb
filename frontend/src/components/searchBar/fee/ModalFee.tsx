@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Modal } from '../../../style/BarStyle'
 import { RecoilValueGroup } from '../../../customHook/atoms'
 import useAxios from '../../../customHook/useAxios'
-import getFeeData from '../../../customHook/axiosAPI'
+import { getFeeData } from '../../../customHook/axiosAPI'
 import Graph from './Graph'
 import Slider from './Slider'
 

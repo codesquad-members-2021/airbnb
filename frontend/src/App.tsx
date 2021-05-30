@@ -1,4 +1,3 @@
-import { BrowserRouter as Router, Switch, Route, RouteComponentProps } from 'react-router-dom'
 import './App.css'
 import { RecoilRoot } from 'recoil'
 import GlobalStyle from './style/GlobalStyle'
