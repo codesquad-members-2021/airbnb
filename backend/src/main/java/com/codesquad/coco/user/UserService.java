@@ -2,6 +2,7 @@ package com.codesquad.coco.user;
 
 import com.codesquad.coco.global.exception.business.TotalPriceNonMatchException;
 import com.codesquad.coco.global.exception.common.NotFoundUser;
+import com.codesquad.coco.oauth.gitoauth.GitHubDeviceType;
 import com.codesquad.coco.oauth.gitoauth.GitOauth;
 import com.codesquad.coco.oauth.gitoauth.GitUserInfoDTO;
 import com.codesquad.coco.room.RoomDAO;
@@ -18,18 +19,18 @@ public class UserService {
     private ReservationDAO reservationDAO;
     private RoomDAO roomDAO;
     private UserDAO userDAO;
+    private GitOauth oauth;
 
-    public UserService(ReservationDAO reservationDAO, RoomDAO roomDAO, UserDAO userDAO) {
+    public UserService(ReservationDAO reservationDAO, RoomDAO roomDAO, UserDAO userDAO, GitOauth oauth) {
         this.reservationDAO = reservationDAO;
         this.roomDAO = roomDAO;
         this.userDAO = userDAO;
+        this.oauth = oauth;
     }
 
     public void reservation(Long roomId, Long userId, ReservationDTO reservationDTO) {
 
-        if (userDAO.countUserByGitId(userId) == 0) {
-            throw new NotFoundUser();
-        }
+        membershipCheck(userId);
 
         Room room = roomDAO.findById(roomId);
         int fewNights = LocalDateUtil.getAccommodationDay(reservationDTO.getCheckIn(), reservationDTO.getCheckOut());
@@ -46,10 +47,22 @@ public class UserService {
 
     public void cancelReservation(Long roomId, Long reservationId, Long userId) {
 
+        membershipCheck(userId);
+        reservationDAO.cancelReservation(roomId, reservationId, userId, ReservationStatus.CANCEL);
+    }
+
+    private void membershipCheck(Long userId) {
         if (userDAO.countUserByGitId(userId) == 0) {
             throw new NotFoundUser();
         }
-        reservationDAO.cancelReservation(roomId, reservationId, userId, ReservationStatus.CANCEL);
+    }
+
+    public GitUserInfoDTO loginByGitOauth(String code, GitHubDeviceType gitHubDeviceType) {
+        oauth.changeType(gitHubDeviceType);
+        AccessToken accessToken = oauth.requestAccessToken(code);
+        GitUserInfoDTO userInfo = oauth.requestUserInfo(accessToken);
+        insertUser(userInfo, accessToken);
+        return userInfo;
     }
 
     public void insertUser(GitUserInfoDTO userInfo, AccessToken accessToken) {
@@ -59,12 +72,5 @@ public class UserService {
         }
         userDAO.insertUser(userInfo, accessToken);
         return;
-    }
-
-    public GitUserInfoDTO loginByGitOauth(GitOauth gitOauth, String code) {
-        AccessToken accessToken = gitOauth.requestAccessToken(code);
-        GitUserInfoDTO userInfo = gitOauth.requestUserInfo(accessToken);
-        insertUser(userInfo, accessToken);
-        return userInfo;
     }
 }
