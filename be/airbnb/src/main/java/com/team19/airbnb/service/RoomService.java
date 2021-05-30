@@ -2,6 +2,7 @@ package com.team19.airbnb.service;
 
 import com.team19.airbnb.domain.room.Room;
 import com.team19.airbnb.dto.RoomDetailResponseDTO;
+import com.team19.airbnb.dto.SearchRequestDTO;
 import com.team19.airbnb.exception.RoomNotFoundException;
 import com.team19.airbnb.repository.RoomDAO;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,12 @@ public class RoomService {
         return roomDAO.findPriceByAddressTest(latitude, longitude).stream()
                 .map(room -> room.getPricePerDay())
                 .collect(Collectors.toList());
+    }
+
+    public List<RoomDetailResponseDTO> searchRoomsByCondition(SearchRequestDTO searchRequestDTO) {
+        List<RoomDetailResponseDTO> rooms = roomDAO.findRoomsByCondition(searchRequestDTO).stream()
+                .map((room) -> new RoomDetailResponseDTO.Builder(room).build())
+                .collect(Collectors.toList());
+        return rooms;
     }
 }

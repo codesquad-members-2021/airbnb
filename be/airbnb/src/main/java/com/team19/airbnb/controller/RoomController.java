@@ -44,7 +44,8 @@ public class RoomController {
 
     @GetMapping("/rooms")
     public List<RoomDetailResponseDTO> searchRoomsByCondition(@ModelAttribute SearchRequestDTO searchRequestDTO) {
-        System.out.println("searchRequestDTO = " + searchRequestDTO);
-        return null;
+        System.out.println("searchRequestDTO.getCoordinate() = " + Arrays.toString(searchRequestDTO.getCoordinate()));
+
+        return roomService.searchRoomsByCondition(searchRequestDTO);
     }
 }

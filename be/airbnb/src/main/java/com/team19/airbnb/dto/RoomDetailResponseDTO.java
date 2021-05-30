@@ -1,5 +1,6 @@
 package com.team19.airbnb.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.team19.airbnb.domain.room.*;
 
 import java.math.BigDecimal;
@@ -8,8 +9,10 @@ import java.util.stream.Collectors;
 
 public class RoomDetailResponseDTO {
 
+    @JsonProperty("roomId")
     private Long roomId;
 
+    @JsonProperty("roomName")
     private String roomName;
 
     private List<String> images;
@@ -18,7 +21,7 @@ public class RoomDetailResponseDTO {
     private Integer reviewer;
 
     private String location;
-    private String[] coordiante;
+    private Double[] coordinate;
 
     private String roomType;
     private String roomConfiguration;
@@ -29,6 +32,8 @@ public class RoomDetailResponseDTO {
     private BigDecimal pricePerDay;
 
     private BigDecimal totalPrice;
+
+    public RoomDetailResponseDTO() {}
 
     private RoomDetailResponseDTO(Builder builder) {
 
@@ -42,7 +47,7 @@ public class RoomDetailResponseDTO {
         this.reviewer = builder.reviewer;
 
         this.location = builder.location;
-        this.coordiante = builder.coordinate;
+        this.coordinate = builder.coordinate;
 
         this.roomType = builder.roomType;
         this.roomConfiguration = builder.roomConfiguration;;
@@ -65,7 +70,7 @@ public class RoomDetailResponseDTO {
         private final Integer reviewer;
 
         private final String location;
-        private final String[] coordinate;
+        private final Double[] coordinate;
 
         private final String roomType;
         private final String roomConfiguration;
@@ -100,10 +105,10 @@ public class RoomDetailResponseDTO {
             this.totalPrice = BigDecimal.ZERO;
         }
 
-        private String[] coordinate(Location location) {
-            String[] coordinate = new String[2];
-            coordinate[0] = location.getLatitude().toString();
-            coordinate[1] = location.getLatitude().toString();
+        private Double[] coordinate(Location location) {
+            Double[] coordinate = new Double[2];
+            coordinate[0] = location.getLatitude();
+            coordinate[1] = location.getLongitude();
             return coordinate;
         }
 
@@ -151,8 +156,8 @@ public class RoomDetailResponseDTO {
         return location;
     }
 
-    public String[] getCoordiante() {
-        return coordiante;
+    public Double[] getCoordinate() {
+        return coordinate;
     }
 
     public String getRoomType() {
@@ -177,5 +182,57 @@ public class RoomDetailResponseDTO {
 
     public BigDecimal getTotalPrice() {
         return totalPrice;
+    }
+
+    public void setRoomId(Long roomId) {
+        this.roomId = roomId;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
+    public void setGrade(Double grade) {
+        this.grade = grade;
+    }
+
+    public void setReviewer(Integer reviewer) {
+        this.reviewer = reviewer;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setCoordinate(Double[] coordinate) {
+        this.coordinate = coordinate;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    public void setRoomConfiguration(String roomConfiguration) {
+        this.roomConfiguration = roomConfiguration;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setHost(Host host) {
+        this.host = host;
+    }
+
+    public void setPricePerDay(BigDecimal pricePerDay) {
+        this.pricePerDay = pricePerDay;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

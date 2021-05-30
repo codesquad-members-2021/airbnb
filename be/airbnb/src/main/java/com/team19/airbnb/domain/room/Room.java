@@ -32,6 +32,8 @@ public class Room {
 
     private BigDecimal pricePerDay;
 
+    private Integer capacity;
+
     public Room() {}
 
     Room(Long id,
@@ -40,7 +42,8 @@ public class Room {
          Location location,
          String roomType, RoomsAndBeds roomsAndBeds, String description,
          Host host,
-         BigDecimal pricePerDay) {
+         BigDecimal pricePerDay,
+         Integer capacity) {
         this.id = id;
         this.name = name;
         this.images = images;
@@ -51,6 +54,7 @@ public class Room {
         this.description = description;
         this.host = host;
         this.pricePerDay = pricePerDay;
+        this.capacity = capacity;
     }
 
     public static Room create(Long id,
@@ -59,13 +63,15 @@ public class Room {
                        Location location,
                        RoomType roomType, RoomsAndBeds roomsAndBeds, String description,
                        Host host,
-                       BigDecimal pricePerDay) {
+                       BigDecimal pricePerDay,
+                       Integer capacity) {
         return new Room(id,
                 name, images,
                 review, location,
                 roomType.name(), roomsAndBeds, description,
                 host,
-                pricePerDay);
+                pricePerDay,
+                capacity);
     }
 
     public Long getId() {
@@ -108,6 +114,10 @@ public class Room {
         return pricePerDay;
     }
 
+    public Integer getCapacity() {
+        return capacity;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -146,5 +156,9 @@ public class Room {
 
     public void setPricePerDay(BigDecimal pricePerDay) {
         this.pricePerDay = pricePerDay;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
     }
 }
