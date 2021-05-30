@@ -1,6 +1,6 @@
 package com.team19.airbnb.dto;
 
-import com.team19.airbnb.domain.Booking;
+import com.team19.airbnb.domain.Booking.Booking;
 import com.team19.airbnb.domain.room.Host;
 import com.team19.airbnb.domain.room.Image;
 import com.team19.airbnb.domain.room.Room;

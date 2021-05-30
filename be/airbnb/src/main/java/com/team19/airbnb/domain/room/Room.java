@@ -147,4 +147,9 @@ public class Room {
     public void setPricePerDay(BigDecimal pricePerDay) {
         this.pricePerDay = pricePerDay;
     }
+
+    //영어 표현 맞는지 모르겠다.
+    public void getTotalPrice() {
+
+    }
 }

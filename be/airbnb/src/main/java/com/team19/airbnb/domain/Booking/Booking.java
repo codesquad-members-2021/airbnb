@@ -1,10 +1,11 @@
-package com.team19.airbnb.domain;
+package com.team19.airbnb.domain.Booking;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Booking {
 
@@ -46,7 +47,7 @@ public class Booking {
         this.room = room;
     }
 
-    //create 이름 바꿔줘야 할듯
+    //create 이름 바꿔줘야 할듯, 여긴 Build를 쓰는 것이 나을 듯
     public static Booking create(Long id,
                                  LocalDate checkIn, LocalDate checkOut,
                                  Integer guest, BigDecimal totalPrice,
@@ -71,6 +72,15 @@ public class Booking {
         return new Booking(null,
                 checkIn, checkOut,
                 guest, totalPrice,
+                null, room);
+    }
+
+    public static Booking create(LocalDate checkIn, LocalDate checkOut,
+                                 Integer guest,
+                                 Long room) {
+        return new Booking(null,
+                checkIn, checkOut,
+                guest, null,
                 null, room);
     }
 
@@ -108,6 +118,14 @@ public class Booking {
 
     public void checkUserId(Long userId) {
         this.user = userId;
+    }
+
+    public void calculateTotalPrice(BigDecimal roomPricePerDay) {
+        this.totalPrice = new Price.Builder(countDays(), roomPricePerDay).build().getTotalPrice();
+    }
+
+    public Long countDays() {
+        return ChronoUnit.DAYS.between(checkIn, checkOut);
     }
 
 }
