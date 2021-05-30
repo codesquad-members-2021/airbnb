@@ -7,15 +7,12 @@
 
 import Foundation
 
-class CalendarViewModel: CalendarManageModel {
+final class CalendarViewModel: AnySearchConditionHandleModel<[Month]> {
 
-    private var calendarHandler: CalendarHandler?
-    private var conditionHandler: ConditionHandler?
-    
     private var calendar: [Month]? {
         didSet {
             guard let calendar = calendar else { return }
-            calendarHandler?(calendar)
+            dataHandler?(calendar)
         }
     }
     
@@ -48,9 +45,8 @@ class CalendarViewModel: CalendarManageModel {
         self.init(dateSelectionManager: DateSelectionManager(), conditionManager: conditionManager)
     }
     
-    func bind(dataHandler: @escaping CalendarHandler, searchHandler: @escaping ConditionHandler) {
-        self.calendarHandler = dataHandler
-        self.conditionHandler = searchHandler
+    override func bind(dataHandler: @escaping DataHandler, conditionHandler: @escaping ConditionHandler) {
+        super.bind(dataHandler: dataHandler, conditionHandler: conditionHandler)
         fillCalendar(by: 6)
         updateConditions()
     }
@@ -67,12 +63,12 @@ class CalendarViewModel: CalendarManageModel {
     private func updateConditions() {
         accommodationConditions = conditionManager.gettableInfos()
     }
-    
-    func calendarUpdateNeeded() {
-        fillCalendar(by: 1)
-    }
 
-    func didCalendarCellSelected(at indexPath: IndexPath) {
+}
+
+extension CalendarViewModel: CalendarManageModel {
+    
+    func didNewDateSelected(at indexPath: IndexPath) {
         dateSelectionManager.newDateSelected(at: indexPath)
         updateCalendar()
         
@@ -81,12 +77,16 @@ class CalendarViewModel: CalendarManageModel {
         updateConditions()
     }
     
-    func didAllSelectionCanceled() {
+    func didSelectionCanceled() {
         dateSelectionManager.clearAll()
         updateCalendar()
         
         conditionManager.updatePeriod(with: [])
         updateConditions()
+    }
+    
+    func calendarCreationNeeded() {
+        fillCalendar(by: 1)
     }
     
 }

@@ -7,10 +7,7 @@
 
 import Foundation
 
-final class PopularLocationViewModel: PopularLocationLoadModel {
-    
-    private var dataHandler: DataHandler?
-    private var errorHandler: ErrorHandler?
+final class PopularLocationViewModel: AnyResultHandleModel<[PopularLocation]> {
     
     private var popularLocations: [PopularLocation]? {
         didSet {
@@ -25,7 +22,7 @@ final class PopularLocationViewModel: PopularLocationLoadModel {
             errorHandler?(error)
         }
     }
-
+    
     enum ButtonTitle {
         static let cancel = "지우기"
         static let back = "위치 검색"
@@ -38,14 +35,13 @@ final class PopularLocationViewModel: PopularLocationLoadModel {
         self.useCase = useCase
     }
     
-    convenience init() {
+    convenience override init() {
         let useCase = PopularLocationUseCase(url: PopularLocationViewModel.baseUrl)
         self.init(useCase: useCase)
     }
     
-    func bind(dataHandler: @escaping DataHandler, errorHandler: @escaping ErrorHandler) {
-        self.dataHandler = dataHandler
-        self.errorHandler = errorHandler
+    override func bind(dataHandler: @escaping DataHandler, errorHandler: @escaping ErrorHandler) {
+        super.bind(dataHandler: dataHandler, errorHandler: errorHandler)
         loadPopularLocations()
     }
     

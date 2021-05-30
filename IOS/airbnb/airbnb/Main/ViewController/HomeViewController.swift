@@ -17,14 +17,19 @@ final class HomeViewController: UIViewController {
         return searchBar
     }
     
-    private var viewModel: ImagePathLoadModel?
+    private var viewModel: AnyResultHandleModel<String>?
     
+    static func create(with viewModel: AnyResultHandleModel<String>) -> HomeViewController {
+        let storyboard = StoryboardFactory.create(.main)
+        let homeViewController = ViewControllerFactory.create(from: storyboard, type: HomeViewController.self)
+        homeViewController.viewModel = viewModel
+        return homeViewController
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setSearchBar()
-        viewModel = HomeViewModel()
         bind()
-        
     }
     
     private func setSearchBar() {
@@ -59,8 +64,8 @@ extension HomeViewController: UISearchBarDelegate {
     }
     
     private func pushNextViewController() {
-        let nextStoryBoard = StoryboardFactory.create(.accommodationConditions)
-        let popularLocationViewController = ViewControllerFactory.create(from: nextStoryBoard, type: PopularLocationViewController.self)
+        let popularLocationViewModel = PopularLocationViewModel()
+        let popularLocationViewController = PopularLocationViewController.create(with: popularLocationViewModel)
         self.tabBarController?.navigationItem.backButtonTitle = HomeViewModel.ButtonTitle.back
         self.navigationController?.pushViewController(popularLocationViewController, animated: true)
     }

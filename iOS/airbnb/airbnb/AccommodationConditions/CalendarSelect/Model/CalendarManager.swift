@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CalendarManager {
+final class CalendarManager {
     
     private let calendar = Calendar(identifier: .gregorian)
     private(set) var months: [Month]

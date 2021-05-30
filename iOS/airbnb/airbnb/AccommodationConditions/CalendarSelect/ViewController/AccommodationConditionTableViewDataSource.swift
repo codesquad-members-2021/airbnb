@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AccommodationConditionTableViewDataSource: NSObject, UITableViewDataSource {
+final class AccommodationConditionTableViewDataSource: NSObject, UITableViewDataSource {
     
     private(set) var titles = [String]()
     private(set) var contents = [String]()
