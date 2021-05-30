@@ -6,7 +6,7 @@ import HeroText from "./HeroText";
 import Cities from "./Cities/Cities";
 import Accomodations from "./Accomodations/Accomodations";
 import Footer from "./Footer/Footer";
-import { getAPI } from "@/Utils/api";
+import { getMainData } from "@/Utils/getData";
 import { Main as S } from "./MainStyles";
 
 const Main = () => {
@@ -14,14 +14,7 @@ const Main = () => {
   const [error, setError] = useRecoilState(errorState);
 
   useEffect(() => {
-    getAPI
-      .main()
-      .then((res) => res.json())
-      .then((json) => {
-        if (json) setData(json);
-        else throw Error();
-      })
-      .catch((err) => setError(err));
+    getMainData(setData, setError);
   }, [setData, setError]);
 
   if (error || !mainData) return null;

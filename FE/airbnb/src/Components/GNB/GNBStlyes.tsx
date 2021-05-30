@@ -356,14 +356,65 @@ const PeopleModal = {
   `,
   PeopleModal: styled.div`
     width: 400px;
-    height: 355px;
-    padding: 60px;
+    padding: 36px 60px 36px 60px;
     background: ${theme.COLOR.WHITE};
     border: 1px solid #bdbdbd;
     box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1),
       0px 0px 4px rgba(51, 51, 51, 0.05);
     border-radius: 40px;
     z-index: 999;
+  `,
+  PeopleList: styled(BOX.FLEX_ROW_BOX)`
+    justify-content: space-between;
+    padding: 24px 0px;
+    :not(:last-child) {
+      border-bottom: 1px solid ${theme.COLOR.LINE};
+    }
+  `,
+  People: styled(BOX.FLEX_COLUMN_BOX)``,
+  Type: styled.div`
+    font-weight: 700;
+    color: ${theme.COLOR.BLACK};
+    margin-bottom: 3px;
+  `,
+  Description: styled.div`
+    font-size: 14px;
+    color: ${theme.COLOR.GRAY3};
+  `,
+  Counter: styled(BOX.FLEX_CENTER_BOX)``,
+  CountNumber: styled.span`
+    font-size: 20px;
+    font-weight: 700;
+    color: ${theme.COLOR.GRAY1};
+  `,
+  PlusButton: styled.button<{ $plusButtonFlag: boolean }>`
+    border: none;
+    outline: none;
+    background: none;
+    margin-left: 10px;
+    :disabled {
+      opacity: 0.3;
+    }
+    :hover {
+      transform: ${(props) => (props.$plusButtonFlag ? "scale(1.15)" : "none")};
+      transition: ${(props) =>
+        props.$plusButtonFlag ? "all 0.1s linear" : "none"};
+    }
+  `,
+  MinusButton: styled.button<{ $minusButtonFlag: boolean }>`
+    border: none;
+    outline: none;
+    background: none;
+    margin-right: 10px;
+    :disabled {
+      opacity: 0.3;
+    }
+    :hover {
+      transform: ${(props) =>
+        props.$minusButtonFlag ? "none" : "scale(1.15)"};
+      transition: ${(props) =>
+        props.$minusButtonFlag ? "none" : "all 0.1s linear"};
+    }
   `,
 };
 

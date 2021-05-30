@@ -204,7 +204,41 @@ export const priceState = {
   }),
 };
 
-export const peopleState = atom({
-  key: "peopleState",
-  default: 0,
-});
+export const peopleState = {
+  adultCount: atom({
+    key: "adultCount",
+    default: 0,
+  }),
+  childrenCount: atom({
+    key: "childrenCount",
+    default: 0,
+  }),
+  babyCount: atom({
+    key: "babyCount",
+    default: 0,
+  }),
+  adultMinusButtonFlag: atom({
+    key: "adultMinusButtonFlag",
+    default: true,
+  }),
+  childrenMinusButtonFlag: atom({
+    key: "childrenMinusButtonFlag",
+    default: true,
+  }),
+  babyMinusButtonFlag: atom({
+    key: "babyMinusButtonFlag",
+    default: true,
+  }),
+  adultPlusButtonFlag: atom({
+    key: "adultPlusButtonFlag",
+    default: false,
+  }),
+  childrenPlusButtonFlag: atom({
+    key: "childrenPlusButtonFlag",
+    default: false,
+  }),
+  babyPlusButtonFlag: atom({
+    key: "babyPlusButtonFlag",
+    default: false,
+  }),
+};

@@ -3,7 +3,7 @@ import makeCalendarDataId from "@/Utils/makeCalendarDataId";
 import { CalendarModal as S } from "@/Components/GNB/GNBStlyes";
 
 interface Props {
-  row: any[];
+  row: string[] | number[];
   year?: number;
   month?: number;
   $isDayOfWeek?: boolean;
@@ -17,17 +17,18 @@ const CalendarRow = ({
 }: Props) => {
   return (
     <S.CalendarRow $isDayOfWeek={$isDayOfWeek}>
-      {row.map((data, index) => {
-        const calendarData = makeCalendarDataId({ data, year, month });
-        return (
-          <CalendarData
-            key={index}
-            data={data}
-            dataId={calendarData.dataId}
-            $isNotDate={calendarData.$isNotDate}
-          />
-        );
-      })}
+      {row !== null &&
+        row.map((data: string | number, index: number) => {
+          const calendarData = makeCalendarDataId({ data, year, month });
+          return (
+            <CalendarData
+              key={index}
+              data={data}
+              dataId={calendarData.dataId}
+              $isNotDate={calendarData.$isNotDate}
+            />
+          );
+        })}
     </S.CalendarRow>
   );
 };
