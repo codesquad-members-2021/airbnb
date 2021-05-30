@@ -36,19 +36,19 @@ export const searchBarClickState = selector({
   set: ({ set }, clicked) => {
     // 2번째 파라미터 에는 추가로 받을 인자를 나타냅니다.
     switch (clicked) {
-      case "IN":
+      case "CHECK_IN":
         set(checkInClickState, true);
         set(checkOutClickState, false);
         set(roomPriceClickState, false);
         set(guestsClickState, false);
         break;
-      case "OUT":
+      case "CHECK_OUT":
         set(checkInClickState, false);
         set(checkOutClickState, true);
         set(roomPriceClickState, false);
         set(guestsClickState, false);
         break;
-      case "PRICE":
+      case "ROOM_PRICE":
         set(checkInClickState, false);
         set(checkOutClickState, false);
         set(roomPriceClickState, true);

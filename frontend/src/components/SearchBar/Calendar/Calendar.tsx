@@ -2,7 +2,6 @@ import CalendarModal from "./CalendarModal";
 import styled from "styled-components";
 import * as S from "components/SearchBar/SearchBarStyles";
 import CancelButton from "components/common/CancelButton";
-
 import {
   checkInClickState,
   checkOutClickState,
@@ -11,7 +10,7 @@ import {
   checkOutState,
 } from "recoil/Atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-
+import { search } from "util/enum";
 const Calendar = () => {
   const setsSearchBarClick = useSetRecoilState(searchBarClickState);
   const isCheckInClicked = useRecoilValue(checkInClickState);
@@ -26,7 +25,7 @@ const Calendar = () => {
           className="check-in"
           _clicked={isCheckInClicked}
           onClick={() => {
-            setsSearchBarClick("IN");
+            setsSearchBarClick(search.in);
           }}
         >
           <S.SearchBarTitle>체크인</S.SearchBarTitle>
@@ -35,14 +34,14 @@ const Calendar = () => {
               ? `${checkIn.month}월${checkIn.date}일`
               : "날짜 입력"}
           </S.SearchBarText>
-          <CancelButton type={"CHECK_IN"} />
+          <CancelButton type={search.in} />
         </S.SearchBarBox>
         <S.SearchBarBox
           _width="50%"
           className="check-out"
           _clicked={isCheckOutClicked}
           onClick={() => {
-            setsSearchBarClick("OUT");
+            setsSearchBarClick(search.out);
           }}
         >
           <S.SearchBarTitle>체크아웃</S.SearchBarTitle>
@@ -51,7 +50,7 @@ const Calendar = () => {
               ? `${checkOut.month}월${checkOut.date}일`
               : "날짜 입력"}
           </S.SearchBarText>
-          <CancelButton type={"CHECK_OUT"} />
+          <CancelButton type={search.out} />
         </S.SearchBarBox>
       </CalendarLayout>
       {(isCheckInClicked || isCheckOutClicked) && <CalendarModal />}
