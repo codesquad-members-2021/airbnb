@@ -6,6 +6,8 @@ interface SearchBarState {
   calendar: {
     firstMonthOption: number;
     lastMonthOption: number;
+    startDate?: Date;
+    endDate?: Date;
   };
 }
 
@@ -25,7 +27,8 @@ type SearchBarAction =
       };
     }
   | { type: 'INCREASE_CALENDAR_MOUTH_OPTION' }
-  | { type: 'DECREASE_CALENDAR_MOUTH_OPTION' };
+  | { type: 'DECREASE_CALENDAR_MOUTH_OPTION' }
+  | { type: 'SET_CALENDAR_DATE'; payload: Date };
 
 // 2) SearchBar 리듀서
 const searchBarReducer = (
@@ -49,7 +52,7 @@ const searchBarReducer = (
       return {
         ...state,
         calendar: {
-          ...state,
+          ...state.calendar,
           firstMonthOption: firstMonthOption + 1,
           lastMonthOption: lastMonthOption + 1,
         },
@@ -62,9 +65,36 @@ const searchBarReducer = (
       return {
         ...state,
         calendar: {
-          ...state,
+          ...state.calendar,
           firstMonthOption: firstMonthOption - 1,
           lastMonthOption: lastMonthOption - 1,
+        },
+      };
+    }
+    case 'SET_CALENDAR_DATE': {
+      const {
+        calendar: { startDate, endDate },
+      } = state;
+      const { payload: clickedDate } = action;
+
+      let startDateTmp, endDateTmp;
+
+      const checkStartDate =
+        !startDate ||
+        startDate.valueOf() >= clickedDate.valueOf();
+
+      if (checkStartDate) startDateTmp = clickedDate;
+      else if (!endDate) {
+        startDateTmp = startDate;
+        endDateTmp = clickedDate;
+      }
+
+      return {
+        ...state,
+        calendar: {
+          ...state.calendar,
+          startDate: startDateTmp,
+          endDate: endDateTmp,
         },
       };
     }

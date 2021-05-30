@@ -10,7 +10,7 @@ interface ICalendarProps {
 
 const Calendar = ({ initMouthOption = 0 }: ICalendarProps) => {
   const {
-    state: { strYearMonth, arrDates, arrDays },
+    state: { strYearMonth, arrDates, arrDays, monthDate },
     dispatch,
   } = useCalendar();
 
@@ -24,7 +24,7 @@ const Calendar = ({ initMouthOption = 0 }: ICalendarProps) => {
   return (
     <CalendarLayout>
       <YearMonth>{strYearMonth}</YearMonth>
-      <DateList arrDates={arrDates} arrDays={arrDays} />
+      <DateList arrDates={arrDates} arrDays={arrDays} monthDate={monthDate} />
     </CalendarLayout>
   );
 };
