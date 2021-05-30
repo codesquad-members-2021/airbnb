@@ -11,6 +11,7 @@ class CalendarViewController: UIViewController {
     
     static let headerElementKind = "header-element-kind"
     
+    private var viewModel = CalendarViewModel()
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Date, Day>!
     
@@ -75,7 +76,9 @@ extension CalendarViewController {
     private func configureDataSource() {
         
         let listCellRegistration = UICollectionView.CellRegistration<DayCell, Day> { (cell, indexPath, day) in
+            let cellType = self.viewModel.figureSelectedType(date: day.date)
             cell.fillInfo(with: day.date)
+            cell.updateUI(selectedType: cellType)
         }
         
         dataSource = UICollectionViewDiffableDataSource<Date, Day>(collectionView: collectionView) {
@@ -117,40 +120,27 @@ extension CalendarViewController {
 
 extension CalendarViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? DayCell else { return }
+        guard let date = cell.date else { return }
+
+        viewModel.unselect(date: date)
+        collectionView.reloadData()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? DayCell else { return }
-        guard let selectedIndexs = collectionView.indexPathsForSelectedItems else { return }
-        guard let date = cell.date?.description else { return }
-        print(date)
-        
-        switch selectedIndexs.count {
-        case 0:
-            break
-        case 1:
-            cell.selectedType = .one
-        case 2:
-            let minIndex = selectedIndexs.min()!
-            let maxIndex = selectedIndexs.max()!
-            let minCell = collectionView.cellForItem(at: minIndex) as? DayCell ?? DayCell()
-            let maxCell = collectionView.cellForItem(at: maxIndex) as? DayCell ?? DayCell()
-            minCell.selectedType = .min
-            maxCell.selectedType = .max
-            for index in minIndex.row + 1..<maxIndex.row {
-                let intervalIndex = IndexPath(row: index, section: indexPath.section)
-                let intervalCell = collectionView.cellForItem(at: intervalIndex) as? DayCell ?? DayCell()
-                intervalCell.selectedType = .interval
-            }
-        default:
-            selectedIndexs.forEach { index in
-                collectionView.deselectItem(at: index, animated: false)
-            }
-            let minIndex = selectedIndexs.min()!
-            let maxIndex = selectedIndexs.max()!
-            for index in minIndex.row + 1..<maxIndex.row {
-                let intervalIndex = IndexPath(row: index, section: indexPath.section)
-                let intervalCell = collectionView.cellForItem(at: intervalIndex) as? DayCell ?? DayCell()
-                intervalCell.isSelected = false
-            }
+        guard let selected = collectionView.indexPathsForSelectedItems else { return }
+        guard let date = cell.date else { return }
+
+        selected.forEach {
+            collectionView.deselectItem(at: $0, animated: false)
+        }
+
+        if viewModel.figureSelectedType(date: date) != .outDated {
+            viewModel.select(date: date)
+            collectionView.reloadData()
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .left)
         }
     }
     
