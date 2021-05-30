@@ -1,13 +1,11 @@
 package com.team19.airbnb.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.team19.airbnb.domain.room.Location;
+import com.team19.airbnb.domain.Booking.Booking;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 public class SearchRequestDTO {
 
@@ -32,8 +30,6 @@ public class SearchRequestDTO {
 
     @Nullable
     private Integer guest; //adult + child , toddler x
-
-//    public SearchRequestDTO() {}
 
     public SearchRequestDTO(String address, Double[] coordinate,
                             LocalDate checkIn, LocalDate checkOut,
@@ -100,16 +96,8 @@ public class SearchRequestDTO {
         this.guest = guest;
     }
 
-    @Override
-    public String toString() {
-        return "SearchRequestDTO{" +
-                "address='" + address + '\'' +
-                ", coordinate=" + Arrays.toString(coordinate) +
-                ", checkIn=" + checkIn +
-                ", checkOut=" + checkOut +
-                ", minPrice=" + minPrice +
-                ", maxPrice=" + maxPrice +
-                ", guest=" + guest +
-                '}';
+    public Booking toBooking() {
+        return Booking.create(checkIn, checkOut, guest);
     }
+
 }

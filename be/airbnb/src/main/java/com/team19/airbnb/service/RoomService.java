@@ -48,9 +48,15 @@ public class RoomService {
     }
 
     public List<RoomDetailResponseDTO> searchRoomsByCondition(SearchRequestDTO searchRequestDTO) {
-        List<RoomDetailResponseDTO> rooms = roomDAO.findRoomsByCondition(searchRequestDTO).stream()
+        if(searchRequestDTO.getCheckIn() != null && searchRequestDTO.getCheckOut() != null) {
+            Booking booking = searchRequestDTO.toBooking();
+            return roomDAO.findRoomsByCondition(searchRequestDTO).stream()
+                    .map((room) -> new RoomDetailResponseDTO.Builder(room).totalPrice(booking.calculateTotalPrice(room.getPricePerDay())).build())
+                    .collect(Collectors.toList());
+
+        }
+        return roomDAO.findRoomsByCondition(searchRequestDTO).stream()
                 .map((room) -> new RoomDetailResponseDTO.Builder(room).build())
                 .collect(Collectors.toList());
-        return rooms;
     }
 }

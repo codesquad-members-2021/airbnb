@@ -1,7 +1,6 @@
 package com.team19.airbnb.repository;
 
 import com.team19.airbnb.domain.room.*;
-import com.team19.airbnb.dto.RoomDetailResponseDTO;
 import com.team19.airbnb.dto.SearchRequestDTO;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Repository
 public class RoomDAO {
@@ -84,19 +82,19 @@ public class RoomDAO {
 
     public String makeSqlSentence(SearchRequestDTO searchRequestDTO) {
 
-        String sql = "select *, (6371*acos(cos(radians(:latitude))*cos(radians(latitude))*cos(radians(longitude) -radians(:longitude))+sin(radians(:latitude))*sin(radians(latitude)))) AS distance FROM room where 1=1 ";
+        String sql = "SELECT *, (6371*acos(cos(radians(:latitude))*cos(radians(latitude))*cos(radians(longitude) -radians(:longitude))+sin(radians(:latitude))*sin(radians(latitude)))) AS distance FROM room WHERE 1=1 ";
         if(searchRequestDTO.getMaxPrice() != null) {
-            sql += "and price_per_day <= :maxPrice ";
+            sql += "AND price_per_day <= :maxPrice ";
         }
         if(searchRequestDTO.getMinPrice() != null) {
-            sql += "and price_per_day >= :minPrice ";
+            sql += "AND price_per_day >= :minPrice ";
         }
         if(searchRequestDTO.getGuest() != 0) {
-            sql += "and capacity >= :guest ";
+            sql += "AND capacity >= :guest ";
         }
 
         if (searchRequestDTO.getCheckIn() != null || searchRequestDTO.getCheckOut() != null) {
-            sql += "AND booking.room NOT IN ( SELECT * FROM booking WHERE 1=0 ";
+            sql += "AND id NOT IN ( SELECT room FROM booking WHERE 1=0 ";
             if (searchRequestDTO.getCheckIn() != null) {
                 sql += "OR (check_in <= :checkIn AND check_out > :checkIn) ";
             }

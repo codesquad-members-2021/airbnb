@@ -14,19 +14,19 @@ INSERT INTO room(`id`, `name`, `grade`, `reviewer`, `address`, `latitude`, `long
 VALUES (2, 'codesquad', 4.9, 13, '서울특별시 강남구 역삼동 836-24', 37.4908252, 127.0312283, 'ENTIRE_PLACE', 1, 2, 2, '코드스쿼드입니다.', 'HONUX', 'https://ca.slack-edge.com/T74H5245A-U74KKLB0D-4f2767985e3d-512', 60000, 5);
 INSERT INTO `image`(`url`, `room`)
 VALUES ('https://lh5.googleusercontent.com/p/AF1QipNxntYBPh5s0xjPzvjnlhi4730KlGBiH4z7B0M2=w408-h306-k-no', 2);
-INSERT INTO `image`(`url`, `room`)
-VALUES ('https://lh5.googleusercontent.com/p/AF1QipObkWYQyr6rOwJ1V6k9duVHA-gIEUQcJ4FPFFa7=w203-h135-k-no', 2);
-INSERT INTO `image`(`url`, `room`)
-VALUES ('https://lh5.googleusercontent.com/p/AF1QipObkWYQyr6rOwJ1V6k9duVHA-gIEUQcJ4FPFFa7=w203-h135-k-no', 2);
+-- INSERT INTO `image`(`url`, `room`)
+-- VALUES ('https://lh5.googleusercontent.com/p/AF1QipObkWYQyr6rOwJ1V6k9duVHA-gIEUQcJ4FPFFa7=w203-h135-k-no', 2);
+-- INSERT INTO `image`(`url`, `room`)
+-- VALUES ('https://lh5.googleusercontent.com/p/AF1QipObkWYQyr6rOwJ1V6k9duVHA-gIEUQcJ4FPFFa7=w203-h135-k-no', 2);
 
-INSERT INTO room(`id`, `name`, `grade`, `reviewer`, `address`, `latitude`, `longitude`, `room_type`, `bed`, `bed_room`, `bath_room`, `description`, `host_name`, `host_image`,  `price_per_day`, , `capacity`)
-VALUES (3, 'Yeoksam', 4.9, 13, '서울특별시 강남구 역삼동 836-24', 37.4908252, 127.0312283, 'ENTIRE_PLACE', 1, 2, 2, '코드스쿼드입니다.', 'HONUX', 'https://ca.slack-edge.com/T74H5245A-U74KKLB0D-4f2767985e3d-512', 60000, 2);
-INSERT INTO `image`(`url`, `room`)
-VALUES ('https://lh5.googleusercontent.com/p/AF1QipNxntYBPh5s0xjPzvjnlhi4730KlGBiH4z7B0M2=w408-h306-k-no', 2);
-INSERT INTO `image`(`url`, `room`)
-VALUES ('https://lh5.googleusercontent.com/p/AF1QipObkWYQyr6rOwJ1V6k9duVHA-gIEUQcJ4FPFFa7=w203-h135-k-no', 2);
-INSERT INTO `image`(`url`, `room`)
-VALUES ('https://lh5.googleusercontent.com/p/AF1QipObkWYQyr6rOwJ1V6k9duVHA-gIEUQcJ4FPFFa7=w203-h135-k-no', 2);
+-- INSERT INTO room(`id`, `name`, `grade`, `reviewer`, `address`, `latitude`, `longitude`, `room_type`, `bed`, `bed_room`, `bath_room`, `description`, `host_name`, `host_image`,  `price_per_day`, , `capacity`)
+-- VALUES (3, 'Yeoksam', 4.9, 13, '서울특별시 강남구 역삼동 836-24', 37.4908252, 127.0312283, 'ENTIRE_PLACE', 1, 2, 2, '코드스쿼드입니다.', 'HONUX', 'https://ca.slack-edge.com/T74H5245A-U74KKLB0D-4f2767985e3d-512', 60000, 2);
+-- INSERT INTO `image`(`url`, `room`)
+-- VALUES ('https://lh5.googleusercontent.com/p/AF1QipNxntYBPh5s0xjPzvjnlhi4730KlGBiH4z7B0M2=w408-h306-k-no', 2);
+-- INSERT INTO `image`(`url`, `room`)
+-- VALUES ('https://lh5.googleusercontent.com/p/AF1QipObkWYQyr6rOwJ1V6k9duVHA-gIEUQcJ4FPFFa7=w203-h135-k-no', 2);
+-- INSERT INTO `image`(`url`, `room`)
+-- VALUES ('https://lh5.googleusercontent.com/p/AF1QipObkWYQyr6rOwJ1V6k9duVHA-gIEUQcJ4FPFFa7=w203-h135-k-no', 2);
 
 
 
