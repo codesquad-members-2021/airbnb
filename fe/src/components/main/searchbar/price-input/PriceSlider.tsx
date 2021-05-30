@@ -9,7 +9,10 @@ const PriceSlider = () => {
   useEffect(() => {
     if (min < -10) setMin(-10);
     if (max < 32) setMax(32);
-    if (max - min < 30) setMin(() => max - 31);
+    if (max - min < 30) {
+      setMin(() => max - 30 );
+    
+    }
     if (ref.current) {
       if (ref.current.clientWidth - 10 <= max)
         setMax(ref.current.clientWidth - 10);
@@ -31,4 +34,5 @@ const StyledSlider = styled.div`
   height: 0.5rem;
   background-color: gray;
   position: relative;
+  margin-top: 2rem;
 `;

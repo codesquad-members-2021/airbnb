@@ -1,5 +1,5 @@
 import { Box } from "@material-ui/core";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { useSetRecoilState } from "recoil";
@@ -18,9 +18,8 @@ const PeopleItem = ({ title, subtitle, max, min, number }: PeopleItemProps) => {
 
   const [pluseDisable, setPluseDisable] = useState<boolean>(number === max);
   const [minusDisable, setMinusDisable] = useState<boolean>(number === min);
+
   const clickPlus = () => {
-    if (number === min) setMinusDisable(false);
-    if (number === max - 1) setPluseDisable(true);
     setPeopleNumber(({ adult, teen, kids }) => {
       switch (title) {
         case "성인":
@@ -36,8 +35,6 @@ const PeopleItem = ({ title, subtitle, max, min, number }: PeopleItemProps) => {
   };
 
   const clickMinus = () => {
-    if (number === max) setPluseDisable(false);
-    if (number === min + 1) setMinusDisable(true);
     setPeopleNumber(({ adult, teen, kids }) => {
       switch (title) {
         case "성인":
@@ -50,6 +47,15 @@ const PeopleItem = ({ title, subtitle, max, min, number }: PeopleItemProps) => {
       }
     });
   };
+
+  useEffect(() => {
+    if (number === min) setMinusDisable(true);
+    if (min < number && number < max) {
+      setMinusDisable(false);
+      setPluseDisable(false);
+    }
+    if (number === max) setPluseDisable(true);
+  }, [min, max, number]);
 
   return (
     <StyledPeopleItem>
