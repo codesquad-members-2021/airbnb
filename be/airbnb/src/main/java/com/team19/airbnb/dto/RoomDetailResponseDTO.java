@@ -18,7 +18,7 @@ public class RoomDetailResponseDTO {
     private Integer reviewer;
 
     private String location;
-    private String[] coordiante;
+    private String[] coordinate;
 
     private String roomType;
     private String roomConfiguration;
@@ -42,7 +42,7 @@ public class RoomDetailResponseDTO {
         this.reviewer = builder.reviewer;
 
         this.location = builder.location;
-        this.coordiante = builder.coordinate;
+        this.coordinate = builder.coordinate;
 
         this.roomType = builder.roomType;
         this.roomConfiguration = builder.roomConfiguration;;
@@ -103,7 +103,7 @@ public class RoomDetailResponseDTO {
         private String[] coordinate(Location location) {
             String[] coordinate = new String[2];
             coordinate[0] = location.getLatitude().toString();
-            coordinate[1] = location.getLatitude().toString();
+            coordinate[1] = location.getLongitude().toString();
             return coordinate;
         }
 
@@ -151,8 +151,8 @@ public class RoomDetailResponseDTO {
         return location;
     }
 
-    public String[] getCoordiante() {
-        return coordiante;
+    public String[] getCoordinate() {
+        return coordinate;
     }
 
     public String getRoomType() {

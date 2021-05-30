@@ -1,6 +1,6 @@
 package com.team19.airbnb.service;
 
-import com.team19.airbnb.domain.Booking;
+import com.team19.airbnb.domain.Booking.Booking;
 import com.team19.airbnb.domain.User;
 import com.team19.airbnb.domain.room.Room;
 import com.team19.airbnb.dto.BookingResponseDTO;
@@ -13,7 +13,6 @@ import com.team19.airbnb.repository.UserRepository;
 import com.team19.airbnb.dto.BookingRequestDTO;
 import com.team19.airbnb.repository.UserDAO;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.stream.Collectors;
