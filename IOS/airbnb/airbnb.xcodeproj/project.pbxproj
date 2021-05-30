@@ -312,8 +312,6 @@
 		E4E63C5F265F2F9900F86104 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E4E63C89266366A200F86104 /* SearchConditionHandleModel.swift */,
-				E4E63C8B266366D900F86104 /* AnySearchConditionHandleModel.swift */,
 				E4E63C6F265F785000F86104 /* CalendarManageModel.swift */,
 				E4E63C63265F300400F86104 /* CalendarViewModel.swift */,
 			);
@@ -356,6 +354,8 @@
 			children = (
 				E4E63C852660AC2500F86104 /* NetworkResultHandleModel.swift */,
 				E4E63C872660AC3D00F86104 /* AnyResultHandleModel.swift */,
+				E4E63C89266366A200F86104 /* SearchConditionHandleModel.swift */,
+				E4E63C8B266366D900F86104 /* AnySearchConditionHandleModel.swift */,
 			);
 			path = CommonInterfaces;
 			sourceTree = "<group>";
