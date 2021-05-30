@@ -1,27 +1,22 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { IconButton } from "@material-ui/core";
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { monthIndexAtom, calendarClickAtom } from '@/recoil/atoms';
+import { useRecoilState } from 'recoil';
+import { calendarClickAtom } from '@/recoil/atoms';
 import { getYearAndMonth, getDayArray } from '@/utils/calendarUtil';
 
 type MonthProps = {
   left?: string;
   right?: string;
   date: Date;
+  handleClickMonthMove: (moveCount: number) => () => void;
 }
 
-const Month = ({ left, right, date }: MonthProps) => {
-  const setMonthIndex = useSetRecoilState(monthIndexAtom);
+const Month = ({ left, right, date, handleClickMonthMove }: MonthProps) => {
   const [calendarClickState, setCalendarClickState] = useRecoilState(calendarClickAtom);
   const [checkInTime, checkOutTime] = calendarClickState;
-
-  const handleClickMonthMove = useCallback((moveCount: number) => () => {
-    setMonthIndex(month => month + moveCount * 2);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const handleClickDaySelect = ({ currentTarget }: React.MouseEvent<HTMLElement>) => {
     if (currentTarget.getAttribute('aria-disabled') === 'true' || !currentTarget.innerText) return;
@@ -83,6 +78,9 @@ const Month = ({ left, right, date }: MonthProps) => {
 const MonthWrapper = styled.div`
   width: 50%;
   height: 100%;
+  & + &{
+    margin-left: 3%;
+  }
 `;
 
 const MonthTitle = styled.div`
