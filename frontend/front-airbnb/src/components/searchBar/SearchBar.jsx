@@ -22,11 +22,19 @@ const SearchBar = () => {
         },
     ]
     const [periodInfo, setPeriodInfo] = useState(periodData);
+    const personelData = [
+        {
+            id: 1,
+            name: '인원',
+            input: ['게스트 추가']
+        },
+    ];
+    const [personnelInfo, setPersonnelInfo] = useState(personelData);
     const {searchRef, isFocus, setIsFocus} = useComponentVisible(true);
     return (
-        <PostsContext.Provider value={{periodInfo, setPeriodInfo}}>
+        <PostsContext.Provider value={{periodInfo, setPeriodInfo, personnelInfo, setPersonnelInfo}}>
         <SearchBarWrapper ref={searchRef} onClick={() => setIsFocus(false)}>
-            <Period isFocus={isFocus}/>
+            <Period/>
             <Price/>
             <Personnel/>
             <SearchButton setIsFocus={setIsFocus} isFocus={isFocus}/>

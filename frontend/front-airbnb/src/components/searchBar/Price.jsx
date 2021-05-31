@@ -20,7 +20,7 @@ const Price = () => {
 const PriceWrapper = styled.div`
 flex: auto;
 `;
-const PriceBtn = styled.button`
+const PriceBtn = styled.div`
 display: flex;
 border-radius: 100px;
 width: 100%;
