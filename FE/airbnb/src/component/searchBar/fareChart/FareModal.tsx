@@ -4,6 +4,7 @@ import { mockData } from "component/searchBar/fareChart/mockData";
 import { chartControlType } from "component/searchBar/fareChart/chartType";
 import getChartData from "component/searchBar/fareChart/getChartData";
 import ChartCanvas from "component/searchBar/fareChart/ChartCanvas";
+import FareRangeSlider from "component/searchBar/fareChart/FareRangeSlider";
 
 const CHART_CONTROL: chartControlType = {
   SECTIONS: 20,
@@ -23,9 +24,10 @@ function FareModal() {
         ₩{minPrice} - ₩{maxPrice}
       </FareRange>
       <FareAverage>평균 1박 요금은 ₩{averagePrice}입니다.</FareAverage>
-      <FareChart>
+      <FareChartBox>
         <ChartCanvas chartControl={CHART_CONTROL} chartData={priceChartData} />
-      </FareChart>
+        <FareRangeSlider />
+      </FareChartBox>
     </Modal>
   );
 }
@@ -55,8 +57,9 @@ const FareAverage = styled.div`
   font-weight: 300;
   margin-bottom: 20px;
 `;
-const FareChart = styled.div`
-  height: 120px;
+const FareChartBox = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
