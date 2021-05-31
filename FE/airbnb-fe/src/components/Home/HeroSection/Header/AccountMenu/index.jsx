@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import AccountIcon from './AccountIcon.jsx';
+import AccountIcon from '../../../../Atoms/icons/AccountIcon.jsx';
 import AccountModal from './AccountModal.jsx';
 
-import MenuIcon from './MenuIcon.jsx';
+import MenuIcon from '../../../../Atoms/icons/MenuIcon.jsx';
 
 const AccountMenu = () => {
   const AccountModalElement = useRef();
