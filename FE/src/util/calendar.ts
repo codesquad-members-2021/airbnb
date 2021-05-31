@@ -18,6 +18,10 @@ const createLastDateOfMonth = (date: Date): number =>
 export const createYearMonthText = (date: Date): string =>
   `${date.getFullYear()}년 ${date.getMonth() + 1}월`;
 
+// "~월 ~일"을 나타내는 Text(string) 반환
+export const createMonthDateText = (date: Date): string =>
+  `${date.getMonth() + 1}월 ${date.getDate()}월`;
+
 // 어떤 달의 Dates를 Number 배열로 반환 (달력의 공백까지 계산, 공백은 0)
 export const createDates = (date: Date): number[] => {
   const arrResultDates: number[] = [];

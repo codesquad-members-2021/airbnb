@@ -3,7 +3,7 @@ import {
   createMonthStartFromFirstDay,
   createDates,
   createYearMonthText,
-} from './calendar';
+} from '../util/calendar';
 
 interface IState {
   arrDates: number[];
