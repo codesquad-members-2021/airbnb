@@ -20,9 +20,8 @@ public class RoomController {
     private RoomRepository roomRepository;
     private WishRepository wishRepository;
 
-    public RoomController(RoomRepository roomRepository, WishRepository wishRepository) {
-        this.roomRepository = roomRepository;
-        this.wishRepository = wishRepository;
+    public RoomController(RoomService roomService) {
+        this.roomService = roomService;
     }
 
     @GetMapping
@@ -38,9 +37,7 @@ public class RoomController {
                              @RequestParam("checkOut") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkOut,
                              @RequestParam("minPrice") int minPrice, @RequestParam("maxPrice") int maxPrice,
                              @RequestParam("numberOfPeople") int numberOfPeople) {
-        List<RoomDTO> roomDTOS = roomRepository.getFilteredRooms(checkIn, checkOut, minPrice, maxPrice, numberOfPeople).stream()
-                .map(RoomDTO::toRoomDTO)
-                .collect(Collectors.toList());
+        List<RoomDTO> roomDTOS = roomService.getFilteredRoomDTOS(checkIn, checkOut, minPrice, maxPrice, numberOfPeople);
         return new Rooms(roomDTOS);
     }
 
@@ -51,8 +48,6 @@ public class RoomController {
         }
         wishRepository.insert(roomId, userId);
     }
-    // userId, roomId 있는지 판단
-    // 이미 눌린 wish 판단
 
     @DeleteMapping("/{userId}/wish/{roomId}")
     public void deleteWish(@PathVariable("userId") Long userId, @PathVariable("roomId") Long roomId) {
