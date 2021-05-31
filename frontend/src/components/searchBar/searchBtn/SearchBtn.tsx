@@ -1,23 +1,11 @@
 import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button'
 import { RecoilValueGroup } from '../../../customHook/atoms'
 import { PlaceSection } from '../../../style/BarStyle'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    button: {
-      margin: theme.spacing(1),
-      borderRadius: 30,
-    },
-  })
-)
-
 function SearchBtn({ history }: any) {
-  const classes = useStyles()
-
   const {
     placeToSearch,
     checkIn,
@@ -42,8 +30,9 @@ function SearchBtn({ history }: any) {
       <Button
         variant='contained'
         color='secondary'
-        className={(classes.button, 'routerBtn')}
+        className={'routerBtn'}
         startIcon={<SearchIcon />}
+        style={{ borderRadius: 50 }}
         onClick={GoNextPage}
       >
         <CustomSpan>검색</CustomSpan>

@@ -1,6 +1,13 @@
 import { RouteComponentProps } from 'react-router-dom'
+import styled from 'styled-components'
 import useAxios from '../../customHook/useAxios'
 import { getHouseData } from '../../customHook/axiosAPI'
+import Logo from '../header/Logo'
+import CenterMenu from '../header/CenterMenu'
+import UserInfo from '../header/UserInfo'
+import MiniSearchBar from './MiniSearchBar'
+import HouseList from './HouseList'
+import Map from './Map'
 interface params {
   place: string | undefined
   checkIn: string | undefined
@@ -20,9 +27,29 @@ function SearchResult({ match }: RouteComponentProps<params>) {
   if (loading) return <div>Loading...💭</div>
   if (error) return <div>에러발생</div>
   if (!result) return null
-  console.log(result)
-
-  return <div>검색결과 페이지</div>
+  let roomData = result ? result.rooms : null
+  return (
+    <>
+      <FlexBox>
+        <Logo />
+        <MiniSearchBar />
+        <UserInfo />
+      </FlexBox>
+      <NoPaddingFlexBox>
+        <HouseList data={roomData} />
+        <Map />
+      </NoPaddingFlexBox>
+    </>
+  )
 }
+const FlexBox = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin: 30px 0;
+`
 
+const NoPaddingFlexBox = styled.div`
+  display: flex;
+  margin: 0px;
+`
 export default SearchResult
