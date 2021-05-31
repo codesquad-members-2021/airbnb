@@ -9,12 +9,12 @@ import SearchBarContextProvider from '../../../contexts/SearchBarContext';
 
 const TopBackground = (
   //@ts-ignore
-  { headerTexts, searchBarTexts, searchBarRef }: ITextTopBackground,
+  { headerTexts, searchBarTexts, searchBarRef, authModalRef }: ITextTopBackground,
 ) => {
 
   return (
     <TopBackgroundLayout>
-      <Header headerTexts={headerTexts} />
+      <Header headerTexts={headerTexts} authModalRef={authModalRef} />
 
       <SearchBarContextProvider>
         <SearchBar

@@ -1,15 +1,16 @@
+import { forwardRef } from 'react';
 import styled from 'styled-components';
-import DefaultButton from '../../../Common/DefaultButton';
-import { ResponsiveFluid } from '../../../Common/ResponsiveFluid';
+import { useMainDispatch, useMainState } from '../../../../contexts/MainContext';
 import { FiMenu, FiUser } from 'react-icons/fi';
-import { ITextTopBackground } from '../../../../util/reference';
-import {
-  useMainDispatch,
-  useMainState,
-} from '../../../../contexts/MainContext';
+import DefaultButton from '../../../Common/DefaultButton';
 import AuthModal from './AuthModal';
+import { ResponsiveFluid } from '../../../Common/ResponsiveFluid';
+import { ITextTopBackground } from '../../../../util/reference';
 
-const Header = ({ headerTexts }: ITextTopBackground) => {
+const Header = forwardRef(
+  // @ts-ignore
+  ({ headerTexts, authModalRef }: ITextTopBackground) => {
+
   const { authModalVisbile } = useMainState();
   const dispatch = useMainDispatch();
   const { logoOrBtnCaption: logo, menuItems } = headerTexts;
@@ -24,7 +25,8 @@ const Header = ({ headerTexts }: ITextTopBackground) => {
           ))}
         </HeaderMenuList>
 
-        <AuthBlock>
+        {/* @ts-ignore */}
+        <AuthBlock ref={authModalRef}>
           <AuthButton onClick={handleAuthButtonClick}>
             <div className="menu">
               <FiMenu />
@@ -39,7 +41,7 @@ const Header = ({ headerTexts }: ITextTopBackground) => {
       </HeaderLayout>
     )
   );
-};
+});
 
 export default Header;
 

@@ -18,14 +18,19 @@ const Main = () => {
   const { headerTexts, searchBarTexts } = TextTopBackground;
 
   const searchBarRef = useRef<HTMLDivElement>(null);
+  const authModalRef = useRef<HTMLDivElement>(null);
 
   const { searchBarClickedIdx } = useMainState();
   const mainDispatch = useMainDispatch();
   const handleBackgroundFluidClick = (e: MouseEvent | Event) => {
     const target = e.target as HTMLElement;
     const isSearchBarItem = searchBarRef.current?.contains(target);
-    if (searchBarClickedIdx < 0 || isSearchBarItem) return;
-    mainDispatch({ type: 'SET_SEARCHBAR_CLICKED_IDX', payload: -1 });
+    const isAuthModalItem = authModalRef.current?.contains(target);
+
+    if (searchBarClickedIdx > 0 || !isSearchBarItem)
+      mainDispatch({ type: 'SET_SEARCHBAR_CLICKED_IDX', payload: -1 });
+    if (!isAuthModalItem)
+      mainDispatch({ type: 'SET_AUTH_MODAL_VISIBLE', payload: false });
   };
 
   return (
@@ -36,7 +41,7 @@ const Main = () => {
         headerTexts={headerTexts}
         searchBarTexts={searchBarTexts}
         //@ts-ignore
-        searchBarRef={searchBarRef}
+        searchBarRef={searchBarRef} authModalRef={authModalRef}
       />
       <Nearby nearbyItems={nearby} />
       <RoomType roomTypeItems={roomType} />
