@@ -27,6 +27,11 @@ public class WishRepository implements JdbcRepository<Wish>{
         return jdbcTemplate.query(sql, wishRowMapper(), roomId, userId);
     }
 
+    public void delete(Long roomId, Long userId) {
+        String sql = "delete from `wish` where `room_id` = ? and `user_id` = ?";
+        jdbcTemplate.update(sql, roomId, userId);
+    }
+
     @Override
     public Optional<Wish> findById(Long id) {
         return Optional.empty();

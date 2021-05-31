@@ -3,6 +3,7 @@ package com.codesquad.airbnb.controller;
 import com.codesquad.airbnb.dto.RoomDTO;
 import com.codesquad.airbnb.dto.Rooms;
 import com.codesquad.airbnb.exception.WishNotAddableException;
+import com.codesquad.airbnb.exception.WishNotFoundException;
 import com.codesquad.airbnb.repository.RoomRepository;
 import com.codesquad.airbnb.repository.WishRepository;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -55,6 +56,9 @@ public class RoomController {
 
     @DeleteMapping("/{userId}/wish/{roomId}")
     public void deleteWish(@PathVariable("userId") Long userId, @PathVariable("roomId") Long roomId) {
-
+        if (wishRepository.findByRoomIdAndUserId(roomId, userId).isEmpty()) {
+            throw new WishNotFoundException();
+        }
+        wishRepository.delete(roomId, userId);
     }
 }
