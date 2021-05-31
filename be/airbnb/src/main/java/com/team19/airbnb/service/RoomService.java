@@ -6,6 +6,7 @@ import com.team19.airbnb.domain.room.Room;
 import com.team19.airbnb.dto.RoomDetailResponseDTO;
 import com.team19.airbnb.dto.RoomPriceRequestDTO;
 import com.team19.airbnb.dto.RoomPriceResponseDTO;
+import com.team19.airbnb.dto.SearchRequestDTO;
 import com.team19.airbnb.exception.RoomNotFoundException;
 import com.team19.airbnb.repository.RoomDAO;
 import org.springframework.stereotype.Service;
@@ -42,12 +43,20 @@ public class RoomService {
 
     public List<BigDecimal> searchPriceRangeTest(Double latitude, Double longitude) {
         return roomDAO.findPriceByAddressTest(latitude, longitude).stream()
-                .map(Room::getPricePerDay)
+                .map(room -> room.getPricePerDay())
                 .collect(Collectors.toList());
     }
 
-    public RoomDetailResponseDTO showRoomDetail() {
-        final Room room = roomDAO.findById(1L).orElseThrow(RoomNotFoundException::new);
-        return new RoomDetailResponseDTO.Builder(room).totalPrice(BigDecimal.valueOf(1000)).build();
+    public List<RoomDetailResponseDTO> searchRoomsByCondition(SearchRequestDTO searchRequestDTO) {
+        if(searchRequestDTO.getCheckIn() != null && searchRequestDTO.getCheckOut() != null) {
+            Booking booking = searchRequestDTO.toBooking();
+            return roomDAO.findRoomsByCondition(searchRequestDTO).stream()
+                    .map((room) -> new RoomDetailResponseDTO.Builder(room).totalPrice(booking.calculateTotalPrice(room.getPricePerDay())).build())
+                    .collect(Collectors.toList());
+
+        }
+        return roomDAO.findRoomsByCondition(searchRequestDTO).stream()
+                .map((room) -> new RoomDetailResponseDTO.Builder(room).build())
+                .collect(Collectors.toList());
     }
 }

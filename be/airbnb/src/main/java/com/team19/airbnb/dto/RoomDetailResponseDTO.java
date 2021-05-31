@@ -18,7 +18,7 @@ public class RoomDetailResponseDTO {
     private Integer reviewer;
 
     private String location;
-    private String[] coordinate;
+    private Double[] coordinate;
 
     private String roomType;
     private String roomConfiguration;
@@ -29,6 +29,8 @@ public class RoomDetailResponseDTO {
     private BigDecimal pricePerDay;
 
     private BigDecimal totalPrice;
+
+    public RoomDetailResponseDTO() {}
 
     private RoomDetailResponseDTO(Builder builder) {
 
@@ -65,7 +67,7 @@ public class RoomDetailResponseDTO {
         private final Integer reviewer;
 
         private final String location;
-        private final String[] coordinate;
+        private final Double[] coordinate;
 
         private final String roomType;
         private final String roomConfiguration;
@@ -100,10 +102,10 @@ public class RoomDetailResponseDTO {
             this.totalPrice = BigDecimal.ZERO;
         }
 
-        private String[] coordinate(Location location) {
-            String[] coordinate = new String[2];
-            coordinate[0] = location.getLatitude().toString();
-            coordinate[1] = location.getLongitude().toString();
+        private Double[] coordinate(Location location) {
+            Double[] coordinate = new Double[2];
+            coordinate[0] = location.getLatitude();
+            coordinate[1] = location.getLongitude();
             return coordinate;
         }
 
@@ -151,7 +153,7 @@ public class RoomDetailResponseDTO {
         return location;
     }
 
-    public String[] getCoordinate() {
+    public Double[] getCoordinate() {
         return coordinate;
     }
 

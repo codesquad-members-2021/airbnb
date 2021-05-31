@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -45,7 +46,6 @@ public class RoomController {
 
     @GetMapping("/rooms")
     public List<RoomDetailResponseDTO> searchRoomsByCondition(@ModelAttribute SearchRequestDTO searchRequestDTO) {
-        System.out.println("searchRequestDTO = " + searchRequestDTO);
-        return null;
+        return roomService.searchRoomsByCondition(searchRequestDTO);
     }
 }

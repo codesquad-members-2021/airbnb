@@ -84,6 +84,14 @@ public class Booking {
                 null, room);
     }
 
+    public static Booking create(LocalDate checkIn, LocalDate checkOut,
+                                 Integer guest) {
+        return new Booking(null,
+                checkIn, checkOut,
+                guest, null,
+                null, null);
+    }
+
     public Long getId() {
         return id;
     }
@@ -120,8 +128,9 @@ public class Booking {
         this.user = userId;
     }
 
-    public void calculateTotalPrice(BigDecimal roomPricePerDay) {
+    public BigDecimal calculateTotalPrice(BigDecimal roomPricePerDay) {
         this.totalPrice = new Price.Builder(countDays(), roomPricePerDay).build().getTotalPrice();
+        return totalPrice;
     }
 
     public Long countDays() {
