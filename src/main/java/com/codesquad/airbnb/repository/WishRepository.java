@@ -21,6 +21,11 @@ public class WishRepository implements JdbcRepository<Wish>{
         jdbcTemplate.update(sql, roomId, userId);
     }
 
+    public List<Wish> findByRoomIdAndUserId(Long roomId, Long userId) {
+        String sql = "select wish.id, `room_id`, `user_id` from `wish` where `room_id` = ? and `user_id` = ?";
+        return jdbcTemplate.query(sql, wishRowMapper(), roomId, userId);
+    }
+
     @Override
     public Optional<Wish> findById(Long id) {
         return Optional.empty();
