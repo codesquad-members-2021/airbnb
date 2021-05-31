@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import AccountMenu from '../../Home/HeroSection/Header/AccountMenu';
 import AirbnbIcon from '../../Atoms/icons/AirbnbIcon';
@@ -8,21 +8,50 @@ import { ReservationContext } from '..';
 const ReservationHeader = () => {
   const { match } = useContext(ReservationContext);
   const [barType, setBarType] = useState('mini');
+  const searchElement = useRef();
+
+  useEffect(() => {
+    const normalBarOff = (e) => {
+      if (searchElement.current && !searchElement.current.contains(e.target)) {
+        setBarType('mini');
+      }
+    };
+    document.addEventListener('mousedown', normalBarOff);
+    return () => {
+      document.removeEventListener('mousedown', normalBarOff);
+    };
+  }, [searchElement]);
 
   return (
     <>
-      <ReservationHeaderDiv>
-        <HeaderDiv>
-          <AirbnbIcon />
-          <NavSelectDiv>
-            <div>숙소</div>
-            <div>체험</div>
-            <div>온라인체험</div>
-          </NavSelectDiv>
-          <AccountMenu />
-        </HeaderDiv>
-      </ReservationHeaderDiv>
-      <Search matchParam={match.params} barType={barType} />
+      {barType === 'normal' ? (
+        <>
+          <ReservationHeaderDiv ref={searchElement}>
+            <HeaderDiv>
+              <AirbnbIcon />
+              <NavSelectDiv>
+                <div>숙소</div>
+                <div>체험</div>
+                <div>온라인체험</div>
+              </NavSelectDiv>
+              <AccountMenu />
+            </HeaderDiv>
+          </ReservationHeaderDiv>
+          <Search matchParam={match.params} barType={barType} />
+        </>
+      ) : (
+        <>
+          <ReservationHeaderDiv>
+            <HeaderDiv>
+              <AirbnbIcon />
+              <div onClick={() => setBarType('normal')}>
+                <Search matchParam={match.params} barType={barType} />
+              </div>
+              <AccountMenu />
+            </HeaderDiv>
+          </ReservationHeaderDiv>
+        </>
+      )}
     </>
   );
 };
