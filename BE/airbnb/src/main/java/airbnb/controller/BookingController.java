@@ -1,7 +1,5 @@
 package airbnb.controller;
 
-import airbnb.domain.Booking;
-import airbnb.domain.Image;
 import airbnb.domain.Room;
 import airbnb.domain.User;
 import airbnb.request.BookingRequest;
@@ -9,10 +7,8 @@ import airbnb.response.BookingResponse;
 import airbnb.service.BookingService;
 import airbnb.service.RoomService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 @RestController
 @RequiredArgsConstructor
@@ -29,9 +25,9 @@ public class BookingController {
         return ResponseEntity.ok(bookingResponse);
     }
 
-    @DeleteMapping("/cancel/rooms/{roomId}")
-    public ResponseEntity<String> cancel() {
-        return new ResponseEntity<>("예약이 성공적으로 취소되었습니다.", HttpStatus.OK);
+    @DeleteMapping("/cancel/bookings/{bookingId}")
+    public ResponseEntity<String> cancel(@PathVariable Long bookingId) {
+        bookingService.cancel(bookingId);
+        return ResponseEntity.ok("예약이 성공적으로 취소되었습니다.");
     }
-
 }

@@ -1,11 +1,12 @@
 package airbnb.domain;
 
+import airbnb.response.BookingResponse;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 
 import static javax.persistence.FetchType.LAZY;
 
@@ -32,6 +33,21 @@ public class Booking {
     @Embedded
     private Guest guest;
 
-    private LocalDate checkIn;
-    private LocalDate checkOut;
+    private LocalDateTime checkIn;
+    private LocalDateTime checkOut;
+
+    private Integer totalPrice;
+
+    public static BookingResponse createBookingResponse(Booking booking) {
+        return BookingResponse.builder()
+                .name(booking.room.getName())
+                .roomImages(booking.room.getImages().stream().map(Image::getImage).collect(Collectors.toList()))
+                .place(booking.room.getLocation().getPlaceId())
+                .host(booking.room.getHost().getName())
+                .checkIn(booking.checkIn)
+                .checkOut(booking.checkOut)
+                .numberOfGuests(booking.guest.numberOfGuests())
+                .totalPrice(booking.totalPrice)
+                .build();
+    }
 }
