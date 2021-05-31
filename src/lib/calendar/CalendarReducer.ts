@@ -1,16 +1,29 @@
-import { Calendar, CurrentDay } from "../utils/types";
+import { ClickTargetType, Calendar, CurrentDay } from "../utils/types";
 import { MESSAGE } from "../utils/constant";
 
 export type DatesState = {
   startDate: Date | null;
   endDate: Date | null;
+  nextClickTarget: ClickTargetType;
 };
 
 export type DatesAction =
-  | { type: "CASE_SET_START"; startDate: Date | null }
-  | { type: "CASE_SET_END"; endDate: Date | null }
-  | { type: "CASE_SET_START_CLEAR_END"; startDate: Date | null }
-  | { type: "CASE_CLEAR_BOTH" };
+  | {
+      type: "CASE_SET_START";
+      startDate: Date | null;
+      nextClickTarget: ClickTargetType;
+    }
+  | {
+      type: "CASE_SET_END";
+      endDate: Date | null;
+      nextClickTarget: ClickTargetType;
+    }
+  | {
+      type: "CASE_SET_START_CLEAR_END";
+      startDate: Date | null;
+      nextClickTarget: ClickTargetType;
+    }
+  | { type: "CASE_CLEAR_BOTH"; nextClickTarget: ClickTargetType };
 
 export function datesReducer(
   state: DatesState,
@@ -18,13 +31,29 @@ export function datesReducer(
 ): DatesState {
   switch (action.type) {
     case "CASE_SET_START":
-      return { ...state, startDate: action.startDate };
+      return {
+        ...state,
+        startDate: action.startDate,
+        nextClickTarget: action.nextClickTarget,
+      };
     case "CASE_SET_END":
-      return { ...state, endDate: action.endDate };
+      return {
+        ...state,
+        endDate: action.endDate,
+        nextClickTarget: action.nextClickTarget,
+      };
     case "CASE_SET_START_CLEAR_END":
-      return { startDate: action.startDate, endDate: null };
+      return {
+        startDate: action.startDate,
+        endDate: null,
+        nextClickTarget: action.nextClickTarget,
+      };
     case "CASE_CLEAR_BOTH":
-      return { startDate: null, endDate: null };
+      return {
+        startDate: null,
+        endDate: null,
+        nextClickTarget: action.nextClickTarget,
+      };
     default:
       throw new Error(MESSAGE.ERROR.INVALID_ACTION);
   }

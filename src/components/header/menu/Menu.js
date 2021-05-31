@@ -37,14 +37,29 @@ const Menu = () => {
       infant: 0,
     },
   });
-  const { inputType } = formState;
+  const { inputType, checkIn, checkOut } = formState;
   const onClickDay = (result) => {
-    const { year, month, day, type, nextClickTarget } = result;
-    if (type === "start") {
-      dispatch({ type: "SET_CHECK_IN", checkIn: { year, month, day } });
-    } else if (type === "end") {
-      dispatch({ type: "SET_CHECK_OUT", checkOut: { year, month, day } });
-    }
+    const { nextClickTarget, startDate, endDate } = result;
+    dispatch({
+      type: "SET_CHECK_IN",
+      checkIn: startDate
+        ? startDate
+        : {
+            year: null,
+            month: null,
+            day: null,
+          },
+    });
+    dispatch({
+      type: "SET_CHECK_OUT",
+      checkOut: endDate
+        ? endDate
+        : {
+            year: null,
+            month: null,
+            day: null,
+          },
+    });
     if (nextClickTarget === "start") {
       dispatch({ type: "SET_TYPE", inputType: "checkIn" });
     } else if (nextClickTarget === "end") {
@@ -79,7 +94,7 @@ const Menu = () => {
         <SearchForm {...{ Controller, formState, dispatch }} />
         <SearchInput type="calendar">
           {(inputType === "checkIn" || inputType === "checkOut") && (
-            <Calendar onClickDay={onClickDay} />
+            <Calendar onClickDay={onClickDay} start={checkIn} end={checkOut} />
           )}
         </SearchInput>
       </form>

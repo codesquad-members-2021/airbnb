@@ -1,4 +1,4 @@
-type Date = {
+export type DateType = {
   year: number;
   month: number;
   day: number;
@@ -16,10 +16,13 @@ export type CurrentDay = {
   month: number;
 };
 
-export type _OnClickResult = Date & {
-  week: string;
-  type: ClickTargetType;
+export type _OnClickResult = {
+  clickedType: ClickTargetType;
   nextClickTarget: ClickTargetType;
+  startDate: DateType | null;
+  endDate: DateType | null;
+  startWeek: string;
+  endWeek: string;
 };
 
 export type Direction = 1 | -1;

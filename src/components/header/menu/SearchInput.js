@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const SearchInput = ({ children, type }) => {
+const SearchInput = ({ children }) => {
   return <SearchInputWrapper>{children}</SearchInputWrapper>;
 };
 

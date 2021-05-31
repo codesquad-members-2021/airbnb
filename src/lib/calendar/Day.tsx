@@ -1,4 +1,4 @@
-import React, { Dispatch } from "react";
+import React, { Dispatch, useEffect } from "react";
 import styled from "styled-components";
 import {
   useDatesDispatch,
@@ -8,7 +8,7 @@ import {
 } from "./CalendarProvider";
 import { DatesAction } from "./CalendarReducer";
 import { DAYS, MESSAGE } from "../utils/constant";
-import { Calendar, ClickTargetType } from "../utils/types";
+import { Calendar, ClickTargetType, OnClickDay } from "../utils/types";
 import { DayWrapper } from "../utils/styled";
 
 export default function Day({
@@ -21,7 +21,7 @@ export default function Day({
   clickTarget: ClickTargetType;
 }) {
   const { onClickDay, setClickTarget } = useCalendarMethod();
-  const { startDate, endDate } = useDatesState();
+  const { startDate, endDate, nextClickTarget } = useDatesState();
   const { lang } = useConstantState();
   const thisDate = new Date(year, month - 1, day);
   const done = Boolean(startDate && endDate);
@@ -41,18 +41,16 @@ export default function Day({
           const action = actionByCase({
             dispatch,
             startDate,
+            endDate,
             thisDate,
             setClickTarget,
           });
-          const resultType = action(caseType);
-
-          onClickDay?.({
-            type: clickTarget,
-            year,
-            month,
+          action({
+            caseType,
+            onClickDay,
+            lang,
+            firstDay,
             day,
-            week: getWeek(lang, firstDay, day),
-            nextClickTarget: resultType,
           });
         }}
       >
@@ -143,34 +141,104 @@ type Case =
 type ActionByCaseProps = {
   dispatch: Dispatch<DatesAction>;
   startDate: Date | null;
+  endDate: Date | null;
   thisDate: Date;
   setClickTarget: (clickTarget: ClickTargetType) => void;
 };
 
 const actionByCase =
-  ({ dispatch, startDate, thisDate, setClickTarget }: ActionByCaseProps) =>
-  (caseType: Case): ClickTargetType => {
+  ({
+    dispatch,
+    startDate,
+    endDate,
+    thisDate,
+    setClickTarget,
+  }: ActionByCaseProps) =>
+  ({
+    caseType,
+    onClickDay,
+    lang,
+    firstDay,
+    day,
+  }: OnClickDay & {
+    caseType: Case;
+    lang: string;
+    firstDay: number;
+    day: number;
+  }) => {
     switch (caseType) {
       case "CASE_SET_START":
-        dispatch({ type: caseType, startDate: thisDate });
+        dispatch({
+          type: caseType,
+          startDate: thisDate,
+          nextClickTarget: "end",
+        });
         setClickTarget("end");
-        return "end";
+        onClickDay?.({
+          clickedType: "start",
+          nextClickTarget: "end",
+          startDate: convertDate(thisDate),
+          endDate: convertDate(endDate),
+          startWeek: getWeek(lang, firstDay, day),
+          endWeek: getWeek(lang, firstDay, day),
+        });
+        break;
       case "CASE_SET_END":
-        dispatch({ type: caseType, endDate: thisDate });
+        dispatch({
+          type: caseType,
+          endDate: thisDate,
+          nextClickTarget: startDate ? "end" : "start",
+        });
         if (!startDate) {
           setClickTarget("start");
-          return "start";
+          onClickDay?.({
+            clickedType: "end",
+            nextClickTarget: "start",
+            startDate: convertDate(startDate),
+            endDate: convertDate(thisDate),
+            startWeek: getWeek(lang, firstDay, day),
+            endWeek: getWeek(lang, firstDay, day),
+          });
+          break;
         }
         setClickTarget("end");
-        return "end";
+        onClickDay?.({
+          clickedType: "end",
+          nextClickTarget: "end",
+          startDate: convertDate(startDate),
+          endDate: convertDate(thisDate),
+          startWeek: getWeek(lang, firstDay, day),
+          endWeek: getWeek(lang, firstDay, day),
+        });
+        break;
       case "CASE_SET_START_CLEAR_END":
-        dispatch({ type: caseType, startDate: thisDate });
+        dispatch({
+          type: caseType,
+          startDate: thisDate,
+          nextClickTarget: "end",
+        });
         setClickTarget("end");
-        return "end";
+        onClickDay?.({
+          clickedType: "start",
+          nextClickTarget: "end",
+          startDate: convertDate(thisDate),
+          endDate: null,
+          startWeek: getWeek(lang, firstDay, day),
+          endWeek: getWeek(lang, firstDay, day),
+        });
+        break;
       case "CASE_CLEAR_BOTH":
-        dispatch({ type: caseType });
+        dispatch({ type: caseType, nextClickTarget: "start" });
         setClickTarget("start");
-        return "start";
+        onClickDay?.({
+          clickedType: "start",
+          nextClickTarget: "start",
+          startDate: null,
+          endDate: null,
+          startWeek: getWeek(lang, firstDay, day),
+          endWeek: getWeek(lang, firstDay, day),
+        });
+        break;
       default:
         throw new Error(MESSAGE.ERROR.INVALID_CASE);
     }
@@ -180,7 +248,14 @@ function getWeek(lang: string, firstDay: number, day: number): string {
   const i = (firstDay + day - 1) % 7;
   return DAYS[lang][i];
 }
-
+function convertDate(date: Date | null) {
+  if (!date) return null;
+  return {
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+    day: date.getDate(),
+  };
+}
 const DayCircle = styled.div`
   position: absolute;
   width: 100%;

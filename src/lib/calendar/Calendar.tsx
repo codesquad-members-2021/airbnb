@@ -3,7 +3,12 @@ import styled from "styled-components";
 import Carousel from "../carousel/Carousel";
 import CalendarItem from "./CalendarItem";
 import CalendarProvider, { useCalendarState } from "./CalendarProvider";
-import { OnClickDay, _OnClickResult, ClickTargetType } from "../utils/types";
+import {
+  OnClickDay,
+  _OnClickResult,
+  ClickTargetType,
+  DateType,
+} from "../utils/types";
 import { MESSAGE } from "../utils/constant";
 import { renderWeeks } from "../utils/renderFn";
 import { GlobalStyle } from "../utils/styled";
@@ -12,11 +17,19 @@ function calendarContext() {
   let calendarTypeChanger: (type: ClickTargetType) => void;
 
   type CalendarProps = OnClickDay & {
+    start?: DateType;
+    end?: DateType;
     countOfMonth: number;
     lang: string;
   };
 
-  function Calendar({ onClickDay, countOfMonth, lang }: CalendarProps) {
+  function Calendar({
+    onClickDay,
+    countOfMonth,
+    lang,
+    start,
+    end,
+  }: CalendarProps) {
     if (countOfMonth < 1 || countOfMonth > 12) {
       throw new Error(MESSAGE.ERROR.INVALID_RANGE_COUNT_OF_MONTH);
     }
@@ -25,7 +38,9 @@ function calendarContext() {
     calendarTypeChanger = setClickTarget;
 
     return (
-      <CalendarProvider {...{ onClickDay, countOfMonth, setClickTarget, lang }}>
+      <CalendarProvider
+        {...{ onClickDay, countOfMonth, setClickTarget, lang, start, end }}
+      >
         <GlobalStyle />
         <InnerCalendar
           countOfMonth={countOfMonth}
