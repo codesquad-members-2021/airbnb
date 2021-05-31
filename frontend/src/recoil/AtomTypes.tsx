@@ -28,7 +28,8 @@ export type RoomPrice = {
 };
 
 export type GuestsState = {
-  adult: number | null;
-  child: number | null;
-  toddler: number | null;
+  adult: number;
+  child: number;
+  toddler: number;
+  [key: string]: number;
 };
