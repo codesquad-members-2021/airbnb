@@ -1,10 +1,12 @@
 package com.codesquad.airbnb.accommodation.service;
 
+import com.codesquad.airbnb.accommodation.controller.AccommodationDTO;
 import com.codesquad.airbnb.accommodation.controller.AccommodationRequest;
 import com.codesquad.airbnb.accommodation.controller.AccommodationReservationInfo;
 import com.codesquad.airbnb.accommodation.controller.AccommodationResponse;
 import com.codesquad.airbnb.accommodation.domain.Accommodation;
 import com.codesquad.airbnb.accommodation.repository.AccommodationRepository;
+import com.codesquad.airbnb.common.dummydata.AccommodationDTODummyDataFactory;
 import com.codesquad.airbnb.common.dummydata.AccommodationDummyDataFactory;
 import com.codesquad.airbnb.common.dummydata.AccommodationReservationInfoDummyDataFactory;
 import com.codesquad.airbnb.common.dummydata.AccommodationResponseDummyDataFactory;
@@ -61,6 +63,28 @@ class AccommodationServiceImplTest {
                                 .build(),
                         AccommodationDummyDataFactory.listWithId(),
                         AccommodationResponseDummyDataFactory.listWithIdTypeTwoNights()
+                )
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("readOneProvider")
+    void readOne(long id, Accommodation given, AccommodationDTO expected) {
+        given(accommodationRepository.findOne(id))
+                .willReturn(given);
+
+        AccommodationDTO actual = accommodationService.readOne(id);
+
+        then(actual).isEqualTo(expected);
+    }
+
+    @SuppressWarnings("unused")
+    static Stream<Arguments> readOneProvider() {
+        return Stream.of(
+                Arguments.of(
+                        1L,
+                        AccommodationDummyDataFactory.listWithId().get(0),
+                        AccommodationDTODummyDataFactory.listWithId().get(0)
                 )
         );
     }
