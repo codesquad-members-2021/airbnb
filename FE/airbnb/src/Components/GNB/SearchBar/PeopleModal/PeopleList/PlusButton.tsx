@@ -52,6 +52,16 @@ const PlusButton = ({ type }: Props) => {
     }
   }, [type, adultPlusButtonFlag, childrenPlusButtonFlag, babyPlusButtonFlag]);
 
+  useEffect(() => {
+    if (adultCount === 0 && childrenCount === 0 && babyCount === 0) {
+      setPeopleInput(`게스트 추가`);
+    } else {
+      setPeopleInput(
+        `게스트 ${adultCount + childrenCount}명, 유아 ${babyCount}명`
+      );
+    }
+  }, [adultCount, childrenCount, babyCount]);
+
   const handleClick = (e: any) => {
     setPeopleCancleButton(true);
 
@@ -80,9 +90,6 @@ const PlusButton = ({ type }: Props) => {
       setBabyMinusButtonFlag(false);
       setBabyCount((prev) => prev + 1);
     }
-    setPeopleInput(
-      `게스트 ${adultCount + childrenCount}명, 유아 ${babyCount}명`
-    );
   };
 
   return (

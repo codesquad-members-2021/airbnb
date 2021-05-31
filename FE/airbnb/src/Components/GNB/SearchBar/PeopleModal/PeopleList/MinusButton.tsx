@@ -3,6 +3,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import {
   peopleState,
   selectCancleButtonState,
+  selectInputState,
 } from "@/Components/GNB/GNBStore";
 import { PeopleModal as S } from "@/Components/GNB/GNBStlyes";
 import { ReactComponent as MinusIcon } from "@/assets/minusIcon.svg";
@@ -15,6 +16,7 @@ const MinusButton = ({ type }: Props) => {
   const setPeopleCancleButton = useSetRecoilState(
     selectCancleButtonState.people
   );
+  const setPeopleInput = useSetRecoilState(selectInputState.people);
   const [adultMinusButtonFlag, setAdultMinusButtonFlag] = useRecoilState(
     peopleState.adultMinusButtonFlag
   );
@@ -55,9 +57,25 @@ const MinusButton = ({ type }: Props) => {
     babyMinusButtonFlag,
   ]);
 
+  useEffect(() => {
+    if (adultCount === 0 && childrenCount === 0 && babyCount === 0) {
+      setPeopleInput(`게스트 추가`);
+    } else {
+      setPeopleInput(
+        `게스트 ${adultCount + childrenCount}명, 유아 ${babyCount}명`
+      );
+    }
+  }, [adultCount, childrenCount, babyCount]);
+
   const handleClick = () => {
     setPeopleCancleButton(true);
+
     if (type === "성인") {
+      if (adultCount === 2) {
+        if (childrenCount > 0 || babyCount > 0) {
+          setAdultMinusButtonFlag(true);
+        }
+      }
       if (adultCount <= 1) {
         setAdultMinusButtonFlag(true);
       }
