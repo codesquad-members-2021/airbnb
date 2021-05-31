@@ -145,6 +145,7 @@ const StyledPriceBar = styled.div<StyledProps>`
   width: 493px;
   height: 355px;
   padding: 52px 64px;
+  z-index: 10;
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
   border-radius: 1rem;

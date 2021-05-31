@@ -11,6 +11,7 @@ declare global {
 }
 
 function App() {
+  console.log('app');
   return (
     <ThemeProvider theme={theme}>
       <StyledApp>

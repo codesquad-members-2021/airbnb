@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 import Map from '../components/map/Map';
+import ReserveHeader from '../components/reserveHeader/ReserveHeader';
 
 interface Props {}
 
 const ReservePage = ({}: Props) => {
   return (
     <StyledReservePage>
-      <Map />
+      <ReserveHeader />
+      <div className='reservePage'>
+        <Map />
+      </div>
     </StyledReservePage>
   );
 };
@@ -17,5 +21,8 @@ const StyledReservePage = styled.div`
   .map {
     width: 500px;
     height: 400px;
+  }
+  .reservePage {
+    margin-top: 94px;
   }
 `;
