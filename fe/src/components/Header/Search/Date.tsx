@@ -58,7 +58,7 @@ export default Date;
 const DateWrap = styled.div`
   display: flex;
   height: 100%;
-  width: 361px;
+  width: 40%;
   align-items: center;
 `;
 
@@ -68,7 +68,7 @@ const DateStyeld = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  width: 170px;
+  width: 100%;
   &:hover {
     background-color: ${({ theme }) => theme.color.gray6};
   }

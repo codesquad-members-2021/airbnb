@@ -36,5 +36,6 @@ const ModalWrap = styled.div`
   padding: 4rem;
   width: 400px;
   height: 355px;
+  z-index: 10;
   background-color: ${({ theme }) => theme.color.white};
 `;

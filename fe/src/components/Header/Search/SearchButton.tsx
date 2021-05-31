@@ -2,10 +2,15 @@ import styled from 'styled-components';
 
 import { ReactComponent as SearchIcon } from '@assets/search.svg';
 import { Link } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { isMiniSearchBarOpen } from '@recoil/atoms/searchResult';
 
 const SearchButton = () => {
+  const setToggleMiniSearchBar = useSetRecoilState(isMiniSearchBarOpen);
+  const handleClickMiniSearchBar = () => setToggleMiniSearchBar(true);
+
   return (
-    <Link to="search">
+    <Link to="search" onClick={handleClickMiniSearchBar}>
       <SearchBtnWrap>
         <SearchClickBtn>
           <div>

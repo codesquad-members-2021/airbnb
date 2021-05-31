@@ -3,9 +3,11 @@ import Menu from './Menu';
 
 const Form = () => {
   return (
-    <FormWrap>
-      <Menu />
-    </FormWrap>
+    <>
+      <FormWrap>
+        <Menu />
+      </FormWrap>
+    </>
   );
 };
 

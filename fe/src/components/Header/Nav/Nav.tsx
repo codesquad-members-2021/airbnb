@@ -3,19 +3,16 @@ import styled from 'styled-components';
 import Logo from './Logo';
 import Form from './Form';
 import Profile from '@components/Header/ProfileMenu/Profile';
-import { useParams } from 'react-router';
-
-import SearchBar from '@components/Header/Search/SearchBar';
 
 const Nav = () => {
-  const params: string | null = useParams();
-
   return (
-    <NavContainer>
-      <Logo />
-      {params?.search ? <SearchBar /> : <Form />}
-      <Profile />
-    </NavContainer>
+    <>
+      <NavContainer>
+        <Logo />
+        <Form />
+        <Profile />
+      </NavContainer>
+    </>
   );
 };
 

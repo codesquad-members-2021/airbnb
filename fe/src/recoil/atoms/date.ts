@@ -54,6 +54,14 @@ const checkoutNewDate = selector({
   },
 });
 
+const miniSearchBarDate = selector({
+  key: 'miniSearchBarDate',
+  get: ({ get }) => {
+    const { checkinDate, checkoutDate } = get(checkDate);
+    return `${checkinDate.month}월 ${checkinDate.day}일 - ${checkoutDate.month}월 ${checkoutDate.day}일`;
+  },
+});
+
 export {
   calendarDateState,
   isCheckInOut,
@@ -61,4 +69,5 @@ export {
   checkinNewDate,
   checkoutNewDate,
   currentHoverDate,
+  miniSearchBarDate,
 };

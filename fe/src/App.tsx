@@ -29,6 +29,5 @@ export default App;
 const AppContainer = styled.div`
   margin: 0 auto;
   min-width: 1440px;
-  height: 2204px;
   background: ${({ theme }) => theme.color.white};
 `;

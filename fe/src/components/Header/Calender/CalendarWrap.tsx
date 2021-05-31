@@ -104,6 +104,7 @@ const CalendarContainer = styled.div`
     0px 0px 4px rgba(51, 51, 51, 0.05);
   border-radius: ${({ theme }) => theme.borderRadius.calendar};
   position: relative;
+  z-index: 10;
 
   .right-arrow {
     position: absolute;

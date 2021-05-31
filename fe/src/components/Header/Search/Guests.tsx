@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import GuestModal from './GuestModal';
 import Title from '@components/common/Title';
-import { isOpenGuestModal, totalGuestState } from '@recoil/atoms/guests';
+import { totalGuestState } from '@recoil/atoms/guests';
 import { modalStates } from '@recoil/atoms/modalState';
 
 const Guests = () => {

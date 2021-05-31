@@ -44,7 +44,7 @@ const LoginWrap = styled.ul`
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1),
     0px 0px 4px rgba(51, 51, 51, 0.05);
-  z-index: 2;
+  z-index: 10;
 
   li {
     &:hover {

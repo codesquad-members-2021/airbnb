@@ -41,6 +41,7 @@ const ModalWrap = styled.div`
   position: absolute;
   top: 128%;
   right: -85%;
+  z-index: 10;
 `;
 
 const ModalInfo = styled.div`

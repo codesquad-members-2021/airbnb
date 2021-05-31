@@ -6,7 +6,7 @@ import Title from '@components/common/Title';
 import ChartModal from '@components/Header/PriceChart/ChartModal';
 
 import { modalStates } from '@recoil/atoms/modalState';
-import { priceRange, selectedPrice } from '@recoil/atoms/price';
+import { searchBarPriceShow, selectedPrice } from '@recoil/atoms/price';
 
 interface price {
   MIN_PRICE: number;
@@ -15,11 +15,8 @@ interface price {
 
 const Fare = () => {
   const [isOpenModal, setIsOpenModal] = useRecoilState(modalStates);
-  const priceRangeValues = useRecoilValue(priceRange);
   const selectPrice = useRecoilValue(selectedPrice);
-
-  const renderPriceRangeText = ({ MIN_PRICE, MAX_PRICE }: price) =>
-    `$${MIN_PRICE.toLocaleString()} ~ $${MAX_PRICE.toLocaleString()}`;
+  const priceRangeValue = useRecoilValue(searchBarPriceShow);
 
   const handleClickPriceChart = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -35,9 +32,7 @@ const Fare = () => {
     <FareWrap onClick={handleClickPriceChart}>
       <Title>요금</Title>
       <SmallText>
-        {selectPrice.length > 0
-          ? renderPriceRangeText(priceRangeValues)
-          : '금액대 설정'}
+        {selectPrice.length > 0 ? `${priceRangeValue}` : '금액대 설정'}
       </SmallText>
       {isOpenModal.price && <ChartModal />}
     </FareWrap>
@@ -51,7 +46,7 @@ const FareWrap = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  width: 256px;
+  width: 25%;
   position: relative;
   &:hover {
     background-color: ${({ theme }) => theme.color.gray6};

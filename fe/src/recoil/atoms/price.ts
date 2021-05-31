@@ -50,4 +50,18 @@ const priceList = selector({
   },
 });
 
-export { priceRange, priceList, averagePrice, selectedPrice };
+const searchBarPriceShow = selector({
+  key: 'searchBarPriceShow',
+  get: ({ get }) => {
+    const { MIN_PRICE, MAX_PRICE } = get(priceRange);
+    return `$${MIN_PRICE.toLocaleString()}~${MAX_PRICE.toLocaleString()}`;
+  },
+});
+
+export {
+  priceRange,
+  priceList,
+  averagePrice,
+  selectedPrice,
+  searchBarPriceShow,
+};

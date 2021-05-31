@@ -38,6 +38,8 @@ const SearchBar = () => {
 export default SearchBar;
 
 const Select = styled.div`
+  margin: 0 auto;
+  margin-top: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
