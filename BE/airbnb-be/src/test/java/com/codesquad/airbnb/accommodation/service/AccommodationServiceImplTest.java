@@ -17,7 +17,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.BDDAssertions.then;
@@ -52,21 +51,16 @@ class AccommodationServiceImplTest {
         return Stream.of(
                 Arguments.of(
                         AccommodationRequest.builder().build(),
-                        AccommodationDummyDataFactory.listWithId().stream()
-                                .collect(Collectors.toList()),
-                        AccommodationResponseDummyDataFactory.listWithIdTypeOneNight().stream()
-                                .collect(Collectors.toList())
+                        AccommodationDummyDataFactory.listWithId(),
+                        AccommodationResponseDummyDataFactory.listWithIdTypeOneNight()
                 ),
                 Arguments.of(
                         AccommodationRequest.builder()
                                 .checkinDate(LocalDate.now())
                                 .checkoutDate(LocalDate.now().plusDays(2))
                                 .build(),
-                        AccommodationDummyDataFactory.listWithId().stream()
-                                .collect(Collectors.toList()),
-                        AccommodationDummyDataFactory.listWithId().stream()
-                                .map(accommodation -> AccommodationResponse.of(accommodation, 2))
-                                .collect(Collectors.toList())
+                        AccommodationDummyDataFactory.listWithId(),
+                        AccommodationResponseDummyDataFactory.listWithIdTypeTwoNights()
                 )
         );
     }
