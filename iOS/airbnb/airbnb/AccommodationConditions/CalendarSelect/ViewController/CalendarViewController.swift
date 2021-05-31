@@ -18,12 +18,12 @@ final class CalendarViewController: UIViewController {
         let passButton = UIBarButtonItem(title: CalendarViewModel.ButtonTitle.pass,
                                          style: .plain,
                                          target: self,
-                                         action: #selector(passToCompleteScreen))
+                                         action: nil)
         let spacing = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let nextButton = UIBarButtonItem(title: CalendarViewModel.ButtonTitle.next,
                                          style: .plain,
                                          target: self,
-                                         action: #selector(navigateToNextScreen))
+                                         action: nil)
         nextButton.isEnabled = false
         toolBar.setItems([passButton, spacing, nextButton], animated: true)
         return toolBar
@@ -81,14 +81,12 @@ final class CalendarViewController: UIViewController {
     
     private lazy var calendarInset: CGFloat = {
         let viewWidth = view.frame.width
-        let remainder = viewWidth.remainder(dividingBy: 7)
-        let cellWidth = (viewWidth - remainder) / 7
-        return (remainder + cellWidth * 0.7) * 0.5
+        return viewWidth * 0.07
     }()
     
     private lazy var tableCellHeight: CGFloat = {
         let viewHeight = view.frame.height
-        return viewHeight / 20
+        return viewHeight * 0.05
     }()
     
     override func loadView() {
@@ -173,7 +171,10 @@ final class CalendarViewController: UIViewController {
             self?.accommodationConditionTableViewDataSource?.updateContents(with: conditions)
             self?.updateConditionView()
             self?.updateCalendarView()
-            if conditions[1] != "" { self?.setCancelBarButton() }
+            
+            if conditions[1] != "" {
+                self?.setCancelBarButton()
+            }
         })
     }
     
@@ -207,14 +208,6 @@ final class CalendarViewController: UIViewController {
         viewModel?.didSelectionCanceled()
         unsetCancelBarButton()
     }
-    
-    @objc private func navigateToNextScreen(_ sender: UIBarButtonItem) {
-
-    }
-    
-    @objc private func passToCompleteScreen(_ sender: UIBarButtonItem) {
-        
-    }
 
 }
 
@@ -223,7 +216,7 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = collectionView.frame.width / 7
+        let cellWidth = collectionView.bounds.width / 7.0
         let cellHeight = cellWidth
         return CGSize(width: cellWidth, height: cellHeight)
     }
@@ -237,7 +230,7 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: calendarInset * 3)
+        return CGSize(width: collectionView.frame.width, height: calendarInset * 2.5)
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

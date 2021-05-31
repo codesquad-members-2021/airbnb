@@ -10,11 +10,11 @@ import Foundation
 final class DateSelectionManager {
     
     private var calendarManager: CalendarManager
-    private var selectedDateIndexPaths: [IndexPath]
+    private var selectedCoords: [CalendarCoordinate]
     
-    init() {
-        self.calendarManager = CalendarManager()
-        self.selectedDateIndexPaths = []
+    init(calendarManager: CalendarManager = CalendarManager(), selectedCoords: [CalendarCoordinate] = []) {
+        self.calendarManager = calendarManager
+        self.selectedCoords = selectedCoords
     }
     
     func allMonths() -> [Month] {
@@ -26,97 +26,56 @@ final class DateSelectionManager {
     }
     
     func selectedDates() -> [Date?] {
-        guard !selectedDateIndexPaths.isEmpty else { return [nil] }
-        
-        let orderedIndexPath = selectedDateIndexPaths.sorted()
-        
-        let startIndexPath = orderedIndexPath[0]
-        let startMonthIndex = startIndexPath.section
-        let startDayIndex = startIndexPath.row
-        let startDate = calendarManager.findDate(of: startMonthIndex, startDayIndex)
-        
-        var dates = [startDate]
-        
-        if orderedIndexPath.count == 2 {
-            let endIndexPath = orderedIndexPath[1]
-            let endMonthIndex = endIndexPath.section
-            let endDayIndex = endIndexPath.row
-            let endDate = calendarManager.findDate(of: endMonthIndex, endDayIndex)
-            dates.append(endDate)
+        let dates = selectedCoords.map {
+            calendarManager.findDate(of: $0)
         }
         return dates
     }
-    
-    func newDateSelected(at indexPath: IndexPath) {
-        selectedDateIndexPaths.append(indexPath)
+
+    func newDateSelected(at calendarCoordinate: CalendarCoordinate) {
+        selectedCoords.append(calendarCoordinate)
         updateSelectStatus()
     }
     
     private func updateSelectStatus() {
-        switch selectedDateIndexPaths.count {
+        switch selectedCoords.count {
         case 3:
-            fillBetween(selectedDateIndexPaths[0], selectedDateIndexPaths[1], to: .none)
-            fillBetween(selectedDateIndexPaths[1], selectedDateIndexPaths[2], to: .middle)
-            fill(at: selectedDateIndexPaths[1], to: .edge)
-            fill(at: selectedDateIndexPaths[2], to: .edge)
-            selectedDateIndexPaths.removeFirst()
+            fillBetween(selectedCoords[0], selectedCoords[1], to: .none)
+            fillBetween(selectedCoords[1], selectedCoords[2], to: .middle)
+            fill(at: selectedCoords[1], to: .edge)
+            fill(at: selectedCoords[2], to: .edge)
+            selectedCoords.removeFirst()
         case 2:
-            fillBetween(selectedDateIndexPaths[0], selectedDateIndexPaths[1], to: .middle)
-            fill(at: selectedDateIndexPaths[0], to: .edge)
-            fill(at: selectedDateIndexPaths[1], to: .edge)
+            fillBetween(selectedCoords[0], selectedCoords[1], to: .middle)
+            fill(at: selectedCoords[0], to: .edge)
+            fill(at: selectedCoords[1], to: .edge)
         case 1:
-            fill(at: selectedDateIndexPaths[0], to: .edge)
+            fill(at: selectedCoords[0], to: .edge)
         default:
             assert(false)
         }
     }
     
-    private func fillBetween(_ first: IndexPath,_ second: IndexPath, to status: SelectStatus) {
-        var fromIndex: IndexPath
-        var toIndex: IndexPath
-        
-        if first.section == second.section {
-            fromIndex = first.row <= second.row ? first : second
-            toIndex = first.row > second.row ? first : second
-            
-            let monthIndex = fromIndex.section
-            let fromRowIndex = fromIndex.row, toRowIndex = toIndex.row
-            calendarManager.changeMultipleDays(monthIndex: monthIndex,
-                                             fromRowIndex: fromRowIndex, toRowIndex: toRowIndex, to: status)
-        } else {
-            fromIndex = first.section <= second.section ? first : second
-            toIndex = first.section > second.section ? first : second
-            
-            let startMonthIndex = fromIndex.section, startMonthFromIndex = fromIndex.row
-            calendarManager.changeMultipleDays(monthIndex: startMonthIndex, fromRowIndex: startMonthFromIndex, to: status)
-            
-            let endMonthIndex = toIndex.section, endMonthToIndex = toIndex.row
-            calendarManager.changeMultipleDays(monthIndex: endMonthIndex, toRowIndex: endMonthToIndex, to: status)
-            
-            if endMonthIndex - startMonthIndex > 1 {
-                (startMonthIndex + 1..<endMonthIndex).forEach { monthIndex in
-                    calendarManager.changeMultipleDays(monthIndex: monthIndex, to: status)
-                }
-            }
-        }
+    private func fillBetween(_ first: CalendarCoordinate,_ second: CalendarCoordinate, to status: SelectStatus) {
+        let fromCoord = first <= second ? first : second
+        let toCoord = first > second ? first : second
+        calendarManager.changeMultipleDays(fromCoord: fromCoord, toCoord: toCoord, to: status)
     }
     
-    private func fill(at indexPath: IndexPath, to status: SelectStatus) {
-        let monthIndex = indexPath.section
-        let rowIndex = indexPath.row
-        calendarManager.changeSingleDay(monthIndex: monthIndex, rowIndex: rowIndex, to: status)
+    private func fill(at calendarCoordinate: CalendarCoordinate, to status: SelectStatus) {
+        calendarManager.changeSingleDay(at: calendarCoordinate, to: status)
     }
     
     func clearAll() {
-        switch selectedDateIndexPaths.count {
+        switch selectedCoords.count {
         case 2:
-            fillBetween(selectedDateIndexPaths[0], selectedDateIndexPaths[1], to: .none)
+            fillBetween(selectedCoords[0], selectedCoords[1], to: .none)
         case 1:
-            fill(at: selectedDateIndexPaths[0], to: .none)
+            fill(at: selectedCoords[0], to: .none)
         default:
             assert(false)
         }
-        selectedDateIndexPaths.removeAll()
+        selectedCoords.removeAll()
     }
     
 }
