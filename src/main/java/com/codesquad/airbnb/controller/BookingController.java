@@ -60,4 +60,9 @@ public class BookingController {
             bookingRepository.delete(bookingId);
         }
     }
+
+    private boolean isBookingExist(Long bookingId) {
+        Booking booking = bookingRepository.findById(bookingId).orElseThrow(BookingNotFoundException::new);
+        return booking != null;
+    }
 }
