@@ -59,30 +59,6 @@ public class Reservation {
         this.id = id;
     }
 
-    public void setCheckIn(LocalDate checkIn) {
-        this.checkIn = checkIn;
-    }
-
-    public void setCheckOut(LocalDate checkOut) {
-        this.checkOut = checkOut;
-    }
-
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public void setGuestCount(int guestCount) {
-        this.guestCount = guestCount;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public void setPropertyId(Long propertyId) {
-        this.propertyId = propertyId;
-    }
-
     @Override
     public String toString() {
         return "Reservation{" +

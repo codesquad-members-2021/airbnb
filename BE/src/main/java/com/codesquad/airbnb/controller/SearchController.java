@@ -1,7 +1,7 @@
 package com.codesquad.airbnb.controller;
 
-import com.codesquad.airbnb.dto.PriceSearchDTO;
-import com.codesquad.airbnb.dto.PropertiesResponseDTO;
+import com.codesquad.airbnb.dto.price.PriceSearchDTO;
+import com.codesquad.airbnb.dto.property.PropertiesResponseDTO;
 import com.codesquad.airbnb.service.PropertyService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;

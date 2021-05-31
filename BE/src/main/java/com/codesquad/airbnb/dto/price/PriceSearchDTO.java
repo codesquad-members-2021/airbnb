@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.dto;
+package com.codesquad.airbnb.dto.price;
 
 import java.util.Arrays;
 

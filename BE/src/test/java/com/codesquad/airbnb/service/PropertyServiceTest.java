@@ -1,6 +1,6 @@
 package com.codesquad.airbnb.service;
 
-import com.codesquad.airbnb.dto.PriceSearchDTO;
+import com.codesquad.airbnb.dto.price.PriceSearchDTO;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.dto;
+package com.codesquad.airbnb.dto.property;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.dto;
+package com.codesquad.airbnb.dto.price;
 
 public class PriceInfoDTO {
 

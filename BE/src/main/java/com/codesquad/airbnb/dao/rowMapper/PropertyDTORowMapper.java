@@ -1,6 +1,6 @@
 package com.codesquad.airbnb.dao.rowMapper;
 
-import com.codesquad.airbnb.dto.PropertyDTO;
+import com.codesquad.airbnb.dto.property.PropertyDTO;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
