@@ -1,6 +1,6 @@
 package com.codesquad.airbnb.accommodation.service;
 
-import com.codesquad.airbnb.accommodation.controller.AccommodationDTO;
+import com.codesquad.airbnb.accommodation.controller.AccommodationDetailResponse;
 import com.codesquad.airbnb.accommodation.controller.AccommodationRequest;
 import com.codesquad.airbnb.accommodation.controller.AccommodationReservationInfo;
 import com.codesquad.airbnb.accommodation.controller.AccommodationResponse;
@@ -69,11 +69,11 @@ class AccommodationServiceImplTest {
 
     @ParameterizedTest
     @MethodSource("readOneProvider")
-    void readOne(long id, Accommodation given, AccommodationDTO expected) {
+    void readOne(long id, Accommodation given, AccommodationDetailResponse expected) {
         given(accommodationRepository.findOne(id))
                 .willReturn(given);
 
-        AccommodationDTO actual = accommodationService.readOne(id);
+        AccommodationDetailResponse actual = accommodationService.readOne(id);
 
         then(actual).isEqualTo(expected);
     }

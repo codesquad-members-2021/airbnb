@@ -24,7 +24,7 @@ public class AccommodationController {
     }
 
     @GetMapping("/accommodations/{id}")
-    public AccommodationDTO readOne(@PathVariable long id) {
+    public AccommodationDetailResponse readOne(@PathVariable long id) {
         return accommodationService.readOne(id);
     }
 

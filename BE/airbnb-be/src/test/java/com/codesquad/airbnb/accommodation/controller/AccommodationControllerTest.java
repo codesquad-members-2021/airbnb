@@ -163,16 +163,16 @@ class AccommodationControllerTest {
 
     @ParameterizedTest
     @MethodSource("readOneProvider")
-    void readOne(String path, long id, AccommodationDTO expected) {
+    void readOne(String path, long id, AccommodationDetailResponse expected) {
 
         UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl(BASE_URL)
                                               .path(path)
                                               .port(port)
                                               .buildAndExpand(id);
 
-        ResponseEntity<AccommodationDTO> responseEntity = restTemplate.getForEntity(
+        ResponseEntity<AccommodationDetailResponse> responseEntity = restTemplate.getForEntity(
                 uriComponents.toUri(),
-                AccommodationDTO.class
+                AccommodationDetailResponse.class
         );
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);

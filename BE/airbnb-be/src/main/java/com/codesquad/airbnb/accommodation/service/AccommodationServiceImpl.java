@@ -1,6 +1,6 @@
 package com.codesquad.airbnb.accommodation.service;
 
-import com.codesquad.airbnb.accommodation.controller.AccommodationDTO;
+import com.codesquad.airbnb.accommodation.controller.AccommodationDetailResponse;
 import com.codesquad.airbnb.accommodation.controller.AccommodationRequest;
 import com.codesquad.airbnb.accommodation.controller.AccommodationReservationInfo;
 import com.codesquad.airbnb.accommodation.controller.AccommodationResponse;
@@ -30,8 +30,8 @@ public class AccommodationServiceImpl implements AccommodationService {
     }
 
     @Override
-    public AccommodationDTO readOne(long id) {
-        return AccommodationDTO.from(accommodationRepository.findOne(id));
+    public AccommodationDetailResponse readOne(long id) {
+        return AccommodationDetailResponse.from(accommodationRepository.findOne(id));
     }
 
     @Override

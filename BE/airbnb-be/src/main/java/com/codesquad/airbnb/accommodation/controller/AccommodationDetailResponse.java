@@ -6,7 +6,7 @@ import com.codesquad.airbnb.accommodation.domain.AccommodationOption;
 import java.util.List;
 import java.util.Objects;
 
-public class AccommodationDTO {
+public class AccommodationDetailResponse {
     private Long id;
     private String name;
     private AccommodationOption accommodationOption;
@@ -18,10 +18,10 @@ public class AccommodationDTO {
     private String description;
     private AccommodationHost accommodationHost;
 
-    public AccommodationDTO() {
+    public AccommodationDetailResponse() {
     }
 
-    public AccommodationDTO(Long id, String name, AccommodationOption accommodationOption, Integer totalPrice, double reviewRating, int reviewCounts, String mainImage, List<String> images, String description, AccommodationHost accommodationHost) {
+    public AccommodationDetailResponse(Long id, String name, AccommodationOption accommodationOption, Integer totalPrice, double reviewRating, int reviewCounts, String mainImage, List<String> images, String description, AccommodationHost accommodationHost) {
         this.id = id;
         this.name = name;
         this.accommodationOption = accommodationOption;
@@ -34,7 +34,7 @@ public class AccommodationDTO {
         this.accommodationHost = accommodationHost;
     }
 
-    public static AccommodationDTO from(Accommodation accommodation) {
+    public static AccommodationDetailResponse from(Accommodation accommodation) {
         return builder().id(accommodation.getId())
                        .name(accommodation.getName())
                        .accommodationOption(accommodation.getAccommodationOption())
@@ -47,7 +47,7 @@ public class AccommodationDTO {
                        .build();
     }
 
-    public static AccommodationDTO of(Accommodation accommodation, int nights) {
+    public static AccommodationDetailResponse of(Accommodation accommodation, int nights) {
         return builder().id(accommodation.getId())
                        .name(accommodation.getName())
                        .accommodationOption(accommodation.getAccommodationOption())
@@ -61,8 +61,8 @@ public class AccommodationDTO {
                        .build();
     }
 
-    public static AccommodationDTOBuilder builder() {
-        return AccommodationDTOBuilder.anAccommodationDetailDTO();
+    public static AccommodationDetailResponseBuilder builder() {
+        return AccommodationDetailResponseBuilder.anAccommodationDetailDTO();
     }
 
     public Long getId() {
@@ -113,7 +113,7 @@ public class AccommodationDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AccommodationDTO that = (AccommodationDTO) o;
+        AccommodationDetailResponse that = (AccommodationDetailResponse) o;
         return Double.compare(that.reviewRating, reviewRating) == 0 && reviewCounts == that.reviewCounts && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(accommodationOption, that.accommodationOption) && Objects.equals(totalPrice, that.totalPrice) && Objects.equals(mainImage, that.mainImage) && Objects.equals(images, that.images) && Objects.equals(description, that.description) && Objects.equals(accommodationHost, that.accommodationHost);
     }
 

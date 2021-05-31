@@ -1,6 +1,6 @@
 package com.codesquad.airbnb.accommodation.service;
 
-import com.codesquad.airbnb.accommodation.controller.AccommodationDTO;
+import com.codesquad.airbnb.accommodation.controller.AccommodationDetailResponse;
 import com.codesquad.airbnb.accommodation.controller.AccommodationRequest;
 import com.codesquad.airbnb.accommodation.controller.AccommodationReservationInfo;
 import com.codesquad.airbnb.accommodation.controller.AccommodationResponse;
@@ -35,8 +35,8 @@ public class AccommodationServiceMockup implements AccommodationService {
         return result;
     }
 
-    public AccommodationDTO readOne(long id) {
-        List<AccommodationDTO> result = AccommodationDTODummyDataFactory.listWithId();
+    public AccommodationDetailResponse readOne(long id) {
+        List<AccommodationDetailResponse> result = AccommodationDTODummyDataFactory.listWithId();
 
         return result.stream()
                        .filter(accommodationDTO -> accommodationDTO.getId() == id)
