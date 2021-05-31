@@ -3,6 +3,7 @@ package com.codesquad.coco.global.auth;
 import com.codesquad.coco.global.exception.auth.NotLoggedInException;
 import com.codesquad.coco.oauth.ServerKey;
 import jwt.JWTUtils;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -22,6 +23,10 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        if (HttpMethod.OPTIONS.matches(request.getMethod())) {
+            return true;
+        }
+
         Auth auth = ((HandlerMethod) handler).getMethodAnnotation(Auth.class);
         if (auth == null) {
             return true;

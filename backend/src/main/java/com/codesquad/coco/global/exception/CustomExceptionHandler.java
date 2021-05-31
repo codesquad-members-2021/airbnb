@@ -3,7 +3,7 @@ package com.codesquad.coco.global.exception;
 
 import com.codesquad.coco.global.exception.auth.AuthException;
 import com.codesquad.coco.global.exception.business.BusinessException;
-import io.jsonwebtoken.ClaimJwtException;
+import jwt.OverTimeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @RestControllerAdvice
 public class CustomExceptionHandler {
@@ -57,12 +58,23 @@ public class CustomExceptionHandler {
     /**
      * jwt 예외
      **/
-    @ExceptionHandler(ClaimJwtException.class)
+    @ExceptionHandler(OverTimeException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    public ResponseEntity<ErrorReason> jwtException(ClaimJwtException e) {
+    public ResponseEntity<ErrorReason> jwtException(OverTimeException e) {
         logger.error("jwt 에러", e);
         ErrorReason errorReason = ErrorReason.of(ErrorCode.UNAUTHORIZED_JWT);
-        return new ResponseEntity<>(errorReason, HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(errorReason, HttpStatus.UNAUTHORIZED);
+    }
+
+    /**
+     * device 예외
+     **/
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseEntity<ErrorReason> deviceException(MethodArgumentTypeMismatchException e) {
+        logger.error("device 에러", e);
+        ErrorReason errorReason = ErrorReason.of(ErrorCode.UNKNOWN_DEVICE);
+        return new ResponseEntity<>(errorReason, HttpStatus.UNAUTHORIZED);
     }
 
 
