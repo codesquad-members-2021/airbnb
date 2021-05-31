@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ConditionViewTableViewCell: UITableViewCell {
+class FindingAccommodationViewTableViewCell: UITableViewCell {
     @IBOutlet weak var value: UILabel!
     
     func update(value: String) {

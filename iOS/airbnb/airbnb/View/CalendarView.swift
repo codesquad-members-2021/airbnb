@@ -10,7 +10,6 @@ import FSCalendar
 
 class CalendarView: FSCalendar {
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()

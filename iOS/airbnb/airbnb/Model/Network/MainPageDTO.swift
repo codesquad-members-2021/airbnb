@@ -8,7 +8,21 @@
 import Foundation
 
 struct MainPageDTO: Decodable {
-    private (set) var wishList: WishList
-    private (set) var tripPlaceList: [TripPlace]
-    private (set) var recommendTripList: [RecommendTrip]
+    private (set) var locations: [TripPlace]
+    private (set) var categories: [RecommendTrip]
+    
+    func update() {
+        NotificationCenter.default.post(name: Notification.tripPlaceDataUpdate, object: self)
+        NotificationCenter.default.post(name: Notification.recommendTripDataUpdate, object: self)
+    }
+
+//    mutating func update(locations: inout [TripPlace]) {
+//        self.locations = locations
+//        NotificationCenter.default.post(name: Notification.tripPlaceDataUpdate, object: self)
+//    }
+//
+//    mutating func update(categories: inout [RecommendTrip]) {
+//        self.categories = categories
+//        NotificationCenter.default.post(name: Notification.recommendTripDataUpdate, object: self)
+//    }
 }

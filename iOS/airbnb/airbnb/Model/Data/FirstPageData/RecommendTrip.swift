@@ -8,6 +8,7 @@
 import Foundation
 
 struct RecommendTrip: Decodable {
-    private (set) var imageURL: String
-    private (set) var title: String
+    private (set) var id: Int
+    private (set) var name: String
+    private (set) var imageUrl: String
 }
