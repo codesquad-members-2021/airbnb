@@ -71,6 +71,18 @@ extension SetUpViewController: PriceInfoReceivable {
     
 }
 
+extension SetUpViewController: GuestNumberInfoReceivable {
+    
+    func addGuest(type: GuestType) {
+        reservationDetailViewController.changeNumberOfHead(type: type, number: 1)
+    }
+    
+    func reduceGuest(type: GuestType) {
+        reservationDetailViewController.changeNumberOfHead(type: type, number: -1)
+    }
+    
+}
+
 extension SetUpViewController: DetailSetUpViewInitializable {
     
     func configureDetailSubViewLayout(of currentContextView: UIView) {
@@ -128,6 +140,7 @@ extension SetUpViewController: DetailSetUpViewInitializable {
         numberOfHeadSelectionView.translatesAutoresizingMaskIntoConstraints = false
         configureDetailSubViewLayout(of: numberOfHeadSelectionView)
         numberOfHeadSelectionView.backgroundColor = .brown
+        numberOfHeadSelectionView.guestNumberInfoReceivable = self
 
     }
     

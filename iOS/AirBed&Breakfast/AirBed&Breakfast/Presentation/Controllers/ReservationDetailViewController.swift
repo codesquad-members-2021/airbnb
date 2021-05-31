@@ -13,7 +13,7 @@ protocol ReservationDetailViewControllerProtocol {
     func changeLocation(with location: String)
     func changeDateRange(date: Date, isLowerDay: Bool)
     func changePriceRange(lowestPrice: CGFloat, highestPrice: CGFloat)
-    func changeNumberOfHead()
+    func changeNumberOfHead(type: GuestType, number: Int)
 }
 
 class ReservationDetailViewController: UIViewController {
@@ -32,9 +32,9 @@ class ReservationDetailViewController: UIViewController {
     var upperDate: Date?
     var lowestPrice: CGFloat?
     var highestPrice: CGFloat?
-    var numberOfHead: [String: Int] = ["성인": 0,
-                                       "어린이": 0,
-                                       "유아": 0]
+    var numberOfHead: [GuestType: Int] = [.adult: 0,
+                                          .child: 0,
+                                          .infant: 0]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +75,7 @@ class ReservationDetailViewController: UIViewController {
 }
 
 extension ReservationDetailViewController: ReservationDetailViewControllerProtocol {
+    
     func setDetailSetUpViewInitializer(as initializer: DetailSetUpViewInitializable) {
         self.detailSetUpViewInitializer = initializer
     }
@@ -112,8 +113,9 @@ extension ReservationDetailViewController: ReservationDetailViewControllerProtoc
         self.deleteCurrentDetailButton.isEnabled = true
     }
     
-    func changeNumberOfHead() {
-        //todo
+    func changeNumberOfHead(type: GuestType, number: Int) {
+        self.numberOfHead[type]? += number
+        print(numberOfHead)
     }
     
 }

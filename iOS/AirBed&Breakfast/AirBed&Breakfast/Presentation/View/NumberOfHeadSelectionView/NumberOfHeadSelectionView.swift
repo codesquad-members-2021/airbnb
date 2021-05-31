@@ -7,20 +7,33 @@
 
 import UIKit
 
+enum GuestType {
+    case adult
+    case child
+    case infant
+}
+
+protocol GuestNumberInfoReceivable {
+    func addGuest(type: GuestType)
+    func reduceGuest(type: GuestType)
+}
+
 class NumberOfHeadSelectionView: UIView {
     
-    var adultNumberAdjustmentView: NumberAdjustmentView?
-    var childNumberAdjustmentView: NumberAdjustmentView?
-    var infantNumberAdjustmentView: NumberAdjustmentView?
+    private var adultNumberAdjustmentView: NumberAdjustmentView?
+    private var childNumberAdjustmentView: NumberAdjustmentView?
+    private var infantNumberAdjustmentView: NumberAdjustmentView?
+    
+    public var guestNumberInfoReceivable: GuestNumberInfoReceivable?
     
     public init() {
         super.init(frame: .zero)
         configureNumberAdjustmentViews()
+        setActionsToButtons()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-
     }
 
     private func configureNumberAdjustmentViews() {
@@ -56,4 +69,28 @@ class NumberOfHeadSelectionView: UIView {
         ])
     }
     
+    private func setActionsToButtons() {
+        adultNumberAdjustmentView?.addTargetToPlusButton(action: UIAction.init(handler: { (touch) in
+            self.guestNumberInfoReceivable?.addGuest(type: .adult)
+        }))
+        adultNumberAdjustmentView?.addTargetToMinusButton(action: UIAction.init(handler: { (touch) in
+            self.guestNumberInfoReceivable?.reduceGuest(type: .adult)
+        }))
+        
+        childNumberAdjustmentView?.addTargetToPlusButton(action: UIAction.init(handler: { (touch) in
+            self.guestNumberInfoReceivable?.addGuest(type: .child)
+        }))
+        childNumberAdjustmentView?.addTargetToMinusButton(action: UIAction.init(handler: { (touch) in
+            self.guestNumberInfoReceivable?.reduceGuest(type: .child)
+        }))
+        
+        infantNumberAdjustmentView?.addTargetToPlusButton(action: UIAction.init(handler: { (touch) in
+            self.guestNumberInfoReceivable?.addGuest(type: .infant)
+        }))
+        infantNumberAdjustmentView?.addTargetToMinusButton(action: UIAction.init(handler: { (touch) in
+            self.guestNumberInfoReceivable?.reduceGuest(type: .infant)
+        }))
+        
+        
+    }
 }

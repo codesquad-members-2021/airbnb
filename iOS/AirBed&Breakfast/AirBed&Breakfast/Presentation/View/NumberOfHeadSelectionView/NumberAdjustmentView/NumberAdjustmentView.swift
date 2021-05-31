@@ -7,11 +7,10 @@
 
 import UIKit
 
-class NumberAdjustmentView: UIView {
-    
+final class NumberAdjustmentView: UIView {
     
     //MARK:- Properties
-    let titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 30)
@@ -22,7 +21,7 @@ class NumberAdjustmentView: UIView {
         return label
     }()
     
-    let explanatoryLabel: UILabel = {
+    private let explanatoryLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .darkGray
@@ -30,7 +29,7 @@ class NumberAdjustmentView: UIView {
         return label
     }()
     
-    let minusButton: UIButton = {
+    private let minusButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "minus.circle"), for: .normal)
@@ -41,7 +40,7 @@ class NumberAdjustmentView: UIView {
         return button
     }()
     
-    let countLabel: UILabel = {
+    private let countLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "0"
@@ -54,7 +53,7 @@ class NumberAdjustmentView: UIView {
         return label
     }()
     
-    let plusButton: UIButton = {
+    private let plusButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "plus.circle"), for: .normal)
@@ -64,7 +63,7 @@ class NumberAdjustmentView: UIView {
     }()
     
     //MARK:- Initializers
-    init() {
+    public init() {
         super.init(frame: .zero)
         backgroundColor = .red
         configureTitleLabel()
@@ -94,7 +93,6 @@ class NumberAdjustmentView: UIView {
         explanatoryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
         explanatoryLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
         explanatoryLabel.heightAnchor.constraint(equalTo: titleLabel.heightAnchor, multiplier: 0.5).isActive = true
-        
     }
     
     private func configurePlusButton() {
@@ -103,8 +101,6 @@ class NumberAdjustmentView: UIView {
         plusButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.13).isActive = true
         plusButton.heightAnchor.constraint(equalTo: plusButton.widthAnchor).isActive = true
         plusButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
-        
-        
     }
     
     private func configureCountLabel() {
@@ -113,7 +109,6 @@ class NumberAdjustmentView: UIView {
         countLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1).isActive = true
         countLabel.heightAnchor.constraint(equalTo: countLabel.widthAnchor, multiplier: 1.5).isActive = true
         countLabel.rightAnchor.constraint(equalTo: self.plusButton.leftAnchor).isActive = true
-
     }
     
     private func configureMinusButton() {
@@ -122,6 +117,19 @@ class NumberAdjustmentView: UIView {
         minusButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.13).isActive = true
         minusButton.heightAnchor.constraint(equalTo: minusButton.widthAnchor).isActive = true
         minusButton.rightAnchor.constraint(equalTo: self.countLabel.leftAnchor).isActive = true
+    }
+    
+    //MARK:- Methods
+    public func addTargetToPlusButton(action: UIAction) {
+        self.plusButton.addAction(action, for: .touchUpInside)
+    }
+    
+    public func addTargetToMinusButton(action: UIAction) {
+        self.minusButton.addAction(action, for: .touchUpInside)
+    }
+    
+    public func changeCountLabel(to newNumber: Int) {
+        self.countLabel.text = "\(newNumber)"
     }
     
 }
