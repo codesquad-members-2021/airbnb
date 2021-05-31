@@ -5,7 +5,7 @@ import Month from './Month';
 import { CalendarType } from '@Components/commons/baseType';
 import { calendarStateSelector, monthIndexAtom } from '@/recoil/atoms';
 import { getDate } from '@/utils/calendarUtil';
-import { delay } from './../../utils/serviceUtils';
+import { delay } from '@/utils/serviceUtils';
 
 const Calendar = ({ entryDate }: CalendarType) => {
   const calendarState = useRecoilValue(calendarStateSelector);

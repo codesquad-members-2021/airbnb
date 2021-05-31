@@ -3,25 +3,25 @@ import styled from 'styled-components';
 import { DivisionContent, DivisionTitle } from '@Components/commons/base';
 import { getMonthAndDay } from '@/utils/calendarUtil';
 
-type CheckDateType = {
+type DateKindType = {
   checkInTime?: number;
   checkOutTime?: number;
   kind: string;
 }
 
-const CheckDate = ({ checkInTime, checkOutTime, kind }: CheckDateType) => {
+const DateKind = ({ checkInTime, checkOutTime, kind }: DateKindType) => {
   return (
-    <CheckDateWrapper>
+    <DateKindWrapper>
       <DivisionTitle>{kind}</DivisionTitle>
       <DivisionContent>
         {kind === '체크인' && (checkInTime ? getMonthAndDay(checkInTime) : '날짜 입력')}
         {kind === '체크아웃' && (checkOutTime ? getMonthAndDay(checkOutTime) : '날짜 입력')}
       </DivisionContent>
-    </CheckDateWrapper>
+    </DateKindWrapper>
   )
 }
 
-const CheckDateWrapper = styled.span`
+const DateKindWrapper = styled.span`
   width: 43%;
   place-self: center;
   &:hover{
@@ -29,4 +29,4 @@ const CheckDateWrapper = styled.span`
   }
 `;
 
-export default CheckDate;
+export default DateKind;

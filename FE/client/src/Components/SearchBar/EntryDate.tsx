@@ -16,13 +16,13 @@ const EntryDate = ({ handleClickShowModal, entryDate }: EntryDateType) => {
   const [checkInTime, checkOutTime] = calendarClickState;
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleClickDayReset = useCallback(() => setCalendarClickState([]), []);
+  const handleClickResetDay = useCallback(() => setCalendarClickState([]), []);
 
   return (
     <EntryDateWrapper onClick={handleClickShowModal('entryDate')}>
       <DateKind kind="체크인" checkInTime={checkInTime} />
       <DateKind kind="체크아웃" checkOutTime={checkOutTime} />
-      <IconButton onClick={handleClickDayReset} style={{ visibility: entryDate ? 'visible' : 'hidden' }}>
+      <IconButton onClick={handleClickResetDay} style={{ visibility: entryDate ? 'visible' : 'hidden' }}>
         <HighlightOffIcon />
       </IconButton>
     </EntryDateWrapper>
@@ -32,7 +32,7 @@ const EntryDate = ({ handleClickShowModal, entryDate }: EntryDateType) => {
 const EntryDateWrapper = styled.div`
   display: flex;
   width: 40%;
-  margin-left: 2.5rem;
+  margin-left: .5rem;
   border-right:1px solid #E0E0E0;
 `;
 

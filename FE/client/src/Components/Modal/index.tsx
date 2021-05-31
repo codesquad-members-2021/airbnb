@@ -6,15 +6,24 @@ import ChargeModal from './ChargeModal';
 import PersonnelModal from './PersonnelModal';
 import { SearchBarType } from '@Components/commons/baseType';
 import { searchBarFocusAtom } from '@/recoil/atoms';
+import LocationModal from './LocationModal';
 
 const Modal = () => {
   const [searchBarState, setSearchBarState] = useRecoilState(searchBarFocusAtom);
-  const { entryDate, charge, personnel, focus } = searchBarState;
+  const { location, entryDate, charge, personnel, focus } = searchBarState;
 
   const handleClickHideModal = (event: MouseEvent) => {
     const targetList = (event.target as HTMLElement);
     const checkTarget = targetList.closest('.Modal') || targetList.closest('.SearchBar');
-    if (!checkTarget && focus) setSearchBarState({ entryDate: false, charge: false, personnel: false, focus: false });
+    if (!checkTarget && focus) {
+      setSearchBarState({
+        location: false,
+        entryDate: false,
+        charge: false,
+        personnel: false,
+        focus: false
+      });
+    }
   }
 
   useEffect(() => {
@@ -25,6 +34,7 @@ const Modal = () => {
 
   return (
     <ModalWrapper {...{ focus }} className="Modal">
+      <LocationModal {...{ location }} />
       <Calendar {...{ entryDate }} />
       <ChargeModal {...{ charge }} />
       <PersonnelModal {...{ personnel }} />

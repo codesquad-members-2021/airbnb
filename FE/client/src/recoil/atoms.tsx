@@ -29,6 +29,7 @@ export const calendarClickAtom = atom<Array<number>>({
 });
 
 type SearchBarFocusAtomType = {
+  location: boolean,
   entryDate: boolean,
   charge: boolean,
   personnel: boolean,
@@ -38,6 +39,7 @@ type SearchBarFocusAtomType = {
 export const searchBarFocusAtom = atom<SearchBarFocusAtomType>({
   key: 'searchBarFocusAtom',
   default: {
+    location: false,
     entryDate: false,
     charge: false,
     personnel: false,
@@ -68,8 +70,27 @@ export type RangeAtomType = {
 
 export const RangeAtom = atom<RangeAtomType>({
   key: 'RangeAtom',
-  default : {
+  default: {
     leftRange: 0,
     rightRange: 100
+  }
+})
+
+export type LocationAtomType = {
+  name: string;
+  coordinate: {
+    x: number;
+    y: number;
+  }
+}
+
+export const LocationAtom = atom<LocationAtomType>({
+  key: 'LocationAtom',
+  default: {
+    name: '',
+    coordinate: {
+      x: 0,
+      y: 0
+    }
   }
 })

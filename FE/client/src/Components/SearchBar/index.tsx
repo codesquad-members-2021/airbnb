@@ -8,24 +8,27 @@ import EntryDate from './EntryDate';
 import Charge from './Charge';
 import Personnel from './Personnel';
 import { searchBarFocusAtom } from '@/recoil/atoms';
+import Location from './Location';
 
 const SearchBar = () => {
   const [searchBarState, setSearchBarState] = useRecoilState(searchBarFocusAtom);
-  const { entryDate, charge, personnel, focus } = searchBarState;
+  const { location, entryDate, charge, personnel, focus } = searchBarState;
 
   const handleClickShowModal = useCallback((clickTarget: string) => () => {
     setSearchBarState({
+      location: false,
       entryDate: false,
       charge: false,
       personnel: false,
       focus: true,
       [clickTarget]: true
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <SearchBarWrapper className='SearchBar'>
+      <Location {...{ location, handleClickShowModal }} />
       <EntryDate {...{ entryDate, handleClickShowModal }} />
       <Charge {...{ charge, handleClickShowModal }} />
       <Personnel {...{ personnel, handleClickShowModal }} />
