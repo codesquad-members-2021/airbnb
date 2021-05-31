@@ -32,6 +32,7 @@ class MainPageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     private func configureCollectionViewLayout() {

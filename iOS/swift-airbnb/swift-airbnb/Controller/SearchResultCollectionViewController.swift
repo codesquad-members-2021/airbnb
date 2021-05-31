@@ -14,17 +14,17 @@ class SearchResultCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureCollectionViewLayout()
         configureCollectionViewCell()
         self.dataSource.setDataSource(collectionView: self.collectionView)
-        
     }
     
     func updateModel(with data: [Document]) {
         self.searchResultModel.updateDestinations(with: data)
         self.dataSource.applySnapshot(with: self.searchResultModel.searchResultDestinations)
     }
+    
+    
     
     private func configureCollectionViewLayout() {
         self.view.backgroundColor = .white

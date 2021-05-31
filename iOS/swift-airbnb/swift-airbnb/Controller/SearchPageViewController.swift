@@ -12,7 +12,8 @@ class SearchPageViewController: UICollectionViewController {
     private var searchPageCollectionViewDataSource = SearchPageCollectionViewDataSource()
     private var searchPageModel: SearchPageModel
     private var searchResultController = SearchResultCollectionViewController(collectionViewLayout: UICollectionViewLayout())
-    
+    private var searchController: UISearchController!
+
     required init?(coder: NSCoder) {
         var searchPageMockData = SearchPageMock()
         searchPageMockData.makeMockData()
@@ -22,6 +23,7 @@ class SearchPageViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureSearchController()
         configureNavigation()
         configureCollectionViewLayout()
@@ -30,14 +32,20 @@ class SearchPageViewController: UICollectionViewController {
         searchPageCollectionViewDataSource.applySnapshot(with: self.searchPageModel.searchPageInterface)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
     private func configureSearchController() {
-        let searchController = UISearchController(searchResultsController: searchResultController)
+        searchController = UISearchController(searchResultsController: searchResultController)
         searchController.searchBar.placeholder = "어디로 여행가세요?"
         searchController.automaticallyShowsCancelButton = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchResultsUpdater = self
         self.navigationItem.searchController = searchController
+        searchResultController.collectionView.delegate = self
     }
     
     private func configureNavigation() {
@@ -86,6 +94,7 @@ extension SearchPageViewController {
     }
 }
 
+//MARK: SearchResultUpdate 관리
 extension SearchPageViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -103,5 +112,27 @@ extension SearchPageViewController: UISearchResultsUpdating {
             }
         }
     }
+}
+
+//MARK: 셀 클릭시 컨트롤러 이동 및 장소 정보 제공
+extension SearchPageViewController {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let calendarViewContoller = self.storyboard?.instantiateViewController(identifier: "calendarViewController") as? CalendarViewController else {
+            return
+        }
+        
+        // isSearching()이 true일 때 SearchPageModel의 데이터를,
+        // false일 때 SearchResultModel의 데이터를 calendarViewController에 넘기기
+        
+        self.navigationController?.pushViewController(calendarViewContoller, animated: true)
+    }
     
+    private func searchBarIsEmpty() -> Bool {
+        let text = self.searchController.searchBar.text ?? ""
+        return text.isEmpty
+    }
+    
+    private func isSearching() -> Bool {
+        return self.searchController.isActive && !searchBarIsEmpty()
+    }
 }

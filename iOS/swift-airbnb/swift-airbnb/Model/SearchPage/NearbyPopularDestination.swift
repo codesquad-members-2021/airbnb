@@ -11,10 +11,10 @@ struct NearbyPopularDestination: NearbyDestinationInterface {
     let cityImage: String
     let cityName: String
     let distance: String
-    let x: Double
-    let y: Double
+    let x: String
+    let y: String
     
-    init(cityImage: String, cityName: String, distance: String, x: Double, y: Double) {
+    init(cityImage: String, cityName: String, distance: String, x: String, y: String) {
         self.cityImage = cityImage
         self.cityName = cityName
         self.distance = distance

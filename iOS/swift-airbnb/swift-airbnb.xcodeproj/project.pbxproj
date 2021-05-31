@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -80,6 +80,10 @@
 		CE9877D9266017F000476CC9 /* SearchResultModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9877D8266017F000476CC9 /* SearchResultModelTests.swift */; };
 		CE9877E02660187100476CC9 /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A06DE265ACA4F00769451 /* SearchResultModel.swift */; };
 		CE9877E4266018BE00476CC9 /* SearchResultDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E4732265A3FC9004AD00C /* SearchResultDestination.swift */; };
+		CE9877F72660B8B300476CC9 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9877F62660B8B300476CC9 /* CalendarViewController.swift */; };
+		CE9877FD2660BC8200476CC9 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = CE9877FC2660BC8200476CC9 /* FSCalendar */; };
+		CE9878032660D48B00476CC9 /* ReservationInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9878012660D48B00476CC9 /* ReservationInfoCell.swift */; };
+		CE9878042660D48B00476CC9 /* ReservationInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9878022660D48B00476CC9 /* ReservationInfoCell.xib */; };
 		CE990AC426550207008E91E5 /* MainPageCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE990AC326550207008E91E5 /* MainPageCollectionViewDataSource.swift */; };
 		CE990ACA265503C2008E91E5 /* CurationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE990AC8265503C2008E91E5 /* CurationCell.swift */; };
 		CE990ACB265503C2008E91E5 /* CurationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE990AC9265503C2008E91E5 /* CurationCell.xib */; };
@@ -88,6 +92,7 @@
 		CE990ADC26552B5D008E91E5 /* VariousDestinationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE990ADA26552B5D008E91E5 /* VariousDestinationCell.swift */; };
 		CE990ADD26552B5D008E91E5 /* VariousDestinationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE990ADB26552B5D008E91E5 /* VariousDestinationCell.xib */; };
 		CE9A06DF265ACA4F00769451 /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A06DE265ACA4F00769451 /* SearchResultModel.swift */; };
+		CEAE50A82663E66300D6D5D3 /* ReservationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE50A72663E66300D6D5D3 /* ReservationInfo.swift */; };
 		CEDEB8132656470D00CCAB84 /* MainPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEB8112656470D00CCAB84 /* MainPageHeaderView.swift */; };
 		CEDEB8142656470D00CCAB84 /* MainPageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDEB8122656470D00CCAB84 /* MainPageHeaderView.xib */; };
 		CEDEB8192656A67100CCAB84 /* MainPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEB8182656A67100CCAB84 /* MainPageModel.swift */; };
@@ -195,6 +200,9 @@
 		CE90C09726579ABB0072B8C2 /* SearchPageCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		CE9877C1265FCCF200476CC9 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		CE9877D8266017F000476CC9 /* SearchResultModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModelTests.swift; sourceTree = "<group>"; };
+		CE9877F62660B8B300476CC9 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		CE9878012660D48B00476CC9 /* ReservationInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationInfoCell.swift; sourceTree = "<group>"; };
+		CE9878022660D48B00476CC9 /* ReservationInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReservationInfoCell.xib; sourceTree = "<group>"; };
 		CE990AC326550207008E91E5 /* MainPageCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		CE990AC8265503C2008E91E5 /* CurationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurationCell.swift; sourceTree = "<group>"; };
 		CE990AC9265503C2008E91E5 /* CurationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurationCell.xib; sourceTree = "<group>"; };
@@ -204,6 +212,7 @@
 		CE990ADB26552B5D008E91E5 /* VariousDestinationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VariousDestinationCell.xib; sourceTree = "<group>"; };
 		CE9A06DE265ACA4F00769451 /* SearchResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModel.swift; sourceTree = "<group>"; };
 		CE9A06E4265BDDB100769451 /* BridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgeHeader.h; sourceTree = "<group>"; };
+		CEAE50A72663E66300D6D5D3 /* ReservationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationInfo.swift; sourceTree = "<group>"; };
 		CEDEB8112656470D00CCAB84 /* MainPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageHeaderView.swift; sourceTree = "<group>"; };
 		CEDEB8122656470D00CCAB84 /* MainPageHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainPageHeaderView.xib; sourceTree = "<group>"; };
 		CEDEB8182656A67100CCAB84 /* MainPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageModel.swift; sourceTree = "<group>"; };
@@ -225,6 +234,7 @@
 				CE8E4793265A5158004AD00C /* Metal.framework in Frameworks */,
 				CE8E478B265A4FCB004AD00C /* QuartzCore.framework in Frameworks */,
 				3FAC7CA987C83E3F2FB32D18 /* Pods_swift_airbnb.framework in Frameworks */,
+				CE9877FD2660BC8200476CC9 /* FSCalendar in Frameworks */,
 				CE8E4787265A4FBD004AD00C /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +485,7 @@
 				CE7E0C882653B0FD00E0ADD3 /* MainPageViewController.swift */,
 				CE90C06826575E430072B8C2 /* SearchPageViewController.swift */,
 				CE8E4721265A3954004AD00C /* SearchResultCollectionViewController.swift */,
+				CE9877F62660B8B300476CC9 /* CalendarViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -484,6 +495,8 @@
 			children = (
 				CE8691C2265CFD6C0077FA98 /* MainPage */,
 				CE8691C3265CFDB10077FA98 /* SearchPage */,
+				CE9878012660D48B00476CC9 /* ReservationInfoCell.swift */,
+				CE9878022660D48B00476CC9 /* ReservationInfoCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -493,6 +506,7 @@
 			children = (
 				CE8691C0265CFD130077FA98 /* MainPage */,
 				CE8691C1265CFD2B0077FA98 /* SearchPage */,
+				CEAE50A72663E66300D6D5D3 /* ReservationInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -523,6 +537,9 @@
 			dependencies = (
 			);
 			name = "swift-airbnb";
+			packageProductDependencies = (
+				CE9877FC2660BC8200476CC9 /* FSCalendar */,
+			);
 			productName = "swift-airbnb";
 			productReference = CE7E0C812653B0FD00E0ADD3 /* swift-airbnb.app */;
 			productType = "com.apple.product-type.application";
@@ -597,6 +614,9 @@
 				Base,
 			);
 			mainGroup = CE7E0C782653B0FD00E0ADD3;
+			packageReferences = (
+				CE9877FB2660BC8200476CC9 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
 			productRefGroup = CE7E0C822653B0FD00E0ADD3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -643,6 +663,7 @@
 				CE8E476C265A4F50004AD00C /* map_pin_shadow@3x.png in Resources */,
 				CE990AD6265529A4008E91E5 /* NearbyDestinationCell.xib in Resources */,
 				CE8E4779265A4F50004AD00C /* map_present_direction.png in Resources */,
+				CE9878042660D48B00476CC9 /* ReservationInfoCell.xib in Resources */,
 				CE8E4767265A4F50004AD00C /* shadow_balloon.png in Resources */,
 				CE8E477D265A4F50004AD00C /* map_present_background_update.png in Resources */,
 				CEDEB8142656470D00CCAB84 /* MainPageHeaderView.xib in Resources */,
@@ -793,12 +814,15 @@
 				CE8E4798265A5B35004AD00C /* ParsingManager.swift in Sources */,
 				CE90C06926575E430072B8C2 /* SearchPageViewController.swift in Sources */,
 				CE7E0C872653B0FD00E0ADD3 /* SceneDelegate.swift in Sources */,
+				CE9878032660D48B00476CC9 /* ReservationInfoCell.swift in Sources */,
 				CE90C09826579ABB0072B8C2 /* SearchPageCollectionViewDataSource.swift in Sources */,
 				CE90C082265795930072B8C2 /* NearbyPopularDestination.swift in Sources */,
 				CE86919C265CEA2E0077FA98 /* MainPageMock.swift in Sources */,
 				CE8E4733265A3FC9004AD00C /* SearchResultDestination.swift in Sources */,
 				CEDEB8232656A70400CCAB84 /* NearbyDestination.swift in Sources */,
 				CEDEB8192656A67100CCAB84 /* MainPageModel.swift in Sources */,
+				CE9877F72660B8B300476CC9 /* CalendarViewController.swift in Sources */,
+				CEAE50A82663E66300D6D5D3 /* ReservationInfo.swift in Sources */,
 				CE8E4728265A39BB004AD00C /* SearchResultCell.swift in Sources */,
 				CE990ADC26552B5D008E91E5 /* VariousDestinationCell.swift in Sources */,
 			);
@@ -1161,6 +1185,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE9877FB2660BC8200476CC9 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE9877FC2660BC8200476CC9 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE9877FB2660BC8200476CC9 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CE7E0C792653B0FD00E0ADD3 /* Project object */;
 }
