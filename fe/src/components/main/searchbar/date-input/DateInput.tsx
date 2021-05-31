@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import InputItem from "../InputItem";
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, useEffect } from "react";
 import Modal from "components/common/Modal";
 import CalendarSlider from "./CalendarSlider";
 import { useRecoilValue } from "recoil";
@@ -8,14 +8,21 @@ import {
   CalendarCheckOutSelector,
   CalendarCheckInSelector,
 } from "atoms/searchbarAtom";
+import { useResetRecoilState } from "recoil";
+import { SearchBarHoverData } from "atoms/searchbarAtom";
 const DateInput = () => {
   const [toggle, setToggle] = useState(false);
 
   const handleClick = (event: MouseEvent | Event) => {
     setToggle(!toggle);
   };
+  const resetData = useResetRecoilState(SearchBarHoverData);
   const CalendarCheckOut = useRecoilValue(CalendarCheckOutSelector);
   const CalendarCheckIn = useRecoilValue(CalendarCheckInSelector);
+
+  useEffect(() => {
+    if (!toggle) resetData();
+  }, [toggle, resetData]);
   return (
     <>
       <StyledDateInput>

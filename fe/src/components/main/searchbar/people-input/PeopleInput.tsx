@@ -1,18 +1,23 @@
 import Modal from "components/common/Modal";
 import { css } from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MouseEvent } from "react";
 import InputItem from "../InputItem";
 import PeopleList from "./PeopleList";
 import { useRecoilValue } from "recoil";
 import { PeopleDataSelector } from "atoms/searchbarAtom";
+import { useResetRecoilState } from "recoil";
+import { SearchBarHoverData } from "atoms/searchbarAtom";
 const PeopleInput = () => {
-  const [toggle, setToggle] = useState<Boolean>(false);
+  const [toggle, setToggle] = useState(false);
   const PeopleData = useRecoilValue(PeopleDataSelector);
+  const resetData = useResetRecoilState(SearchBarHoverData);
   const handleClick = (event: MouseEvent | Event) => {
     setToggle(!toggle);
   };
-
+  useEffect(() => {
+    if (!toggle) resetData();
+  }, [toggle, resetData]);
   return (
     <>
       <InputItem

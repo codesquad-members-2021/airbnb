@@ -1,16 +1,20 @@
 import InputItem from "../InputItem";
 import Modal from "components/common/Modal";
 import { css } from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MouseEvent } from "react";
+import { useResetRecoilState } from "recoil";
 import PriceContent from "./PriceContent";
+import { SearchBarHoverData } from "atoms/searchbarAtom";
 const PriceInput = () => {
   const [toggle, setToggle] = useState<Boolean>(false);
-
+  const resetData = useResetRecoilState(SearchBarHoverData);
   const handleClick = (event: MouseEvent | Event) => {
     setToggle(!toggle);
   };
-
+  useEffect(() => {
+    if (!toggle) resetData();
+  }, [toggle, resetData]);
   return (
     <>
       <InputItem

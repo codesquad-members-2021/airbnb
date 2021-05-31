@@ -1,5 +1,19 @@
 import { atom, selector } from "recoil";
 
+type HoverData = {
+  [key: string]: boolean;
+};
+export const SearchBarHoverData = atom<HoverData>({
+  key: "SearchBarHoverData",
+  default: {
+    위치: false,
+    체크인: false,
+    체크아웃: false,
+    요금: false,
+    인원수: false,
+  },
+});
+
 export const CalendarData = atom<number[]>({
   key: "CalendarData",
   default: [],

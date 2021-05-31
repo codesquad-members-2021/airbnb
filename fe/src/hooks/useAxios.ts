@@ -28,6 +28,7 @@ const useAxios = (initialUrl: string, methods: Method, options?: any) => {
     };
 
     const fetchData = async () => {
+      axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";
       dispatch({ type: "FETCH_INIT", payload: [] });
       try {
         await axios(url, config).then((result) =>

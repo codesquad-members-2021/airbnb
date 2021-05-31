@@ -1,20 +1,26 @@
-import InputItem from "../InputItem";
 import Modal from "components/common/Modal";
 import { css } from "styled-components";
-import { useState } from "react";
-import { MouseEvent } from "react";
+import { MouseEvent, useState, useEffect } from "react";
 import LocationDefalut from "./LocationDefalut";
+import { useResetRecoilState } from "recoil";
+import { SearchBarHoverData } from "atoms/searchbarAtom";
+import LocationInputItem from "../LocationInputItem";
 
 const LocationInput = () => {
-  const [toggle, setToggle] = useState<Boolean>(false);
+  const [toggle, setToggle] = useState(false);
+
+  const resetData = useResetRecoilState(SearchBarHoverData);
 
   const handleClick = (event: MouseEvent | Event) => {
     setToggle(!toggle);
   };
+  useEffect(() => {
+    if (!toggle) resetData();
+  }, [toggle, resetData]);
 
   return (
     <>
-      <InputItem
+      <LocationInputItem
         w="30%"
         title="위치"
         subtitle="어디로 가시겠습니까?"
