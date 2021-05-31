@@ -1,0 +1,52 @@
+export const mockupAccomodationData = {
+    rooms: [
+        {
+            latitude: 12.2,
+            logitude: 13.3,
+            address_id: 1,
+            theme_id: 1,
+            name: '#역삼역4번출구 도보3분 409',
+            rental_fee_per_night: 15000,
+            weekly_price_factor: 0.97,
+            monthly_price_factor: 0.95,
+            description: '상세설명입니다.',
+            person_capacity: 1,
+            bedrooms: 1,
+            beds: 1,
+            bathrooms: 1,
+            avg_rating: 4.73,
+            room_and_property_type: '콘도(아파트) 전체',
+            images_fe: {
+                thumbnail:
+                    'https://a0.muscache.com/im/pictures/miso/Hosting-44552310/original/3914cc46-8881-41cd-8090-33e679305107.jpeg?im_w=1200',
+                big: 'https://a0.muscache.com/im/pictures/67f4ea10-0e7e-41f5-a2b6-190215610d41.jpg?im_w=720',
+                small: 'https://a0.muscache.com/im/pictures/584e8ac9-67d8-4e27-a40c-d67293d298c0.jpg?im_w=720',
+            },
+            amenities: ['주방 ', '무선 인터넷 ', '에어컨 ', '헤어드라이기 '],
+        },
+        {
+            latitude: 22.2,
+            logitude: 33.3,
+            address_id: 1,
+            theme_id: 2,
+            name: '#2 홍대입구역 도보 5분 조용하고 깔끔한 집',
+            rental_fee_per_night: 25000,
+            weekly_price_factor: 0.93,
+            monthly_price_factor: 0.92,
+            description:
+                '2호선 홍대입구역 도보 5분 거리에 위치한 깔끔하고 아담한 집입니다.\n커플 또는 2-3인이 여행, 출장 오시기 좋은 위치이며 엘리베이터가 있어 짐이 많으셔도 편하게 이용하실 수 있습니다.\n주변이 주택가라 저녁에는 안전하고 조용하게 지내실 수 있고 같은 건물 1층에 편의점, 도보 2분 거리에 대형마트가 있어 언제든 필요한 물건 구입하시기도 좋습니다\n여름에는 시원하고 겨울에는 난방 잘 되며 창문이 커서 채광도 좋습니다^^',
+            person_capacity: 1,
+            bedrooms: 1,
+            beds: 1,
+            bathrooms: 1,
+            avg_rating: 4.73,
+            room_and_property_type: '레지던스 전체',
+            images_fe: {
+                thumbnail: 'https://a0.muscache.com/im/pictures/dd9e507a-ea75-4634-bbdd-77c2ceb9adbf.jpg?im_w=1200',
+                big: 'https://a0.muscache.com/im/pictures/b71b2c8d-5ca7-4326-aa59-9811985f7320.jpg?im_w=720',
+                small: 'https://a0.muscache.com/im/pictures/934d9bb8-0c34-4a3e-85f5-e7b722855b00.jpg?im_w=720',
+            },
+            amenities: ['주방 ', '무선 인터넷 ', '에어컨 ', '헤어드라이기 '],
+        },
+    ],
+};

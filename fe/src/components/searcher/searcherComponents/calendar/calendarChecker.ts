@@ -1,4 +1,4 @@
-import { Date as IDate } from '../../../../../../shared/interface';
+import { Date as IDate } from '../../../../shared/interface';
 
 export const getDateSum = ({ year, month, day }: IDate): number => {
     return year * 365 + month * 31 + day;
@@ -6,6 +6,10 @@ export const getDateSum = ({ year, month, day }: IDate): number => {
 
 export const isBefore = (targetDateSum: number, criterionDateSum: number): boolean => {
     return targetDateSum <= criterionDateSum;
+};
+
+export const isNotCheckedDate = ({ year, month, day }: IDate): boolean => {
+    return year === 0 && month === 0 && day === 0;
 };
 
 export const isPossibleToCheckDate = (dataSets: string[] | null): boolean => {
@@ -42,10 +46,12 @@ const checkBetweenDate = (checkIn: IDate, checkOut: IDate) => (dataSets: string[
     return targetDateSum > checkInDateSum && targetDateSum < checkOutDateSum;
 };
 
+type UtilFnsType = (dataSets: string[] | null) => boolean;
+
 interface IUtilFns {
-    isCheckInDate: (dataSets: string[] | null) => boolean;
-    isCheckOutDate: (dataSets: string[] | null) => boolean;
-    isBetweenDate: (dataSets: string[] | null) => boolean;
+    isCheckInDate: UtilFnsType;
+    isCheckOutDate: UtilFnsType;
+    isBetweenDate: UtilFnsType;
 }
 
 const calendarUtilFns = (checkIn: IDate, checkOut: IDate): IUtilFns => {

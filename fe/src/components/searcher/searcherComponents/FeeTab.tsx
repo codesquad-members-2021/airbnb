@@ -1,38 +1,33 @@
 import { Slider } from '@material-ui/core';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useReservationDispatch, useReservationState } from '../../../../../hooks/ReservationHook';
-import { useSearcherDispatch, useSearcherState } from '../../../../../hooks/SearcherHook';
-import { Container, Layer, NavigatingText, Tab } from './shared.style';
+import { useReservationDispatch, useReservationState } from '../../../hooks/ReservationHook';
+import { useSearcherDispatch, useSearcherState } from '../../../hooks/SearcherHook';
+import { theme } from '../../../styles/theme';
+import ModalLayer from './common/ModalLayer';
+import { Container, NavigatingText, Tab } from './common/shared.style';
 
 const FeeTab = (): React.ReactElement => {
-    const reservationState = useReservationState();
+    const { fee } = useReservationState();
     const reservationDispatch = useReservationDispatch();
 
-    const searcherState = useSearcherState();
+    const { feeLayer } = useSearcherState();
     const searcherDispatch = useSearcherDispatch();
-
-    const { fee } = reservationState;
-    const { feeLayer } = searcherState;
 
     const [feeValue, setFeeValue] = useState<number[] | number>([27, 35]);
 
     const handleFeeLayer: React.MouseEventHandler<HTMLDivElement> = () => {
-        searcherDispatch({ type: 'LOCATION_LAYER', state: false });
-        searcherDispatch({ type: 'CHECKOUT_CALENDAR_LAYER', state: false });
-        searcherDispatch({ type: 'CHECKIN_CALENDAR_LAYER', state: false });
-        searcherDispatch({ type: 'FEE_LAYER', state: true });
+        searcherDispatch({ type: 'SHOW_FEE_LAYER', state: true });
     };
 
     const handleSliderChange = (event: React.ChangeEvent<unknown>, newValue: number[] | number) => {
-        // Slider의 Element가 무엇인지 모르겠다..
         setFeeValue(newValue);
         reservationDispatch({ type: 'FEE', fee: newValue });
     };
 
     const handleSubmitFee = () => {
         reservationDispatch({ type: 'FEE', fee: feeValue });
-        searcherDispatch({ type: 'FEE_LAYER', state: false });
+        searcherDispatch({ type: 'SHOW_FEE_LAYER', state: false });
     };
 
     return (
@@ -42,10 +37,17 @@ const FeeTab = (): React.ReactElement => {
                 <PriceText>{typeof fee === 'number' ? `${fee}원` : `${fee[0]}만원 ${fee[1]}만원`}</PriceText>
             </Tab>
             {feeLayer && (
-                <Layer width={390} top={70} left={480}>
+                <ModalLayer
+                    options={{
+                        width: theme.LayerSize.smWidth,
+                        top: theme.LayerLocation.top,
+                        left: theme.LayerLocation.far_left,
+                        height: theme.LayerSize.smHeight,
+                    }}
+                >
                     <Slider value={feeValue} onChange={handleSliderChange} valueLabelDisplay="auto" />
                     <button onClick={handleSubmitFee}>확인</button>
-                </Layer>
+                </ModalLayer>
             )}
         </Container>
     );
