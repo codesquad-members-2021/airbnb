@@ -29,12 +29,16 @@ class ConditionManager {
     }
     
     func updatePeriod(with dates: [Date?]) {
-        let dates = dates.compactMap{ $0 }
-        guard !dates.isEmpty else {
+        let orderedDates = dates.compactMap{ $0 }.sorted()
+        
+        guard !orderedDates.isEmpty else {
             period.resetAll()
             return
         }
-        period.checkIn = dates[0]
-        if dates.count == 2 { period.checkOut = dates[1] }
+        period.checkIn = orderedDates[0]
+        
+        if orderedDates.count == 2 {
+            period.checkOut = orderedDates[1]
+        }
     }
 }

@@ -16,22 +16,38 @@ final class CalendarManager {
         self.months = months
     }
     
-    func findDate(of monthIndex: Int, _ dayIndex: Int) -> Date? {
-        let targetMonth = months[monthIndex]
-        let targetDate = targetMonth.date(at: dayIndex)
+    func findDate(of calendarCoordinate: CalendarCoordinate) -> Date? {
+        let targetMonth = months[calendarCoordinate.month]
+        let targetDate = targetMonth.date(at: calendarCoordinate.day)
         return targetDate
     }
     
-    func changeSingleDay(monthIndex: Int, rowIndex: Int, to status: SelectStatus) {
-        let targetMonth = months[monthIndex]
-        targetMonth.updateDayStatus(fromIndex: rowIndex, toIndex: rowIndex, to: status)
+    func changeSingleDay(at coord: CalendarCoordinate, to status: SelectStatus) {
+        let targetMonth = months[coord.month]
+        targetMonth.updateDayStatus(fromIndex: coord.day, to: status)
     }
     
-    func changeMultipleDays(monthIndex: Int, fromRowIndex: Int? = nil, toRowIndex: Int? = nil, to status: SelectStatus) {
-        let targetMonth = months[monthIndex]
-        let fromRowIndex = fromRowIndex ?? 0
-        let toRowIndex = toRowIndex ?? targetMonth.lastIndex()
-        targetMonth.updateDayStatus(fromIndex: fromRowIndex, toIndex: toRowIndex, to: status)
+    func changeMultipleDays(fromCoord: CalendarCoordinate, toCoord: CalendarCoordinate, to status: SelectStatus) {
+        let relationship = CalendarCoordinate.relationship(between: fromCoord, toCoord)
+        switch relationship {
+        case .same:
+            changeMonth(at: fromCoord.month, fromIndex: fromCoord.day, toIndex: toCoord.day, to: status)
+        case .away:
+            (fromCoord.month + 1..<toCoord.month).forEach { monthIndex in
+                changeMonth(at: monthIndex, to: status)
+            }
+            fallthrough
+        case .continuous:
+            changeMonth(at: fromCoord.month, fromIndex: fromCoord.day, to: status)
+            changeMonth(at: toCoord.month, toIndex: toCoord.day, to: status)
+        }
+    }
+    
+    private func changeMonth(at index: Int, fromIndex: Int? = nil, toIndex: Int? = nil, to status: SelectStatus) {
+        let targetMonth = months[index]
+        let fromIndex = fromIndex ?? 0
+        let toIndex = toIndex ?? targetMonth.lastIndex()
+        targetMonth.updateDayStatus(fromIndex: fromIndex, toIndex: toIndex, to: status)
     }
     
     func addMonths(by amount: Int) {

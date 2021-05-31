@@ -17,12 +17,21 @@ final class Month {
         self.days = days
     }
     
-    func updateDayStatus(fromIndex: Int, toIndex: Int, to status: SelectStatus) {
+    func updateDayStatus(fromIndex: Int, toIndex: Int? = nil, to status: SelectStatus) {
+        guard let toIndex = toIndex else {
+            updateDayStatus(of: fromIndex, to: status)
+            return
+        }
+        
         (fromIndex...toIndex).forEach { index in
-            let targetDay = days[index]
-            if targetDay.timeStatus == .future {
-                days[index].selectStatus = status
-            }
+            updateDayStatus(of: index, to: status)
+        }
+    }
+    
+    private func updateDayStatus(of index: Int, to status: SelectStatus) {
+        let targetDay = days[index]
+        if targetDay.timeStatus == .future {
+            days[index].selectStatus = status
         }
     }
     

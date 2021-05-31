@@ -69,7 +69,8 @@ final class CalendarViewModel: AnySearchConditionHandleModel<[Month]> {
 extension CalendarViewModel: CalendarManageModel {
     
     func didNewDateSelected(at indexPath: IndexPath) {
-        dateSelectionManager.newDateSelected(at: indexPath)
+        let calendarCoordinate = CalendarCoordinate(with: indexPath)
+        dateSelectionManager.newDateSelected(at: calendarCoordinate)
         updateCalendar()
         
         let newDates = dateSelectionManager.selectedDates()
