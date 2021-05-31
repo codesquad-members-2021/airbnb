@@ -1,0 +1,849 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FF5767632652490C00F46A43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767622652490C00F46A43 /* AppDelegate.swift */; };
+		FF5767652652490C00F46A43 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767642652490C00F46A43 /* SceneDelegate.swift */; };
+		FF5767672652490C00F46A43 /* MainSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767662652490C00F46A43 /* MainSearchViewController.swift */; };
+		FF57676A2652490C00F46A43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF5767682652490C00F46A43 /* Main.storyboard */; };
+		FF57676C2652490E00F46A43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF57676B2652490E00F46A43 /* Assets.xcassets */; };
+		FF57676F2652490E00F46A43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF57676D2652490E00F46A43 /* LaunchScreen.storyboard */; };
+		FF57677A2652490E00F46A43 /* ArirbnbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767792652490E00F46A43 /* ArirbnbTests.swift */; };
+		FF5767852652490E00F46A43 /* ArirbnbUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767842652490E00F46A43 /* ArirbnbUITests.swift */; };
+		FF5767A22652935F00F46A43 /* AdjacentDestinationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767A02652935F00F46A43 /* AdjacentDestinationsCell.swift */; };
+		FF5767A4265298A000F46A43 /* AdjacentDestinationsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5767A12652935F00F46A43 /* AdjacentDestinationsCell.xib */; };
+		FF5767B42653311E00F46A43 /* ThemeDestinationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767B22653311E00F46A43 /* ThemeDestinationsCell.swift */; };
+		FF5767B52653311E00F46A43 /* ThemeDestinationsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5767B32653311E00F46A43 /* ThemeDestinationsCell.xib */; };
+		FF5767BC26535AC200F46A43 /* HeroImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767BB26535AC200F46A43 /* HeroImageCell.swift */; };
+		FF5767BF2653655400F46A43 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767BE2653655400F46A43 /* HeaderView.swift */; };
+		FF5767CC2653A28D00F46A43 /* MyReserVationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767CB2653A28D00F46A43 /* MyReserVationViewController.swift */; };
+		FF5767CF2653A2AE00F46A43 /* WishListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767CE2653A2AE00F46A43 /* WishListViewController.swift */; };
+		FF5767D22653A60800F46A43 /* AirbnbSceneFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767D12653A60800F46A43 /* AirbnbSceneFlowCoordinator.swift */; };
+		FF5767D52653A99400F46A43 /* MyReserVationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767D42653A99400F46A43 /* MyReserVationViewModel.swift */; };
+		FF5767D82653A9EB00F46A43 /* WishListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767D72653A9EB00F46A43 /* WishListViewModel.swift */; };
+		FF5767DC2653AC3000F46A43 /* FlowTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767DB2653AC3000F46A43 /* FlowTabBarController.swift */; };
+		FF5767E32653B48700F46A43 /* DetailSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5767E22653B48700F46A43 /* DetailSearchViewController.swift */; };
+		FF665D1D26574E4200130ABB /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D1B26574E4200130ABB /* SearchResultCell.swift */; };
+		FF665D1E26574E4200130ABB /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF665D1C26574E4200130ABB /* SearchResultCell.xib */; };
+		FF665D2E2657841000130ABB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FF665D2D2657841000130ABB /* Kingfisher */; };
+		FF665D302657845700130ABB /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D2F2657845700130ABB /* UIImageView+Extension.swift */; };
+		FF665D3C265B78B200130ABB /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF665D3B265B78B200130ABB /* Destination.swift */; };
+		FFAB2ACD26620C4A008AEB31 /* ReuseIdentifierable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB2ACC26620C4A008AEB31 /* ReuseIdentifierable.swift */; };
+		FFAB2ACF26620DAB008AEB31 /* ViewControllerIdentifierable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB2ACE26620DAB008AEB31 /* ViewControllerIdentifierable.swift */; };
+		FFAB2AD126620E5F008AEB31 /* UINibCreateable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB2AD026620E5F008AEB31 /* UINibCreateable.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FF5767762652490E00F46A43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF5767572652490C00F46A43 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF57675E2652490C00F46A43;
+			remoteInfo = Arirbnb;
+		};
+		FF5767812652490E00F46A43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF5767572652490C00F46A43 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF57675E2652490C00F46A43;
+			remoteInfo = Arirbnb;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FF57675F2652490C00F46A43 /* Arirbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arirbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF5767622652490C00F46A43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FF5767642652490C00F46A43 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FF5767662652490C00F46A43 /* MainSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchViewController.swift; sourceTree = "<group>"; };
+		FF5767692652490C00F46A43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FF57676B2652490E00F46A43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF57676E2652490E00F46A43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FF5767702652490E00F46A43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF5767752652490E00F46A43 /* ArirbnbTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArirbnbTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF5767792652490E00F46A43 /* ArirbnbTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArirbnbTests.swift; sourceTree = "<group>"; };
+		FF57677B2652490E00F46A43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF5767802652490E00F46A43 /* ArirbnbUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArirbnbUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF5767842652490E00F46A43 /* ArirbnbUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArirbnbUITests.swift; sourceTree = "<group>"; };
+		FF5767862652490E00F46A43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF5767A02652935F00F46A43 /* AdjacentDestinationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjacentDestinationsCell.swift; sourceTree = "<group>"; };
+		FF5767A12652935F00F46A43 /* AdjacentDestinationsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdjacentDestinationsCell.xib; sourceTree = "<group>"; };
+		FF5767B22653311E00F46A43 /* ThemeDestinationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDestinationsCell.swift; sourceTree = "<group>"; };
+		FF5767B32653311E00F46A43 /* ThemeDestinationsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemeDestinationsCell.xib; sourceTree = "<group>"; };
+		FF5767BB26535AC200F46A43 /* HeroImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroImageCell.swift; sourceTree = "<group>"; };
+		FF5767BE2653655400F46A43 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		FF5767CB2653A28D00F46A43 /* MyReserVationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReserVationViewController.swift; sourceTree = "<group>"; };
+		FF5767CE2653A2AE00F46A43 /* WishListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewController.swift; sourceTree = "<group>"; };
+		FF5767D12653A60800F46A43 /* AirbnbSceneFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbnbSceneFlowCoordinator.swift; sourceTree = "<group>"; };
+		FF5767D42653A99400F46A43 /* MyReserVationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReserVationViewModel.swift; sourceTree = "<group>"; };
+		FF5767D72653A9EB00F46A43 /* WishListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewModel.swift; sourceTree = "<group>"; };
+		FF5767DB2653AC3000F46A43 /* FlowTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTabBarController.swift; sourceTree = "<group>"; };
+		FF5767E22653B48700F46A43 /* DetailSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchViewController.swift; sourceTree = "<group>"; };
+		FF665D1B26574E4200130ABB /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		FF665D1C26574E4200130ABB /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		FF665D2F2657845700130ABB /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		FF665D3B265B78B200130ABB /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
+		FFAB2ACC26620C4A008AEB31 /* ReuseIdentifierable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifierable.swift; sourceTree = "<group>"; };
+		FFAB2ACE26620DAB008AEB31 /* ViewControllerIdentifierable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerIdentifierable.swift; sourceTree = "<group>"; };
+		FFAB2AD026620E5F008AEB31 /* UINibCreateable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINibCreateable.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FF57675C2652490C00F46A43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF665D2E2657841000130ABB /* Kingfisher in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF5767722652490E00F46A43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF57677D2652490E00F46A43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FF5767562652490C00F46A43 = {
+			isa = PBXGroup;
+			children = (
+				FF5767612652490C00F46A43 /* Arirbnb */,
+				FF5767782652490E00F46A43 /* ArirbnbTests */,
+				FF5767832652490E00F46A43 /* ArirbnbUITests */,
+				FF5767602652490C00F46A43 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FF5767602652490C00F46A43 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF57675F2652490C00F46A43 /* Arirbnb.app */,
+				FF5767752652490E00F46A43 /* ArirbnbTests.xctest */,
+				FF5767802652490E00F46A43 /* ArirbnbUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF5767612652490C00F46A43 /* Arirbnb */ = {
+			isa = PBXGroup;
+			children = (
+				FFAB2ACB26620C2B008AEB31 /* Protocols */,
+				FF5767D02653A5F700F46A43 /* Flow */,
+				FF665D202657538000130ABB /* Model */,
+				FF5767A82652A1F500F46A43 /* MainSearchScene */,
+				FF5767DF2653B44500F46A43 /* DetailSearchScene */,
+				FF5767C82653A21D00F46A43 /* MyReservationScene */,
+				FF5767C72653A21500F46A43 /* WishListScene */,
+				FF5767BD2653654400F46A43 /* SharedView */,
+				FF5767BA26535A3F00F46A43 /* Delegate */,
+				FF5767B926535A1600F46A43 /* SupportingFiles */,
+			);
+			path = Arirbnb;
+			sourceTree = "<group>";
+		};
+		FF5767782652490E00F46A43 /* ArirbnbTests */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767792652490E00F46A43 /* ArirbnbTests.swift */,
+				FF57677B2652490E00F46A43 /* Info.plist */,
+			);
+			path = ArirbnbTests;
+			sourceTree = "<group>";
+		};
+		FF5767832652490E00F46A43 /* ArirbnbUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767842652490E00F46A43 /* ArirbnbUITests.swift */,
+				FF5767862652490E00F46A43 /* Info.plist */,
+			);
+			path = ArirbnbUITests;
+			sourceTree = "<group>";
+		};
+		FF5767A82652A1F500F46A43 /* MainSearchScene */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767662652490C00F46A43 /* MainSearchViewController.swift */,
+				FF5767AA2652A20100F46A43 /* View */,
+			);
+			path = MainSearchScene;
+			sourceTree = "<group>";
+		};
+		FF5767AA2652A20100F46A43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767AB2652A20600F46A43 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FF5767AB2652A20600F46A43 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767B22653311E00F46A43 /* ThemeDestinationsCell.swift */,
+				FF5767B32653311E00F46A43 /* ThemeDestinationsCell.xib */,
+				FF5767BB26535AC200F46A43 /* HeroImageCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		FF5767B926535A1600F46A43 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767682652490C00F46A43 /* Main.storyboard */,
+				FF57676B2652490E00F46A43 /* Assets.xcassets */,
+				FF57676D2652490E00F46A43 /* LaunchScreen.storyboard */,
+				FF5767702652490E00F46A43 /* Info.plist */,
+				FF665D2F2657845700130ABB /* UIImageView+Extension.swift */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		FF5767BA26535A3F00F46A43 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767622652490C00F46A43 /* AppDelegate.swift */,
+				FF5767642652490C00F46A43 /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		FF5767BD2653654400F46A43 /* SharedView */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767A02652935F00F46A43 /* AdjacentDestinationsCell.swift */,
+				FF5767A12652935F00F46A43 /* AdjacentDestinationsCell.xib */,
+				FF5767BE2653655400F46A43 /* HeaderView.swift */,
+			);
+			path = SharedView;
+			sourceTree = "<group>";
+		};
+		FF5767C72653A21500F46A43 /* WishListScene */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767D62653A9DF00F46A43 /* ViewModel */,
+				FF5767CD2653A2A100F46A43 /* View */,
+			);
+			path = WishListScene;
+			sourceTree = "<group>";
+		};
+		FF5767C82653A21D00F46A43 /* MyReservationScene */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767D32653A98400F46A43 /* ViewModel */,
+				FF5767CA2653A25E00F46A43 /* View */,
+			);
+			path = MyReservationScene;
+			sourceTree = "<group>";
+		};
+		FF5767CA2653A25E00F46A43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767CB2653A28D00F46A43 /* MyReserVationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FF5767CD2653A2A100F46A43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767CE2653A2AE00F46A43 /* WishListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FF5767D02653A5F700F46A43 /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767D12653A60800F46A43 /* AirbnbSceneFlowCoordinator.swift */,
+				FF5767DB2653AC3000F46A43 /* FlowTabBarController.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		FF5767D32653A98400F46A43 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767D42653A99400F46A43 /* MyReserVationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FF5767D62653A9DF00F46A43 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767D72653A9EB00F46A43 /* WishListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FF5767DF2653B44500F46A43 /* DetailSearchScene */ = {
+			isa = PBXGroup;
+			children = (
+				FF5767E22653B48700F46A43 /* DetailSearchViewController.swift */,
+				FF5767E02653B46B00F46A43 /* View */,
+			);
+			path = DetailSearchScene;
+			sourceTree = "<group>";
+		};
+		FF5767E02653B46B00F46A43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF665D1F26574E4500130ABB /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FF665D1F26574E4500130ABB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FF665D1C26574E4200130ABB /* SearchResultCell.xib */,
+				FF665D1B26574E4200130ABB /* SearchResultCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		FF665D202657538000130ABB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FF665D3B265B78B200130ABB /* Destination.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FFAB2ACB26620C2B008AEB31 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FFAB2ACC26620C4A008AEB31 /* ReuseIdentifierable.swift */,
+				FFAB2AD026620E5F008AEB31 /* UINibCreateable.swift */,
+				FFAB2ACE26620DAB008AEB31 /* ViewControllerIdentifierable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FF57675E2652490C00F46A43 /* Arirbnb */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF5767892652490E00F46A43 /* Build configuration list for PBXNativeTarget "Arirbnb" */;
+			buildPhases = (
+				FF57675B2652490C00F46A43 /* Sources */,
+				FF57675C2652490C00F46A43 /* Frameworks */,
+				FF57675D2652490C00F46A43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Arirbnb;
+			packageProductDependencies = (
+				FF665D2D2657841000130ABB /* Kingfisher */,
+			);
+			productName = Arirbnb;
+			productReference = FF57675F2652490C00F46A43 /* Arirbnb.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FF5767742652490E00F46A43 /* ArirbnbTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF57678C2652490E00F46A43 /* Build configuration list for PBXNativeTarget "ArirbnbTests" */;
+			buildPhases = (
+				FF5767712652490E00F46A43 /* Sources */,
+				FF5767722652490E00F46A43 /* Frameworks */,
+				FF5767732652490E00F46A43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF5767772652490E00F46A43 /* PBXTargetDependency */,
+			);
+			name = ArirbnbTests;
+			productName = ArirbnbTests;
+			productReference = FF5767752652490E00F46A43 /* ArirbnbTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FF57677F2652490E00F46A43 /* ArirbnbUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF57678F2652490E00F46A43 /* Build configuration list for PBXNativeTarget "ArirbnbUITests" */;
+			buildPhases = (
+				FF57677C2652490E00F46A43 /* Sources */,
+				FF57677D2652490E00F46A43 /* Frameworks */,
+				FF57677E2652490E00F46A43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF5767822652490E00F46A43 /* PBXTargetDependency */,
+			);
+			name = ArirbnbUITests;
+			productName = ArirbnbUITests;
+			productReference = FF5767802652490E00F46A43 /* ArirbnbUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF5767572652490C00F46A43 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					FF57675E2652490C00F46A43 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					FF5767742652490E00F46A43 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = FF57675E2652490C00F46A43;
+					};
+					FF57677F2652490E00F46A43 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = FF57675E2652490C00F46A43;
+					};
+				};
+			};
+			buildConfigurationList = FF57675A2652490C00F46A43 /* Build configuration list for PBXProject "Arirbnb" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FF5767562652490C00F46A43;
+			packageReferences = (
+				FF665D2C2657841000130ABB /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
+			productRefGroup = FF5767602652490C00F46A43 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF57675E2652490C00F46A43 /* Arirbnb */,
+				FF5767742652490E00F46A43 /* ArirbnbTests */,
+				FF57677F2652490E00F46A43 /* ArirbnbUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FF57675D2652490C00F46A43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF5767A4265298A000F46A43 /* AdjacentDestinationsCell.xib in Resources */,
+				FF57676F2652490E00F46A43 /* LaunchScreen.storyboard in Resources */,
+				FF57676C2652490E00F46A43 /* Assets.xcassets in Resources */,
+				FF5767B52653311E00F46A43 /* ThemeDestinationsCell.xib in Resources */,
+				FF665D1E26574E4200130ABB /* SearchResultCell.xib in Resources */,
+				FF57676A2652490C00F46A43 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF5767732652490E00F46A43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF57677E2652490E00F46A43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FF57675B2652490C00F46A43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF5767CC2653A28D00F46A43 /* MyReserVationViewController.swift in Sources */,
+				FF5767DC2653AC3000F46A43 /* FlowTabBarController.swift in Sources */,
+				FF5767E32653B48700F46A43 /* DetailSearchViewController.swift in Sources */,
+				FFAB2ACF26620DAB008AEB31 /* ViewControllerIdentifierable.swift in Sources */,
+				FF5767D22653A60800F46A43 /* AirbnbSceneFlowCoordinator.swift in Sources */,
+				FF5767D82653A9EB00F46A43 /* WishListViewModel.swift in Sources */,
+				FFAB2ACD26620C4A008AEB31 /* ReuseIdentifierable.swift in Sources */,
+				FF5767CF2653A2AE00F46A43 /* WishListViewController.swift in Sources */,
+				FF665D1D26574E4200130ABB /* SearchResultCell.swift in Sources */,
+				FF665D302657845700130ABB /* UIImageView+Extension.swift in Sources */,
+				FF5767B42653311E00F46A43 /* ThemeDestinationsCell.swift in Sources */,
+				FF665D3C265B78B200130ABB /* Destination.swift in Sources */,
+				FF5767A22652935F00F46A43 /* AdjacentDestinationsCell.swift in Sources */,
+				FF5767672652490C00F46A43 /* MainSearchViewController.swift in Sources */,
+				FF5767632652490C00F46A43 /* AppDelegate.swift in Sources */,
+				FFAB2AD126620E5F008AEB31 /* UINibCreateable.swift in Sources */,
+				FF5767D52653A99400F46A43 /* MyReserVationViewModel.swift in Sources */,
+				FF5767652652490C00F46A43 /* SceneDelegate.swift in Sources */,
+				FF5767BC26535AC200F46A43 /* HeroImageCell.swift in Sources */,
+				FF5767BF2653655400F46A43 /* HeaderView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF5767712652490E00F46A43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF57677A2652490E00F46A43 /* ArirbnbTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF57677C2652490E00F46A43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF5767852652490E00F46A43 /* ArirbnbUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FF5767772652490E00F46A43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF57675E2652490C00F46A43 /* Arirbnb */;
+			targetProxy = FF5767762652490E00F46A43 /* PBXContainerItemProxy */;
+		};
+		FF5767822652490E00F46A43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF57675E2652490C00F46A43 /* Arirbnb */;
+			targetProxy = FF5767812652490E00F46A43 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FF5767682652490C00F46A43 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF5767692652490C00F46A43 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FF57676D2652490E00F46A43 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF57676E2652490E00F46A43 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FF5767872652490E00F46A43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FF5767882652490E00F46A43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FF57678A2652490E00F46A43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				INFOPLIST_FILE = Arirbnb/SupportingFiles/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Dumba.Arirbnb;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FF57678B2652490E00F46A43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				INFOPLIST_FILE = Arirbnb/SupportingFiles/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Dumba.Arirbnb;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FF57678D2652490E00F46A43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				INFOPLIST_FILE = ArirbnbTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Dumba.ArirbnbTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Arirbnb.app/Arirbnb";
+			};
+			name = Debug;
+		};
+		FF57678E2652490E00F46A43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				INFOPLIST_FILE = ArirbnbTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Dumba.ArirbnbTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Arirbnb.app/Arirbnb";
+			};
+			name = Release;
+		};
+		FF5767902652490E00F46A43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				INFOPLIST_FILE = ArirbnbUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Dumba.ArirbnbUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Arirbnb;
+			};
+			name = Debug;
+		};
+		FF5767912652490E00F46A43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				INFOPLIST_FILE = ArirbnbUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Dumba.ArirbnbUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Arirbnb;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FF57675A2652490C00F46A43 /* Build configuration list for PBXProject "Arirbnb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF5767872652490E00F46A43 /* Debug */,
+				FF5767882652490E00F46A43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF5767892652490E00F46A43 /* Build configuration list for PBXNativeTarget "Arirbnb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF57678A2652490E00F46A43 /* Debug */,
+				FF57678B2652490E00F46A43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF57678C2652490E00F46A43 /* Build configuration list for PBXNativeTarget "ArirbnbTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF57678D2652490E00F46A43 /* Debug */,
+				FF57678E2652490E00F46A43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF57678F2652490E00F46A43 /* Build configuration list for PBXNativeTarget "ArirbnbUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF5767902652490E00F46A43 /* Debug */,
+				FF5767912652490E00F46A43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FF665D2C2657841000130ABB /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FF665D2D2657841000130ABB /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF665D2C2657841000130ABB /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = FF5767572652490C00F46A43 /* Project object */;
+}
