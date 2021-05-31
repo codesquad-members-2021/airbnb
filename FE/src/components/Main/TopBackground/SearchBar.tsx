@@ -10,12 +10,13 @@ import { ResponsiveFluid } from '../../Common/ResponsiveFluid';
 import DefaultButton from '../../Common/DefaultButton';
 import CalendarModal from './Modals/CalendarModal';
 import { createMonthDateText } from '../../../util/calendar';
+import FeeModal from './Modals/FeeModal';
+import PeopleModal from './Modals/PeopleModal';
 
 interface ISearchMenuItem {
   isClicked?: boolean;
 }
 /* interface ISearchBar { ref?: Ref<HTMLDivElement>; } */
-
 
 const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
   // 1. 초기 값 설정
@@ -30,25 +31,36 @@ const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
   const checkInPlaceHolderRef = useRef<HTMLParagraphElement>(null);
   const checkOutPlaceHoldertRef = useRef<HTMLParagraphElement>(null);
 
+  const calendarRef = useRef<HTMLDivElement>(null);
+  const peopleRef = useRef<HTMLDivElement>(null);
+  const feeRef = useRef<HTMLDivElement>(null);
+
   // 2. useEffect
-  // 1) 달력에서 날짜가 업데이트 되었을 때 (체크인 / 체크아웃)
+  // 1) 초기 렌더링 (Ref 등록)
+  useEffect(
+    () =>
+      mainDispatch({
+        type: 'SET_MAIN_MODAL_REFS',
+        payload: { calendarRef, peopleRef, feeRef },
+      }),
+    [],
+  );
+
+  // 2) 달력에서 날짜가 업데이트 되었을 때 (체크인 / 체크아웃)
   useEffect(() => {
     if (!checkInPlaceHolderRef || !checkOutPlaceHoldertRef) return;
     // 체크인
     let checkIn = checkInPlaceHolderRef.current!;
-    startDate ? (checkIn.innerHTML = createMonthDateText(startDate)) : (checkIn.innerHTML = "날짜 입력");
+    startDate ? (checkIn.innerHTML = createMonthDateText(startDate)) : (checkIn.innerHTML = '날짜 입력');
     // 체크아웃
     let checkOut = checkOutPlaceHoldertRef.current!;
-
-    endDate ? (checkOut.innerHTML = createMonthDateText(endDate)) : (checkOut.innerHTML = "날짜 입력");
+    endDate ? (checkOut.innerHTML = createMonthDateText(endDate)) : (checkOut.innerHTML = '날짜 입력');
   }, [startDate, endDate]);
-
-
 
   // 3. Events
   const handleSearchMenuItemClick = (idx: number) =>
     mainDispatch({
-      type: 'CHANGE_SEARCHBAR_CLICKED_IDX',
+      type: 'SET_SEARCHBAR_CLICKED_IDX',
       payload: searchBarClickedIdx === idx ? -1 : idx,
     });
 
@@ -63,15 +75,15 @@ const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
       {/* 체크인 / 체크아웃, 요금, 인원 */}
       {item.text.split('|').map((txt, i) => {
         let checkInOutRef;
-        if (txt === "체크인") checkInOutRef = checkInPlaceHolderRef;
-        else if (txt === "체크아웃")  checkInOutRef = checkOutPlaceHoldertRef;
+        if (txt === '체크인') checkInOutRef = checkInPlaceHolderRef;
+        else if (txt === '체크아웃') checkInOutRef = checkOutPlaceHoldertRef;
 
         return (
           <div className="item__info" key={i}>
             <p>{txt}</p>
             <p ref={checkInOutRef}>{item.placeHolder}</p>
           </div>
-        )
+        );
       })}
 
       {idx === menuItems.length - 1 && (
@@ -94,11 +106,14 @@ const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
 
         {/* 검색바의 Item의 Modal들 */}
         {/* 추후 flag로 렌더링 여부결정 */}
-        {true && (
+        {searchBarClickedIdx > -1 && (
           <SearchBarRow>
-            <CalendarModal />
+            <CalendarModal ref={calendarRef}/>
+            <FeeModal ref={feeRef}/>
+            <PeopleModal ref={peopleRef}/>
           </SearchBarRow>
         )}
+
       </SearchBarBlock>
     </SearchBarLayout>
   );

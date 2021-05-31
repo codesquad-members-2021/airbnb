@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import { useMainDispatch, useMainState } from '../../contexts/MainContext';
 import { Text, TextContentInfo, TextFooter, TextTopBackground } from '../../util/reference';
 
@@ -10,21 +11,24 @@ import RoomType from './RoomType';
 import ContentInfo from './ContentInfo';
 import Footer from './Footer';
 
+
 const Main = () => {
   const { nearby, roomType } = Text;
   const { contentInfo } = TextContentInfo;
   const { footerItems } = TextFooter;
   const { headerTexts, searchBarTexts } = TextTopBackground;
 
-  const { searchBarClickedIdx } = useMainState();
+  const {searchBarClickedIdx, mainModalRefs} = useMainState();
   const mainDispatch = useMainDispatch();
-  const handleBackgroundFluidClick = () => {
+  const handleBackgroundFluidClick = (e : MouseEvent|Event) => {
+    console.log(mainModalRefs);
+
     if (searchBarClickedIdx < 0) return;
-    mainDispatch({ type: 'CHANGE_SEARCHBAR_CLICKED_IDX', payload: -1 });
+    mainDispatch({ type: 'SET_SEARCHBAR_CLICKED_IDX', payload: -1 });
   };
 
   return (
-    <BackgroundFluid onClick={handleBackgroundFluidClick}>
+    <BackgroundFluid onClick={(e : MouseEvent|Event) => handleBackgroundFluidClick(e)}>
 
       <TopBackground
         headerTexts={headerTexts}
