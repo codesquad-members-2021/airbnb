@@ -27,9 +27,9 @@ export interface ITextTopBackground {
     }[];
     logoOrBtnCaption: string;
 
-    authStatus?: {
-      noLogin: string[];
-      login: string[];
+    authItems?: {
+      noLogin?: string[];
+      login?: string[];
     };
   };
 }
@@ -71,7 +71,7 @@ export const TextTopBackground: ITextTopBackground = {
       {text: '온라인 체험'},
     ],
     logoOrBtnCaption: 'LOGO',
-    authStatus: {
+    authItems: {
       noLogin: ['로그인'],
       login: ['예약 취소', '위시 리스트', '로그아웃'],
     },

@@ -11,20 +11,30 @@ import { ICustomProps } from '../util/types';
 
 type MainState = {
   searchBarClickedIdx: number;
+  authModalVisbile: boolean;
 };
 
 const initialState: MainState = {
   searchBarClickedIdx: -1,
+  authModalVisbile: false,
 };
 
 // 추후 Provider를 사용하지 않았을 때에는 Context의 값이 undefined 가 되어야 하므로,
 // <MainState | undefined> 와 같이 Context 의 값이 MainState 일 수도 있고 undefined 일 수도 있다고 선언
 const MainStateContext = createContext<MainState | undefined>(undefined);
 
-type MainAction = {
-  type: 'SET_SEARCHBAR_CLICKED_IDX';
-  payload: number;
-};
+type MainAction =
+  | {
+      type: 'SET_SEARCHBAR_CLICKED_IDX';
+      payload: number;
+    }
+  | {
+      type: 'SET_AUTH_MODAL_VISIBLE';
+      payload: boolean;
+    }
+  | {
+      type: 'TOGGLE_AUTH_MODAL_VISIBLE';
+    };
 
 // Dispatch 를 리액트 패키지에서 불러와서 Generic으로 액션들의 타입을 넣어주면 추후 컴포넌트에서
 // 액션을 디스패치 할 때 액션들에 대한 타입을 검사 할 수 있음
@@ -38,6 +48,16 @@ const mainReducer = (state: MainState, action: MainAction): MainState => {
       return {
         ...state,
         searchBarClickedIdx: action.payload,
+      };
+    case 'SET_AUTH_MODAL_VISIBLE':
+      return {
+        ...state,
+        authModalVisbile: action.payload,
+      };
+    case 'TOGGLE_AUTH_MODAL_VISIBLE':
+      return {
+        ...state,
+        authModalVisbile: !state.authModalVisbile,
       };
     default:
       throw new Error('MainContext : Unhandled action');
