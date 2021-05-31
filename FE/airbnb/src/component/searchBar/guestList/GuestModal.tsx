@@ -12,11 +12,11 @@ const ageCategories = [
 function GuestModal() {
   return (
     <Modal onClick={stopPropagation}>
-      <GuestList>
+      <ul>
         {ageCategories.map((ageInfo) => (
-          <GuestListItem ageInfo={ageInfo} />
+          <GuestListItem key={ageInfo.title} ageInfo={ageInfo} />
         ))}
-      </GuestList>
+      </ul>
     </Modal>
   );
 }
@@ -29,4 +29,3 @@ const Modal = styled.div`
   width: 40%;
   padding: 30px 60px;
 `;
-const GuestList = styled.ul``;
