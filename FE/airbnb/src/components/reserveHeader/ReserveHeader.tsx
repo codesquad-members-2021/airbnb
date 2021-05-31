@@ -17,7 +17,7 @@ const ReserveHeader = (props: Props) => {
 export default ReserveHeader;
 
 const StyledReserveHeader = styled.div`
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,7 +25,8 @@ const StyledReserveHeader = styled.div`
   top: 0;
   width: 100%;
   height: 94px;
-  border-bottom: ${({ theme }) => `2px solid ${theme.colors.gray4}`};
+  box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
+  background-color: ${({ theme }) => theme.colors.white};
   .logo {
     font-size: ${({ theme }) => theme.fontSize.largest};
     font-weight: 700;

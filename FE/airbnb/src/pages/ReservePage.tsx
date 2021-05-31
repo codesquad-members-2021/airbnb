@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Map from '../components/map/Map';
 import ReserveHeader from '../components/reserveHeader/ReserveHeader';
+import ReserveRoomList from '../components/reserveRoomList/ReserveRoomList';
 
 interface Props {}
 
@@ -8,9 +9,8 @@ const ReservePage = ({}: Props) => {
   return (
     <StyledReservePage>
       <ReserveHeader />
-      <div className='reservePage'>
-        <Map />
-      </div>
+      <ReserveRoomList className='rooms' />
+      <Map className='map' />
     </StyledReservePage>
   );
 };
@@ -18,11 +18,20 @@ const ReservePage = ({}: Props) => {
 export default ReservePage;
 
 const StyledReservePage = styled.div`
-  .map {
-    width: 500px;
-    height: 400px;
+  z-index: -1;
+  height: 100%;
+  .rooms {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 104px;
+    left: 0;
   }
-  .reservePage {
-    margin-top: 94px;
+  .map {
+    position: fixed;
+    top: 94px;
+    right: 0;
+    width: 50%;
+    height: 100%;
   }
 `;

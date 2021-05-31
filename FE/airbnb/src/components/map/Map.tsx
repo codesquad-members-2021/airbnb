@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-interface Props {}
+interface Props {
+  className?: string;
+}
 
-const Map = (props: Props) => {
+const Map = ({ className }: Props) => {
   console.log(window.kakao);
   const mapRef = useRef(null);
   useEffect(() => {
@@ -13,12 +15,9 @@ const Map = (props: Props) => {
 
     new window.kakao.maps.Map(mapRef.current, options); //지도 생성 및 객체 리턴
   }, []);
-  return <StyleMap ref={mapRef}></StyleMap>;
+  return <StyleMap className={className} ref={mapRef}></StyleMap>;
 };
 
 export default Map;
 
-const StyleMap = styled.div`
-  width: 500px;
-  height: 500px;
-`;
+const StyleMap = styled.div``;
