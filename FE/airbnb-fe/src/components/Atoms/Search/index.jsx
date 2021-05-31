@@ -11,11 +11,10 @@ import modalClickReducer from '../../utils/reducer/modalClickReducer';
 import peopleReducer from '../../utils/reducer/peopleReducer';
 import priceReducer from '../../utils/reducer/priceReducer';
 import calendarReducer from '../../utils/reducer/calendarReducer';
-import API from '../../utils/API';
 
 export const SearchContext = createContext();
 
-const Search = () => {
+const Search = ({ matchParam }) => {
   const modalElement = useRef();
 
   useEffect(() => {
@@ -29,6 +28,45 @@ const Search = () => {
       document.removeEventListener('mousedown', modalOff);
     };
   }, [modalElement]);
+
+  useEffect(() => {
+    if (!matchParam) return;
+
+    const checkInDate = matchParam['checkIn'].split('-').map(Number);
+    const checkOutDate = matchParam['checkOut'].split('-').map(Number);
+
+    priceDispatch({
+      type: 'SET_PRICE_PARAM',
+      payload: {
+        minPrice: parseInt(matchParam.minPrice),
+        maxPrice: parseInt(matchParam.maxPrice),
+      },
+    });
+    peopleDispatch({
+      type: 'SET_PEOPLE_PARAM',
+      payload: {
+        adult: parseInt(matchParam.adults),
+        child: parseInt(matchParam.children),
+        baby: parseInt(matchParam.infants),
+      },
+    });
+    calDispatch({
+      type: 'ADD_CHECKIN_DATA',
+      payload: {
+        year: checkInDate[0],
+        month: checkInDate[1],
+        day: checkInDate[2],
+      },
+    });
+    calDispatch({
+      type: 'ADD_CHECKOUT_DATA',
+      payload: {
+        year: checkOutDate[0],
+        month: checkOutDate[1],
+        day: checkOutDate[2],
+      },
+    });
+  }, []);
 
   const [clicked, modalDispatch] = useReducer(modalClickReducer, {
     checkInOut: false,

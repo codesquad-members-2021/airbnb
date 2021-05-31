@@ -16,6 +16,12 @@ const peopleReducer = (state, action) => {
         child: 0,
         baby: 0,
       };
+    case 'SET_PEOPLE_PARAM':
+      return {
+        adult: action.payload.adult,
+        child: action.payload.child,
+        baby: action.payload.baby,
+      };
     default:
       return;
   }

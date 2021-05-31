@@ -4,7 +4,7 @@ const Reservation = ({ match }) => {
   console.log(match.params);
   return (
     <div>
-      <Search></Search>
+      <Search matchParam={match.params} />
     </div>
   );
 };

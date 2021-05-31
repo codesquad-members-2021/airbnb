@@ -6,6 +6,11 @@ const PriceReducer = (state, action) => {
       return { ...state, maxPrice: action.payload };
     case 'RESET':
       return { minPrice: 0, maxPrice: 1000000 };
+    case 'SET_PRICE_PARAM':
+      return {
+        minPrice: action.payload.minPrice,
+        maxPrice: action.payload.maxPrice,
+      };
     default:
       return;
   }
