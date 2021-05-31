@@ -31,11 +31,11 @@ const DateList = ({ arrDays, arrDates, monthDate, ...props }: IDateList) => {
     dispatch({ type: 'SET_CALENDAR_DATE', payload: date });
 
   const dayItems = arrDays.map((day, i) => <DayItem key={i}>{day}</DayItem>);
-  const dateItems = arrDates.map((date, i) => {
+  const dateItems = arrDates.map((nDate, i) => {
     const thisDate = new Date(
       monthDate.getFullYear(),
       monthDate.getMonth(),
-      date,
+      nDate,
     );
 
     const todayTmp = new Date();
@@ -50,7 +50,7 @@ const DateList = ({ arrDays, arrDates, monthDate, ...props }: IDateList) => {
     const isEndDate = thisDate.valueOf() === endDate?.valueOf();
 
     const isClicked = isStartDate || isEndDate;
-    const isDisabled = isPrevDate || date === 0;
+    const isDisabled = isPrevDate || nDate === 0;
 
     const isBetween =
       thisDate.valueOf() >= startDate?.valueOf()! &&
@@ -64,14 +64,16 @@ const DateList = ({ arrDays, arrDates, monthDate, ...props }: IDateList) => {
         isEndDate={isEndDate}
         disabled={isDisabled}
       >
-        <DateButton
-          disabled={isDisabled}
-          data-date={thisDate}
-          isClicked={isClicked}
-          onClick={() => handleDateClick(thisDate)}
-        >
-          {date || ''}
-        </DateButton>
+        {(nDate !== 0) && (
+          <DateButton
+            disabled={isDisabled}
+            data-date={thisDate}
+            isClicked={isClicked}
+            onClick={() => handleDateClick(thisDate)}
+          >
+            {nDate}
+          </DateButton>
+        )}
       </DateItem>
     );
   });
@@ -129,6 +131,7 @@ const DateButton = styled(DefaultButton)<IDateType>`
     isClicked && !disabled && theme.colors.white};
 
   &:hover {
-    border: ${({ theme, disabled }) => !disabled && `1px solid ${theme.colors.black1}`};
+    border: ${({ theme, disabled }) =>
+      !disabled && `1px solid ${theme.colors.black1}`};
   }
 `;

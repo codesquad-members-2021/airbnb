@@ -1,29 +1,59 @@
 import styled, { css } from 'styled-components';
+import { useEffect, useRef } from 'react';
 import { FiSearch } from 'react-icons/fi';
+
 import { useMainDispatch, useMainState } from '../../../contexts/MainContext';
+import { useSearchBarState } from '../../../contexts/SearchBarContext';
 import { ITextTopBackground } from '../../../util/reference';
 
 import { ResponsiveFluid } from '../../Common/ResponsiveFluid';
 import DefaultButton from '../../Common/DefaultButton';
 import CalendarModal from './Modals/CalendarModal';
+import { createMonthDateText } from '../../../util/calendar';
 
 interface ISearchMenuItem {
   isClicked?: boolean;
 }
+/* interface ISearchBar { ref?: Ref<HTMLDivElement>; } */
+
 
 const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
+  // 1. 초기 값 설정
   const { menuItems } = searchBarTexts;
 
   const { searchBarClickedIdx } = useMainState();
   const mainDispatch = useMainDispatch();
+  const {
+    calendar: { startDate, endDate },
+  } = useSearchBarState();
 
+  const checkInPlaceHolderRef = useRef<HTMLParagraphElement>(null);
+  const checkOutPlaceHoldertRef = useRef<HTMLParagraphElement>(null);
+
+  // 2. useEffect
+  // 1) 달력에서 날짜가 업데이트 되었을 때 (체크인 / 체크아웃)
+  useEffect(() => {
+    if (!checkInPlaceHolderRef || !checkOutPlaceHoldertRef) return;
+    // 체크인
+    let checkIn = checkInPlaceHolderRef.current!;
+    startDate ? (checkIn.innerHTML = createMonthDateText(startDate)) : (checkIn.innerHTML = "날짜 입력");
+    // 체크아웃
+    let checkOut = checkOutPlaceHoldertRef.current!;
+
+    endDate ? (checkOut.innerHTML = createMonthDateText(endDate)) : (checkOut.innerHTML = "날짜 입력");
+  }, [startDate, endDate]);
+
+
+
+  // 3. Events
   const handleSearchMenuItemClick = (idx: number) =>
     mainDispatch({
       type: 'CHANGE_SEARCHBAR_CLICKED_IDX',
       payload: searchBarClickedIdx === idx ? -1 : idx,
     });
 
-  // searchMenuItem(li) 생성
+  // 4. 컴포넌트 생성 & 정의
+  // searchMenuItem(li ) 생성
   const searchMenuItems = menuItems.map((item, idx) => (
     <SearchMenuItem
       key={idx}
@@ -31,12 +61,18 @@ const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
       onClick={() => handleSearchMenuItemClick(idx)}
     >
       {/* 체크인 / 체크아웃, 요금, 인원 */}
-      {item.text.split('|').map((txt, i) => (
-        <div className="item__info" key={i}>
-          <p>{txt}</p>
-          <p>{item.placeHolder}</p>
-        </div>
-      ))}
+      {item.text.split('|').map((txt, i) => {
+        let checkInOutRef;
+        if (txt === "체크인") checkInOutRef = checkInPlaceHolderRef;
+        else if (txt === "체크아웃")  checkInOutRef = checkOutPlaceHoldertRef;
+
+        return (
+          <div className="item__info" key={i}>
+            <p>{txt}</p>
+            <p ref={checkInOutRef}>{item.placeHolder}</p>
+          </div>
+        )
+      })}
 
       {idx === menuItems.length - 1 && (
         <SearchButton>
@@ -45,7 +81,8 @@ const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
       )}
     </SearchMenuItem>
   ));
-  // ---
+
+  // ====
 
   return (
     <SearchBarLayout>
