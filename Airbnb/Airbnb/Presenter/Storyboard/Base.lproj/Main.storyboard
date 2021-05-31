@@ -580,8 +580,13 @@
                                 <color key="textColor" systemColor="systemGray2Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPW-dE-k6p" customClass="RangeSeekSlider" customModule="RangeSeekSlider">
-                                <rect key="frame" x="0.0" y="383" width="414" height="51"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvx-3m-VBX" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="255" width="414" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lPW-dE-k6p" customClass="RangeSeekSlider" customModule="RangeSeekSlider">
+                                <rect key="frame" x="0.0" y="391" width="414" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="minLabelColor">
@@ -604,16 +609,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvx-3m-VBX" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="255" width="414" height="128"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mha-lq-Irb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="IsL-Ra-j05" firstAttribute="width" secondItem="BPH-ax-3Iw" secondAttribute="width" id="0VV-sf-rRw"/>
-                            <constraint firstItem="lPW-dE-k6p" firstAttribute="leading" secondItem="mha-lq-Irb" secondAttribute="leading" id="22M-3d-ZBM"/>
                             <constraint firstItem="BYk-H5-9qI" firstAttribute="width" secondItem="BPH-ax-3Iw" secondAttribute="width" multiplier="0.613527" id="6yN-el-LHu"/>
                             <constraint firstItem="BYk-H5-9qI" firstAttribute="leading" secondItem="mha-lq-Irb" secondAttribute="leading" constant="10" id="75O-1k-VFn"/>
                             <constraint firstItem="bt3-PZ-A9e" firstAttribute="top" secondItem="mha-lq-Irb" secondAttribute="top" constant="498" id="7xq-Lk-sA5"/>
@@ -622,19 +622,17 @@
                             <constraint firstItem="x1m-yP-FmM" firstAttribute="height" secondItem="BPH-ax-3Iw" secondAttribute="height" multiplier="0.0446429" id="FEZ-96-XD4"/>
                             <constraint firstItem="IsL-Ra-j05" firstAttribute="top" secondItem="bt3-PZ-A9e" secondAttribute="bottom" id="GoQ-yS-3lD"/>
                             <constraint firstItem="dvx-3m-VBX" firstAttribute="leading" secondItem="mha-lq-Irb" secondAttribute="leading" id="IVq-hj-nwd"/>
+                            <constraint firstItem="dvx-3m-VBX" firstAttribute="top" secondItem="NdP-G2-V55" secondAttribute="bottom" constant="59" id="IvF-OK-sKl"/>
                             <constraint firstItem="IsL-Ra-j05" firstAttribute="leading" secondItem="mha-lq-Irb" secondAttribute="leading" id="JF7-UB-RWS"/>
                             <constraint firstItem="x1m-yP-FmM" firstAttribute="leading" secondItem="mha-lq-Irb" secondAttribute="leading" constant="10" id="JVa-fC-XU6"/>
                             <constraint firstItem="BYk-H5-9qI" firstAttribute="height" secondItem="BPH-ax-3Iw" secondAttribute="height" multiplier="0.0446429" id="PYX-Dk-AhJ"/>
                             <constraint firstItem="x1m-yP-FmM" firstAttribute="top" secondItem="tJa-og-Zmf" secondAttribute="bottom" constant="8" id="Pqf-cC-lhq"/>
                             <constraint firstItem="BYk-H5-9qI" firstAttribute="top" secondItem="x1m-yP-FmM" secondAttribute="bottom" constant="8" symbolic="YES" id="SkT-XZ-Spd"/>
                             <constraint firstItem="NdP-G2-V55" firstAttribute="top" secondItem="BYk-H5-9qI" secondAttribute="bottom" id="XMB-g3-C1p"/>
-                            <constraint firstItem="lPW-dE-k6p" firstAttribute="top" secondItem="dvx-3m-VBX" secondAttribute="bottom" id="Xuv-nU-B1K"/>
                             <constraint firstAttribute="bottom" secondItem="IsL-Ra-j05" secondAttribute="bottom" id="bD1-eo-s9H"/>
-                            <constraint firstItem="lPW-dE-k6p" firstAttribute="trailing" secondItem="mha-lq-Irb" secondAttribute="trailing" id="cc9-aL-Tkt"/>
                             <constraint firstItem="bt3-PZ-A9e" firstAttribute="leading" secondItem="mha-lq-Irb" secondAttribute="leading" id="epJ-mh-D3j"/>
                             <constraint firstItem="NdP-G2-V55" firstAttribute="width" secondItem="BPH-ax-3Iw" secondAttribute="width" multiplier="0.613527" id="ewR-x4-Vlj"/>
                             <constraint firstItem="tJa-og-Zmf" firstAttribute="height" secondItem="BPH-ax-3Iw" secondAttribute="height" multiplier="0.0245536" id="faO-WJ-c4Q"/>
-                            <constraint firstItem="lPW-dE-k6p" firstAttribute="height" secondItem="BPH-ax-3Iw" secondAttribute="height" multiplier="0.0569196" id="g6n-8a-yMO"/>
                             <constraint firstItem="dvx-3m-VBX" firstAttribute="height" secondItem="BPH-ax-3Iw" secondAttribute="height" multiplier="0.142857" id="h5h-YA-fgR"/>
                             <constraint firstItem="tJa-og-Zmf" firstAttribute="width" secondItem="BPH-ax-3Iw" secondAttribute="width" multiplier="0.0483092" id="iQD-8X-rvo"/>
                             <constraint firstItem="bt3-PZ-A9e" firstAttribute="trailing" secondItem="mha-lq-Irb" secondAttribute="trailing" id="jGc-Dt-0dS"/>
@@ -643,7 +641,6 @@
                             <constraint firstItem="tJa-og-Zmf" firstAttribute="top" secondItem="mha-lq-Irb" secondAttribute="top" id="shV-DQ-APv"/>
                             <constraint firstItem="x1m-yP-FmM" firstAttribute="width" secondItem="BPH-ax-3Iw" secondAttribute="width" multiplier="0.258454" id="syW-UL-iQC"/>
                             <constraint firstItem="tJa-og-Zmf" firstAttribute="leading" secondItem="mha-lq-Irb" secondAttribute="leading" constant="10" id="vUD-jf-AEf"/>
-                            <constraint firstItem="lPW-dE-k6p" firstAttribute="top" secondItem="NdP-G2-V55" secondAttribute="bottom" constant="187" id="wnF-PO-vxQ"/>
                             <constraint firstItem="IsL-Ra-j05" firstAttribute="height" secondItem="BPH-ax-3Iw" secondAttribute="height" multiplier="0.100446" id="xwO-2t-MnH"/>
                         </constraints>
                     </view>
@@ -844,6 +841,11 @@
             <point key="canvasLocation" x="15.942028985507248" y="88.392857142857139"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="lPW-dE-k6p">
+            <size key="intrinsicContentSize" width="-1" height="65"/>
+        </designable>
+    </designables>
     <resources>
         <image name="chevron.backward.circle" catalog="system" width="128" height="121"/>
         <image name="heart" catalog="system" width="128" height="109"/>

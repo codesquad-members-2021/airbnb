@@ -19,7 +19,7 @@ class PriceViewController: UIViewController {
     
     private let viewModel = PriceViewModel()
     private let nextPage = BehaviorRelay(value: false)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
@@ -94,8 +94,42 @@ private extension PriceViewController {
     }
     
     private func setupCharts(_ value:[Int]) {
-        lineChartView.noDataText = "No Data"
-        //차트구현
+        lineChartView.delegate = self
+        var dataEntries:[ChartDataEntry] = []
+        
+        for i in 0..<value.count {
+            let dataEntry = ChartDataEntry(x: Double(i), y: Double(value[i]))
+            dataEntries.append(dataEntry)
+        }
+        
+        let line = LineChartDataSet(entries: dataEntries, label: "")
+        line.mode = .cubicBezier
+        line.drawCirclesEnabled = false
+        line.drawHorizontalHighlightIndicatorEnabled = false
+        line.drawFilledEnabled = true
+        line.colors = [UIColor.clear]
+        line.drawValuesEnabled = false
+        line.fillColor = NSUIColor.black
+        
+        let data = LineChartData()
+        data.addDataSet(line)
+        
+        lineChartView.xAxis.drawAxisLineEnabled = false
+        lineChartView.xAxis.drawGridLinesEnabled = false
+        lineChartView.xAxis.drawLabelsEnabled = false
+        
+        lineChartView.leftAxis.drawAxisLineEnabled = false
+        lineChartView.leftAxis.drawGridLinesEnabled = false
+        lineChartView.leftAxis.drawLabelsEnabled = false
+        
+        lineChartView.rightAxis.drawAxisLineEnabled = false
+        lineChartView.rightAxis.drawGridLinesEnabled = false
+        lineChartView.rightAxis.drawLabelsEnabled = false
+        
+        lineChartView.isUserInteractionEnabled = false
+        lineChartView.legend.enabled = false
+        
+        lineChartView.data = data
     }
 }
 
@@ -154,4 +188,8 @@ extension PriceViewController: RangeSeekSliderDelegate {
         default: nextPage.accept(true)
         }
     }
+}
+
+extension PriceViewController: ChartViewDelegate {
+    
 }
