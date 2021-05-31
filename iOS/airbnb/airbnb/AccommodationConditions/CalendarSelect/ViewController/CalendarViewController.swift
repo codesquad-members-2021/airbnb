@@ -18,12 +18,12 @@ final class CalendarViewController: UIViewController {
         let passButton = UIBarButtonItem(title: CalendarViewModel.ButtonTitle.pass,
                                          style: .plain,
                                          target: self,
-                                         action: #selector(passToCompleteScreen))
+                                         action: nil)
         let spacing = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let nextButton = UIBarButtonItem(title: CalendarViewModel.ButtonTitle.next,
                                          style: .plain,
                                          target: self,
-                                         action: #selector(navigateToNextScreen))
+                                         action: nil)
         nextButton.isEnabled = false
         toolBar.setItems([passButton, spacing, nextButton], animated: true)
         return toolBar
@@ -171,7 +171,10 @@ final class CalendarViewController: UIViewController {
             self?.accommodationConditionTableViewDataSource?.updateContents(with: conditions)
             self?.updateConditionView()
             self?.updateCalendarView()
-            if conditions[1] != "" { self?.setCancelBarButton() }
+            
+            if conditions[1] != "" {
+                self?.setCancelBarButton()
+            }
         })
     }
     
@@ -204,14 +207,6 @@ final class CalendarViewController: UIViewController {
     @objc private func selectionCanceled(_ sender: UIBarButtonItem) {
         viewModel?.didSelectionCanceled()
         unsetCancelBarButton()
-    }
-    
-    @objc private func navigateToNextScreen(_ sender: UIBarButtonItem) {
-
-    }
-    
-    @objc private func passToCompleteScreen(_ sender: UIBarButtonItem) {
-        
     }
 
 }
