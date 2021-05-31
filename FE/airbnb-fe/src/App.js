@@ -30,7 +30,10 @@ function App() {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <Route exact path="/" component={Home} />
-          <Route path="/reservation" component={Reservation} />
+          <Route
+            path="/reservation/:location/:checkIn/:checkOut"
+            component={Reservation}
+          />
         </ThemeProvider>
       </Switch>
     </Router>

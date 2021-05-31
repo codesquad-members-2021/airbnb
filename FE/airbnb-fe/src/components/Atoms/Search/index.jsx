@@ -30,24 +30,6 @@ const Search = () => {
     };
   }, [modalElement]);
 
-  useEffect(() => {
-    if (window.location.search === '') return;
-    console.log('여기', window.location.search === '');
-    console.log(window.location.search);
-    const queryString = window.location.search.slice(1);
-    console.log(queryString.split('&'));
-    const tempArr = queryString.split('&');
-    const checkInDate = tempArr[1].split('=')[1].split('-').map(Number);
-    calDispatch({
-      type: 'ADD_CHECKIN_DATA',
-      payload: {
-        year: checkInDate[0],
-        month: checkInDate[1],
-        day: checkInDate[2],
-      },
-    });
-  }, []);
-
   const [clicked, modalDispatch] = useReducer(modalClickReducer, {
     checkInOut: false,
     price: false,

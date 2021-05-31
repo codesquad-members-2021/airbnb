@@ -12,37 +12,21 @@ const SearchBtn = () => {
   const checkInDate = `${calendarData.checkIn.year}-${calendarData.checkIn.month}-${calendarData.checkIn.day}`;
   const checkOutDate = `${calendarData.checkOut.year}-${calendarData.checkOut.month}-${calendarData.checkOut.day}`;
 
-  const makeQuery = () => {
-    let queryObj = {};
-    if (calendarData.checkIn.year) queryObj['checkIn'] = checkInDate;
-  };
-
   const isModalClicked = clicked.checkInOut || clicked.price || clicked.people;
-  const history = useHistory();
-  const handleSearchClick = () => {
-    history.push(
-      `/reservation/?location=seoul&checkin=${checkInDate}&checkout=${checkOutDate}&adults=2&children=1&infants=1`
-    );
-  }; //http://3.35.226.74/airbnb/?location=seoul&checkin=2021-05-28&checkout=2021-06-02&adults=2&children=1&infants=1
-  return (
-    // <Link to={
-    //   pathname: '',
-    //     state = {
 
-    //     }
-    // }>
-    <SearchBtnDiv
-      isModalClicked={isModalClicked}
-      onClick={() => handleSearchClick()}
-    >
-      <SearchSvgDiv>
-        <SearchSvg>
-          <SearchButtonSvg />
-        </SearchSvg>
-      </SearchSvgDiv>
-      {isModalClicked ? <SearchWordDiv>검색</SearchWordDiv> : null}
-    </SearchBtnDiv>
-    // </Link>
+  //http://3.35.226.74/airbnb/?location=seoul&checkin=2021-05-28&checkout=2021-06-02&adults=2&children=1&infants=1
+
+  return (
+    <Link to={`/reservation/seoul/${checkInDate}/${checkOutDate}`}>
+      <SearchBtnDiv isModalClicked={isModalClicked}>
+        <SearchSvgDiv>
+          <SearchSvg>
+            <SearchButtonSvg />
+          </SearchSvg>
+        </SearchSvgDiv>
+        {isModalClicked ? <SearchWordDiv>검색</SearchWordDiv> : null}
+      </SearchBtnDiv>
+    </Link>
   );
 };
 

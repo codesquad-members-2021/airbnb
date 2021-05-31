@@ -1,6 +1,7 @@
 import React from 'react';
 import Search from '../Atoms/Search';
-const Reservation = () => {
+const Reservation = ({ match }) => {
+  console.log(match.params);
   return (
     <div>
       <Search></Search>
