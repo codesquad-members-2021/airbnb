@@ -16,8 +16,8 @@ public class GlobalExceptionHandler {
         return e.getMessage();
     }
 
-    @ExceptionHandler(WishNotFoundException.class)
-    public String handleWishNotFound(WishNotFoundException e) {
+    @ExceptionHandler(NotFoundException.class)
+    public String handleNotFound(NotFoundException e) {
         return e.getMessage();
     }
 }
