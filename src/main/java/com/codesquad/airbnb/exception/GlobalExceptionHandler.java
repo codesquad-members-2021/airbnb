@@ -15,4 +15,9 @@ public class GlobalExceptionHandler {
     public String handleWishNotAddable(WishNotAddableException e) {
         return e.getMessage();
     }
+
+    @ExceptionHandler(WishNotFoundException.class)
+    public String handleWishNotFound(WishNotFoundException e) {
+        return e.getMessage();
+    }
 }
