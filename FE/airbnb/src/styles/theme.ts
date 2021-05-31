@@ -28,7 +28,7 @@ const borderRadius = {
   s: "10px",
   m: "30px",
   l: "60px",
-  calendar: "40px",
+  modal: "40px",
 };
 
 // ================================
@@ -65,6 +65,14 @@ const searchContent = css`
   color: "#4F4F4F";
 `;
 
+const modal = css`
+  position: absolute;
+  top: 100px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: ${({ theme }) => theme.borderRadius.modal};
+`;
+
 const theme = {
   color,
   fontSize,
@@ -74,6 +82,7 @@ const theme = {
   searchListItem,
   searchTitle,
   searchContent,
+  modal,
 };
 
 export default theme;
