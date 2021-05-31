@@ -73,16 +73,15 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `airbnb_db`.`image`;
 CREATE TABLE IF NOT EXISTS `airbnb_db`.`image` (
-  `id` INT NOT NULL,
-  `image_url` VARCHAR(45) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `url` VARCHAR(2083) NOT NULL,
   `main` TINYINT(1) NOT NULL DEFAULT 0,
-  `accommodation_detail_id` INT NOT NULL,
-  `accommodation_detail_accommodation_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `accommodation_detail_id`, `accommodation_detail_accommodation_id`),
-  INDEX `fk_image_accommodation_detail1_idx` (`accommodation_detail_id` ASC, `accommodation_detail_accommodation_id` ASC) VISIBLE,
-  CONSTRAINT `fk_image_accommodation_detail1`
-    FOREIGN KEY (`accommodation_detail_id` , `accommodation_detail_accommodation_id`)
-    REFERENCES `airbnb_db`.`accommodation_detail` (`id` , `accommodation_id`)
+  `accommodation_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `accommodation_id`),
+  INDEX `fk_image_accommodation1_idx` (`accommodation_id` ASC) VISIBLE,
+  CONSTRAINT `fk_image_accommodation1`
+    FOREIGN KEY (`accommodation_id`)
+    REFERENCES `airbnb_db`.`accommodation` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
