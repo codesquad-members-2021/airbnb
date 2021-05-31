@@ -1,6 +1,7 @@
 package com.codesquad.airbnb.domain;
 
 public class Badge {
+
     private String type;
 
     public Badge(String type) {

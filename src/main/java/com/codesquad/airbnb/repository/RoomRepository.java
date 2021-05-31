@@ -23,12 +23,15 @@ public class RoomRepository implements JdbcRepository<Room> {
     public List<Room> getFilteredRooms(LocalDate checkIn, LocalDate checkOut, int minPrice, int maxPrice, int numberOfPeople) {
         String sql = "select room.id, `max`, `name`, `rating`, `latitude`, `longitude`, `bedroom_count`, `bed_count`, " +
                 "`bathroom_count`, `address`, `detail_address`, `comment_count`, `original_price`, `sale_price`, " +
-                "`flexible_refund`, `immediate_booking` from room " +
-                "left join booking on booking.room_id = room.id where `sale_price` >= ? and `sale_price` <= ? and `max` >= ? and " +
+                "`flexible_refund`, `immediate_booking` from `room` " +
+                "left join `booking` on room.id = booking.room_id " +
+                "where (`sale_price` between ? and ?) and `max` >= ? and " +
                 "(? not between check_in and check_out and ? not between check_in and check_out) or " +
                 "(check_in is null and check_out is null)";
 
         List<Room> rooms = jdbcTemplate.query(sql, roomRowMapper(), minPrice, maxPrice, numberOfPeople, checkIn, checkOut);
+
+        rooms.forEach(System.out::println);
 
         return rooms.stream()
                 .map(room -> addThumbnailsAndOptionAndBadges(room))

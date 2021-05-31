@@ -16,7 +16,7 @@ public class Booking {
     private int numberOfPeople;
     private int totalPrice;
 
-   public Booking(Long roomId, Long userId, LocalDate checkIn, LocalDate checkOut, int numberOfPeople, int totalPrice) {
+    public Booking(Long roomId, Long userId, LocalDate checkIn, LocalDate checkOut, int numberOfPeople, int totalPrice) {
         this.roomId = roomId;
         this.userId = userId;
         this.checkIn = checkIn;
@@ -64,7 +64,7 @@ public class Booking {
     }
 
     public boolean hasRoom(Long roomId) {
-       return this.roomId == roomId;
+        return this.roomId == roomId;
     }
 
     @Override

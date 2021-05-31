@@ -3,8 +3,10 @@ package com.codesquad.airbnb.domain;
 import org.springframework.data.annotation.Id;
 
 public class User {
+
     @Id
     private Long id;
+
     private String userId;
     private String password;
 

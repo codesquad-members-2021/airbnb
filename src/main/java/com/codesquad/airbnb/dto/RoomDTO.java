@@ -28,7 +28,6 @@ public class RoomDTO {
     private int salePrice;
     private boolean flexibleRefund;
     private boolean immediateBooking;
-
     private List<String> thumbnails;
     private Option option;
     private List<String> badges;

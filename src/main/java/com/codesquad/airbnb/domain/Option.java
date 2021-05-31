@@ -1,6 +1,7 @@
 package com.codesquad.airbnb.domain;
 
 public class Option {
+
     private boolean kitchen;
     private boolean airConditioner;
     private boolean wifi;
