@@ -30,7 +30,7 @@ create table `room`
 create table `user`
 (
     `id`        int         not null auto_increment,
-    `github_id` varchar(45) not null,
+    `google_id` varchar(45) not null,
     primary key (`id`)
 );
 
