@@ -1,17 +1,20 @@
 import styled from 'styled-components';
 
 import { ReactComponent as SearchIcon } from '@assets/search.svg';
+import { Link } from 'react-router-dom';
 
 const SearchButton = () => {
   return (
-    <SearchBtnWrap>
-      <SearchClickBtn>
-        <div>
-          <SearchIcon />
-        </div>
-        <Span>검색</Span>
-      </SearchClickBtn>
-    </SearchBtnWrap>
+    <Link to="search">
+      <SearchBtnWrap>
+        <SearchClickBtn>
+          <div>
+            <SearchIcon />
+          </div>
+          <Span>검색</Span>
+        </SearchClickBtn>
+      </SearchBtnWrap>
+    </Link>
   );
 };
 

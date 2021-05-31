@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
-import { dateSearchClick } from '@recoil/atoms/calendarState';
 import { modalStates } from '@recoil/atoms/modalState';
 
 import SearchButton from './SearchButton';

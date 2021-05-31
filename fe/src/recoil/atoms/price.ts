@@ -26,17 +26,27 @@ const averagePrice = selector({
     const average = Math.ceil(
       priceList.reduce((prev, curr) => prev + curr, 0) / priceList.length
     ).toLocaleString();
-    if (typeof average === 'string') return average;
-    else return '0';
+    if (average === 'NaN')
+      return '설정하신 금액에 맞는 숙소를 찾을 수 없습니다.';
+    else return `평균 1박 요금은 $${average} 입니다.`;
   },
 });
 
+const delay = (time: number, data: any) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(data);
+    }, time);
+  });
+};
+
 const priceList = selector({
   key: 'priceList',
+  // 추후 체크인, 체크아웃을 쿼리에 붙인다.
   get: async () => {
     const res = await fetch('http://3.35.3.106:8080/accomodation/price');
     const data = await res.json();
-    return data;
+    return await delay(3000, data);
   },
 });
 

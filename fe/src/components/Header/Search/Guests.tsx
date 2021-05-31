@@ -5,32 +5,29 @@ import styled from 'styled-components';
 import GuestModal from './GuestModal';
 import Title from '@components/common/Title';
 import { isOpenGuestModal, totalGuestState } from '@recoil/atoms/guests';
+import { modalStates } from '@recoil/atoms/modalState';
 
 const Guests = () => {
-  const [isOpenModalState, setIsOpenModalState] =
-    useRecoilState(isOpenGuestModal);
+  const [isOpenModal, setIsOpenModal] = useRecoilState(modalStates);
 
   const guestCounts = useRecoilValue(totalGuestState);
 
-  const handleGuestClick = (e: React.MouseEvent) => {
+  const handleClickGuestModal = (e: React.MouseEvent): void => {
     e.stopPropagation();
-    setIsOpenModalState(true);
+    setIsOpenModal({
+      ...isOpenModal,
+      calendar: false,
+      price: false,
+      guest: true,
+    });
   };
-
-  useEffect(() => {
-    const handleClickOutsideGuestModal = (): void => setIsOpenModalState(false);
-    document.addEventListener('click', handleClickOutsideGuestModal);
-    return () => {
-      document.removeEventListener('click', handleClickOutsideGuestModal);
-    };
-  }, [setIsOpenModalState]);
 
   return (
     <>
-      <GuestWrap onClick={handleGuestClick}>
+      <GuestWrap onClick={handleClickGuestModal}>
         <Title>인원</Title>
         <Desc>{guestCounts}</Desc>
-        {isOpenModalState && <GuestModal />}
+        {isOpenModal.guest && <GuestModal />}
       </GuestWrap>
     </>
   );

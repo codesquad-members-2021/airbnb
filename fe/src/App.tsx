@@ -14,7 +14,7 @@ const App = () => {
             <Route path="/" exact>
               <LandingPage />
             </Route>
-            <Route path="/search">
+            <Route path="/:search">
               <SearchResult />
             </Route>
           </Switch>

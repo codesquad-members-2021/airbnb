@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { dateSearchClick } from '@recoil/atoms/calendarState';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { isCheckInOut, checkDate } from '@recoil/atoms/date';
 import { modalStates } from '@recoil/atoms/modalState';
 

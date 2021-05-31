@@ -1,5 +1,11 @@
+import Nav from '@components/Header/Nav/Nav';
+
 const SearchResult = () => {
-  return <div></div>;
+  return (
+    <>
+      <Nav />
+    </>
+  );
 };
 
 export default SearchResult;

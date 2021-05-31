@@ -19,13 +19,10 @@ const ChartModal = () => {
         <Text title="true">
           `${MIN_PRICE.toLocaleString()} - ${MAX_PRICE.toLocaleString()}+`
         </Text>
-        <Text title="">평균 1박 요금은 ${averPrice} 입니다.</Text>
+        <Text title="">{averPrice}</Text>
       </ModalInfo>
-      {state === 'hasValue' ? (
-        <Graph priceContents={contents} />
-      ) : (
-        <LoadingDefaultChart />
-      )}
+      {state === 'loading' && <LoadingDefaultChart />}
+      {state === 'hasValue' && <Graph priceContents={contents} />}
     </ModalWrap>
   );
 };
