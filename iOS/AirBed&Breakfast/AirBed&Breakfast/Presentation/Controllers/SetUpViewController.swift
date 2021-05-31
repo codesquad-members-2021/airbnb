@@ -75,6 +75,7 @@ extension SetUpViewController: DetailSetUpViewInitializable {
     
     func configureDetailSubViewLayout(of currentContextView: UIView) {
         let reservationDetailViewHeightRatioToView = 0.3
+
         NSLayoutConstraint.activate([
             currentContextView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             currentContextView.trailingAnchor.constraint(equalTo: view.trailingAnchor),

@@ -26,12 +26,34 @@ class NumberOfHeadSelectionView: UIView {
     private func configureNumberAdjustmentViews() {
 
         self.adultNumberAdjustmentView = NumberAdjustmentView()
-        adultNumberAdjustmentView?.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(adultNumberAdjustmentView!)
+        self.childNumberAdjustmentView = NumberAdjustmentView()
+        self.infantNumberAdjustmentView = NumberAdjustmentView()
         
-        adultNumberAdjustmentView?.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        adultNumberAdjustmentView?.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        adultNumberAdjustmentView?.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
+        guard let subView1 = adultNumberAdjustmentView else { return }
+        guard let subView2 = childNumberAdjustmentView else { return }
+        guard let subView3 = infantNumberAdjustmentView else { return }
+        
+        subView1.translatesAutoresizingMaskIntoConstraints = false
+        subView2.translatesAutoresizingMaskIntoConstraints = false
+        subView3.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.addSubview(subView1)
+        self.addSubview(subView2)
+        self.addSubview(subView3)
+        
+        NSLayoutConstraint.activate([
+            subView1.topAnchor.constraint(equalTo: self.topAnchor, constant: 100),
+            subView1.widthAnchor.constraint(equalTo: self.widthAnchor),
+            subView1.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2),
+            
+            subView2.topAnchor.constraint(equalTo: subView1.bottomAnchor),
+            subView2.widthAnchor.constraint(equalTo: self.widthAnchor),
+            subView2.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2),
+            
+            subView3.topAnchor.constraint(equalTo: subView2.bottomAnchor),
+            subView3.widthAnchor.constraint(equalTo: self.widthAnchor),
+            subView3.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2)
+        ])
     }
     
 }
