@@ -39,9 +39,9 @@ class ViewController: UIViewController, UISearchBarDelegate {
         setupSearchBar()
         self.fetchMainPage()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTripPlaceCollectionView), name: NSNotification.Name(rawValue: "name"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTripPlaceCollectionView), name: Notification.tripPlaceDataUpdate, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadRecommendTripCollectionView), name: NSNotification.Name(rawValue: "name"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadRecommendTripCollectionView), name: Notification.recommendTripDataUpdate, object: nil)
     }
     
     func fetchMainPage() {

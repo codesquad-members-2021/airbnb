@@ -60,7 +60,7 @@ class FindingAccommdationViewController: UIViewController {
         initCalendarView()
         self.conditionTableView.dataSource = tableViewDataSource
         
-        NotificationCenter.default.addObserver(self, selector: #selector(conditionDataUpdate), name: FindingAccommdationViewController.conditionDataUpdate, object: findingAccommdationCondition)
+        NotificationCenter.default.addObserver(self, selector: #selector(conditionDataUpdate), name: Notification.conditionDataUpdate, object: findingAccommdationCondition)
         costGraphView.update(minCost: "0원", maxCost: "1,000,000원", averageCost: "qweqweqwe")
         self.conditionTableView.dataSource = tableViewDataSource
         
@@ -199,11 +199,6 @@ extension FindingAccommdationViewController {
             }
         }
     }
-}
-
-extension FindingAccommdationViewController {
-    static let conditionDataUpdate = Notification.Name("conditionDataUpdate")
-    static let costGraphDataUpdate = Notification.Name("costGraphDataUpdate")
 }
 
 extension FindingAccommdationViewController {

@@ -46,27 +46,27 @@ final class FindingAccommdationCondition {
     
     func insert(location: String) {
         self.location = location
-        NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
+        NotificationCenter.default.post(name: Notification.conditionDataUpdate, object: self)
     }
     
     func update(firstDate: String) {
         self.firstDate = firstDate
-        NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
+        NotificationCenter.default.post(name: Notification.conditionDataUpdate, object: self)
     }
     
     func update(secondDate: String) {
         self.secondDate = secondDate
-        NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
+        NotificationCenter.default.post(name: Notification.conditionDataUpdate, object: self)
     }
     
     func update(minCost: Int) {
         self.minCost = minCost
-        NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
+        NotificationCenter.default.post(name: Notification.conditionDataUpdate, object: self)
     }
     
     func update(maxCost: Int) {
         self.maxCost = maxCost
-        NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
+        NotificationCenter.default.post(name: Notification.conditionDataUpdate, object: self)
     }
     
     func update(people: Int, isAdd: Bool) {
@@ -79,6 +79,6 @@ final class FindingAccommdationCondition {
             }
             self.people -= people
         }
-        NotificationCenter.default.post(name: FindingAccommdationViewController.conditionDataUpdate, object: self)
+        NotificationCenter.default.post(name: Notification.conditionDataUpdate, object: self)
     }
 }
