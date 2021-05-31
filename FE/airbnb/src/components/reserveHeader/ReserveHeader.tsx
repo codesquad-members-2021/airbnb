@@ -17,6 +17,7 @@ const ReserveHeader = (props: Props) => {
 export default ReserveHeader;
 
 const StyledReserveHeader = styled.div`
+  z-index: 10;
   position: fixed;
   display: flex;
   align-items: center;
