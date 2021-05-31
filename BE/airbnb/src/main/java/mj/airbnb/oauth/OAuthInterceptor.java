@@ -30,7 +30,7 @@ public class OAuthInterceptor implements HandlerInterceptor {
         try {
             DecodedJWT jwt = verifier.verify(token);
             GitHubUser user = new GitHubUser();
-            user.setId(jwt.getClaim("login").asString());
+            user.setId(jwt.getClaim("id").asLong());
             user.setName(jwt.getClaim("name").asString());
             request.setAttribute("user", user);
             return true;
