@@ -31,7 +31,7 @@ function App() {
           <GlobalStyle />
           <Route exact path="/" component={Home} />
           <Route
-            path="/reservation/:location/:checkIn/:checkOut"
+            path="/reservation/:location/:checkIn/:checkOut/:adults/:children/:infants/:minPrice/:maxPrice"
             component={Reservation}
           />
         </ThemeProvider>

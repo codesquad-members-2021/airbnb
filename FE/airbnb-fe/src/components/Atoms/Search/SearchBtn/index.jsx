@@ -6,18 +6,28 @@ import { SearchContext } from '..';
 import SearchButtonSvg from './SearchButtonSvg';
 
 const SearchBtn = () => {
-  const { clicked, calendarData, priceData, peopleData } =
+  const { clicked, calendarData, priceData, peopleCount } =
     useContext(SearchContext);
 
-  const checkInDate = `${calendarData.checkIn.year}-${calendarData.checkIn.month}-${calendarData.checkIn.day}`;
-  const checkOutDate = `${calendarData.checkOut.year}-${calendarData.checkOut.month}-${calendarData.checkOut.day}`;
+  const putZero = (num) => (num <= 9 ? `0${num}` : num);
+
+  const checkInDate = `${calendarData.checkIn.year}-${putZero(
+    calendarData.checkIn.month
+  )}-${putZero(calendarData.checkIn.day)}`;
+  const checkOutDate = `${calendarData.checkOut.year}-${putZero(
+    calendarData.checkOut.month
+  )}-${putZero(calendarData.checkOut.day)}`;
 
   const isModalClicked = clicked.checkInOut || clicked.price || clicked.people;
 
-  //http://3.35.226.74/airbnb/?location=seoul&checkin=2021-05-28&checkout=2021-06-02&adults=2&children=1&infants=1
+  // http://3.35.226.74/airbnb/?location=seoul&checkin=2021-05-28&checkout=2021-06-02&adults=2&children=1&infants=1
+
+  ///reservation/:location/:checkIn/:checkOut/:adults/:children/:infants/:minPrice/:maxPrice
 
   return (
-    <Link to={`/reservation/seoul/${checkInDate}/${checkOutDate}`}>
+    <Link
+      to={`/reservation/Seoul/${checkInDate}/${checkOutDate}/${peopleCount.adult}/${peopleCount.child}/${peopleCount.baby}/${priceData.minPrice}/${priceData.maxPrice}`}
+    >
       <SearchBtnDiv isModalClicked={isModalClicked}>
         <SearchSvgDiv>
           <SearchSvg>
