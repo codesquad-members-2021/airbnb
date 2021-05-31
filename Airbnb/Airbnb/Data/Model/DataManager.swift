@@ -1,3 +1,5 @@
+import UIKit
+
 enum ImageManager {
     static let main = "main"
     static let seoul = "seoul"
@@ -51,4 +53,5 @@ enum ControllerPage {
 
 enum PriceInfo {
     static let accommodation = [2000000, 2000000, 2000000, 2000000, 50000, 50000, 50000, 50000, 50000, 800000, 800000, 800000]
+    static let graph:[CGFloat] = [2000000, 2000000, 2000000, 2000000, 50000, 50000, 50000, 50000, 50000, 800000, 800000, 800000]
 }

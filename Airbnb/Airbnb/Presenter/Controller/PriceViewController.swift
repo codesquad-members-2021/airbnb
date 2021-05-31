@@ -2,12 +2,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RangeSeekSlider
-import Charts
 
 class PriceViewController: UIViewController {
     
-    @IBOutlet weak var lineChartView: LineChartView!
-    @IBOutlet weak var priceRangeControl: RangeSeekSlider!
+    
     @IBOutlet weak var averagePriceLabel: UILabel!
     @IBOutlet weak var serverPriceLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -16,6 +14,26 @@ class PriceViewController: UIViewController {
     @IBOutlet weak var bakButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var skipDeleteButton: UIButton!
+    
+    private lazy var graphView:GraphView = {
+        let graphView = GraphView(frame: .zero, values: PriceInfo.graph)
+        return graphView
+    }()
+    
+    private lazy var rangeSlider:RangeSeekSlider = {
+        let slider = RangeSeekSlider(frame: .zero)
+        let min = viewModel.getPriceInfo().min() ?? 0
+        let max = viewModel.getPriceInfo().max() ?? 0
+        slider.hideLabels = true
+        slider.handleBorderColor = UIColor.black
+        slider.handleColor = UIColor.systemGray
+        slider.tintColor = UIColor.black
+        slider.minValue = CGFloat(min)
+        slider.maxValue = CGFloat(max)
+        slider.selectedMaxValue = CGFloat(max)
+        slider.delegate = self
+        return slider
+    }()
     
     private let viewModel = PriceViewModel()
     private let nextPage = BehaviorRelay(value: false)
@@ -34,20 +52,31 @@ class PriceViewController: UIViewController {
 private extension PriceViewController {
     
     private func setupMainView() {
-        setupPriceRangeControl()
+        setupGraphView()
+        setupSlider()
         setupButtonObserver()
         setupSkipDeleteButton()
         setupNextButton()
-        setupCharts(viewModel.getPriceInfo())
     }
     
-    private func setupPriceRangeControl() {
-        let min = viewModel.getPriceInfo().min() ?? 0
-        let max = viewModel.getPriceInfo().max() ?? 0
-        priceRangeControl.minValue = CGFloat(min)
-        priceRangeControl.maxValue = CGFloat(max)
-        priceRangeControl.selectedMaxValue = CGFloat(max)
-        priceRangeControl.delegate = self
+    private func setupGraphView() {
+        view.addSubview(graphView)
+        graphView.isUserInteractionEnabled = true
+        graphView.translatesAutoresizingMaskIntoConstraints = false
+        graphView.topAnchor.constraint(equalTo: averagePriceLabel.bottomAnchor, constant: 40).isActive = true
+        graphView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        graphView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8).isActive = true
+        graphView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3).isActive = true
+    }
+    
+    private func setupSlider() {
+        graphView.addSubview(rangeSlider)
+        rangeSlider.layer.zPosition = 1
+        rangeSlider.translatesAutoresizingMaskIntoConstraints = false
+        rangeSlider.bottomAnchor.constraint(equalTo: graphView.bottomAnchor, constant: 0).isActive = true
+        rangeSlider.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        rangeSlider.widthAnchor.constraint(equalTo: graphView.widthAnchor, multiplier: 1.1).isActive = true
+        rangeSlider.heightAnchor.constraint(equalToConstant: 10).isActive = true
     }
     
     private func setupButtonObserver() {
@@ -91,45 +120,6 @@ private extension PriceViewController {
                 self?.present(nextVC, animated: true, completion: nil)
                 //데이터 넘겨야함
             }).disposed(by: rx.disposeBag)
-    }
-    
-    private func setupCharts(_ value:[Int]) {
-        lineChartView.delegate = self
-        var dataEntries:[ChartDataEntry] = []
-        
-        for i in 0..<value.count {
-            let dataEntry = ChartDataEntry(x: Double(i), y: Double(value[i]))
-            dataEntries.append(dataEntry)
-        }
-        
-        let line = LineChartDataSet(entries: dataEntries, label: "")
-        line.mode = .cubicBezier
-        line.drawCirclesEnabled = false
-        line.drawHorizontalHighlightIndicatorEnabled = false
-        line.drawFilledEnabled = true
-        line.colors = [UIColor.clear]
-        line.drawValuesEnabled = false
-        line.fillColor = NSUIColor.black
-        
-        let data = LineChartData()
-        data.addDataSet(line)
-        
-        lineChartView.xAxis.drawAxisLineEnabled = false
-        lineChartView.xAxis.drawGridLinesEnabled = false
-        lineChartView.xAxis.drawLabelsEnabled = false
-        
-        lineChartView.leftAxis.drawAxisLineEnabled = false
-        lineChartView.leftAxis.drawGridLinesEnabled = false
-        lineChartView.leftAxis.drawLabelsEnabled = false
-        
-        lineChartView.rightAxis.drawAxisLineEnabled = false
-        lineChartView.rightAxis.drawGridLinesEnabled = false
-        lineChartView.rightAxis.drawLabelsEnabled = false
-        
-        lineChartView.isUserInteractionEnabled = false
-        lineChartView.legend.enabled = false
-        
-        lineChartView.data = data
     }
 }
 
@@ -181,15 +171,11 @@ private extension PriceViewController {
 
 extension PriceViewController: RangeSeekSliderDelegate {
     func rangeSeekSlider(_ slider: RangeSeekSlider, didChange minValue: CGFloat, maxValue: CGFloat) {
-        let priceRange = [Int(minValue), Int(maxValue)]
-        viewModel.append(priceRange)
+        let prigeRange = [Int(minValue), Int(maxValue)]
+        viewModel.append(prigeRange)
         switch priceLabel.text {
         case "": nextPage.accept(false)
         default: nextPage.accept(true)
         }
     }
-}
-
-extension PriceViewController: ChartViewDelegate {
-    
 }
