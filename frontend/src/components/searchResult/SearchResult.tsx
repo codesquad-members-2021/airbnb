@@ -29,7 +29,7 @@ function SearchResult({ match }: RouteComponentProps<params>) {
   if (!result) return null
   let roomData = result ? result.rooms : null
   return (
-    <>
+    <TotalWindow>
       <FlexBox>
         <Logo />
         <MiniSearchBar />
@@ -39,9 +39,10 @@ function SearchResult({ match }: RouteComponentProps<params>) {
         <HouseList data={roomData} />
         <Map />
       </NoPaddingFlexBox>
-    </>
+    </TotalWindow>
   )
 }
+const TotalWindow = styled.div``
 const FlexBox = styled.div`
   display: flex;
   justify-content: space-around;

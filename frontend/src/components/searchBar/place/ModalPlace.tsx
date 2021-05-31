@@ -10,15 +10,32 @@ const ModalPlace: React.FunctionComponent<IModalPropType> = ({ modalType }) => {
   const locations = ['서울', '경기', '부산', '광주', '대전', '전주', '강원', '제주']
   const setPlaceToSearch = useSetRecoilState(clickedPlace)
   const defaultMsg = '가까운 여행지 둘러보기'
+  let coordsObj
   const handleClick = (location: string) => {
     setPlaceToSearch(location)
+    if (location === defaultMsg) askForCoords()
+  }
+  const askForCoords = () => {
+    navigator.geolocation.getCurrentPosition(handleGeoSucces, handleGeoError)
+  }
+  const handleGeoSucces = (position: any) => {
+    const longitude = position.coords.longitude
+    const latitude = position.coords.latitude
+    coordsObj = {
+      latitude,
+      longitude,
+    }
+  }
+
+  function handleGeoError() {
+    console.log('Hmm...cant find your location 😯')
   }
 
   return (
     <>
       <Modal modalType={modalType}>
         <ContentsWrapper>
-          <Button fullWidth onClick={() => handleClick('가까운 여행지 둘러보기')}>
+          <Button fullWidth onClick={() => handleClick(defaultMsg)}>
             <FaMapMarkedAlt />
             &nbsp;&nbsp;{defaultMsg}
           </Button>

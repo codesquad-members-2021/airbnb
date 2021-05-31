@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 
+import IconButton from '@material-ui/core/IconButton'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+import FavoriteIcon from '@material-ui/icons/Favorite'
 function HouseList({ data }: any) {
   console.log(data)
   return (
@@ -12,11 +15,21 @@ function HouseList({ data }: any) {
           </div>
           <InfoBlock>
             <div>
-              <Title>{el.name}</Title>
-              <RoomInfo>
-                침실 {el.home_details.bed}개 · 욕실 {el.home_details.bath_room}개 · 최대 인원
-                {el.home_details.max_guest}명
-              </RoomInfo>
+              <div>
+                <Title>{el.name}</Title>
+                <RoomInfo>
+                  침실 {el.home_details.bed}개 · 욕실 {el.home_details.bath_room}개 · 최대 인원
+                  {el.home_details.max_guest}명
+                </RoomInfo>
+              </div>
+              <LikeBtn>
+                <IconButton aria-label='delete'>
+                  <FavoriteBorderIcon fontSize='large' />
+                </IconButton>
+                {/* <IconButton aria-label='delete'>
+                  <FavoriteIcon color='secondary' />
+                </IconButton> */}
+              </LikeBtn>
             </div>
             <div>
               <Review>
@@ -36,6 +49,11 @@ function HouseList({ data }: any) {
     </Frame>
   )
 }
+const LikeBtn = styled.div`
+  position: absolute;
+  top: -16px;
+  left: 356px;
+`
 const Price = styled.div`
   display: flex;
   flex-flow: column;
@@ -46,11 +64,12 @@ const Price = styled.div`
       font-weight: ${({ theme }) => theme.fontWeight.w1};
     }
     align-self: flex-end;
-  }
-
-  div:last-child {
-    color: ${({ theme }) => theme.color.grey_2};
-    font-size: ${({ theme }) => theme.fontSize.x_sm};
+    &:last-child {
+      color: ${({ theme }) => theme.color.grey_2};
+      font-size: ${({ theme }) => theme.fontSize.super_sm};
+      font-weight: ${({ theme }) => theme.fontWeight.w1};
+      text-decoration: underline;
+    }
   }
 `
 const Review = styled.div`
@@ -77,9 +96,15 @@ const InfoBlock = styled.div`
   flex-flow: column;
   justify-content: space-between;
   padding: 10px 24px;
-  div: last-child {
-    display: flex;
-    justify-content: space-between;
+  width: 400px;
+  div {
+    &: first-child {
+      position: relative;
+    }
+    &: last-child {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 `
 const Column = styled.div`
