@@ -2,6 +2,7 @@ package com.codesquad.airbnb.repository;
 
 import com.codesquad.airbnb.domain.Wish;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -34,5 +35,12 @@ public class WishRepository implements JdbcRepository<Wish>{
     @Override
     public List<Wish> findAll() {
         return null;
+    }
+
+    private RowMapper<Wish> wishRowMapper() {
+        return (resultSet, rowNum) -> {
+            Wish wish = new Wish(resultSet.getLong("id"));
+            return wish;
+        };
     }
 }
