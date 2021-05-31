@@ -6,19 +6,18 @@ import com.codesquad.airbnb.exception.WishNotAddableException;
 import com.codesquad.airbnb.exception.WishNotFoundException;
 import com.codesquad.airbnb.repository.RoomRepository;
 import com.codesquad.airbnb.repository.WishRepository;
+import com.codesquad.airbnb.service.RoomService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/rooms")
 public class RoomController {
 
-    private RoomRepository roomRepository;
-    private WishRepository wishRepository;
+    private RoomService roomService;
 
     public RoomController(RoomService roomService) {
         this.roomService = roomService;
@@ -26,10 +25,7 @@ public class RoomController {
 
     @GetMapping
     public Rooms showRooms() {
-        List<RoomDTO> roomDTOS = roomRepository.findAll().stream()
-                .map(RoomDTO::toRoomDTO)
-                .collect(Collectors.toList());
-        return new Rooms(roomDTOS);
+        return new Rooms(roomService.getRoomDTOS());
     }
 
     @GetMapping(params = {"checkIn", "checkOut", "minPrice", "maxPrice", "numberOfPeople"})
@@ -42,18 +38,12 @@ public class RoomController {
     }
 
     @PostMapping("/{userId}/wish/{roomId}")
-    public void addWish(@PathVariable("userId") Long userId, @PathVariable("roomId") Long roomId) {
-        if (!wishRepository.findByRoomIdAndUserId(roomId, userId).isEmpty()) {
-            throw new WishNotAddableException();
-        }
-        wishRepository.insert(roomId, userId);
+    public void addWish(@PathVariable("roomId") Long roomId, @PathVariable("userId") Long userId) {
+        roomService.saveWish(roomId, userId);
     }
 
     @DeleteMapping("/{userId}/wish/{roomId}")
-    public void deleteWish(@PathVariable("userId") Long userId, @PathVariable("roomId") Long roomId) {
-        if (wishRepository.findByRoomIdAndUserId(roomId, userId).isEmpty()) {
-            throw new WishNotFoundException();
-        }
-        wishRepository.delete(roomId, userId);
+    public void deleteWish(@PathVariable("roomId") Long roomId, @PathVariable("userId") Long userId) {
+        roomService.deleteWish(roomId, userId);
     }
 }
