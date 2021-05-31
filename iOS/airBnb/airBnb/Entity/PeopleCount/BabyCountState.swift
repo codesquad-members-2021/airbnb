@@ -11,30 +11,18 @@ class BabyCountState: ChildProtocol {
     
     @Published var count: Int
     
-    var isDecreaseEnabled: Bool {
-        get {
-            return count > 0
-        }
-    }
-    
-    var isIncreaseEnabled: Bool {
-        get {
-            return count < 8
-        }
-    }
-    
     init() {
         count = 0
     }
     
-    func increase() {
-        if isIncreaseEnabled {
+    func increase(from: (Int) -> Bool) {
+        if from(count) {
             count += 1
         }
     }
     
-    func decrease() {
-        if isDecreaseEnabled {
+    func decrease(from: (Int) -> Bool) {
+        if from(count) {
             count -= 1
         }
     }

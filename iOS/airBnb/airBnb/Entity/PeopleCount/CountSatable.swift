@@ -8,10 +8,8 @@
 import Foundation
 
 protocol CountStatable {
-    var isDecreaseEnabled: Bool { get }
-    var isIncreaseEnabled: Bool { get }
-    func increase()
-    func decrease()
+    func increase(from: (Int) -> Bool)
+    func decrease(from: (Int) -> Bool)
 }
 
 protocol AdultProtocol: CountStatable {
