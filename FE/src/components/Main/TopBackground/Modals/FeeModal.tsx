@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import Modal from '../../../Common/Modal';
 
-const FeeModal = () => {
+const FeeModal = ({...props}) => {
   return (
-    <FeeModalLayout>
+    <FeeModalLayout {...props}>
     </FeeModalLayout>
   );
 };

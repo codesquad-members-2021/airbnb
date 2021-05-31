@@ -8,7 +8,7 @@ import CalendarCarousel from './CalendarCarousel';
 import Modal from '../../../../Common/Modal';
 import Calendar from './Calendar';
 
-const CalendarModal = () => {
+const CalendarModal = ({...props}) => {
   // 1. 초기 값 설정
   const [calendars, setCalendars] = useState(() =>
     Array.from({ length: 4 }, (_, i) => (
@@ -75,7 +75,7 @@ const CalendarModal = () => {
   }
 
   return (
-    <CalendarModalLayout>
+    <CalendarModalLayout {...props}>
       <CalendarCarousel {...carouselOptions}>
         {calendars}
       </CalendarCarousel>
