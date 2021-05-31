@@ -16,6 +16,7 @@ class CostGraphView: UIView {
     @IBOutlet weak var graphView: UIView!
     
     private var chart: Chart?
+    let rangeSlider = RangeSlider(frame: .zero)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,6 +24,7 @@ class CostGraphView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+
     }
     
     func update(minCost: String, maxCost: String, averageCost: String) {
@@ -31,7 +33,7 @@ class CostGraphView: UIView {
         averageCostLabel.text = averageCost
     }
     
-    func chartinit(data: [(Int, Int)]) {
+    func chartInit(data: [(Int, Int)]) {
         let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
 
         let chartPoints = data.map{ChartPoint(x: ChartAxisValueInt($0.0, labelSettings: labelSettings), y: ChartAxisValueInt($0.1))}
@@ -49,9 +51,6 @@ class CostGraphView: UIView {
         let (xAxisLayer, yAxisLayer, innerFrame) = (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
         
         let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: UIColor.black, lineWidth: 2, animDuration: 1, animDelay: 0)
-//        let chartPointsLineLayer = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModel], pathGenerator: CatmullPathGenerator()) // || CubicLinePathGenerator
-        
-//        let IOBLine = ChartPointsLineLayer(xAxis: xAxis, yAxis: yAxis, lineModels: [lineModel], pathGenerator: StraightLinePathGenerator())
         
         let settings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.clear, linesWidth: ExamplesDefaults.guidelinesWidth)
         let _ = ChartGuideLinesDottedLayer(xAxisLayer: xAxisLayer, yAxisLayer: yAxisLayer, settings: settings)
@@ -66,8 +65,18 @@ class CostGraphView: UIView {
                 chartPointsLineLayer,
             ]
         )
-        
+        rangeSliderInit()
         self.graphView.addSubview(chart.view)
         self.chart = chart
+    }
+    
+    func rangeSliderInit() {
+        let margin: CGFloat = 20
+        let height: CGFloat = 10
+        let width = self.bounds.width - 2 * margin
+        
+        rangeSlider.frame = CGRect(x: margin, y: graphView.frame.maxY, width: width, height: height)
+        
+        self.addSubview(rangeSlider)
     }
 }

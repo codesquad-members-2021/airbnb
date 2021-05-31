@@ -49,6 +49,8 @@
 		D4DDA76B265E3F2500FE52FA /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA76A265E3F2500FE52FA /* SearchTableViewCell.swift */; };
 		D4DDA773265E73CF00FE52FA /* CostGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA772265E73CF00FE52FA /* CostGraph.swift */; };
 		D4DDA778265E82F000FE52FA /* CostGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA777265E82F000FE52FA /* CostGraphView.swift */; };
+		D4DDA795265F986F00FE52FA /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA794265F986F00FE52FA /* RangeSlider.swift */; };
+		D4DDA799265F98E000FE52FA /* RangeSliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDA798265F98E000FE52FA /* RangeSliderTrackLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +129,8 @@
 		D4DDA76A265E3F2500FE52FA /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		D4DDA772265E73CF00FE52FA /* CostGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostGraph.swift; sourceTree = "<group>"; };
 		D4DDA777265E82F000FE52FA /* CostGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostGraphView.swift; sourceTree = "<group>"; };
+		D4DDA794265F986F00FE52FA /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
+		D4DDA798265F98E000FE52FA /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSliderTrackLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,8 @@
 				827F4833265F365C00DC2EFF /* CubicChart.swift */,
 				827F4835265F368E00DC2EFF /* ChartDefault.swift */,
 				827F4837265F375700DC2EFF /* Env.swift */,
+				D4DDA794265F986F00FE52FA /* RangeSlider.swift */,
+				D4DDA798265F98E000FE52FA /* RangeSliderTrackLayer.swift */,
 			);
 			path = ChartGraph;
 			sourceTree = "<group>";
@@ -491,10 +497,12 @@
 				827F4836265F368E00DC2EFF /* ChartDefault.swift in Sources */,
 				8255E5B7265E2F6100FD066D /* SearchResult.swift in Sources */,
 				D4DDA726265BD94D00FE52FA /* RoomInformationViewDataSource.swift in Sources */,
+				D4DDA799265F98E000FE52FA /* RangeSliderTrackLayer.swift in Sources */,
 				827F4834265F365C00DC2EFF /* CubicChart.swift in Sources */,
 				827F4838265F375700DC2EFF /* Env.swift in Sources */,
 				825702E02653AE99009237BE /* SearchViewController.swift in Sources */,
 				D4DDA773265E73CF00FE52FA /* CostGraph.swift in Sources */,
+				D4DDA795265F986F00FE52FA /* RangeSlider.swift in Sources */,
 				D4DDA6872653627100FE52FA /* EndPoint.swift in Sources */,
 				D4DDA6962653764700FE52FA /* TripPlace.swift in Sources */,
 				8220C8BD2658C6CC00E3F3CA /* FindingAccommdationViewController.swift in Sources */,

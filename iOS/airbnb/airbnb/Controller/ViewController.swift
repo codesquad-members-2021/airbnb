@@ -51,8 +51,6 @@ class ViewController: UIViewController, UISearchBarDelegate {
             case .failure(let error):
                 print(error)
             case .success(let data):
-//                self.mainPage.update(locations: data.locations)
-//                self.mainPage.update(categories: data.categories)
                 self.mainPage = data
                 self.mainPage.update()
             }

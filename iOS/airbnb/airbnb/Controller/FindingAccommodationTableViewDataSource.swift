@@ -60,7 +60,7 @@ class FindingAccommodationTableViewDataSource: NSObject, UITableViewDataSource {
                 return FindingAccommodationTableViewCell()
             }
             cell.textLabel?.text = TableViewTitle.allCases[indexPath.row].description
-            cell.update(minvalue: conditionData.minCostDescription, maxvalue: conditionData.maxCostDescription)
+            cell.update(minvalue: conditionData.decimalWon(value: conditionData.minCostDescription), maxvalue: conditionData.decimalWon(value: conditionData.maxCostDescription))
             return cell
         }
         else {

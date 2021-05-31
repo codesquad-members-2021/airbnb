@@ -61,8 +61,10 @@ class FindingAccommdationViewController: UIViewController {
         self.conditionTableView.dataSource = tableViewDataSource
         
         NotificationCenter.default.addObserver(self, selector: #selector(conditionDataUpdate), name: FindingAccommdationViewController.conditionDataUpdate, object: findingAccommdationCondition)
-        costGraphView.update(minCost: "₩10000", maxCost: "₩160000", averageCost: "qweqweqwe")
+        costGraphView.update(minCost: "0원", maxCost: "1,000,000원", averageCost: "qweqweqwe")
         self.conditionTableView.dataSource = tableViewDataSource
+        
+        self.costGraphView.rangeSlider.addTarget(self, action: #selector(rangeSliderValueChanged), for: .valueChanged)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -127,19 +129,14 @@ class FindingAccommdationViewController: UIViewController {
     @objc func conditionDataUpdate() {
         self.conditionTableView.reloadData()
         self.adultCountLabel.text = findingAccommdationCondition.peopleCount
+        self.costGraphView.update(
+            minCost: findingAccommdationCondition.decimalWon(value: findingAccommdationCondition.minCostDescription),
+            maxCost: findingAccommdationCondition.decimalWon(value: findingAccommdationCondition.maxCostDescription), averageCost: "0")
     }
     
     //    @objc func costGraphDataUpdate() {
     //        costGraphView.update(minCost: "₩10000", maxCost: "₩160000", averageCost: "qweqweqwe")
     //    }
-    
-    @IBAction func pressedMincost(_ sender: Any) {
-        self.findingAccommdationCondition.update(minCost: 10000)
-    }
-    
-    @IBAction func pressedMaxCost(_ sender: Any) {
-        self.findingAccommdationCondition.update(maxCost: 150000)
-    }
     
     @IBAction func pressedPeopleMinus(_ sender: Any) {
         self.findingAccommdationCondition.update(people: 1, isAdd: false)
@@ -147,6 +144,14 @@ class FindingAccommdationViewController: UIViewController {
     
     @IBAction func pressedPeoplePlus(_ sender: Any) {
         self.findingAccommdationCondition.update(people: 1, isAdd: true)
+    }
+    
+    @objc func rangeSliderValueChanged(_ rangeSlider: RangeSlider) {
+        
+        let minCost = Int(rangeSlider.lowerValue*1000000)
+        let maxCost = Int(rangeSlider.upperValue*1000000)
+        findingAccommdationCondition.update(minCost: minCost)
+        findingAccommdationCondition.update(maxCost: maxCost)
     }
 }
 
@@ -190,7 +195,7 @@ extension FindingAccommdationViewController {
                 print(error)
             case .success(let data):
                 self.costGraph = data
-                self.costGraphView.chartinit(data: self.mappingGraphValue())
+                self.costGraphView.chartInit(data: self.mappingGraphValue())
             }
         }
     }
