@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import { useRef, MouseEvent } from 'react';
 import { useMainDispatch, useMainState } from '../../contexts/MainContext';
 import { Text, TextContentInfo, TextFooter, TextTopBackground } from '../../util/reference';
 
@@ -11,28 +11,32 @@ import RoomType from './RoomType';
 import ContentInfo from './ContentInfo';
 import Footer from './Footer';
 
-
 const Main = () => {
   const { nearby, roomType } = Text;
   const { contentInfo } = TextContentInfo;
   const { footerItems } = TextFooter;
   const { headerTexts, searchBarTexts } = TextTopBackground;
 
-  const {searchBarClickedIdx, mainModalRefs} = useMainState();
-  const mainDispatch = useMainDispatch();
-  const handleBackgroundFluidClick = (e : MouseEvent|Event) => {
-    console.log(mainModalRefs);
+  const searchBarRef = useRef<HTMLDivElement>(null);
 
-    if (searchBarClickedIdx < 0) return;
+  const { searchBarClickedIdx } = useMainState();
+  const mainDispatch = useMainDispatch();
+  const handleBackgroundFluidClick = (e: MouseEvent | Event) => {
+    const target = e.target as HTMLElement;
+    const isSearchBarItem = searchBarRef.current?.contains(target);
+    if (searchBarClickedIdx < 0 || isSearchBarItem) return;
     mainDispatch({ type: 'SET_SEARCHBAR_CLICKED_IDX', payload: -1 });
   };
 
   return (
-    <BackgroundFluid onClick={(e : MouseEvent|Event) => handleBackgroundFluidClick(e)}>
-
+    <BackgroundFluid
+      onClick={(e: MouseEvent | Event) => handleBackgroundFluidClick(e)}
+    >
       <TopBackground
         headerTexts={headerTexts}
         searchBarTexts={searchBarTexts}
+        //@ts-ignore
+        searchBarRef={searchBarRef}
       />
       <Nearby nearbyItems={nearby} />
       <RoomType roomTypeItems={roomType} />
@@ -41,7 +45,6 @@ const Main = () => {
         <ContentInfo contentInfoItems={contentInfo} />
         <Footer footerItems={footerItems} />
       </Background>
-
     </BackgroundFluid>
   );
 };

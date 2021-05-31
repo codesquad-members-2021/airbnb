@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { useEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 import { FiSearch } from 'react-icons/fi';
 
 import { useMainDispatch, useMainState } from '../../../contexts/MainContext';
@@ -18,7 +18,10 @@ interface ISearchMenuItem {
 }
 /* interface ISearchBar { ref?: Ref<HTMLDivElement>; } */
 
-const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
+const SearchBar = forwardRef((
+  //@ts-ignore
+  { searchBarTexts, searchBarRef }: ITextTopBackground,
+) => {
   // 1. 초기 값 설정
   const { menuItems } = searchBarTexts;
 
@@ -31,30 +34,20 @@ const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
   const checkInPlaceHolderRef = useRef<HTMLParagraphElement>(null);
   const checkOutPlaceHoldertRef = useRef<HTMLParagraphElement>(null);
 
-  const calendarRef = useRef<HTMLDivElement>(null);
-  const peopleRef = useRef<HTMLDivElement>(null);
-  const feeRef = useRef<HTMLDivElement>(null);
-
   // 2. useEffect
-  // 1) 초기 렌더링 (Ref 등록)
-  useEffect(
-    () =>
-      mainDispatch({
-        type: 'SET_MAIN_MODAL_REFS',
-        payload: { calendarRef, peopleRef, feeRef },
-      }),
-    [],
-  );
-
-  // 2) 달력에서 날짜가 업데이트 되었을 때 (체크인 / 체크아웃)
+  // 1) 달력에서 날짜가 업데이트 되었을 때 (체크인 / 체크아웃)
   useEffect(() => {
     if (!checkInPlaceHolderRef || !checkOutPlaceHoldertRef) return;
     // 체크인
     let checkIn = checkInPlaceHolderRef.current!;
-    startDate ? (checkIn.innerHTML = createMonthDateText(startDate)) : (checkIn.innerHTML = '날짜 입력');
+    startDate
+      ? (checkIn.innerHTML = createMonthDateText(startDate))
+      : (checkIn.innerHTML = '날짜 입력');
     // 체크아웃
     let checkOut = checkOutPlaceHoldertRef.current!;
-    endDate ? (checkOut.innerHTML = createMonthDateText(endDate)) : (checkOut.innerHTML = '날짜 입력');
+    endDate
+      ? (checkOut.innerHTML = createMonthDateText(endDate))
+      : (checkOut.innerHTML = '날짜 입력');
   }, [startDate, endDate]);
 
   // 3. Events
@@ -98,7 +91,8 @@ const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
 
   return (
     <SearchBarLayout>
-      <SearchBarBlock>
+      {/* @ts-ignore */}
+      <SearchBarBlock ref={searchBarRef}>
         {/* 검색바 */}
         <SearchBarRow>
           <SearchMenuList>{searchMenuItems}</SearchMenuList>
@@ -108,16 +102,15 @@ const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
         {/* 추후 flag로 렌더링 여부결정 */}
         {searchBarClickedIdx > -1 && (
           <SearchBarRow>
-            <CalendarModal ref={calendarRef}/>
-            <FeeModal ref={feeRef}/>
-            <PeopleModal ref={peopleRef}/>
+            {searchBarClickedIdx === 0 && <CalendarModal />}
+            {searchBarClickedIdx === 1 && <FeeModal />}
+            {searchBarClickedIdx === 2 && <PeopleModal />}
           </SearchBarRow>
         )}
-
       </SearchBarBlock>
     </SearchBarLayout>
   );
-};
+});
 
 export default SearchBar;
 
