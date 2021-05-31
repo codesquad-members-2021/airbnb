@@ -10,4 +10,9 @@ public class GlobalExceptionHandler {
     public String handleBookingNotAvailable(BookingNotAvailableException e) {
         return e.getMessage();
     }
+
+    @ExceptionHandler(WishNotAddableException.class)
+    public String handleWishNotAddable(WishNotAddableException e) {
+        return e.getMessage();
+    }
 }
