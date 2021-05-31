@@ -27,7 +27,7 @@ class RoomInformationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateRoomList), name: RoomInformationViewController.roomEntityUpdate, object: roomSearchResult)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateRoomList), name: Notification.roomEntityUpdate, object: roomSearchResult)
         self.tabBarController?.tabBar.isHidden = false
         self.navigationItem.title = "숙소찾기"
         self.roomInformationCollectionView.dataSource = roomInformationViewDataSource
@@ -40,8 +40,4 @@ class RoomInformationViewController: UIViewController {
     @objc func updateRoomList() {
         self.roomInformationCollectionView.reloadData()
     }
-}
-
-extension RoomInformationViewController {
-    static let roomEntityUpdate = Notification.Name("RoomEntityUpdate")
 }

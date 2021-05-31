@@ -12,4 +12,5 @@ extension Notification {
     static let costGraphDataUpdate = Notification.Name("costGraphDataUpdate")
     static let tripPlaceDataUpdate = Notification.Name("tripPlaceDataUpdate")
     static let recommendTripDataUpdate = Notification.Name("recommendTripDataUpdate")
+    static let roomEntityUpdate = Notification.Name("roomEntityUpdate")
 }

@@ -16,6 +16,6 @@ final class SearchResult: Decodable {
     
     func update(properties: [RoomEntity]) {
         self.properties = properties
-        NotificationCenter.default.post(name: RoomInformationViewController.roomEntityUpdate, object: self)
+        NotificationCenter.default.post(name: Notification.roomEntityUpdate, object: self)
     }
 }
