@@ -1,4 +1,10 @@
-import React, { useReducer, useRef, useEffect, createContext } from 'react';
+import React, {
+  useReducer,
+  useRef,
+  useEffect,
+  useContext,
+  createContext,
+} from 'react';
 import styled from 'styled-components';
 import Price from './Price';
 import Check from './Check';
@@ -14,7 +20,7 @@ import calendarReducer from '../../utils/reducer/calendarReducer';
 
 export const SearchContext = createContext();
 
-const Search = ({ matchParam }) => {
+const Search = ({ matchParam, barType }) => {
   const modalElement = useRef();
 
   useEffect(() => {
@@ -104,21 +110,36 @@ const Search = ({ matchParam }) => {
         clicked,
       }}
     >
-      <SearchDiv className="searchBar">
-        <SearchWrap>
-          <Check dispatch={modalDispatch}></Check>
-          <Price dispatch={modalDispatch}></Price>
-          <People dispatch={modalDispatch}></People>
-          <SearchBtnWrap>
-            <SearchBtn />
-          </SearchBtnWrap>
-          <ModalDiv ref={modalElement}>
-            {checkInOut && <CheckModal />}
-            {price && <PriceModal />}
-            {people && <PeopleModal />}
-          </ModalDiv>
-        </SearchWrap>
-      </SearchDiv>
+      {barType === 'normal' ? (
+        <SearchDiv className="searchBar">
+          <SearchWrap>
+            <Check dispatch={modalDispatch}></Check>
+            <Price dispatch={modalDispatch}></Price>
+            <People dispatch={modalDispatch}></People>
+            <SearchBtnWrap>
+              <SearchBtn />
+            </SearchBtnWrap>
+            <ModalDiv ref={modalElement}>
+              {checkInOut && <CheckModal />}
+              {price && <PriceModal />}
+              {people && <PeopleModal />}
+            </ModalDiv>
+          </SearchWrap>
+        </SearchDiv>
+      ) : (
+        <SearchDiv className="searchBar">
+          <MiniSearchWrap>
+            <div>{`${calendarData.checkIn.month}월${calendarData.checkIn.day}일~${calendarData.checkOut.month}월${calendarData.checkOut.day}일`}</div>
+            <LineDiv />
+            <div>{`₩${priceData.minPrice} ~ ₩${priceData.maxPrice}`}</div>
+            <LineDiv />
+            <div>{`게스트 ${peopleCount.adult + peopleCount.child}명`}</div>
+            <MiniSearchBtnWrap>
+              <SearchBtn />
+            </MiniSearchBtnWrap>
+          </MiniSearchWrap>
+        </SearchDiv>
+      )}
     </SearchContext.Provider>
   );
 };
@@ -138,6 +159,7 @@ const SearchWrap = styled.div`
   text-align: center;
   border-radius: 3rem;
   background-color: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.gray4};
 `;
 
 const SearchBtnWrap = styled.div`
@@ -146,4 +168,28 @@ const SearchBtnWrap = styled.div`
 `;
 const ModalDiv = styled.div``;
 
+const MiniSearchWrap = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 410px;
+  height: 48px;
+  border: 1px solid ${({ theme }) => theme.colors.gray4};
+  box-sizing: border-box;
+  border-radius: 30px;
+  font-size: ${({ theme }) => theme.fontSizes.TS};
+  font-weight: 400;
+  padding-left: 1rem;
+  padding-right: 3rem;
+`;
+
+const LineDiv = styled.div`
+  border-left: 1px solid ${({ theme }) => theme.colors.gray5};
+  height: 1.5rem;
+`;
+const MiniSearchBtnWrap = styled.div`
+  position: absolute;
+  right: 0.3rem;
+`;
 export default Search;
