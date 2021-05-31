@@ -22,6 +22,13 @@ export const createYearMonthText = (date: Date): string =>
 export const createMonthDateText = (date: Date): string =>
   `${date.getMonth() + 1}월 ${date.getDate()}월`;
 
+// "년.월.일"만을 포함 (시간제외)하는 Date 반환
+export const createDateNoTime = (
+  date: Date = new Date(),
+  nDate: number | undefined = undefined,
+): Date =>
+  new Date(date.getFullYear(), date.getMonth(), nDate ? nDate : date.getDate());
+
 // 어떤 달의 Dates를 Number 배열로 반환 (달력의 공백까지 계산, 공백은 0)
 export const createDates = (date: Date): number[] => {
   const arrResultDates: number[] = [];

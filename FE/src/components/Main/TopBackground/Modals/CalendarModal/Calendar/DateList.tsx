@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import {
   useSearchBarDispatch,
   useSearchBarState,
 } from '../../../../../../contexts/SearchBarContext';
+import { createDateNoTime } from '../../../../../../util/calendar';
 import DefaultButton from '../../../../../Common/DefaultButton';
 
 interface IDateList {
@@ -32,18 +32,8 @@ const DateList = ({ arrDays, arrDates, monthDate, ...props }: IDateList) => {
 
   const dayItems = arrDays.map((day, i) => <DayItem key={i}>{day}</DayItem>);
   const dateItems = arrDates.map((nDate, i) => {
-    const thisDate = new Date(
-      monthDate.getFullYear(),
-      monthDate.getMonth(),
-      nDate,
-    );
-
-    const todayTmp = new Date();
-    const today = new Date(
-      todayTmp.getFullYear(),
-      todayTmp.getMonth(),
-      todayTmp.getDate(),
-    );
+    const thisDate = createDateNoTime(monthDate, nDate);
+    const today = createDateNoTime();
 
     const isPrevDate = today.valueOf() > thisDate.valueOf();
     const isStartDate = thisDate.valueOf() === startDate?.valueOf();
@@ -64,7 +54,7 @@ const DateList = ({ arrDays, arrDates, monthDate, ...props }: IDateList) => {
         isEndDate={isEndDate}
         disabled={isDisabled}
       >
-        {(nDate !== 0) && (
+        {nDate !== 0 && (
           <DateButton
             disabled={isDisabled}
             data-date={thisDate}
