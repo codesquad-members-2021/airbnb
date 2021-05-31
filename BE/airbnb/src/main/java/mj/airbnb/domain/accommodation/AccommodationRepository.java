@@ -52,6 +52,10 @@ public class AccommodationRepository {
         return accommodation;
     };
 
+    private static final RowMapper<String> IMAGE_ROW_MAPPER = (rs, rowNum) -> {
+        return rs.getString("url");
+    };
+
     private final JdbcTemplate jdbcTemplate;
     private final Logger logger = LoggerFactory.getLogger(AccommodationRepository.class);
 
@@ -130,6 +134,12 @@ public class AccommodationRepository {
                 "WHERE acc.id = ?; ";
 
         return jdbcTemplate.queryForObject(sqlQuery, ACCOMMODATION_DETAIL_ROW_MAPPER, id);
+    }
+
+    public List<String> findAllImagesByAccommodationId(Long id) {
+        String sqlQuery = "SELECT url FROM image WHERE accommodation_id = ?; ";
+
+        return jdbcTemplate.query(sqlQuery, IMAGE_ROW_MAPPER, id);
     }
 
     private boolean isPresentOfDestination(SearchRequestDto requestDto) {
