@@ -2,6 +2,7 @@ package com.codesquad.airbnb.accommodation.service;
 
 import com.codesquad.airbnb.accommodation.controller.AccommodationDTO;
 import com.codesquad.airbnb.accommodation.controller.AccommodationRequest;
+import com.codesquad.airbnb.accommodation.controller.AccommodationReservationInfo;
 import com.codesquad.airbnb.accommodation.controller.AccommodationResponse;
 import com.codesquad.airbnb.common.exception.NotFoundException;
 import com.codesquad.airbnb.common.utils.DummyDataFactory;
@@ -39,5 +40,10 @@ public class AccommodationServiceMockup implements AccommodationService {
                        .filter(accommodationDTO -> accommodationDTO.getId() == id)
                        .findAny()
                        .orElseThrow(() -> new NotFoundException());
+    }
+
+    @Override
+    public AccommodationReservationInfo accommodationReservationInfo(long id, AccommodationRequest accommodationRequest) {
+        return DummyDataFactory.accommodationReservationInfoTypeSuiteRoomOnePersonOneDay();
     }
 }

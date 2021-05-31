@@ -38,7 +38,20 @@ public class AccommodationDTO {
         return builder().id(accommodation.getId())
                        .name(accommodation.getName())
                        .accommodationOption(accommodation.getAccommodationOption())
-                       .totalPrice(accommodation.getTotalPrice())
+                       .reviewRating(accommodation.getReviewRating())
+                       .reviewCounts(accommodation.getReviewCounts())
+                       .mainImage(accommodation.getMainImage())
+                       .images(accommodation.getImages())
+                       .description(accommodation.getDescription())
+                       .accommodationHost(accommodation.getAccommodationHost())
+                       .build();
+    }
+
+    public static AccommodationDTO from(Accommodation accommodation, int nights) {
+        return builder().id(accommodation.getId())
+                       .name(accommodation.getName())
+                       .accommodationOption(accommodation.getAccommodationOption())
+                       .totalPrice(accommodation.totalPrice(nights))
                        .reviewRating(accommodation.getReviewRating())
                        .reviewCounts(accommodation.getReviewCounts())
                        .mainImage(accommodation.getMainImage())

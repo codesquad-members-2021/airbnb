@@ -33,4 +33,11 @@ public class AccommodationServiceImpl implements AccommodationService {
     public AccommodationDTO readOne(long id) {
         return AccommodationDTO.from(accommodationRepository.findOne(id));
     }
+
+    @Override
+    public AccommodationReservationInfo accommodationReservationInfo(long id, AccommodationRequest accommodationRequest) {
+        Accommodation accommodation = accommodationRepository.findOne(id);
+
+        return AccommodationReservationInfo.of(accommodation, accommodationRequest.nights());
+    }
 }

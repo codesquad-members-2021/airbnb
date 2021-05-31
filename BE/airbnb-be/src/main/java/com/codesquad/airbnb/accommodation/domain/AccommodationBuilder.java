@@ -1,6 +1,8 @@
 package com.codesquad.airbnb.accommodation.domain;
 
 import com.codesquad.airbnb.accommodation.controller.AccommodationHost;
+import com.codesquad.airbnb.accommodation.domain.price.Price;
+import com.codesquad.airbnb.accommodation.domain.price.PricePolicies;
 
 import java.util.List;
 
@@ -8,18 +10,13 @@ public final class AccommodationBuilder {
     private Long id;
     private String name;
     private AccommodationOption accommodationOption;
-    private Integer totalPrice;
     private double reviewRating;
     private int reviewCounts;
     private String mainImage;
     private List<String> images;
     private String description;
     private AccommodationHost accommodationHost;
-    private int priceForNights;
-    private int salePrice;
-    private int cleaningPrice;
-    private int serviceFee;
-    private int accommodationTax;
+    private Price price;
 
     private AccommodationBuilder() {
     }
@@ -40,11 +37,6 @@ public final class AccommodationBuilder {
 
     public AccommodationBuilder accommodationOption(AccommodationOption accommodationOption) {
         this.accommodationOption = accommodationOption;
-        return this;
-    }
-
-    public AccommodationBuilder totalPrice(Integer totalPrice) {
-        this.totalPrice = totalPrice;
         return this;
     }
 
@@ -78,32 +70,22 @@ public final class AccommodationBuilder {
         return this;
     }
 
-    public AccommodationBuilder priceForNights(int priceForNights) {
-        this.priceForNights = priceForNights;
+    public AccommodationBuilder accommodationPrice(Price price) {
+        this.price = price;
         return this;
     }
 
-    public AccommodationBuilder salePrice(int salePrice) {
-        this.salePrice = salePrice;
+    public AccommodationBuilder accommodationPrice(int pricePerNight) {
+        this.price = Price.from(pricePerNight);
         return this;
     }
 
-    public AccommodationBuilder cleaningPrice(int cleaningPrice) {
-        this.cleaningPrice = cleaningPrice;
-        return this;
-    }
-
-    public AccommodationBuilder serviceFee(int serviceFee) {
-        this.serviceFee = serviceFee;
-        return this;
-    }
-
-    public AccommodationBuilder accommodationTax(int accommodationTax) {
-        this.accommodationTax = accommodationTax;
+    public AccommodationBuilder accommodationPrice(int pricePerNight, PricePolicies pricePolicies) {
+        this.price = Price.of(pricePerNight, pricePolicies);
         return this;
     }
 
     public Accommodation build() {
-        return new Accommodation(id, name, accommodationOption, totalPrice, reviewRating, reviewCounts, mainImage, images, description, accommodationHost, priceForNights, salePrice, cleaningPrice, serviceFee, accommodationTax);
+        return new Accommodation(id, name, accommodationOption, reviewRating, reviewCounts, mainImage, images, description, accommodationHost, price);
     }
 }

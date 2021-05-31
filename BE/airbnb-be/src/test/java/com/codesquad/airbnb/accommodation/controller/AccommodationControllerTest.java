@@ -243,7 +243,7 @@ class AccommodationControllerTest {
                         "/accommodations/{id}/reservation",
                         1L,
                         18,
-                        DummyDataFactory.accommodationReservationInfo()
+                        DummyDataFactory.accommodationReservationInfoTypeSuiteRoomOnePersonOneDay()
                 )
         );
     }

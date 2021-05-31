@@ -31,7 +31,17 @@ public class AccommodationResponse {
         return builder().id(accommodation.getId())
                        .name(accommodation.getName())
                        .accommodationOption(accommodation.getAccommodationOption())
-                       .totalPrice(accommodation.getTotalPrice())
+                       .reviewRating(accommodation.getReviewRating())
+                       .reviewCounts(accommodation.getReviewCounts())
+                       .mainImage(accommodation.getMainImage())
+                       .build();
+    }
+
+    public static AccommodationResponse from(Accommodation accommodation, int nights) {
+        return builder().id(accommodation.getId())
+                       .name(accommodation.getName())
+                       .accommodationOption(accommodation.getAccommodationOption())
+                       .totalPrice(accommodation.totalPrice(nights))
                        .reviewRating(accommodation.getReviewRating())
                        .reviewCounts(accommodation.getReviewCounts())
                        .mainImage(accommodation.getMainImage())

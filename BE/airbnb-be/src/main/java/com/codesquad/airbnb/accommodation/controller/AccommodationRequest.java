@@ -10,6 +10,10 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class AccommodationRequest {
+    private static final int DEFAULT_NUMBER_OF_NIGHTS = 1;
+    private static final int DEFAULT_NUMBER_OF_ADULTS = 1;
+    private static final int DEFAULT_NUMBER_OF_CHILDREN = 0;
+    private static final int DEFAULT_NUMBER_OF_BABIES = 0;
 
     @FutureOrPresent
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -39,9 +43,9 @@ public class AccommodationRequest {
         this.checkoutDate = checkoutDate;
         this.startPrice = startPrice;
         this.endPrice = endPrice;
-        this.numberOfAdults = numberOfAdults != null ? numberOfAdults : 1;
-        this.numberOfChildren = numberOfChildren != null ? numberOfChildren : 0;
-        this.numberOfBabies = numberOfBabies != null ? numberOfBabies : 0;
+        this.numberOfAdults = numberOfAdults != null ? numberOfAdults : DEFAULT_NUMBER_OF_ADULTS;
+        this.numberOfChildren = numberOfChildren != null ? numberOfChildren : DEFAULT_NUMBER_OF_CHILDREN;
+        this.numberOfBabies = numberOfBabies != null ? numberOfBabies : DEFAULT_NUMBER_OF_BABIES;
     }
 
     public static AccommodationRequestBuilder builder() {
@@ -50,7 +54,7 @@ public class AccommodationRequest {
 
     @AssertTrue(message = "체크인 날짜가 체크아웃 날짜 이전이어야 합니다.")
     private boolean isCheckInDateBeforeCheckOutDate() {
-        if (checkinDate != null && checkoutDate != null) {
+        if (isCheckInDateAndCheckOutDateExists()) {
             return checkinDate.isBefore(checkoutDate);
         }
 
@@ -64,6 +68,18 @@ public class AccommodationRequest {
         }
 
         return true;
+    }
+
+    private boolean isCheckInDateAndCheckOutDateExists() {
+        return checkinDate != null && checkoutDate != null;
+    }
+
+    public int nights() {
+        if (isCheckInDateAndCheckOutDateExists()) {
+            return checkinDate.until(checkoutDate).getDays();
+        }
+
+        return DEFAULT_NUMBER_OF_NIGHTS;
     }
 
     public LocalDate getCheckinDate() {

@@ -57,4 +57,46 @@ class AccommodationServiceImplTest {
                 )
         );
     }
+
+    @ParameterizedTest
+    @MethodSource("accommodationReservationInfoProvider")
+    void accommodationReservationInfo(long id, Accommodation given, AccommodationRequest accommodationRequest, AccommodationReservationInfo expected) {
+        given(accommodationRepository.findOne(id))
+                .willReturn(given);
+
+        AccommodationReservationInfo actual = accommodationService.accommodationReservationInfo(id, accommodationRequest);
+
+        then(actual).isEqualTo(expected);
+    }
+
+    @SuppressWarnings("unused")
+    static Stream<Arguments> accommodationReservationInfoProvider() {
+        return Stream.of(
+                Arguments.of(
+                        1L,
+                        DummyDataFactory.accommodationBuilderTypeSuiteRoom().id(1L).build(),
+                        AccommodationRequest.builder()
+                                .checkinDate(LocalDate.now())
+                                .checkoutDate(LocalDate.now().plusDays(1))
+                                .build(),
+                        DummyDataFactory.accommodationReservationInfoTypeSuiteRoomOnePersonOneDay()
+                ),
+                Arguments.of(
+                        1L,
+                        DummyDataFactory.accommodationBuilderTypeSuiteRoom().id(1L).build(),
+                        AccommodationRequest.builder()
+                                .checkinDate(LocalDate.now())
+                                .checkoutDate(LocalDate.now().plusDays(2))
+                                .build(),
+                        DummyDataFactory.accommodationReservationInfoTypeSuiteRoomOnePersonTwoDays()
+                ),
+                Arguments.of(
+                        1L,
+                        DummyDataFactory.accommodationBuilderTypeSuiteRoom().id(1L).build(),
+                        AccommodationRequest.builder()
+                                .build(),
+                        DummyDataFactory.accommodationReservationInfoTypeSuiteRoomOnePersonOneDay()
+                )
+        );
+    }
 }
