@@ -3,6 +3,7 @@ import { atom, useRecoilValue } from 'recoil'
 
 //defaultValue________________________________________
 export const defaultValue = {
+  placeAdjacent: '가까운 여행지 둘러보기',
   placeToSearch: '어디로 여행가세요?',
   checkIn: '날짜입력',
   checkOut: '날짜입력',
@@ -33,11 +34,11 @@ export const FeeMax = atom<number>({
   default: 0,
 })
 export const FeeMinChange = atom<number>({
-  key: 'minFeePercecnt',
+  key: 'minFeePercent',
   default: 0,
 })
 export const FeeMaxChange = atom<number>({
-  key: 'maxFeePercecnt',
+  key: 'maxFeePercent',
   default: 0,
 })
 //personnel__________________________________________

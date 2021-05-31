@@ -21,7 +21,7 @@ const filteredFee = (fee: Array<number>): Map<number, number> => {
 
 function ModalFee({ modalType }: IFeeType) {
   const { placeToSearch, checkIn, checkOut } = RecoilValueGroup()
-  const state = useAxios(() => getFeeData(placeToSearch, checkIn, checkOut))
+  const { state } = useAxios(() => getFeeData(placeToSearch, checkIn, checkOut))
 
   const { loading, error, data } = state
   if (loading) return <div>Loading...💭</div>

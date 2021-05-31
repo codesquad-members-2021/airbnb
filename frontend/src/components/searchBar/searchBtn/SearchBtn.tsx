@@ -3,10 +3,8 @@ import styled from 'styled-components'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button'
-import { PlaceSection } from '../../../style/BarStyle'
 import { RecoilValueGroup } from '../../../customHook/atoms'
-import useAxios from '../../../customHook/useAxios'
-import { getHouseData } from './../../../customHook/axiosAPI'
+import { PlaceSection } from '../../../style/BarStyle'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,6 +18,25 @@ const useStyles = makeStyles((theme: Theme) =>
 function SearchBtn({ history }: any) {
   const classes = useStyles()
 
+  const {
+    placeToSearch,
+    checkIn,
+    checkOut,
+    priceMin,
+    priceMax,
+    minFeePercent,
+    maxFeePercent,
+    adult,
+    child,
+    baby,
+  } = RecoilValueGroup()
+
+  const GoNextPage = () => {
+    history.push(
+      `/searchResult/${placeToSearch}/${checkIn}/${checkOut}/${priceMin}/${priceMax}/${minFeePercent}/${maxFeePercent}/${adult}/${child}/${baby}`
+    )
+  }
+
   return (
     <PlaceSection>
       <Button
@@ -27,7 +44,7 @@ function SearchBtn({ history }: any) {
         color='secondary'
         className={(classes.button, 'routerBtn')}
         startIcon={<SearchIcon />}
-        onClick={() => history.push('/searchResult')}
+        onClick={GoNextPage}
       >
         <CustomSpan>검색</CustomSpan>
       </Button>
