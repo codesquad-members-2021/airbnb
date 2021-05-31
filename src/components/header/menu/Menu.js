@@ -1,14 +1,57 @@
-import React from "react";
+import React, { useReducer, useState } from "react";
 import styled from "styled-components";
-import CalendarBox from "./input/CalendarBox";
 import SearchForm from "./SearchForm";
 import SearchInput from "./SearchInput";
-
-const onClickDay = (result) => {
-  console.log(result.clickedDay);
+import Calendar, { Controller } from "../../../lib/calendar/Calendar";
+const formReducer = (state, action) => {
+  switch (action.type) {
+    case "SET_TYPE":
+      return { ...state, inputType: action.inputType };
+    case "SET_CHECK_IN":
+      return { ...state, checkIn: action.checkIn };
+    case "SET_CHECK_OUT":
+      return { ...state, checkOut: action.checkOut };
+    case "SET_PRICE":
+      return { ...state, price: action.price };
+    case "SET_GUEST":
+      return { ...state, guest: action.guest };
+  }
 };
-
 const Menu = () => {
+  const [formState, dispatch] = useReducer(formReducer, {
+    inputType: "none",
+    checkIn: {
+      year: null,
+      month: null,
+      day: null,
+    },
+    checkOut: {
+      year: null,
+      month: null,
+      day: null,
+    },
+    price: 0,
+    guest: {
+      adult: 0,
+      child: 0,
+      infant: 0,
+    },
+  });
+  const { inputType } = formState;
+  const onClickDay = (result) => {
+    const { year, month, day, type, nextClickTarget } = result;
+    if (type === "start") {
+      dispatch({ type: "SET_CHECK_IN", checkIn: { year, month, day } });
+    } else if (type === "end") {
+      dispatch({ type: "SET_CHECK_OUT", checkOut: { year, month, day } });
+    }
+    if (nextClickTarget === "start") {
+      dispatch({ type: "SET_TYPE", inputType: "checkIn" });
+    } else if (nextClickTarget === "end") {
+      dispatch({ type: "SET_TYPE", inputType: "checkOut" });
+    }
+  };
+
   return (
     <MenuWrapper>
       <form>
@@ -33,9 +76,11 @@ const Menu = () => {
             </Selector>
           </MenuSelector>
         </fieldset>
-        <SearchForm />
+        <SearchForm {...{ Controller, formState, dispatch }} />
         <SearchInput type="calendar">
-          <CalendarBox />
+          {(inputType === "checkIn" || inputType === "checkOut") && (
+            <Calendar onClickDay={onClickDay} />
+          )}
         </SearchInput>
       </form>
     </MenuWrapper>

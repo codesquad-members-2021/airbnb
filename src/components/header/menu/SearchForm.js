@@ -1,31 +1,62 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { FORM_ITEM } from "../../../utils/constant";
 import { ReactComponent as Submit } from "../../../assets/svg/img_search.svg";
 
-const SearchForm = () => {
+const SearchForm = ({ Controller, formState, dispatch }) => {
   const [isSearch, setIsSearch] = useState(true);
+  const { inputType, checkIn, checkOut, price, guest } = formState;
   return (
     <SearchFormWrapper>
-      {renderFormItem("checkIn")}
-      {renderFormItem("checkOut")}
-      {renderFormItem("fee")}
-      {renderFormItem("guest")}
+      <Controller start>
+        {renderFormItem("checkIn", inputType, dispatch, checkIn)}
+      </Controller>
+      <Controller end>
+        {" "}
+        {renderFormItem("checkOut", inputType, dispatch, checkOut)}
+      </Controller>
+      {renderFormItem("price", inputType, dispatch, price)}
+      {renderFormItem("guest", inputType, dispatch, guest)}
       {renderButton(isSearch)}
     </SearchFormWrapper>
   );
 };
 
-const renderFormItem = (type) => {
+const renderFormItem = (type, inputType, dispatch, value) => {
   const { title, placeholder, size } = FORM_ITEM[type];
+  const isSelected = inputType === type;
   return (
-    <FormItem flex={size}>
+    <FormItem
+      flex={size}
+      isSelected={isSelected}
+      onClick={() => {
+        dispatch({ type: "SET_TYPE", inputType: type });
+      }}
+    >
       <label for={type}>
         <div>{title}</div>
-        <input type="text" placeholder={placeholder} id={type} />
+        <input
+          type="text"
+          placeholder={placeholder}
+          id={type}
+          value={getValue(type, value)}
+        />
       </label>
     </FormItem>
   );
+};
+const getValue = (type, value) => {
+  if (type === "checkIn" || type === "checkOut") {
+    if (!value.year) return "";
+    const { month, day } = value;
+    return `${month}월 ${day}일`;
+  } else if (type === "price") {
+    return value === 0 ? "" : value;
+  } else if (type === "guest") {
+    const { adult, child, infant } = value;
+    const total = adult + child + infant;
+    return total === 0 ? "" : `게스트 ${total}명`;
+  }
 };
 const renderButton = (isSearch) => {
   return (
@@ -66,6 +97,11 @@ const FormItem = styled.div`
   align-items: center;
   height: 100%;
   border-radius: 2rem;
+  ${({ isSelected }) =>
+    isSelected &&
+    css`
+      background: silver;
+    `}
   flex: ${({ flex }) => flex};
   &:hover {
     background: #e0e0e0;

@@ -64,13 +64,14 @@ function calendarContext() {
     }
 
     return (
-      <div
+      <ControllerWrapper
         onClick={() => {
+          if (!calendarTypeChanger) return;
           calendarTypeChanger(clickTarget);
         }}
       >
         {children}
-      </div>
+      </ControllerWrapper>
     );
   }
 
@@ -102,6 +103,10 @@ function InnerCalendar({
 // style
 const CalendarWrapper = styled.div`
   position: relative;
+`;
+const ControllerWrapper = styled.div`
+  /* width: 100%; */
+  height: 100%;
 `;
 
 const { Calendar, Controller } = calendarContext();

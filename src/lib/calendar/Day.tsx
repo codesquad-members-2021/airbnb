@@ -47,6 +47,7 @@ export default function Day({
           const resultType = action(caseType);
 
           onClickDay?.({
+            type: clickTarget,
             year,
             month,
             day,

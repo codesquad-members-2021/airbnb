@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useReducer,
 } from "react";
-import { DAYS, MESSAGE } from "../utils/constant";
+import { MESSAGE } from "../utils/constant";
 import {
   Calendar,
   CurrentDay,

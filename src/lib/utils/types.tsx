@@ -18,6 +18,7 @@ export type CurrentDay = {
 
 export type _OnClickResult = Date & {
   week: string;
+  type: ClickTargetType;
   nextClickTarget: ClickTargetType;
 };
 

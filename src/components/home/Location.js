@@ -5,9 +5,9 @@ const Location = ({ contents }) => {
   return <LocationWrapper>{contents.map(renderContent)}</LocationWrapper>;
 };
 const renderContent = (content) => {
-  const { location, imageURL, type, time } = content;
+  const { location, imageURL, type, time, id } = content;
   return (
-    <LocationItem>
+    <LocationItem key={id}>
       <LocationImage URL={imageURL} />
       <LocationContent>
         <h3>{location}</h3>

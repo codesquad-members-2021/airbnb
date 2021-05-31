@@ -5,11 +5,11 @@ const Thema = ({ contents }) => {
   return <ThemaWrapper>{contents.map(renderContent)}</ThemaWrapper>;
 };
 const renderContent = (content) => {
-  const { imageURL, themaTitle } = content;
+  const { imageURL, title } = content;
   return (
     <ThemaItem URL={imageURL}>
       <div />
-      <h3>{themaTitle}</h3>
+      <h3>{title}</h3>
     </ThemaItem>
   );
 };
