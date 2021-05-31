@@ -1,15 +1,22 @@
 import React from "react";
 import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { thumbLeftPriceState, thumbRightPriceState, isSetPriceState } from "state/atoms/fareAtoms";
 
 interface Props {
   onClick: (e: React.MouseEvent) => void;
 }
 
 function Fare({ onClick }: Props) {
+  const thumbLeftPrice = useRecoilValue(thumbLeftPriceState);
+  const thumbRightPrice = useRecoilValue(thumbRightPriceState);
+  const isSetPrice = useRecoilValue(isSetPriceState);
+  let contentTxt = "금액대 설정";
+  if (isSetPrice) contentTxt = `₩${thumbLeftPrice}-₩${thumbRightPrice}`;
   return (
     <FareContainer onClick={onClick} className="betweenBorder">
       <Title>요금</Title>
-      <Content>금액대 설정</Content>
+      <Content>{contentTxt}</Content>
     </FareContainer>
   );
 }
