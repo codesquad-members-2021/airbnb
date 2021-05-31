@@ -30,6 +30,8 @@
 		BF40490F265A417000CA02B5 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40490E265A417000CA02B5 /* NetworkError.swift */; };
 		BF404913265A7B6C00CA02B5 /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404912265A7B6C00CA02B5 /* SearchLocation.swift */; };
 		BF404919265A815400CA02B5 /* SearchLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404918265A815400CA02B5 /* SearchLocationUseCase.swift */; };
+		BF7DDCAE266540A000DCB6A7 /* UICollectionReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DDCAD266540A000DCB6A7 /* UICollectionReusableView+Extension.swift */; };
+		BF7DDCB22665522200DCB6A7 /* SearchManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DDCB12665522200DCB6A7 /* SearchManageable.swift */; };
 		BF7E2E3B265FA2DF00A810BE /* PriceSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E3A265FA2DF00A810BE /* PriceSlider.swift */; };
 		BF7E2E3E265FA36F00A810BE /* PriceSliderLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E3D265FA36F00A810BE /* PriceSliderLayer.swift */; };
 		BF7E2E42265FBC5300A810BE /* SequenceDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E41265FBC5300A810BE /* SequenceDates.swift */; };
@@ -86,6 +88,8 @@
 		BF40490E265A417000CA02B5 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BF404912265A7B6C00CA02B5 /* SearchLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocation.swift; sourceTree = "<group>"; };
 		BF404918265A815400CA02B5 /* SearchLocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationUseCase.swift; sourceTree = "<group>"; };
+		BF7DDCAD266540A000DCB6A7 /* UICollectionReusableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionReusableView+Extension.swift"; sourceTree = "<group>"; };
+		BF7DDCB12665522200DCB6A7 /* SearchManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManageable.swift; sourceTree = "<group>"; };
 		BF7E2E3A265FA2DF00A810BE /* PriceSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSlider.swift; sourceTree = "<group>"; };
 		BF7E2E3D265FA36F00A810BE /* PriceSliderLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSliderLayer.swift; sourceTree = "<group>"; };
 		BF7E2E41265FBC5300A810BE /* SequenceDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceDates.swift; sourceTree = "<group>"; };
@@ -224,6 +228,7 @@
 				BF9F9512265DED03003CF475 /* UIColor+Extension.swift */,
 				BF9F951D265DFD69003CF475 /* NotificationName+Extension.swift */,
 				BF7E2E49265FCF6D00A810BE /* CGFloat+Extension.swift */,
+				BF7DDCAD266540A000DCB6A7 /* UICollectionReusableView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 				BF7E2E41265FBC5300A810BE /* SequenceDates.swift */,
 				BF7E2E45265FBC8C00A810BE /* PriceRange.swift */,
 				BF7E2E682660B6BF00A810BE /* PeopleManager.swift */,
+				BF7DDCB12665522200DCB6A7 /* SearchManageable.swift */,
 				BF7E2E632660B27F00A810BE /* PeopleCount */,
 			);
 			path = Entity;
@@ -414,6 +420,7 @@
 				BF404913265A7B6C00CA02B5 /* SearchLocation.swift in Sources */,
 				BF7E2E692660B6BF00A810BE /* PeopleManager.swift in Sources */,
 				BF7E2E46265FBC8C00A810BE /* PriceRange.swift in Sources */,
+				BF7DDCB22665522200DCB6A7 /* SearchManageable.swift in Sources */,
 				BF40490C265A415300CA02B5 /* HTTPMethod.swift in Sources */,
 				BF404909265A3F0A00CA02B5 /* SearchAPI.swift in Sources */,
 				BF4048F526593DDB00CA02B5 /* CalendarHeaderView.swift in Sources */,
@@ -432,6 +439,7 @@
 				BF9F950D265DE9DC003CF475 /* UICollectionCell+Extension.swift in Sources */,
 				BF40490F265A417000CA02B5 /* NetworkError.swift in Sources */,
 				BFE431172655948800F4DA1C /* LocationResultCell.swift in Sources */,
+				BF7DDCAE266540A000DCB6A7 /* UICollectionReusableView+Extension.swift in Sources */,
 				BF7E2E4A265FCF6D00A810BE /* CGFloat+Extension.swift in Sources */,
 				BF7E2E612660B25400A810BE /* BabyCountState.swift in Sources */,
 				BF9F951E265DFD69003CF475 /* NotificationName+Extension.swift in Sources */,

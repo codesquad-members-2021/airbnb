@@ -8,6 +8,12 @@
 import Foundation
 import Combine
 
+enum PeopleTypes: CaseIterable {
+    case adult
+    case kid
+    case baby
+}
+
 class PeopleManager {
     
     private var adult: AdultCountState
@@ -70,7 +76,7 @@ class PeopleManager {
             }.store(in: &cancellable)
     }
     
-    func isDectedZero() -> AnyPublisher<(Bool, Bool, Bool), Never> {
+    func isDectedZero() -> AnyPublisher<(adult: Bool,kid: Bool,baby: Bool), Never> {
         adult.$count.combineLatest(kid.$count, baby.$count)
             .map {
                 (self.isNotZero(count: $0),
@@ -83,7 +89,7 @@ class PeopleManager {
         return count != 0
     }
     
-    func isDectedFull() -> AnyPublisher<(Bool, Bool, Bool), Never> {
+    func isDectedFull() -> AnyPublisher<(adult: Bool,kid: Bool,baby: Bool), Never> {
         adult.$count.combineLatest(kid.$count, baby.$count)
             .map {
                 (self.isNotFull(count: $0),
