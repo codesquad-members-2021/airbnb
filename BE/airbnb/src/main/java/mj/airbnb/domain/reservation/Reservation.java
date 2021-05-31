@@ -15,6 +15,7 @@ public class Reservation {
     private String accommodationName;
     private String accommodationAddress;
     private String accommodationDescription;
+    private String accommodationMainImageUrl;
 
     public Reservation() {
 
@@ -24,6 +25,7 @@ public class Reservation {
         this.accommodationName = accommodation.getName();
         this.accommodationAddress = accommodation.getAddress();
         this.accommodationDescription = accommodation.getDescription();
+        this.accommodationMainImageUrl = accommodation.getMainImageUrl();
     }
 
     public LocalDate getCheckInDate() {
@@ -80,5 +82,13 @@ public class Reservation {
 
     public void setAccommodationDescription(String accommodationDescription) {
         this.accommodationDescription = accommodationDescription;
+    }
+
+    public String getAccommodationMainImageUrl() {
+        return accommodationMainImageUrl;
+    }
+
+    public void setAccommodationMainImageUrl(String accommodationMainImageUrl) {
+        this.accommodationMainImageUrl = accommodationMainImageUrl;
     }
 }
