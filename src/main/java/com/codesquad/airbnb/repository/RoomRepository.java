@@ -26,8 +26,8 @@ public class RoomRepository implements JdbcRepository<Room> {
                 "`flexible_refund`, `immediate_booking` from `room` " +
                 "left join `booking` on room.id = booking.room_id " +
                 "where (`sale_price` between ? and ?) and `max` >= ? and " +
-                "(? not between check_in and check_out and ? not between check_in and check_out) or " +
-                "(check_in is null and check_out is null)";
+                "((? not between check_in and check_out and ? not between check_in and check_out) or " +
+                "(check_in is null and check_out is null))";
 
         List<Room> rooms = jdbcTemplate.query(sql, roomRowMapper(), minPrice, maxPrice, numberOfPeople, checkIn, checkOut);
 
