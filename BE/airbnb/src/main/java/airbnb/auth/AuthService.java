@@ -2,10 +2,13 @@ package airbnb.auth;
 
 import airbnb.exception.AccessTokenNotFoundException;
 import airbnb.exception.UserNotFoundException;
+import io.netty.resolver.DefaultAddressResolverGroup;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.netty.http.client.HttpClient;
 
 @Service
 public class AuthService {
@@ -24,7 +27,8 @@ public class AuthService {
     @Value("${github.user.uri}")
     private String USER_URI;
 
-    private final WebClient webClient = WebClient.builder().build();
+    private final HttpClient httpClient = HttpClient.create().resolver(DefaultAddressResolverGroup.INSTANCE);
+    private final WebClient webClient = WebClient.builder().clientConnector(new ReactorClientHttpConnector(httpClient)).build();
 
     public AccessTokenResponse getAccessTokenFrom(String code) {
         AccessTokenRequest accessTokenRequest = AccessTokenRequest.builder()
