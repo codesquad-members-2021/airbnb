@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import {
   useSearchBarDispatch,
   useSearchBarState,
-} from '../../../../../contexts/SearchBarContext';
+} from '../../../../../../contexts/SearchBarContext';
 import CalendarCarousel from './CalendarCarousel';
-import Modal from '../../../../Common/Modal';
+import Modal from '../../../../../Common/Modal';
 import Calendar from './Calendar';
 
 const CalendarModal = ({...props}) => {

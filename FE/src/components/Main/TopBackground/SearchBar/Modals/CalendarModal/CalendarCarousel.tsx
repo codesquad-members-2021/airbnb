@@ -1,6 +1,6 @@
 // Airbnb Only
 import styled from 'styled-components';
-import DefaultButton from '../../../../Common/DefaultButton';
+import DefaultButton from '../../../../../Common/DefaultButton';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
 

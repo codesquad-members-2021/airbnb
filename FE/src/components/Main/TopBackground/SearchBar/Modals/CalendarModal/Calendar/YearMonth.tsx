@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ICustomProps } from '../../../../../../util/types';
+import { ICustomProps } from '../../../../../../../util/types';
 
 const YearMonth = ({ children, ...props } : ICustomProps ) => {
   return <YearMonthLayout {...props}>{children}</YearMonthLayout>;

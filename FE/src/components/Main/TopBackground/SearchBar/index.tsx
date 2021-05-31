@@ -2,16 +2,18 @@ import styled, { css } from 'styled-components';
 import { forwardRef, useEffect, useRef } from 'react';
 import { FiSearch } from 'react-icons/fi';
 
-import { useMainDispatch, useMainState } from '../../../contexts/MainContext';
-import { useSearchBarState } from '../../../contexts/SearchBarContext';
-import { ITextTopBackground } from '../../../util/reference';
+import { useMainDispatch, useMainState } from '../../../../contexts/MainContext';
+import { useSearchBarState } from '../../../../contexts/SearchBarContext';
+import { ITextTopBackground } from '../../../../util/reference';
+import { CALENDAR_FOCUS, FEE_FOCUS, PEOPLE_FOCUS } from './const';
+import { createMonthDateText } from '../../../../util/calendar';
 
-import { ResponsiveFluid } from '../../Common/ResponsiveFluid';
-import DefaultButton from '../../Common/DefaultButton';
+import { ResponsiveFluid } from '../../../Common/ResponsiveFluid';
+import DefaultButton from '../../../Common/DefaultButton';
 import CalendarModal from './Modals/CalendarModal';
-import { createMonthDateText } from '../../../util/calendar';
 import FeeModal from './Modals/FeeModal';
 import PeopleModal from './Modals/PeopleModal';
+
 
 interface ISearchMenuItem {
   isClicked?: boolean;
@@ -102,9 +104,9 @@ const SearchBar = forwardRef((
         {/* 추후 flag로 렌더링 여부결정 */}
         {searchBarClickedIdx > -1 && (
           <SearchBarRow>
-            {searchBarClickedIdx === 0 && <CalendarModal />}
-            {searchBarClickedIdx === 1 && <FeeModal />}
-            {searchBarClickedIdx === 2 && <PeopleModal />}
+            {searchBarClickedIdx === CALENDAR_FOCUS && <CalendarModal />}
+            {searchBarClickedIdx === FEE_FOCUS && <FeeModal />}
+            {searchBarClickedIdx === PEOPLE_FOCUS && <PeopleModal />}
           </SearchBarRow>
         )}
       </SearchBarBlock>
@@ -129,6 +131,8 @@ const SearchBarRow = styled.div`
   & + & {
     margin-top: 8px;
   }
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const SearchMenuList = styled.ul`

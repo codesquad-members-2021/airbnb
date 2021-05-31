@@ -1,4 +1,3 @@
-import { RefObject } from 'react';
 import styled from 'styled-components';
 
 import Header from './Header';
@@ -15,7 +14,7 @@ const TopBackground = (
 
   return (
     <TopBackgroundLayout>
-      <Header headerTexts={headerTexts!} />
+      <Header headerTexts={headerTexts} />
 
       <SearchBarContextProvider>
         <SearchBar

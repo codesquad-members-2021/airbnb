@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Modal from '../../../Common/Modal';
+import Modal from '../../../../Common/Modal';
 
 const PeopleModal = ({...props}) => {
   return (
