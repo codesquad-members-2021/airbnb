@@ -25,6 +25,7 @@ public class AccommodationRepository {
         accommodation.setNumOfBathroom(rs.getInt("num_of_bathroom"));
         accommodation.setPrice(rs.getBigDecimal("price"));
         accommodation.setAddress(rs.getString("address"));
+        accommodation.setMainImageUrl(rs.getString("url"));
 
         return accommodation;
     };
@@ -66,7 +67,8 @@ public class AccommodationRepository {
             logger.info("지역, 날짜, 가격, 인원 조건 따라 숙소 조회 ");
 
             String sqlQuery = BASE_SQL +
-                    "WHERE " + DESTINATION_CONDITION_SQL +
+                    "WHERE " + MAIN_IMAGE_CONDITION_SQL +
+                    "AND " + DESTINATION_CONDITION_SQL +
                     "AND " + DATE_CONDITION_SQL +
                     "AND " + PRICE_CONDITION_SQL +
                     "AND " + PEOPLE_CONDITION_SQL;
@@ -80,7 +82,8 @@ public class AccommodationRepository {
             logger.info("지역, 날짜, 가격 조건에 따라 숙소 조회 ");
 
             String sqlQuery = BASE_SQL +
-                    "WHERE " + DESTINATION_CONDITION_SQL +
+                    "WHERE " + MAIN_IMAGE_CONDITION_SQL +
+                    "AND " + DESTINATION_CONDITION_SQL +
                     "AND " + DATE_CONDITION_SQL +
                     "AND " + PRICE_CONDITION_SQL;
             return jdbcTemplate.query(sqlQuery, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%",
@@ -92,7 +95,8 @@ public class AccommodationRepository {
             logger.info("지역, 날짜 조건에 따라 숙소 조회 ");
 
             String sqlQuery = BASE_SQL +
-                    "WHERE " + DESTINATION_CONDITION_SQL +
+                    "WHERE " + MAIN_IMAGE_CONDITION_SQL +
+                    "AND " + DESTINATION_CONDITION_SQL +
                     "AND " + DATE_CONDITION_SQL;
             return jdbcTemplate.query(sqlQuery, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%",
                     conditions.getCheckInDate(), conditions.getCheckOutDate());
@@ -103,7 +107,8 @@ public class AccommodationRepository {
             logger.info("지역 조건에 따라 숙소 조회 ");
 
             String sqlQuery = BASE_SQL +
-                    "WHERE " + DESTINATION_CONDITION_SQL;
+                    "WHERE " + MAIN_IMAGE_CONDITION_SQL +
+                    "AND " + DESTINATION_CONDITION_SQL;
 
             return jdbcTemplate.query(sqlQuery, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%");
         }
