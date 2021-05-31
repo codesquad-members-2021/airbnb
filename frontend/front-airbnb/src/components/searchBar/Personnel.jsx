@@ -1,18 +1,15 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useReducer } from 'react';
 import styled from 'styled-components';
 import PersonnelModal from '../modal/PersonnelModal';
 import useComponentVisible from "../modal/Modal"
-import { PostsContext } from './SearchBar';
+import { PostsContext } from './SearchBar'; 
 
 const Personnel = () => {
     const {personnelInfo, setpersonnelInfo} = useContext(PostsContext);
     const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(true);
     let personnelList = personnelInfo.map((e, idx) => {
-        return <CheckBox><Title>{e.name}</Title><View>{e.input}</View></CheckBox>
+        return <CheckBox key={idx}><Title>{e.name}</Title><View>{e.input}</View></CheckBox>
     })
-    // const periodList = periodInfo.map((e, idx) => {
-    //     return <CheckBox key={idx}><Title>{e.name}</Title><View>{e.input}</View></CheckBox>
-    // })
     return (
         <PersonnelWrapper ref={ref}>
             <PersonnelBtn onClick={() => setIsComponentVisible(!isComponentVisible)}>

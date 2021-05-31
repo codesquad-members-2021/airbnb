@@ -1,37 +1,74 @@
-import React, {useState} from 'react';
+import React, {useState,useReducer} from 'react';
 import styled from 'styled-components';
 import { FaPlus, FaMinus } from "react-icons/fa";
-const guestData = [
-    {
-        id: 1,
-        title: '성인',
-        detail: '만 13세 이상',
-        input: 0
-    },
-    {
-        id: 2,
-        title: '어린이',
-        detail: '만 2~12세',
-        input: 0
-    },
-    {
-        id: 3,
-        title: '유아',
-        detail: '만 2세 미만',
-        input: 0
-    },
-]
+
+
+function personnelReducer(guestInfo, category) {
+    console.log('feefewf')
+    let newArr = [...guestInfo];
+    switch(category.id) {
+        case '1':
+            newArr[0].input++;
+            console.log(category.id)
+            return newArr;
+        case '2':
+            newArr[1].input++;
+            console.log(category.id)
+            return newArr;
+        case '3':
+            newArr[2].input++;
+            console.log(category.id)
+            return newArr;
+        default:
+            throw new Error();
+    }
+}
 
 const PersonnelModal = () => {
-    const [guestInfo, setGuestInfo] = useState(guestData);
-    const modalList = guestInfo.map((e, idx) => {
-        return <ModalContainer>
+    const guestData = [
+        {
+            id: 1,
+            title: '성인',
+            detail: '만 13세 이상',
+            input: 0
+        },
+        {
+            id: 2,
+            title: '어린이',
+            detail: '만 2~12세',
+            input: 0
+        },
+        {
+            id: 3,
+            title: '유아',
+            detail: '만 2세 미만',
+            input: 0
+        },
+    ]
+    const checkCnt = (id) => {
+        setPlus(
+            plus.map(e => {
+                if((e.id === id || ((e.id===1) && (e.input === 0))) && e.input<=7) 
+                return {
+                    ...e,
+                    input: e.input +1,
+                };
+                return e;
+            })
+        )
+    }
+    const [state, SetState] = useState(0);
+    const [plus, setPlus] = useState(guestData);
+    // const [guestInfo, dispatch] = useReducer(personnelReducer, guestData);
+    console.log(plus)
+    const modalList = plus.map((e, idx) => {
+        return <ModalContainer onClick={e => e.stopPropagation()}>
                 <Title>{e.title}</Title>
                 <Detail>{e.detail}</Detail>
-                <CntInfo>
-                <Input><MinusBtn disabled><FaMinus/></MinusBtn></Input>
+                <CntInfo key={idx}>
+                <Input><MinusBtn key={idx} disabled><FaMinus/></MinusBtn></Input>
                 <Input>{e.input}</Input>
-                <Input><PlusBtn><FaPlus/></PlusBtn></Input>
+                <Input><PlusBtn key={idx} onClick={() => checkCnt(e.id)}><FaPlus/></PlusBtn></Input>
                 </CntInfo>
         </ModalContainer>
     })
