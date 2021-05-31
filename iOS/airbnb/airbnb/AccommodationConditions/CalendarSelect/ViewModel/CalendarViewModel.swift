@@ -33,7 +33,7 @@ final class CalendarViewModel: AnySearchConditionHandleModel<[Month]> {
         static let cancel = "지우기"
     }
     
-    static let weekdays = ["월", "화", "수", "목", "금", "토", "일"]
+    static let weekdays = ["일", "월", "화", "수", "목", "금", "토"]
     static let conditionTitles = ["위치", "체크인/체크아웃", "요금", "인원"]
     
     init(dateSelectionManager: DateSelectionManager, conditionManager: ConditionManager) {
