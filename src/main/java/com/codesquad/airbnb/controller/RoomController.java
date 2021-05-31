@@ -2,10 +2,6 @@ package com.codesquad.airbnb.controller;
 
 import com.codesquad.airbnb.dto.RoomDTO;
 import com.codesquad.airbnb.dto.Rooms;
-import com.codesquad.airbnb.exception.WishNotAddableException;
-import com.codesquad.airbnb.exception.WishNotFoundException;
-import com.codesquad.airbnb.repository.RoomRepository;
-import com.codesquad.airbnb.repository.WishRepository;
 import com.codesquad.airbnb.service.RoomService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
