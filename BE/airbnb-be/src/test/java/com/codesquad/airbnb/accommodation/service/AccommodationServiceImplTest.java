@@ -49,10 +49,21 @@ class AccommodationServiceImplTest {
     static Stream<Arguments> readAllProvider() {
         return Stream.of(
                 Arguments.of(
-                        AccommodationRequest.builder().endPrice(300000).build(),
+                        AccommodationRequest.builder().build(),
                         DummyDataFactory.accommodationsWithId().stream()
                                 .collect(Collectors.toList()),
-                        DummyDataFactory.accommodationResponseDTOsWithId().stream()
+                        DummyDataFactory.accommodationResponseDTOsWithIdTypeOneNight().stream()
+                                .collect(Collectors.toList())
+                ),
+                Arguments.of(
+                        AccommodationRequest.builder()
+                                .checkinDate(LocalDate.now())
+                                .checkoutDate(LocalDate.now().plusDays(2))
+                                .build(),
+                        DummyDataFactory.accommodationsWithId().stream()
+                                .collect(Collectors.toList()),
+                        DummyDataFactory.accommodationsWithId().stream()
+                                .map(accommodation -> AccommodationResponse.of(accommodation, 2))
                                 .collect(Collectors.toList())
                 )
         );

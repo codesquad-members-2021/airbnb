@@ -25,7 +25,7 @@ public class AccommodationServiceImpl implements AccommodationService {
     @Override
     public List<AccommodationResponse> readAll(AccommodationRequest accommodationRequest) {
         return accommodationRepository.findAllBy(accommodationRequest).stream()
-                       .map(AccommodationResponse::from)
+                       .map(accommodation -> AccommodationResponse.of(accommodation, accommodationRequest.nights()))
                        .collect(Collectors.toList());
     }
 

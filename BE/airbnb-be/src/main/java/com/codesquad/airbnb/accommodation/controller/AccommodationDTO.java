@@ -47,7 +47,7 @@ public class AccommodationDTO {
                        .build();
     }
 
-    public static AccommodationDTO from(Accommodation accommodation, int nights) {
+    public static AccommodationDTO of(Accommodation accommodation, int nights) {
         return builder().id(accommodation.getId())
                        .name(accommodation.getName())
                        .accommodationOption(accommodation.getAccommodationOption())

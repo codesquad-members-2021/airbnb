@@ -37,7 +37,7 @@ public class AccommodationResponse {
                        .build();
     }
 
-    public static AccommodationResponse from(Accommodation accommodation, int nights) {
+    public static AccommodationResponse of(Accommodation accommodation, int nights) {
         return builder().id(accommodation.getId())
                        .name(accommodation.getName())
                        .accommodationOption(accommodation.getAccommodationOption())

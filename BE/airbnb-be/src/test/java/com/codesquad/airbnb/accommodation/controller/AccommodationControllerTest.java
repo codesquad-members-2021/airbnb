@@ -59,23 +59,23 @@ class AccommodationControllerTest {
                 Arguments.arguments(
                         "/accommodations",
                         AccommodationRequest.builder().build(),
-                        DummyDataFactory.accommodationResponseDTOsWithId()
+                        DummyDataFactory.accommodationResponseDTOsWithIdTypeOneNight()
                 ), Arguments.arguments(
                         "/accommodations",
                         AccommodationRequest.builder().endPrice(300000).build(),
-                        DummyDataFactory.accommodationResponseDTOsWithId().stream()
+                        DummyDataFactory.accommodationResponseDTOsWithIdTypeOneNight().stream()
                                 .filter(accommodationResponseDTO -> accommodationResponseDTO.pricePerNight() <= 300000)
                                 .collect(Collectors.toList())
                 ), Arguments.arguments(
                         "/accommodations",
                         AccommodationRequest.builder().startPrice(100000).build(),
-                        DummyDataFactory.accommodationResponseDTOsWithId().stream()
+                        DummyDataFactory.accommodationResponseDTOsWithIdTypeOneNight().stream()
                                 .filter(accommodationResponseDTO -> 100000 <= accommodationResponseDTO.pricePerNight())
                                 .collect(Collectors.toList())
                 ), Arguments.arguments(
                         "/accommodations",
                         AccommodationRequest.builder().startPrice(100000).endPrice(300000).build(),
-                        DummyDataFactory.accommodationResponseDTOsWithId().stream()
+                        DummyDataFactory.accommodationResponseDTOsWithIdTypeOneNight().stream()
                                 .filter(accommodationResponseDTO -> 100000 <= accommodationResponseDTO.pricePerNight())
                                 .filter(accommodationResponseDTO -> accommodationResponseDTO.pricePerNight() <= 300000)
                                 .collect(Collectors.toList())

@@ -85,7 +85,8 @@ public class DummyDataFactory {
                        .mainImage("https://image.zdnet.co.kr/2016/12/08/imc_47ix3fAqITYz5QtR.jpg")
                        .images(Arrays.asList("https://image.zdnet.co.kr/2016/12/08/imc_47ix3fAqITYz5QtR.jpg", "https://image.zdnet.co.kr/2016/12/08/imc_47ix3fAqITYz5QtR.jpg"))
                        .description("롤로호텔 일반객실입니다.")
-                       .accommodationHost(accommodationHost());
+                       .accommodationHost(accommodationHost())
+                       .accommodationPrice(Price.from(200000));
     }
 
     public static AccommodationBuilder accommodationBuilderTypeLowQuality() {
@@ -97,7 +98,8 @@ public class DummyDataFactory {
                        .mainImage("https://image.zdnet.co.kr/2016/12/08/imc_47ix3fAqITYz5QtR.jpg")
                        .images(Arrays.asList("https://image.zdnet.co.kr/2016/12/08/imc_47ix3fAqITYz5QtR.jpg", "https://image.zdnet.co.kr/2016/12/08/imc_47ix3fAqITYz5QtR.jpg"))
                        .description("프레디 여관입니다.")
-                       .accommodationHost(accommodationHost());
+                       .accommodationHost(accommodationHost())
+                       .accommodationPrice(Price.from(40000));
     }
 
     public static List<Accommodation> accommodations() {
@@ -116,15 +118,21 @@ public class DummyDataFactory {
         );
     }
 
-    public static List<AccommodationResponse> accommodationResponseDTOs() {
+    public static List<AccommodationResponse> accommodationResponseDTOsTypeOneNight() {
         return accommodations().stream()
-                       .map(AccommodationResponse::from)
+                       .map(accommodation -> AccommodationResponse.of(accommodation,1))
                        .collect(Collectors.toList());
     }
 
-    public static List<AccommodationResponse> accommodationResponseDTOsWithId() {
+    public static List<AccommodationResponse> accommodationResponseDTOsWithIdTypeOneNight() {
         return accommodationsWithId().stream()
-                       .map(AccommodationResponse::from)
+                       .map(accommodation -> AccommodationResponse.of(accommodation,1))
+                       .collect(Collectors.toList());
+    }
+
+    public static List<AccommodationResponse> accommodationResponseDTOsWithIdTypeTwoNights() {
+        return accommodationsWithId().stream()
+                       .map(accommodation -> AccommodationResponse.of(accommodation,2))
                        .collect(Collectors.toList());
     }
 

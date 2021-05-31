@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Profile("mockup")
 public class AccommodationServiceMockup implements AccommodationService {
     public List<AccommodationResponse> readAll(AccommodationRequest accommodationRequest) {
-        List<AccommodationResponse> result = DummyDataFactory.accommodationResponseDTOsWithId();
+        List<AccommodationResponse> result = DummyDataFactory.accommodationResponseDTOsWithIdTypeOneNight();
 
         if (accommodationRequest.getStartPrice() != null) {
             result = result.stream()
