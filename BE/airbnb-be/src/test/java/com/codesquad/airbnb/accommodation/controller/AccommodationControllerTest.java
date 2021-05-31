@@ -1,8 +1,11 @@
 package com.codesquad.airbnb.accommodation.controller;
 
+import com.codesquad.airbnb.common.dummydata.AccommodationDTODummyDataFactory;
+import com.codesquad.airbnb.common.dummydata.AccommodationPriceStatsDummyDataFactory;
+import com.codesquad.airbnb.common.dummydata.AccommodationReservationInfoDummyDataFactory;
+import com.codesquad.airbnb.common.dummydata.AccommodationResponseDummyDataFactory;
 import com.codesquad.airbnb.common.exception.ErrorResponse;
 import com.codesquad.airbnb.common.exception.NotFoundException;
-import com.codesquad.airbnb.common.utils.DummyDataFactory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -59,23 +62,23 @@ class AccommodationControllerTest {
                 Arguments.arguments(
                         "/accommodations",
                         AccommodationRequest.builder().build(),
-                        DummyDataFactory.accommodationResponseDTOsWithIdTypeOneNight()
+                        AccommodationResponseDummyDataFactory.listWithIdTypeOneNight()
                 ), Arguments.arguments(
                         "/accommodations",
                         AccommodationRequest.builder().endPrice(300000).build(),
-                        DummyDataFactory.accommodationResponseDTOsWithIdTypeOneNight().stream()
+                        AccommodationResponseDummyDataFactory.listWithIdTypeOneNight().stream()
                                 .filter(accommodationResponseDTO -> accommodationResponseDTO.pricePerNight() <= 300000)
                                 .collect(Collectors.toList())
                 ), Arguments.arguments(
                         "/accommodations",
                         AccommodationRequest.builder().startPrice(100000).build(),
-                        DummyDataFactory.accommodationResponseDTOsWithIdTypeOneNight().stream()
+                        AccommodationResponseDummyDataFactory.listWithIdTypeOneNight().stream()
                                 .filter(accommodationResponseDTO -> 100000 <= accommodationResponseDTO.pricePerNight())
                                 .collect(Collectors.toList())
                 ), Arguments.arguments(
                         "/accommodations",
                         AccommodationRequest.builder().startPrice(100000).endPrice(300000).build(),
-                        DummyDataFactory.accommodationResponseDTOsWithIdTypeOneNight().stream()
+                        AccommodationResponseDummyDataFactory.listWithIdTypeOneNight().stream()
                                 .filter(accommodationResponseDTO -> 100000 <= accommodationResponseDTO.pricePerNight())
                                 .filter(accommodationResponseDTO -> accommodationResponseDTO.pricePerNight() <= 300000)
                                 .collect(Collectors.toList())
@@ -182,7 +185,7 @@ class AccommodationControllerTest {
                 Arguments.of(
                         "/accommodations/{id}",
                         1,
-                        DummyDataFactory.accommodationDTOsWithId().stream()
+                        AccommodationDTODummyDataFactory.listWithId().stream()
                                 .filter(accommodationDTO -> accommodationDTO.getId() == 1)
                                 .findAny()
                                 .orElseThrow(() -> new NotFoundException())
@@ -213,7 +216,7 @@ class AccommodationControllerTest {
         return Stream.of(
                 Arguments.of(
                         "/accommodationPriceStats",
-                        DummyDataFactory.accommodationPriceStats()
+                        AccommodationPriceStatsDummyDataFactory.list()
                 )
         );
     }
@@ -243,7 +246,7 @@ class AccommodationControllerTest {
                         "/accommodations/{id}/reservation",
                         1L,
                         18,
-                        DummyDataFactory.accommodationReservationInfoTypeSuiteRoomOnePersonOneDay()
+                        AccommodationReservationInfoDummyDataFactory.suiteRoomOnePersonOneDay()
                 )
         );
     }

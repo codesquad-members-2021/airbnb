@@ -5,7 +5,9 @@ import com.codesquad.airbnb.accommodation.controller.AccommodationReservationInf
 import com.codesquad.airbnb.accommodation.controller.AccommodationResponse;
 import com.codesquad.airbnb.accommodation.domain.Accommodation;
 import com.codesquad.airbnb.accommodation.repository.AccommodationRepository;
-import com.codesquad.airbnb.common.utils.DummyDataFactory;
+import com.codesquad.airbnb.common.dummydata.AccommodationDummyDataFactory;
+import com.codesquad.airbnb.common.dummydata.AccommodationReservationInfoDummyDataFactory;
+import com.codesquad.airbnb.common.dummydata.AccommodationResponseDummyDataFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -50,9 +52,9 @@ class AccommodationServiceImplTest {
         return Stream.of(
                 Arguments.of(
                         AccommodationRequest.builder().build(),
-                        DummyDataFactory.accommodationsWithId().stream()
+                        AccommodationDummyDataFactory.listWithId().stream()
                                 .collect(Collectors.toList()),
-                        DummyDataFactory.accommodationResponseDTOsWithIdTypeOneNight().stream()
+                        AccommodationResponseDummyDataFactory.listWithIdTypeOneNight().stream()
                                 .collect(Collectors.toList())
                 ),
                 Arguments.of(
@@ -60,9 +62,9 @@ class AccommodationServiceImplTest {
                                 .checkinDate(LocalDate.now())
                                 .checkoutDate(LocalDate.now().plusDays(2))
                                 .build(),
-                        DummyDataFactory.accommodationsWithId().stream()
+                        AccommodationDummyDataFactory.listWithId().stream()
                                 .collect(Collectors.toList()),
-                        DummyDataFactory.accommodationsWithId().stream()
+                        AccommodationDummyDataFactory.listWithId().stream()
                                 .map(accommodation -> AccommodationResponse.of(accommodation, 2))
                                 .collect(Collectors.toList())
                 )
@@ -85,28 +87,28 @@ class AccommodationServiceImplTest {
         return Stream.of(
                 Arguments.of(
                         1L,
-                        DummyDataFactory.accommodationBuilderTypeSuiteRoom().id(1L).build(),
+                        AccommodationDummyDataFactory.builderWithSuiteRoom().id(1L).build(),
                         AccommodationRequest.builder()
                                 .checkinDate(LocalDate.now())
                                 .checkoutDate(LocalDate.now().plusDays(1))
                                 .build(),
-                        DummyDataFactory.accommodationReservationInfoTypeSuiteRoomOnePersonOneDay()
+                        AccommodationReservationInfoDummyDataFactory.suiteRoomOnePersonOneDay()
                 ),
                 Arguments.of(
                         1L,
-                        DummyDataFactory.accommodationBuilderTypeSuiteRoom().id(1L).build(),
+                        AccommodationDummyDataFactory.builderWithSuiteRoom().id(1L).build(),
                         AccommodationRequest.builder()
                                 .checkinDate(LocalDate.now())
                                 .checkoutDate(LocalDate.now().plusDays(2))
                                 .build(),
-                        DummyDataFactory.accommodationReservationInfoTypeSuiteRoomOnePersonTwoDays()
+                        AccommodationReservationInfoDummyDataFactory.suiteRoomOnePersonTwoDays()
                 ),
                 Arguments.of(
                         1L,
-                        DummyDataFactory.accommodationBuilderTypeSuiteRoom().id(1L).build(),
+                        AccommodationDummyDataFactory.builderWithSuiteRoom().id(1L).build(),
                         AccommodationRequest.builder()
                                 .build(),
-                        DummyDataFactory.accommodationReservationInfoTypeSuiteRoomOnePersonOneDay()
+                        AccommodationReservationInfoDummyDataFactory.suiteRoomOnePersonOneDay()
                 )
         );
     }

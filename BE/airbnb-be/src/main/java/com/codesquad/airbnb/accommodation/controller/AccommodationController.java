@@ -1,10 +1,9 @@
 package com.codesquad.airbnb.accommodation.controller;
 
 import com.codesquad.airbnb.accommodation.service.AccommodationService;
-import com.codesquad.airbnb.common.utils.DummyDataFactory;
+import com.codesquad.airbnb.common.dummydata.AccommodationPriceStatsDummyDataFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -31,7 +30,7 @@ public class AccommodationController {
 
     @GetMapping("/accommodationPriceStats")
     public List<AccommodationPriceStats> priceStats() {
-        return DummyDataFactory.accommodationPriceStats();
+        return AccommodationPriceStatsDummyDataFactory.list();
     }
 
     @GetMapping("/accommodations/{id}/reservation")

@@ -1,6 +1,6 @@
 package com.codesquad.airbnb.reservation.controller;
 
-import com.codesquad.airbnb.common.utils.DummyDataFactory;
+import com.codesquad.airbnb.common.dummydata.ReservationDTODummyDataFactory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -54,7 +54,7 @@ class ReservationControllerTest {
                 Arguments.of(
                         "/users/{userId}/reservations",
                         1L,
-                        DummyDataFactory.reservations()
+                        ReservationDTODummyDataFactory.list()
                 )
         );
     }
@@ -84,7 +84,7 @@ class ReservationControllerTest {
                         "/users/{userId}/reservations/{reservationId}",
                         1L,
                         1L,
-                        DummyDataFactory.reservation()
+                        ReservationDTODummyDataFactory.create()
                 )
         );
     }

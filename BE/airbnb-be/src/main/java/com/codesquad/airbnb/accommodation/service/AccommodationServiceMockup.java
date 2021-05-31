@@ -4,8 +4,10 @@ import com.codesquad.airbnb.accommodation.controller.AccommodationDTO;
 import com.codesquad.airbnb.accommodation.controller.AccommodationRequest;
 import com.codesquad.airbnb.accommodation.controller.AccommodationReservationInfo;
 import com.codesquad.airbnb.accommodation.controller.AccommodationResponse;
+import com.codesquad.airbnb.common.dummydata.AccommodationDTODummyDataFactory;
+import com.codesquad.airbnb.common.dummydata.AccommodationReservationInfoDummyDataFactory;
+import com.codesquad.airbnb.common.dummydata.AccommodationResponseDummyDataFactory;
 import com.codesquad.airbnb.common.exception.NotFoundException;
-import com.codesquad.airbnb.common.utils.DummyDataFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ import java.util.stream.Collectors;
 @Profile("mockup")
 public class AccommodationServiceMockup implements AccommodationService {
     public List<AccommodationResponse> readAll(AccommodationRequest accommodationRequest) {
-        List<AccommodationResponse> result = DummyDataFactory.accommodationResponseDTOsWithIdTypeOneNight();
+        List<AccommodationResponse> result = AccommodationResponseDummyDataFactory.listWithIdTypeOneNight();
 
         if (accommodationRequest.getStartPrice() != null) {
             result = result.stream()
@@ -34,7 +36,7 @@ public class AccommodationServiceMockup implements AccommodationService {
     }
 
     public AccommodationDTO readOne(long id) {
-        List<AccommodationDTO> result = DummyDataFactory.accommodationDTOsWithId();
+        List<AccommodationDTO> result = AccommodationDTODummyDataFactory.listWithId();
 
         return result.stream()
                        .filter(accommodationDTO -> accommodationDTO.getId() == id)
@@ -44,6 +46,6 @@ public class AccommodationServiceMockup implements AccommodationService {
 
     @Override
     public AccommodationReservationInfo accommodationReservationInfo(long id, AccommodationRequest accommodationRequest) {
-        return DummyDataFactory.accommodationReservationInfoTypeSuiteRoomOnePersonOneDay();
+        return AccommodationReservationInfoDummyDataFactory.suiteRoomOnePersonOneDay();
     }
 }
