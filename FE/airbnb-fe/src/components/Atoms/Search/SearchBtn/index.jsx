@@ -34,7 +34,7 @@ const SearchBtn = () => {
             <SearchButtonSvg />
           </SearchSvg>
         </SearchSvgDiv>
-        {isModalClicked ? <SearchWordDiv>검색</SearchWordDiv> : null}
+        {isModalClicked && <SearchWordDiv>검색</SearchWordDiv>}
       </SearchBtnDiv>
     </Link>
   );
