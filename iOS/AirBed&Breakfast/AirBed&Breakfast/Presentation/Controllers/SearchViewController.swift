@@ -37,7 +37,16 @@ class SearchViewController: UIViewController {
         searchController.searchBar.placeholder = "행선지 선택"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+        
+        searchController.delegate = self
+        
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        searchController.isActive = true
+        
     }
 
     @IBAction func navigationBarBackButtonPressed(_ sender: UIBarButtonItem) {
@@ -106,3 +115,8 @@ extension SearchViewController: UICollectionViewDelegate {
     
 }
 
+extension SearchViewController: UISearchControllerDelegate {
+    func didPresentSearchController(_ searchController: UISearchController) {
+        searchController.searchBar.becomeFirstResponder()
+    }
+}

@@ -83,7 +83,15 @@ class CalendarControlView: UIView {
     }
     
     private func isValidDayToSelect(day: Day) -> Bool {
-        return day.components.year! >= self.currentYear! && day.components.month! >= self.currentMonth && day.components.day! >= self.currentDay
+        if day.components.year! > self.currentYear! {
+            return true
+        } else if day.components.month! > self.currentMonth {
+            return true
+        } else if day.components.month! == self.currentMonth && day.components.day! >= self.currentDay {
+            return true
+        } else {
+            return false
+        }
     }
     
     private func recreateCalendarContentIfNeeded() {

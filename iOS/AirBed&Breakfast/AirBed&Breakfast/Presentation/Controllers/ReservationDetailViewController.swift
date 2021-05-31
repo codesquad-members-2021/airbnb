@@ -50,7 +50,7 @@ class ReservationDetailViewController: UIViewController {
             self.priceRangeDetailLabel.text = ""
             self.detailSetUpViewInitializer?.clearPriceSlideControlView()
         default:
-            return
+            break
         }
         
         self.deleteCurrentDetailButton.isEnabled = false

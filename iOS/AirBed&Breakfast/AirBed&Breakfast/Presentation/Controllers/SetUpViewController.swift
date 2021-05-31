@@ -123,10 +123,10 @@ extension SetUpViewController: DetailSetUpViewInitializable {
         self.currentContextView = String(describing: NumberOfHeadSelectionView.self)
         
         self.numberOfHeadSelectionView = NumberOfHeadSelectionView()
-        numberOfHeadSelectionView.backgroundColor = .brown
         view.addSubview(numberOfHeadSelectionView)
         numberOfHeadSelectionView.translatesAutoresizingMaskIntoConstraints = false
         configureDetailSubViewLayout(of: numberOfHeadSelectionView)
+        numberOfHeadSelectionView.backgroundColor = .brown
 
     }
     

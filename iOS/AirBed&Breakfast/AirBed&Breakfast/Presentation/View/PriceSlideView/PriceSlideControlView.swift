@@ -37,7 +37,6 @@ class PriceSlideControlView: UIView {
     }
     
     public func configureRangeSlider() {
-
         self.rangeSlider = RangeSlider(frame: self.frame)
         self.addSubview(rangeSlider)
         rangeSlider.translatesAutoresizingMaskIntoConstraints = false

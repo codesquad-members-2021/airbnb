@@ -8,37 +8,30 @@
 import UIKit
 
 class NumberOfHeadSelectionView: UIView {
-        
-    private var adultNumberAdjustmentView: NumberAdjustmentView?
-    private var childNumberAdjustmentView: NumberAdjustmentView?
-    private var infantNumberAdjustmentView: NumberAdjustmentView?
     
-    private var adultHeadNumber: Int = 0
-    private var childHeadNumber: Int = 0
-    private var infantHeadNumber: Int = 0
+    var adultNumberAdjustmentView: NumberAdjustmentView?
+    var childNumberAdjustmentView: NumberAdjustmentView?
+    var infantNumberAdjustmentView: NumberAdjustmentView?
     
-    init() {
+    public init() {
         super.init(frame: .zero)
-        configureNumberAdjustmentView()
+        configureNumberAdjustmentViews()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        configureNumberAdjustmentView()
+
     }
-    
-    private func configureNumberAdjustmentView() {
-        
+
+    private func configureNumberAdjustmentViews() {
+
         self.adultNumberAdjustmentView = NumberAdjustmentView()
-        self.adultNumberView.addSubview(adultNumberAdjustmentView!)
-        setSubViewLayout(adultNumberAdjustmentView!, to: adultNumberView)
+        adultNumberAdjustmentView?.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(adultNumberAdjustmentView!)
         
+        adultNumberAdjustmentView?.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        adultNumberAdjustmentView?.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        adultNumberAdjustmentView?.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
     }
     
-    private func setSubViewLayout(_ subview: UIView, to superView: UIView) {
-        NSLayoutConstraint.activate([
-            subview.centerYAnchor.constraint(equalTo: superView.centerYAnchor),
-            subview.heightAnchor.constraint(equalTo: superview!.heightAnchor, multiplier: 0.7)
-                                        ])
-    }
 }
