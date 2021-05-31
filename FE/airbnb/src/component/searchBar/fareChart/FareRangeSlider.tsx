@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useSetRecoilState } from "recoil";
+import { thumbLeftPriceState, thumbRightPriceState, isSetPriceState } from "state/atoms/fareAtoms";
 import { ReactComponent as ThumbLeft } from "assets/pause_circle.svg";
 import { ReactComponent as ThumbRight } from "assets/pause_circle.svg";
 
@@ -8,12 +10,21 @@ const RANGE_DATA = {
   MAX: 100,
 };
 
-function FareRangeSlider() {
+interface Props {
+  minPrice: number;
+  maxPrice: number;
+}
+
+function FareRangeSlider({ minPrice, maxPrice }: Props) {
   const { MIN, MAX } = RANGE_DATA;
   const [leftValue, setLeftValue] = useState(MIN);
   const [rightValue, setRightValue] = useState(MAX);
   const [thumbLeftPos, setThumbLeftPos] = useState(MIN);
   const [thumbRightPos, setThumbRightPos] = useState(MAX);
+  const setLeftPrice = useSetRecoilState(thumbLeftPriceState);
+  const setRightPrice = useSetRecoilState(thumbRightPriceState);
+  const setIsSetPrice = useSetRecoilState(isSetPriceState);
+  const perValuePrice = (maxPrice - minPrice) / MAX;
 
   const setThumbPosition = (value: number, setState: (percent: number) => void) => {
     const percent = ((value - MIN) / (MAX - MIN)) * 100;
@@ -26,6 +37,9 @@ function FareRangeSlider() {
     const value = +target.value;
     setLeftValue(value);
     setThumbPosition(value, setThumbLeftPos);
+    setIsSetPrice(true);
+    if (value === MIN) setLeftPrice(minPrice);
+    else setLeftPrice(perValuePrice * value);
   };
   const handleInputRightThumb = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -33,6 +47,9 @@ function FareRangeSlider() {
     const value = +target.value;
     setRightValue(value);
     setThumbPosition(value, setThumbRightPos);
+    setIsSetPrice(true);
+    if (value === MAX) setRightPrice(maxPrice);
+    else setRightPrice(perValuePrice * value);
   };
 
   return (
