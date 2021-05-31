@@ -6,12 +6,24 @@ import { SearchContext } from '..';
 import SearchButtonSvg from './SearchButtonSvg';
 
 const SearchBtn = () => {
-  const { clicked } = useContext(SearchContext);
+  const { clicked, calendarData, priceData, peopleData } =
+    useContext(SearchContext);
+
+  const checkInDate = `${calendarData.checkIn.year}-${calendarData.checkIn.month}-${calendarData.checkIn.day}`;
+  const checkOutDate = `${calendarData.checkOut.year}-${calendarData.checkOut.month}-${calendarData.checkOut.day}`;
+
+  const makeQuery = () => {
+    let queryObj = {};
+    if (calendarData.checkIn.year) queryObj['checkIn'] = checkInDate;
+  };
+
   const isModalClicked = clicked.checkInOut || clicked.price || clicked.people;
   const history = useHistory();
   const handleSearchClick = () => {
-    history.push('/reservation');
-  }; //http://3.35.226.74/airbnb/?location=soul&checkin=2021-05-28&checkout=2021-06-02&adults=2&children=1&infants=1
+    history.push(
+      `/reservation/?location=seoul&checkin=${checkInDate}&checkout=${checkOutDate}&adults=2&children=1&infants=1`
+    );
+  }; //http://3.35.226.74/airbnb/?location=seoul&checkin=2021-05-28&checkout=2021-06-02&adults=2&children=1&infants=1
   return (
     // <Link to={
     //   pathname: '',
@@ -19,7 +31,10 @@ const SearchBtn = () => {
 
     //     }
     // }>
-    <SearchBtnDiv isModalClicked={isModalClicked}>
+    <SearchBtnDiv
+      isModalClicked={isModalClicked}
+      onClick={() => handleSearchClick()}
+    >
       <SearchSvgDiv>
         <SearchSvg>
           <SearchButtonSvg />

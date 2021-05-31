@@ -11,6 +11,7 @@ import modalClickReducer from '../../utils/reducer/modalClickReducer';
 import peopleReducer from '../../utils/reducer/peopleReducer';
 import priceReducer from '../../utils/reducer/priceReducer';
 import calendarReducer from '../../utils/reducer/calendarReducer';
+import API from '../../utils/API';
 
 export const SearchContext = createContext();
 
@@ -28,6 +29,24 @@ const Search = () => {
       document.removeEventListener('mousedown', modalOff);
     };
   }, [modalElement]);
+
+  useEffect(() => {
+    if (window.location.search === '') return;
+    console.log('여기', window.location.search === '');
+    console.log(window.location.search);
+    const queryString = window.location.search.slice(1);
+    console.log(queryString.split('&'));
+    const tempArr = queryString.split('&');
+    const checkInDate = tempArr[1].split('=')[1].split('-').map(Number);
+    calDispatch({
+      type: 'ADD_CHECKIN_DATA',
+      payload: {
+        year: checkInDate[0],
+        month: checkInDate[1],
+        day: checkInDate[2],
+      },
+    });
+  }, []);
 
   const [clicked, modalDispatch] = useReducer(modalClickReducer, {
     checkInOut: false,
