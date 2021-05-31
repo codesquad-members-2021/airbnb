@@ -136,9 +136,9 @@ export const roomPriceState = atom<T.RoomPrice>({
 export const guestState = atom<T.GuestsState>({
   key: "guestState",
   default: {
-    adult: null,
-    child: null,
-    toddler: null,
+    adult: 0,
+    child: 0,
+    toddler: 0,
   },
 });
 
