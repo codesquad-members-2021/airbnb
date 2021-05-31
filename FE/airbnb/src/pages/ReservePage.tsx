@@ -8,8 +8,7 @@ import { getRoomsSelector } from '../recoil/reserveRoomAtom';
 interface Props {}
 
 const ReservePage = ({}: Props) => {
-  const data = useRecoilValue(getRoomsSelector);
-  console.log(data);
+  // const data = useRecoilValue(getRoomsSelector);
   return (
     <StyledReservePage>
       <ReserveHeader />

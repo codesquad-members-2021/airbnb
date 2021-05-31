@@ -1,11 +1,9 @@
-import styled from 'styled-components';
+interface Props {
+  price: number;
+}
 
-interface Props {}
-
-const MapLabel = (props: Props) => {
-  return <StyledMapLabel></StyledMapLabel>;
+const MapLabel = ({ price }: Props) => {
+  return `<div class='label'>￦100,000</div>`;
 };
 
 export default MapLabel;
-
-const StyledMapLabel = styled.div``;

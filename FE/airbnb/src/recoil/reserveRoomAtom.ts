@@ -1,10 +1,11 @@
 import { atom, selector } from 'recoil';
 import { roomType } from '../components/reserveRoomList/roomType';
 import { API } from '../util/api';
+import { roomData } from './roomSampleData';
 
 export const roomsState = atom<roomType[] | null>({
   key: 'roomsState',
-  default: null,
+  default: roomData,
 });
 
 export const getRoomsSelector = selector({

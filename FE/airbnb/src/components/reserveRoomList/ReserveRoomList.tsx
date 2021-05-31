@@ -1,4 +1,6 @@
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { roomsState } from '../../recoil/reserveRoomAtom';
 import ReserveRoom from './ReserveRoom';
 import { roomType } from './roomType';
 
@@ -7,9 +9,11 @@ interface Props {
 }
 
 const ReserveRoomList = ({ className }: Props) => {
-  const reserveRoomList = data.map((roomData) => (
-    <ReserveRoom key={roomData.id} roomData={roomData} />
-  ));
+  const roomsData = useRecoilValue(roomsState);
+
+  const reserveRoomList =
+    roomsData &&
+    roomsData.map((roomData, idx) => <ReserveRoom key={roomData.id + idx} roomData={roomData} />);
   return (
     <StyledReserveRoomList className={className}>
       <div className='data__info'>
@@ -39,86 +43,3 @@ const StyledReserveRoomList = styled.div`
     border-bottom: ${({ theme }) => `1px solid ${theme.colors.gray5}`};
   }
 `;
-
-const data: roomType[] = [
-  {
-    id: 2,
-    name: '백악관',
-    photo: 'https://codesquad.kr/img/place/img_5225.jpg',
-    address: {
-      city: '서울',
-      address: '강남구',
-      latitude: 37.496181,
-      longitude: 127.030825,
-    },
-    condition: {
-      guests: 4,
-      bedroomCount: 2,
-      bedCount: 2,
-      bathroomCount: 2,
-    },
-    amenities: '주방,무선 인터넷,에어컨,헤어드라이기',
-    chargePerNight: 100000,
-    totalCharge: 0,
-  },
-  {
-    id: 2,
-    name: '백악관',
-    photo: 'https://codesquad.kr/img/place/img_5225.jpg',
-    address: {
-      city: '서울',
-      address: '강남구',
-      latitude: 37.496181,
-      longitude: 127.030825,
-    },
-    condition: {
-      guests: 4,
-      bedroomCount: 2,
-      bedCount: 2,
-      bathroomCount: 2,
-    },
-    amenities: '주방,무선 인터넷,에어컨,헤어드라이기',
-    chargePerNight: 100000,
-    totalCharge: 0,
-  },
-  {
-    id: 2,
-    name: '백악관',
-    photo: 'https://codesquad.kr/img/place/img_5225.jpg',
-    address: {
-      city: '서울',
-      address: '강남구',
-      latitude: 37.496181,
-      longitude: 127.030825,
-    },
-    condition: {
-      guests: 4,
-      bedroomCount: 2,
-      bedCount: 2,
-      bathroomCount: 2,
-    },
-    amenities: '주방,무선 인터넷,에어컨,헤어드라이기',
-    chargePerNight: 100000,
-    totalCharge: 0,
-  },
-  {
-    id: 2,
-    name: '백악관',
-    photo: 'https://codesquad.kr/img/place/img_5225.jpg',
-    address: {
-      city: '서울',
-      address: '강남구',
-      latitude: 37.496181,
-      longitude: 127.030825,
-    },
-    condition: {
-      guests: 4,
-      bedroomCount: 2,
-      bedCount: 2,
-      bathroomCount: 2,
-    },
-    amenities: '주방,무선 인터넷,에어컨,헤어드라이기',
-    chargePerNight: 100000,
-    totalCharge: 0,
-  },
-];
