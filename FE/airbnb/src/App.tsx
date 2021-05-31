@@ -3,6 +3,7 @@ import theme from './theme';
 import styled, { ThemeProvider } from 'styled-components';
 import MainPage from './pages/MainPage';
 import ReservePage from './pages/ReservePage';
+import { Suspense } from 'react';
 
 declare global {
   interface Window {
@@ -16,7 +17,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <StyledApp>
         {/* <MainPage /> */}
-        <ReservePage />
+        <Suspense fallback='loading'>
+          <ReservePage />
+        </Suspense>
       </StyledApp>
     </ThemeProvider>
   );

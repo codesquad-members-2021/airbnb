@@ -2,6 +2,12 @@ export interface roomType {
   id: number;
   name: string;
   photo: string;
+  address: {
+    city: string;
+    address: string;
+    latitude: number;
+    longitude: number;
+  };
   condition: {
     guests: number;
     bedroomCount: number;

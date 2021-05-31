@@ -5,7 +5,6 @@ interface Props {
 }
 
 const Map = ({ className }: Props) => {
-  console.log(window.kakao);
   const mapRef = useRef(null);
   useEffect(() => {
     const options = {
@@ -15,6 +14,7 @@ const Map = ({ className }: Props) => {
 
     new window.kakao.maps.Map(mapRef.current, options); //지도 생성 및 객체 리턴
   }, []);
+
   return <StyleMap className={className} ref={mapRef}></StyleMap>;
 };
 

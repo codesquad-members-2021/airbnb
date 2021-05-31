@@ -1,11 +1,15 @@
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import Map from '../components/map/Map';
 import ReserveHeader from '../components/reserveHeader/ReserveHeader';
 import ReserveRoomList from '../components/reserveRoomList/ReserveRoomList';
+import { getRoomsSelector } from '../recoil/reserveRoomAtom';
 
 interface Props {}
 
 const ReservePage = ({}: Props) => {
+  const data = useRecoilValue(getRoomsSelector);
+  console.log(data);
   return (
     <StyledReservePage>
       <ReserveHeader />

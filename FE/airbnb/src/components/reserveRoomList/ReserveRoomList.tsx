@@ -45,6 +45,12 @@ const data: roomType[] = [
     id: 2,
     name: '백악관',
     photo: 'https://codesquad.kr/img/place/img_5225.jpg',
+    address: {
+      city: '서울',
+      address: '강남구',
+      latitude: 37.496181,
+      longitude: 127.030825,
+    },
     condition: {
       guests: 4,
       bedroomCount: 2,
@@ -59,6 +65,12 @@ const data: roomType[] = [
     id: 2,
     name: '백악관',
     photo: 'https://codesquad.kr/img/place/img_5225.jpg',
+    address: {
+      city: '서울',
+      address: '강남구',
+      latitude: 37.496181,
+      longitude: 127.030825,
+    },
     condition: {
       guests: 4,
       bedroomCount: 2,
@@ -73,6 +85,12 @@ const data: roomType[] = [
     id: 2,
     name: '백악관',
     photo: 'https://codesquad.kr/img/place/img_5225.jpg',
+    address: {
+      city: '서울',
+      address: '강남구',
+      latitude: 37.496181,
+      longitude: 127.030825,
+    },
     condition: {
       guests: 4,
       bedroomCount: 2,
@@ -87,6 +105,12 @@ const data: roomType[] = [
     id: 2,
     name: '백악관',
     photo: 'https://codesquad.kr/img/place/img_5225.jpg',
+    address: {
+      city: '서울',
+      address: '강남구',
+      latitude: 37.496181,
+      longitude: 127.030825,
+    },
     condition: {
       guests: 4,
       bedroomCount: 2,
