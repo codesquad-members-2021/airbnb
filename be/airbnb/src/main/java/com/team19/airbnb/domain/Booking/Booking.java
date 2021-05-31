@@ -128,6 +128,10 @@ public class Booking {
         this.user = userId;
     }
 
+    public boolean isUser(Long userId) {
+        return this.user.equals(userId);
+    }
+
     public BigDecimal calculateTotalPrice(BigDecimal roomPricePerDay) {
         this.totalPrice = new Price.Builder(countDays(), roomPricePerDay).build().getTotalPrice();
         return totalPrice;

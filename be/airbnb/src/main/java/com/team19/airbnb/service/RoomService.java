@@ -7,7 +7,8 @@ import com.team19.airbnb.dto.RoomDetailResponseDTO;
 import com.team19.airbnb.dto.RoomPriceRequestDTO;
 import com.team19.airbnb.dto.RoomPriceResponseDTO;
 import com.team19.airbnb.dto.SearchRequestDTO;
-import com.team19.airbnb.exception.RoomNotFoundException;
+import com.team19.airbnb.exception.notfound.RoomNotFoundException;
+import com.team19.airbnb.exception.notfound.UserNotFoundException;
 import com.team19.airbnb.repository.RoomDAO;
 import org.springframework.stereotype.Service;
 
@@ -58,5 +59,9 @@ public class RoomService {
         return roomDAO.findRoomsByCondition(searchRequestDTO).stream()
                 .map((room) -> new RoomDetailResponseDTO.Builder(room).build())
                 .collect(Collectors.toList());
+    }
+
+    public Room findRoomById(Long id) {
+        return roomDAO.findById(id).orElseThrow(UserNotFoundException::new);
     }
 }

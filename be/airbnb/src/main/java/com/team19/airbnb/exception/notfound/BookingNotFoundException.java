@@ -1,4 +1,4 @@
-package com.team19.airbnb.exception;
+package com.team19.airbnb.exception.notfound;
 
 public class BookingNotFoundException extends NotFoundException {
 

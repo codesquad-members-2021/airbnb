@@ -2,10 +2,8 @@ package com.team19.airbnb.service;
 
 import com.team19.airbnb.domain.User;
 import com.team19.airbnb.domain.Wishlist;
-import com.team19.airbnb.dto.WishListRequestDTO;
 import com.team19.airbnb.repository.WishlistDAO;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class WishlistService {
@@ -19,14 +17,14 @@ public class WishlistService {
     }
 
     public void addWishList(Long roomId, Long userId) {
-        User user = userService.findUser(userId);
+        User user = userService.findUserById(userId);
         Wishlist wishlist = Wishlist.create(roomId);
         user.addWishlist(wishlist);
         wishlistDAO.updateWishlist(user, wishlist);
     }
 
     public void deleteWishlist(Long roomId, Long userId) {
-        User user = userService.findUser(userId);
+        User user = userService.findUserById(userId);
         Wishlist wishlist = Wishlist.create(roomId);
         user.removeWishlist(wishlist);
         wishlistDAO.removeWishlist(user, wishlist);

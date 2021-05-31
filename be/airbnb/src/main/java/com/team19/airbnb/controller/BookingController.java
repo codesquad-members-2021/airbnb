@@ -20,8 +20,8 @@ public class BookingController {
 
     //날짜 확인하는 부분 추가 필요
     @PostMapping("/{userId}")
-    public void book(@RequestBody BookingRequestDTO bookingRequestDTO) {
-        System.out.println(bookingRequestDTO.toString());
+    public void book(@RequestBody BookingRequestDTO bookingRequestDTO, @PathVariable Long userId) {
+        bookingService.book(bookingRequestDTO, userId);
     }
 
     @GetMapping("/{userId}")
@@ -36,6 +36,6 @@ public class BookingController {
 
     @DeleteMapping("/{bookingId}/{userId}")
     public void deleteBooking(@PathVariable Long bookingId, @PathVariable Long userId) {
-        bookingService.delete(bookingId, userId);
+        bookingService.cancelBooking(bookingId, userId);
     }
 }

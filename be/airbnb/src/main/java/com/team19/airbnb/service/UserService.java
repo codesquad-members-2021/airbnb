@@ -3,8 +3,8 @@ package com.team19.airbnb.service;
 import com.team19.airbnb.domain.User;
 import com.team19.airbnb.domain.Wishlist;
 import com.team19.airbnb.dto.RoomDetailResponseDTO;
-import com.team19.airbnb.exception.RoomNotFoundException;
-import com.team19.airbnb.exception.UserNotFoundException;
+import com.team19.airbnb.exception.notfound.RoomNotFoundException;
+import com.team19.airbnb.exception.notfound.UserNotFoundException;
 import com.team19.airbnb.repository.RoomRepository;
 import com.team19.airbnb.repository.UserDAO;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class UserService {
         this.roomRepository = roomRepository;
     }
 
-    public User findUser(Long id) {
+    public User findUserById(Long id) {
         return userDAO.findById(id).orElseThrow(UserNotFoundException::new);
     }
   

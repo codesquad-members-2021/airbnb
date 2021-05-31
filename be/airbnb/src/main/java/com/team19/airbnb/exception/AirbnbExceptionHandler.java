@@ -1,6 +1,8 @@
 package com.team19.airbnb.exception;
 
 import com.team19.airbnb.ResponseBody;
+import com.team19.airbnb.exception.notauthorized.NotAuthorizedException;
+import com.team19.airbnb.exception.notfound.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -18,4 +20,12 @@ public class AirbnbExceptionHandler {
         logger.error(e.getMessage());
         return ResponseBody.notFound(e.getMessage());
     }
+
+    @ExceptionHandler(NotAuthorizedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseBody<String> handleNotAuthorizedException(NotAuthorizedException e) {
+        logger.error(e.getMessage());
+        return ResponseBody.notFound(e.getMessage());
+    }
+
 }
