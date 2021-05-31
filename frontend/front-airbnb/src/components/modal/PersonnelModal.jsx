@@ -1,28 +1,6 @@
-import React, {useState,useReducer} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import { FaPlus, FaMinus } from "react-icons/fa";
-
-
-function personnelReducer(guestInfo, category) {
-    console.log('feefewf')
-    let newArr = [...guestInfo];
-    switch(category.id) {
-        case '1':
-            newArr[0].input++;
-            console.log(category.id)
-            return newArr;
-        case '2':
-            newArr[1].input++;
-            console.log(category.id)
-            return newArr;
-        case '3':
-            newArr[2].input++;
-            console.log(category.id)
-            return newArr;
-        default:
-            throw new Error();
-    }
-}
 
 const PersonnelModal = () => {
     const guestData = [
@@ -45,10 +23,10 @@ const PersonnelModal = () => {
             input: 0
         },
     ]
-    const checkCnt = (id) => {
-        setPlus(
-            plus.map(e => {
-                if((e.id === id || ((e.id===1) && (e.input === 0))) && e.input<=7) 
+    const increaseCnt = (id) => {
+        setPersonnelInfo(
+            personnelInfo.map(e => {
+                if(e.id === id || ((e.id===1) && (e.input === 0))) 
                 return {
                     ...e,
                     input: e.input +1,
@@ -57,18 +35,38 @@ const PersonnelModal = () => {
             })
         )
     }
-    const [state, SetState] = useState(0);
-    const [plus, setPlus] = useState(guestData);
-    // const [guestInfo, dispatch] = useReducer(personnelReducer, guestData);
-    console.log(plus)
-    const modalList = plus.map((e, idx) => {
+    const decreaseCnt = (id) => {
+        setPersonnelInfo(
+            personnelInfo.map(e => {
+                if(e.id === id) 
+                return {
+                    ...e,
+                    input: e.input -1,
+                };
+                return e;
+            })
+        )
+    }
+    const checkDecrease = (idx) => {
+        let newArr = [...personnelInfo];
+        if(newArr[idx].input !== 0) return false;
+        else return true;
+    }
+    const checkIncrease = (idx) => {
+        let newArr = [...personnelInfo];
+        if(newArr[idx].input === 8) return true;
+        else return false
+    }
+    const [personnelInfo, setPersonnelInfo] = useState(guestData);
+    console.log(personnelInfo)
+    const modalList = personnelInfo.map((e, idx) => {
         return <ModalContainer onClick={e => e.stopPropagation()}>
                 <Title>{e.title}</Title>
                 <Detail>{e.detail}</Detail>
                 <CntInfo key={idx}>
-                <Input><MinusBtn key={idx} disabled><FaMinus/></MinusBtn></Input>
+                <Input><MinusBtn key={idx} onClick={()=> decreaseCnt(e.id)} disabled={checkDecrease(idx)}><FaMinus/></MinusBtn></Input>
                 <Input>{e.input}</Input>
-                <Input><PlusBtn key={idx} onClick={() => checkCnt(e.id)}><FaPlus/></PlusBtn></Input>
+                <Input><PlusBtn key={idx} onClick={() => increaseCnt(e.id)} disabled={checkIncrease(idx)}><FaPlus/></PlusBtn></Input>
                 </CntInfo>
         </ModalContainer>
     })
