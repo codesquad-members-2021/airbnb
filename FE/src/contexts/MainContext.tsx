@@ -6,44 +6,25 @@
         MainDispatchContext는 디스패치 전용 Context
         ▶ 두 개의 Context 를 만들면 렌더링이 낭비되는 것을 방지
 */
-import { createContext, Dispatch, useReducer, useContext, RefObject } from 'react';
+import { createContext, Dispatch, useReducer, useContext } from 'react';
 import { ICustomProps } from '../util/types';
 
 type MainState = {
   searchBarClickedIdx: number;
-  mainModalRefs?: {
-    calendarRef: RefObject<HTMLElement | undefined>|undefined;
-    feeRef: RefObject<HTMLElement | undefined>|undefined;
-    peopleRef: RefObject<HTMLElement | undefined>|undefined;
-  };
 };
 
 const initialState: MainState = {
   searchBarClickedIdx: -1,
-  mainModalRefs: {
-    calendarRef: undefined,
-    feeRef: undefined,
-    peopleRef: undefined,
-  },
 };
 
 // 추후 Provider를 사용하지 않았을 때에는 Context의 값이 undefined 가 되어야 하므로,
 // <MainState | undefined> 와 같이 Context 의 값이 MainState 일 수도 있고 undefined 일 수도 있다고 선언
 const MainStateContext = createContext<MainState | undefined>(undefined);
 
-type MainAction =
-  | {
-      type: 'SET_SEARCHBAR_CLICKED_IDX';
-      payload: number;
-    }
-  | {
-      type: 'SET_MAIN_MODAL_REFS';
-      payload: {
-        calendarRef?: RefObject<HTMLElement | undefined>;
-        feeRef?: RefObject<HTMLElement | undefined>;
-        peopleRef?: RefObject<HTMLElement | undefined>;
-      };
-    };
+type MainAction = {
+  type: 'SET_SEARCHBAR_CLICKED_IDX';
+  payload: number;
+};
 
 // Dispatch 를 리액트 패키지에서 불러와서 Generic으로 액션들의 타입을 넣어주면 추후 컴포넌트에서
 // 액션을 디스패치 할 때 액션들에 대한 타입을 검사 할 수 있음
@@ -58,21 +39,6 @@ const mainReducer = (state: MainState, action: MainAction): MainState => {
         ...state,
         searchBarClickedIdx: action.payload,
       };
-    case 'SET_MAIN_MODAL_REFS': {
-      const { calendarRef: calendarRefTmp, feeRef: feeRefTmp, peopleRef: peopleRefTmp }  = action.payload;
-      const { calendarRef, feeRef, peopleRef } = state.mainModalRefs!;
-
-      return {
-        ...state,
-        mainModalRefs: {
-          ...state.mainModalRefs,
-          calendarRef: calendarRefTmp || calendarRef,
-          feeRef: feeRefTmp || feeRef,
-          peopleRef: peopleRefTmp || peopleRef,
-        }
-      };
-    }
-
     default:
       throw new Error('MainContext : Unhandled action');
   }
