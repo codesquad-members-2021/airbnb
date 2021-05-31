@@ -3,6 +3,7 @@ package com.codesquad.airbnb.controller;
 import com.codesquad.airbnb.domain.Booking;
 import com.codesquad.airbnb.dto.BookingRequest;
 import com.codesquad.airbnb.exception.BookingNotAvailableException;
+import com.codesquad.airbnb.exception.BookingNotFoundException;
 import com.codesquad.airbnb.repository.BookingRepository;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,8 +54,10 @@ public class BookingController {
         return true;
     }
 
-    @DeleteMapping
-    public void cancelBooking() {
-
+    @DeleteMapping("/{bookingId}")
+    public void cancelBooking(@PathVariable("bookingId") Long bookingId) {
+        if(isBookingExist(bookingId)) {
+            bookingRepository.delete(bookingId);
+        }
     }
 }

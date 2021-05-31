@@ -36,6 +36,11 @@ public class BookingRepository implements JdbcRepository<Booking> {
                 booking.getCheckOut(), booking.getNumberOfPeople(), booking.getTotalPrice());
     }
 
+    public void delete(Long bookingId) {
+        String sql = "delete from `booking` where booking.id = ?";
+        jdbcTemplate.update(sql, bookingId);
+    }
+
     public List<Booking> findFilteredBooking(Booking booking) {
         //-- controller에서..
         // 날짜 겹치는 Booking 쿼리로 조회
