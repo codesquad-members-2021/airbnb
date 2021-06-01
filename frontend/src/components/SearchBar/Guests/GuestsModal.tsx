@@ -1,7 +1,9 @@
+import styled from "styled-components";
+import { useState } from 'react';
 import { guestsClickState, guestState, searchBarClickState } from "recoil/Atoms";
 import { GuestsState } from 'recoil/AtomTypes';
 import { useRecoilValue, useRecoilState } from "recoil";
-import ModalLayout from 'components/SearchBar/Guests/GuestStyles';
+import { ModalLayout, MinusButton, PlusButton } from 'components/SearchBar/Guests/GuestStyles';
 import { ReactComponent as Plus } from 'image/plus.svg';
 import { ReactComponent as Minus } from 'image/minus.svg';
 
@@ -24,6 +26,7 @@ function GuestsModal() {
   }
 
   const handleMinusBtnClick = (guestType: keyof GuestsState) => {
+    if (guestType === 'adult' && guests[guestType] === 1 && (guests.child || guests.toddler)) return;
     if (guests[guestType] > 0) {
       setGuests({
         ...guests,
@@ -34,10 +37,18 @@ function GuestsModal() {
 
   const handlePlusBtnClick = (guestType: keyof GuestsState) => {
     //최대값이 있을 경우 여기에 추가
+    if(guests.adult === 0 && guestType !== 'adult') {
+      setGuests({
+        ...guests,
+        adult: 1,
+        [guestType]: guests[guestType] + 1
+      })
+    } else {
       setGuests({
         ...guests,
         [guestType]: guests[guestType] + 1
       })
+    }
   }
 
   return isClicked
@@ -51,11 +62,11 @@ function GuestsModal() {
           <div>{restriction[idx]}</div>
         </div>
         <div className="right-container">
-          <button onClick={() => handleMinusBtnClick(type)}><Minus/></button>
+          <MinusButton onClick={() => handleMinusBtnClick(type)} disabled={guests[type] === 0}><Minus /></MinusButton>
           <span className="guest-count">
             {checkGuestNum(type)}
           </span>
-          <button onClick={() => handlePlusBtnClick(type)}><Plus/></button>
+          <PlusButton onClick={() => handlePlusBtnClick(type)} disabled={guests[type] >= 5}><Plus/></PlusButton>
         </div>
       </div>
     )})}

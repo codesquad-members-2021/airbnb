@@ -71,4 +71,18 @@ const ModalLayout = styled.div`
   }
 `;
 
-export default ModalLayout;
+const MinusButton = styled.button`
+  svg {
+    opacity: ${props => props.disabled ? 0.35 : 1 };
+    cursor: ${props => props.disabled ? 'default' : 'pointer' };
+  }
+`;
+
+const PlusButton = styled.button`
+  svg {
+    opacity: ${props => props.disabled ? 0.35 : 1};
+    cursor: ${props => props.disabled ? 'default' : 'pointer' };
+  }
+`
+
+export { ModalLayout, MinusButton, PlusButton };
