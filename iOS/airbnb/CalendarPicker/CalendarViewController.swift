@@ -25,19 +25,20 @@ class CalendarViewController: UIViewController {
         return layout
     }()
     
-    private let calendar = Calendar(identifier: .gregorian)
-    private var baseDate = Date()
     private var dataSource : CalenderColleectionDataSource?
-    private var numberOfWeeksInBaseDate: Int {
-        calendar.range(of: .weekOfMonth, in: .month, for: baseDate)?.count ?? 0
-    }
+    private var numberOfWeeksInBaseDate: Int = 0
     
     // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let days = CalendarDateCalculator().generateDaysInMonth(for: baseDate)
-        self.dataSource = CalenderColleectionDataSource(with: days)
+        let baseDate = Date()
+        let calendar = Calendar(identifier: .gregorian)
+        
+        numberOfWeeksInBaseDate = calendar.range(of: .weekOfMonth, in: .month, for: baseDate)?.count ?? 0
+        dataSource = CalenderColleectionDataSource(with: baseDate)
+        
         collection.dataSource = dataSource
         collection.delegate = self
         collection.collectionViewLayout = flowLayout

@@ -11,9 +11,10 @@ class CalenderColleectionDataSource: NSObject, UICollectionViewDataSource {
     
     var models : [CalendarViewModel] = []
     
-    init(with days: [Day]){
+    init(with date : Date){
         super.init()
         
+        let days = CalendarDateCalculator().generateDaysInMonth(for: date)
         days.forEach{
             let model = CalendarViewModel(day: $0)
             models.append(model)
@@ -35,6 +36,5 @@ class CalenderColleectionDataSource: NSObject, UICollectionViewDataSource {
         model.setup(cell, in: collectionView, at: indexPath)
         return cell
     }
-
     
 }

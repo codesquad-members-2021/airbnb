@@ -126,10 +126,10 @@
 		10406B59265D2C19004F4AF9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				10AA577F2665C97800B3DF4E /* CalendarDateCalculator.swift */,
 				10406B57265D2A5A004F4AF9 /* Day.swift */,
 				10406B5A265D2C2D004F4AF9 /* MonthMetadata.swift */,
 				1046658A265E6DD4008B2F36 /* CalenderColleectionDataSource.swift */,
-				10AA577F2665C97800B3DF4E /* CalendarDateCalculator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
