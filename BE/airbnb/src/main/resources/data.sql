@@ -14,7 +14,6 @@ INSERT INTO accommodation_detail (host_name, description, accommodation_id) VALU
 INSERT INTO accommodation_detail (host_name, description, accommodation_id) VALUES ('MJchoi', '가성비 최고의 원룸. 누구나 갖고 싶어하는 원룸. 강남역 도보 1분 거리. 럭셔리 풀옵션.', 3);
 INSERT INTO accommodation_detail (host_name, description, accommodation_id) VALUES ('MJkang', '가성비 최고의 투룸. 누구나 갖고 싶어하는 투룸. 강남역 도보 1분 거리. 럭셔리 풀옵션.', 4);
 
-
 -- -----------------------------------------------------
 -- reservation 초기값 추가
 -- -----------------------------------------------------
@@ -24,6 +23,13 @@ INSERT INTO reservation (check_in_date, check_out_date, accommodation_id, user_i
 INSERT INTO reservation (check_in_date, check_out_date, accommodation_id, user_id) VALUES ('2021-02-01', '2021-02-03', 2, 16694346);
 INSERT INTO reservation (check_in_date, check_out_date, accommodation_id, user_id) VALUES ('2020-01-21', '2021-01-23', 2, 16694346);
 INSERT INTO reservation (check_in_date, check_out_date, accommodation_id, user_id, deleted) VALUES ('2020-02-01', '2021-02-03', 2, 16694346, 1);
+
+-- -----------------------------------------------------
+-- wish 초기값 추가
+-- -----------------------------------------------------
+INSERT INTO wish (user_id, accommodation_id) VALUES (16694346, 1);
+INSERT INTO wish (user_id, accommodation_id) VALUES (16694346, 2);
+INSERT INTO wish (user_id, accommodation_id) VALUES (16694346, 3);
 
 -- -----------------------------------------------------
 -- image 초기값 추가

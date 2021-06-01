@@ -25,9 +25,11 @@ public class ReservationRepository {
     }
 
     public Long saveReservation(CreatingReservationRequestDto requestDto) {
+
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("reservation")
                 .usingGeneratedKeyColumns("id");
+
         return simpleJdbcInsert.executeAndReturnKey(requestDto.toMap()).longValue();
     }
 

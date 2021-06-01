@@ -28,7 +28,7 @@ public class AccommodationRepository {
         if (isPresentOfDestination(conditions) && isPresentOfDate(conditions) &&
                 isPresentOfPrice(conditions) && isPresentOfPeople(conditions)) {
 
-            logger.info("지역, 날짜, 가격, 인원 조건 따라 숙소 조회 ");
+            logger.debug("지역, 날짜, 가격, 인원 조건 따라 숙소 조회 ");
 
             return jdbcTemplate.query(ACCOMMODATIONS_BY_DESTINATION_AND_DATE_AND_PRICE_AND_PEOPLE_SQL, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%",
                     conditions.getCheckInDate(), conditions.getCheckOutDate(), conditions.getMinPrice(), conditions.getMaxPrice(),
@@ -37,7 +37,7 @@ public class AccommodationRepository {
 
         if (isPresentOfDate(conditions) && isPresentOfPrice(conditions) && isPresentOfPeople(conditions)) {
 
-            logger.info("날짜, 가격, 인원 조건 따라 숙소 조회 ");
+            logger.debug("날짜, 가격, 인원 조건 따라 숙소 조회 ");
 
             return jdbcTemplate.query(ACCOMMODATIONS_BY_DATE_AND_PRICE_AND_PEOPLE_SQL, ACCOMMODATION_ROW_MAPPER,
                     conditions.getCheckInDate(), conditions.getCheckOutDate(), conditions.getMinPrice(), conditions.getMaxPrice(),
@@ -46,7 +46,7 @@ public class AccommodationRepository {
 
         if (isPresentOfDestination(conditions) && isPresentOfDate(conditions) && isPresentOfPrice(conditions)) {
 
-            logger.info("지역, 날짜, 가격 조건에 따라 숙소 조회 ");
+            logger.debug("지역, 날짜, 가격 조건에 따라 숙소 조회 ");
 
             return jdbcTemplate.query(ACCOMMODATIONS_BY_DESTINATION_AND_DATE_AND_PRICE_SQL, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%",
                     conditions.getCheckInDate(), conditions.getCheckOutDate(), conditions.getMinPrice(), conditions.getMaxPrice());
@@ -54,7 +54,7 @@ public class AccommodationRepository {
 
         if (isPresentOfDate(conditions) && isPresentOfPrice(conditions)) {
 
-            logger.info("날짜, 가격 조건에 따라 숙소 조회 ");
+            logger.debug("날짜, 가격 조건에 따라 숙소 조회 ");
 
             return jdbcTemplate.query(ACCOMMODATIONS_BY_DATE_AND_PRICE_SQL, ACCOMMODATION_ROW_MAPPER,
                     conditions.getCheckInDate(), conditions.getCheckOutDate(), conditions.getMinPrice(), conditions.getMaxPrice());
@@ -62,7 +62,7 @@ public class AccommodationRepository {
 
         if (isPresentOfDestination(conditions) && isPresentOfDate(conditions)) {
 
-            logger.info("지역, 날짜 조건에 따라 숙소 조회 ");
+            logger.debug("지역, 날짜 조건에 따라 숙소 조회 ");
 
             return jdbcTemplate.query(ACCOMMODATIONS_BY_DESTINATION_AND_DATE_SQL, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%",
                     conditions.getCheckInDate(), conditions.getCheckOutDate());
@@ -70,14 +70,14 @@ public class AccommodationRepository {
 
         if (isPresentOfDate(conditions)) {
 
-            logger.info("날짜 조건에 따라 숙소 조회 ");
+            logger.debug("날짜 조건에 따라 숙소 조회 ");
 
             return jdbcTemplate.query(ACCOMMODATIONS_BY_DATE_SQL, ACCOMMODATION_ROW_MAPPER, conditions.getCheckInDate(), conditions.getCheckOutDate());
         }
 
         if (isPresentOfDestination(conditions)) {
 
-            logger.info("지역 조건에 따라 숙소 조회 ");
+            logger.debug("지역 조건에 따라 숙소 조회 ");
 
             return jdbcTemplate.query(ACCOMMODATIONS_BY_DESTINATION_SQL, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%");
         }

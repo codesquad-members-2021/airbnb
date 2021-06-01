@@ -3,8 +3,6 @@ package mj.airbnb.domain.reservation;
 import mj.airbnb.domain.accommodation.Accommodation;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Reservation {
 
@@ -13,6 +11,7 @@ public class Reservation {
     private LocalDate checkOutDate;
     private Long accommodationId;
     private Long userId;
+    private boolean deleted;
 
     private String accommodationName;
     private String accommodationAddress;
@@ -101,4 +100,5 @@ public class Reservation {
     public void setId(Long id) {
         this.id = id;
     }
+
 }
