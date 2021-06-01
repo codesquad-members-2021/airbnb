@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import styled from 'styled-components'
-import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { RouterOrSearch, RoomData } from '../../customHook/atoms'
 import useAxios from '../../customHook/useAxios'
 import { getHouseData } from '../../customHook/axiosAPI'
