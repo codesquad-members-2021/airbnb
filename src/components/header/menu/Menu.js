@@ -1,14 +1,72 @@
-import React from "react";
+import React, { useReducer, useState } from "react";
 import styled from "styled-components";
-import CalendarBox from "./input/CalendarBox";
 import SearchForm from "./SearchForm";
 import SearchInput from "./SearchInput";
-
-const onClickDay = (result) => {
-  console.log(result.clickedDay);
+import Calendar, { Controller } from "../../../lib/calendar/Calendar";
+const formReducer = (state, action) => {
+  switch (action.type) {
+    case "SET_TYPE":
+      return { ...state, inputType: action.inputType };
+    case "SET_CHECK_IN":
+      return { ...state, checkIn: action.checkIn };
+    case "SET_CHECK_OUT":
+      return { ...state, checkOut: action.checkOut };
+    case "SET_PRICE":
+      return { ...state, price: action.price };
+    case "SET_GUEST":
+      return { ...state, guest: action.guest };
+  }
 };
-
 const Menu = () => {
+  const [formState, dispatch] = useReducer(formReducer, {
+    inputType: "none",
+    checkIn: {
+      year: null,
+      month: null,
+      day: null,
+    },
+    checkOut: {
+      year: null,
+      month: null,
+      day: null,
+    },
+    price: 0,
+    guest: {
+      adult: 0,
+      child: 0,
+      infant: 0,
+    },
+  });
+  const { inputType, checkIn, checkOut } = formState;
+  const onClickDay = (result) => {
+    const { nextClickTarget, startDate, endDate } = result;
+    dispatch({
+      type: "SET_CHECK_IN",
+      checkIn: startDate
+        ? startDate
+        : {
+            year: null,
+            month: null,
+            day: null,
+          },
+    });
+    dispatch({
+      type: "SET_CHECK_OUT",
+      checkOut: endDate
+        ? endDate
+        : {
+            year: null,
+            month: null,
+            day: null,
+          },
+    });
+    if (nextClickTarget === "start") {
+      dispatch({ type: "SET_TYPE", inputType: "checkIn" });
+    } else if (nextClickTarget === "end") {
+      dispatch({ type: "SET_TYPE", inputType: "checkOut" });
+    }
+  };
+
   return (
     <MenuWrapper>
       <form>
@@ -33,9 +91,11 @@ const Menu = () => {
             </Selector>
           </MenuSelector>
         </fieldset>
-        <SearchForm />
+        <SearchForm {...{ Controller, formState, dispatch }} />
         <SearchInput type="calendar">
-          <CalendarBox />
+          {(inputType === "checkIn" || inputType === "checkOut") && (
+            <Calendar onClickDay={onClickDay} start={checkIn} end={checkOut} />
+          )}
         </SearchInput>
       </form>
     </MenuWrapper>

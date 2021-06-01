@@ -5,12 +5,13 @@ import React, {
   useMemo,
   useReducer,
 } from "react";
-import { DAYS, MESSAGE } from "../utils/constant";
+import { MESSAGE } from "../utils/constant";
 import {
   Calendar,
   CurrentDay,
   OnClickDay,
   ClickTargetType,
+  DateType,
 } from "../utils/types";
 import {
   calendarReducer,
@@ -26,6 +27,8 @@ type CalendarProviderProps = OnClickDay & {
   countOfMonth: number;
   setClickTarget: (clickTarget: ClickTargetType) => void;
   lang: string;
+  start?: DateType;
+  end?: DateType;
 };
 
 const TODAY = getCurrentDate();
@@ -36,10 +39,13 @@ export default function CalendarProvider({
   countOfMonth,
   setClickTarget,
   lang,
+  start,
+  end,
 }: CalendarProviderProps) {
   const [dates, datesDispatch] = useReducer(datesReducer, {
-    startDate: null,
-    endDate: null,
+    startDate: start ? new Date(start.year, start.month - 1, start.day) : null,
+    endDate: end ? new Date(end.year, end.month - 1, end.day) : null,
+    nextClickTarget: "start",
   });
 
   const [calendar, calendarDispatch] = useReducer(calendarReducer, {

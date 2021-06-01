@@ -1,18 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { DUMMY } from "../../utils/dummy";
+import {
+  getCloseAttracitons,
+  getThemeStayContent,
+  getSearchResult,
+} from "../../utils/fetchFn";
 import Footer from "./Footer.js";
 import Location from "./Location";
 import Thema from "./Thema";
-
 const HomePage = () => {
-  const { LOCATION, THEMA } = DUMMY;
+  const [location, setLocation] = useState({
+    title: "",
+    contents: [],
+  });
+  const [theme, setTheme] = useState({ title: "", contents: [] });
+
+  useEffect(() => {
+    const callData = async () => {
+      const { title: locationTitle, closeAttractions } =
+        await getCloseAttracitons();
+      const { title: themeTitle, themeStayContents } =
+        await getThemeStayContent();
+
+      setLocation({ title: locationTitle, contents: closeAttractions });
+      setTheme({ title: themeTitle, contents: themeStayContents });
+    };
+    callData();
+  }, []);
+
   return (
     <HomePageWrapper>
       <HeroImage></HeroImage>
       <Main>
-        <Nav>{renderContent(LOCATION, Location)}</Nav>
-        <Section>{renderContent(THEMA, Thema)}</Section>
+        <Nav>{renderContent(location, Location)}</Nav>
+        <Section>{renderContent(theme, Thema)}</Section>
       </Main>
       <Footer />
     </HomePageWrapper>
