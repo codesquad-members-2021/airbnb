@@ -15,7 +15,7 @@ const ReservationMain = () => {
   return (
     <ReservationMainDiv>
       <AvailableRoom roomData={roomData} />
-      <RoomMap />
+      <RoomMap roomData={roomData} />
     </ReservationMainDiv>
   );
 };

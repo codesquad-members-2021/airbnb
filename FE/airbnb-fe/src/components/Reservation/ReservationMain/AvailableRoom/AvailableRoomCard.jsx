@@ -21,7 +21,7 @@ const AvailableRoomCard = ({ room, calcDiff }) => {
             <RoomOption>{room.options}</RoomOption>
           </div>
           <RoomLike>
-            <Heart />
+            <Heart isLike={room.like} />
           </RoomLike>
         </RoomContentUpper>
         <RoomContentBottom>
