@@ -34,8 +34,6 @@ const PriceChart = ({ priceSection }: Props) => {
 
   const drawDotsLine = (dots: dotType[]): void => {
     if (!canvas || !ctx) return;
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
     ctx.beginPath();
     ctx.fillStyle = 'rgba(0,0,0,0.7)';
 
@@ -53,9 +51,9 @@ const PriceChart = ({ priceSection }: Props) => {
     }
 
     ctx.lineTo(prevX, prevY);
-    ctx.lineTo(canvasWidth, canvasHeight);
-    ctx.lineTo(0, canvasHeight);
     ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+    ctx.stroke();
     ctx.closePath();
   };
 

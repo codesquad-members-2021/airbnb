@@ -9,6 +9,11 @@ export interface reserveInfoType {
   maxCharge: number;
   guests: guestStateType;
 }
+interface priceArgType {
+  city: string;
+  checkIn: number;
+  checkOut: number;
+}
 
 interface apiType {
   url: string;
@@ -20,7 +25,9 @@ interface apiType {
     maxCharge,
     guests,
   }: reserveInfoType) => string;
+  getPrice: ({ city, checkIn, checkOut }: priceArgType) => string;
 }
+
 export const serverAPI: apiType = {
   url: 'http://13.125.35.62',
   getRooms: ({ address, checkIn, checkOut, minCharge, maxCharge, guests }) => {
@@ -29,6 +36,12 @@ export const serverAPI: apiType = {
     const guestNumber = Object.values(guests).reduce((acc, cur) => acc + cur);
     const query = `city=${address}&check_in=${checkInDate}&check_out=${checkOutDate}&min_charge=${minCharge}&max_charge=${maxCharge}&guests=${guestNumber}`;
     return serverAPI.url + '/accommodations?' + query;
+  },
+  getPrice: ({ city, checkIn, checkOut }) => {
+    const checkInDate = timeToDate(checkIn);
+    const checkOutDate = timeToDate(checkOut);
+    const query = `city=${city}&check_in=${checkInDate}&check_out=${checkOutDate}`;
+    return serverAPI.url + '/accommodations/charges?' + query;
   },
 };
 

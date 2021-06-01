@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect, useRef } from 'react';
+import { MouseEvent, Suspense, useEffect, useRef } from 'react';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useToggle from '../../../hooks/useToggle';
@@ -54,7 +54,11 @@ const FormPrice = () => {
           {isShowDeleteBtn && open && <DeleteBtn onClick={handleDeleteClick} />}
         </HoverBlock>
       </StyledFormPrice>
-      {open && <PriceBar toggleRef={toggleRef} />}
+      {open && (
+        <Suspense fallback='loading...'>
+          <PriceBar toggleRef={toggleRef} />
+        </Suspense>
+      )}
     </StyledFormPriceWrapper>
   );
 };
