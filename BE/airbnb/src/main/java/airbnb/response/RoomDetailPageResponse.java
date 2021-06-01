@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Builder
 public class RoomDetailPageResponse {
-    private List<String> roomImages = new ArrayList<>();
+    private List<String> roomImages;
     private String title;
     private String roomDescription;
     private double averageRating;

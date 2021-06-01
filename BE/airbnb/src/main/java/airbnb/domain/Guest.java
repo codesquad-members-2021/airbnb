@@ -6,6 +6,7 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Getter
 public class Guest {

@@ -101,8 +101,8 @@ public class Room {
                 .user(user)
                 .room(room)
                 .guest(BookingRequest.createGuest(reservationInfo))
-                .checkIn(LocalDateTime.of(LocalDate.parse(reservationInfo.getCheckIn()), room.rule.getCheckInTime()))
-                .checkOut(LocalDateTime.of(LocalDate.parse(reservationInfo.getCheckIn()), room.rule.getCheckOutTime()))
+                .checkIn(LocalDate.parse(reservationInfo.getCheckIn()))
+                .checkOut(LocalDate.parse(reservationInfo.getCheckOut()))
                 .totalPrice(reservationInfo.getTotalPrice())
                 .build();
     }

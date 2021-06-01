@@ -9,6 +9,8 @@ import java.util.*;
 @Entity
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @ToString
 public class User {
     @Id
@@ -19,13 +21,13 @@ public class User {
     private String name;
     private String email;
     private String githubId;
-    private String avatarUrl;
+    private String profileImage;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private final List<Booking> bookings = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private final List<Wish> wishes = new ArrayList<>();
 }
