@@ -27,6 +27,7 @@ class NearPlace : Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(name)
     }
+    
     static func == (lhs: NearPlace, rhs : NearPlace) -> Bool {
         lhs.name == rhs.name
     }

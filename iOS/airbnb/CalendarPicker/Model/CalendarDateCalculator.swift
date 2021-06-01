@@ -9,7 +9,7 @@ import Foundation
 
 struct CalendarDateCalculator {
     
-    private var dateFormatter: DateFormatter = {
+    private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d"
         dateFormatter.locale = Locale(identifier: "ko")
