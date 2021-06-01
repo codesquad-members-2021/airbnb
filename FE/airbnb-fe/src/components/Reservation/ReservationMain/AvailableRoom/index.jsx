@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import AvailableRoomCard from './AvailableRoomCard';
 import roomData from '../../../utils/mock/room-card.json';
+import { ReservationContext } from '../..';
 
 const AvailableRoom = () => {
+  const { match } = useContext(ReservationContext);
   const roomList = roomData.accommodationList;
-  console.log(roomList);
+
   return (
     <AvailableRoomDiv>
       <ReservationConditionData>
@@ -22,8 +24,13 @@ const AvailableRoom = () => {
 };
 
 const AvailableRoomDiv = styled.div`
-  position: absolute;
+  position: relative;
   top: 126px;
+  width: 50.8%; //map=49.2%;
+  min-width: 640px;
+  max-width: 790px;
+  //768px정도 줄어들었을때 width를 100%, 그리고 지도쪽 display:none;
+  border: 1px solid red;
 `;
 
 const ReservationConditionData = styled.div`

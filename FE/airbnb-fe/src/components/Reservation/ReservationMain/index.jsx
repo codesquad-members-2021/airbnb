@@ -13,12 +13,12 @@ const ReservationMain = () => {
 };
 
 const ReservationMainDiv = styled.div`
-  padding: 0 24px;
-  border: 2px solid green;
-  display: flex;
   position: relative;
-  top: 0;
+  display: flex;
+  width: 100%;
   height: fit-content;
+  padding: 0 24px;
+  top: 0;
 `;
 
 export default ReservationMain;

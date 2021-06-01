@@ -6,7 +6,9 @@ import Heart from '../../../Atoms/icons/Heart';
 const AvailableRoomCard = ({ room }) => {
   return (
     <RoomCardDiv>
-      <RoomImg src={`${room.image}`} />
+      <div>
+        <RoomImg src={`${room.image}`} />
+      </div>
       <RoomContent>
         <RoomContentUpper>
           <div>
@@ -38,25 +40,26 @@ const AvailableRoomCard = ({ room }) => {
 
 const RoomCardDiv = styled.div`
   display: flex;
-  width: 684px;
+  /* width: 684px; */
+  width: 100%;
   height: 248px;
   padding: 24px 0;
-
+  border: 1px solid green;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray5};
 `;
 const RoomImg = styled.img`
   width: 320px;
   height: 200px;
   border-radius: 10px;
-  object-fit: cover;
 `;
 const RoomContent = styled.div`
   margin-left: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
+  border: 1px solid pink;
   width: 330px;
+  width: 100%;
 `;
 const RoomContentUpper = styled.div`
   display: flex;

@@ -1,4 +1,5 @@
 const END_POINT = 'http://3.35.226.74';
+// const END_POINT = 'http://3.35.226.74';
 
 const API = {
   get: {
