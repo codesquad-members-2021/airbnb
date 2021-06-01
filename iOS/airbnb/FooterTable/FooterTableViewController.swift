@@ -9,7 +9,7 @@ import UIKit
 
 class FooterTableViewController: UITableViewController {
 
-    let infoTitle = ["위치", "체크인/체크아웃", "요금", "인원"]
+    private let infoTitle = ["위치", "체크인/체크아웃", "요금", "인원"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,6 @@ class FooterTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 4
     }
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView

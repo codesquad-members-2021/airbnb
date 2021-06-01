@@ -34,15 +34,14 @@ class FooterTableViewCell: UITableViewCell, IdentityInfo {
         super.init(coder: coder)
         configure()
     }
-    func configure() {
+    
+    private func configure() {
         self.contentView.addSubview(title)
         self.contentView.addSubview(content)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             title.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
