@@ -43,7 +43,7 @@ const FormCheckIn = ({ checkOutRef }: Props) => {
   return (
     <StyledCheckInWrapper>
       <StyledFormCheckIn ref={checkInRef} data-type='checkIn'>
-        <HoverBlock color='gray4' className='hover__checkIn' dataKey='checkIn' isModal={open}>
+        <HoverBlock color='gray5' className='hover__checkIn' dataKey='checkIn' isModal={open}>
           <FormColumn title='체크인' description={description} />
           {isShowDeleteBtn && <DeleteBtn onClick={handleDeleteClick} />}
         </HoverBlock>

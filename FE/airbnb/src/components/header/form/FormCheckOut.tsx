@@ -29,7 +29,7 @@ const FormCheckOut = ({ checkOutRef }: Props) => {
 
   return (
     <StyledFormCheckOut ref={checkOutRef} data-type='checkOut'>
-      <HoverBlock color='gray4' className='hover__checkOut' dataKey='checkOut' isModal={open}>
+      <HoverBlock color='gray5' className='hover__checkOut' dataKey='checkOut' isModal={open}>
         <FormColumn title='체크아웃' description={description} />
         {isShowDeleteBtn && <DeleteBtn onClick={handleDeleteClick} />}
       </HoverBlock>

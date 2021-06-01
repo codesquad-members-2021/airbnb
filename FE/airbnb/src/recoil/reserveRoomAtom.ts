@@ -4,9 +4,13 @@ import { serverAPI } from '../util/api';
 import { reserveInfoSelector, reserveQueryType } from './headerAtom';
 import { roomData } from './roomSampleData';
 
-export const roomsState = atom<roomType[] | null>({
+export const roomsState = selector<roomType[] | null>({
   key: 'roomsState',
-  default: roomData,
+  get: ({ get }) => {
+    const data = get(getRoomsSelector);
+    if (!data) return null;
+    return data.data.accommodations;
+  },
 });
 
 export const getRoomsSelector = selector({

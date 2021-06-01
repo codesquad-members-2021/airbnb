@@ -10,7 +10,7 @@ interface Props {
 }
 
 const ReserveRoom = ({ roomData }: Props) => {
-  const { photo, chargePerNight, totalCharge } = roomData;
+  const { photo } = roomData;
 
   return (
     <StyledReserveRoom>

@@ -1,4 +1,7 @@
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { selectDateState } from '../../recoil/calendarAtom';
+import { getBetweenDays } from '../header/form/calendar/calendarDateFn';
 import { getNumberWithComma } from '../util/util';
 import { roomType } from './roomType';
 interface Props {
@@ -6,9 +9,11 @@ interface Props {
 }
 
 const ReserveRoomPrice = ({ roomData }: Props) => {
+  const selectDate = useRecoilValue(selectDateState);
   const { chargePerNight, totalCharge } = roomData;
   const pricePerDay = `￦${getNumberWithComma(chargePerNight)} `;
-  const totalPrice = `총액 ￦${getNumberWithComma(totalCharge)}`;
+  const betweenDays = getBetweenDays(selectDate.checkIn, selectDate.checkOut);
+  const totalPrice = `총액 ￦${getNumberWithComma(chargePerNight * betweenDays)}`;
   return (
     <StyledReserveRoomPrice>
       <div className='room__day-price'>

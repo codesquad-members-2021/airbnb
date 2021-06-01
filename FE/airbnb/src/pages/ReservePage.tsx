@@ -32,9 +32,6 @@ const ReservePage = ({}: Props) => {
 
   const getQueryValue = (query: string): string[] => query.split('&').map((v) => v.split('=')[1]);
 
-  useEffect(() => {
-    console.log('roomsData', reserveInfo);
-  }, [reserveInfo]);
   return (
     <StyledReservePage>
       <ReserveHeader />

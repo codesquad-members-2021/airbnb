@@ -54,6 +54,12 @@ const stringToDate = (date: string): date => {
   return { year, month, day };
 };
 
+export const getBetweenDays = (checkInTime: number | null, checkOutTime: number | null): number => {
+  if (!checkInTime || !checkOutTime) return 0;
+  const SECOND_UNIT = 1000 * 60 * 60 * 24;
+  return (checkOutTime - checkInTime) / SECOND_UNIT;
+};
+
 export const timeToDate = pipe(getDateByTime, dateToString);
 
 export const dateToTime = pipe(stringToDate, getTimes);

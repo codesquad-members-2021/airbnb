@@ -49,7 +49,7 @@ const FormPrice = () => {
   return (
     <StyledFormPriceWrapper>
       <StyledFormPrice ref={clickRef} data-type='price'>
-        <HoverBlock color='gray4' className='hover__price' dataKey='price' isModal={open}>
+        <HoverBlock color='gray5' className='hover__price' dataKey='price' isModal={open}>
           <FormColumn title='요금' description={priceDescripition} />
           {isShowDeleteBtn && open && <DeleteBtn onClick={handleDeleteClick} />}
         </HoverBlock>

@@ -55,7 +55,7 @@ const FormGuest = () => {
   return (
     <StyledFormGuestWrapper>
       <StyledFormGuest ref={clickRef} isFormOpened={isFormOpened}>
-        <HoverBlock color='gray4' className='hover__guest' dataKey='guest' isModal={open}>
+        <HoverBlock color='gray5' className='hover__guest' dataKey='guest' isModal={open}>
           <FormColumn title='인원' description={getGuestDesc()} />
           {isShowDeleteBtn && <DeleteBtn onClick={handleDeleteClick} />}
           <ConditionalLink to={linkURL} condition={linkCondition}>
