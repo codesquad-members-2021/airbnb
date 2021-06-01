@@ -27,7 +27,7 @@ public class AccommodationDummyDataFactory {
     public static AccommodationBuilder builderWithOneRoom() {
         return Accommodation.builder()
                        .name("롤로호텔 일반객실")
-                       .accommodationOption(AccommodationOptionDummyDataFactory.oneRoom())
+                       .accommodationOption(AccommodationOptionDummyDataFactory.oneRoom())                       .accommodationPrice(400000)
                        .reviewRating(4.2)
                        .reviewCounts(5)
                        .mainImage("https://image.zdnet.co.kr/2016/12/08/imc_47ix3fAqITYz5QtR.jpg")

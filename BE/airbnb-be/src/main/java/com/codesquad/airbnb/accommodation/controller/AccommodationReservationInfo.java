@@ -33,7 +33,7 @@ public class AccommodationReservationInfo {
 
     public static AccommodationReservationInfo of(Accommodation accommodation, ReservationDetail reservationDetail) {
         return builder().id(accommodation.getId())
-                       .pricePerNight(accommodation.getAccommodationOption().getPricePerNight())
+                       .pricePerNight(accommodation.pricePerNight())
                        .priceForNights(accommodation.priceForNights(reservationDetail))
                        .discountPrice(accommodation.discountPrice(reservationDetail))
                        .cleaningFee(accommodation.cleaningFee(reservationDetail))

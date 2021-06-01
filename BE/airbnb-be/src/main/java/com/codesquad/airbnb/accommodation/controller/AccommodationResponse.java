@@ -11,6 +11,7 @@ public class AccommodationResponse {
     private String name;
     private AccommodationOption accommodationOption;
     private Integer totalPrice;
+    private Integer pricePerNight;
     private double reviewRating;
     private int reviewCounts;
     private String mainImage;
@@ -18,11 +19,12 @@ public class AccommodationResponse {
     public AccommodationResponse() {
     }
 
-    public AccommodationResponse(Long id, String name, AccommodationOption accommodationOption, Integer totalPrice, double reviewRating, int reviewCounts, String mainImage) {
+    public AccommodationResponse(Long id, String name, AccommodationOption accommodationOption, Integer totalPrice, Integer pricePerNight, double reviewRating, int reviewCounts, String mainImage) {
         this.id = id;
         this.name = name;
         this.accommodationOption = accommodationOption;
         this.totalPrice = totalPrice;
+        this.pricePerNight = pricePerNight;
         this.reviewRating = reviewRating;
         this.reviewCounts = reviewCounts;
         this.mainImage = mainImage;
@@ -32,6 +34,7 @@ public class AccommodationResponse {
         return builder().id(accommodation.getId())
                        .name(accommodation.getName())
                        .accommodationOption(accommodation.getAccommodationOption())
+                       .pricePerNight(accommodation.pricePerNight())
                        .reviewRating(accommodation.getReviewRating())
                        .reviewCounts(accommodation.getReviewCounts())
                        .mainImage(accommodation.getMainImage())
@@ -43,6 +46,7 @@ public class AccommodationResponse {
                        .name(accommodation.getName())
                        .accommodationOption(accommodation.getAccommodationOption())
                        .totalPrice(accommodation.totalPrice(reservationDetail))
+                       .pricePerNight(accommodation.pricePerNight())
                        .reviewRating(accommodation.getReviewRating())
                        .reviewCounts(accommodation.getReviewCounts())
                        .mainImage(accommodation.getMainImage())
@@ -50,13 +54,9 @@ public class AccommodationResponse {
     }
 
     public static AccommodationResponseBuilder builder() {
-        return AccommodationResponseBuilder.anAccommodationDTO();
+        return AccommodationResponseBuilder.anAccommodationResponse();
     }
 
-
-    public int pricePerNight() {
-        return accommodationOption.getPricePerNight();
-    }
 
     public Long getId() {
         return id;
@@ -90,6 +90,14 @@ public class AccommodationResponse {
         this.totalPrice = totalPrice;
     }
 
+    public Integer getPricePerNight() {
+        return pricePerNight;
+    }
+
+    public void setPricePerNight(Integer pricePerNight) {
+        this.pricePerNight = pricePerNight;
+    }
+
     public double getReviewRating() {
         return reviewRating;
     }
@@ -119,21 +127,22 @@ public class AccommodationResponse {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccommodationResponse that = (AccommodationResponse) o;
-        return Double.compare(that.reviewRating, reviewRating) == 0 && reviewCounts == that.reviewCounts && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(accommodationOption, that.accommodationOption) && Objects.equals(totalPrice, that.totalPrice) && Objects.equals(mainImage, that.mainImage);
+        return Double.compare(that.reviewRating, reviewRating) == 0 && reviewCounts == that.reviewCounts && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(accommodationOption, that.accommodationOption) && Objects.equals(totalPrice, that.totalPrice) && Objects.equals(pricePerNight, that.pricePerNight) && Objects.equals(mainImage, that.mainImage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, accommodationOption, totalPrice, reviewRating, reviewCounts, mainImage);
+        return Objects.hash(id, name, accommodationOption, totalPrice, pricePerNight, reviewRating, reviewCounts, mainImage);
     }
 
     @Override
     public String toString() {
-        return "AccommodationDTO{" +
+        return "AccommodationResponse{" +
                        "id=" + id +
                        ", name='" + name + '\'' +
                        ", accommodationOption=" + accommodationOption +
                        ", totalPrice=" + totalPrice +
+                       ", pricePerNight=" + pricePerNight +
                        ", reviewRating=" + reviewRating +
                        ", reviewCounts=" + reviewCounts +
                        ", mainImage='" + mainImage + '\'' +

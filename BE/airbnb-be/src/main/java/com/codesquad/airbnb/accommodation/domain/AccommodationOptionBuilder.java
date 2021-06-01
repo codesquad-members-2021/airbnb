@@ -2,7 +2,6 @@ package com.codesquad.airbnb.accommodation.domain;
 
 public final class AccommodationOptionBuilder {
     private int capacity;
-    private int pricePerNight;
     private AccommodationType accommodationType;
     private int bedroomCount;
     private int restroomCount;
@@ -21,11 +20,6 @@ public final class AccommodationOptionBuilder {
 
     public AccommodationOptionBuilder capacity(int capacity) {
         this.capacity = capacity;
-        return this;
-    }
-
-    public AccommodationOptionBuilder pricePerNight(int pricePerNight) {
-        this.pricePerNight = pricePerNight;
         return this;
     }
 
@@ -70,6 +64,6 @@ public final class AccommodationOptionBuilder {
     }
 
     public AccommodationOption build() {
-        return new AccommodationOption(capacity, pricePerNight, accommodationType, bedroomCount, restroomCount, restroomType, hasKitchen, hasInternet, hasAirconditioner, hasHairdrier);
+        return new AccommodationOption(capacity, accommodationType, bedroomCount, restroomCount, restroomType, hasKitchen, hasInternet, hasAirconditioner, hasHairdrier);
     }
 }

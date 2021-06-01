@@ -9,6 +9,7 @@ public final class AccommodationDetailResponseBuilder {
     private String name;
     private AccommodationOption accommodationOption;
     private Integer totalPrice;
+    private Integer pricePerNight;
     private double reviewRating;
     private int reviewCounts;
     private String mainImage;
@@ -19,7 +20,7 @@ public final class AccommodationDetailResponseBuilder {
     private AccommodationDetailResponseBuilder() {
     }
 
-    public static AccommodationDetailResponseBuilder anAccommodationDetailDTO() {
+    public static AccommodationDetailResponseBuilder anAccommodationDetailResponse() {
         return new AccommodationDetailResponseBuilder();
     }
 
@@ -40,6 +41,11 @@ public final class AccommodationDetailResponseBuilder {
 
     public AccommodationDetailResponseBuilder totalPrice(Integer totalPrice) {
         this.totalPrice = totalPrice;
+        return this;
+    }
+
+    public AccommodationDetailResponseBuilder pricePerNight(Integer pricePerNight) {
+        this.pricePerNight = pricePerNight;
         return this;
     }
 
@@ -74,6 +80,6 @@ public final class AccommodationDetailResponseBuilder {
     }
 
     public AccommodationDetailResponse build() {
-        return new AccommodationDetailResponse(id, name, accommodationOption, totalPrice, reviewRating, reviewCounts, mainImage, images, description, accommodationHost);
+        return new AccommodationDetailResponse(id, name, accommodationOption, totalPrice, pricePerNight, reviewRating, reviewCounts, mainImage, images, description, accommodationHost);
     }
 }

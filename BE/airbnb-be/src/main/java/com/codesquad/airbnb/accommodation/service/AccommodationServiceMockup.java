@@ -22,13 +22,13 @@ public class AccommodationServiceMockup implements AccommodationService {
 
         if (accommodationRequest.getStartPrice() != null) {
             result = result.stream()
-                             .filter(accommodationResponseDTO -> accommodationRequest.getStartPrice() <= accommodationResponseDTO.pricePerNight())
+                             .filter(accommodationResponseDTO -> accommodationRequest.getStartPrice() <= accommodationResponseDTO.getPricePerNight())
                              .collect(Collectors.toList());
         }
 
         if (accommodationRequest.getEndPrice() != null) {
             result = result.stream()
-                             .filter(accommodationResponseDTO -> accommodationResponseDTO.pricePerNight() <= accommodationRequest.getEndPrice())
+                             .filter(accommodationResponseDTO -> accommodationResponseDTO.getPricePerNight() <= accommodationRequest.getEndPrice())
                              .collect(Collectors.toList());
         }
 

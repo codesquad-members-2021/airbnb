@@ -35,6 +35,10 @@ public class Accommodation {
         return AccommodationBuilder.anAccommodation();
     }
 
+    public int pricePerNight() {
+        return price.pricePerNight();
+    }
+
     public int priceForNights(ReservationDetail reservationDetail) {
         return price.priceForNights(reservationDetail);
     }

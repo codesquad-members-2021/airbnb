@@ -10,7 +10,6 @@ public class AccommodationOptionDummyDataFactory {
     public static AccommodationOption normal() {
         return AccommodationOption.builder()
                        .capacity(8)
-                       .pricePerNight(400000)
                        .accommodationType(AccommodationType.NORMAL)
                        .bedroomCount(3)
                        .restroomCount(2)
@@ -25,7 +24,6 @@ public class AccommodationOptionDummyDataFactory {
     public static AccommodationOption oneRoom() {
         return AccommodationOption.builder()
                        .capacity(4)
-                       .pricePerNight(200000)
                        .accommodationType(AccommodationType.ONEROOM)
                        .bedroomCount(1)
                        .restroomCount(1)
@@ -40,7 +38,6 @@ public class AccommodationOptionDummyDataFactory {
     public static AccommodationOption publicRestroom() {
         return AccommodationOption.builder()
                        .capacity(2)
-                       .pricePerNight(40000)
                        .accommodationType(AccommodationType.ONEROOM)
                        .bedroomCount(1)
                        .restroomCount(1)

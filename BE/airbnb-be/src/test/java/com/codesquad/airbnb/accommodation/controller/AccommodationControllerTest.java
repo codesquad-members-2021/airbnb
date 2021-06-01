@@ -67,20 +67,20 @@ class AccommodationControllerTest {
                         "/accommodations",
                         AccommodationRequest.builder().endPrice(300000).build(),
                         AccommodationResponseDummyDataFactory.listWithIdTypeOneNight().stream()
-                                .filter(accommodationResponseDTO -> accommodationResponseDTO.pricePerNight() <= 300000)
+                                .filter(accommodationResponseDTO -> accommodationResponseDTO.getPricePerNight() <= 300000)
                                 .collect(Collectors.toList())
                 ), Arguments.arguments(
                         "/accommodations",
                         AccommodationRequest.builder().startPrice(100000).build(),
                         AccommodationResponseDummyDataFactory.listWithIdTypeOneNight().stream()
-                                .filter(accommodationResponseDTO -> 100000 <= accommodationResponseDTO.pricePerNight())
+                                .filter(accommodationResponseDTO -> 100000 <= accommodationResponseDTO.getPricePerNight())
                                 .collect(Collectors.toList())
                 ), Arguments.arguments(
                         "/accommodations",
                         AccommodationRequest.builder().startPrice(100000).endPrice(300000).build(),
                         AccommodationResponseDummyDataFactory.listWithIdTypeOneNight().stream()
-                                .filter(accommodationResponseDTO -> 100000 <= accommodationResponseDTO.pricePerNight())
-                                .filter(accommodationResponseDTO -> accommodationResponseDTO.pricePerNight() <= 300000)
+                                .filter(accommodationResponseDTO -> 100000 <= accommodationResponseDTO.getPricePerNight())
+                                .filter(accommodationResponseDTO -> accommodationResponseDTO.getPricePerNight() <= 300000)
                                 .collect(Collectors.toList())
                 )
         );

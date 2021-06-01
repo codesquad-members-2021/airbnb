@@ -19,6 +19,10 @@ public class Price {
         return new Price(pricePerNight, pricePolicies);
     }
 
+    public int pricePerNight() {
+        return pricePerNight;
+    }
+
     public int priceForNights(ReservationDetail reservationDetail) {
         return pricePerNight * reservationDetail.nights();
     }
