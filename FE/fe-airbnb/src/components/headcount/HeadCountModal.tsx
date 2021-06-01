@@ -1,14 +1,21 @@
 import styled from 'styled-components';
+import HeadCount from "@components/headcount/HeadCount"
+import { GuestType } from './HeadCountTypes';
 
 function HeadCountModal() {
+  const guestTypes: GuestType[] = ['adults', 'children', 'infants'];
+
   return (
-    <HeadCountContainer>
-      인원 모달
-    </HeadCountContainer>
+    <HeadCountModalContainer>
+      {guestTypes.map((guestType, i) => <HeadCount guestType={guestType} key={i}/>)}
+    </HeadCountModalContainer>
   );
 }
 
-const HeadCountContainer = styled.div`
+const HeadCountModalContainer = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
   width: 400px;
   height: fit-content;
   border-radius: ${({ theme }) => theme.borders.L};

@@ -1,4 +1,4 @@
-import { createContext, Dispatch, ReactElement, SetStateAction, useState } from 'react';
+import { createContext, ReactElement, useState } from 'react';
 import styled from 'styled-components';
 import moment, { Moment } from 'moment';
 import { Center, Flex } from '@chakra-ui/layout';
@@ -8,21 +8,15 @@ import HeadCountModal from '@components/headcount/HeadCountModal';
 import PriceModal from '@components/price/PriceModal';
 import SearchButton from '../SearchButton';
 import SearchBarBtn from './SearchBarBtn';
-import { SearchBarBtnType, SelectedContentProps } from './searchBarTypes';
-
-export type CalendarContextType = {
-  calendars: Moment[];
-  setCalendars: Dispatch<SetStateAction<Moment[]>>;
-  checkInMoment: Moment | null;
-  setCheckInMoment: Dispatch<SetStateAction<Moment | null>>;
-  checkOutMoment: Moment | null;
-  setCheckOutMoment: Dispatch<SetStateAction<Moment | null>>;
-}
+import { CalendarContextType, HeadCountContextType, SearchBarBtnType, SelectedContentProps } from './searchBarTypes';
 
 export const CalendarContext = createContext<CalendarContextType | null >(null);
+export const HeadCountContext = createContext<HeadCountContextType>({guestCountState: null, setGuestCountState: null});
 
 function SearchBar() {
   const [selectedBtn, setSelectedBtn] = useState<string | null>(null);
+
+  // ============================ calendar 상태 ============================
 
   const initialCalendars = [
     moment().add(-1, 'M'),
@@ -46,6 +40,17 @@ function SearchBar() {
     },
   };
 
+  // ============================ headcount 상태 ============================
+
+  const [guestCountState, setGuestCountState] = useState({ adults: 0, children: 0, infants: 0 });
+  const { adults, children, infants } = guestCountState;
+  const headCountState = {
+    values: {
+      guestCountState,
+      setGuestCountState
+    }
+  }
+
   const renderModal = (): ReactElement | void => {
     switch (selectedBtn) {
       case SearchBarBtnType.CHECK_IN_OUT:
@@ -62,7 +67,9 @@ function SearchBar() {
 
       case SearchBarBtnType.HEAD_COUNT:
         return (
-          <HeadCountModal />
+          <HeadCountContext.Provider value={headCountState.values}>
+            <HeadCountModal />
+          </HeadCountContext.Provider>
         );
     }
   }
@@ -108,7 +115,11 @@ function SearchBar() {
           <SearchBarBtn onClick={() => handleClickSearchBarBtn(SearchBarBtnType.HEAD_COUNT)}>
             <Flex direction="column">
               <SearchBarSubTitle>인원</SearchBarSubTitle>
-              <SelectedContent contentType="placeholder">게스트 추가</SelectedContent>
+              {
+                guestCountState.adults || guestCountState.children || guestCountState.infants
+                  ? <SelectedContent contentType="guests">게스트 {adults + children}명, 유아 {infants}명</SelectedContent>
+                  : <SelectedContent contentType="placeholder">게스트 추가</SelectedContent>
+              }
             </Flex>
           </SearchBarBtn>
 

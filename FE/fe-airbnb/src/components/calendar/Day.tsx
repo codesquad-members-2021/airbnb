@@ -4,8 +4,7 @@ import styled from 'styled-components'
 import moment, { Moment } from 'moment';
 
 import { CalendarContext } from '@components/searchBar/SearchBar'
-import { CalendarContextType } from '@components/searchBar/SearchBar'
-import { DayContainerProps } from '@components/searchBar/searchBarTypes';
+import { CalendarContextType, DayContainerProps } from '@components/searchBar/searchBarTypes';
 
 type DayProps = {
   day: Moment;
