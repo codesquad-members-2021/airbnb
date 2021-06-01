@@ -87,6 +87,23 @@ CREATE TABLE IF NOT EXISTS `airbnb_db`.`image` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `airbnb_db`.`wish`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `airbnb_db`.`wish`;
+CREATE TABLE IF NOT EXISTS `airbnb_db`.`wish` (
+  `user_id` INT NOT NULL,
+  `accommodation_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `accommodation_id`),
+  INDEX `fk_wish_accommodation1_idx` (`accommodation_id` ASC) VISIBLE,
+  CONSTRAINT `fk_wish_accommodation1`
+    FOREIGN KEY (`accommodation_id`)
+    REFERENCES `airbnb_db`.`accommodation` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
