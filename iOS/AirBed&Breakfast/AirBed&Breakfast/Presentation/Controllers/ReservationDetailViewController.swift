@@ -13,7 +13,8 @@ protocol ReservationDetailViewControllerProtocol {
     func changeLocation(with location: String)
     func changeDateRange(date: Date, isLowerDay: Bool)
     func changePriceRange(lowestPrice: CGFloat, highestPrice: CGFloat)
-    func changeNumberOfHead(type: GuestType, number: Int)
+    func addNumberOfHead(type: GuestType)
+    func deductNumberOfHead(type: GuestType)
 }
 
 class ReservationDetailViewController: UIViewController {
@@ -38,12 +39,28 @@ class ReservationDetailViewController: UIViewController {
     {
         didSet {
             NotificationCenter.default.post(name: .didChangeGuestNumber, object: nil, userInfo: self.numberOfHead)
+            
+            if allNumbersOfHeadAreZero() {
+                self.deleteCurrentDetailButton.isEnabled = false
+            } else {
+                self.deleteCurrentDetailButton.isEnabled = true
+            }
+            
+            if numberOfHead[.adult]! > 0 {
+                self.nextButton.isEnabled = true
+            } else {
+                self.nextButton.isEnabled = false
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    private func allNumbersOfHeadAreZero() -> Bool {
+        return self.numberOfHead[.adult] == 0 && self.numberOfHead[.child] == 0 && self.numberOfHead[.infant] == 0
     }
     
     @IBAction func deleteCurrentDetailButtonPressed(_ sender: UIButton) {
@@ -54,6 +71,9 @@ class ReservationDetailViewController: UIViewController {
         case String(describing: PriceSlideControlView.self):
             self.priceRangeDetailLabel.text = ""
             self.detailSetUpViewInitializer?.clearPriceSlideControlView()
+        case String(describing: NumberOfHeadSelectionView.self):
+            self.numberOfHeadDetailLabel.text = ""
+            self.numberOfHead = self.numberOfHead.mapValues { (count) -> Int in 0 }
         default:
             break
         }
@@ -70,6 +90,9 @@ class ReservationDetailViewController: UIViewController {
         case String(describing: PriceSlideControlView.self):
             detailSetUpViewInitializer?.deinitializePriceControlView()
             detailSetUpViewInitializer?.configureNumberOfHeadSelectionView()
+        case String(describing: NumberOfHeadSelectionView.self):
+            self.detailSetUpViewInitializer?.deinitializeNumberOfHeadSelectionView()
+            self.detailSetUpViewInitializer?.moveToAccommodationSelectionController()
         default: break
         }
         
@@ -94,7 +117,6 @@ extension ReservationDetailViewController: ReservationDetailViewControllerProtoc
     }
     
     func changeDateRange(date: Date, isLowerDay: Bool) {
-
         if isLowerDay {
             self.lowerDate = date
             self.upperDate = nil
@@ -118,8 +140,27 @@ extension ReservationDetailViewController: ReservationDetailViewControllerProtoc
         self.deleteCurrentDetailButton.isEnabled = true
     }
     
-    func changeNumberOfHead(type: GuestType, number: Int) {
-        self.numberOfHead[type]? += number
+    func addNumberOfHead(type: GuestType) {
+        self.numberOfHead[type]? += 1
+        
+        if (type == .child && numberOfHead[.adult] == 0) || (type == .infant && numberOfHead[.adult] == 0) {
+            self.numberOfHead[.adult]! += 1
+        }
+        
+        self.setNumberOfHeadDetailLabel()
+    }
+    
+    func deductNumberOfHead(type: GuestType) {
+        self.numberOfHead[type]? -= 1
+        
+        self.setNumberOfHeadDetailLabel()
+    }
+    
+    private func setNumberOfHeadDetailLabel() {
+        self.numberOfHeadDetailLabel.text = "게스트 \(self.numberOfHead[.adult]! + self.numberOfHead[.child]!)명"
+        if self.numberOfHead[.infant]! > 0 {
+            numberOfHeadDetailLabel.text?.append(" 유아 \(self.numberOfHead[.infant]!)명")
+        }
     }
     
 }

@@ -110,4 +110,5 @@ class NumberOfHeadSelectionView: UIView {
         childNumberAdjustmentView?.plusButtonAvailability(with: guestNumberData[.child] ?? 0)
         infantNumberAdjustmentView?.plusButtonAvailability(with: guestNumberData[.infant] ?? 0)
     }
+    
 }

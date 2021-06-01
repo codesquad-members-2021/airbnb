@@ -197,6 +197,14 @@
             </objects>
             <point key="canvasLocation" x="3422" y="94"/>
         </scene>
+        <!--Accommodation Select View Controller-->
+        <scene sceneID="xAm-jZ-hED">
+            <objects>
+                <viewController storyboardIdentifier="AccommodationSelectViewController" id="2XX-7a-mDm" customClass="AccommodationSelectViewController" customModule="AirBed_Breakfast" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iKw-fh-RWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4277" y="94"/>
+        </scene>
         <!--Reservation Detail View Controller-->
         <scene sceneID="IZl-cz-SiB">
             <objects>

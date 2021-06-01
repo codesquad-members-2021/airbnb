@@ -17,6 +17,7 @@
 		8843A805265241200068B4E3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8843A804265241200068B4E3 /* README.md */; };
 		885221EC2665D85800740770 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885221EB2665D85800740770 /* NotificationNameExtension.swift */; };
 		885221F02665E09900740770 /* GuestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885221EF2665E09900740770 /* GuestType.swift */; };
+		885221F42665FF2800740770 /* AccommodationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885221F32665FF2800740770 /* AccommodationSelectViewController.swift */; };
 		885CEB4C26538DDC00B3291F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB4B26538DDC00B3291F /* SearchViewController.swift */; };
 		885CEB512653957A00B3291F /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB4F2653957A00B3291F /* SearchResultCollectionViewCell.swift */; };
 		885CEB522653957A00B3291F /* SearchResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885CEB502653957A00B3291F /* SearchResultCollectionViewCell.xib */; };
@@ -58,6 +59,7 @@
 		8843A804265241200068B4E3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		885221EB2665D85800740770 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		885221EF2665E09900740770 /* GuestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestType.swift; sourceTree = "<group>"; };
+		885221F32665FF2800740770 /* AccommodationSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationSelectViewController.swift; sourceTree = "<group>"; };
 		885CEB4B26538DDC00B3291F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		885CEB4F2653957A00B3291F /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		885CEB502653957A00B3291F /* SearchResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				885CEB4B26538DDC00B3291F /* SearchViewController.swift */,
 				885CEB5D2656355200B3291F /* SetUpViewController.swift */,
 				885CEB64265639FF00B3291F /* ReservationDetailViewController.swift */,
+				885221F32665FF2800740770 /* AccommodationSelectViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				885CEB65265639FF00B3291F /* ReservationDetailViewController.swift in Sources */,
 				8860617E265F93A800681808 /* NumberAdjustmentView.swift in Sources */,
 				8860615F265BED9E00681808 /* PriceSlideControlView.swift in Sources */,
+				885221F42665FF2800740770 /* AccommodationSelectViewController.swift in Sources */,
 				88606136265796AA00681808 /* DayRangeIndicatorView.swift in Sources */,
 				885221F02665E09900740770 /* GuestType.swift in Sources */,
 				8860613C265A337C00681808 /* DateExtension.swift in Sources */,

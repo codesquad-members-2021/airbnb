@@ -38,10 +38,8 @@ class SearchViewController: UIViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
-        
         searchController.delegate = self
         
-
     }
     
     override func viewDidAppear(_ animated: Bool) {

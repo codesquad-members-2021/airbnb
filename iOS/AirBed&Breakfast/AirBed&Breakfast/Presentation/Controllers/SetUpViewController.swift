@@ -19,7 +19,8 @@ protocol DetailSetUpViewInitializable {
     
     func clearCalendarControlView()
     func clearPriceSlideControlView()
-    func clearNumberOfHeadSelectionView()
+    
+    func moveToAccommodationSelectionController()
 }
 
 class SetUpViewController: UIViewController {
@@ -74,11 +75,11 @@ extension SetUpViewController: PriceInfoReceivable {
 extension SetUpViewController: GuestNumberInfoReceivable {
     
     func addGuest(type: GuestType) {
-        reservationDetailViewController.changeNumberOfHead(type: type, number: 1)
+        reservationDetailViewController.addNumberOfHead(type: type)
     }
     
     func reduceGuest(type: GuestType) {
-        reservationDetailViewController.changeNumberOfHead(type: type, number: -1)
+        reservationDetailViewController.deductNumberOfHead(type: type)
     }
     
 }
@@ -145,7 +146,11 @@ extension SetUpViewController: DetailSetUpViewInitializable {
     }
     
     func deinitializeNumberOfHeadSelectionView() {
-        // todo
+        self.numberOfHeadSelectionView.guestNumberInfoReceivable = nil
+        self.numberOfHeadSelectionView.removeConstraints(self.numberOfHeadSelectionView.constraints)
+        self.numberOfHeadSelectionView.removeFromSuperview()
+        self.numberOfHeadSelectionView = nil
+        self.currentContextView = nil
     }
     
     func clearCalendarControlView() {
@@ -156,10 +161,11 @@ extension SetUpViewController: DetailSetUpViewInitializable {
         self.priceSlideControlView.clearRangeSlider()
     }
     
-    func clearNumberOfHeadSelectionView() {
-        // todo
+    func moveToAccommodationSelectionController() {
+        let targetVC = self.storyboard?.instantiateViewController(identifier: String(describing: AccommodationSelectViewController.self)) as! AccommodationSelectViewController
+        
+        self.navigationController?.pushViewController(targetVC, animated: false)
     }
-    
 }
     
 
