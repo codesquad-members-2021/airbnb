@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import styled from 'styled-components'
+import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil'
+import { RouterOrSearch, RoomData } from '../../customHook/atoms'
 import useAxios from '../../customHook/useAxios'
 import { getHouseData } from '../../customHook/axiosAPI'
 import Logo from '../header/Logo'
@@ -24,13 +26,20 @@ interface params {
 }
 function SearchResult({ match }: RouteComponentProps<params>) {
   const [clicked, setClicked] = useState(false)
+  const RoomDatas = useRecoilValue(RoomData)
   const { state } = useAxios(() => getHouseData(match.params))
+  const [isRouter, setIsRouter] = useRecoilState(RouterOrSearch)
+
+  useEffect(() => {
+    if (RoomDatas.length === 0) setIsRouter(false)
+  }, [RoomDatas])
 
   const { loading, error, data: result } = state
   if (loading) return <div>Loading...💭</div>
   if (error) return <div>에러발생</div>
   if (!result) return null
-  let roomData = result ? result.rooms : null
+
+  let roomData = result && !isRouter ? result.rooms : RoomDatas
 
   return (
     <TotalWindow>
@@ -64,7 +73,6 @@ const FlexBox = styled.div`
   justify-content: space-around;
   margin: 30px 0;
 `
-
 const NoPaddingFlexBox = styled.div`
   display: flex;
 `

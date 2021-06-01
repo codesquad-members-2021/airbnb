@@ -14,6 +14,7 @@ function useAxios(callback: () => Promise<AxiosResponse>, deps = [], skip = fals
     try {
       const response = await callback()
       dispatch({ type: 'SUCCESS', data: response.data })
+      return response
     } catch (e) {
       dispatch({ type: 'ERROR', error: e })
     }

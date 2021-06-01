@@ -21,7 +21,9 @@ export const getFeeMsg = (
   let feeMsg =
     priceMin === defaultValue.fee
       ? priceMin
-      : `${Number(priceMin) + Number(minFeePercent)} ~ ${Number(priceMax) - Number(maxFeePercent)}원`
+      : `${Number(priceMin) + Number(minFeePercent)} ~ ${
+          Number(priceMax) - Number(maxFeePercent)
+        }원`
   return feeMsg
 }
 

@@ -2,12 +2,19 @@ import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button'
-import { RecoilValueGroup } from '../../../customHook/atoms'
+import useAxios from '../../../customHook/useAxios'
+import { getHouseData } from '../../../customHook/axiosAPI'
+import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil'
+import { RecoilValueGroup, RouterOrSearch, RoomData } from '../../../customHook/atoms'
 import { PlaceSection } from '../../../style/BarStyle'
-
+import { AxiosResponse } from 'axios'
 function SearchBtn({ history }: any) {
+  const setRoomDatas = useSetRecoilState(RoomData)
+
+  const [isRouter, setIsRouter] = useRecoilState(RouterOrSearch)
+  const value = RecoilValueGroup()
   const {
-    placeToSearch,
+    place,
     checkIn,
     checkOut,
     priceMin,
@@ -17,12 +24,20 @@ function SearchBtn({ history }: any) {
     adult,
     child,
     baby,
-  } = RecoilValueGroup()
+  } = value
 
-  const GoNextPage = () => {
-    history.push(
-      `/searchResult/${placeToSearch}/${checkIn}/${checkOut}/${priceMin}/${priceMax}/${minFeePercent}/${maxFeePercent}/${adult}/${child}/${baby}`
-    )
+  const { fetchData } = useAxios(() => getHouseData(value), [], true)
+  const GoNextPage = async () => {
+    if (isRouter) {
+      history.push(
+        `/searchResult/${place}/${checkIn}/${checkOut}/${priceMin}/${priceMax}/${minFeePercent}/${maxFeePercent}/${adult}/${child}/${baby}`
+      )
+    } else {
+      const response = await fetchData()
+      setIsRouter(true)
+      if (response !== undefined && response.data.rooms.length > 0)
+        setRoomDatas(response.data.rooms)
+    }
   }
 
   return (

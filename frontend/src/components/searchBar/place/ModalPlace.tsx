@@ -8,11 +8,11 @@ import { IModalPropType } from '../../../Interface'
 
 const ModalPlace: React.FunctionComponent<IModalPropType> = ({ modalType }) => {
   const locations = ['서울', '경기', '부산', '광주', '대전', '전주', '강원', '제주']
-  const setPlaceToSearch = useSetRecoilState(clickedPlace)
+  const setPlace = useSetRecoilState(clickedPlace)
   const defaultMsg = '가까운 여행지 둘러보기'
   let coordsObj
   const handleClick = (location: string) => {
-    setPlaceToSearch(location)
+    setPlace(location)
     if (location === defaultMsg) askForCoords()
   }
   const askForCoords = () => {
