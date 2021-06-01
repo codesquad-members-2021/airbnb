@@ -10,7 +10,7 @@ import UIKit
 class CalendarHeader: UICollectionReusableView {
     static let reuseIdentifier = String(describing: CalendarHeader.self)
     
-    var monthLabel: UILabel = {
+    private var monthLabel: UILabel = {
       let label = UILabel()
       label.translatesAutoresizingMaskIntoConstraints = false
       label.font = .systemFont(ofSize: 20, weight: .bold)
@@ -33,12 +33,16 @@ class CalendarHeader: UICollectionReusableView {
     override init(frame: CGRect) {
         self.baseDate = Date()
         super.init(frame: frame)
-        addSubview(monthLabel)
-        monthLabel.text = dateFormatter.string(from: baseDate)
+        configure()
     }
+    
     required init?(coder: NSCoder) {
         self.baseDate = Date()
         super.init(coder: coder)
+        configure()
+    }
+    
+    private func configure() {
         addSubview(monthLabel)
         monthLabel.text = dateFormatter.string(from: baseDate)
     }

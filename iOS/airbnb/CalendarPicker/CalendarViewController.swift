@@ -32,7 +32,16 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureCollection()
+    }
+
+}
+
+// MARK: - Configuration
+
+extension CalendarViewController {
+    
+    private func configureCollection(){
         let baseDate = Date()
         let calendar = Calendar(identifier: .gregorian)
         
@@ -43,6 +52,7 @@ class CalendarViewController: UIViewController {
         collection.delegate = self
         collection.collectionViewLayout = flowLayout
     }
+    
 }
 
 extension CalendarViewController: UICollectionViewDelegateFlowLayout {
