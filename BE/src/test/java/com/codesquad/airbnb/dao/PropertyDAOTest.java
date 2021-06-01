@@ -1,8 +1,8 @@
 package com.codesquad.airbnb.dao;
 
 import com.codesquad.airbnb.domain.Property;
-import com.codesquad.airbnb.dto.PropertyDTO;
-import com.codesquad.airbnb.dto.PropertyDetailResponseDTO;
+import com.codesquad.airbnb.dto.property.PropertyDTO;
+import com.codesquad.airbnb.dto.property.PropertyDetailResponseDTO;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

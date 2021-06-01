@@ -1,10 +1,10 @@
 package com.codesquad.airbnb.service;
 
 import com.codesquad.airbnb.dao.PropertyDAO;
-import com.codesquad.airbnb.dto.PriceSearchDTO;
-import com.codesquad.airbnb.dto.PropertiesResponseDTO;
-import com.codesquad.airbnb.dto.PropertyDTO;
-import com.codesquad.airbnb.dto.PropertyDetailResponseDTO;
+import com.codesquad.airbnb.dto.price.PriceSearchDTO;
+import com.codesquad.airbnb.dto.property.PropertiesResponseDTO;
+import com.codesquad.airbnb.dto.property.PropertyDTO;
+import com.codesquad.airbnb.dto.property.PropertyDetailResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,23 +66,20 @@ public class PropertyService {
 
         long finalDiff = diff;
 
-        propertyDTOS.stream()
+        propertyDTOS
                 .forEach(propertyDTO1 -> {
                             propertyDTO1.setImages(propertyDao.findImageByPropertyId(propertyDTO1.getPropertyId()));
                             propertyDTO1.setTotalPrice(finalDiff);
                         }
                 );
 
-        PropertiesResponseDTO propertyDtos = new PropertiesResponseDTO(propertyDTOS);
-        return propertyDtos;
+        return new PropertiesResponseDTO(propertyDTOS);
     }
 
     public PropertiesResponseDTO findByWishList() {
         List<PropertyDTO> propertyDTOS = propertyDao.findByWishList();
-        propertyDTOS.stream()
-                .forEach(propertyDTO1 -> {
-                            propertyDTO1.setImages(propertyDao.findImageByPropertyId(propertyDTO1.getPropertyId()));
-                        }
+        propertyDTOS
+                .forEach(propertyDTO1 -> propertyDTO1.setImages(propertyDao.findImageByPropertyId(propertyDTO1.getPropertyId()))
                 );
         return new PropertiesResponseDTO(propertyDTOS);
     }

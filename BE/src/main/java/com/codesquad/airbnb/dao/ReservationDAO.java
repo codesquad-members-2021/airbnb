@@ -1,7 +1,7 @@
 package com.codesquad.airbnb.dao;
 
 import com.codesquad.airbnb.domain.Reservation;
-import com.codesquad.airbnb.dto.ReservationDetailDTO;
+import com.codesquad.airbnb.dto.reservation.ReservationDetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
