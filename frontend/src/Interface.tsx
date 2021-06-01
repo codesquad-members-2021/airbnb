@@ -13,3 +13,15 @@ export interface IAction {
   data?: any
   error?: Error
 }
+export interface IParams {
+  adult: string | undefined
+  baby: string | undefined
+  checkIn: string | undefined
+  checkOut: string | undefined
+  child: string | undefined
+  maxFeePercent: string | undefined
+  minFeePercent: string | undefined
+  place: string | undefined
+  priceMax: string | undefined
+  priceMin: string | undefined
+}

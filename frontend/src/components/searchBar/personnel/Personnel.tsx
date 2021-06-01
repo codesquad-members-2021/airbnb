@@ -31,6 +31,7 @@ function Personnel() {
   const [child, setChild] = useRecoilState(personnelChild)
   const [baby, setBaby] = useRecoilState(personnelBaby)
   const [guestMsg, setGuestMsg] = useRecoilState(personnelMessage)
+
   if (adult + child + baby !== 0) setGuestMsg(`게스트 ${adult + child}명, 유아${baby}명`)
 
   const RenderXbtn = useXclick(

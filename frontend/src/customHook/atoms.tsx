@@ -1,6 +1,7 @@
 import { RefObject } from 'react'
-import { atom, useRecoilValue } from 'recoil'
-
+import { atom, useRecoilValue, useSetRecoilState } from 'recoil'
+import { dateToString, FilterDateToString } from './useDateInfo'
+import { IParams } from '../Interface'
 //defaultValue________________________________________
 export const defaultValue = {
   placeAdjacent: '가까운 여행지 둘러보기',
@@ -16,11 +17,11 @@ export const clickedPlace = atom<string | undefined>({
   default: defaultValue.placeToSearch,
 })
 //Calendar___________________________________________
-export const checkInMessage = atom<string | number>({
+export const checkInMessage = atom<string | number | undefined>({
   key: 'checkIn',
   default: defaultValue.checkIn,
 })
-export const checkOutMessage = atom<string | number>({
+export const checkOutMessage = atom<string | number | undefined>({
   key: 'checkOut',
   default: defaultValue.checkOut,
 })
@@ -76,6 +77,38 @@ export const clickCheckOut = atom<boolean>({
 })
 
 //UseAllRecoilData_______________________________________
+export function RecoilSetStateGroup(params: IParams) {
+  const setPlaceToSearch = useSetRecoilState(clickedPlace)
+  const setCheckIn = useSetRecoilState(checkInMessage)
+  const setCheckOut = useSetRecoilState(checkOutMessage)
+  const setPriceMin = useSetRecoilState(FeeMin)
+  const setPriceMax = useSetRecoilState(FeeMax)
+  const setMinFeePercent = useSetRecoilState(FeeMinChange)
+  const setMaxFeePercent = useSetRecoilState(FeeMaxChange)
+  const setAdult = useSetRecoilState(personnelAudult)
+  const setChild = useSetRecoilState(personnelChild)
+  const setBaby = useSetRecoilState(personnelBaby)
+  console.log(params)
+  const { place, checkIn, checkOut } = params
+  const filterUndefined = (date: any) => {
+    if (date !== undefined) return date
+  }
+  setPlaceToSearch(place === defaultValue.placeToSearch ? '근처 추천 장소' : place)
+  setCheckIn(filterUndefined(checkIn))
+  setCheckOut(filterUndefined(checkOut))
+  return {
+    // placeToSearch,
+    // checkIn,
+    // checkOut,
+    // priceMin,
+    // minFeePercent,
+    // priceMax,
+    // maxFeePercent,
+    // adult,
+    // child,
+    // baby,
+  }
+}
 export function RecoilValueGroup() {
   const placeToSearch = useRecoilValue(clickedPlace)
   const checkIn = useRecoilValue(checkInMessage)
@@ -101,3 +134,16 @@ export function RecoilValueGroup() {
     baby,
   }
 }
+
+// const getSchedule = (
+//   checkIn: string | undefined,
+//   checkOut: string | undefined
+// ): (string | null)[] | null => {
+//   if (checkIn !== undefined && checkIn !== undefined) {
+//     let schedule =
+//       checkIn !== defaultValue.checkIn && checkOut !== defaultValue.checkOut
+//         ? [FilterDateToString(checkIn), FilterDateToString(checkOut)]
+//         : [defaultValue.checkIn, defaultValue.checkOut]
+//     return schedule
+//   } else return null
+// }

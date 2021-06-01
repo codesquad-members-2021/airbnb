@@ -2,13 +2,26 @@ import styled from 'styled-components'
 import SearchIcon from '@material-ui/icons/Search'
 import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
-
-function MiniSearchBar() {
+import { IParams } from '../../Interface'
+import { RecoilValueGroup, RecoilSetStateGroup } from '../../customHook/atoms'
+import { FilterDateToString } from '../../customHook/useDateInfo'
+interface IMiniProps {
+  setClicked: (value: React.SetStateAction<boolean>) => void
+  inputData: IParams
+}
+function MiniSearchBar({ setClicked, inputData }: IMiniProps) {
+  const handleClick = () => {
+    setClicked(true)
+  }
+  RecoilSetStateGroup(inputData)
+  const { placeToSearch, checkIn, checkOut } = RecoilValueGroup()
   return (
     <SearchBar>
-      <div>근처 추천 장소</div>
-      <div>날짜 입력</div>
-      <div>게스트 추가</div>
+      <div onClick={handleClick}>{placeToSearch}</div>
+      <div onClick={handleClick}>
+        {FilterDateToString(checkIn)} - {FilterDateToString(checkOut)}
+      </div>
+      <div onClick={handleClick}>게스트 추가</div>
       <IconButton
         color='secondary'
         className={'routerBtn'}

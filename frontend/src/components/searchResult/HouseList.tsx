@@ -116,7 +116,7 @@ const Column = styled.div`
   }
 `
 const Frame = styled.div`
-  width: 50vw;
-  padding: 24px;
+  width: 50%;
+  margin: 24px;
 `
 export default HouseList

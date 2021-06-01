@@ -10,8 +10,8 @@ interface IBoxProps {
 }
 
 function Slider({ dataArr }: IGraphProps) {
-  const [minFeePercecnt, setMinFeePercecnt] = useRecoilState(FeeMinChange)
-  const [maxFeePercecnt, setMaxFeePercecnt] = useRecoilState(FeeMaxChange)
+  const [minFeePercent, setMinFeePercecnt] = useRecoilState(FeeMinChange)
+  const [maxFeePercent, setMaxFeePercecnt] = useRecoilState(FeeMaxChange)
   const setPriceMin = useSetRecoilState(FeeMin)
   const setPriceMax = useSetRecoilState(FeeMax)
 
@@ -98,12 +98,12 @@ function Slider({ dataArr }: IGraphProps) {
       <PriceBox>
         <PriceTag>
           <span>최저요금</span>
-          <input value={minValue + minFeePercecnt}></input>
+          <input value={minValue + minFeePercent}></input>
         </PriceTag>
         &nbsp;-&nbsp;
         <PriceTag>
           <span>최고요금</span>
-          <input value={maxValue - maxFeePercecnt}></input>
+          <input value={maxValue - maxFeePercent}></input>
         </PriceTag>
       </PriceBox>
     </SliderWrapper>

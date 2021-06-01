@@ -1,3 +1,4 @@
+import { defaultValue } from './atoms'
 interface IDate {
   year: number
   month: number
@@ -6,6 +7,10 @@ interface IDate {
   dateOfLast: number
 }
 
+export const FilterDateToString = (value: number | string | undefined) => {
+  if (value !== undefined) return dateToString(value)
+  else return null
+}
 export const DateInfo = (today: Date): IDate => {
   const year = today.getFullYear()
   const month = today.getMonth() + 1
@@ -15,10 +20,14 @@ export const DateInfo = (today: Date): IDate => {
   return { year, month, date, day, dateOfLast }
 }
 
-export const dateToString = (clickedDate: string | number) => {
-  if (typeof clickedDate === 'string') return '날짜입력'
-  const dateValue = Number(clickedDate)
-
+export const dateToString = (clickedDate: string | number): string => {
+  let dateValue
+  if (clickedDate === defaultValue.checkIn) return defaultValue.checkIn
+  else {
+    console.log(clickedDate)
+    dateValue = Number(clickedDate)
+    console.log(dateValue)
+  }
   return new Date(dateValue).getMonth() + 1 + '월' + new Date(dateValue).getDate() + '일'
 }
 

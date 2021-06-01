@@ -1,4 +1,3 @@
-import { RefObject } from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import {
   checkOutMessage,
@@ -6,6 +5,7 @@ import {
   clickCheckOut,
   defaultValue,
 } from '../../../customHook/atoms'
+import { FilterDateToString } from '../../../customHook/useDateInfo'
 import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../../style/BarStyle'
 import { dateToString } from '../../../customHook/useDateInfo'
 import useXclick from '../../../customHook/useXclick'
@@ -33,7 +33,7 @@ function CheckOut({ open, type, checkOutToggle }: IProps) {
       <BarInnerWrapper>
         <div>
           <BarTitle>체크아웃</BarTitle>
-          <BarMessage>{dateToString(checkOut)}</BarMessage>
+          <BarMessage>{FilterDateToString(checkOut)}</BarMessage>
         </div>
         <RenderXbtn />
       </BarInnerWrapper>

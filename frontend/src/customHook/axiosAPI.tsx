@@ -1,11 +1,11 @@
 import axios from 'axios'
-import { dateToDateForm } from './useDateInfo'
+import { FilterDateToString } from './useDateInfo'
 import { defaultValue } from './atoms'
 
 export async function getFeeData(
   city: string | undefined,
-  checkIn: string | number,
-  checkOut: string | number
+  checkIn: string | number | undefined,
+  checkOut: string | number | undefined
 ) {
   const query = []
   const skipCase: (string | number | undefined)[] = [
@@ -15,7 +15,7 @@ export async function getFeeData(
   ]
 
   if (!skipCase.includes(checkIn) && !skipCase.includes(checkOut)) {
-    query.push(`check-in=${dateToDateForm(checkIn)}&check-out=${dateToDateForm(checkOut)}`)
+    query.push(`check-in=${FilterDateToString(checkIn)}&check-out=${FilterDateToString(checkOut)}`)
   }
   if (!skipCase.includes(city)) query.push(`city-name=${city}`)
   const url = query.reduce(
@@ -61,7 +61,9 @@ export async function getHouseData(value: any) {
   const query = []
   if (typeof checkIn !== defaultValue.checkIn && typeof checkOut === defaultValue.checkOut) {
     query.push(
-      `check-in=${dateToDateForm(Number(checkIn))}&check-out=${dateToDateForm(Number(checkOut))}`
+      `check-in=${FilterDateToString(Number(checkIn))}&check-out=${FilterDateToString(
+        Number(checkOut)
+      )}`
     )
   }
 
