@@ -2,10 +2,11 @@ import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
-import GuestModal from './GuestModal';
-import Title from '@components/common/Title';
 import { totalGuestState } from '@recoil/atoms/guests';
 import { modalStates } from '@recoil/atoms/modalState';
+
+import Title from '@components/common/Title';
+import GuestModal from './GuestModal';
 
 const Guests = () => {
   const [isOpenModal, setIsOpenModal] = useRecoilState(modalStates);

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import GuestItem from './GuestItem';
 
 type guests = {

@@ -1,13 +1,13 @@
-import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import queryString from 'query-string';
 
 import { isOpenProfileModal } from '@recoil/atoms/profileModal';
 
-import Login from './Login';
 import { ReactComponent as MenuIcon } from '@assets/menu.svg';
 import { ReactComponent as User } from '@assets/user.svg';
+import Login from './Login';
 
 type MouseClick = React.MouseEvent<HTMLElement>;
 

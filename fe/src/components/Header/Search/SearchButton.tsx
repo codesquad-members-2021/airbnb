@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { useSetRecoilState } from 'recoil';
+import { Link } from 'react-router-dom';
 
 import { ReactComponent as SearchIcon } from '@assets/search.svg';
-import { Link } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+
 import { isMiniSearchBarOpen } from '@recoil/atoms/searchResult';
 
 const SearchButton = () => {

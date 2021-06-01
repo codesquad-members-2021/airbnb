@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import { ReactComponent as SearchIcon } from '@assets/search.svg';
-import { totalGuestState } from '@recoil/atoms/guests';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+
+import { ReactComponent as SearchIcon } from '@assets/search.svg';
+
+import { totalGuestState } from '@recoil/atoms/guests';
 import { miniSearchBarDate } from '@recoil/atoms/date';
 import { searchBarPriceShow } from '@recoil/atoms/price';
 import { isMiniSearchBarOpen } from '@recoil/atoms/searchResult';

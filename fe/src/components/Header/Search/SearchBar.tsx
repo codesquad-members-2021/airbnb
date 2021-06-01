@@ -4,11 +4,11 @@ import styled from 'styled-components';
 
 import { modalStates } from '@recoil/atoms/modalState';
 
+import CalendarWrap from '@components/Header/Calender/CalendarWrap';
 import SearchButton from './SearchButton';
 import Date from './Date';
 import Fare from './Fare';
 import Guests from './Guests';
-import CalendarWrap from '@components/Header/Calender/CalendarWrap';
 
 const SearchBar = () => {
   const isOpenModal = useRecoilValue(modalStates);

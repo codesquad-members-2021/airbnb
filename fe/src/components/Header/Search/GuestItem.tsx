@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import Count from './Count';
 
 type guests = {

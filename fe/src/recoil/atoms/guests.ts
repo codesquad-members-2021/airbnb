@@ -12,11 +12,6 @@ const guestCountState = atom<guest>({
   default: { adult: 0, child: 0, baby: 0 },
 });
 
-const isOpenGuestModal = atom<boolean>({
-  key: 'isOpenGuestModal',
-  default: false,
-});
-
 const totalGuestState = selector({
   key: 'totalGuests',
   get: ({ get }) => {
@@ -27,4 +22,4 @@ const totalGuestState = selector({
   },
 });
 
-export { guestCountState, isOpenGuestModal, totalGuestState };
+export { guestCountState, totalGuestState };

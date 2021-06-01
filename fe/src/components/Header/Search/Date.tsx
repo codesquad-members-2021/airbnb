@@ -1,12 +1,12 @@
+import React from 'react';
 import styled from 'styled-components';
-
 import { useRecoilState, useRecoilValue } from 'recoil';
+
 import { isCheckInOut, checkDate } from '@recoil/atoms/date';
 import { modalStates } from '@recoil/atoms/modalState';
 
 import Title from '@components/common/Title';
 import SmallText from '@components/common/SmallText';
-import React from 'react';
 
 type dateType = {
   year: number;

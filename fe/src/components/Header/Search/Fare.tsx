@@ -1,4 +1,4 @@
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import SmallText from '@components/common/SmallText';
@@ -7,11 +7,6 @@ import ChartModal from '@components/Header/PriceChart/ChartModal';
 
 import { modalStates } from '@recoil/atoms/modalState';
 import { searchBarPriceShow, selectedPrice } from '@recoil/atoms/price';
-
-interface price {
-  MIN_PRICE: number;
-  MAX_PRICE: number;
-}
 
 const Fare = () => {
   const [isOpenModal, setIsOpenModal] = useRecoilState(modalStates);

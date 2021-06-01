@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
-import { averagePrice, priceList, priceRange } from '@recoil/atoms/price';
+import {
+  averagePrice,
+  priceList,
+  searchBarPriceShow,
+} from '@recoil/atoms/price';
 import { LoadingDefaultChart } from '@components/common/Loading';
 
 import Graph from './Graph';
 
 const ChartModal = () => {
-  const { MIN_PRICE, MAX_PRICE } = useRecoilValue(priceRange);
+  const priceString = useRecoilValue(searchBarPriceShow);
   const averPrice = useRecoilValue(averagePrice);
   const priceListLoadable = useRecoilValueLoadable(priceList);
   const { state, contents } = priceListLoadable;
@@ -16,9 +20,7 @@ const ChartModal = () => {
     <ModalWrap>
       <ModalInfo>
         <h4>가격 범위</h4>
-        <Text title="true">
-          `${MIN_PRICE.toLocaleString()} - ${MAX_PRICE.toLocaleString()}+`
-        </Text>
+        <Text title="true">{priceString}+</Text>
         <Text title="">{averPrice}</Text>
       </ModalInfo>
       {state === 'loading' && <LoadingDefaultChart />}

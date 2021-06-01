@@ -1,7 +1,8 @@
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import { isMiniSearchBarOpen } from '@recoil/atoms/searchResult';
+
 import Logo from '@components/Header/Nav/Logo';
 import Form from '@components/Header/Nav/Form';
 import Profile from '@components/Header/ProfileMenu/Profile';

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
-import { useRecoilState } from 'recoil';
 import { calendarDateState } from '@recoil/atoms/date';
 import { modalStates } from '@recoil/atoms/modalState';
 

@@ -1,9 +1,9 @@
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { ReactComponent as PlusCircle } from '@assets/plus-circle.svg';
 import { ReactComponent as MinusCircle } from '@assets/minus-circle.svg';
 
-import { useRecoilState } from 'recoil';
 import { guestCountState } from '@recoil/atoms/guests';
 
 type Props = {
