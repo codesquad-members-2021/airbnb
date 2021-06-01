@@ -12,6 +12,8 @@ public class Accommodation {
     private int numOfBathroom;
     private BigDecimal price;
     private String address;
+    private String hostName;
+    private String description;
 
     public Accommodation() {
     }
@@ -70,5 +72,21 @@ public class Accommodation {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getHostName() {
+        return hostName;
     }
 }

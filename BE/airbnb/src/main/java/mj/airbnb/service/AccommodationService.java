@@ -4,6 +4,7 @@ import mj.airbnb.domain.accommodation.Accommodation;
 import mj.airbnb.domain.accommodation.AccommodationRepository;
 import mj.airbnb.domain.reservation.ReservationRepository;
 import mj.airbnb.web.AccommodationController;
+import mj.airbnb.web.dto.AccommodationInDetailResponseDto;
 import mj.airbnb.web.dto.AccommodationResponseDto;
 import mj.airbnb.web.dto.SearchRequestDto;
 import org.slf4j.Logger;
@@ -28,6 +29,10 @@ public class AccommodationService {
         return accommodationRepository.findAllByConditions(conditions).stream()
                 .map(AccommodationResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    public AccommodationInDetailResponseDto findAccommodationById(Long id) {
+        return new AccommodationInDetailResponseDto(accommodationRepository.findById(id));
     }
 
     public List<String> findAllPopularDestinations(String destination) {
