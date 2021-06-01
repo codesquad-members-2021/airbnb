@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Modal } from '../../../style/BarStyle'
 import { RecoilValueGroup } from '../../../customHook/atoms'
 import useAxios from '../../../customHook/useAxios'
-import getFeeData from '../../../customHook/axiosAPI'
+import { getFeeData } from '../../../customHook/axiosAPI'
 import Graph from './Graph'
 import Slider from './Slider'
 
@@ -20,8 +20,8 @@ const filteredFee = (fee: Array<number>): Map<number, number> => {
 }
 
 function ModalFee({ modalType }: IFeeType) {
-  const { placeToSearch, checkIn, checkOut } = RecoilValueGroup()
-  const state = useAxios(() => getFeeData(placeToSearch, checkIn, checkOut))
+  const { place, checkIn, checkOut } = RecoilValueGroup()
+  const { state } = useAxios(() => getFeeData(place, checkIn, checkOut))
 
   const { loading, error, data } = state
   if (loading) return <div>Loading...💭</div>

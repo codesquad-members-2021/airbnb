@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { TiDelete } from 'react-icons/ti'
 import IconButton from '@material-ui/core/IconButton'
 import { SetterOrUpdater } from 'recoil'
-import { setServers } from 'dns'
 
 function useXclick(state: any, setStates: SetterOrUpdater<any>[], defaultValue: string) {
   const [viewX, setViewX] = useState(false)

@@ -24,7 +24,7 @@ const Place = () => {
   })
 
   const [placeClicked, setPlaceClicked] = useRecoilState(clickPlace)
-  const [placeToSearch, setPlaceToSearch] = useRecoilState(clickedPlace)
+  const [place, setPlace] = useRecoilState(clickedPlace)
   const defaultMsg = defaultValue.placeToSearch
 
   const handleClick = () => {
@@ -34,7 +34,7 @@ const Place = () => {
     })
   }
 
-  const RenderXbtn = useXclick(placeToSearch, [setPlaceToSearch], defaultMsg)
+  const RenderXbtn = useXclick(place, [setPlace], defaultMsg)
 
   return (
     <PlaceSection>
@@ -42,7 +42,7 @@ const Place = () => {
         <BarInnerWrapper>
           <div>
             <BarTitle>위치</BarTitle>
-            <BarMessage>{placeToSearch}</BarMessage>
+            <BarMessage>{place}</BarMessage>
           </div>
           <RenderXbtn />
         </BarInnerWrapper>

@@ -64,8 +64,10 @@ function Calendar({ currentMonth }: IDate) {
 
     const clickedDate = new Date(`${year}-${currentMonth}-${dateEl}`).valueOf()
     if (checkIn === '날짜입력') setCheckIn(clickedDate)
-    if (checkIn !== '날짜입력' && checkIn <= clickedDate) setCheckOut(clickedDate)
-    if (checkIn !== '날짜입력' && checkIn > clickedDate) setCheckIn(clickedDate)
+    if (checkIn !== undefined && checkIn !== '날짜입력' && checkIn <= clickedDate)
+      setCheckOut(clickedDate)
+    if (checkIn !== undefined && checkIn !== '날짜입력' && checkIn > clickedDate)
+      setCheckIn(clickedDate)
   }
 
   return (

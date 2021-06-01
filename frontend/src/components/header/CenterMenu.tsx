@@ -15,7 +15,7 @@ const FlexBox = styled(AlignTextCenter)`
   justify-content: space-around;
 `
 const Menu = styled.div`
-  font-size: ${(props) => props.theme.fontSize.super_sm};
+  font-size: ${({ theme }) => theme.fontSize.super_sm};
   &:hover {
     cursor: pointer;
     text-decoration: underline;

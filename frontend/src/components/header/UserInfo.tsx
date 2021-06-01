@@ -17,7 +17,7 @@ function UserInfo() {
   const IMG = ({ desc }: IF_Img) => {
     return (
       <div>
-        <img src={process.env.PUBLIC_URL + desc} alt={desc} />
+        <img src={process.env.PUBLIC_URL + desc} alt={desc} width='27' height='27' />
       </div>
     )
   }

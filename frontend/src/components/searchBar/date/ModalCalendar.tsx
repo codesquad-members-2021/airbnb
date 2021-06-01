@@ -85,7 +85,6 @@ const BtnBox = styled.div`
   position: relative;
   top: 90px;
 `
-
 const TransitionBox = styled.div<IDate>`
   display: flex;
   position: absolute;

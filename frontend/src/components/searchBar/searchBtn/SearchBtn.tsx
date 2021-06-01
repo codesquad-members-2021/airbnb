@@ -1,56 +1,64 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { withRouter } from 'react-router-dom'
+import styled from 'styled-components'
 import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button'
-import { PlaceSection } from '../../../style/BarStyle'
-import { RecoilValueGroup } from '../../../customHook/atoms'
 import useAxios from '../../../customHook/useAxios'
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    button: {
-      margin: theme.spacing(1),
-      borderRadius: 30,
-    },
-  })
-)
+import { getHouseData } from '../../../customHook/axiosAPI'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { RecoilValueGroup, RouterOrSearch, RoomData } from '../../../customHook/atoms'
+import { PlaceSection } from '../../../style/BarStyle'
 
-function SearchBtn() {
-  const classes = useStyles()
-  let MIN, MAX
+function SearchBtn({ history }: any) {
+  const setRoomDatas = useSetRecoilState(RoomData)
+
+  const [isRouter, setIsRouter] = useRecoilState(RouterOrSearch)
+  const value = RecoilValueGroup()
   const {
-    placeToSearch,
+    place,
     checkIn,
     checkOut,
     priceMin,
-    minFeePercent,
     priceMax,
+    minFeePercent,
     maxFeePercent,
     adult,
     child,
     baby,
-  } = RecoilValueGroup()
-  if (typeof priceMin === 'number') {
-    MIN = priceMin + minFeePercent
-    MAX = priceMax - maxFeePercent
-  }
+  } = value
 
-  // const state = useAxios(() =>
-  //   getHouseData(placeToSearch, checkIn, checkOut, MIN, MAX, adult, child, baby)
-  // )
-  const handleClick = () => {}
+  const { fetchData } = useAxios(() => getHouseData(value), [], true)
+  const GoNextPage = async () => {
+    if (isRouter) {
+      history.push(
+        `/searchResult/${place}/${checkIn}/${checkOut}/${priceMin}/${priceMax}/${minFeePercent}/${maxFeePercent}/${adult}/${child}/${baby}`
+      )
+    } else {
+      const response = await fetchData()
+      setIsRouter(true)
+      if (response !== undefined && response.data.rooms.length > 0)
+        setRoomDatas(response.data.rooms)
+    }
+  }
 
   return (
     <PlaceSection>
       <Button
-        onClick={handleClick}
         variant='contained'
         color='secondary'
-        className={classes.button}
+        className={'routerBtn'}
         startIcon={<SearchIcon />}
+        style={{ borderRadius: 50 }}
+        onClick={GoNextPage}
       >
-        검색
+        <CustomSpan>검색</CustomSpan>
       </Button>
     </PlaceSection>
   )
 }
 
-export default SearchBtn
+const CustomSpan = styled.span`
+  color: ${({ theme }) => theme.color.white};
+  font-weight: ${({ theme }) => theme.fontWeight.W2};
+  text-decoration: none;
+`
+export default withRouter(SearchBtn)

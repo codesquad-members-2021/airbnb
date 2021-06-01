@@ -1,12 +1,11 @@
 import axios from 'axios'
-import { dateToDateForm } from './useDateInfo'
-import { useRecoilValue } from 'recoil'
-import { checkInMessage } from './atoms'
+import { FilterDateToForm } from './useDateInfo'
+import { defaultValue } from './atoms'
 
-async function getFeeData(
+export async function getFeeData(
   city: string | undefined,
-  checkIn: string | number,
-  checkOut: string | number
+  checkIn: string | number | undefined,
+  checkOut: string | number | undefined
 ) {
   const query = []
   const skipCase: (string | number | undefined)[] = [
@@ -14,24 +13,83 @@ async function getFeeData(
     '어디로 여행가세요?',
     '날짜입력',
   ]
-
   if (!skipCase.includes(checkIn) && !skipCase.includes(checkOut)) {
-    query.push(`check-in=${dateToDateForm(checkIn)}&check-out=${dateToDateForm(checkOut)}`)
+    query.push(
+      `check-in=${FilterDateToForm(Number(checkIn))}&check-out=${FilterDateToForm(
+        Number(checkOut)
+      )}`
+    )
   }
   if (!skipCase.includes(city)) query.push(`city-name=${city}`)
   const url = query.reduce(
-    (acc, curr, idx) => acc + curr + (idx >= 0 && idx < query.length - 1 ? '&' : ''),
+    (acc, curr, idx) => acc + curr + (idx < query.length - 1 ? '&' : ''),
     `http://13.125.140.183/search/prices?`
   )
-  const response = await axios.get(`http://13.125.140.183/search/prices`)
-  //기본 `http://13.125.140.183/search/prices`
-  //지역 `http://13.125.140.183/search/prices?city-name=:city-name`
-  //날짜  `http://13.125.140.183/search/prices?check-in=:check-in&check-out=:check-out`
-  //둘다  `http://13.125.140.183/search/prices?check-in=:check-in&check-out=:check-out&city-name=:city-name`
-
+  const response = await axios.get(url)
   return response
 }
 
-export default getFeeData
+interface DetailProps {
+  place: string | undefined
+  checkIn: string | number
+  checkOut: string | number
+  priceMin: string | number
+  priceMax: string
+  minFeePercent: number
+  maxFeePercent: number
+  adult: number
+  child: number
+  baby: number
+}
 
-// /search?check-in=:check-in&check-out=:check-out&city-name=:city-name&adult=:adult&child=:child&baby=:baby&price-min=:price-min&price-max=:price-max
+export async function getHouseData(value: any) {
+  const {
+    place,
+    checkIn,
+    checkOut,
+    priceMin,
+    priceMax,
+    minFeePercent,
+    maxFeePercent,
+    adult,
+    child,
+    baby,
+  }: DetailProps = value
+  console.log('getHouseAPI')
+  let guestAdult = Number(adult)
+  let guestChild = Number(child)
+  let guestBaby = Number(baby)
+
+  const query = []
+  if (checkIn !== defaultValue.checkIn && checkOut !== defaultValue.checkOut) {
+    query.push(
+      `check-in=${FilterDateToForm(Number(checkIn))}&check-out=${FilterDateToForm(
+        Number(checkOut)
+      )}`
+    )
+  }
+
+  if (place === defaultValue.placeAdjacent) {
+    console.log('지역좌표값 보내기')
+  } else if (place !== defaultValue.placeToSearch) {
+    query.push(`city-name=${place}`)
+  }
+
+  if (guestAdult + guestChild + guestBaby !== 0)
+    query.push(`adult=${guestAdult}&child=${guestChild}&baby=${guestBaby}`)
+
+  if (priceMin !== defaultValue.fee) {
+    query.push(
+      `price-min=${Number(priceMin) + Number(minFeePercent)}&price-max=${
+        Number(priceMax) + Number(maxFeePercent)
+      }`
+    )
+  }
+
+  const url = query.reduce(
+    (acc, curr, idx) => acc + curr + (idx < query.length - 1 ? '&' : ''),
+    `http://13.125.140.183/search?`
+  )
+  const response = await axios.get(url)
+  return response
+}

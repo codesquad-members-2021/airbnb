@@ -18,6 +18,15 @@ import ModalPersonnel from './ModalPersonnel'
 import useModalCtrl from '../../../customHook/useModalCtrlArray'
 import useXclick from '../../../customHook/useXclick'
 
+export const getGuestMsg = (adult: number, child: number, baby: number) => {
+  adult = Number(adult)
+  child = Number(child)
+  baby = Number(baby)
+  return adult + child + baby !== 0
+    ? `게스트 ${adult + child}명, 유아${baby}명`
+    : defaultValue.guest
+}
+
 function Personnel() {
   const PersonnelToggle = useRef<HTMLDivElement>(null)
   const PersonnelModal = useRef<HTMLDivElement>(null)
@@ -31,7 +40,7 @@ function Personnel() {
   const [child, setChild] = useRecoilState(personnelChild)
   const [baby, setBaby] = useRecoilState(personnelBaby)
   const [guestMsg, setGuestMsg] = useRecoilState(personnelMessage)
-  if (adult + child + baby !== 0) setGuestMsg(`게스트 ${adult + child}명, 유아${baby}명`)
+  setGuestMsg(getGuestMsg(adult, child, baby))
 
   const RenderXbtn = useXclick(
     guestMsg,
