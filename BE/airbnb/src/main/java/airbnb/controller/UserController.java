@@ -16,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class UserController {
-    private final Logger logger = LoggerFactory.getLogger(UserController.class);
     private final UserService userService;
 
     @LoginRequired

@@ -20,11 +20,11 @@ public class HomeController {
     private final CategoryRepository categoryRepository;
 
     @GetMapping
-    public ResponseEntity<HomeResponse> home() {
+    public HomeResponse home() {
         List<CityResponse> nearbyDestinations = cityRepository.findAll()
                 .stream().map(City::of).collect(Collectors.toList());
         List<Category> liveAnywhere = categoryRepository.findAll();
-        return ResponseEntity.ok(new HomeResponse(nearbyDestinations, liveAnywhere));
+        return new HomeResponse(nearbyDestinations, liveAnywhere);
     }
 
     @GetMapping("/price")

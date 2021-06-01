@@ -1,16 +1,15 @@
 package airbnb.controller;
 
-
 import airbnb.auth.annotation.Github;
 import airbnb.auth.annotation.LoginRequired;
 import airbnb.domain.Room;
 import airbnb.domain.User;
 import airbnb.request.BookingRequest;
 import airbnb.response.BookingResponse;
+import airbnb.response.Status;
 import airbnb.service.BookingService;
 import airbnb.service.RoomService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,16 +21,15 @@ public class BookingController {
 
     @LoginRequired
     @PostMapping("/book/rooms/{roomId}")
-    public ResponseEntity<BookingResponse> reserve(@PathVariable Long roomId, @RequestBody BookingRequest reservationInfo, @Github User user) {
+    public BookingResponse reserve(@PathVariable Long roomId, @RequestBody BookingRequest reservationInfo, @Github User user) {
         Room room = roomService.findRoomById(roomId);
-        BookingResponse bookingResponse = bookingService.reserve(user, room, reservationInfo);
-        return ResponseEntity.ok(bookingResponse);
+        return bookingService.reserve(user, room, reservationInfo);
     }
 
     @LoginRequired
     @DeleteMapping("/cancel/bookings/{bookingId}")
-    public ResponseEntity<String> cancel(@PathVariable Long bookingId) {
+    public Status cancel(@PathVariable Long bookingId) {
         bookingService.cancel(bookingId);
-        return ResponseEntity.ok("예약이 성공적으로 취소되었습니다.");
+        return Status.SUCCESS;
     }
 }
