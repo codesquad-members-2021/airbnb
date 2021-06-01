@@ -26,6 +26,7 @@ export const getGuestMsg = (adult: number, child: number, baby: number) => {
     ? `게스트 ${adult + child}명, 유아${baby}명`
     : defaultValue.guest
 }
+
 function Personnel() {
   const PersonnelToggle = useRef<HTMLDivElement>(null)
   const PersonnelModal = useRef<HTMLDivElement>(null)

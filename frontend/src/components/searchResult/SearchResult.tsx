@@ -25,7 +25,7 @@ interface params {
 function SearchResult({ match }: RouteComponentProps<params>) {
   const [clicked, setClicked] = useState(false)
   const { state } = useAxios(() => getHouseData(match.params))
-  console.log(match.params)
+
   const { loading, error, data: result } = state
   if (loading) return <div>Loading...💭</div>
   if (error) return <div>에러발생</div>

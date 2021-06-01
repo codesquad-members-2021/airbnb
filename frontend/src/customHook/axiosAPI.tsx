@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FilterDateToString } from './useDateInfo'
+import { FilterDateToString, FilterDateToForm } from './useDateInfo'
 import { defaultValue } from './atoms'
 
 export async function getFeeData(
@@ -15,13 +15,14 @@ export async function getFeeData(
   ]
 
   if (!skipCase.includes(checkIn) && !skipCase.includes(checkOut)) {
-    query.push(`check-in=${FilterDateToString(checkIn)}&check-out=${FilterDateToString(checkOut)}`)
+    query.push(`check-in=${FilterDateToForm(checkIn)}&check-out=${FilterDateToForm(checkOut)}`)
   }
   if (!skipCase.includes(city)) query.push(`city-name=${city}`)
   const url = query.reduce(
     (acc, curr, idx) => acc + curr + (idx < query.length - 1 ? '&' : ''),
     `http://13.125.140.183/search/prices?`
   )
+  console.log(url)
   const response = await axios.get(url)
 
   return response

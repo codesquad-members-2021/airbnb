@@ -4,7 +4,6 @@ import IconButton from '@material-ui/core/IconButton'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 function HouseList({ data }: any) {
-  console.log(data)
   return (
     <Frame>
       <span>선택한 지역의 숙소</span>

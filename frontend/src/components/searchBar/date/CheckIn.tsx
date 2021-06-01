@@ -21,7 +21,7 @@ function CheckIn({ open, type, checkInToggle }: IProps) {
   }
 
   const RenderXbtn = useXclick(checkIn, [setCheckIn], defaultValue.checkIn)
-  console.log(checkIn, '체킨')
+
   return (
     <BarBlock
       onClick={handleClick}

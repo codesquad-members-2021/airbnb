@@ -11,6 +11,10 @@ export const FilterDateToString = (value: number | string | undefined) => {
   if (value !== undefined) return dateToString(value)
   else return null
 }
+export const FilterDateToForm = (value: number | string | undefined) => {
+  if (value !== undefined) return dateToDateForm(value)
+  else return null
+}
 export const DateInfo = (today: Date): IDate => {
   const year = today.getFullYear()
   const month = today.getMonth() + 1

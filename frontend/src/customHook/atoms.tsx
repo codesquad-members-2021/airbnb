@@ -3,6 +3,7 @@ import { atom, useRecoilValue, useSetRecoilState } from 'recoil'
 import { dateToString, FilterDateToString } from './useDateInfo'
 import { IParams } from '../Interface'
 import { getGuestMsg } from '../components/searchBar/personnel/Personnel'
+import { getFeeMsg } from '../components/searchBar/fee/Fee'
 //defaultValue________________________________________
 export const defaultValue = {
   placeAdjacent: '가까운 여행지 둘러보기',
@@ -91,7 +92,18 @@ export function RecoilSetStateGroup(params: IParams) {
   const setBaby = useSetRecoilState(personnelBaby)
   const setGuestMsg = useSetRecoilState(personnelMessage)
   console.log(params)
-  const { place, checkIn, checkOut, adult, child, baby } = params
+  const {
+    place,
+    checkIn,
+    checkOut,
+    adult,
+    child,
+    baby,
+    priceMin,
+    priceMax,
+    maxFeePercent,
+    minFeePercent,
+  } = params
   const filterUndefined = (date: any) => {
     if (date !== undefined) return date
   }
@@ -105,6 +117,10 @@ export function RecoilSetStateGroup(params: IParams) {
   setChild(numberTypeChild)
   setBaby(numberTypeBaby)
   setGuestMsg(getGuestMsg(numberTypeAdult, numberTypeChild, numberTypeBaby))
+  setPriceMin(filterUndefined(priceMin))
+  setPriceMax(filterUndefined(priceMax))
+  setMinFeePercent(filterUndefined(minFeePercent))
+  setMaxFeePercent(filterUndefined(maxFeePercent))
   return {
     // placeToSearch,
     // checkIn,
