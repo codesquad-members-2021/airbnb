@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { SearchContext } from '..';
@@ -25,7 +24,7 @@ const SearchBtn = () => {
 
   return (
     <Link
-      to={`/reservation/Seoul/${checkInDate}/${checkOutDate}/${peopleCount.adult}/${peopleCount.child}/${peopleCount.baby}/${priceData.minPrice}/${priceData.maxPrice}`}
+      to={`/reservation/seoul/${checkInDate}/${checkOutDate}/${peopleCount.adult}/${peopleCount.child}/${peopleCount.baby}/${priceData.minPrice}/${priceData.maxPrice}`}
     >
       <SearchBtnDiv isModalClicked={isModalClicked}>
         <SearchSvgDiv>

@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import RatingStar from '../../../Atoms/icons/RatingStar';
 import Heart from '../../../Atoms/icons/Heart';
 
-const AvailableRoomCard = ({ room }) => {
+import { ReservationContext } from '../..';
+
+const AvailableRoomCard = ({ room, calcDiff }) => {
+  const { match } = useContext(ReservationContext);
+
   return (
     <RoomCardDiv>
       <div>
@@ -14,23 +18,23 @@ const AvailableRoomCard = ({ room }) => {
           <div>
             <RoomLocation>{room.title}</RoomLocation>
             <RoomHashTag>{room.title}</RoomHashTag>
-            <RoomOption>{room.title}</RoomOption>
+            <RoomOption>{room.options}</RoomOption>
           </div>
           <RoomLike>
-            <Heart />
+            <Heart isLike={room.like} />
           </RoomLike>
         </RoomContentUpper>
         <RoomContentBottom>
           <RoomReview>
             <RatingStar />
-            <RoomRate>4.80 </RoomRate>
-            후기({room.reviewRating}개)
+            <RoomRate>{room.reviewRating} </RoomRate>
+            후기({room.reviewCount}개)
           </RoomReview>
           <RoomPrice>
             <div>
               <PricePerDay>₩{room.charge}</PricePerDay> / 박
             </div>
-            <TotalPrice>총액₩{room.charge}</TotalPrice>
+            <TotalPrice>총액 ₩{calcDiff() * room.charge}</TotalPrice>
           </RoomPrice>
         </RoomContentBottom>
       </RoomContent>

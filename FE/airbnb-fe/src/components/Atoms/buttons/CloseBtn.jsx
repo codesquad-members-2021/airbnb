@@ -5,7 +5,6 @@ const CloseButton = ({ fn }) => {
 };
 
 const StyledCloseButton = styled.button`
-  //
   background: ${({ theme }) => theme.colors.gray6};
   width: 1.4rem;
   height: 1.4rem;

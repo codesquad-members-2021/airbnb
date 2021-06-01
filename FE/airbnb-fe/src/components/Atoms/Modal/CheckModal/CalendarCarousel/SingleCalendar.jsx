@@ -47,7 +47,6 @@ const SingleCalendar = ({ range }) => {
   };
 
   const handleTdBtnClick = (e) => {
-    console.log(e.target.dataset.day);
     const [clickedYear, clickedMonth, clickedDay] = e.target.dataset.day
       .split('-')
       .map(Number); // "2021-5-26"

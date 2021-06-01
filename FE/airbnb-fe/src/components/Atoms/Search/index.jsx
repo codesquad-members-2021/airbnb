@@ -1,10 +1,4 @@
-import React, {
-  useReducer,
-  useRef,
-  useEffect,
-  useContext,
-  createContext,
-} from 'react';
+import React, { useReducer, useRef, useEffect, createContext } from 'react';
 import styled from 'styled-components';
 import Price from './Price';
 import Check from './Check';

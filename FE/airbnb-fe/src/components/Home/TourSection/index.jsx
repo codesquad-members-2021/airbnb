@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CityTour from './CityTour';
 import RoomTour from './RoomTour';
@@ -9,7 +8,6 @@ const TourSection = () => {
   // useEffect(() => {
   //   setHomeData(API.get.home());
   // }, []);
-  // console.log('home', homeData);
 
   return (
     <TourSectionDiv>
