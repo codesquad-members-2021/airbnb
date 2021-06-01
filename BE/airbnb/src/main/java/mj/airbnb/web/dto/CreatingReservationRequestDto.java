@@ -7,14 +7,12 @@ import java.util.Map;
 public class CreatingReservationRequestDto {
 
     private Long userId;
-    private final Long accommodationId;
-    private final LocalDate checkInDate;
-    private final LocalDate checkOutDate;
+    private Long accommodationId;
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
+    private boolean deleted;
 
-    CreatingReservationRequestDto(Long accommodationId, LocalDate checkInDate, LocalDate checkOutDate){
-        this.accommodationId = accommodationId;
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
+    public CreatingReservationRequestDto(){
     }
 
     public Long getUserId() {
@@ -43,6 +41,7 @@ public class CreatingReservationRequestDto {
         values.put("accommodation_id", accommodationId);
         values.put("check_in_date", checkInDate);
         values.put("check_out_date", checkOutDate);
+        values.put("deleted", deleted);
 
         return values;
     }
