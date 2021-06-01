@@ -1,5 +1,7 @@
 import { useRef } from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { reserveInfoSelector } from '../../recoil/headerAtom';
 import FormCheckIn from '../header/form/FormCheckIn';
 import FormCheckOut from '../header/form/FormCheckOut';
 import FormGuest from '../header/form/FormGuest';
@@ -9,6 +11,8 @@ interface Props {}
 
 const ReserveForm = (props: Props) => {
   const checkOutRef = useRef<HTMLDivElement>(null);
+  const reserveInfo = useRecoilValue(reserveInfoSelector);
+  console.log(reserveInfo);
   return (
     <StyledReserveForm>
       <FormCheckIn checkOutRef={checkOutRef} />

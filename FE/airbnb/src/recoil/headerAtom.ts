@@ -1,5 +1,4 @@
 import { atom, selector } from 'recoil';
-import { timeToDate } from '../components/header/form/calendar/calendarDateFn';
 import { guestStateType } from '../components/header/form/guestToggle/guestType';
 import { selectDateState } from './calendarAtom';
 
@@ -43,18 +42,47 @@ export const guestState = atom<guestStateType>({
   default: { adult: 0, child: 0, infants: 0 },
 });
 
+interface reserveInfoType {
+  address: string;
+  checkIn: number;
+  checkOut: number;
+  minCharge: number;
+  maxCharge: number;
+  adult: number;
+  child: number;
+  infants: number;
+}
+interface reserveQeuryType {
+  address: string;
+  checkIn: number | null;
+  checkOut: number | null;
+  minCharge: number;
+  maxCharge: number;
+  guests: guestStateType;
+}
+
 export const reserveInfoSelector = selector({
   key: 'reserveInformation',
-  get: ({ get }) => {
+  get: ({ get }): reserveQeuryType => {
     const address = get(locationState);
     const selectDateData = get(selectDateState);
-    const checkIn = timeToDate(selectDateData.checkIn);
-    const checkOut = timeToDate(selectDateData.checkOut);
+    const checkIn = selectDateData.checkIn;
+    const checkOut = selectDateData.checkOut;
     const priceData = get(priceState);
     const minCharge = priceData.min;
     const maxCharge = priceData.max;
-    const guestData = get(guestState);
-    const guests = Object.values(guestData).reduce((acc, cur) => acc + cur);
+    const guests = get(guestState);
     return { address, checkIn, checkOut, minCharge, maxCharge, guests };
+  },
+  set: ({ set }, newState): void => {
+    const { address, checkIn, checkOut, minCharge, maxCharge, adult, child, infants } =
+      newState as reserveInfoType;
+    const date = { checkIn, checkOut };
+    const price = { min: minCharge, max: maxCharge };
+    const guests = { adult, child, infants };
+    set(locationState, address);
+    set(selectDateState, date);
+    set(priceState, price);
+    set(guestState, guests);
   },
 });

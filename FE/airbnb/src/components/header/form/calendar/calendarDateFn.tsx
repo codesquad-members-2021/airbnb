@@ -49,4 +49,11 @@ export const dateToString = (date: date | void): string => {
   return `${year}-${newMonth}-${newDay}`;
 };
 
+const stringToDate = (date: string): date => {
+  const [year, month, day] = date.split('-').map((v) => +v);
+  return { year, month, day };
+};
+
 export const timeToDate = pipe(getDateByTime, dateToString);
+
+export const dateToTime = pipe(stringToDate, getTimes);
