@@ -1,15 +1,14 @@
 package mj.airbnb.util;
 
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-import org.springframework.web.util.UriComponentsBuilder;
+
 @Component
 @PropertySource("classpath:/oauth.properties")
 public class UriUtil {
 
-    private Environment environment;
+    private final Environment environment;
 
     private static final String USERINFO_URI = "github.access.user.url";
     private static final String LOGIN_URI = "github.authorize.url";
@@ -18,6 +17,7 @@ public class UriUtil {
     public static final String CLIENT_ID = "github.client.id";
     public static final String CLIENT_SECRET = "github.secret";
     public static final String SCOPE = "github.scope";
+
     private String clientId;
     private String redirectUri;
 

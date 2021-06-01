@@ -24,11 +24,4 @@ public class GitHubUser {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "GitHubUser{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

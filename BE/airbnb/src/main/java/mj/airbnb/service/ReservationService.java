@@ -1,13 +1,9 @@
 package mj.airbnb.service;
 
-import mj.airbnb.domain.reservation.Reservation;
 import mj.airbnb.domain.reservation.ReservationRepository;
-import mj.airbnb.oauth.LoginController;
 import mj.airbnb.web.dto.CreatingReservationRequestDto;
 import mj.airbnb.web.dto.CreatingReservationResponseDto;
 import mj.airbnb.web.dto.ReservationResponseDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

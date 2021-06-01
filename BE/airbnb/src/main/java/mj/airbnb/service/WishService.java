@@ -21,15 +21,4 @@ public class WishService {
                 .map(WishResponseDto::new)
                 .collect(Collectors.toList());
     }
-
-//    public CreatingWishResponseDto createWish(CreatingWishRequestDto requestDto) {
-//
-//        Long reservationId = wishRepository.saveWish(requestDto);
-//
-//        return new CreatingWishResponseDto(wishRepository.findById(reservationId));
-//    }
-//
-//    public void deleteWish(Long reservationId) {
-//        wishRepository.softDeleteWish(reservationId);
-//    }
 }
