@@ -13,54 +13,76 @@ protocol ReservationDetailViewControllerProtocol {
     func changeLocation(with location: String)
     func changeDateRange(date: Date, isLowerDay: Bool)
     func changePriceRange(lowestPrice: CGFloat, highestPrice: CGFloat)
-    func addNumberOfHead(type: GuestType)
-    func deductNumberOfHead(type: GuestType)
+    func addGuest(type: GuestType)
+    func deductGuest(type: GuestType)
 }
 
 class ReservationDetailViewController: UIViewController {
     
+    var detailSetUpViewInitializer: DetailSetUpViewInitializable? = nil
+    var currentContext: String?
+    var viewModel: ReservationDetailViewModelProtocol?
+    
     @IBOutlet weak var locationDetailLabel: UILabel!
     @IBOutlet weak var dateRangeDetailLabel: UILabel!
     @IBOutlet weak var priceRangeDetailLabel: UILabel!
-    @IBOutlet weak var numberOfHeadDetailLabel: UILabel!
+    @IBOutlet weak var guestNumberDetailLabel: UILabel!
     @IBOutlet weak var deleteCurrentDetailButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
-    var detailSetUpViewInitializer: DetailSetUpViewInitializable? = nil
-    var currentContext: String?
-    var location: String?
-    var lowerDate: Date?
-    var upperDate: Date?
-    var lowestPrice: CGFloat?
-    var highestPrice: CGFloat?
-    var numberOfHead: [GuestType: Int] = [.adult: 0,
-                                          .child: 0,
-                                          .infant: 0]
-    {
-        didSet {
-            NotificationCenter.default.post(name: .didChangeGuestNumber, object: nil, userInfo: self.numberOfHead)
-            
-            if allNumbersOfHeadAreZero() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        bind()
+        
+    }
+    
+    private func bind() {
+        viewModel?.didUpdateLowerDate(completion: { (newLowerDate) in
+            self.dateRangeDetailLabel.text = "\(newLowerDate.month)월 \(newLowerDate.day)일"
+            self.nextButton.isEnabled = false
+        })
+        
+        viewModel?.didUpdateUpperDate(completion: { (newUpperDate) in
+            self.dateRangeDetailLabel.text = "\(self.dateRangeDetailLabel.text!) - \(newUpperDate.month)월 \(newUpperDate.day)일"
+            self.nextButton.isEnabled = true
+        })
+        
+        viewModel?.didUpdatePriceRange(completion: { (newLowestPrice, newHighestPrice) in
+            self.priceRangeDetailLabel.text = "\(String(format: "0.0f", newLowestPrice)) - \(String(format: "0.0f", newHighestPrice))"
+            self.nextButton.isEnabled = true
+            self.deleteCurrentDetailButton.isEnabled = true
+        })
+        
+        viewModel?.didUpdateGuestList(completion: { (guestList) in
+            if guestList[.adult] == 0 &&
+               guestList[.child] == 0 &&
+               guestList[.infant] == 0
+            {
                 self.deleteCurrentDetailButton.isEnabled = false
             } else {
                 self.deleteCurrentDetailButton.isEnabled = true
             }
             
-            if numberOfHead[.adult]! > 0 {
+            if guestList[.adult]! > 0 {
                 self.nextButton.isEnabled = true
             } else {
                 self.nextButton.isEnabled = false
             }
+            
+            self.setNumberOfGuestDetailLabel(with: guestList)
+        })
+    }
+    
+    private func setNumberOfGuestDetailLabel(with guestList: [GuestType: Int]) {
+        self.guestNumberDetailLabel.text = "게스트 \(guestList[.adult]! + guestList[.child]!)명"
+        
+        if guestList[.infant]! > 0 {
+            guestNumberDetailLabel.text?.append(" 유아 \(guestList[.infant]!)명")
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
-    private func allNumbersOfHeadAreZero() -> Bool {
-        return self.numberOfHead[.adult] == 0 && self.numberOfHead[.child] == 0 && self.numberOfHead[.infant] == 0
+    public func inject(viewModel: ReservationDetailViewModelProtocol) {
+        self.viewModel = viewModel
     }
     
     @IBAction func deleteCurrentDetailButtonPressed(_ sender: UIButton) {
@@ -72,8 +94,8 @@ class ReservationDetailViewController: UIViewController {
             self.priceRangeDetailLabel.text = ""
             self.detailSetUpViewInitializer?.clearPriceSlideControlView()
         case String(describing: NumberOfHeadSelectionView.self):
-            self.numberOfHeadDetailLabel.text = ""
-            self.numberOfHead = self.numberOfHead.mapValues { (count) -> Int in 0 }
+            self.guestNumberDetailLabel.text = ""
+            self.viewModel?.clearGuestList()
         default:
             break
         }
@@ -117,50 +139,20 @@ extension ReservationDetailViewController: ReservationDetailViewControllerProtoc
     }
     
     func changeDateRange(date: Date, isLowerDay: Bool) {
-        if isLowerDay {
-            self.lowerDate = date
-            self.upperDate = nil
-            self.dateRangeDetailLabel.text = "\(date.month)월 \(date.day)일"
-            self.nextButton.isEnabled = false
-        } else {
-            self.upperDate = date
-            self.dateRangeDetailLabel.text = "\(dateRangeDetailLabel.text!) - \(date.month)월 \(date.day)일"
-            self.nextButton.isEnabled = true
-        }
         
         self.deleteCurrentDetailButton.isEnabled = true
     }
     
     func changePriceRange(lowestPrice: CGFloat, highestPrice: CGFloat) {
-        self.lowestPrice = lowestPrice
-        self.highestPrice = highestPrice
-        
-        self.priceRangeDetailLabel.text = "\(String(format: "%.0f", lowestPrice))원 - \(String(format: "%.0f", highestPrice))원"
-        self.nextButton.isEnabled = true
-        self.deleteCurrentDetailButton.isEnabled = true
+        self.viewModel?.changePriceRange(lowestPrice: Float(lowestPrice), highestPrice: Float(highestPrice))
     }
     
-    func addNumberOfHead(type: GuestType) {
-        self.numberOfHead[type]? += 1
-        
-        if (type == .child && numberOfHead[.adult] == 0) || (type == .infant && numberOfHead[.adult] == 0) {
-            self.numberOfHead[.adult]! += 1
-        }
-        
-        self.setNumberOfHeadDetailLabel()
+    func addGuest(type: GuestType) {
+        self.viewModel?.changeGuestNumber(type: type, toAdd: true)
     }
     
-    func deductNumberOfHead(type: GuestType) {
-        self.numberOfHead[type]? -= 1
-        
-        self.setNumberOfHeadDetailLabel()
-    }
-    
-    private func setNumberOfHeadDetailLabel() {
-        self.numberOfHeadDetailLabel.text = "게스트 \(self.numberOfHead[.adult]! + self.numberOfHead[.child]!)명"
-        if self.numberOfHead[.infant]! > 0 {
-            numberOfHeadDetailLabel.text?.append(" 유아 \(self.numberOfHead[.infant]!)명")
-        }
+    func deductGuest(type: GuestType) {
+        self.viewModel?.changeGuestNumber(type: type, toAdd: false)
     }
     
 }

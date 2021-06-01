@@ -20,6 +20,7 @@
 		885221F42665FF2800740770 /* AccommodationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885221F32665FF2800740770 /* AccommodationSelectViewController.swift */; };
 		885221F826660CF900740770 /* CalendarControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885221F726660CF900740770 /* CalendarControlViewModel.swift */; };
 		88522206266622AA00740770 /* PriceSlideControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88522205266622AA00740770 /* PriceSlideControlViewModel.swift */; };
+		8852220C26662C9100740770 /* ReservationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8852220B26662C9100740770 /* ReservationDetailViewModel.swift */; };
 		885CEB4C26538DDC00B3291F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB4B26538DDC00B3291F /* SearchViewController.swift */; };
 		885CEB512653957A00B3291F /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB4F2653957A00B3291F /* SearchResultCollectionViewCell.swift */; };
 		885CEB522653957A00B3291F /* SearchResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885CEB502653957A00B3291F /* SearchResultCollectionViewCell.xib */; };
@@ -64,6 +65,7 @@
 		885221F32665FF2800740770 /* AccommodationSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationSelectViewController.swift; sourceTree = "<group>"; };
 		885221F726660CF900740770 /* CalendarControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarControlViewModel.swift; sourceTree = "<group>"; };
 		88522205266622AA00740770 /* PriceSlideControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSlideControlViewModel.swift; sourceTree = "<group>"; };
+		8852220B26662C9100740770 /* ReservationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDetailViewModel.swift; sourceTree = "<group>"; };
 		885CEB4B26538DDC00B3291F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		885CEB4F2653957A00B3291F /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		885CEB502653957A00B3291F /* SearchResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -168,7 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				885CEB3C26535E7D00B3291F /* View */,
-				8860612D2657958600681808 /* ViewModel */,
 				885CEB3D26535E8A00B3291F /* Controllers */,
 			);
 			path = Presentation;
@@ -189,6 +190,7 @@
 		885CEB3D26535E8A00B3291F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8860612D2657958600681808 /* ViewModel */,
 				8843A7C026523EA80068B4E3 /* WelcomeViewController.swift */,
 				885CEB4B26538DDC00B3291F /* SearchViewController.swift */,
 				885CEB5D2656355200B3291F /* SetUpViewController.swift */,
@@ -220,6 +222,7 @@
 		8860612D2657958600681808 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				8852220B26662C9100740770 /* ReservationDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				8860614A265B66D100681808 /* CalendarControlView.swift in Sources */,
 				8843A7C126523EA80068B4E3 /* WelcomeViewController.swift in Sources */,
 				8843A7BD26523EA80068B4E3 /* AppDelegate.swift in Sources */,
+				8852220C26662C9100740770 /* ReservationDetailViewModel.swift in Sources */,
 				885221F826660CF900740770 /* CalendarControlViewModel.swift in Sources */,
 				88606176265F8A0700681808 /* NumberOfHeadSelectionView.swift in Sources */,
 				886061322657964A00681808 /* DayLabel.swift in Sources */,

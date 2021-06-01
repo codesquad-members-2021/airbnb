@@ -75,11 +75,11 @@ extension SetUpViewController: PriceInfoReceivable {
 extension SetUpViewController: GuestNumberInfoReceivable {
     
     func addGuest(type: GuestType) {
-        reservationDetailViewController.addNumberOfHead(type: type)
+        reservationDetailViewController.addGuest(type: type)
     }
     
     func reduceGuest(type: GuestType) {
-        reservationDetailViewController.deductNumberOfHead(type: type)
+        reservationDetailViewController.deductGuest(type: type)
     }
     
 }
