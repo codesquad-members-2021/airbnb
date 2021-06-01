@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CalanderColleectionDataSource: NSObject, UICollectionViewDataSource {
+class CalenderColleectionDataSource: NSObject, UICollectionViewDataSource {
     
     var models : [CalendarViewModel] = []
     
