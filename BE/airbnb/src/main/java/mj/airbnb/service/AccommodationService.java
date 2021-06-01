@@ -32,7 +32,7 @@ public class AccommodationService {
     }
 
     public AccommodationInDetailResponseDto findAccommodationById(Long id) {
-        return new AccommodationInDetailResponseDto(accommodationRepository.findById(id));
+        return new AccommodationInDetailResponseDto(accommodationRepository.findById(id), accommodationRepository.findAllImagesByAccommodationId(id));
     }
 
     public List<String> findAllPopularDestinations(String destination) {

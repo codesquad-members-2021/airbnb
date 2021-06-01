@@ -13,6 +13,7 @@ public class ReservationResponseDto {
     private String description;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
+    private String mainImageUrl;
 
     public ReservationResponseDto(Reservation reservation) {
         this.name = reservation.getAccommodationName();
@@ -20,6 +21,7 @@ public class ReservationResponseDto {
         this.description = reservation.getAccommodationDescription();
         this.checkInDate = reservation.getCheckInDate();
         this.checkOutDate = reservation.getCheckOutDate();
+        this.mainImageUrl = reservation.getAccommodationMainImageUrl();
     }
 
     public String getName() {
@@ -60,5 +62,9 @@ public class ReservationResponseDto {
 
     public void setCheckOutDate(LocalDate checkOutDate) {
         this.checkOutDate = checkOutDate;
+    }
+
+    public String getMainImageUrl() {
+        return mainImageUrl;
     }
 }

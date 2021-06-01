@@ -3,6 +3,7 @@ package mj.airbnb.web.dto;
 import mj.airbnb.domain.accommodation.Accommodation;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class AccommodationInDetailResponseDto {
 
@@ -14,8 +15,9 @@ public class AccommodationInDetailResponseDto {
     private final BigDecimal price;
     private final String hostName;
     private final String description;
+    private final List<String> images;
 
-    public AccommodationInDetailResponseDto(Accommodation accommodation) {
+    public AccommodationInDetailResponseDto(Accommodation accommodation, List<String> images) {
         this.name = accommodation.getName();
         this.maxPeople = accommodation.getMaxNumOfPeople();
         this.type = accommodation.getType();
@@ -24,6 +26,7 @@ public class AccommodationInDetailResponseDto {
         this.price = accommodation.getPrice();
         this.hostName = accommodation.getHostName();
         this.description = accommodation.getDescription();
+        this.images = images;
     }
 
     public String getName() {
@@ -56,5 +59,9 @@ public class AccommodationInDetailResponseDto {
 
     public String getDescription() {
         return description;
+    }
+
+    public List<String> getImages() {
+        return images;
     }
 }

@@ -12,6 +12,7 @@ public class AccommodationResponseDto {
     private final Integer numOfBed;
     private final Integer numOfBathroom;
     private final BigDecimal price;
+    private final String mainImageUrl;
 
     public AccommodationResponseDto(Accommodation accommodation) {
         this.name = accommodation.getName();
@@ -20,6 +21,7 @@ public class AccommodationResponseDto {
         this.numOfBed = accommodation.getNumOfBed();
         this.numOfBathroom = accommodation.getNumOfBathroom();
         this.price = accommodation.getPrice();
+        this.mainImageUrl = accommodation.getMainImageUrl();
     }
 
     public String getName() {
@@ -44,5 +46,9 @@ public class AccommodationResponseDto {
 
     public BigDecimal getPrice() {
         return price;
+    }
+
+    public String getMainImageUrl() {
+        return mainImageUrl;
     }
 }

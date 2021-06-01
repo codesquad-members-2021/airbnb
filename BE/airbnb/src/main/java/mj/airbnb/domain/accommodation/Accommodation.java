@@ -1,6 +1,7 @@
 package mj.airbnb.domain.accommodation;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Accommodation {
 
@@ -14,6 +15,8 @@ public class Accommodation {
     private String address;
     private String hostName;
     private String description;
+    private String mainImageUrl;
+    private List<String> images;
 
     public Accommodation() {
     }
@@ -88,5 +91,21 @@ public class Accommodation {
 
     public String getHostName() {
         return hostName;
+    }
+
+    public String getMainImageUrl() {
+        return mainImageUrl;
+    }
+
+    public void setMainImageUrl(String mainImageUrl) {
+        this.mainImageUrl = mainImageUrl;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 }

@@ -25,6 +25,7 @@ public class AccommodationRepository {
         accommodation.setNumOfBathroom(rs.getInt("num_of_bathroom"));
         accommodation.setPrice(rs.getBigDecimal("price"));
         accommodation.setAddress(rs.getString("address"));
+        accommodation.setMainImageUrl(rs.getString("url"));
 
         return accommodation;
     };
@@ -51,6 +52,10 @@ public class AccommodationRepository {
         return accommodation;
     };
 
+    private static final RowMapper<String> IMAGE_ROW_MAPPER = (rs, rowNum) -> {
+        return rs.getString("url");
+    };
+
     private final JdbcTemplate jdbcTemplate;
     private final Logger logger = LoggerFactory.getLogger(AccommodationRepository.class);
 
@@ -66,7 +71,8 @@ public class AccommodationRepository {
             logger.info("지역, 날짜, 가격, 인원 조건 따라 숙소 조회 ");
 
             String sqlQuery = BASE_SQL +
-                    "WHERE " + DESTINATION_CONDITION_SQL +
+                    "WHERE " + MAIN_IMAGE_CONDITION_SQL +
+                    "AND " + DESTINATION_CONDITION_SQL +
                     "AND " + DATE_CONDITION_SQL +
                     "AND " + PRICE_CONDITION_SQL +
                     "AND " + PEOPLE_CONDITION_SQL;
@@ -80,7 +86,8 @@ public class AccommodationRepository {
             logger.info("지역, 날짜, 가격 조건에 따라 숙소 조회 ");
 
             String sqlQuery = BASE_SQL +
-                    "WHERE " + DESTINATION_CONDITION_SQL +
+                    "WHERE " + MAIN_IMAGE_CONDITION_SQL +
+                    "AND " + DESTINATION_CONDITION_SQL +
                     "AND " + DATE_CONDITION_SQL +
                     "AND " + PRICE_CONDITION_SQL;
             return jdbcTemplate.query(sqlQuery, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%",
@@ -92,7 +99,8 @@ public class AccommodationRepository {
             logger.info("지역, 날짜 조건에 따라 숙소 조회 ");
 
             String sqlQuery = BASE_SQL +
-                    "WHERE " + DESTINATION_CONDITION_SQL +
+                    "WHERE " + MAIN_IMAGE_CONDITION_SQL +
+                    "AND " + DESTINATION_CONDITION_SQL +
                     "AND " + DATE_CONDITION_SQL;
             return jdbcTemplate.query(sqlQuery, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%",
                     conditions.getCheckInDate(), conditions.getCheckOutDate());
@@ -103,7 +111,8 @@ public class AccommodationRepository {
             logger.info("지역 조건에 따라 숙소 조회 ");
 
             String sqlQuery = BASE_SQL +
-                    "WHERE " + DESTINATION_CONDITION_SQL;
+                    "WHERE " + MAIN_IMAGE_CONDITION_SQL +
+                    "AND " + DESTINATION_CONDITION_SQL;
 
             return jdbcTemplate.query(sqlQuery, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%");
         }
@@ -125,6 +134,12 @@ public class AccommodationRepository {
                 "WHERE acc.id = ?; ";
 
         return jdbcTemplate.queryForObject(sqlQuery, ACCOMMODATION_DETAIL_ROW_MAPPER, id);
+    }
+
+    public List<String> findAllImagesByAccommodationId(Long id) {
+        String sqlQuery = "SELECT url FROM image WHERE accommodation_id = ?; ";
+
+        return jdbcTemplate.query(sqlQuery, IMAGE_ROW_MAPPER, id);
     }
 
     private boolean isPresentOfDestination(SearchRequestDto requestDto) {
