@@ -1,8 +1,18 @@
 package airbnb.controller;
 
-import airbnb.response.RoomResponse;
+import airbnb.auth.annotation.Github;
+import airbnb.auth.annotation.LoginRequired;
+import airbnb.domain.Room;
+import airbnb.domain.User;
+import airbnb.domain.Wish;
+import airbnb.exception.RoomNotFoundException;
+import airbnb.repository.RoomRepository;
+import airbnb.repository.UserRepository;
 import airbnb.response.WishResponse;
+import airbnb.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +23,14 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-public class WishController {
+public class UserController {
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final UserService userService;
+
+    @LoginRequired
     @PostMapping("/wish/rooms/{roomId}")
-    public ResponseEntity<String> wish(@PathVariable Long roomId) {
-        return new ResponseEntity<>("저장 완료", HttpStatus.OK);
+    public ResponseEntity<String> wish(@PathVariable Long roomId, @Github User user) {
+        return ResponseEntity.ok(userService.saveWish(roomId, user));
     }
 
     @GetMapping("/wishlist")

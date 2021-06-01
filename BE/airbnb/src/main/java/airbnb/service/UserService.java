@@ -1,8 +1,12 @@
 package airbnb.service;
 
 import airbnb.auth.GithubUser;
+import airbnb.domain.Room;
 import airbnb.domain.User;
+import airbnb.domain.Wish;
+import airbnb.exception.RoomNotFoundException;
 import airbnb.exception.UserNotFoundException;
+import airbnb.repository.RoomRepository;
 import airbnb.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -14,6 +18,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     private final UserRepository userRepository;
+    private final RoomService roomService;
 
     public User findLoginUser(GithubUser githubUser) {
         if (!isDuplicate(githubUser)) {
@@ -33,9 +38,11 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 
-    public User findUserByGithubId(String gitHubId) {
-        return userRepository.findByGithubId(gitHubId).orElseThrow(UserNotFoundException::new);
+    public String saveWish(Long roomId, User user) {
+        Room room = roomService.findRoomById(roomId);
+        Wish wish = new Wish(user, room);
+        user.addWish(wish);
+        userRepository.save(user);
+        return room.getName() + " 위시리스트에 저장 완료";
     }
-
-
 }

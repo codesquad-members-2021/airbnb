@@ -14,7 +14,6 @@ import org.springframework.web.servlet.view.RedirectView;
 @RestController
 @RequiredArgsConstructor
 public class LoginController {
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
     private final AuthService authService;
     private final UserService userService;
     private final JwtUtil jwtUtil;
@@ -23,7 +22,6 @@ public class LoginController {
     public RedirectView login(@RequestParam(value = "code") String code) {
         String accessToken = authService.getAccessToken(code);
         GithubUser githubUser = authService.getGithubUser(accessToken);
-        logger.info("githubUser: {}", githubUser.toString());
         User loginUser = userService.findLoginUser(githubUser);
         return new RedirectView("/auth/login/" + jwtUtil.createQueryString(loginUser));
     }

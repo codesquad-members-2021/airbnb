@@ -30,4 +30,8 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private final List<Wish> wishes = new ArrayList<>();
+
+    public void addWish(Wish wish) {
+        wishes.add(wish);
+    }
 }
