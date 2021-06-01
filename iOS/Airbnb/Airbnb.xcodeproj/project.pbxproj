@@ -36,6 +36,7 @@
 		AE9AC6A7265CCCBF0038C198 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9AC6A6265CCCBF0038C198 /* CalendarViewController.swift */; };
 		AEC52F6E2663FEB200D8F802 /* ConditionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC52F6D2663FEB200D8F802 /* ConditionTableViewController.swift */; };
 		AEC52F712663FF3600D8F802 /* ConditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC52F6F2663FF3600D8F802 /* ConditionCell.swift */; };
+		AEC52F742664041200D8F802 /* ConditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC52F732664041200D8F802 /* ConditionViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		AE9AC6A6265CCCBF0038C198 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		AEC52F6D2663FEB200D8F802 /* ConditionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionTableViewController.swift; sourceTree = "<group>"; };
 		AEC52F6F2663FF3600D8F802 /* ConditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionCell.swift; sourceTree = "<group>"; };
+		AEC52F732664041200D8F802 /* ConditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +261,7 @@
 			children = (
 				AEC52F6D2663FEB200D8F802 /* ConditionTableViewController.swift */,
 				AEC52F6F2663FF3600D8F802 /* ConditionCell.swift */,
+				AEC52F732664041200D8F802 /* ConditionViewModel.swift */,
 			);
 			path = Condition;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				AE0B5DEF26563BE4000B35E7 /* RecommandedDestinationViewController.swift in Sources */,
 				AE0B5DE12655FE1F000B35E7 /* MainPageDTO.swift in Sources */,
 				AE3FE07A26579D3B00A95177 /* RegionCell.swift in Sources */,
+				AEC52F742664041200D8F802 /* ConditionViewModel.swift in Sources */,
 				AE3FE07526574E7000A95177 /* SearchCityViewController.swift in Sources */,
 				AEC52F712663FF3600D8F802 /* ConditionCell.swift in Sources */,
 				AE11F5AA265F3D250034779F /* DayCell.swift in Sources */,
