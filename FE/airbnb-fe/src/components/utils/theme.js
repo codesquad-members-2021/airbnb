@@ -18,6 +18,7 @@ const theme = {
     XS: '16px',
     S: '18px',
     M: '20px',
+    L: '24px',
     XL: '32px',
   },
 };

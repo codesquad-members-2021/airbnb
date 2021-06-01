@@ -1,0 +1,124 @@
+import React from 'react';
+import styled from 'styled-components';
+import RatingStar from '../../../Atoms/icons/RatingStar';
+import Heart from '../../../Atoms/icons/Heart';
+
+const AvailableRoomCard = ({ room }) => {
+  return (
+    <RoomCardDiv>
+      <RoomImg src={`${room.image}`} />
+      <RoomContent>
+        <RoomContentUpper>
+          <div>
+            <RoomLocation>{room.title}</RoomLocation>
+            <RoomHashTag>{room.title}</RoomHashTag>
+            <RoomOption>{room.title}</RoomOption>
+          </div>
+          <RoomLike>
+            <Heart />
+          </RoomLike>
+        </RoomContentUpper>
+        <RoomContentBottom>
+          <RoomReview>
+            <RatingStar />
+            <RoomRate>4.80 </RoomRate>
+            후기({room.reviewRating}개)
+          </RoomReview>
+          <RoomPrice>
+            <div>
+              <PricePerDay>₩{room.charge}</PricePerDay> / 박
+            </div>
+            <TotalPrice>총액₩{room.charge}</TotalPrice>
+          </RoomPrice>
+        </RoomContentBottom>
+      </RoomContent>
+    </RoomCardDiv>
+  );
+};
+
+const RoomCardDiv = styled.div`
+  display: flex;
+  width: 684px;
+  height: 248px;
+  padding: 24px 0;
+
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray5};
+`;
+const RoomImg = styled.img`
+  width: 320px;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+`;
+const RoomContent = styled.div`
+  margin-left: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 330px;
+`;
+const RoomContentUpper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const RoomLike = styled.div``;
+
+const RoomLocation = styled.div`
+  width: 268px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 0.5rem;
+  color: ${({ theme }) => theme.colors.gray3};
+  font-size: ${({ theme }) => theme.fontSizes.TS};
+`;
+
+const RoomHashTag = styled.div`
+  width: 268px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  ${({ theme }) => theme.colors.gray1};
+  font-size: ${({ theme }) => theme.fontSizes.XXS};
+`;
+
+const RoomOption = styled.div`
+  width: 268px;
+  margin-bottom: 0.5rem;
+  color: ${({ theme }) => theme.colors.gray3};
+  font-size: ${({ theme }) => theme.fontSizes.TS};
+`;
+
+const RoomContentBottom = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const RoomReview = styled.div`
+  display: flex;
+  align-items: flex-end;
+  color: ${({ theme }) => theme.colors.gray3};
+  font-size: ${({ theme }) => theme.fontSizes.TS};
+`;
+
+const RoomRate = styled.div`
+  margin: 0 5px;
+  color: ${({ theme }) => theme.colors.gray1};
+`;
+const RoomPrice = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+const PricePerDay = styled.span`
+  font-weight: bold;
+`;
+const TotalPrice = styled.div`
+  color: ${({ theme }) => theme.colors.gray3};
+  text-decoration: underline;
+  font-size: ${({ theme }) => theme.fontSizes.TS};
+`;
+
+export default AvailableRoomCard;
