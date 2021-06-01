@@ -23,6 +23,6 @@ public class LoginController {
         String accessToken = authService.getAccessToken(code);
         GithubUser githubUser = authService.getGithubUser(accessToken);
         User loginUser = userService.findLoginUser(githubUser);
-        return new RedirectView("/auth/login/" + jwtUtil.createQueryString(loginUser));
+        return new RedirectView(jwtUtil.createQueryString(loginUser));
     }
 }

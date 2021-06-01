@@ -4,14 +4,19 @@ import airbnb.auth.GithubUser;
 import airbnb.domain.Room;
 import airbnb.domain.User;
 import airbnb.domain.Wish;
-import airbnb.exception.RoomNotFoundException;
 import airbnb.exception.UserNotFoundException;
-import airbnb.repository.RoomRepository;
 import airbnb.repository.UserRepository;
+import airbnb.response.Status;
+import airbnb.response.WishResponse;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import javax.persistence.PreRemove;
+import java.util.List;
+
+import static airbnb.response.Status.FAIL;
+import static airbnb.response.Status.SUCCESS;
 
 @Service
 @RequiredArgsConstructor
@@ -38,11 +43,32 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 
-    public String saveWish(Long roomId, User user) {
+    public User findUserByGithubId(String githubId) {
+        return userRepository.findByGithubId(githubId).orElseThrow(UserNotFoundException::new);
+    }
+
+    public String saveWish(Long roomId, User githubUser) {
+        User user = findUserByGithubId(githubUser.getGithubId());
         Room room = roomService.findRoomById(roomId);
         Wish wish = new Wish(user, room);
-        user.addWish(wish);
+        if (!user.getWishes().contains(wish)) {
+            wish.addWish(wish);
+            userRepository.save(user);
+            return Status.message(room.getName(), SUCCESS);
+        }
+        return Status.message(room.getName(), FAIL);
+    }
+
+    public void removeWish(Long wishId, User githubUser) {
+        User user = findUserByGithubId(githubUser.getGithubId());
+        user.getWishes().stream()
+                .filter(w -> w.getId().equals(wishId))
+                .findFirst().ifPresent(Wish::removeWish);
         userRepository.save(user);
-        return room.getName() + " 위시리스트에 저장 완료";
+    }
+
+    public List<WishResponse> getWishList(User githubUser) {
+        User user = findUserByGithubId(githubUser.getGithubId());
+        return Wish.createWishListResponse(user.getWishes());
     }
 }

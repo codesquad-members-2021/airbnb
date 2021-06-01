@@ -1,7 +1,6 @@
 package airbnb.domain;
 
 import lombok.Getter;
-
 import javax.persistence.Embeddable;
 
 @Getter

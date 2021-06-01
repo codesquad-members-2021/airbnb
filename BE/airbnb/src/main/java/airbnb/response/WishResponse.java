@@ -1,13 +1,14 @@
 package airbnb.response;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 @Getter
-@RequiredArgsConstructor
+@Builder
 public class WishResponse {
-    private final List<String> images;
+    private final Long wishId;
+    private final List<String> roomImages;
     private final double averageRating;
     private final String name;
     private final Integer pricePerNight;

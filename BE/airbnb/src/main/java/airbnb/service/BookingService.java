@@ -14,12 +14,14 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class BookingService {
     private final BookingRepository bookingRepository;
+    private final UserService userService;
 
     public Booking findBookingById(Long bookingId) {
         return bookingRepository.findById(bookingId).orElseThrow(BookingNotFoundException::new);
     }
 
-    public BookingResponse reserve(User user, Room room, BookingRequest reservationInfo) {
+    public BookingResponse reserve(User githubUser, Room room, BookingRequest reservationInfo) {
+        User user = userService.findUserByGithubId(githubUser.getGithubId());
         Booking booking = Room.createBooking(user, room, reservationInfo);
         bookingRepository.save(booking);
         return Booking.createBookingResponse(booking);

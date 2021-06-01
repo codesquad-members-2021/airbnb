@@ -24,7 +24,7 @@ public class JwtUtil {
 
     public String createQueryString(User user) {
         Jwt jwt = createToken(user);
-        return "?jwt="+jwt.getJwt()+"&profile_url="+user.getProfileImage();
+        return "/?jwt="+jwt.getJwt()+"&profile_url="+user.getProfileImage();
     }
 
     public Jwt createToken(User user) {
