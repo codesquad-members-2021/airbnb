@@ -37,7 +37,8 @@ out/
 .vscode/
 
 ### application properties 제외
-/src/main/resources/application.properties
+/src/main/resources/application-aws.properties
+/src/main/resources/application-local.properties
 
 ### serverKey 제외
 /src/main/resources/secretKey.properties
