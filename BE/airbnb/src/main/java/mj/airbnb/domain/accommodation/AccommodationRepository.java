@@ -52,9 +52,7 @@ public class AccommodationRepository {
         return accommodation;
     };
 
-    private static final RowMapper<String> IMAGE_ROW_MAPPER = (rs, rowNum) -> {
-        return rs.getString("url");
-    };
+    private static final RowMapper<String> IMAGE_ROW_MAPPER = (rs, rowNum) -> rs.getString("url");
 
     private final JdbcTemplate jdbcTemplate;
     private final Logger logger = LoggerFactory.getLogger(AccommodationRepository.class);
@@ -70,13 +68,7 @@ public class AccommodationRepository {
 
             logger.info("지역, 날짜, 가격, 인원 조건 따라 숙소 조회 ");
 
-            String sqlQuery = BASE_SQL +
-                    "WHERE " + MAIN_IMAGE_CONDITION_SQL +
-                    "AND " + DESTINATION_CONDITION_SQL +
-                    "AND " + DATE_CONDITION_SQL +
-                    "AND " + PRICE_CONDITION_SQL +
-                    "AND " + PEOPLE_CONDITION_SQL;
-            return jdbcTemplate.query(sqlQuery, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%",
+            return jdbcTemplate.query(ACCOMMODATIONS_BY_DESTINATION_AND_DATE_AND_PRICE_AND_PEOPLE_SQL, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%",
                     conditions.getCheckInDate(), conditions.getCheckOutDate(), conditions.getMinPrice(), conditions.getMaxPrice(),
                     conditions.getNumOfAdult() + conditions.getNumOfChild() + conditions.getNumOfInfant());
         }
@@ -85,12 +77,7 @@ public class AccommodationRepository {
 
             logger.info("지역, 날짜, 가격 조건에 따라 숙소 조회 ");
 
-            String sqlQuery = BASE_SQL +
-                    "WHERE " + MAIN_IMAGE_CONDITION_SQL +
-                    "AND " + DESTINATION_CONDITION_SQL +
-                    "AND " + DATE_CONDITION_SQL +
-                    "AND " + PRICE_CONDITION_SQL;
-            return jdbcTemplate.query(sqlQuery, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%",
+            return jdbcTemplate.query(ACCOMMODATIONS_BY_DESTINATION_AND_DATE_AND_PRICE_SQL, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%",
                     conditions.getCheckInDate(), conditions.getCheckOutDate(), conditions.getMinPrice(), conditions.getMaxPrice());
         }
 
@@ -98,26 +85,25 @@ public class AccommodationRepository {
 
             logger.info("지역, 날짜 조건에 따라 숙소 조회 ");
 
-            String sqlQuery = BASE_SQL +
-                    "WHERE " + MAIN_IMAGE_CONDITION_SQL +
-                    "AND " + DESTINATION_CONDITION_SQL +
-                    "AND " + DATE_CONDITION_SQL;
-            return jdbcTemplate.query(sqlQuery, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%",
+            return jdbcTemplate.query(ACCOMMODATIONS_BY_DESTINATION_AND_DATE_SQL, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%",
                     conditions.getCheckInDate(), conditions.getCheckOutDate());
+        }
+
+        if (isPresentOfDate(conditions)) {
+
+            logger.info("날짜 조건에 따라 숙소 조회 ");
+
+            return jdbcTemplate.query(ACCOMMODATIONS_BY_DATE_SQL, ACCOMMODATION_ROW_MAPPER, conditions.getCheckInDate(), conditions.getCheckOutDate());
         }
 
         if (isPresentOfDestination(conditions)) {
 
             logger.info("지역 조건에 따라 숙소 조회 ");
 
-            String sqlQuery = BASE_SQL +
-                    "WHERE " + MAIN_IMAGE_CONDITION_SQL +
-                    "AND " + DESTINATION_CONDITION_SQL;
-
-            return jdbcTemplate.query(sqlQuery, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%");
+            return jdbcTemplate.query(ACCOMMODATIONS_BY_DESTINATION_SQL, ACCOMMODATION_ROW_MAPPER, "%" + conditions.getDestination() + "%");
         }
 
-        return jdbcTemplate.query(BASE_SQL, ACCOMMODATION_ROW_MAPPER);
+        return jdbcTemplate.query(ACCOMMODATIONS_SQL, ACCOMMODATION_ROW_MAPPER);
     }
 
     public List<Accommodation> findPopularDestinations(String destination) {
