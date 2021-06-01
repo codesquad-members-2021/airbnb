@@ -17,6 +17,7 @@
 		7157C8862654A14500EF7977 /* FirstSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C8852654A14500EF7977 /* FirstSectionView.swift */; };
 		7157C8892654AC4000EF7977 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C8882654AC4000EF7977 /* MainViewModel.swift */; };
 		71697DC92664B9E8003124D9 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71697DC82664B9E8003124D9 /* GraphView.swift */; };
+		7171C98B2665F05300E3F872 /* GuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7171C98A2665F05300E3F872 /* GuestViewModel.swift */; };
 		7197A4B0265DE3E400729BCF /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7197A4AF265DE3E400729BCF /* CalendarViewModel.swift */; };
 		7197A4B2265DE5B200729BCF /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7197A4B1265DE5B200729BCF /* CalendarCell.swift */; };
 		71A67D2526539B6A00FC6689 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D2426539B6A00FC6689 /* AppDelegate.swift */; };
@@ -59,6 +60,7 @@
 		7157C8852654A14500EF7977 /* FirstSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSectionView.swift; sourceTree = "<group>"; };
 		7157C8882654AC4000EF7977 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		71697DC82664B9E8003124D9 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		7171C98A2665F05300E3F872 /* GuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestViewModel.swift; sourceTree = "<group>"; };
 		7197A4AF265DE3E400729BCF /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		7197A4B1265DE5B200729BCF /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		71A67D2126539B6A00FC6689 /* Airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +123,7 @@
 				71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */,
 				7197A4AF265DE3E400729BCF /* CalendarViewModel.swift */,
 				71B5E9F1265F356D00F58477 /* PriceViewModel.swift */,
+				7171C98A2665F05300E3F872 /* GuestViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 			files = (
 				713D478D265F1AC6007DDFFD /* LogInView.swift in Sources */,
 				71A67D2926539B6A00FC6689 /* MainViewController.swift in Sources */,
+				7171C98B2665F05300E3F872 /* GuestViewModel.swift in Sources */,
 				7157C8862654A14500EF7977 /* FirstSectionView.swift in Sources */,
 				713D478B265F17C8007DDFFD /* TransformManager.swift in Sources */,
 				71A67D2526539B6A00FC6689 /* AppDelegate.swift in Sources */,

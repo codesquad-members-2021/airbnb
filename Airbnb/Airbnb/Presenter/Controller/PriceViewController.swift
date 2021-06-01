@@ -116,6 +116,7 @@ private extension PriceViewController {
         nextButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "GuestVC") as! GuestViewController
+                nextVC.setupInfo(self!.locationLabel.text!, self!.dateLabel.text!, self!.priceLabel.text!)
                 nextVC.modalTransitionStyle = .crossDissolve
                 nextVC.modalPresentationStyle = .fullScreen
                 self?.present(nextVC, animated: true, completion: nil)

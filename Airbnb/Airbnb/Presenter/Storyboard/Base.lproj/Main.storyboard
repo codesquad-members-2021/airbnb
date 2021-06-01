@@ -633,9 +633,25 @@
                     <view key="view" contentMode="scaleToFill" id="65L-pS-Oyi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfa-Ii-f7o">
+                                <rect key="frame" x="10" y="44" width="20" height="22"/>
+                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="chevron.backward.circle" catalog="system"/>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="zfR-DX-Fuf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="sfa-Ii-f7o" firstAttribute="leading" secondItem="zfR-DX-Fuf" secondAttribute="leading" constant="10" id="4im-PF-YHQ"/>
+                            <constraint firstItem="sfa-Ii-f7o" firstAttribute="width" secondItem="65L-pS-Oyi" secondAttribute="width" multiplier="0.0483092" id="4qx-bV-j3U"/>
+                            <constraint firstItem="sfa-Ii-f7o" firstAttribute="top" secondItem="zfR-DX-Fuf" secondAttribute="top" id="aGb-Kq-7Eh"/>
+                            <constraint firstItem="sfa-Ii-f7o" firstAttribute="height" secondItem="65L-pS-Oyi" secondAttribute="height" multiplier="0.0245536" id="cV3-BY-u9c"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backButton" destination="sfa-Ii-f7o" id="oQN-i5-rlU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdi-VS-H3Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
