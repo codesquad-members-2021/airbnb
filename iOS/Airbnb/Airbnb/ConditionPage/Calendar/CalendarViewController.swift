@@ -162,7 +162,7 @@ extension CalendarViewController {
         
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 650),
+            containerView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -250),
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
         ])
