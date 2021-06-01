@@ -1,5 +1,7 @@
 package com.codesquad.coco.oauth.gitoauth;
 
+import com.codesquad.coco.utils.GetPropertyUtil;
+
 public enum GitHubDeviceType {
 
     IOS("github.ios.client.id", "github.ios.secret", "http://localhost:8080/git/auth/app"),
@@ -10,8 +12,8 @@ public enum GitHubDeviceType {
     private String redirectUri;
 
     GitHubDeviceType(String clientKey, String clientSecret, String redirectUri) {
-        this.clientKey = clientKey;
-        this.clientSecret = clientSecret;
+        this.clientKey = GetPropertyUtil.getProperty(clientKey);
+        this.clientSecret = GetPropertyUtil.getProperty(clientSecret);
         this.redirectUri = redirectUri;
     }
 
@@ -31,4 +33,12 @@ public enum GitHubDeviceType {
         return redirectUri;
     }
 
+    @Override
+    public String toString() {
+        return "GitHubDeviceType{" +
+                "clientKey='" + clientKey + '\'' +
+                ", clientSecret='" + clientSecret + '\'' +
+                ", redirectUri='" + redirectUri + '\'' +
+                '}';
+    }
 }

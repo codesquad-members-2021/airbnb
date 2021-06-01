@@ -9,11 +9,14 @@ import com.codesquad.coco.room.model.Room;
 import com.codesquad.coco.user.model.ReservationStatus;
 import com.codesquad.coco.user.model.dto.ReservationDTO;
 import oauth.AccessToken;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     private ReservationDAO reservationDAO;
     private RoomDAO roomDAO;
     private UserDAO userDAO;
@@ -46,6 +49,7 @@ public class UserService {
     }
 
     public GitUserInfoDTO loginByGitOauth(String code, GitHubDeviceType gitHubDeviceType) {
+        logger.debug(gitHubDeviceType.toString());
         oauth.changeType(gitHubDeviceType);
         AccessToken accessToken = oauth.requestAccessToken(code);
         GitUserInfoDTO userInfo = oauth.requestUserInfo(accessToken);

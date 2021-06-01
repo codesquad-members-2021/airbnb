@@ -1,20 +1,16 @@
 package com.codesquad.coco.oauth;
 
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@PropertySource("classpath:/secretKey.properties")
-@Component
 public class ServerKey {
 
-    private static final String JWT_PATH = "jwt.server.key";
     private String jwtServerKey;
-    private Environment environment;
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public ServerKey(Environment environment) {
-        this.environment = environment;
-        this.jwtServerKey = this.environment.getProperty(JWT_PATH);
+    public ServerKey(String key) {
+        this.jwtServerKey = key;
+        logger.debug(jwtServerKey);
     }
 
     public String getJwtServerKey() {
