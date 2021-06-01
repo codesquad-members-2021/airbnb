@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		BF2FEAD2265A83F30022CB93 /* SearchLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAD1265A83F30022CB93 /* SearchLocationViewModel.swift */; };
+		BF2FEADC265B71260022CB93 /* SearchTextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEADB265B71260022CB93 /* SearchTextField+Extension.swift */; };
+		BF2FEAE2265BBAED0022CB93 /* SearchConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAE1265BBAED0022CB93 /* SearchConditionViewController.swift */; };
+		BF2FEAE6265BBB960022CB93 /* SearchCondition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF2FEAE5265BBB960022CB93 /* SearchCondition.storyboard */; };
+		BF2FEAE9265BE0730022CB93 /* SearchConditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAE8265BE0720022CB93 /* SearchConditionViewModel.swift */; };
+		BF2FEAED265BEFDB0022CB93 /* PriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAEC265BEFDB0022CB93 /* PriceViewController.swift */; };
+		BF2FEAF0265C20230022CB93 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEAEF265C20220022CB93 /* Date+Extension.swift */; };
 		BF4048CF2658CB4600CA02B5 /* LocationResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4048CE2658CB4600CA02B5 /* LocationResultViewController.swift */; };
 		BF4048D22658D8AA00CA02B5 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4048D12658D8AA00CA02B5 /* CalendarViewController.swift */; };
 		BF4048D52658D8C500CA02B5 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4048D42658D8C500CA02B5 /* Calendar.storyboard */; };
@@ -19,11 +25,33 @@
 		BF4048F92659ED1400CA02B5 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4048F82659ED1400CA02B5 /* DateFormatter+Extension.swift */; };
 		BF404901265A17CC00CA02B5 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404900265A17CC00CA02B5 /* SearchManager.swift */; };
 		BF404906265A3F0000CA02B5 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404905265A3EFF00CA02B5 /* Endpoint.swift */; };
-		BF404909265A3F0A00CA02B5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404908265A3F0A00CA02B5 /* NetworkManager.swift */; };
+		BF404909265A3F0A00CA02B5 /* SearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404908265A3F0A00CA02B5 /* SearchAPI.swift */; };
 		BF40490C265A415300CA02B5 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40490B265A415300CA02B5 /* HTTPMethod.swift */; };
 		BF40490F265A417000CA02B5 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40490E265A417000CA02B5 /* NetworkError.swift */; };
 		BF404913265A7B6C00CA02B5 /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404912265A7B6C00CA02B5 /* SearchLocation.swift */; };
 		BF404919265A815400CA02B5 /* SearchLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF404918265A815400CA02B5 /* SearchLocationUseCase.swift */; };
+		BF7DDCAE266540A000DCB6A7 /* UICollectionReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DDCAD266540A000DCB6A7 /* UICollectionReusableView+Extension.swift */; };
+		BF7DDCB22665522200DCB6A7 /* SearchManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DDCB12665522200DCB6A7 /* SearchManageable.swift */; };
+		BF7E2E3B265FA2DF00A810BE /* PriceSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E3A265FA2DF00A810BE /* PriceSlider.swift */; };
+		BF7E2E3E265FA36F00A810BE /* PriceSliderLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E3D265FA36F00A810BE /* PriceSliderLayer.swift */; };
+		BF7E2E42265FBC5300A810BE /* SequenceDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E41265FBC5300A810BE /* SequenceDates.swift */; };
+		BF7E2E46265FBC8C00A810BE /* PriceRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E45265FBC8C00A810BE /* PriceRange.swift */; };
+		BF7E2E4A265FCF6D00A810BE /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E49265FCF6D00A810BE /* CGFloat+Extension.swift */; };
+		BF7E2E54266027E400A810BE /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E53266027E400A810BE /* PeopleViewController.swift */; };
+		BF7E2E572660280700A810BE /* People.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF7E2E562660280700A810BE /* People.storyboard */; };
+		BF7E2E5A2660B22B00A810BE /* AdultCountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E592660B22B00A810BE /* AdultCountState.swift */; };
+		BF7E2E5D2660B23E00A810BE /* KidCountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E5C2660B23E00A810BE /* KidCountState.swift */; };
+		BF7E2E612660B25400A810BE /* BabyCountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E602660B25400A810BE /* BabyCountState.swift */; };
+		BF7E2E652660B2B200A810BE /* CountSatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E642660B2B200A810BE /* CountSatable.swift */; };
+		BF7E2E692660B6BF00A810BE /* PeopleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E682660B6BF00A810BE /* PeopleManager.swift */; };
+		BF7E2E6D2660B8EB00A810BE /* ButtonsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E6C2660B8EB00A810BE /* ButtonsViewModel.swift */; };
+		BF7E2E702660BC0500A810BE /* ButtonMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E2E6F2660BC0500A810BE /* ButtonMapper.swift */; };
+		BF9F9509265DE6D4003CF475 /* UIStoryBoard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F9508265DE6D4003CF475 /* UIStoryBoard+Extension.swift */; };
+		BF9F950D265DE9DC003CF475 /* UICollectionCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F950C265DE9DC003CF475 /* UICollectionCell+Extension.swift */; };
+		BF9F9510265DEAFE003CF475 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F950F265DEAFE003CF475 /* UITableViewCell+Extension.swift */; };
+		BF9F9513265DED03003CF475 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F9512265DED03003CF475 /* UIColor+Extension.swift */; };
+		BF9F951E265DFD69003CF475 /* NotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9F951D265DFD69003CF475 /* NotificationName+Extension.swift */; };
+		BF9F9522265E01F0003CF475 /* Price.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF9F9521265E01F0003CF475 /* Price.storyboard */; };
 		BFE430B42653902E00F4DA1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE430B32653902E00F4DA1C /* AppDelegate.swift */; };
 		BFE430B62653902E00F4DA1C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE430B52653902E00F4DA1C /* SceneDelegate.swift */; };
 		BFE430B82653902E00F4DA1C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE430B72653902E00F4DA1C /* MainViewController.swift */; };
@@ -38,6 +66,12 @@
 
 /* Begin PBXFileReference section */
 		BF2FEAD1265A83F30022CB93 /* SearchLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewModel.swift; sourceTree = "<group>"; };
+		BF2FEADB265B71260022CB93 /* SearchTextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchTextField+Extension.swift"; sourceTree = "<group>"; };
+		BF2FEAE1265BBAED0022CB93 /* SearchConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConditionViewController.swift; sourceTree = "<group>"; };
+		BF2FEAE5265BBB960022CB93 /* SearchCondition.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchCondition.storyboard; sourceTree = "<group>"; };
+		BF2FEAE8265BE0720022CB93 /* SearchConditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConditionViewModel.swift; sourceTree = "<group>"; };
+		BF2FEAEC265BEFDB0022CB93 /* PriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewController.swift; sourceTree = "<group>"; };
+		BF2FEAEF265C20220022CB93 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		BF4048CE2658CB4600CA02B5 /* LocationResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResultViewController.swift; sourceTree = "<group>"; };
 		BF4048D12658D8AA00CA02B5 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		BF4048D42658D8C500CA02B5 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
@@ -49,11 +83,33 @@
 		BF4048F82659ED1400CA02B5 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		BF404900265A17CC00CA02B5 /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		BF404905265A3EFF00CA02B5 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		BF404908265A3F0A00CA02B5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BF404908265A3F0A00CA02B5 /* SearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
 		BF40490B265A415300CA02B5 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		BF40490E265A417000CA02B5 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BF404912265A7B6C00CA02B5 /* SearchLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocation.swift; sourceTree = "<group>"; };
 		BF404918265A815400CA02B5 /* SearchLocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationUseCase.swift; sourceTree = "<group>"; };
+		BF7DDCAD266540A000DCB6A7 /* UICollectionReusableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionReusableView+Extension.swift"; sourceTree = "<group>"; };
+		BF7DDCB12665522200DCB6A7 /* SearchManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManageable.swift; sourceTree = "<group>"; };
+		BF7E2E3A265FA2DF00A810BE /* PriceSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSlider.swift; sourceTree = "<group>"; };
+		BF7E2E3D265FA36F00A810BE /* PriceSliderLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSliderLayer.swift; sourceTree = "<group>"; };
+		BF7E2E41265FBC5300A810BE /* SequenceDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceDates.swift; sourceTree = "<group>"; };
+		BF7E2E45265FBC8C00A810BE /* PriceRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRange.swift; sourceTree = "<group>"; };
+		BF7E2E49265FCF6D00A810BE /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
+		BF7E2E53266027E400A810BE /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
+		BF7E2E562660280700A810BE /* People.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = People.storyboard; sourceTree = "<group>"; };
+		BF7E2E592660B22B00A810BE /* AdultCountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultCountState.swift; sourceTree = "<group>"; };
+		BF7E2E5C2660B23E00A810BE /* KidCountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KidCountState.swift; sourceTree = "<group>"; };
+		BF7E2E602660B25400A810BE /* BabyCountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyCountState.swift; sourceTree = "<group>"; };
+		BF7E2E642660B2B200A810BE /* CountSatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountSatable.swift; sourceTree = "<group>"; };
+		BF7E2E682660B6BF00A810BE /* PeopleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleManager.swift; sourceTree = "<group>"; };
+		BF7E2E6C2660B8EB00A810BE /* ButtonsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsViewModel.swift; sourceTree = "<group>"; };
+		BF7E2E6F2660BC0500A810BE /* ButtonMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonMapper.swift; sourceTree = "<group>"; };
+		BF9F9508265DE6D4003CF475 /* UIStoryBoard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryBoard+Extension.swift"; sourceTree = "<group>"; };
+		BF9F950C265DE9DC003CF475 /* UICollectionCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionCell+Extension.swift"; sourceTree = "<group>"; };
+		BF9F950F265DEAFE003CF475 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
+		BF9F9512265DED03003CF475 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		BF9F951D265DFD69003CF475 /* NotificationName+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+Extension.swift"; sourceTree = "<group>"; };
+		BF9F9521265E01F0003CF475 /* Price.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Price.storyboard; sourceTree = "<group>"; };
 		BFE430B02653902E00F4DA1C /* airBnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = airBnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFE430B32653902E00F4DA1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFE430B52653902E00F4DA1C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,13 +139,35 @@
 			isa = PBXGroup;
 			children = (
 				BF2FEAD1265A83F30022CB93 /* SearchLocationViewModel.swift */,
+				BF2FEAE8265BE0720022CB93 /* SearchConditionViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BF2FEADF265BB8EE0022CB93 /* SearchCondition */ = {
+			isa = PBXGroup;
+			children = (
+				BF2FEAE1265BBAED0022CB93 /* SearchConditionViewController.swift */,
+				BF2FEAE5265BBB960022CB93 /* SearchCondition.storyboard */,
+			);
+			path = SearchCondition;
+			sourceTree = "<group>";
+		};
+		BF2FEAEB265BEFAE0022CB93 /* Price */ = {
+			isa = PBXGroup;
+			children = (
+				BF2FEAEC265BEFDB0022CB93 /* PriceViewController.swift */,
+				BF9F9521265E01F0003CF475 /* Price.storyboard */,
+			);
+			path = Price;
 			sourceTree = "<group>";
 		};
 		BF4048D72658F48D00CA02B5 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				BF7E2E4D2660276900A810BE /* People */,
+				BF2FEAEB265BEFAE0022CB93 /* Price */,
+				BF2FEADF265BB8EE0022CB93 /* SearchCondition */,
 				BF4048E826592A3D00CA02B5 /* Main */,
 				BF4048E626592A3300CA02B5 /* LocationSearch */,
 				BF4048FE2659F52E00CA02B5 /* Calendar */,
@@ -105,6 +183,8 @@
 				BFE4311226557A2900F4DA1C /* LocationHeaderView.swift */,
 				BF4048F02659335800CA02B5 /* CalendarDayCell.swift */,
 				BF4048F426593DDA00CA02B5 /* CalendarHeaderView.swift */,
+				BF7E2E3A265FA2DF00A810BE /* PriceSlider.swift */,
+				BF7E2E3D265FA36F00A810BE /* PriceSliderLayer.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -140,6 +220,15 @@
 			isa = PBXGroup;
 			children = (
 				BF4048F82659ED1400CA02B5 /* DateFormatter+Extension.swift */,
+				BF2FEADB265B71260022CB93 /* SearchTextField+Extension.swift */,
+				BF2FEAEF265C20220022CB93 /* Date+Extension.swift */,
+				BF9F9508265DE6D4003CF475 /* UIStoryBoard+Extension.swift */,
+				BF9F950C265DE9DC003CF475 /* UICollectionCell+Extension.swift */,
+				BF9F950F265DEAFE003CF475 /* UITableViewCell+Extension.swift */,
+				BF9F9512265DED03003CF475 /* UIColor+Extension.swift */,
+				BF9F951D265DFD69003CF475 /* NotificationName+Extension.swift */,
+				BF7E2E49265FCF6D00A810BE /* CGFloat+Extension.swift */,
+				BF7DDCAD266540A000DCB6A7 /* UICollectionReusableView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -160,7 +249,7 @@
 				BF404905265A3EFF00CA02B5 /* Endpoint.swift */,
 				BF40490B265A415300CA02B5 /* HTTPMethod.swift */,
 				BF40490E265A417000CA02B5 /* NetworkError.swift */,
-				BF404908265A3F0A00CA02B5 /* NetworkManager.swift */,
+				BF404908265A3F0A00CA02B5 /* SearchAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -179,6 +268,41 @@
 				BF404918265A815400CA02B5 /* SearchLocationUseCase.swift */,
 			);
 			path = UseCase;
+			sourceTree = "<group>";
+		};
+		BF7E2E40265FBC2A00A810BE /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				BF404900265A17CC00CA02B5 /* SearchManager.swift */,
+				BF7E2E41265FBC5300A810BE /* SequenceDates.swift */,
+				BF7E2E45265FBC8C00A810BE /* PriceRange.swift */,
+				BF7E2E682660B6BF00A810BE /* PeopleManager.swift */,
+				BF7DDCB12665522200DCB6A7 /* SearchManageable.swift */,
+				BF7E2E632660B27F00A810BE /* PeopleCount */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		BF7E2E4D2660276900A810BE /* People */ = {
+			isa = PBXGroup;
+			children = (
+				BF7E2E53266027E400A810BE /* PeopleViewController.swift */,
+				BF7E2E562660280700A810BE /* People.storyboard */,
+				BF7E2E6C2660B8EB00A810BE /* ButtonsViewModel.swift */,
+				BF7E2E6F2660BC0500A810BE /* ButtonMapper.swift */,
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
+		BF7E2E632660B27F00A810BE /* PeopleCount */ = {
+			isa = PBXGroup;
+			children = (
+				BF7E2E592660B22B00A810BE /* AdultCountState.swift */,
+				BF7E2E602660B25400A810BE /* BabyCountState.swift */,
+				BF7E2E5C2660B23E00A810BE /* KidCountState.swift */,
+				BF7E2E642660B2B200A810BE /* CountSatable.swift */,
+			);
+			path = PeopleCount;
 			sourceTree = "<group>";
 		};
 		BFE430A72653902E00F4DA1C = {
@@ -200,6 +324,7 @@
 		BFE430B22653902E00F4DA1C /* airBnb */ = {
 			isa = PBXGroup;
 			children = (
+				BF7E2E40265FBC2A00A810BE /* Entity */,
 				BF4048D92658F4C000CA02B5 /* AppCycle */,
 				BF4048F72659ED0300CA02B5 /* Extension */,
 				BF2FEAD0265A83610022CB93 /* ViewModel */,
@@ -210,7 +335,6 @@
 				BF4048D82658F4B000CA02B5 /* View */,
 				BF4048DA2658F53C00CA02B5 /* CalendarManager.swift */,
 				BF4048E32658FCAC00CA02B5 /* CalendarHelper.swift */,
-				BF404900265A17CC00CA02B5 /* SearchManager.swift */,
 				BFE430BC2653903000F4DA1C /* Assets.xcassets */,
 				BFE430BE2653903000F4DA1C /* LaunchScreen.storyboard */,
 				BFE430C12653903000F4DA1C /* Info.plist */,
@@ -276,8 +400,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF4048D52658D8C500CA02B5 /* Calendar.storyboard in Resources */,
+				BF2FEAE6265BBB960022CB93 /* SearchCondition.storyboard in Resources */,
 				BFE430C02653903000F4DA1C /* LaunchScreen.storyboard in Resources */,
 				BFE430BD2653903000F4DA1C /* Assets.xcassets in Resources */,
+				BF9F9522265E01F0003CF475 /* Price.storyboard in Resources */,
+				BF7E2E572660280700A810BE /* People.storyboard in Resources */,
 				BFE430BB2653902E00F4DA1C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,24 +418,49 @@
 			files = (
 				BF2FEAD2265A83F30022CB93 /* SearchLocationViewModel.swift in Sources */,
 				BF404913265A7B6C00CA02B5 /* SearchLocation.swift in Sources */,
+				BF7E2E692660B6BF00A810BE /* PeopleManager.swift in Sources */,
+				BF7E2E46265FBC8C00A810BE /* PriceRange.swift in Sources */,
+				BF7DDCB22665522200DCB6A7 /* SearchManageable.swift in Sources */,
 				BF40490C265A415300CA02B5 /* HTTPMethod.swift in Sources */,
-				BF404909265A3F0A00CA02B5 /* NetworkManager.swift in Sources */,
+				BF404909265A3F0A00CA02B5 /* SearchAPI.swift in Sources */,
 				BF4048F526593DDB00CA02B5 /* CalendarHeaderView.swift in Sources */,
 				BF4048E42658FCAC00CA02B5 /* CalendarHelper.swift in Sources */,
 				BFE430B82653902E00F4DA1C /* MainViewController.swift in Sources */,
+				BF2FEAE9265BE0730022CB93 /* SearchConditionViewModel.swift in Sources */,
+				BF7E2E42265FBC5300A810BE /* SequenceDates.swift in Sources */,
 				BFE4310626554B3600F4DA1C /* LocationCell.swift in Sources */,
+				BF2FEAF0265C20230022CB93 /* Date+Extension.swift in Sources */,
+				BF7E2E5A2660B22B00A810BE /* AdultCountState.swift in Sources */,
 				BFE430B42653902E00F4DA1C /* AppDelegate.swift in Sources */,
 				BF404919265A815400CA02B5 /* SearchLocationUseCase.swift in Sources */,
 				BFE430B62653902E00F4DA1C /* SceneDelegate.swift in Sources */,
+				BF7E2E652660B2B200A810BE /* CountSatable.swift in Sources */,
 				BF4048CF2658CB4600CA02B5 /* LocationResultViewController.swift in Sources */,
+				BF9F950D265DE9DC003CF475 /* UICollectionCell+Extension.swift in Sources */,
 				BF40490F265A417000CA02B5 /* NetworkError.swift in Sources */,
 				BFE431172655948800F4DA1C /* LocationResultCell.swift in Sources */,
+				BF7DDCAE266540A000DCB6A7 /* UICollectionReusableView+Extension.swift in Sources */,
+				BF7E2E4A265FCF6D00A810BE /* CGFloat+Extension.swift in Sources */,
+				BF7E2E612660B25400A810BE /* BabyCountState.swift in Sources */,
+				BF9F951E265DFD69003CF475 /* NotificationName+Extension.swift in Sources */,
+				BF2FEAE2265BBAED0022CB93 /* SearchConditionViewController.swift in Sources */,
+				BF7E2E6D2660B8EB00A810BE /* ButtonsViewModel.swift in Sources */,
+				BF9F9510265DEAFE003CF475 /* UITableViewCell+Extension.swift in Sources */,
+				BF7E2E3B265FA2DF00A810BE /* PriceSlider.swift in Sources */,
+				BF9F9509265DE6D4003CF475 /* UIStoryBoard+Extension.swift in Sources */,
 				BF4048F12659335800CA02B5 /* CalendarDayCell.swift in Sources */,
 				BF4048D22658D8AA00CA02B5 /* CalendarViewController.swift in Sources */,
 				BF4048EB26592AAF00CA02B5 /* CalendarDataSource.swift in Sources */,
+				BF9F9513265DED03003CF475 /* UIColor+Extension.swift in Sources */,
+				BF7E2E3E265FA36F00A810BE /* PriceSliderLayer.swift in Sources */,
+				BF7E2E5D2660B23E00A810BE /* KidCountState.swift in Sources */,
+				BF2FEADC265B71260022CB93 /* SearchTextField+Extension.swift in Sources */,
 				BFE4311326557A2900F4DA1C /* LocationHeaderView.swift in Sources */,
+				BF7E2E54266027E400A810BE /* PeopleViewController.swift in Sources */,
 				BF4048F92659ED1400CA02B5 /* DateFormatter+Extension.swift in Sources */,
+				BF2FEAED265BEFDB0022CB93 /* PriceViewController.swift in Sources */,
 				BFE430D526541D2B00F4DA1C /* LocationSearchViewController.swift in Sources */,
+				BF7E2E702660BC0500A810BE /* ButtonMapper.swift in Sources */,
 				BF4048DB2658F53C00CA02B5 /* CalendarManager.swift in Sources */,
 				BF404906265A3F0000CA02B5 /* Endpoint.swift in Sources */,
 				BF404901265A17CC00CA02B5 /* SearchManager.swift in Sources */,

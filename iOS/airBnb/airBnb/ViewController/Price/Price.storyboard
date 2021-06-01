@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Price View Controller-->
+        <scene sceneID="XW7-EC-AMp">
+            <objects>
+                <viewController storyboardIdentifier="Price" id="crP-q9-Qyn" customClass="PriceViewController" customModule="airBnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zSM-OL-wFS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가격 범위" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ouz-Ub-7KH">
+                                <rect key="frame" x="16" y="76" width="63" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQh-Ej-KJO">
+                                <rect key="frame" x="0.0" y="582.5" width="414" height="313.5"/>
+                            </containerView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zty-8L-fwo">
+                                <rect key="frame" x="16" y="112.5" width="183.5" height="20.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₩11,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUq-mG-eCc">
+                                        <rect key="frame" x="0.0" y="0.0" width="64.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1a-Cr-LPT">
+                                        <rect key="frame" x="74.5" y="0.0" width="8" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₩1,000,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZB5-d8-8Cd">
+                                        <rect key="frame" x="92.5" y="0.0" width="91" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="jNn-cC-yEH">
+                                <rect key="frame" x="16" y="141" width="241.5" height="20.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="평균 1박 요금은" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3I-E2-xAy">
+                                        <rect key="frame" x="0.0" y="0.0" width="104.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="BoardColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₩505,499" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrx-sH-uGs">
+                                        <rect key="frame" x="110.5" y="0.0" width="80.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="BoardColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="입니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="112-Hv-qIL">
+                                        <rect key="frame" x="197" y="0.0" width="44.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="BoardColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mqo-td-WHh">
+                                <rect key="frame" x="0.0" y="581.5" width="414" height="1"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="sGf-7V-Cgd"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aeB-xV-hj4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Zty-8L-fwo" firstAttribute="leading" secondItem="ouz-Ub-7KH" secondAttribute="leading" id="5UQ-eJ-CXV"/>
+                            <constraint firstItem="MQh-Ej-KJO" firstAttribute="leading" secondItem="aeB-xV-hj4" secondAttribute="leading" id="7HR-om-byg"/>
+                            <constraint firstItem="MQh-Ej-KJO" firstAttribute="height" secondItem="zSM-OL-wFS" secondAttribute="height" multiplier="0.35" id="BUL-rY-9Ck"/>
+                            <constraint firstItem="MQh-Ej-KJO" firstAttribute="top" secondItem="mqo-td-WHh" secondAttribute="bottom" id="DgO-xH-rH7"/>
+                            <constraint firstItem="ouz-Ub-7KH" firstAttribute="leading" secondItem="aeB-xV-hj4" secondAttribute="leading" constant="16" id="HHK-pw-a0C"/>
+                            <constraint firstItem="aeB-xV-hj4" firstAttribute="trailing" secondItem="mqo-td-WHh" secondAttribute="trailing" id="RCW-La-NHp"/>
+                            <constraint firstAttribute="bottom" secondItem="MQh-Ej-KJO" secondAttribute="bottom" id="W8B-Bg-32Y"/>
+                            <constraint firstItem="aeB-xV-hj4" firstAttribute="trailing" secondItem="MQh-Ej-KJO" secondAttribute="trailing" id="anU-rP-zLK"/>
+                            <constraint firstItem="Zty-8L-fwo" firstAttribute="top" secondItem="ouz-Ub-7KH" secondAttribute="bottom" constant="16" id="b7u-sL-AX1"/>
+                            <constraint firstItem="mqo-td-WHh" firstAttribute="leading" secondItem="aeB-xV-hj4" secondAttribute="leading" id="cGF-H3-q6r"/>
+                            <constraint firstItem="jNn-cC-yEH" firstAttribute="leading" secondItem="ouz-Ub-7KH" secondAttribute="leading" id="l3u-ks-QRW"/>
+                            <constraint firstItem="jNn-cC-yEH" firstAttribute="top" secondItem="Zty-8L-fwo" secondAttribute="bottom" constant="8" id="mFf-bI-213"/>
+                            <constraint firstItem="ouz-Ub-7KH" firstAttribute="top" secondItem="aeB-xV-hj4" secondAttribute="top" constant="32" id="rwp-ga-P53"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="containerView" destination="MQh-Ej-KJO" id="WSo-G6-vSH"/>
+                        <outlet property="priceAvgLabel" destination="Lrx-sH-uGs" id="JXh-ZO-2JC"/>
+                        <outlet property="priceMaxLabel" destination="ZB5-d8-8Cd" id="kcV-hb-9fj"/>
+                        <outlet property="priceMinLabel" destination="oUq-mG-eCc" id="9e4-Lx-Pft"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9oY-Nu-0MC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-230.43478260869566" y="-24.107142857142858"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="BoardColor">
+            <color red="0.50999999046325684" green="0.50999999046325684" blue="0.50999999046325684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

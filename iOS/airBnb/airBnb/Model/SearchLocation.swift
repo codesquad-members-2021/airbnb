@@ -8,21 +8,10 @@
 import Foundation
 
 struct SearchLoaction: Decodable {
-    let cityInfoList: [CityInfoList]
-    
-    enum CodingKeys: String, CodingKey {
-        case cityInfoList = "city_info_list"
-    }
+    let locationList: [LocationList]
 }
 
-struct CityInfoList: Decodable {
-    let provinceId, townId, addressId: Int
+struct LocationList: Decodable {
+    let id: Int
     let address: String
-    
-    enum CodingKeys: String, CodingKey {
-        case provinceId = "province_id"
-        case townId = "town_id"
-        case addressId = "address_id"
-        case address
-    }
 }

@@ -14,14 +14,14 @@ protocol SearchLocationConfigurable {
 
 final class SearchLocationUseCase: SearchLocationConfigurable {
     
-    private let networkManager: NetworkManageable
+    private let networkManager: SearchAPIProtocol
     
-    init(networkManage: NetworkManageable) {
+    init(networkManage: SearchAPIProtocol) {
         self.networkManager = networkManage
     }
     
     convenience init() {
-        self.init(networkManage: NetworkManager())
+        self.init(networkManage: SearchAPI())
     }
     
     func requestSearchLocation(from location: String) -> AnyPublisher<SearchLoaction, NetworkError> {

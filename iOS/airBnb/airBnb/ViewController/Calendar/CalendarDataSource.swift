@@ -9,12 +9,12 @@ import UIKit
 
 class CalendarDataSource: NSObject, UICollectionViewDataSource {
     
-    let dates: [String:[Date?]]
-    var sequenceDates: SequenceDates
+    private let dates: [String:[Date?]]
+    private var sequenceDates: SequenceDates
     
-    init(dates: [String:[Date?]], sequenceDates: SequenceDates) {
+    init(dates: [String:[Date?]], sequenceDates: SequenceDates?) {
         self.dates = dates
-        self.sequenceDates = sequenceDates
+        self.sequenceDates = sequenceDates ?? .init()
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -39,11 +39,19 @@ class CalendarDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let headerview = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CalendarHeaderView.identifier, for: indexPath) as? CalendarHeaderView else {
+        guard let headerview = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CalendarHeaderView.reuseidentifier, for: indexPath) as? CalendarHeaderView else {
             return .init()
         }
         let month = CalendarHelper.month(index: indexPath.section)
         headerview.updateLabel(text: month)
         return headerview
+    }
+    
+    func resetSelectDates() {
+        sequenceDates.reset()
+    }
+    
+    func updateSelectedDate(from dates: SequenceDates) {
+        self.sequenceDates = dates
     }
 }

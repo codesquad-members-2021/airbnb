@@ -9,10 +9,6 @@ import UIKit
 
 class LocationCell: UITableViewCell {
     
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -45,7 +41,7 @@ class LocationCell: UITableViewCell {
         let city = UILabel()
         city.translatesAutoresizingMaskIntoConstraints = false
         city.text = ""
-        city.textColor = UIColor(named: "CityColor")
+        city.textColor = .cityColor
         return city
     }()
     
@@ -53,7 +49,7 @@ class LocationCell: UITableViewCell {
         let distance = UILabel()
         distance.translatesAutoresizingMaskIntoConstraints = false
         distance.text = "차로 30분 거리"
-        distance.textColor = UIColor(named: "DistanceColor")
+        distance.textColor = .distanceColor
         return distance
     }()
     

@@ -10,11 +10,11 @@ import Combine
 
 class LocationResultViewController: UITableViewController {
 
-    private var resultCities: [CityInfoList] = []
+    private var resultCities: [LocationList] = []
     private var searchViewModel: SearchLocationViewModel?
     private var cancell: AnyCancellable?
     
-    lazy var emptyHeaderView: UIView = {
+    private lazy var emptyHeaderView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 15))
         view.backgroundColor = .clear
         return view
@@ -27,6 +27,12 @@ class LocationResultViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.rowHeight = 80
         bind()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        resultCities = []
+        tableView.reloadData()
     }
     
     private func bind() {

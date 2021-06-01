@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 class LocationSearchViewController: UITableViewController {
     
+    // TODO: - 더미 데이터
     private var cities = ["서울","광주","의정부시","수원시","대구","울산","부천시"]
     
     private lazy var deleteText: UIBarButtonItem = {
@@ -24,13 +26,17 @@ class LocationSearchViewController: UITableViewController {
     
     private var resultTableViewController = LocationResultViewController()
     private let searchViewModel = SearchLocationViewModel()
-    private var searchController: UISearchController!
+    private lazy var searchController = UISearchController(searchResultsController: resultTableViewController)
+    private var cancellable = Set<AnyCancellable>()
+    
+    private let searchManager = SearchManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         setUpSearchController()
         setUpTableView()
+        bind()
         resultTableViewController.injectViewModel(from: searchViewModel)
     }
     
@@ -45,13 +51,12 @@ class LocationSearchViewController: UITableViewController {
     }
     
     private func setUpSearchController() {
-        searchController = UISearchController(searchResultsController: resultTableViewController)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.showsCancelButton = false
         searchController.searchBar.searchTextField.clearButtonMode = .never
         searchController.searchBar.placeholder = "어디로 여행가세요?"
-        searchController.searchResultsUpdater = self
+        searchController.delegate = self
         navigationItem.searchController = searchController
     }
     
@@ -61,16 +66,17 @@ class LocationSearchViewController: UITableViewController {
         tableView.tableHeaderView = header
     }
     
+    private func bind() {
+        searchController.searchBar.searchTextField.searchTextPublisher.sink { [weak self] (text) in
+            self?.searchViewModel.requestSearch(from: text)
+        }.store(in: &cancellable)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         DispatchQueue.main.async { [weak self] in
             self?.searchController.searchBar.becomeFirstResponder()
         }
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        searchController.dismiss(animated: true, completion: nil)
     }
     
     @objc func closeSearchText(_ gesture: UIBarButtonItem) {
@@ -93,16 +99,15 @@ class LocationSearchViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyBoard = UIStoryboard(name: "Calendar", bundle: nil)
-        guard let calendarViewController = storyBoard.instantiateViewController(withIdentifier: "Calendar") as? CalendarViewController else {
-            return
-        }
+        let calendarViewController = UIStoryboard.create(identifier: CalendarViewController.self, name: "Calendar")
+        searchManager.selectLocation(from: cities[indexPath.row])
+        calendarViewController.configure(from: searchManager)
         self.navigationController?.pushViewController(calendarViewController, animated: true)
     }
 }
 
-extension LocationSearchViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        searchViewModel.requestSearch(from: searchController.searchBar.text ?? "")
+extension LocationSearchViewController: UISearchControllerDelegate {
+    func presentSearchController(_ searchController: UISearchController) {
+        deleteText.isEnabled = true
     }
 }

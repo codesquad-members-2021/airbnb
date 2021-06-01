@@ -8,12 +8,13 @@
 import Foundation
 
 class CalendarHelper {
+    private static let oneYearRange = (0..<12)
     private static let calendar = Calendar.current
     private static let dateFormatter = DateFormatter()
     
     static func makeCalenderDate() -> [String:[Date?]] {
         var dates: [String:[Date?]] = [:]
-        (0..<12).forEach { (value) in
+        oneYearRange.forEach { (value) in
             let month = calendar.date(byAdding: .month, value: value, to: Date()) ?? Date()
             let days = makeDays(date: month)
             let months = dateFormatter.convertCalenderHeaderString(date: month)
