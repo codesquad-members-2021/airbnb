@@ -37,3 +37,13 @@ export const getDateByTime = (time: number | null): date | void => {
   const date = new Date(time);
   return { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() };
 };
+
+export const dateToString = (date: date | void): string => {
+  if (!date) return '';
+  let { year, month, day } = date;
+  let newMonth = month + '';
+  let newDay = day + '';
+  if (month < 10) newMonth = '0' + month;
+  if (day < 10) newDay = '0' + day;
+  return `${year}-${newMonth}-${newDay}`;
+};

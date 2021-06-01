@@ -40,12 +40,12 @@ const FormCalendar = ({ toggleRef }: Props) => {
 
   const handlePrevBtnClick = (): void => {
     setMoveType('prev');
-    setPositionX((positionX) => positionX + DEFAULT_POSITION_X);
+    setPositionX((positionX) => positionX - DEFAULT_POSITION_X);
   };
 
   const handleNextBtnClick = (): void => {
     setMoveType('next');
-    setPositionX((positionX) => positionX - DEFAULT_POSITION_X);
+    setPositionX((positionX) => positionX + DEFAULT_POSITION_X);
   };
 
   const calendarHeaderList = CALENDAR_MONTH_CHANGE.map((moveCount, idx) => (
@@ -100,6 +100,7 @@ interface StyleType {
 }
 
 const StyledFormCalendar = styled.div<StyleType>`
+  z-index: 10;
   overflow: hidden;
   position: absolute;
   top: 100px;

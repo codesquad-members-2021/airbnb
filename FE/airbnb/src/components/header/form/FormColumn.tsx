@@ -1,17 +1,27 @@
+import { FormEvent, RefObject } from 'react';
 import styled from 'styled-components';
 
 interface Props {
   title: string;
   description: string;
   isInput?: boolean;
+  inputRef?: RefObject<HTMLInputElement>;
+  handleInput?: (e: FormEvent<HTMLInputElement>) => void;
 }
 
-const FormColumn = ({ title, description, isInput }: Props) => {
+const FormColumn = ({ title, description, isInput, inputRef, handleInput }: Props) => {
   return (
     <StyledFormColumn>
       <div className='title'>{title}</div>
       {isInput ? (
-        <input type='text' name='locationInput' placeholder={description} />
+        <input
+          type='text'
+          name='locationInput'
+          placeholder={description}
+          ref={inputRef}
+          onChange={handleInput}
+          autoComplete='off'
+        />
       ) : (
         <div className='description'>{description}</div>
       )}
@@ -22,7 +32,7 @@ const FormColumn = ({ title, description, isInput }: Props) => {
 export default FormColumn;
 
 const StyledFormColumn = styled.div`
-  min-width: 8rem;
+  min-width: 7rem;
   .title {
     font-weight: 600;
     margin-bottom: 0.3rem;

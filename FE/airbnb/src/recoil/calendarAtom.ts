@@ -33,11 +33,6 @@ export const calendarState = atom<calendarDateType>({
   },
 });
 
-export const selectCheckBoxState = atom<string>({
-  key: 'selectCheckBoxState',
-  default: '',
-});
-
 interface selectDateStateType {
   checkIn: number | null;
   checkOut: number | null;
