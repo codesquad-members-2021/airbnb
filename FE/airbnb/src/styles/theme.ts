@@ -39,10 +39,31 @@ const flexCenter = css`
   align-items: center;
 `;
 
+const header = css`
+  box-sizing: border-box;
+  width: 1440px;
+  height: 80px;
+  padding: 0 80px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+`;
+
+const bigSearchBar = css`
+  width: 901px;
+  height: 74px;
+  top: 110px;
+`;
+
+const miniSearchBar = css`
+  width: 580px;
+  height: 50px;
+`;
+
 const searchListItem = css`
   box-sizing: border-box;
-  height: 76px;
-  padding: 16px 20px 16px 30px;
   border-radius: ${({ theme }) => theme.borderRadius.l};
   cursor: pointer;
 
@@ -52,6 +73,21 @@ const searchListItem = css`
   &:hover {
     background: #eee;
   }
+`;
+
+const bigSearchLI = css`
+  padding: 16px 20px 16px 30px;
+`;
+const miniSearchLI = css`
+  padding: 4px 10px;
+`;
+
+const bigSearchBtn = css`
+  top: 17px;
+`;
+const miniSearchBtn = css`
+  top: 4px;
+  right: 5px;
 `;
 
 const searchTitle = css`
@@ -83,6 +119,13 @@ const theme = {
   searchTitle,
   searchContent,
   modal,
+  header,
+  bigSearchBar,
+  miniSearchBar,
+  bigSearchLI,
+  miniSearchLI,
+  bigSearchBtn,
+  miniSearchBtn,
 };
 
 export default theme;
