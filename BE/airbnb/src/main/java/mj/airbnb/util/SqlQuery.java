@@ -75,6 +75,10 @@ public class SqlQuery {
             "AND i.main = TRUE " +
             "ORDER BY check_in_date ";
 
+    public static final String RESERVATION_IDS_BY_ID_SQL = "SELECT user_id, accommodation_id " +
+            "FROM reservation " +
+            "WHERE id = ? ";
+
     public static final String POPULAR_DESTINATIONS_SQL = "SELECT address " +
             "FROM accommodation " +
             "WHERE address LIKE ? ";

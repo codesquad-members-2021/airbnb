@@ -43,8 +43,6 @@ public class RowMapper {
 
     public static final org.springframework.jdbc.core.RowMapper<String> IMAGE_ROW_MAPPER = (rs, rowNum) -> rs.getString("url");
 
-
-
     public static final org.springframework.jdbc.core.RowMapper<Reservation> RESERVATION_ROW_MAPPER = (rs, rowNum) -> {
         Reservation reservation = new Reservation();
         reservation.setCheckInDate(rs.getDate("check_in_date").toLocalDate());
@@ -53,6 +51,14 @@ public class RowMapper {
         reservation.setAccommodationAddress(rs.getString("address"));
         reservation.setAccommodationDescription(rs.getString("description"));
         reservation.setAccommodationMainImageUrl(rs.getString("url"));
+
+        return reservation;
+    };
+
+    public static final org.springframework.jdbc.core.RowMapper<Reservation> RESERVATION_IDS_ROW_MAPPER = (rs, rowNum) -> {
+        Reservation reservation = new Reservation();
+        reservation.setUserId(rs.getLong("user_id"));
+        reservation.setAccommodationId(rs.getLong("accommodation_id"));
 
         return reservation;
     };
