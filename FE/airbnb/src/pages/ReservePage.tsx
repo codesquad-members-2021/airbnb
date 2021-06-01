@@ -1,20 +1,23 @@
 import { useEffect } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import Map from '../components/map/Map';
 import ReserveHeader from '../components/reserveHeader/ReserveHeader';
 import ReserveRoomList from '../components/reserveRoomList/ReserveRoomList';
 import { reserveInfoSelector } from '../recoil/headerAtom';
+import { getRoomsSelector } from '../recoil/reserveRoomAtom';
 
 interface Props {}
 
 const ReservePage = ({}: Props) => {
-  const setReserveInfoSelector = useSetRecoilState(reserveInfoSelector);
+  const [reserveInfo, setReserveInfo] = useRecoilState(reserveInfoSelector);
+  const roomsData = useRecoilValue(getRoomsSelector);
+  console.log(roomsData);
   useEffect(() => {
     const [encodedAddress, checkIn, checkOut, minCharge, maxCharge, adult, child, infants] =
-      window.location.search.split('&').map((v) => v.split('=')[1]);
+      getQueryValue(window.location.search);
     const address = decodeURI(encodedAddress);
-    const reserveInfoSelector = {
+    const newReserveInfo = {
       address,
       checkIn: +checkIn,
       checkOut: +checkOut,
@@ -24,8 +27,14 @@ const ReservePage = ({}: Props) => {
       child: +child,
       infants: +infants,
     };
-    setReserveInfoSelector(reserveInfoSelector);
+    setReserveInfo(newReserveInfo);
   }, []);
+
+  const getQueryValue = (query: string): string[] => query.split('&').map((v) => v.split('=')[1]);
+
+  useEffect(() => {
+    console.log('roomsData', reserveInfo);
+  }, [reserveInfo]);
   return (
     <StyledReservePage>
       <ReserveHeader />

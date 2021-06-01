@@ -21,14 +21,14 @@ interface apiType {
     guests,
   }: reserveInfoType) => string;
 }
-export const API: apiType = {
+export const serverAPI: apiType = {
   url: 'http://13.125.35.62',
   getRooms: ({ address, checkIn, checkOut, minCharge, maxCharge, guests }) => {
     const checkInDate = timeToDate(checkIn);
     const checkOutDate = timeToDate(checkOut);
     const guestNumber = Object.values(guests).reduce((acc, cur) => acc + cur);
-    const query = `address=${address}&check_in=${checkInDate}&check_out=${checkOutDate}&min_charge=${minCharge}&max_charge=${maxCharge}&guests=${guestNumber}`;
-    return '/accommodations?' + query;
+    const query = `city=${address}&check_in=${checkInDate}&check_out=${checkOutDate}&min_charge=${minCharge}&max_charge=${maxCharge}&guests=${guestNumber}`;
+    return serverAPI.url + '/accommodations?' + query;
   },
 };
 

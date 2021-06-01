@@ -4,9 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import MainPage from './pages/MainPage';
 import ReservePage from './pages/ReservePage';
 import { Suspense } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { reserveInfoSelector } from './recoil/headerAtom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 declare global {
   interface Window {

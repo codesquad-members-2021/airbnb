@@ -12,7 +12,6 @@ interface Props {}
 const ReserveForm = (props: Props) => {
   const checkOutRef = useRef<HTMLDivElement>(null);
   const reserveInfo = useRecoilValue(reserveInfoSelector);
-  console.log(reserveInfo);
   return (
     <StyledReserveForm>
       <FormCheckIn checkOutRef={checkOutRef} />

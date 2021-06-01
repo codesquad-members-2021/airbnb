@@ -52,7 +52,7 @@ interface reserveInfoType {
   child: number;
   infants: number;
 }
-interface reserveQeuryType {
+export interface reserveQueryType {
   address: string;
   checkIn: number | null;
   checkOut: number | null;
@@ -63,7 +63,7 @@ interface reserveQeuryType {
 
 export const reserveInfoSelector = selector({
   key: 'reserveInformation',
-  get: ({ get }): reserveQeuryType => {
+  get: ({ get }): reserveQueryType => {
     const address = get(locationState);
     const selectDateData = get(selectDateState);
     const checkIn = selectDateData.checkIn;
