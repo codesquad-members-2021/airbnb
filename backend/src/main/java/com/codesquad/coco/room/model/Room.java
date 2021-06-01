@@ -1,11 +1,14 @@
 package com.codesquad.coco.room.model;
 
-import com.codesquad.coco.exception.business.NonReservationException;
-import com.codesquad.coco.exception.business.OvercapacityException;
+import com.codesquad.coco.global.exception.business.NonReservationException;
+import com.codesquad.coco.global.exception.business.OvercapacityException;
+import com.codesquad.coco.global.exception.business.TotalPriceNonMatchException;
 import com.codesquad.coco.host.Host;
 import com.codesquad.coco.image.Image;
 import com.codesquad.coco.user.model.Reservation;
 import com.codesquad.coco.user.model.WishList;
+import com.codesquad.coco.user.model.dto.ReservationDTO;
+import com.codesquad.coco.utils.LocalDateUtil;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
@@ -61,6 +64,19 @@ public class Room {
                 .orElse(DEFAULT_THUMBNAIL_IMAGE);
     }
 
+
+    public boolean reservationAvailability(ReservationDTO reservationDTO) {
+        int fewNights = LocalDateUtil.getAccommodationDay(reservationDTO.getCheckIn(), reservationDTO.getCheckOut());
+        int totalPrice = calcTotalPrice(fewNights);
+
+        reservationDateCheck(reservationDTO.getCheckIn(), reservationDTO.getCheckOut());
+        capacityCheck(reservationDTO.getAdult(), reservationDTO.getChild());
+        if (totalPrice != reservationDTO.getTotalPrice()) {
+            throw new TotalPriceNonMatchException(totalPrice);
+        }
+        return true;
+    }
+
     public int calcTotalPrice(int fewNights) {
         int basicPrice = fewNights * pricePerDate.getMoney();
         int additionalPrice = 0;
@@ -70,13 +86,13 @@ public class Room {
     }
 
     public boolean capacityCheck(int adult, int child) {
-        if (!roomOption.capacityCheck(adult , child)) {
+        if (!roomOption.capacityCheck(adult, child)) {
             throw new OvercapacityException();
         }
         return true;
     }
 
-    public boolean reservationAvailabilityCheck(LocalDate checkIn, LocalDate checkOut) {
+    public boolean reservationDateCheck(LocalDate checkIn, LocalDate checkOut) {
         for (Reservation reservation : reservations) {
             if (!reservation.reservationDateCheck(checkIn, checkOut)) {
                 throw new NonReservationException();

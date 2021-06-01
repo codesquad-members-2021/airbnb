@@ -78,8 +78,10 @@ create table image
 
 create table users(
   id bigint auto_increment primary key,
-  name varchar (45),
+  github_id bigint unique ,
+  login varchar (45),
   email varchar (100),
+  access_token varchar (200),
   profile_image_url varchar (200)
 );
 
