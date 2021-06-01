@@ -14,7 +14,7 @@ const makeCalendarDataId = ({ data, year, month }: Args) => {
     let calMonth, calData;
     month < 9 ? (calMonth = `0${month + 1}`) : (calMonth = month + 1);
     data < 10 ? (calData = `0${data}`) : (calData = data);
-    dataId = `${year}년 ${calMonth}월 ${calData}일`;
+    dataId = `${year}-${calMonth}-${calData}`;
     $isNotDate = false;
   }
   return { dataId, $isNotDate };

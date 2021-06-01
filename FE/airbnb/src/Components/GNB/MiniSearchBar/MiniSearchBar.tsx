@@ -1,17 +1,33 @@
-import { useRecoilValue } from "recoil";
-import { selectedInfoState } from "@/Components/GNB/GNBStore";
-import SearchButton from "./SearchButton";
+import { useRecoilValue, useRecoilState } from "recoil";
+import {
+  selectInputState,
+  showMiniSearchBarState,
+} from "@/Components/GNB/GNBStore";
 import SelectedInfo from "./SelectedInfo";
+import SearchButton from "./SearchButton";
 import { MiniSearchBar as S } from "@/Components/GNB/GNBStlyes";
 
 const MiniSearchBar = () => {
-  // 검색 눌러졌을때 setState
-  const selectedInfo = useRecoilValue(selectedInfoState);
+  const checkIn = useRecoilValue<string>(selectInputState.checkIn);
+  const checkOut = useRecoilValue<string>(selectInputState.checkOut);
+  const price = useRecoilValue<string>(selectInputState.price);
+  const people = useRecoilValue<string>(selectInputState.people);
+  const [showMiniSearchBarFlag, setShowMiniSearchBarFlag] = useRecoilState(
+    showMiniSearchBarState
+  );
+
+  const handleClick = () => {
+    setShowMiniSearchBarFlag(false);
+  };
+
   return (
-    <S.MiniSearchBar>
-      {selectedInfo.map((info) => (
-        <SelectedInfo key={info} selectedInfo={info} />
-      ))}
+    <S.MiniSearchBar
+      showMiniSearchBarFlag={showMiniSearchBarFlag}
+      onClick={handleClick}
+    >
+      <SelectedInfo selectedInfo={`${checkIn} ~ ${checkOut}`} />
+      <SelectedInfo selectedInfo={price} />
+      <SelectedInfo selectedInfo={people} />
       <SearchButton />
     </S.MiniSearchBar>
   );

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { BOX } from "@/Styles/CommonStyles";
 import theme from "@/Styles/theme";
+import { ReactComponent as Logo } from "@/assets/logo.svg";
 import { ReactComponent as MyMenuIcon } from "@/assets/myMenuIcon.svg";
 import { ReactComponent as CancleButtonIcon } from "@/assets/cancleButtonIcon.svg";
 import { ReactComponent as SearchButtonIcon } from "@/assets/searchButtonIcon.svg";
@@ -9,25 +10,37 @@ import { ReactComponent as PrevButtonIcon } from "@/assets/prevButtonIcon.svg";
 import { ReactComponent as NextButtonIcon } from "@/assets/nextButtonIcon.svg";
 
 const GNB = {
-  GNB: styled(BOX.FLEX_ROW_CENTER_BOX)`
+  GNB: styled(BOX.FLEX_ROW_CENTER_BOX)<{ showMiniSearchBarFlag: boolean }>`
     justify-content: space-between;
-    position: absolute;
+    position: ${(props) =>
+      props.showMiniSearchBarFlag ? "fixed" : "absolute"};
+    background: ${(props) =>
+      props.showMiniSearchBarFlag ? theme.COLOR.WHITE : "none"};
     top: 0;
     left: 0;
     width: 100%;
-    padding: 42px 80px;
+    padding: ${(props) =>
+      props.showMiniSearchBarFlag ? "20px 80px" : "42px 80px"};
+    box-shadow: ${(props) =>
+      props.showMiniSearchBarFlag
+        ? "0px 0px 4px rgba(204, 204, 204, 0.5),0px 2px 4px rgba(0, 0, 0, 0.25)"
+        : "none"};
+    transition: all 150ms ease;
+    z-index: 999;
   `,
 
-  Logo: styled.div`
+  Logo: styled(Logo)`
     cursor: pointer;
     font-weight: 900;
     font-size: 32px;
   `,
+
+  SearchBarWrapper: styled(BOX.FLEX_COLUMN_CENTER_BOX)``,
 };
 
 const Menu = {
-  Menu: styled.ul`
-    display: flex;
+  Menu: styled.ul<{ showMiniSearchBarFlag: boolean }>`
+    display: ${(props) => (props.showMiniSearchBarFlag ? "none" : "flex")};
   `,
   MenuList: styled.li`
     cursor: pointer;
@@ -85,7 +98,10 @@ const MyPage = {
 };
 
 const SearchBar = {
-  SearchBarWrapper: styled(BOX.FLEX_CENTER_BOX)`
+  SearchBarWrapper: styled(BOX.FLEX_CENTER_BOX)<{
+    showMiniSearchBarFlag: boolean;
+  }>`
+    display: ${(props) => (props.showMiniSearchBarFlag ? "none" : "flex")};
     position: absolute;
     top: 90%;
     width: 94%;
@@ -156,8 +172,12 @@ const SearchBar = {
 };
 
 const MiniSearchBar = {
-  MiniSearchBar: styled(BOX.FLEX_ROW_CENTER_BOX)`
-    padding: 16px;
+  MiniSearchBar: styled(BOX.FLEX_ROW_CENTER_BOX)<{
+    showMiniSearchBarFlag: boolean;
+  }>`
+    display: ${(props) => (props.showMiniSearchBarFlag ? "flex" : "none")};
+    padding: 8px;
+    font-size: 14px;
     background: ${theme.COLOR.WHITE};
     border: 1px solid #bdbdbd;
     border-radius: 60px;
@@ -165,6 +185,7 @@ const MiniSearchBar = {
   SelectedInfo: styled.div`
     cursor: pointer;
     padding-right: 15.5px;
+    font-weight: 700;
     :not(:nth-child(3)) {
       margin-right: 15.5px;
       border-right: 1px solid ${theme.COLOR.GRAY5};
