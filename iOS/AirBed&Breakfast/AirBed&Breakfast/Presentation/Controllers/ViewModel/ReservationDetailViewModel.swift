@@ -14,7 +14,7 @@ protocol ReservationDetailViewModelProtocol {
     func changeGuestNumber(type: GuestType, toAdd: Bool)
     
     func didUpdateLowerDate(completion: @escaping (Date) -> ())
-    func didUpdateUpperDate(completion: @escaping (Date) -> ())
+    func didUpdateUpperDate(completion: @escaping (Date?) -> ())
     func didUpdatePriceRange(completion: @escaping (Float, Float) -> ())
     func didUpdateGuestList(completion: @escaping ([GuestType: Int]) -> ())
     
@@ -72,15 +72,11 @@ extension ReservationDetailViewModel: ReservationDetailViewModelProtocol {
         }.store(in: &subscriptions)
     }
     
-    func didUpdateUpperDate(completion: @escaping (Date) -> ()) {
+    func didUpdateUpperDate(completion: @escaping (Date?) -> ()) {
         $upperDate
             .receive(on: DispatchQueue.main)
             .sink { (date) in
-                if date != nil {
-                    completion(date!)
-                } else {
-                    return
-                }
+                completion(date)
             }.store(in: &subscriptions)
     }
     

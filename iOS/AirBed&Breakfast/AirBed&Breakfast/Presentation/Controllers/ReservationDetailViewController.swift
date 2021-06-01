@@ -15,6 +15,7 @@ protocol ReservationDetailViewControllerProtocol {
     func changePriceRange(lowestPrice: CGFloat, highestPrice: CGFloat)
     func addGuest(type: GuestType)
     func deductGuest(type: GuestType)
+    func inject(viewModel: ReservationDetailViewModelProtocol)
 }
 
 class ReservationDetailViewController: UIViewController {
@@ -33,7 +34,6 @@ class ReservationDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
-        
     }
     
     private func bind() {
@@ -43,8 +43,13 @@ class ReservationDetailViewController: UIViewController {
         })
         
         viewModel?.didUpdateUpperDate(completion: { (newUpperDate) in
-            self.dateRangeDetailLabel.text = "\(self.dateRangeDetailLabel.text!) - \(newUpperDate.month)월 \(newUpperDate.day)일"
-            self.nextButton.isEnabled = true
+            if newUpperDate == nil {
+                self.dateRangeDetailLabel.text = "\(self.dateRangeDetailLabel.text!)"
+                self.nextButton.isEnabled = false
+            } else {
+                self.dateRangeDetailLabel.text = "\(self.dateRangeDetailLabel.text!) - \(newUpperDate!.month)월 \(newUpperDate!.day)일"
+                self.nextButton.isEnabled = true
+            }
         })
         
         viewModel?.didUpdatePriceRange(completion: { (newLowestPrice, newHighestPrice) in
@@ -81,10 +86,6 @@ class ReservationDetailViewController: UIViewController {
         }
     }
     
-    public func inject(viewModel: ReservationDetailViewModelProtocol) {
-        self.viewModel = viewModel
-    }
-    
     @IBAction func deleteCurrentDetailButtonPressed(_ sender: UIButton) {
         switch currentContext {
         case String(describing: CalendarControlView.self):
@@ -93,7 +94,7 @@ class ReservationDetailViewController: UIViewController {
         case String(describing: PriceSlideControlView.self):
             self.priceRangeDetailLabel.text = ""
             self.detailSetUpViewInitializer?.clearPriceSlideControlView()
-        case String(describing: NumberOfHeadSelectionView.self):
+        case String(describing: GuestNumberSelectionView.self):
             self.guestNumberDetailLabel.text = ""
             self.viewModel?.clearGuestList()
         default:
@@ -112,7 +113,7 @@ class ReservationDetailViewController: UIViewController {
         case String(describing: PriceSlideControlView.self):
             detailSetUpViewInitializer?.deinitializePriceControlView()
             detailSetUpViewInitializer?.configureNumberOfHeadSelectionView()
-        case String(describing: NumberOfHeadSelectionView.self):
+        case String(describing: GuestNumberSelectionView.self):
             self.detailSetUpViewInitializer?.deinitializeNumberOfHeadSelectionView()
             self.detailSetUpViewInitializer?.moveToAccommodationSelectionController()
         default: break
@@ -139,8 +140,7 @@ extension ReservationDetailViewController: ReservationDetailViewControllerProtoc
     }
     
     func changeDateRange(date: Date, isLowerDay: Bool) {
-        
-        self.deleteCurrentDetailButton.isEnabled = true
+        viewModel?.changeDateRange(date: date, isLowerDay: isLowerDay)
     }
     
     func changePriceRange(lowestPrice: CGFloat, highestPrice: CGFloat) {
@@ -153,6 +153,12 @@ extension ReservationDetailViewController: ReservationDetailViewControllerProtoc
     
     func deductGuest(type: GuestType) {
         self.viewModel?.changeGuestNumber(type: type, toAdd: false)
+    }
+    
+    func inject(viewModel: ReservationDetailViewModelProtocol) {
+        self.viewModel = viewModel
+        print(viewModel)
+        print("inject")
     }
     
 }

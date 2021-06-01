@@ -21,6 +21,7 @@
 		885221F826660CF900740770 /* CalendarControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885221F726660CF900740770 /* CalendarControlViewModel.swift */; };
 		88522206266622AA00740770 /* PriceSlideControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88522205266622AA00740770 /* PriceSlideControlViewModel.swift */; };
 		8852220C26662C9100740770 /* ReservationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8852220B26662C9100740770 /* ReservationDetailViewModel.swift */; };
+		88522211266675E200740770 /* ReservationDetailViewControllerDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88522210266675E200740770 /* ReservationDetailViewControllerDIContainer.swift */; };
 		885CEB4C26538DDC00B3291F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB4B26538DDC00B3291F /* SearchViewController.swift */; };
 		885CEB512653957A00B3291F /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB4F2653957A00B3291F /* SearchResultCollectionViewCell.swift */; };
 		885CEB522653957A00B3291F /* SearchResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885CEB502653957A00B3291F /* SearchResultCollectionViewCell.xib */; };
@@ -33,7 +34,7 @@
 		8860614A265B66D100681808 /* CalendarControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88606149265B66D100681808 /* CalendarControlView.swift */; };
 		8860615F265BED9E00681808 /* PriceSlideControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8860615E265BED9E00681808 /* PriceSlideControlView.swift */; };
 		88606167265BF5A300681808 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88606166265BF5A300681808 /* RangeSlider.swift */; };
-		88606176265F8A0700681808 /* NumberOfHeadSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88606175265F8A0700681808 /* NumberOfHeadSelectionView.swift */; };
+		88606176265F8A0700681808 /* GuestNumberSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88606175265F8A0700681808 /* GuestNumberSelectionView.swift */; };
 		8860617E265F93A800681808 /* NumberAdjustmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8860617D265F93A800681808 /* NumberAdjustmentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		885221F726660CF900740770 /* CalendarControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarControlViewModel.swift; sourceTree = "<group>"; };
 		88522205266622AA00740770 /* PriceSlideControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSlideControlViewModel.swift; sourceTree = "<group>"; };
 		8852220B26662C9100740770 /* ReservationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDetailViewModel.swift; sourceTree = "<group>"; };
+		88522210266675E200740770 /* ReservationDetailViewControllerDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDetailViewControllerDIContainer.swift; sourceTree = "<group>"; };
 		885CEB4B26538DDC00B3291F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		885CEB4F2653957A00B3291F /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		885CEB502653957A00B3291F /* SearchResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -77,7 +79,7 @@
 		88606149265B66D100681808 /* CalendarControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarControlView.swift; sourceTree = "<group>"; };
 		8860615E265BED9E00681808 /* PriceSlideControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSlideControlView.swift; sourceTree = "<group>"; };
 		88606166265BF5A300681808 /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
-		88606175265F8A0700681808 /* NumberOfHeadSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfHeadSelectionView.swift; sourceTree = "<group>"; };
+		88606175265F8A0700681808 /* GuestNumberSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestNumberSelectionView.swift; sourceTree = "<group>"; };
 		8860617D265F93A800681808 /* NumberAdjustmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberAdjustmentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,9 +142,18 @@
 			path = "AirBed&BreakfastTests";
 			sourceTree = "<group>";
 		};
+		8852220F2666758000740770 /* DIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				88522210266675E200740770 /* ReservationDetailViewControllerDIContainer.swift */,
+			);
+			path = DIContainer;
+			sourceTree = "<group>";
+		};
 		885CEB3826535DF100B3291F /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				8852220F2666758000740770 /* DIContainer */,
 				8843A7BC26523EA80068B4E3 /* AppDelegate.swift */,
 				8843A7BE26523EA80068B4E3 /* SceneDelegate.swift */,
 				8860613B265A337C00681808 /* DateExtension.swift */,
@@ -251,7 +262,7 @@
 		88606170265F821A00681808 /* NumberOfHeadSelectionView */ = {
 			isa = PBXGroup;
 			children = (
-				88606175265F8A0700681808 /* NumberOfHeadSelectionView.swift */,
+				88606175265F8A0700681808 /* GuestNumberSelectionView.swift */,
 				88606181266081E000681808 /* NumberAdjustmentView */,
 			);
 			path = NumberOfHeadSelectionView;
@@ -379,11 +390,12 @@
 				8843A7BD26523EA80068B4E3 /* AppDelegate.swift in Sources */,
 				8852220C26662C9100740770 /* ReservationDetailViewModel.swift in Sources */,
 				885221F826660CF900740770 /* CalendarControlViewModel.swift in Sources */,
-				88606176265F8A0700681808 /* NumberOfHeadSelectionView.swift in Sources */,
+				88606176265F8A0700681808 /* GuestNumberSelectionView.swift in Sources */,
 				886061322657964A00681808 /* DayLabel.swift in Sources */,
 				885CEB4C26538DDC00B3291F /* SearchViewController.swift in Sources */,
 				885CEB65265639FF00B3291F /* ReservationDetailViewController.swift in Sources */,
 				8860617E265F93A800681808 /* NumberAdjustmentView.swift in Sources */,
+				88522211266675E200740770 /* ReservationDetailViewControllerDIContainer.swift in Sources */,
 				8860615F265BED9E00681808 /* PriceSlideControlView.swift in Sources */,
 				885221F42665FF2800740770 /* AccommodationSelectViewController.swift in Sources */,
 				88606136265796AA00681808 /* DayRangeIndicatorView.swift in Sources */,

@@ -9,7 +9,8 @@ import UIKit
 import HorizonCalendar
 
 protocol DateInfoReceivable {
-    func updateDateInfo(date: Date, isLowerDate: Bool)
+    func updateLowerDate(date: Date)
+    func updateUpperDate(date: Date)
 }
 
 class CalendarControlView: UIView {
@@ -24,6 +25,7 @@ class CalendarControlView: UIView {
         self.viewModel = CalendarControlViewModel()
         configureCalendarView()
         setDaySelectionHandler()
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -31,6 +33,17 @@ class CalendarControlView: UIView {
         self.viewModel = CalendarControlViewModel()
         configureCalendarView()
         setDaySelectionHandler()
+        bind()
+    }
+    
+    private func bind() {
+        self.viewModel.didSelectLowerDate { (newLowerDate) in
+            self.dateInfoReceivable?.updateLowerDate(date: newLowerDate)
+        }
+        
+        self.viewModel.didSelectUpperDate { (newUpperDate) in
+            self.dateInfoReceivable?.updateUpperDate(date: newUpperDate)
+        }
     }
     
     private func setDaySelectionHandler() {
@@ -39,14 +52,7 @@ class CalendarControlView: UIView {
             guard self.viewModel.isValidDayToSelect(day: day) else { return }
             
             self.viewModel.updateDaySelection(with: day) { (newCalendarContent) in
-                
                 self.calendarView.setContent(newCalendarContent)
-                self.viewModel.selectedDates { (lowerDate, upperDate) in
-                    
-                    self.dateInfoReceivable?.updateDateInfo(date: lowerDate, isLowerDate: true)
-                    self.dateInfoReceivable?.updateDateInfo(date: lowerDate, isLowerDate: false)
-                    
-                }
             }
         }
     }

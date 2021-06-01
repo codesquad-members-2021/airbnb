@@ -12,7 +12,7 @@ protocol GuestNumberInfoReceivable {
     func reduceGuest(type: GuestType)
 }
 
-class NumberOfHeadSelectionView: UIView {
+class GuestNumberSelectionView: UIView {
     
     private var adultNumberAdjustmentView: NumberAdjustmentView?
     private var childNumberAdjustmentView: NumberAdjustmentView?

@@ -30,7 +30,7 @@ class SetUpViewController: UIViewController {
     private var reservationDetailViewController: ReservationDetailViewControllerProtocol!
     public var calendarControlView: CalendarControlView! = nil
     public var priceSlideControlView: PriceSlideControlView! = nil
-    public var numberOfHeadSelectionView: NumberOfHeadSelectionView! = nil
+    public var numberOfHeadSelectionView: GuestNumberSelectionView! = nil
     private var currentContextView: String! {
         didSet {
             guard self.currentContextView != nil else { return }
@@ -51,17 +51,21 @@ class SetUpViewController: UIViewController {
         if segue.identifier == "ContainerViewSegue" {
             reservationDetailViewController = segue.destination as? ReservationDetailViewControllerProtocol
             reservationDetailViewController.setDetailSetUpViewInitializer(as: self)
+            let dependencyInjectionContainer = ReservationDetailViewControllerDIContainer()
+            reservationDetailViewController.inject(viewModel: dependencyInjectionContainer.makeReservationDetailViewModel())
         }
     }
     
 }
 
 extension SetUpViewController: DateInfoReceivable {
-    
-    func updateDateInfo(date: Date, isLowerDate: Bool) {
-        reservationDetailViewController.changeDateRange(date: date, isLowerDay: isLowerDate)
+    func updateLowerDate(date: Date) {
+        reservationDetailViewController.changeDateRange(date: date, isLowerDay: true)
     }
     
+    func updateUpperDate(date: Date) {
+        reservationDetailViewController.changeDateRange(date: date, isLowerDay: false)
+    }
 }
 
 extension SetUpViewController: PriceInfoReceivable {
@@ -134,9 +138,9 @@ extension SetUpViewController: DetailSetUpViewInitializable {
     }
     
     func configureNumberOfHeadSelectionView() {
-        self.currentContextView = String(describing: NumberOfHeadSelectionView.self)
+        self.currentContextView = String(describing: GuestNumberSelectionView.self)
         
-        self.numberOfHeadSelectionView = NumberOfHeadSelectionView()
+        self.numberOfHeadSelectionView = GuestNumberSelectionView()
         view.addSubview(numberOfHeadSelectionView)
         numberOfHeadSelectionView.translatesAutoresizingMaskIntoConstraints = false
         configureDetailSubViewLayout(of: numberOfHeadSelectionView)

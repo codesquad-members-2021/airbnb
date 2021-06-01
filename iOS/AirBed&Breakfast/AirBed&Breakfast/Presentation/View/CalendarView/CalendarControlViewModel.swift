@@ -7,6 +7,7 @@
 
 import UIKit
 import HorizonCalendar
+import Combine
 
 class CalendarControlViewModel {
     
@@ -14,8 +15,10 @@ class CalendarControlViewModel {
     private var currentMonth: Int?
     private var currentDay: Int?
     
-    private var lowerDay: Day?
-    private var upperDay: Day?
+    @Published private var lowerDay: Day?
+    @Published private var upperDay: Day?
+    
+    private var subscriptions = Set<AnyCancellable>()
     
     init() {
         self.currentYear = Int(Date().year)
@@ -42,14 +45,30 @@ class CalendarControlViewModel {
         completion(makeContent())
     }
     
-    public func selectedDates(completion: (Date, Date) -> ()) {
-        guard let lowerDate = Calendar.current.date(from: DateComponents(year: self.lowerDay?.components.year, month: self.lowerDay?.components.month, day: self.lowerDay?.components.day)) else { return }
-        
-        guard let upperDate = Calendar.current.date(from: DateComponents(year: self.upperDay?.components.year, month: self.upperDay?.components.month, day: self.upperDay?.components.day)) else { return }
-        
-        completion(lowerDate, upperDate)
+    public func didSelectLowerDate(completion: @escaping (Date) -> ()) {
+        $lowerDay
+            .receive(on: DispatchQueue.main)
+            .sink { (lowerDay) in
+                if let lowerDate = Calendar.current.date(from: DateComponents(year: self.lowerDay?.components.year, month: self.lowerDay?.components.month, day: self.lowerDay?.components.day)) {
+                    completion(lowerDate)
+                } else {
+                    return
+                }
+            }.store(in: &subscriptions)
     }
     
+    public func didSelectUpperDate(completion: @escaping (Date) -> ()) {
+        $upperDay
+            .receive(on: DispatchQueue.main)
+            .sink { (upperDay) in
+                if upperDay != nil {
+                    let upperDate = Calendar.current.date(from: DateComponents(year: self.upperDay?.components.year, month: self.upperDay?.components.month, day: self.upperDay?.components.day))
+                        completion(upperDate!)
+                } else {
+                    return
+                }
+            }.store(in: &subscriptions)
+    }
     
     public func clearDaySelection(completion: (CalendarViewContent)-> ()) {
         self.lowerDay = nil
@@ -89,10 +108,14 @@ class CalendarControlViewModel {
             monthsLayout: .vertical(options: VerticalMonthsLayoutOptions()))
             
             .withDayItemModelProvider { day in
-                let invariantViewProperties: DayLabel.InvariantViewProperties = .init(
+                var invariantViewProperties: DayLabel.InvariantViewProperties = .init(
                     font: UIFont.systemFont(ofSize: 18),
                     textColor: .darkGray,
                     backgroundColor: .clear)
+                
+                if !self.isValidDayToSelect(day: day) {
+                    invariantViewProperties.textColor = .red
+                }
                 
                 return CalendarItemModel<DayLabel>(
                     invariantViewProperties: invariantViewProperties,
