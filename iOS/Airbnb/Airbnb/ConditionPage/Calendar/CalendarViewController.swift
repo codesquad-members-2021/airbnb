@@ -14,11 +14,13 @@ class CalendarViewController: UIViewController {
     private var viewModel = CalendarViewModel()
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Date, Day>!
+    private var containerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarchy()
         configureDataSource()
+        configureContainer()
         applySnapshots()
     }
     
@@ -146,3 +148,21 @@ extension CalendarViewController: UICollectionViewDelegate {
     
 }
 
+extension CalendarViewController {
+    private func configureContainer() {
+        containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(containerView)
+        
+        NSLayoutConstraint.activate([
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 650),
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
+        ])
+        containerView.backgroundColor = .cyan
+        let vc = ConditionTableViewController(viewModel: ConditionViewModel())
+        self.addChild(vc)
+        containerView.addSubview(vc.view)
+    }
+}
