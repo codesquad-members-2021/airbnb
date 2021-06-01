@@ -2,6 +2,8 @@ package com.codesquad.airbnb.service;
 
 import com.codesquad.airbnb.GoogleUser;
 import com.codesquad.airbnb.OAuthToken;
+import com.codesquad.airbnb.domain.User;
+import com.codesquad.airbnb.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpEntity;
@@ -16,6 +18,8 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class UserService {
 
+    private final UserRepository userRepository;
+
     private final ObjectMapper objectMapper;
     private final RestTemplate restTemplate;
 
@@ -24,7 +28,8 @@ public class UserService {
     private static final String REDIRECT_URI = "http://localhost:8080/oauth/google/callback";
     private static final String GRANT_TYPE = "authorization_code";
 
-    public UserService(ObjectMapper objectMapper, RestTemplate restTemplate) {
+    public UserService(UserRepository userRepository, ObjectMapper objectMapper, RestTemplate restTemplate) {
+        this.userRepository = userRepository;
         this.objectMapper = objectMapper;
         this.restTemplate = restTemplate;
     }

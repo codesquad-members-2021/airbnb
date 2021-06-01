@@ -1,5 +1,7 @@
 package com.codesquad.airbnb;
 
+import com.codesquad.airbnb.domain.User;
+
 public class GoogleUser {
 
     public String id;

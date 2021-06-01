@@ -7,12 +7,25 @@ public class User {
     @Id
     private Long id;
 
-    private String userId;
-    private String password;
+    private String email;
+    private String name;
+    private String accessToken;
 
-    public User(Long id, String userId, String password) {
-        this.id = id;
-        this.userId = userId;
-        this.password = password;
+    public User(String email, String name, String accessToken) {
+        this.email = email;
+        this.name = name;
+        this.accessToken = accessToken;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
     }
 }
