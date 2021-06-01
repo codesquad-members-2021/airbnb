@@ -1,19 +1,36 @@
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
+import { useRecoilValue } from 'recoil';
+import { userInfoSelector } from '@/recoil/atoms';
+import { ButtonStyle } from '@Components/commons/base';
+import Nav from './Nav';
 
-const SearchMapNav = () => {
+type SearchMapNavType = {
+  showSearchBarState: boolean;
+  handleClickToggleSearchBar: () => void;
+}
+
+const SearchMapNav = ({ showSearchBarState, handleClickToggleSearchBar }: SearchMapNavType) => {
+  const buttonStyle = ButtonStyle();
+  const userInfo = useRecoilValue(userInfoSelector);
+  const { checkDate, range, guest } = userInfo;
+
   return (
-    <SearchMapNavWrapper>
-      <SearchMapItem>일정 입력</SearchMapItem>
-      <SearchMapItem>금액대 입력</SearchMapItem>
-      <SearchMapItem>인원 입력</SearchMapItem>
-      <Button variant="contained" color="secondary" style={{
-        borderRadius: '50%', padding: '.5rem', width: '2.5rem', height: '2.5rem', minWidth: '1.5rem'
-      }}>
-        <SearchIcon />
-      </Button>
-    </SearchMapNavWrapper>
+    <>
+      {showSearchBarState ?
+        <Nav /> :
+        <SearchMapNavWrapper onClick={handleClickToggleSearchBar}>
+          <SearchMapItem>{checkDate}</SearchMapItem>
+          <SearchMapItem>{range}</SearchMapItem>
+          <SearchMapItem>{guest}</SearchMapItem>
+
+          <Button variant="contained" color="secondary"
+            className={buttonStyle.searchMapButton}>
+            <SearchIcon />
+          </Button>
+        </SearchMapNavWrapper>}
+    </>
   );
 };
 
@@ -23,6 +40,9 @@ const SearchMapNavWrapper = styled.div`
    padding: .7rem .7rem .7rem 1rem;
    border-radius:3rem;
    place-items: center;
+   &:hover{
+     cursor:pointer;
+   }
 `;
 
 const SearchMapItem = styled.div`

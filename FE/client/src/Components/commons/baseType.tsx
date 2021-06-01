@@ -1,5 +1,5 @@
 export type LocationType = {
-  location:boolean;
+  location: boolean;
 }
 
 export type ChargeType = {

@@ -4,13 +4,13 @@ import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import Slider from './Slider';
 import Graph from './Graph';
 import { ChargeType } from '@Components/commons/baseType';
-import { RangeAtom } from '@/recoil/atoms';
+import { rangeAtom } from '@/recoil/atoms';
 import { fetchPriceListSelector } from '@/recoil/fetchAtoms';
 import { getConvertedChartPrices } from '@/utils/graphUtil';
 import { getAveragePrice } from '@/utils/graphUtil';
 
 const ChargeModal = ({ charge }: ChargeType) => {
-  const [rangeState, setRangeState] = useRecoilState(RangeAtom);
+  const [rangeState, setRangeState] = useRecoilState(rangeAtom);
   const { leftRange, rightRange } = rangeState;
   const priceLoadable = useRecoilValueLoadable(fetchPriceListSelector);
   const [priceArray, setPriceArray] = useState([[0]]);
@@ -69,9 +69,7 @@ const PriceRangeTitle = styled.div`
   margin-bottom: 1rem;
 `;
 
-const PriceRange = styled.div`
-
-`;
+const PriceRange = styled.div``;
 
 const PriceRangeDesc = styled.div`
   color: #828282;

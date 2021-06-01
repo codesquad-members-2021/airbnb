@@ -17,7 +17,7 @@ const App = () => {
             <SearchMapPageLazy />
           </Suspense>
         </Route>
-        
+
         <Route exact path="/" component={MainPage} />
 
         <Route>

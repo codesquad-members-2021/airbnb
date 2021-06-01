@@ -2,14 +2,13 @@ import React, { useCallback } from 'react'
 import styled from 'styled-components';
 import { LocationType } from '../commons/baseType';
 import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
-import { LocationAtom, LocationAtomType } from '@/recoil/atoms';
+import { locationAtom, LocationAtomType } from '@/recoil/atoms';
 import LocationItem from './LocationItem';
 import { fetchLocationSelector } from './../../recoil/fetchAtoms';
 import { LocationItemType } from '@Components/commons/baseType';
 
-
 const LocationModal = ({ location }: LocationType) => {
-  const setLocationInfoState = useSetRecoilState(LocationAtom);
+  const setLocationInfoState = useSetRecoilState(locationAtom);
   const locationListLoadable = useRecoilValueLoadable(fetchLocationSelector);
 
   const handleClickLocation = useCallback(({ name, coordinate }: LocationAtomType) => () => {

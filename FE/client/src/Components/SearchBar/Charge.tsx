@@ -5,14 +5,14 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { IconButton } from "@material-ui/core";
 import { useSetRecoilState } from 'recoil';
 import { ChargeType } from '@Components/commons/baseType';
-import { RangeAtom } from '@/recoil/atoms';
+import { rangeAtom } from '@/recoil/atoms';
 
 type ChargeModalType = ChargeType & {
   handleClickShowModal: (clickTarget: string) => () => void;
 }
 
 const Charge = ({ handleClickShowModal, charge }: ChargeModalType) => {
-  const setRangeState = useSetRecoilState(RangeAtom);
+  const setRangeState = useSetRecoilState(rangeAtom);
 
   const handleClickResetCharge = useCallback(() => {
     setRangeState({ leftRange: 0, rightRange: 100 });

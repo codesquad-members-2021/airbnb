@@ -1,5 +1,6 @@
 import { atom, selector } from "recoil";
-import { getDate, currentDate } from '../utils/calendarUtil';
+import { getDate, currentDate } from '@/utils/calendarUtil';
+import { getNumberOfGuest, getUserDate } from "@/utils/serviceUtils";
 
 export const monthIndexAtom = atom<number>({
   key: 'monthIndexAtom',
@@ -47,15 +48,15 @@ export const searchBarFocusAtom = atom<SearchBarFocusAtomType>({
   }
 })
 
-type PersonnelAtomType = {
+export type PersonnelAtomType = {
   adult: number;
   child: number;
   baby: number;
   [key: string]: number;
 }
 
-export const PersonnelAtom = atom<PersonnelAtomType>({
-  key: 'PersonnelAtom',
+export const personnelAtom = atom<PersonnelAtomType>({
+  key: 'personnelAtom',
   default: {
     adult: 0,
     child: 0,
@@ -68,8 +69,8 @@ export type RangeAtomType = {
   rightRange: number;
 }
 
-export const RangeAtom = atom<RangeAtomType>({
-  key: 'RangeAtom',
+export const rangeAtom = atom<RangeAtomType>({
+  key: 'rangeAtom',
   default: {
     leftRange: 0,
     rightRange: 100
@@ -84,8 +85,8 @@ export type LocationAtomType = {
   }
 }
 
-export const LocationAtom = atom<LocationAtomType>({
-  key: 'LocationAtom',
+export const locationAtom = atom<LocationAtomType>({
+  key: 'locationAtom',
   default: {
     name: '',
     coordinate: {
@@ -94,3 +95,32 @@ export const LocationAtom = atom<LocationAtomType>({
     }
   }
 })
+
+export const userInfoAtom = atom<any>({
+  key: 'userInfoAtom',
+  default: {
+    x: '',
+    y: '',
+    checkIn: '',
+    checkOut: '',
+    leftRange: '',
+    rightRange: '',
+    adult: '',
+    child: '',
+    baby: ''
+  }
+});
+
+export const userInfoSelector = selector({
+  key: 'userInfoSelector',
+  get: ({ get }) => {
+    const { checkIn, checkOut, leftRange, rightRange, adult, child, baby } = get(userInfoAtom);
+    return {
+      checkDate: getUserDate({checkIn, checkOut}),
+      range: leftRange === '0' && rightRange === '100' ?
+      '금액대 입력' : `₩${(leftRange * 10000).toLocaleString()} - ₩${(rightRange * 10000).toLocaleString()}`,
+      guest: getNumberOfGuest({adult, child, baby})
+    }
+  }
+});
+

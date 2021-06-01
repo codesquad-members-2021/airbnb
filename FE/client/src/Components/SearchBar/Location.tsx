@@ -5,14 +5,14 @@ import { IconButton } from '@material-ui/core';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { LocationType } from '../commons/baseType';
 import { useRecoilState } from 'recoil';
-import { LocationAtom } from '@/recoil/atoms';
+import { locationAtom } from '@/recoil/atoms';
 
 type LocationBarType = LocationType & {
   handleClickShowModal: (clickTarget: string) => () => void;
 }
 
 const Location = ({ location, handleClickShowModal }: LocationBarType) => {
-  const [locationInfoState, setLocationInfoState] = useRecoilState(LocationAtom);
+  const [locationInfoState, setLocationInfoState] = useRecoilState(locationAtom);
 
   const handleClickResetLocation = useCallback(() => {
     setLocationInfoState({

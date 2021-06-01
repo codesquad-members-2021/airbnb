@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import PersonnelKind from './PersonnelKind';
 import { PersonnelType } from '@Components/commons/baseType';
-import { PersonnelAtom } from '@/recoil/atoms';
+import { personnelAtom } from '@/recoil/atoms';
 
 export type handleCountType = {
   count: number;
@@ -11,7 +11,7 @@ export type handleCountType = {
 }
 
 const PersonnelModal = ({ personnel }: PersonnelType) => {
-  const [personnelState, setPersonnelState] = useRecoilState(PersonnelAtom);
+  const [personnelState, setPersonnelState] = useRecoilState(personnelAtom);
   const { adult, child, baby } = personnelState;
 
   const handleClickUpDownCount = useCallback(({ count, kind }: handleCountType) => () => {
@@ -43,7 +43,5 @@ const PersonnelModalWrapper = styled.div<PersonnelType>`
   box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
   border-radius: 40px;
 `;
-
-
 
 export default PersonnelModal;

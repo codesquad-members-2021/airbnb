@@ -1,43 +1,59 @@
+import { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import SearchMapNav from './SearchMapNav';
+import SearchBar from '@Components/SearchBar';
+import Modal from '@Components/Modal';
+import Nav from './Nav';
 
 type GNBType = {
   isMain: boolean;
 }
 
 const GNB = ({ isMain }: GNBType) => {
-  return (
-    <GNBWrapper isMain={isMain}>
-      <Logo>LOGO</Logo>
-      {isMain
-        ? (<Nav>
-          <NavItem>숙소</NavItem>
-          <NavItem>체험</NavItem>
-          <NavItem>온라인 체험</NavItem>
-        </Nav>)
-        : (<SearchMapNav />)
-      }
+  const [showSearchBarState, setShowSearchBarState] = useState(false);
 
-      <Menu isMain={isMain}>
-        <MenuIcon />
-        <AccountCircleIcon fontSize="large" />
-      </Menu>
-    </GNBWrapper>
+  const handleClickToggleSearchBar = useCallback(() => {
+    setShowSearchBarState(searchBarState => !searchBarState);
+  }, []);
+
+  return (
+    <>
+      <GNBWrapper isMain={isMain}>
+        <Header>
+          <Logo>LOGO</Logo>
+          {isMain
+            ? (<Nav />)
+            : (<SearchMapNav {...{showSearchBarState, handleClickToggleSearchBar }} />)
+          }
+
+          <Menu isMain={isMain}>
+            <MenuIcon />
+            <AccountCircleIcon fontSize="large" />
+          </Menu>
+        </Header>
+        {!isMain && <SearchBar />}
+
+      </GNBWrapper>
+      {!isMain && <Modal isSearchMap />}
+    </>
   )
 }
 
 const GNBWrapper = styled.div<GNBType>`
-  position: ${({isMain}) => isMain ? '' : 'fixed'};
+  position: ${({ isMain }) => isMain ? '' : 'fixed'};
+  box-shadow: ${({ isMain }) => isMain ? '' : '0px 0px 4px rgba(204, 204, 204, 0.5), 0px 2px 4px rgba(0, 0, 0, 0.25)'}; 
+  background: ${({ isMain }) => isMain ? 'none' : '#fff'};
+  z-index: ${({ isMain }) => isMain ? '0' : '1'};
+  width: 100%;
+`;
+
+const Header = styled.div`
   display: flex;
   padding: 1rem 0;
-  width: 100%;
   justify-content: space-around;
-  box-shadow: ${({isMain}) => isMain ? '' : '0px 0px 4px rgba(204, 204, 204, 0.5), 0px 2px 4px rgba(0, 0, 0, 0.25)'}; 
-  background: ${({isMain}) => isMain ? 'none' : '#fff'};
   gap:10rem;
-  z-index: ${({isMain}) => isMain ? '0' : '1'};
 `;
 
 const Logo = styled.span`
@@ -48,20 +64,7 @@ const Logo = styled.span`
   }
 `;
 
-const Nav = styled.div`
-  display:flex;
-  place-items: center;
-  gap: 2rem;
-  color:  #7b7b7b;
-  font-weight: 600;
-`;
 
-const NavItem = styled.span`
-  font-size: 1.1rem;
-  &:hover{
-    cursor: pointer;
-  }
-`;
 
 const Menu = styled.div<GNBType>`
   display:flex;

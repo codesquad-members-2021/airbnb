@@ -8,7 +8,11 @@ import { SearchBarType } from '@Components/commons/baseType';
 import { searchBarFocusAtom } from '@/recoil/atoms';
 import LocationModal from './LocationModal';
 
-const Modal = () => {
+type ModalType = {
+  isSearchMap?: boolean;
+}
+
+const Modal = ({ isSearchMap }: ModalType) => {
   const [searchBarState, setSearchBarState] = useRecoilState(searchBarFocusAtom);
   const { location, entryDate, charge, personnel, focus } = searchBarState;
 
@@ -33,7 +37,7 @@ const Modal = () => {
   }, [focus]);
 
   return (
-    <ModalWrapper {...{ focus }} className="Modal">
+    <ModalWrapper {...{ focus, isSearchMap }} className="Modal" >
       <LocationModal {...{ location }} />
       <Calendar {...{ entryDate }} />
       <ChargeModal {...{ charge }} />
@@ -43,11 +47,17 @@ const Modal = () => {
 }
 
 // eslint-disable-next-line no-mixed-operators
-const ModalWrapper = styled.div<SearchBarType>`
-   width: 70%;
-   min-width: 35rem;
-   margin:auto;
-   display: ${({ focus }) => focus ? 'block' : 'none'};
+type ModalWrapperType = SearchBarType & ModalType;
+
+const ModalWrapper = styled.div<ModalWrapperType>`
+  position: ${({ isSearchMap }) => isSearchMap ? 'fixed' : ''};
+  top: 26%;
+  left: 15%;
+  z-index: 1;
+  width: 70%;
+  min-width: 35rem;
+  margin:auto;
+  display: ${({ focus }) => focus ? 'block' : 'none'};
 `;
 
 export default Modal;

@@ -36,6 +36,7 @@ const HotelItemWrapper = styled.div`
   display:flex;
   padding: 1.5rem 0;
   height: 250px;
+  justify-content: space-around;
   & + &{
     border-top: 1px solid #E0E0E0;
   }
@@ -43,6 +44,7 @@ const HotelItemWrapper = styled.div`
 
 const ImageWrapper = styled.div`
   width: 45%;
+  max-width: 330px;
   height: 100%;
   border-radius: 10px;
   margin-right: 1.5rem;
@@ -50,6 +52,7 @@ const ImageWrapper = styled.div`
 `;
 
 const HotelDescWrapper = styled.div`
+  width: 55%;
   position:relative;
 `;
 

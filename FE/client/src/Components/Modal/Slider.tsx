@@ -4,7 +4,7 @@ import PauseCircleOutlineRoundedIcon from '@material-ui/icons/PauseCircleOutline
 import { SetterOrUpdater } from 'recoil';
 import { RangeAtomType } from '@/recoil/atoms';
 import { RangeStateType } from '@Components/commons/baseType';
-import { makeStyles } from '@material-ui/core';
+import { ButtonStyle } from '@Components/commons/base';
 
 type SliderType = RangeStateType & {
   setRangeState: SetterOrUpdater<RangeAtomType>
@@ -44,15 +44,6 @@ const Slider = ({ rangeState, setRangeState }: SliderType) => {
   )
 }
 
-const ButtonStyle = makeStyles({
-  slider: {
-    position: 'absolute',
-    top: '-7px',
-    background: '#fff',
-    borderRadius: '50%',
-    zIndex: 1
-  }
-});
 
 const LeftRange = styled.input`
   position: absolute;
