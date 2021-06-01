@@ -87,4 +87,13 @@ public class SqlQuery {
     public static final String RESERVATION_SOFT_DELETION_SQL = "UPDATE reservation " +
             "SET deleted = TRUE " +
             "WHERE id = ? ";
+
+    public static final String WISHES_BY_USER_ID_SQL = "SELECT acc.name, acc.price, i.url " +
+            "FROM wish w " +
+            "INNER JOIN accommodation acc " +
+            "ON w.accommodation_id = acc.id " +
+            "INNER JOIN image i " +
+            "ON w.accommodation_id = i.accommodation_id " +
+            "WHERE i.main = TRUE " +
+            "AND user_id = ? ";
 }

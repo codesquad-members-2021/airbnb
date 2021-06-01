@@ -2,6 +2,7 @@ package mj.airbnb.util;
 
 import mj.airbnb.domain.accommodation.Accommodation;
 import mj.airbnb.domain.reservation.Reservation;
+import mj.airbnb.domain.wish.Wish;
 
 public class RowMapper {
 
@@ -62,5 +63,14 @@ public class RowMapper {
         reservation.setAccommodationId(rs.getLong("accommodation_id"));
 
         return reservation;
+    };
+
+    public static final org.springframework.jdbc.core.RowMapper<Wish> WISH_ROW_MAPPER = (rs, rowNum) -> {
+        Wish wish = new Wish();
+        wish.setAccommodationName(rs.getString("name"));
+        wish.setMainImageUrl(rs.getString("url"));
+        wish.setPrice(rs.getBigDecimal("price"));
+
+        return wish;
     };
 }
