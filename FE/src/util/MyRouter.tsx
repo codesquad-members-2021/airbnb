@@ -71,7 +71,7 @@ const Route = ({path, component, exact}: IRoute) => {
   )
 }
 
-const Link = ({ to, children }: ILink) => {
+const Link = ({ to, children, ...props }: ILink) => {
   // 무슨 상태를 저장?
   const BrowserContext = useContext(HistoryContext)!;
 
@@ -80,7 +80,7 @@ const Link = ({ to, children }: ILink) => {
     BrowserContext.setCurrentPath(to);
   }
   return (
-    <LinkButton onClick={handleLinkClick}> {children} </LinkButton>
+    <LinkButton {...props} onClick={handleLinkClick}> {children} </LinkButton>
   )
 }
 

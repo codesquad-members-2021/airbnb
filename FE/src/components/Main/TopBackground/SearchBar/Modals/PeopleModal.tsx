@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import Modal from '../../../Common/Modal';
+import Modal from '../../../../Common/Modal';
 
-const PeopleModal = () => {
+const PeopleModal = ({...props}) => {
   return (
-    <PeopleModalLayout>
+    <PeopleModalLayout {...props}>
     </PeopleModalLayout>
   );
 };

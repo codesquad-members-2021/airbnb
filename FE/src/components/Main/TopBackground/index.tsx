@@ -1,14 +1,27 @@
 import styled from 'styled-components';
+
 import Header from './Header';
 import SearchBar from './SearchBar';
 import { cssMainChildren } from '../../../util/styles/CommonStyledCSS';
 import { ITextTopBackground } from '../../../util/reference';
+import SearchBarContextProvider from '../../../contexts/SearchBarContext';
 
-const TopBackground = ({ headerTexts, searchBarTexts }: ITextTopBackground) => {
+
+const TopBackground = (
+  //@ts-ignore
+  { headerTexts, searchBarTexts, searchBarRef, authModalRef }: ITextTopBackground,
+) => {
+
   return (
     <TopBackgroundLayout>
-      <Header headerTexts={headerTexts} />
-      <SearchBar searchBarTexts={searchBarTexts} />
+      <Header headerTexts={headerTexts} authModalRef={authModalRef} />
+
+      <SearchBarContextProvider>
+        <SearchBar
+          searchBarTexts={searchBarTexts}
+          searchBarRef={searchBarRef}
+        />
+      </SearchBarContextProvider>
     </TopBackgroundLayout>
   );
 };

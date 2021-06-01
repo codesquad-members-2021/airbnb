@@ -1,13 +1,20 @@
+import { forwardRef } from 'react';
 import styled from 'styled-components';
-import DefaultButton from '../../Common/DefaultButton';
-import { ResponsiveFluid } from '../../Common/ResponsiveFluid';
+import { useMainDispatch, useMainState } from '../../../../contexts/MainContext';
 import { FiMenu, FiUser } from 'react-icons/fi';
-import { ITextTopBackground } from '../../../util/reference';
+import DefaultButton from '../../../Common/DefaultButton';
+import AuthModal from './AuthModal';
+import { ResponsiveFluid } from '../../../Common/ResponsiveFluid';
+import { ITextTopBackground } from '../../../../util/reference';
 
+const Header = forwardRef(
+  // @ts-ignore
+  ({ headerTexts, authModalRef }: ITextTopBackground) => {
 
-const Header = ({ headerTexts }: ITextTopBackground) => {
-  const { logoOrBtnCaption: logo, menuItems, authStatus } = headerTexts;
-
+  const { authModalVisbile } = useMainState();
+  const dispatch = useMainDispatch();
+  const { logoOrBtnCaption: logo, menuItems } = headerTexts;
+  const handleAuthButtonClick = () => dispatch({ type: 'TOGGLE_AUTH_MODAL_VISIBLE' });
   return (
     headerTexts && (
       <HeaderLayout>
@@ -18,18 +25,23 @@ const Header = ({ headerTexts }: ITextTopBackground) => {
           ))}
         </HeaderMenuList>
 
-        <AuthButton>
-          <div className="menu">
-            <FiMenu />
-          </div>
-          <div className="user">
-            <FiUser />
-          </div>
-        </AuthButton>
+        {/* @ts-ignore */}
+        <AuthBlock ref={authModalRef}>
+          <AuthButton onClick={handleAuthButtonClick}>
+            <div className="menu">
+              <FiMenu />
+            </div>
+            <div className="user">
+              <FiUser />
+            </div>
+          </AuthButton>
+          {authModalVisbile && <AuthModal />}
+        </AuthBlock>
+
       </HeaderLayout>
     )
   );
-};
+});
 
 export default Header;
 
@@ -62,6 +74,10 @@ const HeaderMenuItem = styled.li`
   & + & {
     margin-left: 24px;
   }
+`;
+
+const AuthBlock = styled.div`
+  position: relative;
 `;
 
 const AuthButton = styled(DefaultButton)`

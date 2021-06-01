@@ -1,3 +1,4 @@
+import { useRef, MouseEvent } from 'react';
 import { useMainDispatch, useMainState } from '../../contexts/MainContext';
 import { Text, TextContentInfo, TextFooter, TextTopBackground } from '../../util/reference';
 
@@ -16,19 +17,30 @@ const Main = () => {
   const { footerItems } = TextFooter;
   const { headerTexts, searchBarTexts } = TextTopBackground;
 
+  const searchBarRef = useRef<HTMLDivElement>(null);
+  const authModalRef = useRef<HTMLDivElement>(null);
+
   const { searchBarClickedIdx } = useMainState();
   const mainDispatch = useMainDispatch();
-  const handleBackgroundFluidClick = () => {
-    if (searchBarClickedIdx < 0) return;
-    mainDispatch({ type: 'CHANGE_SEARCHBAR_CLICKED_IDX', payload: -1 });
+  const handleBackgroundFluidClick = (e: MouseEvent | Event) => {
+    const target = e.target as HTMLElement;
+    const isSearchBarItem = searchBarRef.current?.contains(target);
+    const isAuthModalItem = authModalRef.current?.contains(target);
+    if (searchBarClickedIdx > -1 && !isSearchBarItem)
+      mainDispatch({ type: 'SET_SEARCHBAR_CLICKED_IDX', payload: -1 });
+    if (!isAuthModalItem)
+      mainDispatch({ type: 'SET_AUTH_MODAL_VISIBLE', payload: false });
   };
 
   return (
-    <BackgroundFluid onClick={handleBackgroundFluidClick}>
-
+    <BackgroundFluid
+      onClick={(e: MouseEvent | Event) => handleBackgroundFluidClick(e)}
+    >
       <TopBackground
         headerTexts={headerTexts}
         searchBarTexts={searchBarTexts}
+        //@ts-ignore
+        searchBarRef={searchBarRef} authModalRef={authModalRef}
       />
       <Nearby nearbyItems={nearby} />
       <RoomType roomTypeItems={roomType} />
@@ -37,7 +49,6 @@ const Main = () => {
         <ContentInfo contentInfoItems={contentInfo} />
         <Footer footerItems={footerItems} />
       </Background>
-
     </BackgroundFluid>
   );
 };

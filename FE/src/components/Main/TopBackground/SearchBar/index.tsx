@@ -1,29 +1,68 @@
 import styled, { css } from 'styled-components';
+import { forwardRef, useEffect, useRef } from 'react';
 import { FiSearch } from 'react-icons/fi';
-import { useMainDispatch, useMainState } from '../../../contexts/MainContext';
-import { ITextTopBackground } from '../../../util/reference';
 
-import { ResponsiveFluid } from '../../Common/ResponsiveFluid';
-import DefaultButton from '../../Common/DefaultButton';
+import { Link } from '../../../../util/MyRouter';
+import { useMainDispatch, useMainState } from '../../../../contexts/MainContext';
+import { useSearchBarState } from '../../../../contexts/SearchBarContext';
+import { ITextTopBackground } from '../../../../util/reference';
+import { CALENDAR_FOCUS, FEE_FOCUS, PEOPLE_FOCUS } from './const';
+import { createMonthDateText } from '../../../../util/calendar';
+
+import { ResponsiveFluid } from '../../../Common/ResponsiveFluid';
+
 import CalendarModal from './Modals/CalendarModal';
+import FeeModal from './Modals/FeeModal';
+import PeopleModal from './Modals/PeopleModal';
+
+
 
 interface ISearchMenuItem {
   isClicked?: boolean;
 }
+/* interface ISearchBar { ref?: Ref<HTMLDivElement>; } */
 
-const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
+const SearchBar = forwardRef((
+  //@ts-ignore
+  { searchBarTexts, searchBarRef }: ITextTopBackground,
+) => {
+  // 1. 초기 값 설정
   const { menuItems } = searchBarTexts;
 
   const { searchBarClickedIdx } = useMainState();
   const mainDispatch = useMainDispatch();
+  const {
+    calendar: { startDate, endDate },
+  } = useSearchBarState();
 
+  const checkInPlaceHolderRef = useRef<HTMLParagraphElement>(null);
+  const checkOutPlaceHoldertRef = useRef<HTMLParagraphElement>(null);
+
+  // 2. useEffect
+  // 1) 달력에서 날짜가 업데이트 되었을 때 (체크인 / 체크아웃)
+  useEffect(() => {
+    if (!checkInPlaceHolderRef || !checkOutPlaceHoldertRef) return;
+    // 체크인
+    let checkIn = checkInPlaceHolderRef.current!;
+    startDate
+      ? (checkIn.innerHTML = createMonthDateText(startDate))
+      : (checkIn.innerHTML = '날짜 입력');
+    // 체크아웃
+    let checkOut = checkOutPlaceHoldertRef.current!;
+    endDate
+      ? (checkOut.innerHTML = createMonthDateText(endDate))
+      : (checkOut.innerHTML = '날짜 입력');
+  }, [startDate, endDate]);
+
+  // 3. Events
   const handleSearchMenuItemClick = (idx: number) =>
     mainDispatch({
-      type: 'CHANGE_SEARCHBAR_CLICKED_IDX',
+      type: 'SET_SEARCHBAR_CLICKED_IDX',
       payload: searchBarClickedIdx === idx ? -1 : idx,
     });
 
-  // searchMenuItem(li) 생성
+  // 4. 컴포넌트 생성 & 정의
+  // searchMenuItem(li ) 생성
   const searchMenuItems = menuItems.map((item, idx) => (
     <SearchMenuItem
       key={idx}
@@ -31,25 +70,33 @@ const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
       onClick={() => handleSearchMenuItemClick(idx)}
     >
       {/* 체크인 / 체크아웃, 요금, 인원 */}
-      {item.text.split('|').map((txt, i) => (
-        <div className="item__info" key={i}>
-          <p>{txt}</p>
-          <p>{item.placeHolder}</p>
-        </div>
-      ))}
+      {item.text.split('|').map((txt, i) => {
+        let checkInOutRef;
+        if (txt === '체크인') checkInOutRef = checkInPlaceHolderRef;
+        else if (txt === '체크아웃') checkInOutRef = checkOutPlaceHoldertRef;
+
+        return (
+          <div className="item__info" key={i}>
+            <p>{txt}</p>
+            <p ref={checkInOutRef}>{item.placeHolder}</p>
+          </div>
+        );
+      })}
 
       {idx === menuItems.length - 1 && (
-        <SearchButton>
+        <SearchButton to={"/search"}>
           <FiSearch />
         </SearchButton>
       )}
     </SearchMenuItem>
   ));
-  // ---
+
+  // ====
 
   return (
     <SearchBarLayout>
-      <SearchBarBlock>
+      {/* @ts-ignore */}
+      <SearchBarBlock ref={searchBarRef}>
         {/* 검색바 */}
         <SearchBarRow>
           <SearchMenuList>{searchMenuItems}</SearchMenuList>
@@ -57,15 +104,17 @@ const SearchBar = ({ searchBarTexts }: ITextTopBackground) => {
 
         {/* 검색바의 Item의 Modal들 */}
         {/* 추후 flag로 렌더링 여부결정 */}
-        {true && (
+        {searchBarClickedIdx > -1 && (
           <SearchBarRow>
-            <CalendarModal />
+            {searchBarClickedIdx === CALENDAR_FOCUS && <CalendarModal />}
+            {searchBarClickedIdx === FEE_FOCUS && <FeeModal />}
+            {searchBarClickedIdx === PEOPLE_FOCUS && <PeopleModal />}
           </SearchBarRow>
         )}
       </SearchBarBlock>
     </SearchBarLayout>
   );
-};
+});
 
 export default SearchBar;
 
@@ -150,7 +199,7 @@ const SearchMenuItem = styled.li<ISearchMenuItem>`
   }
 `;
 
-const SearchButton = styled(DefaultButton)`
+const SearchButton = styled(Link)`
   cursor: pointer;
 
   display: flex;
