@@ -3,6 +3,8 @@ package mj.airbnb.domain.reservation;
 import mj.airbnb.domain.accommodation.Accommodation;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Reservation {
 
@@ -90,5 +92,13 @@ public class Reservation {
 
     public void setAccommodationMainImageUrl(String accommodationMainImageUrl) {
         this.accommodationMainImageUrl = accommodationMainImageUrl;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

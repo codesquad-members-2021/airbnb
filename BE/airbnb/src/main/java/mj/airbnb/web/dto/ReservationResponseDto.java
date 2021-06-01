@@ -1,13 +1,12 @@
 package mj.airbnb.web.dto;
 
-import mj.airbnb.domain.accommodation.Accommodation;
 import mj.airbnb.domain.reservation.Reservation;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class ReservationResponseDto {
 
+    private Long reservationId;
     private String name;
     private String address;
     private String description;
@@ -16,6 +15,7 @@ public class ReservationResponseDto {
     private String mainImageUrl;
 
     public ReservationResponseDto(Reservation reservation) {
+        this.reservationId = reservation.getId();
         this.name = reservation.getAccommodationName();
         this.address = reservation.getAccommodationAddress();
         this.description = reservation.getAccommodationDescription();
@@ -66,5 +66,13 @@ public class ReservationResponseDto {
 
     public String getMainImageUrl() {
         return mainImageUrl;
+    }
+
+    public Long getReservationId() {
+        return reservationId;
+    }
+
+    public void setReservationId(Long reservationId) {
+        this.reservationId = reservationId;
     }
 }
