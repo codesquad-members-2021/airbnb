@@ -11,7 +11,8 @@ class CalendarViewController: UIViewController {
     
     static let headerElementKind = "header-element-kind"
     
-    private var viewModel = CalendarViewModel()
+    private var calendarViewModel = CalendarViewModel()
+    private var conditionViewModel = ConditionViewModel()
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Date, Day>!
     private var containerView: UIView!
@@ -78,7 +79,7 @@ extension CalendarViewController {
     private func configureDataSource() {
         
         let listCellRegistration = UICollectionView.CellRegistration<DayCell, Day> { (cell, indexPath, day) in
-            let cellType = self.viewModel.figureSelectedType(date: day.date)
+            let cellType = self.calendarViewModel.figureSelectedType(date: day.date)
             cell.fillInfo(with: day.date)
             cell.updateUI(selectedType: cellType)
         }
@@ -126,7 +127,9 @@ extension CalendarViewController: UICollectionViewDelegate {
         guard let cell = collectionView.cellForItem(at: indexPath) as? DayCell else { return }
         guard let date = cell.date else { return }
 
-        viewModel.unselect(date: date)
+        calendarViewModel.unselect(date: date)
+        let schedule = calendarViewModel.checkInOut
+        conditionViewModel.updateCondition(schedule: schedule)
         collectionView.reloadData()
     }
     
@@ -139,8 +142,11 @@ extension CalendarViewController: UICollectionViewDelegate {
             collectionView.deselectItem(at: $0, animated: false)
         }
 
-        if viewModel.figureSelectedType(date: date) != .outDated {
-            viewModel.select(date: date)
+        if calendarViewModel.figureSelectedType(date: date) != .outDated {
+            calendarViewModel.select(date: date)
+            let schedule = calendarViewModel.checkInOut
+            conditionViewModel.updateCondition(schedule: schedule)
+            
             collectionView.reloadData()
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .left)
         }
@@ -161,7 +167,7 @@ extension CalendarViewController {
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
         ])
         containerView.backgroundColor = .cyan
-        let vc = ConditionTableViewController(viewModel: ConditionViewModel())
+        let vc = ConditionTableViewController(viewModel: conditionViewModel)
         self.addChild(vc)
         containerView.addSubview(vc.view)
     }

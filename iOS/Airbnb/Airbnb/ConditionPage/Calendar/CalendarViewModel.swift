@@ -9,7 +9,7 @@ import Foundation
 
 class CalendarViewModel {
     
-    private var checkInOut: [Date]
+    private(set) var checkInOut: [Date]
     private var count: Int
     
     init(checkInOut: [Date] = []) {

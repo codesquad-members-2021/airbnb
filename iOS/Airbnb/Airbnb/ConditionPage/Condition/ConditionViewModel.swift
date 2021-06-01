@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 struct CellInfo {
     var title: String
@@ -17,10 +18,38 @@ let c = Condition(cityId: 1, schedule: Schedule(checkIn: Date(), checkOut: Date(
 
 class ConditionViewModel {
     
-    private var condition: Condition
+    @Published var city: Int
+    @Published var schedule: Schedule?
+    @Published var price: Price?
+    @Published var people: Int?
+    private var cancelBag = Set<AnyCancellable>()
     
     init(condition: Condition = c) {
-        self.condition = condition
+        self.city = condition.cityId
+        self.schedule = condition.schedule
+        self.price = condition.price
+        self.people = condition.people
+    }
+    
+}
+
+extension ConditionViewModel {
+ 
+    func updateCondition(city: Int) {
+        self.city = city
+    }
+    
+    func updateCondition(schedule: [Date]) {
+        self.schedule?.checkIn = schedule.min()
+        self.schedule?.checkOut = schedule.max()
+    }
+    
+    func updateCondition(price: Price?) {
+        self.price = price
+    }
+    
+    func updateCondition(people: Int?, child: Int?) {
+        self.people = people
     }
     
 }
@@ -31,10 +60,10 @@ extension ConditionViewModel {
     
     func generateFirstCondition() -> [CellInfo] {
         var conditions = [CellInfo]()
-        conditions.append(position(city: condition.cityId))
-        conditions.append(schedule(date: condition.schedule))
-        conditions.append(price(rate: condition.price))
-        conditions.append(people(num: condition.people))
+        conditions.append(position(city: city))
+        conditions.append(schedule(date: schedule))
+        conditions.append(price(rate: price))
+        conditions.append(people(num: people))
         
         return conditions
     }
@@ -46,8 +75,8 @@ extension ConditionViewModel {
     
     private func schedule(date: Schedule?) -> CellInfo {
         guard let date = date else { return CellInfo(title: "체크인/체크아웃", detail: "") }
-        let checkIn = "\(date.checkIn.month)월 \(date.checkIn.day)일"
-        let checkOut = "\(date.checkOut.month)월 \(date.checkOut.day)일"
+        let checkIn = date.checkIn == nil ? "" : "\(date.checkIn!.month)월 \(date.checkIn!.day)일"
+        let checkOut = date.checkOut == nil ? "" : "\(date.checkOut!.month)월 \(date.checkOut!.day)일"
         return CellInfo(title: "체크인/체크아웃", detail: "\(checkIn) - \(checkOut)")
     }
     
@@ -82,6 +111,6 @@ struct Price: Codable {
 }
 
 struct Schedule: Codable {
-    var checkIn: Date
-    var checkOut: Date
+    var checkIn: Date?
+    var checkOut: Date?
 }

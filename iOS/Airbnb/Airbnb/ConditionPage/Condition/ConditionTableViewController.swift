@@ -6,37 +6,13 @@
 //
 
 import UIKit
-
-class SomeController: UIViewController {
-    private var containerView: UIView!
-    
-    override func viewDidLoad(){
-        self.view.backgroundColor = .white
-        configureContainer()
-    }
-    
-    private func configureContainer() {
-        containerView = UIView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(containerView)
-        
-        NSLayoutConstraint.activate([
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 650),
-            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15)
-        ])
-        containerView.backgroundColor = .cyan
-        let vc = ConditionTableViewController(viewModel: ConditionViewModel())
-        self.addChild(vc)
-        containerView.addSubview(vc.view)
-    }
-}
+import Combine
 
 class ConditionTableViewController: UITableViewController {
 
     private var viewModel: ConditionViewModel
     private var dataSource: [CellInfo]
+    private var cancelBag = Set<AnyCancellable>()
     
     init(viewModel: ConditionViewModel) {
         self.viewModel = viewModel
@@ -53,10 +29,15 @@ class ConditionTableViewController: UITableViewController {
         self.tableView.register(ConditionCell.self, forCellReuseIdentifier: ConditionCell.reuseIdentifier)
         self.tableView.allowsSelection = false
         self.tableView.isScrollEnabled = false
+        bind()
     }
 
-    // MARK: - Table view data source
+}
 
+// MARK: - Table view data source
+    
+extension ConditionTableViewController {
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -73,4 +54,17 @@ class ConditionTableViewController: UITableViewController {
         return cell
     }
 
+}
+
+extension ConditionTableViewController {
+ 
+    private func bind() {
+        viewModel.$schedule
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { _ in
+                self.dataSource = self.viewModel.generateFirstCondition()
+                self.tableView.reloadData()
+            })
+            .store(in: &cancelBag)
+    }
 }
