@@ -6,8 +6,6 @@ import ReservationMain from './ReservationMain';
 export const ReservationContext = createContext();
 
 const Reservation = ({ match }) => {
-  console.log(match.params);
-
   return (
     <ReservationContext.Provider value={{ match }}>
       <ReservationHeader />

@@ -19,6 +19,8 @@ const RoomMap = () => {
 const MapContainer = styled.div`
   width: 90%;
   height: 100vh;
+  position: sticky;
+  top: 0;
 `;
 
 export default RoomMap;

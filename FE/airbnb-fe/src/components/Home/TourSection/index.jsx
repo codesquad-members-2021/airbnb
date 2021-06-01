@@ -9,7 +9,6 @@ const TourSection = () => {
   // useEffect(() => {
   //   setHomeData(API.get.home());
   // }, []);
-  // console.log('home', homeData);
 
   return (
     <TourSectionDiv>

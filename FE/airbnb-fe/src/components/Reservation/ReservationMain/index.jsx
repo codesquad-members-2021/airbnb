@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import AvailableRoom from './AvailableRoom';
 import RoomMap from './RoomMap';
 
 const ReservationMain = () => {
+  useEffect(() => {
+    //
+  }, []);
+
   return (
     <ReservationMainDiv>
       <AvailableRoom />
@@ -17,7 +21,7 @@ const ReservationMainDiv = styled.div`
   display: flex;
   width: 100%;
   height: fit-content;
-  padding: 0 24px;
+  /* padding: 0 24px; */
   top: 0;
 `;
 
