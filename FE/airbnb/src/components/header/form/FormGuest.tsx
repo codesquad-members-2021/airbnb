@@ -6,8 +6,11 @@ import { MouseEvent, useEffect, useRef } from 'react';
 import useToggle from '../../../hooks/useToggle';
 import FormGuestToggle from './guestToggle/FormGuestToggle';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { guestState, isFormOpenedState } from '../../../recoil/headerAtom';
+import { guestState, isFormOpenedState, reserveInfoSelector } from '../../../recoil/headerAtom';
 import { ReactComponent as DeleteBtn } from '../../../assets/svg/Property 1=x-circle.svg';
+import { Link } from 'react-router-dom';
+import ConditionalLink from '../../util/ConditionalLink';
+import { reserveInfoType, clientReserveAPI } from '../../../util/api';
 
 const FormGuest = () => {
   const clickRef = useRef<HTMLDivElement>(null);
@@ -18,6 +21,7 @@ const FormGuest = () => {
   const [isFormOpened, setIsFormOpened] = useRecoilState(isFormOpenedState);
   const totalCount = Object.values(guestCount).reduce((acc, cur) => acc + cur);
   const isShowDeleteBtn = totalCount !== 0 && open;
+  const reserveInfo = useRecoilValue(reserveInfoSelector);
 
   useEffect(() => {
     if (open) setIsFormOpened(true);
@@ -40,16 +44,26 @@ const FormGuest = () => {
     resetGuestCount();
   };
 
+  const handleSubmitClick = (e: MouseEvent): void => {
+    console.log(reserveInfo);
+    e.stopPropagation();
+  };
+
+  const linkCondition =
+    Object.values(reserveInfo as reserveInfoType).filter((v) => !v).length === 0;
+  const linkURL = clientReserveAPI(reserveInfo as reserveInfoType);
   return (
     <StyledFormGuestWrapper>
       <StyledFormGuest ref={clickRef} isFormOpened={isFormOpened}>
-        <HoverBlock color='gray4' className='hover__guest' dataKey='guest' isModal={open}>
+        <HoverBlock color='gray5' className='hover__guest' dataKey='guest' isModal={open}>
           <FormColumn title='인원' description={getGuestDesc()} />
           {isShowDeleteBtn && <DeleteBtn onClick={handleDeleteClick} />}
-          <div className='search-icon'>
-            <IoSearch />
-            {isFormOpened && <div className='search'>검색</div>}
-          </div>
+          <ConditionalLink to={linkURL} condition={linkCondition}>
+            <div className='search-icon' onClick={handleSubmitClick}>
+              <IoSearch />
+              {isFormOpened && <div className='search'>검색</div>}
+            </div>
+          </ConditionalLink>
         </HoverBlock>
       </StyledFormGuest>
       {open && <FormGuestToggle toggleRef={toggleRef} />}

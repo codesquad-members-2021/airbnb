@@ -4,7 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import MainPage from './pages/MainPage';
 import ReservePage from './pages/ReservePage';
 import { Suspense } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 declare global {
   interface Window {
@@ -13,7 +13,6 @@ declare global {
 }
 
 function App() {
-  console.log('app');
   return (
     <ThemeProvider theme={theme}>
       <StyledApp>
@@ -21,7 +20,7 @@ function App() {
           <Route exact={true} path='/'>
             <MainPage />
           </Route>
-          <Route path='/reserve'>
+          <Route path='/accommodations'>
             <Suspense fallback='loading'>
               <ReservePage />
             </Suspense>

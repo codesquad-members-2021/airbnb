@@ -4,16 +4,23 @@ import { ReactComponent as Heart } from '../../assets/svg/Property 1=heart.svg';
 import { roomType } from './roomType';
 import ReserveRoomGrade from './ReserveRoomGrade';
 import ReserveRoomPrice from './ReserveRoomPrice';
+import ReserveForm from './reserveForm/ReserveForm';
+import { useState } from 'react';
 
 interface Props {
   roomData: roomType;
 }
 
 const ReserveRoom = ({ roomData }: Props) => {
-  const { photo, chargePerNight, totalCharge } = roomData;
+  const [open, setOpen] = useState(false);
+  const { photo } = roomData;
+
+  const handleClick = () => {
+    setOpen(true);
+  };
 
   return (
-    <StyledReserveRoom>
+    <StyledReserveRoom onClick={handleClick}>
       <div className='room__img'>
         <img src={photo} alt='' />
       </div>
@@ -27,6 +34,7 @@ const ReserveRoom = ({ roomData }: Props) => {
           <ReserveRoomPrice roomData={roomData} />
         </div>
       </div>
+      {open && <ReserveForm roomData={roomData} />}
     </StyledReserveRoom>
   );
 };
@@ -37,6 +45,7 @@ const StyledReserveRoom = styled.div`
   width: 100%;
   display: flex;
   padding: 3rem 0;
+  cursor: pointer;
   .room__img {
     flex: 1;
     img {

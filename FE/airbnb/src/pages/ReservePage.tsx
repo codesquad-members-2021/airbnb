@@ -1,14 +1,37 @@
-import { useRecoilValue } from 'recoil';
+import { useEffect } from 'react';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import Map from '../components/map/Map';
 import ReserveHeader from '../components/reserveHeader/ReserveHeader';
 import ReserveRoomList from '../components/reserveRoomList/ReserveRoomList';
+import { reserveInfoSelector } from '../recoil/headerAtom';
 import { getRoomsSelector } from '../recoil/reserveRoomAtom';
 
 interface Props {}
 
 const ReservePage = ({}: Props) => {
-  // const data = useRecoilValue(getRoomsSelector);
+  const [reserveInfo, setReserveInfo] = useRecoilState(reserveInfoSelector);
+  const roomsData = useRecoilValue(getRoomsSelector);
+  console.log(roomsData);
+  useEffect(() => {
+    const [encodedAddress, checkIn, checkOut, minCharge, maxCharge, adult, child, infants] =
+      getQueryValue(window.location.search);
+    const address = decodeURI(encodedAddress);
+    const newReserveInfo = {
+      address,
+      checkIn: +checkIn,
+      checkOut: +checkOut,
+      minCharge: +minCharge,
+      maxCharge: +maxCharge,
+      adult: +adult,
+      child: +child,
+      infants: +infants,
+    };
+    setReserveInfo(newReserveInfo);
+  }, []);
+
+  const getQueryValue = (query: string): string[] => query.split('&').map((v) => v.split('=')[1]);
+
   return (
     <StyledReservePage>
       <ReserveHeader />

@@ -38,7 +38,7 @@ const FormLocation = () => {
   return (
     <StyledLocationWrapper>
       <StyledFormLocation ref={clickRef} data-type='location'>
-        <HoverBlock color='gray4' className='hover__location' dataKey='location' isModal={open}>
+        <HoverBlock color='gray5' className='hover__location' dataKey='location' isModal={open}>
           <FormColumn
             title='위치'
             description='어디로 여행가세요'

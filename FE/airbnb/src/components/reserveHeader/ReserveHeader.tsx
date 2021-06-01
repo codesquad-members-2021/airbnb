@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import HeaderNav from '../header/nav/HeaderNav';
-import ReserveForm from './ReserveForm';
+import ReserveHeaderForm from './ReserveHeaderForm';
 
 interface Props {}
 
@@ -8,7 +8,7 @@ const ReserveHeader = (props: Props) => {
   return (
     <StyledReserveHeader>
       <div className='logo'>LOGO</div>
-      <ReserveForm />
+      <ReserveHeaderForm />
       <HeaderNav />
     </StyledReserveHeader>
   );
