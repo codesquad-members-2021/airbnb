@@ -9,18 +9,18 @@ import Alamofire
 import Foundation
 import Combine
 
-class API {
+class APIService {
 
     struct Response<T> {
         let value: T
         let response : URLResponse
     }
     
-    func run<T: Decodable>(_ request: DataRequest, _ decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<API.Response<T>, APIError> {
+    func run<T: Decodable>(_ request: DataRequest, _ decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<APIService.Response<T>, APIServiceError> {
         return request
             .validate(contentType: ["application/json"])
             .publishData(emptyResponseCodes: [200, 204, 205])
-            .tryMap { result -> API.Response<T> in
+            .tryMap { result -> APIService.Response<T> in
                 // TODO: Error Handling
                 if let data = result.data {
                     // 응답이 성공이고 result가 있을 때
@@ -31,8 +31,8 @@ class API {
                     return Response(value: Empty.emptyValue() as! T, response: result.response!)
                 }
             }
-            .mapError({ (error) -> APIError in
-                if let apiError = error as? APIError {
+            .mapError({ (error) -> APIServiceError in
+                if let apiError = error as? APIServiceError {
                     return apiError
                 } else {
                     return .other(error)

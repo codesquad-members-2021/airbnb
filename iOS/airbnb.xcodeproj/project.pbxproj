@@ -21,9 +21,9 @@
 		10466589265E6C03008B2F36 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10466588265E6C03008B2F36 /* CalendarViewModel.swift */; };
 		1046658B265E6DD4008B2F36 /* CalenderColleectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1046658A265E6DD4008B2F36 /* CalenderColleectionDataSource.swift */; };
 		104665A1265E9133008B2F36 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 104665A0265E9133008B2F36 /* Alamofire */; };
-		104665A7265E915B008B2F36 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665A2265E915A008B2F36 /* APIError.swift */; };
+		104665A7265E915B008B2F36 /* APIServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665A2265E915A008B2F36 /* APIServiceError.swift */; };
 		104665A8265E915B008B2F36 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665A3265E915A008B2F36 /* EndPoint.swift */; };
-		104665A9265E915B008B2F36 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665A4265E915A008B2F36 /* API.swift */; };
+		104665A9265E915B008B2F36 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665A4265E915A008B2F36 /* APIService.swift */; };
 		104665AA265E915B008B2F36 /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665A5265E915B008B2F36 /* Responses.swift */; };
 		104665AB265E915B008B2F36 /* TravelListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665A6265E915B008B2F36 /* TravelListAPI.swift */; };
 		104665AD265E9502008B2F36 /* NearPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665AC265E9502008B2F36 /* NearPlace.swift */; };
@@ -67,9 +67,9 @@
 		10406B5C265D344F004F4AF9 /* CalendarDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateCell.swift; sourceTree = "<group>"; };
 		10466588265E6C03008B2F36 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		1046658A265E6DD4008B2F36 /* CalenderColleectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderColleectionDataSource.swift; sourceTree = "<group>"; };
-		104665A2265E915A008B2F36 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		104665A2265E915A008B2F36 /* APIServiceError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIServiceError.swift; sourceTree = "<group>"; };
 		104665A3265E915A008B2F36 /* EndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
-		104665A4265E915A008B2F36 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		104665A4265E915A008B2F36 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		104665A5265E915B008B2F36 /* Responses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
 		104665A6265E915B008B2F36 /* TravelListAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelListAPI.swift; sourceTree = "<group>"; };
 		104665AC265E9502008B2F36 /* NearPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearPlace.swift; sourceTree = "<group>"; };
@@ -145,8 +145,8 @@
 		1046659C265E910C008B2F36 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				104665A4265E915A008B2F36 /* API.swift */,
-				104665A2265E915A008B2F36 /* APIError.swift */,
+				104665A4265E915A008B2F36 /* APIService.swift */,
+				104665A2265E915A008B2F36 /* APIServiceError.swift */,
 				104665A3265E915A008B2F36 /* EndPoint.swift */,
 				104665A5265E915B008B2F36 /* Responses.swift */,
 				104665A6265E915B008B2F36 /* TravelListAPI.swift */,
@@ -386,11 +386,11 @@
 				10466589265E6C03008B2F36 /* CalendarViewModel.swift in Sources */,
 				1046658B265E6DD4008B2F36 /* CalenderColleectionDataSource.swift in Sources */,
 				101C0EE126575BF80014D62B /* NearPlaceDataSource.swift in Sources */,
-				104665A7265E915B008B2F36 /* APIError.swift in Sources */,
+				104665A7265E915B008B2F36 /* APIServiceError.swift in Sources */,
 				10E1B1742653DE2F0087B69B /* MainCoordinator.swift in Sources */,
 				10E1B1722653DE0D0087B69B /* Storyboarded.swift in Sources */,
 				10642205265641F1005B63FD /* TravelListViewController.swift in Sources */,
-				104665A9265E915B008B2F36 /* API.swift in Sources */,
+				104665A9265E915B008B2F36 /* APIService.swift in Sources */,
 				100CD082265B9A3D002224F1 /* WishListCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

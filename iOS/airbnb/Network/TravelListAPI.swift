@@ -11,19 +11,19 @@ import Combine
 
 class TravelListAPI {
 
-    static func loadTravelList(type : EndPoint) -> AnyPublisher<[NearPlaceResponse], APIError> {
+    static func loadTravelList(type : EndPoint) -> AnyPublisher<[NearPlaceResponse], APIServiceError> {
         let request = AF.request(type.url, method: .get)
-        return API().run(request)
+        return APIService().run(request)
             .map(\.value)
             .eraseToAnyPublisher()
     }
     
-    static func loadTravelList(type : EndPoint, with limit : Int) -> AnyPublisher<[NearPlaceResponse], APIError> {
+    static func loadTravelList(type : EndPoint, with limit : Int) -> AnyPublisher<[NearPlaceResponse], APIServiceError> {
         let parameter: Parameters = [
             "limit" : String(limit)
         ]
         let request = AF.request(type.url, method: .get, parameters: parameter)
-        return API().run(request)
+        return APIService().run(request)
             .map(\.value)
             .eraseToAnyPublisher()
     }
