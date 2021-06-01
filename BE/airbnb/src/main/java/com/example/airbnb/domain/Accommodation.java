@@ -8,33 +8,33 @@ public class Accommodation {
     private Integer reviewCount;
     private Integer charge;
     private String badge;
+    private String options;
     private String image;
     private Boolean isLike;
     private Double latitude;
     private Double longitude;
 
+
     public Accommodation() {
-        this.id = id;
-        this.title = title;
-        this.reviewRating = reviewRating;
-        this.reviewCount = reviewCount;
-        this.charge = charge;
-        this.badge = badge;
-        this.image = image;
-        this.isLike = isLike;
     }
 
+
     public Accommodation(Long id, String title, Double reviewRating,
-                         Integer reviewCount, Integer charge, String badge,
-                         String image, Boolean isLike) {
+                         Integer reviewCount, Integer charge,
+                         String badge,String options,
+                         String image, Boolean isLike,
+                         Double latitude, Double longitude) {
         this.id = id;
         this.title = title;
         this.reviewRating = reviewRating;
         this.reviewCount = reviewCount;
         this.charge = charge;
         this.badge = badge;
+        this.options = options;
         this.image = image;
         this.isLike = isLike;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Long getId() {
@@ -82,12 +82,12 @@ public class Accommodation {
         return this;
     }
 
-    public String getBadge() {
-        return this.badge;
+    public String getOptions() {
+        return this.options;
     }
 
-    public Accommodation setBadge(String badge) {
-        this.badge = badge;
+    public Accommodation setOptions(String options) {
+        this.options = options;
         return this;
     }
 
@@ -109,4 +109,21 @@ public class Accommodation {
         return this;
     }
 
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public Accommodation setLatitude(Double latitude) {
+        this.latitude = latitude;
+        return this;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public Accommodation setLongitude(Double longitude) {
+        this.longitude = longitude;
+        return this;
+    }
 }
