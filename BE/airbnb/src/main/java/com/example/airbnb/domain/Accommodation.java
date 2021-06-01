@@ -68,8 +68,8 @@ public class Accommodation {
         return this.reviewCount;
     }
 
-    public Accommodation setReviewCount(Double reviewRating) {
-        this.reviewRating = reviewRating;
+    public Accommodation setReviewCount(Integer reviewCount) {
+        this.reviewCount = reviewCount;
         return this;
     }
 

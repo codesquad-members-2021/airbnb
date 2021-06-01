@@ -52,9 +52,9 @@ public class AccommodationRepository {
             accommodation.setId(rs.getLong("id"));
             accommodation.setTitle(rs.getString("title"));
             accommodation.setReviewRating(rs.getDouble("reviewRating"));
-            accommodation.setReviewCount(rs.getDouble("reviewCount"));
+            accommodation.setReviewCount(rs.getInt("reviewCount"));
             accommodation.setCharge(rs.getInt("charge"));
-            accommodation.setOptions(rs.getString("options"));
+            accommodation.setBadge(rs.getString("badge"));
             accommodation.setOptions(rs.getString("options"));
             accommodation.setImage(rs.getString("image"));
             accommodation.setIsLike(rs.getBoolean("isLike"));
