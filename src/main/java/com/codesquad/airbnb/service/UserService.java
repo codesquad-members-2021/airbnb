@@ -24,7 +24,6 @@ public class UserService {
     private static final String REDIRECT_URI = "http://localhost:8080/oauth/google/callback";
     private static final String GRANT_TYPE = "authorization_code";
 
-
     public UserService(ObjectMapper objectMapper, RestTemplate restTemplate) {
         this.objectMapper = objectMapper;
         this.restTemplate = restTemplate;
@@ -64,5 +63,25 @@ public class UserService {
         return oAuthToken;
     }
 
+    // 받아 온 액세스토큰을 가지고 구글 유저 정보를 get요청한다.
+    public ResponseEntity<String> createGet(OAuthToken oAuthToken) {
+        String url = "https://www.googleapis.com/oauth2/v1/userinfo";
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + oAuthToken.getAccessToken());
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity(headers);
+        // 요청 보내기
+        return restTemplate.exchange(url, HttpMethod.GET, request, String.class);
+    }
+
+    public GoogleUser getUserInfo(ResponseEntity<String> userInfoResponse) {
+        GoogleUser googleUser = null;
+        try {
+            googleUser = objectMapper.readValue(userInfoResponse.getBody(), GoogleUser.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return googleUser;
+    }
 }
