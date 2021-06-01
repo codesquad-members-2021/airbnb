@@ -13,7 +13,6 @@ export async function getFeeData(
     '어디로 여행가세요?',
     '날짜입력',
   ]
-
   if (!skipCase.includes(checkIn) && !skipCase.includes(checkOut)) {
     query.push(
       `check-in=${FilterDateToForm(Number(checkIn))}&check-out=${FilterDateToForm(
@@ -62,7 +61,7 @@ export async function getHouseData(value: any) {
   let guestBaby = Number(baby)
 
   const query = []
-  if (typeof checkIn !== defaultValue.checkIn && typeof checkOut !== defaultValue.checkOut) {
+  if (checkIn !== defaultValue.checkIn && checkOut !== defaultValue.checkOut) {
     query.push(
       `check-in=${FilterDateToForm(Number(checkIn))}&check-out=${FilterDateToForm(
         Number(checkOut)
@@ -91,8 +90,6 @@ export async function getHouseData(value: any) {
     (acc, curr, idx) => acc + curr + (idx < query.length - 1 ? '&' : ''),
     `http://13.125.140.183/search?`
   )
-  console.log(url)
   const response = await axios.get(url)
-  console.log(response)
   return response
 }
