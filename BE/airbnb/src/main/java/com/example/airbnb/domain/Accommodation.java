@@ -82,7 +82,7 @@ public class Accommodation {
         return this;
     }
 
-경    public String getBadge() {
+    public String getBadge() {
         return badge;
     }
 
