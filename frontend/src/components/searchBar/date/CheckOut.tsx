@@ -1,29 +1,27 @@
-import { RefObject, useState, useEffect } from 'react'
-import { useRecoilValue, useRecoilState } from 'recoil'
-import { checkOutMessage, clickCheckIn, clickCheckOut } from '../../../customHook/atoms'
+import { RefObject } from 'react'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import {
+  checkOutMessage,
+  clickCheckIn,
+  clickCheckOut,
+  defaultValue,
+} from '../../../customHook/atoms'
 import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../../style/BarStyle'
 import { dateToString } from '../../../customHook/useDateInfo'
+import useXclick from '../../../customHook/useXclick'
+import { IProps } from '../../../Interface'
 
-interface IProps {
-  open: boolean
-  type: string
-  checkOutToggle: RefObject<HTMLDivElement>
-}
-
-const CheckOut: React.FunctionComponent<IProps> = ({ open, type, checkOutToggle }) => {
-  const checkOut = useRecoilValue(checkOutMessage)
-  const [checkInClicked, setCheckInClick] = useRecoilState(clickCheckIn)
+function CheckOut({ open, type, checkOutToggle }: IProps) {
+  const [checkOut, setCheckOut] = useRecoilState(checkOutMessage)
   const [checkOutnClicked, setCheckOutClick] = useRecoilState(clickCheckOut)
-  const clickTransfer = () => {
+  const setCheckInClick = useSetRecoilState(clickCheckIn)
+
+  const handleClick = () => {
     setCheckInClick(false)
     setCheckOutClick(true)
   }
-  const handleClick = () => {
-    clickTransfer()
-  }
-  useEffect(() => {
-    clickTransfer()
-  }, [checkOut])
+
+  const RenderXbtn = useXclick(checkOut, [setCheckOut], defaultValue.checkOut)
 
   return (
     <BarBlock
@@ -37,6 +35,7 @@ const CheckOut: React.FunctionComponent<IProps> = ({ open, type, checkOutToggle 
           <BarTitle>체크아웃</BarTitle>
           <BarMessage>{dateToString(checkOut)}</BarMessage>
         </div>
+        <RenderXbtn />
       </BarInnerWrapper>
     </BarBlock>
   )

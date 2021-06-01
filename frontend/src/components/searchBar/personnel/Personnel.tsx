@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { useRecoilState } from 'recoil'
 import {
   ModalWrapper,
   BarBlock,
@@ -6,9 +7,18 @@ import {
   BarTitle,
   BarMessage,
 } from '../../../style/BarStyle'
+import {
+  personnelAudult,
+  personnelChild,
+  personnelBaby,
+  defaultValue,
+  personnelMessage,
+} from '../../../customHook/atoms'
 import ModalPersonnel from './ModalPersonnel'
 import useModalCtrl from '../../../customHook/useModalCtrlArray'
-const Personnel = () => {
+import useXclick from '../../../customHook/useXclick'
+
+function Personnel() {
   const PersonnelToggle = useRef<HTMLDivElement>(null)
   const PersonnelModal = useRef<HTMLDivElement>(null)
   const open = useModalCtrl({
@@ -16,14 +26,28 @@ const Personnel = () => {
     modal: PersonnelModal,
     init: false,
   })
+
+  const [adult, setAdult] = useRecoilState(personnelAudult)
+  const [child, setChild] = useRecoilState(personnelChild)
+  const [baby, setBaby] = useRecoilState(personnelBaby)
+  const [guestMsg, setGuestMsg] = useRecoilState(personnelMessage)
+  if (adult + child + baby !== 0) setGuestMsg(`게스트 ${adult + child}명, 유아${baby}명`)
+
+  const RenderXbtn = useXclick(
+    guestMsg,
+    [setGuestMsg, setAdult, setChild, setBaby],
+    defaultValue.guest
+  )
+
   return (
     <>
       <BarBlock ref={PersonnelToggle}>
         <BarInnerWrapper>
           <div>
             <BarTitle>인원</BarTitle>
-            <BarMessage>게스트 추가</BarMessage>
+            <BarMessage>{guestMsg}</BarMessage>
           </div>
+          <RenderXbtn />
         </BarInnerWrapper>
       </BarBlock>
       {open && (

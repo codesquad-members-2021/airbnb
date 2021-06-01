@@ -1,12 +1,9 @@
-import { PlaceSection } from '../../../style/BarStyle'
-import Button from '@material-ui/core/Button'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import SearchIcon from '@material-ui/icons/Search'
-import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
-import { clickedPlace, checkInMessage, checkOutMessage } from '../../../customHook/atoms'
-import { defaultValue } from '../../../customHook/atoms'
-
+import Button from '@material-ui/core/Button'
+import { PlaceSection } from '../../../style/BarStyle'
+import { RecoilValueGroup } from '../../../customHook/atoms'
+import useAxios from '../../../customHook/useAxios'
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
@@ -16,16 +13,30 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-const SearchBtn = () => {
+function SearchBtn() {
   const classes = useStyles()
-  const [searchable, setSearchable] = useState(false)
-  const placeToSearch = useRecoilValue(clickedPlace)
-  const checkIn = useRecoilValue(checkInMessage)
-  const checkOut = useRecoilValue(checkOutMessage)
-  const handleClick = () => {
-    //api검색요청하기
+  let MIN, MAX
+  const {
+    placeToSearch,
+    checkIn,
+    checkOut,
+    priceMin,
+    minFeePercent,
+    priceMax,
+    maxFeePercent,
+    adult,
+    child,
+    baby,
+  } = RecoilValueGroup()
+  if (typeof priceMin === 'number') {
+    MIN = priceMin + minFeePercent
+    MAX = priceMax - maxFeePercent
   }
-  if (placeToSearch !== defaultValue.placeToSearch) setSearchable(true)
+
+  // const state = useAxios(() =>
+  //   getHouseData(placeToSearch, checkIn, checkOut, MIN, MAX, adult, child, baby)
+  // )
+  const handleClick = () => {}
 
   return (
     <PlaceSection>
