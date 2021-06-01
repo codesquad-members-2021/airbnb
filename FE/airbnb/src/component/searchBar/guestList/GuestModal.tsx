@@ -25,7 +25,8 @@ export default GuestModal;
 
 const Modal = styled.div`
   ${({ theme }) => theme.modal}
+  border: 1px solid #eee;
   right: 0;
-  width: 40%;
+  width: 365px;
   padding: 30px 60px;
 `;

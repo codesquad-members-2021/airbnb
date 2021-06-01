@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { thumbLeftPriceState, thumbRightPriceState, isSetPriceState } from "state/atoms/fareAtoms";
@@ -45,8 +44,9 @@ export default FareModal;
 
 const Modal = styled.div`
   ${({ theme }) => theme.modal}
+  border: 1px solid #eee;
   right: 0;
-  width: 50%;
+  width: 458px;
   padding: 50px 60px;
 `;
 
