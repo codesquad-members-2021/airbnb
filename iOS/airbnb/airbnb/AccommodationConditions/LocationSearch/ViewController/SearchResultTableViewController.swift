@@ -8,21 +8,27 @@
 import UIKit
 
 protocol SearchResultDelegate: AnyObject {
-    func didSelect(result: LocationSearchResult)
+    func didSelect(result: Location)
 }
 
 final class SearchResultTableViewController: UITableViewController {
 
     @IBOutlet var searchResultTable: UITableView!
     private var searchResultTableViewDataSource: SearchResultTableViewDataSource?
-    private var viewModel: SearchResultUpdateModel?
+    private var viewModel: (AnyResultHandleModel<[Location]> & SearchResultUpdateModel)?
     weak var delegate: SearchResultDelegate?
+    
+    static func create(with viewModel: AnyResultHandleModel<[Location]> & SearchResultUpdateModel) -> SearchResultTableViewController {
+        let storyboard = StoryboardFactory.create(.accommodationConditions)
+        let searchResultTableViewController = ViewControllerFactory.create(from: storyboard, type: SearchResultTableViewController.self)
+        searchResultTableViewController.viewModel = viewModel
+        return searchResultTableViewController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchResultTableViewDataSource = SearchResultTableViewDataSource()
         searchResultTable.dataSource = searchResultTableViewDataSource
-        viewModel = SearchResultViewModel()
         bind()
     }
 
@@ -34,7 +40,7 @@ final class SearchResultTableViewController: UITableViewController {
         }
     }
     
-    private func updateTableView(with searchResults: [LocationSearchResult]) {
+    private func updateTableView(with searchResults: [Location]) {
         self.searchResultTableViewDataSource?.updateResults(with: searchResults)
         DispatchQueue.main.async {
             self.tableView.reloadData()

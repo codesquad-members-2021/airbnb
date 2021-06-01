@@ -13,8 +13,15 @@ final class PopularLocationViewController: UIViewController {
     private var popularLocationTableViewDataSource: PopularLocationTableViewDataSource?
     private var searchController: LocationSearchController?
     private var searchResultUpdater: LocationSearchResultUpdating?
-    private var viewModel: PopularLocationLoadModel?
+    private var viewModel: AnyResultHandleModel<[PopularLocation]>?
 
+    static func create(with viewModel: AnyResultHandleModel<[PopularLocation]>) -> PopularLocationViewController {
+        let storyboard = StoryboardFactory.create(.accommodationConditions)
+        let popularLocationViewController = ViewControllerFactory.create(from: storyboard, type: PopularLocationViewController.self)
+        popularLocationViewController.viewModel = viewModel
+        return popularLocationViewController
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         popularLocationTableViewDataSource = PopularLocationTableViewDataSource()
@@ -26,13 +33,12 @@ final class PopularLocationViewController: UIViewController {
         searchController?.searchResultsUpdater = searchResultUpdater
         searchController?.searchBar.delegate = self
 
-        viewModel = PopularLocationViewModel()
         bind()
     }
     
     private func setNavigationSearchController() {
-        let storyboard = self.storyboard ?? StoryboardFactory.create(.accomodationConditions)
-        let searchResultViewController = ViewControllerFactory.create(from: storyboard, type: SearchResultTableViewController.self)
+        let searchResultViewModel = SearchResultViewModel()
+        let searchResultViewController = SearchResultTableViewController.create(with: searchResultViewModel)
         searchController = LocationSearchController(searchResultsController: searchResultViewController)
         searchResultViewController.delegate = self
         navigationItem.searchController = searchController
@@ -112,18 +118,18 @@ extension PopularLocationViewController: UISearchBarDelegate {
 
 extension PopularLocationViewController: SearchResultDelegate {
     
-    func didSelect(result: LocationSearchResult) {
+    func didSelect(result: Location) {
         pushNextViewController(with: result)
         inactiveSearchController()
         unsetCancelBarButton()
     }
     
-    private func pushNextViewController(with result: LocationSearchResult) {
-        let storyboard = self.storyboard ?? StoryboardFactory.create(.accomodationConditions)
-        let nextViewController = ViewControllerFactory.create(from: storyboard, type: CalendarViewController.self)
-        nextViewController.location = result
+    private func pushNextViewController(with result: Location) {
+        let accommodationConditionManager = ConditionManager(location: result)
+        let calendarViewModel = CalendarViewModel(conditionManager: accommodationConditionManager)
+        let calendarViewController = CalendarViewController.create(with: calendarViewModel)
         self.navigationItem.backButtonTitle = PopularLocationViewModel.ButtonTitle.back
-        self.navigationController?.pushViewController(nextViewController, animated: true)
+        self.navigationController?.pushViewController(calendarViewController, animated: true)
     }
     
 }

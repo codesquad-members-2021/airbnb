@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		E42671A6265BD357009323B8 /* SearchBarFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42671A5265BD357009323B8 /* SearchBarFactory.swift */; };
 		E42671A8265BEABE009323B8 /* SearchResultTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42671A7265BEABE009323B8 /* SearchResultTableViewDataSource.swift */; };
-		E42671AC265C8D79009323B8 /* ImagePathLoadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42671AB265C8D79009323B8 /* ImagePathLoadModel.swift */; };
-		E42671AE265C8DE2009323B8 /* PopularLocationLoadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42671AD265C8DE2009323B8 /* PopularLocationLoadModel.swift */; };
 		E42671B0265C8E36009323B8 /* SearchResultUpdateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42671AF265C8E36009323B8 /* SearchResultUpdateModel.swift */; };
 		E42671B9265CD7DF009323B8 /* NetworkServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42671B8265CD7DF009323B8 /* NetworkServiceTest.swift */; };
 		E42671C0265CD84A009323B8 /* NetworkManagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302AC2655FD17002C9770 /* NetworkManagable.swift */; };
@@ -28,9 +26,31 @@
 		E4DB1CFA26524A7700894DCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4DB1CF826524A7700894DCB /* Main.storyboard */; };
 		E4DB1CFC26524A7900894DCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4DB1CFB26524A7900894DCB /* Assets.xcassets */; };
 		E4DB1CFF26524A7900894DCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4DB1CFD26524A7900894DCB /* LaunchScreen.storyboard */; };
-		E4DB1D7A26538BA800894DCB /* AccomodationConditions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4DB1D7926538BA800894DCB /* AccomodationConditions.storyboard */; };
+		E4DB1D7A26538BA800894DCB /* AccommodationConditions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4DB1D7926538BA800894DCB /* AccommodationConditions.storyboard */; };
 		E4DB1D7C2653912F00894DCB /* PopularLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DB1D7B2653912F00894DCB /* PopularLocationViewController.swift */; };
 		E4DB1D7E2653916900894DCB /* PopularLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DB1D7D2653916900894DCB /* PopularLocationTableViewCell.swift */; };
+		E4E63C57265E694800F86104 /* AccommodationConditionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C56265E694800F86104 /* AccommodationConditionTableViewCell.swift */; };
+		E4E63C59265E71E300F86104 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C58265E71E300F86104 /* CalendarCollectionViewCell.swift */; };
+		E4E63C5B265F1FA400F86104 /* MonthHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C5A265F1FA400F86104 /* MonthHeaderCollectionViewCell.swift */; };
+		E4E63C64265F300400F86104 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C63265F300400F86104 /* CalendarViewModel.swift */; };
+		E4E63C66265F302A00F86104 /* DateSelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C65265F302A00F86104 /* DateSelectionManager.swift */; };
+		E4E63C68265F314600F86104 /* AccommodationConditionTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C67265F314600F86104 /* AccommodationConditionTableViewDataSource.swift */; };
+		E4E63C6A265F315800F86104 /* CalendarCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C69265F315800F86104 /* CalendarCollectionViewDataSource.swift */; };
+		E4E63C6C265F335500F86104 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C6B265F335500F86104 /* Month.swift */; };
+		E4E63C6E265F34E700F86104 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C6D265F34E700F86104 /* Day.swift */; };
+		E4E63C70265F785000F86104 /* CalendarManageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C6F265F785000F86104 /* CalendarManageModel.swift */; };
+		E4E63C76265FAA2000F86104 /* ConditionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C75265FAA2000F86104 /* ConditionManager.swift */; };
+		E4E63C78265FAB5900F86104 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C77265FAB5900F86104 /* DateFormatter.swift */; };
+		E4E63C7A265FBC0100F86104 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C79265FBC0100F86104 /* Period.swift */; };
+		E4E63C7C265FBC3600F86104 /* Charge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C7B265FBC3600F86104 /* Charge.swift */; };
+		E4E63C7F265FC06600F86104 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C7E265FC06600F86104 /* CalendarManager.swift */; };
+		E4E63C81265FE56200F86104 /* SelectStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C80265FE56200F86104 /* SelectStatus.swift */; };
+		E4E63C862660AC2500F86104 /* NetworkResultHandleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C852660AC2500F86104 /* NetworkResultHandleModel.swift */; };
+		E4E63C882660AC3D00F86104 /* AnyResultHandleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C872660AC3D00F86104 /* AnyResultHandleModel.swift */; };
+		E4E63C8A266366A200F86104 /* SearchConditionHandleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C89266366A200F86104 /* SearchConditionHandleModel.swift */; };
+		E4E63C8C266366D900F86104 /* AnySearchConditionHandleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C8B266366D900F86104 /* AnySearchConditionHandleModel.swift */; };
+		E4E63C8E2663A68700F86104 /* HomeDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C8D2663A68700F86104 /* HomeDIContainer.swift */; };
+		E4E63C932664B16300F86104 /* CalendarCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E63C922664B16300F86104 /* CalendarCoordinate.swift */; };
 		E4F302A32655F71E002C9770 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E4F302A22655F71E002C9770 /* Alamofire */; };
 		E4F302A52655F837002C9770 /* AlamofireRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302A42655F837002C9770 /* AlamofireRequestManager.swift */; };
 		E4F302A72655F84B002C9770 /* AlamofireNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302A62655F84B002C9770 /* AlamofireNetworkManager.swift */; };
@@ -44,7 +64,7 @@
 		E4F302BD26560E2D002C9770 /* PopularLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302BC26560E2D002C9770 /* PopularLocationUseCase.swift */; };
 		E4F302C4265642BA002C9770 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302C3265642BA002C9770 /* SearchResultViewModel.swift */; };
 		E4F302C6265642D8002C9770 /* SearchResultUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302C5265642D8002C9770 /* SearchResultUseCase.swift */; };
-		E4F302C826564431002C9770 /* LocationSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302C726564431002C9770 /* LocationSearchResult.swift */; };
+		E4F302C826564431002C9770 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302C726564431002C9770 /* Location.swift */; };
 		E4F302CD26564FCE002C9770 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302CC26564FCE002C9770 /* ViewControllerFactory.swift */; };
 		E4F302D1265652D9002C9770 /* StoryboardFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302D0265652D9002C9770 /* StoryboardFactory.swift */; };
 		E4F302DD2656746E002C9770 /* PopularLocationLoadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F302DC2656746E002C9770 /* PopularLocationLoadUseCase.swift */; };
@@ -71,8 +91,6 @@
 /* Begin PBXFileReference section */
 		E42671A5265BD357009323B8 /* SearchBarFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarFactory.swift; sourceTree = "<group>"; };
 		E42671A7265BEABE009323B8 /* SearchResultTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewDataSource.swift; sourceTree = "<group>"; };
-		E42671AB265C8D79009323B8 /* ImagePathLoadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePathLoadModel.swift; sourceTree = "<group>"; };
-		E42671AD265C8DE2009323B8 /* PopularLocationLoadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationLoadModel.swift; sourceTree = "<group>"; };
 		E42671AF265C8E36009323B8 /* SearchResultUpdateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultUpdateModel.swift; sourceTree = "<group>"; };
 		E42671B6265CD7DF009323B8 /* NetworkServiceTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkServiceTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E42671B8265CD7DF009323B8 /* NetworkServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTest.swift; sourceTree = "<group>"; };
@@ -91,9 +109,31 @@
 		E4DB1CFB26524A7900894DCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4DB1CFE26524A7900894DCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4DB1D0026524A7900894DCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E4DB1D7926538BA800894DCB /* AccomodationConditions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccomodationConditions.storyboard; sourceTree = "<group>"; };
+		E4DB1D7926538BA800894DCB /* AccommodationConditions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccommodationConditions.storyboard; sourceTree = "<group>"; };
 		E4DB1D7B2653912F00894DCB /* PopularLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationViewController.swift; sourceTree = "<group>"; };
 		E4DB1D7D2653916900894DCB /* PopularLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationTableViewCell.swift; sourceTree = "<group>"; };
+		E4E63C56265E694800F86104 /* AccommodationConditionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationConditionTableViewCell.swift; sourceTree = "<group>"; };
+		E4E63C58265E71E300F86104 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		E4E63C5A265F1FA400F86104 /* MonthHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		E4E63C63265F300400F86104 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		E4E63C65265F302A00F86104 /* DateSelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionManager.swift; sourceTree = "<group>"; };
+		E4E63C67265F314600F86104 /* AccommodationConditionTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationConditionTableViewDataSource.swift; sourceTree = "<group>"; };
+		E4E63C69265F315800F86104 /* CalendarCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		E4E63C6B265F335500F86104 /* Month.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
+		E4E63C6D265F34E700F86104 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		E4E63C6F265F785000F86104 /* CalendarManageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManageModel.swift; sourceTree = "<group>"; };
+		E4E63C75265FAA2000F86104 /* ConditionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionManager.swift; sourceTree = "<group>"; };
+		E4E63C77265FAB5900F86104 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		E4E63C79265FBC0100F86104 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
+		E4E63C7B265FBC3600F86104 /* Charge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charge.swift; sourceTree = "<group>"; };
+		E4E63C7E265FC06600F86104 /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
+		E4E63C80265FE56200F86104 /* SelectStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStatus.swift; sourceTree = "<group>"; };
+		E4E63C852660AC2500F86104 /* NetworkResultHandleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResultHandleModel.swift; sourceTree = "<group>"; };
+		E4E63C872660AC3D00F86104 /* AnyResultHandleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyResultHandleModel.swift; sourceTree = "<group>"; };
+		E4E63C89266366A200F86104 /* SearchConditionHandleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConditionHandleModel.swift; sourceTree = "<group>"; };
+		E4E63C8B266366D900F86104 /* AnySearchConditionHandleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnySearchConditionHandleModel.swift; sourceTree = "<group>"; };
+		E4E63C8D2663A68700F86104 /* HomeDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDIContainer.swift; sourceTree = "<group>"; };
+		E4E63C922664B16300F86104 /* CalendarCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinate.swift; sourceTree = "<group>"; };
 		E4F302A42655F837002C9770 /* AlamofireRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireRequestManager.swift; sourceTree = "<group>"; };
 		E4F302A62655F84B002C9770 /* AlamofireNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkManager.swift; sourceTree = "<group>"; };
 		E4F302A82655F890002C9770 /* AlamofireImageLoadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireImageLoadManager.swift; sourceTree = "<group>"; };
@@ -106,7 +146,7 @@
 		E4F302BC26560E2D002C9770 /* PopularLocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationUseCase.swift; sourceTree = "<group>"; };
 		E4F302C3265642BA002C9770 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		E4F302C5265642D8002C9770 /* SearchResultUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultUseCase.swift; sourceTree = "<group>"; };
-		E4F302C726564431002C9770 /* LocationSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResult.swift; sourceTree = "<group>"; };
+		E4F302C726564431002C9770 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		E4F302CC26564FCE002C9770 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		E4F302D0265652D9002C9770 /* StoryboardFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardFactory.swift; sourceTree = "<group>"; };
 		E4F302DC2656746E002C9770 /* PopularLocationLoadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationLoadUseCase.swift; sourceTree = "<group>"; };
@@ -153,19 +193,23 @@
 		E48148112654E63F0069BE20 /* CalendarSelect */ = {
 			isa = PBXGroup;
 			children = (
-				E481481526551B930069BE20 /* CalendarViewController.swift */,
+				E4E63C60265F2FA600F86104 /* Model */,
+				E4E63C5F265F2F9900F86104 /* ViewModel */,
+				E4E63C5E265F2F9200F86104 /* ViewController */,
+				E4E63C5D265F2F8B00F86104 /* View */,
 			);
 			path = CalendarSelect;
 			sourceTree = "<group>";
 		};
-		E48148122654E6890069BE20 /* AccomodationConditions */ = {
+		E48148122654E6890069BE20 /* AccommodationConditions */ = {
 			isa = PBXGroup;
 			children = (
-				E4DB1D7926538BA800894DCB /* AccomodationConditions.storyboard */,
+				E4E63C7D265FBC7A00F86104 /* CommonModels */,
+				E4DB1D7926538BA800894DCB /* AccommodationConditions.storyboard */,
 				E4DB1D7826538AFE00894DCB /* LocationSearch */,
 				E48148112654E63F0069BE20 /* CalendarSelect */,
 			);
-			path = AccomodationConditions;
+			path = AccommodationConditions;
 			sourceTree = "<group>";
 		};
 		E481481726554A6D0069BE20 /* Network */ = {
@@ -205,9 +249,11 @@
 			isa = PBXGroup;
 			children = (
 				E4DB1D0626524A9500894DCB /* AppCycle */,
+				E4E63C8F2663A8F300F86104 /* DIContainer */,
 				E4F302CB26564FB9002C9770 /* Factory */,
+				E4E63C842660AC1000F86104 /* CommonInterfaces */,
 				E4DB1D7726538AF800894DCB /* Main */,
-				E48148122654E6890069BE20 /* AccomodationConditions */,
+				E48148122654E6890069BE20 /* AccommodationConditions */,
 				E481481726554A6D0069BE20 /* Network */,
 				E4DB1CFB26524A7900894DCB /* Assets.xcassets */,
 				E4DB1CFD26524A7900894DCB /* LaunchScreen.storyboard */,
@@ -239,13 +285,93 @@
 		E4DB1D7826538AFE00894DCB /* LocationSearch */ = {
 			isa = PBXGroup;
 			children = (
-				E4F302B626560581002C9770 /* Entity */,
+				E4E63C62265F2FD100F86104 /* Model */,
 				E4F302BB26560E1A002C9770 /* UseCase */,
 				E4F302B12656017B002C9770 /* ViewModel */,
 				E4F302AF26560145002C9770 /* ViewController */,
 				E4F302AE26560107002C9770 /* View */,
 			);
 			path = LocationSearch;
+			sourceTree = "<group>";
+		};
+		E4E63C5D265F2F8B00F86104 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E4E63C56265E694800F86104 /* AccommodationConditionTableViewCell.swift */,
+				E4E63C58265E71E300F86104 /* CalendarCollectionViewCell.swift */,
+				E4E63C5A265F1FA400F86104 /* MonthHeaderCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E4E63C5E265F2F9200F86104 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E481481526551B930069BE20 /* CalendarViewController.swift */,
+				E4E63C67265F314600F86104 /* AccommodationConditionTableViewDataSource.swift */,
+				E4E63C69265F315800F86104 /* CalendarCollectionViewDataSource.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E4E63C5F265F2F9900F86104 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E4E63C6F265F785000F86104 /* CalendarManageModel.swift */,
+				E4E63C63265F300400F86104 /* CalendarViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E4E63C60265F2FA600F86104 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E4E63C65265F302A00F86104 /* DateSelectionManager.swift */,
+				E4E63C7E265FC06600F86104 /* CalendarManager.swift */,
+				E4E63C6B265F335500F86104 /* Month.swift */,
+				E4E63C6D265F34E700F86104 /* Day.swift */,
+				E4E63C80265FE56200F86104 /* SelectStatus.swift */,
+				E4E63C922664B16300F86104 /* CalendarCoordinate.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E4E63C62265F2FD100F86104 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E4F302B72656059C002C9770 /* PopularLocation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E4E63C7D265FBC7A00F86104 /* CommonModels */ = {
+			isa = PBXGroup;
+			children = (
+				E4E63C75265FAA2000F86104 /* ConditionManager.swift */,
+				E4F302C726564431002C9770 /* Location.swift */,
+				E4E63C79265FBC0100F86104 /* Period.swift */,
+				E4E63C7B265FBC3600F86104 /* Charge.swift */,
+			);
+			path = CommonModels;
+			sourceTree = "<group>";
+		};
+		E4E63C842660AC1000F86104 /* CommonInterfaces */ = {
+			isa = PBXGroup;
+			children = (
+				E4E63C852660AC2500F86104 /* NetworkResultHandleModel.swift */,
+				E4E63C872660AC3D00F86104 /* AnyResultHandleModel.swift */,
+				E4E63C89266366A200F86104 /* SearchConditionHandleModel.swift */,
+				E4E63C8B266366D900F86104 /* AnySearchConditionHandleModel.swift */,
+			);
+			path = CommonInterfaces;
+			sourceTree = "<group>";
+		};
+		E4E63C8F2663A8F300F86104 /* DIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				E4E63C8D2663A68700F86104 /* HomeDIContainer.swift */,
+			);
+			path = DIContainer;
 			sourceTree = "<group>";
 		};
 		E4F302AE26560107002C9770 /* View */ = {
@@ -273,21 +399,11 @@
 		E4F302B12656017B002C9770 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E42671AD265C8DE2009323B8 /* PopularLocationLoadModel.swift */,
 				E4F302B2265602ED002C9770 /* PopularLocationViewModel.swift */,
 				E42671AF265C8E36009323B8 /* SearchResultUpdateModel.swift */,
 				E4F302C3265642BA002C9770 /* SearchResultViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		E4F302B626560581002C9770 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-				E4F302B72656059C002C9770 /* PopularLocation.swift */,
-				E4F302C726564431002C9770 /* LocationSearchResult.swift */,
-			);
-			path = Entity;
 			sourceTree = "<group>";
 		};
 		E4F302BB26560E1A002C9770 /* UseCase */ = {
@@ -308,6 +424,7 @@
 				E4F302CC26564FCE002C9770 /* ViewControllerFactory.swift */,
 				E4F302E726567B1C002C9770 /* AlertFactory.swift */,
 				E42671A5265BD357009323B8 /* SearchBarFactory.swift */,
+				E4E63C77265FAB5900F86104 /* DateFormatter.swift */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -340,7 +457,6 @@
 		E4F303002656B9C3002C9770 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E42671AB265C8D79009323B8 /* ImagePathLoadModel.swift */,
 				E4F303032656B9DB002C9770 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
@@ -442,7 +558,7 @@
 				E4DB1CFF26524A7900894DCB /* LaunchScreen.storyboard in Resources */,
 				E4DB1CFC26524A7900894DCB /* Assets.xcassets in Resources */,
 				E4DB1CFA26524A7700894DCB /* Main.storyboard in Resources */,
-				E4DB1D7A26538BA800894DCB /* AccomodationConditions.storyboard in Resources */,
+				E4DB1D7A26538BA800894DCB /* AccommodationConditions.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,20 +582,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4E63C57265E694800F86104 /* AccommodationConditionTableViewCell.swift in Sources */,
 				E4DB1CF726524A7700894DCB /* HomeViewController.swift in Sources */,
 				E42671B0265C8E36009323B8 /* SearchResultUpdateModel.swift in Sources */,
 				E4F302C4265642BA002C9770 /* SearchResultViewModel.swift in Sources */,
-				E42671AC265C8D79009323B8 /* ImagePathLoadModel.swift in Sources */,
+				E4E63C68265F314600F86104 /* AccommodationConditionTableViewDataSource.swift in Sources */,
 				E4DB1D7E2653916900894DCB /* PopularLocationTableViewCell.swift in Sources */,
+				E4E63C7A265FBC0100F86104 /* Period.swift in Sources */,
+				E4E63C64265F300400F86104 /* CalendarViewModel.swift in Sources */,
 				E4DB1D7C2653912F00894DCB /* PopularLocationViewController.swift in Sources */,
+				E4E63C8A266366A200F86104 /* SearchConditionHandleModel.swift in Sources */,
 				E4F302BA26560CC7002C9770 /* LocationSearchResultUpdating.swift in Sources */,
+				E4E63C862660AC2500F86104 /* NetworkResultHandleModel.swift in Sources */,
+				E4E63C66265F302A00F86104 /* DateSelectionManager.swift in Sources */,
 				E4F302A72655F84B002C9770 /* AlamofireNetworkManager.swift in Sources */,
 				E4F302EC26568C0D002C9770 /* FakeNetworkManager.swift in Sources */,
 				E4F302DF26567480002C9770 /* SearchResultFetchUseCase.swift in Sources */,
+				E4E63C78265FAB5900F86104 /* DateFormatter.swift in Sources */,
 				E4F302F42656B257002C9770 /* ImageLoadManagable.swift in Sources */,
 				E4F302FA2656B3EE002C9770 /* HeroImageUseCase.swift in Sources */,
 				E4F302A52655F837002C9770 /* AlamofireRequestManager.swift in Sources */,
-				E42671AE265C8DE2009323B8 /* PopularLocationLoadModel.swift in Sources */,
+				E4E63C76265FAA2000F86104 /* ConditionManager.swift in Sources */,
+				E4E63C932664B16300F86104 /* CalendarCoordinate.swift in Sources */,
 				E481481626551B930069BE20 /* CalendarViewController.swift in Sources */,
 				E4F302B82656059C002C9770 /* PopularLocation.swift in Sources */,
 				E4F302B5265604D6002C9770 /* PopularLocationTableViewDataSource.swift in Sources */,
@@ -487,22 +611,34 @@
 				E4DB1CF326524A7700894DCB /* AppDelegate.swift in Sources */,
 				E4DB1CF526524A7700894DCB /* SceneDelegate.swift in Sources */,
 				E4F302B3265602ED002C9770 /* PopularLocationViewModel.swift in Sources */,
+				E4E63C6A265F315800F86104 /* CalendarCollectionViewDataSource.swift in Sources */,
 				E481480E2654993F0069BE20 /* SearchResultTableViewController.swift in Sources */,
 				E42671A6265BD357009323B8 /* SearchBarFactory.swift in Sources */,
+				E4E63C59265E71E300F86104 /* CalendarCollectionViewCell.swift in Sources */,
+				E4E63C8C266366D900F86104 /* AnySearchConditionHandleModel.swift in Sources */,
 				E4F302CD26564FCE002C9770 /* ViewControllerFactory.swift in Sources */,
+				E4E63C7C265FBC3600F86104 /* Charge.swift in Sources */,
+				E4E63C7F265FC06600F86104 /* CalendarManager.swift in Sources */,
 				E481480C265496930069BE20 /* LocationSearchController.swift in Sources */,
 				E4F302DD2656746E002C9770 /* PopularLocationLoadUseCase.swift in Sources */,
+				E4E63C5B265F1FA400F86104 /* MonthHeaderCollectionViewCell.swift in Sources */,
 				E4F302C6265642D8002C9770 /* SearchResultUseCase.swift in Sources */,
 				E4F302F82656B3E1002C9770 /* ImageLoadUseCase.swift in Sources */,
 				E4F302AD2655FD17002C9770 /* NetworkManagable.swift in Sources */,
-				E4F302C826564431002C9770 /* LocationSearchResult.swift in Sources */,
+				E4E63C6C265F335500F86104 /* Month.swift in Sources */,
+				E4F302C826564431002C9770 /* Location.swift in Sources */,
 				E4F302BD26560E2D002C9770 /* PopularLocationUseCase.swift in Sources */,
+				E4E63C6E265F34E700F86104 /* Day.swift in Sources */,
+				E4E63C70265F785000F86104 /* CalendarManageModel.swift in Sources */,
 				E4F302AB2655F970002C9770 /* AlamofireRequestManagable.swift in Sources */,
 				E481481026549C980069BE20 /* SearchResultTableViewCell.swift in Sources */,
 				E4F303042656B9DB002C9770 /* HomeViewModel.swift in Sources */,
+				E4E63C81265FE56200F86104 /* SelectStatus.swift in Sources */,
 				E42671A8265BEABE009323B8 /* SearchResultTableViewDataSource.swift in Sources */,
 				E4F302EA265683F5002C9770 /* NetworkError.swift in Sources */,
 				E4F302E826567B1C002C9770 /* AlertFactory.swift in Sources */,
+				E4E63C882660AC3D00F86104 /* AnyResultHandleModel.swift in Sources */,
+				E4E63C8E2663A68700F86104 /* HomeDIContainer.swift in Sources */,
 				E4F302A92655F890002C9770 /* AlamofireImageLoadManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

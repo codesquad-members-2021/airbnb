@@ -25,9 +25,9 @@ final class SearchResultUseCase: SearchResultFetchUseCase {
     }
     
     func execute(for keyword: String,
-                completionHandler: @escaping (Result<[LocationSearchResult], NetworkError>) -> Void) {
+                completionHandler: @escaping (Result<[Location], NetworkError>) -> Void) {
         let endPoint = EndPoint.searchResult + "\(keyword)"
-        networkManager.get(decodingType: [LocationSearchResult].self, endPoint: endPoint) { dataResponse in
+        networkManager.get(decodingType: [Location].self, endPoint: endPoint) { dataResponse in
             completionHandler(dataResponse)
         }
     }

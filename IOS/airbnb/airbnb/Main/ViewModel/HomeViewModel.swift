@@ -7,15 +7,12 @@
 
 import Foundation
 
-final class HomeViewModel: ImagePathLoadModel {
+final class HomeViewModel: AnyResultHandleModel<String> {
     
-    private var dataHandler: DataHandler?
-    private var errorHandler: ErrorHandler?
-    
-    private var heroImagePath: String? {
+    private var cacheUrl: String? {
         didSet {
-            guard let heroImagePath = heroImagePath else { return }
-            dataHandler?(heroImagePath)
+            guard let cacheUrl = cacheUrl else { return }
+            dataHandler?(cacheUrl)
         }
     }
     
@@ -37,14 +34,13 @@ final class HomeViewModel: ImagePathLoadModel {
         self.useCase = useCase
     }
     
-    convenience init() {
+    convenience override init() {
         let useCase = HeroImageUseCase(url: PopularLocationViewModel.baseUrl)
         self.init(useCase: useCase)
     }
     
-    func bind(dataHandler: @escaping DataHandler, errorHandler: @escaping ErrorHandler) {
-        self.dataHandler = dataHandler
-        self.errorHandler = errorHandler
+    override func bind(dataHandler: @escaping DataHandler, errorHandler: @escaping ErrorHandler) {
+        super.bind(dataHandler: dataHandler, errorHandler: errorHandler)
         loadHeroImage()
     }
 
@@ -52,7 +48,7 @@ final class HomeViewModel: ImagePathLoadModel {
         useCase.execute { [weak self] result in
             do {
                 let cacheUrl = try result.get()
-                self?.heroImagePath = cacheUrl
+                self?.cacheUrl = cacheUrl
             } catch {
                 self?.error = error
             }

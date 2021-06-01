@@ -7,15 +7,12 @@
 
 import Foundation
 
-final class SearchResultViewModel: SearchResultUpdateModel {
+final class SearchResultViewModel: AnyResultHandleModel<[Location]> {
     
-    private var dataHandler: DataHandler?
-    private var errorHandler: ErrorHandler?
-    
-    private var searchResults: [LocationSearchResult]? {
+    private var locations: [Location]? {
         didSet {
-            guard let searchResults = searchResults else { return }
-            dataHandler?(searchResults)
+            guard let locations = locations else { return }
+            dataHandler?(locations)
         }
     }
     
@@ -33,25 +30,22 @@ final class SearchResultViewModel: SearchResultUpdateModel {
         self.useCase = useCase
     }
     
-    convenience init() {
+    convenience override init() {
         let useCase = SearchResultUseCase(url: SearchResultViewModel.baseUrl)
         self.init(useCase: useCase)
     }
-    
-    func bind(dataHandler: @escaping DataHandler, errorHandler: @escaping ErrorHandler) {
-        self.dataHandler = dataHandler
-        self.errorHandler = errorHandler
-    }
-    
+
+}
+
+extension SearchResultViewModel: SearchResultUpdateModel {
     func newData(with input: String) {
         useCase.execute(for: input) { [weak self] result in
             do {
-                let searchResults = try result.get()
-                self?.searchResults = searchResults
+                let locations = try result.get()
+                self?.locations = locations
             } catch {
                 self?.error = error
             }
         }
     }
-
 }
