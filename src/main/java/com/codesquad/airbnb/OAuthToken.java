@@ -1,4 +1,4 @@
-package com.codesquad.airbnb.dto;
+package com.codesquad.airbnb;
 
 public class OAuthToken {
 

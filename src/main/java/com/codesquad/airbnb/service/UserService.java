@@ -1,6 +1,7 @@
 package com.codesquad.airbnb.service;
 
-import com.codesquad.airbnb.dto.OAuthToken;
+import com.codesquad.airbnb.GoogleUser;
+import com.codesquad.airbnb.OAuthToken;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpEntity;
@@ -46,7 +47,7 @@ public class UserService {
         String url = "https://oauth2.googleapis.com/token";
 
         // 바디 + 헤더 = HttpEntity 만들기
-        HttpEntity httpEntity = new HttpEntity(params, headers);
+        HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(params, headers);
 
         // RestTemplate으로 HTTP post 요청 만들기
         return restTemplate.exchange(url, HttpMethod.POST, httpEntity, String.class);

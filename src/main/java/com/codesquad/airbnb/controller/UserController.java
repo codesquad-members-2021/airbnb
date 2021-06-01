@@ -1,6 +1,7 @@
 package com.codesquad.airbnb.controller;
 
-import com.codesquad.airbnb.dto.OAuthToken;
+import com.codesquad.airbnb.GoogleUser;
+import com.codesquad.airbnb.OAuthToken;
 import com.codesquad.airbnb.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
