@@ -30,7 +30,7 @@ const PeopleDiv = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  padding: 0.9rem 1.5rem;
+  padding: 0.8rem 1.5rem;
   border-radius: 3rem;
   &:hover {
     background: ${({ theme }) => theme.colors.gray6};

@@ -147,6 +147,7 @@ const Search = ({ matchParam, barType }) => {
 const SearchDiv = styled.div`
   display: flex;
   justify-content: center;
+  /* transition: 0.2s ease-in; */
   /* width: 916px; */
 `;
 const SearchWrap = styled.div`

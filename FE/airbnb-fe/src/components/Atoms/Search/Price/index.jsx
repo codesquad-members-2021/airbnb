@@ -36,7 +36,7 @@ const PriceWrap = styled.div`
   flex-direction: column;
   align-items: flex-start;
   border-radius: 3rem;
-  padding: 0.9rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   &:hover {
     background: ${({ theme }) => theme.colors.gray6};
   }

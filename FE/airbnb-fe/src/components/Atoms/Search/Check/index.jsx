@@ -48,7 +48,7 @@ const CheckIn = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   border-radius: 3rem;
-  padding: 0.9rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   &:hover {
     background: ${({ theme }) => theme.colors.gray6};
   }
@@ -58,7 +58,7 @@ const CheckOut = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 0.9rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 3rem;
   &:hover {
     background: ${({ theme }) => theme.colors.gray6};

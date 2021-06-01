@@ -36,8 +36,8 @@ const ReservationHeader = () => {
               </NavSelectDiv>
               <AccountMenu />
             </HeaderDiv>
+            <Search matchParam={match.params} barType={barType} />
           </ReservationHeaderDiv>
-          <Search matchParam={match.params} barType={barType} />
         </>
       ) : (
         <>
@@ -56,7 +56,10 @@ const ReservationHeader = () => {
   );
 };
 
-const ReservationHeaderDiv = styled.div``;
+const ReservationHeaderDiv = styled.div`
+  width: 100%;
+  height: fit-content;
+`;
 const HeaderDiv = styled.div`
   position: relative;
   height: 94px;
