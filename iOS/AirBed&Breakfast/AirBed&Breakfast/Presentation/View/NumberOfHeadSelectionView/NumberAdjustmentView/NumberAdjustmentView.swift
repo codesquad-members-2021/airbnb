@@ -36,7 +36,7 @@ final class NumberAdjustmentView: UIView {
         button.setPreferredSymbolConfiguration(.init(pointSize: 100), forImageIn: .normal)
         button.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
         button.backgroundColor = .green
-        
+        button.isEnabled = false
         return button
     }()
     
@@ -63,11 +63,12 @@ final class NumberAdjustmentView: UIView {
     }()
     
     //MARK:- Initializers
-    public init() {
+    public init(_ guestType: GuestType) {
         super.init(frame: .zero)
         backgroundColor = .red
-        configureTitleLabel()
-        configureExplanatoryLabel()
+        
+        configureTitleLabel(with: guestType)
+        configureExplanatoryLabel(with: guestType)
         configurePlusButton()
         configureCountLabel()
         configureMinusButton()
@@ -78,18 +79,18 @@ final class NumberAdjustmentView: UIView {
         
     }
     
-    private func configureTitleLabel() {
+    private func configureTitleLabel(with guestType: GuestType) {
         self.addSubview(self.titleLabel)
-        titleLabel.text = "성인"
+        titleLabel.text = guestType.rawValue
         titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
         titleLabel.rightAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     }
     
-    private func configureExplanatoryLabel() {
+    private func configureExplanatoryLabel(with guestType: GuestType) {
         self.addSubview(self.explanatoryLabel)
-        explanatoryLabel.text = "설명이 들어갑니당"
+        explanatoryLabel.text = guestType.description
         explanatoryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
         explanatoryLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
         explanatoryLabel.heightAnchor.constraint(equalTo: titleLabel.heightAnchor, multiplier: 0.5).isActive = true
@@ -130,6 +131,22 @@ final class NumberAdjustmentView: UIView {
     
     public func changeCountLabel(to newNumber: Int) {
         self.countLabel.text = "\(newNumber)"
+    }
+    
+    public func minusButtonAvailability(with count: Int) {
+        if count == 0 {
+            self.minusButton.isEnabled = false
+        } else {
+            self.minusButton.isEnabled = true
+        }
+    }
+    
+    public func plusButtonAvailability(with count: Int) {
+        if count == 8 {
+            self.plusButton.isEnabled = false
+        } else {
+            self.plusButton.isEnabled = true
+        }
     }
     
 }

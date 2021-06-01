@@ -7,12 +7,6 @@
 
 import UIKit
 
-enum GuestType {
-    case adult
-    case child
-    case infant
-}
-
 protocol GuestNumberInfoReceivable {
     func addGuest(type: GuestType)
     func reduceGuest(type: GuestType)
@@ -29,7 +23,8 @@ class NumberOfHeadSelectionView: UIView {
     public init() {
         super.init(frame: .zero)
         configureNumberAdjustmentViews()
-        setActionsToButtons()
+        setActionToButtons()
+        configureNotificationCenter()
     }
     
     required init?(coder: NSCoder) {
@@ -38,9 +33,9 @@ class NumberOfHeadSelectionView: UIView {
 
     private func configureNumberAdjustmentViews() {
 
-        self.adultNumberAdjustmentView = NumberAdjustmentView()
-        self.childNumberAdjustmentView = NumberAdjustmentView()
-        self.infantNumberAdjustmentView = NumberAdjustmentView()
+        self.adultNumberAdjustmentView = NumberAdjustmentView(.adult)
+        self.childNumberAdjustmentView = NumberAdjustmentView(.child)
+        self.infantNumberAdjustmentView = NumberAdjustmentView(.infant)
         
         guard let subView1 = adultNumberAdjustmentView else { return }
         guard let subView2 = childNumberAdjustmentView else { return }
@@ -69,7 +64,7 @@ class NumberOfHeadSelectionView: UIView {
         ])
     }
     
-    private func setActionsToButtons() {
+    private func setActionToButtons() {
         adultNumberAdjustmentView?.addTargetToPlusButton(action: UIAction.init(handler: { (touch) in
             self.guestNumberInfoReceivable?.addGuest(type: .adult)
         }))
@@ -90,7 +85,29 @@ class NumberOfHeadSelectionView: UIView {
         infantNumberAdjustmentView?.addTargetToMinusButton(action: UIAction.init(handler: { (touch) in
             self.guestNumberInfoReceivable?.reduceGuest(type: .infant)
         }))
+    }
+    
+    private func configureNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didChangeGuestNumber), name: .didChangeGuestNumber, object: nil)
+    }
+    
+    @objc func didChangeGuestNumber(_ notification: Notification) {
+        if let guestNumberData = notification.userInfo as? [GuestType: Int] {
+            adultNumberAdjustmentView?.changeCountLabel(to: guestNumberData[.adult] ?? 0)
+            childNumberAdjustmentView?.changeCountLabel(to: guestNumberData[.child] ?? 0)
+            infantNumberAdjustmentView?.changeCountLabel(to: guestNumberData[.infant] ?? 0)
+            
+            setButtonAvailability(with: guestNumberData)
+        }
+    }
+    
+    private func setButtonAvailability(with guestNumberData: [GuestType: Int]) {
+        adultNumberAdjustmentView?.minusButtonAvailability(with: guestNumberData[.adult] ?? 0)
+        childNumberAdjustmentView?.minusButtonAvailability(with: guestNumberData[.child] ?? 0)
+        infantNumberAdjustmentView?.minusButtonAvailability(with: guestNumberData[.infant] ?? 0)
         
-        
+        adultNumberAdjustmentView?.plusButtonAvailability(with: guestNumberData[.adult] ?? 0)
+        childNumberAdjustmentView?.plusButtonAvailability(with: guestNumberData[.child] ?? 0)
+        infantNumberAdjustmentView?.plusButtonAvailability(with: guestNumberData[.infant] ?? 0)
     }
 }

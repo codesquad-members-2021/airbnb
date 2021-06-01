@@ -148,12 +148,12 @@ extension SetUpViewController: DetailSetUpViewInitializable {
         // todo
     }
     
-    func clearPriceSlideControlView() {
-        self.priceSlideControlView.clearRangeSlider()
-    }
-    
     func clearCalendarControlView() {
         self.calendarControlView.clearCalendarView()
+    }
+    
+    func clearPriceSlideControlView() {
+        self.priceSlideControlView.clearRangeSlider()
     }
     
     func clearNumberOfHeadSelectionView() {

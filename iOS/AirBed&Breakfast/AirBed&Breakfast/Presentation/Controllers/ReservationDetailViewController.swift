@@ -35,6 +35,11 @@ class ReservationDetailViewController: UIViewController {
     var numberOfHead: [GuestType: Int] = [.adult: 0,
                                           .child: 0,
                                           .infant: 0]
+    {
+        didSet {
+            NotificationCenter.default.post(name: .didChangeGuestNumber, object: nil, userInfo: self.numberOfHead)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +120,6 @@ extension ReservationDetailViewController: ReservationDetailViewControllerProtoc
     
     func changeNumberOfHead(type: GuestType, number: Int) {
         self.numberOfHead[type]? += number
-        print(numberOfHead)
     }
     
 }
