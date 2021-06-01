@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -18,6 +18,20 @@ const GNB = ({ isMain }: GNBType) => {
     setShowSearchBarState(searchBarState => !searchBarState);
   }, []);
 
+  const handleClickHideSearchBar = useCallback(({ target }) => {
+    if (target.closest('.SearchButton')) return handleClickToggleSearchBar();
+    if (target.closest('.SearchBar') || target.closest('.Modal')) return;
+    handleClickToggleSearchBar();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!showSearchBarState) return;
+    document.addEventListener('click', handleClickHideSearchBar);
+    return () => document.removeEventListener('click', handleClickHideSearchBar);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showSearchBarState]);
+
   return (
     <>
       <GNBWrapper isMain={isMain}>
@@ -25,7 +39,7 @@ const GNB = ({ isMain }: GNBType) => {
           <Logo>LOGO</Logo>
           {isMain
             ? (<Nav />)
-            : (<SearchMapNav {...{showSearchBarState, handleClickToggleSearchBar }} />)
+            : (<SearchMapNav {...{ showSearchBarState, handleClickToggleSearchBar }} />)
           }
 
           <Menu isMain={isMain}>
@@ -33,10 +47,10 @@ const GNB = ({ isMain }: GNBType) => {
             <AccountCircleIcon fontSize="large" />
           </Menu>
         </Header>
-        {!isMain && <SearchBar />}
+        {!isMain && showSearchBarState && <SearchBar />}
 
       </GNBWrapper>
-      {!isMain && <Modal isSearchMap />}
+      {!isMain && showSearchBarState && <Modal isSearchMap />}
     </>
   )
 }
@@ -63,8 +77,6 @@ const Logo = styled.span`
     cursor: pointer;
   }
 `;
-
-
 
 const Menu = styled.div<GNBType>`
   display:flex;

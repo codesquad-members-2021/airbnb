@@ -26,14 +26,14 @@ const SearchButton = ({ focus }: SearchBarType) => {
   }
 
   return (
-    <SearchButtonWrapper>
+    <SearchButtonWrapper >
       <Link to={{
         pathname: '/searchMap',
         search: `?${makeQueryString(searchParamsObject)}`,
       }}
         style={{ textDecoration: 'none' }}>
         <Button variant="contained" color="secondary"
-          className={buttonStyle.search}
+          className={`${buttonStyle.search} SearchButton`}
           style={{ borderRadius: focus ? '2rem' : '50%' }}>
           <SearchIcon fontSize="large" />
           {focus ? '검색' : ''}
