@@ -10,7 +10,7 @@ const AccomodationCard = ({ accomodation }: Props) => {
   return (
     <S.AccomodationCard>
       <CardImage image={accomodation.image} />
-      <CardCateGory category={accomodation.category} />
+      <CardCateGory category={accomodation.Category} />
     </S.AccomodationCard>
   );
 };

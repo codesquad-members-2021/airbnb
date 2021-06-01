@@ -5,7 +5,7 @@ import Title from "./Title";
 import RangeText from "./RangeText";
 import Description from "./Description";
 import RangeChart from "./RangeChart/RangeChart";
-import { getAPI } from "@/Utils/api";
+import { getApi } from "@/Utils/api";
 import { PriceModal as S } from "@/Components/GNB/GNBStlyes";
 
 const PriceModal = () => {
@@ -14,7 +14,7 @@ const PriceModal = () => {
   const [error, setError] = useRecoilState(priceState.error);
 
   useEffect(() => {
-    getAPI
+    getApi
       .price()
       .then((res) => res.json())
       .then((json) => {

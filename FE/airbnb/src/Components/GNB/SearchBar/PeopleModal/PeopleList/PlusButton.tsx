@@ -60,7 +60,7 @@ const PlusButton = ({ type }: Props) => {
         `게스트 ${adultCount + childrenCount}명, 유아 ${babyCount}명`
       );
     }
-  }, [adultCount, childrenCount, babyCount]);
+  }, [setPeopleInput, adultCount, childrenCount, babyCount]);
 
   const handleClick = (e: any) => {
     setPeopleCancleButton(true);

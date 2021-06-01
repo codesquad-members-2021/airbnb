@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 
 interface MainData {
-  hiroImage: string;
+  heroImage: string;
   cities: object[];
   categories: object[];
 }

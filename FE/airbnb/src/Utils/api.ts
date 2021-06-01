@@ -1,8 +1,20 @@
-const baseURL: string = "http://localhost:3001/";
+const baseURL: string = "http://54.180.21.249/";
 
-const getAPI = {
-  main: () => fetch(`${baseURL}main`),
-  price: () => fetch(`${baseURL}price`),
+const getApi = {
+  main: () => fetch(`${baseURL}`),
+  // price: () => fetch(`${baseURL}price`),
+  price: () => fetch(`http://localhost:3001/price`),
 };
 
-export { getAPI };
+const postApi = {
+  rooms: (body: object) =>
+    fetch(`${baseURL}rooms`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    }),
+};
+
+export { getApi, postApi };

@@ -1,5 +1,8 @@
 import { useRecoilValue } from "recoil";
-import { selectBoxState } from "@/Components/GNB/GNBStore";
+import {
+  selectBoxState,
+  showMiniSearchBarState,
+} from "@/Components/GNB/GNBStore";
 import SelectBox from "./SelectBox/SelectBox";
 import SearchButton from "./SearchButton";
 import CalendarModal from "./CalendarModal/CalendarModal";
@@ -12,9 +15,10 @@ const SearchBar = () => {
   const checkOutBoxState = useRecoilValue(selectBoxState.checkOutBoxState);
   const priceBoxState = useRecoilValue(selectBoxState.priceBoxState);
   const peopleBoxState = useRecoilValue(selectBoxState.peopleBoxState);
+  const showMiniSearchBarFlag = useRecoilValue(showMiniSearchBarState);
 
   return (
-    <S.SearchBarWrapper>
+    <S.SearchBarWrapper showMiniSearchBarFlag={showMiniSearchBarFlag}>
       <S.SearchBar>
         <SelectBox
           id={checkInBoxState.title}

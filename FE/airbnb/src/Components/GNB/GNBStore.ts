@@ -1,5 +1,10 @@
 import { atom, selector } from "recoil";
 
+export const showMiniSearchBarState = atom({
+  key: "showMiniSearchBarState",
+  default: false,
+});
+
 export const loginState = atom({
   key: "isLogin",
   default: false,
@@ -120,7 +125,7 @@ export const selectBoxState = {
 };
 
 // MiniSearchBar box input data
-export const selectedInfoState = atom({
+export const selectedInfoState = atom<string[]>({
   key: "selectedInfoState",
   default: ["일정입력", "금액대 입력", "인원 입력"],
 });
