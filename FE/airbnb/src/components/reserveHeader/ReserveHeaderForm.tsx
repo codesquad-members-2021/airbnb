@@ -9,22 +9,22 @@ import FormPrice from '../header/form/FormPrice';
 
 interface Props {}
 
-const ReserveForm = (props: Props) => {
+const ReserveHeaderForm = (props: Props) => {
   const checkOutRef = useRef<HTMLDivElement>(null);
   const reserveInfo = useRecoilValue(reserveInfoSelector);
   return (
-    <StyledReserveForm>
+    <StyledReserveHeaderForm>
       <FormCheckIn checkOutRef={checkOutRef} />
       <FormCheckOut checkOutRef={checkOutRef} />
       <FormPrice />
       <FormGuest />
-    </StyledReserveForm>
+    </StyledReserveHeaderForm>
   );
 };
 
-export default ReserveForm;
+export default ReserveHeaderForm;
 
-const StyledReserveForm = styled.div`
+const StyledReserveHeaderForm = styled.div`
   display: flex;
   height: 3rem;
   border: ${({ theme }) => `1px solid ${theme.colors.gray4}`};
