@@ -25,7 +25,7 @@ class CalendarViewController: UIViewController {
         return layout
     }()
     
-    private var dataSource : CalenderColleectionDataSource?
+    private var dataSource : CalenderCollectionDataSource?
     private var numberOfWeeksInBaseDate: Int = 0
     
     // MARK: - View Life Cycle
@@ -46,7 +46,7 @@ extension CalendarViewController {
         let calendar = Calendar(identifier: .gregorian)
         
         numberOfWeeksInBaseDate = calendar.range(of: .weekOfMonth, in: .month, for: baseDate)?.count ?? 0
-        dataSource = CalenderColleectionDataSource(with: baseDate)
+        dataSource = CalenderCollectionDataSource(with: baseDate)
         
         collection.dataSource = dataSource
         collection.delegate = self

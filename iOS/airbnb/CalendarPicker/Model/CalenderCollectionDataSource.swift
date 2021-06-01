@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CalenderColleectionDataSource: NSObject, UICollectionViewDataSource {
+class CalenderCollectionDataSource: NSObject, UICollectionViewDataSource {
     
     var models : [CalendarViewModel] = []
     
@@ -15,10 +15,7 @@ class CalenderColleectionDataSource: NSObject, UICollectionViewDataSource {
         super.init()
         
         let days = CalendarDateCalculator().generateDaysInMonth(for: date)
-        days.forEach{
-            let model = CalendarViewModel(day: $0)
-            models.append(model)
-        }
+        models = days.map{ CalendarViewModel(day: $0) }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -33,7 +30,7 @@ class CalenderColleectionDataSource: NSObject, UICollectionViewDataSource {
         else {
             return UICollectionViewCell()
         }
-        model.setup(cell, in: collectionView, at: indexPath)
+        model.setup(cell)
         return cell
     }
     

@@ -15,7 +15,7 @@ class CalendarViewModel {
         self.day = day
     }
     
-    func setup(_ cell: UICollectionReusableView, in collectionView: UICollectionView, at indexPath: IndexPath) {
+    func setup(_ cell: UICollectionReusableView) {
         guard let cell = cell as? CalendarDateCell else {
             return
         }
@@ -24,4 +24,5 @@ class CalendarViewModel {
         }
         cell.numberLabel.text = day.number
     }
+
 }

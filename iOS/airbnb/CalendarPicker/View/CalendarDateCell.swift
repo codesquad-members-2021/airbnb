@@ -72,7 +72,7 @@ class CalendarDateCell: UICollectionViewCell {
       layoutSubviews()
     }
     
-    func config(){
+    private func config(){
         isAccessibilityElement = true
         accessibilityTraits = .button
         
