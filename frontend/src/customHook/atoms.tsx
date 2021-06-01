@@ -2,6 +2,7 @@ import { RefObject } from 'react'
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil'
 import { dateToString, FilterDateToString } from './useDateInfo'
 import { IParams } from '../Interface'
+import { getGuestMsg } from '../components/searchBar/personnel/Personnel'
 //defaultValue________________________________________
 export const defaultValue = {
   placeAdjacent: '가까운 여행지 둘러보기',
@@ -88,14 +89,22 @@ export function RecoilSetStateGroup(params: IParams) {
   const setAdult = useSetRecoilState(personnelAudult)
   const setChild = useSetRecoilState(personnelChild)
   const setBaby = useSetRecoilState(personnelBaby)
+  const setGuestMsg = useSetRecoilState(personnelMessage)
   console.log(params)
-  const { place, checkIn, checkOut } = params
+  const { place, checkIn, checkOut, adult, child, baby } = params
   const filterUndefined = (date: any) => {
     if (date !== undefined) return date
   }
   setPlaceToSearch(place === defaultValue.placeToSearch ? '근처 추천 장소' : place)
   setCheckIn(filterUndefined(checkIn))
   setCheckOut(filterUndefined(checkOut))
+  const numberTypeAdult = filterUndefined(adult)
+  const numberTypeChild = filterUndefined(child)
+  const numberTypeBaby = filterUndefined(baby)
+  setAdult(numberTypeAdult)
+  setChild(numberTypeChild)
+  setBaby(numberTypeBaby)
+  setGuestMsg(getGuestMsg(numberTypeAdult, numberTypeChild, numberTypeBaby))
   return {
     // placeToSearch,
     // checkIn,
@@ -120,7 +129,7 @@ export function RecoilValueGroup() {
   const adult = useRecoilValue(personnelAudult)
   const child = useRecoilValue(personnelChild)
   const baby = useRecoilValue(personnelBaby)
-
+  const guestMsg = useRecoilValue(personnelMessage)
   return {
     placeToSearch,
     checkIn,
@@ -132,6 +141,7 @@ export function RecoilValueGroup() {
     adult,
     child,
     baby,
+    guestMsg,
   }
 }
 

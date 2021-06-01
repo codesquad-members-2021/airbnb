@@ -24,9 +24,7 @@ export const dateToString = (clickedDate: string | number): string => {
   let dateValue
   if (clickedDate === defaultValue.checkIn) return defaultValue.checkIn
   else {
-    console.log(clickedDate)
     dateValue = Number(clickedDate)
-    console.log(dateValue)
   }
   return new Date(dateValue).getMonth() + 1 + '월' + new Date(dateValue).getDate() + '일'
 }

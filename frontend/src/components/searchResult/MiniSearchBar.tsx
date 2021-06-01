@@ -14,14 +14,14 @@ function MiniSearchBar({ setClicked, inputData }: IMiniProps) {
     setClicked(true)
   }
   RecoilSetStateGroup(inputData)
-  const { placeToSearch, checkIn, checkOut } = RecoilValueGroup()
+  const { placeToSearch, checkIn, checkOut, guestMsg } = RecoilValueGroup()
   return (
     <SearchBar>
       <div onClick={handleClick}>{placeToSearch}</div>
       <div onClick={handleClick}>
         {FilterDateToString(checkIn)} - {FilterDateToString(checkOut)}
       </div>
-      <div onClick={handleClick}>게스트 추가</div>
+      <div onClick={handleClick}>{guestMsg}</div>
       <IconButton
         color='secondary'
         className={'routerBtn'}
