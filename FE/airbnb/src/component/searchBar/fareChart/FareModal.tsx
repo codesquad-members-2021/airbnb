@@ -1,9 +1,12 @@
 import styled from "styled-components";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { thumbLeftPriceState, thumbRightPriceState, isSetPriceState } from "state/atoms/fareAtoms";
 import { stopPropagation } from "hooks/modalHooks";
 import { mockData } from "component/searchBar/fareChart/mockData";
 import { chartControlType } from "component/searchBar/fareChart/chartType";
 import getChartData from "component/searchBar/fareChart/getChartData";
 import ChartCanvas from "component/searchBar/fareChart/ChartCanvas";
+import FareRangeSlider from "component/searchBar/fareChart/FareRangeSlider";
 
 const CHART_CONTROL: chartControlType = {
   SECTIONS: 20,
@@ -15,17 +18,24 @@ function FareModal() {
   const { SECTIONS } = CHART_CONTROL;
   // dataArr의 값으로 fetch한 값이 들어가야됨. 임시로 mockData 사용
   const { priceChartData, minPrice, maxPrice, averagePrice } = getChartData({ dataArr: mockData, sections: SECTIONS });
-
+  const [leftPrice, setLeftPrice] = useRecoilState(thumbLeftPriceState);
+  const [rightPrice, setRightPrice] = useRecoilState(thumbRightPriceState);
+  const isSetPrice = useRecoilValue(isSetPriceState);
+  if (!isSetPrice) {
+    setLeftPrice(minPrice);
+    setRightPrice(maxPrice);
+  }
   return (
     <Modal onClick={stopPropagation}>
       <Title>가격 범위</Title>
       <FareRange>
-        ₩{minPrice} - ₩{maxPrice}
+        ₩{leftPrice} - ₩{rightPrice}
       </FareRange>
       <FareAverage>평균 1박 요금은 ₩{averagePrice}입니다.</FareAverage>
-      <FareChart>
+      <FareChartBox>
         <ChartCanvas chartControl={CHART_CONTROL} chartData={priceChartData} />
-      </FareChart>
+        <FareRangeSlider minPrice={minPrice} maxPrice={maxPrice} />
+      </FareChartBox>
     </Modal>
   );
 }
@@ -34,8 +44,9 @@ export default FareModal;
 
 const Modal = styled.div`
   ${({ theme }) => theme.modal}
+  border: 1px solid #eee;
   right: 0;
-  width: 50%;
+  width: 458px;
   padding: 50px 60px;
 `;
 
@@ -55,8 +66,9 @@ const FareAverage = styled.div`
   font-weight: 300;
   margin-bottom: 20px;
 `;
-const FareChart = styled.div`
-  height: 120px;
+const FareChartBox = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;

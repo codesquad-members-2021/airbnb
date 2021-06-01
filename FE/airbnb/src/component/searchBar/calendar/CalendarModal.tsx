@@ -86,9 +86,10 @@ export default CalendarModal;
 
 const Modal = styled.div`
   ${({ theme }) => theme.modal}
-  left: 0;
-  /* width: 916px; */
-  width: 100%;
+  border: 1px solid #eee;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 916px;
   padding: 60px 80px;
 
   .arrow {

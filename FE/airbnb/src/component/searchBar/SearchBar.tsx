@@ -9,7 +9,11 @@ import FareModal from "component/searchBar/fareChart/FareModal";
 import GuestModal from "component/searchBar/guestList/GuestModal";
 import { openModal, closeModalByBodyClick } from "hooks/modalHooks";
 
-function BigSearchBar() {
+interface Props {
+  size: string;
+}
+
+function SearchBar({ size }: Props) {
   const [isOpenCalendar, setIsOpenCalendar] = useState<boolean>(false);
   const [isOpenFare, setIsOpenFare] = useState<boolean>(false);
   const [isOpenGuest, setIsOpenGuest] = useState<boolean>(false);
@@ -20,32 +24,35 @@ function BigSearchBar() {
   const handleClickGuest = (e: React.MouseEvent) =>
     openModal({ e, open: setIsOpenGuest, close: [setIsOpenCalendar, setIsOpenFare] });
   closeModalByBodyClick(setIsOpenCalendar, setIsOpenFare, setIsOpenGuest);
+
   return (
-    <SearchBarContainer>
+    <SearchBarContainer size={size}>
       <SearchBarList>
-        <Period onClick={handleClickPeriod} />
+        <Period onClick={handleClickPeriod} size={size} />
         {isOpenCalendar && <CalendarModal />}
-        <Fare onClick={handleClickFare} />
+        <Fare onClick={handleClickFare} size={size} />
         {isOpenFare && <FareModal />}
-        <Guest onClick={handleClickGuest} />
+        <Guest onClick={handleClickGuest} size={size} />
         {isOpenGuest && <GuestModal />}
-        <SearchBtn />
+        <SearchBtn size={size} />
       </SearchBarList>
     </SearchBarContainer>
   );
 }
 
-export default BigSearchBar;
+export default SearchBar;
 
-const SearchBarContainer = styled.div`
-  width: 916px;
-  height: 76px;
+interface SearchBarContainerType {
+  size: string;
+}
+
+const SearchBarContainer = styled.div<SearchBarContainerType>`
+  ${({ size, theme }) => (size === "big" ? theme.bigSearchBar : theme.miniSearchBar)}
   border: 1px solid ${({ theme }) => theme.color.gray5};
   border-radius: ${({ theme }) => theme.borderRadius.l};
   background-color: #fff;
 
   position: absolute;
-  top: 110px;
   left: 50%;
   transform: translateX(-50%);
 `;

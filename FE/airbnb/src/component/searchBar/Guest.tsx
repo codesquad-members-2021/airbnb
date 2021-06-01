@@ -3,11 +3,12 @@ import styled from "styled-components";
 
 interface Props {
   onClick: (e: React.MouseEvent) => void;
+  size: string;
 }
 
-function Guest({ onClick }: Props) {
+function Guest({ onClick, size }: Props) {
   return (
-    <GuestContainer onClick={onClick}>
+    <GuestContainer onClick={onClick} size={size}>
       <Title>인원</Title>
       <Content>게스트 추가</Content>
     </GuestContainer>
@@ -16,10 +17,15 @@ function Guest({ onClick }: Props) {
 
 export default Guest;
 
-const GuestContainer = styled.li`
+interface size {
+  size: string;
+}
+
+const GuestContainer = styled.li<size>`
   ${({ theme }) => theme.searchListItem}
+  ${({ size, theme }) => (size === "big" ? theme.bigSearchLI : theme.miniSearchLI)}
   cursor: pointer;
-  width: 298px;
+  width: ${({ size }) => (size === "big" ? "298px" : "250px")};
 `;
 
 const Title = styled.span`

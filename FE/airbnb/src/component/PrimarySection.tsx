@@ -1,13 +1,12 @@
-import React from "react";
 import styled from "styled-components";
-import Header from "component/Header";
-import BigSearchBar from "component/searchBar/BigSearchBar";
+import Header from "component/header/Header";
+import SearchBar from "component/searchBar/SearchBar";
 
 function PrimarySection() {
   return (
     <PrimarySectionContainer>
       <Header />
-      <BigSearchBar />
+      <SearchBar size="big" />
     </PrimarySectionContainer>
   );
 }

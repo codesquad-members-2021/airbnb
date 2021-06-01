@@ -17,13 +17,5 @@ function Header() {
 export default Header;
 
 const HeaderContainer = styled.div`
-  box-sizing: border-box;
-  width: 1440px;
-  height: 80px;
-  padding: 0 80px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
+  ${({ theme }) => theme.header}
 `;
