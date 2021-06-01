@@ -3,6 +3,8 @@ package mj.airbnb.domain.reservation;
 import mj.airbnb.domain.accommodation.Accommodation;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Reservation {
 

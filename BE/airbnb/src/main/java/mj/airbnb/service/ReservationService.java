@@ -2,6 +2,7 @@ package mj.airbnb.service;
 
 import mj.airbnb.domain.reservation.Reservation;
 import mj.airbnb.domain.reservation.ReservationRepository;
+import mj.airbnb.web.dto.CreatingReservationRequestDto;
 import mj.airbnb.web.dto.ReservationResponseDto;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,9 @@ public class ReservationService {
         return reservationRepository.findAllByUserId(userId).stream()
                 .map(ReservationResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    public Long createReservation(CreatingReservationRequestDto requestDto) {
+        return reservationRepository.saveReservation(requestDto);
     }
 }

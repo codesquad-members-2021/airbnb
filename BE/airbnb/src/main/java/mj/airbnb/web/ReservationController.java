@@ -3,6 +3,7 @@ package mj.airbnb.web;
 import mj.airbnb.oauth.GitHubUser;
 import mj.airbnb.oauth.LoginController;
 import mj.airbnb.service.ReservationService;
+import mj.airbnb.web.dto.CreatingReservationRequestDto;
 import mj.airbnb.web.dto.ReservationResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,5 +25,12 @@ public class ReservationController {
     @GetMapping
     public List<ReservationResponseDto> viewReservation(@RequestAttribute GitHubUser user) {
         return reservationService.findByUserId(user.getId());
+    }
+
+    @PostMapping
+    public Long createReservation(@RequestBody CreatingReservationRequestDto requestDto, @RequestAttribute GitHubUser user) {
+        requestDto.setUserId(user.getId());
+        logger.info("requestDto: {}", requestDto);
+        return reservationService.createReservation(requestDto);
     }
 }
