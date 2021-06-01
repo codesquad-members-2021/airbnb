@@ -1,7 +1,8 @@
 package com.codesquad.airbnb.accommodation.domain.price;
 
+import com.codesquad.airbnb.reservation.domain.ReservationDetail;
+
 public class Price {
-    //TODO : nights랑 인원수 같이 세야함.
     private int pricePerNight;
     private PricePolicies pricePolicies;
 
@@ -18,27 +19,27 @@ public class Price {
         return new Price(pricePerNight, pricePolicies);
     }
 
-    public int priceForNights(int nights) {
-        return pricePerNight * nights;
+    public int priceForNights(ReservationDetail reservationDetail) {
+        return pricePerNight * reservationDetail.nights();
     }
 
-    public int totalPrice(int nights) {
-        return priceForNights(nights) - discountPrice(nights) + cleaningFee(nights) + serviceFee(nights) + accommodationTax(nights);
+    public int totalPrice(ReservationDetail reservationDetail) {
+        return priceForNights(reservationDetail) - discountPrice(reservationDetail) + cleaningFee(reservationDetail) + serviceFee(reservationDetail) + accommodationTax(reservationDetail);
     }
 
-    public int discountPrice(int nights) {
-        return pricePolicies.discountPrice(priceForNights(nights));
+    public int discountPrice(ReservationDetail reservationDetail) {
+        return pricePolicies.discountPrice(reservationDetail, pricePerNight);
     }
 
-    public int cleaningFee(int nights) {
-        return pricePolicies.cleaningFee(priceForNights(nights));
+    public int cleaningFee(ReservationDetail reservationDetail) {
+        return pricePolicies.cleaningFee(reservationDetail, pricePerNight);
     }
 
-    public int serviceFee(int nights) {
-        return pricePolicies.serviceFee(priceForNights(nights));
+    public int serviceFee(ReservationDetail reservationDetail) {
+        return pricePolicies.serviceFee(reservationDetail, pricePerNight);
     }
 
-    public int accommodationTax(int nights) {
-        return pricePolicies.accommodationTax(priceForNights(nights));
+    public int accommodationTax(ReservationDetail reservationDetail) {
+        return pricePolicies.accommodationTax(reservationDetail, pricePerNight);
     }
 }

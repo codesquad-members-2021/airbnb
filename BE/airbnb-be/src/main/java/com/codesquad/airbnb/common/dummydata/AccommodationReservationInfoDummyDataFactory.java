@@ -33,16 +33,16 @@ public class AccommodationReservationInfoDummyDataFactory {
                        .build();
     }
 
-    public static AccommodationReservationInfo suiteRoomTwoPerson() {
+    public static AccommodationReservationInfo suiteRoomOnePersonTwoDaysOnWeekend() {
         return AccommodationReservationInfo.builder()
                        .id(1L)
                        .pricePerNight(400000)
                        .priceForNights(800000)
-                       .discountPrice(32000)
+                       .discountPrice(0)
                        .cleaningFee(40000)
                        .serviceFee(80000)
                        .accommodationTax(40000)
-                       .totalPrice(928000)
+                       .totalPrice(960000)
                        .reviewCounts(5)
                        .build();
     }

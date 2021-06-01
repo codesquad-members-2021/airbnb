@@ -1,12 +1,14 @@
 package com.codesquad.airbnb.accommodation.domain.price;
 
+import com.codesquad.airbnb.reservation.domain.ReservationDetail;
+
 public class ServiceFeePolicy implements PricePolicy {
     private static final int DEFAULT_SERVICE_FEE_PERCENT = 10;
 
-    private int serviceFee;
+    private int serviceFeePercent;
 
-    public ServiceFeePolicy(int serviceFee) {
-        this.serviceFee = serviceFee;
+    public ServiceFeePolicy(int serviceFeePercent) {
+        this.serviceFeePercent = serviceFeePercent;
     }
 
     public static ServiceFeePolicy defaultServiceFeePolicy() {
@@ -14,12 +16,12 @@ public class ServiceFeePolicy implements PricePolicy {
     }
 
     @Override
-    public boolean isServiceFee() {
+    public boolean getServiceFeePercent() {
         return true;
     }
 
     @Override
-    public int calculate(int priceForNights) {
-        return PriceUtils.calculatePercent(priceForNights, serviceFee);
+    public int calculate(ReservationDetail reservationDetail, int pricePerNight) {
+        return PriceUtils.calculatePercent(priceForNights(reservationDetail, pricePerNight), serviceFeePercent);
     }
 }

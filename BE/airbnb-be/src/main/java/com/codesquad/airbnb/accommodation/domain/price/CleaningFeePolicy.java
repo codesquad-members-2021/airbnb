@@ -1,5 +1,7 @@
 package com.codesquad.airbnb.accommodation.domain.price;
 
+import com.codesquad.airbnb.reservation.domain.ReservationDetail;
+
 public class CleaningFeePolicy implements PricePolicy {
     private static final int DEFAULT_CLEANING_FEE_PERCENT = 5;
 
@@ -19,7 +21,8 @@ public class CleaningFeePolicy implements PricePolicy {
     }
 
     @Override
-    public int calculate(int priceForNights) {
-        return PriceUtils.calculatePercent(priceForNights, cleaningFeePercent);
+    public int calculate(ReservationDetail reservationDetail, int pricePerNight) {
+                 return PriceUtils.calculatePercent(priceForNights(reservationDetail, pricePerNight), cleaningFeePercent);
+
     }
 }

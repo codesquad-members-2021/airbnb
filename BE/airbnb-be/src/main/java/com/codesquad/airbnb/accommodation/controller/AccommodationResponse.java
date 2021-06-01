@@ -2,6 +2,7 @@ package com.codesquad.airbnb.accommodation.controller;
 
 import com.codesquad.airbnb.accommodation.domain.Accommodation;
 import com.codesquad.airbnb.accommodation.domain.AccommodationOption;
+import com.codesquad.airbnb.reservation.domain.ReservationDetail;
 
 import java.util.Objects;
 
@@ -37,11 +38,11 @@ public class AccommodationResponse {
                        .build();
     }
 
-    public static AccommodationResponse of(Accommodation accommodation, int nights) {
+    public static AccommodationResponse of(Accommodation accommodation, ReservationDetail reservationDetail) {
         return builder().id(accommodation.getId())
                        .name(accommodation.getName())
                        .accommodationOption(accommodation.getAccommodationOption())
-                       .totalPrice(accommodation.totalPrice(nights))
+                       .totalPrice(accommodation.totalPrice(reservationDetail))
                        .reviewRating(accommodation.getReviewRating())
                        .reviewCounts(accommodation.getReviewCounts())
                        .mainImage(accommodation.getMainImage())

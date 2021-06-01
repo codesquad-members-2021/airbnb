@@ -6,23 +6,30 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AccommodationResponseDummyDataFactory {
-    private AccommodationResponseDummyDataFactory(){}
+    private AccommodationResponseDummyDataFactory() {
+    }
 
     public static List<AccommodationResponse> listWithOneNight() {
         return AccommodationDummyDataFactory.list().stream()
-                       .map(accommodation -> AccommodationResponse.of(accommodation,1))
+                       .map(accommodation -> AccommodationResponse.of(accommodation, ReservationDetailDummyDataFactory.oneNightOnWeekday()))
                        .collect(Collectors.toList());
     }
 
     public static List<AccommodationResponse> listWithIdTypeOneNight() {
         return AccommodationDummyDataFactory.listWithId().stream()
-                       .map(accommodation -> AccommodationResponse.of(accommodation,1))
+                       .map(accommodation -> AccommodationResponse.of(accommodation, ReservationDetailDummyDataFactory.oneNightOnWeekday()))
                        .collect(Collectors.toList());
     }
 
     public static List<AccommodationResponse> listWithIdTypeTwoNights() {
         return AccommodationDummyDataFactory.listWithId().stream()
-                       .map(accommodation -> AccommodationResponse.of(accommodation,2))
+                       .map(accommodation -> AccommodationResponse.of(accommodation, ReservationDetailDummyDataFactory.twoNightsOnWeekday()))
+                       .collect(Collectors.toList());
+    }
+
+    public static List<AccommodationResponse> listWithIdTypeTwoNightsOnWeekend() {
+        return AccommodationDummyDataFactory.listWithId().stream()
+                       .map(accommodation -> AccommodationResponse.of(accommodation, ReservationDetailDummyDataFactory.twoNightsOnWeekend()))
                        .collect(Collectors.toList());
     }
 }

@@ -1,5 +1,7 @@
 package com.codesquad.airbnb.accommodation.domain.price;
 
+import com.codesquad.airbnb.reservation.domain.ReservationDetail;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,40 +22,40 @@ public class PricePolicies {
         ));
     }
 
-    public int discountPrice(int priceForNights) {
+    public int discountPrice(ReservationDetail reservationDetail, int pricePerNights) {
         for (PricePolicy each : pricePolicies) {
             if (each.isDiscount()) {
-                return each.calculate(priceForNights);
+                return each.calculate(reservationDetail, pricePerNights);
             }
         }
 
         return 0;
     }
 
-    public int cleaningFee(int priceForNights) {
+    public int cleaningFee(ReservationDetail reservationDetail, int pricePerNights) {
         for (PricePolicy each : pricePolicies) {
             if (each.isCleaningFee()) {
-                return each.calculate(priceForNights);
+                return each.calculate(reservationDetail, pricePerNights);
             }
         }
 
         return 0;
     }
 
-    public int serviceFee(int priceForNights) {
+    public int serviceFee(ReservationDetail reservationDetail, int pricePerNights) {
         for (PricePolicy each : pricePolicies) {
-            if (each.isServiceFee()) {
-                return each.calculate(priceForNights);
+            if (each.getServiceFeePercent()) {
+                return each.calculate(reservationDetail, pricePerNights);
             }
         }
 
         return 0;
     }
 
-    public int accommodationTax(int priceForNights) {
+    public int accommodationTax(ReservationDetail reservationDetail, int pricePerNights) {
         for (PricePolicy each : pricePolicies) {
             if (each.isAccommodationTax()) {
-                return each.calculate(priceForNights);
+                return each.calculate(reservationDetail, pricePerNights);
             }
         }
 

@@ -1,6 +1,7 @@
 package com.codesquad.airbnb.accommodation.controller;
 
 import com.codesquad.airbnb.accommodation.domain.Accommodation;
+import com.codesquad.airbnb.reservation.domain.ReservationDetail;
 
 import java.util.Objects;
 
@@ -30,15 +31,15 @@ public class AccommodationReservationInfo {
         this.reviewCounts = reviewCounts;
     }
 
-    public static AccommodationReservationInfo of(Accommodation accommodation, int nights) {
+    public static AccommodationReservationInfo of(Accommodation accommodation, ReservationDetail reservationDetail) {
         return builder().id(accommodation.getId())
                        .pricePerNight(accommodation.getAccommodationOption().getPricePerNight())
-                       .priceForNights(accommodation.priceForNights(nights))
-                       .discountPrice(accommodation.discountPrice(nights))
-                       .cleaningFee(accommodation.cleaningFee(nights))
-                       .serviceFee(accommodation.serviceFee(nights))
-                       .accommodationTax(accommodation.accommodationTax(nights))
-                       .totalPrice(accommodation.totalPrice(nights))
+                       .priceForNights(accommodation.priceForNights(reservationDetail))
+                       .discountPrice(accommodation.discountPrice(reservationDetail))
+                       .cleaningFee(accommodation.cleaningFee(reservationDetail))
+                       .serviceFee(accommodation.serviceFee(reservationDetail))
+                       .accommodationTax(accommodation.accommodationTax(reservationDetail))
+                       .totalPrice(accommodation.totalPrice(reservationDetail))
                        .reviewCounts(accommodation.getReviewCounts())
                        .build();
     }

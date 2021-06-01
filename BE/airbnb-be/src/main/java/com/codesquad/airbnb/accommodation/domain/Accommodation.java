@@ -2,6 +2,7 @@ package com.codesquad.airbnb.accommodation.domain;
 
 import com.codesquad.airbnb.accommodation.controller.AccommodationHost;
 import com.codesquad.airbnb.accommodation.domain.price.Price;
+import com.codesquad.airbnb.reservation.domain.ReservationDetail;
 
 import java.util.List;
 
@@ -34,28 +35,28 @@ public class Accommodation {
         return AccommodationBuilder.anAccommodation();
     }
 
-    public int priceForNights(int nights) {
-        return price.priceForNights(nights);
+    public int priceForNights(ReservationDetail reservationDetail) {
+        return price.priceForNights(reservationDetail);
     }
 
-    public int discountPrice(int nights) {
-        return price.discountPrice(nights);
+    public int discountPrice(ReservationDetail reservationDetail) {
+        return price.discountPrice(reservationDetail);
     }
 
-    public int cleaningFee(int nights) {
-        return price.cleaningFee(nights);
+    public int cleaningFee(ReservationDetail reservationDetail) {
+        return price.cleaningFee(reservationDetail);
     }
 
-    public int serviceFee(int nights) {
-        return price.serviceFee(nights);
+    public int serviceFee(ReservationDetail reservationDetail) {
+        return price.serviceFee(reservationDetail);
     }
 
-    public int accommodationTax(int nights) {
-        return price.accommodationTax(nights);
+    public int accommodationTax(ReservationDetail reservationDetail) {
+        return price.accommodationTax(reservationDetail);
     }
 
-    public int totalPrice(int nights) {
-        return priceForNights(nights) - discountPrice(nights) + cleaningFee(nights) + serviceFee(nights) + accommodationTax(nights);
+    public int totalPrice(ReservationDetail reservationDetail) {
+        return price.totalPrice(reservationDetail);
     }
 
     public Long getId() {

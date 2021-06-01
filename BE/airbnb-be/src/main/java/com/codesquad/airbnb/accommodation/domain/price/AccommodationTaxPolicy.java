@@ -1,5 +1,7 @@
 package com.codesquad.airbnb.accommodation.domain.price;
 
+import com.codesquad.airbnb.reservation.domain.ReservationDetail;
+
 public class AccommodationTaxPolicy implements PricePolicy {
     private static final int DEFAULT_ACCOMMODATION_TAX_PERCENT = 5;
 
@@ -19,7 +21,7 @@ public class AccommodationTaxPolicy implements PricePolicy {
     }
 
     @Override
-    public int calculate(int priceForNights) {
-        return PriceUtils.calculatePercent(priceForNights, accommodationTaxPercent);
+    public int calculate(ReservationDetail reservationDetail, int pricePerNight) {
+        return PriceUtils.calculatePercent(priceForNights(reservationDetail, pricePerNight), accommodationTaxPercent);
     }
 }

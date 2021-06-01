@@ -1,5 +1,6 @@
 package com.codesquad.airbnb.accommodation.controller;
 
+import com.codesquad.airbnb.reservation.domain.ReservationDetail;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.AssertTrue;
@@ -39,8 +40,8 @@ public class AccommodationRequest {
     private Integer numberOfBabies;
 
     public AccommodationRequest(LocalDate checkinDate, LocalDate checkoutDate, Integer startPrice, Integer endPrice, Integer numberOfAdults, Integer numberOfChildren, Integer numberOfBabies) {
-        this.checkinDate = checkinDate;
-        this.checkoutDate = checkoutDate;
+        this.checkinDate = checkinDate != null ? checkinDate : LocalDate.now();
+        this.checkoutDate = checkoutDate != null ? checkoutDate : LocalDate.now().plusDays(1);
         this.startPrice = startPrice;
         this.endPrice = endPrice;
         this.numberOfAdults = numberOfAdults != null ? numberOfAdults : DEFAULT_NUMBER_OF_ADULTS;
@@ -72,6 +73,16 @@ public class AccommodationRequest {
 
     private boolean isCheckInDateAndCheckOutDateExists() {
         return checkinDate != null && checkoutDate != null;
+    }
+
+    public ReservationDetail toReservationDetail() {
+        return ReservationDetail.builder()
+                       .checkinDate(checkinDate)
+                       .checkoutDate(checkoutDate)
+                       .numberOfAdults(numberOfAdults)
+                       .numberOfChildren(numberOfChildren)
+                       .numberOfBabies(numberOfBabies)
+                       .build();
     }
 
     public int nights() {
