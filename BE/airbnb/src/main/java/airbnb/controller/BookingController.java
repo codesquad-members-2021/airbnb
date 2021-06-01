@@ -28,7 +28,7 @@ public class BookingController {
 
     @LoginRequired
     @DeleteMapping("/cancel/bookings/{bookingId}")
-    public Status cancel(@PathVariable Long bookingId) {
+    public Status cancel(@PathVariable Long bookingId, @Github User user) {
         bookingService.cancel(bookingId);
         return Status.SUCCESS;
     }

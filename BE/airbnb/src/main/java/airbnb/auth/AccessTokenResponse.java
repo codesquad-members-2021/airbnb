@@ -19,5 +19,3 @@ public class AccessTokenResponse {
     private String scope;
 }
 
-
-
