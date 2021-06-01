@@ -86,25 +86,15 @@ public class AccommodationRepository {
     }
 
     public List<Accommodation> findPopularDestinations(String destination) {
-        String sqlQuery = "SELECT address " +
-                "FROM accommodation " +
-                "WHERE address LIKE ? ";
-        return jdbcTemplate.query(sqlQuery, ADDRESS_ROW_MAPPER, "%" + destination + "%");
+        return jdbcTemplate.query(POPULAR_DESTINATIONS_SQL, ADDRESS_ROW_MAPPER, "%" + destination + "%");
     }
 
     public Accommodation findById(Long id) {
-        String sqlQuery = "SELECT in_detail.host_name, in_detail.description, acc.name, acc.max_num_of_people, acc.type, acc.num_of_bed, acc.num_of_bathroom, acc.price, acc.address " +
-                "FROM accommodation acc INNER JOIN accommodation_detail in_detail " +
-                "ON acc.id = in_detail.accommodation_id " +
-                "WHERE acc.id = ?; ";
-
-        return jdbcTemplate.queryForObject(sqlQuery, ACCOMMODATION_DETAIL_ROW_MAPPER, id);
+        return jdbcTemplate.queryForObject(ACCOMMODATION_DETAIL_SQL, ACCOMMODATION_DETAIL_ROW_MAPPER, id);
     }
 
     public List<String> findAllImagesByAccommodationId(Long id) {
-        String sqlQuery = "SELECT url FROM image WHERE accommodation_id = ?; ";
-
-        return jdbcTemplate.query(sqlQuery, IMAGE_ROW_MAPPER, id);
+        return jdbcTemplate.query(IMAGE_URL_SQL, IMAGE_ROW_MAPPER, id);
     }
 
     private boolean isPresentOfDestination(SearchRequestDto requestDto) {

@@ -55,4 +55,27 @@ public class SqlQuery {
             "AND " + DATE_CONDITION +
             "AND " + PRICE_CONDITION +
             "AND " + PEOPLE_CONDITION;
+
+    public static final String IMAGE_URL_SQL = "SELECT url FROM image WHERE accommodation_id = ?; ";
+
+    public static final String ACCOMMODATION_DETAIL_SQL = "SELECT in_detail.host_name, in_detail.description, acc.name, acc.max_num_of_people, acc.type, acc.num_of_bed, acc.num_of_bathroom, acc.price, acc.address " +
+            "FROM accommodation acc INNER JOIN accommodation_detail in_detail " +
+            "ON acc.id = in_detail.accommodation_id " +
+            "WHERE acc.id = ?; ";
+
+    public static final String RESERVATIONS_BY_USER_ID_SQL = "SELECT acc.name, acc.address, i.url, acc_detail.description, check_in_date, check_out_date " +
+            "FROM reservation res " +
+            "INNER JOIN accommodation acc " +
+            "ON res.accommodation_id = acc.id " +
+            "INNER JOIN image i " +
+            "ON acc.id = i.accommodation_id " +
+            "INNER JOIN accommodation_detail acc_detail " +
+            "ON acc.id = acc_detail.accommodation_id " +
+            "WHERE user_id = ? " +
+            "AND i.main = TRUE " +
+            "ORDER BY check_in_date ";
+
+    public static final String POPULAR_DESTINATIONS_SQL = "SELECT address " +
+            "FROM accommodation " +
+            "WHERE address LIKE ? ";
 }
