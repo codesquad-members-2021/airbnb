@@ -14,6 +14,8 @@ class CalendarViewController: UIViewController {
     
     private let viewModel = CalendarViewModel()
     private var nextPage = BehaviorRelay(value: false)
+    private var (firstDate, lastDate): (Date?, Date?)
+    private var datesRange: [Date]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,6 +129,39 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         case 0...1: nextPage.accept(false)
         default: nextPage.accept(true)
         }
+        
+        if firstDate == nil {
+            firstDate = date
+            datesRange = [firstDate!]
+            return
+        }
+        
+        if firstDate != nil && lastDate == nil {
+            if date <= firstDate! {
+                calendar.deselect(firstDate!)
+                firstDate = date
+                datesRange = [firstDate!]
+            }
+            
+            let range = datesRange(from: firstDate!, to: date)
+            lastDate = range.last
+            
+            for day in range {
+                calendar.select(day)
+            }
+            datesRange = range
+            return
+        }
+        
+        if firstDate != nil && lastDate != nil {
+            for day in calendar.selectedDates {
+                calendar.select(day)
+            }
+            
+            lastDate = nil
+            firstDate = nil
+            datesRange = []
+        }
     }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -134,6 +169,16 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         switch calendarView.selectedDates.count {
         case 0...1: nextPage.accept(false)
         default: nextPage.accept(true)
+        }
+        
+        if firstDate != nil && lastDate != nil {
+            for day in calendar.selectedDates {
+                calendar.deselect(day)
+            }
+            
+            lastDate = nil
+            firstDate = nil
+            datesRange = []
         }
     }
     
@@ -151,5 +196,19 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         } else {
             return .black
         }
+    }
+    
+    func datesRange(from: Date, to: Date) -> [Date] {
+        if from > to { return [Date]() }
+
+        var tempDate = from
+        var array = [tempDate]
+
+        while tempDate < to {
+            tempDate = Calendar.current.date(byAdding: .day, value: 1, to: tempDate)!
+            array.append(tempDate)
+        }
+
+        return array
     }
 }

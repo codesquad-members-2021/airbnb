@@ -27,6 +27,7 @@ class PriceViewController: UIViewController {
         slider.hideLabels = true
         slider.handleBorderColor = UIColor.black
         slider.handleColor = UIColor.systemGray
+        slider.handleDiameter = 20
         slider.tintColor = UIColor.black
         slider.minValue = CGFloat(min)
         slider.maxValue = CGFloat(max)
