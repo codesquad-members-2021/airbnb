@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CityTour from './CityTour';
 import RoomTour from './RoomTour';

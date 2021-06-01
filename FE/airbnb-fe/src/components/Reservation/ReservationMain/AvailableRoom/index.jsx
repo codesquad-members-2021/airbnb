@@ -1,14 +1,23 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import AvailableRoomCard from './AvailableRoomCard';
-import roomData from '../../../utils/mock/room-card.json';
 import { ReservationContext } from '../..';
 
-const AvailableRoom = () => {
+const AvailableRoom = ({ roomData }) => {
   const { match } = useContext(ReservationContext);
   const checkInData = match.params['checkIn'].split('-').map(Number);
   const checkOutData = match.params['checkOut'].split('-').map(Number);
-  const roomList = roomData.accommodationList;
+
+  const calcDiff = () => {
+    const ci = new Date(match.params['checkIn']);
+    const co = new Date(match.params['checkOut']);
+    const dateDiff = Math.ceil(
+      (co.getTime() - ci.getTime()) / (1000 * 3600 * 24)
+    );
+    return dateDiff;
+  };
+
+  // useEffect(()=>{},[]);
 
   return (
     <AvailableRoomDiv>
@@ -20,9 +29,10 @@ const AvailableRoom = () => {
       </ReservationConditionData>
       <ChosenRoomListSpan>지도에서 선택한 지역의 숙소</ChosenRoomListSpan>
       <RoomCardList>
-        {roomList.map((room) => (
-          <AvailableRoomCard key={room.id} room={room} />
-        ))}
+        {roomData &&
+          roomData.accommodationList.map((room) => (
+            <AvailableRoomCard key={room.id} room={room} calcDiff={calcDiff} />
+          ))}
       </RoomCardList>
     </AvailableRoomDiv>
   );
