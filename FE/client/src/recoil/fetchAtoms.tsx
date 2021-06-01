@@ -1,5 +1,5 @@
 import { selector } from "recoil";
-import { locationAtom } from "./atoms";
+import { locationAtom, userInfoAtom } from "./atoms";
 
 const API_END_POINT: string = 'https://e4557770-5d57-4419-990e-c7cfaffb1f5a.mock.pstmn.io';
 
@@ -19,5 +19,13 @@ export const fetchLocationSelector = selector({
   key: 'fetchLocationSelector',
   get: async () => {
     return await (await fetch(`${API_END_POINT}/api/search`)).json();
+  }
+});
+
+export const fetchHotelListSelector = selector({
+  key: 'fetchHotelListSelector',
+  get: async ({ get }) => {
+    const { x, y, zoom } = get(userInfoAtom);
+    return await (await fetch(`${API_END_POINT}/api/search/coordinate?x=${x}&y=${y}&zoom=${zoom}`)).json();
   }
 });

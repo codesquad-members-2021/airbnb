@@ -101,6 +101,7 @@ export const userInfoAtom = atom<any>({
   default: {
     x: '',
     y: '',
+    zoom: '',
     checkIn: '',
     checkOut: '',
     leftRange: '',

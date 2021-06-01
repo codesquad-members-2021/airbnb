@@ -1,14 +1,24 @@
 import styled from 'styled-components';
 import HotelListHeader from './HotelListHeader';
 import HotelItem from './HotelItem';
+import { useRecoilValueLoadable } from 'recoil';
+import { fetchHotelListSelector } from '@/recoil/fetchAtoms';
+import { HotelListType } from '@Components/commons/baseType';
 
 const HotelList = () => {
+  const hotelListLoadable = useRecoilValueLoadable(fetchHotelListSelector);
+
   return (
     <HotelListWrapper>
-      <HotelListHeader></HotelListHeader>
-      {Array.from({length: 4}, (_,idx) => {
-        return (<HotelItem key={`hotelItem-${idx}`}/>)
-      })}
+      <HotelListHeader />
+      {hotelListLoadable.state === 'hasValue' &&
+        hotelListLoadable.contents.map((hotelInfo: HotelListType) => {
+          return (<HotelItem key={`hotelItem-${hotelInfo.id}`} {...{hotelInfo}}/>)
+        })}
+
+      {hotelListLoadable.state === 'loading' && <>loading...</>}
+
+      {hotelListLoadable.state === 'hasError' && <>error...</>}
     </HotelListWrapper>
   )
 }

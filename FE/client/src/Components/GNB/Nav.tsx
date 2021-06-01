@@ -22,6 +22,7 @@ const NavItem = styled.span`
   font-size: 1.1rem;
   &:hover{
     cursor: pointer;
+    text-decoration:underline;
   }
 `;
 export default Nav;

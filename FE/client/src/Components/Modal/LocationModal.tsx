@@ -20,7 +20,7 @@ const LocationModal = ({ location }: LocationType) => {
     <LocationModalWrapper location={location}>
       {locationListLoadable.state === 'hasValue' &&
         locationListLoadable.contents.map(({ name, avatarUrl, coordinate }: LocationItemType, idx: number) => {
-          return <LocationItem key={`${idx}`} {...{ name, avatarUrl, coordinate, handleClickLocation }} />
+          return <LocationItem key={`locationItem-${idx}`} {...{ name, avatarUrl, coordinate, handleClickLocation }} />
         })
       }
       {locationListLoadable.state === 'loading' && <>loading...</>}

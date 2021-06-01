@@ -45,6 +45,7 @@ type ChargeRangeType = {
 }
 
 export const getChargeRange = ({ leftRange, rightRange }: ChargeRangeType) => {
+  if(!leftRange && !rightRange) return '금액대 입력';
   return String(leftRange) === '0' && String(rightRange) === '100' ?
     '금액대 입력' : `₩${(Number(leftRange) * 10000).toLocaleString()} - ₩${(Number(rightRange) * 10000).toLocaleString()}`;
 }
