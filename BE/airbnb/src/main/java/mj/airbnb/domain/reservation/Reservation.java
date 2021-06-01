@@ -93,4 +93,12 @@ public class Reservation {
     public void setAccommodationMainImageUrl(String accommodationMainImageUrl) {
         this.accommodationMainImageUrl = accommodationMainImageUrl;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

@@ -34,4 +34,8 @@ public class ReservationRepository {
     public Reservation findById(Long id) {
         return jdbcTemplate.queryForObject(RESERVATION_IDS_BY_ID_SQL, RESERVATION_IDS_ROW_MAPPER, id);
     }
+
+    public void softDeleteReservation(Long reservationId) {
+        jdbcTemplate.update(RESERVATION_SOFT_DELETION_SQL, reservationId);
+    }
 }

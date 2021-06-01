@@ -8,6 +8,7 @@ import mj.airbnb.web.dto.CreatingReservationResponseDto;
 import mj.airbnb.web.dto.ReservationResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,9 +30,16 @@ public class ReservationController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public CreatingReservationResponseDto createReservation(@RequestBody CreatingReservationRequestDto requestDto, @RequestAttribute GitHubUser user) {
         requestDto.setUserId(user.getId());
 
         return reservationService.createReservation(requestDto);
+    }
+
+    @DeleteMapping("/{reservationId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteReservation(@PathVariable Long reservationId) {
+        reservationService.deleteReservation(reservationId);
     }
 }

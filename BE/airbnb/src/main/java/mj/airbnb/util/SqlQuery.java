@@ -63,7 +63,7 @@ public class SqlQuery {
             "ON acc.id = in_detail.accommodation_id " +
             "WHERE acc.id = ?; ";
 
-    public static final String RESERVATIONS_BY_USER_ID_SQL = "SELECT acc.name, acc.address, i.url, acc_detail.description, check_in_date, check_out_date " +
+    public static final String RESERVATIONS_BY_USER_ID_SQL = "SELECT res.id, acc.name, acc.address, i.url, acc_detail.description, check_in_date, check_out_date " +
             "FROM reservation res " +
             "INNER JOIN accommodation acc " +
             "ON res.accommodation_id = acc.id " +
@@ -72,6 +72,7 @@ public class SqlQuery {
             "INNER JOIN accommodation_detail acc_detail " +
             "ON acc.id = acc_detail.accommodation_id " +
             "WHERE user_id = ? " +
+            "AND res.deleted = FALSE " +
             "AND i.main = TRUE " +
             "ORDER BY check_in_date ";
 
@@ -82,4 +83,8 @@ public class SqlQuery {
     public static final String POPULAR_DESTINATIONS_SQL = "SELECT address " +
             "FROM accommodation " +
             "WHERE address LIKE ? ";
+
+    public static final String RESERVATION_SOFT_DELETION_SQL = "UPDATE reservation " +
+            "SET deleted = TRUE " +
+            "WHERE id = ? ";
 }

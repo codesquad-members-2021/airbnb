@@ -34,4 +34,8 @@ public class ReservationService {
 
         return new CreatingReservationResponseDto(reservationRepository.findById(reservationId));
     }
+
+    public void deleteReservation(Long reservationId) {
+        reservationRepository.softDeleteReservation(reservationId);
+    }
 }

@@ -45,6 +45,7 @@ public class RowMapper {
 
     public static final org.springframework.jdbc.core.RowMapper<Reservation> RESERVATION_ROW_MAPPER = (rs, rowNum) -> {
         Reservation reservation = new Reservation();
+        reservation.setId(rs.getLong("id"));
         reservation.setCheckInDate(rs.getDate("check_in_date").toLocalDate());
         reservation.setCheckOutDate(rs.getDate("check_out_date").toLocalDate());
         reservation.setAccommodationName(rs.getString("name"));

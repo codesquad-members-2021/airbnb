@@ -22,6 +22,8 @@ INSERT INTO reservation (check_in_date, check_out_date, accommodation_id, user_i
 INSERT INTO reservation (check_in_date, check_out_date, accommodation_id, user_id) VALUES ('2021-05-03', '2021-05-05', 1, 16694346);
 INSERT INTO reservation (check_in_date, check_out_date, accommodation_id, user_id) VALUES ('2021-01-21', '2021-01-23', 2, 16694346);
 INSERT INTO reservation (check_in_date, check_out_date, accommodation_id, user_id) VALUES ('2021-02-01', '2021-02-03', 2, 16694346);
+INSERT INTO reservation (check_in_date, check_out_date, accommodation_id, user_id) VALUES ('2020-01-21', '2021-01-23', 2, 16694346);
+INSERT INTO reservation (check_in_date, check_out_date, accommodation_id, user_id, deleted) VALUES ('2020-02-01', '2021-02-03', 2, 16694346, 1);
 
 -- -----------------------------------------------------
 -- image 초기값 추가
