@@ -8,7 +8,6 @@ public class GithubAccessTokenResponse {
     private String tokenType;
     private String scope;
 
-
     public GithubAccessTokenResponse() {
     }
 

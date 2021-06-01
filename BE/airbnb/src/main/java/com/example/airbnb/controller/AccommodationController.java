@@ -1,6 +1,5 @@
 package com.example.airbnb.controller;
 
-
 import com.example.airbnb.dto.AccommodationListDTO;
 import com.example.airbnb.service.AccommodationService;
 import com.example.airbnb.utils.SearchConditions;

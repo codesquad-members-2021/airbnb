@@ -10,6 +10,8 @@ public class Accommodation {
     private String badge;
     private String image;
     private Boolean isLike;
+    private Double latitude;
+    private Double longitude;
 
     public Accommodation() {
         this.id = id;
