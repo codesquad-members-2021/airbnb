@@ -6,11 +6,12 @@ import com.codesquad.airbnb.domain.User;
 import com.codesquad.airbnb.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class UserController {
 
     private Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -22,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/oauth/google/callback") // user가 정보사용 승인하면 google이 String code를 queryString으로 보내 준다(?code="")
-    public void oauthLogin(String code) {
+    public ResponseEntity oauthLogin(String code) {
         ResponseEntity<String> accessTokenResponse = userService.createPost(code);
         // response안에 있는 정보를 OAuth 액세스 토큰으로 변환하기
         OAuthToken oAuthToken = userService.getAccessToken(accessTokenResponse);
@@ -32,5 +33,9 @@ public class UserController {
         GoogleUser googleUser = userService.getUserInfo(userInfoResponse);
         logger.info("Google User Name: {}", googleUser.getName());
 
+        User user = googleUser.toUser(oAuthToken.getAccessToken());
+        userService.save(user);
+
+        return new ResponseEntity("로그인 성공", HttpStatus.OK);
     }
 }

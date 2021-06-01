@@ -13,7 +13,6 @@ public class GoogleUser {
     public String picture;
     public String locale;
 
-
     public GoogleUser() {
         // JSON 변환할 때 어떤 생성자로 변환해야 할지 모르기 때문에 기본생성자를 호출함. (그래서 필요)
     }
@@ -27,6 +26,10 @@ public class GoogleUser {
         this.familyName = familyName;
         this.picture = picture;
         this.locale = locale;
+    }
+
+    public User toUser(String accessToken) {
+        return new User(email, name, accessToken);
     }
 
     public String getId() {

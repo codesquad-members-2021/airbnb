@@ -43,8 +43,8 @@ values (3, "[강남,역삼] 강남 아파트에서 살아 보기", 4.82, 37.4978
         "서울특별시 강남구 역삼동", "836-21", 57, 40000, 37000, 1, 1);
 -- user 사용자 --
 insert
-into `user` (google_id)
-values ("bibi");
+into `user` (`email`, `name`, `access_token`)
+values ("bibi@google.com", "bibi", "abcd12345");
 
 -- booking 예약 --
 insert into `booking` (user_id, room_id, check_in, check_out, number_of_people, total_price)

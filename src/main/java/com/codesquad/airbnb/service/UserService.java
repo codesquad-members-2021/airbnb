@@ -89,4 +89,9 @@ public class UserService {
         }
         return googleUser;
     }
+    
+    // TODO : 기존 email이 있다면 User 생성하지 않음. email 없다면 새로운 User를 accessToken과 함께 저장
+    public void save(User user) {
+        userRepository.insert(user);
+    }
 }

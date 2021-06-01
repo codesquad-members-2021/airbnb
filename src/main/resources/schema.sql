@@ -29,20 +29,22 @@ create table `room`
 
 create table `user`
 (
-    `id`        int         not null auto_increment,
-    `google_id` varchar(45) not null,
+    `id`           int         not null auto_increment,
+    `name`         varchar(45) not null,
+    `email`        varchar(45) not null,
+    `access_token` varchar(200) not null,
     primary key (`id`)
 );
 
 create table `booking`
 (
-    `id`               int         not null auto_increment,
-    `room_id`          int         not null,
-    `user_id`          int         not null,
+    `id`               int  not null auto_increment,
+    `room_id`          int  not null,
+    `user_id`          int  not null,
     `check_in`         date not null,
     `check_out`        date not null,
-    `number_of_people` int         not null,
-    `total_price`      int         not null,
+    `number_of_people` int  not null,
+    `total_price`      int  not null,
     primary key (`id`),
     foreign key (`room_id`) references `room` (`id`),
     foreign key (`user_id`) references `user` (`id`)
