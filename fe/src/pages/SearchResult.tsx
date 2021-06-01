@@ -39,6 +39,8 @@ const HeaderContainer = styled.div<serachBar>`
   box-shadow: 0px 0px 4px rgba(129, 82, 82, 0.5),
     0px 2px 4px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(4px);
+  position: relative;
+  z-index: 2;
 `;
 
 const MainContainer = styled.main`

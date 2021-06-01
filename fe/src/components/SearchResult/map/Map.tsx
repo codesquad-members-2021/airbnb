@@ -23,5 +23,6 @@ export default Map;
 const MapWrap = styled.section`
   width: 50%;
   height: 1024px;
-  z-index: 0;
+  position: relative;
+  z-index: 1;
 `;
