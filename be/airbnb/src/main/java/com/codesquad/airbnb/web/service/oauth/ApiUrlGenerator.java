@@ -7,19 +7,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class ApiUrlGenerator {
     private final GithubApi githubApi;
-    private final OAuthSecret OAuthSecret;
+    private final OAuthSecret oAuthSecret;
 
-    public ApiUrlGenerator(GithubApi githubApi, OAuthSecret OAuthSecret) {
+    public ApiUrlGenerator(GithubApi githubApi, OAuthSecret oAuthSecret) {
         this.githubApi = githubApi;
-        this.OAuthSecret = OAuthSecret;
+        this.oAuthSecret = oAuthSecret;
     }
 
     public String githubLoginUrl() {
         return githubApi.getLoginUrl() +
                 "?" +
-                OAuthSecret.getClientIdKey() +
+                oAuthSecret.getClientIdKey() +
                 "=" +
-                OAuthSecret.getClientIdValue() +
+                oAuthSecret.getClientIdValue() +
                 "&" +
                 githubApi.getScopeKey() +
                 "=" +
