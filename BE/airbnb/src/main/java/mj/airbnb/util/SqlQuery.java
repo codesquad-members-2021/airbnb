@@ -18,6 +18,7 @@ public class SqlQuery {
 
     // SQL 정리
     public static final String ACCOMMODATIONS_SQL = BASE_SQL + "WHERE " + MAIN_IMAGE_CONDITION;
+
     public static final String ACCOMMODATIONS_BY_DESTINATION_SQL = BASE_SQL +
             "WHERE " + MAIN_IMAGE_CONDITION +
             "AND " + DESTINATION_CONDITION;
@@ -54,11 +55,4 @@ public class SqlQuery {
             "AND " + DATE_CONDITION +
             "AND " + PRICE_CONDITION +
             "AND " + PEOPLE_CONDITION;
-
-    public static final String ACCOMMODATIONS_BY_PRICE_AND_PEOPLE_AND_DATE_SQL = BASE_SQL +
-            "WHERE " + MAIN_IMAGE_CONDITION +
-            "AND " + DATE_CONDITION +
-            "AND " + PRICE_CONDITION +
-            "AND " + PEOPLE_CONDITION +
-            "AND " + DESTINATION_CONDITION;
 }
