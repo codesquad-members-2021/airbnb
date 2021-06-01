@@ -1,6 +1,6 @@
 import { atom, selector } from "recoil";
 import { getDate, currentDate } from '@/utils/calendarUtil';
-import { getNumberOfGuest, getUserDate } from "@/utils/serviceUtils";
+import { getChargeRange, getNumberOfGuest, getUserDate } from "@/utils/serviceUtils";
 
 export const monthIndexAtom = atom<number>({
   key: 'monthIndexAtom',
@@ -117,8 +117,7 @@ export const userInfoSelector = selector({
     const { checkIn, checkOut, leftRange, rightRange, adult, child, baby } = get(userInfoAtom);
     return {
       checkDate: getUserDate({checkIn, checkOut}),
-      range: leftRange === '0' && rightRange === '100' ?
-      '금액대 입력' : `₩${(leftRange * 10000).toLocaleString()} - ₩${(rightRange * 10000).toLocaleString()}`,
+      range: getChargeRange({leftRange, rightRange}),
       guest: getNumberOfGuest({adult, child, baby})
     }
   }

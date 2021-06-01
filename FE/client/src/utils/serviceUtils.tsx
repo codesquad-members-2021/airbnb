@@ -1,4 +1,4 @@
-import { PersonnelAtomType } from "@/recoil/atoms";
+import { PersonnelAtomType, RangeAtomType } from "@/recoil/atoms";
 import { getFormattingDateFromTime } from '@/utils/calendarUtil';
 
 export const delay = (ms: number) => new Promise((_) => setTimeout(_, ms));
@@ -37,4 +37,14 @@ export const makeQueryString = (object: QueryStringType) => {
   return Object.keys(object)
     .map(key => `${encodeURIComponent(key)}=${object[key] || object[key] === 0 ? encodeURIComponent(object[key]) : ''}`)
     .join('&');
+}
+
+type ChargeRangeType = {
+  leftRange : string | number;
+  rightRange : string | number;
+}
+
+export const getChargeRange = ({leftRange, rightRange} : ChargeRangeType) => {
+  return String(leftRange) === '0' && String(rightRange) === '100' ?
+  '금액대 입력' : `₩${(Number(leftRange) * 10000).toLocaleString()} - ₩${(Number(rightRange) * 10000).toLocaleString()}`;
 }

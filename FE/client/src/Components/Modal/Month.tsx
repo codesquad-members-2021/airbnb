@@ -23,7 +23,9 @@ const Month = ({ left, right, date, handleClickMonthMove }: MonthProps) => {
     const targetTime = Number(currentTarget.dataset.date);
     setCalendarClickState(([checkInTime, checkOutTime]) => {
       if (!checkInTime) return [targetTime];
-      if (!checkOutTime) return [checkInTime, targetTime];
+      if (!checkOutTime) {
+        return checkInTime > targetTime ? [targetTime, checkInTime] : [checkInTime, targetTime];
+      }
       if (checkOutTime === targetTime) return [targetTime, checkOutTime];
       return targetTime < checkInTime ? [targetTime, checkOutTime] : [checkInTime, targetTime];
     })
