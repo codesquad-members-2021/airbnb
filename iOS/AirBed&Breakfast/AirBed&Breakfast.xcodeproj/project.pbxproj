@@ -18,6 +18,7 @@
 		885221EC2665D85800740770 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885221EB2665D85800740770 /* NotificationNameExtension.swift */; };
 		885221F02665E09900740770 /* GuestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885221EF2665E09900740770 /* GuestType.swift */; };
 		885221F42665FF2800740770 /* AccommodationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885221F32665FF2800740770 /* AccommodationSelectViewController.swift */; };
+		885221F826660CF900740770 /* CalendarControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885221F726660CF900740770 /* CalendarControlViewModel.swift */; };
 		885CEB4C26538DDC00B3291F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB4B26538DDC00B3291F /* SearchViewController.swift */; };
 		885CEB512653957A00B3291F /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885CEB4F2653957A00B3291F /* SearchResultCollectionViewCell.swift */; };
 		885CEB522653957A00B3291F /* SearchResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 885CEB502653957A00B3291F /* SearchResultCollectionViewCell.xib */; };
@@ -60,6 +61,7 @@
 		885221EB2665D85800740770 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		885221EF2665E09900740770 /* GuestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestType.swift; sourceTree = "<group>"; };
 		885221F32665FF2800740770 /* AccommodationSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationSelectViewController.swift; sourceTree = "<group>"; };
+		885221F726660CF900740770 /* CalendarControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarControlViewModel.swift; sourceTree = "<group>"; };
 		885CEB4B26538DDC00B3291F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		885CEB4F2653957A00B3291F /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		885CEB502653957A00B3291F /* SearchResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			children = (
 				886061312657964A00681808 /* DayLabel.swift */,
 				88606135265796AA00681808 /* DayRangeIndicatorView.swift */,
+				885221F726660CF900740770 /* CalendarControlViewModel.swift */,
 				88606149265B66D100681808 /* CalendarControlView.swift */,
 			);
 			path = CalendarView;
@@ -367,6 +370,7 @@
 				8860614A265B66D100681808 /* CalendarControlView.swift in Sources */,
 				8843A7C126523EA80068B4E3 /* WelcomeViewController.swift in Sources */,
 				8843A7BD26523EA80068B4E3 /* AppDelegate.swift in Sources */,
+				885221F826660CF900740770 /* CalendarControlViewModel.swift in Sources */,
 				88606176265F8A0700681808 /* NumberOfHeadSelectionView.swift in Sources */,
 				886061322657964A00681808 /* DayLabel.swift in Sources */,
 				885CEB4C26538DDC00B3291F /* SearchViewController.swift in Sources */,
