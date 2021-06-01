@@ -53,12 +53,14 @@ class ReservationDetailViewController: UIViewController {
         })
         
         viewModel?.didUpdatePriceRange(completion: { (newLowestPrice, newHighestPrice) in
-            self.priceRangeDetailLabel.text = "\(String(format: "0.0f", newLowestPrice)) - \(String(format: "0.0f", newHighestPrice))"
+            self.priceRangeDetailLabel.text = "\(String(format: "%.0f", newLowestPrice)) - \(String(format: "%.0f", newHighestPrice))"
             self.nextButton.isEnabled = true
             self.deleteCurrentDetailButton.isEnabled = true
         })
         
         viewModel?.didUpdateGuestList(completion: { (guestList) in
+            NotificationCenter.default.post(name: .didChangeGuestNumber, object: nil, userInfo: guestList)
+            
             if guestList[.adult] == 0 &&
                guestList[.child] == 0 &&
                guestList[.infant] == 0
@@ -157,8 +159,6 @@ extension ReservationDetailViewController: ReservationDetailViewControllerProtoc
     
     func inject(viewModel: ReservationDetailViewModelProtocol) {
         self.viewModel = viewModel
-        print(viewModel)
-        print("inject")
     }
     
 }

@@ -38,8 +38,6 @@ class ReservationDetailViewModel {
 extension ReservationDetailViewModel: ReservationDetailViewModelProtocol {
     
     func didUpdateGuestList(completion: @escaping ([GuestType : Int]) -> ()) {
-        NotificationCenter.default.post(name: .didChangeGuestNumber, object: nil, userInfo: self.guestList)
-        
         $guestList
             .receive(on: DispatchQueue.main)
             .sink { (guestList) in
