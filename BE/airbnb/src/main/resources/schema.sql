@@ -9,8 +9,11 @@ CREATE TABLE IF NOT EXISTS `accommodation`
     reviewCount  INT,
     charge       INT,
     badge        varchar(64),
+    `options`    varchar(640),
     image        varchar(300),
-    isLike       TINYINT(1)
+    isLike       TINYINT(1),
+    `latitude`     DOUBLE(10,10),
+    `longitude`    DOUBLE(10,10)
 ) DEFAULT CHARSET = utf8;
 
 DESC accommodation;

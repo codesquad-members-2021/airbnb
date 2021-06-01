@@ -82,6 +82,14 @@ public class Accommodation {
         return this;
     }
 
+경    public String getBadge() {
+        return badge;
+    }
+
+    public void setBadge(String badge) {
+        this.badge = badge;
+    }
+
     public String getOptions() {
         return this.options;
     }
