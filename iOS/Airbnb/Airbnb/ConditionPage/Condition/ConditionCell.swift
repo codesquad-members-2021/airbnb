@@ -35,17 +35,22 @@ extension ConditionCell {
         detailLabel.translatesAutoresizingMaskIntoConstraints = false
         detailLabel.adjustsFontForContentSizeCategory = true
         detailLabel.textColor = .gray
+        detailLabel.textAlignment = .right
         
-        let inset = CGFloat(10)
+        let inset = CGFloat(11)
         NSLayoutConstraint.activate([
-            conditionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
-            conditionLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+            conditionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            conditionLabel.topAnchor.constraint(equalTo: topAnchor, constant: inset),
+            conditionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset),
+            detailLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            detailLabel.topAnchor.constraint(equalTo: topAnchor, constant: inset),
+            detailLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset)
         ])
-        
-        NSLayoutConstraint.activate([
-            detailLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
-            detailLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
-        ])
+    }
+    
+    func fillUI(with cellInfo: CellInfo) {
+        conditionLabel.text = cellInfo.title
+        detailLabel.text = cellInfo.detail
     }
     
 }
