@@ -100,6 +100,7 @@ interface StyleType {
 }
 
 const StyledFormCalendar = styled.div<StyleType>`
+  z-index: 10;
   overflow: hidden;
   position: absolute;
   top: 100px;

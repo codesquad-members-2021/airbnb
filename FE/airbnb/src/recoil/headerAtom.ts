@@ -16,6 +16,11 @@ export const isFormOpenedState = atom<boolean>({
   default: false,
 });
 
+export const locationState = atom({
+  key: 'locationState',
+  default: '',
+});
+
 export const priceState = atom({
   key: 'priceState',
   default: { min: 10000, max: 1000000 },

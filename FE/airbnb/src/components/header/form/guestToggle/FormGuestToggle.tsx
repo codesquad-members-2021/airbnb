@@ -21,6 +21,7 @@ const FormGuestToggle = ({ toggleRef }: Props) => {
 export default FormGuestToggle;
 
 const StyledFormGuestToggle = styled.div`
+  z-index: 10;
   position: absolute;
   display: flex;
   flex-direction: column;

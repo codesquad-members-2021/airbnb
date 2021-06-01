@@ -61,7 +61,9 @@ const FormPrice = () => {
 
 export default FormPrice;
 
-const StyledFormPriceWrapper = styled.div``;
+const StyledFormPriceWrapper = styled.div`
+  position: relative;
+`;
 
 const StyledFormPrice = styled.div`
   height: 100%;

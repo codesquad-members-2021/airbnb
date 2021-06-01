@@ -1,8 +1,8 @@
-import { useRef, useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRef, useEffect, FormEvent } from 'react';
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useToggle from '../../../hooks/useToggle';
-import { isFormOpenedState } from '../../../recoil/headerAtom';
+import { isFormOpenedState, locationState } from '../../../recoil/headerAtom';
 import HoverBlock from '../HoverBlock';
 import FormColumn from './FormColumn';
 import FormLocationToggle from './FormLocationToggle';
@@ -13,20 +13,40 @@ const FormLocation = () => {
   const toggleRef = useRef<HTMLDivElement>(null);
   const { open } = useToggle({ clickRef, toggleRef });
   const setIsFormOpened = useSetRecoilState(isFormOpenedState);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [location, setLocation] = useRecoilState(locationState);
+  const clearLocation = useResetRecoilState(locationState);
 
   const isShowDeleteBtn = open;
 
   useEffect(() => {
-    if (open) setIsFormOpened(true);
-    else setIsFormOpened(false);
+    if (open) {
+      setIsFormOpened(true);
+      if (inputRef.current) inputRef.current.focus();
+    } else setIsFormOpened(false);
   }, [open]);
+
+  const handleInput = (e: FormEvent<HTMLInputElement>) => {
+    setLocation(e.currentTarget.value);
+  };
+
+  const handleDeleteBtn = () => {
+    clearLocation();
+    if (inputRef.current) inputRef.current.value = '';
+  };
 
   return (
     <StyledLocationWrapper>
       <StyledFormLocation ref={clickRef} data-type='location'>
         <HoverBlock color='gray4' className='hover__location' dataKey='location' isModal={open}>
-          <FormColumn title='위치' description='어디로 여행가세요' isInput={true} />
-          {isShowDeleteBtn && <DeleteBtn />}
+          <FormColumn
+            title='위치'
+            description='어디로 여행가세요'
+            isInput={true}
+            inputRef={inputRef}
+            handleInput={handleInput}
+          />
+          {isShowDeleteBtn && <DeleteBtn onClick={handleDeleteBtn} />}
         </HoverBlock>
       </StyledFormLocation>
       {open && <FormLocationToggle toggleRef={toggleRef} />}
