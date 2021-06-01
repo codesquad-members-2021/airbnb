@@ -6,10 +6,9 @@ const HotelList = () => {
   return (
     <HotelListWrapper>
       <HotelListHeader></HotelListHeader>
-      <HotelItem />
-      <HotelItem />
-      <HotelItem />
-      <HotelItem />
+      {Array.from({length: 4}, (_,idx) => {
+        return (<HotelItem key={`hotelItem-${idx}`}/>)
+      })}
     </HotelListWrapper>
   )
 }
