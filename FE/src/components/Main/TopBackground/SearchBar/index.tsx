@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import { forwardRef, useEffect, useRef } from 'react';
 import { FiSearch } from 'react-icons/fi';
 
+import { Link } from '../../../../util/MyRouter';
 import { useMainDispatch, useMainState } from '../../../../contexts/MainContext';
 import { useSearchBarState } from '../../../../contexts/SearchBarContext';
 import { ITextTopBackground } from '../../../../util/reference';
@@ -9,10 +10,11 @@ import { CALENDAR_FOCUS, FEE_FOCUS, PEOPLE_FOCUS } from './const';
 import { createMonthDateText } from '../../../../util/calendar';
 
 import { ResponsiveFluid } from '../../../Common/ResponsiveFluid';
-import DefaultButton from '../../../Common/DefaultButton';
+
 import CalendarModal from './Modals/CalendarModal';
 import FeeModal from './Modals/FeeModal';
 import PeopleModal from './Modals/PeopleModal';
+
 
 
 interface ISearchMenuItem {
@@ -82,7 +84,7 @@ const SearchBar = forwardRef((
       })}
 
       {idx === menuItems.length - 1 && (
-        <SearchButton>
+        <SearchButton to={"/search"}>
           <FiSearch />
         </SearchButton>
       )}
@@ -197,7 +199,7 @@ const SearchMenuItem = styled.li<ISearchMenuItem>`
   }
 `;
 
-const SearchButton = styled(DefaultButton)`
+const SearchButton = styled(Link)`
   cursor: pointer;
 
   display: flex;

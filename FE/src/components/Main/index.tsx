@@ -26,8 +26,7 @@ const Main = () => {
     const target = e.target as HTMLElement;
     const isSearchBarItem = searchBarRef.current?.contains(target);
     const isAuthModalItem = authModalRef.current?.contains(target);
-
-    if (searchBarClickedIdx > 0 || !isSearchBarItem)
+    if (searchBarClickedIdx > -1 && !isSearchBarItem)
       mainDispatch({ type: 'SET_SEARCHBAR_CLICKED_IDX', payload: -1 });
     if (!isAuthModalItem)
       mainDispatch({ type: 'SET_AUTH_MODAL_VISIBLE', payload: false });
