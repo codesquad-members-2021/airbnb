@@ -3,7 +3,7 @@ package com.example.airbnb.service;
 import com.example.airbnb.domain.Accommodation;
 import com.example.airbnb.dto.AccommodationDTO;
 import com.example.airbnb.dto.AccommodationListDTO;
-import com.example.airbnb.repository.AccommodationDAO;
+import com.example.airbnb.repository.AccommodationRepository;
 import com.example.airbnb.utils.SearchConditions;
 import org.springframework.stereotype.Service;
 
@@ -14,24 +14,24 @@ import java.util.List;
 @Service
 public class AccommodationService {
 
-    private final AccommodationDAO accommodationDAO;
+    private final AccommodationRepository accommodationRepository;
 
-    public AccommodationService(AccommodationDAO accommodationDAO) {
-        this.accommodationDAO = accommodationDAO;
+    public AccommodationService(AccommodationRepository accommodationRepository) {
+        this.accommodationRepository = accommodationRepository;
     }
 
     public AccommodationListDTO availableAccommodationsList(SearchConditions conditions) {
-        List<Accommodation> accommodationList = accommodationDAO.findAll();
+        List<Accommodation> accommodationList = accommodationRepository.findAll();
         return domainListToDTOList(conditionValidate(accommodationList, conditions));
     }
 
     private List<Accommodation> conditionValidate(List<Accommodation> accommodationList, SearchConditions conditions) {
-        if (isDateValidated(conditions)) {
-            accommodationList = filterdDate(accommodationList);
-        }
-        if (isPeopleCountValidated(conditions)) {
-            accommodationList = filterdPeopleCount(accommodationList);
-        }
+        //if (isDateValidated(conditions)) {
+        //    accommodationList = filterdDate(accommodationList);
+        //}
+        //if (isPeopleCountValidated(conditions)) {
+        //    accommodationList = filterdPeopleCount(accommodationList);
+        //}
         return accommodationList;
     }
 
@@ -68,25 +68,25 @@ public class AccommodationService {
     }
 
     public AccommodationListDTO likeMarkredList() {
-        List<Accommodation> markredList = accommodationDAO.findAllByLikeTrue();
+        List<Accommodation> markredList = accommodationRepository.findAllByLikeTrue();
         return domainListToDTOList(markredList);
     }
 
     public Accommodation findById(Long id) {
-        return accommodationDAO.findById(id);
+        return accommodationRepository.findById(id);
     }
 
     public String insert(String title) {
         Accommodation accommodation = new Accommodation();
         accommodation.setTitle(title);
-        accommodationDAO.insert(accommodation);
+        accommodationRepository.insert(accommodation);
         return "OK";
     }
 
     public String delete(String title) {
         Accommodation accommodation = new Accommodation();
         accommodation.setTitle(title);
-        accommodationDAO.delete(accommodation);
+        accommodationRepository.delete(accommodation);
         return "OK";
     }
 

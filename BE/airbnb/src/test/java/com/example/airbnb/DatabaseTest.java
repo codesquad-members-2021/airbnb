@@ -1,13 +1,12 @@
 package com.example.airbnb;
 
 import com.example.airbnb.domain.Accommodation;
-import com.example.airbnb.repository.AccommodationDAO;
+import com.example.airbnb.repository.AccommodationRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.bind.Name;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class DatabaseTest {
 
     @Autowired
-    private AccommodationDAO accommodationDAO;
+    private AccommodationRepository accommodationRepository;
 
     private final Logger logger = LoggerFactory.getLogger(DatabaseTest.class);
 
@@ -31,7 +30,7 @@ public class DatabaseTest {
     @Test()
     @DisplayName("Read")
     void findById() {
-        Accommodation accommodation = accommodationDAO.findById(1L);
+        Accommodation accommodation = accommodationRepository.findById(1L);
         logger.info(accommodation.toString());
         //System.out.println(accommodationService.findById(1L).getTitle());
 
@@ -42,7 +41,7 @@ public class DatabaseTest {
     @Test()
     @DisplayName("Count Entity")
     void countAll() {
-        System.out.println(accommodationDAO.countAllAccommodation());
+        System.out.println(accommodationRepository.countAllAccommodation());
         //logger.info("countAll : {}",ret);
 
     }

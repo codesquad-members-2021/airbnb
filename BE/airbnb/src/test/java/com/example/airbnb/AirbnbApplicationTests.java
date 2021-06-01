@@ -1,6 +1,6 @@
 package com.example.airbnb;
 
-import com.example.airbnb.repository.AccommodationDAO;
+import com.example.airbnb.repository.AccommodationRepository;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ class AirbnbApplicationTests {
 	private ApplicationContext ctx;
 
 	@Autowired
-	private AccommodationDAO accommodationDAO;
+	private AccommodationRepository accommodationRepository;
 
 	private Logger logger = LoggerFactory.getLogger(AirbnbApplicationTests.class);
 
