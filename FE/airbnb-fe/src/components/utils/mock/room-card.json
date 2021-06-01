@@ -1,0 +1,84 @@
+{
+  "accommodationList": [
+    {
+      "id": 1,
+      "title": "더 스위트 캐슬, 달콤한 휴식",
+      "reviewRating": 55,
+      "reviewCount": null,
+      "charge": 75000,
+      "badge": "",
+      "image": "https://github.com/d-h-k/airbnb/blob/dev-BE/images/acmd/10.jpeg?raw=true",
+      "like": false
+    },
+    {
+      "id": 2,
+      "title": "교보문고 인접거리, 강남대로 중심 최고의 전망",
+      "reviewRating": 165,
+      "reviewCount": null,
+      "charge": 96000,
+      "badge": "",
+      "image": "https://github.com/d-h-k/airbnb/blob/dev-BE/images/acmd/12.jpeg?raw=true",
+      "like": false
+    },
+    {
+      "id": 3,
+      "title": "스튜디오 오아시스 스위트(Studio Oasis Suite) 양재역 5분 거리",
+      "reviewRating": 0,
+      "reviewCount": null,
+      "charge": 90190,
+      "badge": "슈퍼호스트",
+      "image": "https://github.com/d-h-k/airbnb/blob/dev-BE/images/acmd/3.jpeg?raw=true",
+      "like": false
+    },
+    {
+      "id": 4,
+      "title": "Private Comfy Studio - 2 Queen Beds",
+      "reviewRating": 82,
+      "reviewCount": null,
+      "charge": 85220,
+      "badge": "",
+      "image": "https://github.com/d-h-k/airbnb/blob/dev-BE/images/acmd/4.jpeg?raw=true",
+      "like": false
+    },
+    {
+      "id": 5,
+      "title": "Kang-Nam_Cozy_Clean_Quiet",
+      "reviewRating": 82,
+      "reviewCount": null,
+      "charge": 66800,
+      "badge": "",
+      "image": "https://github.com/d-h-k/airbnb/blob/dev-BE/images/acmd/5.jpeg?raw=true",
+      "like": false
+    },
+    {
+      "id": 6,
+      "title": "NEW)강남역1분! 알콜소독! 영화&커피 Healing House/Movie&Coffee",
+      "reviewRating": 22,
+      "reviewCount": null,
+      "charge": 79167,
+      "badge": "청결강화",
+      "image": "https://github.com/d-h-k/airbnb/blob/dev-BE/images/acmd/6.jpeg?raw=true",
+      "like": false
+    },
+    {
+      "id": 7,
+      "title": "강남,역삼역 15분 넓어요 자가격리불가능Gangnam St.15min wide spaceⅡ",
+      "reviewRating": 51,
+      "reviewCount": null,
+      "charge": 53707,
+      "badge": "",
+      "image": "https://github.com/d-h-k/airbnb/blob/dev-BE/images/acmd/7.jpeg?raw=true",
+      "like": false
+    },
+    {
+      "id": 8,
+      "title": "3 Mins Gangnam STN *Twin Bed* 주차불가*",
+      "reviewRating": 34,
+      "reviewCount": null,
+      "charge": 52567,
+      "badge": "",
+      "image": "https://github.com/d-h-k/airbnb/blob/dev-BE/images/acmd/8.jpeg?raw=true",
+      "like": false
+    }
+  ]
+}

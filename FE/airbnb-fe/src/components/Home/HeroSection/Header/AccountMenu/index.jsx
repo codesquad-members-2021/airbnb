@@ -46,6 +46,8 @@ const IconContainer = styled.div`
   padding-left: 0.3rem;
   width: 4.8rem;
   height: 2.5rem;
+  border: 1px solid ${({ theme }) => theme.colors.gray4};
+
   border-radius: 30px;
   &:hover {
     cursor: pointer;
