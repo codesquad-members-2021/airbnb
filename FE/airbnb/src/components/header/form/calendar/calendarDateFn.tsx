@@ -1,4 +1,5 @@
 import { calendarDateType, dayType } from '../../../../recoil/calendarAtom';
+import { pipe } from '../../../../util/util';
 
 export const getMonthData = ({ year, month, todayDate }: calendarDateType): dayType[][] => {
   const { year: todayYear, month: todayMonth, date: todayDay } = todayDate;
@@ -47,3 +48,5 @@ export const dateToString = (date: date | void): string => {
   if (day < 10) newDay = '0' + day;
   return `${year}-${newMonth}-${newDay}`;
 };
+
+export const timeToDate = pipe(getDateByTime, dateToString);

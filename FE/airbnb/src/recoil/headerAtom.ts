@@ -1,5 +1,7 @@
 import { atom, selector } from 'recoil';
+import { timeToDate } from '../components/header/form/calendar/calendarDateFn';
 import { guestStateType } from '../components/header/form/guestToggle/guestType';
+import { selectDateState } from './calendarAtom';
 
 export const tabSelectedState = atom<boolean[]>({
   key: 'tabSelectedState',
@@ -39,4 +41,20 @@ export const pauseBtnLastPositionState = atom({
 export const guestState = atom<guestStateType>({
   key: 'guestState',
   default: { adult: 0, child: 0, infants: 0 },
+});
+
+export const reserveInfoSelector = selector({
+  key: 'reserveInformation',
+  get: ({ get }) => {
+    const address = get(locationState);
+    const selectDateData = get(selectDateState);
+    const checkIn = timeToDate(selectDateData.checkIn);
+    const checkOut = timeToDate(selectDateData.checkOut);
+    const priceData = get(priceState);
+    const minCharge = priceData.min;
+    const maxCharge = priceData.max;
+    const guestData = get(guestState);
+    const guests = Object.values(guestData).reduce((acc, cur) => acc + cur);
+    return { address, checkIn, checkOut, minCharge, maxCharge, guests };
+  },
 });
