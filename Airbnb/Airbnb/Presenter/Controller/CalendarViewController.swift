@@ -105,7 +105,7 @@ private extension CalendarViewController {
                 let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "PriceVC") as! PriceViewController
                 nextVC.modalTransitionStyle = .crossDissolve
                 nextVC.modalPresentationStyle = .fullScreen
-                nextVC.setupInfo(of: self!.locationLabel.text!, of: self!.dateLabel.text!)
+                nextVC.setupInfo(of: self?.locationLabel.text ?? "", of: self?.dateLabel.text ?? "")
                 self?.present(nextVC, animated: true, completion: nil)
             }).disposed(by: rx.disposeBag)
     }

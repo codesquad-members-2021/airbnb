@@ -57,7 +57,7 @@ private extension SearchViewController {
         searchController.searchBar.rx.searchButtonClicked
             .subscribe(onNext: { [weak self] _ in
                 let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "CanlendarVC") as! CalendarViewController
-                nextVC.setupLocation(self!.searchController.searchBar.text!)
+                nextVC.setupLocation(self?.searchController.searchBar.text ?? "")
                 nextVC.modalTransitionStyle = .crossDissolve
                 nextVC.modalPresentationStyle = .fullScreen
                 self?.dismiss(animated: true, completion: nil)

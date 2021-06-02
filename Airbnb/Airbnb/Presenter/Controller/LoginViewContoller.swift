@@ -43,12 +43,12 @@ private extension LoginViewController {
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
                 guard let url = URL(string: Login.post) else { return }
-                APIService.post(url, parameter: LoginInfo(userId: self!.idTextField.text!, password: self!.passwordTextField.text!))
+                APIService.post(url, parameter: LoginInfo(userId: self?.idTextField.text ?? "", password: self?.passwordTextField.text ?? ""))
                     .subscribe(onNext: { [weak self] data in
                         self?.view.subviews.forEach {
                             $0.removeFromSuperview()
                         }
-                        self?.view.addSubview(self!.loginView)
+                        self?.view.addSubview(self?.loginView ?? UIView())
                     }, onError: { error in
                         print(error.localizedDescription)
                     })
@@ -60,7 +60,7 @@ private extension LoginViewController {
         logInButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let url = URL(string: Login.post) else { return }
-                APIService.post(url, parameter: LoginInfo(userId: self!.idTextField.text!, password: self!.passwordTextField.text!))
+                APIService.post(url, parameter: LoginInfo(userId: self?.idTextField.text ?? "", password: self?.passwordTextField.text ?? ""))
                     .subscribe(onNext: { [weak self] _ in
                         self?.view.subviews.forEach {
                             $0.removeFromSuperview()
@@ -69,7 +69,7 @@ private extension LoginViewController {
                     }, onError: { error in
                         print(error.localizedDescription)
                     })
-                    .disposed(by: self!.rx.disposeBag)
+                    .disposed(by: self?.rx.disposeBag ?? DisposeBag())
             }).disposed(by: rx.disposeBag)
     }
 }

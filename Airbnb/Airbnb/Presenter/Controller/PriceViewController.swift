@@ -85,12 +85,12 @@ private extension PriceViewController {
             .subscribe(onNext: { [weak self] next in
                 switch next {
                 case false:
-                    self!.nextButton.isEnabled = false
-                    self!.nextButton.setTitleColor(UIColor.systemGray2, for: .normal)
-                    self!.skipDeleteButton.setTitle("건너뛰기", for: .normal)
+                    self?.nextButton.isEnabled = false
+                    self?.nextButton.setTitleColor(UIColor.systemGray2, for: .normal)
+                    self?.skipDeleteButton.setTitle("건너뛰기", for: .normal)
                 case true:
-                    self!.nextButton.isEnabled = true
-                    self!.nextButton.setTitleColor(UIColor.black, for: .normal)
+                    self?.nextButton.isEnabled = true
+                    self?.nextButton.setTitleColor(UIColor.black, for: .normal)
                     self?.skipDeleteButton.setTitle("지우기", for: .normal)
                 }
             }).disposed(by: rx.disposeBag)
@@ -116,7 +116,7 @@ private extension PriceViewController {
         nextButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "GuestVC") as! GuestViewController
-                nextVC.setupInfo(self!.locationLabel.text!, self!.dateLabel.text!, self!.priceLabel.text!)
+                nextVC.setupInfo(self?.locationLabel.text ?? "", self?.dateLabel.text ?? "", self?.priceLabel.text ?? "")
                 nextVC.modalTransitionStyle = .crossDissolve
                 nextVC.modalPresentationStyle = .fullScreen
                 self?.present(nextVC, animated: true, completion: nil)
