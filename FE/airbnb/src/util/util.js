@@ -17,3 +17,15 @@ export const getUrlParams = () => {
 
 export const delay = (time, value = '') =>
   new Promise((resolve) => setTimeout(() => resolve(value), time));
+
+export const throttle = (fn, time) => {
+  let timer = null;
+  return (e) => {
+    if (!timer) {
+      timer = setTimeout(function () {
+        timer = null;
+        fn(e);
+      }, time);
+    }
+  };
+};

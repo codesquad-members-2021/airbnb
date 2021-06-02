@@ -6,7 +6,6 @@ import ReserveFormHeader from './ReserveFormHeader';
 import ReserveFormInfo from './ReserveFormInfo';
 import ReserveFromPrice from './ReserveFromPrice';
 import { createPortal } from 'react-dom';
-import usePortal from '../../../hooks/usePortal';
 
 interface Props {
   toggleRef: RefObject<HTMLDivElement>;
