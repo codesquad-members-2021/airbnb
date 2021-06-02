@@ -43,12 +43,13 @@ const RoomCard = ({roomInfo: { thum_image, room_type, room_name, room_label, sta
 )};
 
 const RoomCardLayout = styled.div`
-    border: 1px solid pink;
+    /* border: 1px solid pink; */
     display: flex;
 
     & > div {
         width: 50%;
         padding: 2rem;
+        border-bottom: 1px solid #c9c8c8;
     }
 
     img {
