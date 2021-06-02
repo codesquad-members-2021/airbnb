@@ -1,9 +1,9 @@
 import { useReducer } from 'react';
 
-// Types
-export type TCanvasSize = {
-  width: number,
-  height: number,
+// export interface
+export interface ICanvasSize {
+  width: number;
+  height: number;
 }
 
 // ===
