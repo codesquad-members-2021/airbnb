@@ -28,10 +28,8 @@ export type RangeStateType = {
 export type LocationItemType = {
   name: string;
   avatarUrl: string;
-  coordinate: {
-    x: number;
-    y: number;
-  }
+  x: number;
+  y: number;
 }
 
 export type HotelListType = {

@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import { LocationItemType } from '../commons/baseType';
 
 type LocationPropType = LocationItemType & {
-  handleClickLocation: ({ name, coordinate }: LocationAtomType) => () => void;
+  handleClickLocation: ({ name, x, y }: LocationAtomType) => () => void;
 }
 
-const LocationItem = ({ name, avatarUrl, coordinate, handleClickLocation }: LocationPropType) => {
+const LocationItem = ({ name, avatarUrl, x, y, handleClickLocation }: LocationPropType) => {
   return (
-    <LocationItemWrapper onClick={handleClickLocation({ name, coordinate })} >
+    <LocationItemWrapper onClick={handleClickLocation({ name, x, y })} >
       <ImageTag src={avatarUrl} alt="" />
       <span>{name}</span>
     </LocationItemWrapper>

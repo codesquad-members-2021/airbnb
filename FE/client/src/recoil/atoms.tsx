@@ -1,6 +1,7 @@
 import { atom, selector } from "recoil";
 import { getDate, currentDate } from '@/utils/calendarUtil';
 import { getChargeRange, getNumberOfGuest, getUserDate } from "@/utils/serviceUtils";
+import { BASE_ZOOM_LEVEL, SEOUL_LOCATION } from "@/Components/commons/base";
 
 export const monthIndexAtom = atom<number>({
   key: 'monthIndexAtom',
@@ -79,29 +80,25 @@ export const rangeAtom = atom<RangeAtomType>({
 
 export type LocationAtomType = {
   name: string;
-  coordinate: {
-    x: number;
-    y: number;
-  }
+  x: number;
+  y: number;
 }
 
 export const locationAtom = atom<LocationAtomType>({
   key: 'locationAtom',
   default: {
     name: '',
-    coordinate: {
-      x: 0,
-      y: 0
-    }
+    x: 0,
+    y: 0
   }
 })
 
 export const userInfoAtom = atom<any>({
   key: 'userInfoAtom',
   default: {
-    x: '',
-    y: '',
-    zoom: '',
+    x: SEOUL_LOCATION.x,
+    y: SEOUL_LOCATION.y,
+    zoom: BASE_ZOOM_LEVEL,
     checkIn: '',
     checkOut: '',
     leftRange: '',
@@ -117,9 +114,9 @@ export const userInfoSelector = selector({
   get: ({ get }) => {
     const { checkIn, checkOut, leftRange, rightRange, adult, child, baby } = get(userInfoAtom);
     return {
-      checkDate: getUserDate({checkIn, checkOut}),
-      range: getChargeRange({leftRange, rightRange}),
-      guest: getNumberOfGuest({adult, child, baby})
+      checkDate: getUserDate({ checkIn, checkOut }),
+      range: getChargeRange({ leftRange, rightRange }),
+      guest: getNumberOfGuest({ adult, child, baby })
     }
   }
 });

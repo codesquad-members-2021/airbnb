@@ -13,7 +13,7 @@ const HotelItem = ({ hotelInfo }: HotelInfoTType) => {
   return (
     <HotelItemWrapper>
       <ImageWrapper>
-        <ImageTag src={imageUrl} alt="" />
+        <ImageTag src={imageUrl.split(',')[Math.floor(Math.random() * 7)]} alt="" />
       </ImageWrapper>
       <HotelDescWrapper>
         <Location>서울의 아파트 전체</Location>
@@ -66,13 +66,13 @@ const ImageWrapper = styled.div`
   width: 45%;
   max-width: 300px;
   height: 100%;
-  border-radius: 10px;
   margin-right: 1rem;
 `;
 
 const ImageTag = styled.img`
   max-width: 100%;
   max-height: 100%;
+  border-radius: 10px;
 `;
 
 const HotelDescWrapper = styled.div`

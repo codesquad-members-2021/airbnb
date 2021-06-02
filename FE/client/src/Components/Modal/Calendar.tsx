@@ -40,7 +40,7 @@ const Calendar = ({ entryDate }: CalendarType) => {
 
 // eslint-disable-next-line no-mixed-operators
 const CalendarWrapper = styled.div<CalendarType>`
-      position: relative;
+  position: relative;
   display:${({ entryDate }) => entryDate ? 'flex' : 'none'};
   background: #fff;
   padding: 5% 7%;

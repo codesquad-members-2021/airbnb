@@ -4,23 +4,23 @@ import { LocationType } from '../commons/baseType';
 import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 import { locationAtom, LocationAtomType } from '@/recoil/atoms';
 import LocationItem from './LocationItem';
-import { fetchLocationSelector } from './../../recoil/fetchAtoms';
+import { fetchLocationSelector } from '@/recoil/fetchAtoms';
 import { LocationItemType } from '@Components/commons/baseType';
 
 const LocationModal = ({ location }: LocationType) => {
   const setLocationInfoState = useSetRecoilState(locationAtom);
   const locationListLoadable = useRecoilValueLoadable(fetchLocationSelector);
 
-  const handleClickLocation = useCallback(({ name, coordinate }: LocationAtomType) => () => {
-    setLocationInfoState({ name, coordinate });
+  const handleClickLocation = useCallback(({ name, x, y }: LocationAtomType) => () => {
+    setLocationInfoState({ name, x, y });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <LocationModalWrapper location={location}>
       {locationListLoadable.state === 'hasValue' &&
-        locationListLoadable.contents.map(({ name, avatarUrl, coordinate }: LocationItemType, idx: number) => {
-          return <LocationItem key={`locationItem-${idx}`} {...{ name, avatarUrl, coordinate, handleClickLocation }} />
+        locationListLoadable.contents.map(({ name, avatarUrl, x, y }: LocationItemType, idx: number) => {
+          return <LocationItem key={`locationItem-${idx}`} {...{ name, avatarUrl, x, y, handleClickLocation }} />
         })
       }
       {locationListLoadable.state === 'loading' && <>loading...</>}

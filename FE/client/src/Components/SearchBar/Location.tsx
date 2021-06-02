@@ -17,10 +17,8 @@ const Location = ({ location, handleClickShowModal }: LocationBarType) => {
   const handleClickResetLocation = useCallback(() => {
     setLocationInfoState({
       name: '',
-      coordinate: {
-        x: 0,
-        y: 0
-      }
+      x: 0,
+      y: 0
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -4,16 +4,11 @@ import styled from 'styled-components';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import { SearchBarType } from '@Components/commons/baseType';
-import { ButtonStyle } from '@Components/commons/base';
+import { BASE_ZOOM_LEVEL, ButtonStyle, SEOUL_LOCATION } from '@Components/commons/base';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { locationAtom, rangeAtom, personnelAtom, calendarClickAtom, searchBarFocusAtom } from '@/recoil/atoms';
 import { makeQueryString } from '@/utils/serviceUtils';
 
-const BASE_ZOOM_LEVEL = 0.06257057189941406;
-const SEOUL_LOCATION = {
-  x: 37.50113036551878,
-  y: 127.05006341949776
-}
 
 const SearchButton = ({ focus }: SearchBarType) => {
   const buttonStyle = ButtonStyle();
@@ -25,8 +20,8 @@ const SearchButton = ({ focus }: SearchBarType) => {
   const [leftMonthDate, rightMonthDate] = calendarState;
 
   const searchParamsObject = {
-    x: locationState.coordinate.x || SEOUL_LOCATION.x,
-    y: locationState.coordinate.y || SEOUL_LOCATION.y,
+    x: locationState.x || SEOUL_LOCATION.x,
+    y: locationState.y || SEOUL_LOCATION.y,
     checkIn: leftMonthDate,
     checkOut: rightMonthDate,
     ...rangeState,

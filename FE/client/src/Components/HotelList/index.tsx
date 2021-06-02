@@ -16,7 +16,7 @@ const HotelList = () => {
           return (<HotelItem key={`hotelItem-${hotelInfo.id}`} {...{hotelInfo}}/>)
         })}
 
-      {hotelListLoadable.state === 'loading' && <>loading...</>}
+      {hotelListLoadable.state === 'loading' && <></>}
 
       {hotelListLoadable.state === 'hasError' && <>error...</>}
     </HotelListWrapper>

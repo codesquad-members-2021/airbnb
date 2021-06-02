@@ -11,7 +11,7 @@ import SearchButton from './SearchButton';
 const SearchBar = () => {
   const [searchBarState, setSearchBarState] = useRecoilState(searchBarFocusAtom);
   const { location, entryDate, charge, personnel, focus } = searchBarState;
-
+  
   const handleClickShowModal = useCallback((clickTarget: string) => () => {
     setSearchBarState({
       location: false,

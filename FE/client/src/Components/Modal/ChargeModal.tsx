@@ -31,7 +31,7 @@ const ChargeModal = ({ charge }: ChargeType) => {
         {rightRange === 100 && '+'}
       </PriceRange>
 
-      {priceLoadable.state === 'hasValue' &&
+      {priceLoadable.state === 'hasValue' && priceLoadable.contents.prices.length ?
         <>
           <PriceRangeDesc>
             {averagePrice && averagePrice
@@ -41,6 +41,7 @@ const ChargeModal = ({ charge }: ChargeType) => {
           </PriceRangeDesc>
           <Graph {...{ rangeState, priceArray }} />
         </>
+        : <></>
       }
 
       {priceLoadable.state === 'loading' && <>loading...</>}

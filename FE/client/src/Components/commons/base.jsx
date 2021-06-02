@@ -30,3 +30,9 @@ export const ButtonStyle = makeStyles({
     minWidth: '1.5rem'
   }
 })
+
+export const BASE_ZOOM_LEVEL = 0.06257057189941406;
+export const SEOUL_LOCATION = {
+  x: 37.50113036551878,
+  y: 127.05006341949776
+}
