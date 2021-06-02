@@ -4,7 +4,11 @@ import styled from 'styled-components';
 const AccountModal = () => {
   return (
     <AccountModalDiv>
-      <AccountModalItem>로그인</AccountModalItem>
+      <AccountModalItem>
+        <a href="https://github.com/login/oauth/authorize?client_id=c7adc71d1700acad7b68&scope=repo:status read:repo_hook user:email&redirect_uri=http://localhost:3000/callback">
+          로그인
+        </a>
+      </AccountModalItem>
     </AccountModalDiv>
   );
 };

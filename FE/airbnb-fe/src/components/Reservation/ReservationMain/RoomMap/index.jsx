@@ -17,7 +17,7 @@ const RoomMap = ({ roomData }) => {
     const container = document.getElementById('myMap');
     const options = {
       center: new kakao.maps.LatLng(37.49091340540493, 127.03337782299037),
-      level: 6,
+      level: 2,
       mapTypeId: kakao.maps.MapTypeId.ROADMAP,
     };
     const map = new kakao.maps.Map(container, options);

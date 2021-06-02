@@ -4,6 +4,7 @@ import theme from './components/utils/theme';
 import Home from './components/Home';
 import Reservation from './components/Reservation';
 import './index.css';
+import Callback from './components/Callback';
 
 export const GlobalStyle = createGlobalStyle`
   *{
@@ -36,6 +37,7 @@ function App() {
             path="/reservation/:location/:checkIn/:checkOut/:adults/:children/:infants/:minPrice/:maxPrice"
             component={Reservation}
           />
+          <Route path="/callback" component={Callback} />
         </ThemeProvider>
       </Switch>
     </Router>
