@@ -1,9 +1,9 @@
 import { useRef } from 'react'
 import styled from 'styled-components'
+import { useHistory } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+import { Login } from '../../customHook/atoms'
 import useModalCtrl from '../../customHook/useModalCtrlArray'
-interface IF_Img {
-  desc: string
-}
 
 function UserInfo() {
   const userInfoBtn = useRef<HTMLDivElement>(null)
@@ -14,28 +14,71 @@ function UserInfo() {
     init: false,
   })
 
-  const IMG = ({ desc }: IF_Img) => {
+  let userPhoto: string
+  const [LoginState, setLoginState] = useRecoilState(Login)
+  const isLogin = localStorage.getItem('isLogin')
+  let avatarUrl = localStorage.getItem('avatar_url')
+  let id = localStorage.getItem('ID')
+  if (avatarUrl !== null) userPhoto = avatarUrl
+
+  if (isLogin === 'true') setLoginState(true)
+  console.log(LoginState)
+
+  const IMG = () => {
     return (
       <div>
-        <img src={process.env.PUBLIC_URL + desc} alt={desc} width='27' height='27' />
+        <img
+          src={process.env.PUBLIC_URL + '/hamburger_btn.png'}
+          alt='hbgBtn'
+          width='27'
+          height='27'
+        />
+        {LoginState ? (
+          <img src={userPhoto} alt='user' width='27' height='27' />
+        ) : (
+          <img src={process.env.PUBLIC_URL + '/user_img.png'} alt='user' width='27' height='27' />
+        )}
       </div>
     )
   }
-  const HoverMenu = () => {
-    const style = { textDecoration: 'none', color: 'black' }
 
+  const LoginMenu = () => {
+    const style = { textDecoration: 'none', color: 'black' }
+    return (
+      <Menu>
+        <a
+          href='https://github.com/login/oauth/authorize?client_id=4e0168ba02f62f435d04'
+          style={style}
+        >
+          로그인
+        </a>
+      </Menu>
+    )
+  }
+
+  const UserManageMenu = () => {
+    const history = useHistory()
+    const handleClick = () => {
+      localStorage.setItem('isLogin', 'false')
+      localStorage.removeItem('ID')
+      localStorage.removeItem('email')
+      localStorage.removeItem('avatar_url')
+      setLoginState(false)
+      history.push('/')
+    }
     return (
       <>
-        <MenuBlock ref={userInfoModal}>
-          <Menu>
-            <a
-              href='https://github.com/login/oauth/authorize?client_id=4e0168ba02f62f435d04'
-              style={style}
-            >
-              로그인
-            </a>
-          </Menu>
-        </MenuBlock>
+        <Menu>{id} 하이 ~ </Menu>
+        <Menu>위시리스트 💜</Menu>
+        <Menu>계정관리</Menu>
+        <Menu onClick={handleClick}>로그아웃</Menu>
+      </>
+    )
+  }
+  const HoverMenu = () => {
+    return (
+      <>
+        <MenuBlock ref={userInfoModal}>{LoginState ? <UserManageMenu /> : <LoginMenu />}</MenuBlock>
       </>
     )
   }
@@ -43,8 +86,7 @@ function UserInfo() {
   return (
     <>
       <BtnBlock ref={userInfoBtn}>
-        <IMG desc='/hamburger_btn.png'></IMG>
-        <IMG desc='/user_img.png'></IMG>
+        <IMG />
       </BtnBlock>
       {open && <HoverMenu />}
     </>
@@ -52,12 +94,13 @@ function UserInfo() {
 }
 
 const Menu = styled.div`
-  padding: 32px;
   font-size: ${(props) => props.theme.fontSize.sm};
+  padding: 20px 0;
+  cursor: pointer;
 `
 const MenuBlock = styled.div`
   width: 200px;
-  height: 87px;
+  padding: 32px;
   background-color: ${(props) => props.theme.color.white};
   z-index: 9999;
   position: absolute;
