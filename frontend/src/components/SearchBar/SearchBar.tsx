@@ -39,7 +39,7 @@ const SearchBar = () => {
     const target = e.target as HTMLElement;
     if (!target.closest(".search-bar")) setsSearchBarClick(search.reset);
   };
-  // const params =
+
   return (
     <SearchBarLayout>
       <SearchBarContainer className="search-bar">
@@ -48,7 +48,7 @@ const SearchBar = () => {
         <Guests />
         {checkInMonth && checkOutMonth ? (
           <Link
-            to={`/search?in=${checkInYear}-${
+            to={`/rooms?checkin=${checkInYear}-${
               checkInMonth + 1
             }-${checkInDate}&out=${checkOutYear}-${
               checkOutMonth + 1
