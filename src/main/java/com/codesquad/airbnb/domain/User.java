@@ -11,6 +11,11 @@ public class User {
     private String name;
     private String accessToken;
 
+    public User(String email, String name) {
+        this.email = email;
+        this.name = name;
+    }
+
     public User(String email, String name, String accessToken) {
         this.email = email;
         this.name = name;

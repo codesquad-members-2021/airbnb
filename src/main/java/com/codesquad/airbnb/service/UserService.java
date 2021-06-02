@@ -94,4 +94,10 @@ public class UserService {
     public void save(User user) {
         userRepository.insert(user);
     }
+
+    public boolean isJoinedUser(GoogleUser googleUser) {
+        List<User> users = userRepository.findByEmail(googleUser.getEmail());
+        logger.info("Joined User: {}", users.stream().findAny());
+        return !users.isEmpty();
+    }
 }

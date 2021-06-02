@@ -22,6 +22,11 @@ public class UserRepository implements JdbcRepository<User> {
         jdbcTemplate.update(sql, user.getEmail(), user.getName(), user.getAccessToken());
     }
 
+    public List<User> findByEmail(String email) {
+        String sql = "select `name`, `email` from `user` where `email` like ?"; // 문자일 땐 like
+        return jdbcTemplate.query(sql, userRowMapper(), email);
+    }
+
     @Override
     public Optional<User> findById(Long id) {
         return Optional.empty();
@@ -34,7 +39,7 @@ public class UserRepository implements JdbcRepository<User> {
 
     private RowMapper<User> userRowMapper() {
         return (resultSet, rowNum) -> {
-            User user = new User(resultSet.getString("email"), resultSet.getString("name"), resultSet.getString("accessToken"));
+            User user = new User(resultSet.getString("email"), resultSet.getString("name"));
             return user;
         };
     }

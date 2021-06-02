@@ -34,9 +34,12 @@ public class UserController {
         ResponseEntity<String> userInfoResponse = userService.createGet(oAuthToken);
         GoogleUser googleUser = userService.getUserInfo(userInfoResponse);
         logger.info("Google User Name: {}", googleUser.getName());
-
-        User user = googleUser.toUser(oAuthToken.getAccessToken());
-        userService.save(user);
+        
+        if (!userService.isJoinedUser(googleUser)) {
+            User user = googleUser.toUser(oAuthToken.getAccessToken());
+            userService.save(user); // 회원가입
+        }
+        // 로그인
 
         return new ResponseEntity("로그인 성공", HttpStatus.OK);
     }
