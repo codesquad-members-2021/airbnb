@@ -5,6 +5,7 @@ import GOOGLE_MAP_API_KEY from '@/utils/googleMapAPIKey';
 import { userInfoAtom } from '@/recoil/atoms';
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import { fetchHotelListSelector } from '@/recoil/fetchAtoms';
+import { Checkbox } from '@material-ui/core';
 
 const containerStyle = {
   width: '50vw',
@@ -25,8 +26,8 @@ const infoBoxOptions = {
 const googleMapOptions = {
   fullscreenControl: false,
   mapTypeControl: false,
-  streetViewControl:false,
-  zoomControlOptions:{
+  streetViewControl: false,
+  zoomControlOptions: {
     position: 3
   }
 }
@@ -60,6 +61,16 @@ const SearchMap = () => {
 
   return (
     <SearchMapWrapper>
+      <MovingSearchChecker>
+        <Checkbox
+          defaultChecked
+          color="default"
+          style={{ transform: "scale(1.5)" }}
+        />
+
+        지도를 움직이며 검색하기
+      </MovingSearchChecker>
+
       <LoadScript
         googleMapsApiKey={GOOGLE_MAP_API_KEY}
       >
@@ -76,7 +87,7 @@ const SearchMap = () => {
             hotelListLoadable.contents.map(({ coordinate: { x, y }, price }: any, idx: number) => {
               return (
                 <InfoBox position={{ lat: x, lng: y }} key={`marker-${idx}`} options={infoBoxOptions}>
-                  <div>₩{price.toLocaleString()}</div>
+                  <PriceMark>₩{price.toLocaleString()}</PriceMark>
                 </InfoBox>
               )
             })
@@ -91,6 +102,23 @@ const SearchMapWrapper = styled.div`
   position: fixed;
   right:0;
   top: 6.4rem;
+`;
+
+const PriceMark = styled.div`
+  font-weight:700;
+`;
+
+const MovingSearchChecker = styled.div`
+  position: absolute;
+  padding: 10px 16px;
+  background:#fff;
+  border-radius: 8px;
+  z-index: 1;
+  top: 1%;
+  font-weight:700;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
 `;
 
 export default SearchMap;

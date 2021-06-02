@@ -9,7 +9,6 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { locationAtom, rangeAtom, personnelAtom, calendarClickAtom, searchBarFocusAtom } from '@/recoil/atoms';
 import { makeQueryString } from '@/utils/serviceUtils';
 
-
 const SearchButton = ({ focus }: SearchBarType) => {
   const buttonStyle = ButtonStyle();
   const locationState = useRecoilValue(locationAtom);
