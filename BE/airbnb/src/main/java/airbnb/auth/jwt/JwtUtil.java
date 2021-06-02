@@ -29,21 +29,21 @@ public class JwtUtil {
 
     public Jwt createToken(User user) {
         String token = JWT.create()
+                .withExpiresAt(new Date())
                 .withClaim(GITHUB_NAME, user.getName())
                 .withClaim(GITHUB_EMAIL, user.getEmail())
                 .withClaim(GITHUB_ID, user.getGithubId())
                 .withClaim(GITHUB_AVATAR_URL, user.getProfileImage())
                 .withIssuer(ISSUER)
-                .withExpiresAt(new Date())
                 .sign(Algorithm.HMAC256(SECRET_KEY));
         return new Jwt(token);
     }
 
     public DecodedJWT verifyToken(Jwt jwt) {
         JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SECRET_KEY))
-                .acceptExpiresAt(10 * 60 * 60)
                 .withIssuer(ISSUER)
                 .build();
         return verifier.verify(jwt.getJwt());
+//                .acceptExpiresAt(10 * 60 * 60)
     }
 }

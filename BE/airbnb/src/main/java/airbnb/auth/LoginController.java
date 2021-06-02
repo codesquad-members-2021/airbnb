@@ -25,4 +25,10 @@ public class LoginController {
         User loginUser = userService.findLoginUser(githubUser);
         return new RedirectView(jwtUtil.createQueryString(loginUser));
     }
+
+//    @GetMapping("/login")
+//    public Jwt login(Jwt accessToken) {
+//
+//        return
+//    }
 }
