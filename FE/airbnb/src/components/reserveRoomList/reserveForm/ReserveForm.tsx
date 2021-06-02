@@ -1,34 +1,28 @@
-import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { selectDateState } from '../../../recoil/calendarAtom';
-import { getBetweenDays } from '../../header/form/calendar/calendarDateFn';
 import { roomType } from '../roomType';
+import ReserveBtn from './ReserveBtn';
 import ReserveFormHeader from './ReserveFormHeader';
 import ReserveFormInfo from './ReserveFormInfo';
+import ReserveFromPrice from './ReserveFromPrice';
 interface Props {
   roomData: roomType;
 }
 
 const ReserveForm = ({ roomData }: Props) => {
-  const selectDate = useRecoilValue(selectDateState);
   const { chargePerNight } = roomData;
-
-  const getCleanCharge = (totalPrice: number): number => Math.floor(totalPrice * 0.03);
-  const getServiceCharge = (totalPrice: number): number => Math.floor(totalPrice * 0.15);
-  const getTaxCharge = (totalPrice: number): number => Math.floor(totalPrice * 0.01);
-
-  const betweenDays = getBetweenDays(selectDate.checkIn, selectDate.checkOut);
-  const totalPrice = chargePerNight * betweenDays;
-
-  const cleanCharge = getCleanCharge(totalPrice);
-  const serviceCharge = getServiceCharge(totalPrice);
-  const taxCharge = getTaxCharge(totalPrice);
 
   return (
     <StyledReserveFormWrapper>
       <StyledReserveForm>
-        <ReserveFormHeader className='header' chargePerNight={chargePerNight} review={127} />
-        <ReserveFormInfo />
+        <ReserveFormHeader
+          className='reserve__header'
+          chargePerNight={chargePerNight}
+          review={127}
+        />
+        <ReserveFormInfo className='reserve__info' />
+        <ReserveBtn className='reserve__btn' />
+        <div className='reserve__warn'>예약 확정 전에는 요금이 청구되지 않습니다.</div>
+        <ReserveFromPrice chargePerNight={chargePerNight} />
       </StyledReserveForm>
     </StyledReserveFormWrapper>
   );
@@ -45,10 +39,23 @@ const StyledReserveFormWrapper = styled.div`
 `;
 
 const StyledReserveForm = styled.div`
-  padding: 24px;
+  padding: 36px 24px;
   width: 400px;
-  height: 500px;
+  height: 525px;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
+  .reserve__header {
+    margin-bottom: 1.5rem;
+  }
+  .reserve__info,
+  .reserve__btn,
+  .reserve__warn {
+    margin-bottom: 1rem;
+  }
+  .reserve__warn {
+    text-align: center;
+    font-size: ${({ theme }) => theme.fontSize.small};
+    color: ${({ theme }) => theme.colors.gray3};
+  }
 `;
