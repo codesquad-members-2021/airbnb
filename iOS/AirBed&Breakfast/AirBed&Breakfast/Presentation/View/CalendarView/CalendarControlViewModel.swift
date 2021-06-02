@@ -24,6 +24,7 @@ class CalendarControlViewModel {
         self.currentYear = Int(Date().year)
         self.currentMonth = Int(Date().month)
         self.currentDay = Int(Date().day)
+        
     }
     
     public func updateDaySelection(with newDay: Day, completion: (CalendarViewContent) -> ()) {
@@ -77,6 +78,7 @@ class CalendarControlViewModel {
     }
     
     public func isValidDayToSelect(day: Day) -> Bool {
+        
         guard let currentYear = self.currentYear else { return false }
         guard let currentMonth = self.currentMonth else { return false }
         guard let currentDay = self.currentDay else { return false }
@@ -97,14 +99,14 @@ class CalendarControlViewModel {
     }
     
     public func makeDefaultContent() -> CalendarViewContent {
-        let calendar = Calendar.current
         
-        let startDate = calendar.date(from: DateComponents(year: currentYear, month: currentMonth, day: 01))!
-        let endDate = calendar.date(from: DateComponents(year: (currentYear ?? Int.max) + 1, month: currentMonth, day: 31))!
+        let calendar = Calendar.current
+        let calendarStartDate: Date = calendar.date(from: DateComponents(year: currentYear, month: currentMonth, day: 01))!
+        let calendarEndDate: Date = calendar.date(from: DateComponents(year: (currentYear ?? Int.max) + 1, month: currentMonth, day: 31))!
         
         return CalendarViewContent(
             calendar: calendar,
-            visibleDateRange: startDate...endDate,
+            visibleDateRange: calendarStartDate...calendarEndDate,
             monthsLayout: .vertical(options: VerticalMonthsLayoutOptions()))
             
             .withDayItemModelProvider { day in
@@ -128,42 +130,31 @@ class CalendarControlViewModel {
     }
     
     private func makeContent() -> CalendarViewContent {
-        let calendar = Calendar.current
         
-        let startDate = calendar.date(from: DateComponents(year: currentYear, month: currentMonth, day: 01))!
-        let endDate = calendar.date(from: DateComponents(year: (currentYear ?? Int.max) + 1, month: currentMonth, day: 31))!
-        
-        return CalendarViewContent(
-            calendar: calendar,
-            visibleDateRange: startDate...endDate,
-            monthsLayout: .vertical(options: VerticalMonthsLayoutOptions()))
+        let newContent = self.makeDefaultContent().withDayItemModelProvider { day in
+            var invariantViewProperties: DayLabel.InvariantViewProperties = .init(
+                font: UIFont.systemFont(ofSize: 18),
+                textColor: .darkGray,
+                backgroundColor: .clear)
             
-            .withDayItemModelProvider { day in
-                var invariantViewProperties: DayLabel.InvariantViewProperties = .init(
-                    font: UIFont.systemFont(ofSize: 18),
-                    textColor: .darkGray,
-                    backgroundColor: .clear)
-                
-                if self.isValidDayToSelect(day: day) {
-                    if day == self.lowerDay {
-                        invariantViewProperties.textColor = .white
-                        invariantViewProperties.backgroundColor = .blue
-                    } else if day == self.upperDay {
-                        invariantViewProperties.textColor = .white
-                        invariantViewProperties.backgroundColor = .red
-                    }
-                } else {
-                    invariantViewProperties.textColor = UIColor.red
-                }
-                
-                return CalendarItemModel<DayLabel>(
-                    invariantViewProperties: invariantViewProperties,
-                    viewModel: .init(day: day))
-                }
+            if !self.isValidDayToSelect(day: day) {
+                invariantViewProperties.textColor = .red
+            }
+            
+            if day == self.lowerDay {
+                invariantViewProperties.textColor = .white
+                invariantViewProperties.backgroundColor = .blue
+            } else if day == self.upperDay {
+                invariantViewProperties.textColor = .white
+                invariantViewProperties.backgroundColor = .red
+            }
+            
+            return CalendarItemModel<DayLabel>(
+                invariantViewProperties: invariantViewProperties,
+                viewModel: .init(day: day))
+            }
         
-            .withInterMonthSpacing(24)
-            .withVerticalDayMargin(8)
-            .withHorizontalDayMargin(8)
+        return newContent
     }
     
     private func makeContentWithHighlightRange() -> CalendarViewContent {
