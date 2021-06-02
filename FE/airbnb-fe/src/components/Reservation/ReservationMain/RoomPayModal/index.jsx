@@ -1,9 +1,22 @@
-import React from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 
 const RoomMapPayModal = () => {
+  const PayModalElement = useRef();
+
+  // useEffect(() => {
+  //   const payModalOff = (e) => {
+  //     if (PayModalElement.current && !PayModalElement.current.contains(e.target)) {
+  //       setIsPayModalClicked('mini');
+  //     }
+  //   };
+  //   document.addEventListener('mousedown', payModalOff);
+  //   return () => {
+  //     document.removeEventListener('mousedown', payModalOff);
+  //   };
+  // }, [PayModalElement]);
   return (
-    <RoomMapPayModalDiv>
+    <RoomMapPayModalDiv className="paymodal" ref={PayModalElement}>
       <RoomModalTop>
         <RoomModalTopPriceReview>
           <div>

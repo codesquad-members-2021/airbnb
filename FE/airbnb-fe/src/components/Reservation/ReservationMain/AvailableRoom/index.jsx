@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import AvailableRoomCard from './AvailableRoomCard';
 import { ReservationContext } from '../..';
 
-const AvailableRoom = ({ roomData }) => {
+const AvailableRoom = ({ roomData, setIsPayModalClicked }) => {
   const { match } = useContext(ReservationContext);
   const checkInData = match.params['checkIn'].split('-').map(Number);
   const checkOutData = match.params['checkOut'].split('-').map(Number);
@@ -31,7 +31,12 @@ const AvailableRoom = ({ roomData }) => {
       <RoomCardList>
         {roomData &&
           roomData.accommodationList.map((room) => (
-            <AvailableRoomCard key={room.id} room={room} calcDiff={calcDiff} />
+            <AvailableRoomCard
+              setIsPayModalClicked={setIsPayModalClicked}
+              key={room.id}
+              room={room}
+              calcDiff={calcDiff}
+            />
           ))}
       </RoomCardList>
     </AvailableRoomDiv>

@@ -5,11 +5,15 @@ import Heart from '../../../Atoms/icons/Heart';
 
 import { ReservationContext } from '../..';
 
-const AvailableRoomCard = ({ room, calcDiff }) => {
+const AvailableRoomCard = ({ room, calcDiff, setIsPayModalClicked }) => {
   const { match } = useContext(ReservationContext);
 
+  const handlePayModalClicked = () => {
+    setIsPayModalClicked(true);
+  };
+
   return (
-    <RoomCardDiv>
+    <RoomCardDiv onClick={() => handlePayModalClicked()}>
       <div>
         <RoomImg src={`${room.image}`} />
       </div>
@@ -50,6 +54,7 @@ const RoomCardDiv = styled.div`
   padding: 24px 0;
   border: 1px solid green;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray5};
+  cursor: pointer;
 `;
 const RoomImg = styled.img`
   width: 320px;

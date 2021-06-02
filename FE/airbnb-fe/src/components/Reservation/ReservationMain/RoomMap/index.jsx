@@ -11,7 +11,7 @@ const RoomMap = ({ roomData }) => {
     ? roomData.accommodationList.map((v) => [v.latitude, v.longitude])
     : [[0, 0]];
 
-  console.log(placeArray);
+  // console.log(placeArray);
 
   useEffect(() => {
     const container = document.getElementById('myMap');
