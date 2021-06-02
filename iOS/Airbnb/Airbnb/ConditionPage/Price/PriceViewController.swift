@@ -104,7 +104,7 @@ extension PriceViewController {
 
 extension PriceViewController {
     
-    func configureToolBar() {
+    private func configureToolBar() {
         self.tabBarController?.tabBar.isHidden = true
         let toolbar = UIToolbar()
         view.addSubview(toolbar)
@@ -118,8 +118,8 @@ extension PriceViewController {
         ])
         
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let toolbarItem1 = UIBarButtonItem(title: "건너뛰기", style: .plain, target: self, action: nil)
-        let toolbarItem2 = UIBarButtonItem(title: "다음", style: .done, target: self, action: nil)
+        let toolbarItem1 = UIBarButtonItem(title: "건너뛰기", style: .plain, target: self, action: #selector(nextButtonPressed))
+        let toolbarItem2 = UIBarButtonItem(title: "다음", style: .done, target: self, action: #selector(nextButtonPressed))
 
         let items = [toolbarItem1, flexibleSpace, toolbarItem2]
         items.forEach{ $0.tintColor = .black }
@@ -127,11 +127,23 @@ extension PriceViewController {
         toolbar.setItems(items, animated: true)
     }
     
-    func configureNavigation() {
+    private func configureNavigation() {
         self.navigationItem.title = "숙소 찾기"
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
     
+    @objc func nextButtonPressed() {
+        let nextVC = PeopleViewController()//PriceViewController(conditionViewModel: conditionViewModel)
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+}
+
+class PeopleViewController : UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+    }
 }
