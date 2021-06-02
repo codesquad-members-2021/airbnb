@@ -33,4 +33,14 @@ public class User {
     public String getAccessToken() {
         return accessToken;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", accessToken='" + accessToken + '\'' +
+                '}';
+    }
 }

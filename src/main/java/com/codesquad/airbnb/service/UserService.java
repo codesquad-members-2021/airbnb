@@ -6,6 +6,8 @@ import com.codesquad.airbnb.domain.User;
 import com.codesquad.airbnb.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -15,8 +17,12 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Service
 public class UserService {
+
+    private Logger logger = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
 
@@ -89,7 +95,7 @@ public class UserService {
         }
         return googleUser;
     }
-    
+
     // TODO : 기존 email이 있다면 User 생성하지 않음. email 없다면 새로운 User를 accessToken과 함께 저장
     public void save(User user) {
         userRepository.insert(user);
