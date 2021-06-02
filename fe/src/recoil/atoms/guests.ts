@@ -12,6 +12,14 @@ const guestCountState = atom<guest>({
   default: { adult: 0, child: 0, baby: 0 },
 });
 
+const queryGuest = selector({
+  key: 'queryGuest',
+  get: ({ get }) => {
+    const { adult, child, baby } = get(guestCountState);
+    return `adults=${adult}&children=${child}&infants=${baby}`;
+  },
+});
+
 const totalGuestState = selector({
   key: 'totalGuests',
   get: ({ get }) => {
@@ -22,4 +30,4 @@ const totalGuestState = selector({
   },
 });
 
-export { guestCountState, totalGuestState };
+export { guestCountState, totalGuestState, queryGuest };

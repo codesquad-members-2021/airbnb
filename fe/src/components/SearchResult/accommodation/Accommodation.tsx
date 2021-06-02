@@ -1,19 +1,50 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
-import { isMiniSearchBarOpen } from '@recoil/atoms/searchResult';
+import {
+  accomodationList,
+  isMiniSearchBarOpen,
+} from '@recoil/atoms/searchResult';
 
 import RoomInMap from './RoomInMap';
 
+type image = {
+  image_id: number;
+  accomodation_id: number;
+  image_url: string;
+};
+
+interface roomType {
+  accomodation_id: number;
+  accomodation_name: string;
+  area: string;
+  average_point: number;
+  bath_room_count: number;
+  bed_count: number;
+  bed_room_count: number;
+  image_url: image[];
+  latitude: number;
+  longitude: number;
+  max_member_capacity: number;
+  options: string[];
+  price_per_day: number;
+  residential_type: string;
+  review_count: number;
+  total_price: number;
+}
+
 const Accommodation = () => {
   const isMiniBarOpen = useRecoilValue(isMiniSearchBarOpen);
+  const rooms = useRecoilValue(accomodationList);
 
   return (
     <AccommodationWarp>
       <Desc isOpen={isMiniBarOpen}>500개이상 블라블라</Desc>
       <Title isOpen={isMiniBarOpen}>지도에서 선택한 지역의 숙소</Title>
       <Container>
-        <RoomInMap />
+        {rooms.map((room: roomType) => (
+          <RoomInMap key={room.accomodation_id} room={room} />
+        ))}
       </Container>
     </AccommodationWarp>
   );

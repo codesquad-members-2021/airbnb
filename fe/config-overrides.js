@@ -6,6 +6,7 @@ const aliasMap = {
   '@pages': 'src/pages',
   '@assets': 'src/assets',
   '@recoil': 'src/recoil',
+  '@utils': 'src/utils',
 };
 
 module.exports = alias(aliasMap);

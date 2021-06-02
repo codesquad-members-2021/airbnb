@@ -1,7 +1,10 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
-import { isMiniSearchBarOpen } from '@recoil/atoms/searchResult';
+import {
+  accomodationList,
+  isMiniSearchBarOpen,
+} from '@recoil/atoms/searchResult';
 
 import Accommodation from '@components/SearchResult/accommodation/Accommodation';
 import Header from '@components/SearchResult/Header';

@@ -1,4 +1,4 @@
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil';
 import styled from 'styled-components';
 
 import SmallText from '@components/common/SmallText';
@@ -7,14 +7,18 @@ import ChartModal from '@components/Header/PriceChart/ChartModal';
 
 import { modalStates } from '@recoil/atoms/modalState';
 import { searchBarPriceShow, selectedPrice } from '@recoil/atoms/price';
+import { checkinNewDate, checkoutNewDate } from '@recoil/atoms/date';
 
 const Fare = () => {
   const [isOpenModal, setIsOpenModal] = useRecoilState(modalStates);
   const selectPrice = useRecoilValue(selectedPrice);
   const priceRangeValue = useRecoilValue(searchBarPriceShow);
+  const checkInTime = useRecoilValue(checkinNewDate);
+  const checkOutTime = useRecoilValue(checkoutNewDate);
 
   const handleClickPriceChart = (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (checkInTime < 0 || checkOutTime < 0) return;
     setIsOpenModal({
       ...isOpenModal,
       price: true,
