@@ -1,11 +1,8 @@
 package airbnb.response;
 
-import airbnb.domain.City;
+
 import com.google.common.collect.Lists;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -2,10 +2,13 @@ package airbnb.controller;
 
 import airbnb.request.SearchRequest;
 import airbnb.response.RoomDetailPageResponse;
+import airbnb.response.RoomResponse;
 import airbnb.response.RoomResponses;
 import airbnb.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -13,8 +16,13 @@ import org.springframework.web.bind.annotation.*;
 public class RoomController {
     private final RoomService roomService;
 
-    @GetMapping("/rooms")
-    public RoomResponses search(SearchRequest searchRequest) {
+    @GetMapping("/web/rooms")
+    public RoomResponses viewCategorizedFilteredRooms(SearchRequest searchRequest) {
+        return roomService.findRoomsCategorizedByCity(searchRequest);
+    }
+
+    @GetMapping("/ios/rooms")
+    public List<RoomResponse> viewFilteredRooms(SearchRequest searchRequest) {
         return roomService.findRoomsFilteredBy(searchRequest);
     }
 
