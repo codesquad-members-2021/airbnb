@@ -8,7 +8,9 @@ type Action =
 
 const useAxios = (initialUrl: string, methods: Method, options?: any) => {
   const [url] = useState(initialUrl);
-
+  type ResponseType = {
+    data: any;
+  };
   const [state, dispatch] = useReducer(requestReducer, {
     isInit: true,
     isLoading: false,
@@ -35,7 +37,7 @@ const useAxios = (initialUrl: string, methods: Method, options?: any) => {
           return;
         }
         await axios(url, config).then((result) =>
-          dispatch({ type: "FETCH_SUCCESS", payload: result.data })
+          dispatch({ type: "FETCH_SUCCESS", payload: result.data.data })
         );
       } catch (error) {
         dispatch({ type: "FETCH_FAILURE", payload: null });

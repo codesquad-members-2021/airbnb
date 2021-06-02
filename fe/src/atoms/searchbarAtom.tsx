@@ -33,6 +33,17 @@ export const searchParamsSelector = selector({
   },
 });
 
+
+export const priceData = atom<{
+  maxPrice: number;
+  minPrice: number;
+ 
+}>({
+  key: "priceData",
+  default: { maxPrice: Infinity, minPrice: 0},
+});
+
+
 export const priceSliderData = atom<{
   max: number;
   min: number;

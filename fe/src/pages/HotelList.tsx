@@ -2,16 +2,18 @@ import useAxios from "hooks/useAxios";
 import Header from "components/main/header/Header";
 import SearchBar from "components/main/searchbar/Searchbar";
 import HotelListContent from "components/hotel-list/HotelListContent";
-import HotelListItem from "components/hotel-list/HotelListItem";
+
 import styled from "styled-components";
+import { GoogleMap } from "@react-google-maps/api";
 const HotelList = () => {
   const mokupURL =
     "checkin=2021-06-01&checkout=2021-06-14&pricemax=150000&pricemin=100000&adults=2&children=1&infants=1&latitude=37.498063&longitude=127.030187";
-  const { data, isLoading, isSuccess } = useAxios(
+  const { data, isLoading } = useAxios(
     process.env.REACT_APP_API_URL + "/hotels/?" + mokupURL,
     "GET"
   );
-  console.log(isLoading, isSuccess, data);
+  const center = { lat: 43, lng: -79 };
+  const mapStyle = { width: "100%", height: "100%" };
   return (
     <>
       <TopSection>
@@ -19,7 +21,8 @@ const HotelList = () => {
         <SearchBar />
       </TopSection>
       <ButtomSection>
-        {isLoading ? null : <HotelListContent hotelListData={data} /> }
+        {isLoading ? null : <HotelListContent hotelListData={data} />}
+        <GoogleMap mapContainerStyle={mapStyle} center={center} zoom={15} />
       </ButtomSection>
     </>
   );
@@ -28,6 +31,7 @@ const HotelList = () => {
 export default HotelList;
 
 const TopSection = styled.section`
+  z-index: 99999;
   position: fixed;
   top: 0;
   width: 100%;

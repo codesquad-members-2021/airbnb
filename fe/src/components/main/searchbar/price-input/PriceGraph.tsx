@@ -16,12 +16,12 @@ const PriceGraph = ({ priceData }: PriceGraphType) => {
 
   const gap = priceData[priceData.length - 1].price - minPrice;
 
-  const curMin = Math.floor(
-    minPrice + (gap * priceSlider.min) / priceSlider.width
-  );
-  const curMax = Math.floor(
-    minPrice + (gap * priceSlider.max) / priceSlider.width
-  );
+  const curMin =
+    minPrice +
+    Math.floor((gap * priceSlider.min) / priceSlider.width / 1000) * 1000;
+  const curMax =
+    minPrice +
+    Math.floor((gap * priceSlider.max) / priceSlider.width / 1000) * 1000;
   return (
     <>
       <PriceRange>
