@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/booking")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class BookingController {
 
     private final BookingRepository bookingRepository;
