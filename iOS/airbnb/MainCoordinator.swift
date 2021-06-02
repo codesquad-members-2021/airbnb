@@ -9,7 +9,7 @@ import UIKit
 
 class MainCoordinator: NSObject, Coordinator {
     
-    var tabBarController: UITabBarController
+    private var tabBarController: UITabBarController
     var childCoordinators = [ChildCoordinator]()
     
     init(tabBarController: UITabBarController) {

@@ -6,29 +6,44 @@
 //
 
 import UIKit
+import Combine
+
+enum Section {
+    case main
+}
 
 class TravelListViewController: UIViewController {
+    
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, NearPlace>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, NearPlace>
     
     @IBOutlet weak var travelList: UICollectionView!
     
     weak var coordinator : SearchCoodinator?
-    private var nearPlaceDataSource = NearPlaceDataSource()
+    private lazy var dataSource = makeDataSource()
+    
+    @Published private var nearPlaces = [NearPlace]()
+    private var cancellables = Set<AnyCancellable>()
+    
     private let searchController = UISearchController(searchResultsController: nil)
     private let removeButton = UIBarButtonItem(title: "지우기",
                                                style: .plain,
                                                target: self,
                                                action: #selector(didTapRemoveButton))
     
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = removeButton
         self.navigationItem.title = "숙소찾기"
-        
-        self.travelList.dataSource = nearPlaceDataSource
         self.travelList.delegate = self
         
+        applySnapshot(animatingDifferences: false)
+        makeSectionHeader()
         setUpSearchController()
         registerNib()
+        fetchData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -37,16 +52,67 @@ class TravelListViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         self.dismiss(animated: false, completion: nil)
+        super.viewWillDisappear(animated)
     }
     
     @objc func didTapRemoveButton(){
         
     }
 }
+
 // MARK: - Functions
+
 extension TravelListViewController {
+    
+    func makeDataSource() -> DataSource {
+        let dataSource = DataSource(
+            collectionView: travelList,
+            cellProvider: { [weak self] ( collectionview, indexPath, card) -> UICollectionViewCell? in
+                let cell = collectionview.dequeueReusableCell(withReuseIdentifier: NearPlaceCell.reuseIdentifier, for: indexPath)
+                    as? NearPlaceCell
+                cell?.bind(with: self?.nearPlaces[indexPath.row])
+                return cell
+            })
+        return dataSource
+    }
+    
+    func makeSectionHeader(){
+        self.dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
+            guard kind == UICollectionView.elementKindSectionHeader else {
+                return nil
+            }
+            let headerView = collectionView
+                .dequeueReusableSupplementaryView(ofKind: kind,
+                                                  withReuseIdentifier: HeaderReusableView.reuseIdentifier,
+                                                  for: indexPath) as? HeaderReusableView
+            return headerView
+        }
+    }
+    
+    func applySnapshot(animatingDifferences: Bool = true) {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(nearPlaces)
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+    }
+    
+    func fetchData(){
+        $nearPlaces.receive(on: DispatchQueue.main)
+            .sink(receiveValue: {[weak self] _ in
+                self?.applySnapshot()
+            })
+            .store(in: &cancellables)
+        
+        TravelListAPI.loadTravelList(type: .search)
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { responses in
+                    for response in responses {
+                        self.nearPlaces.append(response.toNearPlace())
+                    }
+            }).store(in: &cancellables)
+    }
+    
     func setUpSearchController() {
         definesPresentationContext = true
         
@@ -77,7 +143,8 @@ extension TravelListViewController : UICollectionViewDelegate {
 }
 
 extension TravelListViewController: UISearchControllerDelegate {
-    func didPresentSearchController(_ searchController: UISearchController) {
+    
+func didPresentSearchController(_ searchController: UISearchController) {
         DispatchQueue.main.async {
             searchController.searchBar.becomeFirstResponder()
         }
@@ -85,14 +152,16 @@ extension TravelListViewController: UISearchControllerDelegate {
 }
 
 extension TravelListViewController : UISearchResultsUpdating {
+    
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else {
+        guard let _ = searchController.searchBar.text else {
             return
         }
     }
 }
 
 extension TravelListViewController : Storyboarded {
+    
     static func instantiate() -> Self {
         let fullName = NSStringFromClass(self)
         let className = fullName.components(separatedBy: ".")[1]

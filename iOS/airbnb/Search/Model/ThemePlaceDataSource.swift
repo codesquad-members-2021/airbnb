@@ -14,7 +14,12 @@ class ThemePlaceDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemePlaceCell.reuseIdentifier, for: indexPath) as! ThemePlaceCell
+        guard let cell = collectionView
+                .dequeueReusableCell(withReuseIdentifier: ThemePlaceCell.reuseIdentifier,
+                                     for: indexPath) as? ThemePlaceCell
+        else {
+            return UICollectionViewCell()
+        }
         return cell
     }
     

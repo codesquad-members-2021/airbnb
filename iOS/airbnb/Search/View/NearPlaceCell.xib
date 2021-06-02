@@ -20,6 +20,10 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mcj-MI-AJI">
                         <rect key="frame" x="0.0" y="0.0" width="253" height="74"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ciq-OO-jYP">
+                                <rect key="frame" x="25" y="27" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="atA-8r-PuE">
                                 <rect key="frame" x="0.0" y="0.0" width="221" height="74"/>
                                 <subviews>
@@ -67,6 +71,7 @@
                 <constraint firstItem="mcj-MI-AJI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xLW-KG-zJm"/>
             </constraints>
             <connections>
+                <outlet property="activityIndicator" destination="ciq-OO-jYP" id="ETZ-Yy-jEk"/>
                 <outlet property="areaTitle" destination="FNG-6Z-FM4" id="fi3-ph-jID"/>
                 <outlet property="thumbnail" destination="GK2-mt-ZKK" id="H0W-hm-o5W"/>
                 <outlet property="timeRequired" destination="iWw-QX-dhX" id="fzR-sd-J6E"/>
