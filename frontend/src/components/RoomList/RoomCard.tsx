@@ -1,16 +1,43 @@
 import styled from "styled-components";
 import { HiOutlineHeart } from 'react-icons/hi';
+import { BsStarFill } from 'react-icons/bs';
 
-const RoomCard = () => {
+type Room = {
+    thum_image: string;
+    room_type: string;
+    room_name:string;
+    room_label: string;
+    star_rating: number;
+    review_label: string;
+    price: number;
+}
+
+type RoomInformation = {
+    roomInfo: Room;
+}
+
+const RoomCard = ({roomInfo: { thum_image, room_type, room_name, room_label, star_rating, review_label, price }}: RoomInformation) => {
+
     return (
     <RoomCardLayout>
         <div>
-            <img src={"https://www.mydomaine.com/thmb/UKGGGFL-A04tX4WaG7Mp2nc9T7Y=/700x467/filters:no_upscale():max_bytes(150000):strip_icc()/cozy-bedroom-ideas-3-c15e726616944ebb9230ee76be74456e.jpg"}></img>
+            <img src={thum_image}></img>
         </div>
         <RoomCardInfoLayout>
-            <div className="room-type">서초구의 아파트 전체<HiOutlineHeart className="heart-icon"/></div>
-            <div className="room-name">Spacious and Comfortable Cozy house #4</div>
-            <div className="room-label">최대 인원 3명*원룸, 침대 1개, 욕실 1개*주방, 무선인터넷, 에어컨, 헤어드라이어</div>
+            <div className="upper-container">
+                <div className="room-type">{room_type}
+                    <button><HiOutlineHeart className="heart-icon"/></button>
+                </div>
+                <div className="room-name">{room_name}</div>
+                <div className="room-label">{room_label}</div>
+            </div>
+            <div className="lower-container">
+                <div className="price-per-night">₩{price} / 박</div>
+                <div className="total-price-and-rating">
+                    <div><BsStarFill color="red" className="star-icon"/>{star_rating} {review_label})</div>
+                    <div className="total-price">총액 ₩1,493,159</div>
+                </div>
+            </div>
         </RoomCardInfoLayout>
     </RoomCardLayout>
 )};
@@ -33,25 +60,65 @@ const RoomCardLayout = styled.div`
 const RoomCardInfoLayout = styled.div`
     .room-type {
         display: flex;
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         padding: 0.5rem;
         color: #888;
 
-        .heart-icon {
+        button {
             margin-left: auto;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .heart-icon {
             font-size: 2rem;
         }
     }
 
     .room-name {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         padding: 0.5rem;
     }
 
     .room-label {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         padding: 0.5rem;
-        color: #888;
+        color: #9e9e9e;
+    }
+
+    .lower-container{
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        padding-bottom: 0;
+        padding-top: 4rem;
+        height: 50%;
+
+        .price-per-night {
+            margin-top: auto;
+            margin-left: auto;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .total-price-and-rating {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            & > div {
+                display: inline-block;
+            }
+
+            .total-price {
+                margin-right: 0;
+            }
+
+            .star-icon {
+                padding-right: 0.5rem;
+            }
+        }
     }
 `
 

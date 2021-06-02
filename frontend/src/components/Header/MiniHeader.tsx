@@ -35,6 +35,8 @@ const MiniHeader = () => {
   );
 };
 const MiniHeaderLayout = styled.div`
+  position: fixed;
+  width: 100%;
   backdrop-filter: blur(4px);
   background-color: white;
   box-shadow: 0px 0px 4px rgba(204, 204, 204, 0.5),
