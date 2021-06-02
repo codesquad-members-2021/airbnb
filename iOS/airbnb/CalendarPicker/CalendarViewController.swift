@@ -25,6 +25,7 @@ class CalendarViewController: UIViewController {
         return layout
     }()
     
+    private weak var infoDelegate : SelectInfoDelegate?
     private var dataSource : CalenderCollectionDataSource?
     private var numberOfWeeksInBaseDate: Int = 0
     
@@ -63,8 +64,10 @@ extension CalendarViewController : UICollectionViewDelegate {
         guard let cell = collection.cellForItem(at: indexPath) else {
             return
         }
+        
         let viewModel = self.dataSource?.models[indexPath.row]
         viewModel?.toggle(cell)
+        infoDelegate?.didSelectCost(5000)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

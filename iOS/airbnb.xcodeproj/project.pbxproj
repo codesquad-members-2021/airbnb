@@ -29,12 +29,13 @@
 		104665AD265E9502008B2F36 /* NearPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665AC265E9502008B2F36 /* NearPlace.swift */; };
 		104665B0265E9FE6008B2F36 /* UIImageView+LoadFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665AF265E9FE6008B2F36 /* UIImageView+LoadFromURL.swift */; };
 		1049206D265782AD00AA2590 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1049206C265782AD00AA2590 /* ContainerViewController.swift */; };
-		1056C061265F45F000A10FA0 /* FooterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1056C060265F45F000A10FA0 /* FooterTableViewController.swift */; };
 		105C73FF265F98AE001BF07A /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C73FE265F98AE001BF07A /* FooterTableViewCell.swift */; };
 		105D4272265DE20E00FCF8F7 /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105D4271265DE20E00FCF8F7 /* CalendarHeader.swift */; };
 		10642205265641F1005B63FD /* TravelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10642204265641F1005B63FD /* TravelListViewController.swift */; };
+		1089DE5C26677B3C00C39811 /* SelectInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1089DE5B26677B3C00C39811 /* SelectInfoDelegate.swift */; };
 		10AA57802665C97800B3DF4E /* CalendarDateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AA577F2665C97800B3DF4E /* CalendarDateCalculator.swift */; };
 		10BAF19D265CD1DA0035D99B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAF19C265CD1DA0035D99B /* CalendarViewController.swift */; };
+		10C2F7902667BD5900445EEB /* FooterTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C2F78F2667BD5900445EEB /* FooterTableViewDataSource.swift */; };
 		10D29C6126538C6800E71840 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D29C6026538C6800E71840 /* AppDelegate.swift */; };
 		10D29C6326538C6800E71840 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D29C6226538C6800E71840 /* SceneDelegate.swift */; };
 		10D29C6A26538C6900E71840 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10D29C6926538C6900E71840 /* Assets.xcassets */; };
@@ -75,12 +76,13 @@
 		104665AC265E9502008B2F36 /* NearPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearPlace.swift; sourceTree = "<group>"; };
 		104665AF265E9FE6008B2F36 /* UIImageView+LoadFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+LoadFromURL.swift"; sourceTree = "<group>"; };
 		1049206C265782AD00AA2590 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
-		1056C060265F45F000A10FA0 /* FooterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableViewController.swift; sourceTree = "<group>"; };
 		105C73FE265F98AE001BF07A /* FooterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableViewCell.swift; sourceTree = "<group>"; };
 		105D4271265DE20E00FCF8F7 /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
 		10642204265641F1005B63FD /* TravelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelListViewController.swift; sourceTree = "<group>"; };
+		1089DE5B26677B3C00C39811 /* SelectInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInfoDelegate.swift; sourceTree = "<group>"; };
 		10AA577F2665C97800B3DF4E /* CalendarDateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateCalculator.swift; sourceTree = "<group>"; };
 		10BAF19C265CD1DA0035D99B /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		10C2F78F2667BD5900445EEB /* FooterTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableViewDataSource.swift; sourceTree = "<group>"; };
 		10D29C5D26538C6800E71840 /* airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10D29C6026538C6800E71840 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10D29C6226538C6800E71840 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				104665AC265E9502008B2F36 /* NearPlace.swift */,
 				101C0EE026575BF80014D62B /* NearPlaceDataSource.swift */,
 				101C0EE226575D2B0014D62B /* ThemePlaceDataSource.swift */,
+				1089DE5B26677B3C00C39811 /* SelectInfoDelegate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,8 +188,8 @@
 		10BAF1A5265CD5660035D99B /* FooterTable */ = {
 			isa = PBXGroup;
 			children = (
-				1056C060265F45F000A10FA0 /* FooterTableViewController.swift */,
 				105C73FE265F98AE001BF07A /* FooterTableViewCell.swift */,
+				10C2F78F2667BD5900445EEB /* FooterTableViewDataSource.swift */,
 			);
 			path = FooterTable;
 			sourceTree = "<group>";
@@ -364,13 +367,13 @@
 				10E1B17D265407680087B69B /* HeaderReusableView.swift in Sources */,
 				1049206D265782AD00AA2590 /* ContainerViewController.swift in Sources */,
 				100CD07E265B9A1C002224F1 /* SearchCoordinator.swift in Sources */,
+				1089DE5C26677B3C00C39811 /* SelectInfoDelegate.swift in Sources */,
 				10E1B17A2653F49D0087B69B /* NearPlaceCell.swift in Sources */,
 				10D29C75265393F800E71840 /* SearchViewController.swift in Sources */,
 				104665AD265E9502008B2F36 /* NearPlace.swift in Sources */,
 				104665A8265E915B008B2F36 /* EndPoint.swift in Sources */,
 				102FA1FA265550CD00B761C7 /* IdentityInfo.swift in Sources */,
 				10406B5D265D344F004F4AF9 /* CalendarDateCell.swift in Sources */,
-				1056C061265F45F000A10FA0 /* FooterTableViewController.swift in Sources */,
 				104665AB265E915B008B2F36 /* TravelListAPI.swift in Sources */,
 				10406B5B265D2C2D004F4AF9 /* MonthMetadata.swift in Sources */,
 				10AA57802665C97800B3DF4E /* CalendarDateCalculator.swift in Sources */,
@@ -385,6 +388,7 @@
 				104665B0265E9FE6008B2F36 /* UIImageView+LoadFromURL.swift in Sources */,
 				10466589265E6C03008B2F36 /* CalendarViewModel.swift in Sources */,
 				1046658B265E6DD4008B2F36 /* CalenderCollectionDataSource.swift in Sources */,
+				10C2F7902667BD5900445EEB /* FooterTableViewDataSource.swift in Sources */,
 				101C0EE126575BF80014D62B /* NearPlaceDataSource.swift in Sources */,
 				104665A7265E915B008B2F36 /* APIServiceError.swift in Sources */,
 				10E1B1742653DE2F0087B69B /* MainCoordinator.swift in Sources */,

@@ -9,21 +9,52 @@ import UIKit
 
 class ContainerViewController: UIViewController {
     
+    
+    @IBOutlet weak var footerTable: UITableView!
+    
     weak var coordinator: SearchCoodinator?
+    var dataSource = FooterTableViewDataSource()
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "숙소찾기"
+        footerConfigure()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func footerConfigure(){
+        footerTable.dataSource = dataSource
+        footerTable.delegate = self
+        footerTable.translatesAutoresizingMaskIntoConstraints = false
+        footerTable.register(FooterTableViewCell.self, forCellReuseIdentifier: FooterTableViewCell.reuseIdentifier)
+    }
+}
+
+extension ContainerViewController : SelectInfoDelegate {
+    func didselectPlace(_ place: String) {
+        dataSource.contents["위치"] = place
+        footerTable.reloadData()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func didSelectDay(_ date: Day) {
+        
+    }
+    
+    func didSelectPerson(_ person: Int) {
+        
+    }
+    
+    func didSelectCost(_ cost: Int) {
+        
+    }
+    
+}
+
+
+extension ContainerViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(44)
     }
 }
 
