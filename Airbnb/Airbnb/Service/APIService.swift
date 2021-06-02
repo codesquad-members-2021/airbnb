@@ -7,7 +7,7 @@ enum Login {
     static let post = "http://13.209.36.131:8080/users/login"
 }
 
-class APIService {
+final class APIService {
     
     static func post(_ url:URL, parameter: LoginInfo) -> Observable<Data?> {
         return Observable.create { observer in

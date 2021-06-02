@@ -11,8 +11,15 @@
 		7112E6E8265604E100F9AAD6 /* RegieonInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112E6E7265604E100F9AAD6 /* RegieonInfoCell.swift */; };
 		7112E6EA2656054900F9AAD6 /* TravelInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112E6E92656054900F9AAD6 /* TravelInfoCell.swift */; };
 		7112E6EC26561CDE00F9AAD6 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112E6EB26561CDE00F9AAD6 /* HeaderView.swift */; };
+		713D478B265F17C8007DDFFD /* TransformManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713D478A265F17C8007DDFFD /* TransformManager.swift */; };
+		713D478D265F1AC6007DDFFD /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713D478C265F1AC6007DDFFD /* LogInView.swift */; };
+		7149B3E0265F78F10069D818 /* GuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7149B3DF265F78F10069D818 /* GuestViewController.swift */; };
 		7157C8862654A14500EF7977 /* FirstSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C8852654A14500EF7977 /* FirstSectionView.swift */; };
 		7157C8892654AC4000EF7977 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157C8882654AC4000EF7977 /* MainViewModel.swift */; };
+		71697DC92664B9E8003124D9 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71697DC82664B9E8003124D9 /* GraphView.swift */; };
+		7171C98B2665F05300E3F872 /* GuestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7171C98A2665F05300E3F872 /* GuestViewModel.swift */; };
+		7197A4B0265DE3E400729BCF /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7197A4AF265DE3E400729BCF /* CalendarViewModel.swift */; };
+		7197A4B2265DE5B200729BCF /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7197A4B1265DE5B200729BCF /* CalendarCell.swift */; };
 		71A67D2526539B6A00FC6689 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D2426539B6A00FC6689 /* AppDelegate.swift */; };
 		71A67D2726539B6A00FC6689 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D2626539B6A00FC6689 /* SceneDelegate.swift */; };
 		71A67D2926539B6A00FC6689 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D2826539B6A00FC6689 /* MainViewController.swift */; };
@@ -22,6 +29,8 @@
 		71A67D3E2653A92100FC6689 /* FirstSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D3D2653A92100FC6689 /* FirstSectionCell.swift */; };
 		71A67D422653AA9800FC6689 /* MainViewInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D412653AA9800FC6689 /* MainViewInfo.swift */; };
 		71A67D442653AD7400FC6689 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A67D432653AD7400FC6689 /* DataManager.swift */; };
+		71B5E9F0265F2CA800F58477 /* PriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5E9EF265F2CA800F58477 /* PriceViewController.swift */; };
+		71B5E9F2265F356D00F58477 /* PriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5E9F1265F356D00F58477 /* PriceViewModel.swift */; };
 		71B93A7226576CA10028C492 /* ThirdSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B93A7126576CA10028C492 /* ThirdSectionCell.swift */; };
 		71B93A74265783410028C492 /* LoginViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B93A73265783410028C492 /* LoginViewContoller.swift */; };
 		71B93A7826578C5A0028C492 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B93A7726578C5A0028C492 /* APIService.swift */; };
@@ -29,8 +38,14 @@
 		71B93A7C2657A0480028C492 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B93A7B2657A0480028C492 /* SearchViewController.swift */; };
 		71D133DA2657531A00A71626 /* MainCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D133D92657531A00A71626 /* MainCollectionViewDelegate.swift */; };
 		71D133E126575AB000A71626 /* SecondSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D133E026575AB000A71626 /* SecondSectionCell.swift */; };
+		71D2391C265D0F3D001FA8F6 /* AccommodationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2391B265D0F3D001FA8F6 /* AccommodationInfo.swift */; };
 		71DA18362654CACC00415EDD /* SecondSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA18352654CACC00415EDD /* SecondSectionView.swift */; };
 		71DA183A2654E2FE00415EDD /* ThirdSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DA18392654E2FE00415EDD /* ThirdSectionView.swift */; };
+		71F65541265C9002008645B8 /* RegieonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65540265C9002008645B8 /* RegieonViewModel.swift */; };
+		71F65544265CB8FD008645B8 /* TravelInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */; };
+		71F65546265CB9D7008645B8 /* CommonViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65545265CB9D7008645B8 /* CommonViewModelType.swift */; };
+		71F65548265CC43E008645B8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F65547265CC43E008645B8 /* CalendarViewController.swift */; };
+		71F6554E265CDC33008645B8 /* RxDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F6554D265CDC33008645B8 /* RxDelegateProxy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +54,15 @@
 		7112E6E7265604E100F9AAD6 /* RegieonInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegieonInfoCell.swift; sourceTree = "<group>"; };
 		7112E6E92656054900F9AAD6 /* TravelInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelInfoCell.swift; sourceTree = "<group>"; };
 		7112E6EB26561CDE00F9AAD6 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		713D478A265F17C8007DDFFD /* TransformManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformManager.swift; sourceTree = "<group>"; };
+		713D478C265F1AC6007DDFFD /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		7149B3DF265F78F10069D818 /* GuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestViewController.swift; sourceTree = "<group>"; };
 		7157C8852654A14500EF7977 /* FirstSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSectionView.swift; sourceTree = "<group>"; };
 		7157C8882654AC4000EF7977 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		71697DC82664B9E8003124D9 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		7171C98A2665F05300E3F872 /* GuestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestViewModel.swift; sourceTree = "<group>"; };
+		7197A4AF265DE3E400729BCF /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		7197A4B1265DE5B200729BCF /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		71A67D2126539B6A00FC6689 /* Airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71A67D2426539B6A00FC6689 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71A67D2626539B6A00FC6689 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +74,8 @@
 		71A67D3D2653A92100FC6689 /* FirstSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSectionCell.swift; sourceTree = "<group>"; };
 		71A67D412653AA9800FC6689 /* MainViewInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewInfo.swift; sourceTree = "<group>"; };
 		71A67D432653AD7400FC6689 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		71B5E9EF265F2CA800F58477 /* PriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewController.swift; sourceTree = "<group>"; };
+		71B5E9F1265F356D00F58477 /* PriceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewModel.swift; sourceTree = "<group>"; };
 		71B93A7126576CA10028C492 /* ThirdSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionCell.swift; sourceTree = "<group>"; };
 		71B93A73265783410028C492 /* LoginViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewContoller.swift; sourceTree = "<group>"; };
 		71B93A7726578C5A0028C492 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -59,8 +83,14 @@
 		71B93A7B2657A0480028C492 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		71D133D92657531A00A71626 /* MainCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		71D133E026575AB000A71626 /* SecondSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionCell.swift; sourceTree = "<group>"; };
+		71D2391B265D0F3D001FA8F6 /* AccommodationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationInfo.swift; sourceTree = "<group>"; };
 		71DA18352654CACC00415EDD /* SecondSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSectionView.swift; sourceTree = "<group>"; };
 		71DA18392654E2FE00415EDD /* ThirdSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSectionView.swift; sourceTree = "<group>"; };
+		71F65540265C9002008645B8 /* RegieonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegieonViewModel.swift; sourceTree = "<group>"; };
+		71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelInfoViewModel.swift; sourceTree = "<group>"; };
+		71F65545265CB9D7008645B8 /* CommonViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModelType.swift; sourceTree = "<group>"; };
+		71F65547265CC43E008645B8 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		71F6554D265CDC33008645B8 /* RxDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxDelegateProxy.swift; sourceTree = "<group>"; };
 		CCB98BA9F1F4A561BA5FBBA8 /* Pods-Airbnb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airbnb.debug.xcconfig"; path = "Target Support Files/Pods-Airbnb/Pods-Airbnb.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,7 +117,13 @@
 		7157C8872654AC3100EF7977 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				71F65545265CB9D7008645B8 /* CommonViewModelType.swift */,
 				7157C8882654AC4000EF7977 /* MainViewModel.swift */,
+				71F65540265C9002008645B8 /* RegieonViewModel.swift */,
+				71F65543265CB8FD008645B8 /* TravelInfoViewModel.swift */,
+				7197A4AF265DE3E400729BCF /* CalendarViewModel.swift */,
+				71B5E9F1265F356D00F58477 /* PriceViewModel.swift */,
+				7171C98A2665F05300E3F872 /* GuestViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -159,6 +195,9 @@
 				71A67D2826539B6A00FC6689 /* MainViewController.swift */,
 				71B93A73265783410028C492 /* LoginViewContoller.swift */,
 				71B93A7B2657A0480028C492 /* SearchViewController.swift */,
+				71F65547265CC43E008645B8 /* CalendarViewController.swift */,
+				71B5E9EF265F2CA800F58477 /* PriceViewController.swift */,
+				7149B3DF265F78F10069D818 /* GuestViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -171,6 +210,8 @@
 				71DA18352654CACC00415EDD /* SecondSectionView.swift */,
 				71DA18392654E2FE00415EDD /* ThirdSectionView.swift */,
 				7112E6EB26561CDE00F9AAD6 /* HeaderView.swift */,
+				713D478C265F1AC6007DDFFD /* LogInView.swift */,
+				71697DC82664B9E8003124D9 /* GraphView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,6 +230,8 @@
 				71A67D412653AA9800FC6689 /* MainViewInfo.swift */,
 				71A67D432653AD7400FC6689 /* DataManager.swift */,
 				71B93A7926578E830028C492 /* LoginInfo.swift */,
+				71D2391B265D0F3D001FA8F6 /* AccommodationInfo.swift */,
+				713D478A265F17C8007DDFFD /* TransformManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -197,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				71D133D92657531A00A71626 /* MainCollectionViewDelegate.swift */,
+				71F6554D265CDC33008645B8 /* RxDelegateProxy.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -217,6 +261,7 @@
 				7112E6E92656054900F9AAD6 /* TravelInfoCell.swift */,
 				71D133E026575AB000A71626 /* SecondSectionCell.swift */,
 				71B93A7126576CA10028C492 /* ThirdSectionCell.swift */,
+				7197A4B1265DE5B200729BCF /* CalendarCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -344,24 +389,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				713D478D265F1AC6007DDFFD /* LogInView.swift in Sources */,
 				71A67D2926539B6A00FC6689 /* MainViewController.swift in Sources */,
+				7171C98B2665F05300E3F872 /* GuestViewModel.swift in Sources */,
 				7157C8862654A14500EF7977 /* FirstSectionView.swift in Sources */,
+				713D478B265F17C8007DDFFD /* TransformManager.swift in Sources */,
 				71A67D2526539B6A00FC6689 /* AppDelegate.swift in Sources */,
 				71D133E126575AB000A71626 /* SecondSectionCell.swift in Sources */,
 				71DA18362654CACC00415EDD /* SecondSectionView.swift in Sources */,
+				71F6554E265CDC33008645B8 /* RxDelegateProxy.swift in Sources */,
+				71D2391C265D0F3D001FA8F6 /* AccommodationInfo.swift in Sources */,
+				71B5E9F0265F2CA800F58477 /* PriceViewController.swift in Sources */,
+				7149B3E0265F78F10069D818 /* GuestViewController.swift in Sources */,
 				71A67D422653AA9800FC6689 /* MainViewInfo.swift in Sources */,
 				71A67D442653AD7400FC6689 /* DataManager.swift in Sources */,
+				71697DC92664B9E8003124D9 /* GraphView.swift in Sources */,
 				71B93A7A26578E830028C492 /* LoginInfo.swift in Sources */,
 				71A67D3E2653A92100FC6689 /* FirstSectionCell.swift in Sources */,
+				71B5E9F2265F356D00F58477 /* PriceViewModel.swift in Sources */,
 				71A67D2726539B6A00FC6689 /* SceneDelegate.swift in Sources */,
 				71B93A7C2657A0480028C492 /* SearchViewController.swift in Sources */,
 				7112E6E8265604E100F9AAD6 /* RegieonInfoCell.swift in Sources */,
+				71F65548265CC43E008645B8 /* CalendarViewController.swift in Sources */,
+				7197A4B2265DE5B200729BCF /* CalendarCell.swift in Sources */,
 				7112E6EA2656054900F9AAD6 /* TravelInfoCell.swift in Sources */,
 				71DA183A2654E2FE00415EDD /* ThirdSectionView.swift in Sources */,
 				7157C8892654AC4000EF7977 /* MainViewModel.swift in Sources */,
+				71F65544265CB8FD008645B8 /* TravelInfoViewModel.swift in Sources */,
 				71D133DA2657531A00A71626 /* MainCollectionViewDelegate.swift in Sources */,
+				71F65541265C9002008645B8 /* RegieonViewModel.swift in Sources */,
 				71B93A7226576CA10028C492 /* ThirdSectionCell.swift in Sources */,
+				71F65546265CB9D7008645B8 /* CommonViewModelType.swift in Sources */,
 				71B93A74265783410028C492 /* LoginViewContoller.swift in Sources */,
+				7197A4B0265DE3E400729BCF /* CalendarViewModel.swift in Sources */,
 				71B93A7826578C5A0028C492 /* APIService.swift in Sources */,
 				7112E6EC26561CDE00F9AAD6 /* HeaderView.swift in Sources */,
 			);

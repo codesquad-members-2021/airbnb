@@ -1,6 +1,6 @@
 import Foundation
 
 struct LoginInfo: Encodable {
-    let id:String
+    let userId:String
     let password:String
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-class FirstSectionCell: UICollectionViewCell {
+final class FirstSectionCell: UICollectionViewCell {
     
     static let identifier = "FirstCell"
     

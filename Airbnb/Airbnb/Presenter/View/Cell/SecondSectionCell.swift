@@ -1,10 +1,15 @@
 import UIKit
 import RxSwift
 
-class SecondSectionCell: UICollectionViewCell {
+@objc protocol SecondSectionCellDelegate: AnyObject {
+    @objc optional func move(_ info:String)
+}
+
+final class SecondSectionCell: UICollectionViewCell {
     
     static let identifier = "SecondSectionCell"
     private var controllerInfo:Int?
+    weak var delegate: SecondSectionCellDelegate?
     
     private lazy var horizontalCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -17,7 +22,7 @@ class SecondSectionCell: UICollectionViewCell {
         return collectionView
     }()
     
-    private let viewModel = MainViewModel()
+    private let viewModel = RegieonViewModel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,10 +49,17 @@ private extension SecondSectionCell {
     }
     
     private func bind() {
-        viewModel.secondViewList()
-            .bind(to: horizontalCollectionView.rx.items(cellIdentifier: RegieonInfoCell.identifier, cellType: RegieonInfoCell.self)) { [weak self] row, data, cell in
+        viewModel.getViewData()
+            .drive(horizontalCollectionView.rx.items(cellIdentifier: RegieonInfoCell.identifier, cellType: RegieonInfoCell.self)) { [weak self] row, data, cell in
                 cell.configure(data, self!.controllerInfo!)
             }.disposed(by: rx.disposeBag)
+        
+        horizontalCollectionView.rx.modelSelected(MainViewInfo.self)
+            .subscribe(onNext: { [weak self] info in
+                self?.delegate?.move!(info.mainInfo)
+            }, onError: { error in
+                print(error.localizedDescription)
+            }).disposed(by: rx.disposeBag)
     }
 }
 

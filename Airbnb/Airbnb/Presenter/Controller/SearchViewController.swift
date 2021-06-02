@@ -2,42 +2,27 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     
+    @IBOutlet var backButton: UIButton!
     @IBOutlet var travelSearchBar: UISearchBar!
     @IBOutlet var regieonCollectionView: UICollectionView!
     
     private lazy var searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
+        controller.obscuresBackgroundDuringPresentation = false
+        definesPresentationContext = true
         return controller
     }()
     
-    private let viewModel = MainViewModel()
+    private let viewModel = RegieonViewModel()
     private let delegate = MainCollectionViewDelegate()
-    private var filtredInfo = [MainViewInfo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegate()
-        setupCollectionView()
-        setupSearchController()
+        setupMainView()
         bind()
-        travelSearchBar.addSubview(searchController.searchBar)
-    }
-    
-    func searchBarIsEmtpy() -> Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
-    
-    func filterContentForSearchText(_ searchText:String, _ scope: String = "All") {
-        filtredInfo = viewModel.regieonViewData().filter({(region: MainViewInfo) -> Bool in
-            return region.mainInfo.contains(searchText)
-        })
-        //reload??
-    }
-    
-    func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmtpy()
     }
 }
 
@@ -48,36 +33,65 @@ private extension SearchViewController {
         regieonCollectionView.rx.setDelegate(delegate)
             .disposed(by: rx.disposeBag)
         delegate.setupItemSize(view.frame.width, view.frame.height*0.1)
+        
+        regieonCollectionView.rx.modelSelected(MainViewInfo.self)
+            .subscribe(onNext: { [weak self] info in
+                let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "CanlendarVC") as! CalendarViewController
+                nextVC.setupLocation(info.mainInfo)
+                nextVC.modalTransitionStyle = .crossDissolve
+                nextVC.modalPresentationStyle = .fullScreen
+                self?.present(nextVC, animated: true, completion: nil)
+            }).disposed(by: rx.disposeBag)
     }
 }
 
 private extension SearchViewController {
     
-    private func setupCollectionView() {
+    private func setupMainView() {
         regieonCollectionView.showsVerticalScrollIndicator = false
+        travelSearchBar.addSubview(searchController.searchBar)
+        setupTabBar()
     }
     
-    private func setupSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        definesPresentationContext = true
+    private func setupTabBar() {
+        searchController.searchBar.rx.searchButtonClicked
+            .subscribe(onNext: { [weak self] _ in
+                let nextVC = self?.storyboard?.instantiateViewController(withIdentifier: "CanlendarVC") as! CalendarViewController
+                nextVC.setupLocation(self?.searchController.searchBar.text ?? "")
+                nextVC.modalTransitionStyle = .crossDissolve
+                nextVC.modalPresentationStyle = .fullScreen
+                self?.dismiss(animated: true, completion: nil)
+                self?.present(nextVC, animated: true, completion: nil)
+            }).disposed(by: rx.disposeBag)
     }
 }
 
 private extension SearchViewController {
     
     private func bind() {
-        viewModel.secondViewList()
-            .bind(to: regieonCollectionView.rx.items(cellIdentifier: RegieonInfoCell.identifier, cellType: RegieonInfoCell.self)) { row, data, cell in
+        bindViewModel()
+        bindSearchController()
+        bindButton()
+    }
+    
+    private func bindViewModel() {
+        viewModel.getFilteredData()
+            .drive(regieonCollectionView.rx.items(cellIdentifier: RegieonInfoCell.identifier, cellType: RegieonInfoCell.self)) { _, data, cell in
                 cell.configure(data, ControllerPage.search)
             }.disposed(by: rx.disposeBag)
     }
-}
-
-extension SearchViewController: UISearchResultsUpdating {
     
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
+    private func bindSearchController() {
+        searchController.searchBar.rx.text
+            .orEmpty
+            .bind(to: viewModel.searchText)
+            .disposed(by: rx.disposeBag)
     }
     
+    private func bindButton() {
+        backButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.dismiss(animated: true, completion: nil)
+            }).disposed(by: rx.disposeBag)
+    }
 }

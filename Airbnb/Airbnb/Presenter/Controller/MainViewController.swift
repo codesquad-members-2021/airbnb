@@ -5,7 +5,7 @@ import RxDataSources
 import NSObject_Rx
 import RxGesture
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
     @IBOutlet weak var travelSearchBar: UISearchBar!
     @IBOutlet weak var mainCollectionView: UICollectionView!
@@ -25,8 +25,8 @@ class MainViewController: UIViewController {
 //MARK: -Bind
 private extension MainViewController {
     private func bind() {
-        mainViewModel.firstViewList()
-            .bind(to: mainCollectionView.rx.items(dataSource: datasource))
+        mainViewModel.getViewData()
+            .drive(mainCollectionView.rx.items(dataSource: datasource))
             .disposed(by: rx.disposeBag)
     }
 }
@@ -57,6 +57,7 @@ private extension MainViewController {
             .when(.ended)
             .subscribe(onNext: { [weak self] _ in
                 let searchVC = self?.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as! SearchViewController
+                searchVC.modalTransitionStyle = .crossDissolve
                 searchVC.modalPresentationStyle = .fullScreen
                 self?.present(searchVC, animated: true, completion: nil)
             }).disposed(by: rx.disposeBag)
@@ -75,6 +76,7 @@ private extension MainViewController {
                 return cell
             case 1:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SecondSectionCell.identifier, for: indexPath) as? SecondSectionCell else { return UICollectionViewCell() }
+                cell.rx.rx_delegate.setForwardToDelegate(self, retainDelegate: false)
                 cell.configure(ControllerPage.main)
                 return cell
             case 2:
@@ -90,4 +92,15 @@ private extension MainViewController {
             return header
         })
     }
+}
+
+extension MainViewController: SecondSectionCellDelegate {
+    func move(_ info: String) {
+        let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "CanlendarVC") as! CalendarViewController
+        nextVC.setupLocation(info)
+        nextVC.modalTransitionStyle = .crossDissolve
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true, completion: nil)
+    }
+    
 }

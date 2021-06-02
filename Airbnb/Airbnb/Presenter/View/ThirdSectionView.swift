@@ -1,6 +1,6 @@
 import UIKit
 
-class ThirdSectionView: UIView {
+final class ThirdSectionView: UIView {
     
     private lazy var mainImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
