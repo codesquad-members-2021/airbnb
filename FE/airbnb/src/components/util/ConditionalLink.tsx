@@ -7,6 +7,6 @@ interface Props {
 }
 
 const ConditionalLink = ({ children, to, condition }: Props) =>
-  !!condition && to ? <Link to={to}>{children}</Link> : <>{children}</>;
+  condition && to ? <Link to={to}>{children}</Link> : <>{children}</>;
 
 export default ConditionalLink;

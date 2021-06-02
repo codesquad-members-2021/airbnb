@@ -5,8 +5,9 @@ import PriceChart from './PriceChart';
 import { btnPositionType, priceSectionType } from './priceType';
 import { ReactComponent as PauseBtn } from '../../../../assets/svg/Property 1=pause-circle.svg';
 import { priceData as sampleData } from './sampleData';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import {
+  fetchPrice,
   pauseBtnLastPositionState,
   pauseBtnPositionState,
   priceState,
@@ -32,7 +33,9 @@ const PriceBar = ({ toggleRef }: Props) => {
   const [btnLastPosition, setBtnLastPosition] = useRecoilState(pauseBtnLastPositionState);
   const [priceRange, setPriceRange] = useRecoilState(priceState);
   const [priceData, setPriceData] = useState(sampleData);
+  // const priceData = useRecoilValue(fetchPrice);
 
+  console.log(priceData);
   const minPrice = getNumberWithComma(priceRange.min);
   const maxPrice = getNumberWithComma(priceRange.max);
   const priceAverage = getNumberWithComma(getPriceAverage(priceData));

@@ -8,7 +8,6 @@ import FormGuestToggle from './guestToggle/FormGuestToggle';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { guestState, isFormOpenedState, reserveInfoSelector } from '../../../recoil/headerAtom';
 import { ReactComponent as DeleteBtn } from '../../../assets/svg/Property 1=x-circle.svg';
-import { Link } from 'react-router-dom';
 import ConditionalLink from '../../util/ConditionalLink';
 import { reserveInfoType, clientReserveAPI } from '../../../util/api';
 
@@ -45,7 +44,6 @@ const FormGuest = () => {
   };
 
   const handleSubmitClick = (e: MouseEvent): void => {
-    console.log(reserveInfo);
     e.stopPropagation();
   };
 

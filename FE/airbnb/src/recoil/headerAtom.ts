@@ -1,5 +1,7 @@
 import { atom, selector } from 'recoil';
+import { timeToDate } from '../components/header/form/calendar/calendarDateFn';
 import { guestStateType } from '../components/header/form/guestToggle/guestType';
+import { serverAPI } from '../util/api';
 import { selectDateState } from './calendarAtom';
 
 export const tabSelectedState = atom<boolean[]>({
@@ -60,6 +62,21 @@ export interface reserveQueryType {
   maxCharge: number;
   guests: guestStateType;
 }
+
+export const fetchPrice = selector({
+  key: 'get/price',
+  get: async ({ get }) => {
+    const city = get(locationState);
+    const date = get(selectDateState);
+    if (!city || !date.checkIn || !date.checkOut)
+      return '도시, 체크인, 체크아웃 날짜를 입력해주세요';
+    const checkIn = date.checkIn;
+    const checkOut = date.checkOut;
+    const response = await fetch(serverAPI.getPrice({ city, checkIn, checkOut }));
+    const data = await response.json();
+    return data.data.charges;
+  },
+});
 
 export const reserveInfoSelector = selector({
   key: 'reserveInformation',

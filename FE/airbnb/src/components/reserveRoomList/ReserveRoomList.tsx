@@ -14,6 +14,7 @@ const ReserveRoomList = ({ className }: Props) => {
   const reserveRoomList =
     roomsData &&
     roomsData.map((roomData, idx) => <ReserveRoom key={roomData.id + idx} roomData={roomData} />);
+  // const reserveRoomList = roomsData && roomsData.map((roomData, idx) => <ReserveSkeleton />);
   return (
     <StyledReserveRoomList className={className}>
       <div className='data__info'>

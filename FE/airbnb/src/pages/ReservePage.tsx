@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import Map from '../components/map/Map';
 import ReserveHeader from '../components/reserveHeader/ReserveHeader';
+import MapSkeleton from '../components/reservePageSkeleton/MapSkeleton';
 import ReserveRoomList from '../components/reserveRoomList/ReserveRoomList';
 import { reserveInfoSelector } from '../recoil/headerAtom';
 import { getRoomsSelector } from '../recoil/reserveRoomAtom';
@@ -11,8 +12,6 @@ interface Props {}
 
 const ReservePage = ({}: Props) => {
   const [reserveInfo, setReserveInfo] = useRecoilState(reserveInfoSelector);
-  const roomsData = useRecoilValue(getRoomsSelector);
-  console.log(roomsData);
   useEffect(() => {
     const [encodedAddress, checkIn, checkOut, minCharge, maxCharge, adult, child, infants] =
       getQueryValue(window.location.search);
@@ -35,8 +34,12 @@ const ReservePage = ({}: Props) => {
   return (
     <StyledReservePage>
       <ReserveHeader />
-      <ReserveRoomList className='rooms' />
-      <Map className='map' />
+      <Suspense fallback=''>
+        <ReserveRoomList className='rooms' />
+      </Suspense>
+      <Suspense fallback={<MapSkeleton />}>
+        <Map className='map' />
+      </Suspense>
     </StyledReservePage>
   );
 };
