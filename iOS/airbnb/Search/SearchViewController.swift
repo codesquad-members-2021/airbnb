@@ -65,7 +65,7 @@ class SearchViewController : UIViewController {
             collectionView: nearPlaceCollection,
             cellProvider: { ( collectionview, indexPath, card) -> UICollectionViewCell? in
                 let cell = collectionview.dequeueReusableCell(withReuseIdentifier: NearPlaceCell.reuseIdentifier, for: indexPath) as? NearPlaceCell
-                cell?.bind(with: self.places[indexPath.row])
+                cell?.configurePlace(with: self.places[indexPath.row])
                 return cell
             })
         return dataSource

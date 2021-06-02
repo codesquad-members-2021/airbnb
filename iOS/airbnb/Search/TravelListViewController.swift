@@ -71,7 +71,7 @@ extension TravelListViewController {
             cellProvider: { [weak self] ( collectionview, indexPath, card) -> UICollectionViewCell? in
                 let cell = collectionview.dequeueReusableCell(withReuseIdentifier: NearPlaceCell.reuseIdentifier, for: indexPath)
                     as? NearPlaceCell
-                cell?.bind(with: self?.nearPlaces[indexPath.row])
+                cell?.configurePlace(with: self?.nearPlaces[indexPath.row])
                 return cell
             })
         return dataSource
