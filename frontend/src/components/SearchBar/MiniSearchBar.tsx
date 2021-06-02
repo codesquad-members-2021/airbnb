@@ -22,7 +22,7 @@ const MiniSearchBarContainer = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  height: 50px; //여기바꾸면됨
+  height: 50px;
   background: #ffffff;
   border: 1px solid #bdbdbd;
   border-radius: 60px;
@@ -39,6 +39,11 @@ const MiniSearchBarContainer = styled.div`
     width: 100%;
   }
 `;
+
+type TMiniSearchBar = {
+  _left?: string;
+};
+
 const SearchBarButton = styled(smallSearchBtn)`
   position: absolute;
   right: 1rem;
@@ -46,9 +51,7 @@ const SearchBarButton = styled(smallSearchBtn)`
   width: 3rem;
   cursor: pointer;
 `;
-type TMiniSearchBar = {
-  _left?: string;
-};
+
 const MiniSearchLine = styled.div`
   position: absolute;
   height: 2rem;

@@ -1,13 +1,12 @@
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { miniBarClickState } from "recoil/Atoms";
-import { useRecoilState } from "recoil";
-import { useState } from "react";
 import { ReactComponent as Logo } from "components/common/Logo.svg";
 import Login from "components/Header/Login";
 import MiniSearchBar from "components/SearchBar/MiniSearchBar";
 import SearchBar from "components/SearchBar/SearchBar";
 import Navigator from "components/Header/Navigator";
-import React, { useEffect } from "react";
 
 const MiniHeader = () => {
   const [miniBarClickFlag, setMiniBarClick] = useRecoilState(miniBarClickState);
@@ -20,6 +19,7 @@ const MiniHeader = () => {
   useEffect(() => {
     document.body.addEventListener("click", toggleMiniHeader);
   }, []);
+
   return (
     <>
       <MiniHeaderLayout>
