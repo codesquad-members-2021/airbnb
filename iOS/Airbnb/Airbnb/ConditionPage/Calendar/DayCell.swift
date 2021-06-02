@@ -42,7 +42,7 @@ extension DayCell {
         addSubview(dayLabel)
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
         dayLabel.adjustsFontForContentSizeCategory = true
-        dayLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        dayLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
         dayLabel.textAlignment = .center
         
         let inset = CGFloat(1)
@@ -70,7 +70,7 @@ extension DayCell {
                 
         let bound = backgroundView.bounds
         circleLayer.frame = bound
-        circleLayer.backgroundColor = UIColor.black.cgColor
+        circleLayer.backgroundColor = #colorLiteral(red: 0.1568627451, green: 0.1568627451, blue: 0.1568627451, alpha: 1).cgColor
         circleLayer.masksToBounds = true
         circleLayer.cornerRadius = backgroundView.frame.width / 2
         
@@ -85,7 +85,7 @@ extension DayCell {
             backgroundView = UIView()
             self.backgroundView = backgroundView
             highlightLayer.frame = CGRect(x: bound.width/2, y: 0, width: bound.width/2, height: bound.height)
-            highlightLayer.backgroundColor = UIColor.lightGray.cgColor
+            highlightLayer.backgroundColor = UIColor.systemGray5.cgColor
 
             backgroundView.layer.addSublayer(highlightLayer)
             backgroundView.layer.addSublayer(circleLayer)
@@ -94,7 +94,7 @@ extension DayCell {
             backgroundView = UIView()
             self.backgroundView = backgroundView
             highlightLayer.frame = CGRect(x: 0, y: 0, width: bound.width/2, height: bound.height)
-            highlightLayer.backgroundColor = UIColor.lightGray.cgColor
+            highlightLayer.backgroundColor = UIColor.systemGray5.cgColor
 
             backgroundView.layer.addSublayer(highlightLayer)
             backgroundView.layer.addSublayer(circleLayer)
@@ -102,7 +102,7 @@ extension DayCell {
             dayLabel.textColor = .black
             backgroundView = UIView()
             self.backgroundView = backgroundView
-            backgroundView.backgroundColor = .lightGray
+            backgroundView.backgroundColor = UIColor.systemGray5
         case .outDated:
             dayLabel.textColor = .gray
             backgroundView = UIView()

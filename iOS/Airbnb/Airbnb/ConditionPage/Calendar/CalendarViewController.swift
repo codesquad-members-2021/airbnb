@@ -19,10 +19,11 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigation()
+        configureToolBar()
         configureHierarchy()
         configureDataSource()
         configureContainer()
-        configureToolBar()
         applySnapshots()
     }
     
@@ -33,7 +34,8 @@ class CalendarViewController: UIViewController {
 extension CalendarViewController {
     
     private func configureHierarchy() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        let frame = CGRect(x: view.frame.minX, y: view.frame.minY, width: view.frame.width, height: view.frame.height - 250)
+        collectionView = UICollectionView(frame: frame, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
         collectionView.delegate = self
@@ -54,12 +56,12 @@ extension CalendarViewController {
             trailingGroup.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 0, bottom: 0, trailing: 0)
             let containerGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                   heightDimension: .fractionalHeight(0.4)),
+                                                   heightDimension: .fractionalHeight(0.5)),
                                                   subitems: [trailingGroup])
             let section = NSCollectionLayoutSection(group: containerGroup)
             
             section.interGroupSpacing = 10
-            section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 10, bottom: 20, trailing: 10)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
             
             // header
             self.createSectionHeaderLayout(with: section)
@@ -98,7 +100,7 @@ extension CalendarViewController {
             (supplementaryView, string, indexPath) in
             let date = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
             supplementaryView.label.text = "\(date.year)년 \(date.month)월"
-            supplementaryView.label.font = UIFont.preferredFont(forTextStyle: .title2)
+            supplementaryView.label.font = UIFont.preferredFont(forTextStyle: .headline)
         }
         dataSource.supplementaryViewProvider = { (view, kind, index) in
             return self.collectionView.dequeueConfiguredReusableSupplementary(
@@ -110,7 +112,7 @@ extension CalendarViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Date, Day>()
 
         let thisMonth = Date().month
-        Array(thisMonth...thisMonth+10).forEach {
+        Array(thisMonth...thisMonth+6).forEach {
             let month = Calendar.current.date(from: DateComponents(year: 2021, month: $0, day: 1)) ?? Date()
             snapshot.appendSections([month])
             snapshot.appendItems(DateGenerator.getTheMonth(year: 2021, month: $0))
@@ -198,6 +200,17 @@ extension CalendarViewController {
         items.forEach{ $0.tintColor = .black }
         
         toolbar.setItems(items, animated: true)
+    }
+    
+    private func configureNavigation() {
+        self.navigationItem.title = "숙소 찾기"
+
+        let cancelButton = UIBarButtonItem(title: "back", style: .plain, target: self, action: #selector(some))
+        self.navigationItem.leftBarButtonItem = cancelButton
+    }
+    
+    @objc func some() {
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
