@@ -13,4 +13,16 @@ class GuestViewModel {
         dateInfo = date
         priceInfo = price
     }
+    
+    lazy var locationData:Driver<String> = {
+        return Observable.just(locationInfo ?? "").asDriver(onErrorJustReturn: "")
+    }()
+    
+    lazy var dateData:Driver<String> = {
+        return Observable.just(dateInfo ?? "").asDriver(onErrorJustReturn: "")
+    }()
+    
+    lazy var priceData:Driver<String> = {
+        return Observable.just(priceInfo ?? "").asDriver(onErrorJustReturn: "")
+    }()
 }
