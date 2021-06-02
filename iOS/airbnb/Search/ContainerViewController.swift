@@ -34,7 +34,9 @@ class ContainerViewController: UIViewController {
 extension ContainerViewController : SelectInfoDelegate {
     func didselectPlace(_ place: String) {
         dataSource.contents["위치"] = place
-        footerTable.reloadData()
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        footerTable.reloadRows(at: [indexPath], with: .top)
     }
     
     func didSelectDay(_ date: Day) {
