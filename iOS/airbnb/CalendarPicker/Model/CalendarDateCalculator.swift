@@ -17,8 +17,14 @@ struct CalendarDateCalculator {
     }()
     
     private let calendar = Calendar(identifier: .gregorian)
+    
+    var baseDate : Date
+    
+    init(_ baseDate : Date){
+        self.baseDate = baseDate
+    }
 
-    func monthMetadata(for baseDate: Date) throws -> MonthMetadata {
+    func monthMetadata() throws -> MonthMetadata {
         guard
             let numerOfDaysInMonth = calendar.range(of: .day, in: .month, for: baseDate)?.count,
             let firstDayOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: baseDate))
@@ -33,10 +39,10 @@ struct CalendarDateCalculator {
                              firstDayWeekday: firstDayWeekDay)
     }
     
-    func generateDaysInMonth(for baseDate: Date) -> [Day] {
+    func generateDaysInMonth() -> [Day] {
         
         // TODO: Error Handling
-        guard let metadata = try? monthMetadata(for: baseDate) else {
+        guard let metadata = try? monthMetadata() else {
             fatalError("An error occurred when generating the metadata for \(baseDate)")
         }
         

@@ -14,7 +14,7 @@ class CalenderCollectionDataSource: NSObject, UICollectionViewDataSource {
     init(with date : Date){
         super.init()
         
-        let days = CalendarDateCalculator().generateDaysInMonth(for: date)
+        let days = CalendarDateCalculator(date).generateDaysInMonth()
         models = days.map{ CalendarViewModel(day: $0) }
     }
     
