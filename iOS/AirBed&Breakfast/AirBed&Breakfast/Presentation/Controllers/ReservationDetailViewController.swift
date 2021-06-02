@@ -13,29 +13,79 @@ protocol ReservationDetailViewControllerProtocol {
     func changeLocation(with location: String)
     func changeDateRange(date: Date, isLowerDay: Bool)
     func changePriceRange(lowestPrice: CGFloat, highestPrice: CGFloat)
-    func changeNumberOfHead()
+    func addGuest(type: GuestType)
+    func deductGuest(type: GuestType)
+    func inject(viewModel: ReservationDetailViewModelProtocol)
 }
 
 class ReservationDetailViewController: UIViewController {
     
+    var detailSetUpViewInitializer: DetailSetUpViewInitializable? = nil
+    var currentContext: String?
+    var viewModel: ReservationDetailViewModelProtocol?
+    
     @IBOutlet weak var locationDetailLabel: UILabel!
     @IBOutlet weak var dateRangeDetailLabel: UILabel!
     @IBOutlet weak var priceRangeDetailLabel: UILabel!
-    @IBOutlet weak var numberOfHeadDetailLabel: UILabel!
+    @IBOutlet weak var guestNumberDetailLabel: UILabel!
     @IBOutlet weak var deleteCurrentDetailButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
-    var detailSetUpViewInitializer: DetailSetUpViewInitializable? = nil
-    var currentContext: String?
-    var location: String?
-    var lowerDate: Date?
-    var upperDate: Date?
-    var lowestPrice: CGFloat?
-    var highestPrice: CGFloat?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
+    }
+    
+    private func bind() {
+        viewModel?.didUpdateLowerDate(completion: { (newLowerDate) in
+            self.dateRangeDetailLabel.text = "\(newLowerDate.month)월 \(newLowerDate.day)일"
+            self.nextButton.isEnabled = false
+        })
         
+        viewModel?.didUpdateUpperDate(completion: { (newUpperDate) in
+            if newUpperDate == nil {
+                self.dateRangeDetailLabel.text = "\(self.dateRangeDetailLabel.text!)"
+                self.nextButton.isEnabled = false
+            } else {
+                self.dateRangeDetailLabel.text = "\(self.dateRangeDetailLabel.text!) - \(newUpperDate!.month)월 \(newUpperDate!.day)일"
+                self.nextButton.isEnabled = true
+            }
+        })
+        
+        viewModel?.didUpdatePriceRange(completion: { (newLowestPrice, newHighestPrice) in
+            self.priceRangeDetailLabel.text = "\(String(format: "%.0f", newLowestPrice)) - \(String(format: "%.0f", newHighestPrice))"
+            self.nextButton.isEnabled = true
+            self.deleteCurrentDetailButton.isEnabled = true
+        })
+        
+        viewModel?.didUpdateGuestList(completion: { (guestList) in
+            NotificationCenter.default.post(name: .didChangeGuestNumber, object: nil, userInfo: guestList)
+            
+            if guestList[.adult] == 0 &&
+               guestList[.child] == 0 &&
+               guestList[.infant] == 0
+            {
+                self.deleteCurrentDetailButton.isEnabled = false
+            } else {
+                self.deleteCurrentDetailButton.isEnabled = true
+            }
+            
+            if guestList[.adult]! > 0 {
+                self.nextButton.isEnabled = true
+            } else {
+                self.nextButton.isEnabled = false
+            }
+            
+            self.setNumberOfGuestDetailLabel(with: guestList)
+        })
+    }
+    
+    private func setNumberOfGuestDetailLabel(with guestList: [GuestType: Int]) {
+        self.guestNumberDetailLabel.text = "게스트 \(guestList[.adult]! + guestList[.child]!)명"
+        
+        if guestList[.infant]! > 0 {
+            guestNumberDetailLabel.text?.append(" 유아 \(guestList[.infant]!)명")
+        }
     }
     
     @IBAction func deleteCurrentDetailButtonPressed(_ sender: UIButton) {
@@ -46,8 +96,11 @@ class ReservationDetailViewController: UIViewController {
         case String(describing: PriceSlideControlView.self):
             self.priceRangeDetailLabel.text = ""
             self.detailSetUpViewInitializer?.clearPriceSlideControlView()
+        case String(describing: GuestNumberSelectionView.self):
+            self.guestNumberDetailLabel.text = ""
+            self.viewModel?.clearGuestList()
         default:
-            return
+            break
         }
         
         self.deleteCurrentDetailButton.isEnabled = false
@@ -61,7 +114,10 @@ class ReservationDetailViewController: UIViewController {
             detailSetUpViewInitializer?.configurePriceControlView()
         case String(describing: PriceSlideControlView.self):
             detailSetUpViewInitializer?.deinitializePriceControlView()
-            
+            detailSetUpViewInitializer?.configureNumberOfHeadSelectionView()
+        case String(describing: GuestNumberSelectionView.self):
+            self.detailSetUpViewInitializer?.deinitializeNumberOfHeadSelectionView()
+            self.detailSetUpViewInitializer?.moveToAccommodationSelectionController()
         default: break
         }
         
@@ -72,6 +128,7 @@ class ReservationDetailViewController: UIViewController {
 }
 
 extension ReservationDetailViewController: ReservationDetailViewControllerProtocol {
+    
     func setDetailSetUpViewInitializer(as initializer: DetailSetUpViewInitializable) {
         self.detailSetUpViewInitializer = initializer
     }
@@ -85,32 +142,23 @@ extension ReservationDetailViewController: ReservationDetailViewControllerProtoc
     }
     
     func changeDateRange(date: Date, isLowerDay: Bool) {
-
-        if isLowerDay {
-            self.lowerDate = date
-            self.upperDate = nil
-            self.dateRangeDetailLabel.text = "\(date.month)월 \(date.day)일"
-            self.nextButton.isEnabled = false
-        } else {
-            self.upperDate = date
-            self.dateRangeDetailLabel.text = "\(dateRangeDetailLabel.text!) - \(date.month)월 \(date.day)일"
-            self.nextButton.isEnabled = true
-        }
-        
-        self.deleteCurrentDetailButton.isEnabled = true
+        viewModel?.changeDateRange(date: date, isLowerDay: isLowerDay)
     }
     
     func changePriceRange(lowestPrice: CGFloat, highestPrice: CGFloat) {
-        self.lowestPrice = lowestPrice
-        self.highestPrice = highestPrice
-        
-        self.priceRangeDetailLabel.text = "\(String(format: "%.0f", lowestPrice))원 - \(String(format: "%.0f", highestPrice))원"
-        self.nextButton.isEnabled = true
-        self.deleteCurrentDetailButton.isEnabled = true
+        self.viewModel?.changePriceRange(lowestPrice: Float(lowestPrice), highestPrice: Float(highestPrice))
     }
     
-    func changeNumberOfHead() {
-        //todo
+    func addGuest(type: GuestType) {
+        self.viewModel?.changeGuestNumber(type: type, toAdd: true)
+    }
+    
+    func deductGuest(type: GuestType) {
+        self.viewModel?.changeGuestNumber(type: type, toAdd: false)
+    }
+    
+    func inject(viewModel: ReservationDetailViewModelProtocol) {
+        self.viewModel = viewModel
     }
     
 }

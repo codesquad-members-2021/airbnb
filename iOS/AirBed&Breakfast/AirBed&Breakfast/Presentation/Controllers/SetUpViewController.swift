@@ -14,9 +14,13 @@ protocol DetailSetUpViewInitializable {
     func deinitializeCalendarControlView()
     func configurePriceControlView()
     func deinitializePriceControlView()
+    func configureNumberOfHeadSelectionView()
+    func deinitializeNumberOfHeadSelectionView()
     
     func clearCalendarControlView()
     func clearPriceSlideControlView()
+    
+    func moveToAccommodationSelectionController()
 }
 
 class SetUpViewController: UIViewController {
@@ -26,6 +30,7 @@ class SetUpViewController: UIViewController {
     private var reservationDetailViewController: ReservationDetailViewControllerProtocol!
     public var calendarControlView: CalendarControlView! = nil
     public var priceSlideControlView: PriceSlideControlView! = nil
+    public var numberOfHeadSelectionView: GuestNumberSelectionView! = nil
     private var currentContextView: String! {
         didSet {
             guard self.currentContextView != nil else { return }
@@ -46,17 +51,21 @@ class SetUpViewController: UIViewController {
         if segue.identifier == "ContainerViewSegue" {
             reservationDetailViewController = segue.destination as? ReservationDetailViewControllerProtocol
             reservationDetailViewController.setDetailSetUpViewInitializer(as: self)
+            let dependencyInjectionContainer = ReservationDetailViewControllerDIContainer()
+            reservationDetailViewController.inject(viewModel: dependencyInjectionContainer.makeReservationDetailViewModel())
         }
     }
     
 }
 
 extension SetUpViewController: DateInfoReceivable {
-    
-    func updateDateInfo(date: Date, isLowerDate: Bool) {
-        reservationDetailViewController.changeDateRange(date: date, isLowerDay: isLowerDate)
+    func updateLowerDate(date: Date) {
+        reservationDetailViewController.changeDateRange(date: date, isLowerDay: true)
     }
     
+    func updateUpperDate(date: Date) {
+        reservationDetailViewController.changeDateRange(date: date, isLowerDay: false)
+    }
 }
 
 extension SetUpViewController: PriceInfoReceivable {
@@ -67,10 +76,23 @@ extension SetUpViewController: PriceInfoReceivable {
     
 }
 
+extension SetUpViewController: GuestNumberInfoReceivable {
+    
+    func addGuest(type: GuestType) {
+        reservationDetailViewController.addGuest(type: type)
+    }
+    
+    func reduceGuest(type: GuestType) {
+        reservationDetailViewController.deductGuest(type: type)
+    }
+    
+}
+
 extension SetUpViewController: DetailSetUpViewInitializable {
     
     func configureDetailSubViewLayout(of currentContextView: UIView) {
         let reservationDetailViewHeightRatioToView = 0.3
+
         NSLayoutConstraint.activate([
             currentContextView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             currentContextView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -115,14 +137,39 @@ extension SetUpViewController: DetailSetUpViewInitializable {
         self.currentContextView = nil
     }
     
-    func clearPriceSlideControlView() {
-        self.priceSlideControlView.clearRangeSlider()
+    func configureNumberOfHeadSelectionView() {
+        self.currentContextView = String(describing: GuestNumberSelectionView.self)
+        
+        self.numberOfHeadSelectionView = GuestNumberSelectionView()
+        view.addSubview(numberOfHeadSelectionView)
+        numberOfHeadSelectionView.translatesAutoresizingMaskIntoConstraints = false
+        configureDetailSubViewLayout(of: numberOfHeadSelectionView)
+        numberOfHeadSelectionView.backgroundColor = .brown
+        numberOfHeadSelectionView.guestNumberInfoReceivable = self
+
+    }
+    
+    func deinitializeNumberOfHeadSelectionView() {
+        self.numberOfHeadSelectionView.guestNumberInfoReceivable = nil
+        self.numberOfHeadSelectionView.removeConstraints(self.numberOfHeadSelectionView.constraints)
+        self.numberOfHeadSelectionView.removeFromSuperview()
+        self.numberOfHeadSelectionView = nil
+        self.currentContextView = nil
     }
     
     func clearCalendarControlView() {
         self.calendarControlView.clearCalendarView()
     }
     
+    func clearPriceSlideControlView() {
+        self.priceSlideControlView.clearRangeSlider()
+    }
+    
+    func moveToAccommodationSelectionController() {
+        let targetVC = self.storyboard?.instantiateViewController(identifier: String(describing: AccommodationSelectViewController.self)) as! AccommodationSelectViewController
+        
+        self.navigationController?.pushViewController(targetVC, animated: false)
+    }
 }
     
 

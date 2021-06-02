@@ -13,10 +13,10 @@ protocol PriceInfoReceivable {
 
 class PriceSlideControlView: UIView {
     
-    private var minimumPrice: CGFloat?
-    private var maximumPrice: CGFloat?
     private var rangeSlider: RangeSlider! = nil
+    private var viewModel: PriceSlideControlViewModel?
     public var priceInfoReceivable: PriceInfoReceivable?
+    
     
     override var frame: CGRect {
         didSet {
@@ -27,6 +27,7 @@ class PriceSlideControlView: UIView {
     public init() {
         super.init(frame: .zero)
         self.backgroundColor = .red
+        self.viewModel = PriceSlideControlViewModel()
         configureRangeSlider()
         rangeSlider.addTarget(self, action: #selector(rangeSliderValueChanged(_:)),
                               for: .valueChanged)
@@ -37,7 +38,6 @@ class PriceSlideControlView: UIView {
     }
     
     public func configureRangeSlider() {
-
         self.rangeSlider = RangeSlider(frame: self.frame)
         self.addSubview(rangeSlider)
         rangeSlider.translatesAutoresizingMaskIntoConstraints = false
@@ -56,11 +56,10 @@ class PriceSlideControlView: UIView {
     }
     
     @objc func rangeSliderValueChanged(_ rangeSlider: RangeSlider) {
-        // for test
-        self.minimumPrice = 10_000
-        self.maximumPrice = 1_000_000
+        guard let maximumPrice = viewModel?.maximumPrice else { return }
+        guard let minimumPrice = viewModel?.minimumPrice else { return }
         
-        priceInfoReceivable?.updatePriceInfo(lowestPrice: rangeSlider.lowerValue * minimumPrice!, highestPrice: rangeSlider.upperValue * maximumPrice!)
+        priceInfoReceivable?.updatePriceInfo(lowestPrice: rangeSlider.lowerValue * CGFloat(maximumPrice - minimumPrice), highestPrice: rangeSlider.upperValue * CGFloat(maximumPrice))
     }
 
 }
