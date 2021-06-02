@@ -8,21 +8,29 @@ interface IMiniProps {
   setClicked: (value: React.SetStateAction<boolean>) => void
   inputData: IParams
 }
+
+export const setScheduleMsg = (
+  checkIn: string | number | undefined,
+  checkOut: string | number | undefined
+) => {
+  let msg =
+    checkIn !== defaultValue.checkIn && checkOut !== defaultValue.checkOut
+      ? FilterDateToString(checkIn) + '-' + FilterDateToString(checkOut)
+      : checkIn
+  return msg
+}
+
 function MiniSearchBar({ setClicked, inputData }: IMiniProps) {
   const handleClick = () => {
     setClicked(true)
   }
   RecoilSetStateGroup(inputData)
   const { place, checkIn, checkOut, guestMsg } = RecoilValueGroup()
-  const setScheduleMsg =
-    checkIn !== defaultValue.checkIn && checkOut !== defaultValue.checkOut
-      ? FilterDateToString(checkIn) + '-' + FilterDateToString(checkOut)
-      : checkIn
 
   return (
     <SearchBar>
       <div onClick={handleClick}>{place}</div>
-      <div onClick={handleClick}>{setScheduleMsg}</div>
+      <div onClick={handleClick}>{setScheduleMsg(checkIn, checkOut)}</div>
       <div onClick={handleClick}>{guestMsg}</div>
       <IconButton
         color='secondary'

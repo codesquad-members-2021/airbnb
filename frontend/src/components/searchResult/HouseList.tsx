@@ -1,12 +1,35 @@
 import styled from 'styled-components'
-
 import IconButton from '@material-ui/core/IconButton'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import FavoriteIcon from '@material-ui/icons/Favorite'
+import { useRecoilValue } from 'recoil'
+import {
+  RecoilValueGroup,
+  checkInMessage,
+  checkOutMessage,
+  defaultValue,
+} from '../../customHook/atoms'
+import { dateToString } from '../../customHook/useDateInfo'
+import { setScheduleMsg } from './MiniSearchBar'
+import { getFeeMsg } from '../searchBar/fee/Fee'
 function HouseList({ data }: any) {
+  const keepData = RecoilValueGroup()
+  const { checkIn, checkOut, priceMin, priceMax, minFeePercent, maxFeePercent, guestMsg } = keepData
+  const filteringInfo = () => {
+    let str = []
+    str.push(`${data.length}개의 숙소`)
+    if (setScheduleMsg(checkIn, checkOut) !== defaultValue.checkIn)
+      str.push(`${setScheduleMsg(checkIn, checkOut)}`)
+    if (getFeeMsg(priceMin, priceMax, minFeePercent, maxFeePercent) !== defaultValue.fee)
+      str.push(`${getFeeMsg(priceMin, priceMax, minFeePercent, maxFeePercent)}`)
+    if (guestMsg !== defaultValue.guest) str.push(guestMsg)
+
+    return str.join(` · `)
+  }
   return (
     <Frame>
-      <span>선택한 지역의 숙소</span>
+      <SmallSpan>{filteringInfo()}</SmallSpan>
+      <ListTitle>선택한 지역의 숙소</ListTitle>
       {data.map((el: any) => (
         <Column key={el.id}>
           <div>
@@ -16,10 +39,10 @@ function HouseList({ data }: any) {
             <div>
               <div>
                 <Title>{el.name}</Title>
-                <RoomInfo>
+                <SmallSpan>
                   침실 {el.home_details.bed}개 · 욕실 {el.home_details.bath_room}개 · 최대 인원
                   {el.home_details.max_guest}명
-                </RoomInfo>
+                </SmallSpan>
               </div>
               <LikeBtn>
                 <IconButton aria-label='delete'>
@@ -48,6 +71,10 @@ function HouseList({ data }: any) {
     </Frame>
   )
 }
+const ListTitle = styled.div`
+  font-weight: ${({ theme }) => theme.fontWeight.w2};
+  font-size: ${({ theme }) => theme.fontSize.lg};
+`
 const LikeBtn = styled.div`
   position: absolute;
   top: -16px;
@@ -78,7 +105,7 @@ const Review = styled.div`
     font-weight: ${({ theme }) => theme.fontWeight.w1};
   }
 `
-const RoomInfo = styled.div`
+const SmallSpan = styled.div`
   color: ${({ theme }) => theme.color.grey_3};
   font-size: ${({ theme }) => theme.fontSize.super_sm};
 `

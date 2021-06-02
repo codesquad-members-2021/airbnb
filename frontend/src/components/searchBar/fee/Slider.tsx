@@ -32,7 +32,9 @@ function Slider({ dataArr }: IGraphProps) {
   useEffect(() => {
     if (inputRight && inputRight.current) {
       inputRightVal = inputRight.current.value
-      inputRight.current.addEventListener('input', () => setMaxValue(inputRight.current))
+      inputRight.current.addEventListener('input', (e: any) => {
+        setMaxValue(inputRight.current)
+      })
     }
     if (inputLeft && inputLeft.current) {
       inputLeftVal = inputLeft.current.value
@@ -85,8 +87,24 @@ function Slider({ dataArr }: IGraphProps) {
   return (
     <SliderWrapper className='wrapper'>
       <SliderBox slideLength={slideLength}>
-        <Input ref={inputLeft} type='range' min='0' max='100' defaultValue='0' />
-        <Input ref={inputRight} type='range' min='0' max='100' defaultValue='100' />
+        <Input
+          className='input-min'
+          ref={inputLeft}
+          type='range'
+          min='0'
+          max='100'
+          value='0'
+          // onInput={(e) => handleMinInput(e)}
+        />
+        <Input
+          className='input-max'
+          ref={inputRight}
+          type='range'
+          min='0'
+          max='100'
+          value='100'
+          // onInput={(e) => handleMaxInput(e)}
+        />
         <SliderView>
           <Track />
           <Range ref={range} />
@@ -214,3 +232,21 @@ const PriceTag = styled.div`
   }
 `
 export default Slider
+
+// const handleMinInput = (e: React.FormEvent<HTMLInputElement>) => {
+//   const target = e.target as HTMLInputElement
+//   const maxTag = document.querySelector('.input-max') as HTMLInputElement
+//   const maxValue = maxTag?.value || 0
+//   console.log('min', target.value, maxValue, maxValue <= target.value)
+//   if (maxValue <= target.value) return
+//   setMinValue(target)
+// }
+
+// const handleMaxInput = (e: React.FormEvent<HTMLInputElement>) => {
+//   const target = e.target as HTMLInputElement
+//   const minTag = document.querySelector('.input-min') as HTMLInputElement
+//   const minValue = minTag?.value || 0
+//   console.log('max', target.value, minValue, minValue <= target.value)
+//   if (minValue >= target.value) return
+//   setMaxValue(target)
+// }
