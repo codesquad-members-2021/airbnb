@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import Combine
 
 class PriceViewController: UIViewController {
 
     
     private var conditionViewModel: ConditionViewModel
+    private var priceUseCase = PriceUseCase()
+    private var cancelBag = Set<AnyCancellable>()
     private var containerView: UIView!
     let label = UILabel()
     
@@ -26,6 +29,8 @@ class PriceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        priceUseCase.requestMainPage(condition: Condition(cityId: conditionViewModel.city, schedule: conditionViewModel.schedule, price: conditionViewModel.price, people: conditionViewModel.people))
+        bind()
         configure()
         configureContainer()
         configureNavigation()
@@ -33,6 +38,25 @@ class PriceViewController: UIViewController {
     }
 
     
+}
+
+extension PriceViewController {
+    
+    private func bind() {
+        priceUseCase.$prices.receive(on: DispatchQueue.main)
+            .sink { prices in
+                guard let prices = prices else { return }
+                print(prices)
+            }
+            .store(in: &cancelBag)
+        
+        priceUseCase.$error
+            .receive(on: DispatchQueue.main)
+            .sink { error in
+                guard let error = error else { return }
+                print(error) ///사용자에게 에러 표시하는 부분 미구현
+            }.store(in: &cancelBag)
+    }
 }
 
 

@@ -38,6 +38,7 @@
 		AEC52F712663FF3600D8F802 /* ConditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC52F6F2663FF3600D8F802 /* ConditionCell.swift */; };
 		AEC52F742664041200D8F802 /* ConditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC52F732664041200D8F802 /* ConditionViewModel.swift */; };
 		AEF03BA526674E8200050531 /* PriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF03BA426674E8200050531 /* PriceViewController.swift */; };
+		AEF03BA726675AB200050531 /* PriceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF03BA626675AB200050531 /* PriceUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		AEC52F6F2663FF3600D8F802 /* ConditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionCell.swift; sourceTree = "<group>"; };
 		AEC52F732664041200D8F802 /* ConditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionViewModel.swift; sourceTree = "<group>"; };
 		AEF03BA426674E8200050531 /* PriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewController.swift; sourceTree = "<group>"; };
+		AEF03BA626675AB200050531 /* PriceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				AEF03BA426674E8200050531 /* PriceViewController.swift */,
+				AEF03BA626675AB200050531 /* PriceUseCase.swift */,
 			);
 			path = Price;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE9AC6A7265CCCBF0038C198 /* CalendarViewController.swift in Sources */,
+				AEF03BA726675AB200050531 /* PriceUseCase.swift in Sources */,
 				AE11F5AE265F3D920034779F /* Date+extension.swift in Sources */,
 				AE0B5DE326560287000B35E7 /* MainPageUseCase.swift in Sources */,
 				AE0B5DEF26563BE4000B35E7 /* RecommandedDestinationViewController.swift in Sources */,

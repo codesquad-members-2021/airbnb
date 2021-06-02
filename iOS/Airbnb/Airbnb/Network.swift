@@ -32,7 +32,7 @@ enum EndPoint {
 
 protocol NetworkManageable {
     func get<T: Decodable>(type: T.Type, url: URL) -> AnyPublisher<T, Error>
-    func post<T: Codable>(url: URL, data: T) -> AnyPublisher<Void, Error>
+    func post<T: Encodable, R: Decodable>(url: URL, data: T, result: R.Type) -> AnyPublisher<R, Error>
 }
 
 
@@ -66,7 +66,7 @@ extension NetworkManager: NetworkManageable {
             .eraseToAnyPublisher()
     }
     
-    func post<T: Codable>(url: URL, data: T) -> AnyPublisher<Void, Error> {
+    func post<T: Encodable, R: Decodable>(url: URL, data: T, result: R.Type) -> AnyPublisher<R, Error> {
 
         return Just(data)
             .encode(encoder: JSONEncoder())
@@ -85,12 +85,13 @@ extension NetworkManager: NetworkManageable {
             }
             .flatMap { request in
                 return self.session.dataTaskPublisher(for: request)
-                    .tryMap { element -> Void in
+                    .tryMap { element -> R in
                         guard let httpResponse = element.response as? HTTPURLResponse,
                               httpResponse.statusCode == 200 else {
                             throw NetworkError.BadURL
                         }
-                        return
+                        let result = try JSONDecoder().decode(R.self, from: element.data)
+                        return result
                     }
             }
             .eraseToAnyPublisher()
