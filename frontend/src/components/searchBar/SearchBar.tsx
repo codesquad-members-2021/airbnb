@@ -24,7 +24,7 @@ const BarWrapper = styled.div`
   justify-content: center;
   position: relative;
   top: 30px;
-  z-index: 9999;
+  z-index: 9998;
   background-color: ${({ theme }) => theme.color.white};
 `
 const Bar = styled.div`

@@ -21,12 +21,20 @@ function UserInfo() {
       </div>
     )
   }
-
   const HoverMenu = () => {
+    const style = { textDecoration: 'none', color: 'black' }
+
     return (
       <>
         <MenuBlock ref={userInfoModal}>
-          <Menu>로그인</Menu>
+          <Menu>
+            <a
+              href='https://github.com/login/oauth/authorize?client_id=4e0168ba02f62f435d04'
+              style={style}
+            >
+              로그인
+            </a>
+          </Menu>
         </MenuBlock>
       </>
     )
