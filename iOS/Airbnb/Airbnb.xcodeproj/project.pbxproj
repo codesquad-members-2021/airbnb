@@ -37,6 +37,7 @@
 		AEC52F6E2663FEB200D8F802 /* ConditionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC52F6D2663FEB200D8F802 /* ConditionTableViewController.swift */; };
 		AEC52F712663FF3600D8F802 /* ConditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC52F6F2663FF3600D8F802 /* ConditionCell.swift */; };
 		AEC52F742664041200D8F802 /* ConditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC52F732664041200D8F802 /* ConditionViewModel.swift */; };
+		AEF03BA526674E8200050531 /* PriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF03BA426674E8200050531 /* PriceViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		AEC52F6D2663FEB200D8F802 /* ConditionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionTableViewController.swift; sourceTree = "<group>"; };
 		AEC52F6F2663FF3600D8F802 /* ConditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionCell.swift; sourceTree = "<group>"; };
 		AEC52F732664041200D8F802 /* ConditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionViewModel.swift; sourceTree = "<group>"; };
+		AEF03BA426674E8200050531 /* PriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +242,7 @@
 			children = (
 				AEC52F6C2663FDEB00D8F802 /* Condition */,
 				AEC52F6A2663F28100D8F802 /* Calendar */,
+				AEF03BA326674E6000050531 /* Price */,
 			);
 			path = ConditionPage;
 			sourceTree = "<group>";
@@ -264,6 +267,14 @@
 				AEC52F732664041200D8F802 /* ConditionViewModel.swift */,
 			);
 			path = Condition;
+			sourceTree = "<group>";
+		};
+		AEF03BA326674E6000050531 /* Price */ = {
+			isa = PBXGroup;
+			children = (
+				AEF03BA426674E8200050531 /* PriceViewController.swift */,
+			);
+			path = Price;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,6 +419,7 @@
 				AEC52F742664041200D8F802 /* ConditionViewModel.swift in Sources */,
 				AE3FE07526574E7000A95177 /* SearchCityViewController.swift in Sources */,
 				AEC52F712663FF3600D8F802 /* ConditionCell.swift in Sources */,
+				AEF03BA526674E8200050531 /* PriceViewController.swift in Sources */,
 				AE11F5AA265F3D250034779F /* DayCell.swift in Sources */,
 				AE11F5AC265F3D5F0034779F /* DateGenerator.swift in Sources */,
 				AE3FE07726578F1700A95177 /* RegionData.swift in Sources */,
