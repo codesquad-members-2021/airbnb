@@ -66,5 +66,21 @@ extension ConditionTableViewController {
                 self.tableView.reloadData()
             })
             .store(in: &cancelBag)
+        
+        viewModel.$price
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { _ in
+                self.dataSource = self.viewModel.generateFirstCondition()
+                self.tableView.reloadData()
+            })
+            .store(in: &cancelBag)
+        
+        viewModel.$people
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { _ in
+                self.dataSource = self.viewModel.generateFirstCondition()
+                self.tableView.reloadData()
+            })
+            .store(in: &cancelBag)
     }
 }

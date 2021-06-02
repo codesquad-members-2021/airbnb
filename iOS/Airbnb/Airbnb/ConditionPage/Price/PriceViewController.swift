@@ -28,13 +28,12 @@ class PriceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        priceUseCase.requestMainPage(condition: conditionViewModel.convertCodable())
-        bind()
-        configure()
         configureContainer()
+        configure()
         configureNavigation()
         configureToolBar()
+        priceUseCase.requestMainPage(condition: conditionViewModel.convertCodable())
+        bind()
     }
 
     
@@ -46,7 +45,7 @@ extension PriceViewController {
         priceUseCase.$prices.receive(on: DispatchQueue.main)
             .sink { prices in
                 guard let prices = prices else { return }
-                print(prices)
+                self.updatePriceLabel(with: prices)
             }
             .store(in: &cancelBag)
         
@@ -59,24 +58,41 @@ extension PriceViewController {
     }
 }
 
+extension PriceViewController {
+ 
+    @objc private func labelTouched(_ sender: UILabel) {
+        let price = Price(max: 80000, min: 200000)
+        conditionViewModel.updateCondition(price: price)
+    }
+    
+}
+
 
 extension PriceViewController {
     
     private func configure() {
+        view.backgroundColor = .white
         view.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.adjustsFontForContentSizeCategory = true
+        label.isUserInteractionEnabled = true
         label.numberOfLines = 0
-        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        label.textAlignment = .center
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(labelTouched(_:)))
+        label.addGestureRecognizer(gestureRecognizer)
         
         let inset = CGFloat(10)
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
             label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
             label.topAnchor.constraint(equalTo: view.topAnchor, constant: inset),
-            label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -inset)
+            label.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: -inset)
         ])
-
+    }
+    
+    private func updatePriceLabel(with prices: Prices) {
+        label.text = prices.prices.map { String($0) }.reduce("") { $0 + "\n" + $1 }
     }
     
 }
