@@ -31,7 +31,7 @@ const Glass = () => (
 	</svg>
 );
 
-const SearchButtonWrapper = styled.div`
+const SearchButtonWrapper = styled.div<{ isResultOn: boolean; isSearching: boolean }>`
 	position: absolute;
 	width: ${({ isSearching }) => (isSearching ? "90px" : "40px")};
 	height: 40px;

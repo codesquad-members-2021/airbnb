@@ -18,7 +18,7 @@ const Header = () => {
 	);
 };
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper = styled.div<{ isResultOn: boolean; isSearching: boolean; isModalOn: boolean }>`
 	position: ${({ isResultOn }) => (isResultOn ? "absolute" : "relative")};
 	width: ${({ isResultOn }) => (isResultOn ? "100%" : "1440px")};
 	height: ${({ isSearching }) => (isSearching ? "192px" : "94px")};

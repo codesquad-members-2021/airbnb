@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { SearchBarContext } from "./SearchBarContextProvider";
 
-const ResultContextProvider = ({ children }) => {
+const ResultContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [isResultOn, setResultOn] = useState(false);
 	const [isSearching, setSearching] = useState(false);
 	const [isModalOn, setModalOn] = useState(false);
@@ -22,10 +22,11 @@ const ResultContextProvider = ({ children }) => {
 			.then((res) => res.json())
 			.then((json) => setHousesList(() => json))
 			.then(() => setSearching(false))
+			.then(() => console.log(housesList))
 			.catch((res) => console.log("fetch error in Houses : ", res));
 	};
 
-	const fetchModal = (houseId) => {
+	const fetchModal = (houseId: number) => {
 		fetch(`http://3.37.76.224:8080/houses/${houseId}`)
 			.then((res) => res.json())
 			.then((json) => setModalData(() => json))
@@ -56,6 +57,42 @@ const ResultContextProvider = ({ children }) => {
 	);
 };
 
-export const ResultContext = React.createContext();
+interface IHouse {
+	charge: number;
+	description: string;
+	grade: number;
+	id: number;
+	image: string;
+	local: string;
+	location: { latitude: number; longitude: number };
+	name: string;
+	options: Array<string>;
+	review: number;
+	wish: boolean;
+}
+
+export interface IResult {
+	isResultOn: boolean;
+	setResultOn: (isResultOn: boolean) => void;
+	isSearching: boolean;
+	setSearching: (isSearching: boolean) => void;
+	isModalOn: boolean;
+	setModalOn: (isModalOn: boolean) => void;
+	modalData: {
+		charge: number;
+		cleaningRatio: number;
+		serviceRatio: number;
+		discountRatio: number;
+	};
+	housesList: Array<IHouse>;
+	latitude: number;
+	setLatitude: (latitude: number) => void;
+	longitude: number;
+	setLongitude: (longitude: number) => void;
+	fetchHouses: (latitude: number, longitude: number) => void;
+	fetchModal: (houseId: number) => void;
+}
+
+export const ResultContext = React.createContext({} as IResult);
 
 export default ResultContextProvider;

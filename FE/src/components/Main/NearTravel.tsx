@@ -1,14 +1,21 @@
 import styled from "styled-components";
 import { nearTravelData } from "../../json/data.json";
+
 //prettier-ignore
-const NearTravel = () => (
+const NearTravel = (): JSX.Element => (
 	<NearTravelWrapper>
 		<NearTravelTitle>가까운 여행지 둘러보기</NearTravelTitle>
 		{nearTravelData.map((el) => <Content {...el} key={el.title} />)}
 	</NearTravelWrapper>
 );
 
-const Content = ({ title, body, src }) => (
+interface ContentProps {
+	title: string;
+	body: string;
+	src: string;
+}
+
+const Content = ({ title, body, src }: ContentProps): JSX.Element => (
 	<ContentWrapper>
 		<ContentImage src={src} />
 		<ContentTitle>{title}</ContentTitle>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import NearTravel from "./NearTravel";
 import AnyWhere from "./AnyWhere";
 
-const Main = () => (
+const Main = (): JSX.Element => (
 	<MainWrapper>
 		<NearTravel />
 		<AnyWhere />
