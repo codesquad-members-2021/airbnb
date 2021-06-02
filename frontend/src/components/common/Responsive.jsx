@@ -1,15 +1,12 @@
 import styled from "styled-components";
 
 const Responsive = ({ children, ...rest }) => {
-  // style, className, onClick, onMouseMove 등의 props를 사용할 수 있도록
-  // …rest를 사용하여 ResponsiveBlock에게 전달
   return <ResponsiveBlock>{children}</ResponsiveBlock>;
 };
 
 const ResponsiveBlock = styled.div`
   max-width: 100%;
   height: 100vh;
-  padding: 0 80px;
   margin: 0 auto; /* 중앙 정렬 */
   box-sizing: border-box;
 

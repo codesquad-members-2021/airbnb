@@ -1,6 +1,9 @@
 import styled from "styled-components";
-import RoomList from 'components/RoomList/RoomList';
+import RoomList from "components/RoomList/RoomList";
 import { useRecoilValue } from "recoil";
+import SearchBar from "components/SearchBar/SearchBar";
+import MiniHeader from "components/Header/MiniHeader";
+
 import {
   searchBarClickState,
   checkInState,
@@ -8,16 +11,18 @@ import {
   roomPriceState,
   guestState,
 } from "recoil/Atoms";
-const ResultPage = () => {
-  const checkInDate = useRecoilValue(checkInState);
-  return (
-  <ResultPageLayout>
-    <RoomList/>
-  </ResultPageLayout>
-)};
+import Responsive from "components/common/Responsive";
 
-const ResultPageLayout = styled.div`
-   width: 100%;
-`
+const ResultPage = () => {
+  return (
+    <MainPageLayout>
+      <MiniHeader />
+      <RoomList />
+    </MainPageLayout>
+  );
+};
+const MainPageLayout = styled(Responsive)`
+  position: relative;
+`;
 
 export default ResultPage;

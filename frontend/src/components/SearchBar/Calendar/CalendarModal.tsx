@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
-import { calendarModalState, clickCountState } from "recoil/Atoms";
+import { calendarModalState } from "recoil/Atoms";
 import * as S from "components/SearchBar/Calendar/CalendarStyles";
 import MonthlyCalendar from "components/SearchBar/Calendar/MonthlyCalendar";
 
@@ -16,16 +16,14 @@ const CalendarModal = () => {
   const [locationX, setLocationX] = useState(-25);
   const [direction, setDirection] = useState("");
   const [transitionFlag, setTransitionFlag] = useState(false);
-  const [clickCount, setClickCount] = useRecoilState(clickCountState);
+
   const moveCalendarContainer = (dir: string) => {
     if (dir === "R") {
       setDirection("R");
       setLocationX(-50);
-      setClickCount(clickCount + 1);
     } else {
       setDirection("L");
       setLocationX(0);
-      setClickCount(clickCount - 1);
     }
     setTransitionFlag(true);
   };

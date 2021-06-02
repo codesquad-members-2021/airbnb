@@ -1,23 +1,14 @@
 import styled from "styled-components";
 import { ReactComponent as Logo } from "components/common/Logo.svg";
 import Login from "components/Header/Login";
-// type HeaderProps = {
-//   title: string;
-//   link: string;
-// };
-//: React.FunctionComponent<HeaderProps>
-
+import Navigator from "./Navigator";
 const Header = () => {
-  const navText: Array<string> = ["숙소", "체험", "온라인 체험"];
+  //🌼🌼헤더 말고 다른 곳 누르면 다시 minibar보이게 하면 됨
   return (
     <>
       <HeaderLayout>
         <Logo width="100px" />
-        <NavigatorLayout>
-          {navText.map((text, idx) => {
-            return <NavigatorList key={`nav-${idx}`}>{text}</NavigatorList>;
-          })}
-        </NavigatorLayout>
+        <Navigator />
         <Login />
       </HeaderLayout>
     </>
@@ -27,7 +18,7 @@ const Header = () => {
 const HeaderLayout = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-top: 50px;
+  padding: 2rem 2.4rem; //0px 로 바꾸기
 `;
 
 const NavigatorLayout = styled.ul`
