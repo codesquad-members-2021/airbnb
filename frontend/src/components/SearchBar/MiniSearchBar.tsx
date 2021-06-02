@@ -1,18 +1,46 @@
 import styled from "styled-components";
 import { ReactComponent as smallSearchBtn } from "image/smallSearchBtn.svg";
-import { miniBarClickState } from "recoil/Atoms";
+import { MiniSearchBarClickState, searchBarClickState } from "recoil/Atoms";
 import { useSetRecoilState } from "recoil";
+import { search } from "util/enum";
 const MiniSearchBar = () => {
-  const setMiniBarClickFlag = useSetRecoilState(miniBarClickState);
+  const setMiniSearchBarClickFlag = useSetRecoilState(MiniSearchBarClickState);
+  const setsSearchBarClick = useSetRecoilState(searchBarClickState);
+  const handleMiniSearchBarClick = (
+    e: React.MouseEvent<Element, MouseEvent>
+  ) => {
+    const target = e.target as HTMLElement;
+    const targetId = target.id;
+    setClickFlagByType(targetId);
+    //atom 값 바꿔주기
+  };
+  const setClickFlagByType = (type: string) => {
+    switch (type) {
+      case "check-in-out":
+        setsSearchBarClick(search.in);
+        break;
+      case "room-price":
+        setsSearchBarClick(search.room);
+        break;
+      case "guests":
+        setsSearchBarClick(search.guests);
+        break;
+      default:
+        throw new Error("Unhandled  Type");
+    }
+  };
 
   return (
-    <MiniSearchBarLayout onClick={() => setMiniBarClickFlag(x => !x)}>
-      <MiniSearchBarContainer className="search-bar">
-        <Text _left="2.5rem">일정 입력</Text>
+    <MiniSearchBarLayout onClick={() => setMiniSearchBarClickFlag(x => !x)}>
+      <MiniSearchBarContainer
+        className="search-bar"
+        onClick={handleMiniSearchBarClick}
+      >
+        <Text id="check-in-out">일정 입력</Text>
         <MiniSearchLine _left="87px" />
-        <Text _left="10.5rem">금액대 입력</Text>
+        <Text id="room-price">금액대 입력</Text>
         <MiniSearchLine _left="178px" />
-        <Text _left="19rem">인원 입력</Text>
+        <Text id="guests"> 인원 입력</Text>
         <SearchBarButton />
       </MiniSearchBarContainer>
     </MiniSearchBarLayout>
@@ -71,10 +99,9 @@ const MiniSearchBarLayout = styled.div`
   align-items: center;
 `;
 const Text = styled.div`
-  position: absolute;
   width: 20%;
-  left: ${(props: TMiniSearchBar) => props._left};
-  top: 2rem;
+  padding: 1.9rem 1.5rem;
+  text-align: center;
   color: #828282;
   font-size: 1.2rem;
 `;
