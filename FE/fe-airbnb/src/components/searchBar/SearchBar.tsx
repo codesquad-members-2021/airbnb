@@ -8,10 +8,11 @@ import HeadCountModal from '@components/headcount/HeadCountModal';
 import PriceModal from '@components/price/PriceModal';
 import SearchButton from '../SearchButton';
 import SearchBarBtn from './SearchBarBtn';
-import { CalendarContextType, HeadCountContextType, SearchBarBtnType, SelectedContentProps } from './searchBarTypes';
+import { CalendarContextType, HeadCountContextType, PriceContextType, SearchBarBtnType, SelectedContentProps } from './searchBarTypes';
 
 export const CalendarContext = createContext<CalendarContextType | null >(null);
 export const HeadCountContext = createContext<HeadCountContextType>({guestCountState: null, setGuestCountState: null});
+export const PriceContext = createContext<PriceContextType | null>(null);
 
 function SearchBar() {
   const [selectedBtn, setSelectedBtn] = useState<string | null>(null);
@@ -51,6 +52,22 @@ function SearchBar() {
     }
   }
 
+   // ============================ price 상태 ============================
+
+   const [min, max] = [10000, 1000000];
+   const [minPrice, setMinPrice] = useState(min);
+   const [maxPrice, setMaxPrice] = useState(max);
+   const priceState = {
+     values: {
+       min,
+       max,
+       minPrice,
+       setMinPrice,
+       maxPrice,
+       setMaxPrice
+     }
+   }
+
   const renderModal = (): ReactElement | void => {
     switch (selectedBtn) {
       case SearchBarBtnType.CHECK_IN_OUT:
@@ -62,7 +79,9 @@ function SearchBar() {
 
       case SearchBarBtnType.PRICE:
         return (
-          <PriceModal />
+          <PriceContext.Provider value={priceState.values}>
+            <PriceModal />
+          </PriceContext.Provider>
         );
 
       case SearchBarBtnType.HEAD_COUNT:
@@ -73,6 +92,8 @@ function SearchBar() {
         );
     }
   }
+
+ 
 
   const handleClickSearchBarBtn = (btnType: string): void => {
     if(selectedBtn === btnType) setSelectedBtn(null);
@@ -108,7 +129,11 @@ function SearchBar() {
           <SearchBarBtn onClick={() => handleClickSearchBarBtn(SearchBarBtnType.PRICE)}>
             <Flex direction="column">
                 <SearchBarSubTitle>요금</SearchBarSubTitle>
-                <SelectedContent contentType="placeholder">금액대 설정</SelectedContent>
+                {
+                  minPrice !== 10000 || maxPrice !== 1000000
+                    ? <SelectedContent contentType="priceRrange">₩{minPrice} - ₩{maxPrice}</SelectedContent>
+                    : <SelectedContent contentType="placeholder">금액대 설정</SelectedContent>
+                }
             </Flex>
           </SearchBarBtn>
 
@@ -162,7 +187,6 @@ const CustomSpacer = styled.div`
 const SelectedContent = styled.div<SelectedContentProps>`
   font-size: ${({theme}) => theme.fontSizes.SM};
   color: ${({contentType, theme}) => contentType === 'placeholder' ? theme.colors.gray2 : theme.colors.black};
-  width: 112px;
   height: 23px;
 `
 

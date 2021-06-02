@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 import { Center } from '@chakra-ui/react';
+import { useHistory } from 'react-router';
+
 import { ReactComponent as SearchIcon } from '../icon/search.svg';
 
 const SearchButton = ({ size }) => {
+  const history = useHistory();
+  const routeToReservationPage = () => {
+    history.push('/reservation');
+  };
+
   return (
-    <Button size={size}>
+    <Button size={size} onClick={routeToReservationPage}>
       <Center>
         <SearchIcon />
         {size === 'compact' ? <></> : <span>검색</span>}

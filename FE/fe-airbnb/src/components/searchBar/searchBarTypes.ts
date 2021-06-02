@@ -40,3 +40,12 @@ export type HeadCountContextType = {
     infants: number;
   }>> | null
 }
+
+export type PriceContextType = {
+  min: number,
+  max: number,
+  minPrice: number,
+  setMinPrice: Dispatch<SetStateAction<number>>,
+  maxPrice: number,
+  setMaxPrice: Dispatch<SetStateAction<number>>
+}

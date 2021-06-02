@@ -1,10 +1,14 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-function RangeSlider({ min, max }) {
-  const [minPrice, setMinPrice] = useState(min);
-  const [maxPrice, setMaxPrice] = useState(max);
-
+function RangeSlider({
+  min,
+  max,
+  minPrice,
+  setMinPrice,
+  maxPrice,
+  setMaxPrice,
+}) {
   const minPriceRef = useRef(min);
   const maxPriceRef = useRef(max);
   const range = useRef(null);
@@ -22,7 +26,7 @@ function RangeSlider({ min, max }) {
   };
 
   const getPercent = useCallback(
-    (value) => Math.round(((value - min) / (max - min)) * 100),
+    (price) => Math.round(((price - min) / (max - min)) * 100),
     [min, max]
   );
 
@@ -66,8 +70,6 @@ function RangeSlider({ min, max }) {
       <Slider className="slider">
         <div className="slider-track" />
         <div ref={range} className="slider-range" />
-        <div className="slider-left-price">{minPrice}</div>
-        <div className="slider-right-price">{maxPrice}</div>
       </Slider>
     </RangeSliderContainer>
   );
@@ -130,29 +132,13 @@ const Slider = styled.div`
     position: absolute;
   }
   .slider-track {
-    background-color: #ced4da;
+    background-color: ${({ theme }) => theme.colors.gray5};
     width: 100%;
     z-index: 1;
   }
   .slider-range {
-    background-color: #9fe5e1;
+    background-color: ${({ theme }) => theme.colors.gray1};
     z-index: 2;
-  }
-
-  .slider-left-price,
-  .slider-right-price {
-    color: #5c5c5c;
-    font-size: 12px;
-    margin-top: 20px;
-    position: absolute;
-  }
-
-  .slider-left-price {
-    left: 6px;
-  }
-
-  .slider-right-price {
-    right: -4px;
   }
 `;
 
