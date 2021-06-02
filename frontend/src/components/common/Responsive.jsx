@@ -9,7 +9,7 @@ const Responsive = ({ children, ...rest }) => {
 const ResponsiveBlock = styled.div`
   max-width: 100%;
   height: 100vh;
-  padding: 0 80px;
+  /* padding: 0 80px; */
   margin: 0 auto; /* 중앙 정렬 */
   box-sizing: border-box;
 
