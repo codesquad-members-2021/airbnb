@@ -11,8 +11,6 @@ interface IMapData {
   isRouter: boolean
 }
 function Map({ data, isRouter }: IMapData) {
-  console.log(data)
-
   useEffect(() => {
     //지도생성
     let container = document.getElementById('map')
@@ -30,7 +28,15 @@ function Map({ data, isRouter }: IMapData) {
       let latitude = data[i].coordinate.latitude
       let longitude = data[i].coordinate.longitude
       let position = new window.naver.maps.LatLng(latitude, longitude)
-      let marker = new window.naver.maps.Marker({ position, map })
+      let marker = new window.naver.maps.Marker({
+        position,
+        map,
+        icon: {
+          content: `<div style="text-align: center; width: 90px; height: 30px; background-color: white; border-radius: 10px; box-shadow: 0px 0px 4px rgba(204, 204, 204, 0.5), 0px 2px 4px rgba(0, 0, 0, 0.25);" >₩${data[i].price_per_date}</div>`,
+          size: new window.naver.maps.Size(22, 35),
+          anchor: new window.naver.maps.Point(11, 35),
+        },
+      })
     }
   })
   return (
