@@ -10,12 +10,13 @@ import UIKit
 class FindingAccommdationViewController: UIViewController {
     
     @IBOutlet weak var findingAccommdationConditionView: UIScrollView!
-
-    private let findingAccommdationCondition: FindingAccommdationCondition
+    
+    private var findingAccommdationCondition: FindingAccommdationCondition
     
     private var calendarView: CalendarView
     private let calendarDelegate: CalendarViewDelgate
     
+    @IBOutlet weak var costGraphView: CostGraphView!
     private var currentStateInt: Int
     private var currentState: CurrentState
     
@@ -27,7 +28,10 @@ class FindingAccommdationViewController: UIViewController {
     
     @IBOutlet weak var adultCountLabel: UILabel!
     
-    private var tableViewDataSource: ConditionViewTableViewDataSource!
+    private var tableViewDataSource: FindingAccommodationTableViewDataSource!
+    private var costGraph = CostGraph(averagePrice: 0, numberOfRooms: [])
+    
+    private var network = Network()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.currentStateInt = 0
@@ -44,19 +48,63 @@ class FindingAccommdationViewController: UIViewController {
         self.calendarDelegate = CalendarViewDelgate.init(conditionData: self.findingAccommdationCondition)
         self.currentState = .date
         self.calendarView = CalendarView.init()
-        self.tableViewDataSource = ConditionViewTableViewDataSource.init(condition: self.findingAccommdationCondition)
+        self.tableViewDataSource = FindingAccommodationTableViewDataSource.init(condition: self.findingAccommdationCondition)
         super.init(coder: coder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "숙소찾기"
         self.beforeButton.setTitle("", for: .normal)
         self.afterButton.setTitle("다음", for: .normal)
         initCalendarView()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(conditionDataUpdate), name: FindingAccommdationViewController.conditionDataUpdate, object: findingAccommdationCondition)
-        
         self.conditionTableView.dataSource = tableViewDataSource
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(conditionDataUpdate), name: Notification.conditionDataUpdate, object: findingAccommdationCondition)
+        costGraphView.update(minCost: "0원", maxCost: "1,000,000원", averageCost: "qweqweqwe")
+        self.conditionTableView.dataSource = tableViewDataSource
+        
+        self.costGraphView.rangeSlider.addTarget(self, action: #selector(rangeSliderValueChanged), for: .valueChanged)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: self)
+        guard let NextViewController = segue.destination as? RoomInformationViewController else {
+            return
+        }
+        requestAccommdation(nextViewController: NextViewController)
+    }
+    
+    private func requestAccommdation(nextViewController: RoomInformationViewController) {
+        let requestURL = SearchResultAPIEndPoint.init(path: "/search", httpMethod: .get)
+        
+        Network.requestQueryString(with: requestURL, dataType: SearchResult.self, queryParameter: self.findingAccommdationCondition) { result in
+            switch result {
+            case .success(let data):
+                nextViewController.insert(searchResult: data)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func takelocationBeforeController(location: String) {
+        self.findingAccommdationCondition.insert(location: location)
+    }
+    
+    private func scrollPage() {
+        let totalWidth = CGFloat(findingAccommdationConditionView.contentSize.width)
+        let viewCount = CGFloat(self.content.subviews.count)
+        
+        self.findingAccommdationConditionView.setContentOffset(CGPoint(x: totalWidth / viewCount * CGFloat(currentState.value), y: 0), animated: true)
+    }
+    
+    func mappingGraphValue() -> [(Int, Int)] {
+        var array: [(Int, Int)] = []
+        for index in 0..<costGraph.numberOfRooms.count {
+            array.append((index*5, costGraph.numberOfRooms[index]))
+        }
+        return array
     }
     
     @IBAction func pressedPreButton(_ sender: Any) {
@@ -70,7 +118,7 @@ class FindingAccommdationViewController: UIViewController {
     
     @IBAction func pressedNextButton(_ sender: Any) {
         if currentState == .people {
-            
+            performSegue(withIdentifier: "RoomInformationViewController", sender: nil)
             return
         }
         self.currentStateInt += 1
@@ -80,23 +128,15 @@ class FindingAccommdationViewController: UIViewController {
     
     @objc func conditionDataUpdate() {
         self.conditionTableView.reloadData()
-        guard let peopleCount = self.findingAccommdationCondition.people else {
-            return
-        }
-        self.adultCountLabel.text = findingAccommdationCondition.convert(peopleCount: peopleCount)
+        self.adultCountLabel.text = findingAccommdationCondition.peopleCount
+        self.costGraphView.update(
+            minCost: findingAccommdationCondition.decimalWon(value: findingAccommdationCondition.minCostDescription),
+            maxCost: findingAccommdationCondition.decimalWon(value: findingAccommdationCondition.maxCostDescription), averageCost: "0")
     }
     
-    func takelocationBeforeController(location: String) {
-        self.findingAccommdationCondition.insertData(location: location)
-    }
-    
-    @IBAction func pressedMincost(_ sender: Any) {
-        self.findingAccommdationCondition.update(minCost: "₩1000")
-    }
-    
-    @IBAction func pressedMaxCost(_ sender: Any) {
-        self.findingAccommdationCondition.update(maxCost: "₩150000")
-    }
+    //    @objc func costGraphDataUpdate() {
+    //        costGraphView.update(minCost: "₩10000", maxCost: "₩160000", averageCost: "qweqweqwe")
+    //    }
     
     @IBAction func pressedPeopleMinus(_ sender: Any) {
         self.findingAccommdationCondition.update(people: 1, isAdd: false)
@@ -106,12 +146,12 @@ class FindingAccommdationViewController: UIViewController {
         self.findingAccommdationCondition.update(people: 1, isAdd: true)
     }
     
-    private func scrollPage() {
-        let totalWidth = CGFloat(findingAccommdationConditionView.contentSize.width)
-        let viewCount = CGFloat(self.content.subviews.count)
+    @objc func rangeSliderValueChanged(_ rangeSlider: RangeSlider) {
         
-        
-        self.findingAccommdationConditionView.setContentOffset(CGPoint(x: totalWidth / viewCount * CGFloat(currentState.value), y: 0), animated: true)
+        let minCost = Int(rangeSlider.lowerValue*1000000)
+        let maxCost = Int(rangeSlider.upperValue*1000000)
+        findingAccommdationCondition.update(minCost: minCost)
+        findingAccommdationCondition.update(maxCost: maxCost)
     }
 }
 
@@ -137,6 +177,7 @@ extension FindingAccommdationViewController {
             self.currentState = .cost
             self.beforeButton.setTitle("이전", for: .normal)
             self.afterButton.setTitle("다음", for: .normal)
+            fetchCostGraph()
         case 2:
             self.currentState = .people
             self.beforeButton.setTitle("이전", for: .normal)
@@ -145,10 +186,19 @@ extension FindingAccommdationViewController {
             break
         }
     }
-}
-
-extension FindingAccommdationViewController {
-    static let conditionDataUpdate = Notification.Name("conditionDataUpdate")
+    
+    func fetchCostGraph() {
+        let endPoint = MainAPIEndPoint(path: "/search/1", httpMethod: .get)
+        network.request(with: endPoint, dataType: CostGraph.self) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let data):
+                self.costGraph = data
+                self.costGraphView.chartInit(data: self.mappingGraphValue())
+            }
+        }
+    }
 }
 
 extension FindingAccommdationViewController {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CondtionsTableViewCell: UITableViewCell {
+class FindingAccommodationTableViewCell: UITableViewCell {
     
     @IBOutlet weak var minvalue: UILabel!
     @IBOutlet weak var maxvalue: UILabel!
