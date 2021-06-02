@@ -7,7 +7,7 @@ AUTOINJECT_JAR=1 #1:자동으로 scp명령어로 밀어넣기, #0=안밀어넣�
 #
 echo $LINE
 echo "## Dong's 바이너리파일 밀어넣기 스크립트 "
-echo "## >>  프로젝트 : 인어교주해적단 과제  << "
+echo "## >>  airbnb  << "
 echo $LINE
 
 cd ../../../
