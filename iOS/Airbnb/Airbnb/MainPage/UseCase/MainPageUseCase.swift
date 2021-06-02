@@ -25,7 +25,7 @@ class MainPageUseCase {
 extension MainPageUseCase  {
     
     func requestMainPage() {
-        networkManager.get(type: Main.self, url: EndPoint.url(path: "/main")!)
+        networkManager.get(type: Main.self, url: EndPoint.url(path: "")!)
             .receive(on: DispatchQueue.main)
             .sink { error in
                 self.error = error as? Error

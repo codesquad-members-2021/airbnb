@@ -14,8 +14,8 @@ enum NetworkError: Error {
 }
 
 enum EndPoint {
-    static let scheme = "https"
-    static let host = "mockairbnb.herokuapp.com"
+    static let scheme = "http"
+    static let host = "54.180.21.249"
     static let path = ""
     
     static func url(path: String) -> URL? {
