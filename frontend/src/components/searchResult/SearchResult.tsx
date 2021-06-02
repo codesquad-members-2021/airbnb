@@ -57,7 +57,7 @@ function SearchResult({ match }: RouteComponentProps<params>) {
       </Header>
       <NoPaddingFlexBox>
         <HouseList data={roomData} />
-        <Map />
+        <Map data={roomData} isRouter={isRouter} />
       </NoPaddingFlexBox>
     </TotalWindow>
   )
