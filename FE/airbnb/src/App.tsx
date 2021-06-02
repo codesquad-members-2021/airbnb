@@ -21,9 +21,7 @@ function App() {
             <MainPage />
           </Route>
           <Route path='/accommodations'>
-            <Suspense fallback='loading'>
-              <ReservePage />
-            </Suspense>
+            <ReservePage />
           </Route>
         </Router>
       </StyledApp>

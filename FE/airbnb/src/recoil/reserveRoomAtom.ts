@@ -1,6 +1,7 @@
 import { atom, selector } from 'recoil';
 import { roomType } from '../components/reserveRoomList/roomType';
 import { serverAPI } from '../util/api';
+import { delay } from '../util/util';
 import { reserveInfoSelector, reserveQueryType } from './headerAtom';
 import { roomData } from './roomSampleData';
 
@@ -20,7 +21,8 @@ export const getRoomsSelector = selector({
     if (isUndefined(reserveInfo)) return null;
     const response = await fetch(serverAPI.getRooms(reserveInfo));
     const data = await response.json();
-    return data;
+
+    return delay(1000, data);
   },
 });
 
