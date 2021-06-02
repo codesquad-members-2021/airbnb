@@ -17,6 +17,7 @@ class SearchCityViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Int, City>!
     private var regionDataSource: UICollectionViewDiffableDataSource<Int, Region>!
     
+    private var conditionViewModel = ConditionViewModel()
     private var mainUseCase = MainPageUseCase()
     private var cancelBag = Set<AnyCancellable>()
 
@@ -257,7 +258,9 @@ extension SearchCityViewController: UICollectionViewDelegate {
             let nextViewController = DetailDestinationViewController()
             self.navigationController?.pushViewController(nextViewController, animated: true)
         } else if cell is RegionCell {
-            let nextViewController = CalendarViewController()
+            guard let cell = cell as? RegionCell else { return }
+            conditionViewModel.updateCondition(city: cell.cityId)
+            let nextViewController = CalendarViewController(conditionViewModel: conditionViewModel)
             self.navigationController?.pushViewController(nextViewController, animated: true)
         }
     }

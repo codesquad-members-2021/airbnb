@@ -12,10 +12,19 @@ class CalendarViewController: UIViewController {
     static let headerElementKind = "header-element-kind"
     
     private var calendarViewModel = CalendarViewModel()
-    private var conditionViewModel = ConditionViewModel()
+    private var conditionViewModel: ConditionViewModel
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Date, Day>!
     private var containerView: UIView!
+    
+    init(conditionViewModel: ConditionViewModel) {
+        self.conditionViewModel = conditionViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
