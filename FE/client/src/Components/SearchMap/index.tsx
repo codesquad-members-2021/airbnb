@@ -36,6 +36,7 @@ const SearchMap = () => {
   const [{ x, y }, setUserInfoState] = useRecoilState(userInfoAtom);
   const [mapInstance, setMapInstance] = useState<any>(null)
   const hotelListLoadable = useRecoilValueLoadable(fetchHotelListSelector);
+  const [isFetchPossible, setIsFetchPossible] = useState(true);
 
   const centerPosition = {
     lat: Number(x),
@@ -49,6 +50,7 @@ const SearchMap = () => {
     const westLocation = bounds.getSouthWest().lng();
     const eastLocation = bounds.getNorthEast().lng();
     const distance = (eastLocation - westLocation) / 2;
+    if (!isFetchPossible) return;
     setUserInfoState((state: any) => ({
       ...state,
       x: mapInstance.center.lat(),
@@ -57,7 +59,7 @@ const SearchMap = () => {
     }))
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mapInstance]);
+  }, [mapInstance, isFetchPossible]);
 
   return (
     <SearchMapWrapper>
@@ -66,6 +68,7 @@ const SearchMap = () => {
           defaultChecked
           color="default"
           style={{ transform: "scale(1.5)" }}
+          onClick={() => setIsFetchPossible(state => !state)}
         />
 
         지도를 움직이며 검색하기
