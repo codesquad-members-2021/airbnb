@@ -20,29 +20,46 @@ export const searchParamsSelector = selector({
     let res = "";
     const { latitude, longitude } = get(locationData);
     const [checkIn, checkOut] = get(CalendarData);
+
     const { adult, teen, kids } = get(PeopleData);
+
     const dateParser = (date: number) =>
       new Date(date).toISOString().slice(0, 10);
+
     if (checkIn && checkOut && latitude && longitude) {
       res = `&checkin=${dateParser(checkIn)}&checkout=${dateParser(
         checkOut
       )}&latitude=${latitude}&longitude=${longitude}`;
+    }
+    if (adult) {
+      console.log("ha");
+      res += `&adults=${adult}&children=${teen}&infants=${kids}`;
     }
 
     return res;
   },
 });
 
+export const priceSelector = selector({
+  key: "priceSelector",
+  get({ get }) {
+    const { maxPrice, minPrice } = get(priceData);
+    const { max, min, width } = get(priceSliderData);
+    const gap = maxPrice - minPrice;
+    const curMin = minPrice + Math.floor((gap * min) / width / 1000) * 1000;
+    const curMax = minPrice + Math.floor((gap * max) / width / 1000) * 1000;
+    if (max === Infinity && maxPrice === 0) return "금액대 설정";
+    return `₩${curMin} ~ ₩${curMax}`;
+  },
+});
 
 export const priceData = atom<{
   maxPrice: number;
   minPrice: number;
- 
 }>({
   key: "priceData",
-  default: { maxPrice: Infinity, minPrice: 0},
+  default: { maxPrice: 0, minPrice: 0 },
 });
-
 
 export const priceSliderData = atom<{
   max: number;

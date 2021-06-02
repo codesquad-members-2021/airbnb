@@ -1,39 +1,29 @@
 import { Box } from "@material-ui/core";
 import useAxios from "hooks/useAxios";
 import styled from "styled-components";
-import { useRecoilValue } from "recoil";
-import { searchParamsSelector } from "atoms/searchbarAtom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { priceData, searchParamsSelector } from "atoms/searchbarAtom";
 import PriceGraph from "./PriceGraph";
 
 const PriceContent = () => {
   const searchParams = useRecoilValue(searchParamsSelector);
-
+  const setPriceData = useSetRecoilState(priceData);
   const { isSuccess, data } = useAxios(
     process.env.REACT_APP_API_URL + "/price?fraction=10" + searchParams,
     "get"
   );
-  let priceDateObj;
-  if (isSuccess) {
-    priceDateObj = Object.keys(data)
-      .sort((a, b) => +a - +b)
-      .map((v) => {
-        return { price: +v, cnt: data[v] };
-      });
-  }
-  // const sum = priceDateObj?.reduce((acc, cur) => {
-  //   acc += cur.price * cur.cnt;
-  //   return acc;
-  // }, 0);
-  // const totalCnt = priceDateObj?.reduce((acc, cur) => {
-  //   acc += cur.cnt;
-  //   return acc;
-  // }, 0);
-
+  if (isSuccess)
+    setPriceData({ maxPrice: data.max_price, minPrice: data.min_price });
+    
   return (
     <Box p="2rem" width="22rem" display="flex" flexDirection="column">
       <PriceTitle>가격 범위</PriceTitle>
-      {priceDateObj ? (
-        <PriceGraph priceData={priceDateObj} />
+      {isSuccess ? (
+        <PriceGraph
+          prices={data.prices}
+          minPrice={data.min_price}
+          maxPrice={data.max_price}
+        />
       ) : (
         <PriceRange> 여행가실 위치와 날짜를 입력해주세요 </PriceRange>
       )}

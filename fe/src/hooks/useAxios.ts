@@ -8,9 +8,7 @@ type Action =
 
 const useAxios = (initialUrl: string, methods: Method, options?: any) => {
   const [url] = useState(initialUrl);
-  type ResponseType = {
-    data: any;
-  };
+
   const [state, dispatch] = useReducer(requestReducer, {
     isInit: true,
     isLoading: false,

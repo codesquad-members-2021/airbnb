@@ -1,11 +1,18 @@
 import styled from "styled-components";
 
 import { BsSearch } from "react-icons/bs";
+import { Link } from "react-router-dom";
+
 
 const SearchBarBtn = () => {
+ 
+
+  const url = "/hotel-list" ;
   return (
     <StyledSearchBarBtn>
-      <BsSearch />
+      <Link to={url}>
+        <BsSearch />
+      </Link>
     </StyledSearchBarBtn>
   );
 };

@@ -1,32 +1,20 @@
 import PriceSlider from "./PriceSlider";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
-import { priceSliderData } from "atoms/searchbarAtom";
+import { priceSelector } from "atoms/searchbarAtom";
 type PriceGraphType = {
-  priceData: {
-    price: number;
-    cnt: any;
-  }[];
+  prices: number[];
+  minPrice: number;
+  maxPrice: number;
 };
 
-const PriceGraph = ({ priceData }: PriceGraphType) => {
-  const priceSlider = useRecoilValue(priceSliderData);
+const PriceGraph = ({ prices, minPrice, maxPrice }: PriceGraphType) => {
+  const priceValue = useRecoilValue(priceSelector);
 
-  const minPrice = priceData[0].price;
 
-  const gap = priceData[priceData.length - 1].price - minPrice;
-
-  const curMin =
-    minPrice +
-    Math.floor((gap * priceSlider.min) / priceSlider.width / 1000) * 1000;
-  const curMax =
-    minPrice +
-    Math.floor((gap * priceSlider.max) / priceSlider.width / 1000) * 1000;
   return (
     <>
-      <PriceRange>
-        {curMin} ~ {curMax}
-      </PriceRange>
+      <PriceRange>{priceValue}</PriceRange>
       <PriceSubtitle>평균 1박요금은 원 입니다.</PriceSubtitle>
       <PriceSlider />
     </>

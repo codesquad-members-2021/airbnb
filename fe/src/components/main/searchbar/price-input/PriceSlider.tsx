@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useRef, useEffect, MouseEvent, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import PriceBtn from "./PriceBtn";
 import {useRecoilState} from "recoil"
 import { priceSliderData } from "atoms/searchbarAtom";
