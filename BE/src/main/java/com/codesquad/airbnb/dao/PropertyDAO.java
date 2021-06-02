@@ -8,20 +8,23 @@ import com.codesquad.airbnb.dto.HostDTO;
 import com.codesquad.airbnb.dto.property.PropertyDTO;
 import com.codesquad.airbnb.dto.property.PropertyDetailResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class PropertyDAO {
 
-    private final JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate jdbcTemplate;
     private final String FIND_BY_PROPERTY_LIST_DEFAULT = "SELECT p.id, p.title, p.price, wl.bookmark, pd.review_count, " +
             "pd.rating, pd.latitude, pd.longitude " +
             "FROM property AS p " +
@@ -30,12 +33,12 @@ public class PropertyDAO {
 
     @Autowired
     public PropertyDAO(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
     public Property findById(Long id) {
-        String sql = "SELECT p.id, p.title, p.price FROM property as p WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, new PropertyRowMapper(), id);
+        String sql = "SELECT p.id, p.title, p.price FROM property as p WHERE id = :id";
+        return jdbcTemplate.queryForObject(sql,  new MapSqlParameterSource("id", id), new PropertyRowMapper());
     }
 
     public List<Property> findAll() {
@@ -52,13 +55,17 @@ public class PropertyDAO {
                 "LEFT JOIN reservation r ON p.id = r.property_id " +
                 "WHERE p.id = pd.property_id " +
                 "AND p.id = wl.property_id " +
-                "AND p.location_id = ? " +
-                "AND pd.max_occupancy >= ? " +
-                "AND p.price >= ? " +
-                "AND p.price <= ? ";
+                "AND p.location_id = :locationId " +
+                "AND pd.max_occupancy >= :maxOccupancy " +
+                "AND p.price >= :minPrice " +
+                "AND p.price <= :maxPrice ";
         // TODO: userid도 함께 확인해서 wishList를 찾는것이 좋을 것 같음...
 
-        Object[] objects = {locationId, maxOccupancy, minPrice, maxPrice};
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("locationId", locationId);
+        paramMap.put("maxOccupancy", maxOccupancy);
+        paramMap.put("minPrice", minPrice);
+        paramMap.put("maxPrice", maxPrice);
 
         if (checkIn != null || checkOut != null) {
             sql += "AND r.property_id NOT IN (" +
@@ -67,24 +74,20 @@ public class PropertyDAO {
                     "WHERE ";
 
             if (checkIn != null) {
-                sql += "(r.check_in_date <= ? AND r.check_out_date > ? )";
-                objects = new Object[]{locationId, maxOccupancy, minPrice, maxPrice, checkIn, checkIn};
+                sql += "(r.check_in_date <= :checkIn AND r.check_out_date > :checkIn )";
+                paramMap.put("checkIn", checkIn);
             }
             if (checkOut != null) {
-                sql += "OR (r.check_in_date < ? AND r.check_out_date >= ? )";
-                objects = new Object[]{locationId, maxOccupancy, minPrice, maxPrice, checkOut, checkOut};
+                sql += "OR (r.check_in_date < :checkOut AND r.check_out_date >= :checkOut )";
+                paramMap.put("checkOut", checkOut);
             }
             if (checkIn != null && checkOut != null) {
-                sql += "OR (? <= r.check_in_date AND r.check_in_date < ? )";
-                objects = new Object[]{locationId, maxOccupancy, minPrice, maxPrice,
-                        checkIn, checkIn,
-                        checkOut, checkOut,
-                        checkIn, checkOut};
+                sql += "OR (:checkIn <= r.check_in_date AND r.check_in_date < :checkOut )";
             }
             sql += ")";
         }
 
-        return jdbcTemplate.query(sql, new PropertyDTORowMapper(), objects);
+        return jdbcTemplate.query(sql, paramMap, new PropertyDTORowMapper());
     }
 
 
@@ -106,9 +109,9 @@ public class PropertyDAO {
                 "WHERE p.id = pd.property_id " +
                 "AND l.id = p.location_id " +
                 "AND h.property_id = p.id " +
-                "AND p.id = ? ";
+                "AND p.id = :propertyId ";
 
-        return jdbcTemplate.queryForObject(sql, new RowMapper<PropertyDetailResponseDTO>() {
+        return jdbcTemplate.queryForObject(sql, new MapSqlParameterSource("propertyId", propertyId), new RowMapper<PropertyDetailResponseDTO>() {
             @Override
             public PropertyDetailResponseDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
 
@@ -123,27 +126,27 @@ public class PropertyDAO {
                         rs.getDouble("latitude"), rs.getDouble("longitude"), rs.getDouble("rating"),
                         new HostDTO(rs.getString("h.name"), rs.getString("image_url")));
             }
-        }, propertyId);
+        });
     }
 
     public String findImageByPropertyId(Long propertyId) {
         String sql = "SELECT image_url FROM image " +
-                "WHERE image.property_id = ? " +
+                "WHERE image.property_id = :propertyId " +
                 "AND image.thumbnail = TRUE";
 
-        return jdbcTemplate.queryForObject(sql, new ImageRowMapper(), propertyId);
+        return jdbcTemplate.queryForObject(sql, new MapSqlParameterSource("propertyId", propertyId), new ImageRowMapper());
     }
 
     public List<String> findImagesByPropertyId(Long propertyId) {
         String sql = "SELECT image_url FROM image " +
-                "WHERE image.property_id = ?";
+                "WHERE image.property_id = :propertyId";
 
-        return jdbcTemplate.query(sql, new ImageRowMapper(), propertyId);
+        return jdbcTemplate.query(sql, new MapSqlParameterSource("propertyId", propertyId), new ImageRowMapper());
     }
 
     public List<Integer> findPricesByLocationId(Long locationId) {
-        String sql = "SELECT price FROM property where location_id = ?";
-        return jdbcTemplate.queryForList(sql, Integer.class, locationId);
+        String sql = "SELECT price FROM property where location_id = :locationId";
+        return jdbcTemplate.queryForList(sql, new MapSqlParameterSource("locationId", locationId), Integer.class);
     }
 }
 
