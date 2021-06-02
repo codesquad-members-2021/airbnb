@@ -17,14 +17,14 @@ class SearchCityViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Int, City>!
     private var regionDataSource: UICollectionViewDiffableDataSource<Int, Region>!
     
-    private var viewModel = MainPageUseCase()
+    private var mainUseCase = MainPageUseCase()
     private var cancelBag = Set<AnyCancellable>()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSearchBar()
-        viewModel.requestMainPage()
+        mainUseCase.requestMainPage()
         bind()
         configureHierarchy()
         configureDataSource()
@@ -36,14 +36,14 @@ class SearchCityViewController: UIViewController {
 extension SearchCityViewController {
     
     private func bind() {
-        viewModel.$mainPage.receive(on: DispatchQueue.main)
+        mainUseCase.$mainPage.receive(on: DispatchQueue.main)
             .sink { mainPage in
                 guard let mainPage = mainPage else { return }
                 self.applySnapshots(with: mainPage.cities)
             }
             .store(in: &cancelBag)
         
-        viewModel.$error
+        mainUseCase.$error
             .receive(on: DispatchQueue.main)
             .sink { error in
                 guard let error = error else { return }
