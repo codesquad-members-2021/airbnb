@@ -7,10 +7,9 @@ interface IBackground {
   onClick?: (event: MouseEvent | Event) => void;
 }
 
-const Background = ({ children, backgroundColor, onClick, ...props}: IBackground) => (
+const Background = ({ children, backgroundColor, ...props}: IBackground) => (
   <BackgroundLayout
     {...props}
-    onClick={onClick}
     backgroundColor={backgroundColor}
   >
     {children}
