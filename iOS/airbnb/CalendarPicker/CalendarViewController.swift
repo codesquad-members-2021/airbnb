@@ -51,10 +51,31 @@ extension CalendarViewController {
         collection.dataSource = dataSource
         collection.delegate = self
         collection.collectionViewLayout = flowLayout
+        collection.allowsMultipleSelection = true
+        collection.isUserInteractionEnabled = true
     }
     
 }
 
+extension CalendarViewController : UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collection.cellForItem(at: indexPath) else {
+            return
+        }
+        let viewModel = self.dataSource?.models[indexPath.row]
+        viewModel?.toggle(cell)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = collection.cellForItem(at: indexPath) else {
+            return
+        }
+        let viewModel = self.dataSource?.models[indexPath.row]
+        viewModel?.toggle(cell)
+    }
+    
+}
 extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

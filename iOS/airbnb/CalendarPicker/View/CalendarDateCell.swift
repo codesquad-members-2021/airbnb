@@ -11,7 +11,7 @@ class CalendarDateCell: UICollectionViewCell {
     
     static let reuseIdentifier = String(describing: CalendarDateCell.self)
     
-    private var selectionBackgroundView: UIView = {
+    var selectionBackgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
@@ -35,11 +35,6 @@ class CalendarDateCell: UICollectionViewCell {
         return dateFormatter
     }()
     
-    override var isSelected: Bool {
-        didSet {
-            selectionBackgroundView.backgroundColor = isSelected ? .systemBlue : .clear
-        }
-    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()

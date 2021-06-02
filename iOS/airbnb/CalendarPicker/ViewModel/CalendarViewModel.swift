@@ -24,5 +24,12 @@ class CalendarViewModel {
         }
         cell.numberLabel.text = day.number
     }
-
+    
+    func toggle(_ cell: UICollectionViewCell){
+        guard let cell = cell as? CalendarDateCell else {
+            return
+        }
+        cell.selectionBackgroundView.backgroundColor = cell.isSelected ? .systemBlue : .clear
+    }
+    
 }
