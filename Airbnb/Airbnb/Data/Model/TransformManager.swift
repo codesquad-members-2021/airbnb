@@ -2,30 +2,30 @@ import Foundation
 
 final class TransformManager {
     
-    static func toString(from date:Date) -> String {
+    static func convertToString(from date:Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.string(from: date)
     }
     
-    static func toString(from strArr:[String]) -> String {
-        if strArr.isEmpty { return "" }
-        let checkIn = strArr.min()!
-        let checkOut = strArr.max()!
+    static func convertToString(from checkInOutArray:[String]) -> String {
+        if checkInOutArray.isEmpty { return "" }
+        let checkIn = checkInOutArray.min()!
+        let checkOut = checkInOutArray.max()!
         let res = checkIn == checkOut ? checkIn:"\(checkIn) ~ \(checkOut)"
         return res
     }
     
-    static func toString(from intArr:[Int]) -> String {
-        if intArr.isEmpty { return "" }
-        let minPrice = intArr.min()!.formattedWithSeparator
-        let maxPrice = intArr.max()!.formattedWithSeparator
+    static func convertToString(from priceArray:[Int]) -> String {
+        if priceArray.isEmpty { return "" }
+        let minPrice = priceArray.min()!.formattedWithSeparator
+        let maxPrice = priceArray.max()!.formattedWithSeparator
         let res = minPrice == maxPrice ? "₩\(minPrice)":"₩\(minPrice) - ₩\(maxPrice)"
         return res
     }
 }
 
-extension Formatter {
+private extension Formatter {
     static let withSeparator: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.groupingSeparator = ","
@@ -34,7 +34,7 @@ extension Formatter {
     }()
 }
 
-extension IntegerLiteralType {
+private extension IntegerLiteralType {
     var formattedWithSeparator: String {
         return Formatter.withSeparator.string(for: self) ?? ""
     }

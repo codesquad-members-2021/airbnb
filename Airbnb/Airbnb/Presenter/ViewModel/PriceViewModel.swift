@@ -12,7 +12,7 @@ final class PriceViewModel {
     private lazy var priceList = BehaviorSubject(value: userPriceInfo)
     
     lazy var userPriceData:Driver<String> = {
-        return priceList.map{TransformManager.toString(from: $0)}
+        return priceList.map{TransformManager.convertToString(from: $0)}
             .asDriver(onErrorJustReturn: "")
     }()
     
@@ -25,12 +25,12 @@ final class PriceViewModel {
     }()
     
     lazy var apiPriceData:Driver<String> = {
-        return Observable.just(TransformManager.toString(from: apiPriceInfo)).asDriver(onErrorJustReturn: "")
+        return Observable.just(TransformManager.convertToString(from: apiPriceInfo)).asDriver(onErrorJustReturn: "")
     }()
     
     lazy var averagePriceData:Driver<String> = {
         let average = [apiPriceInfo.reduce(0, +)/apiPriceInfo.count]
-        return Observable.just("평균 1박 요금은 \(TransformManager.toString(from: average)) 입니다.")
+        return Observable.just("평균 1박 요금은 \(TransformManager.convertToString(from: average)) 입니다.")
             .asDriver(onErrorJustReturn: "")
     }()
     

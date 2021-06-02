@@ -124,7 +124,7 @@ private extension CalendarViewController {
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        viewModel.append(date: TransformManager.toString(from: date))
+        viewModel.append(date: TransformManager.convertToString(from: date))
         switch calendarView.selectedDates.count {
         case 0...1: nextPage.accept(false)
         default: nextPage.accept(true)
@@ -165,7 +165,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     }
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        viewModel.delete(date: TransformManager.toString(from: date))
+        viewModel.delete(date: TransformManager.convertToString(from: date))
         switch calendarView.selectedDates.count {
         case 0...1: nextPage.accept(false)
         default: nextPage.accept(true)

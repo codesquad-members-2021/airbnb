@@ -14,7 +14,7 @@ final class CalendarViewModel {
     private lazy var dateList = BehaviorSubject(value: dateStorage)
     
     lazy var dateInfo: Driver<String> = {
-        return dateList.map{ TransformManager.toString(from: $0) }
+        return dateList.map{ TransformManager.convertToString(from: $0) }
             .asDriver(onErrorJustReturn: "")
     }()
     
