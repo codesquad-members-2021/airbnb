@@ -24,12 +24,10 @@ class PriceUseCase {
 
 extension PriceUseCase  {
     
-    func requestMainPage(condition: Condition) {
-        
+    func requestMainPage(condition: ConditionData) {
         networkManager.post(url: EndPoint.url(path: "/rooms/price")!, data: condition, result: Prices.self)
             .receive(on: DispatchQueue.main)
             .sink { error in
-                print("😡📮error", error)
                 self.error = error as? Error
             } receiveValue: { games in
                 self.prices = games.self

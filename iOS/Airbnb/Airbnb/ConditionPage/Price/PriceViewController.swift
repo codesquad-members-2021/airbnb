@@ -29,7 +29,7 @@ class PriceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        priceUseCase.requestMainPage(condition: Condition(cityId: conditionViewModel.city, schedule: conditionViewModel.schedule, price: conditionViewModel.price, people: conditionViewModel.people))
+        priceUseCase.requestMainPage(condition: conditionViewModel.convertCodable())
         bind()
         configure()
         configureContainer()

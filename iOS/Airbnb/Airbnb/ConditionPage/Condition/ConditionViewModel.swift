@@ -98,6 +98,15 @@ extension ConditionViewModel {
     
 }
 
+extension ConditionViewModel {
+    
+    func convertCodable() -> ConditionData {
+        let stringDate = StringSchedule(checkIn: schedule?.checkIn?.description ?? "", checkOut: schedule?.checkOut?.description ?? "")
+        return ConditionData(cityId: city, schedule: stringDate, price: price, people: people)
+    }
+    
+}
+
 struct Condition: Codable {
     var cityId: Int
     var schedule: Schedule?
@@ -113,4 +122,16 @@ struct Price: Codable {
 struct Schedule: Codable {
     var checkIn: Date?
     var checkOut: Date?
+}
+
+struct ConditionData: Codable {
+    var cityId: Int
+    var schedule: StringSchedule?
+    var price: Price?
+    var people: Int?
+}
+
+struct StringSchedule: Codable {
+    var checkIn: String
+    var checkOut: String
 }
