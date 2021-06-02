@@ -1,20 +1,46 @@
 import { useEffect } from "react";
-import { useSetRecoilState } from "recoil";
-import { showMiniSearchBarState } from "@/Components/GNB/GNBStore";
+import { useSetRecoilState, useRecoilState } from "recoil";
+import {
+  showMiniSearchBarState,
+  isSearchPageState,
+} from "@/Components/GNB/GNBStore";
+import { searchBackgroundState } from "@/Components/Search/SearchStore";
 import GNB from "@/Components/GNB/GNB";
+import Accomodation from "./Accomodation/Accomodation";
+import Map from "./Map/Map";
 import { Search as S } from "@/Components/Search/SearchStyles";
+import { SearchBackground } from "@/Components/Search/SearchStyles";
 
-const Search = (props: any) => {
+const Search = () => {
   const setShowMiniSearchBarFlag = useSetRecoilState(showMiniSearchBarState);
+  const setIsSearchPageState = useSetRecoilState(isSearchPageState);
+  const [searchBackgroundFlag, setSearchBackgroundFlag] = useRecoilState(
+    searchBackgroundState
+  );
+
+  const handleOnClick = () => {
+    setShowMiniSearchBarFlag(true);
+    setSearchBackgroundFlag(false);
+  };
 
   useEffect(() => {
     setShowMiniSearchBarFlag(true);
-  }, [setShowMiniSearchBarFlag]);
+    setIsSearchPageState(true);
+    setSearchBackgroundFlag(false);
+  }, [setShowMiniSearchBarFlag, setIsSearchPageState, setSearchBackgroundFlag]);
 
   return (
-    <S.Search>
+    <>
+      <SearchBackground
+        onClick={handleOnClick}
+        searchBackgroundFlag={searchBackgroundFlag}
+      />
       <GNB />
-    </S.Search>
+      <S.Search>
+        <Accomodation />
+        <Map />
+      </S.Search>
+    </>
   );
 };
 

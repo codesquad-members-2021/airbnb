@@ -1,6 +1,11 @@
 import { atom } from "recoil";
 
-export const searchState = atom({
+export const searchState = atom<any[]>({
   key: "searchState",
-  default: null,
+  default: [],
+});
+
+export const searchBackgroundState = atom({
+  key: "searchBackgroundState",
+  default: false,
 });
