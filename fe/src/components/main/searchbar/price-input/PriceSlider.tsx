@@ -1,23 +1,29 @@
 import styled from "styled-components";
 import { useRef, useEffect, MouseEvent, useState } from "react";
 import PriceBtn from "./PriceBtn";
-const PriceSlider = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [min, setMin] = useState(-10);
-  const [max, setMax] = useState(100);
+import {useRecoilState} from "recoil"
+import { priceSliderData } from "atoms/searchbarAtom";
 
+const PriceSlider = () => {
+  const offset = -10;
+  const gap = 20;
+  const ref = useRef<HTMLDivElement>(null);
+  const [pricePersent, setPricePersent] = useRecoilState(priceSliderData)
+  const [min, setMin] = useState(pricePersent.min + offset);
+  const [max, setMax] = useState(pricePersent.max);
   useEffect(() => {
-    if (min < -10) setMin(-10);
-    if (max < 32) setMax(32);
-    if (max - min < 30) {
-      setMin(() => max - 30 );
-    
+    if (min < offset) setMin(0 + offset);
+    if (max < gap +1) setMax(gap +1);
+    if (max - min < gap) {
+      setMin(() => max - gap);
     }
+
     if (ref.current) {
-      if (ref.current.clientWidth - 10 <= max)
-        setMax(ref.current.clientWidth - 10);
+      const width = ref.current.clientWidth;
+      setPricePersent({max: max - offset, min : min - offset, width: ref.current.clientWidth });
+      if (width + offset <= max) setMax(width + offset);
     }
-  }, [ref, min, max]);
+  }, [ref, min, max, offset,setPricePersent]);
 
   return (
     <StyledSlider ref={ref}>

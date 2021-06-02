@@ -1,16 +1,31 @@
 import styled from "styled-components";
-import { ChangeEvent, MouseEvent, useState, useRef, useEffect } from "react";
-import { useRecoilState } from "recoil";
-import { SearchBarHoverData } from "atoms/searchbarAtom";
+import {
+  ChangeEvent,
+  MouseEvent,
+  Dispatch,
+  useRef,
+  useEffect,
+  SetStateAction,
+} from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { SearchBarHoverData, locationData } from "atoms/searchbarAtom";
 type InputItemProps = {
   w: String;
   title: string;
   subtitle: String;
+  setToggle: Dispatch<SetStateAction<boolean>>;
   onClick: (event: MouseEvent | Event) => void;
 };
 
-const LocationInputItem = ({ w, title, subtitle, onClick }: InputItemProps) => {
+const LocationInputItem = ({
+  w,
+  title,
+  subtitle,
+  onClick,
+  setToggle,
+}: InputItemProps) => {
   const ref = useRef<HTMLInputElement>(null);
+  const setLocationData = useSetRecoilState(locationData);
   const [HoverData, setHoverData] = useRecoilState(SearchBarHoverData);
   const getDeepCopy = (original: any) => JSON.parse(JSON.stringify(original));
   const handleClick = (event: MouseEvent | Event) => {
@@ -20,6 +35,12 @@ const LocationInputItem = ({ w, title, subtitle, onClick }: InputItemProps) => {
       deepCopy[title] = true;
       return deepCopy;
     });
+  };
+
+  const changeHandler = ({ currentTarget }: ChangeEvent<HTMLInputElement>) => {
+    console.log(currentTarget.value);
+    if (currentTarget.value === "") setToggle(true);
+    else setToggle(false);
   };
 
   useEffect(() => {
@@ -36,16 +57,20 @@ const LocationInputItem = ({ w, title, subtitle, onClick }: InputItemProps) => {
       );
       autocomplete.addListener("place_changed", () => {
         const location = autocomplete.getPlace().geometry?.location;
-        console.log(location?.lat(), location?.lng());
+        setLocationData({
+          latitude: location?.lat(),
+          longitude: location?.lng(),
+        });
       });
     }
-  }, [ref]);
+  }, [ref,setLocationData]);
 
   return (
     <FlexBox {...{ w }} onClick={handleClick} aria-checked={HoverData[title]}>
       <InputTitle>{title}</InputTitle>
 
       <InputLocalSubtitle
+        onChange={changeHandler}
         type="text"
         placeholder="어디로 가시겠습니까?"
         ref={ref}
@@ -69,7 +94,6 @@ const InputLocalSubtitle = styled.input`
   color: ${({ theme }) => theme.color.Gray3};
   outline: none;
   border: none;
-  
 `;
 
 const FlexBox = styled.div<{ w: String }>`

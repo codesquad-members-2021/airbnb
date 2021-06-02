@@ -14,6 +14,7 @@ const LocationInput = () => {
   const handleClick = (event: MouseEvent | Event) => {
     setToggle(!toggle);
   };
+
   useEffect(() => {
     if (!toggle) resetData();
   }, [toggle, resetData]);
@@ -24,6 +25,7 @@ const LocationInput = () => {
         w="30%"
         title="위치"
         subtitle="어디로 가시겠습니까?"
+        setToggle={setToggle}
         onClick={handleClick}
       />
       <Modal
