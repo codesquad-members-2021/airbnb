@@ -1,20 +1,25 @@
-import PriceRange from 'components/SearchBar/RoomPrice/PriceRange';
+import PriceRange from "components/SearchBar/RoomPrice/PriceRange";
 import styled from "styled-components";
 import { roomPriceClickState, searchBarClickState } from "recoil/Atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-
+import PriceGraph from "./PriceGraph";
 const RoomPriceModal = () => {
   const isClicked = useRecoilValue(roomPriceClickState);
-  return isClicked
-  ? <ModalLayout>
-    {/* 데이지 최고~~~~~~~ */}
-    <div className="price-modal-title">가격 범위</div>
-    <div className="price-range">₩100,000 ~ 1,000,000+</div>
-    <div className="price-average">평균 1박 요금은 ₩{}입니다.</div>
-    <PriceRange/>
+  return isClicked ? (
+    <ModalLayout>
+      {/* 데이지 최고~~~~~~~ */}
+      <div className="price-modal-title">가격 범위</div>
+      <div className="price-range">₩100,000 ~ 1,000,000+</div>
+      <div className="price-average">평균 1박 요금은 ₩{}입니다.</div>
+      <PriceRange />
+      <PriceGraph />
     </ModalLayout>
-  : <></>;
+  ) : (
+    <></>
+  );
 };
+//null 반환 할 수 있도록 타입 넣기...
+
 const ModalLayout = styled.div`
   position: absolute; //relative는 SearchBarLayout 입니다
   top: 100%;
