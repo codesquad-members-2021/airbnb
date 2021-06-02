@@ -39,6 +39,7 @@
 		AEC52F742664041200D8F802 /* ConditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC52F732664041200D8F802 /* ConditionViewModel.swift */; };
 		AEF03BA526674E8200050531 /* PriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF03BA426674E8200050531 /* PriceViewController.swift */; };
 		AEF03BA726675AB200050531 /* PriceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF03BA626675AB200050531 /* PriceUseCase.swift */; };
+		AEF03BA92667649000050531 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF03BA82667649000050531 /* PeopleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		AEC52F732664041200D8F802 /* ConditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionViewModel.swift; sourceTree = "<group>"; };
 		AEF03BA426674E8200050531 /* PriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewController.swift; sourceTree = "<group>"; };
 		AEF03BA626675AB200050531 /* PriceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceUseCase.swift; sourceTree = "<group>"; };
+		AEF03BA82667649000050531 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +247,7 @@
 				AEC52F6C2663FDEB00D8F802 /* Condition */,
 				AEC52F6A2663F28100D8F802 /* Calendar */,
 				AEF03BA326674E6000050531 /* Price */,
+				AEF03BAA2667678E00050531 /* People */,
 			);
 			path = ConditionPage;
 			sourceTree = "<group>";
@@ -278,6 +281,14 @@
 				AEF03BA626675AB200050531 /* PriceUseCase.swift */,
 			);
 			path = Price;
+			sourceTree = "<group>";
+		};
+		AEF03BAA2667678E00050531 /* People */ = {
+			isa = PBXGroup;
+			children = (
+				AEF03BA82667649000050531 /* PeopleViewController.swift */,
+			);
+			path = People;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEF03BA92667649000050531 /* PeopleViewController.swift in Sources */,
 				AE9AC6A7265CCCBF0038C198 /* CalendarViewController.swift in Sources */,
 				AEF03BA726675AB200050531 /* PriceUseCase.swift in Sources */,
 				AE11F5AE265F3D920034779F /* Date+extension.swift in Sources */,
