@@ -1,9 +1,9 @@
 import { atom, selector } from "recoil";
 import * as T from "./AtomTypes";
 
-export const clickCountState = atom({
-  key: "clickCountState",
-  default: 0,
+export const miniBarClickState = atom({
+  key: "miniBarClickState",
+  default: false,
 });
 
 export const checkInClickState = atom({
@@ -71,14 +71,6 @@ export const searchBarClickState = selector({
     }
   },
 });
-// export const calendarToggleState = atom<T.SearchBarToggle>({
-//   key: "calendarToggleState",
-//   default: {
-//     calendar: false,
-//     roomPrice: false,
-//     guests: false,
-//   },
-// });
 
 export const calendarModalState = atom<T.CalendarModal>({
   key: "calendarModalState",

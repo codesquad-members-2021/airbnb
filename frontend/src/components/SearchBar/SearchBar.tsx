@@ -76,7 +76,7 @@ const SearchBarContainer = styled.div`
   display: flex;
   width: 100%;
   height: 76px;
-  margin: 2rem auto 0 auto;
+  margin: 0 auto 1rem;
   background: #ffffff;
   border: 1px solid #bdbdbd;
   border-radius: 60px;
@@ -89,7 +89,7 @@ const SearchBarContainer = styled.div`
 
 const SearchBarLayout = styled.div`
   position: relative; //여기
-  width: 65%;
+  width: 80rem;
   display: flex;
   margin: 0 auto;
   flex-direction: column;
