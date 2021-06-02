@@ -13,7 +13,7 @@ import {
 function App() {
   return (
     <RecoilRoot>
-      <Route path="/" exact component={MainPage} />
+      <Route exact path="/" component={MainPage} />
       <Route path="/search" component={ResultPage} />
       <Route path="/login" component={LoadingPage} />
     </RecoilRoot>

@@ -5,7 +5,7 @@ export type SearchBarToggle = {
 };
 
 export type Date = {
-  year?: number;
+  year?: number | null;
   dateObj: Object;
   month: number | null;
   date: number | null;
