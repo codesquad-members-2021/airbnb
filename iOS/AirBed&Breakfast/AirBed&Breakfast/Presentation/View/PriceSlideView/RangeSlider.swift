@@ -40,7 +40,8 @@ class RangeSlider: UIControl {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        assertionFailure("Initialzer with coder was used")
     }
     
     override func draw(_ rect: CGRect) {

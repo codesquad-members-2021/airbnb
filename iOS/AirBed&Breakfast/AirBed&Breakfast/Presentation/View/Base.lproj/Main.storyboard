@@ -197,6 +197,14 @@
             </objects>
             <point key="canvasLocation" x="3422" y="94"/>
         </scene>
+        <!--Accommodation Select View Controller-->
+        <scene sceneID="xAm-jZ-hED">
+            <objects>
+                <viewController storyboardIdentifier="AccommodationSelectViewController" id="2XX-7a-mDm" customClass="AccommodationSelectViewController" customModule="AirBed_Breakfast" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iKw-fh-RWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4277" y="94"/>
+        </scene>
         <!--Reservation Detail View Controller-->
         <scene sceneID="IZl-cz-SiB">
             <objects>
@@ -308,9 +316,9 @@
                     <connections>
                         <outlet property="dateRangeDetailLabel" destination="pfD-Q6-5Ow" id="y8V-gq-DPS"/>
                         <outlet property="deleteCurrentDetailButton" destination="CRZ-Jo-BGn" id="eKc-eT-gKs"/>
+                        <outlet property="guestNumberDetailLabel" destination="57K-Vm-zt0" id="YdJ-eu-Kdu"/>
                         <outlet property="locationDetailLabel" destination="NqK-fr-rXy" id="gcn-2d-3rd"/>
                         <outlet property="nextButton" destination="Cnb-gv-Yqg" id="q2G-oE-wAS"/>
-                        <outlet property="numberOfHeadDetailLabel" destination="57K-Vm-zt0" id="YdJ-eu-Kdu"/>
                         <outlet property="priceRangeDetailLabel" destination="vAs-HY-o7n" id="NZT-aa-REG"/>
                     </connections>
                 </viewController>
