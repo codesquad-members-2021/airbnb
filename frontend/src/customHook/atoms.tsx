@@ -90,6 +90,12 @@ export const RoomData = atom({
   default: [],
 })
 
+//LoginState________________________________________________
+export const Login = atom({
+  key: 'LoginState',
+  default: false,
+})
+
 //UseAllSetRecoilData_______________________________________
 export function RecoilSetStateGroup(params: IParams) {
   const setPlace = useSetRecoilState(clickedPlace)
