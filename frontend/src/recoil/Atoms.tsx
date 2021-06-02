@@ -84,16 +84,16 @@ export const calendarModalState = atom<T.CalendarModal>({
   key: "calendarModalState",
   default: {
     year: new Date().getFullYear(), //2021
-    month: new Date().getMonth(), //5
+    month: new Date().getMonth(), //5 (6월)
     today: {
       year: new Date().getFullYear(),
-      month: new Date().getMonth() + 1,
+      month: new Date().getMonth(),
       date: new Date().getDate(),
       dateObj: new Date(),
     },
   },
 });
-
+//이거 사용안하는듯?
 export const calendarState = atom<T.Calendar>({
   key: "calendarState",
   default: {
@@ -109,9 +109,11 @@ export const calendarState = atom<T.Calendar>({
     },
   },
 });
+//얘 사용하는듯
 export const checkInState = atom<T.Date>({
   key: "checkInState",
   default: {
+    year: null,
     month: null,
     date: null,
     dateObj: new Date(),
@@ -120,6 +122,7 @@ export const checkInState = atom<T.Date>({
 export const checkOutState = atom<T.Date>({
   key: "checkOutState",
   default: {
+    year: null,
     month: null,
     date: null,
     dateObj: new Date(),

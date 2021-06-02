@@ -30,8 +30,10 @@ const Calendar = () => {
         >
           <S.SearchBarTitle>체크인</S.SearchBarTitle>
           <S.SearchBarText>
-            {checkIn.month
-              ? `${checkIn.month}월${checkIn.date}일`
+            {checkIn.month || checkIn.month === 0
+              ? `${checkIn.month + 1 === 13 ? 1 : checkIn.month + 1}월${
+                  checkIn.date
+                }일`
               : "날짜 입력"}
           </S.SearchBarText>
           <CancelButton type={search.in} />
@@ -46,8 +48,10 @@ const Calendar = () => {
         >
           <S.SearchBarTitle>체크아웃</S.SearchBarTitle>
           <S.SearchBarText>
-            {checkOut.month
-              ? `${checkOut.month}월${checkOut.date}일`
+            {checkOut.month || checkOut.month === 0
+              ? `${checkOut.month + 1 === 13 ? 1 : checkOut.month + 1}월${
+                  checkOut.date
+                }일`
               : "날짜 입력"}
           </S.SearchBarText>
           <CancelButton type={search.out} />

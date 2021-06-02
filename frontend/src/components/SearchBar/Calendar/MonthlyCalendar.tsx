@@ -24,8 +24,7 @@ const MonthlyCalendar: React.FunctionComponent<MonthProps> = ({
   const { year, month, today } = useRecoilValue(calendarModalState);
   const [checkIn, setCheckIn] = useRecoilState(checkInState);
   const [checkOut, setCheckOut] = useRecoilState(checkOutState);
-
-  const currentMonth = getCalendarMonth(monthType, month);
+  const currentMonth = getCalendarMonth(monthType, month); //text
   const dates = getDateList(year, currentMonth);
   const monthText = new Date(year, currentMonth).getMonth() + 1;
   const yearText = new Date(year, currentMonth).getFullYear();
@@ -33,10 +32,10 @@ const MonthlyCalendar: React.FunctionComponent<MonthProps> = ({
   const handleDateClick = (e: React.MouseEvent<Element, MouseEvent>): void => {
     const targetDate = Number(e.currentTarget.textContent);
     const targetDateObj = new Date(year, currentMonth, targetDate);
-
     if (!checkIn.month) {
       setCheckIn({
-        month: currentMonth + 1,
+        year: targetDateObj.getFullYear(),
+        month: currentMonth,
         date: targetDate,
         dateObj: new Date(year, currentMonth, targetDate),
       });
@@ -45,16 +44,18 @@ const MonthlyCalendar: React.FunctionComponent<MonthProps> = ({
       if (targetDateObj < checkIn.dateObj) {
         setsSearchBarClick(search.in);
         setCheckIn({
-          month: currentMonth + 1,
+          year: targetDateObj.getFullYear(),
+          month: targetDateObj.getMonth(),
           date: targetDate,
           dateObj: targetDateObj,
         });
       } else {
         setsSearchBarClick(search.out);
         setCheckOut({
-          month: currentMonth + 1,
+          year: targetDateObj.getFullYear(),
+          month: currentMonth,
           date: targetDate,
-          dateObj: new Date(year, currentMonth, targetDate),
+          dateObj: targetDateObj,
         });
       }
     }
@@ -76,7 +77,7 @@ const MonthlyCalendar: React.FunctionComponent<MonthProps> = ({
         <S.CurrentMonth>
           <div className="calendar-container">
             <div className="year_and_month">
-              {yearText}년 {monthText}월
+              {yearText}년 {currentMonth + 1 === 13 ? 1 : currentMonth + 1}월
             </div>
             <div className="days">
               {daysOfWeek.map((day, idx) => (
