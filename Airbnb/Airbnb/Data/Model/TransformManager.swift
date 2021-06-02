@@ -1,6 +1,6 @@
 import Foundation
 
-class TransformManager {
+final class TransformManager {
     
     static func toString(from date:Date) -> String {
         let dateFormatter = DateFormatter()

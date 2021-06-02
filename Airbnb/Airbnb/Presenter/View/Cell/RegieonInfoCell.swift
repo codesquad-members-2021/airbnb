@@ -1,6 +1,6 @@
 import UIKit
 
-class RegieonInfoCell: UICollectionViewCell {
+final class RegieonInfoCell: UICollectionViewCell {
     
     static let identifier = "RegieonInfoCell"
     private var controllerInfo:Int?

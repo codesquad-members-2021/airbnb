@@ -2,7 +2,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class RxDelegateProxy: DelegateProxy<SecondSectionCell, SecondSectionCellDelegate>, DelegateProxyType, SecondSectionCellDelegate {
+final class RxDelegateProxy: DelegateProxy<SecondSectionCell, SecondSectionCellDelegate>, DelegateProxyType, SecondSectionCellDelegate {
     
     static func registerKnownImplementations() {
         self.register { (secondSectionCell) -> RxDelegateProxy in

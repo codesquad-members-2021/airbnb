@@ -1,6 +1,6 @@
 import UIKit
 
-class MainCollectionViewDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+final class MainCollectionViewDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     private var width: CGFloat?
     private var height: CGFloat?

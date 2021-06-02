@@ -1,6 +1,6 @@
 import UIKit
 
-class CalendarCell: UITableViewCell {
+final class CalendarCell: UITableViewCell {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var contentLabel: UILabel!

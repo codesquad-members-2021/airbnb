@@ -3,7 +3,7 @@ import RxSwift
 import RxCocoa
 import RangeSeekSlider
 
-class PriceViewController: UIViewController {
+final class PriceViewController: UIViewController {
     
     
     @IBOutlet weak var averagePriceLabel: UILabel!

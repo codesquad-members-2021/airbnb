@@ -2,7 +2,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     
     @IBOutlet var backButton: UIButton!
     @IBOutlet var travelSearchBar: UISearchBar!

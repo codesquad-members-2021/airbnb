@@ -2,7 +2,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ThirdSectionCell: UICollectionViewCell {
+final class ThirdSectionCell: UICollectionViewCell {
     
     static let identifier = "ThirdSectionCell"
     

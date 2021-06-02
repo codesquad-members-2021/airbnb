@@ -2,7 +2,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class GuestViewModel {
+final class GuestViewModel {
     
     private var locationInfo:String?
     private var dateInfo:String?

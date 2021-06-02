@@ -1,8 +1,16 @@
 import UIKit
 
-class GraphView: UIView {
+final class GraphView: UIView {
     
     var values:[CGFloat] = []
+    
+    private lazy var minLayer: CALayer = {
+        let layer = CALayer()
+        layer.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        layer.backgroundColor = UIColor.red.cgColor
+        layer.compositingFilter = "differenceBlendMode"
+        return layer
+    }()
     
     init(frame: CGRect, values:[CGFloat]) {
         super.init(frame: frame)
@@ -12,7 +20,7 @@ class GraphView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+        
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         let graphLayer = CAShapeLayer()

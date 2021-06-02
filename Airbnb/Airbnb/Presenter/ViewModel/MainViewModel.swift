@@ -2,7 +2,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class MainViewModel: CommonViewModelType {
+final class MainViewModel: CommonViewModelType {
     
     private let firstViewData = [
         SectionOfMainViewData(header: HeaderManager.first, items: [MainViewInfo(image: ImageManager.main, mainInfo: MainInfoManager.main, detailInfo: DetailInfoManager.main)]),

@@ -2,7 +2,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class GuestViewController: UIViewController {
+final class GuestViewController: UIViewController {
     
     @IBOutlet weak var guestLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!

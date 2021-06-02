@@ -5,7 +5,7 @@ import RxSwift
     @objc optional func move(_ info:String)
 }
 
-class SecondSectionCell: UICollectionViewCell {
+final class SecondSectionCell: UICollectionViewCell {
     
     static let identifier = "SecondSectionCell"
     private var controllerInfo:Int?

@@ -2,7 +2,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class PriceViewModel {
+final class PriceViewModel {
     
     private var locationInfo:String?
     private var dateInfo:String?

@@ -2,7 +2,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class RegieonViewModel: CommonViewModelType {
+final class RegieonViewModel: CommonViewModelType {
     
     private let disposeBag = DisposeBag()
     

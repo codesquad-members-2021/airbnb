@@ -1,6 +1,6 @@
 import UIKit
 
-class TravelInfoCell: UICollectionViewCell {
+final class TravelInfoCell: UICollectionViewCell {
     
     static let identifier = "TravelInfoCell"
     

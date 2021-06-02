@@ -3,7 +3,7 @@ import RxSwift
 import RxCocoa
 import FSCalendar
 
-class CalendarViewController: UIViewController {
+final class CalendarViewController: UIViewController {
     
     @IBOutlet var calendarView: FSCalendar!
     @IBOutlet var dateLabel: UILabel!

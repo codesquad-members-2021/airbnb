@@ -5,7 +5,7 @@ import RxDataSources
 import NSObject_Rx
 import RxGesture
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
     @IBOutlet weak var travelSearchBar: UISearchBar!
     @IBOutlet weak var mainCollectionView: UICollectionView!

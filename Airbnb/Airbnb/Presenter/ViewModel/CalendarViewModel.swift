@@ -2,7 +2,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class CalendarViewModel {
+final class CalendarViewModel {
     
     private var locationInfo:String?
     private var dateStorage:[String] = []
