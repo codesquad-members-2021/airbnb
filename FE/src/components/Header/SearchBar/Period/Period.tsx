@@ -8,7 +8,7 @@ const Period = () => {
 	const { start, setStart, end, setEnd } = useContext(SearchBarContext);
 
 	const [isOn, setOn] = useState(false);
-	const currentDOM = useRef();
+	const currentDOM = useRef<HTMLDivElement>(null);
 
 	const resetEvent = () => {
 		setStart("");
@@ -16,31 +16,31 @@ const Period = () => {
 	};
 
 	useEffect(() => {
-		const blur = ({ target }) => !currentDOM.current?.contains(target) && setOn(false);
+		const blur = ({ target }: MouseEvent) => !currentDOM.current?.contains(target as HTMLDivElement) && setOn(false);
 		document.addEventListener("click", blur);
 		return () => document.removeEventListener("click", blur);
 	});
 
 	return (
 		<PeriodWrapper ref={currentDOM} onClick={() => setOn(true)}>
-			<CheckIn value={start} />
-			<CheckOut value={end} />
+			<CheckIn date={start} />
+			<CheckOut date={end} />
 			{isOn && <CalendarModal />}
 			{(start || end) && <CloseButton onClick={resetEvent} />}
 		</PeriodWrapper>
 	);
 };
 
-const CheckIn = ({ value }) => (
+const CheckIn = ({ date }: { date: string }) => (
 	<CheckInWrapper>
 		<CheckContent>체크인</CheckContent>
-		<CheckInput value={value} readOnly />
+		<CheckInput value={date} readOnly />
 	</CheckInWrapper>
 );
-const CheckOut = ({ value }) => (
+const CheckOut = ({ date }: { date: string }) => (
 	<CheckOutWrapper>
 		<CheckContent>체크아웃</CheckContent>
-		<CheckInput value={value} readOnly />
+		<CheckInput value={date} readOnly />
 	</CheckOutWrapper>
 );
 

@@ -5,7 +5,7 @@ const ResultContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [isResultOn, setResultOn] = useState(false);
 	const [isSearching, setSearching] = useState(false);
 	const [isModalOn, setModalOn] = useState(false);
-	const [modalData, setModalData] = useState({ charge: 0, cleaningRatio: 0, serviceRatio: 0, discountRatio: 0 });
+	const [modalData, setModalData] = useState({ charge: 0, cleaningRatio: 0, serviceRatio: 0, discountRatio: 0, review: 0 });
 	const [housesList, setHousesList] = useState([]);
 	const [latitude, setLatitude] = useState(37.490821);
 	const [longitude, setLongitude] = useState(127.0312283);
@@ -22,7 +22,6 @@ const ResultContextProvider = ({ children }: { children: React.ReactNode }) => {
 			.then((res) => res.json())
 			.then((json) => setHousesList(() => json))
 			.then(() => setSearching(false))
-			.then(() => console.log(housesList))
 			.catch((res) => console.log("fetch error in Houses : ", res));
 	};
 
@@ -57,7 +56,7 @@ const ResultContextProvider = ({ children }: { children: React.ReactNode }) => {
 	);
 };
 
-interface IHouse {
+export interface IHouse {
 	charge: number;
 	description: string;
 	grade: number;
@@ -71,24 +70,25 @@ interface IHouse {
 	wish: boolean;
 }
 
-export interface IResult {
+interface IResult {
 	isResultOn: boolean;
-	setResultOn: (isResultOn: boolean) => void;
+	setResultOn: React.Dispatch<React.SetStateAction<boolean>>;
 	isSearching: boolean;
-	setSearching: (isSearching: boolean) => void;
+	setSearching: React.Dispatch<React.SetStateAction<boolean>>;
 	isModalOn: boolean;
-	setModalOn: (isModalOn: boolean) => void;
+	setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
 	modalData: {
 		charge: number;
 		cleaningRatio: number;
 		serviceRatio: number;
 		discountRatio: number;
+		review: number;
 	};
 	housesList: Array<IHouse>;
 	latitude: number;
-	setLatitude: (latitude: number) => void;
+	setLatitude: React.Dispatch<React.SetStateAction<number>>;
 	longitude: number;
-	setLongitude: (longitude: number) => void;
+	setLongitude: React.Dispatch<React.SetStateAction<number>>;
 	fetchHouses: (latitude: number, longitude: number) => void;
 	fetchModal: (houseId: number) => void;
 }

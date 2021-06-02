@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { ResultContext } from "../../config/ResultContextProvider";
 import addComma from "../../util/addComma";
-const { kakao } = window;
-const { maps } = kakao;
+// const { kakao } = window;
+// const { window.kakao.maps } = kakao;
 
 const Map = () => {
 	const [map, setMap] = useState();
@@ -15,8 +15,8 @@ const Map = () => {
 	useEffect(() => {
 		if (map) return;
 		const container = document.getElementById("map");
-		const options = { center: new maps.LatLng(latitude, longitude), level: 4 };
-		const newMap = new maps.Map(container, options);
+		const options = { center: new window.kakao.maps.LatLng(latitude, longitude), level: 4 };
+		const newMap = new window.kakao.maps.Map(container, options);
 		setMap(() => newMap);
 	}, [latitude, longitude, map]);
 
@@ -24,8 +24,8 @@ const Map = () => {
 		setNewOverlay(() =>
 			housesList.map(
 				({ location, charge }) =>
-					new maps.CustomOverlay({
-						position: new maps.LatLng(location.latitude, location.longitude),
+					new window.kakao.maps.CustomOverlay({
+						position: new window.kakao.maps.LatLng(location.latitude, location.longitude),
 						content: `<div class="label">₩${addComma(charge)}</div>`,
 					})
 			)
@@ -42,8 +42,8 @@ const Map = () => {
 			fetchHouses(map.getCenter().getLat(), map.getCenter().getLng());
 		};
 
-		maps.event.addListener(map, "dragend", dragHandler);
-		return () => maps.event.removeListener(map, "dragend", dragHandler);
+		window.kakao.maps.event.addListener(map, "dragend", dragHandler);
+		return () => window.kakao.maps.event.removeListener(map, "dragend", dragHandler);
 	}, [housesList, isDragOn, fetchHouses, map, setLongitude, setLatitude]);
 
 	useEffect(() => {

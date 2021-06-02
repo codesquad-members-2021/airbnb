@@ -13,10 +13,10 @@ const Price = () => {
 
 	const isActivated = Boolean(min !== 0 || max !== sliderPixel + sliderWidth);
 
-	const currentDOM = useRef();
+	const currentDOM = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		const blur = ({ target }) => !currentDOM.current?.contains(target) && setOn(false);
+		const blur = ({ target }: MouseEvent) => !currentDOM.current?.contains(target as HTMLDivElement) && setOn(false);
 		document.addEventListener("click", blur);
 		return () => document.removeEventListener("click", blur);
 	}, []);
@@ -46,6 +46,7 @@ const PriceWrapper = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	margin-left: 24px;
+	user-select: none;
 `;
 const PriceContent = styled.div`
 	font-weight: bold;

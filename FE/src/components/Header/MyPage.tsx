@@ -14,7 +14,6 @@ const MyPage = () => {
 	const currentDOM = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		console.log(userInfo);
 		if (userInfo) return;
 		const code = window.location.search;
 		if (code) {

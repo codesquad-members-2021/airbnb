@@ -5,11 +5,11 @@ import ModalCost from "./ModalCost";
 import { ResultContext } from "../../config/ResultContextProvider";
 
 const Modal = () => {
-	const currentDOM = useRef();
 	const { setModalOn } = useContext(ResultContext);
+	const currentDOM = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		const blur = ({ target }) => !currentDOM.current?.contains(target) && setModalOn(false);
+		const blur = ({ target }: MouseEvent) => !currentDOM.current?.contains(target as HTMLDivElement) && setModalOn(false);
 		document.addEventListener("click", blur);
 		return () => document.removeEventListener("click", blur);
 	});

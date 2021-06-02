@@ -32,7 +32,7 @@ const MainWrapper = styled.div`
 	position: absolute;
 	top: 0px;
 `;
-const ResultWrapper = styled.div`
+const ResultWrapper = styled.div<{ isSearching: boolean }>`
 	position: absolute;
 	width: 100%;
 	top: ${({ isSearching }) => (isSearching ? "192px" : "94px")};

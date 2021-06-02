@@ -93,26 +93,26 @@ const SearchBarContextProvider = ({ children }: { children: React.ReactNode }) =
 	);
 };
 
-interface ISeacrhBar {
+export interface ISearchBar {
 	start: string;
-	setStart: (start: string) => void;
+	setStart: React.Dispatch<React.SetStateAction<string>>;
 	end: string;
-	setEnd: (end: string) => void;
+	setEnd: React.Dispatch<React.SetStateAction<string>>;
 	min: number;
-	setMin: (min: number) => void;
+	setMin: React.Dispatch<React.SetStateAction<number>>;
 	max: number;
-	setMax: (max: number) => void;
+	setMax: React.Dispatch<React.SetStateAction<number>>;
 	sliderPixel: number;
 	sliderWidth: number;
 	priceData: IPriceData;
 	man: number;
-	setMan: (man: number) => void;
+	setMan: React.Dispatch<React.SetStateAction<number>>;
 	kid: number;
-	setKid: (kid: number) => void;
+	setKid: React.Dispatch<React.SetStateAction<number>>;
 	baby: number;
-	setBaby: (baby: number) => void;
+	setBaby: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const SearchBarContext = React.createContext<ISeacrhBar>({} as ISeacrhBar);
+export const SearchBarContext = React.createContext<ISearchBar>({} as ISearchBar);
 
 export default SearchBarContextProvider;

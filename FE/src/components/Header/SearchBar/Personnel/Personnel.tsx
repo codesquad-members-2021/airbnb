@@ -11,10 +11,10 @@ const Personnel = () => {
 
 	const isActivated = Boolean(man || kid || baby);
 
-	const currentDOM = useRef();
+	const currentDOM = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		const blur = ({ target }) => !currentDOM.current?.contains(target) && setOn(false);
+		const blur = ({ target }: MouseEvent) => !currentDOM.current?.contains(target as HTMLDivElement) && setOn(false);
 		document.addEventListener("click", blur);
 		return () => document.removeEventListener("click", blur);
 	}, []);

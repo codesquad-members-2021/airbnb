@@ -9,7 +9,7 @@ const ModalCost = () => {
 	const { modalData } = useContext(ResultContext);
 	const { start, end } = useContext(SearchBarContext);
 	const { charge, cleaningRatio, serviceRatio, discountRatio, review } = modalData;
-	const period = (new Date(parseDate(end)) - new Date(parseDate(start))) / 1000 / 60 / 60 / 24 || 1;
+	const period = (new Date(parseDate(end)).getTime() - new Date(parseDate(start)).getTime()) / 1000 / 60 / 60 / 24 || 1;
 	const total = charge * period;
 	const result = (total * (100 + cleaningRatio + 1.1 * serviceRatio - (period > 6 ? discountRatio : 0))) / 100;
 	return (

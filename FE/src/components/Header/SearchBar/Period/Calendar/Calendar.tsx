@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Day from "./Day";
 
-const makeMonthArray = (year, month) => {
+const makeMonthArray = (year: number, month: number) => {
 	const firstDay = new Date(year, month, 1).getDay();
 	const sumDay = new Date(year, month + 1, 0).getDate();
 
@@ -19,14 +19,16 @@ const makeMonthArray = (year, month) => {
 	return monthArray;
 };
 
-const fixMonth = (year, month) => {
+const fixMonth = (year: number, month: number): Array<number> => {
 	if (0 <= month && month <= 11) return [year, month];
 	return month < 0 ? fixMonth(year - 1, month + 12) : fixMonth(year + 1, month - 12);
 };
 
-const Calendar = ({ modifier }) => {
+const Calendar = ({ modifier }: { modifier: number }) => {
 	const now = new Date(Date.now());
 	const [year, month] = fixMonth(now.getFullYear(), now.getMonth() + modifier);
+	const makeDay = (day: number) => <Day date={new Date(year, month, day)} key={day} value={day > 0 ? day : null} />;
+	const makeWeek = (week: Array<number>, index: number) => <tr key={index}>{week.map(makeDay)}</tr>;
 	return (
 		<CalendarWrapper>
 			<CalendarTitle>{`${year}년 ${month + 1}월`}</CalendarTitle>
@@ -42,17 +44,7 @@ const Calendar = ({ modifier }) => {
 						<th>토</th>
 					</tr>
 				</Week>
-				<tbody>
-					{makeMonthArray(year, month).map((el) => (
-						<tr key={el}>
-							{el.map((v) => (
-								<Day date={new Date(year, month, v)} key={v}>
-									{v > 0 && v}
-								</Day>
-							))}
-						</tr>
-					))}
-				</tbody>
+				<tbody>{makeMonthArray(year, month).map(makeWeek)}</tbody>
 			</CalendarBody>
 		</CalendarWrapper>
 	);

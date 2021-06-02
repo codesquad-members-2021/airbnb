@@ -15,7 +15,7 @@ const Houses = () => {
 		minimumPrice + min * unit
 	)} ~ ₩${addComma(minimumPrice + (max - 20) * unit)}${man ? ` ∙ 게스트${man + kid}명 ${baby ? `유아${baby}명` : ""}` : ""}`;
 
-	const period = (parseDate(end) - parseDate(start)) / 1000 / 60 / 60 / 24;
+	const period = (parseDate(end).getTime() - parseDate(start).getTime()) / 1000 / 60 / 60 / 24;
 
 	return (
 		<HousesWrapper>
@@ -37,7 +37,7 @@ const HousesWrapper = styled.div`
 		overflow-y: scroll;
 		::-webkit-scrollbar {
 			position: absolute;
-			float:right;
+			float: right;
 			background-color: #a6a7ab;
 			width: 13px;
 			border-radius: 10px;
