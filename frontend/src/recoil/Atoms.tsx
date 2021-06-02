@@ -1,7 +1,7 @@
 import { atom, selector } from "recoil";
 import * as T from "./AtomTypes";
 
-export const miniBarClickState = atom({
+export const MiniSearchBarClickState = atom({
   key: "miniBarClickState",
   default: false,
 });
