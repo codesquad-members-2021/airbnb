@@ -1,0 +1,68 @@
+{
+    "room_list": [
+        {
+            "id": 123456789,
+            "thum_image": "",
+            "room_type": "서초구의 아파트 전체",
+            "room_name": "Spacious and Comfortable Cozy house #4",
+            "room_label": "최대 인원 3명*원룸, 침대 1개, 욕실 1개*주방, 무선인터넷, 에어컨, 헤어드라이어",
+            "coordinate":{
+                "latitude": 37.4909,
+                "longitude": 127.03385
+            },
+            "public_addresss": "Yeoksam 1(il)-dong, Gangnam-gu, 서울, 한국",
+            "person_capacity": 3,
+            "star_rating": 4.8,
+            "review_label": "후기 127개",
+            "price": 82953
+        },
+        {
+            "id": 123456789,
+            "thum_image": "",
+            "room_type": "서초구의 아파트 전체",
+            "room_name": "Spacious and Comfortable Cozy house #4",
+            "room_label": "최대 인원 3명*원룸, 침대 1개, 욕실 1개*주방, 무선인터넷, 에어컨, 헤어드라이어",
+            "coordinate":{
+                "latitude": 37.4909,
+                "longitude": 127.03385
+            },
+            "public_addresss": "Yeoksam 1(il)-dong, Gangnam-gu, 서울, 한국",
+            "person_capacity": 3,
+            "star_rating": 4.8,
+            "review_label": "후기 127개",
+            "price": 82953
+        },
+        {
+            "id": 123456789,
+            "thum_image": "",
+            "room_type": "서초구의 아파트 전체",
+            "room_name": "Spacious and Comfortable Cozy house #4",
+            "room_label": "최대 인원 3명*원룸, 침대 1개, 욕실 1개*주방, 무선인터넷, 에어컨, 헤어드라이어",
+            "coordinate":{
+                "latitude": 37.4909,
+                "longitude": 127.03385
+            },
+            "public_addresss": "Yeoksam 1(il)-dong, Gangnam-gu, 서울, 한국",
+            "person_capacity": 3,
+            "star_rating": 4.8,
+            "review_label": "후기 127개",
+            "price": 82953
+        },
+        {
+            "id": 123456789,
+            "thum_image": "",
+            "room_type": "서초구의 아파트 전체",
+            "room_name": "Spacious and Comfortable Cozy house #4",
+            "room_label": "최대 인원 3명*원룸, 침대 1개, 욕실 1개*주방, 무선인터넷, 에어컨, 헤어드라이어",
+            "coordinate":{
+                "latitude": 37.4909,
+                "longitude": 127.03385
+            },
+            "public_addresss": "Yeoksam 1(il)-dong, Gangnam-gu, 서울, 한국",
+            "person_capacity": 3,
+            "star_rating": 4.8,
+            "review_label": "후기 127개",
+            "price": 82953
+        }
+    ]
+}

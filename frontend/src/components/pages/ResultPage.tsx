@@ -1,3 +1,5 @@
+import styled from "styled-components";
+import RoomList from 'components/RoomList/RoomList';
 import { useRecoilValue } from "recoil";
 import {
   searchBarClickState,
@@ -8,8 +10,14 @@ import {
 } from "recoil/Atoms";
 const ResultPage = () => {
   const checkInDate = useRecoilValue(checkInState);
+  return (
+  <ResultPageLayout>
+    <RoomList/>
+  </ResultPageLayout>
+)};
 
-  return <div>결과</div>;
-};
+const ResultPageLayout = styled.div`
+   width: 100%;
+`
 
 export default ResultPage;
