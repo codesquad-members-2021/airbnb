@@ -22,6 +22,7 @@ class CalendarViewController: UIViewController {
         configureHierarchy()
         configureDataSource()
         configureContainer()
+        configureToolBar()
         applySnapshots()
     }
     
@@ -171,4 +172,32 @@ extension CalendarViewController {
         self.addChild(vc)
         containerView.addSubview(vc.view)
     }
+}
+
+
+extension CalendarViewController {
+    
+    func configureToolBar() {
+        self.tabBarController?.tabBar.isHidden = true
+        let toolbar = UIToolbar()
+        view.addSubview(toolbar)
+
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+        toolbar.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 0),
+        toolbar.bottomAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.bottomAnchor, multiplier: 0),
+        toolbar.trailingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.trailingAnchor, multiplier: 0)
+        ])
+        
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let toolbarItem1 = UIBarButtonItem(title: "건너뛰기", style: .plain, target: self, action: nil)
+        let toolbarItem2 = UIBarButtonItem(title: "다음", style: .done, target: self, action: nil)
+
+        let items = [toolbarItem1, flexibleSpace, toolbarItem2]
+        items.forEach{ $0.tintColor = .black }
+        
+        toolbar.setItems(items, animated: true)
+    }
+    
 }
