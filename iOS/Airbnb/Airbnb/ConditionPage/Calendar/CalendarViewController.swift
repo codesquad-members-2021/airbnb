@@ -19,11 +19,11 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigation()
-        configureToolBar()
         configureHierarchy()
         configureDataSource()
         configureContainer()
+        configureNavigation()
+        configureToolBar()
         applySnapshots()
     }
     
@@ -202,15 +202,11 @@ extension CalendarViewController {
         toolbar.setItems(items, animated: true)
     }
     
-    private func configureNavigation() {
+    func configureNavigation() {
         self.navigationItem.title = "숙소 찾기"
-
-        let cancelButton = UIBarButtonItem(title: "back", style: .plain, target: self, action: #selector(some))
-        self.navigationItem.leftBarButtonItem = cancelButton
-    }
-    
-    @objc func some() {
-        self.dismiss(animated: true, completion: nil)
+        let backButton = UIBarButtonItem()
+        backButton.title = "Back"
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
     
 }
