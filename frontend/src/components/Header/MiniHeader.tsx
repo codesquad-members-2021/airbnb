@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { miniBarClickState } from "recoil/Atoms";
 import { ReactComponent as Logo } from "components/common/Logo.svg";
 import Login from "components/Header/Login";
@@ -24,7 +25,9 @@ const MiniHeader = () => {
     <>
       <MiniHeaderLayout>
         <MiniHeaderContainer>
-          <Logo width="100px" />
+          <Link to="/">
+            <Logo width="100px" />
+          </Link>
           {miniBarClickFlag && <Navigator />}
           {!miniBarClickFlag && <MiniSearchBar />}
           <Login />
