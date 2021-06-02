@@ -14,7 +14,7 @@ function App() {
   return (
     <RecoilRoot>
       <Route exact path="/" component={MainPage} />
-      <Route path="/search" component={ResultPage} />
+      <Route path="/rooms" component={ResultPage} />
       <Route path="/login" component={LoadingPage} />
     </RecoilRoot>
   );
