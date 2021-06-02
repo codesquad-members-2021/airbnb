@@ -7,7 +7,7 @@
         ▶ 두 개의 Context 를 만들면 렌더링이 낭비되는 것을 방지
 */
 import { createContext, Dispatch, useReducer, useContext } from 'react';
-import { ICustomProps } from '../util/types';
+import { ICustomProps } from '../types';
 
 type MainState = {
   searchBarClickedIdx: number;

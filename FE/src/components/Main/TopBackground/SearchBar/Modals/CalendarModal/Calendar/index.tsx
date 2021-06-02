@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import useCalendar from '../../../../../../../hooks/useCalendar';
+import { useCalendar } from '../../../../../../../util/reduce/calendar';
 import YearMonth from './YearMonth';
 import DateList from './DateList';
 

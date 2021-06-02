@@ -1,5 +1,5 @@
 import { useRef, MouseEvent } from 'react';
-import { useMainDispatch, useMainState } from '../../contexts/MainContext';
+import { useMainDispatch, useMainState } from '../../util/contexts/MainContext';
 import { Text, TextContentInfo, TextFooter, TextTopBackground } from '../../util/reference';
 
 import Background from '../Common/Background';

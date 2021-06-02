@@ -3,8 +3,8 @@ import { forwardRef, useEffect, useRef } from 'react';
 import { FiSearch } from 'react-icons/fi';
 
 import { Link } from '../../../../util/MyRouter';
-import { useMainDispatch, useMainState } from '../../../../contexts/MainContext';
-import { useSearchBarState } from '../../../../contexts/SearchBarContext';
+import { useMainDispatch, useMainState } from '../../../../util/contexts/MainContext';
+import { useSearchBarState } from '../../../../util/contexts/SearchBarContext';
 import { ITextTopBackground } from '../../../../util/reference';
 import { CALENDAR_FOCUS, FEE_FOCUS, PEOPLE_FOCUS } from './const';
 import { createMonthDateText } from '../../../../util/calendar';

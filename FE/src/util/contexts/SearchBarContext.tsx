@@ -1,5 +1,5 @@
 import { createContext, Dispatch, useContext, useReducer } from 'react';
-import { ICustomProps } from '../util/types';
+import { ICustomProps } from '../types';
 
 // 1) interface & type
 interface SearchBarState {

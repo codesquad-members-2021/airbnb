@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ICanvasSize } from '../../../../../../../hooks/useCanvasSize';
+import { ICanvasSize } from '../../../../../../../util/reduce';
 import { CustomChildren } from '../../../../../../../util/types';
 
 interface ISliderBlock extends ICanvasSize {
