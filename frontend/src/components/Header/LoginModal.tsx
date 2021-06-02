@@ -23,7 +23,7 @@ const LoginModal = () => {
   return (
     <LoginModalLayout className="login-modal">
       {menuList.map((el, idx) => (
-        <li key={`menu-${idx}`}>
+        <li key={`menu-idx}`}>
           <a href={el.url}>{el.text}</a>
         </li>
       ))}

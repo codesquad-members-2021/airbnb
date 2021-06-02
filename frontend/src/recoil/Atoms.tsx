@@ -128,8 +128,8 @@ export const checkOutState = atom<T.Date>({
 export const roomPriceState = atom<T.RoomPrice>({
   key: "roomPriceState",
   default: {
-    min: null,
-    max: null,
+    min: 0,
+    max: 0,
   },
 });
 

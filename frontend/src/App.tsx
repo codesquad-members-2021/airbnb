@@ -7,8 +7,8 @@ import {
   atom,
   selector,
   useRecoilState,
-  useRecoilValue
-} from 'recoil';
+  useRecoilValue,
+} from "recoil";
 
 function App() {
   return (
