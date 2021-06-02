@@ -12,25 +12,29 @@ const Callback = ({ history, location }) => {
       //사용자가 로그인하고 Authroize버튼을 누르면, redirectURI로 승인코드를 url에 딸려 보내는거같음
       //그럼 Callback에서는 location.search에서 ?code=어쩌구저쩌구 부분을 파싱해오면 됨
       // code = 앱 승인 코드
-
       const { code } = qs.parse(location.search, {
         ignoreQueryPrefix: true,
       });
+      console.log('codem', code);
 
       try {
         //access_token을 발급받기 위해선 승인코드를 포함하여
         // authUri에다가 POST요청을 보내야함
         //POST보내서 받은 데이터에 jwt_token이 포함되어있음
-        // const { data } = await fetch(`${authUri}`, {
+        // const response = await fetch(`${authUri}`, {
         //   method: 'POST',
         //   headers: {
-        //     Accect: 'application/json',
+        //     // 'Accept': 'application/json',
         //     'Content-Type': 'application/json',
         //   },
         //   body: JSON.stringify(code),
         // });
+        // const data = await response.json();
+        const response = await fetch(`${authUri}`);
+        console.log('respone', response);
+        const data = await response.json();
 
-        const { data } = await fetch(`${authUri}`);
+        // const data = await fetch(`${authUri}`);
 
         //axios 버전
         // const { data } = await axios.post(authUri, {

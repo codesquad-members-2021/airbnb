@@ -10,7 +10,7 @@ const CityTour = () => {
   useEffect(() => {
     const fetchData = API.get.home();
     fetchData.then((res) => setCityData(res.recommendedList));
-  });
+  }, []);
   return (
     <CityTourDiv>
       <CityTitle>가까운 여행지 둘러보기</CityTitle>
