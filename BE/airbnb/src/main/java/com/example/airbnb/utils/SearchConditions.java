@@ -9,6 +9,9 @@ public class SearchConditions {
     private Integer children;
     private Integer infants;
 
+    public SearchConditions() {
+    }
+
     public SearchConditions(String location, String checkin, String checkout, Integer adults, Integer children, Integer infants) {
         this.location = location;
         this.checkin = checkin;

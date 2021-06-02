@@ -9,6 +9,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,15 +24,17 @@ public class AuthController {
     private final String GITHUB_ACCESS_TOKEN_URI = "https://github.com/login/oauth/access_token";
     private final String GITHUB_USER_URI = "https://api.github.com/user";
     private final String ISSUER = "";
-    private final String CLIENT_ID = "your client id";
-    private final String CLIENT_SECRET = "your client secret";
-    private final String CODE = "";
+    private final String CLIENT_ID = "c7adc71d1700acad7b68";
+    private final String CLIENT_SECRET = "8f4d94cc189366764e59cea607cc9a8838b51178";
+    private String CODE = "YET";
     private HttpSession httpSession;
 
     @GetMapping
     public String hello() {
         return "index";
     }
+
+
 
     @GetMapping("/github/callback")
     public ResponseEntity<Jwt> auth(String code) {
@@ -47,7 +50,13 @@ public class AuthController {
                 .orElseThrow(() -> new RuntimeException("바디 없음"));
 
         String jwt = getJwt(user);
+        CODE = jwt;
         return ResponseEntity.ok(new Jwt(jwt));
+    }
+
+    @GetMapping("/code")
+    public String jwtReturn(){
+        return CODE;
     }
 
     private String getJwt(User user) {
