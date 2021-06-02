@@ -51,7 +51,7 @@ const Callback = ({ history, location }) => {
     };
 
     getToken();
-  }, [location, history]);
+  }, [location, history, authUri]);
 
   return null;
 };

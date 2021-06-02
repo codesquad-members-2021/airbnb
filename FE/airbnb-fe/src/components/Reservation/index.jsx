@@ -1,5 +1,4 @@
 import React, { createContext } from 'react';
-import Search from '../Atoms/Search';
 import ReservationHeader from './ReservationHeader';
 import ReservationMain from './ReservationMain';
 

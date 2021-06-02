@@ -51,8 +51,6 @@ const AvailableRoomDiv = styled.div`
   max-width: 790px;
   //768px정도 줄어들었을때 width를 100%, 그리고 지도쪽 display:none;
   margin: 0 24px;
-
-  border: 1px solid red;
 `;
 
 const ReservationConditionData = styled.div`

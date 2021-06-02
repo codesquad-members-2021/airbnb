@@ -66,7 +66,7 @@ const Search = ({ matchParam, barType }) => {
         day: checkOutDate[2],
       },
     });
-  }, []);
+  }, [matchParam]);
 
   const [clicked, modalDispatch] = useReducer(modalClickReducer, {
     checkInOut: false,

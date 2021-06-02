@@ -1,13 +1,8 @@
-import React, { useContext } from 'react';
 import styled from 'styled-components';
 import RatingStar from '../../../Atoms/icons/RatingStar';
 import Heart from '../../../Atoms/icons/Heart';
 
-import { ReservationContext } from '../..';
-
 const AvailableRoomCard = ({ room, calcDiff, setIsPayModalClicked }) => {
-  const { match } = useContext(ReservationContext);
-
   const handlePayModalClicked = () => {
     setIsPayModalClicked(true);
   };
@@ -52,7 +47,6 @@ const RoomCardDiv = styled.div`
   width: 100%;
   height: 248px;
   padding: 24px 0;
-  border: 1px solid green;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray5};
   cursor: pointer;
 `;
@@ -66,7 +60,6 @@ const RoomContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid pink;
   width: 330px;
   width: 100%;
 `;

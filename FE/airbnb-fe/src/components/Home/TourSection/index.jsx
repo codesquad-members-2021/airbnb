@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CityTour from './CityTour';
 import RoomTour from './RoomTour';
-import API from '../../utils/API';
 
 const TourSection = () => {
   return (
