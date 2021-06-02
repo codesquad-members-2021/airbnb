@@ -1,6 +1,11 @@
 # COMMON
 
 # BE
+.gradle
+build
+.idea
+logs/
+*.log
 
 # FE
 
