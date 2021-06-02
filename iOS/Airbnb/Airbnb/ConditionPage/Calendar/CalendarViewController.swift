@@ -193,8 +193,8 @@ extension CalendarViewController {
         ])
         
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let toolbarItem1 = UIBarButtonItem(title: "건너뛰기", style: .plain, target: self, action: nil)
-        let toolbarItem2 = UIBarButtonItem(title: "다음", style: .done, target: self, action: nil)
+        let toolbarItem1 = UIBarButtonItem(title: "건너뛰기", style: .plain, target: self, action: #selector(nextButtonPressed))
+        let toolbarItem2 = UIBarButtonItem(title: "다음", style: .done, target: self, action: #selector(nextButtonPressed))
 
         let items = [toolbarItem1, flexibleSpace, toolbarItem2]
         items.forEach{ $0.tintColor = .black }
@@ -207,6 +207,11 @@ extension CalendarViewController {
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+    }
+    
+    @objc func nextButtonPressed() {
+        let nextVC = PriceViewController(conditionViewModel: conditionViewModel)
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
 }
