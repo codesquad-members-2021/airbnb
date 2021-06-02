@@ -1,5 +1,6 @@
 import { useEffect, RefObject } from "react";
-
+import {useResetRecoilState} from "recoil"
+import { SearchBarHoverData } from "atoms/searchbarAtom";
 type ClickEvent = MouseEvent | TouchEvent;
 
 function useOnClickOutside<T extends HTMLElement = HTMLElement>(
@@ -7,6 +8,7 @@ function useOnClickOutside<T extends HTMLElement = HTMLElement>(
   handler: (event: ClickEvent) => void
 ) {
   useEffect(() => {
+    
     const listener = (event: ClickEvent) => {
       const el = ref?.current;
 

@@ -6,6 +6,7 @@ import Home from "pages/Home";
 import LogIn from "pages/LogIn";
 import { theme } from "style/theme";
 import GlobalStyle from "style/GlobalStyle";
+import HotelList from "pages/HotelList";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/login"  component={LogIn} />
+          <Route path="/login" component={LogIn} />
+          <Route path="/hotel-list" component={HotelList} />
         </Switch>
       </BrowserRouter>
     </ThemeProvider>

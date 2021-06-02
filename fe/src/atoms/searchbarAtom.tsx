@@ -1,5 +1,55 @@
 import { atom, selector } from "recoil";
 
+type HoverData = {
+  [key: string]: boolean;
+};
+export const SearchBarHoverData = atom<HoverData>({
+  key: "SearchBarHoverData",
+  default: {
+    위치: false,
+    체크인: false,
+    체크아웃: false,
+    요금: false,
+    인원수: false,
+  },
+});
+
+export const searchParamsSelector = selector({
+  key: "searchParams",
+  get({ get }) {
+    let res = "";
+    const { latitude, longitude } = get(locationData);
+    const [checkIn, checkOut] = get(CalendarData);
+    const { adult, teen, kids } = get(PeopleData);
+    const dateParser = (date: number) =>
+      new Date(date).toISOString().slice(0, 10);
+    if (checkIn && checkOut && latitude && longitude) {
+      res = `&checkin=${dateParser(checkIn)}&checkout=${dateParser(
+        checkOut
+      )}&latitude=${latitude}&longitude=${longitude}`;
+    }
+
+    return res;
+  },
+});
+
+export const priceSliderData = atom<{
+  max: number;
+  min: number;
+  width: number;
+}>({
+  key: "priceSliderData",
+  default: { max: Infinity, min: 0, width: 0 },
+});
+
+export const locationData = atom<{
+  latitude: number | undefined;
+  longitude: number | undefined;
+}>({
+  key: "locationData",
+  default: { latitude: undefined, longitude: undefined },
+});
+
 export const CalendarData = atom<number[]>({
   key: "CalendarData",
   default: [],

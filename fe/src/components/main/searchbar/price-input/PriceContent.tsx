@@ -1,16 +1,45 @@
 import { Box } from "@material-ui/core";
+import useAxios from "hooks/useAxios";
 import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { searchParamsSelector } from "atoms/searchbarAtom";
+import PriceGraph from "./PriceGraph";
 
 const PriceContent = () => {
+  const searchParams = useRecoilValue(searchParamsSelector);
+
+  const { isSuccess, data } = useAxios(
+    process.env.REACT_APP_API_URL + "/price?fraction=10" + searchParams,
+    "get"
+  );
+  let priceDateObj;
+  if (isSuccess) {
+    priceDateObj = Object.keys(data)
+      .sort((a, b) => +a - +b)
+      .map((v) => {
+        return { price: +v, cnt: data[v] };
+      });
+  }
+  // const sum = priceDateObj?.reduce((acc, cur) => {
+  //   acc += cur.price * cur.cnt;
+  //   return acc;
+  // }, 0);
+  // const totalCnt = priceDateObj?.reduce((acc, cur) => {
+  //   acc += cur.cnt;
+  //   return acc;
+  // }, 0);
+
   return (
     <Box p="2rem" width="22rem" display="flex" flexDirection="column">
       <PriceTitle>가격 범위</PriceTitle>
-      <PriceRange>100000 ~ 100000000+</PriceRange>
-      <PriceSubtitle>평균 1박요금은 입니다.</PriceSubtitle>
+      {priceDateObj ? (
+        <PriceGraph priceData={priceDateObj} />
+      ) : (
+        <PriceRange> 여행가실 위치와 날짜를 입력해주세요 </PriceRange>
+      )}
     </Box>
   );
 };
-
 export default PriceContent;
 
 const PriceTitle = styled.span`
@@ -21,10 +50,4 @@ const PriceTitle = styled.span`
 
 const PriceRange = styled.span`
   font-size: 18px;
-`;
-
-const PriceSubtitle = styled.span`
-  font-size: 0.8rem;
-  font-weight: 400;
-  color:${({theme}) => theme.color.Gray3}
 `;

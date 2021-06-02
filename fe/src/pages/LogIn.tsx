@@ -9,12 +9,12 @@ const LogIn = (props: any) => {
 
   const url =
     process.env.REACT_APP_API_URL + `/oauth/login?code=${result.code}`;
-  const { isInit, isLoading, isSuccess, isError, data } = useAxios(url, "get");
+  const { isSuccess, data } = useAxios(url, "get");
 
   useEffect(() => {
     if (isSuccess) {
       localStorage.setItem("token", JSON.stringify(data));
-      localStorage.setItem("isLogin", JSON.stringify(true));
+      localStorage.setItem("isLogIn", JSON.stringify(true));
       props.history.push("/");
     }
   });

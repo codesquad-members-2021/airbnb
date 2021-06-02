@@ -87,9 +87,7 @@ export default CalendarSlider;
 const StyledCalendarSlider = styled.div`
   display: flex;
   width: 100%;
-  & + &.2021_5_26 {
-    background-color: gray;
-  }
+  justify-content: center;
 `;
 const CalendarSliderLeftBtn = styled.button`
   position: absolute;

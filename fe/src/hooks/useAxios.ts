@@ -2,9 +2,9 @@ import { useState, useEffect, useReducer } from "react";
 import axios, { Method } from "axios";
 
 type Action =
-  | { type: "FETCH_INIT"; payload: [] }
-  | { type: "FETCH_SUCCESS"; payload: [] }
-  | { type: "FETCH_FAILURE"; payload: [] };
+  | { type: "FETCH_INIT"; payload: null }
+  | { type: "FETCH_SUCCESS"; payload: any }
+  | { type: "FETCH_FAILURE"; payload: null };
 
 const useAxios = (initialUrl: string, methods: Method, options?: any) => {
   const [url] = useState(initialUrl);
@@ -14,7 +14,7 @@ const useAxios = (initialUrl: string, methods: Method, options?: any) => {
     isLoading: false,
     isSuccess: false,
     isError: false,
-    data: [],
+    data: null,
   });
 
   useEffect(() => {
@@ -28,13 +28,17 @@ const useAxios = (initialUrl: string, methods: Method, options?: any) => {
     };
 
     const fetchData = async () => {
-      dispatch({ type: "FETCH_INIT", payload: [] });
+      dispatch({ type: "FETCH_INIT", payload: null });
       try {
+        if (url === "http://13.209.33.94:8080/price?fraction=10") {
+          dispatch({ type: "FETCH_FAILURE", payload: null });
+          return;
+        }
         await axios(url, config).then((result) =>
           dispatch({ type: "FETCH_SUCCESS", payload: result.data })
         );
       } catch (error) {
-        dispatch({ type: "FETCH_FAILURE", payload: [] });
+        dispatch({ type: "FETCH_FAILURE", payload: null });
       }
     };
     fetchData();
@@ -49,7 +53,7 @@ const requestReducer = (
     isLoading: boolean;
     isSuccess: boolean;
     isError: boolean;
-    data: [];
+    data: any;
   },
   action: Action
 ) => {

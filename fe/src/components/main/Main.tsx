@@ -3,6 +3,7 @@ import Header from "./header/Header";
 import SearchBar from "./searchbar/Searchbar";  
 
 const Main = () => {
+  
   return (
     <StyledMain>
       <Header />
