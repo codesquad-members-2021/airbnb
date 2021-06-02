@@ -5,22 +5,21 @@ import { roomType } from './roomType';
 import ReserveRoomGrade from './ReserveRoomGrade';
 import ReserveRoomPrice from './ReserveRoomPrice';
 import ReserveForm from './reserveForm/ReserveForm';
-import { useState } from 'react';
+import { useRef } from 'react';
+import useToggle from '../../hooks/useToggle';
 
 interface Props {
   roomData: roomType;
 }
 
 const ReserveRoom = ({ roomData }: Props) => {
-  const [open, setOpen] = useState(false);
   const { photo } = roomData;
-
-  const handleClick = () => {
-    setOpen(true);
-  };
+  const clickRef = useRef(null);
+  const toggleRef = useRef(null);
+  const { open } = useToggle({ clickRef, toggleRef });
 
   return (
-    <StyledReserveRoom onClick={handleClick}>
+    <StyledReserveRoom ref={clickRef}>
       <div className='room__img'>
         <img src={photo} alt='' />
       </div>
@@ -34,7 +33,7 @@ const ReserveRoom = ({ roomData }: Props) => {
           <ReserveRoomPrice roomData={roomData} />
         </div>
       </div>
-      {open && <ReserveForm roomData={roomData} />}
+      {open && <ReserveForm toggleRef={toggleRef} roomData={roomData} />}
     </StyledReserveRoom>
   );
 };
