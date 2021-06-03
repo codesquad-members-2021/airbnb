@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,12 +20,9 @@
 		10406B5D265D344F004F4AF9 /* CalendarDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10406B5C265D344F004F4AF9 /* CalendarDateCell.swift */; };
 		10466589265E6C03008B2F36 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10466588265E6C03008B2F36 /* CalendarViewModel.swift */; };
 		1046658B265E6DD4008B2F36 /* CalenderCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1046658A265E6DD4008B2F36 /* CalenderCollectionDataSource.swift */; };
-		104665A1265E9133008B2F36 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 104665A0265E9133008B2F36 /* Alamofire */; };
-		104665A7265E915B008B2F36 /* APIServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665A2265E915A008B2F36 /* APIServiceError.swift */; };
+		104665A7265E915B008B2F36 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665A2265E915A008B2F36 /* NetworkError.swift */; };
 		104665A8265E915B008B2F36 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665A3265E915A008B2F36 /* EndPoint.swift */; };
-		104665A9265E915B008B2F36 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665A4265E915A008B2F36 /* APIService.swift */; };
 		104665AA265E915B008B2F36 /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665A5265E915B008B2F36 /* Responses.swift */; };
-		104665AB265E915B008B2F36 /* TravelListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665A6265E915B008B2F36 /* TravelListAPI.swift */; };
 		104665AD265E9502008B2F36 /* NearPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665AC265E9502008B2F36 /* NearPlace.swift */; };
 		104665B0265E9FE6008B2F36 /* UIImageView+LoadFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665AF265E9FE6008B2F36 /* UIImageView+LoadFromURL.swift */; };
 		1049206D265782AD00AA2590 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1049206C265782AD00AA2590 /* ContainerViewController.swift */; };
@@ -33,8 +30,10 @@
 		105C73FF265F98AE001BF07A /* FooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C73FE265F98AE001BF07A /* FooterTableViewCell.swift */; };
 		105D4272265DE20E00FCF8F7 /* CalendarHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105D4271265DE20E00FCF8F7 /* CalendarHeader.swift */; };
 		10642205265641F1005B63FD /* TravelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10642204265641F1005B63FD /* TravelListViewController.swift */; };
+		1066F6E326668AA0009F0C8B /* NetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1066F6E226668AA0009F0C8B /* NetworkDispatcher.swift */; };
 		10AA57802665C97800B3DF4E /* CalendarDateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AA577F2665C97800B3DF4E /* CalendarDateCalculator.swift */; };
 		10BAF19D265CD1DA0035D99B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAF19C265CD1DA0035D99B /* CalendarViewController.swift */; };
+		10BDF8AE26661C0D00D9CB73 /* TravelNetwrokDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BDF8AD26661C0D00D9CB73 /* TravelNetwrokDispatcher.swift */; };
 		10D29C6126538C6800E71840 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D29C6026538C6800E71840 /* AppDelegate.swift */; };
 		10D29C6326538C6800E71840 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D29C6226538C6800E71840 /* SceneDelegate.swift */; };
 		10D29C6A26538C6900E71840 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10D29C6926538C6900E71840 /* Assets.xcassets */; };
@@ -67,11 +66,9 @@
 		10406B5C265D344F004F4AF9 /* CalendarDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateCell.swift; sourceTree = "<group>"; };
 		10466588265E6C03008B2F36 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		1046658A265E6DD4008B2F36 /* CalenderCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderCollectionDataSource.swift; sourceTree = "<group>"; };
-		104665A2265E915A008B2F36 /* APIServiceError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIServiceError.swift; sourceTree = "<group>"; };
+		104665A2265E915A008B2F36 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		104665A3265E915A008B2F36 /* EndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
-		104665A4265E915A008B2F36 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		104665A5265E915B008B2F36 /* Responses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
-		104665A6265E915B008B2F36 /* TravelListAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelListAPI.swift; sourceTree = "<group>"; };
 		104665AC265E9502008B2F36 /* NearPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearPlace.swift; sourceTree = "<group>"; };
 		104665AF265E9FE6008B2F36 /* UIImageView+LoadFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+LoadFromURL.swift"; sourceTree = "<group>"; };
 		1049206C265782AD00AA2590 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -79,8 +76,10 @@
 		105C73FE265F98AE001BF07A /* FooterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterTableViewCell.swift; sourceTree = "<group>"; };
 		105D4271265DE20E00FCF8F7 /* CalendarHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeader.swift; sourceTree = "<group>"; };
 		10642204265641F1005B63FD /* TravelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelListViewController.swift; sourceTree = "<group>"; };
+		1066F6E226668AA0009F0C8B /* NetworkDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDispatcher.swift; sourceTree = "<group>"; };
 		10AA577F2665C97800B3DF4E /* CalendarDateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateCalculator.swift; sourceTree = "<group>"; };
 		10BAF19C265CD1DA0035D99B /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		10BDF8AD26661C0D00D9CB73 /* TravelNetwrokDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelNetwrokDispatcher.swift; sourceTree = "<group>"; };
 		10D29C5D26538C6800E71840 /* airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10D29C6026538C6800E71840 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10D29C6226538C6800E71840 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,7 +105,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				104665A1265E9133008B2F36 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,11 +143,11 @@
 		1046659C265E910C008B2F36 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				104665A4265E915A008B2F36 /* APIService.swift */,
-				104665A2265E915A008B2F36 /* APIServiceError.swift */,
+				104665A2265E915A008B2F36 /* NetworkError.swift */,
 				104665A3265E915A008B2F36 /* EndPoint.swift */,
 				104665A5265E915B008B2F36 /* Responses.swift */,
-				104665A6265E915B008B2F36 /* TravelListAPI.swift */,
+				1066F6E226668AA0009F0C8B /* NetworkDispatcher.swift */,
+				10BDF8AD26661C0D00D9CB73 /* TravelNetwrokDispatcher.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -293,7 +291,6 @@
 			);
 			name = airbnb;
 			packageProductDependencies = (
-				104665A0265E9133008B2F36 /* Alamofire */,
 			);
 			productName = airbnb;
 			productReference = 10D29C5D26538C6800E71840 /* airbnb.app */;
@@ -323,7 +320,6 @@
 			);
 			mainGroup = 10D29C5426538C6800E71840;
 			packageReferences = (
-				1046659F265E9133008B2F36 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 10D29C5E26538C6800E71840 /* Products */;
 			projectDirPath = "";
@@ -363,15 +359,16 @@
 				100CD084265BA979002224F1 /* LoginCoordinator.swift in Sources */,
 				10E1B17D265407680087B69B /* HeaderReusableView.swift in Sources */,
 				1049206D265782AD00AA2590 /* ContainerViewController.swift in Sources */,
+				10BDF8AE26661C0D00D9CB73 /* TravelNetwrokDispatcher.swift in Sources */,
 				100CD07E265B9A1C002224F1 /* SearchCoordinator.swift in Sources */,
 				10E1B17A2653F49D0087B69B /* NearPlaceCell.swift in Sources */,
 				10D29C75265393F800E71840 /* SearchViewController.swift in Sources */,
 				104665AD265E9502008B2F36 /* NearPlace.swift in Sources */,
+				1066F6E326668AA0009F0C8B /* NetworkDispatcher.swift in Sources */,
 				104665A8265E915B008B2F36 /* EndPoint.swift in Sources */,
 				102FA1FA265550CD00B761C7 /* IdentityInfo.swift in Sources */,
 				10406B5D265D344F004F4AF9 /* CalendarDateCell.swift in Sources */,
 				1056C061265F45F000A10FA0 /* FooterTableViewController.swift in Sources */,
-				104665AB265E915B008B2F36 /* TravelListAPI.swift in Sources */,
 				10406B5B265D2C2D004F4AF9 /* MonthMetadata.swift in Sources */,
 				10AA57802665C97800B3DF4E /* CalendarDateCalculator.swift in Sources */,
 				10D29C8B2653A61500E71840 /* LoginViewController.swift in Sources */,
@@ -386,11 +383,10 @@
 				10466589265E6C03008B2F36 /* CalendarViewModel.swift in Sources */,
 				1046658B265E6DD4008B2F36 /* CalenderCollectionDataSource.swift in Sources */,
 				101C0EE126575BF80014D62B /* NearPlaceDataSource.swift in Sources */,
-				104665A7265E915B008B2F36 /* APIServiceError.swift in Sources */,
+				104665A7265E915B008B2F36 /* NetworkError.swift in Sources */,
 				10E1B1742653DE2F0087B69B /* MainCoordinator.swift in Sources */,
 				10E1B1722653DE0D0087B69B /* Storyboarded.swift in Sources */,
 				10642205265641F1005B63FD /* TravelListViewController.swift in Sources */,
-				104665A9265E915B008B2F36 /* APIService.swift in Sources */,
 				100CD082265B9A3D002224F1 /* WishListCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,25 +579,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		1046659F265E9133008B2F36 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.4.3;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		104665A0265E9133008B2F36 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1046659F265E9133008B2F36 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 10D29C5526538C6800E71840 /* Project object */;
 }

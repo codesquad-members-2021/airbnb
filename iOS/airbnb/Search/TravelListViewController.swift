@@ -22,7 +22,7 @@ class TravelListViewController: UIViewController {
     weak var coordinator : SearchCoodinator?
     private lazy var dataSource = makeDataSource()
     
-    @Published private var nearPlaces = [NearPlace]()
+    @Published private var places = [NearPlace]()
     private var cancellables = Set<AnyCancellable>()
     
     private let searchController = UISearchController(searchResultsController: nil)
@@ -38,6 +38,7 @@ class TravelListViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = removeButton
         self.navigationItem.title = "숙소찾기"
         self.travelList.delegate = self
+
         
         applySnapshot(animatingDifferences: false)
         makeSectionHeader()
@@ -71,7 +72,7 @@ extension TravelListViewController {
             cellProvider: { [weak self] ( collectionview, indexPath, card) -> UICollectionViewCell? in
                 let cell = collectionview.dequeueReusableCell(withReuseIdentifier: NearPlaceCell.reuseIdentifier, for: indexPath)
                     as? NearPlaceCell
-                cell?.configurePlace(with: self?.nearPlaces[indexPath.row])
+                cell?.configurePlace(with: self?.places[indexPath.row])
                 return cell
             })
         return dataSource
@@ -93,24 +94,26 @@ extension TravelListViewController {
     func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
-        snapshot.appendItems(nearPlaces)
+        snapshot.appendItems(places)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
     
     func fetchData(){
-        $nearPlaces.receive(on: DispatchQueue.main)
-            .sink(receiveValue: {[weak self] _ in
-                self?.applySnapshot()
+        
+        TravelNetwrokDispatcher()
+            .execute(url: .search, decodeType: [NearPlaceResponse].self)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {  [weak self] completion in
+                switch completion {
+                case .failure(let error): print(error.message)
+                case .finished:
+                    self?.applySnapshot()
+                }
+            }, receiveValue: { response in
+                self.places = response.map{ $0.toNearPlace() }
             })
             .store(in: &cancellables)
-        
-        TravelListAPI.loadTravelList(type: .search)
-            .sink(receiveCompletion: { _ in },
-                  receiveValue: { responses in
-                    for response in responses {
-                        self.nearPlaces.append(response.toNearPlace())
-                    }
-            }).store(in: &cancellables)
+   
     }
     
     func setUpSearchController() {

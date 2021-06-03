@@ -8,20 +8,24 @@
 import Foundation
 import Combine
 
+struct Location {
+    let x: Double
+    let y: Double
+}
 class NearPlace : Hashable {
     
     var name: String
     var avatarUrl: URL?
     var distance: Int
-    var coordinate : Coordinate
+    var location : Location
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(name: String, avatarUrl: URL?, distance: Int, coordinate: Coordinate ){
+    init(name: String, avatarUrl: URL?, distance: Int, x: Double, y: Double ){
         self.name = name
         self.avatarUrl = avatarUrl
         self.distance = distance
-        self.coordinate = coordinate
+        self.location = Location(x: x, y: y)
     }
     
     func hash(into hasher: inout Hasher) {
