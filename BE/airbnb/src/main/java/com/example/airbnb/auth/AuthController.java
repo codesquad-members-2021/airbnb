@@ -33,8 +33,6 @@ public class AuthController {
         return "index";
     }
 
-
-
     @GetMapping("/github/callback")
     public ResponseEntity<Jwt> auth(String code) {
 
@@ -56,9 +54,8 @@ public class AuthController {
     }
 
     @GetMapping("/github")
-    public AuthDTO githubToken(@RequestParam String code)
-    {
-        logger.info("code : {}",code);
+    public AuthDTO githubToken(@RequestParam String code) {
+        logger.info("code : {}", code);
         RestTemplate gitHubRequest = new RestTemplate();
 
         GithubAccessTokenResponse accessToken = getAccessToken(code, gitHubRequest)
@@ -73,7 +70,8 @@ public class AuthController {
         String jwt = getJwt(user);
 
         //return ResponseEntity.ok(new Jwt(jwt));
-        new AuthDTO(jwt,)
+        GithubAccountInfoResponse info = getInfoAccount(jwt).orElseThrow(() -> new RuntimeException());
+        return new AuthDTO(jwt, info.getAvatar_url(), info.getLogin());
     }
 
     private String getJwt(User user) {
@@ -89,7 +87,6 @@ public class AuthController {
             throw new RuntimeException(exception);
         }
     }
-
 
     private Optional<User> getUserFromGitHub(GithubAccessTokenResponse accessToken, RestTemplate gitHubRequest) {
         RequestEntity<Void> request = RequestEntity
@@ -116,5 +113,18 @@ public class AuthController {
         return Optional.ofNullable(response.getBody());
     }
 
+    private Optional<GithubAccountInfoResponse> getInfoAccount(String jwt) {
+        RequestEntity<Void> InfoAcc = RequestEntity
+                .get(GITHUB_USER_URI)
+                .header("Accept", "*/*")
+                .header("Authorization", "token " + jwt)
+                .build();
+        RestTemplate gitHubRequest = new RestTemplate();
+
+        ResponseEntity<GithubAccountInfoResponse> response = gitHubRequest
+                .exchange(InfoAcc, GithubAccountInfoResponse.class);
+
+        return Optional.ofNullable(response.getBody());
+    }
 
 }
