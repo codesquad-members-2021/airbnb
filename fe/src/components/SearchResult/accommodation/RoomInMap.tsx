@@ -22,15 +22,15 @@ const RoomInMap = ({ room }: props) => {
     total_price,
   } = room;
   const province = area.split(',')[0];
-  const optionsDescription = options.reduce(
-    (str, currStr) => str + currStr + ', ',
-    ''
-  );
+  const imageURL = image_url[0].image_url;
+  const optionsDescription = options
+    .reduce((str, currStr) => str + currStr + ', ', '')
+    .slice(0, -2); // 쉼표, 공백 삭제
 
   return (
     <RoomContainer>
       <ImgWrap>
-        <img src="./thumbnail.png" alt="thumbnail" />
+        <img src={imageURL} alt="roomImage" />
       </ImgWrap>
       <Detail>
         <Desc>
@@ -56,11 +56,26 @@ export default RoomInMap;
 
 const RoomContainer = styled.div`
   display: flex;
+  width: 100%;
+  height: 248px;
+
+  &:not(first-child) {
+    padding: 24px 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
 `;
 
 const ImgWrap = styled.div`
   width: 330px;
   height: 200px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const Detail = styled.div`

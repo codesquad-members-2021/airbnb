@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import LandingPage from '@pages/LandingPage';
 import SearchResult from '@pages/SearchResult';
 import theme from '@styles/theme';
-import { Suspense } from 'react';
 
 const App = () => {
   return (
@@ -15,11 +14,9 @@ const App = () => {
             <Route path="/" exact>
               <LandingPage />
             </Route>
-            <Suspense fallback={<div>loading...</div>}>
-              <Route path="/:search">
-                <SearchResult />
-              </Route>
-            </Suspense>
+            <Route path="/:search">
+              <SearchResult />
+            </Route>
           </Switch>
         </BrowserRouter>
       </AppContainer>

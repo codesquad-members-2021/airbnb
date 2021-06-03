@@ -41,7 +41,6 @@ const accomodationList = selector({
     const guest = get(queryGuest);
     const boundary = get(queryLocation);
     const query = `${reservation}&${price}&${guest}&${boundary}`;
-    console.log(query);
     const res = await fetch(
       `http://3.35.178.32:8080/accomodation/search?${query}`
     );
@@ -50,4 +49,4 @@ const accomodationList = selector({
   },
 });
 
-export { isMiniSearchBarOpen, userLocation, accomodationList };
+export { isMiniSearchBarOpen, userLocation, accomodationList, mapSizeCoords };

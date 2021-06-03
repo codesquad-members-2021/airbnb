@@ -46,7 +46,7 @@ const Profile = () => {
         localStorage.setItem('jwt', jwt);
         setIsLogin(true);
 
-        const homePage = '/';
+        const homePage = 'http://localhost:3000';
         window.history.pushState(null, '', homePage);
       } catch (error) {
         console.log(error);

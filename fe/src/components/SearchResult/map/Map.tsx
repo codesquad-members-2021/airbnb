@@ -1,13 +1,24 @@
-import { userLocation } from '@recoil/atoms/searchResult';
-import { useEffect, useRef } from 'react';
-import { useRecoilState } from 'recoil';
+import { useEffect, useRef, useState } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
+import { userLocation, mapSizeCoords } from '@recoil/atoms/searchResult';
+
+import Marker from './Marker';
+
+const { kakao }: any = window;
+
 const Map = () => {
-  const { kakao }: any = window;
+  const setMapSize = useSetRecoilState(mapSizeCoords);
   const mapContainer = useRef<HTMLElement>(null);
   const [COORDS, setCOORDS] = useRecoilState(userLocation);
   const { latitude, longitude } = COORDS;
+  const [mapBounds, setMapBounds] = useState<mapBound>({
+    ne_latitude: 0,
+    ne_longitude: 0,
+    sw_latitude: 0,
+    sw_longitude: 0,
+  });
 
   const options = {
     center: new kakao.maps.LatLng(latitude, longitude),
@@ -23,10 +34,30 @@ const Map = () => {
   });
 
   useEffect(() => {
-    new kakao.maps.Map(mapContainer.current, options);
+    const map = new kakao.maps.Map(mapContainer.current, options);
+    kakao.maps.event.addListener(map, 'bounds_changed', () => {
+      const bounds = map.getBounds();
+      const swLatLng = bounds.getSouthWest();
+      const neLatLng = bounds.getNorthEast();
+      console.log(neLatLng);
+      console.log('hi');
+
+      setMapBounds({
+        ne_latitude: neLatLng.La,
+        ne_longitude: neLatLng.Ma,
+        sw_latitude: swLatLng.La,
+        sw_longitude: swLatLng.Ma,
+      });
+    });
   }, [latitude, longitude]);
 
-  return <MapWrap id="map" ref={mapContainer}></MapWrap>;
+  const handleMouseUpMap = (): void => setMapSize(mapBounds);
+
+  return (
+    <MapWrap id="map" ref={mapContainer} onMouseUp={handleMouseUpMap}>
+      <Marker />
+    </MapWrap>
+  );
 };
 
 export default Map;
@@ -37,3 +68,10 @@ const MapWrap = styled.section`
   position: relative;
   z-index: 1;
 `;
+
+interface mapBound {
+  ne_latitude: number;
+  ne_longitude: number;
+  sw_latitude: number;
+  sw_longitude: number;
+}
