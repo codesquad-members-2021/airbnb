@@ -56,7 +56,6 @@ class CalendarViewModel {
             return .nothing
         }
         if date < Date.init(timeIntervalSinceNow: -8640) {
-            print(date, Date.init(timeIntervalSinceNow: -8640))
             return .outDated
         } else if checkInOut.count == 0 {
             return .normal
