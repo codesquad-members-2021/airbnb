@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import LoginBtn from './LoginPage';
 
 const AccountModal = () => {
+  const [isMouseOver, setIsMouseOver] = useState(false);
+
+  const handleLoginMouseOver = () => {
+    setIsMouseOver(true);
+  };
+
+  const handleLoginMouseLeave = () => {
+    setIsMouseOver(false);
+  };
+
   return (
     <AccountModalDiv>
-      <AccountModalItem>
-        <a href="https://github.com/login/oauth/authorize?client_id=c7adc71d1700acad7b68&scope=repo:status read:repo_hook user:email&redirect_uri=http://localhost:3000/callback">
-          로그인
-        </a>
+      <AccountModalItem
+        isMouseOver={isMouseOver}
+        onMouseOver={() => handleLoginMouseOver()}
+        onMouseLeave={() => handleLoginMouseLeave()}
+      >
+        {isMouseOver ? <LoginBtn /> : '로그인'}
       </AccountModalItem>
     </AccountModalDiv>
   );
@@ -30,13 +43,9 @@ const AccountModalDiv = styled.div`
 
 const AccountModalItem = styled.div`
   width: 100%;
-  height: 2.3rem;
-  padding: 0 1rem;
+  padding: ${({ isMouseOver }) => (isMouseOver ? '0rem' : '0 1rem')};
   display: flex;
   align-items: center;
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.gray6};
-  }
 `;
 
 export default AccountModal;
