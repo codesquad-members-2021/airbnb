@@ -1,12 +1,21 @@
 import styled from 'styled-components';
 import { HotelListType } from '@Components/commons/baseType';
 import starImage from '@/Images/star.svg';
+import { useRecoilValue } from 'recoil';
+import { calendarClickAtom } from '@/recoil/atoms';
+import { useMemo } from 'react';
 
 type HotelInfoTType = {
   hotelInfo: HotelListType
 }
-
+const ONE_DAY_TIME = 8.64e+7;
 const HotelItem = ({ hotelInfo }: HotelInfoTType) => {
+  const [firstDayTime, LastDayTime] = useRecoilValue(calendarClickAtom);
+  const dayCount = useMemo(() => {
+    return (LastDayTime - firstDayTime) / ONE_DAY_TIME;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [firstDayTime, LastDayTime]);
+
   const { imageUrl, maximumOccupancy, numberOfBathrooms, numberOfBeds,
     oneroom, price, reviewCount, reviewStarPoint, title } = hotelInfo;
 
@@ -43,7 +52,9 @@ const HotelItem = ({ hotelInfo }: HotelInfoTType) => {
               <OneDayPrice>₩{price.toLocaleString()}</OneDayPrice> / 박
             </div>
             <TotalPrice>
-              총액
+              총액 ₩{dayCount
+                ? (Math.floor(dayCount * price * 1.2)).toLocaleString()
+                : (Math.floor(price * 1.2)).toLocaleString()}
             </TotalPrice>
           </Price>
         </FooterWrapper>
