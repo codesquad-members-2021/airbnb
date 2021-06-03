@@ -55,7 +55,8 @@ export async function getHouseData(value: any) {
     child,
     baby,
   }: DetailProps = value
-  console.log('getHouseAPI')
+  
+  console.log(value)
   let guestAdult = Number(adult)
   let guestChild = Number(child)
   let guestBaby = Number(baby)

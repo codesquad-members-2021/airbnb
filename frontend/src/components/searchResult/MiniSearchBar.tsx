@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import SearchIcon from '@material-ui/icons/Search'
 import IconButton from '@material-ui/core/IconButton'
 import { IParams } from '../../Interface'
+import { useRecoilValue} from 'recoil'
 import { RecoilValueGroup, RecoilSetStateGroup, defaultValue } from '../../customHook/atoms'
 import { FilterDateToString } from '../../customHook/useDateInfo'
 interface IMiniProps {
@@ -25,7 +26,8 @@ function MiniSearchBar({ setClicked, inputData }: IMiniProps) {
     setClicked(true)
   }
   RecoilSetStateGroup(inputData)
-  const { place, checkIn, checkOut, guestMsg } = RecoilValueGroup()
+  const { place, checkIn, checkOut, guestMsg } = useRecoilValue(RecoilValueGroup)
+
 
   return (
     <SearchBar>

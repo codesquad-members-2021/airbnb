@@ -32,7 +32,7 @@ function Reservation({setOpen, targetData}:IReserve) {
         <ReviewSpan>후기 {targetData.review.review}개</ReviewSpan>
       </FlexBox>
       <GridBox>
-        <Date type='modal'/>
+        <Date/>
         {/* {CheckInBlock(checkIn)}
         {CheckOutBlock(checkOut)}
         {PersonnelBlock(guestMsg)} */}

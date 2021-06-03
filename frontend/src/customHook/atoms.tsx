@@ -173,7 +173,7 @@ export function RecoilSetStateGroup(params: IParams) {
 }
 
 export const RecoilValueGroup = selector({key:'recoilValues', get({get}){
-  const place = get(clickedPlace)
+  const place = get(clickedPlace) 
   const checkIn = get(checkInMessage)
   const checkOut = get(checkOutMessage)
   const priceMin =get(FeeMin)
@@ -188,6 +188,32 @@ export const RecoilValueGroup = selector({key:'recoilValues', get({get}){
 },})
 
 
+export function Test() {
+  const place = useRecoilValue(clickedPlace)
+  const checkIn = useRecoilValue(checkInMessage)
+  const checkOut = useRecoilValue(checkOutMessage)
+  const priceMin = useRecoilValue(FeeMin)
+  const priceMax = useRecoilValue(FeeMax)
+  const minFeePercent = useRecoilValue(FeeMinChange)
+  const maxFeePercent = useRecoilValue(FeeMaxChange)
+  const adult = useRecoilValue(personnelAudult)
+  const child = useRecoilValue(personnelChild)
+  const baby = useRecoilValue(personnelBaby)
+  const guestMsg = useRecoilValue(personnelMessage)
+  return {
+    place,
+    checkIn,
+    checkOut,
+    priceMin,
+    minFeePercent,
+    priceMax,
+    maxFeePercent,
+    adult,
+    child,
+    baby,
+    guestMsg,
+  }
+}
   
 //   set({set}, newValues){
 //   const {
@@ -235,3 +261,4 @@ export const RecoilValueGroup = selector({key:'recoilValues', get({get}){
 //           set(selectDateState, date); 
 //           set(priceState, price); 
 //           set(guestState, guests); }, });
+

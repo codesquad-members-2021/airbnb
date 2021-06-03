@@ -29,9 +29,8 @@ function SearchBtn({ history }: any) {
   const { fetchData } = useAxios(() => getHouseData(value), [], true)
   const GoNextPage = async () => {
     if (isRouter) {
-      history.push(
-        `/searchResult/${place}/${checkIn}/${checkOut}/${priceMin}/${priceMax}/${minFeePercent}/${maxFeePercent}/${adult}/${child}/${baby}`
-      )
+      let routingPath =`/searchResult/${place}/${checkIn}/${checkOut}/${priceMin}/${priceMax}/${minFeePercent}/${maxFeePercent}/${adult}/${child}/${baby}`
+      history.push(routingPath)
     } else {
       const response = await fetchData()
       setIsRouter(true)

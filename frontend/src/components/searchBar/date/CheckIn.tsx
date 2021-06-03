@@ -31,7 +31,6 @@ function CheckIn({ open, type, checkInToggle }: IProps) {
 
   return (
     <BarBlock
-      modal={modal}
       onClick={handleClick}
       clicked={checkInClicked && open}
       type={type}

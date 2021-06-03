@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import styled from 'styled-components'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { RouterOrSearch, RoomData } from '../../customHook/atoms'
+import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil'
+import { Test, RecoilValueGroup, RouterOrSearch, RoomData } from '../../customHook/atoms'
 import useAxios from '../../customHook/useAxios'
 import { getHouseData } from '../../customHook/axiosAPI'
 import Logo from '../header/Logo'
@@ -25,11 +25,15 @@ interface params {
   baby: string | undefined
 }
 function SearchResult({ match }: RouteComponentProps<params>) {
+
+  const recoilValues = useRecoilValue(RecoilValueGroup)
+
+    console.log(match.params, recoilValues)
   const [clicked, setClicked] = useState(false)
   const RoomDatas = useRecoilValue(RoomData)
   const { state } = useAxios(() => getHouseData(match.params))
   const [isRouter, setIsRouter] = useRecoilState(RouterOrSearch)
-
+  
   useEffect(() => {
     if (RoomDatas.length === 0) setIsRouter(false)
   }, [RoomDatas])

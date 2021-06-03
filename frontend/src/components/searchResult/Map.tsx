@@ -43,19 +43,19 @@ function Map({ data, isRouter }: IMapData) {
       })
     }
 
-    window.naver.maps.Event.addListener(map, 'bounds_changed', function () {
-      let newCoord = map.getCenter()
-      let newLat = newCoord._lat
-      let newLng = newCoord._lng
-      console.log(newLng, newLat)
-    })
+    // window.naver.maps.Event.addListener(map, 'bounds_changed', function () {
+    //   let newCoord = map.getCenter()
+    //   let newLat = newCoord._lat
+    //   let newLng = newCoord._lng
+    //   console.log(newLng, newLat)
+    // })
 
-    return window.naver.maps.Event.removeListener(map, 'bounds_changed', function () {
-      let newCoord = map.getCenter()
-      let newLat = newCoord._lat
-      let newLng = newCoord._lng
-      console.log(newLng, newLat)
-    })
+    // return window.naver.maps.Event.removeListener(map, 'bounds_changed', function () {
+    //   let newCoord = map.getCenter()
+    //   let newLat = newCoord._lat
+    //   let newLng = newCoord._lng
+    //   console.log(newLng, newLat)
+    // })
   })
   //'zoom_changed'
   return (
