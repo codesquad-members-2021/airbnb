@@ -54,7 +54,6 @@ public class BookingRepository implements JdbcRepository<Booking> {
                 " (? between check_in and check_out and ? between check_in and check_out) or" +
                 " (? < check_in and ? > check_out)";
 
-
         return jdbcTemplate.query(sql, bookingRowMapper(), booking.getRoomId(),
                 booking.getCheckIn(), booking.getCheckOut(), booking.getCheckIn(), booking.getCheckOut(),
                 booking.getCheckIn(), booking.getCheckOut(),booking.getCheckIn(), booking.getCheckOut());

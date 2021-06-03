@@ -6,6 +6,7 @@ import com.codesquad.airbnb.domain.User;
 import com.codesquad.airbnb.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -34,9 +35,9 @@ public class UserService {
     private static final String REDIRECT_URI = "http://localhost:8080/oauth/google/callback";
     private static final String GRANT_TYPE = "authorization_code";
 
-    public UserService(UserRepository userRepository, ObjectMapper objectMapper, RestTemplate restTemplate) {
+    public UserService(UserRepository userRepository,RestTemplate restTemplate) {
         this.userRepository = userRepository;
-        this.objectMapper = objectMapper;
+        this.objectMapper = new ObjectMapper().setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
         this.restTemplate = restTemplate;
     }
 

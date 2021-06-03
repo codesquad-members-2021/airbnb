@@ -15,13 +15,13 @@ import java.nio.charset.Charset;
 
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
-
-    @Bean
-    public Jackson2ObjectMapperBuilder jacksonBuilder() { // ObjectMapper를 만들어 주는
-        Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder = new Jackson2ObjectMapperBuilder();
-        jackson2ObjectMapperBuilder.propertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE); // snake_case로 바꿔주기
-        return jackson2ObjectMapperBuilder;
-    }
+//
+//    @Bean
+//    public Jackson2ObjectMapperBuilder jacksonBuilder() { // ObjectMapper를 만들어 주는
+//        Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder = new Jackson2ObjectMapperBuilder();
+//        jackson2ObjectMapperBuilder.propertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE); // snake_case로 바꿔주기
+//        return jackson2ObjectMapperBuilder;
+//    }
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder) {
