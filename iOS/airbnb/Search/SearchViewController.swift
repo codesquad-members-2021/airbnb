@@ -72,17 +72,21 @@ class SearchViewController : UIViewController {
     }
 
     func fetchData(){
-        $places.receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] _ in
-                self?.applySnapshot()
+        
+        TravelNetwrokDispatcher()
+            .execute(url: .search, decodeType: [NearPlaceResponse].self)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {  [weak self] completion in
+                switch completion {
+                case .failure(let error): print(error.message)
+                case .finished:
+                    self?.applySnapshot()
+                }
+            }, receiveValue: { response in
+                self.places = response.map{ $0.toNearPlace() }
             })
             .store(in: &cancellables)
-       
-        TravelListAPI.loadTravelList(type: .search, with: limitCountOfNearPlace)
-            .sink(receiveCompletion: { _ in },
-                  receiveValue: { [weak self] responses in
-                    self?.places = responses.map{ $0.toNearPlace() }
-            }).store(in: &cancellables)
+   
     }
     
     func applySnapshot(animatingDifferences: Bool = true) {

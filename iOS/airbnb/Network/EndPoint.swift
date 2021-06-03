@@ -13,8 +13,8 @@ enum EndPoint : String, CodingKey {
     case prices
     case wishList
     
-    static let baseURL = "https://e4557770-5d57-4419-990e-c7cfaffb1f5a.mock.pstmn.io/api/"
+    static let baseURL = "http://15.165.235.96/api/"
 
     var path : String { self.stringValue }
-    var url : URL { URL(string: EndPoint.baseURL + path)! }
+    var url : URL? { URL(string: EndPoint.baseURL + path) }
 }
