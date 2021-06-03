@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { roomPriceClickState } from "recoil/Atoms";
 import { useRecoilValue } from "recoil";
 import PriceGraph from "./PriceGraph";
+
 const RoomPriceModal = () => {
   const isClicked = useRecoilValue(roomPriceClickState);
   return isClicked ? (
@@ -10,8 +11,8 @@ const RoomPriceModal = () => {
       <div className="price-modal-title">가격 범위</div>
       <div className="price-range">₩100,000 ~ 1,000,000+</div>
       <div className="price-average">평균 1박 요금은 ₩{}입니다.</div>
-      <PriceRange />
       <PriceGraph />
+      <PriceRange />
     </ModalLayout>
   ) : (
     <></>
@@ -35,7 +36,7 @@ const ModalLayout = styled.div`
 
   & > div {
     width: 35rem;
-    padding: 2rem;
+    /* padding: 2rem; */
     color: #555;
   }
 

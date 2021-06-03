@@ -48,9 +48,9 @@ const SearchBar = () => {
         <Guests />
         {checkInMonth && checkOutMonth ? (
           <Link
-            to={`/rooms?checkin=${checkInYear}-${
+            to={`/rooms?checkIn=${checkInYear}-${
               checkInMonth + 1
-            }-${checkInDate}&out=${checkOutYear}-${
+            }-${checkInDate}&checkOut=${checkOutYear}-${
               checkOutMonth + 1
             }-${checkOutDate}&adult=${adult}&child=${child}&toddler=${toddler}&min=${min}&max=${max}`}
           >
