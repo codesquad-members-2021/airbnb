@@ -1,25 +1,30 @@
 package com.example.airbnb.auth;
 
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 public class User {
-    private String login;
-    private String name;
+    private String login_id;
+    //private String name;
+    private String avatar_url;
 
-    public User() {
+
+
+
+    public String getLogin_id() {
+        return login_id;
     }
 
-    public String getLogin() {
-        return login;
+    @JsonSetter("login")
+    public void setLogin_id(String login_id) {
+        this.login_id = login_id;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public String getAvatar_url() {
+        return avatar_url;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    @JsonSetter("avatar_url")
+    public void setAvatar_url(String avatar_url) {
+        this.avatar_url = avatar_url;
     }
 }

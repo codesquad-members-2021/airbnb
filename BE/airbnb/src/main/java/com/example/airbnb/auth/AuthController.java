@@ -26,7 +26,6 @@ public class AuthController {
     private final String ISSUER = "";
     private final String CLIENT_ID = "c7adc71d1700acad7b68";
     private final String CLIENT_SECRET = "시크릿 항상 확인";
-    private String CODE = "YET";
     private HttpSession httpSession;
 
     @GetMapping
@@ -51,12 +50,13 @@ public class AuthController {
                 .orElseThrow(() -> new RuntimeException("바디 없음"));
 
         String jwt = getJwt(user);
-        CODE = jwt;
+        //CODE = jwt;
+        //return new AuthDTO(jwt,);
         return ResponseEntity.ok(new Jwt(jwt));
     }
 
     @GetMapping("/github")
-    public ResponseEntity<Jwt> githubToken(@RequestParam String code)
+    public AuthDTO githubToken(@RequestParam String code)
     {
         logger.info("code : {}",code);
         RestTemplate gitHubRequest = new RestTemplate();
@@ -71,8 +71,9 @@ public class AuthController {
                 .orElseThrow(() -> new RuntimeException("바디 없음"));
 
         String jwt = getJwt(user);
-        CODE = jwt;
-        return ResponseEntity.ok(new Jwt(jwt));
+
+        //return ResponseEntity.ok(new Jwt(jwt));
+        new AuthDTO(jwt,)
     }
 
     private String getJwt(User user) {
@@ -114,4 +115,6 @@ public class AuthController {
 
         return Optional.ofNullable(response.getBody());
     }
+
+
 }
