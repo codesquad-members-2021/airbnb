@@ -11,6 +11,7 @@ public class AccommodationDTO {
     private Integer charge;
     private String badge;
     private String options;
+    private String location;
     private String image;
     private Boolean isLike;
     private Double latitude;
@@ -24,6 +25,7 @@ public class AccommodationDTO {
         this.charge = accommodation.getCharge();
         this.badge = accommodation.getBadge();
         this.options = accommodation.getOptions();
+        this.location = accommodation.getLocation();
         this.image = accommodation.getImage();
         this.isLike = accommodation.getIsLike();
         this.latitude = accommodation.getLatitude();
@@ -84,6 +86,14 @@ public class AccommodationDTO {
 
     public void setOptions(String options) {
         this.options = options;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getImage() {

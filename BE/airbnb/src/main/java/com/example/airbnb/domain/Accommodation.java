@@ -9,6 +9,7 @@ public class Accommodation {
     private Integer charge;
     private String badge;
     private String options;
+    private String location;
     private String image;
     private Boolean isLike;
     private Double latitude;
@@ -18,7 +19,36 @@ public class Accommodation {
     public Accommodation() {
     }
 
+    public Accommodation(
+            Long id,
+            String title,
+            Double reviewRating,
+            Integer reviewCount,
+            Integer charge,
+            String badge,
+            String options,
+            String location,
+            String image,
+            Boolean isLike,
+            Double latitude,
+            Double longitude
+    ) {
+        this.id = id;
+        this.title = title;
+        this.reviewRating = reviewRating;
+        this.reviewCount = reviewCount;
+        this.charge = charge;
+        this.badge = badge;
+        this.options = options;
+        this.location = location;
+        this.image = image;
+        this.isLike = isLike;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
+
+    /*
     public Accommodation(Long id, String title, Double reviewRating,
                          Integer reviewCount, Integer charge,
                          String badge,String options,
@@ -35,7 +65,7 @@ public class Accommodation {
         this.isLike = isLike;
         this.latitude = latitude;
         this.longitude = longitude;
-    }
+    }*/
 
     public Long getId() {
         return id;
@@ -96,6 +126,15 @@ public class Accommodation {
 
     public Accommodation setOptions(String options) {
         this.options = options;
+        return this;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public Accommodation setLocation(String location) {
+        this.location = location;
         return this;
     }
 

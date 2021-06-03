@@ -56,6 +56,7 @@ public class AccommodationRepository {
             accommodation.setCharge(rs.getInt("charge"));
             accommodation.setBadge(rs.getString("badge"));
             accommodation.setOptions(rs.getString("options"));
+            accommodation.setLocation(rs.getString("location"));
             accommodation.setImage(rs.getString("image"));
             accommodation.setIsLike(rs.getBoolean("isLike"));
             accommodation.setLatitude(rs.getDouble("latitude"));
@@ -85,6 +86,7 @@ public class AccommodationRepository {
                     (rs.getInt("charge")),
                     (rs.getString("badge")),
                     (rs.getString("options")),
+                    (rs.getString("location")),
                     (rs.getString("image")),
                     (rs.getBoolean("isLike")),
                     (rs.getDouble("latitude")),
