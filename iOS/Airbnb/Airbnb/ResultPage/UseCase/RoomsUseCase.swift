@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class SearchRoomsUseCase {
+class RoomsUseCase {
     
     @Published var rooms: Rooms!
     @Published var error: Error!
@@ -22,7 +22,7 @@ class SearchRoomsUseCase {
     
 }
 
-extension SearchRoomsUseCase  {
+extension RoomsUseCase  {
     
     func requestPirce(condition: ConditionData) {
         networkManager.post(url: EndPoint.url(path: "/rooms")!, data: condition, result: Rooms.self)

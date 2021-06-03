@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ResultSupplementaryView: UICollectionReusableView {
+class RoomsSupplementaryView: UICollectionReusableView {
     
     let label = UILabel()
     static let reuseIdentifier = "ResultSupplymentaryView"
@@ -24,7 +24,7 @@ class ResultSupplementaryView: UICollectionReusableView {
 }
 
 
-extension ResultSupplementaryView {
+extension RoomsSupplementaryView {
     
     private func configure() {
         addSubview(label)

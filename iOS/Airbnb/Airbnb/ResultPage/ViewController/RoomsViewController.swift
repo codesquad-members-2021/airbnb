@@ -1,5 +1,5 @@
 //
-//  SearchResultViewController.swift
+//  RoomsViewController.swift
 //  Airbnb
 //
 //  Created by Lia on 2021/06/03.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class SearchResultViewController: UIViewController {
+class RoomsViewController: UIViewController {
 
     static let headerElementKind = "header-element-kind"
     
@@ -25,7 +25,7 @@ class SearchResultViewController: UIViewController {
 }
 
 
-extension SearchResultViewController {
+extension RoomsViewController {
     
     private func bind() {
         mainUseCase.$mainPage.receive(on: DispatchQueue.main)
@@ -46,7 +46,7 @@ extension SearchResultViewController {
 }
 
 
-extension SearchResultViewController {
+extension RoomsViewController {
     
     private func configureHierarchy() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
@@ -75,7 +75,7 @@ extension SearchResultViewController {
             let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                    heightDimension: .estimated(44)),
-                elementKind:SearchResultViewController.headerElementKind,
+                elementKind:RoomsViewController.headerElementKind,
                 alignment: .top)
             section.boundarySupplementaryItems = [sectionHeader]
             
@@ -98,7 +98,7 @@ extension SearchResultViewController {
     
     private func configureSupplementaryView() {
         let supplementaryRegistration = UICollectionView.SupplementaryRegistration
-        <ResultSupplementaryView>(elementKind: SearchResultViewController.headerElementKind) {
+        <RoomsSupplementaryView>(elementKind: RoomsViewController.headerElementKind) {
             (supplementaryView, string, indexPath) in
 //            let sectionKind = Section(rawValue: indexPath.section)!
             supplementaryView.label.text = "~~~"//String(describing: sectionKind)
@@ -118,7 +118,7 @@ extension SearchResultViewController {
     
 }
 
-extension SearchResultViewController: UICollectionViewDelegate {
+extension RoomsViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewController = DetailDestinationViewController()
