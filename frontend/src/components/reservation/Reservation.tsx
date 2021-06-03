@@ -1,11 +1,8 @@
 import styled from 'styled-components'
 import { useRecoilValue } from 'recoil'
-import { FilterDateToString } from '../../customHook/useDateInfo'
 import {PersonnelBlock} from '../searchBar/personnel/Personnel'
-import Date from '../searchBar/date/Date'
 import {CheckInBlock} from '../searchBar/date/CheckIn'
 import {CheckOutBlock} from '../searchBar/date/CheckOut'
-import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../style/BarStyle'
 import {personnelMessage,checkInMessage,checkOutMessage} from '../../customHook/atoms'
 interface IReserve{
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -19,11 +16,12 @@ function Reservation({setOpen, targetData}:IReserve) {
   const checkIn=useRecoilValue(checkInMessage)
   const checkOut=useRecoilValue(checkOutMessage)
   const guestMsg=useRecoilValue(personnelMessage)
-  console.log(targetData)
+
   const handleModalClick = () =>{
     setOpen(false)
   }
-  return (<BackgroundBlock className="MODAL" onClick={handleModalClick}>
+  return (
+  <BackgroundBlock className="MODAL" onClick={handleModalClick}>
     <ReservationBlock onClick={(e)=>e.stopPropagation()}>
       <FlexBox>
         <PriceDay type='modal'>
@@ -32,33 +30,45 @@ function Reservation({setOpen, targetData}:IReserve) {
         <ReviewSpan>후기 {targetData.review.review}개</ReviewSpan>
       </FlexBox>
       <GridBox>
-        <Date/>
-        {/* {CheckInBlock(checkIn)}
-        {CheckOutBlock(checkOut)}
-        {PersonnelBlock(guestMsg)} */}
+        
+        <div>{PersonnelBlock(guestMsg)}</div>
+        <div>{CheckInBlock(checkIn)}</div>
+        <div>{CheckOutBlock(checkOut)}</div>
+        {/*<Date/>
+         */}
       </GridBox>
+      <ReservationBtn>예약하기</ReservationBtn>
     </ReservationBlock>
   </BackgroundBlock>)
 }
+const ReservationBtn = styled.button`
+width: 380px;
+background-color: ${({theme})=> theme.color.grey_4};
+color: ${({theme})=> theme.color.white};
+text-decoration: none;
+border-radius: 20px;
+margin-top: 10px;
+height: 40px;`
 const GridBox = styled.div`
 display: grid;
 grid-template-columns: repeat(2, 1fr);
 border: 1px solid ${({theme})=>theme.color.black};
 border-radius: 20px;
-// div{
-//   padding: 10px;
-//   border-right: 1px solid black;
-//   border-bottom: 1px solid black;
-//   &:nth-child(2){
-//     border-right: none;
-//   }
-//   &:nth-child(3){
-//     border-bottom: none;
-//   }
-//   div{
-//     border: none;
-//     padding: 0;
-//   }
+div{
+  padding: 10px;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  &:nth-child(2){
+    border-right: none;
+  }
+  &:nth-child(3){
+    border-bottom: none;
+    border-right: none;
+  }
+  div{
+    border: none;
+    padding: 0;
+  }
 }`
 const FlexBox= styled.div`
 display: flex;
@@ -69,8 +79,7 @@ display: inline-block;
 color: ${({ theme }) => theme.color.grey_2};
 font-weight: ${({ theme }) => theme.fontWeight.w1};
 text-decoration: underline;
-cursor: pointer;
-`
+cursor: pointer;`
 const BackgroundBlock = styled.div`
   position: fixed;
   right:0;
