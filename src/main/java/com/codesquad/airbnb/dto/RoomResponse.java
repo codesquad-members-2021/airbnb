@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class RoomDTO {
+public class RoomResponse {
 
     private Long id;
     private int max;
@@ -32,10 +32,10 @@ public class RoomDTO {
     private Option option;
     private List<String> badges;
 
-    public RoomDTO(Long id, int max, String name, double rating, double latitude, double longitude, int bedroomCount,
-                   int bedCount, int bathroomCount, String address, String detailAddress, int commentCount,
-                   int originalPrice, int salePrice, boolean flexibleRefund, boolean immediateBooking,
-                   List<Thumbnail> thumbnails, Optional<Option> option, List<Badge> badges) {
+    public RoomResponse(Long id, int max, String name, double rating, double latitude, double longitude, int bedroomCount,
+                        int bedCount, int bathroomCount, String address, String detailAddress, int commentCount,
+                        int originalPrice, int salePrice, boolean flexibleRefund, boolean immediateBooking,
+                        List<Thumbnail> thumbnails, Optional<Option> option, List<Badge> badges) {
         this.id = id;
         this.max = max;
         this.name = name;
@@ -61,8 +61,8 @@ public class RoomDTO {
                 .collect(Collectors.toList());
     }
 
-    public static RoomDTO toRoomDTO(Room room) {
-        return new RoomDTO(room.getId(), room.getMax(), room.getName(), room.getRating(), room.getLatitude(), room.getLongitude(),
+    public static RoomResponse toRoomDTO(Room room) {
+        return new RoomResponse(room.getId(), room.getMax(), room.getName(), room.getRating(), room.getLatitude(), room.getLongitude(),
                 room.getBedroomCount(), room.getBedCount(), room.getBathroomCount(), room.getAddress(), room.getDetailAddress(),
                 room.getCommentCount(), room.getOriginalPrice(), room.getSalePrice(), room.isFlexibleRefund(), room.isImmediateBooking(),
                 room.getThumbnails(), room.getOption(), room.getBadges());

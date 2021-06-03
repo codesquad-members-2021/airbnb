@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Rooms {
 
-    private List<RoomDTO> roomDTOS;
+    private List<RoomResponse> roomResponses;
 
-    public Rooms(List<RoomDTO> roomDTOS) {
-        this.roomDTOS = roomDTOS;
+    public Rooms(List<RoomResponse> roomResponses) {
+        this.roomResponses = roomResponses;
     }
 
-    public List<RoomDTO> getRooms() {
-        return roomDTOS;
+    public List<RoomResponse> getRooms() {
+        return roomResponses;
     }
 }

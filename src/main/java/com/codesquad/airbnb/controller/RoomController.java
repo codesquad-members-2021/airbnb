@@ -1,6 +1,6 @@
 package com.codesquad.airbnb.controller;
 
-import com.codesquad.airbnb.dto.RoomDTO;
+import com.codesquad.airbnb.dto.RoomResponse;
 import com.codesquad.airbnb.dto.Rooms;
 import com.codesquad.airbnb.service.RoomService;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -30,8 +30,8 @@ public class RoomController {
                              @RequestParam("checkOut") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkOut,
                              @RequestParam("minPrice") int minPrice, @RequestParam("maxPrice") int maxPrice,
                              @RequestParam("numberOfPeople") int numberOfPeople) {
-        List<RoomDTO> roomDTOS = roomService.getFilteredRoomDTOS(checkIn, checkOut, minPrice, maxPrice, numberOfPeople);
-        return new Rooms(roomDTOS);
+        List<RoomResponse> roomResponses = roomService.getFilteredRoomDTOS(checkIn, checkOut, minPrice, maxPrice, numberOfPeople);
+        return new Rooms(roomResponses);
     }
 
     @PostMapping("/{userId}/wish/{roomId}")
