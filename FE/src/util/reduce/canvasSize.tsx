@@ -79,7 +79,7 @@ const canvasReducer = (state: IState, action: Action): IState => {
     }
 
     default:
-      throw new Error('useCanvas : Unhandled action');
+      throw new Error('Reduce - CanvasSize  : Unhandled action');
   }
 };
 

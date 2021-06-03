@@ -62,7 +62,7 @@ const calendarReducer = (
     // -------
 
     default:
-      throw new Error('useCalendar : Unhandled action');
+      throw new Error('Reduce - Calendar : Unhandled action');
   }
 };
 
