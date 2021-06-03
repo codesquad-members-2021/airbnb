@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { ReactComponent as Heart } from '@assets/heart.svg';
+import { roomType } from '@components/SearchResult/types';
 
 const RoomInMap = ({ room }: props) => {
   const {
@@ -117,31 +118,6 @@ const Review = styled.div`
   left: 0;
   position: absolute;
 `;
-
-type image = {
-  image_id: number;
-  accomodation_id: number;
-  image_url: string;
-};
-
-interface roomType {
-  accomodation_id: number;
-  accomodation_name: string;
-  area: string;
-  average_point: number;
-  bath_room_count: number;
-  bed_count: number;
-  bed_room_count: number;
-  image_url: image[];
-  latitude: number;
-  longitude: number;
-  max_member_capacity: number;
-  options: string[];
-  price_per_day: number;
-  residential_type: string;
-  review_count: number;
-  total_price: number;
-}
 
 interface props {
   room: roomType;
