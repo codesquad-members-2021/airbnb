@@ -140,7 +140,7 @@ extension RoomsViewController {
 extension RoomsViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailViewController = DetailDestinationViewController()
+        let detailViewController = DetailRoomViewController(nibName: DetailRoomViewController.reuseIdentifier, bundle: nil)
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
     
