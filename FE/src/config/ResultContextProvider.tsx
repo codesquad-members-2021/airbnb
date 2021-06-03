@@ -26,7 +26,7 @@ const ResultContextProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const fetchModal = (houseId: number) => {
-		fetch(`http://3.37.76.224:8080/houses/${houseId}`)
+		fetch(`http://3.37.76.224:8080/reservation/${houseId}`)
 			.then((res) => res.json())
 			.then((json) => setModalData(() => json))
 			.catch((res) => console.log("fetch error in Modal : ", res));
