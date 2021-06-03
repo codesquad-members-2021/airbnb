@@ -16,10 +16,8 @@ const CalendarModal = () => {
 	return (
 		<CalendarModalWrapper>
 			<ShowWindow>
-				<Container state={containerState}>
-					{currentModifier.map((el) => (
-						<Calendar modifier={el} key={el} />
-					))}
+				<Container state={containerState} delay={400}>
+					{currentModifier.map((el) => <Calendar modifier={el} key={el} />)}
 				</Container>
 			</ShowWindow>
 			<SlideButton type="LEFT" onClick={() => slideEvent("LEFT")} />
@@ -60,12 +58,13 @@ const ShowWindow = styled.div`
 	left: 97px;
 	overflow: hidden;
 `;
+const calendarWidth = 386;
 const xLocation: { [key: string]: string } = {
-	LEFT: "translateX(0)",
-	CENTER: "translateX(-386px)",
-	RIGHT: "translateX(-772px)",
+	LEFT: `translateX(0)`,
+	CENTER: `translateX(-${calendarWidth}px)`,
+	RIGHT: `translateX(-${2 * calendarWidth}px)`,
 };
-const Container = styled.div<{ state: string }>`
+const Container = styled.div<{ state: string; delay: number; }>`
 	position: absolute;
 	display: flex;
 	transform: ${({ state }) => xLocation[state]};
