@@ -1,5 +1,6 @@
 package airbnb.repository;
 
+
 import airbnb.domain.Room;
 import airbnb.request.SearchRequest;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -7,6 +8,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import java.time.LocalDate;
 import java.util.List;
+
 
 import static airbnb.domain.QBooking.booking;
 import static airbnb.domain.QRoom.room;
@@ -35,7 +37,9 @@ public class CustomizedRoomRepositoryImpl implements CustomizedRoomRepository {
 
     private BooleanExpression dateNotBetween(LocalDate checkIn, LocalDate checkOut) {
         return ((checkIn != null) && (checkOut != null)) ?
-                booking.checkOut.loe(checkIn).or(booking.checkIn.goe(checkOut)) : null;
+                room.bookings.isEmpty()
+                        .or(booking.checkOut.loe(checkIn))
+                        .or(booking.checkIn.goe(checkOut)) : null;
     }
 
     private BooleanExpression priceBetween(Integer priceMin, Integer priceMax) {
