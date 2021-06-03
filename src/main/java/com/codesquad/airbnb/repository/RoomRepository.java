@@ -34,7 +34,7 @@ public class RoomRepository implements JdbcRepository<Room> {
         rooms.forEach(System.out::println);
 
         return rooms.stream()
-                .map(room -> addThumbnailsAndOptionAndBadges(room))
+                .map(room -> addReferencingTablesToRoom(room))
                 .collect(Collectors.toList());
     }
 
@@ -46,7 +46,7 @@ public class RoomRepository implements JdbcRepository<Room> {
         List<Room> rooms = jdbcTemplate.query(sql, roomRowMapper(), id);
 
         return rooms.stream()
-                .map(room -> addThumbnailsAndOptionAndBadges(room)).findAny();
+                .map(room -> addReferencingTablesToRoom(room)).findAny();
     }
 
     public List<Room> findAll() {
@@ -57,11 +57,11 @@ public class RoomRepository implements JdbcRepository<Room> {
         List<Room> rooms = jdbcTemplate.query(sql, roomRowMapper());
 
         return rooms.stream()
-                .map(room -> addThumbnailsAndOptionAndBadges(room))
+                .map(room -> addReferencingTablesToRoom(room))
                 .collect(Collectors.toList());
     }
 
-    private Room addThumbnailsAndOptionAndBadges(Room room) {
+    private Room addReferencingTablesToRoom(Room room) {
         List<Thumbnail> thumbnails = findThumbnailsByRoomId(room.getId());
         room.setThumbnails(thumbnails);
 
