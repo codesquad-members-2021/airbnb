@@ -14,14 +14,14 @@ export interface IAction {
   error?: Error
 }
 export interface IParams {
-  adult: string | undefined
-  baby: string | undefined
-  checkIn: string | undefined
-  checkOut: string | undefined
-  child: string | undefined
-  maxFeePercent: string | undefined
-  minFeePercent: string | undefined
-  place: string | undefined
-  priceMax: string | undefined
-  priceMin: string | undefined
+  adult?: string 
+  baby?: string 
+  checkIn?: string 
+  checkOut?: string 
+  child?: string 
+  maxFeePercent?: string 
+  minFeePercent?: string 
+  place?: string
+  priceMax?: string 
+  priceMin?: string 
 }
