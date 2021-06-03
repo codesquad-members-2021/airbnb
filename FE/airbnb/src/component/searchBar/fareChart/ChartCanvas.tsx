@@ -1,13 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { priceChartDataState } from "state/atoms/fareAtoms";
 import { chartControlType } from "component/searchBar/fareChart/chartType";
 
 interface Props {
   chartControl: chartControlType;
-  chartData: number[];
 }
 
-function ChartCanvas({ chartControl, chartData }: Props) {
+function ChartCanvas({ chartControl }: Props) {
+  const chartData = useRecoilValue(priceChartDataState);
   const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {

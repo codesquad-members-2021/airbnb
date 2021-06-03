@@ -1,10 +1,9 @@
-import React from "react";
 import styled from "styled-components";
 import Logo from "component/header/Logo";
 import Menus from "component/header/Menus";
 import MyPage from "component/header/MyPage";
 
-function Header() {
+function LandingPageHeader() {
   return (
     <HeaderContainer>
       <Logo />
@@ -14,7 +13,7 @@ function Header() {
   );
 }
 
-export default Header;
+export default LandingPageHeader;
 
 const HeaderContainer = styled.div`
   ${({ theme }) => theme.header}

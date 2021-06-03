@@ -18,6 +18,7 @@ const fontSize = {
   s: "12px",
   m: "14px",
   l: "18px",
+  xl: "24px",
 };
 
 const padding = {
@@ -109,6 +110,12 @@ const modal = css`
   border-radius: ${({ theme }) => theme.borderRadius.modal};
 `;
 
+const ellipsis = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
 const theme = {
   color,
   fontSize,
@@ -126,6 +133,7 @@ const theme = {
   miniSearchLI,
   bigSearchBtn,
   miniSearchBtn,
+  ellipsis,
 };
 
 export default theme;

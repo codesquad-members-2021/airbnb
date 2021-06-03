@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import styled from "styled-components";
 import Period from "component/searchBar/Period";
 import Fare from "component/searchBar/Fare";
@@ -7,7 +7,8 @@ import SearchBtn from "component/searchBar/SearchBtn";
 import CalendarModal from "component/searchBar/calendar/CalendarModal";
 import FareModal from "component/searchBar/fareChart/FareModal";
 import GuestModal from "component/searchBar/guestList/GuestModal";
-import { openModal, closeModalByBodyClick } from "hooks/modalHooks";
+import SuspenseFareModal from "component/searchBar/fareChart/SuspenseFareModal";
+import { openModal, closeModalByBodyClick } from "component/searchBar/modalFunctions";
 
 interface Props {
   size: string;
@@ -31,7 +32,11 @@ function SearchBar({ size }: Props) {
         <Period onClick={handleClickPeriod} size={size} />
         {isOpenCalendar && <CalendarModal />}
         <Fare onClick={handleClickFare} size={size} />
-        {isOpenFare && <FareModal />}
+        {isOpenFare && (
+          <Suspense fallback={<SuspenseFareModal />}>
+            <FareModal />
+          </Suspense>
+        )}
         <Guest onClick={handleClickGuest} size={size} />
         {isOpenGuest && <GuestModal />}
         <SearchBtn size={size} />

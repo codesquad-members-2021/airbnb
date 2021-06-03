@@ -1,8 +1,17 @@
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { thumbLeftPriceState, thumbRightPriceState, isSetPriceState } from "state/atoms/fareAtoms";
-import { stopPropagation } from "hooks/modalHooks";
-import { mockData } from "component/searchBar/fareChart/mockData";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import {
+  minPriceState,
+  maxPriceState,
+  thumbLeftPriceState,
+  thumbRightPriceState,
+  isSetPriceState,
+  priceChartDataState,
+  priceToString,
+} from "state/atoms/fareAtoms";
+import { priceFetch } from "state/selectors/priceFetch";
+import { stopPropagation } from "component/searchBar/modalFunctions";
 import { chartControlType } from "component/searchBar/fareChart/chartType";
 import getChartData from "component/searchBar/fareChart/getChartData";
 import ChartCanvas from "component/searchBar/fareChart/ChartCanvas";
@@ -15,26 +24,39 @@ const CHART_CONTROL: chartControlType = {
 };
 
 function FareModal() {
-  const { SECTIONS } = CHART_CONTROL;
-  // dataArr의 값으로 fetch한 값이 들어가야됨. 임시로 mockData 사용
-  const { priceChartData, minPrice, maxPrice, averagePrice } = getChartData({ dataArr: mockData, sections: SECTIONS });
-  const [leftPrice, setLeftPrice] = useRecoilState(thumbLeftPriceState);
-  const [rightPrice, setRightPrice] = useRecoilState(thumbRightPriceState);
+  const setPriceChartData = useSetRecoilState(priceChartDataState);
+  const setMinPrice = useSetRecoilState(minPriceState);
+  const setMaxPrice = useSetRecoilState(maxPriceState);
+  const setLeftPrice = useSetRecoilState(thumbLeftPriceState);
+  const setRightPrice = useSetRecoilState(thumbRightPriceState);
+  const priceFetchResult = useRecoilValue(priceFetch);
   const isSetPrice = useRecoilValue(isSetPriceState);
-  if (!isSetPrice) {
-    setLeftPrice(minPrice);
-    setRightPrice(maxPrice);
-  }
+  const priceOfString = useRecoilValue(priceToString);
+  const [averageOfPrice, setAverageOfPrice] = useState(0);
+
+  useEffect(() => {
+    const { priceChartData, minPrice, maxPrice, averagePrice } = getChartData({
+      dataArr: priceFetchResult,
+      sections: CHART_CONTROL.SECTIONS,
+    });
+    setPriceChartData(priceChartData);
+    setMinPrice(minPrice);
+    setMaxPrice(maxPrice);
+    setAverageOfPrice(averagePrice);
+    if (!isSetPrice) {
+      setLeftPrice(minPrice);
+      setRightPrice(maxPrice);
+    }
+  }, []);
+
   return (
     <Modal onClick={stopPropagation}>
       <Title>가격 범위</Title>
-      <FareRange>
-        ₩{leftPrice} - ₩{rightPrice}
-      </FareRange>
-      <FareAverage>평균 1박 요금은 ₩{averagePrice}입니다.</FareAverage>
+      <FareRange>{priceOfString}</FareRange>
+      <FareAverage>평균 1박 요금은 ₩{averageOfPrice.toLocaleString()}입니다.</FareAverage>
       <FareChartBox>
-        <ChartCanvas chartControl={CHART_CONTROL} chartData={priceChartData} />
-        <FareRangeSlider minPrice={minPrice} maxPrice={maxPrice} />
+        <ChartCanvas chartControl={CHART_CONTROL} />
+        <FareRangeSlider />
       </FareChartBox>
     </Modal>
   );

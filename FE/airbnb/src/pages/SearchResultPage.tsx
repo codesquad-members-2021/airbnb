@@ -1,17 +1,30 @@
-import React from "react";
 import styled from "styled-components";
-import Logo from "component/header/Logo";
-import SearchBar from "component/searchBar/SearchBar";
-import MyPage from "component/header/MyPage";
+import { useSetRecoilState } from "recoil";
+import { latitudeState, longitudeState } from "state/atoms/positionAtoms";
+import SearchPageHeader from "component/header/SearchPageHeader";
+import AccommodationList from "component/searchResult/AccommodationList";
+import Map from "component/searchResult/Map";
 
 const SearchResultPage = () => {
+  const setLatitude = useSetRecoilState(latitudeState);
+  const setLongitude = useSetRecoilState(longitudeState);
+
+  // 사용자의 현재 위치를 상태에 저장
+  const getCurrPosition = () => {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      setLatitude(pos.coords.latitude);
+      setLongitude(pos.coords.longitude);
+    });
+  };
+  getCurrPosition();
+
   return (
     <PageContainer>
-      <HeaderContainer>
-        <Logo />
-        <SearchBar size="mini" />
-        <MyPage />
-      </HeaderContainer>
+      <SearchPageHeader />
+      <SearchPageContent>
+        <AccommodationList />
+        <Map />
+      </SearchPageContent>
     </PageContainer>
   );
 };
@@ -20,10 +33,14 @@ export default SearchResultPage;
 
 const PageContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 `;
 
-const HeaderContainer = styled.div`
-  ${({ theme }) => theme.header}
-  border-bottom: 1px solid #eee;
+const SearchPageContent = styled.div`
+  width: 1440px;
+  display: flex;
+  position: absolute;
+  top: 80px;
 `;

@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import Header from "component/header/Header";
+import LandingPageHeader from "component/header/LandingPageHeader";
 import SearchBar from "component/searchBar/SearchBar";
 
 function PrimarySection() {
   return (
     <PrimarySectionContainer>
-      <Header />
+      <LandingPageHeader />
       <SearchBar size="big" />
     </PrimarySectionContainer>
   );
