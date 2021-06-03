@@ -1,4 +1,4 @@
-package com.codesquad.airbnb;
+package com.codesquad.airbnb.oauth;
 
 import com.codesquad.airbnb.domain.User;
 

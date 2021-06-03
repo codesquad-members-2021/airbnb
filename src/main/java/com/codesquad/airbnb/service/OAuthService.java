@@ -1,7 +1,7 @@
 package com.codesquad.airbnb.service;
 
-import com.codesquad.airbnb.GoogleUser;
-import com.codesquad.airbnb.OAuthToken;
+import com.codesquad.airbnb.oauth.GoogleUser;
+import com.codesquad.airbnb.oauth.OAuthToken;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;

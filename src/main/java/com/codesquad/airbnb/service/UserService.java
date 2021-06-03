@@ -1,7 +1,7 @@
 package com.codesquad.airbnb.service;
 
-import com.codesquad.airbnb.GoogleUser;
-import com.codesquad.airbnb.OAuthToken;
+import com.codesquad.airbnb.oauth.GoogleUser;
+import com.codesquad.airbnb.oauth.OAuthToken;
 import com.codesquad.airbnb.domain.User;
 import com.codesquad.airbnb.repository.UserRepository;
 import org.slf4j.Logger;
@@ -26,7 +26,6 @@ public class UserService {
 
     public void oauthLogin(String code) {
         ResponseEntity<String> accessTokenResponse = oauthService.createPostRequest(code);
-        // response안에 있는 정보를 OAuth 액세스 토큰으로 변환하기
         OAuthToken oAuthToken = oauthService.getAccessToken(accessTokenResponse);
         logger.info("Access Token: {}", oAuthToken.getAccessToken());
 
