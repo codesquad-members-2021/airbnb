@@ -12,6 +12,7 @@ class PeopleViewController : UIViewController {
     private var conditionViewModel: ConditionViewModel
     private var peopleViewModel: PeopleViewModel
     private var conditionContainerView: UIView!
+    private var peopleContainerView: UIView!
     
     init(conditionViewModel: ConditionViewModel) {
         self.conditionViewModel = conditionViewModel
@@ -27,6 +28,7 @@ class PeopleViewController : UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureConditionContainer()
+        configurePeopleContainer()
         configureNavigation()
         configureToolBar()
     }
@@ -54,20 +56,20 @@ extension PeopleViewController {
     }
     
     private func configurePeopleContainer() {
-        conditionContainerView = UIView()
-        conditionContainerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(conditionContainerView)
+        peopleContainerView = UIView()
+        peopleContainerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(peopleContainerView)
         
         NSLayoutConstraint.activate([
-            conditionContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            conditionContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            conditionContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 300),
-            conditionContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
+            peopleContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            peopleContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            peopleContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -400),
+            peopleContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
         ])
         
         let vc = PeopleTableViewController(viewModel: peopleViewModel)
         self.addChild(vc)
-        conditionContainerView.addSubview(vc.view)
+        peopleContainerView.addSubview(vc.view)
     }
     
 }
