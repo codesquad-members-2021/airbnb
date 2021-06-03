@@ -1,7 +1,7 @@
 {
     "room_list": [
         {
-            "id": 123456789,
+            "id": 123456,
             "thum_image": "https://www.mydomaine.com/thmb/UKGGGFL-A04tX4WaG7Mp2nc9T7Y=/700x467/filters:no_upscale():max_bytes(150000):strip_icc()/cozy-bedroom-ideas-3-c15e726616944ebb9230ee76be74456e.jpg",
             "room_type": "서초구의 아파트 전체",
             "room_name": "Spacious and Comfortable Cozy house #4",
@@ -17,7 +17,7 @@
             "price": 82953
         },
         {
-            "id": 123456789,
+            "id": 1234567,
             "thum_image": "https://www.mydomaine.com/thmb/UKGGGFL-A04tX4WaG7Mp2nc9T7Y=/700x467/filters:no_upscale():max_bytes(150000):strip_icc()/cozy-bedroom-ideas-3-c15e726616944ebb9230ee76be74456e.jpg",
             "room_type": "서초구의 아파트 전체",
             "room_name": "Spacious and Comfortable Cozy house #4",
@@ -33,7 +33,7 @@
             "price": 82953
         },
         {
-            "id": 123456789,
+            "id": 12345678,
             "thum_image": "https://www.mydomaine.com/thmb/UKGGGFL-A04tX4WaG7Mp2nc9T7Y=/700x467/filters:no_upscale():max_bytes(150000):strip_icc()/cozy-bedroom-ideas-3-c15e726616944ebb9230ee76be74456e.jpg",
             "room_type": "서초구의 아파트 전체",
             "room_name": "Spacious and Comfortable Cozy house #4",

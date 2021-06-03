@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useEffect } from 'react';
 import { HiOutlineHeart } from 'react-icons/hi';
 import { BsStarFill } from 'react-icons/bs';
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { roomCardClickedState } from 'recoil/Atoms'
 
 type Room = {
@@ -20,11 +20,32 @@ type RoomInformation = {
     // onClick: (event: React.MouseEvent<Element, MouseEvent>) => void;
 }
 
+
+
 const RoomCard = ({roomInfo: { thum_image, room_type, room_name, room_label, star_rating, review_label, price }}: RoomInformation) => {
-    const setIsClicked = useSetRecoilState(roomCardClickedState);
+    const [ isClicked, setIsClicked ] = useRecoilState(roomCardClickedState);
     const popReservationModal = () => {
         setIsClicked(true);
     }
+
+    const toggleReservationPopUp = (e: MouseEvent): void => {
+        e.stopPropagation();
+
+        const target = e.target as HTMLElement;
+        console.log(target, "타겟");
+        console.log("조건 확인", target.closest(".room-card"), !target.closest(".reservation-modal"), isClicked)
+        if (target.closest(".room-card")) {
+            setIsClicked(true);
+        } else if (!target.closest(".reservation-modal") && isClicked) {
+            console.log("check") // fix 필요!!!!!
+            setIsClicked(false);
+        }
+    }
+
+    useEffect(() => {
+        document.body.addEventListener("click", toggleReservationPopUp);
+    }, [])
+
     return (
     <RoomCardLayout onClick={popReservationModal} className="room-card">
         <div>

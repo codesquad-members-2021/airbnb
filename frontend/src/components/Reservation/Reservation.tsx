@@ -1,11 +1,27 @@
 import styled from "styled-components";
 import * as S from "components/Reservation/ReservationStyle";
+import { useEffect } from 'react';
+import { roomCardClickedState } from 'recoil/Atoms'
+import { useRecoilState } from 'recoil';
 
 function Reservation() {
+    const [isClicked, setIsClicked] = useRecoilState(roomCardClickedState);
+    const closeReservationPopUp = (e: MouseEvent): void => {
+        const target = e.target as HTMLElement;
+        if (isClicked && !target.closest(".reservation-modal")) {
+            setIsClicked(false);
+        }
+    }
+
+    useEffect(() => {
+        document.body.addEventListener("click", closeReservationPopUp);
+        return () => document.body.removeEventListener("click", closeReservationPopUp);
+    }, [isClicked])
     return (
+        isClicked ?
         <S.ReservationLayout>
             <div>
-                <S.ReservationInfoLayout>
+                <S.ReservationInfoLayout  className="reservation-modal">
                     <div className="price-and-review">
                         <div className="price-per-night">₩ 70,358 / 박</div>
                         <div className="review">후기 127개</div>
@@ -51,6 +67,7 @@ function Reservation() {
                 </S.ReservationInfoLayout>
             </div>
         </S.ReservationLayout>
+        :<></>
     )
 }
 

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React,{ useEffect, useMemo} from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -52,5 +52,5 @@ const MiniHeaderContainer = styled.div`
   justify-content: space-between;
   padding: 1rem 2.4rem;
 `;
-
+// const MiniHeaderMemo = React.memo(MiniHeader);
 export default MiniHeader;

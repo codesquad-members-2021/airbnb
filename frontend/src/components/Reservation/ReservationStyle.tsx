@@ -23,7 +23,7 @@ const ReservationLayout = styled.div`
         margin: 24vh auto;
         background-color: #fff;
         border-radius: 10px;
-        height: 50vh;
+        /* height: 50vh; */
     }
 
 `
