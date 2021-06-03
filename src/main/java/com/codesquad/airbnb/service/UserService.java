@@ -27,84 +27,35 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    private final ObjectMapper objectMapper;
-    private final RestTemplate restTemplate;
-
-    private static final String CLIENT_ID = "";
-    private static final String CLIENT_SECRET = "";
-    private static final String REDIRECT_URI = "http://localhost:8080/oauth/google/callback";
-    private static final String GRANT_TYPE = "authorization_code";
-
-    public UserService(UserRepository userRepository,RestTemplate restTemplate) {
+    public UserService(UserRepository userRepository, OAuthService oauthService) {
         this.userRepository = userRepository;
-        this.objectMapper = new ObjectMapper().setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
-        this.restTemplate = restTemplate;
+        this.oauthService = oauthService;
     }
 
-    // HTTP post request 만들기
-    public ResponseEntity<String> createPost(String code) {
-        // Body 생성
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>(); //form 타입의 key, value를 넣기 위해 사용한다.
-        params.add("code", code);
-        params.add("client_id", CLIENT_ID);
-        params.add("client_secret", CLIENT_SECRET);
-        params.add("redirect_uri", REDIRECT_URI);
-        params.add("grant_type", GRANT_TYPE);
+    public void oauthLogin(String code) {
+        ResponseEntity<String> accessTokenResponse = oauthService.createPostRequest(code);
+        // response안에 있는 정보를 OAuth 액세스 토큰으로 변환하기
+        OAuthToken oAuthToken = oauthService.getAccessToken(accessTokenResponse);
+        logger.info("Access Token: {}", oAuthToken.getAccessToken());
 
-        // 헤더 생성
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/x-www-form-urlencoded");
+        ResponseEntity<String> userInfoResponse = oauthService.createGetRequest(oAuthToken);
+        GoogleUser googleUser = oauthService.getUserInfo(userInfoResponse);
+        logger.info("Google User Name: {}", googleUser.getName());
 
-        String url = "https://oauth2.googleapis.com/token";
-
-        // 바디 + 헤더 = HttpEntity 만들기
-        HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(params, headers);
-
-        // RestTemplate으로 HTTP post 요청 만들기
-        return restTemplate.exchange(url, HttpMethod.POST, httpEntity, String.class);
-    }
-
-    // 위의 post요청의 response를 OAuth토큰 객체로 만들어 주기
-    public OAuthToken getAccessToken(ResponseEntity<String> response) {
-        OAuthToken oAuthToken = null;
-        try { // response의 body를 OAuthToken을 맵핑
-            oAuthToken = objectMapper.readValue(response.getBody(), OAuthToken.class);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+        if (!isJoinedUser(googleUser)) {
+            signUp(googleUser, oAuthToken);
         }
-        return oAuthToken;
+        // (회원이 이미 있다면) 로그인
     }
 
-    // 받아 온 액세스토큰을 가지고 구글 유저 정보를 get요청한다.
-    public ResponseEntity<String> createGet(OAuthToken oAuthToken) {
-        String url = "https://www.googleapis.com/oauth2/v1/userinfo";
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer " + oAuthToken.getAccessToken());
-
-        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity(headers);
-        // 요청 보내기
-        return restTemplate.exchange(url, HttpMethod.GET, request, String.class);
-    }
-
-    public GoogleUser getUserInfo(ResponseEntity<String> userInfoResponse) {
-        GoogleUser googleUser = null;
-        try {
-            googleUser = objectMapper.readValue(userInfoResponse.getBody(), GoogleUser.class);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return googleUser;
-    }
-
-    // TODO : 기존 email이 있다면 User 생성하지 않음. email 없다면 새로운 User를 accessToken과 함께 저장
-    public void save(User user) {
-        userRepository.insert(user);
-    }
-
-    public boolean isJoinedUser(GoogleUser googleUser) {
+    private boolean isJoinedUser(GoogleUser googleUser) {
         List<User> users = userRepository.findByEmail(googleUser.getEmail());
         logger.info("Joined User: {}", users.stream().findAny());
         return !users.isEmpty();
+    }
+
+    private void signUp(GoogleUser googleUser, OAuthToken oAuthToken) {
+        User user = googleUser.toUser(oAuthToken.getAccessToken());
+        userRepository.insert(user);
     }
 }

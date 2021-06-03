@@ -40,7 +40,7 @@ public class RoomController {
     }
 
     @DeleteMapping("/{userId}/wish/{roomId}")
-    public void deleteWish(@PathVariable("roomId") Long roomId, @PathVariable("userId") Long userId) {
+    public void cancelWish(@PathVariable("roomId") Long roomId, @PathVariable("userId") Long userId) {
         roomService.deleteWish(roomId, userId);
     }
 }
