@@ -42,13 +42,13 @@ class ContainerViewController: UIViewController {
 extension ContainerViewController {
     
     func loadCalendarView(){
-        let calendar = CalendarViewController.instantiate()
+        let calendar = CalendarViewController.instantiate(name: StoryBoarded.Search.stringValue)
         calendar.infoDelegate = self
         self.addChildView(asChildViewController: calendar)
     }
     
     func loadPriceGraphView(){
-        let priceViewController = PriceViewController.instantiate()
+        let priceViewController = PriceViewController.instantiate(name: StoryBoarded.Search.stringValue)
         priceViewController.infoDelegate = self
         self.addChildView(asChildViewController: priceViewController)
     }
@@ -103,11 +103,3 @@ extension ContainerViewController : UITableViewDelegate {
     }
 }
 
-extension ContainerViewController : Storyboarded {
-    static func instantiate() -> Self {
-        let fullName = NSStringFromClass(self)
-        let className = fullName.components(separatedBy: ".")[1]
-        let storyboard = UIStoryboard(name: "Search", bundle: Bundle.main)
-        return storyboard.instantiateViewController(withIdentifier: className) as! Self
-    }
-}

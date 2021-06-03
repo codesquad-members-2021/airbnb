@@ -115,12 +115,3 @@ extension SearchViewController : UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
     }
 }
-
-extension SearchViewController : Storyboarded {
-    static func instantiate() -> Self {
-        let fullName = NSStringFromClass(self)
-        let className = fullName.components(separatedBy: ".")[1]
-        let storyboard = UIStoryboard(name: "Search", bundle: Bundle.main)
-        return storyboard.instantiateViewController(withIdentifier: className) as! Self
-    }
-}

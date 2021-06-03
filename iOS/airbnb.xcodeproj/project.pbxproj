@@ -32,6 +32,7 @@
 		1066F6E326668AA0009F0C8B /* NetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1066F6E226668AA0009F0C8B /* NetworkDispatcher.swift */; };
 		107FE67B2668715A00BAA8A9 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107FE67A2668715A00BAA8A9 /* Date+Extension.swift */; };
 		107FE67D26687DA700BAA8A9 /* PriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107FE67C26687DA600BAA8A9 /* PriceViewController.swift */; };
+		107FE67F26687FAB00BAA8A9 /* UIViewController+storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107FE67E26687FAB00BAA8A9 /* UIViewController+storyboard.swift */; };
 		1089DE5C26677B3C00C39811 /* SelectInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1089DE5B26677B3C00C39811 /* SelectInfoDelegate.swift */; };
 		10AA57802665C97800B3DF4E /* CalendarDateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AA577F2665C97800B3DF4E /* CalendarDateCalculator.swift */; };
 		10BAF19D265CD1DA0035D99B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAF19C265CD1DA0035D99B /* CalendarViewController.swift */; };
@@ -81,6 +82,7 @@
 		1066F6E226668AA0009F0C8B /* NetworkDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDispatcher.swift; sourceTree = "<group>"; };
 		107FE67A2668715A00BAA8A9 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		107FE67C26687DA600BAA8A9 /* PriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewController.swift; sourceTree = "<group>"; };
+		107FE67E26687FAB00BAA8A9 /* UIViewController+storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+storyboard.swift"; sourceTree = "<group>"; };
 		1089DE5B26677B3C00C39811 /* SelectInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInfoDelegate.swift; sourceTree = "<group>"; };
 		10AA577F2665C97800B3DF4E /* CalendarDateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateCalculator.swift; sourceTree = "<group>"; };
 		10BAF19C265CD1DA0035D99B /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				104665AF265E9FE6008B2F36 /* UIImageView+LoadFromURL.swift */,
 				107FE67A2668715A00BAA8A9 /* Date+Extension.swift */,
+				107FE67E26687FAB00BAA8A9 /* UIViewController+storyboard.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				104665B0265E9FE6008B2F36 /* UIImageView+LoadFromURL.swift in Sources */,
 				10466589265E6C03008B2F36 /* CalendarViewModel.swift in Sources */,
 				1046658B265E6DD4008B2F36 /* CalenderCollectionDataSource.swift in Sources */,
+				107FE67F26687FAB00BAA8A9 /* UIViewController+storyboard.swift in Sources */,
 				10C2F7902667BD5900445EEB /* FooterTableViewDataSource.swift in Sources */,
 				107FE67D26687DA700BAA8A9 /* PriceViewController.swift in Sources */,
 				101C0EE126575BF80014D62B /* NearPlaceDataSource.swift in Sources */,

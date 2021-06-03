@@ -14,7 +14,7 @@ class SearchCoodinator : NSObject, ChildCoordinator {
     var navigationController: UINavigationController
     
     override init(){
-        let search = SearchViewController.instantiate()
+        let search = SearchViewController.instantiate(name: StoryBoarded.Search.stringValue)
         self.navigationController = UINavigationController(rootViewController: search)
         navigationController.tabBarItem = UITabBarItem(title: "검색", image: UIImage(named: "search"), tag: 0)
         super.init()
@@ -22,14 +22,14 @@ class SearchCoodinator : NSObject, ChildCoordinator {
     }
 
     func start(){
-        let travelListViewController = TravelListViewController.instantiate()
+        let travelListViewController = TravelListViewController.instantiate(name: StoryBoarded.Search.stringValue)
         travelListViewController.coordinator = self
         navigationController.navigationItem.backButtonTitle = "뒤로"
         navigationController.pushViewController(travelListViewController, animated: true)
     }
     
     func choosePlace(to place : String){
-        let containerViewController = ContainerViewController.instantiate()
+        let containerViewController = ContainerViewController.instantiate(name: StoryBoarded.Search.stringValue)
         containerViewController.coordinator = self
         containerViewController.placeName = place
         navigationController.navigationItem.backButtonTitle = "뒤로"

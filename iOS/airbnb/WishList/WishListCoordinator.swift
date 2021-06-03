@@ -14,7 +14,7 @@ class WishListCoordinator : NSObject, ChildCoordinator {
     var navigationController: UINavigationController
     
     override init(){
-        self.navigationController = UINavigationController(rootViewController: WishListViewController.instantiate())
+        self.navigationController = UINavigationController(rootViewController: WishListViewController.instantiate(name: StoryBoarded.WishList.stringValue))
         navigationController.tabBarItem = UITabBarItem(title: "위시리스트", image: UIImage(named: "heart"), tag: 1)
         super.init()
     }

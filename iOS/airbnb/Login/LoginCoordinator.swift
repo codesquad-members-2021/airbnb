@@ -14,7 +14,7 @@ class LoginCoordinator : NSObject, ChildCoordinator {
     var navigationController: UINavigationController
     
     override init(){
-        self.navigationController = UINavigationController(rootViewController: LoginViewController.instantiate())
+        self.navigationController = UINavigationController(rootViewController: LoginViewController.instantiate(name: StoryBoarded.Login.stringValue))
         navigationController.tabBarItem = UITabBarItem(title: "로그인", image: UIImage(named: "user"), tag: 2)
         super.init()
     }
