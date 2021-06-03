@@ -1,0 +1,1209 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3FAC7CA987C83E3F2FB32D18 /* Pods_swift_airbnb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED96EB6639CC95264EBD59B9 /* Pods_swift_airbnb.framework */; };
+		A30CA9A01BA574ED3B542DD0 /* Pods_swift_airbnb_swift_airbnbUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B07091588301ABA843608430 /* Pods_swift_airbnb_swift_airbnbUITests.framework */; };
+		B59B8C178D820A204A88FBE3 /* Pods_swift_airbnbTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B11D7834D2B9A042702E29E /* Pods_swift_airbnbTests.framework */; };
+		CE7E0C852653B0FD00E0ADD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E0C842653B0FD00E0ADD3 /* AppDelegate.swift */; };
+		CE7E0C872653B0FD00E0ADD3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E0C862653B0FD00E0ADD3 /* SceneDelegate.swift */; };
+		CE7E0C892653B0FD00E0ADD3 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E0C882653B0FD00E0ADD3 /* MainPageViewController.swift */; };
+		CE7E0C8C2653B0FD00E0ADD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7E0C8A2653B0FD00E0ADD3 /* Main.storyboard */; };
+		CE7E0C8E2653B0FE00E0ADD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7E0C8D2653B0FE00E0ADD3 /* Assets.xcassets */; };
+		CE7E0C912653B0FE00E0ADD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7E0C8F2653B0FE00E0ADD3 /* LaunchScreen.storyboard */; };
+		CE7E0C9C2653B0FE00E0ADD3 /* MainPageModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E0C9B2653B0FE00E0ADD3 /* MainPageModelTests.swift */; };
+		CE7E0CA72653B0FE00E0ADD3 /* swift_airbnbUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E0CA62653B0FE00E0ADD3 /* swift_airbnbUITests.swift */; };
+		CE86919C265CEA2E0077FA98 /* MainPageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86919B265CEA2E0077FA98 /* MainPageMock.swift */; };
+		CE8691AC265CF2970077FA98 /* MainPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEB8182656A67100CCAB84 /* MainPageModel.swift */; };
+		CE8691B0265CF2CE0077FA98 /* Curation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEB81D2656A6AE00CCAB84 /* Curation.swift */; };
+		CE8691B4265CF2D00077FA98 /* NearbyDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEB8222656A70400CCAB84 /* NearbyDestination.swift */; };
+		CE8691B8265CF2D30077FA98 /* VariousDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEB8272656A87100CCAB84 /* VariousDestination.swift */; };
+		CE8691BC265CF8BA0077FA98 /* MainPageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE86919B265CEA2E0077FA98 /* MainPageMock.swift */; };
+		CE8691C8265CFE280077FA98 /* SearchPageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8691C7265CFE280077FA98 /* SearchPageMock.swift */; };
+		CE8691D3265D02700077FA98 /* SearchPageModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8691D2265D02700077FA98 /* SearchPageModelTests.swift */; };
+		CE8691DA265D029C0077FA98 /* NearbyPopularDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90C081265795930072B8C2 /* NearbyPopularDestination.swift */; };
+		CE8691DB265D029C0077FA98 /* SearchPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90C092265798600072B8C2 /* SearchPageModel.swift */; };
+		CE8691DC265D029C0077FA98 /* SearchPageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8691C7265CFE280077FA98 /* SearchPageMock.swift */; };
+		CE8E4722265A3954004AD00C /* SearchResultCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E4721265A3954004AD00C /* SearchResultCollectionViewController.swift */; };
+		CE8E4728265A39BB004AD00C /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E4726265A39BB004AD00C /* SearchResultCell.swift */; };
+		CE8E4729265A39BB004AD00C /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4727265A39BB004AD00C /* SearchResultCell.xib */; };
+		CE8E472E265A3E9A004AD00C /* SearchResultCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E472D265A3E9A004AD00C /* SearchResultCollectionViewDataSource.swift */; };
+		CE8E4733265A3FC9004AD00C /* SearchResultDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E4732265A3FC9004AD00C /* SearchResultDestination.swift */; };
+		CE8E473A265A4C11004AD00C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E4739265A4C11004AD00C /* NetworkManager.swift */; };
+		CE8E4765265A4F50004AD00C /* map_pinup_custom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4740265A4F50004AD00C /* map_pinup_custom@3x.png */; };
+		CE8E4766265A4F50004AD00C /* map_pin_custom.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4741265A4F50004AD00C /* map_pin_custom.png */; };
+		CE8E4767265A4F50004AD00C /* shadow_balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4742265A4F50004AD00C /* shadow_balloon.png */; };
+		CE8E4768265A4F50004AD00C /* map_pinup.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4743265A4F50004AD00C /* map_pinup.png */; };
+		CE8E4769265A4F50004AD00C /* detail_button.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4744265A4F50004AD00C /* detail_button.png */; };
+		CE8E476A265A4F50004AD00C /* map_pin_custom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4745265A4F50004AD00C /* map_pin_custom@3x.png */; };
+		CE8E476B265A4F50004AD00C /* map_pinup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4746265A4F50004AD00C /* map_pinup@3x.png */; };
+		CE8E476C265A4F50004AD00C /* map_pin_shadow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4747265A4F50004AD00C /* map_pin_shadow@3x.png */; };
+		CE8E476D265A4F50004AD00C /* copyright.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4748265A4F50004AD00C /* copyright.png */; };
+		CE8E476E265A4F50004AD00C /* th_line.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4749265A4F50004AD00C /* th_line.png */; };
+		CE8E476F265A4F50004AD00C /* map_pin_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E474A265A4F50004AD00C /* map_pin_red@3x.png */; };
+		CE8E4770265A4F50004AD00C /* daum_copyright.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E474B265A4F50004AD00C /* daum_copyright.png */; };
+		CE8E4771265A4F50004AD00C /* map_pin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E474C265A4F50004AD00C /* map_pin@3x.png */; };
+		CE8E4772265A4F50004AD00C /* map_present_tracking.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E474D265A4F50004AD00C /* map_present_tracking.png */; };
+		CE8E4773265A4F50004AD00C /* map_pin_red.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E474E265A4F50004AD00C /* map_pin_red.png */; };
+		CE8E4774265A4F50004AD00C /* info_box.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4758265A4F50004AD00C /* info_box.png */; };
+		CE8E4775265A4F50004AD00C /* point_sprite.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4759265A4F50004AD00C /* point_sprite.png */; };
+		CE8E4776265A4F50004AD00C /* map_pinup_custom.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E475A265A4F50004AD00C /* map_pinup_custom.png */; };
+		CE8E4777265A4F50004AD00C /* info_box_tail.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E475B265A4F50004AD00C /* info_box_tail.png */; };
+		CE8E4778265A4F50004AD00C /* noimage256.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E475C265A4F50004AD00C /* noimage256.png */; };
+		CE8E4779265A4F50004AD00C /* map_present_direction.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E475D265A4F50004AD00C /* map_present_direction.png */; };
+		CE8E477A265A4F50004AD00C /* map_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E475E265A4F50004AD00C /* map_pin.png */; };
+		CE8E477B265A4F50004AD00C /* map_present.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E475F265A4F50004AD00C /* map_present.png */; };
+		CE8E477C265A4F50004AD00C /* noimage.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4760265A4F50004AD00C /* noimage.png */; };
+		CE8E477D265A4F50004AD00C /* map_present_background_update.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4761265A4F50004AD00C /* map_present_background_update.png */; };
+		CE8E477E265A4F50004AD00C /* daum_th_line.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4762265A4F50004AD00C /* daum_th_line.png */; };
+		CE8E477F265A4F50004AD00C /* map_pin_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CE8E4763265A4F50004AD00C /* map_pin_shadow.png */; };
+		CE8E4780265A4F50004AD00C /* DaumMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8E4764265A4F50004AD00C /* DaumMap.framework */; };
+		CE8E4787265A4FBD004AD00C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8E4786265A4FBD004AD00C /* SystemConfiguration.framework */; };
+		CE8E4789265A4FC5004AD00C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8E4788265A4FC5004AD00C /* CoreLocation.framework */; };
+		CE8E478B265A4FCB004AD00C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8E478A265A4FCB004AD00C /* QuartzCore.framework */; };
+		CE8E4793265A5158004AD00C /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8E4792265A5158004AD00C /* Metal.framework */; };
+		CE8E4798265A5B35004AD00C /* ParsingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E4797265A5B35004AD00C /* ParsingManager.swift */; };
+		CE8E479D265A5B94004AD00C /* SearchResultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E479C265A5B94004AD00C /* SearchResultDTO.swift */; };
+		CE90C06926575E430072B8C2 /* SearchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90C06826575E430072B8C2 /* SearchPageViewController.swift */; };
+		CE90C082265795930072B8C2 /* NearbyPopularDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90C081265795930072B8C2 /* NearbyPopularDestination.swift */; };
+		CE90C093265798600072B8C2 /* SearchPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90C092265798600072B8C2 /* SearchPageModel.swift */; };
+		CE90C09826579ABB0072B8C2 /* SearchPageCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90C09726579ABB0072B8C2 /* SearchPageCollectionViewDataSource.swift */; };
+		CE9877C2265FCCF200476CC9 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9877C1265FCCF200476CC9 /* NetworkTests.swift */; };
+		CE9877C6265FD18100476CC9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E4739265A4C11004AD00C /* NetworkManager.swift */; };
+		CE9877CA265FD18C00476CC9 /* SearchResultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E479C265A5B94004AD00C /* SearchResultDTO.swift */; };
+		CE9877D1266013C600476CC9 /* ParsingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E4797265A5B35004AD00C /* ParsingManager.swift */; };
+		CE9877D9266017F000476CC9 /* SearchResultModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9877D8266017F000476CC9 /* SearchResultModelTests.swift */; };
+		CE9877E02660187100476CC9 /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A06DE265ACA4F00769451 /* SearchResultModel.swift */; };
+		CE9877E4266018BE00476CC9 /* SearchResultDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E4732265A3FC9004AD00C /* SearchResultDestination.swift */; };
+		CE9877F72660B8B300476CC9 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9877F62660B8B300476CC9 /* CalendarViewController.swift */; };
+		CE9877FD2660BC8200476CC9 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = CE9877FC2660BC8200476CC9 /* FSCalendar */; };
+		CE9878032660D48B00476CC9 /* ReservationInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9878012660D48B00476CC9 /* ReservationInfoCell.swift */; };
+		CE9878042660D48B00476CC9 /* ReservationInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9878022660D48B00476CC9 /* ReservationInfoCell.xib */; };
+		CE990AC426550207008E91E5 /* MainPageCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE990AC326550207008E91E5 /* MainPageCollectionViewDataSource.swift */; };
+		CE990ACA265503C2008E91E5 /* CurationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE990AC8265503C2008E91E5 /* CurationCell.swift */; };
+		CE990ACB265503C2008E91E5 /* CurationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE990AC9265503C2008E91E5 /* CurationCell.xib */; };
+		CE990AD5265529A4008E91E5 /* NearbyDestinationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE990AD3265529A4008E91E5 /* NearbyDestinationCell.swift */; };
+		CE990AD6265529A4008E91E5 /* NearbyDestinationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE990AD4265529A4008E91E5 /* NearbyDestinationCell.xib */; };
+		CE990ADC26552B5D008E91E5 /* VariousDestinationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE990ADA26552B5D008E91E5 /* VariousDestinationCell.swift */; };
+		CE990ADD26552B5D008E91E5 /* VariousDestinationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE990ADB26552B5D008E91E5 /* VariousDestinationCell.xib */; };
+		CE9A06DF265ACA4F00769451 /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A06DE265ACA4F00769451 /* SearchResultModel.swift */; };
+		CEAE50A82663E66300D6D5D3 /* ReservationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE50A72663E66300D6D5D3 /* ReservationInfo.swift */; };
+		CEDEB8132656470D00CCAB84 /* MainPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEB8112656470D00CCAB84 /* MainPageHeaderView.swift */; };
+		CEDEB8142656470D00CCAB84 /* MainPageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEDEB8122656470D00CCAB84 /* MainPageHeaderView.xib */; };
+		CEDEB8192656A67100CCAB84 /* MainPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEB8182656A67100CCAB84 /* MainPageModel.swift */; };
+		CEDEB81E2656A6AE00CCAB84 /* Curation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEB81D2656A6AE00CCAB84 /* Curation.swift */; };
+		CEDEB8232656A70400CCAB84 /* NearbyDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEB8222656A70400CCAB84 /* NearbyDestination.swift */; };
+		CEDEB8282656A87100CCAB84 /* VariousDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDEB8272656A87100CCAB84 /* VariousDestination.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CE7E0C982653B0FE00E0ADD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE7E0C792653B0FD00E0ADD3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE7E0C802653B0FD00E0ADD3;
+			remoteInfo = "swift-airbnb";
+		};
+		CE7E0CA32653B0FE00E0ADD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE7E0C792653B0FD00E0ADD3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE7E0C802653B0FD00E0ADD3;
+			remoteInfo = "swift-airbnb";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		213C18E06C54CA5D509EEF71 /* Pods-swift-airbnb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-airbnb.debug.xcconfig"; path = "Target Support Files/Pods-swift-airbnb/Pods-swift-airbnb.debug.xcconfig"; sourceTree = "<group>"; };
+		5B4FC676A25CDACF12850CD7 /* Pods-swift-airbnbTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-airbnbTests.debug.xcconfig"; path = "Target Support Files/Pods-swift-airbnbTests/Pods-swift-airbnbTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8B11D7834D2B9A042702E29E /* Pods_swift_airbnbTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swift_airbnbTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B07091588301ABA843608430 /* Pods_swift_airbnb_swift_airbnbUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swift_airbnb_swift_airbnbUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5C4204AA31489988664CE80 /* Pods-swift-airbnb-swift-airbnbUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-airbnb-swift-airbnbUITests.release.xcconfig"; path = "Target Support Files/Pods-swift-airbnb-swift-airbnbUITests/Pods-swift-airbnb-swift-airbnbUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CB0A75FAFCF1D2EC396F3987 /* Pods-swift-airbnb-swift-airbnbUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-airbnb-swift-airbnbUITests.debug.xcconfig"; path = "Target Support Files/Pods-swift-airbnb-swift-airbnbUITests/Pods-swift-airbnb-swift-airbnbUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CE7E0C812653B0FD00E0ADD3 /* swift-airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-airbnb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE7E0C842653B0FD00E0ADD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CE7E0C862653B0FD00E0ADD3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		CE7E0C882653B0FD00E0ADD3 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
+		CE7E0C8B2653B0FD00E0ADD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CE7E0C8D2653B0FE00E0ADD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE7E0C902653B0FE00E0ADD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CE7E0C922653B0FE00E0ADD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE7E0C972653B0FE00E0ADD3 /* swift-airbnbTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "swift-airbnbTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE7E0C9B2653B0FE00E0ADD3 /* MainPageModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageModelTests.swift; sourceTree = "<group>"; };
+		CE7E0C9D2653B0FE00E0ADD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE7E0CA22653B0FE00E0ADD3 /* swift-airbnbUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "swift-airbnbUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE7E0CA62653B0FE00E0ADD3 /* swift_airbnbUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swift_airbnbUITests.swift; sourceTree = "<group>"; };
+		CE7E0CA82653B0FE00E0ADD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE86919B265CEA2E0077FA98 /* MainPageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageMock.swift; sourceTree = "<group>"; };
+		CE8691C7265CFE280077FA98 /* SearchPageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageMock.swift; sourceTree = "<group>"; };
+		CE8691D2265D02700077FA98 /* SearchPageModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageModelTests.swift; sourceTree = "<group>"; };
+		CE8E4721265A3954004AD00C /* SearchResultCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewController.swift; sourceTree = "<group>"; };
+		CE8E4726265A39BB004AD00C /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		CE8E4727265A39BB004AD00C /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		CE8E472D265A3E9A004AD00C /* SearchResultCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		CE8E4732265A3FC9004AD00C /* SearchResultDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDestination.swift; sourceTree = "<group>"; };
+		CE8E4739265A4C11004AD00C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		CE8E4740265A4F50004AD00C /* map_pinup_custom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pinup_custom@3x.png"; sourceTree = "<group>"; };
+		CE8E4741265A4F50004AD00C /* map_pin_custom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_custom.png; sourceTree = "<group>"; };
+		CE8E4742265A4F50004AD00C /* shadow_balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow_balloon.png; sourceTree = "<group>"; };
+		CE8E4743265A4F50004AD00C /* map_pinup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pinup.png; sourceTree = "<group>"; };
+		CE8E4744265A4F50004AD00C /* detail_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detail_button.png; sourceTree = "<group>"; };
+		CE8E4745265A4F50004AD00C /* map_pin_custom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin_custom@3x.png"; sourceTree = "<group>"; };
+		CE8E4746265A4F50004AD00C /* map_pinup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pinup@3x.png"; sourceTree = "<group>"; };
+		CE8E4747265A4F50004AD00C /* map_pin_shadow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin_shadow@3x.png"; sourceTree = "<group>"; };
+		CE8E4748265A4F50004AD00C /* copyright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copyright.png; sourceTree = "<group>"; };
+		CE8E4749265A4F50004AD00C /* th_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = th_line.png; sourceTree = "<group>"; };
+		CE8E474A265A4F50004AD00C /* map_pin_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin_red@3x.png"; sourceTree = "<group>"; };
+		CE8E474B265A4F50004AD00C /* daum_copyright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daum_copyright.png; sourceTree = "<group>"; };
+		CE8E474C265A4F50004AD00C /* map_pin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin@3x.png"; sourceTree = "<group>"; };
+		CE8E474D265A4F50004AD00C /* map_present_tracking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_present_tracking.png; sourceTree = "<group>"; };
+		CE8E474E265A4F50004AD00C /* map_pin_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_red.png; sourceTree = "<group>"; };
+		CE8E4750265A4F50004AD00C /* MTMapPOIItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapPOIItem.h; sourceTree = "<group>"; };
+		CE8E4751265A4F50004AD00C /* MTMapCameraUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapCameraUpdate.h; sourceTree = "<group>"; };
+		CE8E4752265A4F50004AD00C /* MTMapReverseGeoCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapReverseGeoCoder.h; sourceTree = "<group>"; };
+		CE8E4753265A4F50004AD00C /* MTMapPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapPolyline.h; sourceTree = "<group>"; };
+		CE8E4754265A4F50004AD00C /* MTMapLocationMarkerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapLocationMarkerItem.h; sourceTree = "<group>"; };
+		CE8E4755265A4F50004AD00C /* MTMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapView.h; sourceTree = "<group>"; };
+		CE8E4756265A4F50004AD00C /* MTMapGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapGeometry.h; sourceTree = "<group>"; };
+		CE8E4757265A4F50004AD00C /* MTMapCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapCircle.h; sourceTree = "<group>"; };
+		CE8E4758265A4F50004AD00C /* info_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_box.png; sourceTree = "<group>"; };
+		CE8E4759265A4F50004AD00C /* point_sprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point_sprite.png; sourceTree = "<group>"; };
+		CE8E475A265A4F50004AD00C /* map_pinup_custom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pinup_custom.png; sourceTree = "<group>"; };
+		CE8E475B265A4F50004AD00C /* info_box_tail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_box_tail.png; sourceTree = "<group>"; };
+		CE8E475C265A4F50004AD00C /* noimage256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimage256.png; sourceTree = "<group>"; };
+		CE8E475D265A4F50004AD00C /* map_present_direction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_present_direction.png; sourceTree = "<group>"; };
+		CE8E475E265A4F50004AD00C /* map_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin.png; sourceTree = "<group>"; };
+		CE8E475F265A4F50004AD00C /* map_present.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_present.png; sourceTree = "<group>"; };
+		CE8E4760265A4F50004AD00C /* noimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noimage.png; sourceTree = "<group>"; };
+		CE8E4761265A4F50004AD00C /* map_present_background_update.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_present_background_update.png; sourceTree = "<group>"; };
+		CE8E4762265A4F50004AD00C /* daum_th_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daum_th_line.png; sourceTree = "<group>"; };
+		CE8E4763265A4F50004AD00C /* map_pin_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_shadow.png; sourceTree = "<group>"; };
+		CE8E4764265A4F50004AD00C /* DaumMap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DaumMap.framework; sourceTree = "<group>"; };
+		CE8E4784265A4FAF004AD00C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		CE8E4786265A4FBD004AD00C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		CE8E4788265A4FC5004AD00C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		CE8E478A265A4FCB004AD00C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CE8E478C265A4FDD004AD00C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		CE8E478D265A4FE7004AD00C /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		CE8E478E265A4FEF004AD00C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		CE8E4792265A5158004AD00C /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		CE8E4797265A5B35004AD00C /* ParsingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingManager.swift; sourceTree = "<group>"; };
+		CE8E479C265A5B94004AD00C /* SearchResultDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDTO.swift; sourceTree = "<group>"; };
+		CE90C06826575E430072B8C2 /* SearchPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageViewController.swift; sourceTree = "<group>"; };
+		CE90C081265795930072B8C2 /* NearbyPopularDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPopularDestination.swift; sourceTree = "<group>"; };
+		CE90C092265798600072B8C2 /* SearchPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageModel.swift; sourceTree = "<group>"; };
+		CE90C09726579ABB0072B8C2 /* SearchPageCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		CE9877C1265FCCF200476CC9 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
+		CE9877D8266017F000476CC9 /* SearchResultModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModelTests.swift; sourceTree = "<group>"; };
+		CE9877F62660B8B300476CC9 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		CE9878012660D48B00476CC9 /* ReservationInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationInfoCell.swift; sourceTree = "<group>"; };
+		CE9878022660D48B00476CC9 /* ReservationInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReservationInfoCell.xib; sourceTree = "<group>"; };
+		CE990AC326550207008E91E5 /* MainPageCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		CE990AC8265503C2008E91E5 /* CurationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurationCell.swift; sourceTree = "<group>"; };
+		CE990AC9265503C2008E91E5 /* CurationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurationCell.xib; sourceTree = "<group>"; };
+		CE990AD3265529A4008E91E5 /* NearbyDestinationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyDestinationCell.swift; sourceTree = "<group>"; };
+		CE990AD4265529A4008E91E5 /* NearbyDestinationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NearbyDestinationCell.xib; sourceTree = "<group>"; };
+		CE990ADA26552B5D008E91E5 /* VariousDestinationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariousDestinationCell.swift; sourceTree = "<group>"; };
+		CE990ADB26552B5D008E91E5 /* VariousDestinationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VariousDestinationCell.xib; sourceTree = "<group>"; };
+		CE9A06DE265ACA4F00769451 /* SearchResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModel.swift; sourceTree = "<group>"; };
+		CE9A06E4265BDDB100769451 /* BridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgeHeader.h; sourceTree = "<group>"; };
+		CEAE50A72663E66300D6D5D3 /* ReservationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationInfo.swift; sourceTree = "<group>"; };
+		CEDEB8112656470D00CCAB84 /* MainPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageHeaderView.swift; sourceTree = "<group>"; };
+		CEDEB8122656470D00CCAB84 /* MainPageHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainPageHeaderView.xib; sourceTree = "<group>"; };
+		CEDEB8182656A67100CCAB84 /* MainPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageModel.swift; sourceTree = "<group>"; };
+		CEDEB81D2656A6AE00CCAB84 /* Curation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curation.swift; sourceTree = "<group>"; };
+		CEDEB8222656A70400CCAB84 /* NearbyDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyDestination.swift; sourceTree = "<group>"; };
+		CEDEB8272656A87100CCAB84 /* VariousDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariousDestination.swift; sourceTree = "<group>"; };
+		D8BA8896FC9943205748805A /* Pods-swift-airbnbTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-airbnbTests.release.xcconfig"; path = "Target Support Files/Pods-swift-airbnbTests/Pods-swift-airbnbTests.release.xcconfig"; sourceTree = "<group>"; };
+		ED96EB6639CC95264EBD59B9 /* Pods_swift_airbnb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swift_airbnb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA3D77FD4F85FA03E21A9323 /* Pods-swift-airbnb.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-airbnb.release.xcconfig"; path = "Target Support Files/Pods-swift-airbnb/Pods-swift-airbnb.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CE7E0C7E2653B0FD00E0ADD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE8E4780265A4F50004AD00C /* DaumMap.framework in Frameworks */,
+				CE8E4789265A4FC5004AD00C /* CoreLocation.framework in Frameworks */,
+				CE8E4793265A5158004AD00C /* Metal.framework in Frameworks */,
+				CE8E478B265A4FCB004AD00C /* QuartzCore.framework in Frameworks */,
+				3FAC7CA987C83E3F2FB32D18 /* Pods_swift_airbnb.framework in Frameworks */,
+				CE9877FD2660BC8200476CC9 /* FSCalendar in Frameworks */,
+				CE8E4787265A4FBD004AD00C /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE7E0C942653B0FE00E0ADD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B59B8C178D820A204A88FBE3 /* Pods_swift_airbnbTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE7E0C9F2653B0FE00E0ADD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A30CA9A01BA574ED3B542DD0 /* Pods_swift_airbnb_swift_airbnbUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18E34521032BCA8D44828BF1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				213C18E06C54CA5D509EEF71 /* Pods-swift-airbnb.debug.xcconfig */,
+				FA3D77FD4F85FA03E21A9323 /* Pods-swift-airbnb.release.xcconfig */,
+				CB0A75FAFCF1D2EC396F3987 /* Pods-swift-airbnb-swift-airbnbUITests.debug.xcconfig */,
+				B5C4204AA31489988664CE80 /* Pods-swift-airbnb-swift-airbnbUITests.release.xcconfig */,
+				5B4FC676A25CDACF12850CD7 /* Pods-swift-airbnbTests.debug.xcconfig */,
+				D8BA8896FC9943205748805A /* Pods-swift-airbnbTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		3DE966F9DB8523F79E8EE0CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE8E4792265A5158004AD00C /* Metal.framework */,
+				CE8E478E265A4FEF004AD00C /* libsqlite3.tbd */,
+				CE8E478D265A4FE7004AD00C /* libxml2.tbd */,
+				CE8E478C265A4FDD004AD00C /* libc++.tbd */,
+				CE8E478A265A4FCB004AD00C /* QuartzCore.framework */,
+				CE8E4788265A4FC5004AD00C /* CoreLocation.framework */,
+				CE8E4786265A4FBD004AD00C /* SystemConfiguration.framework */,
+				CE8E4784265A4FAF004AD00C /* OpenGLES.framework */,
+				CE8E473E265A4F50004AD00C /* DaumMap.embeddedframework */,
+				ED96EB6639CC95264EBD59B9 /* Pods_swift_airbnb.framework */,
+				B07091588301ABA843608430 /* Pods_swift_airbnb_swift_airbnbUITests.framework */,
+				8B11D7834D2B9A042702E29E /* Pods_swift_airbnbTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE7E0C782653B0FD00E0ADD3 = {
+			isa = PBXGroup;
+			children = (
+				CE7E0C832653B0FD00E0ADD3 /* swift-airbnb */,
+				CE7E0C9A2653B0FE00E0ADD3 /* swift-airbnbTests */,
+				CE7E0CA52653B0FE00E0ADD3 /* swift-airbnbUITests */,
+				CE7E0C822653B0FD00E0ADD3 /* Products */,
+				18E34521032BCA8D44828BF1 /* Pods */,
+				3DE966F9DB8523F79E8EE0CB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CE7E0C822653B0FD00E0ADD3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE7E0C812653B0FD00E0ADD3 /* swift-airbnb.app */,
+				CE7E0C972653B0FE00E0ADD3 /* swift-airbnbTests.xctest */,
+				CE7E0CA22653B0FE00E0ADD3 /* swift-airbnbUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CE7E0C832653B0FD00E0ADD3 /* swift-airbnb */ = {
+			isa = PBXGroup;
+			children = (
+				CE9A06E3265BDD8A00769451 /* Header */,
+				CE8E4738265A4C06004AD00C /* Network */,
+				CE8E4737265A4BFD004AD00C /* DTO */,
+				CE990AC1265500B5008E91E5 /* Model */,
+				CE990AC0265500AB008E91E5 /* View */,
+				CE990ABF2655009E008E91E5 /* Controller */,
+				CE7E0C842653B0FD00E0ADD3 /* AppDelegate.swift */,
+				CE7E0C862653B0FD00E0ADD3 /* SceneDelegate.swift */,
+				CE7E0C8A2653B0FD00E0ADD3 /* Main.storyboard */,
+				CE7E0C8D2653B0FE00E0ADD3 /* Assets.xcassets */,
+				CE7E0C8F2653B0FE00E0ADD3 /* LaunchScreen.storyboard */,
+				CE7E0C922653B0FE00E0ADD3 /* Info.plist */,
+			);
+			path = "swift-airbnb";
+			sourceTree = "<group>";
+		};
+		CE7E0C9A2653B0FE00E0ADD3 /* swift-airbnbTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE7E0C9B2653B0FE00E0ADD3 /* MainPageModelTests.swift */,
+				CE8691D2265D02700077FA98 /* SearchPageModelTests.swift */,
+				CE9877D8266017F000476CC9 /* SearchResultModelTests.swift */,
+				CE9877C1265FCCF200476CC9 /* NetworkTests.swift */,
+				CE7E0C9D2653B0FE00E0ADD3 /* Info.plist */,
+			);
+			path = "swift-airbnbTests";
+			sourceTree = "<group>";
+		};
+		CE7E0CA52653B0FE00E0ADD3 /* swift-airbnbUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CE7E0CA62653B0FE00E0ADD3 /* swift_airbnbUITests.swift */,
+				CE7E0CA82653B0FE00E0ADD3 /* Info.plist */,
+			);
+			path = "swift-airbnbUITests";
+			sourceTree = "<group>";
+		};
+		CE8691C0265CFD130077FA98 /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				CEDEB8182656A67100CCAB84 /* MainPageModel.swift */,
+				CE86919B265CEA2E0077FA98 /* MainPageMock.swift */,
+				CEDEB81D2656A6AE00CCAB84 /* Curation.swift */,
+				CEDEB8222656A70400CCAB84 /* NearbyDestination.swift */,
+				CEDEB8272656A87100CCAB84 /* VariousDestination.swift */,
+			);
+			path = MainPage;
+			sourceTree = "<group>";
+		};
+		CE8691C1265CFD2B0077FA98 /* SearchPage */ = {
+			isa = PBXGroup;
+			children = (
+				CE90C081265795930072B8C2 /* NearbyPopularDestination.swift */,
+				CE90C092265798600072B8C2 /* SearchPageModel.swift */,
+				CE8691C7265CFE280077FA98 /* SearchPageMock.swift */,
+				CE8E4732265A3FC9004AD00C /* SearchResultDestination.swift */,
+				CE9A06DE265ACA4F00769451 /* SearchResultModel.swift */,
+			);
+			path = SearchPage;
+			sourceTree = "<group>";
+		};
+		CE8691C2265CFD6C0077FA98 /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				CE990AC326550207008E91E5 /* MainPageCollectionViewDataSource.swift */,
+				CE990AC8265503C2008E91E5 /* CurationCell.swift */,
+				CE990AC9265503C2008E91E5 /* CurationCell.xib */,
+				CE990AD3265529A4008E91E5 /* NearbyDestinationCell.swift */,
+				CE990AD4265529A4008E91E5 /* NearbyDestinationCell.xib */,
+				CE990ADA26552B5D008E91E5 /* VariousDestinationCell.swift */,
+				CE990ADB26552B5D008E91E5 /* VariousDestinationCell.xib */,
+				CEDEB8112656470D00CCAB84 /* MainPageHeaderView.swift */,
+				CEDEB8122656470D00CCAB84 /* MainPageHeaderView.xib */,
+			);
+			path = MainPage;
+			sourceTree = "<group>";
+		};
+		CE8691C3265CFDB10077FA98 /* SearchPage */ = {
+			isa = PBXGroup;
+			children = (
+				CE8E4726265A39BB004AD00C /* SearchResultCell.swift */,
+				CE8E4727265A39BB004AD00C /* SearchResultCell.xib */,
+				CE90C09726579ABB0072B8C2 /* SearchPageCollectionViewDataSource.swift */,
+				CE8E472D265A3E9A004AD00C /* SearchResultCollectionViewDataSource.swift */,
+			);
+			path = SearchPage;
+			sourceTree = "<group>";
+		};
+		CE8E4737265A4BFD004AD00C /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				CE8E479C265A5B94004AD00C /* SearchResultDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		CE8E4738265A4C06004AD00C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CE8E4739265A4C11004AD00C /* NetworkManager.swift */,
+				CE8E4797265A5B35004AD00C /* ParsingManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CE8E473E265A4F50004AD00C /* DaumMap.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				CE8E473F265A4F50004AD00C /* Resources */,
+				CE8E4764265A4F50004AD00C /* DaumMap.framework */,
+			);
+			path = DaumMap.embeddedframework;
+			sourceTree = "<group>";
+		};
+		CE8E473F265A4F50004AD00C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CE8E4740265A4F50004AD00C /* map_pinup_custom@3x.png */,
+				CE8E4741265A4F50004AD00C /* map_pin_custom.png */,
+				CE8E4742265A4F50004AD00C /* shadow_balloon.png */,
+				CE8E4743265A4F50004AD00C /* map_pinup.png */,
+				CE8E4744265A4F50004AD00C /* detail_button.png */,
+				CE8E4745265A4F50004AD00C /* map_pin_custom@3x.png */,
+				CE8E4746265A4F50004AD00C /* map_pinup@3x.png */,
+				CE8E4747265A4F50004AD00C /* map_pin_shadow@3x.png */,
+				CE8E4748265A4F50004AD00C /* copyright.png */,
+				CE8E4749265A4F50004AD00C /* th_line.png */,
+				CE8E474A265A4F50004AD00C /* map_pin_red@3x.png */,
+				CE8E474B265A4F50004AD00C /* daum_copyright.png */,
+				CE8E474C265A4F50004AD00C /* map_pin@3x.png */,
+				CE8E474D265A4F50004AD00C /* map_present_tracking.png */,
+				CE8E474E265A4F50004AD00C /* map_pin_red.png */,
+				CE8E474F265A4F50004AD00C /* Headers */,
+				CE8E4758265A4F50004AD00C /* info_box.png */,
+				CE8E4759265A4F50004AD00C /* point_sprite.png */,
+				CE8E475A265A4F50004AD00C /* map_pinup_custom.png */,
+				CE8E475B265A4F50004AD00C /* info_box_tail.png */,
+				CE8E475C265A4F50004AD00C /* noimage256.png */,
+				CE8E475D265A4F50004AD00C /* map_present_direction.png */,
+				CE8E475E265A4F50004AD00C /* map_pin.png */,
+				CE8E475F265A4F50004AD00C /* map_present.png */,
+				CE8E4760265A4F50004AD00C /* noimage.png */,
+				CE8E4761265A4F50004AD00C /* map_present_background_update.png */,
+				CE8E4762265A4F50004AD00C /* daum_th_line.png */,
+				CE8E4763265A4F50004AD00C /* map_pin_shadow.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CE8E474F265A4F50004AD00C /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				CE8E4750265A4F50004AD00C /* MTMapPOIItem.h */,
+				CE8E4751265A4F50004AD00C /* MTMapCameraUpdate.h */,
+				CE8E4752265A4F50004AD00C /* MTMapReverseGeoCoder.h */,
+				CE8E4753265A4F50004AD00C /* MTMapPolyline.h */,
+				CE8E4754265A4F50004AD00C /* MTMapLocationMarkerItem.h */,
+				CE8E4755265A4F50004AD00C /* MTMapView.h */,
+				CE8E4756265A4F50004AD00C /* MTMapGeometry.h */,
+				CE8E4757265A4F50004AD00C /* MTMapCircle.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		CE990ABF2655009E008E91E5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CE7E0C882653B0FD00E0ADD3 /* MainPageViewController.swift */,
+				CE90C06826575E430072B8C2 /* SearchPageViewController.swift */,
+				CE8E4721265A3954004AD00C /* SearchResultCollectionViewController.swift */,
+				CE9877F62660B8B300476CC9 /* CalendarViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CE990AC0265500AB008E91E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE8691C2265CFD6C0077FA98 /* MainPage */,
+				CE8691C3265CFDB10077FA98 /* SearchPage */,
+				CE9878012660D48B00476CC9 /* ReservationInfoCell.swift */,
+				CE9878022660D48B00476CC9 /* ReservationInfoCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE990AC1265500B5008E91E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE8691C0265CFD130077FA98 /* MainPage */,
+				CE8691C1265CFD2B0077FA98 /* SearchPage */,
+				CEAE50A72663E66300D6D5D3 /* ReservationInfo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE9A06E3265BDD8A00769451 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				CE9A06E4265BDDB100769451 /* BridgeHeader.h */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CE7E0C802653B0FD00E0ADD3 /* swift-airbnb */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE7E0CAB2653B0FE00E0ADD3 /* Build configuration list for PBXNativeTarget "swift-airbnb" */;
+			buildPhases = (
+				57B2C154F7CBADF8676ABAC3 /* [CP] Check Pods Manifest.lock */,
+				CE7E0C7D2653B0FD00E0ADD3 /* Sources */,
+				CE7E0C7E2653B0FD00E0ADD3 /* Frameworks */,
+				CE7E0C7F2653B0FD00E0ADD3 /* Resources */,
+				269A4489DF305B657B11BD3F /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "swift-airbnb";
+			packageProductDependencies = (
+				CE9877FC2660BC8200476CC9 /* FSCalendar */,
+			);
+			productName = "swift-airbnb";
+			productReference = CE7E0C812653B0FD00E0ADD3 /* swift-airbnb.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CE7E0C962653B0FE00E0ADD3 /* swift-airbnbTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE7E0CAE2653B0FE00E0ADD3 /* Build configuration list for PBXNativeTarget "swift-airbnbTests" */;
+			buildPhases = (
+				A1DD0DACB57DE9E2D0A1AB4E /* [CP] Check Pods Manifest.lock */,
+				CE7E0C932653B0FE00E0ADD3 /* Sources */,
+				CE7E0C942653B0FE00E0ADD3 /* Frameworks */,
+				CE7E0C952653B0FE00E0ADD3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE7E0C992653B0FE00E0ADD3 /* PBXTargetDependency */,
+			);
+			name = "swift-airbnbTests";
+			productName = "swift-airbnbTests";
+			productReference = CE7E0C972653B0FE00E0ADD3 /* swift-airbnbTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CE7E0CA12653B0FE00E0ADD3 /* swift-airbnbUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE7E0CB12653B0FE00E0ADD3 /* Build configuration list for PBXNativeTarget "swift-airbnbUITests" */;
+			buildPhases = (
+				00129DD1BDAA504F8DBC97E9 /* [CP] Check Pods Manifest.lock */,
+				CE7E0C9E2653B0FE00E0ADD3 /* Sources */,
+				CE7E0C9F2653B0FE00E0ADD3 /* Frameworks */,
+				CE7E0CA02653B0FE00E0ADD3 /* Resources */,
+				B9503BD036E5097B88AE9060 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE7E0CA42653B0FE00E0ADD3 /* PBXTargetDependency */,
+			);
+			name = "swift-airbnbUITests";
+			productName = "swift-airbnbUITests";
+			productReference = CE7E0CA22653B0FE00E0ADD3 /* swift-airbnbUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CE7E0C792653B0FD00E0ADD3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					CE7E0C802653B0FD00E0ADD3 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					CE7E0C962653B0FE00E0ADD3 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = CE7E0C802653B0FD00E0ADD3;
+					};
+					CE7E0CA12653B0FE00E0ADD3 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = CE7E0C802653B0FD00E0ADD3;
+					};
+				};
+			};
+			buildConfigurationList = CE7E0C7C2653B0FD00E0ADD3 /* Build configuration list for PBXProject "swift-airbnb" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CE7E0C782653B0FD00E0ADD3;
+			packageReferences = (
+				CE9877FB2660BC8200476CC9 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
+			productRefGroup = CE7E0C822653B0FD00E0ADD3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CE7E0C802653B0FD00E0ADD3 /* swift-airbnb */,
+				CE7E0C962653B0FE00E0ADD3 /* swift-airbnbTests */,
+				CE7E0CA12653B0FE00E0ADD3 /* swift-airbnbUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CE7E0C7F2653B0FD00E0ADD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE8E4775265A4F50004AD00C /* point_sprite.png in Resources */,
+				CE8E4770265A4F50004AD00C /* daum_copyright.png in Resources */,
+				CE8E477A265A4F50004AD00C /* map_pin.png in Resources */,
+				CE8E476B265A4F50004AD00C /* map_pinup@3x.png in Resources */,
+				CE8E4769265A4F50004AD00C /* detail_button.png in Resources */,
+				CE8E4774265A4F50004AD00C /* info_box.png in Resources */,
+				CE990ADD26552B5D008E91E5 /* VariousDestinationCell.xib in Resources */,
+				CE8E477B265A4F50004AD00C /* map_present.png in Resources */,
+				CE7E0C912653B0FE00E0ADD3 /* LaunchScreen.storyboard in Resources */,
+				CE8E4771265A4F50004AD00C /* map_pin@3x.png in Resources */,
+				CE8E4729265A39BB004AD00C /* SearchResultCell.xib in Resources */,
+				CE8E476D265A4F50004AD00C /* copyright.png in Resources */,
+				CE7E0C8E2653B0FE00E0ADD3 /* Assets.xcassets in Resources */,
+				CE8E4772265A4F50004AD00C /* map_present_tracking.png in Resources */,
+				CE8E4765265A4F50004AD00C /* map_pinup_custom@3x.png in Resources */,
+				CE8E4773265A4F50004AD00C /* map_pin_red.png in Resources */,
+				CE8E4768265A4F50004AD00C /* map_pinup.png in Resources */,
+				CE8E477F265A4F50004AD00C /* map_pin_shadow.png in Resources */,
+				CE8E476A265A4F50004AD00C /* map_pin_custom@3x.png in Resources */,
+				CE990ACB265503C2008E91E5 /* CurationCell.xib in Resources */,
+				CE8E476E265A4F50004AD00C /* th_line.png in Resources */,
+				CE8E4777265A4F50004AD00C /* info_box_tail.png in Resources */,
+				CE8E4776265A4F50004AD00C /* map_pinup_custom.png in Resources */,
+				CE7E0C8C2653B0FD00E0ADD3 /* Main.storyboard in Resources */,
+				CE8E4766265A4F50004AD00C /* map_pin_custom.png in Resources */,
+				CE8E477E265A4F50004AD00C /* daum_th_line.png in Resources */,
+				CE8E4778265A4F50004AD00C /* noimage256.png in Resources */,
+				CE8E476C265A4F50004AD00C /* map_pin_shadow@3x.png in Resources */,
+				CE990AD6265529A4008E91E5 /* NearbyDestinationCell.xib in Resources */,
+				CE8E4779265A4F50004AD00C /* map_present_direction.png in Resources */,
+				CE9878042660D48B00476CC9 /* ReservationInfoCell.xib in Resources */,
+				CE8E4767265A4F50004AD00C /* shadow_balloon.png in Resources */,
+				CE8E477D265A4F50004AD00C /* map_present_background_update.png in Resources */,
+				CEDEB8142656470D00CCAB84 /* MainPageHeaderView.xib in Resources */,
+				CE8E477C265A4F50004AD00C /* noimage.png in Resources */,
+				CE8E476F265A4F50004AD00C /* map_pin_red@3x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE7E0C952653B0FE00E0ADD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE7E0CA02653B0FE00E0ADD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00129DD1BDAA504F8DBC97E9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-swift-airbnb-swift-airbnbUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		269A4489DF305B657B11BD3F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-swift-airbnb/Pods-swift-airbnb-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-swift-airbnb/Pods-swift-airbnb-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-swift-airbnb/Pods-swift-airbnb-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57B2C154F7CBADF8676ABAC3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-swift-airbnb-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1DD0DACB57DE9E2D0A1AB4E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-swift-airbnbTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9503BD036E5097B88AE9060 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-swift-airbnb-swift-airbnbUITests/Pods-swift-airbnb-swift-airbnbUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-swift-airbnb-swift-airbnbUITests/Pods-swift-airbnb-swift-airbnbUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-swift-airbnb-swift-airbnbUITests/Pods-swift-airbnb-swift-airbnbUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CE7E0C7D2653B0FD00E0ADD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE8691C8265CFE280077FA98 /* SearchPageMock.swift in Sources */,
+				CEDEB8282656A87100CCAB84 /* VariousDestination.swift in Sources */,
+				CE7E0C892653B0FD00E0ADD3 /* MainPageViewController.swift in Sources */,
+				CEDEB8132656470D00CCAB84 /* MainPageHeaderView.swift in Sources */,
+				CE8E473A265A4C11004AD00C /* NetworkManager.swift in Sources */,
+				CEDEB81E2656A6AE00CCAB84 /* Curation.swift in Sources */,
+				CE90C093265798600072B8C2 /* SearchPageModel.swift in Sources */,
+				CE8E479D265A5B94004AD00C /* SearchResultDTO.swift in Sources */,
+				CE990AC426550207008E91E5 /* MainPageCollectionViewDataSource.swift in Sources */,
+				CE9A06DF265ACA4F00769451 /* SearchResultModel.swift in Sources */,
+				CE8E472E265A3E9A004AD00C /* SearchResultCollectionViewDataSource.swift in Sources */,
+				CE7E0C852653B0FD00E0ADD3 /* AppDelegate.swift in Sources */,
+				CE8E4722265A3954004AD00C /* SearchResultCollectionViewController.swift in Sources */,
+				CE990AD5265529A4008E91E5 /* NearbyDestinationCell.swift in Sources */,
+				CE990ACA265503C2008E91E5 /* CurationCell.swift in Sources */,
+				CE8E4798265A5B35004AD00C /* ParsingManager.swift in Sources */,
+				CE90C06926575E430072B8C2 /* SearchPageViewController.swift in Sources */,
+				CE7E0C872653B0FD00E0ADD3 /* SceneDelegate.swift in Sources */,
+				CE9878032660D48B00476CC9 /* ReservationInfoCell.swift in Sources */,
+				CE90C09826579ABB0072B8C2 /* SearchPageCollectionViewDataSource.swift in Sources */,
+				CE90C082265795930072B8C2 /* NearbyPopularDestination.swift in Sources */,
+				CE86919C265CEA2E0077FA98 /* MainPageMock.swift in Sources */,
+				CE8E4733265A3FC9004AD00C /* SearchResultDestination.swift in Sources */,
+				CEDEB8232656A70400CCAB84 /* NearbyDestination.swift in Sources */,
+				CEDEB8192656A67100CCAB84 /* MainPageModel.swift in Sources */,
+				CE9877F72660B8B300476CC9 /* CalendarViewController.swift in Sources */,
+				CEAE50A82663E66300D6D5D3 /* ReservationInfo.swift in Sources */,
+				CE8E4728265A39BB004AD00C /* SearchResultCell.swift in Sources */,
+				CE990ADC26552B5D008E91E5 /* VariousDestinationCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE7E0C932653B0FE00E0ADD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE9877C6265FD18100476CC9 /* NetworkManager.swift in Sources */,
+				CE9877E4266018BE00476CC9 /* SearchResultDestination.swift in Sources */,
+				CE8691DA265D029C0077FA98 /* NearbyPopularDestination.swift in Sources */,
+				CE9877C2265FCCF200476CC9 /* NetworkTests.swift in Sources */,
+				CE8691DB265D029C0077FA98 /* SearchPageModel.swift in Sources */,
+				CE9877D9266017F000476CC9 /* SearchResultModelTests.swift in Sources */,
+				CE9877D1266013C600476CC9 /* ParsingManager.swift in Sources */,
+				CE8691DC265D029C0077FA98 /* SearchPageMock.swift in Sources */,
+				CE9877CA265FD18C00476CC9 /* SearchResultDTO.swift in Sources */,
+				CE9877E02660187100476CC9 /* SearchResultModel.swift in Sources */,
+				CE8691BC265CF8BA0077FA98 /* MainPageMock.swift in Sources */,
+				CE8691B0265CF2CE0077FA98 /* Curation.swift in Sources */,
+				CE8691B4265CF2D00077FA98 /* NearbyDestination.swift in Sources */,
+				CE8691AC265CF2970077FA98 /* MainPageModel.swift in Sources */,
+				CE7E0C9C2653B0FE00E0ADD3 /* MainPageModelTests.swift in Sources */,
+				CE8691D3265D02700077FA98 /* SearchPageModelTests.swift in Sources */,
+				CE8691B8265CF2D30077FA98 /* VariousDestination.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE7E0C9E2653B0FE00E0ADD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE7E0CA72653B0FE00E0ADD3 /* swift_airbnbUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CE7E0C992653B0FE00E0ADD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE7E0C802653B0FD00E0ADD3 /* swift-airbnb */;
+			targetProxy = CE7E0C982653B0FE00E0ADD3 /* PBXContainerItemProxy */;
+		};
+		CE7E0CA42653B0FE00E0ADD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE7E0C802653B0FD00E0ADD3 /* swift-airbnb */;
+			targetProxy = CE7E0CA32653B0FE00E0ADD3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CE7E0C8A2653B0FD00E0ADD3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE7E0C8B2653B0FD00E0ADD3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CE7E0C8F2653B0FE00E0ADD3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE7E0C902653B0FE00E0ADD3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CE7E0CA92653B0FE00E0ADD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CE7E0CAA2653B0FE00E0ADD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CE7E0CAC2653B0FE00E0ADD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 213C18E06C54CA5D509EEF71 /* Pods-swift-airbnb.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DaumMap.embeddedframework",
+				);
+				INFOPLIST_FILE = "swift-airbnb/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "BMO.swift-airbnb";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "swift-airbnb/Header/BridgeHeader.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CE7E0CAD2653B0FE00E0ADD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA3D77FD4F85FA03E21A9323 /* Pods-swift-airbnb.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DaumMap.embeddedframework",
+				);
+				INFOPLIST_FILE = "swift-airbnb/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "BMO.swift-airbnb";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "swift-airbnb/Header/BridgeHeader.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CE7E0CAF2653B0FE00E0ADD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B4FC676A25CDACF12850CD7 /* Pods-swift-airbnbTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "swift-airbnbTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "BMO.swift-airbnbTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/swift-airbnb.app/swift-airbnb";
+			};
+			name = Debug;
+		};
+		CE7E0CB02653B0FE00E0ADD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8BA8896FC9943205748805A /* Pods-swift-airbnbTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "swift-airbnbTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "BMO.swift-airbnbTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/swift-airbnb.app/swift-airbnb";
+			};
+			name = Release;
+		};
+		CE7E0CB22653B0FE00E0ADD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB0A75FAFCF1D2EC396F3987 /* Pods-swift-airbnb-swift-airbnbUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "swift-airbnbUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "BMO.swift-airbnbUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "swift-airbnb";
+			};
+			name = Debug;
+		};
+		CE7E0CB32653B0FE00E0ADD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5C4204AA31489988664CE80 /* Pods-swift-airbnb-swift-airbnbUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "swift-airbnbUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "BMO.swift-airbnbUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "swift-airbnb";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CE7E0C7C2653B0FD00E0ADD3 /* Build configuration list for PBXProject "swift-airbnb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE7E0CA92653B0FE00E0ADD3 /* Debug */,
+				CE7E0CAA2653B0FE00E0ADD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE7E0CAB2653B0FE00E0ADD3 /* Build configuration list for PBXNativeTarget "swift-airbnb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE7E0CAC2653B0FE00E0ADD3 /* Debug */,
+				CE7E0CAD2653B0FE00E0ADD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE7E0CAE2653B0FE00E0ADD3 /* Build configuration list for PBXNativeTarget "swift-airbnbTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE7E0CAF2653B0FE00E0ADD3 /* Debug */,
+				CE7E0CB02653B0FE00E0ADD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE7E0CB12653B0FE00E0ADD3 /* Build configuration list for PBXNativeTarget "swift-airbnbUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE7E0CB22653B0FE00E0ADD3 /* Debug */,
+				CE7E0CB32653B0FE00E0ADD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE9877FB2660BC8200476CC9 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE9877FC2660BC8200476CC9 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE9877FB2660BC8200476CC9 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = CE7E0C792653B0FD00E0ADD3 /* Project object */;
+}
