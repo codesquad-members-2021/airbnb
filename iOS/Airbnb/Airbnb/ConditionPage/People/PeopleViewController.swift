@@ -62,7 +62,7 @@ extension PeopleViewController {
         
         NSLayoutConstraint.activate([
             peopleContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            peopleContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            peopleContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             peopleContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -400),
             peopleContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
         ])
