@@ -6,8 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
-import static com.enolj.airbnb.web.utils.GitHubType.getGitHubTypeByCode;
-
 @RestController
 public class UserController {
 
@@ -21,7 +19,7 @@ public class UserController {
     @PostMapping("/login")
     public UserResponseDTO login(@RequestParam String code, @RequestParam int typeCode) {
         logger.info("로그인 요청");
-        return userService.login(code, getGitHubTypeByCode(typeCode));
+        return userService.login(code, typeCode);
     }
 
     @GetMapping("/logout")
