@@ -42,34 +42,12 @@ function Personnel() {
     modal: PersonnelModal,
     init: false,
   })
+  
   const  setTotalPersonnel = useSetRecoilState(totalPerson)
   const [guestMsg, setGuestMsg] = useRecoilState(personnelMessage)
   const filteredMsg = useRecoilValue(filterPersonnelMessage)
   setGuestMsg(filteredMsg)
-  // export const totalPerson = selector({
-  //   key: 'totalPersonnel',
-  //    get({get}){
-  //     const adult=get(personnelAudult)
-  //     const child=get(personnelChild)
-  //     const baby=get(personnelBaby)
-  //     return {adult, child, baby}
-  //   },
-  //   set({set}, newValues:any){
-  //     const {adult, child, baby} = newValues
-  //     set(personnelAudult, adult)
-  //     set(personnelChild, child)
-  //     set(personnelBaby, baby)
-  //   }
-  // })
-
-
-
-
-  // const RenderXbtn = useXclick(
-  //   guestMsg,
-  //   [setGuestMsg, setAdult, setChild, setBaby],
-  //   defaultValue.guest
-  // )
+  
   const RenderXbtn = useXclick(
     guestMsg,
     [setGuestMsg, setTotalPersonnel],

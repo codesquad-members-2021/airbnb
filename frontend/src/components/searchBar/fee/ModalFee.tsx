@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {useRecoilValue} from 'recoil'
 import { Modal } from '../../../style/BarStyle'
 import { RecoilValueGroup } from '../../../customHook/atoms'
 import useAxios from '../../../customHook/useAxios'
@@ -20,7 +21,7 @@ const filteredFee = (fee: Array<number>): Map<number, number> => {
 }
 
 function ModalFee({ modalType }: IFeeType) {
-  const { place, checkIn, checkOut } = RecoilValueGroup()
+  const { place, checkIn, checkOut } = useRecoilValue(RecoilValueGroup)
   const { state } = useAxios(() => getFeeData(place, checkIn, checkOut))
 
   const { loading, error, data } = state
