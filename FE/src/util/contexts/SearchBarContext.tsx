@@ -9,12 +9,30 @@ interface SearchBarState {
     startDate?: Date;
     endDate?: Date;
   };
+  fee: {
+    start: number;
+    end: number;
+  };
+  peopleCount: {
+    adult: number;
+    child: number;
+    infant: number;
+  };
 }
 
 const searchBarInitState: SearchBarState = {
   calendar: {
     firstMonthOption: 0,
     lastMonthOption: 0,
+  },
+  fee: {
+    start: 0,
+    end: 0,
+  },
+  peopleCount: {
+    adult: 0,
+    child: 0,
+    infant: 0,
   },
 };
 
@@ -28,7 +46,10 @@ type SearchBarAction =
     }
   | { type: 'INCREASE_CALENDAR_MOUTH_OPTION' }
   | { type: 'DECREASE_CALENDAR_MOUTH_OPTION' }
-  | { type: 'SET_CALENDAR_DATE'; payload: Date };
+  | { type: 'SET_CALENDAR_DATE'; payload: Date }
+  | { type: 'SET_FEE_PRICE_RANGE'; payload: { start: number; end: number } }
+  | { type: 'INCREASE_PEOPLE_COUNT'; payload: string } // type (peopleCount의 key)
+  | { type: 'DECREASE_PEOPLE_COUNT'; payload: string };
 
 // 2) SearchBar 리듀서
 const searchBarReducer = (
@@ -80,8 +101,7 @@ const searchBarReducer = (
       let startDateTmp, endDateTmp;
 
       const checkStartDate =
-        !startDate ||
-        startDate.valueOf() >= clickedDate.valueOf();
+        !startDate || startDate.valueOf() >= clickedDate.valueOf();
 
       if (checkStartDate) startDateTmp = clickedDate;
       else if (!endDate) {
@@ -95,6 +115,42 @@ const searchBarReducer = (
           ...state.calendar,
           startDate: startDateTmp,
           endDate: endDateTmp,
+        },
+      };
+    }
+    case 'SET_FEE_PRICE_RANGE': {
+      const { start, end } = action.payload;
+      return {
+        ...state,
+        fee: {
+          ...state.fee,
+          start,
+          end,
+        },
+      };
+    }
+    case 'INCREASE_PEOPLE_COUNT': {
+      //@ts-ignore
+      const currValue = state.peopleCount[action.payload];
+
+      return {
+        ...state,
+        peopleCount: {
+          ...state.peopleCount,
+          [action.payload]: currValue + 1,
+        },
+      };
+    }
+    case 'DECREASE_PEOPLE_COUNT': {
+      //@ts-ignore
+      const currValue = state.peopleCount[action.payload];
+      if (!currValue) return {...state};
+
+      return {
+        ...state,
+        peopleCount: {
+          ...state.peopleCount,
+          [action.payload]: currValue - 1,
         },
       };
     }
