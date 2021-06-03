@@ -13,15 +13,14 @@ import java.util.List;
 public class AccommodationRepository {
 
 
-    private JdbcTemplate jdbcTemplate;
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final Logger logger = LoggerFactory.getLogger(Accommodation.class);
 
     public AccommodationRepository(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
-
-    private Logger logger = LoggerFactory.getLogger(Accommodation.class);
 
 /*
     public AccommodationRepository(DataSource dataSource) {

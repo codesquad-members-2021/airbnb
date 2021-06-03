@@ -22,7 +22,7 @@ public class AccommodationService {
 
     public AccommodationListDTO availableAccommodationsList(SearchConditions conditions) {
         List<Accommodation> accommodationList = accommodationRepository.findAll();
-        return domainListToDTOList(conditionValidate(accommodationList, conditions),new SearchConditions());
+        return domainListToDTOList(conditionValidate(accommodationList, conditions), new SearchConditions());
     }
 
     private List<Accommodation> conditionValidate(List<Accommodation> accommodationList, SearchConditions conditions) {
@@ -59,12 +59,12 @@ public class AccommodationService {
         return accommodationList;
     }
 
-    private AccommodationListDTO domainListToDTOList(List<Accommodation> accommodationList,SearchConditions searchConditions) {
+    private AccommodationListDTO domainListToDTOList(List<Accommodation> accommodationList, SearchConditions searchConditions) {
         List<AccommodationDTO> accommodationDTOList = new ArrayList<>();
         for (Accommodation accommodation : accommodationList) {
             accommodationDTOList.add(new AccommodationDTO(accommodation));
         }
-        return new AccommodationListDTO(accommodationDTOList,searchConditions);
+        return new AccommodationListDTO(accommodationDTOList, searchConditions);
     }
 
     public AccommodationListDTO likeMarkredList() {
