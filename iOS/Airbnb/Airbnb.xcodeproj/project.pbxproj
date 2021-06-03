@@ -35,6 +35,8 @@
 		AE87A78A2668DFB1003E9541 /* AccommodationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE87A7882668DFB1003E9541 /* AccommodationCell.xib */; };
 		AE87A78C266906AE003E9541 /* RoomsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A78B266906AE003E9541 /* RoomsUseCase.swift */; };
 		AE87A78E26690954003E9541 /* RoomDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A78D26690954003E9541 /* RoomDTO.swift */; };
+		AE87A79726693CD3003E9541 /* DetailRoomViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A79526693CD3003E9541 /* DetailRoomViewControllerViewController.swift */; };
+		AE87A79826693CD3003E9541 /* DetailRoomViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE87A79626693CD3003E9541 /* DetailRoomViewControllerViewController.xib */; };
 		AE8CD3B42653538700BCB8FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B32653538700BCB8FC /* AppDelegate.swift */; };
 		AE8CD3B62653538700BCB8FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B52653538700BCB8FC /* SceneDelegate.swift */; };
 		AE8CD3B82653538700BCB8FC /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B72653538700BCB8FC /* MainPageViewController.swift */; };
@@ -98,6 +100,8 @@
 		AE87A7882668DFB1003E9541 /* AccommodationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccommodationCell.xib; sourceTree = "<group>"; };
 		AE87A78B266906AE003E9541 /* RoomsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsUseCase.swift; sourceTree = "<group>"; };
 		AE87A78D26690954003E9541 /* RoomDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDTO.swift; sourceTree = "<group>"; };
+		AE87A79526693CD3003E9541 /* DetailRoomViewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRoomViewControllerViewController.swift; sourceTree = "<group>"; };
+		AE87A79626693CD3003E9541 /* DetailRoomViewControllerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailRoomViewControllerViewController.xib; sourceTree = "<group>"; };
 		AE8CD3B02653538700BCB8FC /* Airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE8CD3B32653538700BCB8FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE8CD3B52653538700BCB8FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -229,6 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				AE87A7832668D19D003E9541 /* RoomsViewController.swift */,
+				AE87A79526693CD3003E9541 /* DetailRoomViewControllerViewController.swift */,
+				AE87A79626693CD3003E9541 /* DetailRoomViewControllerViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -466,6 +472,7 @@
 			files = (
 				AE0B5DF4265642B2000B35E7 /* CategoryCell.xib in Resources */,
 				AE8CD3C02653538800BCB8FC /* LaunchScreen.storyboard in Resources */,
+				AE87A79826693CD3003E9541 /* DetailRoomViewControllerViewController.xib in Resources */,
 				AE87A77D26687F71003E9541 /* PersonCell.xib in Resources */,
 				AE8CD3BD2653538800BCB8FC /* Assets.xcassets in Resources */,
 				AE87A78A2668DFB1003E9541 /* AccommodationCell.xib in Resources */,
@@ -523,6 +530,7 @@
 				AE8CD3B42653538700BCB8FC /* AppDelegate.swift in Sources */,
 				AE0B5DE926562D4A000B35E7 /* TitleSupplementaryView.swift in Sources */,
 				AE0B5DE62656073E000B35E7 /* CityCell.swift in Sources */,
+				AE87A79726693CD3003E9541 /* DetailRoomViewControllerViewController.swift in Sources */,
 				AE87A7862668DF22003E9541 /* RoomsSupplementaryView.swift in Sources */,
 				AE8CD3B62653538700BCB8FC /* SceneDelegate.swift in Sources */,
 				AE87A7812668992C003E9541 /* PeopleViewModel.swift in Sources */,
