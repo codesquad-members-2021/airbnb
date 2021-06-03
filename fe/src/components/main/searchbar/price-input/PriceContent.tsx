@@ -16,7 +16,7 @@ const PriceContent = () => {
   useEffect(() => {
     if (isSuccess && !price.maxPrice)
       setPriceData({ maxPrice: data.max_price, minPrice: data.min_price });
-  }, [setPriceData]);
+  }, [setPriceData, data, isSuccess, price]);
 
   return (
     <Box p="2rem" width="22rem" display="flex" flexDirection="column">

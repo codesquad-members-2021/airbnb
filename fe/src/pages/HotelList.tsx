@@ -2,7 +2,6 @@ import useAxios from "hooks/useAxios";
 import Header from "components/main/header/Header";
 import SearchBar from "components/main/searchbar/Searchbar";
 import HotelListContent from "components/hotel-list/HotelListContent";
-import { MdPlace } from "react-icons/md";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   isHotelPage,
@@ -10,7 +9,9 @@ import {
   searchParamsSelector,
 } from "atoms/searchbarAtom";
 import styled from "styled-components";
-import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
+import { GoogleMap, OverlayView } from "@react-google-maps/api";
+import { useEffect } from "react";
+
 type datatype = {
   hotelId: string;
   title: string;
@@ -25,7 +26,6 @@ type datatype = {
 const HotelList = () => {
   const searchParams = useRecoilValue(searchParamsSelector);
   const setIsHotelList = useSetRecoilState(isHotelPage);
-  setIsHotelList(true);
   const { latitude, longitude } = useRecoilValue(locationData);
   const { data, isLoading } = useAxios(
     process.env.REACT_APP_API_URL + "/hotels?" + searchParams,
@@ -33,7 +33,13 @@ const HotelList = () => {
   );
   const center = { lat: latitude, lng: longitude };
   const mapStyle = { width: "100%", height: "100%" };
-
+  const getPixelPositionOffset = (width: number, height: number) => ({
+    x: -(width / 2),
+    y: -(height / 2),
+  });
+  useEffect(() => {
+    setIsHotelList(true);
+  }, []);
   return (
     <>
       <TopSection>
@@ -45,18 +51,14 @@ const HotelList = () => {
         <GoogleMap mapContainerStyle={mapStyle} center={center} zoom={15}>
           {data
             ? data.map((props: datatype) => (
-                <Marker
+                <OverlayView
                   key={props.hotelId}
                   position={{ lat: props.latitude, lng: props.longitude }}
-                  icon={{
-                    url: "logo",
-                    scaledSize: new google.maps.Size(15, 25),
-                  }}
+                  mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+                  getPixelPositionOffset={getPixelPositionOffset}
                 >
-                  <InfoWindow>
-                    <div>{props.price}</div>
-                  </InfoWindow>
-                </Marker>
+                  <MapMarker>₩ {props.price}</MapMarker>
+                </OverlayView>
               ))
             : null}
         </GoogleMap>
@@ -66,10 +68,21 @@ const HotelList = () => {
 };
 
 export default HotelList;
-
+const MapMarker = styled.div`
+  padding: 0.3rem 0.5rem;
+  background: white;
+  border: 1px solid #ccc;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 2rem;
+  cursor: pointer;
+  &:hover {
+    background: ${({ theme }) => theme.color.Gray4};
+  }
+`;
 const TopSection = styled.section`
   background-color: white;
-  z-index: 99999;
+  z-index: 99;
   position: fixed;
   top: 0;
   width: 100%;
