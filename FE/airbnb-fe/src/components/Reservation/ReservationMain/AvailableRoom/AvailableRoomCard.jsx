@@ -9,8 +9,6 @@ const AvailableRoomCard = ({ room, calcDiff, setIsPayModalClicked }) => {
 
   const handlePayModalClicked = () => {
     setIsPayModalClicked(true);
-    //여기서 e.target.dataset.id 함수에넘겨줘...
-    //그 set함수는 find를 돌려...
     payModalDispatch({
       type: 'PUT_MODAL_DATA',
       payload: {
@@ -29,7 +27,7 @@ const AvailableRoomCard = ({ room, calcDiff, setIsPayModalClicked }) => {
       <RoomContent>
         <RoomContentUpper>
           <div>
-            <RoomLocation>{room.title}</RoomLocation>
+            <RoomLocation>{room.location}</RoomLocation>
             <RoomHashTag>{room.title}</RoomHashTag>
             <RoomOption>{room.options}</RoomOption>
           </div>

@@ -3,7 +3,7 @@ import qs from 'qs';
 
 //참고로 callbackURL이 컴포넌트 라우트에 매칭되어야 한다~!
 const Callback = ({ history, location }) => {
-  const authUri = `http://3.35.226.74/auth`;
+  const authUri = `http://3.35.226.74/auth/github`;
 
   useEffect(() => {
     const getToken = async () => {

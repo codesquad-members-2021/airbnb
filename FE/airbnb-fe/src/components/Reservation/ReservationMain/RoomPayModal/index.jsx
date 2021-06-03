@@ -30,11 +30,6 @@ const RoomMapPayModal = () => {
     8
   );
 
-  console.log(
-    '꼐산해보자',
-    getDiscountPrice(payModalData.chargePerDay, payModalData.days, 20)
-  );
-
   return (
     <RoomMapPayModalDiv className="paymodal">
       <RoomModalTop>
