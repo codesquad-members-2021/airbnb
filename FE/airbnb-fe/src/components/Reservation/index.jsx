@@ -6,11 +6,6 @@ import payModalReducer from '../utils/reducer/payModalReducer';
 export const ReservationContext = createContext();
 
 const Reservation = ({ match }) => {
-  console.log(match.params);
-  console.log(
-    `?location=${match.params.location}&checkin=${match.params.checkIn}&checkout=${match.params.checkOut}&adults=${match.params.adults}&children=${match.params.children}&infants=${match.params.infants}`
-  );
-
   const [payModalData, payModalDispatch] = useReducer(payModalReducer, {
     chargePerDay: 0,
     reviewCount: 0,

@@ -7,7 +7,7 @@ import AirbnbIcon from '../../../Atoms/icons/AirbnbIcon';
 const Header = () => {
   return (
     <HeaderDiv>
-      <AirbnbIcon />
+      <AirbnbIcon width={'100px'} />
       <NavRadio />
       <AccountMenu />
     </HeaderDiv>

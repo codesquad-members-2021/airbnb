@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import qs from 'qs';
+import Loader from './Loader';
 
-//참고로 callbackURL이 컴포넌트 라우트에 매칭되어야 한다~!
 const Callback = ({ history, location }) => {
   const authUri = `http://3.35.226.74/auth/github`;
 
@@ -15,13 +15,13 @@ const Callback = ({ history, location }) => {
 
       try {
         const response = await fetch(`${authUri}?code=${code}`);
-        console.log('response', response);
+        // console.log('response', response);
 
         const data = await response.json();
         console.log('토큰넘어오는곳', data);
 
         localStorage.setItem('token', data.jwt);
-        localStorage.setItem('ProfileURL', data.avatar_url);
+        localStorage.setItem('ProfileURL', data.avatarurl);
         history.push('/');
       } catch (error) {
         //에러처리 에러페이지로 이동시키거나 하면 될것같음
@@ -31,7 +31,7 @@ const Callback = ({ history, location }) => {
     getToken();
   }, [location, history, authUri]);
 
-  return null;
+  return <Loader />;
 };
 
 export default Callback;
