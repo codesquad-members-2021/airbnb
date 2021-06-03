@@ -23,7 +23,9 @@ struct NearPlaceResponse : Decodable {
     }
 }
 
-struct PriceResponse : Decodable {
-    let prices: [Double]
+struct PriceResponse: Decodable {
+    let min: Int
+    let max: Int
+    let average: Int
+    let prices: [String: Int]
 }
-

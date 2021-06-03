@@ -23,6 +23,7 @@
 		10406B5D265D344F004F4AF9 /* CalendarDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10406B5C265D344F004F4AF9 /* CalendarDateCell.swift */; };
 		10451BAD2668DE8500AAB9E8 /* CounterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10451BAC2668DE8500AAB9E8 /* CounterViewModel.swift */; };
 		10451BB62668F2DC00AAB9E8 /* CounterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10451BB52668F2DC00AAB9E8 /* CounterState.swift */; };
+		10451BB826691B1B00AAB9E8 /* PriceNetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10451BB726691B1B00AAB9E8 /* PriceNetworkDispatcher.swift */; };
 		10466589265E6C03008B2F36 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10466588265E6C03008B2F36 /* CalendarViewModel.swift */; };
 		1046658B265E6DD4008B2F36 /* CalenderCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1046658A265E6DD4008B2F36 /* CalenderCollectionDataSource.swift */; };
 		104665A7265E915B008B2F36 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665A2265E915A008B2F36 /* NetworkError.swift */; };
@@ -79,6 +80,7 @@
 		10406B5C265D344F004F4AF9 /* CalendarDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateCell.swift; sourceTree = "<group>"; };
 		10451BAC2668DE8500AAB9E8 /* CounterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterViewModel.swift; sourceTree = "<group>"; };
 		10451BB52668F2DC00AAB9E8 /* CounterState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterState.swift; sourceTree = "<group>"; };
+		10451BB726691B1B00AAB9E8 /* PriceNetworkDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceNetworkDispatcher.swift; sourceTree = "<group>"; };
 		10466588265E6C03008B2F36 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		1046658A265E6DD4008B2F36 /* CalenderCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderCollectionDataSource.swift; sourceTree = "<group>"; };
 		104665A2265E915A008B2F36 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				104665A5265E915B008B2F36 /* Responses.swift */,
 				1066F6E226668AA0009F0C8B /* NetworkDispatcher.swift */,
 				10BDF8AD26661C0D00D9CB73 /* TravelNetworkDispatcher.swift */,
+				10451BB726691B1B00AAB9E8 /* PriceNetworkDispatcher.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				10466589265E6C03008B2F36 /* CalendarViewModel.swift in Sources */,
 				1046658B265E6DD4008B2F36 /* CalenderCollectionDataSource.swift in Sources */,
 				10451BB62668F2DC00AAB9E8 /* CounterState.swift in Sources */,
+				10451BB826691B1B00AAB9E8 /* PriceNetworkDispatcher.swift in Sources */,
 				107FE67F26687FAB00BAA8A9 /* UIViewController+storyboard.swift in Sources */,
 				10C2F7902667BD5900445EEB /* FooterTableViewDataSource.swift in Sources */,
 				107FE6812668851F00BAA8A9 /* PriceGraphView.swift in Sources */,
