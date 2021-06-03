@@ -5,8 +5,10 @@ import { roomType } from './roomType';
 import ReserveRoomGrade from './ReserveRoomGrade';
 import ReserveRoomPrice from './ReserveRoomPrice';
 import ReserveForm from './reserveForm/ReserveForm';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import useToggle from '../../hooks/useToggle';
+import { useSetRecoilState } from 'recoil';
+import { triggerReserve } from '../../recoilStore/reserveRoomAtom';
 
 interface Props {
   roomData: roomType;
@@ -17,6 +19,12 @@ const ReserveRoom = ({ roomData }: Props) => {
   const clickRef = useRef(null);
   const toggleRef = useRef(null);
   const { open } = useToggle({ clickRef, toggleRef });
+
+  const setTriggerReserve = useSetRecoilState(triggerReserve);
+
+  useEffect(() => {
+    if (!open) setTriggerReserve(false);
+  }, [open]);
 
   return (
     <StyledReserveRoom ref={clickRef}>

@@ -14,6 +14,13 @@ interface priceArgType {
   checkIn: number;
   checkOut: number;
 }
+interface reserveArgType {
+  id: number;
+  charge: number;
+  checkIn: string;
+  checkOut: string;
+  guests: number;
+}
 
 interface apiType {
   url: string;
@@ -26,6 +33,7 @@ interface apiType {
     guests,
   }: reserveInfoType) => string;
   getPrice: ({ city, checkIn, checkOut }: priceArgType) => string;
+  reserveRoom: ({ id, charge, checkIn, checkOut, guests }: reserveArgType) => string;
 }
 
 export const serverAPI: apiType = {
@@ -42,6 +50,10 @@ export const serverAPI: apiType = {
     const checkOutDate = timeToDate(checkOut);
     const query = `city=${city}&check_in=${checkInDate}&check_out=${checkOutDate}`;
     return serverAPI.url + '/accommodations/charges?' + query;
+  },
+  reserveRoom: ({ id, charge, checkIn, checkOut, guests }: reserveArgType) => {
+    const query = `charge=${charge}&check_in=${checkIn}&check_out=${checkOut}&guests=${guests}`;
+    return serverAPI.url + `/reservations/${id}?` + query;
   },
 };
 

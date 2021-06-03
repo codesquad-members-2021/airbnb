@@ -5,23 +5,24 @@ import { getBetweenDays } from '../../../util/calendarUtils';
 
 interface Props {
   chargePerNight: number;
+  totalPrice: number;
+  cleanCharge: number;
+  serviceCharge: number;
+  taxCharge: number;
+  totalCharge: number;
 }
 
-const ReserveFromPrice = ({ chargePerNight }: Props) => {
+const ReserveFromPrice = ({
+  chargePerNight,
+  totalPrice,
+  cleanCharge,
+  serviceCharge,
+  taxCharge,
+  totalCharge,
+}: Props) => {
   const selectDate = useRecoilValue(selectDateState);
 
-  const getCleanCharge = (totalPrice: number): number => Math.floor(totalPrice * 0.03);
-  const getServiceCharge = (totalPrice: number): number => Math.floor(totalPrice * 0.15);
-  const getTaxCharge = (totalPrice: number): number => Math.floor(totalPrice * 0.01);
-
   const betweenDays = getBetweenDays(selectDate.checkIn, selectDate.checkOut);
-  const totalPrice = chargePerNight * betweenDays;
-
-  const cleanCharge = getCleanCharge(totalPrice);
-  const serviceCharge = getServiceCharge(totalPrice);
-  const taxCharge = getTaxCharge(totalPrice);
-
-  const totalCharge = totalPrice + cleanCharge + serviceCharge + taxCharge;
 
   return (
     <StyledReservePriceWrapper>

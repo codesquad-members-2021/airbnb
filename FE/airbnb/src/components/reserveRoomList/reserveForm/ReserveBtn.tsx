@@ -1,11 +1,23 @@
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { triggerReserve } from '../../../recoilStore/reserveRoomAtom';
 
 interface Props {
   className: string;
 }
 
 const ReserveBtn = ({ className }: Props) => {
-  return <StyledReserveBtn className={className}>예약하기</StyledReserveBtn>;
+  const setTriggerReserve = useSetRecoilState(triggerReserve);
+
+  const submitReserveForm = () => {
+    setTriggerReserve(true);
+  };
+
+  return (
+    <StyledReserveBtn onClick={submitReserveForm} className={className}>
+      예약하기
+    </StyledReserveBtn>
+  );
 };
 
 export default ReserveBtn;
