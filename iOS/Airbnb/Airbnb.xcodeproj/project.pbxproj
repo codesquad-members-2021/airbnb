@@ -191,14 +191,46 @@
 		AE87A7822668D149003E9541 /* ResultPage */ = {
 			isa = PBXGroup;
 			children = (
-				AE87A7832668D19D003E9541 /* SearchResultViewController.swift */,
-				AE87A78B266906AE003E9541 /* SearchRoomsUseCase.swift */,
+				AE87A792266909CF003E9541 /* ViewController */,
+				AE87A790266909AC003E9541 /* UseCase */,
+				AE87A791266909B8003E9541 /* View */,
+				AE87A78F266909A4003E9541 /* Model */,
+			);
+			path = ResultPage;
+			sourceTree = "<group>";
+		};
+		AE87A78F266909A4003E9541 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				AE87A78D26690954003E9541 /* RoomDTO.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AE87A790266909AC003E9541 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				AE87A78B266906AE003E9541 /* SearchRoomsUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		AE87A791266909B8003E9541 /* View */ = {
+			isa = PBXGroup;
+			children = (
 				AE87A7852668DF22003E9541 /* ResultSupplementaryView.swift */,
 				AE87A7872668DFB1003E9541 /* AccommodationCell.swift */,
 				AE87A7882668DFB1003E9541 /* AccommodationCell.xib */,
 			);
-			path = ResultPage;
+			path = View;
+			sourceTree = "<group>";
+		};
+		AE87A792266909CF003E9541 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AE87A7832668D19D003E9541 /* SearchResultViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		AE8CD3A72653538700BCB8FC = {
