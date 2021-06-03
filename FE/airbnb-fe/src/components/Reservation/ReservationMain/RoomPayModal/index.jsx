@@ -37,7 +37,7 @@ const RoomMapPayModal = () => {
           <div>
             <PerDayPrice>{`₩${getRegex(
               payModalData.chargePerDay
-            )}`}</PerDayPrice>{' '}
+            )}`}</PerDayPrice>
             / 박
           </div>
           <RoomModalTopReview>{`후기 ${payModalData.reviewCount}개`}</RoomModalTopReview>

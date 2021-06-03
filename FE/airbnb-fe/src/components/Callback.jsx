@@ -20,7 +20,7 @@ const Callback = ({ history, location }) => {
 
         console.log('토큰넘어오는곳', data);
 
-        localStorage.setItem('token', data.jwt_token);
+        localStorage.setItem('token', data.jwt);
         history.push('/');
       } catch (error) {
         //에러처리 에러페이지로 이동시키거나 하면 될것같음
