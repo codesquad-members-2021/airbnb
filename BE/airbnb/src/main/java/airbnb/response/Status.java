@@ -1,6 +1,5 @@
 package airbnb.response;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

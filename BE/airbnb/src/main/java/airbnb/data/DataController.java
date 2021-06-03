@@ -1,7 +1,5 @@
 package airbnb.data;
 
-import airbnb.domain.Host;
-import airbnb.domain.Room;
 import io.netty.resolver.DefaultAddressResolverGroup;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
@@ -110,8 +108,6 @@ public class DataController {
         bufferedWriter2.flush();
         bufferedWriter2.close();
     }
-
-
 }
 
 

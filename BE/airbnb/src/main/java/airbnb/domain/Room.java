@@ -1,19 +1,12 @@
 package airbnb.domain;
 
 import airbnb.request.BookingRequest;
-import airbnb.response.BookingResponse;
 import airbnb.response.RoomDetailPageResponse;
 import airbnb.response.RoomResponse;
 import lombok.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -74,9 +67,10 @@ public class Room {
         return RoomResponse.builder()
                 .roomId(room.id)
                 .city(room.city.getName())
-                .location(room.location.getPlaceId())
+                .placeId(room.location.getPlaceId())
+                .latitude(room.location.getLatitude())
+                .longitude(room.location.getLongitude())
                 .label(room.label)
-                .propertyType(room.propertyType.getName())
                 .roomImages(room.images.stream().map(Image::getImage).collect(Collectors.toList()))
                 .averageRating(room.averageRating)
                 .title(room.name)

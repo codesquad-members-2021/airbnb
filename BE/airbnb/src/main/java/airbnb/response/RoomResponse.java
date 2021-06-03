@@ -9,13 +9,13 @@ import java.util.List;
 @Getter
 @Builder
 public class RoomResponse {
-    private final Long roomId;
-    private final String label;
-
     @JsonIgnore
     private final String city;
-    private final String location;
-    private final String propertyType;
+    private final Long roomId;
+    private final String label;
+    private final String placeId;
+    private final double latitude;
+    private final double longitude;
     private final List<String> roomImages;
     private final Double averageRating;
     private final String title;
