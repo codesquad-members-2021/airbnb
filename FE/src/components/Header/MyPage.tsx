@@ -71,7 +71,7 @@ const Bust = () => (
 );
 
 const MyPageModal = ({ userInfo }: { userInfo: IUserInfo | null }) => {
-	const targetURL = window.location.href; // "http://3.37.76.224" for deploy // "http://localhost:3000" for dev
+	const targetURL = window.location.origin; // "http://3.37.76.224" for deploy // "http://localhost:3000" for dev
 	return (
 		<MyPageModalWrapper>
 			{userInfo ? (
