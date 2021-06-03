@@ -1,15 +1,14 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 import IconButton from '@material-ui/core/IconButton'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import { useRecoilValue } from 'recoil'
+import Reservation from '../reservation/Reservation'
 import {
   RecoilValueGroup,
-  checkInMessage,
-  checkOutMessage,
   defaultValue,
 } from '../../customHook/atoms'
-import { dateToString } from '../../customHook/useDateInfo'
 import { setScheduleMsg } from './MiniSearchBar'
 import { getFeeMsg } from '../searchBar/fee/Fee'
 function HouseList({ data }: any) {
@@ -26,12 +25,17 @@ function HouseList({ data }: any) {
 
     return str.join(` · `)
   }
+
+  const [open, setOpen] = useState(false)
+  const handleModalClick = () => {
+    setOpen((open)=>!open)
+  }
   return (
     <Frame>
       <SmallSpan>{filteringInfo()}</SmallSpan>
       <ListTitle>선택한 지역의 숙소</ListTitle>
       {data.map((el: any) => (
-        <Column key={el.id}>
+        <Column key={el.id} onClick={handleModalClick}>
           <div>
             <img src={el.thumbnail_image} width='300' height='220' />
           </div>
@@ -68,6 +72,8 @@ function HouseList({ data }: any) {
           </InfoBlock>
         </Column>
       ))}
+      {console.log(open)}
+      {open && <Reservation handleModalClick={handleModalClick}/>} 
     </Frame>
   )
 }
