@@ -23,7 +23,7 @@ public class UserRepository implements JdbcRepository<User> {
     }
 
     public List<User> findByEmail(String email) {
-        String sql = "select `name`, `email` from `user` where `email` like ?"; // 문자일 땐 like
+        String sql = "select `name`, `email` from `user` where `email` like ?";
         return jdbcTemplate.query(sql, userRowMapper(), email);
     }
 

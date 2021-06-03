@@ -38,7 +38,6 @@ public class RoomRepository implements JdbcRepository<Room> {
                 .collect(Collectors.toList());
     }
 
-    @Override
     public Optional<Room> findById(Long id) {
         String sql = "select `id`, `max`, `name`, `rating`, `latitude`, `longitude`, `bedroom_count`, `bed_count`, " +
                 "`bathroom_count`, `address`, `detail_address`, `comment_count`, `original_price`, `sale_price`, " +
@@ -50,7 +49,6 @@ public class RoomRepository implements JdbcRepository<Room> {
                 .map(room -> addThumbnailsAndOptionAndBadges(room)).findAny();
     }
 
-    @Override
     public List<Room> findAll() {
         String sql = "select `id`, `max`, `name`, `rating`, `latitude`, `longitude`, `bedroom_count`, `bed_count`, " +
                 "`bathroom_count`, `address`, `detail_address`, `comment_count`, `original_price`, `sale_price`, " +
