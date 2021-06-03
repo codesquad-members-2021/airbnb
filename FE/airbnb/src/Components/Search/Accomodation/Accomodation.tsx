@@ -7,8 +7,7 @@ import { Accomodation as S } from "@/Components/Search/SearchStyles";
 
 const Accomodation = () => {
   const accomodations = useRecoilValue(searchState);
-  console.log(accomodations);
-  return accomodations.length > 0 ? (
+  return (
     <S.Accomodation>
       <SelectedInfo />
       <Title />
@@ -21,7 +20,7 @@ const Accomodation = () => {
         ))}
       </S.AccomodationCardsScrollBox>
     </S.Accomodation>
-  ) : null;
+  );
 };
 
 export default Accomodation;

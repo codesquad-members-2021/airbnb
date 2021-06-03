@@ -217,7 +217,7 @@ const CalendarModal = {
   CalendarModalWrapper: styled(BOX.FLEX_CENTER_BOX)<{ $isShow: boolean }>`
     display: ${(props) => (props.$isShow ? "flex" : "none")};
     position: absolute;
-    top: 130%;
+    top: 100%;
     width: 94%;
   `,
   CalendarModal: styled(BOX.FLEX_ROW_BOX)`
@@ -318,7 +318,7 @@ const PriceModal = {
   PriceModalWrapper: styled(BOX.FLEX_CENTER_BOX)<{ $isShow: boolean }>`
     display: ${(props) => (props.$isShow ? "flex" : "none")};
     position: absolute;
-    top: 130%;
+    top: 100%;
     width: 94%;
   `,
   PriceModal: styled.div`
@@ -378,7 +378,7 @@ const PeopleModal = {
   PeopleModalWrapper: styled(BOX.FLEX_CENTER_BOX)<{ $isShow: boolean }>`
     display: ${(props) => (props.$isShow ? "flex" : "none")};
     position: absolute;
-    top: 130%;
+    top: 100%;
     width: 94%;
   `,
   PeopleModal: styled.div`

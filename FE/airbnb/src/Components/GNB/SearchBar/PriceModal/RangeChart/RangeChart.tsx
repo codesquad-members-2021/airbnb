@@ -7,22 +7,40 @@ interface Props {
 }
 
 const RangeChart = ({ prices }: Props) => {
+  //
   const makeChartLines = (prices: number[]) => {
     const chartLines = [];
     let $height = 0;
     let $rangeStep = 10000;
+    let index = 0;
 
-    for (let i = 0; i < prices.length; i++) {
-      if (prices[i] < $rangeStep) {
+    for (let i = 0; i < 100; i++) {
+      // console.log(
+      //   "i : ",
+      //   i,
+      //   "rangeStep : ",
+      //   $rangeStep,
+      //   "index : ",
+      //   index,
+      //   "height : ",
+      //   $height
+      // );
+      if (prices[index] < $rangeStep) {
         $height++;
+        index++;
       } else {
         chartLines.push(
-          <ChartLine key={i} $rangeStep={$rangeStep} $height={$height} />
+          <ChartLine
+            key={`${$rangeStep - 10000} ~ ${$rangeStep}`}
+            $rangeStep={$rangeStep}
+            $height={$height}
+          />
         );
-        $height = 1;
+        $height = 0;
         $rangeStep += 10000;
       }
     }
+    // console.log(chartLines);
     return chartLines;
   };
 

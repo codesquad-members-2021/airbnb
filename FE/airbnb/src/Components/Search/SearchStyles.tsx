@@ -115,4 +115,7 @@ export const Map = {
     width: 100%;
     height: 100%;
   `,
+  Marker: styled.div`
+    cursor: pointer;
+  `,
 };
