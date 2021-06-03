@@ -36,6 +36,12 @@ class SearchCoodinator : NSObject, ChildCoordinator {
         navigationController.pushViewController(containerViewController, animated: true)
     }
     
+    func showHotelList(){
+        let hotelListViewcontroller = HotelListViewController.instantiate(name: StoryBoarded.Search.stringValue)
+        hotelListViewcontroller.coordinator = self
+        navigationController.navigationItem.backButtonTitle = "뒤로"
+        navigationController.pushViewController(hotelListViewcontroller, animated: true)
+    }
     func searchDidFinish(){
         parentCoordinator?.childDidFinish(self)
     }

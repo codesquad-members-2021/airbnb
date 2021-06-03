@@ -11,6 +11,8 @@ class ContainerViewController: UIViewController {
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var footerTable: UITableView!
+    @IBOutlet weak var skipButton: UIBarButtonItem!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
     
     weak var coordinator: SearchCoodinator?
     var childController : [UIViewController] = []
@@ -34,7 +36,7 @@ class ContainerViewController: UIViewController {
         case 1: loadPriceGraphView()
         case 2: loadPersonView()
         default:
-            break
+            coordinator?.showHotelList()
         }
     }
     
@@ -70,10 +72,13 @@ extension ContainerViewController {
         personViewController.infoDelegate = self
         self.childController.append(personViewController)
         self.addChildView(asChildViewController: personViewController)
+        self.nextButton.title = "검색"
     }
     
     func addChildView(asChildViewController viewController: UIViewController) {
         order += 1
+        skipButton.isEnabled = true
+        nextButton.isEnabled = false
         addChild(viewController)
         containerView.addSubview(viewController.view)
         viewController.view.frame = containerView.bounds
@@ -97,18 +102,24 @@ extension ContainerViewController : SelectInfoDelegate {
         dataSource.contents["체크인/체크아웃"] = date.date.toString()
         let indexPath = IndexPath(row: 1, section: 0)
         footerTable.reloadRows(at: [indexPath], with: .top)
+        skipButton.isEnabled = false
+        nextButton.isEnabled = true
     }
     
     func didSelectCost(_ cost: Int) {
         dataSource.contents.updateValue(String(cost), forKey: "요금")
         let indexPath = IndexPath(row: 2, section: 0)
         footerTable.reloadRows(at: [indexPath], with: .top)
+        skipButton.isEnabled = false
+        nextButton.isEnabled = true
     }
     
     func didSelectPerson(_ person: Int) {
         dataSource.contents["인원"] = "게스트 \(person)명"
         let indexPath = IndexPath(row: 3, section: 0)
         footerTable.reloadRows(at: [indexPath], with: .top)
+        skipButton.isEnabled = false
+        nextButton.isEnabled = true
     }
     
 }

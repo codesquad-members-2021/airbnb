@@ -275,6 +275,8 @@
                     <connections>
                         <outlet property="containerView" destination="kjO-cb-8cc" id="vCr-4W-3nH"/>
                         <outlet property="footerTable" destination="Egu-HS-l78" id="ifp-1y-2Dr"/>
+                        <outlet property="nextButton" destination="xSk-IC-c8j" id="Bvq-N3-4di"/>
+                        <outlet property="skipButton" destination="gdj-Vo-gfN" id="L96-zJ-2lW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Os-E5-eHt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -425,6 +427,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DhM-gk-4Mo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4525" y="76"/>
+        </scene>
+        <!--Hotel List View Controller-->
+        <scene sceneID="yyl-Hy-UkE">
+            <objects>
+                <viewController storyboardIdentifier="HotelListViewController" id="eSF-M9-yrq" customClass="HotelListViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gQ7-hF-kES">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="l1B-pC-xTu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IOI-wf-6xN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5351" y="76"/>
         </scene>
     </scenes>
     <resources>
