@@ -9,8 +9,8 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
@@ -25,7 +25,7 @@ public class AuthController {
     private final String GITHUB_USER_URI = "https://api.github.com/user";
     private final String ISSUER = "";
     private final String CLIENT_ID = "c7adc71d1700acad7b68";
-    private final String CLIENT_SECRET = "8f4d94cc189366764e59cea607cc9a8838b51178";
+    private final String CLIENT_SECRET = "시크릿 항상 확인";
     private String CODE = "YET";
     private HttpSession httpSession;
 
@@ -38,6 +38,7 @@ public class AuthController {
 
     @GetMapping("/github/callback")
     public ResponseEntity<Jwt> auth(String code) {
+
         RestTemplate gitHubRequest = new RestTemplate();
 
         GithubAccessTokenResponse accessToken = getAccessToken(code, gitHubRequest)
@@ -54,9 +55,24 @@ public class AuthController {
         return ResponseEntity.ok(new Jwt(jwt));
     }
 
-    @GetMapping("/code")
-    public String jwtReturn(){
-        return CODE;
+    @GetMapping("/github")
+    public ResponseEntity<Jwt> githubToken(@RequestParam String code)
+    {
+        logger.info("code : {}",code);
+        RestTemplate gitHubRequest = new RestTemplate();
+
+        GithubAccessTokenResponse accessToken = getAccessToken(code, gitHubRequest)
+                .orElseThrow(() -> new RuntimeException("바디 없음"));
+
+        System.out.println(accessToken);
+        System.out.println(gitHubRequest);
+
+        User user = getUserFromGitHub(accessToken, gitHubRequest)
+                .orElseThrow(() -> new RuntimeException("바디 없음"));
+
+        String jwt = getJwt(user);
+        CODE = jwt;
+        return ResponseEntity.ok(new Jwt(jwt));
     }
 
     private String getJwt(User user) {
