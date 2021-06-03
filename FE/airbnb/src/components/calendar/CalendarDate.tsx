@@ -6,9 +6,9 @@ import {
   dayType,
   selectDateState,
   hoverDateState,
-} from '../../recoil/calendarAtom';
-import { selectCheckBoxState } from '../../recoil/headerAtom';
-import { getTimes } from '../header/form/calendar/calendarDateFn';
+} from '../../recoilStore/calendarAtom';
+import { selectCheckBoxState } from '../../recoilStore/headerAtom';
+import { getTimes } from '../../util/calendarUtils';
 
 interface Props {
   monthData: dayType[][];

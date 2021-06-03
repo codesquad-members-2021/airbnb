@@ -42,13 +42,13 @@ const PriceChart = ({ priceSection }: Props) => {
 
     ctx.moveTo(prevX, prevY);
 
-    for (let i = 1; i < dots.length; i++) {
-      const cx = (prevX + dots[i].x) / 2;
-      const cy = (prevY + dots[i].y) / 2;
+    dots.forEach((dot) => {
+      const cx = (prevX + dot.x) / 2;
+      const cy = (prevY + dot.y) / 2;
       ctx.quadraticCurveTo(prevX, prevY, cx, cy);
-      prevX = dots[i].x;
-      prevY = dots[i].y;
-    }
+      prevX = dot.x;
+      prevY = dot.y;
+    });
 
     ctx.lineTo(prevX, prevY);
     ctx.fill();

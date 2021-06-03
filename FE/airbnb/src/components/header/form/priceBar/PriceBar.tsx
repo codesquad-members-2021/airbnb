@@ -1,17 +1,18 @@
 import { MouseEvent, RefObject, useState } from 'react';
 import styled from 'styled-components';
-import { getNumberWithComma } from '../../../util/util';
+import { getNumberWithComma } from '../../../../util/tsUtils';
 import PriceChart from './PriceChart';
 import { btnPositionType, priceSectionType } from './priceType';
 import { ReactComponent as PauseBtn } from '../../../../assets/svg/Property 1=pause-circle.svg';
 import { priceData as sampleData } from './sampleData';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import { throttle } from '../../../../util/util';
 import {
   fetchPrice,
   pauseBtnLastPositionState,
   pauseBtnPositionState,
   priceState,
-} from '../../../../recoil/headerAtom';
+} from '../../../../recoilStore/headerAtom';
 
 export const PRICE_DATA = {
   WIDTH: 365,
@@ -29,11 +30,11 @@ const PriceBar = ({ toggleRef }: Props) => {
   const [isBtnDown, setIsBtnDown] = useState(false);
   const [downBtnType, setDownBtnType] = useState({ left: false, right: false });
   const [clickPosition, setClickPosition] = useState(0);
+  const [priceData, setPriceData] = useState(sampleData);
+  // const priceData = useRecoilValue(fetchPrice);
   const [btnPosition, setBtnPosition] = useRecoilState(pauseBtnPositionState);
   const [btnLastPosition, setBtnLastPosition] = useRecoilState(pauseBtnLastPositionState);
   const [priceRange, setPriceRange] = useRecoilState(priceState);
-  const [priceData, setPriceData] = useState(sampleData);
-  // const priceData = useRecoilValue(fetchPrice);
 
   console.log(priceData);
   const minPrice = getNumberWithComma(priceRange.min);
@@ -76,6 +77,8 @@ const PriceBar = ({ toggleRef }: Props) => {
     }
   };
 
+  const throttleHandleMouseMove = throttle(handleMouseMove, 10);
+
   const handleMouseUp = (e: MouseEvent): void => {
     if (!isBtnDown) return;
     setIsBtnDown(false);
@@ -91,7 +94,8 @@ const PriceBar = ({ toggleRef }: Props) => {
       ref={toggleRef}
       btnPosition={btnPosition}
       onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
+      // onMouseMove={handleMouseMove}
+      onMouseMove={throttleHandleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >

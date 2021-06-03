@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { selectCheckBoxState } from '../../recoil/headerAtom';
+import { selectCheckBoxState } from '../../recoilStore/headerAtom';
 
 interface Props {
   children: (JSX.Element | boolean)[] | JSX.Element | string;

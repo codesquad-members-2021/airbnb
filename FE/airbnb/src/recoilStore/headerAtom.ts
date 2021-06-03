@@ -1,5 +1,4 @@
 import { atom, selector } from 'recoil';
-import { timeToDate } from '../components/header/form/calendar/calendarDateFn';
 import { guestStateType } from '../components/header/form/guestToggle/guestType';
 import { serverAPI } from '../util/api';
 import { selectDateState } from './calendarAtom';
@@ -42,6 +41,14 @@ export const pauseBtnLastPositionState = atom({
 export const guestState = atom<guestStateType>({
   key: 'guestState',
   default: { adult: 0, child: 0, infants: 0 },
+});
+
+export const totalGuestSelector = selector({
+  key: 'totalGuestSelector',
+  get: ({ get }) => {
+    const guests = get(guestState);
+    return Object.values(guests).reduce((acc, cur) => acc + cur);
+  },
 });
 
 interface reserveInfoType {

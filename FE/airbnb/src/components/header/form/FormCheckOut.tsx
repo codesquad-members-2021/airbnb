@@ -1,12 +1,12 @@
 import { MouseEvent, RefObject } from 'react';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { calendarOpenState, selectDateState } from '../../../recoil/calendarAtom';
+import { calendarOpenState, selectDateState } from '../../../recoilStore/calendarAtom';
 import HoverBlock from '../HoverBlock';
-import { getDateByTime } from './calendar/calendarDateFn';
+import { getDateByTime } from '../../../util/calendarUtils';
 import FormColumn from './FormColumn';
 import { ReactComponent as DeleteBtn } from '../../../assets/svg/Property 1=x-circle.svg';
-import { selectCheckBoxState } from '../../../recoil/headerAtom';
+import { selectCheckBoxState } from '../../../recoilStore/headerAtom';
 
 interface Props {
   checkOutRef: RefObject<HTMLDivElement>;
@@ -22,7 +22,7 @@ const FormCheckOut = ({ checkOutRef }: Props) => {
   const description = date ? `${date.month}월 ${date.day}일` : '날짜';
   const isShowDeleteBtn = !!selectDate.checkOut && open && selectBox === 'checkOut';
 
-  const handleDeleteClick = (e: MouseEvent): void => {
+  const resetClickHandler = (e: MouseEvent): void => {
     e.stopPropagation();
     resetSelectDate();
   };
@@ -31,7 +31,7 @@ const FormCheckOut = ({ checkOutRef }: Props) => {
     <StyledFormCheckOut ref={checkOutRef} data-type='checkOut'>
       <HoverBlock color='gray5' className='hover__checkOut' dataKey='checkOut' isModal={open}>
         <FormColumn title='체크아웃' description={description} />
-        {isShowDeleteBtn && <DeleteBtn onClick={handleDeleteClick} />}
+        {isShowDeleteBtn && <DeleteBtn onClick={resetClickHandler} />}
       </HoverBlock>
     </StyledFormCheckOut>
   );

@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { selectDateState } from '../../recoil/calendarAtom';
-import { getBetweenDays } from '../header/form/calendar/calendarDateFn';
-import { getNumberWithComma } from '../util/util';
+import { selectDateState } from '../../recoilStore/calendarAtom';
+import { getBetweenDays } from '../../util/calendarUtils';
+import { getNumberWithComma } from '../../util/tsUtils';
 import { roomType } from './roomType';
 interface Props {
   roomData: roomType;

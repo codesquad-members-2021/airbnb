@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { roomsState } from '../../recoil/reserveRoomAtom';
+import { roomsState } from '../../recoilStore/reserveRoomAtom';
 import ReserveRoom from './ReserveRoom';
 import { roomType } from './roomType';
 

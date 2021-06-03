@@ -1,7 +1,7 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { selectDateState } from '../../../recoil/calendarAtom';
-import { getBetweenDays } from '../../header/form/calendar/calendarDateFn';
+import { selectDateState } from '../../../recoilStore/calendarAtom';
+import { getBetweenDays } from '../../../util/calendarUtils';
 
 interface Props {
   chargePerNight: number;

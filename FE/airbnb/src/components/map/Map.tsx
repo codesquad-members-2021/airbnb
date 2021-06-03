@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { roomsState } from '../../recoil/reserveRoomAtom';
+import { roomsState } from '../../recoilStore/reserveRoomAtom';
 import MapLabel from './MapLabel';
 const { kakao } = window;
 interface Props {

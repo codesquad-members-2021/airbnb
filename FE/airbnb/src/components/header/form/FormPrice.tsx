@@ -7,8 +7,8 @@ import {
   pauseBtnLastPositionState,
   pauseBtnPositionState,
   priceState,
-} from '../../../recoil/headerAtom';
-import { getNumberWithComma } from '../../util/util';
+} from '../../../recoilStore/headerAtom';
+import { getNumberWithComma } from '../../../util/tsUtils';
 import HoverBlock from '../HoverBlock';
 import FormColumn from './FormColumn';
 import PriceBar, { PRICE_DATA } from './priceBar/PriceBar';
@@ -39,7 +39,7 @@ const FormPrice = () => {
 
   const priceDescripition = `￦${minPrice} ~ ￦${maxPrice}`;
 
-  const handleDeleteClick = (e: MouseEvent): void => {
+  const resetClickHandler = (e: MouseEvent): void => {
     e.stopPropagation();
     resetPriceRange();
     resetBtnPosition();
@@ -51,7 +51,7 @@ const FormPrice = () => {
       <StyledFormPrice ref={clickRef} data-type='price'>
         <HoverBlock color='gray5' className='hover__price' dataKey='price' isModal={open}>
           <FormColumn title='요금' description={priceDescripition} />
-          {isShowDeleteBtn && open && <DeleteBtn onClick={handleDeleteClick} />}
+          {isShowDeleteBtn && open && <DeleteBtn onClick={resetClickHandler} />}
         </HoverBlock>
       </StyledFormPrice>
       {open && (

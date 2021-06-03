@@ -1,4 +1,4 @@
-import { timeToDate } from '../components/header/form/calendar/calendarDateFn';
+import { timeToDate } from './calendarUtils';
 import { guestStateType } from '../components/header/form/guestToggle/guestType';
 
 export interface reserveInfoType {

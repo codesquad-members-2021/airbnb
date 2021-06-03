@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { ReactComponent as MinusBtn } from '../../../../assets/svg/Property 1=minus-circle.svg';
 import { ReactComponent as PlusBtn } from '../../../../assets/svg/Property 1=plus-circle.svg';
-import { guestState } from '../../../../recoil/headerAtom';
+import { guestState } from '../../../../recoilStore/headerAtom';
 
 interface Props {
   guestData: {
