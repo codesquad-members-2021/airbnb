@@ -89,7 +89,7 @@ public class AccommodationRequest {
 
     @Override
     public String toString() {
-        return "AccommodationRequestDTO{" +
+        return "AccommodationRequest{" +
                        "checkin=" + checkinDate +
                        ", checkout=" + checkoutDate +
                        ", startPrice=" + startPrice +

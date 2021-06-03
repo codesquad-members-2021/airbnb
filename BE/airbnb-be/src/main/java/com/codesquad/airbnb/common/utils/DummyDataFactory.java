@@ -112,14 +112,14 @@ public class DummyDataFactory {
         );
     }
 
-    public static List<AccommodationResponse> accommodationResponseDTOs() {
+    public static List<AccommodationResponse> accommodationResponses() {
         return accommodations().stream()
                        .map(AccommodationResponse::from)
                        .collect(Collectors.toList());
     }
 
-    public static List<AccommodationResponse> accommodationResponseDTOsWithId() {
-        List<AccommodationResponse> accommodationResponses = accommodationResponseDTOs();
+    public static List<AccommodationResponse> accommodationResponsesWithId() {
+        List<AccommodationResponse> accommodationResponses = accommodationResponses();
 
         for (int i = 0; i < accommodationResponses.size(); i++) {
             accommodationResponses.get(i).setId(Long.valueOf(i + 1));

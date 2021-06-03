@@ -15,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -29,6 +30,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ActiveProfiles("mockup")
 class AccommodationControllerTest {
     private static final String BASE_URL = "http://localhost";
 
@@ -57,25 +59,25 @@ class AccommodationControllerTest {
                 Arguments.arguments(
                         "/accommodations",
                         new AccommodationRequest(null, null, null, null, null),
-                        DummyDataFactory.accommodationResponseDTOsWithId()
+                        DummyDataFactory.accommodationResponsesWithId()
                 ), Arguments.arguments(
                         "/accommodations",
                         new AccommodationRequest(null, null, null, 300000, null),
-                        DummyDataFactory.accommodationResponseDTOsWithId().stream()
-                                .filter(accommodationResponseDTO -> accommodationResponseDTO.pricePerNight() <= 300000)
+                        DummyDataFactory.accommodationResponsesWithId().stream()
+                                .filter(accommodationResponse -> accommodationResponse.pricePerNight() <= 300000)
                                 .collect(Collectors.toList())
                 ), Arguments.arguments(
                         "/accommodations",
                         new AccommodationRequest(null, null, 100000, null, null),
-                        DummyDataFactory.accommodationResponseDTOsWithId().stream()
-                                .filter(accommodationResponseDTO -> 100000 <= accommodationResponseDTO.pricePerNight())
+                        DummyDataFactory.accommodationResponsesWithId().stream()
+                                .filter(accommodationResponse -> 100000 <= accommodationResponse.pricePerNight())
                                 .collect(Collectors.toList())
                 ), Arguments.arguments(
                         "/accommodations",
                         new AccommodationRequest(null, null, 100000, 300000, null),
-                        DummyDataFactory.accommodationResponseDTOsWithId().stream()
-                                .filter(accommodationResponseDTO -> 100000 <= accommodationResponseDTO.pricePerNight())
-                                .filter(accommodationResponseDTO -> accommodationResponseDTO.pricePerNight() <= 300000)
+                        DummyDataFactory.accommodationResponsesWithId().stream()
+                                .filter(accommodationResponse -> 100000 <= accommodationResponse.pricePerNight())
+                                .filter(accommodationResponse -> accommodationResponse.pricePerNight() <= 300000)
                                 .collect(Collectors.toList())
                 )
         );
