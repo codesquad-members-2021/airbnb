@@ -3,18 +3,25 @@ import styled from 'styled-components'
 import IconButton from '@material-ui/core/IconButton'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import FavoriteIcon from '@material-ui/icons/Favorite'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import Reservation from '../reservation/Reservation'
 import {
   RecoilValueGroup,
-  defaultValue,
+  defaultValue, RoomData
 } from '../../customHook/atoms'
 import { setScheduleMsg } from './MiniSearchBar'
 import { getFeeMsg } from '../searchBar/fee/Fee'
+
+interface IpriceType {
+  type?:string
+}
+
 function HouseList({ data }: any) {
-  const keepData = RecoilValueGroup()
-  const { checkIn, checkOut, priceMin, priceMax, minFeePercent, maxFeePercent, guestMsg } = keepData
-  const filteringInfo = () => {
+  const [RoomDatas, setRoomDatas] = useRecoilState(RoomData)
+  setRoomDatas(data)
+  const { checkIn, checkOut, priceMin, priceMax, minFeePercent, maxFeePercent, guestMsg } = useRecoilValue(RecoilValueGroup)
+
+  const filteringInfo = (data:any) => {
     let str = []
     str.push(`${data.length}개의 숙소`)
     if (setScheduleMsg(checkIn, checkOut) !== defaultValue.checkIn)
@@ -27,15 +34,19 @@ function HouseList({ data }: any) {
   }
 
   const [open, setOpen] = useState(false)
-  const handleModalClick = () => {
-    setOpen((open)=>!open)
+  const [targetData, setTargetData] = useState(null)
+  const handleModalClick = (e:React.MouseEvent<HTMLDivElement, MouseEvent>, el:any) => {
+    setOpen(true)
+    setTargetData(el)
   }
+
+
   return (
     <Frame>
-      <SmallSpan>{filteringInfo()}</SmallSpan>
+      <SmallSpan>{filteringInfo(data)}</SmallSpan>
       <ListTitle>선택한 지역의 숙소</ListTitle>
       {data.map((el: any) => (
-        <Column key={el.id} onClick={handleModalClick}>
+        <Column key={el.id} onClick={(e)=>handleModalClick(e, el)}>
           <div>
             <img src={el.thumbnail_image} width='300' height='220' />
           </div>
@@ -60,20 +71,19 @@ function HouseList({ data }: any) {
             <div>
               <Review>
                 ⭐{el.review.star.toFixed(1)}
-                <span> (후기 {el.review.review}개)</span>
+                <ReviewSpan> (후기 {el.review.review}개)</ReviewSpan>
               </Review>
-              <Price>
-                <div>
+              <PriceBlock>
+                <PriceDay type={'column'}>
                   ₩ {el.price_per_date} <span>/ 박</span>
-                </div>
-                <div>총액 ₩{el.total_price}</div>
-              </Price>
+                </PriceDay>
+                <div>총액 ₩{el.price_per_date}</div>
+              </PriceBlock>
             </div>
           </InfoBlock>
         </Column>
       ))}
-      {console.log(open)}
-      {open && <Reservation handleModalClick={handleModalClick}/>} 
+      {open && <Reservation setOpen={setOpen} targetData={targetData}></Reservation>}
     </Frame>
   )
 }
@@ -86,30 +96,30 @@ const LikeBtn = styled.div`
   top: -16px;
   left: 356px;
 `
-const Price = styled.div`
+const PriceBlock = styled.div`
   display: flex;
   flex-flow: column;
-  div {
-    font-weight: ${({ theme }) => theme.fontWeight.w2};
-    font-size: ${({ theme }) => theme.fontSize.x_sm};
-    span {
+`
+const PriceDay = styled.div<IpriceType>`
+  font-weight: ${({ theme }) => theme.fontWeight.w2};
+  font-size: ${({type, theme}) =>type==='column'? theme.fontSize.x_sm: theme.fontSize.lg};
+  align-self: flex-end;  
+  span {
       font-weight: ${({ theme }) => theme.fontWeight.w1};
     }
-    align-self: flex-end;
-    &:last-child {
-      color: ${({ theme }) => theme.color.grey_2};
-      font-size: ${({ theme }) => theme.fontSize.super_sm};
-      font-weight: ${({ theme }) => theme.fontWeight.w1};
-      text-decoration: underline;
-    }
+  &:last-child {
+    color: ${({ theme }) => theme.color.grey_2};
+    font-size: ${({ theme }) => theme.fontSize.super_sm};
+    font-weight: ${({ theme }) => theme.fontWeight.w1};
+    text-decoration: underline;
   }
+`
+const ReviewSpan = styled.span`
+color: ${({ theme }) => theme.color.grey_2};
+font-weight: ${({ theme }) => theme.fontWeight.w1};
 `
 const Review = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.w2};
-  span {
-    color: ${({ theme }) => theme.color.grey_2};
-    font-weight: ${({ theme }) => theme.fontWeight.w1};
-  }
 `
 const SmallSpan = styled.div`
   color: ${({ theme }) => theme.color.grey_3};
