@@ -9,6 +9,9 @@ import java.util.List;
 @Getter
 @Builder
 public class RoomResponse {
+    private final Long roomId;
+    private final String label;
+
     @JsonIgnore
     private final String city;
     private final String location;

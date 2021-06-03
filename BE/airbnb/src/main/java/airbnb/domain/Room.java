@@ -51,11 +51,11 @@ public class Room {
 
     private int maximumNumberOfGuests;
 
+    private String label;
+
     @ManyToOne
     @JoinColumn
     private Host host;
-
-    private boolean wish;
 
     @Enumerated(EnumType.STRING)
     private PropertyType propertyType;
@@ -72,8 +72,10 @@ public class Room {
 
     public static RoomResponse createRoomResponse(Room room) {
         return RoomResponse.builder()
+                .roomId(room.id)
                 .city(room.city.getName())
                 .location(room.location.getPlaceId())
+                .label(room.label)
                 .propertyType(room.propertyType.getName())
                 .roomImages(room.images.stream().map(Image::getImage).collect(Collectors.toList()))
                 .averageRating(room.averageRating)

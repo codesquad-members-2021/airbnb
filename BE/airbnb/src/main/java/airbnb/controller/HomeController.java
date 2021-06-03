@@ -5,7 +5,6 @@ import airbnb.repository.CategoryRepository;
 import airbnb.repository.CityRepository;
 import airbnb.response.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
