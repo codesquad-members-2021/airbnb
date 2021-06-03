@@ -52,4 +52,16 @@ public class BookingRequest {
     public int getTotalPrice() {
         return totalPrice;
     }
+
+    @Override
+    public String toString() {
+        return "BookingRequest{" +
+                "roomId=" + roomId +
+                ", userId=" + userId +
+                ", checkIn=" + checkIn +
+                ", checkOut=" + checkOut +
+                ", numberOfPeople=" + numberOfPeople +
+                ", totalPrice=" + totalPrice +
+                '}';
+    }
 }

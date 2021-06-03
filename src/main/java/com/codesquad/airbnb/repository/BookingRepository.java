@@ -41,7 +41,7 @@ public class BookingRepository implements JdbcRepository<Booking> {
         jdbcTemplate.update(sql, bookingId);
     }
 
-    public List<Booking> findFilteredBooking(Booking booking) {
+    public List<Booking> findDuplicatedBooking(Booking booking) {
         //-- controller에서..
         // 날짜 겹치는 Booking 쿼리로 조회
         //    -> 날짜 겹침 -> List not empty -> "false" (= 예약 불가능)

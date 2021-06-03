@@ -36,7 +36,6 @@ public class RoomRepositoryTest {
         List<Room> rooms = roomRepository.getFilteredRooms(LocalDate.of(2021, 5, 20),
                 LocalDate.of(2021, 5, 21),
                 55000, 80000, 2);
-
         rooms.forEach(System.out::println);
     }
 }
