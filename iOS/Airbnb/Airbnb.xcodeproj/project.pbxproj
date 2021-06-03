@@ -29,6 +29,10 @@
 		AE87A77C26687F71003E9541 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A77A26687F71003E9541 /* PersonCell.swift */; };
 		AE87A77D26687F71003E9541 /* PersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE87A77B26687F71003E9541 /* PersonCell.xib */; };
 		AE87A7812668992C003E9541 /* PeopleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A7802668992C003E9541 /* PeopleViewModel.swift */; };
+		AE87A7842668D19D003E9541 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A7832668D19D003E9541 /* SearchResultViewController.swift */; };
+		AE87A7862668DF22003E9541 /* ResultSupplymentaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A7852668DF22003E9541 /* ResultSupplymentaryView.swift */; };
+		AE87A7892668DFB1003E9541 /* AccommodationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A7872668DFB1003E9541 /* AccommodationCell.swift */; };
+		AE87A78A2668DFB1003E9541 /* AccommodationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE87A7882668DFB1003E9541 /* AccommodationCell.xib */; };
 		AE8CD3B42653538700BCB8FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B32653538700BCB8FC /* AppDelegate.swift */; };
 		AE8CD3B62653538700BCB8FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B52653538700BCB8FC /* SceneDelegate.swift */; };
 		AE8CD3B82653538700BCB8FC /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B72653538700BCB8FC /* MainPageViewController.swift */; };
@@ -86,6 +90,10 @@
 		AE87A77A26687F71003E9541 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		AE87A77B26687F71003E9541 /* PersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonCell.xib; sourceTree = "<group>"; };
 		AE87A7802668992C003E9541 /* PeopleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewModel.swift; sourceTree = "<group>"; };
+		AE87A7832668D19D003E9541 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		AE87A7852668DF22003E9541 /* ResultSupplymentaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSupplymentaryView.swift; sourceTree = "<group>"; };
+		AE87A7872668DFB1003E9541 /* AccommodationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationCell.swift; sourceTree = "<group>"; };
+		AE87A7882668DFB1003E9541 /* AccommodationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccommodationCell.xib; sourceTree = "<group>"; };
 		AE8CD3B02653538700BCB8FC /* Airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE8CD3B32653538700BCB8FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE8CD3B52653538700BCB8FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +184,17 @@
 			path = MainPage;
 			sourceTree = "<group>";
 		};
+		AE87A7822668D149003E9541 /* ResultPage */ = {
+			isa = PBXGroup;
+			children = (
+				AE87A7832668D19D003E9541 /* SearchResultViewController.swift */,
+				AE87A7852668DF22003E9541 /* ResultSupplymentaryView.swift */,
+				AE87A7872668DFB1003E9541 /* AccommodationCell.swift */,
+				AE87A7882668DFB1003E9541 /* AccommodationCell.xib */,
+			);
+			path = ResultPage;
+			sourceTree = "<group>";
+		};
 		AE8CD3A72653538700BCB8FC = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +221,7 @@
 				AE8CD3B92653538700BCB8FC /* Main.storyboard */,
 				AE0B5DF526566D00000B35E7 /* MainPage */,
 				AE9AC6A5265CC1DE0038C198 /* ConditionPage */,
+				AE87A7822668D149003E9541 /* ResultPage */,
 				AE0B5DDE2655FCA0000B35E7 /* Network.swift */,
 				AE8CD3E32653543100BCB8FC /* SupportingFiles */,
 			);
@@ -410,6 +430,7 @@
 				AE8CD3C02653538800BCB8FC /* LaunchScreen.storyboard in Resources */,
 				AE87A77D26687F71003E9541 /* PersonCell.xib in Resources */,
 				AE8CD3BD2653538800BCB8FC /* Assets.xcassets in Resources */,
+				AE87A78A2668DFB1003E9541 /* AccommodationCell.xib in Resources */,
 				AE0B5DE72656073E000B35E7 /* CityCell.xib in Resources */,
 				AE8CD3BB2653538700BCB8FC /* Main.storyboard in Resources */,
 				AE3FE07B26579D3B00A95177 /* RegionCell.xib in Resources */,
@@ -453,6 +474,7 @@
 				AE11F5AA265F3D250034779F /* DayCell.swift in Sources */,
 				AE11F5AC265F3D5F0034779F /* DateGenerator.swift in Sources */,
 				AE3FE07726578F1700A95177 /* RegionData.swift in Sources */,
+				AE87A7842668D19D003E9541 /* SearchResultViewController.swift in Sources */,
 				AE0B5DEB265631D7000B35E7 /* DetailDestinationViewController.swift in Sources */,
 				AE87A77926687F1C003E9541 /* PeopleTableViewController.swift in Sources */,
 				AE0B5DDF2655FCA0000B35E7 /* Network.swift in Sources */,
@@ -461,9 +483,11 @@
 				AE8CD3B42653538700BCB8FC /* AppDelegate.swift in Sources */,
 				AE0B5DE926562D4A000B35E7 /* TitleSupplementaryView.swift in Sources */,
 				AE0B5DE62656073E000B35E7 /* CityCell.swift in Sources */,
+				AE87A7862668DF22003E9541 /* ResultSupplymentaryView.swift in Sources */,
 				AE8CD3B62653538700BCB8FC /* SceneDelegate.swift in Sources */,
 				AE87A7812668992C003E9541 /* PeopleViewModel.swift in Sources */,
 				AE0B5DF3265642B2000B35E7 /* CategoryCell.swift in Sources */,
+				AE87A7892668DFB1003E9541 /* AccommodationCell.swift in Sources */,
 				AEC52F6E2663FEB200D8F802 /* ConditionTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
