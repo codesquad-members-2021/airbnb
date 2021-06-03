@@ -35,7 +35,7 @@ const FormCheckIn = ({ checkOutRef }: Props) => {
   const description = date ? `${date.month}월 ${date.day}일` : '날짜';
   const isShowDeleteBtn = !!selectDate.checkIn && open && selectBox === 'checkIn';
 
-  const handleDeleteClick = (e: MouseEvent): void => {
+  const resetClickHandler = (e: MouseEvent): void => {
     e.stopPropagation();
     resetSelectDate();
   };
@@ -45,7 +45,7 @@ const FormCheckIn = ({ checkOutRef }: Props) => {
       <StyledFormCheckIn ref={checkInRef} data-type='checkIn'>
         <HoverBlock color='gray5' className='hover__checkIn' dataKey='checkIn' isModal={open}>
           <FormColumn title='체크인' description={description} />
-          {isShowDeleteBtn && <DeleteBtn onClick={handleDeleteClick} />}
+          {isShowDeleteBtn && <DeleteBtn onClick={resetClickHandler} />}
         </HoverBlock>
       </StyledFormCheckIn>
       {open && <FormCalendar toggleRef={toggleRef} />}

@@ -43,7 +43,7 @@ const FormGuest = () => {
     return `게스트 ${totalGuestCount}명`;
   };
 
-  const handleDeleteClick = (e: MouseEvent): void => {
+  const resetClickHandler = (e: MouseEvent): void => {
     e.stopPropagation();
     resetGuests();
   };
@@ -60,7 +60,7 @@ const FormGuest = () => {
       <StyledFormGuest ref={clickRef} isFormOpened={isFormOpened}>
         <HoverBlock color='gray5' className='hover__guest' dataKey='guest' isModal={open}>
           <FormColumn title='인원' description={getGuestDesc()} />
-          {isShowDeleteBtn && <DeleteBtn onClick={handleDeleteClick} />}
+          {isShowDeleteBtn && <DeleteBtn onClick={resetClickHandler} />}
           <ConditionalLink to={linkURL} condition={linkCondition}>
             <div className='search-icon' onClick={handleSubmitClick}>
               <IoSearch />
