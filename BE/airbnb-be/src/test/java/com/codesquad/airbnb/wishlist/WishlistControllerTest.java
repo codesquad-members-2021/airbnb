@@ -1,6 +1,6 @@
 package com.codesquad.airbnb.wishlist;
 
-import com.codesquad.airbnb.common.utils.DummyDataFactory;
+import com.codesquad.airbnb.common.dummydata.WishlistItemDTODummyDataFactory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -54,7 +54,7 @@ class WishlistControllerTest {
                 Arguments.of(
                         "/users/{userId}/wishlist",
                         1L,
-                        DummyDataFactory.wishlist()
+                        WishlistItemDTODummyDataFactory.list()
                 )
         );
     }

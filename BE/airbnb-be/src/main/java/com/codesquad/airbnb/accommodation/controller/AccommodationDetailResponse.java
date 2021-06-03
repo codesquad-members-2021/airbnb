@@ -4,9 +4,10 @@ import com.codesquad.airbnb.accommodation.domain.Accommodation;
 import com.codesquad.airbnb.accommodation.domain.AccommodationOption;
 import com.codesquad.airbnb.reservation.domain.ReservationDetail;
 
+import java.util.List;
 import java.util.Objects;
 
-public class AccommodationResponse {
+public class AccommodationDetailResponse {
     private Long id;
     private String name;
     private AccommodationOption accommodationOption;
@@ -15,11 +16,14 @@ public class AccommodationResponse {
     private double reviewRating;
     private int reviewCounts;
     private String mainImage;
+    private List<String> images;
+    private String description;
+    private AccommodationHost accommodationHost;
 
-    public AccommodationResponse() {
+    private AccommodationDetailResponse() {
     }
 
-    public AccommodationResponse(Long id, String name, AccommodationOption accommodationOption, Integer totalPrice, Integer pricePerNight, double reviewRating, int reviewCounts, String mainImage) {
+    protected AccommodationDetailResponse(Long id, String name, AccommodationOption accommodationOption, Integer totalPrice, Integer pricePerNight, double reviewRating, int reviewCounts, String mainImage, List<String> images, String description, AccommodationHost accommodationHost) {
         this.id = id;
         this.name = name;
         this.accommodationOption = accommodationOption;
@@ -28,9 +32,12 @@ public class AccommodationResponse {
         this.reviewRating = reviewRating;
         this.reviewCounts = reviewCounts;
         this.mainImage = mainImage;
+        this.images = images;
+        this.description = description;
+        this.accommodationHost = accommodationHost;
     }
 
-    public static AccommodationResponse from(Accommodation accommodation) {
+    public static AccommodationDetailResponse from(Accommodation accommodation) {
         return builder().id(accommodation.getId())
                        .name(accommodation.getName())
                        .accommodationOption(accommodation.getAccommodationOption())
@@ -38,10 +45,13 @@ public class AccommodationResponse {
                        .reviewRating(accommodation.getReviewRating())
                        .reviewCounts(accommodation.getReviewCounts())
                        .mainImage(accommodation.getMainImage())
+                       .images(accommodation.getImages())
+                       .description(accommodation.getDescription())
+                       .accommodationHost(accommodation.getAccommodationHost())
                        .build();
     }
 
-    public static AccommodationResponse of(Accommodation accommodation, ReservationDetail reservationDetail) {
+    public static AccommodationDetailResponse of(Accommodation accommodation, ReservationDetail reservationDetail) {
         return builder().id(accommodation.getId())
                        .name(accommodation.getName())
                        .accommodationOption(accommodation.getAccommodationOption())
@@ -50,13 +60,15 @@ public class AccommodationResponse {
                        .reviewRating(accommodation.getReviewRating())
                        .reviewCounts(accommodation.getReviewCounts())
                        .mainImage(accommodation.getMainImage())
+                       .images(accommodation.getImages())
+                       .description(accommodation.getDescription())
+                       .accommodationHost(accommodation.getAccommodationHost())
                        .build();
     }
 
-    public static AccommodationResponseBuilder builder() {
-        return AccommodationResponseBuilder.anAccommodationResponse();
+    public static AccommodationDetailResponseBuilder builder() {
+        return AccommodationDetailResponseBuilder.anAccommodationDetailResponse();
     }
-
 
     public Long getId() {
         return id;
@@ -122,22 +134,46 @@ public class AccommodationResponse {
         this.mainImage = mainImage;
     }
 
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public AccommodationHost getAccommodationHost() {
+        return accommodationHost;
+    }
+
+    public void setAccommodationHost(AccommodationHost accommodationHost) {
+        this.accommodationHost = accommodationHost;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AccommodationResponse that = (AccommodationResponse) o;
-        return Double.compare(that.reviewRating, reviewRating) == 0 && reviewCounts == that.reviewCounts && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(accommodationOption, that.accommodationOption) && Objects.equals(totalPrice, that.totalPrice) && Objects.equals(pricePerNight, that.pricePerNight) && Objects.equals(mainImage, that.mainImage);
+        AccommodationDetailResponse that = (AccommodationDetailResponse) o;
+        return Double.compare(that.reviewRating, reviewRating) == 0 && reviewCounts == that.reviewCounts && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(accommodationOption, that.accommodationOption) && Objects.equals(totalPrice, that.totalPrice) && Objects.equals(pricePerNight, that.pricePerNight) && Objects.equals(mainImage, that.mainImage) && Objects.equals(images, that.images) && Objects.equals(description, that.description) && Objects.equals(accommodationHost, that.accommodationHost);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, accommodationOption, totalPrice, pricePerNight, reviewRating, reviewCounts, mainImage);
+        return Objects.hash(id, name, accommodationOption, totalPrice, pricePerNight, reviewRating, reviewCounts, mainImage, images, description, accommodationHost);
     }
 
     @Override
     public String toString() {
-        return "AccommodationResponse{" +
+        return "AccommodationDetailResponse{" +
                        "id=" + id +
                        ", name='" + name + '\'' +
                        ", accommodationOption=" + accommodationOption +
@@ -146,6 +182,9 @@ public class AccommodationResponse {
                        ", reviewRating=" + reviewRating +
                        ", reviewCounts=" + reviewCounts +
                        ", mainImage='" + mainImage + '\'' +
+                       ", images=" + images +
+                       ", description='" + description + '\'' +
+                       ", accommodationHost=" + accommodationHost +
                        '}';
     }
 }

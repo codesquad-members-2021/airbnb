@@ -4,8 +4,8 @@ public final class AccommodationReservationInfoBuilder {
     private Long id;
     private int pricePerNight;
     private int priceForNights;
-    private int salePrice;
-    private int cleaningPrice;
+    private int discountPrice;
+    private int cleaningFee;
     private int serviceFee;
     private int accommodationTax;
     private int totalPrice;
@@ -33,13 +33,13 @@ public final class AccommodationReservationInfoBuilder {
         return this;
     }
 
-    public AccommodationReservationInfoBuilder salePrice(int salePrice) {
-        this.salePrice = salePrice;
+    public AccommodationReservationInfoBuilder discountPrice(int discountPrice) {
+        this.discountPrice = discountPrice;
         return this;
     }
 
-    public AccommodationReservationInfoBuilder cleaningPrice(int cleaningPrice) {
-        this.cleaningPrice = cleaningPrice;
+    public AccommodationReservationInfoBuilder cleaningFee(int cleaningFee) {
+        this.cleaningFee = cleaningFee;
         return this;
     }
 
@@ -64,6 +64,6 @@ public final class AccommodationReservationInfoBuilder {
     }
 
     public AccommodationReservationInfo build() {
-        return new AccommodationReservationInfo(id, pricePerNight, priceForNights, salePrice, cleaningPrice, serviceFee, accommodationTax, totalPrice, reviewCounts);
+        return new AccommodationReservationInfo(id, pricePerNight, priceForNights, discountPrice, cleaningFee, serviceFee, accommodationTax, totalPrice, reviewCounts);
     }
 }

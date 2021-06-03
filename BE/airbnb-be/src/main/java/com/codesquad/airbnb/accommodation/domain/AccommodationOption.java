@@ -6,7 +6,6 @@ import java.util.Objects;
 
 public class AccommodationOption {
     private int capacity;
-    private int pricePerNight;
     private AccommodationType accommodationType;
     private int bedroomCount;
     private int restroomCount;
@@ -19,9 +18,8 @@ public class AccommodationOption {
     private AccommodationOption() {
     }
 
-    protected AccommodationOption(int capacity, int pricePerNight, AccommodationType accommodationType, int bedroomCount, int restroomCount, RestroomType restroomType, boolean hasKitchen, boolean hasInternet, boolean hasAirconditioner, boolean hasHairdrier) {
+    protected AccommodationOption(int capacity, AccommodationType accommodationType, int bedroomCount, int restroomCount, RestroomType restroomType, boolean hasKitchen, boolean hasInternet, boolean hasAirconditioner, boolean hasHairdrier) {
         this.capacity = capacity;
-        this.pricePerNight = pricePerNight;
         this.accommodationType = accommodationType;
         this.bedroomCount = bedroomCount;
         this.restroomCount = restroomCount;
@@ -38,10 +36,6 @@ public class AccommodationOption {
 
     public int getCapacity() {
         return capacity;
-    }
-
-    public int getPricePerNight() {
-        return pricePerNight;
     }
 
     public AccommodationType getAccommodationType() {
@@ -85,23 +79,22 @@ public class AccommodationOption {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccommodationOption that = (AccommodationOption) o;
-        return capacity == that.capacity && pricePerNight == that.pricePerNight && bedroomCount == that.bedroomCount && restroomCount == that.restroomCount && hasKitchen == that.hasKitchen && hasInternet == that.hasInternet && hasAirconditioner == that.hasAirconditioner && hasHairdrier == that.hasHairdrier && accommodationType == that.accommodationType && restroomType == that.restroomType;
+        return capacity == that.capacity && bedroomCount == that.bedroomCount && restroomCount == that.restroomCount && hasKitchen == that.hasKitchen && hasInternet == that.hasInternet && hasAirconditioner == that.hasAirconditioner && hasHairdrier == that.hasHairdrier && accommodationType == that.accommodationType && restroomType == that.restroomType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(capacity, pricePerNight, accommodationType, bedroomCount, restroomCount, restroomType, hasKitchen, hasInternet, hasAirconditioner, hasHairdrier);
+        return Objects.hash(capacity, accommodationType, bedroomCount, restroomCount, restroomType, hasKitchen, hasInternet, hasAirconditioner, hasHairdrier);
     }
 
     @Override
     public String toString() {
         return "AccommodationOption{" +
                        "capacity=" + capacity +
-                       ", pricePerNight=" + pricePerNight +
-                       ", accommodationType='" + accommodationType + '\'' +
+                       ", accommodationType=" + accommodationType +
                        ", bedroomCount=" + bedroomCount +
                        ", restroomCount=" + restroomCount +
-                       ", restroomType='" + restroomType + '\'' +
+                       ", restroomType=" + restroomType +
                        ", hasKitchen=" + hasKitchen +
                        ", hasInternet=" + hasInternet +
                        ", hasAirconditioner=" + hasAirconditioner +
