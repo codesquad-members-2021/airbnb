@@ -21,6 +21,9 @@ const GlobalStyle = createGlobalStyle`
     border: none;
     cursor: pointer;
   }
+  a{
+    color: inherit;
+  }
 
   .pac-container{
     border-radius: 2rem;

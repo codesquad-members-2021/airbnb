@@ -35,7 +35,7 @@ const useAxios = (initialUrl: string, methods: Method, options?: any) => {
           return;
         }
         await axios(url, config).then((result) =>
-          dispatch({ type: "FETCH_SUCCESS", payload: result.data })
+          dispatch({ type: "FETCH_SUCCESS", payload: result.data.data })
         );
       } catch (error) {
         dispatch({ type: "FETCH_FAILURE", payload: null });

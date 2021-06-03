@@ -3,7 +3,7 @@ import HotelListItem from "./HotelListItem";
 
 type HotelListProps = {
   hotelListData: {
-    details: string[];
+    options: string[];
     img: string;
     price: number;
     rate: number;
@@ -22,10 +22,10 @@ const HotelListContent = ({ hotelListData }: HotelListProps) => {
       <HotelListTitle>지도에서 선택한 지역의 숙소</HotelListTitle>
       <ul>
         {hotelListData?.map(
-          ({ hotelId, details, img, price, rate, title, wishlist }) => (
+          ({ hotelId, options, img, price, rate, title, wishlist }) => (
             <HotelListItem
               key={hotelId}
-              {...{ details, img, price, rate, title, wishlist }}
+              {...{ options, img, price, rate, title, wishlist }}
             />
           )
         )}
@@ -37,22 +37,24 @@ const HotelListContent = ({ hotelListData }: HotelListProps) => {
 export default HotelListContent;
 
 const StyledHotelListContent = styled.div`
- 
-    display: flex;
-    flex-direction: column;
-    padding: 0 5rem;
-  
-}
+  background-color: white;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0 5rem;
+  ul {
+    overflow-y: scroll;
+  }
 `;
 
 const HotelListTitle = styled.span`
   font-weight: 700;
   font-size: 3rem;
-  margin-bottom:3rem;
+  margin-bottom: 3rem;
 `;
 
 const HotelListSubtitle = styled.span`
   font-weight: 400;
   font-size: 1rem;
-  color: ${({ theme }) => theme.color.Gray4};
+  color: ${({ theme }) => theme.color.Gray3};
 `;

@@ -7,16 +7,19 @@ import {
   useEffect,
   SetStateAction,
 } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { SearchBarHoverData, locationData } from "atoms/searchbarAtom";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  SearchBarHoverData,
+  locationData,
+  isHotelPage,
+} from "atoms/searchbarAtom";
 type InputItemProps = {
   w: String;
   title: string;
-  subtitle: String;
+  subtitle: string | undefined;
   setToggle: Dispatch<SetStateAction<boolean>>;
   onClick: (event: MouseEvent | Event) => void;
 };
-
 const LocationInputItem = ({
   w,
   title,
@@ -25,6 +28,7 @@ const LocationInputItem = ({
   setToggle,
 }: InputItemProps) => {
   const ref = useRef<HTMLInputElement>(null);
+  const isHotelList = useRecoilValue(isHotelPage);
   const setLocationData = useSetRecoilState(locationData);
   const [HoverData, setHoverData] = useRecoilState(SearchBarHoverData);
   const getDeepCopy = (original: any) => JSON.parse(JSON.stringify(original));
@@ -38,7 +42,6 @@ const LocationInputItem = ({
   };
 
   const changeHandler = ({ currentTarget }: ChangeEvent<HTMLInputElement>) => {
-    console.log(currentTarget.value);
     if (currentTarget.value === "") setToggle(true);
     else setToggle(false);
   };
@@ -57,23 +60,27 @@ const LocationInputItem = ({
       );
       autocomplete.addListener("place_changed", () => {
         const location = autocomplete.getPlace().geometry?.location;
-        setLocationData({
-          latitude: location?.lat(),
-          longitude: location?.lng(),
-        });
+        if (location) {
+          setLocationData({
+            latitude: location.lat(),
+            longitude: location.lng(),
+            name: autocomplete.getPlace().name,
+          });
+        }
       });
     }
-  }, [ref,setLocationData]);
+  }, [ref, setLocationData]);
 
   return (
     <FlexBox {...{ w }} onClick={handleClick} aria-checked={HoverData[title]}>
-      <InputTitle>{title}</InputTitle>
+      {isHotelList ? null : <InputTitle>{title}</InputTitle>}
 
       <InputLocalSubtitle
         onChange={changeHandler}
         type="text"
         placeholder="어디로 가시겠습니까?"
         ref={ref}
+        value={subtitle}
       />
     </FlexBox>
   );
