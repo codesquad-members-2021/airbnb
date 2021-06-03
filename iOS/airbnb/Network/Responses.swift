@@ -23,7 +23,7 @@ struct NearPlaceResponse : Decodable {
     }
 }
 
-struct PriceResponse: Decodable {
+struct PriceInfo: Decodable {
     let min: Int
     let max: Int
     let average: Int
