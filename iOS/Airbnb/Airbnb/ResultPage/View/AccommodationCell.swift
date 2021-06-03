@@ -19,10 +19,17 @@ class AccommodationCell: UICollectionViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var totalPriceLabel: UILabel!
     
+    private var isHeartSelected: Bool = false
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+}
+
+
+extension AccommodationCell {
 
     func fillUI(with room: Room) {
         self.convert(imageUrlString: room.images.mainImage) { uiimage in
@@ -44,4 +51,23 @@ class AccommodationCell: UICollectionViewCell {
          handler(UIImage(data: data!) ?? UIImage())
         }
     }
+    
+}
+
+
+extension AccommodationCell {
+    
+    @IBAction func heartButtonTouched(_ sender: UIButton) {
+        let largeConfig = UIImage.SymbolConfiguration(scale: .large)
+
+        isHeartSelected = !isHeartSelected
+        if isHeartSelected {
+            sender.setImage(UIImage(systemName: "heart.fill", withConfiguration: largeConfig), for: .normal)
+            sender.tintColor = .red
+        } else {
+            sender.setImage(UIImage(systemName: "heart", withConfiguration: largeConfig), for: .normal)
+            sender.tintColor = .white
+        }
+    }
+
 }

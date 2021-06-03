@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -82,6 +83,20 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJH-l1-Hp0">
+                                <rect key="frame" x="340" y="20" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="94c-mV-srY"/>
+                                    <constraint firstAttribute="height" constant="30" id="Xts-lg-mqc"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="heartButtonTouched:" destination="gTV-IL-0wX" eventType="touchUpInside" id="8EC-XY-vQe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -90,8 +105,10 @@
                             <constraint firstItem="4yM-aL-clQ" firstAttribute="leading" secondItem="2Ky-zj-TbH" secondAttribute="leading" id="G0n-og-pE0"/>
                             <constraint firstItem="zU1-28-Gpe" firstAttribute="leading" secondItem="2Ky-zj-TbH" secondAttribute="leading" constant="3" id="IQK-mI-IC9"/>
                             <constraint firstAttribute="bottom" secondItem="zU1-28-Gpe" secondAttribute="bottom" constant="15" id="QaY-2d-AqA"/>
+                            <constraint firstItem="lJH-l1-Hp0" firstAttribute="top" secondItem="2Ky-zj-TbH" secondAttribute="top" constant="20" id="bLL-UM-Gv0"/>
                             <constraint firstItem="4yM-aL-clQ" firstAttribute="top" secondItem="2Ky-zj-TbH" secondAttribute="top" id="gXK-Kd-qPe"/>
                             <constraint firstAttribute="trailing" secondItem="4yM-aL-clQ" secondAttribute="trailing" id="wPc-JZ-UkD"/>
+                            <constraint firstAttribute="trailing" secondItem="lJH-l1-Hp0" secondAttribute="trailing" constant="20" id="yOt-bf-7qM"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -116,6 +133,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
