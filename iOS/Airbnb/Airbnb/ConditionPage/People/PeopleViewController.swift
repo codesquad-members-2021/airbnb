@@ -10,7 +10,7 @@ import UIKit
 class PeopleViewController : UIViewController {
     
     private var conditionViewModel: ConditionViewModel
-    private var containerView: UIView!
+    private var conditionContainerView: UIView!
     let label = UILabel()
     
     init(conditionViewModel: ConditionViewModel) {
@@ -35,20 +35,20 @@ class PeopleViewController : UIViewController {
 
 extension PeopleViewController {
     private func configureContainer() {
-        containerView = UIView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(containerView)
+        conditionContainerView = UIView()
+        conditionContainerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(conditionContainerView)
         
         NSLayoutConstraint.activate([
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            containerView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -250),
-            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
+            conditionContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            conditionContainerView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -250),
+            conditionContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            conditionContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
         ])
-        containerView.backgroundColor = .cyan
+        conditionContainerView.backgroundColor = .cyan
         let vc = ConditionTableViewController(viewModel: conditionViewModel)
         self.addChild(vc)
-        containerView.addSubview(vc.view)
+        conditionContainerView.addSubview(vc.view)
     }
 }
 
