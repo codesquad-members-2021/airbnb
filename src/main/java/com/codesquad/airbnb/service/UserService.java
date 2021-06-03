@@ -4,19 +4,10 @@ import com.codesquad.airbnb.GoogleUser;
 import com.codesquad.airbnb.OAuthToken;
 import com.codesquad.airbnb.domain.User;
 import com.codesquad.airbnb.repository.UserRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -26,6 +17,7 @@ public class UserService {
     private Logger logger = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
+    private final OAuthService oauthService;
 
     public UserService(UserRepository userRepository, OAuthService oauthService) {
         this.userRepository = userRepository;
