@@ -43,25 +43,38 @@ type reserveArgType = SerializableParam & {
   charge: number;
 };
 
+export const triggerReserve = atom<boolean>({
+  key: 'checkReserveRoomState',
+  default: false,
+});
+
 export const reserveRoomSelector = selectorFamily({
   key: 'post/reserve-room',
   get:
     ({ id, charge }: reserveArgType) =>
     async ({ get }) => {
-      const selectDateData = get(selectDateState);
-      const checkIn = timeToDate(selectDateData.checkIn);
-      const checkOut = timeToDate(selectDateData.checkOut);
-      const guests = get(totalGuestSelector);
-      const roomReserveInfoData: reserveRoomInfoType = { id, charge, checkIn, checkOut, guests };
-      const postReserveOptions = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      const response = await fetch(serverAPI.reserveRoom(roomReserveInfoData), postReserveOptions);
-      const statusCode = response.status;
-      if (statusCode === 200) return '성공!';
-      else throw Error('잘못된 요청입니다.');
+      const isReserveRoom = get(triggerReserve);
+      if (isReserveRoom) {
+        const selectDateData = get(selectDateState);
+        const checkIn = timeToDate(selectDateData.checkIn);
+        const checkOut = timeToDate(selectDateData.checkOut);
+        const guests = get(totalGuestSelector);
+        const roomReserveInfoData: reserveRoomInfoType = { id, charge, checkIn, checkOut, guests };
+        const postReserveOptions = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        };
+        const response = await fetch(
+          serverAPI.reserveRoom(roomReserveInfoData),
+          postReserveOptions
+        );
+        const statusCode = response.status;
+        if (statusCode === 200) return true;
+        else return false;
+      } else {
+        return false;
+      }
     },
 });
