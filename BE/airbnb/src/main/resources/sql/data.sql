@@ -27,9 +27,11 @@ values ("수원시", "90", "https://a0.muscache.com/im/pictures/926d56aa-8b36-41
 insert into city(name, drive_time, image)
 values ("울산", "240", "https://a0.muscache.com/im/pictures/76e5f1c6-a788-418c-a28b-f0ee29cffd41.jpg?im_q=medq&im_w=240");
 
+insert into user(email, github_id, name, profile_image)
+values ("jane@gmail.com", "hoho", "jane", "https://image.flaticon.com/icons/png/512/2784/2784465.png");
+
 insert into host(name, number_of_reviews, profile_image)
 values("제인", 10, "https://image.flaticon.com/icons/png/512/2784/2784465.png");
-
 
 
 
