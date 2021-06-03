@@ -17,7 +17,6 @@ public class BookingController {
 
     @PostMapping
     public void bookRoom(@RequestBody BookingRequest bookingRequest) {
-        System.out.println(bookingRequest.toString());
         bookingService.saveBooking(bookingRequest);
     }
 
