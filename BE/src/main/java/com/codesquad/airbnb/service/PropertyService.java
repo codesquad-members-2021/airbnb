@@ -15,6 +15,8 @@ import java.util.List;
 @Service
 public class PropertyService {
 
+    private final int DEFAULT_DIFF = 1;
+
     private PropertyDAO propertyDao;
 
     @Autowired
@@ -53,7 +55,7 @@ public class PropertyService {
     }
 
     public PropertiesResponseDTO findBy(Long locationId, LocalDate checkIn, LocalDate checkOut, int minPrice, int maxPrice, int adult, int children, int infant) {
-        long diff = 1;
+        long diff = DEFAULT_DIFF;
 
         if (checkIn != null && checkOut != null) {
             diff = ChronoUnit.DAYS.between(checkIn, checkOut);
@@ -76,8 +78,8 @@ public class PropertyService {
         return new PropertiesResponseDTO(propertyDTOS);
     }
 
-    public PropertiesResponseDTO findByWishList() {
-        List<PropertyDTO> propertyDTOS = propertyDao.findByWishList();
+    public PropertiesResponseDTO findBookmarkTrue() {
+        List<PropertyDTO> propertyDTOS = propertyDao.findBookmarkTrue();
         propertyDTOS
                 .forEach(propertyDTO1 -> propertyDTO1.setImages(propertyDao.findImageByPropertyId(propertyDTO1.getPropertyId()))
                 );

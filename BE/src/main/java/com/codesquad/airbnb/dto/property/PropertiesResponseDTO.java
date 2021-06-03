@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PropertiesResponseDTO {
 
-    List<PropertyDTO> properties = new ArrayList<>();
+    private List<PropertyDTO> properties = new ArrayList<>();
 
     public PropertiesResponseDTO(List<PropertyDTO> properties) {
         this.properties = properties;

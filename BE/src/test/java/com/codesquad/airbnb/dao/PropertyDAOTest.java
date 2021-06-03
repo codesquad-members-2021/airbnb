@@ -52,7 +52,7 @@ public class PropertyDAOTest {
 
     @Test
     void propertyDao_findByWishList() {
-        List<PropertyDTO> properties = propertyDao.findByWishList();
+        List<PropertyDTO> properties = propertyDao.findBookmarkTrue();
         for (PropertyDTO property : properties) {
             assertThat(property).isNotNull();
             logger.info("Find property by propertyDao: {}",
