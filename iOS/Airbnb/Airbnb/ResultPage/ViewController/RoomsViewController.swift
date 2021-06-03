@@ -146,6 +146,8 @@ extension RoomsViewController: UICollectionViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
         
         guard let indexPath = self.collectionView.indexPathsForSelectedItems?.first else { return }
         if let coordinator = self.transitionCoordinator {

@@ -10,6 +10,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailRoomViewController" customModule="Airbnb" customModuleProvider="target">
             <connections>
+                <outlet property="collectionView" destination="XNU-Nv-8ct" id="E8q-WD-gdy"/>
+                <outlet property="dateLabel" destination="CZk-jH-Ghk" id="bbR-gE-ra4"/>
+                <outlet property="descriptionLabel" destination="Qoc-mg-jE7" id="NEO-oz-50n"/>
+                <outlet property="detailLabel" destination="eU8-VI-Yab" id="wVl-2x-hMg"/>
+                <outlet property="gradeLabel" destination="cbt-1F-UIw" id="ZgM-EF-3ja"/>
+                <outlet property="hostImageView" destination="1HZ-OM-VCw" id="HHf-rm-2Yc"/>
+                <outlet property="hostLabel" destination="Ioc-gP-BYw" id="HIp-Y0-7xP"/>
+                <outlet property="positionLabel" destination="uSk-Qi-LUy" id="zgm-de-0Hp"/>
+                <outlet property="priceLabel" destination="OZa-r3-ggK" id="ojU-hf-WNA"/>
+                <outlet property="reviewLabel" destination="av9-x3-IdD" id="XTF-tN-ECO"/>
+                <outlet property="titleLable" destination="ww4-Ue-snw" id="dz6-vV-IfU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -210,6 +221,9 @@
                             <integer key="value" value="20"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="backButtonTouched:" destination="-1" eventType="touchUpInside" id="Hzo-bz-Kic"/>
+                    </connections>
                 </button>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7B-Ws-Xdt">
                     <rect key="frame" x="294" y="64" width="40" height="40"/>
