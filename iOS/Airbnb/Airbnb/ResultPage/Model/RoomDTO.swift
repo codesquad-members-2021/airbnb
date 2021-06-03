@@ -9,6 +9,7 @@ import Foundation
 
 struct Rooms: Codable, Hashable {
     var rooms : [Room]
+    let uuid = UUID()
 }
 
 struct Room: Codable, Hashable {

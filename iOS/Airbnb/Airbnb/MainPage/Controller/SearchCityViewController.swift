@@ -267,6 +267,7 @@ extension SearchCityViewController: UICollectionViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
         
         guard let indexPath = self.collectionView.indexPathsForSelectedItems?.first else { return }
         if let coordinator = self.transitionCoordinator {

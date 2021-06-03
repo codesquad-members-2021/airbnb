@@ -121,7 +121,6 @@ extension PriceViewController {
 extension PriceViewController {
     
     private func configureToolBar() {
-        self.tabBarController?.tabBar.isHidden = true
         let toolbar = UIToolbar()
         view.addSubview(toolbar)
 

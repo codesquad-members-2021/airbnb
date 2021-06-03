@@ -189,7 +189,6 @@ extension CalendarViewController {
 extension CalendarViewController {
     
     func configureToolBar() {
-        self.tabBarController?.tabBar.isHidden = true
         let toolbar = UIToolbar()
         view.addSubview(toolbar)
 

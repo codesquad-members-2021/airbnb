@@ -64,3 +64,12 @@ extension MainPageViewController: UISearchBarDelegate {
     }
 
 }
+
+
+extension MainPageViewController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+}

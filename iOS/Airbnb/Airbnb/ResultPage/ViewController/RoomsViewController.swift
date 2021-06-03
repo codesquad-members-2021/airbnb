@@ -162,6 +162,7 @@ extension RoomsViewController: UICollectionViewDelegate {
 extension RoomsViewController {
     
     func configureNavigation() {
+        self.tabBarController?.tabBar.isHidden = false
         self.navigationItem.title = "숙소 찾기"
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
