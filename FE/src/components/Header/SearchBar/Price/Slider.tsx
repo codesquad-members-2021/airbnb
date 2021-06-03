@@ -1,17 +1,17 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-const Slider = ({ value, setValue }) => {
-	const [start, setStart] = useState();
+const Slider = ({ value, setValue }: { value: number; setValue: React.Dispatch<React.SetStateAction<number>> }) => {
+	const [start, setStart] = useState(0);
 	const [end, setEnd] = useState(value);
 	const [isDown, setDown] = useState(false);
 
-	const mouseDonwHandler = ({ clientX }) => {
+	const mouseDonwHandler = ({ clientX }: React.MouseEvent) => {
 		setDown(true);
-		setStart(() => clientX);
+		setStart(clientX);
 	};
-	const mouseMoveHandler = ({ clientX }) => {
-		if (isDown) setValue(() => clientX - start + end);
+	const mouseMoveHandler = ({ clientX }: React.MouseEvent) => {
+		if (isDown) setValue(clientX - start + end);
 	};
 	const mouseUpHandler = () => {
 		setEnd(() => value);
@@ -41,9 +41,9 @@ const Slider = ({ value, setValue }) => {
 	);
 };
 
-const SliderWrapper = styled.div.attrs(({ value }) => ({
+const SliderWrapper = styled.div.attrs<{ value: number }>(({ value }) => ({
 	style: { transform: `translateX(${value}px)` },
-}))`
+}))<{ value: number }>`
 	position: absolute;
 	bottom: 0px;
 	z-index: 2;

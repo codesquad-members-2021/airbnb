@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { SearchBarContext } from "../../../../config/SearchBarContextProvider";
 import Slider from "./Slider";
 
-const PriceModal = ({ average, range }) => (
+const PriceModal = ({ average, range }: { average: number; range: string }) => (
 	<PriceModalWrapper>
 		<Title>가격 범위</Title>
 		<Range>{range}</Range>
@@ -14,12 +14,11 @@ const PriceModal = ({ average, range }) => (
 
 const Graph = () => {
 	const { min, setMin, max, setMax, priceData } = useContext(SearchBarContext);
+	const drawGraph = (price: number) => <GraphBar price={price} count={priceData.counts[price]} key={price} min={min} max={max} {...priceData} />;
 	return (
 		<GraphWrapper>
 			<GraphContent>
-				{Object.keys(priceData.counts).map((el) => (
-					<GraphBar price={el} count={priceData.counts[el]} key={el} min={min} max={max} {...priceData} />
-				))}
+				{Object.keys(priceData.counts).map((el) => parseInt(el)).map(drawGraph)}
 			</GraphContent>
 			<Slider value={min} setValue={setMin} />
 			<Slider value={max} setValue={setMax} />
@@ -77,9 +76,9 @@ const GraphContent = styled.div`
 	justify-content: center;
 	align-items: flex-end;
 `;
-const GraphBar = styled.div.attrs(({ count, maxCount, length }) => ({
+const GraphBar = styled.div.attrs<{ count: number; maxCount: number; length: number }>(({ count, maxCount, length }) => ({
 	style: { width: `${325 / length}px`, height: `${count * (100 / maxCount)}px` },
-}))`
+}))<{ min: number; max: number; unit: number; minimumPrice: number; price: number; count: number }>`
 	background: ${({ min, max, unit, minimumPrice, price }) =>
 		price >= min * unit + minimumPrice && price <= (max - 20) * unit + minimumPrice ? "#000" : "#aaa"};
 `;

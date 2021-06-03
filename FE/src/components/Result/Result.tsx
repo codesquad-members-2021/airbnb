@@ -14,7 +14,7 @@ const Result = () => {
 	);
 };
 
-const ResultWrapper = styled.div`
+const ResultWrapper = styled.div<{ isModalOn: boolean }>`
 	display: flex;
 	width: 100%;
 	height: 1000px;

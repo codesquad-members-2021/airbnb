@@ -1,10 +1,17 @@
 import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 
+interface IUserInfo {
+	name: string;
+	email: string;
+	userId: string;
+	token: string;
+}
+
 const MyPage = () => {
 	const [isOn, setOn] = useState(Boolean(window.location.search));
-	const [userInfo, setUserInfo] = useState();
-	const currentDOM = useRef();
+	const [userInfo, setUserInfo] = useState<IUserInfo | null>(null);
+	const currentDOM = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		if (userInfo) return;
@@ -18,7 +25,7 @@ const MyPage = () => {
 	}, [userInfo]);
 
 	useEffect(() => {
-		const blur = ({ target }) => !currentDOM.current?.contains(target) && setOn(false);
+		const blur = ({ target }: MouseEvent) => !currentDOM.current?.contains(target as HTMLDivElement) && setOn(false);
 		document.addEventListener("click", blur);
 		return () => document.removeEventListener("click", blur);
 	});
@@ -63,8 +70,8 @@ const Bust = () => (
 	</BustWrapper>
 );
 
-const MyPageModal = ({ userInfo }) => {
-	const targetURL = "http://3.37.76.224" // for deploy
+const MyPageModal = ({ userInfo }: { userInfo: IUserInfo | null }) => {
+	const targetURL = "http://3.37.76.224"; // for deploy
 	// const targetURL = "http://localhost:3000"; // for dev
 	return (
 		<MyPageModalWrapper>

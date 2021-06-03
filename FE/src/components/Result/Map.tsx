@@ -1,35 +1,39 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { ResultContext } from "../../config/ResultContextProvider";
 import addComma from "../../util/addComma";
-const { kakao } = window;
-const { maps } = kakao;
+
+declare global {
+	interface Window {
+		kakao: any;
+	}
+}
 
 const Map = () => {
-	const [map, setMap] = useState();
 	const [isDragOn, setDragOn] = useState(true);
-	const [newOverlay, setNewOverlay] = useState([]);
-	const [oldOverlay, setOldOverlay] = useState([]);
+	// kakao API의 타입은 어떻게 해야 하는가
+	const [map, setMap] = useState<any>(null); // kakao.maps.Map
+	const [newOverlay, setNewOverlay] = useState<any>([]); // kakao.maps.CustomOverlay
+	const [oldOverlay, setOldOverlay] = useState<any>([]); // kakao.maps.CustomOverlay
+	//
 	const { housesList, fetchHouses, latitude, setLatitude, longitude, setLongitude } = useContext(ResultContext);
 
 	useEffect(() => {
 		if (map) return;
 		const container = document.getElementById("map");
-		const options = { center: new maps.LatLng(latitude, longitude), level: 4 };
-		const newMap = new maps.Map(container, options);
+		const options = { center: new window.kakao.maps.LatLng(latitude, longitude), level: 4 };
+		const newMap = new window.kakao.maps.Map(container, options);
 		setMap(() => newMap);
 	}, [latitude, longitude, map]);
 
+	const setMarker = ({ location, charge }: { location: { latitude: number; longitude: number }; charge: number }) =>
+		new window.kakao.maps.CustomOverlay({
+			position: new window.kakao.maps.LatLng(location.latitude, location.longitude),
+			content: `<div class="label">₩${addComma(charge)}</div>`,
+		});
+
 	useEffect(() => {
-		setNewOverlay(() =>
-			housesList.map(
-				({ location, charge }) =>
-					new maps.CustomOverlay({
-						position: new maps.LatLng(location.latitude, location.longitude),
-						content: `<div class="label">₩${addComma(charge)}</div>`,
-					})
-			)
-		);
+		setNewOverlay(() => housesList.map(setMarker));
 	}, [housesList]);
 
 	useEffect(() => {
@@ -42,13 +46,14 @@ const Map = () => {
 			fetchHouses(map.getCenter().getLat(), map.getCenter().getLng());
 		};
 
-		maps.event.addListener(map, "dragend", dragHandler);
-		return () => maps.event.removeListener(map, "dragend", dragHandler);
+		window.kakao.maps.event.addListener(map, "dragend", dragHandler);
+		return () => window.kakao.maps.event.removeListener(map, "dragend", dragHandler);
 	}, [housesList, isDragOn, fetchHouses, map, setLongitude, setLatitude]);
 
 	useEffect(() => {
-		oldOverlay.map((el) => el.setMap(null));
-		newOverlay.map((el) => el.setMap(map));
+		//el : kakao.maps.CustomOverlay
+		oldOverlay.map((el: any) => el.setMap(null));
+		newOverlay.map((el: any) => el.setMap(map));
 		setOldOverlay(() => newOverlay);
 	}, [newOverlay, oldOverlay, map]);
 
@@ -71,8 +76,8 @@ const Map = () => {
 	);
 };
 
-const CheckBox = ({ isDragOn, setDragOn }) => (
-	<CheckBoxWrapper onClick={() => setDragOn((option) => !option)}>
+const CheckBox = ({ isDragOn, setDragOn }: { isDragOn: boolean; setDragOn: React.Dispatch<React.SetStateAction<boolean>> }) => (
+	<CheckBoxWrapper onClick={() => setDragOn((option: boolean) => !option)}>
 		<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<rect x="1" y="1" width="30" height="30" rx="7" fill={isDragOn ? "#4F4F4F" : "#F7F7F7"} />
 			<path d="M21.3332 12L13.9998 19.3333L10.6665 16" stroke="#FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

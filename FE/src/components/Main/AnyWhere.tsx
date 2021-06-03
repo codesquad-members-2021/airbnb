@@ -9,7 +9,12 @@ const AnyWhere = () => (
 	</AnyWhereWrapper>
 );
 
-const Content = ({ title, src }) => (
+interface ContentProps {
+	title: string,
+	src: string
+}
+
+const Content = ({ title, src }: ContentProps) : JSX.Element => (
 	<ContentWrapper>
 		<ContentImage src={src} />
 		<ContentTitle>{title}</ContentTitle>
@@ -18,11 +23,9 @@ const Content = ({ title, src }) => (
 
 const AnyWhereWrapper = styled.div`
 	position: relative;
-	margin-top: 80px;
-
 	width: 1280px;
 	height: 431px;
-
+	margin-top: 80px;
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { ReactEventHandler, useState } from "react";
 import styled from "styled-components";
 import Calendar from "./Calendar/Calendar";
 import delay from "../../../../util/delay";
@@ -7,7 +7,7 @@ const CalendarModal = () => {
 	const [currentModifier, setCurrentModifier] = useState([-1, 0, 1, 2]);
 	const [containerState, setContainerState] = useState("CENTER");
 
-	const slideEvent = async (type) => {
+	const slideEvent = async (type: string) => {
 		await delay(() => setContainerState(type), 400);
 		setCurrentModifier((arr) => arr.map((el) => el + (type === "LEFT" ? -1 : 1)));
 		setContainerState("CENTER");
@@ -28,7 +28,7 @@ const CalendarModal = () => {
 	);
 };
 
-const SlideButton = ({ type, onClick }) => (
+const SlideButton = ({ type, onClick }: { type: string; onClick: ReactEventHandler }) => (
 	<SlideButtonWrapper type={type} onClick={onClick}>
 		{type === "LEFT" ? (
 			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,18 +60,18 @@ const ShowWindow = styled.div`
 	left: 97px;
 	overflow: hidden;
 `;
-const xLocation = {
+const xLocation: { [key: string]: string } = {
 	LEFT: "translateX(0)",
 	CENTER: "translateX(-386px)",
 	RIGHT: "translateX(-772px)",
 };
-const Container = styled.div`
+const Container = styled.div<{ state: string }>`
 	position: absolute;
 	display: flex;
 	transform: ${({ state }) => xLocation[state]};
 	transition: transform ${({ state }) => (state === "CENTER" ? "0ms" : "400ms")};
 `;
-const SlideButtonWrapper = styled.div`
+const SlideButtonWrapper = styled.div<{ type: string }>`
 	position: absolute;
 	top: 70px;
 	left: ${({ type }) => (type === "LEFT" ? "97px" : "795px")};
