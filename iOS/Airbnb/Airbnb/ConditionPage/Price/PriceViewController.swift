@@ -61,7 +61,7 @@ extension PriceViewController {
 extension PriceViewController {
  
     @objc private func labelTouched(_ sender: UILabel) {
-        let price = Price(max: 80000, min: 200000)
+        let price = Price(max: 200000, min: 80000)
         conditionViewModel.updateCondition(price: price)
     }
     
