@@ -45,3 +45,10 @@ export const getFormattingDateFromTime = (dateTime: number) => {
   const [YYYYMMDD] = date.toISOString().split('T');
   return YYYYMMDD.slice(5);
 }
+
+export const getFormattingDateFromTimeAllYear = (dateTime: number) => {
+  const ONE_DAY_TIME = 8.64e+7;
+  const date = new Date(Number(dateTime) + ONE_DAY_TIME);
+  const [YYYYMMDD] = date.toISOString().split('T');
+  return YYYYMMDD;
+}

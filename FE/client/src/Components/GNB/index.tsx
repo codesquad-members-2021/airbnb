@@ -13,6 +13,7 @@ type GNBType = {
 
 const GNB = ({ isMain }: GNBType) => {
   const [showSearchBarState, setShowSearchBarState] = useState(false);
+  const [showLoginModalState, setLoginModalState] = useState(false);
 
   const handleClickToggleSearchBar = useCallback(() => {
     setShowSearchBarState(searchBarState => !searchBarState);
@@ -42,9 +43,12 @@ const GNB = ({ isMain }: GNBType) => {
             : (<SearchMapNav {...{ showSearchBarState, handleClickToggleSearchBar }} />)
           }
 
-          <Menu isMain={isMain}>
+          <Menu {...{ isMain }} onClick={() => setLoginModalState(toggle => !toggle)}>
             <MenuIcon />
             <AccountCircleIcon fontSize="large" />
+            <LoginModal {...{ showLoginModalState }}>
+              <span>로그인</span>
+            </LoginModal>
           </Menu>
         </Header>
         {!isMain && showSearchBarState && <SearchBar />}
@@ -79,6 +83,7 @@ const Logo = styled.span`
 `;
 
 const Menu = styled.div<GNBType>`
+  position:relative;
   display:flex;
   background: #fff;
   width: 6rem;
@@ -89,10 +94,30 @@ const Menu = styled.div<GNBType>`
   place-content: center;
   place-items: center;
   gap: 1rem;
-
   &:hover{
     cursor: pointer;
   }
+`;
+
+type showLogInModalType = {
+  showLoginModalState: boolean;
+}
+const LoginModal = styled.div<showLogInModalType>`
+  display:${({ showLoginModalState }) => showLoginModalState ? 'block' : 'none'};
+ position: absolute;
+ padding: 1.5rem;
+ background: #fff;
+ right:8%;
+ top: 3.5rem;
+ box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
+ border-radius:10px;
+ &>span{
+  display:inline-block;
+  width: 6rem;
+  &:hover{
+   background:#F5F5F7;
+  }
+ }
 `;
 
 

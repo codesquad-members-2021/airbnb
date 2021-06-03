@@ -1,15 +1,18 @@
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { HotelListType } from '@Components/commons/baseType';
 import starImage from '@/Images/star.svg';
 import { useRecoilValue } from 'recoil';
 import { calendarClickAtom } from '@/recoil/atoms';
-import { useMemo } from 'react';
+import { HotelReservationInfoType } from './index';
 
 type HotelInfoTType = {
   hotelInfo: HotelListType
+  handleClickShowReservationModal: ({ price, reviewCount }: HotelReservationInfoType) => () => void;
 }
 const ONE_DAY_TIME = 8.64e+7;
-const HotelItem = ({ hotelInfo }: HotelInfoTType) => {
+
+const HotelItem = ({ hotelInfo, handleClickShowReservationModal }: HotelInfoTType) => {
   const [firstDayTime, LastDayTime] = useRecoilValue(calendarClickAtom);
   const dayCount = useMemo(() => {
     return (LastDayTime - firstDayTime) / ONE_DAY_TIME;
@@ -21,7 +24,7 @@ const HotelItem = ({ hotelInfo }: HotelInfoTType) => {
 
   return (
     <HotelItemWrapper>
-      <ImageWrapper>
+      <ImageWrapper onClick={handleClickShowReservationModal({ price, reviewCount, dayCount })}>
         <ImageTag src={imageUrl.split(',')[Math.floor(Math.random() * 7)]} alt="" />
       </ImageWrapper>
       <HotelDescWrapper>
@@ -78,6 +81,9 @@ const ImageWrapper = styled.div`
   max-width: 300px;
   height: 100%;
   margin-right: 1rem;
+  &:hover{
+    cursor:pointer;
+  }
 `;
 
 const ImageTag = styled.img`
@@ -142,4 +148,4 @@ const ReviewStarPoint = styled.span`
 const ReviewCount = styled.span`
   color: #828282;
 `;
-export default HotelItem;
+export default React.memo(HotelItem);
