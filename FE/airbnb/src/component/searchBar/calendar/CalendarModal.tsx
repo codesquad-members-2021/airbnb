@@ -5,7 +5,7 @@ import { checkoutDateState, hoverDateState } from "state/atoms/calendarAtoms";
 import Calendar from "component/searchBar/calendar/Calendar";
 import { ReactComponent as LeftButton } from "assets/left_arrow.svg";
 import { ReactComponent as RightButton } from "assets/right_arrow.svg";
-import { stopPropagation } from "hooks/modalHooks";
+import { stopPropagation } from "component/searchBar/modalFunctions";
 
 function CalendarModal() {
   const [year, setYear] = useState<number>(() => new Date().getFullYear());

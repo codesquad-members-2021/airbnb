@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { numOfAdultsState, numOfChildrenState, numOfBabiesState } from "state/atoms/calendarAtoms";
+import { numOfAdultsState, numOfChildrenState, numOfBabiesState } from "state/atoms/guestAtoms";
 import GuestListItem from "component/searchBar/guestList/GuestListItem";
-import { stopPropagation } from "hooks/modalHooks";
+import { stopPropagation } from "component/searchBar/modalFunctions";
 
 const ageCategories = [
   { title: "성인", desc: "만 13세 이상", state: numOfAdultsState },
