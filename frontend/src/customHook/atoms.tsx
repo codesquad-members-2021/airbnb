@@ -1,9 +1,6 @@
-import { RefObject } from 'react'
 import { atom, selector, useRecoilValue, useSetRecoilState } from 'recoil'
-import { dateToString, FilterDateToString } from './useDateInfo'
 import { IParams } from '../Interface'
-import { getGuestMsg } from '../components/searchBar/personnel/Personnel'
-import { getFeeMsg } from '../components/searchBar/fee/Fee'
+
 //defaultValue________________________________________
 export const defaultValue = {
   placeAdjacent: '가까운 여행지 둘러보기',
@@ -153,6 +150,7 @@ export function RecoilSetStateGroup(params: IParams) {
     maxFeePercent,
     minFeePercent,
   } = params
+
   const filterUndefined = (date: any) => {
     if (date !== undefined) return date
   }
@@ -172,7 +170,8 @@ export function RecoilSetStateGroup(params: IParams) {
   setMaxFeePercent(filterUndefined(maxFeePercent))
 }
 
-export const RecoilValueGroup = selector({key:'recoilValues', get({get}){
+export const RecoilValueGroup = selector({key:'recoilValues', 
+get({get}){
   const place = get(clickedPlace) 
   const checkIn = get(checkInMessage)
   const checkOut = get(checkOutMessage)
@@ -185,8 +184,13 @@ export const RecoilValueGroup = selector({key:'recoilValues', get({get}){
   const baby = get(personnelBaby)
   const guestMsg = get(personnelMessage)
   return {place, checkIn, checkOut, priceMin, priceMax, minFeePercent, maxFeePercent, adult, child, baby, guestMsg}
-},})
+  
+}})
 
+// ,set({set}, newValues){
+//   const {place} = newValues as IParams
+//   place === defaultValue.placeToSearch ? set(clickedPlace, '근처 추천 장소'): set(clickedPlace, place)
+// }
 
 export function Test() {
   const place = useRecoilValue(clickedPlace)
