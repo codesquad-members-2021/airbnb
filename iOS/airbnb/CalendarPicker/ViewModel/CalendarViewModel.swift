@@ -9,7 +9,7 @@ import UIKit
 
 class CalendarViewModel {
     
-    private var day : Day
+    private(set) var day : Day
     
     init(day : Day) {
         self.day = day

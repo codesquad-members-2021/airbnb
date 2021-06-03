@@ -140,7 +140,12 @@ extension TravelListViewController {
 
 extension TravelListViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        coordinator?.choosePlace()
+        guard let cell = collectionView.cellForItem(at: indexPath) as? NearPlaceCell,
+              let place = cell.areaTitle.text
+        else {
+            return
+        }
+        coordinator?.choosePlace(to: place)
     }
 }
 

@@ -25,7 +25,7 @@ class CalendarViewController: UIViewController {
         return layout
     }()
     
-    private weak var infoDelegate : SelectInfoDelegate?
+    weak var infoDelegate : SelectInfoDelegate?
     private var dataSource : CalenderCollectionDataSource?
     private var numberOfWeeksInBaseDate: Int = 0
     
@@ -67,7 +67,7 @@ extension CalendarViewController : UICollectionViewDelegate {
         
         let viewModel = self.dataSource?.models[indexPath.row]
         viewModel?.toggle(cell)
-        infoDelegate?.didSelectCost(5000)
+        infoDelegate?.didSelectDay(viewModel?.day)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -89,5 +89,14 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 50.0)
+    }
+}
+
+extension CalendarViewController : Storyboarded {
+    static func instantiate() -> Self {
+        let fullName = NSStringFromClass(self)
+        let className = fullName.components(separatedBy: ".")[1]
+        let storyboard = UIStoryboard(name: "Search", bundle: Bundle.main)
+        return storyboard.instantiateViewController(withIdentifier: className) as! Self
     }
 }

@@ -27,7 +27,7 @@ class FooterTableViewDataSource: NSObject, UITableViewDataSource {
         }
         let title = infoTitle[indexPath.row]
         cell.title.text = title
-        cell.content.text = contents[title]
+        cell.info.text = contents[title]
         return cell
     }
 

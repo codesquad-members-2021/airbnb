@@ -28,9 +28,10 @@ class SearchCoodinator : NSObject, ChildCoordinator {
         navigationController.pushViewController(travelListViewController, animated: true)
     }
     
-    func choosePlace(){
+    func choosePlace(to place : String){
         let containerViewController = ContainerViewController.instantiate()
         containerViewController.coordinator = self
+        containerViewController.placeName = place
         navigationController.navigationItem.backButtonTitle = "뒤로"
         navigationController.pushViewController(containerViewController, animated: true)
     }

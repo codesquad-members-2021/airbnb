@@ -17,7 +17,7 @@ class FooterTableViewCell: UITableViewCell, IdentityInfo {
         return label
     }()
     
-    var content: UILabel = {
+    var info: UILabel = {
         let label = UILabel()
         label.text = "content"
         label.font = UIFont.systemFont(ofSize: 17)
@@ -37,7 +37,7 @@ class FooterTableViewCell: UITableViewCell, IdentityInfo {
     
     private func configure() {
         self.contentView.addSubview(title)
-        self.contentView.addSubview(content)
+        self.contentView.addSubview(info)
     }
     
     override func layoutSubviews() {
@@ -46,8 +46,8 @@ class FooterTableViewCell: UITableViewCell, IdentityInfo {
         NSLayoutConstraint.activate([
             title.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            content.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            content.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            info.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            info.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
     }
     

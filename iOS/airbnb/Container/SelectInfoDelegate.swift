@@ -8,8 +8,8 @@
 import Foundation
 
 protocol SelectInfoDelegate : AnyObject {
-    func didselectPlace(_ place : String)
-    func didSelectDay(_ date : Day)
+//    func didselectPlace(_ place : String)
+    func didSelectDay(_ date : Day?)
     func didSelectPerson(_ person : Int)
     func didSelectCost(_ cost : Int)
 }
