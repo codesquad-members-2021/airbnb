@@ -10,11 +10,12 @@ import UIKit
 class PeopleViewController : UIViewController {
     
     private var conditionViewModel: ConditionViewModel
+    private var peopleViewModel: PeopleViewModel
     private var conditionContainerView: UIView!
-    let label = UILabel()
     
     init(conditionViewModel: ConditionViewModel) {
         self.conditionViewModel = conditionViewModel
+        self.peopleViewModel = PeopleViewModel()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -25,7 +26,7 @@ class PeopleViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        configureContainer()
+        configureConditionContainer()
         configureNavigation()
         configureToolBar()
     }
@@ -34,7 +35,8 @@ class PeopleViewController : UIViewController {
 }
 
 extension PeopleViewController {
-    private func configureContainer() {
+    
+    private func configureConditionContainer() {
         conditionContainerView = UIView()
         conditionContainerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(conditionContainerView)
@@ -45,11 +47,29 @@ extension PeopleViewController {
             conditionContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             conditionContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
         ])
-        conditionContainerView.backgroundColor = .cyan
+        
         let vc = ConditionTableViewController(viewModel: conditionViewModel)
         self.addChild(vc)
         conditionContainerView.addSubview(vc.view)
     }
+    
+    private func configurePeopleContainer() {
+        conditionContainerView = UIView()
+        conditionContainerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(conditionContainerView)
+        
+        NSLayoutConstraint.activate([
+            conditionContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            conditionContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            conditionContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 300),
+            conditionContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
+        ])
+        
+        let vc = PeopleTableViewController(viewModel: peopleViewModel)
+        self.addChild(vc)
+        conditionContainerView.addSubview(vc.view)
+    }
+    
 }
 
 
