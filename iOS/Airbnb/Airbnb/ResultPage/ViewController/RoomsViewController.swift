@@ -47,6 +47,7 @@ extension RoomsViewController {
             .sink { rooms in
                 guard let rooms = rooms else { return }
                 self.applySnapshots(with: rooms.rooms)
+                self.updateSupplementaryView(resultNum: rooms.rooms.count)
             }
             .store(in: &cancelBag)
         
@@ -115,12 +116,16 @@ extension RoomsViewController {
         let supplementaryRegistration = UICollectionView.SupplementaryRegistration
         <RoomsSupplementaryView>(elementKind: RoomsViewController.headerElementKind) {
             (supplementaryView, string, indexPath) in
-            supplementaryView.label.text = "~~~"
         }
         dataSource.supplementaryViewProvider = { (view, kind, index) in
             return self.collectionView.dequeueConfiguredReusableSupplementary(
                 using: supplementaryRegistration, for: index)
         }
+    }
+    
+    private func updateSupplementaryView(resultNum: Int) {
+        let view = self.collectionView.supplementaryView(forElementKind: RoomsViewController.headerElementKind, at: IndexPath(row: 0, section: 0)) as? RoomsSupplementaryView
+        view?.fillUI(condition: conditionViewModel.finalCondition(), resultNum: "\(resultNum)개의 숙소")
     }
     
     private func applySnapshots(with rooms: [Room]) {

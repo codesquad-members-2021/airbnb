@@ -99,6 +99,7 @@ extension ConditionViewModel {
     
 }
 
+
 extension ConditionViewModel {
     
     func convertCodable() -> ConditionData {
@@ -108,6 +109,22 @@ extension ConditionViewModel {
     }
     
 }
+
+
+extension ConditionViewModel {
+    
+    func finalCondition() -> String {
+        let cityDic = [1: "서울", 2: "경기도", 3: "강원도", 4: "충청도", 5: "경상남도", 6: "경상북도", 7: "전라남도", 8: "전라북도"]
+        let city = cityDic[city] ?? ""
+        let checkIn = schedule!.checkIn == nil ? "" : "\(schedule!.checkIn!.month)월 \(schedule!.checkIn!.day)일"
+        let checkOut = schedule!.checkOut == nil ? "" : "\(schedule!.checkOut!.month)월 \(schedule!.checkOut!.day)일"
+        let date = "\(checkIn) - \(checkOut)"
+        let peopl = people!.1 != 0 ? "게스트 \(people!.0)명 유아 \(people!.1)명" : "게스트 \(people!.0)명"
+        return "\(city) ・ \(date) ・ \(peopl)"
+    }
+    
+}
+
 
 struct Condition {
     var cityId: Int
