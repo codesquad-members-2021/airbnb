@@ -22,7 +22,7 @@ const FormLocation = () => {
   useEffect(() => {
     if (open) {
       setIsFormOpened(true);
-      if (inputRef.current) inputRef.current.focus();
+      inputRef?.current?.focus();
     } else setIsFormOpened(false);
   }, [open]);
 
