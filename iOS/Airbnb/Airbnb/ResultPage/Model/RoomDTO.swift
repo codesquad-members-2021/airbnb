@@ -9,10 +9,11 @@ import Foundation
 
 struct Rooms: Codable, Hashable {
     var rooms : [Room]
-    let uuid = UUID()
 }
 
 struct Room: Codable, Hashable {
+    let uuid = UUID()
+    
     var roomId: Int
     var images: Images
     var price: Int
