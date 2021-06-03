@@ -48,10 +48,6 @@ const FormGuest = () => {
     resetGuests();
   };
 
-  const handleSubmitClick = (e: MouseEvent): void => {
-    e.stopPropagation();
-  };
-
   const linkCondition =
     Object.values(reserveInfo as reserveInfoType).filter((v) => !v).length === 0;
   const linkURL = clientReserveAPI(reserveInfo as reserveInfoType);
@@ -62,7 +58,7 @@ const FormGuest = () => {
           <FormColumn title='인원' description={getGuestDesc()} />
           {isShowDeleteBtn && <DeleteBtn onClick={resetClickHandler} />}
           <ConditionalLink to={linkURL} condition={linkCondition}>
-            <div className='search-icon' onClick={handleSubmitClick}>
+            <div className='search-icon'>
               <IoSearch />
               {isFormOpened && <div className='search'>검색</div>}
             </div>
