@@ -1,12 +1,11 @@
 import { Suspense, useEffect } from 'react';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import Map from '../components/map/Map';
 import ReserveHeader from '../components/reserveHeader/ReserveHeader';
 import MapSkeleton from '../components/reservePageSkeleton/MapSkeleton';
 import ReserveRoomList from '../components/reserveRoomList/ReserveRoomList';
 import { reserveInfoSelector } from '../recoilStore/headerAtom';
-import { getRoomsSelector } from '../recoilStore/reserveRoomAtom';
 
 interface Props {}
 

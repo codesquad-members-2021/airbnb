@@ -6,6 +6,10 @@ import ReserveFormHeader from './ReserveFormHeader';
 import ReserveFormInfo from './ReserveFormInfo';
 import ReserveFromPrice from './ReserveFromPrice';
 import { createPortal } from 'react-dom';
+import { useRecoilValue } from 'recoil';
+import { reserveRoomSelector } from '../../../recoilStore/reserveRoomAtom';
+import { selectDateState } from '../../../recoilStore/calendarAtom';
+import { getBetweenDays } from '../../../util/calendarUtils';
 
 interface Props {
   toggleRef: RefObject<HTMLDivElement>;
@@ -13,8 +17,23 @@ interface Props {
 }
 
 const ReserveForm = ({ toggleRef, roomData }: Props) => {
-  const { chargePerNight } = roomData;
+  const { id, chargePerNight } = roomData;
   const portalElement: HTMLDivElement | null = document.querySelector('#modal');
+  const selectDate = useRecoilValue(selectDateState);
+
+  const getCleanCharge = (totalPrice: number): number => Math.floor(totalPrice * 0.03);
+  const getServiceCharge = (totalPrice: number): number => Math.floor(totalPrice * 0.15);
+  const getTaxCharge = (totalPrice: number): number => Math.floor(totalPrice * 0.01);
+
+  const betweenDays = getBetweenDays(selectDate.checkIn, selectDate.checkOut);
+  const totalPrice = chargePerNight * betweenDays;
+  const cleanCharge = getCleanCharge(totalPrice);
+  const serviceCharge = getServiceCharge(totalPrice);
+  const taxCharge = getTaxCharge(totalPrice);
+  const totalCharge = totalPrice + cleanCharge + serviceCharge + taxCharge;
+
+  const reserveResult = useRecoilValue(reserveRoomSelector({ id, charge: totalCharge }));
+  console.log(reserveResult);
   return (
     portalElement &&
     createPortal(
@@ -28,7 +47,9 @@ const ReserveForm = ({ toggleRef, roomData }: Props) => {
           <ReserveFormInfo className='reserve__info' />
           <ReserveBtn className='reserve__btn' />
           <div className='reserve__warn'>예약 확정 전에는 요금이 청구되지 않습니다.</div>
-          <ReserveFromPrice chargePerNight={chargePerNight} />
+          <ReserveFromPrice
+            {...{ chargePerNight, totalPrice, cleanCharge, serviceCharge, taxCharge, totalCharge }}
+          />
         </StyledReserveForm>
       </StyledReserveFormWrapper>,
       portalElement
