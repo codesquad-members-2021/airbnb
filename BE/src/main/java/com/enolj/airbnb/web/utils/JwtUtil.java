@@ -3,8 +3,7 @@ package com.enolj.airbnb.web.utils;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.auth0.jwt.exceptions.TokenExpiredException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.enolj.airbnb.exception.ErrorMessage;
 import com.enolj.airbnb.exception.TokenException;
@@ -36,16 +35,15 @@ public class JwtUtil {
                     .acceptExpiresAt(600)
                     .build();
             return verifier.verify(token);
-        } catch (JWTDecodeException | TokenExpiredException e) {
+        } catch (JWTVerificationException e) {
             throw new TokenException(ErrorMessage.INVALID_TOKEN);
         }
     }
 
     public static String getTokenFromAuthorization(String authorization) {
-        String[] authArray = authorization.split(" ");
-        if (authArray.length < 2 || !authArray[0].equals("Beare")) {
-            throw new TokenException(ErrorMessage.INVALID_TOKEN);
+        if (authorization.startsWith("Bearer ")) {
+            return authorization.substring("Bearer ".length());
         }
-        return authArray[1];
+        throw new TokenException(ErrorMessage.INVALID_TOKEN);
     }
 }
