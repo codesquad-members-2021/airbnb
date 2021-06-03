@@ -14,7 +14,7 @@ class ContainerViewController: UIViewController {
     
     weak var coordinator: SearchCoodinator?
     var dataSource = FooterTableViewDataSource()
-    var placeName : String = ""
+    var localName : String = ""
     
     // MARK: - View Life Cycle
     
@@ -31,7 +31,7 @@ class ContainerViewController: UIViewController {
     }
     
     func footerConfigure(){
-        dataSource.contents.updateValue(placeName, forKey: "위치")
+        dataSource.contents.updateValue(localName, forKey: "위치")
         footerTable.dataSource = dataSource
         footerTable.delegate = self
         footerTable.translatesAutoresizingMaskIntoConstraints = false
@@ -50,6 +50,7 @@ extension ContainerViewController {
     func loadPriceGraphView(){
         let priceViewController = PriceViewController.instantiate(name: StoryBoarded.Search.stringValue)
         priceViewController.infoDelegate = self
+        priceViewController.localName = localName
         self.addChildView(asChildViewController: priceViewController)
     }
     

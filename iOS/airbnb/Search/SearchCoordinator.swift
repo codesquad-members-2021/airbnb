@@ -31,7 +31,7 @@ class SearchCoodinator : NSObject, ChildCoordinator {
     func choosePlace(to place : String){
         let containerViewController = ContainerViewController.instantiate(name: StoryBoarded.Search.stringValue)
         containerViewController.coordinator = self
-        containerViewController.placeName = place
+        containerViewController.localName = place
         navigationController.navigationItem.backButtonTitle = "뒤로"
         navigationController.pushViewController(containerViewController, animated: true)
     }

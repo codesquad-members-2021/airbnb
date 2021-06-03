@@ -33,6 +33,7 @@
 		107FE67B2668715A00BAA8A9 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107FE67A2668715A00BAA8A9 /* Date+Extension.swift */; };
 		107FE67D26687DA700BAA8A9 /* PriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107FE67C26687DA600BAA8A9 /* PriceViewController.swift */; };
 		107FE67F26687FAB00BAA8A9 /* UIViewController+storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107FE67E26687FAB00BAA8A9 /* UIViewController+storyboard.swift */; };
+		107FE6812668851F00BAA8A9 /* PriceGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107FE6802668851F00BAA8A9 /* PriceGraphView.swift */; };
 		1089DE5C26677B3C00C39811 /* SelectInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1089DE5B26677B3C00C39811 /* SelectInfoDelegate.swift */; };
 		10AA57802665C97800B3DF4E /* CalendarDateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AA577F2665C97800B3DF4E /* CalendarDateCalculator.swift */; };
 		10BAF19D265CD1DA0035D99B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BAF19C265CD1DA0035D99B /* CalendarViewController.swift */; };
@@ -83,6 +84,7 @@
 		107FE67A2668715A00BAA8A9 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		107FE67C26687DA600BAA8A9 /* PriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewController.swift; sourceTree = "<group>"; };
 		107FE67E26687FAB00BAA8A9 /* UIViewController+storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+storyboard.swift"; sourceTree = "<group>"; };
+		107FE6802668851F00BAA8A9 /* PriceGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceGraphView.swift; sourceTree = "<group>"; };
 		1089DE5B26677B3C00C39811 /* SelectInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInfoDelegate.swift; sourceTree = "<group>"; };
 		10AA577F2665C97800B3DF4E /* CalendarDateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateCalculator.swift; sourceTree = "<group>"; };
 		10BAF19C265CD1DA0035D99B /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +181,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		107FE682266885E200BAA8A9 /* PriceGraph */ = {
+			isa = PBXGroup;
+			children = (
+				107FE67C26687DA600BAA8A9 /* PriceViewController.swift */,
+				107FE6802668851F00BAA8A9 /* PriceGraphView.swift */,
+			);
+			path = PriceGraph;
+			sourceTree = "<group>";
+		};
+		107FE6832668860400BAA8A9 /* People */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
 		10BAF19E265CD32E0035D99B /* CalendarPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,7 +222,10 @@
 			children = (
 				1089DE5B26677B3C00C39811 /* SelectInfoDelegate.swift */,
 				1049206C265782AD00AA2590 /* ContainerViewController.swift */,
-				107FE67C26687DA600BAA8A9 /* PriceViewController.swift */,
+				107FE6832668860400BAA8A9 /* People */,
+				107FE682266885E200BAA8A9 /* PriceGraph */,
+				10BAF1A5265CD5660035D99B /* FooterTable */,
+				10BAF19E265CD32E0035D99B /* CalendarPicker */,
 			);
 			path = Container;
 			sourceTree = "<group>";
@@ -240,8 +261,6 @@
 				104665AE265E9FBE008B2F36 /* Extension */,
 				1046659C265E910C008B2F36 /* Network */,
 				10C2F7912667C6B800445EEB /* Container */,
-				10BAF1A5265CD5660035D99B /* FooterTable */,
-				10BAF19E265CD32E0035D99B /* CalendarPicker */,
 				10D29C882653A5C300E71840 /* Search */,
 				10D29C872653A5BF00E71840 /* Login */,
 				10D29C862653A5B800E71840 /* WishList */,
@@ -405,6 +424,7 @@
 				1046658B265E6DD4008B2F36 /* CalenderCollectionDataSource.swift in Sources */,
 				107FE67F26687FAB00BAA8A9 /* UIViewController+storyboard.swift in Sources */,
 				10C2F7902667BD5900445EEB /* FooterTableViewDataSource.swift in Sources */,
+				107FE6812668851F00BAA8A9 /* PriceGraphView.swift in Sources */,
 				107FE67D26687DA700BAA8A9 /* PriceViewController.swift in Sources */,
 				101C0EE126575BF80014D62B /* NearPlaceDataSource.swift in Sources */,
 				104665A7265E915B008B2F36 /* NetworkError.swift in Sources */,

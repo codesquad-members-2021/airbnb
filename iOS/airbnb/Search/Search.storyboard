@@ -337,15 +337,47 @@
             <objects>
                 <viewController storyboardIdentifier="PriceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OFR-4m-Fhc" customClass="PriceViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cxQ-4e-cQc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="598"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가격범위" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSf-sp-hKM">
+                                <rect key="frame" x="16" y="76" width="382" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11,000-110,000원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7x-36-WAb">
+                                <rect key="frame" x="16" y="112.5" width="382" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="평균 1박 요금은 000 입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JnR-yS-MLT">
+                                <rect key="frame" x="16" y="141.5" width="382" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemGray2Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="FZh-K0-khE"/>
-                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="X7x-36-WAb" firstAttribute="leading" secondItem="FZh-K0-khE" secondAttribute="leading" constant="16" id="597-m2-EJV"/>
+                            <constraint firstItem="FZh-K0-khE" firstAttribute="trailing" secondItem="FSf-sp-hKM" secondAttribute="trailing" constant="16" id="FvM-Sv-vDP"/>
+                            <constraint firstItem="FZh-K0-khE" firstAttribute="trailing" secondItem="X7x-36-WAb" secondAttribute="trailing" constant="16" id="bwF-xV-0Ww"/>
+                            <constraint firstItem="FSf-sp-hKM" firstAttribute="top" secondItem="FZh-K0-khE" secondAttribute="top" constant="32" id="e40-5g-rX0"/>
+                            <constraint firstItem="X7x-36-WAb" firstAttribute="top" secondItem="FSf-sp-hKM" secondAttribute="bottom" constant="16" id="hOT-rt-ACy"/>
+                            <constraint firstItem="JnR-yS-MLT" firstAttribute="top" secondItem="X7x-36-WAb" secondAttribute="bottom" constant="8" id="kRp-0h-JRo"/>
+                            <constraint firstItem="FZh-K0-khE" firstAttribute="trailing" secondItem="JnR-yS-MLT" secondAttribute="trailing" constant="16" id="qgN-gl-peV"/>
+                            <constraint firstItem="FSf-sp-hKM" firstAttribute="leading" secondItem="FZh-K0-khE" secondAttribute="leading" constant="16" id="sZP-1b-KBB"/>
+                            <constraint firstItem="JnR-yS-MLT" firstAttribute="leading" secondItem="FZh-K0-khE" secondAttribute="leading" constant="16" id="xSk-QO-0px"/>
+                        </constraints>
                     </view>
+                    <size key="freeformSize" width="414" height="598"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ig7-1r-qKc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3741" y="76"/>
+            <point key="canvasLocation" x="3740.579710144928" y="75.669642857142847"/>
         </scene>
     </scenes>
     <resources>
@@ -353,8 +385,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
