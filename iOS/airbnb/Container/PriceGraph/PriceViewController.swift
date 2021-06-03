@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class PriceViewController: UIViewController {
     
@@ -14,9 +15,13 @@ class PriceViewController: UIViewController {
     var graphView : PriceGraphView!
     var localName : String?
     
+    private var cancellables = Set<AnyCancellable>()
+    private var prices: PriceResponse?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpGraphView()
+        fetchPrices()
     }
     
     func setUpGraphView(){
@@ -29,8 +34,19 @@ class PriceViewController: UIViewController {
         self.view.addSubview(graphView)
     }
     
-    func fetchPrices() -> [CGFloat] {
-        return [10,200,300,500,600,400,700,3000,600,150,200]
+    func fetchPrices() {
+        PriceNetworkDispatcher()
+            .execute(decodeType: PriceResponse.self)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error): print(error.message)
+                case .finished: break
+                }
+            }, receiveValue: { response in
+                self.prices = response
+            })
+            .store(in: &cancellables)
     }
     
 }

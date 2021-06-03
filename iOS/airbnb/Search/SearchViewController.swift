@@ -73,8 +73,8 @@ class SearchViewController : UIViewController {
 
     func fetchData(){
         
-        TravelNetwrokDispatcher()
-            .execute(url: .search, decodeType: [NearPlaceResponse].self)
+        TravelNetworkDispatcher()
+            .execute(decodeType: [NearPlaceResponse].self)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {  [weak self] completion in
                 switch completion {

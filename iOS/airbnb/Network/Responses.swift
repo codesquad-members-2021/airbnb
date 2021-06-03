@@ -11,8 +11,8 @@ struct NearPlaceResponse : Decodable {
     let name: String
     let avatarUrl: String
     let distance: Int
-    let x : Double
-    let y : Double
+    let x: Double
+    let y: Double
     
     func toNearPlace() -> NearPlace {
         return NearPlace(name: self.name,
@@ -22,3 +22,8 @@ struct NearPlaceResponse : Decodable {
                          y: self.y)
     }
 }
+
+struct PriceResponse : Decodable {
+    let prices: [Double]
+}
+
