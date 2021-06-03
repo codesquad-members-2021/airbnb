@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 interface Props {
@@ -6,9 +5,12 @@ interface Props {
 }
 
 function MyPageModal({ onClick }: Props) {
+  const clientID = process.env.REACT_APP_CLIENT_ID;
+  const LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${clientID}&redirect_uri=http://localhost:3000/api/login/callback&scope=user`;
+
   return (
     <ModalContainer onClick={onClick}>
-      <a href="http://15.165.76.167:8080/api/login">로그인</a>
+      <a href={LOGIN_URL}>로그인</a>
     </ModalContainer>
   );
 }
