@@ -10,7 +10,6 @@ public class OAuthToken {
     private String tokenType;
 
     public OAuthToken() {
-
     }
 
     public OAuthToken(String accessToken, String expiresIn, String idToken, String refreshToken, String scope, String tokenType) {

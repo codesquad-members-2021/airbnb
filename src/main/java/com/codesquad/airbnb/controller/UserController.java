@@ -17,7 +17,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/oauth/google/callback") // user가 정보사용 승인하면 google이 String code를 queryString으로 보내 준다(?code="")
+    @GetMapping("/oauth/google/callback")
     public ResponseEntity oauthLogin(String code) {
         userService.oauthLogin(code);
         return new ResponseEntity("로그인 성공", HttpStatus.OK);

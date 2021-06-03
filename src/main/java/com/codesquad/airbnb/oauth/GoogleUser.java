@@ -14,7 +14,6 @@ public class GoogleUser {
     public String locale;
 
     public GoogleUser() {
-        // JSON 변환할 때 어떤 생성자로 변환해야 할지 모르기 때문에 기본생성자를 호출함. (그래서 필요)
     }
 
     public GoogleUser(String id, String email, Boolean verifiedEmail, String name, String givenName, String familyName, String picture, String locale) {

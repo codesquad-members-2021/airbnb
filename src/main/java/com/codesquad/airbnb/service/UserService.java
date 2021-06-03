@@ -36,7 +36,6 @@ public class UserService {
         if (!isJoinedUser(googleUser)) {
             signUp(googleUser, oAuthToken);
         }
-        // (회원이 이미 있다면) 로그인
     }
 
     private boolean isJoinedUser(GoogleUser googleUser) {
