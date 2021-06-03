@@ -9,7 +9,6 @@ import java.sql.SQLException;
 public class PropertyRowMapper implements RowMapper<Property> {
     // interface method
     public Property mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Property property = new Property(rs.getLong("id"), rs.getString("name"), rs.getInt("price"));
-        return property;
+        return new Property(rs.getLong("id"), rs.getString("name"), rs.getInt("price"));
     }
 }

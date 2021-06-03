@@ -91,7 +91,7 @@ public class PropertyDAO {
     }
 
 
-    public List<PropertyDTO> findByWishList() {
+    public List<PropertyDTO> findBookmarkTrue() {
         String sql = FIND_BY_PROPERTY_LIST_DEFAULT +
                 "WHERE wl.bookmark = TRUE ";
 

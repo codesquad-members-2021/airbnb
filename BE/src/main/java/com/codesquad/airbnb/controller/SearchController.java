@@ -4,7 +4,6 @@ import com.codesquad.airbnb.dto.price.PriceSearchDTO;
 import com.codesquad.airbnb.dto.property.PropertiesResponseDTO;
 import com.codesquad.airbnb.service.PropertyService;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -13,14 +12,14 @@ import java.time.LocalDate;
 @RequestMapping("/search")
 public class SearchController {
 
-    PropertyService propertyService;
+    private final PropertyService propertyService;
 
     public SearchController(PropertyService propertyService) {
         this.propertyService = propertyService;
     }
 
     @GetMapping()
-    public ResponseEntity<PropertiesResponseDTO> propertiesSearch(
+    public PropertiesResponseDTO propertiesSearch(
             @RequestParam(value = "locationId", required = false) Long locationId,
             @RequestParam(value = "checkIn", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkIn,
             @RequestParam(value = "checkOut", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkOut,
@@ -31,12 +30,12 @@ public class SearchController {
             @RequestParam(value = "infant", required = false, defaultValue = "0") int infant
     ) {
         PropertiesResponseDTO propertiesResponseDto = propertyService.findBy(locationId, checkIn, checkOut, minPrice, maxPrice, adult, children, infant);
-        return ResponseEntity.ok().body(propertiesResponseDto);
+        return propertiesResponseDto;
     }
 
     @GetMapping("/{locationId}")
-    public ResponseEntity<PriceSearchDTO> propertiesAverageValue(@PathVariable Long locationId) {
-        return ResponseEntity.ok().body(propertyService.priceSearch(locationId));
+    public PriceSearchDTO propertiesAverageValue(@PathVariable Long locationId) {
+        return propertyService.priceSearch(locationId);
     }
 
 }

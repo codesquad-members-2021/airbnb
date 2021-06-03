@@ -7,8 +7,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -23,12 +21,8 @@ public class CategoryDAO {
 
     public List<Category> findAll() {
         String sql = "SELECT id, name, image_url FROM category";
-        RowMapper<Category> categoryMapper = new RowMapper<Category>() {
-            @Override
-            public Category mapRow(ResultSet rs, int rowNum) throws SQLException {
-                return new Category(rs.getLong("id"), rs.getString("name"), rs.getString("image_url"));
-            }
-        };
+        // TODO: 메서드 실행 시 RowMapper 인스턴스가 매번 생성된다.
+        RowMapper<Category> categoryMapper = (rs, rowNum) -> new Category(rs.getLong("id"), rs.getString("name"), rs.getString("image_url"));
         return jdbcTemplate.query(sql, categoryMapper);
     }
 }
