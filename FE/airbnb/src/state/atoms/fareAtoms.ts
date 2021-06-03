@@ -1,16 +1,40 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
+
+export const minPriceState = atom<number>({
+  key: "thumbLeftPriceState",
+  default: 0,
+});
+
+export const maxPriceState = atom<number>({
+  key: "maxPriceState",
+  default: 10000000,
+});
 
 export const thumbLeftPriceState = atom<number>({
   key: "thumbLeftPriceState",
-  default: 10000,
+  default: 0,
 });
 
 export const thumbRightPriceState = atom<number>({
   key: "thumbRightPriceState",
-  default: 1000000,
+  default: 10000000,
 });
 
 export const isSetPriceState = atom<boolean>({
   key: "isSetPriceState",
   default: false,
+});
+
+export const priceChartDataState = atom({
+  key: "priceChartData",
+  default: [0],
+});
+
+export const priceToString = selector({
+  key: "priceToString",
+  get: ({ get }) => {
+    const leftPrice = get(thumbLeftPriceState);
+    const rightPrice = get(thumbRightPriceState);
+    return `₩${leftPrice.toLocaleString()} - ₩${rightPrice.toLocaleString()}`;
+  },
 });
