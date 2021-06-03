@@ -43,6 +43,14 @@ export const guestState = atom<guestStateType>({
   default: { adult: 0, child: 0, infants: 0 },
 });
 
+export const totalGuestSelector = selector({
+  key: 'totalGuestSelector',
+  get: ({ get }) => {
+    const guests = get(guestState);
+    return Object.values(guests).reduce((acc, cur) => acc + cur);
+  },
+});
+
 interface reserveInfoType {
   address: string;
   checkIn: number;
