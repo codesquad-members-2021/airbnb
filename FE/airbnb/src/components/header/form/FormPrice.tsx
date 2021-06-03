@@ -8,7 +8,7 @@ import {
   pauseBtnPositionState,
   priceState,
 } from '../../../recoilStore/headerAtom';
-import { getNumberWithComma } from '../../util/util';
+import { getNumberWithComma } from '../../../util/tsUtils';
 import HoverBlock from '../HoverBlock';
 import FormColumn from './FormColumn';
 import PriceBar, { PRICE_DATA } from './priceBar/PriceBar';

@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { selectDateState } from '../../recoilStore/calendarAtom';
 import { getBetweenDays } from '../../util/calendarUtils';
-import { getNumberWithComma } from '../util/util';
+import { getNumberWithComma } from '../../util/tsUtils';
 import { roomType } from './roomType';
 interface Props {
   roomData: roomType;

@@ -1,6 +1,6 @@
 import { MouseEvent, RefObject, useState } from 'react';
 import styled from 'styled-components';
-import { getNumberWithComma } from '../../../util/util';
+import { getNumberWithComma } from '../../../../util/tsUtils';
 import PriceChart from './PriceChart';
 import { btnPositionType, priceSectionType } from './priceType';
 import { ReactComponent as PauseBtn } from '../../../../assets/svg/Property 1=pause-circle.svg';
