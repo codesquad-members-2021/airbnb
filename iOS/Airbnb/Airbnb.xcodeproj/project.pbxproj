@@ -30,7 +30,7 @@
 		AE87A77D26687F71003E9541 /* PersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE87A77B26687F71003E9541 /* PersonCell.xib */; };
 		AE87A7812668992C003E9541 /* PeopleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A7802668992C003E9541 /* PeopleViewModel.swift */; };
 		AE87A7842668D19D003E9541 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A7832668D19D003E9541 /* SearchResultViewController.swift */; };
-		AE87A7862668DF22003E9541 /* ResultSupplymentaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A7852668DF22003E9541 /* ResultSupplymentaryView.swift */; };
+		AE87A7862668DF22003E9541 /* ResultSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A7852668DF22003E9541 /* ResultSupplementaryView.swift */; };
 		AE87A7892668DFB1003E9541 /* AccommodationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A7872668DFB1003E9541 /* AccommodationCell.swift */; };
 		AE87A78A2668DFB1003E9541 /* AccommodationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE87A7882668DFB1003E9541 /* AccommodationCell.xib */; };
 		AE8CD3B42653538700BCB8FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B32653538700BCB8FC /* AppDelegate.swift */; };
@@ -91,7 +91,7 @@
 		AE87A77B26687F71003E9541 /* PersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonCell.xib; sourceTree = "<group>"; };
 		AE87A7802668992C003E9541 /* PeopleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewModel.swift; sourceTree = "<group>"; };
 		AE87A7832668D19D003E9541 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
-		AE87A7852668DF22003E9541 /* ResultSupplymentaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSupplymentaryView.swift; sourceTree = "<group>"; };
+		AE87A7852668DF22003E9541 /* ResultSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSupplementaryView.swift; sourceTree = "<group>"; };
 		AE87A7872668DFB1003E9541 /* AccommodationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationCell.swift; sourceTree = "<group>"; };
 		AE87A7882668DFB1003E9541 /* AccommodationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccommodationCell.xib; sourceTree = "<group>"; };
 		AE8CD3B02653538700BCB8FC /* Airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,7 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				AE87A7832668D19D003E9541 /* SearchResultViewController.swift */,
-				AE87A7852668DF22003E9541 /* ResultSupplymentaryView.swift */,
+				AE87A7852668DF22003E9541 /* ResultSupplementaryView.swift */,
 				AE87A7872668DFB1003E9541 /* AccommodationCell.swift */,
 				AE87A7882668DFB1003E9541 /* AccommodationCell.xib */,
 			);
@@ -483,7 +483,7 @@
 				AE8CD3B42653538700BCB8FC /* AppDelegate.swift in Sources */,
 				AE0B5DE926562D4A000B35E7 /* TitleSupplementaryView.swift in Sources */,
 				AE0B5DE62656073E000B35E7 /* CityCell.swift in Sources */,
-				AE87A7862668DF22003E9541 /* ResultSupplymentaryView.swift in Sources */,
+				AE87A7862668DF22003E9541 /* ResultSupplementaryView.swift in Sources */,
 				AE8CD3B62653538700BCB8FC /* SceneDelegate.swift in Sources */,
 				AE87A7812668992C003E9541 /* PeopleViewModel.swift in Sources */,
 				AE0B5DF3265642B2000B35E7 /* CategoryCell.swift in Sources */,
