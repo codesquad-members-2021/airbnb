@@ -26,6 +26,7 @@ const PriceContent = () => {
           prices={data.prices}
           minPrice={data.min_price}
           maxPrice={data.max_price}
+          avgPrice={data.avg_price}
         />
       ) : (
         <PriceRange> 여행가실 위치와 날짜를 입력해주세요 </PriceRange>

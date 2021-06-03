@@ -2,15 +2,26 @@ import useAxios from "hooks/useAxios";
 import Header from "components/main/header/Header";
 import SearchBar from "components/main/searchbar/Searchbar";
 import HotelListContent from "components/hotel-list/HotelListContent";
+import { MdPlace } from "react-icons/md";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   isHotelPage,
   locationData,
   searchParamsSelector,
 } from "atoms/searchbarAtom";
-
 import styled from "styled-components";
-import { GoogleMap } from "@react-google-maps/api";
+import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
+type datatype = {
+  hotelId: string;
+  title: string;
+  price: number;
+  wishlist: boolean;
+  latitude: number;
+  longitude: number;
+  rate: number;
+  options: string[];
+  img: string;
+};
 const HotelList = () => {
   const searchParams = useRecoilValue(searchParamsSelector);
   const setIsHotelList = useSetRecoilState(isHotelPage);
@@ -22,6 +33,7 @@ const HotelList = () => {
   );
   const center = { lat: latitude, lng: longitude };
   const mapStyle = { width: "100%", height: "100%" };
+
   return (
     <>
       <TopSection>
@@ -30,7 +42,24 @@ const HotelList = () => {
       </TopSection>
       <ButtomSection>
         {isLoading ? null : <HotelListContent hotelListData={data} />}
-        <GoogleMap mapContainerStyle={mapStyle} center={center} zoom={15} />
+        <GoogleMap mapContainerStyle={mapStyle} center={center} zoom={15}>
+          {data
+            ? data.map((props: datatype) => (
+                <Marker
+                  key={props.hotelId}
+                  position={{ lat: props.latitude, lng: props.longitude }}
+                  icon={{
+                    url: "logo",
+                    scaledSize: new google.maps.Size(15, 25),
+                  }}
+                >
+                  <InfoWindow>
+                    <div>{props.price}</div>
+                  </InfoWindow>
+                </Marker>
+              ))
+            : null}
+        </GoogleMap>
       </ButtomSection>
     </>
   );
