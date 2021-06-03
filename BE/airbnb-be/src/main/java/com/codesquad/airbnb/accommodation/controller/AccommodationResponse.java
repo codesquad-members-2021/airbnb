@@ -1,10 +1,11 @@
 package com.codesquad.airbnb.accommodation.controller;
 
+import com.codesquad.airbnb.accommodation.domain.Accommodation;
 import com.codesquad.airbnb.accommodation.domain.AccommodationOption;
 
 import java.util.Objects;
 
-public class AccommodationResponseDTO {
+public class AccommodationResponse {
     private Long id;
     private String name;
     private AccommodationOption accommodationOption;
@@ -13,10 +14,10 @@ public class AccommodationResponseDTO {
     private int reviewCounts;
     private String mainImage;
 
-    public AccommodationResponseDTO() {
+    public AccommodationResponse() {
     }
 
-    public AccommodationResponseDTO(Long id, String name, AccommodationOption accommodationOption, Integer totalPrice, double reviewRating, int reviewCounts, String mainImage) {
+    public AccommodationResponse(Long id, String name, AccommodationOption accommodationOption, Integer totalPrice, double reviewRating, int reviewCounts, String mainImage) {
         this.id = id;
         this.name = name;
         this.accommodationOption = accommodationOption;
@@ -26,9 +27,21 @@ public class AccommodationResponseDTO {
         this.mainImage = mainImage;
     }
 
-    public static AccommodationResponseDTOBuilder builder() {
-        return AccommodationResponseDTOBuilder.anAccommodationDTO();
+    public static AccommodationResponse from(Accommodation accommodation) {
+        return builder().id(accommodation.getId())
+                       .name(accommodation.getName())
+                       .accommodationOption(accommodation.getAccommodationOption())
+                       .totalPrice(accommodation.getTotalPrice())
+                       .reviewRating(accommodation.getReviewRating())
+                       .reviewCounts(accommodation.getReviewCounts())
+                       .mainImage(accommodation.getMainImage())
+                       .build();
     }
+
+    public static AccommodationResponseBuilder builder() {
+        return AccommodationResponseBuilder.anAccommodationDTO();
+    }
+
 
     public int pricePerNight() {
         return accommodationOption.getPricePerNight();
@@ -94,7 +107,7 @@ public class AccommodationResponseDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AccommodationResponseDTO that = (AccommodationResponseDTO) o;
+        AccommodationResponse that = (AccommodationResponse) o;
         return Double.compare(that.reviewRating, reviewRating) == 0 && reviewCounts == that.reviewCounts && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(accommodationOption, that.accommodationOption) && Objects.equals(totalPrice, that.totalPrice) && Objects.equals(mainImage, that.mainImage);
     }
 
@@ -106,13 +119,13 @@ public class AccommodationResponseDTO {
     @Override
     public String toString() {
         return "AccommodationDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", accommodationOption=" + accommodationOption +
-                ", totalPrice=" + totalPrice +
-                ", reviewRating=" + reviewRating +
-                ", reviewCounts=" + reviewCounts +
-                ", mainImage='" + mainImage + '\'' +
-                '}';
+                       "id=" + id +
+                       ", name='" + name + '\'' +
+                       ", accommodationOption=" + accommodationOption +
+                       ", totalPrice=" + totalPrice +
+                       ", reviewRating=" + reviewRating +
+                       ", reviewCounts=" + reviewCounts +
+                       ", mainImage='" + mainImage + '\'' +
+                       '}';
     }
 }

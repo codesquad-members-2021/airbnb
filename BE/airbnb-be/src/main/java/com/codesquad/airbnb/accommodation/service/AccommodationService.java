@@ -1,10 +1,13 @@
 package com.codesquad.airbnb.accommodation.service;
 
-import com.codesquad.airbnb.accommodation.controller.AccommodationRequestDTO;
-import com.codesquad.airbnb.accommodation.controller.AccommodationResponseDTO;
+import com.codesquad.airbnb.accommodation.controller.AccommodationDTO;
+import com.codesquad.airbnb.accommodation.controller.AccommodationRequest;
+import com.codesquad.airbnb.accommodation.controller.AccommodationResponse;
 
 import java.util.List;
 
 public interface AccommodationService {
-    List<AccommodationResponseDTO> readAll(AccommodationRequestDTO accommodationRequestDTO);
+    List<AccommodationResponse> readAll(AccommodationRequest accommodationRequest);
+
+    AccommodationDTO readOne(long id);
 }

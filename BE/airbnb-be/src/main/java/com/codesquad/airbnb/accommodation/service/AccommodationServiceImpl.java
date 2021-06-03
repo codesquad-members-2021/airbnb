@@ -1,7 +1,8 @@
 package com.codesquad.airbnb.accommodation.service;
 
-import com.codesquad.airbnb.accommodation.controller.AccommodationRequestDTO;
-import com.codesquad.airbnb.accommodation.controller.AccommodationResponseDTO;
+import com.codesquad.airbnb.accommodation.controller.AccommodationDTO;
+import com.codesquad.airbnb.accommodation.controller.AccommodationRequest;
+import com.codesquad.airbnb.accommodation.controller.AccommodationResponse;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,12 @@ import java.util.List;
 @Profile("default")
 public class AccommodationServiceImpl implements AccommodationService{
     @Override
-    public List<AccommodationResponseDTO> readAll(AccommodationRequestDTO accommodationRequestDTO) {
+    public List<AccommodationResponse> readAll(AccommodationRequest accommodationRequest) {
+        return null;
+    }
+
+    @Override
+    public AccommodationDTO readOne(long id) {
         return null;
     }
 }
