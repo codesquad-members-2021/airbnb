@@ -32,6 +32,7 @@ class RoomsViewController: UIViewController {
         roomsUseCase.requestPirce(condition: conditionViewModel.convertCodable())
         bind()
         
+        configureNavigation()
         configureHierarchy()
         configureDataSource()
     }
@@ -157,3 +158,14 @@ extension RoomsViewController: UICollectionViewDelegate {
     
 }
 
+
+extension RoomsViewController {
+    
+    func configureNavigation() {
+        self.navigationItem.title = "숙소 찾기"
+        let backButton = UIBarButtonItem()
+        backButton.title = "Back"
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+    }
+
+}
