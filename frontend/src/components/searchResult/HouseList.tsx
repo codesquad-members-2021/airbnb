@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import IconButton from '@material-ui/core/IconButton'
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
-import FavoriteIcon from '@material-ui/icons/Favorite'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import Reservation from '../reservation/Reservation'
+import WishList from './WishListToggle'
 import {
   RecoilValueGroup,
   defaultValue, RoomData
@@ -32,10 +30,12 @@ function HouseList({ data }: any) {
 
     return str.join(` · `)
   }
-
+ 
   const [open, setOpen] = useState(false)
   const [targetData, setTargetData] = useState(null)
   const handleModalClick = (e:React.MouseEvent<HTMLDivElement, MouseEvent>, el:any) => {
+    const target = e.target as Element;
+    if (target.closest('.likeUnClick')!==null) return
     setOpen(true)
     setTargetData(el)
   }
@@ -59,14 +59,7 @@ function HouseList({ data }: any) {
                   {el.home_details.max_guest}명
                 </SmallSpan>
               </div>
-              <LikeBtn>
-                <IconButton aria-label='delete'>
-                  <FavoriteBorderIcon fontSize='large' />
-                </IconButton>
-                {/* <IconButton aria-label='delete'>
-                  <FavoriteIcon color='secondary' />
-                </IconButton> */}
-              </LikeBtn>
+              <WishList setOpen={setOpen} targetData={el}/>
             </div>
             <div>
               <Review>
@@ -90,11 +83,6 @@ function HouseList({ data }: any) {
 const ListTitle = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.w2};
   font-size: ${({ theme }) => theme.fontSize.lg};
-`
-const LikeBtn = styled.div`
-  position: absolute;
-  top: -16px;
-  left: 356px;
 `
 const PriceBlock = styled.div`
   display: flex;
