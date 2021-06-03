@@ -1,25 +1,45 @@
 import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { IFeeGraph } from '..';
-import useCanvasSize, {
+import {
+  useCanvasSize,
   ICanvasSize,
-} from '../../../../../../../hooks/useCanvasSize';
+  useGraphSlider,
+} from '../../../../../../../util/reduce';
+import { useSearchBarDispatch } from '../../../../../../../util/contexts/SearchBarContext';
 import SliderBlock from './SliderBlock';
 import SliderButton from './SliderButton';
 
 const FeeGraphSlider = ({ resData, ...props }: IFeeGraph) => {
   // 1. 초기 설정
-  const { data } = resData;
+  const { data, start: initStart, end: initEnd, unit: initUnit } = resData;
+  const searchBarDispatch = useSearchBarDispatch();
   const {
     state: {
       size: canvasSize,
       size: { width, height, isLoading: isCanvasSizeLoading },
+      rect: canvasRect,
     },
     dispatch: canvasDispatch,
   } = useCanvasSize(); // useReducer
 
+  const {
+    state: {
+      buttonCoordinates: { leftX, rightX },
+      currBackgroundWidth,
+      priceUnitWidth,
+      priceRange,
+    },
+    dispatch: graphSliderDispatch,
+  } = useGraphSlider();
+
   const feeGraphSliderRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const currDownSlideBtnRef =
+    useRef<{
+      btnType: string | null;
+      button: HTMLButtonElement | null;
+    }>();
 
   // 2. useEffect
   // 1) Canvas 사이즈 지정
@@ -37,12 +57,18 @@ const FeeGraphSlider = ({ resData, ...props }: IFeeGraph) => {
         isLoading: false,
       },
     });
+
+    canvasDispatch({
+      type: 'SET_CANVAS_RECT_INFO',
+      payload: feeGraphSliderRef.current.getClientRects()[0],
+    });
   }, []);
 
-  // 2) 캔버스 그리기
+  // 2) 캔버스 그리기 및 Slider 버튼 위치 지정
   useEffect(() => {
     if (isCanvasSizeLoading || !canvasRef.current) return;
 
+    // -1- 캔버스 그리기
     /* 
       [*1*]
         캔버스에서 그려진 그래프 볼 때
@@ -55,7 +81,7 @@ const FeeGraphSlider = ({ resData, ...props }: IFeeGraph) => {
 
         그러므로 아래 DESCData는 내림차순으로 변경하여 생성
     */
-    const DESCData = [...data].sort((a, b) => b - a); 
+    const DESCData = [...data].sort((a, b) => b - a);
 
     const canvas: HTMLCanvasElement = canvasRef.current;
     const ctx: CanvasRenderingContext2D | null = canvas.getContext('2d');
@@ -66,7 +92,7 @@ const FeeGraphSlider = ({ resData, ...props }: IFeeGraph) => {
     let startX = 0;
 
     // [*1*]에 의해 주석처리 (정상적인 그래프 그릴때 사용)
-    // let startY = height - onePer.h * data.length;  
+    // let startY = height - onePer.h * data.length;
 
     // 🤪 라노 캔버스 그린다!!
     // 🤯 라노 키보드 부신다!!
@@ -79,19 +105,118 @@ const FeeGraphSlider = ({ resData, ...props }: IFeeGraph) => {
       ctx.fillStyle = '#FFF';
       ctx.fill();
       startX += onePer.w;
-
     });
     ctx.closePath();
+
+    // -2- Slider 버튼 위치 지정
+    graphSliderDispatch({
+      type: 'INIT_SLIDER_BUTTON_COORDINATES',
+      payload: { leftX: 0, rightX: width, maxLeftX: 0, maxRightX: width },
+    });
+
+    // -3- 단위당 Width 설정
+    graphSliderDispatch({
+      type: 'SET_PRICE_UNIT_WIDTH',
+      payload: (width * initUnit) / (initEnd - initStart),
+    });
+
+    // -4- 가격 시작 / 끝 값 초기화
+    graphSliderDispatch({
+      type: 'SET_PRICE_RANGE',
+      payload: {
+        start: initStart,
+        end: initEnd,
+      },
+    });
   }, [isCanvasSizeLoading]);
+
+  // 3-1) SlideButton (leftX & rightX 변경 시 / slideButtonMove에서 변경됨)
+  useEffect(() => {
+    if (!priceUnitWidth) return;
+    graphSliderDispatch({
+      type: 'SET_PRICE_RANGE',
+      payload: {
+        start: initStart + initUnit * Math.floor(leftX / priceUnitWidth),
+        end: initStart + initUnit * Math.ceil(rightX / priceUnitWidth),
+      },
+    });
+  }, [leftX, rightX]);
+
+  // 3-2) SearchBarContext에 가격 시작, 끝 값 확정
+  useEffect(() => {
+    if (Object.values(priceRange).every((priceProp) => !priceProp)) return;
+
+    const { start, end } = priceRange;
+    searchBarDispatch({
+      type: 'SET_FEE_PRICE_RANGE',
+      payload: { start, end },
+    });
+  }, [priceRange]);
+
+  // 3. Events -- document에 거는거말고 다른 방법 찾기!
+  // 1) SlideButton 이동
+  const handleSlideButtonDown = (
+    e: React.MouseEvent | MouseEvent,
+    btnType: string,
+  ) => {
+    e.preventDefault();
+    const button = e.currentTarget as HTMLButtonElement;
+    currDownSlideBtnRef.current = { btnType, button };
+    document.addEventListener('mousemove', slideButtonMove);
+  };
+
+  const handleSlideButtonUp = (e: React.MouseEvent | MouseEvent) => {
+    e.preventDefault();
+    currDownSlideBtnRef.current = { btnType: null, button: null };
+    removeSlideButtonMove();
+  };
+
+  const removeSlideButtonMove = (): void =>
+    document.removeEventListener('mousemove', slideButtonMove);
+
+  const slideButtonMove = (e: MouseEvent) => {
+    const { left: startX } = canvasRect;
+    const { x } = e;
+
+    if (!currDownSlideBtnRef.current) return;
+    const { btnType } = currDownSlideBtnRef.current;
+
+    const componentGrandParent =
+      feeGraphSliderRef.current?.parentElement?.parentElement;
+    if (!componentGrandParent) return;
+    if (!componentGrandParent.contains(e.target as Node))
+      return removeSlideButtonMove();
+    // 흠... 자체적으로 mouseUp이 언제되는지도 체크해야할듯
+    // 버그 추후 수정
+
+    graphSliderDispatch({
+      type: 'SET_SLIDER_BUTTON_COORDINATES',
+      payload: { btnType, value: Math.abs(startX - x) },
+    });
+  };
+  // ====
 
   return (
     <FeeGraphSliderLayout {...props} ref={feeGraphSliderRef}>
       {!isCanvasSizeLoading && (
         <FeeGraphSliderRow>
-          <SliderBlock width={canvasSize.width} height={canvasSize.height}>
-            <SliderButton btnType="L" />
-            <SliderButton btnType="R" />
-          </SliderBlock>
+          <SliderBlock
+            width={currBackgroundWidth}
+            height={canvasSize.height}
+            left={leftX}
+          />
+          <div>
+            <SliderButton
+              left={leftX}
+              onMouseDown={(e) => handleSlideButtonDown(e, 'L')}
+              onMouseUp={handleSlideButtonUp}
+            />
+            <SliderButton
+              left={rightX}
+              onMouseDown={(e) => handleSlideButtonDown(e, 'R')}
+              onMouseUp={handleSlideButtonUp}
+            />
+          </div>
           <GraphCanvas
             width={canvasSize.width}
             height={canvasSize.height}

@@ -4,8 +4,8 @@ import FeeGraphSlider from './FeeGraphSlider';
 import FeeInfo from './FeeInfo';
 
 export type FeeDataType = {
-  from: number, // 시작
-  to: number,   // 끝
+  start: number, // 시작
+  end: number,   // 끝
   unit: number, // 단위
   data: number[],
 }
@@ -15,8 +15,8 @@ export interface IFeeGraph {
 }
 
 const FEE_DATA: FeeDataType = {
-  from: 10000,
-  to: 1000000,
+  start: 10000,
+  end: 1000000,
   unit: 1000,
   data :[...Array(100)].map((_) => Math.floor(Math.random() * 1000000)).sort((a, b)=> a - b),
 };
@@ -40,7 +40,9 @@ export default FeeModal;
 
 // --- Styled Components ---
 const FeeModalLayout = styled(Modal)`
-  width: 40%;
+  position: absolute;
+  right: 0;
+  width: 50%;
   background-color: ${({ theme }) => theme.colors.white};
   padding: 48px;
   border-radius: 40px;

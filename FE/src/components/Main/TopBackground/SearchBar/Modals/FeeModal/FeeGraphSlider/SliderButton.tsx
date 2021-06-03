@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 import { AiOutlineSmile } from 'react-icons/ai';
-import DefaultButton from '../../../../../../Common/DefaultButton';
+import DefaultButton, {
+  IDefaultButton,
+} from '../../../../../../Common/DefaultButton';
 
-interface ISliderButton {
-  btnType?: 'L' | 'R';
+interface ISliderButton extends IDefaultButton {
+  onMouseDown?: (e: React.MouseEvent | MouseEvent) => void;
+  onMouseUp?: (e: React.MouseEvent | MouseEvent) => void;
+  left: number;
 }
 
-const SliderButton = ({ btnType = 'L', ...props }: ISliderButton) => {
+const SliderButton = ({ left, ...props }: ISliderButton) => {
   return (
-    <SliderButtonLayout btnType={btnType} {...props}>
+    <SliderButtonLayout left={left} {...props}>
       <AiOutlineSmile />
     </SliderButtonLayout>
   );
@@ -17,14 +21,16 @@ const SliderButton = ({ btnType = 'L', ...props }: ISliderButton) => {
 export default SliderButton;
 
 // --- Styled Components ---
-const SliderButtonLayout = styled(DefaultButton)<ISliderButton>`
+
+const SliderButtonLayout = styled(DefaultButton).attrs(
+  ({ left }: ISliderButton) => ({
+    style: { left: `calc(${left}px - 3%)` },
+  }),
+)<ISliderButton>`
   position: absolute;
   padding: 0;
   z-index: 1;
   bottom: -7.5%;
-
-  right: ${({ btnType }) => (btnType === 'L' ? 'auto' : '-4px')};
-  left: ${({ btnType }) => (btnType === 'L' ? '-4px' : 'auto')};
 
   svg {
     background-color: ${({ theme }) => theme.colors.skyblue};
