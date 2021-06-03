@@ -1,5 +1,6 @@
 package airbnb.auth.jwt;
 
+import airbnb.auth.LoginResponse;
 import airbnb.domain.User;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -27,9 +28,13 @@ public class JwtUtil {
         return "/?jwt=" + jwt.getJwt() + "&profile_url=" + user.getProfileImage();
     }
 
+    public LoginResponse createLoginResponse(User user) {
+        Jwt jwt = createToken(user);
+        return new LoginResponse(jwt.getJwt(), user.getProfileImage());
+    }
+
     public Jwt createToken(User user) {
         String token = JWT.create()
-                .withExpiresAt(new Date())
                 .withClaim(GITHUB_NAME, user.getName())
                 .withClaim(GITHUB_EMAIL, user.getEmail())
                 .withClaim(GITHUB_ID, user.getGithubId())
@@ -44,6 +49,5 @@ public class JwtUtil {
                 .withIssuer(ISSUER)
                 .build();
         return verifier.verify(jwt.getJwt());
-//                .acceptExpiresAt(10 * 60 * 60)
     }
 }

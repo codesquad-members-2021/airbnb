@@ -19,16 +19,17 @@ public class LoginController {
     private final JwtUtil jwtUtil;
 
     @GetMapping("/auth/social/callback/github")
-    public RedirectView login(@RequestParam(value = "code") String code) {
+    public RedirectView loginFE(@RequestParam(value = "code") String code) {
         String accessToken = authService.getAccessToken(code);
         GithubUser githubUser = authService.getGithubUser(accessToken);
         User loginUser = userService.findLoginUser(githubUser);
         return new RedirectView(jwtUtil.createQueryString(loginUser));
     }
 
-//    @GetMapping("/login")
-//    public Jwt login(Jwt accessToken) {
-//
-//        return
-//    }
+    @GetMapping("/github/login")
+    public LoginResponse loginIOS(@RequestParam String token) {
+        GithubUser githubUser = authService.getGithubUser(token);
+        User loginUser = userService.findLoginUser(githubUser);
+        return jwtUtil.createLoginResponse(loginUser);
+    }
 }
