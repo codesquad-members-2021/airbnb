@@ -1,5 +1,4 @@
 {
-  "proxy": "http://3.35.178.32:8080",
   "name": "airbnb-FE",
   "version": "0.1.0",
   "private": true,

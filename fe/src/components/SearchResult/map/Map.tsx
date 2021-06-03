@@ -39,8 +39,6 @@ const Map = () => {
       const bounds = map.getBounds();
       const swLatLng = bounds.getSouthWest();
       const neLatLng = bounds.getNorthEast();
-      console.log(neLatLng);
-      console.log('hi');
 
       setMapBounds({
         ne_latitude: neLatLng.La,
