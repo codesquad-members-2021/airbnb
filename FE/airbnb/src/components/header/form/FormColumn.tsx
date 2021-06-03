@@ -40,5 +40,8 @@ const StyledFormColumn = styled.div`
   .description {
     font-size: 0.9rem;
     color: ${({ theme }) => theme.colors.gray3};
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 `;
