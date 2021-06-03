@@ -1,5 +1,4 @@
 import { atom, selector } from 'recoil';
-import { timeToDate } from '../components/header/form/calendar/calendarDateFn';
 import { guestStateType } from '../components/header/form/guestToggle/guestType';
 import { serverAPI } from '../util/api';
 import { selectDateState } from './calendarAtom';

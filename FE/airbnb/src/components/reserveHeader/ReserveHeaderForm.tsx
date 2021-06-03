@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { reserveInfoSelector } from '../../recoil/headerAtom';
+import { reserveInfoSelector } from '../../recoilStore/headerAtom';
 import FormCheckIn from '../header/form/FormCheckIn';
 import FormCheckOut from '../header/form/FormCheckOut';
 import FormGuest from '../header/form/FormGuest';

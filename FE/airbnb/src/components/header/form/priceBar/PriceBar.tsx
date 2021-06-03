@@ -12,7 +12,7 @@ import {
   pauseBtnLastPositionState,
   pauseBtnPositionState,
   priceState,
-} from '../../../../recoil/headerAtom';
+} from '../../../../recoilStore/headerAtom';
 
 export const PRICE_DATA = {
   WIDTH: 365,

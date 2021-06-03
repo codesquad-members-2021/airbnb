@@ -1,13 +1,13 @@
 import { RefObject, useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { calendarState, calendarDateType } from '../../../../recoil/calendarAtom';
+import { calendarState, calendarDateType } from '../../../../recoilStore/calendarAtom';
 import { ReactComponent as CalendarPrevBtn } from '../../../../assets/svg/Property 1=chevron-left.svg';
 import { ReactComponent as CalendarNextBtn } from '../../../../assets/svg/Property 1=chevron-right.svg';
 import CalendarDate from '../../../calendar/CalendarDate';
 import CalendarDay from '../../../calendar/CalendarDay';
 import CalendarHeader from '../../../calendar/CalendarHeader';
-import { getMonthData } from './calendarDateFn';
+import { getMonthData } from '../../../../util/calendarUtils';
 
 interface Props {
   toggleRef: RefObject<HTMLDivElement>;

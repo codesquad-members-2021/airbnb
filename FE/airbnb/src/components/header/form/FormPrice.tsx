@@ -7,7 +7,7 @@ import {
   pauseBtnLastPositionState,
   pauseBtnPositionState,
   priceState,
-} from '../../../recoil/headerAtom';
+} from '../../../recoilStore/headerAtom';
 import { getNumberWithComma } from '../../util/util';
 import HoverBlock from '../HoverBlock';
 import FormColumn from './FormColumn';

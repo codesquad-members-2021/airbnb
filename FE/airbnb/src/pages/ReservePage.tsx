@@ -5,8 +5,8 @@ import Map from '../components/map/Map';
 import ReserveHeader from '../components/reserveHeader/ReserveHeader';
 import MapSkeleton from '../components/reservePageSkeleton/MapSkeleton';
 import ReserveRoomList from '../components/reserveRoomList/ReserveRoomList';
-import { reserveInfoSelector } from '../recoil/headerAtom';
-import { getRoomsSelector } from '../recoil/reserveRoomAtom';
+import { reserveInfoSelector } from '../recoilStore/headerAtom';
+import { getRoomsSelector } from '../recoilStore/reserveRoomAtom';
 
 interface Props {}
 

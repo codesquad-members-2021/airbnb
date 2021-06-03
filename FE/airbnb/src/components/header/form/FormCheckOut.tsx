@@ -1,12 +1,12 @@
 import { MouseEvent, RefObject } from 'react';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { calendarOpenState, selectDateState } from '../../../recoil/calendarAtom';
+import { calendarOpenState, selectDateState } from '../../../recoilStore/calendarAtom';
 import HoverBlock from '../HoverBlock';
-import { getDateByTime } from './calendar/calendarDateFn';
+import { getDateByTime } from '../../../util/calendarUtils';
 import FormColumn from './FormColumn';
 import { ReactComponent as DeleteBtn } from '../../../assets/svg/Property 1=x-circle.svg';
-import { selectCheckBoxState } from '../../../recoil/headerAtom';
+import { selectCheckBoxState } from '../../../recoilStore/headerAtom';
 
 interface Props {
   checkOutRef: RefObject<HTMLDivElement>;

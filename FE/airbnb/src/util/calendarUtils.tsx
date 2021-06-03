@@ -1,5 +1,5 @@
-import { calendarDateType, dayType } from '../../../../recoil/calendarAtom';
-import { pipe } from '../../../../util/util';
+import { calendarDateType, dayType } from '../recoilStore/calendarAtom';
+import { pipe } from './util';
 
 export const getMonthData = ({ year, month, todayDate }: calendarDateType): dayType[][] => {
   const { year: todayYear, month: todayMonth, date: todayDay } = todayDate;

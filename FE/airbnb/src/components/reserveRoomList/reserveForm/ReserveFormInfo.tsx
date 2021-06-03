@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { selectDateState } from '../../../recoil/calendarAtom';
-import { guestState } from '../../../recoil/headerAtom';
-import { getDateByTime } from '../../header/form/calendar/calendarDateFn';
+import { selectDateState } from '../../../recoilStore/calendarAtom';
+import { guestState } from '../../../recoilStore/headerAtom';
+import { getDateByTime } from '../../../util/calendarUtils';
 
 interface Props {
   className?: string;

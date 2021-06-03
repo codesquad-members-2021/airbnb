@@ -6,7 +6,11 @@ import { MouseEvent, useEffect, useRef } from 'react';
 import useToggle from '../../../hooks/useToggle';
 import FormGuestToggle from './guestToggle/FormGuestToggle';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { guestState, isFormOpenedState, reserveInfoSelector } from '../../../recoil/headerAtom';
+import {
+  guestState,
+  isFormOpenedState,
+  reserveInfoSelector,
+} from '../../../recoilStore/headerAtom';
 import { ReactComponent as DeleteBtn } from '../../../assets/svg/Property 1=x-circle.svg';
 import ConditionalLink from '../../util/ConditionalLink';
 import { reserveInfoType, clientReserveAPI } from '../../../util/api';
