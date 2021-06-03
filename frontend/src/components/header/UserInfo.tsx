@@ -22,7 +22,6 @@ function UserInfo() {
   if (avatarUrl !== null) userPhoto = avatarUrl
 
   if (isLogin === 'true') setLoginState(true)
-  console.log(LoginState)
 
   const IMG = () => {
     return (
