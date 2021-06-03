@@ -25,6 +25,10 @@
 		AE3FE07A26579D3B00A95177 /* RegionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07826579D3B00A95177 /* RegionCell.swift */; };
 		AE3FE07B26579D3B00A95177 /* RegionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE3FE07926579D3B00A95177 /* RegionCell.xib */; };
 		AE53DF092660885600A72A87 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53DF082660885600A72A87 /* CalendarViewModel.swift */; };
+		AE87A77926687F1C003E9541 /* PeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A77826687F1C003E9541 /* PeopleTableViewController.swift */; };
+		AE87A77C26687F71003E9541 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A77A26687F71003E9541 /* PersonCell.swift */; };
+		AE87A77D26687F71003E9541 /* PersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE87A77B26687F71003E9541 /* PersonCell.xib */; };
+		AE87A7812668992C003E9541 /* PeopleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A7802668992C003E9541 /* PeopleViewModel.swift */; };
 		AE8CD3B42653538700BCB8FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B32653538700BCB8FC /* AppDelegate.swift */; };
 		AE8CD3B62653538700BCB8FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B52653538700BCB8FC /* SceneDelegate.swift */; };
 		AE8CD3B82653538700BCB8FC /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B72653538700BCB8FC /* MainPageViewController.swift */; };
@@ -78,6 +82,10 @@
 		AE3FE07826579D3B00A95177 /* RegionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionCell.swift; sourceTree = "<group>"; };
 		AE3FE07926579D3B00A95177 /* RegionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegionCell.xib; sourceTree = "<group>"; };
 		AE53DF082660885600A72A87 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		AE87A77826687F1C003E9541 /* PeopleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewController.swift; sourceTree = "<group>"; };
+		AE87A77A26687F71003E9541 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		AE87A77B26687F71003E9541 /* PersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonCell.xib; sourceTree = "<group>"; };
+		AE87A7802668992C003E9541 /* PeopleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewModel.swift; sourceTree = "<group>"; };
 		AE8CD3B02653538700BCB8FC /* Airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE8CD3B32653538700BCB8FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE8CD3B52653538700BCB8FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -287,6 +295,10 @@
 			isa = PBXGroup;
 			children = (
 				AEF03BA82667649000050531 /* PeopleViewController.swift */,
+				AE87A77826687F1C003E9541 /* PeopleTableViewController.swift */,
+				AE87A7802668992C003E9541 /* PeopleViewModel.swift */,
+				AE87A77A26687F71003E9541 /* PersonCell.swift */,
+				AE87A77B26687F71003E9541 /* PersonCell.xib */,
 			);
 			path = People;
 			sourceTree = "<group>";
@@ -396,6 +408,7 @@
 			files = (
 				AE0B5DF4265642B2000B35E7 /* CategoryCell.xib in Resources */,
 				AE8CD3C02653538800BCB8FC /* LaunchScreen.storyboard in Resources */,
+				AE87A77D26687F71003E9541 /* PersonCell.xib in Resources */,
 				AE8CD3BD2653538800BCB8FC /* Assets.xcassets in Resources */,
 				AE0B5DE72656073E000B35E7 /* CityCell.xib in Resources */,
 				AE8CD3BB2653538700BCB8FC /* Main.storyboard in Resources */,
@@ -436,10 +449,12 @@
 				AE3FE07526574E7000A95177 /* SearchCityViewController.swift in Sources */,
 				AEC52F712663FF3600D8F802 /* ConditionCell.swift in Sources */,
 				AEF03BA526674E8200050531 /* PriceViewController.swift in Sources */,
+				AE87A77C26687F71003E9541 /* PersonCell.swift in Sources */,
 				AE11F5AA265F3D250034779F /* DayCell.swift in Sources */,
 				AE11F5AC265F3D5F0034779F /* DateGenerator.swift in Sources */,
 				AE3FE07726578F1700A95177 /* RegionData.swift in Sources */,
 				AE0B5DEB265631D7000B35E7 /* DetailDestinationViewController.swift in Sources */,
+				AE87A77926687F1C003E9541 /* PeopleTableViewController.swift in Sources */,
 				AE0B5DDF2655FCA0000B35E7 /* Network.swift in Sources */,
 				AE8CD3B82653538700BCB8FC /* MainPageViewController.swift in Sources */,
 				AE53DF092660885600A72A87 /* CalendarViewModel.swift in Sources */,
@@ -447,6 +462,7 @@
 				AE0B5DE926562D4A000B35E7 /* TitleSupplementaryView.swift in Sources */,
 				AE0B5DE62656073E000B35E7 /* CityCell.swift in Sources */,
 				AE8CD3B62653538700BCB8FC /* SceneDelegate.swift in Sources */,
+				AE87A7812668992C003E9541 /* PeopleViewModel.swift in Sources */,
 				AE0B5DF3265642B2000B35E7 /* CategoryCell.swift in Sources */,
 				AEC52F6E2663FEB200D8F802 /* ConditionTableViewController.swift in Sources */,
 			);
