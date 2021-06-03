@@ -1,5 +1,8 @@
 import { useEffect } from 'react'
+import { useSetRecoilState } from 'recoil'
 import styled from 'styled-components'
+import { searchMap } from '../../customHook/axiosAPI'
+import { RoomData } from '../../customHook/atoms'
 declare global {
   interface Window {
     naver: any
@@ -11,6 +14,7 @@ interface IMapData {
   isRouter: boolean
 }
 function Map({ data, isRouter }: IMapData) {
+  const setRoomDatas = useSetRecoilState(RoomData)
   useEffect(() => {
     //지도생성
     let container = document.getElementById('map')
@@ -43,19 +47,15 @@ function Map({ data, isRouter }: IMapData) {
       })
     }
 
-    // window.naver.maps.Event.addListener(map, 'bounds_changed', function () {
-    //   let newCoord = map.getCenter()
-    //   let newLat = newCoord._lat
-    //   let newLng = newCoord._lng
-    //   console.log(newLng, newLat)
-    // })
+    window.naver.maps.Event.addListener(map, 'bounds_changed', async function () {
+      let newCoord = map.getCenter()
+      let newLat = newCoord._lat
+      let newLng = newCoord._lng
+      const response = await searchMap(newLat, newLng)
+      setRoomDatas(response)
+    })
+    
 
-    // return window.naver.maps.Event.removeListener(map, 'bounds_changed', function () {
-    //   let newCoord = map.getCenter()
-    //   let newLat = newCoord._lat
-    //   let newLng = newCoord._lng
-    //   console.log(newLng, newLat)
-    // })
   })
   //'zoom_changed'
   return (

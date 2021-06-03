@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import styled from 'styled-components'
-import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil'
-import { Test, RecoilValueGroup, RouterOrSearch, RoomData } from '../../customHook/atoms'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { RecoilValueGroup, RouterOrSearch, RoomData } from '../../customHook/atoms'
 import useAxios from '../../customHook/useAxios'
 import { getHouseData } from '../../customHook/axiosAPI'
 import Logo from '../header/Logo'
@@ -12,23 +12,13 @@ import MiniSearchBar from './MiniSearchBar'
 import HouseList from './HouseList'
 import SearchBar from '../searchBar/SearchBar'
 import Map from './Map'
-interface params {
-  place: string | undefined
-  checkIn: string | undefined
-  checkOut: string | undefined
-  priceMin: string | undefined
-  priceMax: string | undefined
-  minFeePercent: string | undefined
-  maxFeePercent: string | undefined
-  adult: string | undefined
-  child: string | undefined
-  baby: string | undefined
-}
-function SearchResult({ match }: RouteComponentProps<params>) {
+import {IParams} from '../../Interface'
+
+function SearchResult({ match }: RouteComponentProps<IParams>) {
 
   const recoilValues = useRecoilValue(RecoilValueGroup)
 
-    console.log(match.params, recoilValues)
+  console.log(match.params, recoilValues)
   const [clicked, setClicked] = useState(false)
   const RoomDatas = useRecoilValue(RoomData)
   const { state } = useAxios(() => getHouseData(match.params))

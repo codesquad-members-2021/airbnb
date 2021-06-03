@@ -36,6 +36,7 @@ function HouseList({ data }: any) {
   const handleModalClick = (e:React.MouseEvent<HTMLDivElement, MouseEvent>, el:any) => {
     const target = e.target as Element;
     if (target.closest('.likeUnClick')!==null) return
+    if (target.closest('.likeClick')!==null) return
     setOpen(true)
     setTargetData(el)
   }

@@ -97,6 +97,18 @@ export async function getHouseData(value: any) {
 export async function wishToggle(id:number){
   let url = `http://13.125.140.183/rooms/${id}/wish`
   const response = await axios.patch(url)
-  console.log(response)
   return response
+}
+
+export async function searchMap(lat:number, lng:number){
+  let url = `http://13.125.140.183/search/location?latitude=${lat}&longitude=${lng}`
+  let result;
+  try {
+    const response = await axios.get(url)
+    result = await response.data
+    console.log(result.rooms, lat)
+  } catch(e){
+    console.error(e)
+  }
+  return result.rooms
 }

@@ -12,21 +12,27 @@ interface IWish {
 function WishList({setOpen, targetData}:IWish){
   const [isHeartClick, setHeartClick] = useState<boolean>(false)
   const {state, fetchData} = useAxios(()=>wishToggle(targetData.id),[], true)
-  const handleLikeClick = (id:number) =>{
-    setOpen(false)
-    setHeartClick(true)
-    // const response = fetchData()
-    const response = wishToggle(id)
-    console.log(response)
-  }
+  const handleLikeClick = (type:string, id:number) =>{
+    if (type==='like'){
+      setOpen(false)
+      setHeartClick(true)
+    }else{
+      setOpen(false)
+      setHeartClick(false)
+    }
+    const response = fetchData()
+    // const response = wishToggle(id)
+    console.log(response) //코스에러.
+    }
+  
 
   return !isHeartClick ? (
-      <LikeBtn className="likeUnClick" onClick={()=>handleLikeClick(targetData.id)}>
+      <LikeBtn className="likeUnClick" onClick={()=>handleLikeClick('like',targetData.id)}>
         <IconButton  aria-label='like'>
           <FavoriteBorderIcon fontSize='large' />
         </IconButton>
       </LikeBtn>
-  ) : (<LikeBtn className="likeClick">
+  ) : (<LikeBtn className="likeClick" onClick={()=>handleLikeClick('unlike',targetData.id)}>
         <IconButton aria-label='like'>
           <FavoriteIcon color='secondary' />
         </IconButton> 
