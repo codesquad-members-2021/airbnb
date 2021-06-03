@@ -41,6 +41,7 @@ public class Booking {
 
     public static BookingResponse createBookingResponse(Booking booking) {
         return BookingResponse.builder()
+                .bookingId(booking.getId())
                 .name(booking.room.getName())
                 .roomImages(booking.room.getImages().stream().map(Image::getImage).collect(Collectors.toList()))
                 .place(booking.room.getLocation().getPlaceId())

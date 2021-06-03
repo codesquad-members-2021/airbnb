@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @Builder
 public class BookingResponse {
+    private final Long bookingId;
     private final String name;
     private final List<String> roomImages;
     private final String place;
