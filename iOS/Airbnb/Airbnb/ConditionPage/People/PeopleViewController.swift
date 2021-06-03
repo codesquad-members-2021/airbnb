@@ -10,7 +10,6 @@ import UIKit
 class PeopleViewController : UIViewController {
     
     private var conditionViewModel: ConditionViewModel
-    private var priceUseCase = PriceUseCase()
     private var containerView: UIView!
     let label = UILabel()
     
