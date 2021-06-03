@@ -6,10 +6,9 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public class UserRepository implements JdbcRepository<User> {
+public class UserRepository {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -25,16 +24,6 @@ public class UserRepository implements JdbcRepository<User> {
     public List<User> findByEmail(String email) {
         String sql = "select `name`, `email` from `user` where `email` like ?";
         return jdbcTemplate.query(sql, userRowMapper(), email);
-    }
-
-    @Override
-    public Optional<User> findById(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public List<User> findAll() {
-        return null;
     }
 
     private RowMapper<User> userRowMapper() {

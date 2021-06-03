@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class WishRepository implements JdbcRepository<Wish>{
+public class WishRepository {
 
     private JdbcTemplate jdbcTemplate;
 

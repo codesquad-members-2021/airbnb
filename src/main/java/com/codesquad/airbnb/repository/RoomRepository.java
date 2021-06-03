@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
-public class RoomRepository implements JdbcRepository<Room> {
+public class RoomRepository {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -30,8 +30,6 @@ public class RoomRepository implements JdbcRepository<Room> {
                 "(check_in is null and check_out is null))";
 
         List<Room> rooms = jdbcTemplate.query(sql, roomRowMapper(), minPrice, maxPrice, numberOfPeople, checkIn, checkOut);
-
-        rooms.forEach(System.out::println);
 
         return rooms.stream()
                 .map(room -> addReferencingTablesToRoom(room))
