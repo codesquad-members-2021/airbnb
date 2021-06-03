@@ -10,6 +10,13 @@ import { FilterDateToString } from '../../../customHook/useDateInfo'
 import useXclick from '../../../customHook/useXclick'
 import { IProps } from '../../../Interface'
 
+export const CheckInBlock = (checkIn:any) => {
+  return  (<div>
+  <BarTitle>체크인</BarTitle>
+  <BarMessage>{FilterDateToString(checkIn)}</BarMessage>
+</div>)
+}
+
 function CheckIn({ open, type, checkInToggle }: IProps) {
   const [checkIn, setCheckIn] = useRecoilState(checkInMessage)
   const [checkInClicked, setCheckInClick] = useRecoilState(clickCheckIn)
@@ -24,16 +31,14 @@ function CheckIn({ open, type, checkInToggle }: IProps) {
 
   return (
     <BarBlock
+      modal={modal}
       onClick={handleClick}
       clicked={checkInClicked && open}
       type={type}
       ref={checkInToggle}
     >
       <BarInnerWrapper>
-        <div>
-          <BarTitle>체크인</BarTitle>
-          <BarMessage>{FilterDateToString(checkIn)}</BarMessage>
-        </div>
+        {CheckInBlock(checkIn)}
         <RenderXbtn />
       </BarInnerWrapper>
     </BarBlock>
