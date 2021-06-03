@@ -6,6 +6,8 @@ import { userInfoAtom } from '@/recoil/atoms';
 import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import { fetchHotelListSelector } from '@/recoil/fetchAtoms';
 import { Checkbox } from '@material-ui/core';
+import { useHistory, useLocation } from 'react-router';
+import qs from 'qs';
 
 const containerStyle = {
   width: '50vw',
@@ -37,6 +39,8 @@ const SearchMap = () => {
   const [mapInstance, setMapInstance] = useState<any>(null)
   const hotelListLoadable = useRecoilValueLoadable(fetchHotelListSelector);
   const [isFetchPossible, setIsFetchPossible] = useState(true);
+  const history = useHistory();
+  const location = useLocation();
 
   const centerPosition = {
     lat: Number(x),
@@ -44,12 +48,28 @@ const SearchMap = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   };
 
+  const historyUpdate = ({ distance }: { distance: number }) => {
+    const queryParams = qs.parse(location.search, {
+      ignoreQueryPrefix: true
+    });
+    const newQueries = {
+      ...queryParams,
+      x: mapInstance.center.lat(),
+      y: mapInstance.center.lng(),
+      zoom: distance
+    };
+    history.push({
+      search: qs.stringify(newQueries)
+    });
+  }
+
   const handleMapControl = useCallback(() => {
     if (!mapInstance) return;
     const bounds = mapInstance.getBounds();
     const westLocation = bounds.getSouthWest().lng();
     const eastLocation = bounds.getNorthEast().lng();
     const distance = (eastLocation - westLocation) / 2;
+    historyUpdate({ distance });
     if (!isFetchPossible) return;
     setUserInfoState((state: any) => ({
       ...state,

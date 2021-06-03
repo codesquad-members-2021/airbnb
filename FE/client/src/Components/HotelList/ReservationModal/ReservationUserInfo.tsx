@@ -12,12 +12,19 @@ const ReservationUserInfo = () => {
       <UserInfoWrapper>
         <DateWrapper>
           <DateChecker>
+
             <div>체크인</div>
-            <div>{getFormattingDateFromTimeAllYear(firstDayTime)}</div>
+            {firstDayTime &&
+              <div>{getFormattingDateFromTimeAllYear(firstDayTime)}</div>
+            }
+
           </DateChecker>
           <DateChecker>
             <div>체크아웃</div>
-            <div>{getFormattingDateFromTimeAllYear(LastDayTime)}</div>
+            {LastDayTime &&
+              <div>{getFormattingDateFromTimeAllYear(LastDayTime)}</div>
+            }
+
           </DateChecker>
         </DateWrapper>
         <GuestCountWrapper>
