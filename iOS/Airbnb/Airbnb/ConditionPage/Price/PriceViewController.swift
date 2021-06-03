@@ -32,7 +32,7 @@ class PriceViewController: UIViewController {
         configure()
         configureNavigation()
         configureToolBar()
-        priceUseCase.requestMainPage(condition: conditionViewModel.convertCodable())
+        priceUseCase.requestPirce(condition: conditionViewModel.convertCodable())
         bind()
     }
 
