@@ -24,32 +24,54 @@ import java.util.List;
 
 @PropertySource("classpath:/oauth.properties")
 @Component
-public class GitHubOAuth implements OAuth{
+public class GitHubOAuth implements OAuth {
 
-    public static final String CLIENT_ID = "client_id";
-    public static final String CLIENT_SECRET = "client_secret";
-    public static final String CODE = "code";
-    public static final String TOKEN = "token";
+    private static final String CLIENT_ID = "client_id";
+    private static final String CLIENT_SECRET = "client_secret";
+    private static final String CODE = "code";
+    private static final String TOKEN = "token";
 
     private final RestTemplate restTemplate;
-    private final Environment environment;
+    private final String frontClientId;
+    private final String frontClientSecret;
+    private final String iOSClientId;
+    private final String iOSClientSecret;
 
     public GitHubOAuth(Environment environment, RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.errorHandler(new RestTemplateResponseErrorHandler()).build();
-        this.environment = environment;
+        this.frontClientId = environment.getProperty(GitHubType.FRONT.getClientId());
+        this.frontClientSecret = environment.getProperty(GitHubType.FRONT.getClientSecret());
+        this.iOSClientId = environment.getProperty(GitHubType.IOS.getClientId());
+        this.iOSClientSecret = environment.getProperty(GitHubType.IOS.getClientSecret());
     }
 
     @Override
     public TokenDTO tokenReceiveAPI(String code, int typeCode) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(GitHubUrl.ACCESS_TOKEN.getUrl())
-                .queryParam(CLIENT_ID, id)
-                .queryParam(CLIENT_SECRET, secret)
+                .queryParam(CLIENT_ID, getClientIdByTypeCode(typeCode))
+                .queryParam(CLIENT_SECRET, getClientSecretByTypeCode(typeCode))
                 .queryParam(CODE, code);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
         httpHeaders.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
         HttpEntity<?> httpEntity = new HttpEntity<>(httpHeaders);
         return restTemplate.exchange(builder.toUriString(), HttpMethod.POST, httpEntity, TokenDTO.class).getBody();
+    }
+
+    private String getClientIdByTypeCode(int typeCode) {
+        GitHubType gitHubType = GitHubType.getGitHubTypeByCode(typeCode);
+        if (gitHubType == GitHubType.FRONT) {
+            return frontClientId;
+        }
+        return iOSClientId;
+    }
+
+    private String getClientSecretByTypeCode(int typeCode) {
+        GitHubType gitHubType = GitHubType.getGitHubTypeByCode(typeCode);
+        if (gitHubType == GitHubType.FRONT) {
+            return frontClientSecret;
+        }
+        return iOSClientSecret;
     }
 
     @Override
