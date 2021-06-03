@@ -25,7 +25,6 @@ public class Room {
     private int salePrice;
     private boolean flexibleRefund;
     private boolean immediateBooking;
-
     private List<Thumbnail> thumbnails;
     private Optional<Option> option;
     private List<Badge> badges;

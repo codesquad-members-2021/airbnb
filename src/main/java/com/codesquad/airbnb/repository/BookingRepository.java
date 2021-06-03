@@ -50,7 +50,7 @@ public class BookingRepository {
 
         return jdbcTemplate.query(sql, bookingRowMapper(), booking.getRoomId(),
                 booking.getCheckIn(), booking.getCheckOut(), booking.getCheckIn(), booking.getCheckOut(),
-                booking.getCheckIn(), booking.getCheckOut(),booking.getCheckIn(), booking.getCheckOut());
+                booking.getCheckIn(), booking.getCheckOut(), booking.getCheckIn(), booking.getCheckOut());
     }
 
     private RowMapper<Booking> bookingRowMapper() {
