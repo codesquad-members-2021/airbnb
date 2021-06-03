@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { FilterDateToForm } from './useDateInfo'
 import { defaultValue } from './atoms'
-
+import {IParams} from '../Interface'
 export async function getFeeData(
   city: string | undefined,
   checkIn: string | number | undefined,
@@ -54,9 +54,8 @@ export async function getHouseData(value: any) {
     adult,
     child,
     baby,
-  }: DetailProps = value
+  }: IParams = value
   
-  console.log(value)
   let guestAdult = Number(adult)
   let guestChild = Number(child)
   let guestBaby = Number(baby)
@@ -92,5 +91,12 @@ export async function getHouseData(value: any) {
     `http://13.125.140.183/search?`
   )
   const response = await axios.get(url)
+  return response
+}
+
+export async function wishToggle(id:number){
+  let url = `http://13.125.140.183/rooms/${id}/wish`
+  const response = await axios.patch(url)
+  console.log(response)
   return response
 }
