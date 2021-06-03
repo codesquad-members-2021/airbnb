@@ -13,7 +13,7 @@ import {
   totalGuestSelector,
 } from '../../../recoilStore/headerAtom';
 import { ReactComponent as DeleteBtn } from '../../../assets/svg/Property 1=x-circle.svg';
-import ConditionalLink from '../../util/ConditionalLink';
+import ConditionalLink from '../../commonComponents/ConditionalLink';
 import { reserveInfoType, clientReserveAPI } from '../../../util/api';
 
 const FormGuest = () => {
