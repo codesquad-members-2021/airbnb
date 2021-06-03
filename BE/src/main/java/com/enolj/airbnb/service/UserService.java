@@ -11,7 +11,6 @@ import com.enolj.airbnb.web.dto.EmailDTO;
 import com.enolj.airbnb.web.dto.TokenDTO;
 import com.enolj.airbnb.web.dto.UserInfoDTO;
 import com.enolj.airbnb.web.dto.UserResponseDTO;
-import com.enolj.airbnb.web.utils.GitHubType;
 import com.enolj.airbnb.web.utils.JwtUtil;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +28,10 @@ public class UserService {
         this.gitHubOAuth = gitHubOAuth;
     }
 
-    public UserResponseDTO login(String code, GitHubType gitHubType) {
-        TokenDTO tokenDTO = tokenRequestApi(code, gitHubType);
-        UserInfoDTO userInfoDTO = userInfoRequestApi(tokenDTO.getAccessToken());
-        EmailDTO emailDTO = emailRequestApi(tokenDTO.getAccessToken());
+    public UserResponseDTO login(String code, int typeCode) {
+        TokenDTO tokenDTO = gitHubOAuth.tokenReceiveAPI(code, typeCode);
+        UserInfoDTO userInfoDTO = gitHubOAuth.userInfoReceiveAPI(tokenDTO.getAccessToken());
+        EmailDTO emailDTO = gitHubOAuth.emailReceiveAPI(tokenDTO.getAccessToken());
         if (verifyUser(userInfoDTO.getUserId())) {
             User user = findByUserId(userInfoDTO.getUserId());
             user.update(userInfoDTO, emailDTO, tokenDTO);
@@ -48,18 +47,6 @@ public class UserService {
         User user = getUserFromAuthorization(userDAO, authorization);
         user.removeToken();
         userDAO.save(user);
-    }
-
-    private TokenDTO tokenRequestApi(String code, GitHubType gitHubType) {
-        return gitHubOAuth.getTokenAPI(code, gitHubType);
-    }
-
-    private UserInfoDTO userInfoRequestApi(String token) {
-        return gitHubOAuth.getUserInfoAPI(token);
-    }
-
-    private EmailDTO emailRequestApi(String token) {
-       return gitHubOAuth.getEmailAPI(token);
     }
 
     private boolean verifyUser(String userId) {
