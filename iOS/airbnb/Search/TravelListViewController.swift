@@ -38,9 +38,6 @@ class TravelListViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = removeButton
         self.navigationItem.title = "숙소찾기"
         self.travelList.delegate = self
-
-        
-        nearPlaces.append(NearPlace(name: "test", avatarUrl: nil, distance: 10, coordinate: Coordinate(x: 10, y: 10)))
         
         applySnapshot(animatingDifferences: false)
         makeSectionHeader()
