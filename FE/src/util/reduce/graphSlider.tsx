@@ -41,6 +41,10 @@ type Action =
       };
     }
   | {
+      type: 'INIT_SLIDER_BACKGROUND_WIDTH';
+      payload: number;
+    }
+  | {
       type: 'SET_SLIDER_BUTTON_COORDINATES';
       payload: { value: number; btnType: string | null };
     }
@@ -70,6 +74,14 @@ const graphSliderReducer = (state: IState, action: Action): IState => {
         },
       };
     }
+
+    case 'INIT_SLIDER_BACKGROUND_WIDTH': {
+      return {
+        ...state,
+        currBackgroundWidth: action.payload,
+      };
+    }
+
     case 'SET_SLIDER_BUTTON_COORDINATES': {
       const { leftX, rightX, maxLeftX, maxRightX } = state.buttonCoordinates;
       const { value, btnType } = action.payload;
@@ -106,8 +118,8 @@ const graphSliderReducer = (state: IState, action: Action): IState => {
     case 'SET_PRICE_UNIT_WIDTH': {
       return {
         ...state,
-        priceUnitWidth: action.payload
-      }
+        priceUnitWidth: action.payload,
+      };
     }
 
     default:

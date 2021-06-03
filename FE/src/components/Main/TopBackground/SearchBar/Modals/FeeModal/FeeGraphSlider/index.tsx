@@ -108,10 +108,16 @@ const FeeGraphSlider = ({ resData, ...props }: IFeeGraph) => {
     });
     ctx.closePath();
 
-    // -2- Slider 버튼 위치 지정
+    // -2.1- Slider 버튼 위치 지정
     graphSliderDispatch({
       type: 'INIT_SLIDER_BUTTON_COORDINATES',
       payload: { leftX: 0, rightX: width, maxLeftX: 0, maxRightX: width },
+    });
+
+    // -2.2- Slider 버튼 Background Size 초기화
+    graphSliderDispatch({
+      type: 'INIT_SLIDER_BACKGROUND_WIDTH',
+      payload: width,
     });
 
     // -3- 단위당 Width 설정
