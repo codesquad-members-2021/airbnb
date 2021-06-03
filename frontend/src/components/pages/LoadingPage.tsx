@@ -6,7 +6,8 @@ const LoadingPage = () => {
   const getToken = () => {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
-    fetch("http://localhost:8080/api/auth", {
+   
+    fetch("http://airbnb.pyro-squad.com/api/auth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,11 +19,7 @@ const LoadingPage = () => {
       .then(({ token }) => {
         console.log("token입니다: ", token);
         localStorage.setItem("token", token);
-        <Redirect
-          to={{
-            pathname: "/",
-          }}
-        />; //되겠지 test 필요
+     
       });
   };
 
@@ -32,7 +29,8 @@ const LoadingPage = () => {
 
   return (
     <Test>
-      <img src="https://thumbs.gfycat.com/GeneralUnpleasantApisdorsatalaboriosa-max-1mb.gif" />
+      {localStorage.getItem("token") && <Redirect to="/"/>}
+    <img src="https://thumbs.gfycat.com/GeneralUnpleasantApisdorsatalaboriosa-max-1mb.gif" />
     </Test>
   );
 };
