@@ -1,5 +1,5 @@
 //
-//  ResultSupplymentaryView.swift
+//  ResultSupplementaryView.swift
 //  Airbnb
 //
 //  Created by Lia on 2021/06/03.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ResultSupplymentaryView: UICollectionReusableView {
+class ResultSupplementaryView: UICollectionReusableView {
     
     let label = UILabel()
     static let reuseIdentifier = "ResultSupplymentaryView"
@@ -24,7 +24,7 @@ class ResultSupplymentaryView: UICollectionReusableView {
 }
 
 
-extension ResultSupplymentaryView {
+extension ResultSupplementaryView {
     
     private func configure() {
         addSubview(label)
