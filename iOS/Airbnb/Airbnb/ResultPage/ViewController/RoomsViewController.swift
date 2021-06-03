@@ -13,13 +13,27 @@ class RoomsViewController: UIViewController {
     static let headerElementKind = "header-element-kind"
     
     private var collectionView: UICollectionView!
-    private var dataSource: UICollectionViewDiffableDataSource<Int, Int>!
+    private var dataSource: UICollectionViewDiffableDataSource<Int, Room>!
+    private var conditionViewModel: ConditionViewModel
     private let roomsUseCase = RoomsUseCase()
     private var cancelBag = Set<AnyCancellable>()
     
+    init(conditionViewModel: ConditionViewModel) {
+        self.conditionViewModel = conditionViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        roomsUseCase.requestPirce(condition: conditionViewModel.convertCodable())
+        bind()
         
+        configureHierarchy()
+        configureDataSource()
     }
 
 }
@@ -31,7 +45,7 @@ extension RoomsViewController {
         roomsUseCase.$rooms.receive(on: DispatchQueue.main)
             .sink { rooms in
                 guard let rooms = rooms else { return }
-                self.applySnapshots(with: rooms)
+                self.applySnapshots(with: rooms.rooms)
             }
             .store(in: &cancelBag)
         
@@ -85,13 +99,13 @@ extension RoomsViewController {
     }
     
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Int, Int>(collectionView: collectionView) {
-            (collectionView, indexPath, item) -> UICollectionViewCell? in
-
-                self.collectionView.register(AccommodationCell.nib, forCellWithReuseIdentifier: AccommodationCell.reuseIdentifier)
-                let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: AccommodationCell.reuseIdentifier, for: indexPath) as! AccommodationCell
-//                cell.fillUI(with: item.city ?? City(id: 0, name: "", image: "", distance: 0))
-                return cell
+        dataSource = UICollectionViewDiffableDataSource<Int, Room>(collectionView: collectionView) {
+            (collectionView, indexPath, room) -> UICollectionViewCell? in
+            
+            self.collectionView.register(AccommodationCell.nib, forCellWithReuseIdentifier: AccommodationCell.reuseIdentifier)
+            let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: AccommodationCell.reuseIdentifier, for: indexPath) as! AccommodationCell
+            cell.fillUI(with: room)
+            return cell
         }
         self.configureSupplementaryView()
     }
@@ -100,8 +114,7 @@ extension RoomsViewController {
         let supplementaryRegistration = UICollectionView.SupplementaryRegistration
         <RoomsSupplementaryView>(elementKind: RoomsViewController.headerElementKind) {
             (supplementaryView, string, indexPath) in
-//            let sectionKind = Section(rawValue: indexPath.section)!
-            supplementaryView.label.text = "~~~"//String(describing: sectionKind)
+            supplementaryView.label.text = "~~~"
         }
         dataSource.supplementaryViewProvider = { (view, kind, index) in
             return self.collectionView.dequeueConfiguredReusableSupplementary(
@@ -109,10 +122,10 @@ extension RoomsViewController {
         }
     }
     
-    private func applySnapshots(with rooms: Rooms) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Int>()
+    private func applySnapshots(with rooms: [Room]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Room>()
         snapshot.appendSections([1])
-        snapshot.appendItems([1], toSection: 1)
+        snapshot.appendItems(rooms, toSection: 1)
         dataSource.apply(snapshot)
     }
     

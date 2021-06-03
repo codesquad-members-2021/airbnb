@@ -15,13 +15,13 @@ struct Room: Codable, Hashable {
     var roomId: Int
     var images: Images
     var price: Int
-    var people: Int
+    var people: Int?
     var title: String
     var description: String
     var host: Host
     var detail: Detail
     var grade: Int
-    var review: Int
+    var review: Int?
     var tax: Tax
     
     struct Images: Codable, Hashable {
@@ -30,18 +30,18 @@ struct Room: Codable, Hashable {
     }
     
     struct Host: Codable, Hashable {
-        var image: String
-        var name: String
+        var image: String?
+        var name: String?
     }
     
     struct Detail: Codable, Hashable {
         var maxPeople: Int
         var oneRoom: Bool
-        var bed: Int
-        var bath: Int
+        var bed: Int?
+        var bath: Int?
         var hairDryer: Bool
         var airConditioner: Bool
-        var WiFi: Bool
+        var WiFi: Bool?
         var kitchen: Bool
     }
     
