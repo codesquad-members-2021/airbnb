@@ -23,7 +23,7 @@ class SearchViewController : UIViewController {
     }()
     
     weak var coordinator : SearchCoodinator?
-    private var nearPlaceDataSource : DataSource? = nil
+    private var placeDataSource : DataSource? = nil
     @Published private var places = [NearPlace]()
     private var themePlaceDataSource = ThemePlaceDataSource()
     private var cancellables = Set<AnyCancellable>()
@@ -37,8 +37,8 @@ class SearchViewController : UIViewController {
         
         self.navigationItem.titleView = searchBar
         searchBar.delegate = self
-        nearPlaceDataSource = makeDataSource()
-        nearPlaceCollection.dataSource = nearPlaceDataSource
+        placeDataSource = makeDataSource()
+        nearPlaceCollection.dataSource = placeDataSource
         themePlaceCollection.dataSource = themePlaceDataSource
         
         fetchData()
@@ -93,7 +93,7 @@ class SearchViewController : UIViewController {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(places)
-        nearPlaceDataSource?.apply(snapshot, animatingDifferences: animatingDifferences)
+        placeDataSource?.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
 

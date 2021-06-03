@@ -217,7 +217,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjO-cb-8cc">
-                                <rect key="frame" x="16" y="44" width="382" height="598"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="598"/>
                             </containerView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EHf-7v-CHx">
                                 <rect key="frame" x="0.0" y="818" width="414" height="44"/>
@@ -225,9 +225,17 @@
                                     <constraint firstAttribute="height" constant="44" id="RDv-kS-jLf"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="건너뛰기" id="gdj-Vo-gfN"/>
+                                    <barButtonItem title="건너뛰기" id="gdj-Vo-gfN">
+                                        <connections>
+                                            <action selector="next:" destination="m7A-7X-hDI" id="8nF-xw-NnZ"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem systemItem="flexibleSpace" id="RrA-xn-V6D"/>
-                                    <barButtonItem title="다음" id="xSk-IC-c8j"/>
+                                    <barButtonItem title="다음" id="xSk-IC-c8j">
+                                        <connections>
+                                            <action selector="next:" destination="m7A-7X-hDI" id="aBI-0A-gUa"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Egu-HS-l78">
@@ -257,10 +265,10 @@
                             <constraint firstItem="EHf-7v-CHx" firstAttribute="leading" secondItem="P3R-ox-FVp" secondAttribute="leading" id="Pdm-dg-K6u"/>
                             <constraint firstItem="Egu-HS-l78" firstAttribute="trailing" secondItem="P3R-ox-FVp" secondAttribute="trailing" id="UKN-Zw-STr"/>
                             <constraint firstItem="Egu-HS-l78" firstAttribute="top" secondItem="kjO-cb-8cc" secondAttribute="bottom" id="aSl-vN-UbP"/>
-                            <constraint firstItem="kjO-cb-8cc" firstAttribute="leading" secondItem="P3R-ox-FVp" secondAttribute="leading" constant="16" id="aYU-1e-0oI"/>
+                            <constraint firstItem="kjO-cb-8cc" firstAttribute="leading" secondItem="P3R-ox-FVp" secondAttribute="leading" id="aYU-1e-0oI"/>
                             <constraint firstItem="Egu-HS-l78" firstAttribute="leading" secondItem="P3R-ox-FVp" secondAttribute="leading" id="ah2-RI-zGx"/>
                             <constraint firstItem="EHf-7v-CHx" firstAttribute="top" secondItem="Egu-HS-l78" secondAttribute="bottom" id="esf-5F-d4u"/>
-                            <constraint firstItem="kjO-cb-8cc" firstAttribute="trailing" secondItem="P3R-ox-FVp" secondAttribute="trailing" constant="-16" id="pM2-Zk-PMF"/>
+                            <constraint firstItem="kjO-cb-8cc" firstAttribute="trailing" secondItem="P3R-ox-FVp" secondAttribute="trailing" id="pM2-Zk-PMF"/>
                             <constraint firstItem="EHf-7v-CHx" firstAttribute="bottom" secondItem="P3R-ox-FVp" secondAttribute="bottom" id="quW-tO-zLr"/>
                         </constraints>
                     </view>
@@ -282,7 +290,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="P0t-qf-7gQ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="16" y="44" width="382" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oio-uu-dFA">
                                     <size key="itemSize" width="49" height="49"/>
@@ -301,18 +309,18 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="CalendarHeader" id="kKd-HM-cz3" customClass="CalendarHeader" customModule="airbnb" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </collectionReusableView>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hz1-yN-U81"/>
-                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="P0t-qf-7gQ" firstAttribute="trailing" secondItem="hz1-yN-U81" secondAttribute="trailing" id="KbL-Ic-bGo"/>
+                            <constraint firstItem="P0t-qf-7gQ" firstAttribute="trailing" secondItem="hz1-yN-U81" secondAttribute="trailing" constant="-16" id="KbL-Ic-bGo"/>
                             <constraint firstItem="hz1-yN-U81" firstAttribute="bottom" secondItem="P0t-qf-7gQ" secondAttribute="bottom" id="NaC-hO-cJH"/>
-                            <constraint firstItem="P0t-qf-7gQ" firstAttribute="leading" secondItem="hz1-yN-U81" secondAttribute="leading" id="enk-JR-PU0"/>
+                            <constraint firstItem="P0t-qf-7gQ" firstAttribute="leading" secondItem="hz1-yN-U81" secondAttribute="leading" constant="16" id="enk-JR-PU0"/>
                             <constraint firstItem="P0t-qf-7gQ" firstAttribute="top" secondItem="hz1-yN-U81" secondAttribute="top" id="pD2-sK-YKU"/>
                         </constraints>
                     </view>
@@ -324,14 +332,29 @@
             </objects>
             <point key="canvasLocation" x="2870" y="84"/>
         </scene>
+        <!--Price View Controller-->
+        <scene sceneID="JU6-Ec-U8q">
+            <objects>
+                <viewController storyboardIdentifier="PriceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OFR-4m-Fhc" customClass="PriceViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cxQ-4e-cQc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="FZh-K0-khE"/>
+                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ig7-1r-qKc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3741" y="76"/>
+        </scene>
     </scenes>
     <resources>
         <image name="hiro" width="375" height="488"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

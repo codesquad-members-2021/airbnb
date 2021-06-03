@@ -26,6 +26,10 @@ class ContainerViewController: UIViewController {
         loadCalendarView()
     }
     
+    @IBAction func next(_ sender : UIBarButtonItem){
+        loadPriceGraphView()
+    }
+    
     func footerConfigure(){
         dataSource.contents.updateValue(placeName, forKey: "위치")
         footerTable.dataSource = dataSource
@@ -44,7 +48,9 @@ extension ContainerViewController {
     }
     
     func loadPriceGraphView(){
-        
+        let priceViewController = PriceViewController.instantiate()
+        priceViewController.infoDelegate = self
+        self.addChildView(asChildViewController: priceViewController)
     }
     
     func loadPersonView(){
