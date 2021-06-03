@@ -14,7 +14,7 @@ class RoomsViewController: UIViewController {
     
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Int, Int>!
-    private let mainUseCase = MainPageUseCase()
+    private let roomsUseCase = RoomsUseCase()
     private var cancelBag = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -28,14 +28,14 @@ class RoomsViewController: UIViewController {
 extension RoomsViewController {
     
     private func bind() {
-        mainUseCase.$mainPage.receive(on: DispatchQueue.main)
-            .sink { mainPage in
-                guard let mainPage = mainPage else { return }
-                self.applyInitialSnapshots(with: mainPage)
+        roomsUseCase.$rooms.receive(on: DispatchQueue.main)
+            .sink { rooms in
+                guard let rooms = rooms else { return }
+                self.applySnapshots(with: rooms)
             }
             .store(in: &cancelBag)
         
-        mainUseCase.$error
+        roomsUseCase.$error
             .receive(on: DispatchQueue.main)
             .sink { error in
                 guard let error = error else { return }
@@ -109,7 +109,7 @@ extension RoomsViewController {
         }
     }
     
-    private func applyInitialSnapshots(with mainPage: MainPage) {
+    private func applySnapshots(with rooms: Rooms) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Int>()
         snapshot.appendSections([1])
         snapshot.appendItems([1], toSection: 1)
