@@ -24,7 +24,12 @@ const Calendar = () => {
     setDisabled(true);
     const boolean = await preventClick();
     setDisabled(boolean);
-    setCurrentDistance((currentDistance) => currentDistance + oneMove);
+    const foo = () =>
+      new Promise((res, rej) => {
+        setCurrentDistance((currentDistance) => currentDistance + oneMove);
+        setTimeout(() => res(), 200);
+      });
+    await foo();
     setCalRange((calRange) => {
       const nextRange = calRange.map((r) => r - 1);
       return nextRange;
@@ -100,7 +105,7 @@ const CalTableWrapper = styled.div`
   display: flex;
   transform: ${({ currentDistance }) => `translateX(${currentDistance}rem)`};
   transition: ${({ currentDistance, centerPosition }) =>
-    currentDistance === centerPosition ? '' : '0.2s ease-in-out'};
+    currentDistance === centerPosition ? '' : '0.2s '};
 `;
 const CalendarBottom = styled.div`
   display: flex;
@@ -115,7 +120,7 @@ const YearMonthUL = styled.ul`
   display: flex;
   transform: ${({ currentDistance }) => `translateX(${currentDistance}rem)`};
   transition: ${({ currentDistance, centerPosition }) =>
-    currentDistance === centerPosition ? '' : '0.2s ease-in-out'};
+    currentDistance === centerPosition ? '' : '0.2s'};
 `;
 
 const YearMonthLI = styled.li`

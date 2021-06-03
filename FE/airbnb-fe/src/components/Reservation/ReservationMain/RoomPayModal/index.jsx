@@ -1,6 +1,11 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
+import { ReservationContext } from '../..';
 
 const RoomMapPayModal = () => {
+  const { match } = useContext(ReservationContext);
+  console.log('룸맵페이모달', match);
+
   return (
     <RoomMapPayModalDiv className="paymodal">
       <RoomModalTop>
