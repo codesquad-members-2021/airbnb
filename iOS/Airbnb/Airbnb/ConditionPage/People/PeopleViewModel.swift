@@ -31,6 +31,7 @@ class PeopleViewModel {
     @Published var adultNum: Int
     @Published var kidNum: Int
     @Published var infantNum: Int
+    @Published var totalNum: (Int, Int)
     
     enum calculate {
         case plus
@@ -44,10 +45,11 @@ class PeopleViewModel {
         }
     }
     
-    init(adult: Int = 0, kid: Int = 0, infant: Int = 0) {
+    init(adult: Int = 0, kid: Int = 0, infant: Int = 0, total: (Int, Int) = (0,0)) {
         self.adultNum = adult
         self.kidNum = kid
         self.infantNum = infant
+        self.totalNum = total
     }
     
 }
@@ -78,6 +80,7 @@ extension PeopleViewModel {
             infantNum += operation.value
             if adultNum == 0 && infantNum > 0 { adultNum += 1 }
         }
+        totalNum = (adultNum + kidNum, infantNum)
     }
     
     func isChangeAvailable(type: HumanType) -> (Bool, Bool) {

@@ -13,7 +13,7 @@ struct CellInfo {
     var detail: String
 }
 
-let c = Condition(cityId: 1, schedule: Schedule(checkIn: Date(), checkOut: Date()), price: Price(max: 1000000, min: 1000), people: 4)
+let c = Condition(cityId: 1, schedule: Schedule(checkIn: Date(), checkOut: Date()), price: Price(max: 1000000, min: 1000), people: (4,0))
 
 
 class ConditionViewModel {
@@ -21,7 +21,7 @@ class ConditionViewModel {
     @Published var city: Int
     @Published var schedule: Schedule?
     @Published var price: Price?
-    @Published var people: Int?
+    @Published var people: (Int,Int)?
     private var cancelBag = Set<AnyCancellable>()
     
     init(condition: Condition = c) {
@@ -48,8 +48,8 @@ extension ConditionViewModel {
         self.price = price
     }
     
-    func updateCondition(people: Int?, child: Int?) {
-        self.people = people
+    func updateCondition(people: Int, infant: Int) {
+        self.people = (people, infant)
     }
     
 }
@@ -91,9 +91,10 @@ extension ConditionViewModel {
         return CellInfo(title: "요금", detail: "₩\(min) - \(max)+")
     }
     
-    private func people(num: Int?) -> CellInfo {
+    private func people(num: (Int, Int)?) -> CellInfo {
         guard let num = num else { return CellInfo(title: "인원", detail: "") }
-        return CellInfo(title: "인원", detail: "게스트 \(num)명")
+        if num.1 != 0 { return CellInfo(title: "인원", detail: "게스트 \(num.0)명 유아 \(num.1)명") }
+        return CellInfo(title: "인원", detail: "게스트 \(num.0)명")
     }
     
 }
@@ -102,16 +103,17 @@ extension ConditionViewModel {
     
     func convertCodable() -> ConditionData {
         let stringDate = StringSchedule(checkIn: schedule?.checkIn?.description ?? "", checkOut: schedule?.checkOut?.description ?? "")
+        let people = people != nil ? people!.0 + people!.1 : nil
         return ConditionData(cityId: city, schedule: stringDate, price: price, people: people)
     }
     
 }
 
-struct Condition: Codable {
+struct Condition {
     var cityId: Int
     var schedule: Schedule?
     var price: Price?
-    var people: Int?
+    var people: (Int, Int)?
 }
 
 struct Price: Codable {

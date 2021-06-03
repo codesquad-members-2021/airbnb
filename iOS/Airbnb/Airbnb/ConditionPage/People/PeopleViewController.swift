@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class PeopleViewController : UIViewController {
     
@@ -13,6 +14,7 @@ class PeopleViewController : UIViewController {
     private var peopleViewModel: PeopleViewModel
     private var conditionContainerView: UIView!
     private var peopleContainerView: UIView!
+    private var cancelBag = Set<AnyCancellable>()
     
     init(conditionViewModel: ConditionViewModel) {
         self.conditionViewModel = conditionViewModel
@@ -31,10 +33,23 @@ class PeopleViewController : UIViewController {
         configurePeopleContainer()
         configureNavigation()
         configureToolBar()
+        bindPeople()
     }
 
-    
 }
+
+extension PeopleViewController {
+    
+    private func bindPeople() {
+        peopleViewModel.$totalNum
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { people in
+                self.conditionViewModel.people = people
+            })
+            .store(in: &cancelBag)
+    }
+}
+
 
 extension PeopleViewController {
     
