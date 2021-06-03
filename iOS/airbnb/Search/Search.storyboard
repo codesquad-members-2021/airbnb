@@ -379,6 +379,50 @@
             </objects>
             <point key="canvasLocation" x="3740.579710144928" y="75.669642857142847"/>
         </scene>
+        <!--Person Count View Controller-->
+        <scene sceneID="aYW-t6-b6j">
+            <objects>
+                <viewController storyboardIdentifier="PersonCountViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FKL-wl-Aqo" customClass="PersonCountViewController" customModule="airbnb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Kq-vR-9Kx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="598"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="di1-mX-Kkj">
+                                <rect key="frame" x="16" y="60" width="382" height="252"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="252" id="zi8-Ce-Ofn"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PersonTableViewCell" id="nwL-wr-x4e" customClass="PersonTableViewCell" customModule="airbnb" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="382" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nwL-wr-x4e" id="gZL-uf-VVg">
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iDM-S3-ugM"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="di1-mX-Kkj" firstAttribute="leading" secondItem="iDM-S3-ugM" secondAttribute="leading" constant="16" id="9jb-4V-jjq"/>
+                            <constraint firstItem="iDM-S3-ugM" firstAttribute="trailing" secondItem="di1-mX-Kkj" secondAttribute="trailing" constant="16" id="q5g-dh-CzB"/>
+                            <constraint firstItem="di1-mX-Kkj" firstAttribute="top" secondItem="iDM-S3-ugM" secondAttribute="top" constant="16" id="rob-a4-Fbk"/>
+                        </constraints>
+                    </view>
+                    <size key="freeformSize" width="414" height="598"/>
+                    <connections>
+                        <outlet property="personCountTable" destination="di1-mX-Kkj" id="3Wg-JS-qZU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DhM-gk-4Mo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4525" y="76"/>
+        </scene>
     </scenes>
     <resources>
         <image name="hiro" width="375" height="488"/>

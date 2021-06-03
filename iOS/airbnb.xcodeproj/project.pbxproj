@@ -15,9 +15,14 @@
 		102FA1F726554C3900B761C7 /* ThemePlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102FA1F526554C3900B761C7 /* ThemePlaceCell.swift */; };
 		102FA1F826554C3900B761C7 /* ThemePlaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 102FA1F626554C3900B761C7 /* ThemePlaceCell.xib */; };
 		102FA1FA265550CD00B761C7 /* IdentityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102FA1F9265550CD00B761C7 /* IdentityInfo.swift */; };
+		1033D1D22668B69B004FDF5D /* PersonCountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033D1D12668B69B004FDF5D /* PersonCountViewController.swift */; };
+		1033D1D52668BC05004FDF5D /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033D1D32668BC05004FDF5D /* PersonTableViewCell.swift */; };
+		1033D1D62668BC05004FDF5D /* PersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1033D1D42668BC05004FDF5D /* PersonTableViewCell.xib */; };
 		10406B58265D2A5A004F4AF9 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10406B57265D2A5A004F4AF9 /* Day.swift */; };
 		10406B5B265D2C2D004F4AF9 /* MonthMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10406B5A265D2C2D004F4AF9 /* MonthMetadata.swift */; };
 		10406B5D265D344F004F4AF9 /* CalendarDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10406B5C265D344F004F4AF9 /* CalendarDateCell.swift */; };
+		10451BAD2668DE8500AAB9E8 /* CounterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10451BAC2668DE8500AAB9E8 /* CounterViewModel.swift */; };
+		10451BB62668F2DC00AAB9E8 /* CounterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10451BB52668F2DC00AAB9E8 /* CounterState.swift */; };
 		10466589265E6C03008B2F36 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10466588265E6C03008B2F36 /* CalendarViewModel.swift */; };
 		1046658B265E6DD4008B2F36 /* CalenderCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1046658A265E6DD4008B2F36 /* CalenderCollectionDataSource.swift */; };
 		104665A7265E915B008B2F36 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104665A2265E915A008B2F36 /* NetworkError.swift */; };
@@ -66,9 +71,14 @@
 		102FA1F526554C3900B761C7 /* ThemePlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePlaceCell.swift; sourceTree = "<group>"; };
 		102FA1F626554C3900B761C7 /* ThemePlaceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemePlaceCell.xib; sourceTree = "<group>"; };
 		102FA1F9265550CD00B761C7 /* IdentityInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityInfo.swift; sourceTree = "<group>"; };
+		1033D1D12668B69B004FDF5D /* PersonCountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCountViewController.swift; sourceTree = "<group>"; };
+		1033D1D32668BC05004FDF5D /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
+		1033D1D42668BC05004FDF5D /* PersonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonTableViewCell.xib; sourceTree = "<group>"; };
 		10406B57265D2A5A004F4AF9 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		10406B5A265D2C2D004F4AF9 /* MonthMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthMetadata.swift; sourceTree = "<group>"; };
 		10406B5C265D344F004F4AF9 /* CalendarDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateCell.swift; sourceTree = "<group>"; };
+		10451BAC2668DE8500AAB9E8 /* CounterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterViewModel.swift; sourceTree = "<group>"; };
+		10451BB52668F2DC00AAB9E8 /* CounterState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterState.swift; sourceTree = "<group>"; };
 		10466588265E6C03008B2F36 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		1046658A265E6DD4008B2F36 /* CalenderCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderCollectionDataSource.swift; sourceTree = "<group>"; };
 		104665A2265E915A008B2F36 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -131,6 +141,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1033D1E02668C769004FDF5D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1033D1D32668BC05004FDF5D /* PersonTableViewCell.swift */,
+				1033D1D42668BC05004FDF5D /* PersonTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		10406B59265D2C19004F4AF9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +157,22 @@
 				10406B57265D2A5A004F4AF9 /* Day.swift */,
 				10406B5A265D2C2D004F4AF9 /* MonthMetadata.swift */,
 				1046658A265E6DD4008B2F36 /* CalenderCollectionDataSource.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		10451BAB2668DE7400AAB9E8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				10451BAC2668DE8500AAB9E8 /* CounterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		10451BB42668F2CA00AAB9E8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				10451BB52668F2DC00AAB9E8 /* CounterState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,6 +228,10 @@
 		107FE6832668860400BAA8A9 /* People */ = {
 			isa = PBXGroup;
 			children = (
+				1033D1D12668B69B004FDF5D /* PersonCountViewController.swift */,
+				10451BB42668F2CA00AAB9E8 /* Model */,
+				10451BAB2668DE7400AAB9E8 /* ViewModel */,
+				1033D1E02668C769004FDF5D /* View */,
 			);
 			path = People;
 			sourceTree = "<group>";
@@ -376,6 +415,7 @@
 			files = (
 				102FA1F826554C3900B761C7 /* ThemePlaceCell.xib in Resources */,
 				10D29C6D26538C6900E71840 /* LaunchScreen.storyboard in Resources */,
+				1033D1D62668BC05004FDF5D /* PersonTableViewCell.xib in Resources */,
 				10D29C6A26538C6900E71840 /* Assets.xcassets in Resources */,
 				10D29C8F2653A89500E71840 /* Search.storyboard in Resources */,
 				10D29C912653A89F00E71840 /* Login.storyboard in Resources */,
@@ -394,14 +434,17 @@
 				10D29C8D2653A61E00E71840 /* WishListViewController.swift in Sources */,
 				10D29C6126538C6800E71840 /* AppDelegate.swift in Sources */,
 				107FE67B2668715A00BAA8A9 /* Date+Extension.swift in Sources */,
+				1033D1D22668B69B004FDF5D /* PersonCountViewController.swift in Sources */,
 				105D4272265DE20E00FCF8F7 /* CalendarHeader.swift in Sources */,
 				10406B58265D2A5A004F4AF9 /* Day.swift in Sources */,
 				100CD084265BA979002224F1 /* LoginCoordinator.swift in Sources */,
 				10E1B17D265407680087B69B /* HeaderReusableView.swift in Sources */,
 				1049206D265782AD00AA2590 /* ContainerViewController.swift in Sources */,
 				10BDF8AE26661C0D00D9CB73 /* TravelNetwrokDispatcher.swift in Sources */,
+				1033D1D52668BC05004FDF5D /* PersonTableViewCell.swift in Sources */,
 				100CD07E265B9A1C002224F1 /* SearchCoordinator.swift in Sources */,
 				1089DE5C26677B3C00C39811 /* SelectInfoDelegate.swift in Sources */,
+				10451BAD2668DE8500AAB9E8 /* CounterViewModel.swift in Sources */,
 				10E1B17A2653F49D0087B69B /* NearPlaceCell.swift in Sources */,
 				10D29C75265393F800E71840 /* SearchViewController.swift in Sources */,
 				104665AD265E9502008B2F36 /* NearPlace.swift in Sources */,
@@ -422,6 +465,7 @@
 				104665B0265E9FE6008B2F36 /* UIImageView+LoadFromURL.swift in Sources */,
 				10466589265E6C03008B2F36 /* CalendarViewModel.swift in Sources */,
 				1046658B265E6DD4008B2F36 /* CalenderCollectionDataSource.swift in Sources */,
+				10451BB62668F2DC00AAB9E8 /* CounterState.swift in Sources */,
 				107FE67F26687FAB00BAA8A9 /* UIViewController+storyboard.swift in Sources */,
 				10C2F7902667BD5900445EEB /* FooterTableViewDataSource.swift in Sources */,
 				107FE6812668851F00BAA8A9 /* PriceGraphView.swift in Sources */,

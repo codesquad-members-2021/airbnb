@@ -13,21 +13,29 @@ class ContainerViewController: UIViewController {
     @IBOutlet weak var footerTable: UITableView!
     
     weak var coordinator: SearchCoodinator?
+    var childController : [UIViewController] = []
     var dataSource = FooterTableViewDataSource()
     var localName : String = ""
+    var order : Int = 0
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "숙소찾기"
+        order = 0
         footerConfigure()
-        
         loadCalendarView()
     }
     
     @IBAction func next(_ sender : UIBarButtonItem){
-        loadPriceGraphView()
+        removeChildView()
+        switch order {
+        case 1: loadPriceGraphView()
+        case 2: loadPersonView()
+        default:
+            break
+        }
     }
     
     func footerConfigure(){
@@ -36,6 +44,7 @@ class ContainerViewController: UIViewController {
         footerTable.delegate = self
         footerTable.translatesAutoresizingMaskIntoConstraints = false
         footerTable.register(FooterTableViewCell.self, forCellReuseIdentifier: FooterTableViewCell.reuseIdentifier)
+        footerTable.tableFooterView = UIView()
     }
 }
 
@@ -44,6 +53,7 @@ extension ContainerViewController {
     func loadCalendarView(){
         let calendar = CalendarViewController.instantiate(name: StoryBoarded.Search.stringValue)
         calendar.infoDelegate = self
+        self.childController.append(calendar)
         self.addChildView(asChildViewController: calendar)
     }
     
@@ -51,21 +61,27 @@ extension ContainerViewController {
         let priceViewController = PriceViewController.instantiate(name: StoryBoarded.Search.stringValue)
         priceViewController.infoDelegate = self
         priceViewController.localName = localName
+        self.childController.append(priceViewController)
         self.addChildView(asChildViewController: priceViewController)
     }
     
     func loadPersonView(){
-        
+        let personViewController = PersonCountViewController.instantiate(name: StoryBoarded.Search.stringValue)
+        personViewController.infoDelegate = self
+        self.childController.append(personViewController)
+        self.addChildView(asChildViewController: personViewController)
     }
     
     func addChildView(asChildViewController viewController: UIViewController) {
+        order += 1
         addChild(viewController)
         containerView.addSubview(viewController.view)
         viewController.view.frame = containerView.bounds
         viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
     
-    func removeChildView(asChildViewController viewController : UIViewController){
+    func removeChildView() {
+        let viewController = self.childController.removeLast()
         viewController.willMove(toParent: nil)
         viewController.view.removeFromSuperview()
         viewController.removeFromParent()
@@ -90,7 +106,7 @@ extension ContainerViewController : SelectInfoDelegate {
     }
     
     func didSelectPerson(_ person: Int) {
-        dataSource.contents["인원"] = String(person)
+        dataSource.contents["인원"] = "게스트 \(person)명"
         let indexPath = IndexPath(row: 3, section: 0)
         footerTable.reloadRows(at: [indexPath], with: .top)
     }
