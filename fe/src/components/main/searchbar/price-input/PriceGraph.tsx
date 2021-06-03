@@ -1,7 +1,7 @@
 import PriceSlider from "./PriceSlider";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
-import { priceSelector } from "atoms/searchbarAtom";
+import {  priceSelector } from "atoms/searchbarAtom";
 type PriceGraphType = {
   prices: number[];
   minPrice: number;
@@ -9,14 +9,15 @@ type PriceGraphType = {
 };
 
 const PriceGraph = ({ prices, minPrice, maxPrice }: PriceGraphType) => {
-  const priceValue = useRecoilValue(priceSelector);
-
+  const price = useRecoilValue(priceSelector);
 
   return (
     <>
-      <PriceRange>{priceValue}</PriceRange>
+      <PriceRange>
+        {price}
+      </PriceRange>
       <PriceSubtitle>평균 1박요금은 원 입니다.</PriceSubtitle>
-      <PriceSlider />
+      <PriceSlider {...{ minPrice, maxPrice }} />
     </>
   );
 };

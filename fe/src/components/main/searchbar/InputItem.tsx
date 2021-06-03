@@ -1,15 +1,14 @@
 import styled from "styled-components";
-import {  MouseEvent } from "react";
-import { useRecoilState } from "recoil";
+import { MouseEvent } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 
-import { SearchBarHoverData } from "atoms/searchbarAtom";
+import { isHotelPage, SearchBarHoverData } from "atoms/searchbarAtom";
 type InputItemProps = {
   w: String;
   title: string;
   subtitle: String;
   onClick: (event: MouseEvent | Event) => void;
 };
-
 const InputItem = ({ w, title, subtitle, onClick }: InputItemProps) => {
   const [HoverData, setHoverData] = useRecoilState(SearchBarHoverData);
   const getDeepCopy = (original: any) => JSON.parse(JSON.stringify(original));
@@ -21,10 +20,11 @@ const InputItem = ({ w, title, subtitle, onClick }: InputItemProps) => {
       return deepCopy;
     });
   };
-
+  const isHotelList = useRecoilValue(isHotelPage);
+  console.log(isHotelList);
   return (
     <FlexBox {...{ w }} onClick={handleClick} aria-checked={HoverData[title]}>
-      <InputTitle>{title}</InputTitle>
+      {isHotelList ? null : <InputTitle>{title}</InputTitle>}
       <InputSubtitle aria-disabled={subtitle === "날짜입력"}>
         {subtitle}
       </InputSubtitle>

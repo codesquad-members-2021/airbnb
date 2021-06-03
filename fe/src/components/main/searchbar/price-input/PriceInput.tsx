@@ -3,11 +3,17 @@ import Modal from "components/common/Modal";
 import { css } from "styled-components";
 import { useState, useEffect } from "react";
 import { MouseEvent } from "react";
-import { useResetRecoilState } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 import PriceContent from "./PriceContent";
-import { SearchBarHoverData } from "atoms/searchbarAtom";
+import {
+  priceData,
+  priceSelector,
+  SearchBarHoverData,
+} from "atoms/searchbarAtom";
 const PriceInput = () => {
   const [toggle, setToggle] = useState<Boolean>(false);
+  const priceValue = useRecoilValue(priceSelector);
+
   const resetData = useResetRecoilState(SearchBarHoverData);
   const handleClick = (event: MouseEvent | Event) => {
     setToggle(!toggle);
@@ -20,7 +26,7 @@ const PriceInput = () => {
       <InputItem
         w="20%"
         title="요금"
-        subtitle="금액대 설정"
+        subtitle={priceValue}
         onClick={handleClick}
       />
       <Modal

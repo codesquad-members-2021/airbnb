@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
-
+import { isHotelPage } from "atoms/searchbarAtom";
+import { useRecoilValue } from "recoil";
 
 const SearchBarBtn = () => {
- 
-
-  const url = "/hotel-list" ;
+  const isHotelList = useRecoilValue(isHotelPage);
+  const url = "/hotel-list";
   return (
-    <StyledSearchBarBtn>
+    <StyledSearchBarBtn aria-checked={isHotelList}>
       <Link to={url}>
         <BsSearch />
       </Link>
@@ -21,6 +21,11 @@ export default SearchBarBtn;
 
 const StyledSearchBarBtn = styled.button`
   color: ${({ theme }) => theme.color.White};
+  &[aria-checked="true"] {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+  }
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;

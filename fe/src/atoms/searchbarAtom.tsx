@@ -14,42 +14,13 @@ export const SearchBarHoverData = atom<HoverData>({
   },
 });
 
-export const searchParamsSelector = selector({
-  key: "searchParams",
-  get({ get }) {
-    let res = "";
-    const { latitude, longitude } = get(locationData);
-    const [checkIn, checkOut] = get(CalendarData);
-
-    const { adult, teen, kids } = get(PeopleData);
-
-    const dateParser = (date: number) =>
-      new Date(date).toISOString().slice(0, 10);
-
-    if (checkIn && checkOut && latitude && longitude) {
-      res = `&checkin=${dateParser(checkIn)}&checkout=${dateParser(
-        checkOut
-      )}&latitude=${latitude}&longitude=${longitude}`;
-    }
-    if (adult) {
-      console.log("ha");
-      res += `&adults=${adult}&children=${teen}&infants=${kids}`;
-    }
-
-    return res;
-  },
-});
-
 export const priceSelector = selector({
   key: "priceSelector",
   get({ get }) {
     const { maxPrice, minPrice } = get(priceData);
-    const { max, min, width } = get(priceSliderData);
-    const gap = maxPrice - minPrice;
-    const curMin = minPrice + Math.floor((gap * min) / width / 1000) * 1000;
-    const curMax = minPrice + Math.floor((gap * max) / width / 1000) * 1000;
-    if (max === Infinity && maxPrice === 0) return "금액대 설정";
-    return `₩${curMin} ~ ₩${curMax}`;
+
+    if (maxPrice === 0) return "금액대 설정";
+    return `₩${minPrice} ~ ₩${maxPrice}`;
   },
 });
 
@@ -70,12 +41,27 @@ export const priceSliderData = atom<{
   default: { max: Infinity, min: 0, width: 0 },
 });
 
+export const locationDataSelector = selector({
+  key: "locationDataSelector",
+  get({ get }) {
+    const { name } = get(locationData);
+    if (!name) return undefined;
+    return name;
+  },
+});
+
+export const isHotelPage = atom<boolean>({
+  key: "isHotelPage",
+  default: false,
+});
+
 export const locationData = atom<{
-  latitude: number | undefined;
-  longitude: number | undefined;
+  latitude: number;
+  longitude: number;
+  name: string;
 }>({
   key: "locationData",
-  default: { latitude: undefined, longitude: undefined },
+  default: { latitude: Infinity, longitude: Infinity, name: "" },
 });
 
 export const CalendarData = atom<number[]>({
@@ -114,5 +100,29 @@ export const CalendarCheckOutSelector = selector({
     const date = new Date(get(CalendarData)[1]);
 
     return `${date.getMonth() + 1}월 ${date.getDate()}일`;
+  },
+});
+
+export const searchParamsSelector = selector({
+  key: "searchParams",
+  get({ get }) {
+    const { latitude, longitude } = get(locationData);
+    const [checkIn, checkOut] = get(CalendarData);
+    const { maxPrice, minPrice } = get(priceData);
+    const { adult, teen, kids } = get(PeopleData);
+
+    const dateParser = (date: number) =>
+      new Date(date).toISOString().slice(0, 10);
+    if (checkIn && checkOut && latitude < Infinity && longitude < Infinity) {
+      if (!maxPrice && !adult) {
+        return `&checkin=${dateParser(checkIn)}&checkout=${dateParser(
+          checkOut
+        )}&latitude=${latitude}&longitude=${longitude}`;
+      } else {
+        return `checkin=${dateParser(checkIn)}&checkout=${dateParser(
+          checkOut
+        )}&latitude=${latitude}&longitude=${longitude}&pricemax=${maxPrice}&pricemin=${minPrice}&adults=${adult}&children=${teen}&infants=${kids}`;
+      }
+    }
   },
 });

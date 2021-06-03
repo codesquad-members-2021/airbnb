@@ -37,6 +37,8 @@ const HotelListContent = ({ hotelListData }: HotelListProps) => {
 export default HotelListContent;
 
 const StyledHotelListContent = styled.div`
+  background-color: white;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   padding: 0 5rem;
@@ -54,5 +56,5 @@ const HotelListTitle = styled.span`
 const HotelListSubtitle = styled.span`
   font-weight: 400;
   font-size: 1rem;
-  color: ${({ theme }) => theme.color.Gray4};
+  color: ${({ theme }) => theme.color.Gray3};
 `;

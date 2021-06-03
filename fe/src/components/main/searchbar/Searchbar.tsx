@@ -1,4 +1,6 @@
 import { Box } from "@material-ui/core";
+import { isHotelPage } from "atoms/searchbarAtom";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import DateInput from "./date-input/DateInput";
 import LocationInput from "./location-input/LoactionInput";
@@ -6,10 +8,12 @@ import PeopleInput from "./people-input/PeopleInput";
 import PriceInput from "./price-input/PriceInput";
 import SearchBarBtn from "./SearchBarBtn";
 const SearchBar = () => {
+  const isHotelList = useRecoilValue(isHotelPage);
+
   return (
     <Box width="100%" display="flex" justifyContent="center">
-      <StyledSearchBar>
-        <LocationInput/>
+      <StyledSearchBar aria-checked={isHotelList}>
+        <LocationInput />
         <SeparateBar />
         <DateInput />
         <SeparateBar />
@@ -20,7 +24,7 @@ const SearchBar = () => {
       </StyledSearchBar>
     </Box>
   );
-}; 
+};
 
 export default SearchBar;
 
@@ -36,6 +40,12 @@ const StyledSearchBar = styled.div`
   position: relative;
   padding: 0 5rem 0 2rem;
   border: ${({ theme }) => theme.border.Gray5};
+  &[aria-checked="true"] {
+    position: absolute;
+    width: 43rem;
+    top: 0;
+    height: 4rem;
+  }
 `;
 
 const SeparateBar = styled.div`

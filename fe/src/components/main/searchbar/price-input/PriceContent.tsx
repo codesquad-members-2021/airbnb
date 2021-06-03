@@ -1,20 +1,23 @@
 import { Box } from "@material-ui/core";
 import useAxios from "hooks/useAxios";
 import styled from "styled-components";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { priceData, searchParamsSelector } from "atoms/searchbarAtom";
 import PriceGraph from "./PriceGraph";
+import { useEffect } from "react";
 
 const PriceContent = () => {
   const searchParams = useRecoilValue(searchParamsSelector);
-  const setPriceData = useSetRecoilState(priceData);
+  const [price, setPriceData] = useRecoilState(priceData);
   const { isSuccess, data } = useAxios(
     process.env.REACT_APP_API_URL + "/price?fraction=10" + searchParams,
     "get"
   );
-  if (isSuccess)
-    setPriceData({ maxPrice: data.max_price, minPrice: data.min_price });
-    
+  useEffect(() => {
+    if (isSuccess && !price.maxPrice)
+      setPriceData({ maxPrice: data.max_price, minPrice: data.min_price });
+  }, [setPriceData]);
+
   return (
     <Box p="2rem" width="22rem" display="flex" flexDirection="column">
       <PriceTitle>가격 범위</PriceTitle>
