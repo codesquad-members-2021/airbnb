@@ -1,12 +1,10 @@
 package com.example.airbnb.controller;
 
+import com.example.airbnb.dto.AccommodationDTO;
 import com.example.airbnb.dto.AccommodationListDTO;
 import com.example.airbnb.service.AccommodationService;
 import com.example.airbnb.utils.SearchConditions;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/airbnb")
@@ -29,12 +27,13 @@ public class AccommodationController {
         return accommodationService.availableAccommodationsList(conditions);
     }
 
+    @PostMapping
+    public String addAccommodation(AccommodationDTO accommodationDTO) {
+        return "good!";
+    }
+
     @GetMapping("/like")
     public AccommodationListDTO likeMarkredList() {
         return accommodationService.likeMarkredList();
     }
 }
-
-
-
-
