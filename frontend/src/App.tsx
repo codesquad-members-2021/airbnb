@@ -20,7 +20,7 @@ function App() {
         <Route
           render={({ location }) => (
             <div>
-              <img src="https://cdn.dribbble.com/users/252114/screenshots/3840347/mong03b.gif" />
+              <ErrorImage src="https://cdn.dribbble.com/users/252114/screenshots/3840347/mong03b.gif" />
             </div>
           )}
         />
@@ -28,5 +28,12 @@ function App() {
     </RecoilRoot>
   );
 }
+
+const ErrorImage = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`
 
 export default App;
