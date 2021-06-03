@@ -1,14 +1,28 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
 import RatingStar from '../../../Atoms/icons/RatingStar';
 import Heart from '../../../Atoms/icons/Heart';
+import { ReservationContext } from '../..';
 
 const AvailableRoomCard = ({ room, calcDiff, setIsPayModalClicked }) => {
+  const { payModalDispatch } = useContext(ReservationContext);
+
   const handlePayModalClicked = () => {
     setIsPayModalClicked(true);
+    //여기서 e.target.dataset.id 함수에넘겨줘...
+    //그 set함수는 find를 돌려...
+    payModalDispatch({
+      type: 'PUT_MODAL_DATA',
+      payload: {
+        chargePerDay: room.charge,
+        reviewCount: room.reviewCount,
+        days: calcDiff(),
+      },
+    });
   };
 
   return (
-    <RoomCardDiv onClick={() => handlePayModalClicked()}>
+    <RoomCardDiv onClick={() => handlePayModalClicked()} className="RoomCard">
       <div>
         <RoomImg src={`${room.image}`} />
       </div>

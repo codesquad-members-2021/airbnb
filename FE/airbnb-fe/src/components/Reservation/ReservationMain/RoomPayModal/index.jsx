@@ -1,32 +1,67 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
+import getRegex from '../../../utils/getRegex';
 import { ReservationContext } from '../..';
 
 const RoomMapPayModal = () => {
-  const { match } = useContext(ReservationContext);
-  console.log('룸맵페이모달', match);
+  const { match, payModalData } = useContext(ReservationContext);
+  const getDiscountPrice = (charge, days, percent) => {
+    return Math.floor(parseInt(charge) * percent * 0.01 * Math.floor(days / 7));
+  };
+  const totalFee = payModalData.chargePerDay * payModalData.days;
+  const discountWeek = getDiscountPrice(
+    payModalData.chargePerDay,
+    payModalData.days,
+    20
+  );
+  const cleaningFee = getDiscountPrice(
+    payModalData.chargePerDay,
+    payModalData.days,
+    4
+  );
+  const serviceFee = getDiscountPrice(
+    payModalData.chargePerDay,
+    payModalData.days,
+    12
+  );
+  const roomTaxFee = getDiscountPrice(
+    payModalData.chargePerDay,
+    payModalData.days,
+    8
+  );
+
+  console.log(
+    '꼐산해보자',
+    getDiscountPrice(payModalData.chargePerDay, payModalData.days, 20)
+  );
 
   return (
     <RoomMapPayModalDiv className="paymodal">
       <RoomModalTop>
         <RoomModalTopPriceReview>
           <div>
-            <PerDayPrice>₩70,358</PerDayPrice> / 박
+            <PerDayPrice>{`₩${getRegex(
+              payModalData.chargePerDay
+            )}`}</PerDayPrice>{' '}
+            / 박
           </div>
-          <RoomModalTopReview>후기 127개</RoomModalTopReview>
+          <RoomModalTopReview>{`후기 ${payModalData.reviewCount}개`}</RoomModalTopReview>
         </RoomModalTopPriceReview>
         <RoomModalInput>
           <CheckIn>
             <div>체크인</div>
-            <InputResult>2021.5.17</InputResult>
+            <InputResult>{match.params.checkIn}</InputResult>
           </CheckIn>
           <CheckOut>
             <div>체크아웃</div>
-            <InputResult>2021.5.17</InputResult>
+            <InputResult>{match.params.checkOut}</InputResult>
           </CheckOut>
           <People>
             <div>인원</div>
-            <InputResult>게스트 3명</InputResult>
+            <InputResult>
+              {parseInt(match.params.adults) + parseInt(match.params.children)}
+              명
+            </InputResult>
           </People>
         </RoomModalInput>
       </RoomModalTop>
@@ -34,30 +69,35 @@ const RoomMapPayModal = () => {
       <RoomPayDiv>
         <PriceMention>예약 확정 전에는 요금이 청구되지 않습니다.</PriceMention>
         <PriceDiv>
-          <PriceTitle>₩71486X18박</PriceTitle>
-          <PriceContent>₩1,322,396</PriceContent>
+          <PriceTitle>{`₩${payModalData.chargePerDay} X ${payModalData.days} 박`}</PriceTitle>
+          <PriceContent>{`₩${getRegex(totalFee)}`}</PriceContent>
         </PriceDiv>
         <PriceDiv>
-          <PriceTitle>4% 주 단위 요금 할인</PriceTitle>
-          <PriceContent>₩1,322,396</PriceContent>
+          <PriceTitle>20% 주 단위 요금 할인</PriceTitle>
+          <PriceContent>{`₩${getRegex(discountWeek)}`}</PriceContent>
         </PriceDiv>
         <PriceDiv>
           <PriceTitle>청소비</PriceTitle>
-          <PriceContent>₩1,322,396</PriceContent>
+          <PriceContent>{`₩${getRegex(cleaningFee)}`}</PriceContent>
         </PriceDiv>
         <PriceDiv>
           <PriceTitle>서비스 수수료</PriceTitle>
-          <PriceContent>₩1,322,396</PriceContent>
+          <PriceContent>{`₩${getRegex(serviceFee)}`}</PriceContent>
         </PriceDiv>
         <PriceDiv>
-          <PriceTitle>숙박세와 수수료</PriceTitle>
-          <PriceContent>₩1,322,396</PriceContent>
+          <PriceTitle>8%숙박세와 수수료</PriceTitle>
+          <PriceContent>{`₩${getRegex(roomTaxFee)}`}</PriceContent>
         </PriceDiv>
         <LineDiv />
       </RoomPayDiv>
       <PriceDiv>
         <PriceTotalTitle>총 합계</PriceTotalTitle>
-        <PriceTotalContent>₩1,322,396</PriceTotalContent>
+        <PriceTotalContent>
+          ₩
+          {getRegex(
+            totalFee - discountWeek + cleaningFee + serviceFee + roomTaxFee
+          )}
+        </PriceTotalContent>
       </PriceDiv>
     </RoomMapPayModalDiv>
   );
