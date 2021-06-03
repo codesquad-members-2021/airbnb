@@ -34,6 +34,10 @@ const useToggle = ({ clickRef, toggleRef, isChekcInSelected }: refsType): toggle
 
     if (clickRef instanceof Array) {
       for (const elem of clickRef) {
+        if (!elem.current) {
+          setOpen(false);
+          return;
+        }
         if (
           (elem.current as HTMLDivElement).contains(target as HTMLDivElement) &&
           selectType === elem.current?.dataset.type
@@ -47,6 +51,10 @@ const useToggle = ({ clickRef, toggleRef, isChekcInSelected }: refsType): toggle
         }
       }
     } else {
+      if (!clickRef.current) {
+        setOpen(false);
+        return;
+      }
       if ((clickRef.current as HTMLDivElement).contains(target as HTMLDivElement)) {
         setOpen((open) => !open);
         return;
