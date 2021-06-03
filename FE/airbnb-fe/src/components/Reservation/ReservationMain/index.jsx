@@ -14,8 +14,6 @@ const ReservationMain = () => {
     fetchData.then((res) => setRoomData(res));
   }, []);
 
-  console.log(roomData);
-
   const handlePayModalOff = (e) => {
     console.log('클로셋', e.target.closest('.paymodal'));
     //closest => 자신부터 부모요소 단위로 출발하여, 각 요소가 지정한 선택자에 만족할때까지 탐색한대여

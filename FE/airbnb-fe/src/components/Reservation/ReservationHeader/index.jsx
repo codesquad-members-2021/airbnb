@@ -28,7 +28,7 @@ const ReservationHeader = () => {
         <>
           <ReservationHeaderDiv ref={searchElement}>
             <HeaderDiv>
-              <AirbnbIcon />
+              <AirbnbIcon width={'100px'} />
               <NavSelectDiv>
                 <div>숙소</div>
                 <div>체험</div>
