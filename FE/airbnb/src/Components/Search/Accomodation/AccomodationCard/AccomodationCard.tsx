@@ -1,5 +1,9 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { selectInputState } from "@/Components/GNB/GNBStore";
+import {
+  showAccomodationModalState,
+  accomodationModalDataState,
+} from "@/Components/Search/SearchStore";
 import Image from "./Image";
 import AccomodationTitle from "./AccomodationTitle";
 import Detail from "./Detail/Detail";
@@ -15,6 +19,12 @@ interface Props {
 }
 
 const AccomodationCard = ({ accomodation }: Props) => {
+  const setShowAccomodationModalFlag = useSetRecoilState(
+    showAccomodationModalState
+  );
+  const setAccomodationModalData = useSetRecoilState(
+    accomodationModalDataState
+  );
   const checkIn = useRecoilValue(selectInputState.checkIn);
   const checkOut = useRecoilValue(selectInputState.checkOut);
 
@@ -32,8 +42,18 @@ const AccomodationCard = ({ accomodation }: Props) => {
     accomodation.tax.serviceTax +
     accomodation.tax.accommodationTax;
 
+  const handleClick = () => {
+    setShowAccomodationModalFlag(true);
+    setAccomodationModalData({
+      ...accomodation,
+      stayCount,
+      weeksDiscount,
+      totalPrice,
+    });
+  };
+
   return (
-    <S.AccomodationCard>
+    <S.AccomodationCard onClick={handleClick}>
       <Image mainImage={accomodation.images.mainImage} />
       <S.AccomodationInfo>
         <S.InfoTop>

@@ -8,6 +8,7 @@ import { searchBackgroundState } from "@/Components/Search/SearchStore";
 import GNB from "@/Components/GNB/GNB";
 import Accomodation from "./Accomodation/Accomodation";
 import Map from "./Map/Map";
+import AccomodationModal from "./AccomodationModal/AccomodationModal";
 import { Search as S } from "@/Components/Search/SearchStyles";
 import { SearchBackground } from "@/Components/Search/SearchStyles";
 
@@ -39,6 +40,7 @@ const Search = () => {
       <S.Search>
         <Accomodation />
         <Map />
+        <AccomodationModal />
       </S.Search>
     </>
   );

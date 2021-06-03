@@ -2,10 +2,12 @@ import { useRecoilValue } from "recoil";
 import { accomodationModalDataState } from "@/Components/Search/SearchStore";
 import { AccomodationModal as S } from "@/Components/Search/SearchStyles";
 
-const Title = () => {
+const HostImage = () => {
   const accomodation = useRecoilValue(accomodationModalDataState);
 
-  return accomodation.title ? <S.Title>{accomodation.title}</S.Title> : null;
+  return accomodation.host ? (
+    <S.HostImage src={accomodation.host.profileImageUrl} />
+  ) : null;
 };
 
-export default Title;
+export default HostImage;

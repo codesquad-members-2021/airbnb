@@ -9,3 +9,13 @@ export const searchBackgroundState = atom({
   key: "searchBackgroundState",
   default: false,
 });
+
+export const showAccomodationModalState = atom({
+  key: "showAccomodationModalState",
+  default: false,
+});
+
+export const accomodationModalDataState = atom<any>({
+  key: "accomodationModalDataState",
+  default: {},
+});
