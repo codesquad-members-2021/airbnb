@@ -1,6 +1,5 @@
 package com.codesquad.coco.room.model;
 
-import com.codesquad.coco.global.exception.business.OvercapacityException;
 import com.codesquad.coco.global.exception.business.TotalPriceNonMatchException;
 import com.codesquad.coco.host.Host;
 import com.codesquad.coco.image.Image;
@@ -9,7 +8,6 @@ import com.codesquad.coco.user.model.WishList;
 import com.codesquad.coco.user.model.dto.ReservationDTO;
 import org.springframework.data.annotation.Id;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,8 +65,8 @@ public class Room {
         int fewNights = reservationDTO.accommodationDay();
         Money totalPrice = calcTotalPrice(fewNights);
 
-        reservationDateCheck(reservationDTO.getCheckIn(), reservationDTO.getCheckOut());
-        capacityCheck(reservationDTO.getAdult(), reservationDTO.getChild());
+        reservations.reservationDateCheck(reservationDTO.getCheckIn(), reservationDTO.getCheckOut());
+        roomOption.capacityCheck(reservationDTO.getAdult(), reservationDTO.getChild());
         if (totalPrice.same(reservationDTO.getTotalPrice())) {
             throw new TotalPriceNonMatchException(totalPrice);
         }
@@ -78,17 +76,6 @@ public class Room {
     public Money calcTotalPrice(int fewNights) {
         Money basicPrice = pricePerDate.multiplication(fewNights);
         return additionalCost.calculateAdditionalCost(basicPrice, fewNights);
-    }
-
-    public boolean capacityCheck(int adult, int child) {
-        if (!roomOption.capacityCheck(adult, child)) {
-            throw new OvercapacityException();
-        }
-        return true;
-    }
-
-    public boolean reservationDateCheck(LocalDate checkIn, LocalDate checkOut) {
-        return reservations.reservationDateCheck(checkIn, checkOut);
     }
 
     public void addReservation(Reservation reservation) {

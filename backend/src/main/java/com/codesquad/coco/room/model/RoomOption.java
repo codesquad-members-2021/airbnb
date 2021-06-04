@@ -1,5 +1,7 @@
 package com.codesquad.coco.room.model;
 
+import com.codesquad.coco.global.exception.business.OvercapacityException;
+
 public class RoomOption {
 
     private int bed;
@@ -13,7 +15,10 @@ public class RoomOption {
     }
 
     public boolean capacityCheck(int adult, int child) {
-        return maxGuest >= adult + child;
+        if (maxGuest < adult + child) {
+            throw new OvercapacityException();
+        }
+        return true;
     }
 
     public int getBed() {
