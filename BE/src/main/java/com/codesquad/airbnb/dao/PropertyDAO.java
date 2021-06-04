@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,8 +46,7 @@ public class PropertyDAO {
         return jdbcTemplate.query(sql, PropertyRowMapper.getInstance());
     }
 
-    public List<PropertyDTO> findBy(Long locationId, LocalDate checkIn, LocalDate checkOut,
-                                    int minPrice, int maxPrice, int maxOccupancy) {
+    public List<PropertyDTO> findBy(GetPropertyModel getPropertyModel, int maxOccupancy) {
 
         String sql = FIND_BY_PROPERTY_LIST_DEFAULT +
                 "LEFT JOIN reservation r ON p.id = r.property_id " +
@@ -61,26 +59,26 @@ public class PropertyDAO {
         // TODO: userid도 함께 확인해서 wishList를 찾는것이 좋을 것 같음...
 
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("locationId", locationId);
+        paramMap.put("locationId", getPropertyModel.getLocationId());
         paramMap.put("maxOccupancy", maxOccupancy);
-        paramMap.put("minPrice", minPrice);
-        paramMap.put("maxPrice", maxPrice);
+        paramMap.put("minPrice", getPropertyModel.getMinPrice());
+        paramMap.put("maxPrice", getPropertyModel.getMaxPrice());
 
-        if (checkIn != null || checkOut != null) {
+        if (getPropertyModel.getCheckIn() != null || getPropertyModel.getCheckOut() != null) {
             sql += "AND r.property_id NOT IN (" +
                     "SELECT property_id " +
                     "FROM reservation " +
                     "WHERE ";
 
-            if (checkIn != null) {
+            if (getPropertyModel.getCheckIn() != null) {
                 sql += "(r.check_in_date <= :checkIn AND r.check_out_date > :checkIn )";
-                paramMap.put("checkIn", checkIn);
+                paramMap.put("checkIn", getPropertyModel.getCheckIn());
             }
-            if (checkOut != null) {
+            if (getPropertyModel.getCheckOut() != null) {
                 sql += "OR (r.check_in_date < :checkOut AND r.check_out_date >= :checkOut )";
-                paramMap.put("checkOut", checkOut);
+                paramMap.put("checkOut", getPropertyModel.getCheckOut());
             }
-            if (checkIn != null && checkOut != null) {
+            if (getPropertyModel.getCheckIn() != null && getPropertyModel.getCheckOut() != null) {
                 sql += "OR (:checkIn <= r.check_in_date AND r.check_in_date < :checkOut )";
             }
             sql += ")";

@@ -1,5 +1,6 @@
 package com.codesquad.airbnb.service;
 
+import com.codesquad.airbnb.dao.GetPropertyModel;
 import com.codesquad.airbnb.dao.PropertyDAO;
 import com.codesquad.airbnb.dto.price.PriceSearchDTO;
 import com.codesquad.airbnb.dto.property.PropertiesResponseDTO;
@@ -54,17 +55,16 @@ public class PropertyService {
         return priceSearchDTO;
     }
 
-    public PropertiesResponseDTO findBy(Long locationId, LocalDate checkIn, LocalDate checkOut, int minPrice, int maxPrice, int adult, int children, int infant) {
+    public PropertiesResponseDTO findBy(GetPropertyModel getPropertyModel) {
         long diff = DEFAULT_DIFF;
 
-        if (checkIn != null && checkOut != null) {
-            diff = ChronoUnit.DAYS.between(checkIn, checkOut);
+        if (getPropertyModel.getCheckIn() != null && getPropertyModel.getCheckOut() != null) {
+            diff = ChronoUnit.DAYS.between(getPropertyModel.getCheckIn(), getPropertyModel.getCheckOut());
         }
 
-        int maxOccupancy = adult + children + infant;
+        int maxOccupancy = getPropertyModel.getAdult() + getPropertyModel.getChildren() + getPropertyModel.getInfant();
 
-        List<PropertyDTO> propertyDTOS = propertyDao.findBy(locationId, checkIn, checkOut, minPrice,
-                maxPrice, maxOccupancy);
+        List<PropertyDTO> propertyDTOS = propertyDao.findBy(getPropertyModel, maxOccupancy);
 
         long finalDiff = diff;
 
