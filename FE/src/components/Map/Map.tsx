@@ -5,11 +5,17 @@ import styled from 'styled-components';
 import { threeDigitsComma } from '../../util/util';
 
 import { IRoomInfo } from '../../util/types/Room';
-interface IMap {
-  rooms: IRoomInfo[] | undefined
+interface IChangeProps {
+  type: string, 
+  payload: any
 }
 
-function Map({rooms}: IMap) {
+interface IMap {
+  rooms: IRoomInfo[] | undefined,
+  handeChangePosition: ({type, payload}: IChangeProps) => void
+}
+
+function Map({rooms, handeChangePosition}: IMap) {
   const $Map = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
@@ -52,6 +58,9 @@ function Map({rooms}: IMap) {
             // }); 
             const $Content = document.createElement("div");
             $Content.innerHTML = `${threeDigitsComma(room.salePrice)}원`;
+            $Content.addEventListener("click", () => {
+              handeChangePosition({type: "map", payload: { id: room.id }})
+            }) 
             const infomarker = new InfoMarker(
               new window.google.maps.LatLng(room.latitude, room.longitude),
               $Content as HTMLElement

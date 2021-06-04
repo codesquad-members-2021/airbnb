@@ -11,14 +11,41 @@ import useFetch from '../util/hooks/useFetch';
 import API from '../util/API';
 
 import { IRoomsInfo, IRoomInfo } from '../util/types/Room';
-
+interface IChangeProps {
+  type: string, 
+  payload: any
+}
 
 const SearchPage = () => {
-  const RoomsData = useFetch<IRoomsInfo>(API.get.rooms);
+  // const RoomsData = useFetch<IRoomsInfo>(API.get.rooms);
+  let targetURL = `${API.get.rooms}`;
+  if (window.location.search) {
+    targetURL = `${API.get.rooms}${window.location.search}`; 
+  }
+
+  const RoomsData = useFetch<IRoomsInfo>(targetURL);
   
   useEffect(() => {  
     // console.log("SearchPage", RoomsData.result?.rooms);
   });
+
+  const handeChangePosition = ({type, payload}:IChangeProps) => {
+    console.log(payload.id);
+    switch (type) {
+      case "map":
+        break;
+      case "room":
+        break;
+      default:
+        break;
+    }
+  }
+  const handleChangeMapPositionToCenter = (id) => {
+    console.log("handleChangeMapPositionToCenter", id)
+  }
+  const handleChangeCardPositionToTop = (id) => {
+    console.log("handleChangeCardPositionToTop", id)
+  }
 
   if (RoomsData.fetchState.isLoading) return <> 로딩중 </>;
   return (
@@ -28,11 +55,11 @@ const SearchPage = () => {
       <SearchPageCardsSection>
         <h1>지도에서 선택한 지역의 숙소</h1>
         {RoomsData.result?.rooms.map((room: IRoomInfo, i:number) => {
-          return (<RoomCard room={room} key={`room-${i}`}/>);
+          return (<RoomCard room={room} handeChangePosition={handeChangePosition} key={`room-${i}`}/>);
         })}
         
       </SearchPageCardsSection>
-      <Map rooms={RoomsData.result?.rooms} />
+      <Map rooms={RoomsData.result?.rooms} handeChangePosition={handeChangePosition} />
 
     </SearchPageLayout>
   );

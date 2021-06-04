@@ -3,15 +3,21 @@ import { threeDigitsComma } from '../../util/util';
 import styled from 'styled-components';
 import { IRoomInfo } from '../../util/types/Room';
 
+interface IChangeProps {
+  type: string, 
+  payload: any
+}
+
 interface IRoomCardInfo {
   room: IRoomInfo,
+  handeChangePosition: ({type, payload}: IChangeProps) => void
 }
 
 interface IRoomCardDescriptionInfo {
   [index: string]: string | boolean;
 }
 
-function RoomCard({ room }:IRoomCardInfo) {
+function RoomCard({ room, handeChangePosition }:IRoomCardInfo) {
   // console.log("RoomCard", room)
   const numberedDescriptions = {
     "최대 인원": `${room.max}명`, 
@@ -38,33 +44,44 @@ function RoomCard({ room }:IRoomCardInfo) {
     })
   }
 
+  const handleClickRoomCard = () => {
+    handeChangePosition({type: "room", payload: { id: room.id }})
+  }
+  const handleClickWishButton = (e) => {
+    e.stopPropagation();
+    console.log("wish")
+  }
+
   return (
-    <RoomCardLayout>
+    <RoomCardLayout onClick={handleClickRoomCard}>
       <RoomCardBlock>
         <ThumbnailLayer>
-          <img width="100%" src={room.thumbnails[0]} />  
+          <Thumbnail src={room.thumbnails[0]} />
         </ThumbnailLayer>
         
         <ContentsLayer>
-          <ContentsRow> 
-            <ContentsHeaderSpan> {room.address} </ContentsHeaderSpan>
-            <ContentsTitleSpan> {room.name} </ContentsTitleSpan>
-
-            <ContentsDescriptionArea> { renderDescriptions(numberedDescriptions) } </ContentsDescriptionArea>
-            <ContentsDescriptionArea> { renderDescriptions(optionDescriptions) } </ContentsDescriptionArea>
+          <ContentsRow>
+            <ContentsLeftColumn> 
+              <ContentsHeaderSpan> {room.address} </ContentsHeaderSpan>
+              <ContentsTitleSpan> {room.name} </ContentsTitleSpan>
+              <ContentsDescriptionArea> { renderDescriptions(numberedDescriptions) } </ContentsDescriptionArea>
+              <ContentsDescriptionArea> { renderDescriptions(optionDescriptions) } </ContentsDescriptionArea>
+            </ContentsLeftColumn>
+            <ContentsRightColumn>
+              <ContentsWishButton onClick={handleClickWishButton}>❤️</ContentsWishButton>  
+            </ContentsRightColumn>
+          </ContentsRow>
+          <ContentsFooterRow>
             <ContentsFooterArea>
               <ContentsReviewArea>
-                <span> {`⭐️ 별점 ${room.rating}`} </span>
-                <span> {`(후기 ${room.commentCount} 개)`} </span>
+                <ContentsReviewText> {`⭐️ 별점 ${room.rating}`} {`(후기 ${room.commentCount} 개)`} </ContentsReviewText>
               </ContentsReviewArea>
               <ContentsPriceArea>
-                {`₩ ${threeDigitsComma(room.salePrice)} / 박`}
+                <ContentsPriceText>{`₩ ${threeDigitsComma(room.salePrice)} / 박`}</ContentsPriceText>
+                <ContentsPriceTotalText>{`총액 ₩${threeDigitsComma(room.originalPrice)}`}</ContentsPriceTotalText>
               </ContentsPriceArea>
-              
             </ContentsFooterArea>
-            
-          </ContentsRow>
-          
+          </ContentsFooterRow>
         </ContentsLayer>
       </RoomCardBlock>
     </RoomCardLayout>
@@ -99,10 +116,16 @@ const ThumbnailLayer = styled.div`
   /* max-width: 330px; */
   margin-right: 25px;
 `
+const Thumbnail = styled.img.attrs(
+  props => ({ src: props.src })
+)`
+  width:100%; 
+  height:200px;
+  object-fit: cover; 
+` 
 
 const ContentsLayer = styled.div`
   width: 50%;
-  
   display: flex;
   flex-direction: column;
 
@@ -111,12 +134,24 @@ const ContentsLayer = styled.div`
   white-space: nowrap;
 `
 
-const ContentsRow = styled.div`
-  width: 100%;
+const ContentsLeftColumn = styled.div`
+  width: 85%;
+  height: 100%;
   
   display: flex;
   flex-direction: column;
 `;
+
+const ContentsRightColumn = styled.div`
+  width: 15%;
+  
+  display: flex;
+  justify-content: flex-end;
+`;
+const ContentsWishButton = styled.span`
+  font-size: 20px;
+  cursor: pointer;
+`
 
 const ContentsSpanHidable = styled.span`
   overflow: hidden;
@@ -145,14 +180,52 @@ const ContentsDescriptionSpan = styled(ContentsSpanHidable)`
 `;
 
 const ContentsFooterArea = styled.div`
-  display: flex;  
+  width: 100%;
+  margin-top: auto;
+  
+  display: flex;
+  align-items: flex-end;
 `;
 const ContentsReviewArea = styled.div`
+  width: 100%;
   display: flex;
+  flex-direction: column;
+`;
+
+const ContentsReviewText = styled.div`
+  font-size: 12px;
+  
+  display: flex;
+  
+  flex-grow: 1;
 `
 
 const ContentsPriceArea = styled.div`
+  font-size: 14px;
+  
+  display: flex;
+  flex-direction: column;
+`;
+const ContentsPriceText = styled.div`
+  font-size: 14px;
+  
+  display: flex;
+  justify-content: flex-end;
+`
+const ContentsPriceTotalText = styled.div`
+  color: grey;
+  font-size: 12px;
+  
+  display: flex;
   justify-content: flex-end;
 `;
 
+const ContentsRow = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+const ContentsFooterRow = styled(ContentsRow)`
+  height: 100%;
+`;
 export default RoomCard;
