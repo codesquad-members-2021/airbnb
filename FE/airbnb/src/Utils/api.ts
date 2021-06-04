@@ -14,6 +14,33 @@ const postApi = {
       },
       body: JSON.stringify(body),
     }),
+  reservation: (body: object) =>
+    fetch(`${baseURL}users/turtle/reservation`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    }),
+  wish: (body: object) =>
+    fetch(`${baseURL}users/turtle/wish`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    }),
 };
 
-export { getApi, postApi };
+const delApi = {
+  wish: (body: object) =>
+    fetch(`${baseURL}users/turtle/wish`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    }),
+};
+
+export { getApi, postApi, delApi };

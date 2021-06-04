@@ -19,3 +19,8 @@ export const accomodationModalDataState = atom<any>({
   key: "accomodationModalDataState",
   default: {},
 });
+
+export const wishListState = atom<any[]>({
+  key: "wishListState",
+  default: [],
+});

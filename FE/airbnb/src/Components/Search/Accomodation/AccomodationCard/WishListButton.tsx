@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { wishListState } from "@/Components/Search/SearchStore";
+import { postApi } from "@/Utils/api";
 import { Accomodation as S } from "@/Components/Search/SearchStyles";
 
 interface Props {
@@ -6,21 +8,23 @@ interface Props {
 }
 
 const WishListButton = ({ id }: Props) => {
-  const [selectedRoomId, setSelectedRoomId] = useState("");
+  const [wishList, setWishList] = useRecoilState(wishListState);
 
   const handleClick = (e: any) => {
     e.stopPropagation();
-    const roomId = e.target.dataset.roomId;
-    if (roomId === selectedRoomId) {
-      setSelectedRoomId("");
+    const roomId = e.target.closest("svg").dataset.roomId;
+    if (wishList.includes(roomId)) {
+      setWishList(wishList.filter((v) => v !== roomId));
+      // delApi.wish({ roomId: Number(roomId) });
     } else {
-      setSelectedRoomId(e.target.dataset.roomId);
+      setWishList([...wishList, roomId]);
+      postApi.wish({ roomId: Number(roomId) });
     }
   };
 
   return (
     <S.WishListButton
-      $isSelectedRoom={selectedRoomId === `${id}`}
+      $isSelectedRoom={wishList.includes(`${id}`)}
       data-room-id={id}
       onClick={handleClick}
     />
