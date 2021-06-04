@@ -30,7 +30,8 @@ public class RoomDetailResponseDTO {
 
     private BigDecimal totalPrice;
 
-    public RoomDetailResponseDTO() {}
+    public RoomDetailResponseDTO() {
+    }
 
     private RoomDetailResponseDTO(Builder builder) {
 
@@ -47,7 +48,8 @@ public class RoomDetailResponseDTO {
         this.coordinate = builder.coordinate;
 
         this.roomType = builder.roomType;
-        this.roomConfiguration = builder.roomConfiguration;;
+        this.roomConfiguration = builder.roomConfiguration;
+        ;
         this.description = builder.description;
 
         this.host = builder.host;

@@ -1,6 +1,7 @@
 package com.team19.airbnb.domain.room;
 
 public class RoomsAndBeds {
+
     private int bed;
     private int bedRoom;
     private int bathRoom;

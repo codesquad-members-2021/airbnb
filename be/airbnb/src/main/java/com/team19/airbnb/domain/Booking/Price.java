@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Price {
+
     private static final BigDecimal CLEANING_FEE_PERCENTAGE_FOR_ROOM = BigDecimal.valueOf(0.30);
     private static final BigDecimal SERVICE_FEE_PERCENTAGE_FOR_ROOM = BigDecimal.valueOf(0.10);
     private static final BigDecimal TAX_PERCENTAGE_FOR_TOTAL_PRICE = BigDecimal.valueOf(0.10);

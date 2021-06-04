@@ -14,18 +14,18 @@ public class Booking {
 
     private LocalDate checkIn;
     private LocalDate checkOut;
-
     private Integer guest;
     private BigDecimal totalPrice;
-
     private Long user;
     private Long room;
 
     @PersistenceConstructor
     Booking(Long id,
             LocalDate checkIn, LocalDate checkOut,
-            Integer guest, BigDecimal totalPrice,
-            Long user, Long room) {
+            Integer guest,
+            BigDecimal totalPrice,
+            Long user,
+            Long room) {
         this.id = id;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -35,61 +35,68 @@ public class Booking {
         this.room = room;
     }
 
-    Booking(LocalDate checkIn, LocalDate checkOut,
-            Integer guest, BigDecimal totalPrice,
-            Long user, Long room) {
-        this.id = null;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
-        this.guest = guest;
-        this.totalPrice = totalPrice;
-        this.user = user;
-        this.room = room;
+    Booking(Builder builder) {
+        this.id = builder.id;
+        this.checkIn = builder.checkIn;
+        this.checkOut = builder.checkOut;
+        this.guest = builder.guest;
+        this.totalPrice = builder.totalPrice;
+        this.user = builder.user;
+        this.room = builder.room;
     }
 
-    //create 이름 바꿔줘야 할듯, 여긴 Build를 쓰는 것이 나을 듯
-    public static Booking create(Long id,
-                                 LocalDate checkIn, LocalDate checkOut,
-                                 Integer guest, BigDecimal totalPrice,
-                                 Long user, Long room) {
-        return new Booking(id,
-                checkIn, checkOut,
-                guest, totalPrice,
-                user, room);
-    }
+    public static class Builder {
 
-    public static Booking create(LocalDate checkIn, LocalDate checkOut,
-                                 Integer guest, BigDecimal totalPrice,
-                                 Long user, Long room) {
-        return new Booking(checkIn, checkOut,
-                guest, totalPrice,
-                user, room);
-    }
+        private Long id;
 
-    public static Booking create(LocalDate checkIn, LocalDate checkOut,
-                                 Integer guest, BigDecimal totalPrice,
-                                 Long room) {
-        return new Booking(null,
-                checkIn, checkOut,
-                guest, totalPrice,
-                null, room);
-    }
+        private LocalDate checkIn;
+        private LocalDate checkOut;
+        private Integer guest;
+        private BigDecimal totalPrice;
+        private Long user;
+        private Long room;
 
-    public static Booking create(LocalDate checkIn, LocalDate checkOut,
-                                 Integer guest,
-                                 Long room) {
-        return new Booking(null,
-                checkIn, checkOut,
-                guest, null,
-                null, room);
-    }
+        public Builder() {
+        }
 
-    public static Booking create(LocalDate checkIn, LocalDate checkOut,
-                                 Integer guest) {
-        return new Booking(null,
-                checkIn, checkOut,
-                guest, null,
-                null, null);
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder checkIn(LocalDate checkIn) {
+            this.checkIn = checkIn;
+            return this;
+        }
+
+        public Builder checkOut(LocalDate checkOut) {
+            this.checkOut = checkOut;
+            return this;
+        }
+
+        public Builder guest(Integer guest) {
+            this.guest = guest;
+            return this;
+        }
+
+        public Builder totalPrice(BigDecimal totalPrice) {
+            this.totalPrice = totalPrice;
+            return this;
+        }
+
+        public Builder user(Long user) {
+            this.user = user;
+            return this;
+        }
+
+        public Builder room(Long room) {
+            this.room = room;
+            return this;
+        }
+
+        public Booking build() {
+            return new Booking(this);
+        }
     }
 
     public Long getId() {
@@ -124,8 +131,12 @@ public class Booking {
         this.id = id;
     }
 
-    public void checkUserId(Long userId) {
+    public void setUser(Long userId) {
         this.user = userId;
+    }
+
+    public boolean isUser(Long userId) {
+        return this.user.equals(userId);
     }
 
     public BigDecimal calculateTotalPrice(BigDecimal roomPricePerDay) {
@@ -136,5 +147,4 @@ public class Booking {
     public Long countDays() {
         return ChronoUnit.DAYS.between(checkIn, checkOut);
     }
-
 }

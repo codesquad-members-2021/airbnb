@@ -1,6 +1,7 @@
 package com.team19.airbnb.domain.room;
 
 public class Review {
+
     private Double grade;
     private Integer reviewer;
 

@@ -6,11 +6,9 @@ import org.springframework.lang.Nullable;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class SearchRequestDTO {
-
-    @Nullable
-    private String address;
 
     private Double[] coordinate;
 
@@ -31,21 +29,16 @@ public class SearchRequestDTO {
     @Nullable
     private Integer guest; //adult + child , toddler x
 
-    public SearchRequestDTO(String address, Double[] coordinate,
+    public SearchRequestDTO(Double[] coordinate,
                             LocalDate checkIn, LocalDate checkOut,
                             BigDecimal minPrice, BigDecimal maxPrice,
-                            int guest) {
-        this.address = address;
+                            Integer guest) {
         this.coordinate = coordinate;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
         this.guest = guest;
-    }
-
-    public String getAddress() {
-        return address;
     }
 
     public Double[] getCoordinate() {
@@ -72,10 +65,6 @@ public class SearchRequestDTO {
         return guest;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public void setCheckIn(LocalDate checkIn) {
         this.checkIn = checkIn;
     }
@@ -97,7 +86,22 @@ public class SearchRequestDTO {
     }
 
     public Booking toBooking() {
-        return Booking.create(checkIn, checkOut, guest);
+        return new Booking.Builder()
+                .checkIn(checkIn)
+                .checkOut(checkOut)
+                .guest(guest)
+                .build();
     }
 
+    @Override
+    public String toString() {
+        return "SearchRequestDTO{" +
+                "coordinate=" + Arrays.toString(coordinate) +
+                ", checkIn=" + checkIn +
+                ", checkOut=" + checkOut +
+                ", minPrice=" + minPrice +
+                ", maxPrice=" + maxPrice +
+                ", guest=" + guest +
+                '}';
+    }
 }

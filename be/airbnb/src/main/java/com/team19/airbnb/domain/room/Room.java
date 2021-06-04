@@ -14,7 +14,6 @@ public class Room {
     private String name;
     private List<Image> images;
 
-    //최대인원 필요
     @Embedded.Empty
     private Review review;
 
@@ -34,7 +33,8 @@ public class Room {
 
     private Integer capacity;
 
-    public Room() {}
+    public Room() {
+    }
 
     Room(Long id,
          String name, List<Image> images,
@@ -58,13 +58,13 @@ public class Room {
     }
 
     public static Room create(Long id,
-                       String name, List<Image> images,
-                       Review review,
-                       Location location,
-                       RoomType roomType, RoomsAndBeds roomsAndBeds, String description,
-                       Host host,
-                       BigDecimal pricePerDay,
-                       Integer capacity) {
+                              String name, List<Image> images,
+                              Review review,
+                              Location location,
+                              RoomType roomType, RoomsAndBeds roomsAndBeds, String description,
+                              Host host,
+                              BigDecimal pricePerDay,
+                              Integer capacity) {
         return new Room(id,
                 name, images,
                 review, location,
@@ -120,45 +120,5 @@ public class Room {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setImages(List<Image> images) {
-        this.images = images;
-    }
-
-    public void setReview(Review review) {
-        this.review = review;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-
-    public void setRoomsAndBeds(RoomsAndBeds roomsAndBeds) {
-        this.roomsAndBeds = roomsAndBeds;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setHost(Host host) {
-        this.host = host;
-    }
-
-    public void setPricePerDay(BigDecimal pricePerDay) {
-        this.pricePerDay = pricePerDay;
-    }
-
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
     }
 }
