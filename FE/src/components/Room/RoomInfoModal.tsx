@@ -1,12 +1,18 @@
 // css 리팩토링 필요. 급하게짜서 폭탄..
 import { useState } from 'react';
 import styled from 'styled-components';
+import { threeDigitsComma } from '../../util/util';
 import DefaultButton from '../Common/DefaultButton';
 
 import ModalFluid from '../Common/ModalFluid';
 
-const RoomInfoModal = () => {
-  const [isModalVisible, setIsModalVisible] = useState(true);
+interface IRoomInfoModal {
+  data: any;
+  isModalVisible: boolean;
+  setIsModalVisible: (flag: boolean) => void;
+}
+
+const RoomInfoModal = ({data, isModalVisible, setIsModalVisible} : IRoomInfoModal) => {
   return (
     <ModalFluid
       setIsModalVisible={setIsModalVisible}
@@ -16,10 +22,10 @@ const RoomInfoModal = () => {
         <RoomInfoList>
           <RoomInfoItem className="price-review">
             <div className="price">
-              <span className="bold">\{'7,070원'}</span>
+              <span className="bold">\ {`${threeDigitsComma(data.salePrice)}`}</span>
               <span>/ 박</span>
             </div>
-            <div className="review">후기 {'123개'}</div>
+            <div className="review">후기 {`${data.commentCount}개`}</div>
           </RoomInfoItem>
           <RoomInfoItem className="date_people">
             <div className="checkin-out">
@@ -46,12 +52,12 @@ const RoomInfoModal = () => {
           <RoomInfoItem className="price-info">
             <ul>
               <li>
-                <span>₩71,466 x 18박</span>
-                <span>₩1,322,396</span>
+                <span>{`${threeDigitsComma(data.salePrice)}`} x {"18"}박</span>
+                <span>₩ {`${threeDigitsComma(data.salePrice * 18)}`}</span>
               </li>
               <li className="total">
                 <span>총 합계</span>
-                <span>₩1,488,195</span>
+                <span>₩ {`${threeDigitsComma(data.salePrice * 18)}`}</span>
               </li>
             </ul>
           </RoomInfoItem>

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { threeDigitsComma } from '../../util/util';
 import styled from 'styled-components';
 import { IRoomInfo } from '../../util/types/Room';
+import RoomInfoModal from './RoomInfoModal';
 
 interface IRoomCardInfo {
   room: IRoomInfo,
@@ -12,6 +13,8 @@ interface IRoomCardDescriptionInfo {
 }
 
 function RoomCard({ room }:IRoomCardInfo) {
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+
   // console.log("RoomCard", room)
   const numberedDescriptions = {
     "최대 인원": `${room.max}명`, 
@@ -48,7 +51,7 @@ function RoomCard({ room }:IRoomCardInfo) {
         <ContentsLayer>
           <ContentsRow> 
             <ContentsHeaderSpan> {room.address} </ContentsHeaderSpan>
-            <ContentsTitleSpan> {room.name} </ContentsTitleSpan>
+            <ContentsTitleSpan onClick={() => setIsModalVisible(true)}> {room.name} </ContentsTitleSpan>
 
             <ContentsDescriptionArea> { renderDescriptions(numberedDescriptions) } </ContentsDescriptionArea>
             <ContentsDescriptionArea> { renderDescriptions(optionDescriptions) } </ContentsDescriptionArea>
@@ -67,6 +70,8 @@ function RoomCard({ room }:IRoomCardInfo) {
           
         </ContentsLayer>
       </RoomCardBlock>
+
+      <RoomInfoModal data={room} isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} />
     </RoomCardLayout>
   )
 }
