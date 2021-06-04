@@ -25,7 +25,7 @@ public class AuthController {
     private final String GITHUB_USER_URI = "https://api.github.com/user";
     private final String ISSUER = "";
     private final String CLIENT_ID = "c7adc71d1700acad7b68";
-    private final String CLIENT_SECRET = "fc70e8354337706ac8da3465ffcf15928ed8063b";
+    private final String CLIENT_SECRET = "비번";
     private HttpSession httpSession;
 
     @GetMapping
