@@ -21,6 +21,8 @@
 		AE11F5AC265F3D5F0034779F /* DateGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11F5AB265F3D5F0034779F /* DateGenerator.swift */; };
 		AE11F5AE265F3D920034779F /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11F5AD265F3D920034779F /* Date+extension.swift */; };
 		AE2049A72669CD1200C149B8 /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2049A62669CD1200C149B8 /* RoomCell.swift */; };
+		AE2049AA2669CF6700C149B8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2049A82669CF6700C149B8 /* MapViewController.swift */; };
+		AE2049AB2669CF6700C149B8 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE2049A92669CF6700C149B8 /* MapViewController.xib */; };
 		AE3FE07526574E7000A95177 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07426574E7000A95177 /* SearchCityViewController.swift */; };
 		AE3FE07726578F1700A95177 /* RegionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07626578F1700A95177 /* RegionData.swift */; };
 		AE3FE07A26579D3B00A95177 /* RegionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07826579D3B00A95177 /* RegionCell.swift */; };
@@ -88,6 +90,8 @@
 		AE11F5AB265F3D5F0034779F /* DateGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateGenerator.swift; sourceTree = "<group>"; };
 		AE11F5AD265F3D920034779F /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		AE2049A62669CD1200C149B8 /* RoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
+		AE2049A82669CF6700C149B8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		AE2049A92669CF6700C149B8 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		AE3FE07426574E7000A95177 /* SearchCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
 		AE3FE07626578F1700A95177 /* RegionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionData.swift; sourceTree = "<group>"; };
 		AE3FE07826579D3B00A95177 /* RegionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionCell.swift; sourceTree = "<group>"; };
@@ -239,6 +243,8 @@
 			isa = PBXGroup;
 			children = (
 				AE87A7832668D19D003E9541 /* RoomsViewController.swift */,
+				AE2049A82669CF6700C149B8 /* MapViewController.swift */,
+				AE2049A92669CF6700C149B8 /* MapViewController.xib */,
 				AE87A79526693CD3003E9541 /* DetailRoomViewController.swift */,
 				AE87A79626693CD3003E9541 /* DetailRoomViewController.xib */,
 			);
@@ -479,6 +485,7 @@
 				AE0B5DF4265642B2000B35E7 /* CategoryCell.xib in Resources */,
 				AE8CD3C02653538800BCB8FC /* LaunchScreen.storyboard in Resources */,
 				AE87A79826693CD3003E9541 /* DetailRoomViewController.xib in Resources */,
+				AE2049AB2669CF6700C149B8 /* MapViewController.xib in Resources */,
 				AE87A77D26687F71003E9541 /* PersonCell.xib in Resources */,
 				AE8CD3BD2653538800BCB8FC /* Assets.xcassets in Resources */,
 				AE87A78A2668DFB1003E9541 /* AccommodationCell.xib in Resources */,
@@ -536,6 +543,7 @@
 				AE53DF092660885600A72A87 /* CalendarViewModel.swift in Sources */,
 				AE8CD3B42653538700BCB8FC /* AppDelegate.swift in Sources */,
 				AE0B5DE926562D4A000B35E7 /* TitleSupplementaryView.swift in Sources */,
+				AE2049AA2669CF6700C149B8 /* MapViewController.swift in Sources */,
 				AE0B5DE62656073E000B35E7 /* CityCell.swift in Sources */,
 				AE87A79726693CD3003E9541 /* DetailRoomViewController.swift in Sources */,
 				AE87A7862668DF22003E9541 /* RoomsSupplementaryView.swift in Sources */,
