@@ -6,9 +6,9 @@ import com.enolj.airbnb.web.dto.UserInfoDTO;
 
 public interface OAuth {
 
-    TokenDTO tokenReceiveAPI(String code, int typeCode);
+    TokenDTO getToken(String code, int typeCode);
 
-    UserInfoDTO userInfoReceiveAPI(String token);
+    UserInfoDTO getUserInfo(String token);
 
-    EmailDTO emailReceiveAPI(String token);
+    EmailDTO getEmail(String token);
 }
