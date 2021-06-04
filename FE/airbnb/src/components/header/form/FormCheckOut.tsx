@@ -19,7 +19,8 @@ const FormCheckOut = ({ checkOutRef }: Props) => {
   const selectBox = useRecoilValue(selectCheckBoxState);
 
   const date = getDateByTime(selectDate.checkOut);
-  const description = date ? `${date.month}월 ${date.day}일` : '날짜';
+  const description = date.month !== 0 ? `${date.month}월 ${date.day}일` : '날짜';
+  console.log(description);
   const isShowDeleteBtn = !!selectDate.checkOut && open && selectBox === 'checkOut';
 
   const resetClickHandler = (e: MouseEvent): void => {

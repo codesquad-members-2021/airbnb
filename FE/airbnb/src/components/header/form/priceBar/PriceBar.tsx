@@ -30,8 +30,8 @@ const PriceBar = ({ toggleRef }: Props) => {
   const [isBtnDown, setIsBtnDown] = useState(false);
   const [downBtnType, setDownBtnType] = useState({ left: false, right: false });
   const [clickPosition, setClickPosition] = useState(0);
-  const [priceData, setPriceData] = useState(sampleData);
-  // const priceData = useRecoilValue(fetchPrice);
+  // const [priceData, setPriceData] = useState(sampleData);
+  const priceData = useRecoilValue(fetchPrice);
   const [btnPosition, setBtnPosition] = useRecoilState(pauseBtnPositionState);
   const [btnLastPosition, setBtnLastPosition] = useRecoilState(pauseBtnLastPositionState);
   const [priceRange, setPriceRange] = useRecoilState(priceState);
