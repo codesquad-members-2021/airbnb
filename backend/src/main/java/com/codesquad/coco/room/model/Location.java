@@ -8,13 +8,13 @@ public class Location {
     @Id
     private Long id;
 
-    private double latitude;
-    private double longitude;
+    private Coordinates latitude;
+    private Coordinates longitude;
     private City city;
 
     public Location(double latitude, double longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.latitude = new Coordinates(latitude);
+        this.longitude = new Coordinates(longitude);
     }
 
     public Long getId() {
@@ -22,11 +22,11 @@ public class Location {
     }
 
     public double getLatitude() {
-        return latitude;
+        return latitude.getCoordinates();
     }
 
     public double getLongitude() {
-        return longitude;
+        return longitude.getCoordinates();
     }
 
     public City getCity() {

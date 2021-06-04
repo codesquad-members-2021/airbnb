@@ -14,7 +14,7 @@ public class SearchRoomDTO extends SearchPriceDTO {
 
     @ConstructorProperties({"check-in", "check-out", "city-name", "adult", "child", "baby", "price-min", "price-max"})
     public SearchRoomDTO(String checkIn, String checkOut, String cityName,
-                         Integer adult, Integer child, Integer baby,
+                         int adult, int child, int baby,
                          Integer priceMin, Integer priceMax) {
         super(checkIn, checkOut, cityName);
         this.guest = Guest.guestInfo(adult, child, baby);
