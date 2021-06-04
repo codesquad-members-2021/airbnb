@@ -32,8 +32,8 @@ function Reservation({setOpen, targetData}:IReserve) {
       <GridBox>
         
         <div>{PersonnelBlock(guestMsg)}</div>
-        <div>{CheckInBlock(checkIn)}</div>
-        <div>{CheckOutBlock(checkOut)}</div>
+        <div><CheckInBlock checkIn={checkIn}/></div>
+        <div><CheckOutBlock checkOut={checkOut}/></div>
         {/*<Date/>
          */}
       </GridBox>
