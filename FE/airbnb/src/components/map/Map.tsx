@@ -14,8 +14,10 @@ const Map = ({ className }: Props) => {
   const DEFAULT_LATITUDE = 37.496181;
   const DEFAULT_LONGITUDE = 127.030825;
 
-  const latitude = roomsData ? roomsData?.[0]?.address?.latitude : DEFAULT_LATITUDE;
-  const longitude = roomsData ? roomsData?.[0]?.address?.longitude : DEFAULT_LONGITUDE;
+  const latitude =
+    roomsData && roomsData.length ? roomsData?.[0]?.address?.latitude : DEFAULT_LATITUDE;
+  const longitude =
+    roomsData && roomsData.length ? roomsData?.[0]?.address?.longitude : DEFAULT_LONGITUDE;
 
   useEffect(() => {
     const options = {
