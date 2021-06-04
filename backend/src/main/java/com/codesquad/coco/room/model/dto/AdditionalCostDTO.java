@@ -1,5 +1,7 @@
 package com.codesquad.coco.room.model.dto;
 
+import com.codesquad.coco.room.model.AdditionalCost;
+
 public class AdditionalCostDTO {
 
     private int weekSalePercent;
@@ -12,6 +14,15 @@ public class AdditionalCostDTO {
         this.cleaningFee = cleaningFee;
         this.serviceFeePercent = serviceFeePercent;
         this.lodgmentFeePercent = lodgmentFeePercent;
+    }
+
+    public static AdditionalCostDTO of(AdditionalCost additionalCost) {
+        return new AdditionalCostDTO(
+                additionalCost.getWeekSalePercent(),
+                additionalCost.getCleaningFee(),
+                additionalCost.getServiceFeePercent(),
+                additionalCost.getLodgmentFeePercent()
+        );
     }
 
     public int getWeekSalePercent() {

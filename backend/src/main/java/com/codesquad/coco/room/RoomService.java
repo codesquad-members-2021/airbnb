@@ -3,7 +3,6 @@ package com.codesquad.coco.room;
 import com.codesquad.coco.image.ImageDAO;
 import com.codesquad.coco.room.model.Room;
 import com.codesquad.coco.room.model.dto.*;
-import com.codesquad.coco.utils.DTOConverter;
 import com.codesquad.coco.utils.LocalDateUtil;
 import org.springframework.stereotype.Service;
 
@@ -31,14 +30,13 @@ public class RoomService {
 
         int fewNights = LocalDateUtil.getAccommodationDay(roomDTO.getCheckIn(), roomDTO.getCheckOut());
 
-        //fixme : ? 해당 로직 괜찮을까요?
         return rooms.stream()
-                .map(room -> DTOConverter.roomToRoomPreviewDTO(room, fewNights))
+                .map(room -> RoomPreviewDTO.of(room, fewNights))
                 .collect(Collectors.toList());
     }
 
     public RoomDetailDTO findRoomDetailDTO(Long roomId) {
         Room room = roomDAO.findById(roomId);
-        return DTOConverter.roomToRoomDetailDTO(room);
+        return RoomDetailDTO.of(room);
     }
 }

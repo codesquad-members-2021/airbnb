@@ -10,6 +10,13 @@ public class HostDTO {
         this.profileImageUrl = profileImageUrl;
     }
 
+    public static HostDTO of(Host host) {
+        return new HostDTO(
+                host.getName(),
+                host.getProfileImageUrl()
+        );
+    }
+
     public String getName() {
         return name;
     }

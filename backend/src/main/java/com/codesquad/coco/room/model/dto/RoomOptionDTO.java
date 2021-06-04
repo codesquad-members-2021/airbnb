@@ -1,5 +1,7 @@
 package com.codesquad.coco.room.model.dto;
 
+import com.codesquad.coco.room.model.RoomOption;
+
 public class RoomOptionDTO {
 
     private int bed;
@@ -10,6 +12,14 @@ public class RoomOptionDTO {
         this.bed = bed;
         this.maxGuest = maxGuest;
         this.bathRoom = bathRoom;
+    }
+
+    public static RoomOptionDTO of(RoomOption roomOption) {
+        return new RoomOptionDTO(
+                roomOption.getBed(),
+                roomOption.getMaxGuest(),
+                roomOption.getBathRoom()
+        );
     }
 
     public int getBed() {

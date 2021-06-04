@@ -1,6 +1,5 @@
 package com.codesquad.coco.city;
 
-import com.codesquad.coco.utils.DTOConverter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,10 +14,10 @@ public class CityService {
         this.cityDAO = cityDAO;
     }
 
-    public List<CityDTO> findAllCityDTOs(){
+    public List<CityDTO> findAllCityDTOs() {
         List<City> cities = cityDAO.findAll();
         return cities.stream()
-                .map(DTOConverter::cityToCityDTO)
+                .map(CityDTO::of)
                 .collect(Collectors.toList());
     }
 
