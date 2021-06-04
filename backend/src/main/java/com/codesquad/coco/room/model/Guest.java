@@ -12,10 +12,7 @@ public class Guest {
         this.baby = baby;
     }
 
-    public static Guest guestInfo(Integer adult, Integer child, Integer baby) {
-        adult = adult != null ? adult : 0;
-        child = child != null ? child : 0;
-        baby = baby != null ? baby : 0;
+    public static Guest guestInfo(int adult, int child, int baby) {
         return new Guest(adult, child, baby);
     }
 

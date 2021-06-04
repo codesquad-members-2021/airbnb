@@ -2,6 +2,7 @@ package com.codesquad.coco.room.model.dto;
 
 import com.codesquad.coco.host.HostDTO;
 import com.codesquad.coco.image.ImageDTO;
+import com.codesquad.coco.room.model.Room;
 import com.codesquad.coco.user.model.dto.ReservationDateDTO;
 
 import java.util.List;
@@ -48,6 +49,24 @@ public class RoomDetailDTO {
                 .map(ImageDTO::getUrl)
                 .collect(Collectors.toList());
         return new RoomDetailDTO(id, name, host, homeDetails, type, pricePerDate, description, wish, coordinate, imageURIs, review, additionalCost, reservationDateDTOs);
+    }
+
+    public static RoomDetailDTO of(Room room) {
+        return RoomDetailDTO.of(
+                room.getId(),
+                room.getName(),
+                HostDTO.of(room.getHost()),
+                RoomOptionDTO.of(room.getRoomOption()),
+                room.getType(),
+                room.getPricePerDate(),
+                room.getDescription(),
+                room.getWish(),
+                LocationDTO.of(room.getLocation()),
+                ImageDTO.of(room.getImages()),
+                ReviewDTO.of(room.getReview()),
+                AdditionalCostDTO.of(room.getAdditionalCost()),
+                ReservationDateDTO.of(room.getReservations().getReservations())
+        );
     }
 
     public Long getId() {

@@ -10,6 +10,10 @@ public class CityDTO {
         this.imageUrl = imageUrl;
     }
 
+    public static CityDTO of(City city) {
+        return new CityDTO(city.getName(), city.getImageUrl());
+    }
+
     public String getName() {
         return name;
     }

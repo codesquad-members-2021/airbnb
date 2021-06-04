@@ -32,14 +32,10 @@ public class Reservation {
 
     public boolean reservationDateCheck(LocalDate checkIn, LocalDate checkOut) {
         //todo : 체크 아웃 날에는 체크인이 가능하다?
-        if (LocalDateUtil.betweenCheck(this.checkIn, checkIn, checkOut) ||
+        return (LocalDateUtil.betweenCheck(this.checkIn, checkIn, checkOut) ||
                 LocalDateUtil.betweenCheck(this.checkOut, checkIn, checkOut) ||
                 this.checkIn.isEqual(checkIn) ||
-                this.checkOut.isEqual(checkOut)
-        ) {
-            return false;
-        }
-        return true;
+                this.checkOut.isEqual(checkOut));
     }
 
 

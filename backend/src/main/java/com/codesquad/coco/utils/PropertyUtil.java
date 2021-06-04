@@ -8,9 +8,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.PropertySource;
 
 @PropertySource("classpath:/secretKey.properties")
-public class GetPropertyUtil {
+public class PropertyUtil {
 
-    private static Logger logger = LoggerFactory.getLogger(GetPropertyUtil.class);
+    private static Logger logger = LoggerFactory.getLogger(PropertyUtil.class);
+
+    private PropertyUtil() {
+    }
 
     public static String getProperty(String propertyName) {
         return getProperty(propertyName, null);

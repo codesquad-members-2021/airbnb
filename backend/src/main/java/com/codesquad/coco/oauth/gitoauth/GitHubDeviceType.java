@@ -1,6 +1,6 @@
 package com.codesquad.coco.oauth.gitoauth;
 
-import com.codesquad.coco.utils.GetPropertyUtil;
+import com.codesquad.coco.utils.PropertyUtil;
 
 public enum GitHubDeviceType {
 
@@ -12,8 +12,8 @@ public enum GitHubDeviceType {
     private String redirectUri;
 
     GitHubDeviceType(String clientKey, String clientSecret, String redirectUri) {
-        this.clientKey = GetPropertyUtil.getProperty(clientKey);
-        this.clientSecret = GetPropertyUtil.getProperty(clientSecret);
+        this.clientKey = PropertyUtil.getProperty(clientKey);
+        this.clientSecret = PropertyUtil.getProperty(clientSecret);
         this.redirectUri = redirectUri;
     }
 

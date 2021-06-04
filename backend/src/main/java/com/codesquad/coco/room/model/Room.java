@@ -1,17 +1,13 @@
 package com.codesquad.coco.room.model;
 
-import com.codesquad.coco.global.exception.business.NonReservationException;
-import com.codesquad.coco.global.exception.business.OvercapacityException;
 import com.codesquad.coco.global.exception.business.TotalPriceNonMatchException;
 import com.codesquad.coco.host.Host;
 import com.codesquad.coco.image.Image;
 import com.codesquad.coco.user.model.Reservation;
 import com.codesquad.coco.user.model.WishList;
 import com.codesquad.coco.user.model.dto.ReservationDTO;
-import com.codesquad.coco.utils.LocalDateUtil;
 import org.springframework.data.annotation.Id;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +28,7 @@ public class Room {
     private String name;
     private Money pricePerDate;
     private String description;
-    private List<Reservation> reservations = new ArrayList<>();
+    private ReservationList reservations;
     private List<Image> images = new ArrayList<>();
     private WishList wishList;
 
@@ -46,7 +42,7 @@ public class Room {
         this.name = builder.name;
         this.pricePerDate = builder.pricePerDate;
         this.description = builder.description;
-        this.reservations = builder.reservations;
+        this.reservations = new ReservationList(builder.reservations);
         this.images = builder.images;
         this.wishList = builder.wishList;
         this.type = builder.type;
@@ -66,43 +62,24 @@ public class Room {
 
 
     public boolean reservationAvailability(ReservationDTO reservationDTO) {
-        int fewNights = LocalDateUtil.getAccommodationDay(reservationDTO.getCheckIn(), reservationDTO.getCheckOut());
-        int totalPrice = calcTotalPrice(fewNights);
+        int fewNights = reservationDTO.accommodationDay();
+        Money totalPrice = calcTotalPrice(fewNights);
 
-        reservationDateCheck(reservationDTO.getCheckIn(), reservationDTO.getCheckOut());
-        capacityCheck(reservationDTO.getAdult(), reservationDTO.getChild());
-        if (totalPrice != reservationDTO.getTotalPrice()) {
+        reservations.reservationDateCheck(reservationDTO.getCheckIn(), reservationDTO.getCheckOut());
+        roomOption.capacityCheck(reservationDTO.getAdult(), reservationDTO.getChild());
+        if (totalPrice.same(reservationDTO.getTotalPrice())) {
             throw new TotalPriceNonMatchException(totalPrice);
         }
         return true;
     }
 
-    public int calcTotalPrice(int fewNights) {
-        int basicPrice = fewNights * pricePerDate.getMoney();
-        int additionalPrice = 0;
-        additionalPrice -= additionalCost.calcWeekSale(basicPrice, fewNights);
-        additionalPrice += additionalCost.calcAdditionalCost(basicPrice);
-        return basicPrice + additionalPrice;
-    }
-
-    public boolean capacityCheck(int adult, int child) {
-        if (!roomOption.capacityCheck(adult, child)) {
-            throw new OvercapacityException();
-        }
-        return true;
-    }
-
-    public boolean reservationDateCheck(LocalDate checkIn, LocalDate checkOut) {
-        for (Reservation reservation : reservations) {
-            if (!reservation.reservationDateCheck(checkIn, checkOut)) {
-                throw new NonReservationException();
-            }
-        }
-        return true;
+    public Money calcTotalPrice(int fewNights) {
+        Money basicPrice = pricePerDate.multiplication(fewNights);
+        return additionalCost.calculateAdditionalCost(basicPrice, fewNights);
     }
 
     public void addReservation(Reservation reservation) {
-        reservations.add(reservation);
+        reservations.addReservation(reservation);
     }
 
     public void addImages(Image image) {
@@ -145,7 +122,7 @@ public class Room {
         return description;
     }
 
-    public List<Reservation> getReservations() {
+    public ReservationList getReservations() {
         return reservations;
     }
 

@@ -2,9 +2,9 @@ package com.codesquad.coco.global.exception.business.notfound;
 
 import com.codesquad.coco.global.exception.ErrorCode;
 
-public class NotFoundUser extends NotFoundException {
+public class NotFoundUserException extends NotFoundException {
 
-    public NotFoundUser() {
+    public NotFoundUserException() {
         super(ErrorCode.USER_NOT_FOUND);
     }
 }

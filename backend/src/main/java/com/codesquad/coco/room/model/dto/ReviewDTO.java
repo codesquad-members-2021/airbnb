@@ -1,5 +1,7 @@
 package com.codesquad.coco.room.model.dto;
 
+import com.codesquad.coco.room.model.Review;
+
 public class ReviewDTO {
 
     private double star;
@@ -8,6 +10,13 @@ public class ReviewDTO {
     public ReviewDTO(double star, double review) {
         this.star = star;
         this.review = review;
+    }
+
+    public static ReviewDTO of(Review review) {
+        return new ReviewDTO(
+                review.getStar(),
+                review.getReview()
+        );
     }
 
     public double getStar() {

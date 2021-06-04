@@ -17,7 +17,7 @@ public class CityDAO {
         this.template = template;
     }
 
-    public List<City> findAll(){
-        return template.query(FIND_ALL,new CityMapper());
+    public List<City> findAll() {
+        return template.query(FIND_ALL, new CityMapper());
     }
 }

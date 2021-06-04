@@ -2,26 +2,27 @@ package com.codesquad.coco.user.model.dto;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class ReservationDTO {
 
     @NotNull
     private LocalDate checkIn;
-
     @NotNull
     private LocalDate checkOut;
-
     @NotNull
     private int totalPrice;
-
     @NotNull
     private int adult;
-
     @NotNull
     private int child;
-
     @NotNull
     private int baby;
+
+
+    public int accommodationDay() {
+        return (int) ChronoUnit.DAYS.between(checkIn, checkOut);
+    }
 
     public LocalDate getCheckIn() {
         return checkIn;

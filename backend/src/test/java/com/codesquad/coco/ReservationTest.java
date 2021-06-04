@@ -1,8 +1,9 @@
 package com.codesquad.coco;
 
-import com.codesquad.coco.global.exception.business.NonReservationException;
+import com.codesquad.coco.global.exception.business.AlreadyReserved;
 import com.codesquad.coco.room.model.AdditionalCost;
 import com.codesquad.coco.room.model.Money;
+import com.codesquad.coco.room.model.ReservationList;
 import com.codesquad.coco.room.model.Room;
 import com.codesquad.coco.user.model.Reservation;
 import com.codesquad.coco.utils.LocalDateUtil;
@@ -26,9 +27,9 @@ public class ReservationTest {
         Room room = getRoom();
         int fewNights = 1;
 
-        int totalPrice = room.calcTotalPrice(fewNights);
+        Money totalPrice = room.calcTotalPrice(fewNights);
 
-        assertThat(totalPrice).isEqualTo(128_000);
+        assertThat(totalPrice.getMoney()).isEqualTo(128_000);
 
     }
 
@@ -39,9 +40,9 @@ public class ReservationTest {
 
         int fewNights = 8;
 
-        int totalPrice = room.calcTotalPrice(fewNights);
+        Money totalPrice = room.calcTotalPrice(fewNights);
 
-        assertThat(totalPrice).isEqualTo(852_000);
+        assertThat(totalPrice.getMoney()).isEqualTo(852_000);
 
     }
 
@@ -49,17 +50,17 @@ public class ReservationTest {
     @DisplayName("예약 불가 날짜에 예외를 확인")
     void checkReservationAvailable() {
         Room room = getRoom();
-
-        assertThatThrownBy(() -> room.reservationDateCheck(
+        ReservationList reservations = room.getReservations();
+        assertThatThrownBy(() -> reservations.reservationDateCheck(
                 LocalDate.of(2021, 05, 25)
                 , LocalDate.of(2021, 05, 27)))
-                .isInstanceOf(NonReservationException.class)
+                .isInstanceOf(AlreadyReserved.class)
                 .hasMessageContaining("그 날에는 예약이 이미 있음");
 
-        assertThatThrownBy(() -> room.reservationDateCheck(
+        assertThatThrownBy(() -> reservations.reservationDateCheck(
                 LocalDate.of(2021, 04, 25)
                 , LocalDate.of(2021, 05, 30)))
-                .isInstanceOf(NonReservationException.class)
+                .isInstanceOf(AlreadyReserved.class)
                 .hasMessageContaining("그 날에는 예약이 이미 있음");
     }
 
@@ -80,13 +81,13 @@ public class ReservationTest {
         );
 
         assertAll(
-                () -> assertTrue(chekInTest),
-                () -> assertTrue(chekOutTest)
+                () -> assertFalse(chekInTest),
+                () -> assertFalse(chekOutTest)
         );
     }
 
     @Test
-    @DisplayName("날짜가 중간에 들어가는지")
+    @DisplayName("날짜가 중간에 들어가는지, 예약을 할 수 있는 날인지 체크")
     void dateIsBetween() {
         LocalDate targetDate1 = LocalDate.of(2021, 05, 26);
         LocalDate targetDate2 = LocalDate.of(2021, 05, 28);

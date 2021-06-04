@@ -1,5 +1,7 @@
 package com.codesquad.coco.room.model.dto;
 
+import com.codesquad.coco.room.model.Room;
+
 public class RoomPreviewDTO {
 
     private Long id;
@@ -30,8 +32,19 @@ public class RoomPreviewDTO {
         return new RoomPreviewDTO(id, name, pricePerDate, homeDetails, type, wish, thumbnailImage, coordinate, reviewDTO, totalPrice);
     }
 
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
+    public static RoomPreviewDTO of(Room room, int fewNights) {
+        return RoomPreviewDTO.of(
+                room.getId(),
+                room.getName(),
+                room.getPricePerDate(),
+                RoomOptionDTO.of(room.getRoomOption()),
+                room.getType(),
+                room.getWish(),
+                room.getThumbnailImage(),
+                LocationDTO.of(room.getLocation()),
+                ReviewDTO.of(room.getReview()),
+                room.calcTotalPrice(fewNights).getMoney()
+        );
     }
 
     public Long getId() {
@@ -72,5 +85,9 @@ public class RoomPreviewDTO {
 
     public int getTotalPrice() {
         return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
