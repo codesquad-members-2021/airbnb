@@ -24,14 +24,14 @@ const BarWrapper = styled.div`
   justify-content: center;
   position: relative;
   top: 30px;
-  z-index: 9999;
-  background-color: ${({ theme }) => theme.color.white};
+  z-index: 9998;
 `
 const Bar = styled.div`
   width: 1120px;
   height: 76px;
   border-radius: 60px;
   border: 1px solid ${(props) => props.theme.color.grey_2};
+  background-color: ${({ theme }) => theme.color.white};
   display: flex;
 `
 

@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components'
 import { Theme } from './style/Theme'
 import './index.css'
 import App from './App'
+import Login from './components/header/Login'
 import SearchResult from './components/searchResult/SearchResult'
 import reportWebVitals from './reportWebVitals'
 
@@ -20,6 +21,7 @@ ReactDOM.render(
               path='/searchResult/:place/:checkIn/:checkOut/:priceMin/:priceMax/:minFeePercent/:maxFeePercent/:adult/:child/:baby'
               component={SearchResult}
             />
+            <Route path='/git/auth' component={Login} />
           </Switch>
         </Router>
       </ThemeProvider>

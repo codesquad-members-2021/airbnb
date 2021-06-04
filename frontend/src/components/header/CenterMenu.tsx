@@ -16,6 +16,7 @@ const FlexBox = styled(AlignTextCenter)`
 `
 const Menu = styled.div`
   font-size: ${({ theme }) => theme.fontSize.super_sm};
+  color: ${({ theme }) => theme.color.white};
   &:hover {
     cursor: pointer;
     text-decoration: underline;

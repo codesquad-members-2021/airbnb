@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import {
   ModalWrapper,
   BarBlock,
@@ -8,9 +8,8 @@ import {
   BarMessage,
 } from '../../../style/BarStyle'
 import {
-  personnelAudult,
-  personnelChild,
-  personnelBaby,
+  totalPerson,
+  filterPersonnelMessage,
   defaultValue,
   personnelMessage,
 } from '../../../customHook/atoms'
@@ -18,6 +17,14 @@ import ModalPersonnel from './ModalPersonnel'
 import useModalCtrl from '../../../customHook/useModalCtrlArray'
 import useXclick from '../../../customHook/useXclick'
 
+export const PersonnelBlock = (guestMsg:string) =>{
+  return  (
+  <div>
+    <BarTitle>인원</BarTitle>
+    <BarMessage>{guestMsg}</BarMessage>
+  </div>
+  )
+}
 export const getGuestMsg = (adult: number, child: number, baby: number) => {
   adult = Number(adult)
   child = Number(child)
@@ -35,16 +42,15 @@ function Personnel() {
     modal: PersonnelModal,
     init: false,
   })
-
-  const [adult, setAdult] = useRecoilState(personnelAudult)
-  const [child, setChild] = useRecoilState(personnelChild)
-  const [baby, setBaby] = useRecoilState(personnelBaby)
+  
+  const  setTotalPersonnel = useSetRecoilState(totalPerson)
   const [guestMsg, setGuestMsg] = useRecoilState(personnelMessage)
-  setGuestMsg(getGuestMsg(adult, child, baby))
-
+  const filteredMsg = useRecoilValue(filterPersonnelMessage)
+  setGuestMsg(filteredMsg)
+  
   const RenderXbtn = useXclick(
     guestMsg,
-    [setGuestMsg, setAdult, setChild, setBaby],
+    [setGuestMsg, setTotalPersonnel],
     defaultValue.guest
   )
 
@@ -52,10 +58,7 @@ function Personnel() {
     <>
       <BarBlock ref={PersonnelToggle}>
         <BarInnerWrapper>
-          <div>
-            <BarTitle>인원</BarTitle>
-            <BarMessage>{guestMsg}</BarMessage>
-          </div>
+          {PersonnelBlock(guestMsg)}
           <RenderXbtn />
         </BarInnerWrapper>
       </BarBlock>

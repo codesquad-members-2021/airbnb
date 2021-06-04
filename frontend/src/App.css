@@ -1,4 +1,7 @@
 .App {
-  width: 1536px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  background-image: url('https://a0.muscache.com/im/pictures/3db00473-09a8-4f2c-8887-eae4baf8c804.jpg?im_w=960');
+  background-size: cover;
 }

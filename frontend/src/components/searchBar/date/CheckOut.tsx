@@ -7,9 +7,15 @@ import {
 } from '../../../customHook/atoms'
 import { FilterDateToString } from '../../../customHook/useDateInfo'
 import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../../style/BarStyle'
-import { dateToString } from '../../../customHook/useDateInfo'
 import useXclick from '../../../customHook/useXclick'
 import { IProps } from '../../../Interface'
+
+export const CheckOutBlock = (checkOut:any) => {
+  return  (<div>
+  <BarTitle>체크아웃</BarTitle>
+  <BarMessage>{FilterDateToString(checkOut)}</BarMessage>
+</div>)
+}
 
 function CheckOut({ open, type, checkOutToggle }: IProps) {
   const [checkOut, setCheckOut] = useRecoilState(checkOutMessage)
@@ -31,10 +37,7 @@ function CheckOut({ open, type, checkOutToggle }: IProps) {
       ref={checkOutToggle}
     >
       <BarInnerWrapper>
-        <div>
-          <BarTitle>체크아웃</BarTitle>
-          <BarMessage>{FilterDateToString(checkOut)}</BarMessage>
-        </div>
+       {CheckOutBlock(checkOut)}
         <RenderXbtn />
       </BarInnerWrapper>
     </BarBlock>
