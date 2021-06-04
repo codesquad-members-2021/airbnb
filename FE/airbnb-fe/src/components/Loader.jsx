@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import AirbnbIcon from './Atoms/icons/AirbnbIcon';
 import { CircularProgress } from '@material-ui/core';
-const Loader = ({ type, color }) => {
+const Loader = () => {
   return (
     <LoadingDiv>
       <AirbnbIcon width={'300px'} />

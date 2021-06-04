@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import LoginBtn from './LoginPage';
 
-const AccountModal = () => {
+const AccountModal = ({ setProfileURL }) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
 
@@ -23,7 +23,9 @@ const AccountModal = () => {
 
   const handleLogOut = () => {
     setIsLogin(false);
+    setProfileURL(null);
     localStorage.removeItem('token');
+    localStorage.removeItem('ProfileURL');
   };
 
   return (

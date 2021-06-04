@@ -15,13 +15,13 @@ const Callback = ({ history, location }) => {
 
       try {
         const response = await fetch(`${authUri}?code=${code}`);
-        // console.log('response', response);
+        console.log('response', response);
 
         const data = await response.json();
         console.log('토큰넘어오는곳', data);
 
         localStorage.setItem('token', data.jwt);
-        localStorage.setItem('ProfileURL', data.avatarurl);
+        localStorage.setItem('ProfileURL', data.avatar_url);
         history.push('/');
       } catch (error) {
         //에러처리 에러페이지로 이동시키거나 하면 될것같음

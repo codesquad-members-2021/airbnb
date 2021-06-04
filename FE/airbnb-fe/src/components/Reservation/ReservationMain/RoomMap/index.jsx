@@ -28,11 +28,7 @@ const RoomMap = ({ roomData }) => {
     const map = new kakao.maps.Map(container, options);
 
     const displayMarker = (place) => {
-      // let marker = new kakao.maps.Marker({
-      //   map: map,
-      //   position: new kakao.maps.LatLng(place[0], place[1]),
-      // });
-      var content = `<div class=marker>₩ ${getRegex(place[2])}</div>`;
+      const content = `<div class=marker>₩ ${getRegex(place[2])}</div>`;
       new kakao.maps.CustomOverlay({
         map: map,
         position: new kakao.maps.LatLng(place[0], place[1]),
