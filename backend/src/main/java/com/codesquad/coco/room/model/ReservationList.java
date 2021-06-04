@@ -1,6 +1,6 @@
 package com.codesquad.coco.room.model;
 
-import com.codesquad.coco.global.exception.business.NonReservationException;
+import com.codesquad.coco.global.exception.business.AlreadyReserved;
 import com.codesquad.coco.user.model.Reservation;
 
 import java.time.LocalDate;
@@ -18,7 +18,7 @@ public class ReservationList {
     public boolean reservationDateCheck(LocalDate checkIn, LocalDate checkOut) {
         for (Reservation reservation : reservations) {
             if (!reservation.reservationDateCheck(checkIn, checkOut)) {
-                throw new NonReservationException();
+                throw new AlreadyReserved();
             }
         }
         return true;

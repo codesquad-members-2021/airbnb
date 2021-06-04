@@ -51,8 +51,8 @@ public enum ErrorCode {
         return message;
     }
 
-    public ErrorCode plusMessage(String valueOf) {
-        this.message += valueOf;
+    public ErrorCode plusMessage(String message) {
+        this.message += message;
         return this;
     }
 }

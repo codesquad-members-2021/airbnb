@@ -1,6 +1,6 @@
 package com.codesquad.coco.user;
 
-import com.codesquad.coco.global.exception.business.notfound.NotFoundUser;
+import com.codesquad.coco.global.exception.business.notfound.NotFoundUserException;
 import com.codesquad.coco.oauth.gitoauth.GitHubDeviceType;
 import com.codesquad.coco.oauth.gitoauth.GitOauth;
 import com.codesquad.coco.oauth.gitoauth.GitUserInfoDTO;
@@ -44,7 +44,7 @@ public class UserService {
 
     private void membershipCheck(Long userId) {
         if (userDAO.countUserByGitId(userId) == 0) {
-            throw new NotFoundUser();
+            throw new NotFoundUserException();
         }
     }
 

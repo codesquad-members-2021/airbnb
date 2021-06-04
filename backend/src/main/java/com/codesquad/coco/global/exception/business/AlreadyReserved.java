@@ -2,9 +2,9 @@ package com.codesquad.coco.global.exception.business;
 
 import com.codesquad.coco.global.exception.ErrorCode;
 
-public class NonReservationException extends BusinessException {
+public class AlreadyReserved extends BusinessException {
 
-    public NonReservationException() {
+    public AlreadyReserved() {
         super(ErrorCode.RESERVED_FOR_THAT_DATE);
     }
 
