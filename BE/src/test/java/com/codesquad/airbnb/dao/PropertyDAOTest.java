@@ -39,17 +39,6 @@ public class PropertyDAOTest {
         }
     }
 
-//    @Test
-//    void propertyDao_findBy() {
-//        List<PropertyDTO> properties = propertyDao.findBy(1L, LocalDate.of(2021, 5, 20), LocalDate.of(2021, 5, 23),
-//                10000, 100000, 2);
-//        for (PropertyDTO property : properties) {
-//            assertThat(property).isNotNull();
-//            logger.info("Find property by propertyDao: {}",
-//                    property);
-//        }
-//    }
-
     @Test
     void propertyDao_findByWishList() {
         List<PropertyDTO> properties = propertyDao.findBookmarkTrue();
