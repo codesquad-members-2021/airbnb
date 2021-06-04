@@ -21,12 +21,41 @@ public class Money {
         return new Money(money);
     }
 
-    public Money setMoney(int money) {
+    public static Money of() {
+        return new Money(MIN_PRICE);
+    }
+
+    public static Money of(int money) {
         return new Money(money);
     }
 
+    public Money plus(Money money) {
+        return new Money(this.money + money.money);
+    }
+
+    public Money minus(Money money) {
+        return new Money(this.money - money.money);
+    }
+
+    public Money multiplication(int number) {
+        return new Money(number * money);
+    }
+
+    public Money percent(int percent) {
+        return new Money((int) (money * (percent / 100.0)));
+    }
+
+    public boolean same(int money) {
+        return this.money == money;
+    }
+
+
     public int getMoney() {
         return money;
+    }
+
+    public Money setMoney(int money) {
+        return new Money(money);
     }
 
     @Override

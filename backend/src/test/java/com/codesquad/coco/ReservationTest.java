@@ -26,9 +26,9 @@ public class ReservationTest {
         Room room = getRoom();
         int fewNights = 1;
 
-        int totalPrice = room.calcTotalPrice(fewNights);
+        Money totalPrice = room.calcTotalPrice(fewNights);
 
-        assertThat(totalPrice).isEqualTo(128_000);
+        assertThat(totalPrice.getMoney()).isEqualTo(128_000);
 
     }
 
@@ -39,9 +39,9 @@ public class ReservationTest {
 
         int fewNights = 8;
 
-        int totalPrice = room.calcTotalPrice(fewNights);
+        Money totalPrice = room.calcTotalPrice(fewNights);
 
-        assertThat(totalPrice).isEqualTo(852_000);
+        assertThat(totalPrice.getMoney()).isEqualTo(852_000);
 
     }
 

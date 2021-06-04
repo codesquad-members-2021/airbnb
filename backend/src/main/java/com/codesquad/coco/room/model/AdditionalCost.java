@@ -1,12 +1,10 @@
 package com.codesquad.coco.room.model;
 
-import com.codesquad.coco.utils.CalcUtil;
 import org.springframework.data.annotation.Id;
 
 public class AdditionalCost {
 
     private static final int ONE_WEEK = 7;
-
 
     @Id
     private Long id;
@@ -23,19 +21,35 @@ public class AdditionalCost {
         this.lodgmentFeePercent = lodgmentFeePercent;
     }
 
-    public int calcWeekSale(int basicPrice, int fewNights) {
-        if (fewNights >= ONE_WEEK) {
-            return CalcUtil.percentCalc(basicPrice, this.weekSalePercent);
-        }
-        return 0;
+    public Money calculateAdditionalCost(Money basicPrice, int fewNights) {
+
+        Money weekSalePrice = calculateWeekSale(basicPrice, fewNights);
+
+        Money lodgmentFee = calculateLodgmentFee(basicPrice);
+        Money serviceFee = calculateServiceFee(basicPrice);
+        Money cleaningFee = Money.of(this.cleaningFee);
+
+        return basicPrice
+                .minus(weekSalePrice)
+                .plus(lodgmentFee)
+                .plus(serviceFee)
+                .plus(cleaningFee);
+
     }
 
-    public int calcAdditionalCost(int basicPrice) {
-        int additionalPrice = 0;
-        additionalPrice += CalcUtil.percentCalc(basicPrice, this.serviceFeePercent);
-        additionalPrice += CalcUtil.percentCalc(basicPrice, this.lodgmentFeePercent);
-        additionalPrice += this.cleaningFee;
-        return additionalPrice;
+    public Money calculateWeekSale(Money basicPrice, int fewNights) {
+        if (fewNights >= ONE_WEEK) {
+            return basicPrice.percent(weekSalePercent);
+        }
+        return Money.of();
+    }
+
+    public Money calculateServiceFee(Money basicPrice) {
+        return basicPrice.percent(serviceFeePercent);
+    }
+
+    public Money calculateLodgmentFee(Money basicPrice) {
+        return basicPrice.percent(lodgmentFeePercent);
     }
 
     public Long getId() {

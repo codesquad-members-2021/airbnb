@@ -8,7 +8,6 @@ import com.codesquad.coco.image.Image;
 import com.codesquad.coco.user.model.Reservation;
 import com.codesquad.coco.user.model.WishList;
 import com.codesquad.coco.user.model.dto.ReservationDTO;
-import com.codesquad.coco.utils.LocalDateUtil;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
@@ -66,23 +65,20 @@ public class Room {
 
 
     public boolean reservationAvailability(ReservationDTO reservationDTO) {
-        int fewNights = LocalDateUtil.getAccommodationDay(reservationDTO.getCheckIn(), reservationDTO.getCheckOut());
-        int totalPrice = calcTotalPrice(fewNights);
+        int fewNights = reservationDTO.accommodationDay();
+        Money totalPrice = calcTotalPrice(fewNights);
 
         reservationDateCheck(reservationDTO.getCheckIn(), reservationDTO.getCheckOut());
         capacityCheck(reservationDTO.getAdult(), reservationDTO.getChild());
-        if (totalPrice != reservationDTO.getTotalPrice()) {
+        if (totalPrice.same(reservationDTO.getTotalPrice())) {
             throw new TotalPriceNonMatchException(totalPrice);
         }
         return true;
     }
 
-    public int calcTotalPrice(int fewNights) {
-        int basicPrice = fewNights * pricePerDate.getMoney();
-        int additionalPrice = 0;
-        additionalPrice -= additionalCost.calcWeekSale(basicPrice, fewNights);
-        additionalPrice += additionalCost.calcAdditionalCost(basicPrice);
-        return basicPrice + additionalPrice;
+    public Money calcTotalPrice(int fewNights) {
+        Money basicPrice = pricePerDate.multiplication(fewNights);
+        return additionalCost.calculateAdditionalCost(basicPrice, fewNights);
     }
 
     public boolean capacityCheck(int adult, int child) {
