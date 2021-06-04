@@ -34,7 +34,7 @@ const StyledMapSkeleton = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #f2f2f2;
-  position: absolute;
+  position: fixed;
   right: 0;
   width: 50%;
   height: 100%;
