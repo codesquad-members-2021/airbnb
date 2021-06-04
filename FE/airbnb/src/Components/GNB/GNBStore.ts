@@ -15,13 +15,11 @@ export const loginState = atom({
   default: false,
 });
 
-// MyPage DropDown show <-> hidden
 export const dropDownState = atom({
   key: "dropDownState",
   default: false,
 });
 
-// 서치바 > 셀렉트 박스의 타이틀 상태
 export const selectTitleState = {
   checkIn: atom({
     key: "checkInTitle",
@@ -44,7 +42,6 @@ export const selectTitleState = {
   }),
 };
 
-// 서치바 > 셀렉트 박스의 인풋 상태
 export const selectInputState = {
   checkIn: atom({
     key: "checkInInput",
@@ -67,7 +64,6 @@ export const selectInputState = {
   }),
 };
 
-// 서치바 > 셀렉트 박스의 취소버튼 상태
 export const selectCancleButtonState = {
   checkIn: atom({
     key: "checkInCancleButtonFlag",
@@ -129,7 +125,6 @@ export const selectBoxState = {
   }),
 };
 
-// MiniSearchBar box input data
 export const selectedInfoState = atom<string[]>({
   key: "selectedInfoState",
   default: ["일정입력", "금액대 입력", "인원 입력"],
