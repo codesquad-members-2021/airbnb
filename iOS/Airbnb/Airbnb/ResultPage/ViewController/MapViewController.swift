@@ -10,6 +10,9 @@ import MapKit
 
 class MapViewController: UIViewController {
     
+    static let reuseIdentifier = "MapViewController"
+    static let nib = UINib(nibName: MapViewController.reuseIdentifier, bundle: nil)
+    
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
     var pointAnnotation: MKPointAnnotation!
@@ -18,7 +21,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        
+        configureNavi()
         setAnnotation(latitude: 37.3826616, longitude: 126.840719, delta: 0.5)
         setAnnotation(latitude: 37.6447360, longitude: 127.005575, delta: 0.5)
     }
@@ -83,4 +86,17 @@ extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         return label
     }
     
+}
+
+
+extension MapViewController {
+    
+    private func configureNavi() {
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    @IBAction func backButtonTouched(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }

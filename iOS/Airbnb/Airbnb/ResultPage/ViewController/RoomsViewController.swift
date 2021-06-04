@@ -179,6 +179,7 @@ extension RoomsViewController {
     
     private func configureNavigation() {
         self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.title = "숙소 찾기"
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
@@ -197,6 +198,7 @@ extension RoomsViewController {
         mapButton.setImage(UIImage(systemName: "map"), for: .normal)
         mapButton.tintColor = .white
         mapButton.setTitleColor(.white, for: .normal)
+        mapButton.addTarget(self, action: #selector(mapButtonTouched), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             mapButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
@@ -204,6 +206,11 @@ extension RoomsViewController {
             mapButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             mapButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -110),
         ])
+    }
+    
+    @objc func mapButtonTouched() {
+        let mapViewController = MapViewController(nibName: MapViewController.reuseIdentifier, bundle: nil)
+        self.navigationController?.pushViewController(mapViewController, animated: true)
     }
     
 }
