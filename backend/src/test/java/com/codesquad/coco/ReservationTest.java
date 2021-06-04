@@ -3,6 +3,7 @@ package com.codesquad.coco;
 import com.codesquad.coco.global.exception.business.AlreadyReserved;
 import com.codesquad.coco.room.model.AdditionalCost;
 import com.codesquad.coco.room.model.Money;
+import com.codesquad.coco.room.model.ReservationList;
 import com.codesquad.coco.room.model.Room;
 import com.codesquad.coco.user.model.Reservation;
 import com.codesquad.coco.utils.LocalDateUtil;
@@ -49,14 +50,14 @@ public class ReservationTest {
     @DisplayName("예약 불가 날짜에 예외를 확인")
     void checkReservationAvailable() {
         Room room = getRoom();
-
-        assertThatThrownBy(() -> room.reservationDateCheck(
+        ReservationList reservations = room.getReservations();
+        assertThatThrownBy(() -> reservations.reservationDateCheck(
                 LocalDate.of(2021, 05, 25)
                 , LocalDate.of(2021, 05, 27)))
                 .isInstanceOf(AlreadyReserved.class)
                 .hasMessageContaining("그 날에는 예약이 이미 있음");
 
-        assertThatThrownBy(() -> room.reservationDateCheck(
+        assertThatThrownBy(() -> reservations.reservationDateCheck(
                 LocalDate.of(2021, 04, 25)
                 , LocalDate.of(2021, 05, 30)))
                 .isInstanceOf(AlreadyReserved.class)
@@ -80,8 +81,8 @@ public class ReservationTest {
         );
 
         assertAll(
-                () -> assertTrue(chekInTest),
-                () -> assertTrue(chekOutTest)
+                () -> assertFalse(chekInTest),
+                () -> assertFalse(chekOutTest)
         );
     }
 

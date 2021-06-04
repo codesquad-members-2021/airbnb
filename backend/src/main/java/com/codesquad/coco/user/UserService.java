@@ -63,6 +63,5 @@ public class UserService {
             return;
         }
         userDAO.insertUser(userInfo, accessToken);
-        return;
     }
 }

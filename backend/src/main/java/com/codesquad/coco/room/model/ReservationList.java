@@ -17,7 +17,7 @@ public class ReservationList {
 
     public boolean reservationDateCheck(LocalDate checkIn, LocalDate checkOut) {
         for (Reservation reservation : reservations) {
-            if (!reservation.reservationDateCheck(checkIn, checkOut)) {
+            if (reservation.reservationDateCheck(checkIn, checkOut)) {
                 throw new AlreadyReserved();
             }
         }
