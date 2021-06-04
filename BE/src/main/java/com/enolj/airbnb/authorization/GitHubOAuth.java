@@ -46,7 +46,7 @@ public class GitHubOAuth implements OAuth {
     }
 
     @Override
-    public TokenDTO tokenReceiveAPI(String code, int typeCode) {
+    public TokenDTO getToken(String code, int typeCode) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(GitHubUrl.ACCESS_TOKEN.getUrl())
                 .queryParam(CLIENT_ID, getClientIdByTypeCode(typeCode))
                 .queryParam(CLIENT_SECRET, getClientSecretByTypeCode(typeCode))
@@ -75,7 +75,7 @@ public class GitHubOAuth implements OAuth {
     }
 
     @Override
-    public UserInfoDTO userInfoReceiveAPI(String token) {
+    public UserInfoDTO getUserInfo(String token) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(GitHubUrl.USER_INFO.getUrl());
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set(HttpHeaders.AUTHORIZATION, TOKEN + " " + token);
@@ -84,7 +84,7 @@ public class GitHubOAuth implements OAuth {
     }
 
     @Override
-    public EmailDTO emailReceiveAPI(String token) {
+    public EmailDTO getEmail(String token) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(GitHubUrl.USER_EMAIL.getUrl());
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set(HttpHeaders.AUTHORIZATION, TOKEN + " " + token);

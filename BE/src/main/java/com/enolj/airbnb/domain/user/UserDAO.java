@@ -19,8 +19,8 @@ public class UserDAO {
 
     public Optional<User> findByUserId(String userId) {
         String sql = "SELECT * FROM user WHERE user_id = ?";
-        List<User> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class), userId);
-        return result.stream().findAny();
+        User user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userId);
+        return Optional.ofNullable(user);
     }
 
     public void save(User user) {

@@ -32,28 +32,12 @@ public class House {
                 && (longitude - 0.006 <= this.longitude && this.longitude <= longitude + 0.006);
     }
 
-    public String makeLocation() {
-        return "서초구, 서울, 한국";
-    }
-
-    public String makeLocal() {
-        return "서초구의 아파트 전체";
-    }
-
     public List<String> makeOption() {
         List<String> splitOption = Arrays.asList(option.split(","));
         List<String> options = new ArrayList<>();
         options.add(String.join(" • ", splitOption.subList(0, 4)));
         options.add(String.join(" • ", splitOption.subList(4, 8)));
         return options;
-    }
-
-    public String makeHost() {
-        return "레지던스 전체 호스트: " + host + "님";
-    }
-
-    public String getHostImage() {
-        return "https://user-images.githubusercontent.com/63284310/119629402-f149cb00-be48-11eb-8fa5-c4415b37076d.jpeg";
     }
 
     public Long getId() {

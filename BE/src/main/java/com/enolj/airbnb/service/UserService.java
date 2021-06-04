@@ -29,9 +29,9 @@ public class UserService {
     }
 
     public UserResponseDTO login(String code, int typeCode) {
-        TokenDTO tokenDTO = gitHubOAuth.tokenReceiveAPI(code, typeCode);
-        UserInfoDTO userInfoDTO = gitHubOAuth.userInfoReceiveAPI(tokenDTO.getAccessToken());
-        EmailDTO emailDTO = gitHubOAuth.emailReceiveAPI(tokenDTO.getAccessToken());
+        TokenDTO tokenDTO = gitHubOAuth.getToken(code, typeCode);
+        UserInfoDTO userInfoDTO = gitHubOAuth.getUserInfo(tokenDTO.getAccessToken());
+        EmailDTO emailDTO = gitHubOAuth.getEmail(tokenDTO.getAccessToken());
         if (verifyUser(userInfoDTO.getUserId())) {
             User user = findByUserId(userInfoDTO.getUserId());
             user.update(userInfoDTO, emailDTO, tokenDTO);

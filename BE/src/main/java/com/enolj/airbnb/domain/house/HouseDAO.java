@@ -19,8 +19,8 @@ public class HouseDAO {
 
     public Optional<House> findById(Long id) {
         String sql = "SELECT * FROM house WHERE id = ?";
-        List<House> houses = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(House.class), id);
-        return houses.stream().findAny();
+        House house = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(House.class), id);
+        return Optional.ofNullable(house);
     }
 
     public List<House> findAll() {

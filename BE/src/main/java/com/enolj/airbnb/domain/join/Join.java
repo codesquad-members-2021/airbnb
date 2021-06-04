@@ -33,22 +33,6 @@ public class Join {
         this.houseId = house.getId();
     }
 
-    public String makeDate() {
-        return checkIn + " = " + checkOut;
-    }
-
-    public String getCheckInTime() {
-        return checkIn.getYear() + "년 " + checkIn.getMonthValue() + "월 " + checkIn.getDayOfMonth() + "일 오후 4:00";
-    }
-
-    public String getCheckOutTime() {
-        return checkOut.getYear() + "년 " + checkOut.getMonthValue() + "월 " + checkOut.getDayOfMonth() + "일 오후 12:00";
-    }
-
-    public String makeOption() {
-        return "집전체 • 게스트 " + guest + "명";
-    }
-
     public Long getId() {
         return id;
     }

@@ -2,6 +2,8 @@ package com.enolj.airbnb.web.dto;
 
 import com.enolj.airbnb.domain.join.Join;
 import com.enolj.airbnb.exception.EntityNotFoundException;
+import com.enolj.airbnb.web.vo.CheckDate;
+import com.enolj.airbnb.web.vo.People;
 
 public class ReservationRequestDTO {
 
