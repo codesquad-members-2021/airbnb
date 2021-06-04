@@ -7,16 +7,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/auth")
 public class AuthController {
 
@@ -25,7 +25,7 @@ public class AuthController {
     private final String GITHUB_USER_URI = "https://api.github.com/user";
     private final String ISSUER = "";
     private final String CLIENT_ID = "c7adc71d1700acad7b68";
-    private final String CLIENT_SECRET = "시크릿 항상 확인";
+    private final String CLIENT_SECRET = "fc70e8354337706ac8da3465ffcf15928ed8063b";
     private HttpSession httpSession;
 
     @GetMapping
@@ -33,6 +33,7 @@ public class AuthController {
         return "index";
     }
 
+    /*
     @GetMapping("/github/callback")
     public ResponseEntity<Jwt> auth(String code) {
 
@@ -52,6 +53,7 @@ public class AuthController {
         //return new AuthDTO(jwt,);
         return ResponseEntity.ok(new Jwt(jwt));
     }
+    */
 
     @GetMapping("/github")
     public AuthDTO githubToken(@RequestParam String code) {
@@ -61,17 +63,16 @@ public class AuthController {
         GithubAccessTokenResponse accessToken = getAccessToken(code, gitHubRequest)
                 .orElseThrow(() -> new RuntimeException("바디 없음"));
 
-        System.out.println(accessToken);
-        System.out.println(gitHubRequest);
 
         User user = getUserFromGitHub(accessToken, gitHubRequest)
                 .orElseThrow(() -> new RuntimeException("바디 없음"));
 
         String jwt = getJwt(user);
-
-        //return ResponseEntity.ok(new Jwt(jwt));
-        GithubAccountInfoResponse info = getInfoAccount(jwt).orElseThrow(() -> new RuntimeException());
-        return new AuthDTO(jwt, info.getAvatar_url(), info.getLogin());
+        logger.info("accessToken : {}", accessToken);
+        logger.info("gitHubRequest : {}", gitHubRequest);
+        logger.info("jwt : {}", jwt);
+        logger.info("user : {} ", user);
+        return new AuthDTO(jwt, user.getAvatar_url(), user.getLogin());
     }
 
     private String getJwt(User user) {
@@ -114,16 +115,19 @@ public class AuthController {
     }
 
     private Optional<GithubAccountInfoResponse> getInfoAccount(String jwt) {
+
+        logger.info("getInfoAccount : jwt : {}", jwt);
         RequestEntity<Void> InfoAcc = RequestEntity
                 .get(GITHUB_USER_URI)
                 .header("Accept", "*/*")
                 .header("Authorization", "token " + jwt)
                 .build();
+        logger.info("RequestEntity(InfoAcc) : {}",InfoAcc);
         RestTemplate gitHubRequest = new RestTemplate();
 
         ResponseEntity<GithubAccountInfoResponse> response = gitHubRequest
                 .exchange(InfoAcc, GithubAccountInfoResponse.class);
-
+        logger.info("RequestEntity(GithubAccountInfoResponse) : {}",response);
         return Optional.ofNullable(response.getBody());
     }
 
