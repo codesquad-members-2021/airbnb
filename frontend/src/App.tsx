@@ -20,7 +20,7 @@ function App() {
 
 const Main = styled.div`
 height: 100vh;
-overflow:hidden;
+overflow-y:hidden;
 background-image: url(process.env.PUBLIC_URL + '/bg.jpg');`
 
 export default App
