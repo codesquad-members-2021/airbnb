@@ -1,0 +1,36 @@
+package com.team19.airbnb.controller;
+
+import com.team19.airbnb.ResponseBody;
+import com.team19.airbnb.dto.RoomDetailResponseDTO;
+import com.team19.airbnb.service.UserService;
+import com.team19.airbnb.service.WishlistService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+public class WishlistController {
+
+    private final UserService userService;
+    private final WishlistService wishlistService;
+
+    public WishlistController(UserService userService, WishlistService wishlistService) {
+        this.userService = userService;
+        this.wishlistService = wishlistService;
+    }
+
+    @GetMapping("/wishlist/{userId}")
+    public ResponseBody<List<RoomDetailResponseDTO>> getWishList(@PathVariable Long userId) {
+        return ResponseBody.ok(userService.showWishLists(userId));
+    }
+
+    @PostMapping("/wishlist/{userId}")
+    public void postWishList(@RequestParam Long roomId, @PathVariable Long userId) {
+        wishlistService.addWishList(roomId, userId);
+    }
+
+    @DeleteMapping("/wishlist/{userId}")
+    public void deleteWishList(@RequestParam Long roomId, @PathVariable Long userId) {
+        wishlistService.deleteWishlist(roomId, userId);
+    }
+}
