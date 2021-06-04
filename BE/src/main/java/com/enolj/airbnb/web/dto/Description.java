@@ -9,14 +9,14 @@ public class Description {
     private final String option;
     private final int charge;
 
-    public Description(String host, String option, int charge) {
+    public Description(String host, int guest, int charge) {
         this.host = host;
-        this.option = option;
+        this.option = "집전체 • 게스트 " + guest + "명";
         this.charge = charge;
     }
 
     public static Description createDescription(House house, Join join) {
-        return new Description(house.getHost(), join.makeOption(), house.getCharge());
+        return new Description(house.getHost(), join.getGuest(), house.getCharge());
     }
 
     public String getHost() {
