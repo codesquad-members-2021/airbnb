@@ -16,6 +16,6 @@ function Header() {
 const FlexBox = styled.div`
   display: flex;
   justify-content: space-around;
-  margin-top: 30px;
+  padding-top: 30px;
 `
 export default Header

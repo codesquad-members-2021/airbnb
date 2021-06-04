@@ -2,7 +2,7 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import Reservation from '../reservation/Reservation'
-import WishList from './WishListToggle'
+import WishToggleBtn from './WishListToggle'
 import {
   RecoilValueGroup,
   defaultValue, RoomData
@@ -46,13 +46,14 @@ function HouseList({ data }: any) {
     <Frame>
       <SmallSpan>{filteringInfo(data)}</SmallSpan>
       <ListTitle>선택한 지역의 숙소</ListTitle>
+      <ScrollArea>
       {data.map((el: any) => (
         <Column key={el.id} onClick={(e)=>handleModalClick(e, el)}>
           <div>
             <img src={el.thumbnail_image} width='300' height='220' />
           </div>
           <InfoBlock>
-            <div>
+            <FlexBox>
               <div>
                 <Title>{el.name}</Title>
                 <SmallSpan>
@@ -60,8 +61,8 @@ function HouseList({ data }: any) {
                   {el.home_details.max_guest}명
                 </SmallSpan>
               </div>
-              <WishList setOpen={setOpen} targetData={el}/>
-            </div>
+              <WishToggleBtn setOpen={setOpen} targetData={el}/>
+            </FlexBox>
             <div>
               <Review>
                 ⭐{el.review.star.toFixed(1)}
@@ -78,9 +79,16 @@ function HouseList({ data }: any) {
         </Column>
       ))}
       {open && <Reservation setOpen={setOpen} targetData={targetData}></Reservation>}
+      </ScrollArea>
     </Frame>
   )
 }
+const FlexBox = styled.div`
+display: flex;
+justify-content: space-between;`
+const ScrollArea = styled.div`
+
+`
 const ListTitle = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.w2};
   font-size: ${({ theme }) => theme.fontSize.lg};
@@ -127,7 +135,7 @@ const InfoBlock = styled.div`
   flex-flow: column;
   justify-content: space-between;
   padding: 10px 24px;
-  width: 400px;
+  width: 100%;
   div {
     &: first-child {
       position: relative;
@@ -147,7 +155,9 @@ const Column = styled.div`
   }
 `
 const Frame = styled.div`
-  width: 50%;
-  margin: 24px;
+  overflow-y: scroll;
+  height: 80vh;
+  width: 45vw;
+  padding: 24px;
 `
 export default HouseList

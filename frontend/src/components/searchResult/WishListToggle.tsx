@@ -9,7 +9,8 @@ interface IWish {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
   targetData : any
 }
-function WishList({setOpen, targetData}:IWish){
+
+function WishToggleBtn({setOpen, targetData}:IWish){
   const [isHeartClick, setHeartClick] = useState<boolean>(false)
   const {state, fetchData} = useAxios(()=>wishToggle(targetData.id),[], true)
   const handleLikeClick = (type:string, id:number) =>{
@@ -21,11 +22,9 @@ function WishList({setOpen, targetData}:IWish){
       setHeartClick(false)
     }
     const response = fetchData()
-    // const response = wishToggle(id)
     console.log(response) //코스에러.
     }
   
-
   return !isHeartClick ? (
       <LikeBtn className="likeUnClick" onClick={()=>handleLikeClick('like',targetData.id)}>
         <IconButton  aria-label='like'>
@@ -40,8 +39,7 @@ function WishList({setOpen, targetData}:IWish){
 }
 
 const LikeBtn = styled.div`
-  position: absolute;
-  top: -16px;
-  left: 356px;
+position: relative;
+top:-24px;
 `
-export default WishList
+export default WishToggleBtn

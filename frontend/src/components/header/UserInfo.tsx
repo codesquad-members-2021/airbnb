@@ -111,6 +111,7 @@ const MenuBlock = styled.div`
 const BtnBlock = styled.div`
   width: 76px;
   height: 40px;
+  background-color: ${(props) => props.theme.color.white};
   border: 1px solid ${(props) => props.theme.color.grey_2};
   border-radius: 30px;
   display: flex;

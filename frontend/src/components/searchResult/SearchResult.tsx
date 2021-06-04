@@ -57,7 +57,6 @@ function SearchResult({ match }: RouteComponentProps<IParams>) {
   )
 }
 const TotalWindow = styled.div`
-  width: 1536px;
 `
 const Header = styled.div`
   margin-bottom: 45px;
