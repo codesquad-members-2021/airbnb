@@ -2,8 +2,14 @@ import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
 // import InfoMarker from './InfoMarker';
+import { threeDigitsComma } from '../../util/util';
 
-function Map({rooms}) {
+import { IRoomInfo } from '../../util/types/Room';
+interface IMap {
+  rooms: IRoomInfo[] | undefined
+}
+
+function Map({rooms}: IMap) {
   const $Map = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
@@ -15,77 +21,15 @@ function Map({rooms}) {
     $Map.current?.append($MapScript);
     $MapScript.addEventListener("load", () => {
       
-
-      class InfoMarker extends google.maps.OverlayView {
-        position: google.maps.LatLng;
-        containerDiv: HTMLDivElement;
+      // asyncImport("./InfoMarker");
+      import("./InfoMarker").then(({default: InfoMarker}) => {
+        initMap({InfoMarker});
+      });
       
-        constructor(position: google.maps.LatLng, content: HTMLElement) {
-          super();
-          this.position = position;
-      
-          content.classList.add("popup-bubble");
-      
-          // This zero-height div is positioned at the bottom of the bubble.
-          const bubbleAnchor = document.createElement("div");
-          bubbleAnchor.classList.add("popup-bubble-anchor");
-          bubbleAnchor.appendChild(content);
-      
-          // This zero-height div is positioned at the bottom of the tip.
-          this.containerDiv = document.createElement("div");
-          this.containerDiv.classList.add("popup-container");
-          this.containerDiv.appendChild(bubbleAnchor);
-      
-          // Optionally stop clicks, etc., from bubbling up to the map.
-          InfoMarker.preventMapHitsAndGesturesFrom(this.containerDiv);
-        }
-      
-        /** Called when the popup is added to the map. */
-        onAdd() {
-          this.getPanes()!.floatPane.appendChild(this.containerDiv);
-        }
-      
-        /** Called when the popup is removed from the map. */
-        onRemove() {
-          if (this.containerDiv.parentElement) {
-            this.containerDiv.parentElement.removeChild(this.containerDiv);
-          }
-        }
-      
-        /** Called each frame when the popup needs to draw itself. */
-        draw() {
-          const divPosition = this.getProjection().fromLatLngToDivPixel(
-            this.position
-          )!;
-      
-          // Hide the popup when it is far out of view.
-          const display =
-            Math.abs(divPosition.x) < 4000 && Math.abs(divPosition.y) < 4000
-              ? "block"
-              : "none";
-      
-          if (display === "block") {
-            this.containerDiv.style.left = divPosition.x + "px";
-            this.containerDiv.style.top = divPosition.y + "px";
-          }
-      
-          if (this.containerDiv.style.display !== display) {
-            this.containerDiv.style.display = display;
-          }
-        }
-      }
-
-      initMap(InfoMarker);
-
-
-
     })
   }, [])
   
-  
-
-
-  function initMap(InfoMarker): void {
+  function initMap({InfoMarker}): void {
     if (navigator.geolocation) {
       
       navigator.geolocation.getCurrentPosition(
@@ -100,21 +44,20 @@ function Map({rooms}) {
             document.getElementById("map") as HTMLElement,
             { zoom: 10, center: pos }
           );
-
+          
           // 방 마커
-          rooms.forEach((room) => {
+          rooms?.forEach((room) => {
             // new window.google.maps.Marker({
-            //   position: {lat: room.latitude, lng: room.longitude},
-            //   map: map,
+            //   position: {lat: room.latitude, lng: room.longitude}, map: map,
             // }); 
+            const $Content = document.createElement("div");
+            $Content.innerHTML = `${threeDigitsComma(room.salePrice)}원`;
             const infomarker = new InfoMarker(
               new window.google.maps.LatLng(room.latitude, room.longitude),
-              document.getElementById("content") as HTMLElement
+              $Content as HTMLElement
             );
             infomarker.setMap(map);
           });
-
-          
 
           const marker = new window.google.maps.Marker({
             position: pos,
@@ -144,6 +87,53 @@ function Map({rooms}) {
 const MapLayout = styled.div`
   width: 100%;
   height: 100vh;
+
+  .popup-bubble {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -100%);
+    
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: sans-serif;
+    overflow-y: auto;
+    max-height: 60px;
+    box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.5);
+  }
+
+  .popup-bubble-anchor {
+    position: absolute;
+    width: 100%;
+    bottom: 8px;
+    left: 0;
+  }
+
+  .popup-bubble-anchor::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    transform: translate(-50%, 0);
+    
+    width: 0;
+    height: 0;
+    
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid white;
+  }
+
+  .popup-container {
+    cursor: pointer;
+    height: 0;
+    position: absolute;
+    
+    /* The max width of the info window. */
+    width: 200px;
+  }
 `;
 
 const LoadingArea = styled.div`
@@ -159,6 +149,5 @@ const GoogleMapArea = styled.div`
   width: 100%;
   height: 100vh;
 `;
-
 
 export default Map;

@@ -14,9 +14,17 @@
     "build": "webpack build"
   },
   "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/google.maps": "^3.45.1",
     "@types/react-dom": "^17.0.5",
     "@types/react-router-dom": "^5.1.7",
     "@types/styled-components": "^5.1.9",
+    "babel-loader": "^8.2.2",
     "css-loader": "^5.2.5",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",

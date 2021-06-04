@@ -1,5 +1,7 @@
-// import google.maps from '@types/google.maps';
-class InfoMarker extends window.google?.maps.OverlayView {
+// import {} from 'google.maps';
+declare module 'google.maps';
+
+class InfoMarker extends google.maps.OverlayView {
   position: google.maps.LatLng;
   containerDiv: HTMLDivElement;
 

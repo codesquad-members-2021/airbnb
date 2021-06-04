@@ -1,9 +1,14 @@
 import React from 'react';
+import { threeDigitsComma } from '../../util/util';
 import styled from 'styled-components';
 import { IRoomInfo } from '../../util/types/Room';
 
 interface IRoomCardInfo {
   room: IRoomInfo,
+}
+
+interface IRoomCardDescriptionInfo {
+  [index: string]: string | boolean;
 }
 
 function RoomCard({ room }:IRoomCardInfo) {
@@ -22,13 +27,13 @@ function RoomCard({ room }:IRoomCardInfo) {
     "와이파이": room.option.wifi
   }
 
-  const renderDescriptions = (targetDescriptions: unknown) => {
+  const renderDescriptions = (targetDescriptions: IRoomCardDescriptionInfo) => {
     return Object.entries(targetDescriptions).map(([key, val], idx) => {
       return val && (
-        <>
+        <React.Fragment key={`desc-${key}-${idx}`}>
           <ContentsDescriptionSpan>{key} {typeof val !== "boolean" && val}</ContentsDescriptionSpan>
           {idx < Object.keys(targetDescriptions).length-1 && <ContentsDescriptionSpan> · </ContentsDescriptionSpan>}
-        </>
+        </React.Fragment>
       )
     })
   }
@@ -48,7 +53,14 @@ function RoomCard({ room }:IRoomCardInfo) {
             <ContentsDescriptionArea> { renderDescriptions(numberedDescriptions) } </ContentsDescriptionArea>
             <ContentsDescriptionArea> { renderDescriptions(optionDescriptions) } </ContentsDescriptionArea>
             <ContentsFooterArea>
-              <div> 별점 </div>
+              <ContentsReviewArea>
+                <span> {`⭐️ 별점 ${room.rating}`} </span>
+                <span> {`(후기 ${room.commentCount} 개)`} </span>
+              </ContentsReviewArea>
+              <ContentsPriceArea>
+                {`₩ ${threeDigitsComma(room.salePrice)} / 박`}
+              </ContentsPriceArea>
+              
             </ContentsFooterArea>
             
           </ContentsRow>
@@ -133,6 +145,14 @@ const ContentsDescriptionSpan = styled(ContentsSpanHidable)`
 `;
 
 const ContentsFooterArea = styled.div`
+  display: flex;  
+`;
+const ContentsReviewArea = styled.div`
+  display: flex;
 `
+
+const ContentsPriceArea = styled.div`
+  justify-content: flex-end;
+`;
 
 export default RoomCard;

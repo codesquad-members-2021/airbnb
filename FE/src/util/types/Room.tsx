@@ -32,4 +32,6 @@ interface IRoomOptionInfo {
   [index: string]: boolean
 }
 
+// interface IRoomInfo
+
 export type { IRoomInfo, IRoomsInfo }
