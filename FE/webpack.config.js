@@ -23,7 +23,7 @@ module.exports = {
     rules: [
       { test: /\.tsx?$/, loader: "ts-loader" },
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
-      { test: /\.(webp|jpg|png|jpeg)$/, loader: "file-loader", 
+      { test: /\.(json|webp|jpg|png|jpeg)$/, loader: "file-loader", 
         options: {
           name: "[name].[ext]?[hash]", // 파일명 형식
         },

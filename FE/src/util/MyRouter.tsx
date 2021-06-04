@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, createContext } from 'react';
+import React, { useState, useEffect, useContext, createContext } from 'react';
 import styled from 'styled-components';
 
 interface IHistoryContext {
@@ -8,7 +8,7 @@ interface IHistoryContext {
 }
 interface IRoute {
   path: string, 
-  component: () => React.ReactNode, 
+  component: () => JSX.Element, 
   exact?: boolean
 }
 interface ILink {
@@ -56,17 +56,17 @@ const Switch = ({...props}) => {
 const Route = ({path, component, exact}: IRoute) => {
   const BrowserContext = useContext(HistoryContext)!;
   
-  useEffect(() => {
-    console.log("Route", path, BrowserContext.currentPath, BrowserContext.currentPath === path )
-  });
-  
   if (!BrowserContext.currentPath) return <></>;
   return (
     <>
       {
         BrowserContext.currentPath === path 
-        && component()
-      }
+        && React.createElement(component) 
+      } 
+      {/* 
+        react-router-dom에서 create를 함. 
+        그냥 render를 하면 hooks가 겹쳐서 WARN이 난다.
+        */}
     </>
   )
 }
