@@ -38,14 +38,13 @@ public class PropertyDAO {
 
     public Property findById(Long id) {
         String sql = "SELECT p.id, p.title, p.price FROM property as p WHERE id = :id";
-        return jdbcTemplate.queryForObject(sql,  new MapSqlParameterSource("id", id), new PropertyRowMapper());
+        return jdbcTemplate.queryForObject(sql,  new MapSqlParameterSource("id", id), PropertyRowMapper.getInstance());
     }
 
     public List<Property> findAll() {
         String sql = "SELECT p.id, p.title, p.price FROM property as p";
-        List<Property> properties = jdbcTemplate.query(sql, new PropertyRowMapper());
 
-        return properties;
+        return jdbcTemplate.query(sql, PropertyRowMapper.getInstance());
     }
 
     public List<PropertyDTO> findBy(Long locationId, LocalDate checkIn, LocalDate checkOut,
@@ -134,14 +133,14 @@ public class PropertyDAO {
                 "WHERE image.property_id = :propertyId " +
                 "AND image.thumbnail = TRUE";
 
-        return jdbcTemplate.queryForObject(sql, new MapSqlParameterSource("propertyId", propertyId), new ImageRowMapper());
+        return jdbcTemplate.queryForObject(sql, new MapSqlParameterSource("propertyId", propertyId), ImageRowMapper.getInstance());
     }
 
     public List<String> findImagesByPropertyId(Long propertyId) {
         String sql = "SELECT image_url FROM image " +
                 "WHERE image.property_id = :propertyId";
 
-        return jdbcTemplate.query(sql, new MapSqlParameterSource("propertyId", propertyId), new ImageRowMapper());
+        return jdbcTemplate.query(sql, new MapSqlParameterSource("propertyId", propertyId), ImageRowMapper.getInstance());
     }
 
     public List<Integer> findPricesByLocationId(Long locationId) {
