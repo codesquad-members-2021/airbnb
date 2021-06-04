@@ -75,8 +75,7 @@ export const fetchPrice = selector({
   get: async ({ get }) => {
     const city = get(locationState);
     const date = get(selectDateState);
-    if (!city || !date.checkIn || !date.checkOut)
-      return '도시, 체크인, 체크아웃 날짜를 입력해주세요';
+    if (!city || !date.checkIn || !date.checkOut) return null;
     const checkIn = date.checkIn;
     const checkOut = date.checkOut;
     const response = await fetch(serverAPI.getPrice({ city, checkIn, checkOut }));
