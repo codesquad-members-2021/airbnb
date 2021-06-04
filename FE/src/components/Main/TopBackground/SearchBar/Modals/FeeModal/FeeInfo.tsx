@@ -14,8 +14,8 @@ const FeeInfo = ({ feeData: {data, start, end}, ...props } : IFeeGraph) => {
   return (start && end) ? (
     <FeeInfoLayout {...props}>
       <p className="price__text">가격 범위</p>
-      <p className="price__range">\{threeDigitsComma(start)} ~ \{threeDigitsComma(end)}+</p>
-      <p className="price__avg">평균 1박 요금은 \{avg} 입니다</p>
+      <p className="price__range">₩{threeDigitsComma(start)} ~ ₩{threeDigitsComma(end)}+</p>
+      <p className="price__avg">평균 1박 요금은 ₩{avg} 입니다</p>
     </FeeInfoLayout>
   ) : <></>;
 };
