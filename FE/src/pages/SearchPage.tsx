@@ -1,25 +1,38 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
+
 import { Link } from '../util/MyRouter';
 import { ResponsiveFluid } from '../components/Common/ResponsiveFluid';
 
 import Map from '../components/Map/Map';
 import RoomCard from '../components/Room/RoomCard';
 
-function SearchPage() {
+import useFetch from '../util/hooks/useFetch';
+import API from '../util/API';
+
+import { IRoomsInfo, IRoomInfo } from '../util/types/Room';
+
+
+const SearchPage = () => {
+  const RoomsData = useFetch<IRoomsInfo>(API.get.rooms);
+  
+  useEffect(() => {  
+    // console.log("SearchPage", RoomsData.result?.rooms);
+  });
+
+  if (RoomsData.fetchState.isLoading) return <> 로딩중 </>;
   return (
     <SearchPageLayout>
       
       {/* <Link to={'/'}> main test </Link> for test */}
       <SearchPageCardsSection>
         <h1>지도에서 선택한 지역의 숙소</h1>
-        <RoomCard />
-        <RoomCard />
-        <RoomCard />
-        <RoomCard />
-        <RoomCard />
+        {RoomsData.result?.rooms.map((room: IRoomInfo) => {
+          return (<RoomCard room={room} />);
+        })}
+        
       </SearchPageCardsSection>
-      <Map />
-      {/* for test */}
+      <Map rooms={RoomsData.result?.rooms} />
 
     </SearchPageLayout>
   );
