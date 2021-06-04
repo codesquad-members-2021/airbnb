@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
@@ -22,7 +21,6 @@ public class CustomExceptionHandler {
     /**
      * 비즈니스 예외
      **/
-
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<ErrorReason> businessException(BusinessException e) {
         logger.error("비즈니스 에러", e);
@@ -34,9 +32,7 @@ public class CustomExceptionHandler {
     /**
      * valid 예외
      **/
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorReason validException(MethodArgumentNotValidException e) {
         logger.error("valid 예외", e);
         return new ErrorReason(ErrorCode.INVALID_INPUT.getMessage());
@@ -45,9 +41,7 @@ public class CustomExceptionHandler {
     /**
      * 인증 관련 예외
      **/
-
     @ExceptionHandler(AuthException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
     public ResponseEntity<ErrorReason> authException(AuthException e) {
         logger.error("인증관련 에러", e);
         ErrorCode errorCode = e.getErrorCode();
@@ -59,7 +53,6 @@ public class CustomExceptionHandler {
      * jwt 예외
      **/
     @ExceptionHandler(OverTimeException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
     public ResponseEntity<ErrorReason> jwtException(OverTimeException e) {
         logger.error("jwt 에러", e);
         ErrorReason errorReason = ErrorReason.of(ErrorCode.UNAUTHORIZED_JWT);
@@ -70,11 +63,10 @@ public class CustomExceptionHandler {
      * device 예외
      **/
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
     public ResponseEntity<ErrorReason> deviceException(MethodArgumentTypeMismatchException e) {
         logger.error("device 에러", e);
         ErrorReason errorReason = ErrorReason.of(ErrorCode.UNKNOWN_DEVICE);
-        return new ResponseEntity<>(errorReason, HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(errorReason, HttpStatus.BAD_REQUEST);
     }
 
 
