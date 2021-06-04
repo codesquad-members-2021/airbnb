@@ -1,5 +1,8 @@
 import { useRecoilValue } from "recoil";
-import { showMiniSearchBarState } from "@/Components/GNB/GNBStore";
+import {
+  showMiniSearchBarState,
+  isSearchPageState,
+} from "@/Components/GNB/GNBStore";
 import Logo from "./Logo";
 import Menu from "./Menu/Menu";
 import MyPage from "./MyPage/MyPage";
@@ -9,8 +12,12 @@ import { GNB as S } from "./GNBStlyes";
 
 const GNB = () => {
   const showMiniSearchBarFlag = useRecoilValue(showMiniSearchBarState);
+  const isSearchPage = useRecoilValue(isSearchPageState);
   return (
-    <S.GNB showMiniSearchBarFlag={showMiniSearchBarFlag}>
+    <S.GNB
+      isSearchPage={isSearchPage}
+      showMiniSearchBarFlag={showMiniSearchBarFlag}
+    >
       <Logo />
       <S.SearchBarWrapper>
         <Menu />

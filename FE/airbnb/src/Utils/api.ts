@@ -2,8 +2,7 @@ const baseURL: string = "http://54.180.21.249/";
 
 const getApi = {
   main: () => fetch(`${baseURL}`),
-  // price: () => fetch(`${baseURL}price`),
-  price: () => fetch(`http://localhost:3001/price`),
+  price: () => fetch(`${baseURL}rooms/price`),
 };
 
 const postApi = {

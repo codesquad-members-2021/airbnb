@@ -31,11 +31,10 @@ const SearchButton = () => {
         checkOut,
       },
     };
-    console.log(body);
     postApi
       .rooms(body)
       .then((res) => res.json())
-      .then((json) => setSearchData(json));
+      .then((json) => setSearchData(json.rooms));
   };
   return (
     <Link

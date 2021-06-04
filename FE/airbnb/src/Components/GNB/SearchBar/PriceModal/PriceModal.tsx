@@ -18,7 +18,7 @@ const PriceModal = () => {
       .price()
       .then((res) => res.json())
       .then((json) => {
-        if (json) setPrices(json.prices.sort((a: number, b: number) => a - b));
+        if (json && json.prices) setPrices(json.prices);
         else throw Error();
       })
       .catch((err) => setError(err));

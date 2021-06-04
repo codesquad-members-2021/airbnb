@@ -1,6 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { showMiniSearchBarState } from "@/Components/GNB/GNBStore";
+import {
+  showMiniSearchBarState,
+  isSearchPageState,
+} from "@/Components/GNB/GNBStore";
 import { mainState, errorState } from "@/Components/Main/MainStore";
 import GNB from "@/Components/GNB/GNB";
 import HeroText from "./HeroText";
@@ -14,20 +17,30 @@ const Main = () => {
   const [mainData, setData] = useRecoilState(mainState);
   const [error, setError] = useRecoilState(errorState);
   const setShowMiniSearchBarFlag = useSetRecoilState(showMiniSearchBarState);
+  const setIsSearchPageState = useSetRecoilState(isSearchPageState);
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll); //리턴 언마운트
-    getMainData(setData, setError);
-    setShowMiniSearchBarFlag(false);
-  }, [setData, setError, setShowMiniSearchBarFlag]);
-
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (window.scrollY > 60) {
       setShowMiniSearchBarFlag(true);
     } else {
       setShowMiniSearchBarFlag(false);
     }
-  };
+  }, [setShowMiniSearchBarFlag]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    getMainData(setData, setError);
+    setShowMiniSearchBarFlag(false);
+    setIsSearchPageState(false);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [
+    setData,
+    setError,
+    setShowMiniSearchBarFlag,
+    handleScroll,
+    setIsSearchPageState,
+  ]);
 
   if (error || !mainData) return null;
 

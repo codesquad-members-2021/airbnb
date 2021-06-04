@@ -1,5 +1,10 @@
 import { atom, selector } from "recoil";
 
+export const isSearchPageState = atom({
+  key: "isSearchPageState",
+  default: false,
+});
+
 export const showMiniSearchBarState = atom({
   key: "showMiniSearchBarState",
   default: false,

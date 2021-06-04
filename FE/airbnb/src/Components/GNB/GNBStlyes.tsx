@@ -10,12 +10,18 @@ import { ReactComponent as PrevButtonIcon } from "@/assets/prevButtonIcon.svg";
 import { ReactComponent as NextButtonIcon } from "@/assets/nextButtonIcon.svg";
 
 const GNB = {
-  GNB: styled(BOX.FLEX_ROW_CENTER_BOX)<{ showMiniSearchBarFlag: boolean }>`
+  GNB: styled(BOX.FLEX_ROW_BOX)<{
+    isSearchPage: boolean;
+    showMiniSearchBarFlag: boolean;
+  }>`
+    align-items: flex-start;
     justify-content: space-between;
     position: ${(props) =>
       props.showMiniSearchBarFlag ? "fixed" : "absolute"};
     background: ${(props) =>
-      props.showMiniSearchBarFlag ? theme.COLOR.WHITE : "none"};
+      props.showMiniSearchBarFlag || props.isSearchPage
+        ? theme.COLOR.WHITE
+        : "none"};
     top: 0;
     left: 0;
     width: 100%;
@@ -41,6 +47,7 @@ const GNB = {
 const Menu = {
   Menu: styled.ul<{ showMiniSearchBarFlag: boolean }>`
     display: ${(props) => (props.showMiniSearchBarFlag ? "none" : "flex")};
+    margin-bottom: 50px;
   `,
   MenuList: styled.li`
     cursor: pointer;
@@ -83,6 +90,7 @@ const MyPage = {
   `,
   DropDownList: styled.div`
     cursor: pointer;
+    width: 100%;
     font-size: 1.25rem;
     margin: 18px 0px;
     :hover {
@@ -102,8 +110,6 @@ const SearchBar = {
     showMiniSearchBarFlag: boolean;
   }>`
     display: ${(props) => (props.showMiniSearchBarFlag ? "none" : "flex")};
-    position: absolute;
-    top: 90%;
     width: 94%;
   `,
   SearchBar: styled(BOX.FLEX_ROW_CENTER_BOX)`
@@ -211,7 +217,7 @@ const CalendarModal = {
   CalendarModalWrapper: styled(BOX.FLEX_CENTER_BOX)<{ $isShow: boolean }>`
     display: ${(props) => (props.$isShow ? "flex" : "none")};
     position: absolute;
-    top: 130%;
+    top: 100%;
     width: 94%;
   `,
   CalendarModal: styled(BOX.FLEX_ROW_BOX)`
@@ -312,7 +318,7 @@ const PriceModal = {
   PriceModalWrapper: styled(BOX.FLEX_CENTER_BOX)<{ $isShow: boolean }>`
     display: ${(props) => (props.$isShow ? "flex" : "none")};
     position: absolute;
-    top: 130%;
+    top: 100%;
     width: 94%;
   `,
   PriceModal: styled.div`
@@ -372,7 +378,7 @@ const PeopleModal = {
   PeopleModalWrapper: styled(BOX.FLEX_CENTER_BOX)<{ $isShow: boolean }>`
     display: ${(props) => (props.$isShow ? "flex" : "none")};
     position: absolute;
-    top: 130%;
+    top: 100%;
     width: 94%;
   `,
   PeopleModal: styled.div`
