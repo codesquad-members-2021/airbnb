@@ -91,4 +91,13 @@ public class AccommodationService {
         return "OK";
     }
 
+    public void insertData(List<AccommodationDTO> accommodationDTO) {
+        //@todo 데이터 삽입 코딩
+    }
+
+    public void likeMark() {
+    }
+
+    public void likeUnmark() {
+    }
 }

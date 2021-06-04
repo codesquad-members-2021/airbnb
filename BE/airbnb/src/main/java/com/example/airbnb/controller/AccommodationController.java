@@ -6,6 +6,8 @@ import com.example.airbnb.service.AccommodationService;
 import com.example.airbnb.utils.SearchConditions;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/airbnb")
 public class AccommodationController {
@@ -28,12 +30,26 @@ public class AccommodationController {
     }
 
     @PostMapping
-    public String addAccommodation(AccommodationDTO accommodationDTO) {
-        return "good!";
+    public void addAccommodations (@RequestBody List<AccommodationDTO> accommodationDTO) {
+        accommodationService.insertData(accommodationDTO);
+        return;
     }
 
     @GetMapping("/like")
     public AccommodationListDTO likeMarkredList() {
         return accommodationService.likeMarkredList();
     }
+
+    @PostMapping("/like/{acmdId}")
+    public void likeMark(Long acmdId) {
+        accommodationService.likeMark();
+    }
+
+    @DeleteMapping("/like/{acmdId}")
+    public void likeUnmark(Long acmdId) {
+        accommodationService.likeUnmark();
+    }
+
+
+
 }
