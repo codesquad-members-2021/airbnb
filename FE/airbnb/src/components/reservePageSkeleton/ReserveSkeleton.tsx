@@ -62,7 +62,7 @@ const StyledReserveSkeleton = styled.div`
     width: 50px;
     height: 100%;
     background: linear-gradient(to right, #f2f2f2, #ececec, #f2f2f2);
-    animation: loading 2s infinite linear;
+    animation: loading 1.5s infinite linear;
   }
   .img {
     width: 370px;
