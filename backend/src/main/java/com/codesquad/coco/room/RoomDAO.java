@@ -15,7 +15,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static com.codesquad.coco.utils.sql.RoomSQLKt.*;
+import static com.codesquad.coco.utils.sql.PriceSQLKt.FIND_ALL_PRICE_BY_SEARCH_REQUIREMENT;
+import static com.codesquad.coco.utils.sql.ReservationSQLKt.FIND_ALL_RESERVATION_BY_ROOM_ID;
+import static com.codesquad.coco.utils.sql.RoomSQLKt.FIND_ALL_ROOM_BY_SEARCH_REQUIREMENT;
+import static com.codesquad.coco.utils.sql.RoomSQLKt.FIND_ROOM_BY_ROOM_ID;
 
 
 @Component
