@@ -12,16 +12,16 @@ public class ReservationResponseDTO {
     private final String location;
     private final String name;
 
-    public ReservationResponseDTO(Long id, String image, String date, String location, String name) {
+    public ReservationResponseDTO(Long id, String image, String date, String name) {
         this.id = id;
         this.image = image;
         this.date = date;
-        this.location = location;
+        this.location = "서초구의 아파트 전체";
         this.name = name;
     }
 
     public static ReservationResponseDTO createReservationResponseDTO(House house, Join join, Image image) {
-        return new ReservationResponseDTO(house.getId(), image.getUrl(), join.makeDate(), house.makeLocation(), house.getName());
+        return new ReservationResponseDTO(house.getId(), image.getUrl(), join.makeDate(), house.getName());
     }
 
     public Long getId() {

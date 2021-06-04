@@ -17,10 +17,10 @@ public class ReservationDetailDTO {
     private final String checkOut;
     private final Description description;
 
-    public ReservationDetailDTO(Long id, List<String> images, String location, String name, String checkIn, String checkOut, Description description) {
+    public ReservationDetailDTO(Long id, List<String> images, String name, String checkIn, String checkOut, Description description) {
         this.id = id;
         this.images = images;
-        this.location = location;
+        this.location = "서초구, 서울, 한국";
         this.name = name;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -28,7 +28,7 @@ public class ReservationDetailDTO {
     }
 
     public static ReservationDetailDTO createReservationDetailDTO(House house, List<String> images, Join join) {
-        return new ReservationDetailDTO(house.getId(), images, house.makeLocation(), house.getName(), join.getCheckInTime(), join.getCheckOutTime(), createDescription(house, join));
+        return new ReservationDetailDTO(house.getId(), images, house.getName(), join.getCheckInTime(), join.getCheckOutTime(), createDescription(house, join));
     }
 
     public Long getId() {

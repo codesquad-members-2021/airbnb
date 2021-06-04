@@ -17,13 +17,13 @@ public class HouseDetailInfoResponseDTO {
     private final int charge;
     private final boolean wish;
 
-    public HouseDetailInfoResponseDTO(String name, List<String> images, int review, String location, String host, String hostImage, List<String> options, String description, int charge, boolean wish) {
+    public HouseDetailInfoResponseDTO(String name, List<String> images, int review, String host, List<String> options, String description, int charge, boolean wish) {
         this.name = name;
         this.images = images;
         this.review = review;
-        this.location = location;
-        this.host = host;
-        this.hostImage = hostImage;
+        this.location = "서초구, 서울, 한국";
+        this.host = "레지던스 전체 호스트: " + host + "님";
+        this.hostImage = "https://user-images.githubusercontent.com/63284310/119629402-f149cb00-be48-11eb-8fa5-c4415b37076d.jpeg";
         this.options = options;
         this.description = description;
         this.charge = charge;
@@ -31,7 +31,7 @@ public class HouseDetailInfoResponseDTO {
     }
 
     public static HouseDetailInfoResponseDTO createHouseDetailInfoResponseDTO(House house, List<String> images) {
-        return new HouseDetailInfoResponseDTO(house.getName(), images, house.getReview(), house.makeLocation(), house.makeHost(), house.getHostImage(), house.makeOption(), house.getDescription(), house.getCharge(), false);
+        return new HouseDetailInfoResponseDTO(house.getName(), images, house.getReview(),  house.getHost(), house.makeOption(), house.getDescription(), house.getCharge(), false);
     }
 
     public String getName() {

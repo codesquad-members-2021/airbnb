@@ -21,11 +21,11 @@ public class SearchResponseDTO {
     private final List<String> options;
     private final boolean wish;
 
-    public SearchResponseDTO(Long id, String image, Location location, String local, String name, int charge, double grade, int review, String description, List<String> options, boolean wish) {
+    public SearchResponseDTO(Long id, String image, Location location, String name, int charge, double grade, int review, String description, List<String> options, boolean wish) {
         this.id = id;
         this.image = image;
         this.location = location;
-        this.local = local;
+        this.local = "서초구의 아파트 전체";
         this.name = name;
         this.charge = charge;
         this.grade = grade;
@@ -36,7 +36,7 @@ public class SearchResponseDTO {
     }
 
     public static SearchResponseDTO createSearchResponseDTO(House house, Image image) {
-        return new SearchResponseDTO(house.getId(), image.getUrl(), createLocationByHouse(house), house.makeLocal(), house.getName(), house.getCharge(), house.getGrade(), house.getReview(), house.getDescription(), house.makeOption(), false);
+        return new SearchResponseDTO(house.getId(), image.getUrl(), createLocationByHouse(house), house.getName(), house.getCharge(), house.getGrade(), house.getReview(), house.getDescription(), house.makeOption(), false);
     }
 
     public Long getId() {
