@@ -19,10 +19,9 @@ function HotelInfo({ hotelData }: HotelInfoProps) {
     hasKitchen, 
     hasInternet, 
     hasAirconditioner, 
-    hasHairdrier }
-    = accommodationOption;
+    hasHairdrier 
+  } = accommodationOption;
   
-  console.log(hotelData)
   return (
     <HotelInfoContainer>
       <Thumbnail src={mainImage}></Thumbnail>
@@ -66,7 +65,7 @@ function HotelInfo({ hotelData }: HotelInfoProps) {
 }
 
 const HotelInfoContainer = styled.li`
-  width: 40%;
+  width: 100%;
   height: 200px;
   display: flex;
 `
@@ -74,13 +73,14 @@ const HotelInfoContainer = styled.li`
 const Thumbnail = styled.img`
   width: 330px;
   height: 200px;
+  object-fit: cover;
   border-radius: ${({theme}) => theme.borders.S};
   margin-right: 24px;
 `
 
 const Informations = styled.div`
-  width: 100%;
   display: flex;
+  width: calc(100% - 330px);
   flex-direction: column;
   justify-content: space-between;
   padding: 4px 0;

@@ -14,6 +14,7 @@ function HotelInfoList() {
 }
 
 const HotelInfoListContainer = styled.ul`
+  margin-right: 24px;
   display: flex;
   flex-direction: column;
   gap: 50px;
