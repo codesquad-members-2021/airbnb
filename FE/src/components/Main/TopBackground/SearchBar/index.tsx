@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { forwardRef, useEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 
 import { Link } from '../../../../util/MyRouter';
@@ -19,6 +19,10 @@ import FeeModal from './Modals/FeeModal';
 import PeopleModal from './Modals/PeopleModal';
 import { threeDigitsComma } from '../../../../util/util';
 
+import useFetch from '../../../../util/hooks/useFetch';
+import { IRoomsInfo } from '../../../../util/types/Room';
+import API from '../../../../util/API';
+
 interface ISearchMenuItem {
   isClicked?: boolean;
 }
@@ -29,6 +33,15 @@ const SearchBar = forwardRef(
     //@ts-ignore
     { searchBarTexts, searchBarRef }: ITextTopBackground,
   ) => {
+    const { result, fetchState: {isLoading}} = useFetch<IRoomsInfo>(API.get.rooms);
+    const [salePrices, setSalePrices] = useState<number[]>([]);
+    const [searchURL, setSearchURL] = useState<string>('/search');
+
+    useEffect(() => {
+      if (isLoading || !result) return;
+      setSalePrices(result.rooms.map((data) => data.salePrice));
+    }, [isLoading]);
+
     // 1. 초기 값 설정
     const { menuItems } = searchBarTexts;
 
@@ -89,6 +102,22 @@ const SearchBar = forwardRef(
         // peoplePlaceHolder.innerHTML = `게스트 ${guestCount}명 (성인 ${adult}명, 어린이 ${child}명, 유아 ${infant}명)`;
       }
     }, [peopleCount]);
+
+    // 4) 전부 업데이트 되었을 때 체크 (Search페이지로 넘어갈 쿼리스트링 생성)
+    useEffect(() => {
+      const { start, end } = fee;
+      if (!startDate || !endDate || !start || !end  || !peopleCount)
+        return setSearchURL('/search');  
+      const checkIn = `${startDate.getFullYear()}-${(startDate.getMonth() + 1)}-${startDate.getDate()}`;
+      const checkOut = `${endDate.getFullYear()}-${(endDate.getMonth() + 1)}-${endDate.getDate()}`;
+
+      const peopleCntValues = Object.values(peopleCount);
+      const guestCount = peopleCntValues.reduce((result, curr) => (result += curr, result), 0);
+
+      const searchURLTmp = `/search?checkIn=${checkIn}&checkOut=${checkOut}&minPrice=${start}&maxPrice=${end}&numberOfPeople=${guestCount}`;
+      setSearchURL(searchURLTmp);
+
+    }, [startDate, endDate, fee, peopleCount]);
     // ------------
 
     // 3. Events
@@ -128,7 +157,7 @@ const SearchBar = forwardRef(
         })}
 
         {idx === menuItems.length - 1 && (
-          <SearchButton to={'/search'}>
+          <SearchButton to={searchURL}>
             <FiSearch />
           </SearchButton>
         )}
@@ -151,7 +180,7 @@ const SearchBar = forwardRef(
           {searchBarClickedIdx > -1 && (
             <SearchBarRow>
               {searchBarClickedIdx === CALENDAR_FOCUS && <CalendarModal />}
-              {searchBarClickedIdx === FEE_FOCUS && <FeeModal />}
+              {searchBarClickedIdx === FEE_FOCUS && <FeeModal data={salePrices} />}
               {searchBarClickedIdx === PEOPLE_FOCUS && <PeopleModal />}
             </SearchBarRow>
           )}
