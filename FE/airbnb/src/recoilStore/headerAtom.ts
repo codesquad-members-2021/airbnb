@@ -1,4 +1,4 @@
-import { atom, selector } from 'recoil';
+import { atom, ReadWriteSelectorOptions, selector } from 'recoil';
 import { guestStateType } from '../components/header/form/guestToggle/guestType';
 import { serverAPI } from '../util/api';
 import { selectDateState } from './calendarAtom';
@@ -85,9 +85,9 @@ export const fetchPrice = selector({
   },
 });
 
-export const reserveInfoSelector = selector({
+export const reserveInfoSelector = selector<reserveQueryType>({
   key: 'reserveInformation',
-  get: ({ get }): reserveQueryType => {
+  get: ({ get }) => {
     const address = get(locationState);
     const selectDateData = get(selectDateState);
     const checkIn = selectDateData.checkIn;
@@ -100,7 +100,7 @@ export const reserveInfoSelector = selector({
   },
   set: ({ set }, newState): void => {
     const { address, checkIn, checkOut, minCharge, maxCharge, adult, child, infants } =
-      newState as reserveInfoType;
+      newState as unknown as reserveInfoType;
     const date = { checkIn, checkOut };
     const price = { min: minCharge, max: maxCharge };
     const guests = { adult, child, infants };

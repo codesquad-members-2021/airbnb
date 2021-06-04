@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import Map from '../components/map/Map';
 import ReserveHeader from '../components/reserveHeader/ReserveHeader';
 import MapSkeleton from '../components/reservePageSkeleton/MapSkeleton';
-import ReserveRoomList from '../components/reserveRoomList/ReserveRoomList';
+import ReserveRoomsSection from '../components/reserveRoomList/ReserveRoomsSection';
 import { reserveInfoSelector } from '../recoilStore/headerAtom';
+import { reserveInfoType } from '../util/api';
 
 interface Props {}
 
@@ -24,7 +25,7 @@ const ReservePage = ({}: Props) => {
       adult: +adult,
       child: +child,
       infants: +infants,
-    };
+    } as unknown as reserveInfoType;
     setReserveInfo(newReserveInfo);
   }, []);
 
@@ -33,9 +34,7 @@ const ReservePage = ({}: Props) => {
   return (
     <StyledReservePage>
       <ReserveHeader />
-      <Suspense fallback=''>
-        <ReserveRoomList className='rooms' />
-      </Suspense>
+      <ReserveRoomsSection className='rooms' />
       <Suspense fallback={<MapSkeleton />}>
         <Map className='map' />
       </Suspense>
