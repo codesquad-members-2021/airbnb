@@ -4,9 +4,9 @@ import Price from "./Price/Price";
 import Personnel from "./Personnel/Personnel";
 import SearchButton from "./SearchButton";
 import { useContext, useEffect, useRef } from "react";
-import { ResultContext } from "../../../config/ResultContextProvider";
-import { SearchBarContext } from "../../../config/SearchBarContextProvider";
-import addComma from "../../../util/addComma";
+import { ResultContext } from "config/ResultContextProvider";
+import { SearchBarContext } from "config/SearchBarContextProvider";
+import addComma from "util/addComma";
 
 const SearchBar = () => {
 	const { isResultOn, isSearching, setSearching } = useContext(ResultContext);

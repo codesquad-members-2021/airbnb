@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PersonnelModal from "./PersonnelModal";
 import CloseButton from "../CloseButton";
 import { useContext, useEffect, useRef, useState } from "react";
-import { SearchBarContext } from "../../../../config/SearchBarContextProvider";
+import { SearchBarContext } from "config/SearchBarContextProvider";
 
 const Personnel = () => {
 	const [isOn, setOn] = useState(false);

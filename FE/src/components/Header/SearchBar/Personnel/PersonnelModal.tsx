@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { SearchBarContext } from "../../../../config/SearchBarContextProvider";
+import { SearchBarContext } from "config/SearchBarContextProvider";
 
 const PersonnelModal = () => {
 	const { man, setMan, kid, setKid, baby, setBaby } = useContext(SearchBarContext);

@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { ResultContext } from "../../config/ResultContextProvider";
-import { SearchBarContext } from "../../config/SearchBarContextProvider";
-import addComma from "../../util/addComma";
-import parseDate from "../../util/parseDate";
+import { ResultContext } from "config/ResultContextProvider";
+import { SearchBarContext } from "config/SearchBarContextProvider";
+import addComma from "util/addComma";
+import parseDate from "util/parseDate";
 
 const ModalCost = () => {
 	const { modalData } = useContext(ResultContext);

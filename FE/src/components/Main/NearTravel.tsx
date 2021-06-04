@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { nearTravelData } from "../../json/data.json";
+import { nearTravelData } from "json/data.json";
 
 //prettier-ignore
 const NearTravel = (): JSX.Element => (

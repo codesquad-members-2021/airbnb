@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { ResultContext } from "../../config/ResultContextProvider";
+import { ResultContext } from "config/ResultContextProvider";
 import Logo from "./Logo";
 import Menu from "./Menu";
 import MyPage from "./MyPage";

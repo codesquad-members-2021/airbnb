@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { ResultContext, IHouse } from "../../../config/ResultContextProvider";
-import addComma from "../../../util/addComma";
+import { ResultContext, IHouse } from "config/ResultContextProvider";
+import addComma from "util/addComma";
 
 const House = ({ data, period }: { data: IHouse; period: number }) => {
 	const { id, image, name, options, review, grade, charge, local } = data;

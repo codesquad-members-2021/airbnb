@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ResultContext } from "../config/ResultContextProvider";
+import { ResultContext } from "config/ResultContextProvider";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import Main from "./Main/Main";

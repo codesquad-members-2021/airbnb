@@ -2,8 +2,8 @@ import { useEffect, useState, useRef, useContext } from "react";
 import styled from "styled-components";
 import PriceModal from "./PriceModal";
 import CloseButton from "../CloseButton";
-import addComma from "../../../../util/addComma";
-import { SearchBarContext } from "../../../../config/SearchBarContextProvider";
+import addComma from "util/addComma";
+import { SearchBarContext } from "config/SearchBarContextProvider";
 
 const Price = () => {
 	const [isOn, setOn] = useState(false);

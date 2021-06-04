@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { SearchBarContext } from "../../../../config/SearchBarContextProvider";
+import { SearchBarContext } from "config/SearchBarContextProvider";
 import Slider from "./Slider";
 
 const PriceModal = ({ average, range }: { average: number; range: string }) => (

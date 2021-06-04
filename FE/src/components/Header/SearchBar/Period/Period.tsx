@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useContext } from "react";
 import styled from "styled-components";
 import CalendarModal from "./CalendarModal";
 import CloseButton from "../CloseButton";
-import { SearchBarContext } from "../../../../config/SearchBarContextProvider";
+import { SearchBarContext } from "config/SearchBarContextProvider";
 
 const Period = () => {
 	const { start, setStart, end, setEnd } = useContext(SearchBarContext);

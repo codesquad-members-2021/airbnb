@@ -1,7 +1,7 @@
 import React, { ReactEventHandler, useState } from "react";
 import styled from "styled-components";
 import Calendar from "./Calendar/Calendar";
-import delay from "../../../../util/delay";
+import delay from "util/delay";
 
 const CalendarModal = () => {
 	const [currentModifier, setCurrentModifier] = useState([-1, 0, 1, 2]);

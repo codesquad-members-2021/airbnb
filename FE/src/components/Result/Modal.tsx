@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import ModalInfo from "./ModalInfo";
 import ModalCost from "./ModalCost";
-import { ResultContext } from "../../config/ResultContextProvider";
+import { ResultContext } from "config/ResultContextProvider";
 
 const Modal = () => {
 	const { setModalOn } = useContext(ResultContext);

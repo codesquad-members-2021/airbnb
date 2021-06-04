@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { ResultContext } from "../../../config/ResultContextProvider";
+import { ResultContext } from "config/ResultContextProvider";
 
 const SearchButton = () => {
 	const { isResultOn, setResultOn, isSearching, fetchHouses, latitude, longitude } = useContext(ResultContext);

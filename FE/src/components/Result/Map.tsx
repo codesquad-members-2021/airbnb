@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { ResultContext } from "../../config/ResultContextProvider";
-import addComma from "../../util/addComma";
+import { ResultContext } from "config/ResultContextProvider";
+import addComma from "util/addComma";
 
 declare global {
 	interface Window {

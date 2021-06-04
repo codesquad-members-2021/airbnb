@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { anywhereData } from "../../json/data.json";
+import { anywhereData } from "json/data.json";
 
 //prettier-ignore
 const AnyWhere = () => (

@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import House from "./House";
-import { SearchBarContext } from "../../../config/SearchBarContextProvider";
-import { ResultContext } from "../../../config/ResultContextProvider";
-import parseDate from "../../../util/parseDate";
-import addComma from "../../../util/addComma";
+import { SearchBarContext } from "config/SearchBarContextProvider";
+import { ResultContext } from "config/ResultContextProvider";
+import parseDate from "util/parseDate";
+import addComma from "util/addComma";
 
 const Houses = () => {
 	const { start, end, min, max, priceData, man, kid, baby } = useContext(SearchBarContext);
@@ -21,9 +21,7 @@ const Houses = () => {
 		<HousesWrapper>
 			<Filter>{filter}</Filter>
 			<Title>지도에서 선택한 지역의 숙소</Title>
-			{housesList.map((el) => (
-				<House key={el.id} data={el} period={period} />
-			))}
+			{housesList.map((el) => <House key={el.id} data={el} period={period} />)}
 		</HousesWrapper>
 	);
 };

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { SearchBarContext } from "../../config/SearchBarContextProvider";
+import { SearchBarContext } from "config/SearchBarContextProvider";
 
 const ModalInfo = () => {
 	const { start, end, man, kid, baby } = useContext(SearchBarContext);

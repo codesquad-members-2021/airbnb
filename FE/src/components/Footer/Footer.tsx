@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { footerData, FNBData } from "../../json/data.json";
+import { footerData, FNBData } from "json/data.json";
 
 //prettier-ignore
 const Footer = (): JSX.Element => {

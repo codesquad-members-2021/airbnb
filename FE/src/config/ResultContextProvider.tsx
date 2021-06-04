@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { SearchBarContext } from "./SearchBarContextProvider";
+import { SearchBarContext } from "config/SearchBarContextProvider";
 
 const ResultContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [isResultOn, setResultOn] = useState(false);
