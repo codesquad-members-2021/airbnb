@@ -15,8 +15,8 @@ public class GetPropertyModel {
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate checkOut;
 
-    private int minPrice;
-    private int maxPrice;
+    private int minPrice = 0;
+    private int maxPrice = 1000000;
     private int adult;
     private int children;
     private int infant;
