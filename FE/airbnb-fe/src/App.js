@@ -15,7 +15,9 @@ export const GlobalStyle = createGlobalStyle`
   body{
     font-family: 'Noto Sans KR';
   }
-  
+  a{
+    text-decoration:none;
+  }
   ol, ul, li {
     list-style: none;
   }

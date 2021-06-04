@@ -1,22 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import getRegex from '../../../utils/getRegex';
 /*global kakao*/
 const RoomMap = ({ roomData }) => {
-  const placeArray = roomData
-    ? roomData.accommodationList.map((room) => [
-        room.latitude,
-        room.longitude,
-        room.charge,
-      ])
-    : [[0, 0, 0]];
-
-  // const chargeArray = roomData
-  //   ? roomData.accommodationList.map((v) => v.charge)
-  //   : [];
-
-  // console.log('roomadAt안나오냐', roomData?.accommodationList);
-  // console.log('place배열', placeArray);
+  const placeArray = useMemo(
+    () =>
+      roomData
+        ? roomData.accommodationList.map((room) => [
+            room.latitude,
+            room.longitude,
+            room.charge,
+          ])
+        : [[0, 0, 0]],
+    [roomData]
+  );
 
   useEffect(() => {
     const container = document.getElementById('myMap');

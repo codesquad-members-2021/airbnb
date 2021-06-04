@@ -10,7 +10,7 @@ const AccountModal = ({ setProfileURL }) => {
     setIsMouseOver(true);
   };
   const token = localStorage.getItem('token');
-  console.log(localStorage.getItem('token'));
+
   useEffect(() => {
     if (token) {
       setIsLogin(true);
@@ -30,13 +30,6 @@ const AccountModal = ({ setProfileURL }) => {
 
   return (
     <AccountModalDiv>
-      {/* <AccountModalItem
-        isMouseOver={isMouseOver}
-        onMouseOver={() => handleLoginMouseOver()}
-        onMouseLeave={() => handleLoginMouseLeave()}
-      >
-        {isLogin ? '로그아웃' : `${isMouseOver ? <LoginBtn /> : '로그인'}`}
-      </AccountModalItem> */}
       {isLogin ? (
         <AccountLogout onClick={() => handleLogOut()}>로그아웃</AccountLogout>
       ) : (

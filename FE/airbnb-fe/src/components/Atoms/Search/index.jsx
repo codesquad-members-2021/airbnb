@@ -155,6 +155,7 @@ const SearchWrap = styled.div`
   border-radius: 3rem;
   background-color: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.gray4};
+  cursor: pointer;
 `;
 
 const SearchBtnWrap = styled.div`

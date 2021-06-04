@@ -36,16 +36,4 @@ const GithubBtn = styled.a`
   justify-content: center;
 `;
 
-// const LoginDiv = styled.div`
-//   width: 400px;
-//   height: 400px;
-//   border: 1px solid #e2e2e2;
-//   box-shadow: 1px 1px 1px 1px ${({ theme }) => theme.colors.lightGrayBG};
-//   border-radius: ${({ theme }) => theme.borders.radius};
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   margin: 150px auto;
-// `;
-
 export default LoginBtn;
