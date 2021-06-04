@@ -45,12 +45,15 @@ public class BookingDAO {
 
     private RowMapper<Booking> bookingRowMapper() {
         return (rs, rowNum) -> {
-            return Booking.create(rs.getLong("id"),
-            rs.getObject("check_in", LocalDate.class), rs.getObject("check_out", LocalDate.class),
-            rs.getInt("guest"),
-            rs.getBigDecimal("total_price"),
-            rs.getLong("user"),
-            rs.getLong("room"));
+            return new Booking.Builder()
+                    .id(rs.getLong("id"))
+                    .checkIn(rs.getObject("check_in", LocalDate.class))
+                    .checkOut(rs.getObject("check_out", LocalDate.class))
+                    .guest(rs.getInt("guest"))
+                    .totalPrice(rs.getBigDecimal("total_price"))
+                    .user(rs.getLong("user"))
+                    .room(rs.getLong("room"))
+                    .build();
         };
     }
 //    public Optional<Booking> findById(Long id) {
