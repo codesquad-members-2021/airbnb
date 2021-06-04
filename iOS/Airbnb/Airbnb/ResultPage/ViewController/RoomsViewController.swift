@@ -210,6 +210,7 @@ extension RoomsViewController {
     
     @objc func mapButtonTouched() {
         let mapViewController = MapViewController(nibName: MapViewController.reuseIdentifier, bundle: nil)
+        mapViewController.setViewModels(conditionViewModel: conditionViewModel)
         self.navigationController?.pushViewController(mapViewController, animated: true)
     }
     

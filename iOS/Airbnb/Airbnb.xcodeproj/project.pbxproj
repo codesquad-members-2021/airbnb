@@ -23,6 +23,8 @@
 		AE2049A72669CD1200C149B8 /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2049A62669CD1200C149B8 /* RoomCell.swift */; };
 		AE2049AA2669CF6700C149B8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2049A82669CF6700C149B8 /* MapViewController.swift */; };
 		AE2049AB2669CF6700C149B8 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE2049A92669CF6700C149B8 /* MapViewController.xib */; };
+		AE2049AE266A12A500C149B8 /* RoomOrthoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2049AC266A12A500C149B8 /* RoomOrthoCell.swift */; };
+		AE2049AF266A12A500C149B8 /* RoomOrthoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE2049AD266A12A500C149B8 /* RoomOrthoCell.xib */; };
 		AE3FE07526574E7000A95177 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07426574E7000A95177 /* SearchCityViewController.swift */; };
 		AE3FE07726578F1700A95177 /* RegionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07626578F1700A95177 /* RegionData.swift */; };
 		AE3FE07A26579D3B00A95177 /* RegionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07826579D3B00A95177 /* RegionCell.swift */; };
@@ -92,6 +94,8 @@
 		AE2049A62669CD1200C149B8 /* RoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
 		AE2049A82669CF6700C149B8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		AE2049A92669CF6700C149B8 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		AE2049AC266A12A500C149B8 /* RoomOrthoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomOrthoCell.swift; sourceTree = "<group>"; };
+		AE2049AD266A12A500C149B8 /* RoomOrthoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomOrthoCell.xib; sourceTree = "<group>"; };
 		AE3FE07426574E7000A95177 /* SearchCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
 		AE3FE07626578F1700A95177 /* RegionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionData.swift; sourceTree = "<group>"; };
 		AE3FE07826579D3B00A95177 /* RegionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionCell.swift; sourceTree = "<group>"; };
@@ -235,6 +239,8 @@
 				AE87A7872668DFB1003E9541 /* AccommodationCell.swift */,
 				AE87A7882668DFB1003E9541 /* AccommodationCell.xib */,
 				AE2049A62669CD1200C149B8 /* RoomCell.swift */,
+				AE2049AC266A12A500C149B8 /* RoomOrthoCell.swift */,
+				AE2049AD266A12A500C149B8 /* RoomOrthoCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -487,6 +493,7 @@
 				AE87A79826693CD3003E9541 /* DetailRoomViewController.xib in Resources */,
 				AE2049AB2669CF6700C149B8 /* MapViewController.xib in Resources */,
 				AE87A77D26687F71003E9541 /* PersonCell.xib in Resources */,
+				AE2049AF266A12A500C149B8 /* RoomOrthoCell.xib in Resources */,
 				AE8CD3BD2653538800BCB8FC /* Assets.xcassets in Resources */,
 				AE87A78A2668DFB1003E9541 /* AccommodationCell.xib in Resources */,
 				AE0B5DE72656073E000B35E7 /* CityCell.xib in Resources */,
@@ -527,6 +534,7 @@
 				AE0B5DEF26563BE4000B35E7 /* RecommandedDestinationViewController.swift in Sources */,
 				AE0B5DE12655FE1F000B35E7 /* MainPageDTO.swift in Sources */,
 				AE3FE07A26579D3B00A95177 /* RegionCell.swift in Sources */,
+				AE2049AE266A12A500C149B8 /* RoomOrthoCell.swift in Sources */,
 				AEC52F742664041200D8F802 /* ConditionViewModel.swift in Sources */,
 				AE3FE07526574E7000A95177 /* SearchCityViewController.swift in Sources */,
 				AEC52F712663FF3600D8F802 /* ConditionCell.swift in Sources */,
