@@ -12,6 +12,7 @@ import styled from "styled-components";
 import { GoogleMap, OverlayView } from "@react-google-maps/api";
 import { useEffect } from "react";
 
+
 type datatype = {
   hotelId: string;
   title: string;
@@ -31,12 +32,15 @@ const HotelList = () => {
     process.env.REACT_APP_API_URL + "/hotels?" + searchParams,
     "GET"
   );
+
   const center = { lat: latitude, lng: longitude };
+
   const mapStyle = { width: "100%", height: "100%" };
   const getPixelPositionOffset = (width: number, height: number) => ({
     x: -(width / 2),
     y: -(height / 2),
   });
+
   useEffect(() => {
     setIsHotelList(true);
   }, []);
@@ -48,7 +52,7 @@ const HotelList = () => {
       </TopSection>
       <ButtomSection>
         {isLoading ? null : <HotelListContent hotelListData={data} />}
-        <GoogleMap mapContainerStyle={mapStyle} center={center} zoom={15}>
+        <GoogleMap mapContainerStyle={mapStyle} center={center} zoom={16}>
           {data
             ? data.map((props: datatype) => (
                 <OverlayView

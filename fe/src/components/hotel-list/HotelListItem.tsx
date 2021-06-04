@@ -32,13 +32,15 @@ const HotelListItem = ({
   }
 
   const clickHandler = ({ target }: MouseEvent<HTMLElement>) => {
-    
+    const token = localStorage.getItem("token")
+    if(token){
       setPopUpState({
         toggle: true,
         hotelID: hotelId,
         price: price,
+        userId: JSON.parse(token).user.login
       });
-    
+    }
   };
   return (
     <StyledHotelListItem onClick={clickHandler}>

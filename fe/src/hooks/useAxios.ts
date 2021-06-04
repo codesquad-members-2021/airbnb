@@ -44,10 +44,14 @@ const useAxios = (initialUrl: string, methods: Method, option?: any) => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_INIT", payload: null });
       try {
+        if (!url) return;
         if (url === "http://13.209.33.94:8080/price?fraction=10") {
           dispatch({ type: "FETCH_FAILURE", payload: null });
           return;
         }
+        if (url === "http://13.209.33.94:8080/reserve" && option === null)
+          return;
+
         await axios(url, config()).then((result) =>
           dispatch({ type: "FETCH_SUCCESS", payload: result.data.data })
         );

@@ -1,11 +1,15 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const LogOutList = () => {
+  const clickHandler = () => {
+    localStorage.removeItem("isLogIn");
+    localStorage.removeItem("token");
+  };
   return (
     <StyledLogOutList>
       <LogOutItem>예약 취소</LogOutItem>
       <LogOutItem>위시 리스트</LogOutItem>
-      <LogOutItem>로그 아웃</LogOutItem>
+      <LogOutItem onClick={clickHandler}>로그 아웃</LogOutItem>
     </StyledLogOutList>
   );
 };
@@ -17,4 +21,6 @@ const StyledLogOutList = styled.ul``;
 const LogOutItem = styled.li`
   width: 8.5rem;
   padding-left: 1rem;
+  margin: 1rem 0;
+  cursor: pointer;
 `;
