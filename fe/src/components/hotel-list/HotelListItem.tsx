@@ -1,8 +1,9 @@
 import { Box } from "@material-ui/core";
 import { FaHeart, FaRegHeart, FaStar } from "react-icons/fa";
-import { useRecoilValue } from "recoil";
-import { CalendarData } from "atoms/searchbarAtom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { CalendarData, popUpState } from "atoms/searchbarAtom";
 import styled from "styled-components";
+import { MouseEvent } from "react";
 
 type HotelListItemProps = {
   options: string[];
@@ -11,6 +12,7 @@ type HotelListItemProps = {
   rate: number;
   title: string;
   wishlist: boolean;
+  hotelId: number;
 };
 
 const HotelListItem = ({
@@ -20,14 +22,26 @@ const HotelListItem = ({
   rate,
   title,
   wishlist,
+  hotelId,
 }: HotelListItemProps) => {
+  const setPopUpState = useSetRecoilState(popUpState);
   const [checkIn, checkOut] = useRecoilValue(CalendarData);
   let dayGap = 0;
   if (checkIn && checkOut) {
     dayGap = new Date(checkOut).getDay() - new Date(checkIn).getDay();
   }
+
+  const clickHandler = ({ target }: MouseEvent<HTMLElement>) => {
+    
+      setPopUpState({
+        toggle: true,
+        hotelID: hotelId,
+        price: price,
+      });
+    
+  };
   return (
-    <StyledHotelListItem>
+    <StyledHotelListItem onClick={clickHandler}>
       <HotelImg src={img} />
       <Box
         display="flex"
@@ -83,7 +97,7 @@ const StyledHotelListItem = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  padding: 3rem 3.6rem;;
+  padding: 3rem 3.6rem;
 
   border-bottom: ${({ theme }) => theme.border.Gray4};
   cursor: pointer;

@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 type HotelPopUpItemProps = {
   title: string;
-  subitle: string;
+  subtitle: string;
 };
 
-const HotelPopUpItem = ({ title, subitle }: HotelPopUpItemProps) => {
+const HotelPopUpItem = ({ title, subtitle }: HotelPopUpItemProps) => {
   return (
     <StyledHotelPopUpItem>
       <InputTitle>{title}</InputTitle>
-      <InputSubtitle>{subitle}</InputSubtitle>
+      <InputSubtitle>{subtitle}</InputSubtitle>
     </StyledHotelPopUpItem>
   );
 };

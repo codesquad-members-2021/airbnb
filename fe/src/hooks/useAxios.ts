@@ -6,7 +6,7 @@ type Action =
   | { type: "FETCH_SUCCESS"; payload: any }
   | { type: "FETCH_FAILURE"; payload: null };
 
-const useAxios = (initialUrl: string, methods: Method, options?: any) => {
+const useAxios = (initialUrl: string, methods: Method, option?: any) => {
   const [url] = useState(initialUrl);
 
   const [state, dispatch] = useReducer(requestReducer, {
@@ -18,13 +18,27 @@ const useAxios = (initialUrl: string, methods: Method, options?: any) => {
   });
 
   useEffect(() => {
-    const config = {
-      method: methods,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache",
-      },
+    const config = () => {
+      if (option) {
+        return {
+          method: methods,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Cache-Control": "no-cache",
+          },
+          data: option,
+        };
+      } else {
+        return {
+          method: methods,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Cache-Control": "no-cache",
+          },
+        };
+      }
     };
 
     const fetchData = async () => {
@@ -34,7 +48,7 @@ const useAxios = (initialUrl: string, methods: Method, options?: any) => {
           dispatch({ type: "FETCH_FAILURE", payload: null });
           return;
         }
-        await axios(url, config).then((result) =>
+        await axios(url, config()).then((result) =>
           dispatch({ type: "FETCH_SUCCESS", payload: result.data.data })
         );
       } catch (error) {

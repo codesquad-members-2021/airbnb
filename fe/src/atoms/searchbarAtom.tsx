@@ -3,6 +3,22 @@ import { atom, selector } from "recoil";
 type HoverData = {
   [key: string]: boolean;
 };
+type popUpState = {
+  toggle: boolean;
+  hotelID: number | undefined;
+  price: number | undefined;
+
+}
+export const popUpState = atom<popUpState>({
+  key: "popUpState",
+  default: {
+    toggle: false,
+    hotelID: undefined,
+    price: undefined
+  },
+});
+
+
 export const SearchBarHoverData = atom<HoverData>({
   key: "SearchBarHoverData",
   default: {
