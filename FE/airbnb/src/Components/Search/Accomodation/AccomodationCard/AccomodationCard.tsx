@@ -43,13 +43,13 @@ const AccomodationCard = ({ accomodation }: Props) => {
     accomodation.tax.accommodationTax;
 
   const handleClick = () => {
-    setShowAccomodationModalFlag(true);
     setAccomodationModalData({
       ...accomodation,
       stayCount,
       weeksDiscount,
       totalPrice,
     });
+    setShowAccomodationModalFlag(true);
   };
 
   return (

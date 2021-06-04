@@ -13,6 +13,7 @@ import SelectedInfo from "./SelectedInfo";
 import ReservationButton from "./ReservationButton";
 import PriceDescription from "./PriceDescription";
 import Price from "./Price";
+import WishListButton from "./WishListButton";
 import { AccomodationModal as S } from "@/Components/Search/SearchStyles";
 
 const AccomodationModal = () => {
@@ -29,6 +30,7 @@ const AccomodationModal = () => {
       <S.AccomodationModal IsShow={showAccomodationModalFlag}>
         <Image />
         <S.MainInfoWrapper>
+          <WishListButton id={accomodation.roomId} />
           <Title />
           <Grade />
           <Review />

@@ -1,14 +1,26 @@
-import { useRecoilValue } from "recoil";
-import { searchState } from "@/Components/Search/SearchStore";
+import React, { useCallback } from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  searchState,
+  showAccomodationModalState,
+  // accomodationModalDataState,
+} from "@/Components/Search/SearchStore";
 import { InfoBox } from "@react-google-maps/api";
 import { Map as S } from "@/Components/Search/SearchStyles";
 
 const Marker = () => {
   const accomodations = useRecoilValue(searchState);
+  const setShowAccomodationModalFlag = useSetRecoilState(
+    showAccomodationModalState
+  );
+  // const setAccomodationModalData = useSetRecoilState(
+  //   accomodationModalDataState
+  // );
+  // setAccomodationModalData()
 
-  const test = () => {
-    console.log("clicked!");
-  };
+  const handleClick = useCallback(() => {
+    setShowAccomodationModalFlag(true);
+  }, [setShowAccomodationModalFlag]);
 
   const infoBoxOptions = {
     closeBoxURL: "",
@@ -24,21 +36,27 @@ const Marker = () => {
   };
 
   return (
-    <S.Marker onClick={test}>
-      {accomodations.map((item) => (
-        <InfoBox
-          key={item.roomId}
-          position={{
-            lat: item.location.latitude,
-            lng: item.location.longitude,
-          }}
-          options={infoBoxOptions}
-        >
-          <div>₩{item.price.toLocaleString()}</div>
-        </InfoBox>
-      ))}
-    </S.Marker>
+    <>
+      {accomodations.length > 0
+        ? accomodations.map((item) => (
+            <InfoBox
+              key={item.roomId}
+              position={{
+                lat: item.location.latitude,
+                lng: item.location.longitude,
+              }}
+              options={infoBoxOptions}
+            >
+              <S.Marker onClick={handleClick}>
+                ₩{item.price.toLocaleString()}
+              </S.Marker>
+            </InfoBox>
+          ))
+        : null}
+    </>
   );
 };
 
-export default Marker;
+const MarkerMemo = React.memo(Marker);
+
+export default MarkerMemo;

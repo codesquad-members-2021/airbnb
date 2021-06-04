@@ -151,6 +151,7 @@ export const AccomodationModal = {
     margin-bottom: 8px;
   `,
   MainInfoWrapper: styled.div`
+    position: relative;
     padding: 16px 0px;
     margin-bottom: 8px;
     border-bottom: 1px solid ${theme.COLOR.GRAY5};
@@ -255,5 +256,12 @@ export const AccomodationModal = {
   Price: styled.div<{ isDiscount: boolean }>`
     color: ${(props) =>
       props.isDiscount ? theme.COLOR.DISCOUNT : theme.COLOR.GRAY1};
+  `,
+  WishListButton: styled(WishListIcon)<{ $isSelectedRoom: boolean }>`
+    fill: ${(props) =>
+      props.$isSelectedRoom ? theme.COLOR.SEARCH_BUTTON : "none"};
+    position: absolute;
+    bottom: 16px;
+    right: 3px;
   `,
 };

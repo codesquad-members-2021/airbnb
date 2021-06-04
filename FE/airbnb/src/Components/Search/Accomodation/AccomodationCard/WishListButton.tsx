@@ -9,6 +9,7 @@ const WishListButton = ({ id }: Props) => {
   const [selectedRoomId, setSelectedRoomId] = useState("");
 
   const handleClick = (e: any) => {
+    e.stopPropagation();
     const roomId = e.target.dataset.roomId;
     if (roomId === selectedRoomId) {
       setSelectedRoomId("");
