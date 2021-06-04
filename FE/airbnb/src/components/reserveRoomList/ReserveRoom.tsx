@@ -56,8 +56,8 @@ const StyledReserveRoom = styled.div`
   .room__img {
     flex: 1;
     img {
-      width: 330px;
-      /* height: 200px; */
+      width: 370px;
+      height: 230px;
       border-radius: 10px;
     }
   }
