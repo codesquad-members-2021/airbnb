@@ -4,7 +4,7 @@ import com.codesquad.coco.global.auth.AuthInterceptor;
 import com.codesquad.coco.global.auth.GitHubDeviceTypeConvertor;
 import com.codesquad.coco.global.auth.UserIdHandlerMethodResolver;
 import com.codesquad.coco.oauth.ServerKey;
-import com.codesquad.coco.utils.GetPropertyUtil;
+import com.codesquad.coco.utils.PropertyUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -23,7 +23,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Bean
     public ServerKey serverKey() {
-        return new ServerKey(GetPropertyUtil.getProperty(JWT_PATH));
+        return new ServerKey(PropertyUtil.getProperty(JWT_PATH));
     }
 
     @Override
