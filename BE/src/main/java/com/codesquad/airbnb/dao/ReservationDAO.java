@@ -1,16 +1,14 @@
 package com.codesquad.airbnb.dao;
 
+import com.codesquad.airbnb.dao.rowMapper.ReservationRowMapper;
 import com.codesquad.airbnb.domain.Reservation;
 import com.codesquad.airbnb.dto.reservation.ReservationDetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,19 +23,6 @@ public class ReservationDAO {
     public ReservationDAO(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("reservation");
-    }
-
-    private static class ReservationMapper implements RowMapper<Reservation> {
-        public Reservation mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
-            Reservation reservation = new Reservation(resultSet.getDate("check_in_date").toLocalDate(),
-                    resultSet.getDate("check_out_date").toLocalDate(),
-                    resultSet.getInt("total_price"),
-                    resultSet.getInt("guest_count"),
-                    resultSet.getLong("user_id"),
-                    resultSet.getLong("property_id"));
-            reservation.setId(resultSet.getLong("id"));
-            return reservation;
-        }
     }
 
     public int insertReservation(Reservation reservation) {
@@ -56,21 +41,21 @@ public class ReservationDAO {
         String sql = "SELECT id, check_in_date, check_out_date, total_price, guest_count, user_id, property_id " +
                 "FROM reservation WHERE id = ?";
 
-        return jdbcTemplate.queryForObject(sql, new ReservationMapper(), id);
+        return jdbcTemplate.queryForObject(sql, ReservationRowMapper.getInstance(), id);
     }
 
     public List<Reservation> findAllReservationsByUserId(Long userId) {
         String sql = "SELECT id, check_in_date, check_out_date, total_price, guest_count, user_id, property_id " +
                 "FROM reservation WHERE user_id = ?";
 
-        return jdbcTemplate.query(sql, new ReservationMapper(), userId);
+        return jdbcTemplate.query(sql, ReservationRowMapper.getInstance(), userId);
     }
 
     public List<Reservation> findAllReservationsByPropertyId(Long propertyId) {
         String sql = "SELECT id, check_in_date, check_out_date, total_price, guest_count " +
                 "FROM reservation WHERE property_id = ?";
 
-        return jdbcTemplate.query(sql, new ReservationMapper(), propertyId);
+        return jdbcTemplate.query(sql, ReservationRowMapper.getInstance(), propertyId);
     }
 
     public ReservationDetailDTO findDetailedReservation(Long id) {
