@@ -7,6 +7,7 @@ import {
   totalGuestSelector,
 } from '../../recoilStore/headerAtom';
 import { getDateByTime } from '../../util/calendarUtils';
+import ReserveListSkeleton from '../reservePageSkeleton/ReserveListSkeleton';
 import ReserveRoomList from './ReserveRoomList';
 
 interface Props {
@@ -28,7 +29,7 @@ const ReserveRoomsSection = ({ className }: Props) => {
     <StyledReserveRoomsSection className={className}>
       <div className='data__info'>{dataInfo}</div>
       <div className='title'>지도에서 선택한 지역의 숙소</div>
-      <Suspense fallback='loading...'>
+      <Suspense fallback={<ReserveListSkeleton />}>
         <ReserveRoomList />
       </Suspense>
     </StyledReserveRoomsSection>
