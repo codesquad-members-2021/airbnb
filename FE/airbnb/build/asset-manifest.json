@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.js": "/static/js/main.eb215410.chunk.js",
+    "main.js.map": "/static/js/main.eb215410.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.1b82a57b.js",
+    "runtime-main.js.map": "/static/js/runtime-main.1b82a57b.js.map",
+    "static/js/2.c308ba71.chunk.js": "/static/js/2.c308ba71.chunk.js",
+    "static/js/2.c308ba71.chunk.js.map": "/static/js/2.c308ba71.chunk.js.map",
+    "index.html": "/index.html",
+    "static/js/2.c308ba71.chunk.js.LICENSE.txt": "/static/js/2.c308ba71.chunk.js.LICENSE.txt",
+    "static/media/cancleButtonIcon.bdd59c36.svg": "/static/media/cancleButtonIcon.bdd59c36.svg",
+    "static/media/logo.bd8652a7.svg": "/static/media/logo.bd8652a7.svg",
+    "static/media/miniSearchButtonIcon.6f772c50.svg": "/static/media/miniSearchButtonIcon.6f772c50.svg",
+    "static/media/minusIcon.b3fd9f0c.svg": "/static/media/minusIcon.b3fd9f0c.svg",
+    "static/media/myImageIcon.04249f3c.svg": "/static/media/myImageIcon.04249f3c.svg",
+    "static/media/myMenuIcon.4d696335.svg": "/static/media/myMenuIcon.4d696335.svg",
+    "static/media/nextButtonIcon.89ade777.svg": "/static/media/nextButtonIcon.89ade777.svg",
+    "static/media/plusIcon.0c6c59cd.svg": "/static/media/plusIcon.0c6c59cd.svg",
+    "static/media/prevButtonIcon.9f375824.svg": "/static/media/prevButtonIcon.9f375824.svg",
+    "static/media/searchButtonIcon.fa87ae1a.svg": "/static/media/searchButtonIcon.fa87ae1a.svg",
+    "static/media/starIcon.5331578b.svg": "/static/media/starIcon.5331578b.svg",
+    "static/media/wishListIcon.540762ff.svg": "/static/media/wishListIcon.540762ff.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1b82a57b.js",
+    "static/js/2.c308ba71.chunk.js",
+    "static/js/main.eb215410.chunk.js"
+  ]
+}
