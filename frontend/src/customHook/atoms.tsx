@@ -113,7 +113,7 @@ export const RouterOrSearch = atom<boolean>({
 })
 
 //RoomData__________________________________________________
-export const RoomData = atom({
+export const RoomData = atom<any>({
   key: 'RoomDatas',
   default: [],
 })

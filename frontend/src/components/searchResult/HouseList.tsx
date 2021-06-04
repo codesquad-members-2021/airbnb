@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import Reservation from '../reservation/Reservation'
 import WishToggleBtn from './WishListToggle'
 import {
   RecoilValueGroup,
-  defaultValue, RoomData
+  defaultValue,
+  RoomData
 } from '../../customHook/atoms'
 import { setScheduleMsg } from './MiniSearchBar'
 import { getFeeMsg } from '../searchBar/fee/Fee'
@@ -14,10 +15,9 @@ interface IpriceType {
   type?:string
 }
 
-function HouseList({ data }: any) {
-  const [RoomDatas, setRoomDatas] = useRecoilState(RoomData)
-  setRoomDatas(data)
+function HouseList() {
   const { checkIn, checkOut, priceMin, priceMax, minFeePercent, maxFeePercent, guestMsg } = useRecoilValue(RecoilValueGroup)
+  const roomDatas = useRecoilValue(RoomData);
 
   const filteringInfo = (data:any) => {
     let str = []
@@ -44,10 +44,10 @@ function HouseList({ data }: any) {
 
   return (
     <Frame>
-      <SmallSpan>{filteringInfo(data)}</SmallSpan>
+      <SmallSpan>{filteringInfo(roomDatas)}</SmallSpan>
       <ListTitle>선택한 지역의 숙소</ListTitle>
       <ScrollArea>
-      {data.map((el: any) => (
+      {roomDatas.map((el: any) => (
         <Column key={el.id} onClick={(e)=>handleModalClick(e, el)}>
           <div>
             <img src={el.thumbnail_image} width='300' height='220' />

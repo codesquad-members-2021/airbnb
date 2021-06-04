@@ -43,6 +43,7 @@ interface DetailProps {
 }
 
 export async function getHouseData(value: any) {
+
   const {
     place,
     checkIn,
