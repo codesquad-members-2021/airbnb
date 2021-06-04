@@ -5,32 +5,42 @@ import YearMonth from './YearMonth';
 import DayViewTR from './DayViewTR';
 
 const Calendar = () => {
+  const centerPosition = -27.2;
   const [calRange, setCalRange] = useState([-1, 0, 1, 2]);
-  const [currentDistance, setCurrentDistance] = useState(-27.2); //가운데 = -27.2rem
+  const [currentDistance, setCurrentDistance] = useState(centerPosition);
   const [disabled, setDisabled] = useState(false);
   const oneMove = 25.3;
 
   const preventClick = () => {
-    setTimeout(() => {
-      setDisabled(false);
-    }, 200);
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(false);
+      }, 200);
+    });
   };
 
-  const handleLeftClick = () => {
+  const handleLeftClick = async () => {
     if (disabled) return;
     setDisabled(true);
-    preventClick();
-    setCurrentDistance((currentDistance) => currentDistance + oneMove);
+    const boolean = await preventClick();
+    setDisabled(boolean);
+    const foo = () =>
+      new Promise((res, rej) => {
+        setCurrentDistance((currentDistance) => currentDistance + oneMove);
+        setTimeout(() => res(), 200);
+      });
+    await foo();
     setCalRange((calRange) => {
       const nextRange = calRange.map((r) => r - 1);
       return nextRange;
     });
   };
 
-  const handleRightClick = () => {
+  const handleRightClick = async () => {
     if (disabled) return;
     setDisabled(true);
-    preventClick();
+    const boolean = await preventClick();
+    setDisabled(boolean);
     setCurrentDistance((currentDistance) => currentDistance - oneMove);
     setCalRange((calRange) => {
       const nextRange = calRange.map((r) => r + 1);
@@ -39,7 +49,7 @@ const Calendar = () => {
   };
 
   const onSlideEnd = () => {
-    setCurrentDistance(-27.2);
+    setCurrentDistance(centerPosition);
   };
 
   return (
@@ -49,6 +59,7 @@ const Calendar = () => {
         <YearMonthUL
           currentDistance={currentDistance}
           onTransitionEnd={() => onSlideEnd()}
+          centerPosition={centerPosition}
         >
           {calRange.map((range, idx) => (
             <YearMonthLI key={idx}>
@@ -66,6 +77,7 @@ const Calendar = () => {
         <CalTableWrapper
           currentDistance={currentDistance}
           onTransitionEnd={() => onSlideEnd()}
+          centerPosition={centerPosition}
         >
           {calRange.map((range, idx) => (
             <SingleCalendar key={idx} range={range} />
@@ -92,8 +104,8 @@ const CalendarTop = styled.div`
 const CalTableWrapper = styled.div`
   display: flex;
   transform: ${({ currentDistance }) => `translateX(${currentDistance}rem)`};
-  transition: ${({ currentDistance }) =>
-    currentDistance === -27.2 ? '' : '0.2s ease-in-out'};
+  transition: ${({ currentDistance, centerPosition }) =>
+    currentDistance === centerPosition ? '' : '0.2s '};
 `;
 const CalendarBottom = styled.div`
   display: flex;
@@ -107,8 +119,8 @@ const CalendarMiddle = styled.div`
 const YearMonthUL = styled.ul`
   display: flex;
   transform: ${({ currentDistance }) => `translateX(${currentDistance}rem)`};
-  transition: ${({ currentDistance }) =>
-    currentDistance === -27.2 ? '' : '0.2s ease-in-out'};
+  transition: ${({ currentDistance, centerPosition }) =>
+    currentDistance === centerPosition ? '' : '0.2s'};
 `;
 
 const YearMonthLI = styled.li`

@@ -6,9 +6,10 @@ import { SearchContext } from '../../Search';
 const PeopleCard = ({ type: peopleType }) => {
   const { peopleCount, peopleDispatch } = useContext(SearchContext);
   const peopleTypeContent = peopleTypeJson[peopleType];
+  const maxPeopleCount = 8;
 
-  const setCountDisable = () =>
-    peopleCount['adult'] + peopleCount['child'] >= 8;
+  const setCountDisable = (maxPeopleCount) =>
+    peopleCount['adult'] + peopleCount['child'] >= maxPeopleCount;
 
   const handleBabyClick = (type) => {
     if (type === 'baby') {
@@ -40,7 +41,7 @@ const PeopleCard = ({ type: peopleType }) => {
         </CountButton>
         <CountNumber>{peopleCount[peopleType]}</CountNumber>
         <CountButton
-          disabled={setCountDisable()}
+          disabled={setCountDisable(maxPeopleCount)}
           onClick={() => handleBabyClick(peopleType)}
         >
           +

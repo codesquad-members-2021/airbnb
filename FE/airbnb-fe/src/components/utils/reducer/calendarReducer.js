@@ -40,6 +40,7 @@ const calendarReducer = (state, action) => {
           day: 0,
         },
       };
+
     default:
       return;
   }

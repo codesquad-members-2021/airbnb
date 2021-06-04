@@ -7,7 +7,7 @@ const HeroSection = () => {
   return (
     <HeroSectionDiv>
       <Header />
-      <Search />
+      <Search barType={'normal'} />
     </HeroSectionDiv>
   );
 };

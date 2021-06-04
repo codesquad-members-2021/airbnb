@@ -1,10 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import LoginBtn from './LoginPage';
 
-const AccountModal = () => {
+const AccountModal = ({ setProfileURL }) => {
+  const [isMouseOver, setIsMouseOver] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+
+  const handleLoginMouseOver = () => {
+    setIsMouseOver(true);
+  };
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    if (token) {
+      setIsLogin(true);
+    }
+  }, [token]);
+
+  const handleLoginMouseLeave = () => {
+    setIsMouseOver(false);
+  };
+
+  const handleLogOut = () => {
+    setIsLogin(false);
+    setProfileURL(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('ProfileURL');
+  };
+
   return (
     <AccountModalDiv>
-      <AccountModalItem>로그인</AccountModalItem>
+      {isLogin ? (
+        <AccountLogout onClick={() => handleLogOut()}>로그아웃</AccountLogout>
+      ) : (
+        <AccountModalItem
+          isMouseOver={isMouseOver}
+          onMouseOver={() => handleLoginMouseOver()}
+          onMouseLeave={() => handleLoginMouseLeave()}
+        >
+          {isMouseOver ? <LoginBtn /> : '로그인'}
+        </AccountModalItem>
+      )}
     </AccountModalDiv>
   );
 };
@@ -24,15 +60,24 @@ const AccountModalDiv = styled.div`
     0px 0px 4px rgba(51, 51, 51, 0.05);
 `;
 
-const AccountModalItem = styled.div`
+const AccountLogout = styled.div`
   width: 100%;
-  height: 2.3rem;
   padding: 0 1rem;
   display: flex;
   align-items: center;
+  cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.colors.gray6};
+    background: ${({ theme }) => theme.colors.gray5};
   }
+`;
+
+const AccountModalItem = styled.div`
+  width: 100%;
+  cursor: pointer;
+  padding: ${({ isMouseOver, isLogin }) =>
+    isLogin ? '0 1rem' : isMouseOver ? '0rem' : '0 1rem'};
+  display: flex;
+  align-items: center;
 `;
 
 export default AccountModal;

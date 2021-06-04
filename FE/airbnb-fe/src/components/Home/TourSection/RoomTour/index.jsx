@@ -1,14 +1,20 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { roomMock } from '../../../utils/mock/roomCardMockData';
 import RoomCard from './RoomCard';
+import API from '../../../utils/API';
 
 const RoomTour = () => {
+  const [homeData, setHomeData] = useState();
+  useEffect(() => {
+    API.get.home().then((res) => setHomeData(res.themeList));
+  }, []);
+
   return (
     <RoomTourDiv>
       <RoomTourTitle>어디서나 여행은 살아보는거야!</RoomTourTitle>
       <RoomTourCardList>
-        {roomMock?.map((v, idx) => (
-          <RoomCard title={v.title} imgUrl={v.imgUrl} key={idx} />
+        {homeData?.map((v, idx) => (
+          <RoomCard title={v.title} imgUrl={v.image} key={idx} />
         ))}
       </RoomTourCardList>
     </RoomTourDiv>
