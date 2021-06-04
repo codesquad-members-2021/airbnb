@@ -33,14 +33,19 @@ public class BookingDAO {
     }
 
     public Optional<Booking> findById(Long id) {
-        String selectById = "SELECT `id`, `check_in`, `check_out`, `guest`, `total_price`, `user`, `room` FROM `booking` WHERE id = ?;";
+        String selectById = "SELECT `id`, `check_in`, `check_out`, `guest`, `total_price`, `user`, `room` FROM `booking` WHERE `id` = ?";
         List<Booking> result = jdbcTemplate.query(selectById, bookingRowMapper(), id);
         return result.stream().findAny();
     }
 
     public List<Booking> findAllByUser(Long user) {
-        String findAllByUser = "SELECT `id`, `check_in`, `check_out`, `guest`, `total_price`, `user`, `room` FROM `booking` WHERE `user` = ?;";
+        String findAllByUser = "SELECT `id`, `check_in`, `check_out`, `guest`, `total_price`, `user`, `room` FROM `booking` WHERE `user` = ?";
         return jdbcTemplate.query(findAllByUser, bookingRowMapper(), user);
+    }
+
+    public void delete(Long bookingId) {
+        String query = "DELETE FROM `booking` WHERE `id` = ? ";
+        jdbcTemplate.update(query, bookingId);
     }
 
     private RowMapper<Booking> bookingRowMapper() {
@@ -55,22 +60,5 @@ public class BookingDAO {
                     .room(rs.getLong("room"))
                     .build();
         };
-    }
-//    public Optional<Booking> findById(Long id) {
-//        List<Booking> result = jdbcTemplate.query("select * from booking where id = ?",
-//                bookingRowMapper(), id);
-//        return result.stream().findAny();
-//    }
-//
-//    private RowMapper<Booking> bookingRowMapper() {
-//        return (rs, rowNum) -> {
-//           return Booking.create(rs.getLong("id"), rs.getLong("user"),
-//                    rs.getObject("check_in", LocalDate.class), rs.getObject("check_out", LocalDate.class));
-//        };
-//    }
-
-    public void delete(Long bookingId) {
-        String query = "DELETE FROM booking WHERE id = ? ";
-        jdbcTemplate.update(query, bookingId);
     }
 }

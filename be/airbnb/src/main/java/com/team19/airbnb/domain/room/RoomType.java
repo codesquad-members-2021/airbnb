@@ -1,6 +1,7 @@
 package com.team19.airbnb.domain.room;
 
 public enum RoomType {
+
     ENTIRE_PLACE("집전체"),
     PRIVATE_ROOM("개인실"),
     HOTEL_ROOM("호텔객실"),

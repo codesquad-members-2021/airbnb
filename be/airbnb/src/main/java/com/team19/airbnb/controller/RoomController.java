@@ -28,20 +28,14 @@ public class RoomController {
         return ResponseBody.ok(roomService.showRoom(roomId));
     }
 
-    //RoomPriceRequestDTO가 사실 Booking Request DTO랑 겹친다. 이 중복 해결해야 한다.
     @GetMapping("/rooms/{roomId}/price")
     public RoomPriceResponseDTO detailRoomPopup(@ModelAttribute RoomPriceRequestDTO roomPriceRequestDTO, @PathVariable Long roomId) {
         return roomService.showEstimate(roomPriceRequestDTO, roomId);
     }
-    
-    @GetMapping("/rooms/price")
-    public BigDecimal[] searchPriceRange(@RequestParam String address) {
-        return roomService.searchPriceRange(address);
-    }
 
-    @GetMapping("/rooms/price/test")
-    public List<BigDecimal> searchPriceRangeTest(@RequestParam Double latitude, @RequestParam Double longitude ) {
-        return roomService.searchPriceRangeTest(latitude, longitude);
+    @GetMapping("/rooms/price")
+    public List<BigDecimal> searchPriceRange(@RequestParam Double latitude, @RequestParam Double longitude ) {
+        return roomService.searchPriceRange(latitude, longitude);
     }
 
     @GetMapping("/rooms")

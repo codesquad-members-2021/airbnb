@@ -1,7 +1,5 @@
 package com.team19.airbnb.exception.notfound;
 
-import com.team19.airbnb.exception.notfound.NotFoundException;
-
 public class RoomNotFoundException extends NotFoundException {
 
     public RoomNotFoundException() {

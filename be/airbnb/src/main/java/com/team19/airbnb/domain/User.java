@@ -16,7 +16,7 @@ public class User {
 
     @PersistenceConstructor
     User(Long id, String github,
-       List<Wishlist> wishlists) {
+         List<Wishlist> wishlists) {
         this.id = id;
         this.github = github;
         this.wishlists = wishlists;
@@ -51,11 +51,11 @@ public class User {
     public static User create(Long id, String github, List<Wishlist> wishlists) {
         return new User(id, github, wishlists);
     }
-  
+
     public void addWishlist(Wishlist wishlist) {
         wishlists.add(wishlist);
     }
-  
+
     public void removeWishlist(Wishlist wishlist) {
         wishlists.remove(wishlist);
     }

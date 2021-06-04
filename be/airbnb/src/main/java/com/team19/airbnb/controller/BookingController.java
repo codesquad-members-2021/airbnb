@@ -28,7 +28,6 @@ public class BookingController {
         return ResponseBody.ok(bookingService.showBookings(userId));
     }
 
-    //날짜 확인하는 부분 추가 필요
     @PostMapping("/{userId}")
     public void book(@RequestBody BookingRequestDTO bookingRequestDTO, @PathVariable Long userId) {
         bookingService.book(bookingRequestDTO, userId);

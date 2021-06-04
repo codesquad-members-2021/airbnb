@@ -40,12 +40,8 @@ public class RoomService {
         return RoomPriceResponseDTO.create(new Price.Builder(booking.countDays(), room.getPricePerDay()).build());
     }
 
-    public BigDecimal[] searchPriceRange(String address) {
-        return roomDAO.findPriceByAddress(address);
-    }
-
-    public List<BigDecimal> searchPriceRangeTest(Double latitude, Double longitude) {
-        return roomDAO.findPriceByAddressTest(latitude, longitude).stream()
+    public List<BigDecimal> searchPriceRange(Double latitude, Double longitude) {
+        return roomDAO.findPriceByAddress(latitude, longitude).stream()
                 .map(room -> room.getPricePerDay())
                 .collect(Collectors.toList());
     }

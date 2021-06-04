@@ -13,10 +13,10 @@ public class RoomPriceResponseDTO {
     private BigDecimal totalPrice;
 
     private RoomPriceResponseDTO(BigDecimal discountPerWeek,
-                                BigDecimal cleaningFee,
-                                BigDecimal serviceFee,
-                                BigDecimal tax,
-                                BigDecimal totalPrice) {
+                                 BigDecimal cleaningFee,
+                                 BigDecimal serviceFee,
+                                 BigDecimal tax,
+                                 BigDecimal totalPrice) {
         this.discountPerWeek = discountPerWeek;
         this.cleaningFee = cleaningFee;
         this.serviceFee = serviceFee;

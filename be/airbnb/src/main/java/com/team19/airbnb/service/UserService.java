@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserDAO userDAO;
-    private final RoomDAO roomDAO;
+    private final RoomService roomService;
 
-    public UserService(UserDAO userDAO, RoomDAO roomDAO) {
+    public UserService(UserDAO userDAO, RoomService roomService) {
         this.userDAO = userDAO;
-        this.roomDAO = roomDAO;
+        this.roomService = roomService;
     }
 
     public User findUserById(Long id) {
@@ -30,7 +30,7 @@ public class UserService {
     public List<RoomDetailResponseDTO> showWishLists(Long userId) {
         List<Wishlist> wishlists = userDAO.findById(userId).orElseThrow(UserNotFoundException::new).getWishlists();
         return wishlists.stream().map(Wishlist::getRoom)
-                .map(roomId -> roomDAO.findById(roomId).orElseThrow(RoomNotFoundException::new))
+                .map(roomId -> roomService.findRoomById(roomId))
                         .map( room -> new RoomDetailResponseDTO.Builder(room).build())
                 .collect(Collectors.toList());
     }

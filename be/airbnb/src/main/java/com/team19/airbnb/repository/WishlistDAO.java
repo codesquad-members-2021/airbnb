@@ -13,7 +13,6 @@ import javax.sql.DataSource;
 import java.util.List;
 import java.util.Optional;
 
-//사용되고있지 않음
 @Repository
 public class WishlistDAO {
 
@@ -34,21 +33,6 @@ public class WishlistDAO {
         return jdbcTemplate.query(selectByUser, wishlistRowMapper(), user);
     }
 
-    private RowMapper<Wishlist> wishlistRowMapper() {
-        return (rs, rowNum) -> {
-            return Wishlist.create(rs.getLong("id"),
-                    rs.getLong("room"));
-        };
-    }
-
-    public Wishlist save(Wishlist wishlist) {
-        SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-        jdbcInsert.withTableName("wishlist").usingGeneratedKeyColumns("id");
-        SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(wishlist);
-        Number key = jdbcInsert.executeAndReturnKey(sqlParameterSource);
-        return wishlist;
-    }
-
     public void updateWishlist(User user, Wishlist wishlist) {
         String query = "insert into wishlist (user, user_key, room) values(?,?,?)";
         jdbcTemplate.update(query, user.getId(), user.getWishlists().size() - 1, wishlist.getRoom());
@@ -57,5 +41,12 @@ public class WishlistDAO {
     public void removeWishlist(User user, Wishlist wishlist) {
         String query = "delete from wishlist where user = ? and room = ?";
         jdbcTemplate.update(query, user.getId(), wishlist.getRoom());
+    }
+
+    private RowMapper<Wishlist> wishlistRowMapper() {
+        return (rs, rowNum) -> {
+            return Wishlist.create(rs.getLong("id"),
+                    rs.getLong("room"));
+        };
     }
 }

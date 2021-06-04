@@ -29,5 +29,4 @@ public class HeroBannerDAO{
                     rs.getString("image"));
         };
     }
-
 }

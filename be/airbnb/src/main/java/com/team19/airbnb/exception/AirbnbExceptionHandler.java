@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 public class AirbnbExceptionHandler {
+
     private static final Logger logger = LoggerFactory.getLogger(AirbnbExceptionHandler.class);
 
     @ExceptionHandler(NotFoundException.class)
@@ -27,5 +28,4 @@ public class AirbnbExceptionHandler {
         logger.error(e.getMessage());
         return ResponseBody.notFound(e.getMessage());
     }
-
 }

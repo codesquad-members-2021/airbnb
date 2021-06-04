@@ -36,15 +36,4 @@ public class BookingRequestDTO {
                 .room(roomId)
                 .build();
     }
-
-    @Override
-    public String toString() {
-        return "BookingRequestDTO{" +
-                "roomId=" + roomId +
-                ", checkIn='" + checkIn + '\'' +
-                ", checkOut='" + checkOut + '\'' +
-                ", guest=" + guest +
-                ", totalPrice=" + totalPrice +
-                '}';
-    }
 }

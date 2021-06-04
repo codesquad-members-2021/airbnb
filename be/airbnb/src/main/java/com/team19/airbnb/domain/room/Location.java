@@ -27,11 +27,4 @@ public class Location {
     public Double getLongitude() {
         return longitude;
     }
-
-    public boolean checkLocation(Double latitude, Double longitude) {
-        System.out.println("latitude = " + latitude);
-        System.out.println("longitude = " + longitude);
-        return (latitude - 0.006 <= this.latitude && this.latitude <= latitude + 0.006)
-                && (longitude - 0.006 <= this.longitude && this.longitude <= longitude + 0.006);
-    }
 }

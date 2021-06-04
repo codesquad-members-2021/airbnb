@@ -1,6 +1,5 @@
 package com.team19.airbnb.domain.room;
 
-//host는 별도의 테이블 필요할 듯 나중에 refactoring 할 떄...
 public class Host {
 
     private String hostName;

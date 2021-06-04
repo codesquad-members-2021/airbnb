@@ -33,16 +33,6 @@ public class UserDAO {
         return result.stream().findAny();
     }
 
-    public User save(User user) {
-        SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-        jdbcInsert.withTableName("user").usingGeneratedKeyColumns("id");
-
-        SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(user);
-        Number key = jdbcInsert.executeAndReturnKey(sqlParameterSource);
-        user.setId(key.longValue());
-        return user;
-    }
-    //빌더패턴 적용?
     private RowMapper<User> userRowMapper() {
         return (rs, rowNum) -> {
             List<Wishlist> wishlists = wishlistDAO.findAllByUser(rs.getLong("id"));
