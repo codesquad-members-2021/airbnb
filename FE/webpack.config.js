@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   mode: "development", // or production
@@ -9,6 +10,9 @@ module.exports = {
     path: path.resolve("./dist"),
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      React: 'react',
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html', // 템플릿 경로
       hash: true, //핑거 프린트
@@ -21,7 +25,7 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.tsx?$/, loader: "ts-loader" },
+      { test: /\.(tsx|ts)$/, use: ["babel-loader", "ts-loader" ] },
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
       { test: /\.(json|webp|jpg|png|jpeg)$/, loader: "file-loader", 
         options: {

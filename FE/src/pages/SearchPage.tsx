@@ -27,8 +27,8 @@ const SearchPage = () => {
       {/* <Link to={'/'}> main test </Link> for test */}
       <SearchPageCardsSection>
         <h1>지도에서 선택한 지역의 숙소</h1>
-        {RoomsData.result?.rooms.map((room: IRoomInfo) => {
-          return (<RoomCard room={room} />);
+        {RoomsData.result?.rooms.map((room: IRoomInfo, i:number) => {
+          return (<RoomCard room={room} key={`room-${i}`}/>);
         })}
         
       </SearchPageCardsSection>
