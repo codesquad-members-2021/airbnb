@@ -1,16 +1,16 @@
 //
-//  MainPageUseCase.swift
+//  PriceUseCase.swift
 //  Airbnb
 //
-//  Created by Lia on 2021/05/20.
+//  Created by Lia on 2021/06/02.
 //
 
 import Foundation
 import Combine
 
-class MainPageUseCase {
+class PriceUseCase {
     
-    @Published var mainPage: MainPage!
+    @Published var prices: Prices!
     @Published var error: Error!
     
     private var networkManager: NetworkManageable
@@ -22,16 +22,20 @@ class MainPageUseCase {
     
 }
 
-extension MainPageUseCase  {
+extension PriceUseCase  {
     
-    func requestMainPage() {
-        networkManager.get(type: Main.self, url: EndPoint.url(path: "")!)
+    func requestPirce(condition: ConditionData) {
+        networkManager.post(url: EndPoint.url(path: "/rooms/price")!, data: condition, result: Prices.self)
             .receive(on: DispatchQueue.main)
             .sink { error in
                 self.error = error as? Error
             } receiveValue: { games in
-                self.mainPage = games.mainPage
+                self.prices = games.self
             }.store(in: &cancelBag)
     }
     
+}
+
+struct Prices: Decodable {
+    var prices: [Int]
 }

@@ -13,12 +13,14 @@ class RegionCell: UICollectionViewCell {
     static let nib = UINib(nibName: RegionCell.reuseIdentifier, bundle: nil)
     
     @IBOutlet weak var regionLabel: UILabel!
+    private(set) var cityId: Int!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     func fillUI(with region: Region) {
+        self.cityId = region.id
         self.regionLabel.text = region.name
     }
 

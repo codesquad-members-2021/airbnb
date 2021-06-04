@@ -17,10 +17,32 @@
 		AE0B5DEF26563BE4000B35E7 /* RecommandedDestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DEE26563BE4000B35E7 /* RecommandedDestinationViewController.swift */; };
 		AE0B5DF3265642B2000B35E7 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B5DF1265642B2000B35E7 /* CategoryCell.swift */; };
 		AE0B5DF4265642B2000B35E7 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE0B5DF2265642B2000B35E7 /* CategoryCell.xib */; };
+		AE11F5AA265F3D250034779F /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11F5A9265F3D250034779F /* DayCell.swift */; };
+		AE11F5AC265F3D5F0034779F /* DateGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11F5AB265F3D5F0034779F /* DateGenerator.swift */; };
+		AE11F5AE265F3D920034779F /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11F5AD265F3D920034779F /* Date+extension.swift */; };
+		AE2049A72669CD1200C149B8 /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2049A62669CD1200C149B8 /* RoomCell.swift */; };
+		AE2049AA2669CF6700C149B8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2049A82669CF6700C149B8 /* MapViewController.swift */; };
+		AE2049AB2669CF6700C149B8 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE2049A92669CF6700C149B8 /* MapViewController.xib */; };
+		AE2049AE266A12A500C149B8 /* RoomOrthoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2049AC266A12A500C149B8 /* RoomOrthoCell.swift */; };
+		AE2049AF266A12A500C149B8 /* RoomOrthoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE2049AD266A12A500C149B8 /* RoomOrthoCell.xib */; };
 		AE3FE07526574E7000A95177 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07426574E7000A95177 /* SearchCityViewController.swift */; };
 		AE3FE07726578F1700A95177 /* RegionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07626578F1700A95177 /* RegionData.swift */; };
 		AE3FE07A26579D3B00A95177 /* RegionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07826579D3B00A95177 /* RegionCell.swift */; };
 		AE3FE07B26579D3B00A95177 /* RegionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE3FE07926579D3B00A95177 /* RegionCell.xib */; };
+		AE53DF092660885600A72A87 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53DF082660885600A72A87 /* CalendarViewModel.swift */; };
+		AE87A77926687F1C003E9541 /* PeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A77826687F1C003E9541 /* PeopleTableViewController.swift */; };
+		AE87A77C26687F71003E9541 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A77A26687F71003E9541 /* PersonCell.swift */; };
+		AE87A77D26687F71003E9541 /* PersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE87A77B26687F71003E9541 /* PersonCell.xib */; };
+		AE87A7812668992C003E9541 /* PeopleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A7802668992C003E9541 /* PeopleViewModel.swift */; };
+		AE87A7842668D19D003E9541 /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A7832668D19D003E9541 /* RoomsViewController.swift */; };
+		AE87A7862668DF22003E9541 /* RoomsSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A7852668DF22003E9541 /* RoomsSupplementaryView.swift */; };
+		AE87A7892668DFB1003E9541 /* AccommodationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A7872668DFB1003E9541 /* AccommodationCell.swift */; };
+		AE87A78A2668DFB1003E9541 /* AccommodationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE87A7882668DFB1003E9541 /* AccommodationCell.xib */; };
+		AE87A78C266906AE003E9541 /* RoomsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A78B266906AE003E9541 /* RoomsUseCase.swift */; };
+		AE87A78E26690954003E9541 /* RoomDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A78D26690954003E9541 /* RoomDTO.swift */; };
+		AE87A79726693CD3003E9541 /* DetailRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A79526693CD3003E9541 /* DetailRoomViewController.swift */; };
+		AE87A79826693CD3003E9541 /* DetailRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE87A79626693CD3003E9541 /* DetailRoomViewController.xib */; };
+		AE87A79A266957AF003E9541 /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A799266957AF003E9541 /* RoomViewModel.swift */; };
 		AE8CD3B42653538700BCB8FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B32653538700BCB8FC /* AppDelegate.swift */; };
 		AE8CD3B62653538700BCB8FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B52653538700BCB8FC /* SceneDelegate.swift */; };
 		AE8CD3B82653538700BCB8FC /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B72653538700BCB8FC /* MainPageViewController.swift */; };
@@ -29,6 +51,13 @@
 		AE8CD3C02653538800BCB8FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE8CD3BE2653538800BCB8FC /* LaunchScreen.storyboard */; };
 		AE8CD3CB2653538800BCB8FC /* AirbnbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3CA2653538800BCB8FC /* AirbnbTests.swift */; };
 		AE8CD3D62653538800BCB8FC /* AirbnbUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3D52653538800BCB8FC /* AirbnbUITests.swift */; };
+		AE9AC6A7265CCCBF0038C198 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9AC6A6265CCCBF0038C198 /* CalendarViewController.swift */; };
+		AEC52F6E2663FEB200D8F802 /* ConditionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC52F6D2663FEB200D8F802 /* ConditionTableViewController.swift */; };
+		AEC52F712663FF3600D8F802 /* ConditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC52F6F2663FF3600D8F802 /* ConditionCell.swift */; };
+		AEC52F742664041200D8F802 /* ConditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC52F732664041200D8F802 /* ConditionViewModel.swift */; };
+		AEF03BA526674E8200050531 /* PriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF03BA426674E8200050531 /* PriceViewController.swift */; };
+		AEF03BA726675AB200050531 /* PriceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF03BA626675AB200050531 /* PriceUseCase.swift */; };
+		AEF03BA92667649000050531 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF03BA82667649000050531 /* PeopleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,10 +88,32 @@
 		AE0B5DEE26563BE4000B35E7 /* RecommandedDestinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandedDestinationViewController.swift; sourceTree = "<group>"; };
 		AE0B5DF1265642B2000B35E7 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		AE0B5DF2265642B2000B35E7 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
+		AE11F5A9265F3D250034779F /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
+		AE11F5AB265F3D5F0034779F /* DateGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateGenerator.swift; sourceTree = "<group>"; };
+		AE11F5AD265F3D920034779F /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
+		AE2049A62669CD1200C149B8 /* RoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
+		AE2049A82669CF6700C149B8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		AE2049A92669CF6700C149B8 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		AE2049AC266A12A500C149B8 /* RoomOrthoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomOrthoCell.swift; sourceTree = "<group>"; };
+		AE2049AD266A12A500C149B8 /* RoomOrthoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomOrthoCell.xib; sourceTree = "<group>"; };
 		AE3FE07426574E7000A95177 /* SearchCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
 		AE3FE07626578F1700A95177 /* RegionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionData.swift; sourceTree = "<group>"; };
 		AE3FE07826579D3B00A95177 /* RegionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionCell.swift; sourceTree = "<group>"; };
 		AE3FE07926579D3B00A95177 /* RegionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegionCell.xib; sourceTree = "<group>"; };
+		AE53DF082660885600A72A87 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		AE87A77826687F1C003E9541 /* PeopleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewController.swift; sourceTree = "<group>"; };
+		AE87A77A26687F71003E9541 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		AE87A77B26687F71003E9541 /* PersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonCell.xib; sourceTree = "<group>"; };
+		AE87A7802668992C003E9541 /* PeopleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewModel.swift; sourceTree = "<group>"; };
+		AE87A7832668D19D003E9541 /* RoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
+		AE87A7852668DF22003E9541 /* RoomsSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsSupplementaryView.swift; sourceTree = "<group>"; };
+		AE87A7872668DFB1003E9541 /* AccommodationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccommodationCell.swift; sourceTree = "<group>"; };
+		AE87A7882668DFB1003E9541 /* AccommodationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccommodationCell.xib; sourceTree = "<group>"; };
+		AE87A78B266906AE003E9541 /* RoomsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsUseCase.swift; sourceTree = "<group>"; };
+		AE87A78D26690954003E9541 /* RoomDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDTO.swift; sourceTree = "<group>"; };
+		AE87A79526693CD3003E9541 /* DetailRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRoomViewController.swift; sourceTree = "<group>"; };
+		AE87A79626693CD3003E9541 /* DetailRoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailRoomViewController.xib; sourceTree = "<group>"; };
+		AE87A799266957AF003E9541 /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
 		AE8CD3B02653538700BCB8FC /* Airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE8CD3B32653538700BCB8FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE8CD3B52653538700BCB8FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +128,13 @@
 		AE8CD3D12653538800BCB8FC /* AirbnbUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirbnbUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE8CD3D52653538800BCB8FC /* AirbnbUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirbnbUITests.swift; sourceTree = "<group>"; };
 		AE8CD3D72653538800BCB8FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE9AC6A6265CCCBF0038C198 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		AEC52F6D2663FEB200D8F802 /* ConditionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionTableViewController.swift; sourceTree = "<group>"; };
+		AEC52F6F2663FF3600D8F802 /* ConditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionCell.swift; sourceTree = "<group>"; };
+		AEC52F732664041200D8F802 /* ConditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionViewModel.swift; sourceTree = "<group>"; };
+		AEF03BA426674E8200050531 /* PriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewController.swift; sourceTree = "<group>"; };
+		AEF03BA626675AB200050531 /* PriceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceUseCase.swift; sourceTree = "<group>"; };
+		AEF03BA82667649000050531 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +204,59 @@
 			path = MainPage;
 			sourceTree = "<group>";
 		};
+		AE87A7822668D149003E9541 /* ResultPage */ = {
+			isa = PBXGroup;
+			children = (
+				AE87A792266909CF003E9541 /* ViewController */,
+				AE87A790266909AC003E9541 /* UseCase */,
+				AE87A791266909B8003E9541 /* View */,
+				AE87A78F266909A4003E9541 /* Model */,
+			);
+			path = ResultPage;
+			sourceTree = "<group>";
+		};
+		AE87A78F266909A4003E9541 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE87A78D26690954003E9541 /* RoomDTO.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AE87A790266909AC003E9541 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				AE87A78B266906AE003E9541 /* RoomsUseCase.swift */,
+				AE87A799266957AF003E9541 /* RoomViewModel.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		AE87A791266909B8003E9541 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AE87A7852668DF22003E9541 /* RoomsSupplementaryView.swift */,
+				AE87A7872668DFB1003E9541 /* AccommodationCell.swift */,
+				AE87A7882668DFB1003E9541 /* AccommodationCell.xib */,
+				AE2049A62669CD1200C149B8 /* RoomCell.swift */,
+				AE2049AC266A12A500C149B8 /* RoomOrthoCell.swift */,
+				AE2049AD266A12A500C149B8 /* RoomOrthoCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AE87A792266909CF003E9541 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AE87A7832668D19D003E9541 /* RoomsViewController.swift */,
+				AE2049A82669CF6700C149B8 /* MapViewController.swift */,
+				AE2049A92669CF6700C149B8 /* MapViewController.xib */,
+				AE87A79526693CD3003E9541 /* DetailRoomViewController.swift */,
+				AE87A79626693CD3003E9541 /* DetailRoomViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		AE8CD3A72653538700BCB8FC = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +282,8 @@
 			children = (
 				AE8CD3B92653538700BCB8FC /* Main.storyboard */,
 				AE0B5DF526566D00000B35E7 /* MainPage */,
+				AE9AC6A5265CC1DE0038C198 /* ConditionPage */,
+				AE87A7822668D149003E9541 /* ResultPage */,
 				AE0B5DDE2655FCA0000B35E7 /* Network.swift */,
 				AE8CD3E32653543100BCB8FC /* SupportingFiles */,
 			);
@@ -216,6 +329,60 @@
 				AE0B5DEA265631D7000B35E7 /* DetailDestinationViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		AE9AC6A5265CC1DE0038C198 /* ConditionPage */ = {
+			isa = PBXGroup;
+			children = (
+				AEC52F6C2663FDEB00D8F802 /* Condition */,
+				AEC52F6A2663F28100D8F802 /* Calendar */,
+				AEF03BA326674E6000050531 /* Price */,
+				AEF03BAA2667678E00050531 /* People */,
+			);
+			path = ConditionPage;
+			sourceTree = "<group>";
+		};
+		AEC52F6A2663F28100D8F802 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				AE9AC6A6265CCCBF0038C198 /* CalendarViewController.swift */,
+				AE53DF082660885600A72A87 /* CalendarViewModel.swift */,
+				AE11F5AD265F3D920034779F /* Date+extension.swift */,
+				AE11F5AB265F3D5F0034779F /* DateGenerator.swift */,
+				AE11F5A9265F3D250034779F /* DayCell.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		AEC52F6C2663FDEB00D8F802 /* Condition */ = {
+			isa = PBXGroup;
+			children = (
+				AEC52F6D2663FEB200D8F802 /* ConditionTableViewController.swift */,
+				AEC52F6F2663FF3600D8F802 /* ConditionCell.swift */,
+				AEC52F732664041200D8F802 /* ConditionViewModel.swift */,
+			);
+			path = Condition;
+			sourceTree = "<group>";
+		};
+		AEF03BA326674E6000050531 /* Price */ = {
+			isa = PBXGroup;
+			children = (
+				AEF03BA426674E8200050531 /* PriceViewController.swift */,
+				AEF03BA626675AB200050531 /* PriceUseCase.swift */,
+			);
+			path = Price;
+			sourceTree = "<group>";
+		};
+		AEF03BAA2667678E00050531 /* People */ = {
+			isa = PBXGroup;
+			children = (
+				AEF03BA82667649000050531 /* PeopleViewController.swift */,
+				AE87A77826687F1C003E9541 /* PeopleTableViewController.swift */,
+				AE87A7802668992C003E9541 /* PeopleViewModel.swift */,
+				AE87A77A26687F71003E9541 /* PersonCell.swift */,
+				AE87A77B26687F71003E9541 /* PersonCell.xib */,
+			);
+			path = People;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,7 +490,12 @@
 			files = (
 				AE0B5DF4265642B2000B35E7 /* CategoryCell.xib in Resources */,
 				AE8CD3C02653538800BCB8FC /* LaunchScreen.storyboard in Resources */,
+				AE87A79826693CD3003E9541 /* DetailRoomViewController.xib in Resources */,
+				AE2049AB2669CF6700C149B8 /* MapViewController.xib in Resources */,
+				AE87A77D26687F71003E9541 /* PersonCell.xib in Resources */,
+				AE2049AF266A12A500C149B8 /* RoomOrthoCell.xib in Resources */,
 				AE8CD3BD2653538800BCB8FC /* Assets.xcassets in Resources */,
+				AE87A78A2668DFB1003E9541 /* AccommodationCell.xib in Resources */,
 				AE0B5DE72656073E000B35E7 /* CityCell.xib in Resources */,
 				AE8CD3BB2653538700BCB8FC /* Main.storyboard in Resources */,
 				AE3FE07B26579D3B00A95177 /* RegionCell.xib in Resources */,
@@ -351,20 +523,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEF03BA92667649000050531 /* PeopleViewController.swift in Sources */,
+				AE9AC6A7265CCCBF0038C198 /* CalendarViewController.swift in Sources */,
+				AE87A78E26690954003E9541 /* RoomDTO.swift in Sources */,
+				AE87A78C266906AE003E9541 /* RoomsUseCase.swift in Sources */,
+				AEF03BA726675AB200050531 /* PriceUseCase.swift in Sources */,
+				AE87A79A266957AF003E9541 /* RoomViewModel.swift in Sources */,
+				AE11F5AE265F3D920034779F /* Date+extension.swift in Sources */,
 				AE0B5DE326560287000B35E7 /* MainPageUseCase.swift in Sources */,
 				AE0B5DEF26563BE4000B35E7 /* RecommandedDestinationViewController.swift in Sources */,
 				AE0B5DE12655FE1F000B35E7 /* MainPageDTO.swift in Sources */,
 				AE3FE07A26579D3B00A95177 /* RegionCell.swift in Sources */,
+				AE2049AE266A12A500C149B8 /* RoomOrthoCell.swift in Sources */,
+				AEC52F742664041200D8F802 /* ConditionViewModel.swift in Sources */,
 				AE3FE07526574E7000A95177 /* SearchCityViewController.swift in Sources */,
+				AEC52F712663FF3600D8F802 /* ConditionCell.swift in Sources */,
+				AEF03BA526674E8200050531 /* PriceViewController.swift in Sources */,
+				AE87A77C26687F71003E9541 /* PersonCell.swift in Sources */,
+				AE11F5AA265F3D250034779F /* DayCell.swift in Sources */,
+				AE11F5AC265F3D5F0034779F /* DateGenerator.swift in Sources */,
 				AE3FE07726578F1700A95177 /* RegionData.swift in Sources */,
+				AE87A7842668D19D003E9541 /* RoomsViewController.swift in Sources */,
 				AE0B5DEB265631D7000B35E7 /* DetailDestinationViewController.swift in Sources */,
+				AE87A77926687F1C003E9541 /* PeopleTableViewController.swift in Sources */,
 				AE0B5DDF2655FCA0000B35E7 /* Network.swift in Sources */,
 				AE8CD3B82653538700BCB8FC /* MainPageViewController.swift in Sources */,
+				AE53DF092660885600A72A87 /* CalendarViewModel.swift in Sources */,
 				AE8CD3B42653538700BCB8FC /* AppDelegate.swift in Sources */,
 				AE0B5DE926562D4A000B35E7 /* TitleSupplementaryView.swift in Sources */,
+				AE2049AA2669CF6700C149B8 /* MapViewController.swift in Sources */,
 				AE0B5DE62656073E000B35E7 /* CityCell.swift in Sources */,
+				AE87A79726693CD3003E9541 /* DetailRoomViewController.swift in Sources */,
+				AE87A7862668DF22003E9541 /* RoomsSupplementaryView.swift in Sources */,
 				AE8CD3B62653538700BCB8FC /* SceneDelegate.swift in Sources */,
+				AE87A7812668992C003E9541 /* PeopleViewModel.swift in Sources */,
 				AE0B5DF3265642B2000B35E7 /* CategoryCell.swift in Sources */,
+				AE87A7892668DFB1003E9541 /* AccommodationCell.swift in Sources */,
+				AE2049A72669CD1200C149B8 /* RoomCell.swift in Sources */,
+				AEC52F6E2663FEB200D8F802 /* ConditionTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

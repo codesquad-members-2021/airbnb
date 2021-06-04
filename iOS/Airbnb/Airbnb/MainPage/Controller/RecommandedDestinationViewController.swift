@@ -36,13 +36,13 @@ class RecommendedDestinationViewController: UIViewController {
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
     
-    private let viewModel = MainPageUseCase()
+    private let mainUseCase = MainPageUseCase()
     private var cancelBag = Set<AnyCancellable>()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.requestMainPage()
+        mainUseCase.requestMainPage()
         bind()
         
         configureHierarchy()
@@ -55,14 +55,14 @@ class RecommendedDestinationViewController: UIViewController {
 extension RecommendedDestinationViewController {
     
     private func bind() {
-        viewModel.$mainPage.receive(on: DispatchQueue.main)
+        mainUseCase.$mainPage.receive(on: DispatchQueue.main)
             .sink { mainPage in
                 guard let mainPage = mainPage else { return }
                 self.applyInitialSnapshots(with: mainPage)
             }
             .store(in: &cancelBag)
         
-        viewModel.$error
+        mainUseCase.$error
             .receive(on: DispatchQueue.main)
             .sink { error in
                 guard let error = error else { return }

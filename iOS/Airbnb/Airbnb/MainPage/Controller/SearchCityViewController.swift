@@ -17,14 +17,15 @@ class SearchCityViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Int, City>!
     private var regionDataSource: UICollectionViewDiffableDataSource<Int, Region>!
     
-    private var viewModel = MainPageUseCase()
+    private var conditionViewModel = ConditionViewModel()
+    private var mainUseCase = MainPageUseCase()
     private var cancelBag = Set<AnyCancellable>()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSearchBar()
-        viewModel.requestMainPage()
+        mainUseCase.requestMainPage()
         bind()
         configureHierarchy()
         configureDataSource()
@@ -36,14 +37,14 @@ class SearchCityViewController: UIViewController {
 extension SearchCityViewController {
     
     private func bind() {
-        viewModel.$mainPage.receive(on: DispatchQueue.main)
+        mainUseCase.$mainPage.receive(on: DispatchQueue.main)
             .sink { mainPage in
                 guard let mainPage = mainPage else { return }
                 self.applySnapshots(with: mainPage.cities)
             }
             .store(in: &cancelBag)
         
-        viewModel.$error
+        mainUseCase.$error
             .receive(on: DispatchQueue.main)
             .sink { error in
                 guard let error = error else { return }
@@ -251,12 +252,22 @@ extension SearchCityViewController {
 extension SearchCityViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailViewController = DetailDestinationViewController()
-        self.navigationController?.pushViewController(detailViewController, animated: true)
+        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+        
+        if cell is CityCell {
+            let nextViewController = DetailDestinationViewController()
+            self.navigationController?.pushViewController(nextViewController, animated: true)
+        } else if cell is RegionCell {
+            guard let cell = cell as? RegionCell else { return }
+            conditionViewModel.updateCondition(city: cell.cityId)
+            let nextViewController = CalendarViewController(conditionViewModel: conditionViewModel)
+            self.navigationController?.pushViewController(nextViewController, animated: true)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
         
         guard let indexPath = self.collectionView.indexPathsForSelectedItems?.first else { return }
         if let coordinator = self.transitionCoordinator {
