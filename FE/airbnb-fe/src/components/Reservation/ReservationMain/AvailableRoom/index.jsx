@@ -17,8 +17,6 @@ const AvailableRoom = ({ roomData, setIsPayModalClicked }) => {
     return dateDiff;
   };
 
-  // useEffect(()=>{},[]);
-
   return (
     <AvailableRoomDiv>
       <ReservationConditionData>
@@ -46,10 +44,9 @@ const AvailableRoom = ({ roomData, setIsPayModalClicked }) => {
 const AvailableRoomDiv = styled.div`
   position: relative;
   top: 126px;
-  width: 52%; //map=49.2%;
+  width: 52%;
   min-width: 640px;
   max-width: 790px;
-  //768px정도 줄어들었을때 width를 100%, 그리고 지도쪽 display:none;
   margin: 0 24px;
 `;
 

@@ -28,7 +28,7 @@ const ReservationHeader = () => {
         <>
           <ReservationHeaderDiv ref={searchElement}>
             <HeaderDiv>
-              <AirbnbIcon width={'100px'} />
+              <AirbnbIcon width="100px" />
               <NavSelectDiv>
                 <div>숙소</div>
                 <div>체험</div>
@@ -43,7 +43,7 @@ const ReservationHeader = () => {
         <>
           <ReservationHeaderDiv>
             <HeaderDiv>
-              <AirbnbIcon />
+              <AirbnbIcon width="100px" />
               <div onClick={() => setBarType('normal')}>
                 <Search matchParam={match.params} barType={barType} />
               </div>

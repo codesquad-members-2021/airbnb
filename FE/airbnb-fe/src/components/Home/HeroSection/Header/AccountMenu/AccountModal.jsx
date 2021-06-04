@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import LoginBtn from './LoginPage';
 
-const AccountModal = () => {
+const AccountModal = ({ setProfileURL }) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
 
@@ -10,7 +10,7 @@ const AccountModal = () => {
     setIsMouseOver(true);
   };
   const token = localStorage.getItem('token');
-  console.log(localStorage.getItem('token'));
+
   useEffect(() => {
     if (token) {
       setIsLogin(true);
@@ -23,18 +23,13 @@ const AccountModal = () => {
 
   const handleLogOut = () => {
     setIsLogin(false);
+    setProfileURL(null);
     localStorage.removeItem('token');
+    localStorage.removeItem('ProfileURL');
   };
 
   return (
     <AccountModalDiv>
-      {/* <AccountModalItem
-        isMouseOver={isMouseOver}
-        onMouseOver={() => handleLoginMouseOver()}
-        onMouseLeave={() => handleLoginMouseLeave()}
-      >
-        {isLogin ? '로그아웃' : `${isMouseOver ? <LoginBtn /> : '로그인'}`}
-      </AccountModalItem> */}
       {isLogin ? (
         <AccountLogout onClick={() => handleLogOut()}>로그아웃</AccountLogout>
       ) : (

@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import styled from 'styled-components';
-
+import getRegex from '../../../utils/getRegex';
 /*global kakao*/
 const RoomMap = ({ roomData }) => {
-  // const place = roomData.accommodationList.map((v) => [
-  //   v.latitude,
-  //   v.longitude,
-  // ]);
-  const placeArray = roomData
-    ? roomData.accommodationList.map((v) => [v.latitude, v.longitude])
-    : [[0, 0]];
-
-  // console.log(placeArray);
+  const placeArray = useMemo(
+    () =>
+      roomData
+        ? roomData.accommodationList.map((room) => [
+            room.latitude,
+            room.longitude,
+            room.charge,
+          ])
+        : [[0, 0, 0]],
+    [roomData]
+  );
 
   useEffect(() => {
     const container = document.getElementById('myMap');
@@ -22,24 +24,41 @@ const RoomMap = ({ roomData }) => {
     };
     const map = new kakao.maps.Map(container, options);
 
-    function displayMarker(place) {
-      let marker = new kakao.maps.Marker({
+    const displayMarker = (place) => {
+      const content = `<div class=marker>₩ ${getRegex(place[2])}</div>`;
+      new kakao.maps.CustomOverlay({
         map: map,
         position: new kakao.maps.LatLng(place[0], place[1]),
+        content: content,
+        yAnchor: 1,
       });
-    }
+    };
     placeArray.map((loc) => displayMarker(loc));
   }, [placeArray]);
 
   return <MapContainer id="myMap"></MapContainer>;
 };
-// console.log('ROOMMAP', roomData);
 
 const MapContainer = styled.div`
   width: 90%;
   height: 100vh;
   position: sticky;
   top: 0;
+  .marker {
+    padding: 4px 12px;
+    background-color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.gray2};
+    box-shadow: 0px 0px 4px rgba(204, 204, 204, 0.5),
+      0px 2px 4px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
+    font-weight: 600;
+    font-size: ${({ theme }) => theme.fontSizes.XS};
+    border-radius: 0.5rem;
+    :hover {
+      color: ${({ theme }) => theme.colors.magenta};
+      background-color: ${({ theme }) => theme.colors.gray6};
+    }
+  }
 `;
 
 export default RoomMap;

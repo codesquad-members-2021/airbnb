@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CityCard from './CityCard';
-// import cityData from '../../../utils/mock/city-card.json';
 import API from '../../../utils/API';
 
 const CityTour = () => {

@@ -19,9 +19,6 @@ const SearchBtn = () => {
 
   const isModalClicked = clicked.checkInOut || clicked.price || clicked.people;
 
-  // http://3.35.226.74/airbnb/?location=seoul&checkin=2021-05-28&checkout=2021-06-02&adults=2&children=1&infants=1
-  ///reservation/:location/:checkIn/:checkOut/:adults/:children/:infants/:minPrice/:maxPrice
-
   return (
     <Link
       to={`/reservation/seoul/${checkInDate}/${checkOutDate}/${peopleCount.adult}/${peopleCount.child}/${peopleCount.baby}/${priceData.minPrice}/${priceData.maxPrice}`}

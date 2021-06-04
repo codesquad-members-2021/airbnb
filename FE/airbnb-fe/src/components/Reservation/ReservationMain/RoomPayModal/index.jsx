@@ -8,27 +8,18 @@ const RoomMapPayModal = () => {
   const getDiscountPrice = (charge, days, percent) => {
     return Math.floor(parseInt(charge) * percent * 0.01 * Math.floor(days / 7));
   };
+  const getFee = (charge, percent) => {
+    return Math.floor(parseInt(charge) * percent * 0.01);
+  };
   const totalFee = payModalData.chargePerDay * payModalData.days;
   const discountWeek = getDiscountPrice(
     payModalData.chargePerDay,
     payModalData.days,
     20
   );
-  const cleaningFee = getDiscountPrice(
-    payModalData.chargePerDay,
-    payModalData.days,
-    4
-  );
-  const serviceFee = getDiscountPrice(
-    payModalData.chargePerDay,
-    payModalData.days,
-    12
-  );
-  const roomTaxFee = getDiscountPrice(
-    payModalData.chargePerDay,
-    payModalData.days,
-    8
-  );
+  const cleaningFee = getFee(payModalData.chargePerDay, 4);
+  const serviceFee = getFee(payModalData.chargePerDay, 12);
+  const roomTaxFee = getFee(payModalData.chargePerDay, 8);
 
   return (
     <RoomMapPayModalDiv className="paymodal">
@@ -183,6 +174,10 @@ const RoomReserveBtn = styled.button`
   font-weight: bold;
   cursor: pointer;
   font-size: ${({ theme }) => theme.fontSizes.XS};
+  :hover {
+    box-shadow: 0px 0px 4px rgba(204, 204, 204, 0.5),
+      0px 2px 4px rgba(0, 0, 0, 0.25);
+  }
 `;
 const RoomPayDiv = styled.div`
   margin: 1rem 0 1.5rem 0;

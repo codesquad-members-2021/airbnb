@@ -7,13 +7,16 @@ import MenuIcon from '../../../../Atoms/icons/MenuIcon.jsx';
 
 const AccountMenu = () => {
   const AccountModalElement = useRef();
-
+  const [profileURL, setProfileURL] = useState('');
   const [isAccountClicked, setIsAccountClicked] = useState(false);
   const handleAccountMenuClick = () => {
     setIsAccountClicked(!isAccountClicked);
   };
 
   useEffect(() => {
+    const profileImg = localStorage.getItem('ProfileURL');
+    setProfileURL(profileImg);
+
     const modalOff = (e) => {
       if (isAccountClicked && !AccountModalElement.current.contains(e.target)) {
         setIsAccountClicked(false);
@@ -23,21 +26,32 @@ const AccountMenu = () => {
     return () => {
       document.removeEventListener('mousedown', modalOff);
     };
-  }, [isAccountClicked]);
+  }, [isAccountClicked, profileURL]);
 
   return (
     <AccountMenuDiv ref={AccountModalElement}>
       <IconContainer onClick={() => handleAccountMenuClick()}>
         <MenuIcon />
-        <AccountIcon />
+        {profileURL ? (
+          <ProfileImg src={profileURL}></ProfileImg>
+        ) : (
+          <AccountIcon />
+        )}
       </IconContainer>
-      <ModalDiv>{isAccountClicked && <AccountModal />}</ModalDiv>
+      <ModalDiv>
+        {isAccountClicked && <AccountModal setProfileURL={setProfileURL} />}
+      </ModalDiv>
     </AccountMenuDiv>
   );
 };
 
 const AccountMenuDiv = styled.div``;
-
+const ProfileImg = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 70%;
+  /* object-fit: contain; */
+`;
 const IconContainer = styled.div`
   display: flex;
   align-items: center;
