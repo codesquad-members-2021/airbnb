@@ -36,7 +36,6 @@ const PriceBar = ({ toggleRef }: Props) => {
   const [btnLastPosition, setBtnLastPosition] = useRecoilState(pauseBtnLastPositionState);
   const [priceRange, setPriceRange] = useRecoilState(priceState);
 
-  console.log(priceData);
   const minPrice = getNumberWithComma(priceRange.min);
   const maxPrice = getNumberWithComma(priceRange.max);
   const priceAverage = getNumberWithComma(getPriceAverage(priceData));
