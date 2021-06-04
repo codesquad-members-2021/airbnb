@@ -50,6 +50,18 @@ struct Room: Codable, Hashable {
         var airConditioner: Bool
         var wiFi: Bool
         var kitchen: Bool
+        
+        var description: String {
+            var result = "최대 인원 \(maxPeople)명"
+            let oneRoom = oneRoom ? " ∙ 원룸" : ""
+            let count = "∙ 침대 \(bedCount)개 ∙ 욕실 \(bathCount)개"
+            let hairDryer = hairDryer ? " ∙ 헤어드라이어" : ""
+            let airConditioner = airConditioner ? " ∙ 에어컨" : ""
+            let wifi = wiFi ? " ∙ 와이파이" : ""
+            let kitchen = kitchen ? " ∙ 부엌" : ""
+            result = result + oneRoom + count + hairDryer + airConditioner + wifi + kitchen
+            return result
+        }
     }
     
     struct Tax: Codable, Hashable {

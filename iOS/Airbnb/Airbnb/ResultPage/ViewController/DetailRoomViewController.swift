@@ -34,6 +34,7 @@ class DetailRoomViewController: UIViewController {
         configureHierarchy()
         configureDataSource()
         applySnapshots()
+        fillUI()
     }
     
 }
@@ -95,6 +96,28 @@ extension DetailRoomViewController: UICollectionViewDelegate {
         }
     }
     
+}
+
+
+extension DetailRoomViewController {
+    
+    private func fillUI() {
+        guard let room = roomViewModel.room else { return }
+        titleLable.text = room.title
+        gradeLabel.text = "\(room.grade)"
+        reviewLabel.text = "후기 \(room.reviewCount)개"
+        positionLabel.text = conditionViewModel.convertedCity()
+        hostLabel.text = "호스트: \(room.host.id)님"
+        detailLabel.text = room.detail.description
+        descriptionLabel.text = room.description
+        priceLabel.text = "₩\(room.price) / 박"
+        dateLabel.text = conditionViewModel.schedule?.description
+        
+        guard let url = URL(string: room.host.profileImageUrl) else { return }
+        let data = try? Data(contentsOf: url)
+        hostImageView.image = UIImage(data: data!) ?? UIImage()
+    }
+
 }
 
 
