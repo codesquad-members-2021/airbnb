@@ -32,7 +32,7 @@ const FormCheckIn = ({ checkOutRef }: Props) => {
   }, [open]);
 
   const date = getDateByTime(selectDate.checkIn);
-  const description = date ? `${date.month}월 ${date.day}일` : '날짜';
+  const description = date.month !== 0 ? `${date.month}월 ${date.day}일` : '날짜';
   const isShowDeleteBtn = !!selectDate.checkIn && open && selectBox === 'checkIn';
 
   const resetClickHandler = (e: MouseEvent): void => {
