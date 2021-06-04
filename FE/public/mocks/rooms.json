@@ -1,0 +1,587 @@
+{
+  "rooms": [
+    {
+      "id": 1,
+      "max": 3,
+      "name": "[강남,역삼] 강남 아파트에서 살아 보기",
+      "rating": 4.82,
+      "latitude": 37.49784,
+      "longitude": 127.03029,
+      "bedroomCount": 1,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "address": "서울특별시 강남구 역삼동",
+      "detailAddress": "824-7번지 4층",
+      "commentCount": 62,
+      "originalPrice": 80000,
+      "salePrice": 72000,
+      "flexibleRefund": false,
+      "immediateBooking": true,
+      "thumbnails": [
+        "https://a0.muscache.com/im/pictures/c45d08e5-f560-44f0-83fc-83290ccd1670.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/e3258341-b4f3-4988-b958-bec903936a0b.jpg?im_w=720"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": [
+        "슈퍼호스트"
+      ]
+    },
+    {
+      "id": 2,
+      "max": 4,
+      "name": "[강남역 8분] 서초구 채광 좋은 집",
+      "rating": 4.99,
+      "latitude": 37.49272,
+      "longitude": 127.02966,
+      "bedroomCount": 1,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "address": "서울특별시 서초구 서초동",
+      "detailAddress": "광일프라자 11층",
+      "commentCount": 33,
+      "originalPrice": 60000,
+      "salePrice": 54000,
+      "flexibleRefund": false,
+      "immediateBooking": true,
+      "thumbnails": [
+        "https://a0.muscache.com/im/pictures/eb1c2b7a-0c04-4fb1-96eb-0e0d4c846d2c.jpg?im_w=720"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 3,
+      "max": 1,
+      "name": "[역삼역 도보2분] 1인 숙박 합리적인 가격",
+      "rating": 4.09,
+      "latitude": 37.50144,
+      "longitude": 127.03469,
+      "bedroomCount": 1,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "address": "서울특별시 강남구 역삼동",
+      "detailAddress": "역삼1동 644-12",
+      "commentCount": 20,
+      "originalPrice": 40000,
+      "salePrice": 36000,
+      "flexibleRefund": false,
+      "immediateBooking": true,
+      "thumbnails": [
+        "https://a0.muscache.com/im/pictures/98f9b3e3-11c2-4b9c-a543-f765b1e0f913.jpg?im_w=720"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 4,
+      "max": 2,
+      "name": "[올림픽공원 도보3분] 즐거운 송파나들이",
+      "rating": 4.56,
+      "latitude": 37.51449,
+      "longitude": 127.116911,
+      "bedroomCount": 1,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "address": "서울특별시 송파구 방이동",
+      "detailAddress": "176-9",
+      "commentCount": 50,
+      "originalPrice": 80000,
+      "salePrice": 75000,
+      "flexibleRefund": true,
+      "immediateBooking": true,
+      "thumbnails": [
+        "https://cdn.pixabay.com/photo/2017/03/19/01/43/living-room-2155376_960_720.jpg"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 5,
+      "max": 4,
+      "name": "[길동 자연생태공원] 우리 아이와 신나는 자연 생태체험학습!",
+      "rating": 4.78,
+      "latitude": 37.538357,
+      "longitude": 127.150266,
+      "bedroomCount": 1,
+      "bedCount": 2,
+      "bathroomCount": 2,
+      "address": "서울특별시 강동구 길동",
+      "detailAddress": "169-9",
+      "commentCount": 34,
+      "originalPrice": 76000,
+      "salePrice": 72000,
+      "flexibleRefund": false,
+      "immediateBooking": false,
+      "thumbnails": [
+        "https://images.unsplash.com/photo-1615758043787-3f877871903a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 6,
+      "max": 2,
+      "name": "[서울숲, 뚝섬 도보3분] 핫플레이스 성수동의 인기 숙소",
+      "rating": 4.95,
+      "latitude": 37.547607,
+      "longitude": 127.042759,
+      "bedroomCount": 1,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "address": "서울특별시 성동구 성수동",
+      "detailAddress": "서울숲6길",
+      "commentCount": 88,
+      "originalPrice": 85000,
+      "salePrice": 82000,
+      "flexibleRefund": false,
+      "immediateBooking": true,
+      "thumbnails": [
+        "https://cdn.pixabay.com/photo/2016/11/18/17/20/living-room-1835923_960_720.jpg"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 7,
+      "max": 2,
+      "name": "[시즌 특별 할인] JW메리어트 동대문 스퀘어 서울",
+      "rating": 4.3,
+      "latitude": 37.5704,
+      "longitude": 127.008793,
+      "bedroomCount": 1,
+      "bedCount": 2,
+      "bathroomCount": 1,
+      "address": "서울특별시 종로구 종로5.6가동",
+      "detailAddress": "청계천로 279",
+      "commentCount": 132,
+      "originalPrice": 100000,
+      "salePrice": 90000,
+      "flexibleRefund": true,
+      "immediateBooking": true,
+      "thumbnails": [
+        "https://cf.bstatic.com/images/hotel/max1024x768/267/26774706.jpg"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 8,
+      "max": 2,
+      "name": "[혜화역, 대학로 인근] 깔끔하고 극장 가까운",
+      "rating": 4.2,
+      "latitude": 37.581978,
+      "longitude": 127.004799,
+      "bedroomCount": 1,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "address": "서울특별시 종로구 동숭동",
+      "detailAddress": "50-35",
+      "commentCount": 24,
+      "originalPrice": 78000,
+      "salePrice": 75000,
+      "flexibleRefund": true,
+      "immediateBooking": true,
+      "thumbnails": [
+        "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 9,
+      "max": 4,
+      "name": "[한사랑산악회 인증 숙소] 북한산국립공원이 코앞에",
+      "rating": 4.6,
+      "latitude": 37.617354,
+      "longitude": 127.00071,
+      "bedroomCount": 2,
+      "bedCount": 2,
+      "bathroomCount": 2,
+      "address": "서울특별시 성북구 정릉4동",
+      "detailAddress": "819-1",
+      "commentCount": 36,
+      "originalPrice": 130000,
+      "salePrice": 117000,
+      "flexibleRefund": false,
+      "immediateBooking": true,
+      "thumbnails": [
+        "https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1053&q=80"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 10,
+      "max": 2,
+      "name": "[북촌 게스트하우스] 한옥에서 정취있는 하룻밤",
+      "rating": 4.9,
+      "latitude": 37.581258,
+      "longitude": 126.986643,
+      "bedroomCount": 1,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "address": "서울특별시 종로구 계동",
+      "detailAddress": "72",
+      "commentCount": 77,
+      "originalPrice": 90000,
+      "salePrice": 85000,
+      "flexibleRefund": false,
+      "immediateBooking": true,
+      "thumbnails": [
+        "https://images.unsplash.com/photo-1591452249377-f12a034106de?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=889&q=80"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 11,
+      "max": 4,
+      "name": "[남산공원] 서울 나들이 딱 좋은 신축 아파트",
+      "rating": 4.87,
+      "latitude": 37.552826,
+      "longitude": 126.978917,
+      "bedroomCount": 2,
+      "bedCount": 2,
+      "bathroomCount": 1,
+      "address": "서울특별시 용산구 후암동",
+      "detailAddress": "30-83",
+      "commentCount": 68,
+      "originalPrice": 150000,
+      "salePrice": 135000,
+      "flexibleRefund": false,
+      "immediateBooking": false,
+      "thumbnails": [
+        "https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 12,
+      "max": 4,
+      "name": "[서울 부암동] 꿈꿔 왔던 부잣집 대저택에서 파뤼투나잇",
+      "rating": 4.94,
+      "latitude": 37.595076,
+      "longitude": 126.968375,
+      "bedroomCount": 2,
+      "bedCount": 4,
+      "bathroomCount": 3,
+      "address": "서울특별시 종로구 부암동",
+      "detailAddress": "33-1",
+      "commentCount": 22,
+      "originalPrice": 300000,
+      "salePrice": 270000,
+      "flexibleRefund": false,
+      "immediateBooking": false,
+      "thumbnails": [
+        "https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 13,
+      "max": 2,
+      "name": "[홍대입구역 3분 거리] 맛집? 쇼핑? 홍대인데 말해뭐해",
+      "rating": 4.35,
+      "latitude": 37.556184,
+      "longitude": 126.928252,
+      "bedroomCount": 1,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "address": "서울특별시 마포구 서교동",
+      "detailAddress": "와우산로 35길",
+      "commentCount": 76,
+      "originalPrice": 68000,
+      "salePrice": 65000,
+      "flexibleRefund": false,
+      "immediateBooking": false,
+      "thumbnails": [
+        "https://images.unsplash.com/photo-1614649024145-7f847b1c803f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 14,
+      "max": 4,
+      "name": "[연남동 인기] 경의선 숲길이 한눈에 보이는 깔끔 아파트",
+      "rating": 4.83,
+      "latitude": 37.562021,
+      "longitude": 126.921796,
+      "bedroomCount": 2,
+      "bedCount": 2,
+      "bathroomCount": 2,
+      "address": "서울특별시 마포구 연남동",
+      "detailAddress": "515-23",
+      "commentCount": 43,
+      "originalPrice": 200000,
+      "salePrice": 180000,
+      "flexibleRefund": false,
+      "immediateBooking": false,
+      "thumbnails": [
+        "https://images.unsplash.com/photo-1521208189313-b4fce87b63a9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 15,
+      "max": 3,
+      "name": "[여의나루역 도보5분] 한강 뷰 고급 아파트에서 오늘만은 내가 주인공",
+      "rating": 4.99,
+      "latitude": 37.526196,
+      "longitude": 126.9326,
+      "bedroomCount": 1,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "address": "서울특별시 영등포구 여의도동",
+      "detailAddress": "30번지 여의도목화아파트",
+      "commentCount": 132,
+      "originalPrice": 180000,
+      "salePrice": 175000,
+      "flexibleRefund": false,
+      "immediateBooking": false,
+      "thumbnails": [
+        "https://images.unsplash.com/photo-1565623833408-d77e39b88af6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=889&q=80"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 16,
+      "max": 2,
+      "name": "[요즘핫플] 문래동 한복판에서 힐링타임",
+      "rating": 4.85,
+      "latitude": 37.518867,
+      "longitude": 126.888921,
+      "bedroomCount": 1,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "address": "서울특별시 영등포구 문래동6가",
+      "detailAddress": "2-2",
+      "commentCount": 43,
+      "originalPrice": 100000,
+      "salePrice": 95000,
+      "flexibleRefund": true,
+      "immediateBooking": true,
+      "thumbnails": [
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=673&q=80"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 17,
+      "max": 2,
+      "name": "[꽃길만 걸어요] 너만 모르는 숨은 꽃구경 명소",
+      "rating": 4.76,
+      "latitude": 37.502817,
+      "longitude": 126.977248,
+      "bedroomCount": 1,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "address": "서울특별시 동작구 동작동",
+      "detailAddress": "현충로 210",
+      "commentCount": 38,
+      "originalPrice": 98000,
+      "salePrice": 95000,
+      "flexibleRefund": true,
+      "immediateBooking": true,
+      "thumbnails": [
+        "https://images.unsplash.com/photo-1562569609-26bfa254fae0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 18,
+      "max": 2,
+      "name": "[요즘핫플] 힙지로에서 가맥 한잔?",
+      "rating": 4.52,
+      "latitude": 37.566304,
+      "longitude": 126.995937,
+      "bedroomCount": 1,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "address": "서울특별시 중구 을지로동",
+      "detailAddress": "310-23",
+      "commentCount": 23,
+      "originalPrice": 75000,
+      "salePrice": 70000,
+      "flexibleRefund": false,
+      "immediateBooking": false,
+      "thumbnails": [
+        "https://images.unsplash.com/photo-1551339745-157fa1d72ad3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=868&q=80"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 19,
+      "max": 4,
+      "name": "살아 봤니? 반포자이",
+      "rating": 4.89,
+      "latitude": 37.506997,
+      "longitude": 127.013549,
+      "bedroomCount": 3,
+      "bedCount": 3,
+      "bathroomCount": 3,
+      "address": "서울특별시 서초구 잠원동",
+      "detailAddress": "반포대로 310-6 반포센트럴자이",
+      "commentCount": 9,
+      "originalPrice": 500000,
+      "salePrice": 480000,
+      "flexibleRefund": false,
+      "immediateBooking": false,
+      "thumbnails": [
+        "https://images.unsplash.com/photo-1542928658-22251e208ac1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80"
+      ],
+      "option": {
+        "kitchen": true,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": true,
+        "hairDryer": true
+      },
+      "badges": []
+    },
+    {
+      "id": 20,
+      "max": 4,
+      "name": "[코드스쿼드 도보1분] 최고의 코라밸(Coding & Life Balance)을 원한다면",
+      "rating": 4.02,
+      "latitude": 37.490972,
+      "longitude": 127.033687,
+      "bedroomCount": 0,
+      "bedCount": 0,
+      "bathroomCount": 0,
+      "address": "서울특별시 강남구 역삼동",
+      "detailAddress": "836-21",
+      "commentCount": 57,
+      "originalPrice": 40000,
+      "salePrice": 37000,
+      "flexibleRefund": true,
+      "immediateBooking": true,
+      "thumbnails": [
+        "https://images.unsplash.com/photo-1572124416305-f44f905bc583?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80"
+      ],
+      "option": {
+        "kitchen": false,
+        "airConditioner": true,
+        "wifi": true,
+        "freeParkingLot": false,
+        "hairDryer": false
+      },
+      "badges": []
+    }
+  ]
+}
