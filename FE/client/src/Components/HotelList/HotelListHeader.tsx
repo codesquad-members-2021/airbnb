@@ -1,10 +1,14 @@
 import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
+import { userInfoSelector } from '@/recoil/atoms';
 
 const HotelListHeader = () => {
+  const userInfo = useRecoilValue(userInfoSelector);
+  const {checkDate, range, guest} = userInfo;
   return (
     <>
       <UserSelectInfo>
-        300개 이상의 숙소 5월 12일 게스트 3명
+        300개 이상의 숙소 · {checkDate} · {range} · {guest}
      </UserSelectInfo>
       <HotelListHeaderTitle>
         지도에서 선택한 지역의 숙소

@@ -3,31 +3,29 @@ import styled from 'styled-components';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { IconButton } from "@material-ui/core";
-import { monthIndexAtom, calendarClickAtom } from '../../recoil/atoms';
 import { useRecoilState } from 'recoil';
-import { getYearAndMonth, getDayArray } from '../../utils/calendarUtil';
+import { calendarClickAtom } from '@/recoil/atoms';
+import { getYearAndMonth, getDayArray } from '@/utils/calendarUtil';
 
 type MonthProps = {
   left?: string;
   right?: string;
   date: Date;
+  handleClickMonthMove: (moveCount: number) => () => void;
 }
 
-const Month = ({ left, right, date }: MonthProps) => {
-  const [, setMonthIndex] = useRecoilState(monthIndexAtom);
+const Month = ({ left, right, date, handleClickMonthMove }: MonthProps) => {
   const [calendarClickState, setCalendarClickState] = useRecoilState(calendarClickAtom);
   const [checkInTime, checkOutTime] = calendarClickState;
-
-  const handleClickMonthMove = (moveCount: number) => () => {
-    setMonthIndex(month => month + moveCount * 2);
-  }
 
   const handleClickDaySelect = ({ currentTarget }: React.MouseEvent<HTMLElement>) => {
     if (currentTarget.getAttribute('aria-disabled') === 'true' || !currentTarget.innerText) return;
     const targetTime = Number(currentTarget.dataset.date);
     setCalendarClickState(([checkInTime, checkOutTime]) => {
       if (!checkInTime) return [targetTime];
-      if (!checkOutTime) return [checkInTime, targetTime];
+      if (!checkOutTime) {
+        return checkInTime > targetTime ? [targetTime, checkInTime] : [checkInTime, targetTime];
+      }
       if (checkOutTime === targetTime) return [targetTime, checkOutTime];
       return targetTime < checkInTime ? [targetTime, checkOutTime] : [checkInTime, targetTime];
     })
@@ -82,6 +80,9 @@ const Month = ({ left, right, date }: MonthProps) => {
 const MonthWrapper = styled.div`
   width: 50%;
   height: 100%;
+  & + &{
+    margin-left: 3%;
+  }
 `;
 
 const MonthTitle = styled.div`

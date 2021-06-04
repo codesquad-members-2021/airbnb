@@ -1,23 +1,30 @@
-import React from 'react'
+import { useMemo } from 'react';
 import styled from 'styled-components';
-import { getOnePriceSize, GraphType, getLines, getSelectedLines } from '../../utils/graphUtil';
+import { getOnePriceSize, GraphType, getLines, getSelectedLines } from '@/utils/graphUtil';
 
 const Graph = ({ rangeState, priceArray }: GraphType) => {
-  const priceCountArray = priceArray.map(price => price.length);
-  const oneSize = getOnePriceSize({ priceCountArray });
-  const line = getLines({ priceCountArray, oneSize });
-  const selectedLine = getSelectedLines({ priceCountArray, oneSize, rangeState });
-
+  const priceCountArray = useMemo(() => priceArray.map(price => price.length), [priceArray]);
+  const oneSize = useMemo(() => getOnePriceSize({ priceCountArray }), [priceCountArray]);
+  const viewBoxPosition = useMemo(() => ({
+    minX: 0,
+    minY: 0,
+    width: 500,
+    height: 100
+  }), []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const line = useMemo(() => getLines({ priceCountArray, oneSize, viewBoxPosition }), [oneSize]);
+  const selectedLine = getSelectedLines({ priceCountArray, oneSize, rangeState, viewBoxPosition });
+  const { minX, minY, width, height } = viewBoxPosition;
   return (
     <GraphWrapper>
-      <svg viewBox="0 0 500 100" >
-        <polyline
+      <svg viewBox={`${minX} ${minY} ${width} ${height}`} >
+        <path
           fill="#E5E5E5"
-          points={line}
+          d={line}
         />
-        <polyline
+        <path
           fill="#000"
-          points={selectedLine}
+          d={selectedLine}
         />
       </svg>
     </GraphWrapper>
@@ -26,5 +33,4 @@ const Graph = ({ rangeState, priceArray }: GraphType) => {
 
 export default Graph;
 
-const GraphWrapper = styled.div`
-`;
+const GraphWrapper = styled.div``;

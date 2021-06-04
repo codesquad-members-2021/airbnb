@@ -1,5 +1,7 @@
 import { atom, selector } from "recoil";
-import { getDate, currentDate } from '../utils/calendarUtil';
+import { getDate, currentDate } from '@/utils/calendarUtil';
+import { getChargeRange, getNumberOfGuest, getUserDate } from "@/utils/serviceUtils";
+import { BASE_ZOOM_LEVEL, SEOUL_LOCATION } from "@/Components/commons/base";
 
 export const monthIndexAtom = atom<number>({
   key: 'monthIndexAtom',
@@ -29,6 +31,7 @@ export const calendarClickAtom = atom<Array<number>>({
 });
 
 type SearchBarFocusAtomType = {
+  location: boolean,
   entryDate: boolean,
   charge: boolean,
   personnel: boolean,
@@ -38,6 +41,7 @@ type SearchBarFocusAtomType = {
 export const searchBarFocusAtom = atom<SearchBarFocusAtomType>({
   key: 'searchBarFocusAtom',
   default: {
+    location: false,
     entryDate: false,
     charge: false,
     personnel: false,
@@ -45,15 +49,15 @@ export const searchBarFocusAtom = atom<SearchBarFocusAtomType>({
   }
 })
 
-type PersonnelAtomType = {
+export type PersonnelAtomType = {
   adult: number;
   child: number;
   baby: number;
   [key: string]: number;
 }
 
-export const PersonnelAtom = atom<PersonnelAtomType>({
-  key: 'PersonnelAtom',
+export const personnelAtom = atom<PersonnelAtomType>({
+  key: 'personnelAtom',
   default: {
     adult: 0,
     child: 0,
@@ -62,14 +66,57 @@ export const PersonnelAtom = atom<PersonnelAtomType>({
 })
 
 export type RangeAtomType = {
-  left: number;
-  right: number;
+  leftRange: number;
+  rightRange: number;
 }
 
-export const RangeAtom = atom<RangeAtomType>({
-  key: 'RangeAtom',
-  default : {
-    left: 0,
-    right: 100
+export const rangeAtom = atom<RangeAtomType>({
+  key: 'rangeAtom',
+  default: {
+    leftRange: 0,
+    rightRange: 100
   }
 })
+
+export type LocationAtomType = {
+  name: string;
+  x: number;
+  y: number;
+}
+
+export const locationAtom = atom<LocationAtomType>({
+  key: 'locationAtom',
+  default: {
+    name: '',
+    x: 0,
+    y: 0
+  }
+})
+
+export const userInfoAtom = atom<any>({
+  key: 'userInfoAtom',
+  default: {
+    x: SEOUL_LOCATION.x,
+    y: SEOUL_LOCATION.y,
+    zoom: BASE_ZOOM_LEVEL,
+    checkIn: '',
+    checkOut: '',
+    leftRange: '',
+    rightRange: '',
+    adult: '',
+    child: '',
+    baby: ''
+  }
+});
+
+export const userInfoSelector = selector({
+  key: 'userInfoSelector',
+  get: ({ get }) => {
+    const { checkIn, checkOut, leftRange, rightRange, adult, child, baby } = get(userInfoAtom);
+    return {
+      checkDate: getUserDate({ checkIn, checkOut }),
+      range: getChargeRange({ leftRange, rightRange }),
+      guest: getNumberOfGuest({ adult, child, baby })
+    }
+  }
+});

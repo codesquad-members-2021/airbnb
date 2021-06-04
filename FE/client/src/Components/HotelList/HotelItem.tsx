@@ -1,30 +1,64 @@
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
+import { HotelListType } from '@Components/commons/baseType';
+import starImage from '@/Images/star.svg';
+import { useRecoilValue } from 'recoil';
+import { calendarClickAtom } from '@/recoil/atoms';
+import { HotelReservationInfoType } from './index';
 
-const HotelItem = () => {
+type HotelInfoTType = {
+  hotelInfo: HotelListType
+  handleClickShowReservationModal: ({ price, reviewCount }: HotelReservationInfoType) => () => void;
+}
+const ONE_DAY_TIME = 8.64e+7;
+
+const HotelItem = ({ hotelInfo, handleClickShowReservationModal }: HotelInfoTType) => {
+  const [firstDayTime, LastDayTime] = useRecoilValue(calendarClickAtom);
+  const dayCount = useMemo(() => {
+    return (LastDayTime - firstDayTime) / ONE_DAY_TIME;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [firstDayTime, LastDayTime]);
+
+  const { imageUrl, maximumOccupancy, numberOfBathrooms, numberOfBeds,
+    oneroom, price, reviewCount, reviewStarPoint, title } = hotelInfo;
+
   return (
     <HotelItemWrapper>
-      <ImageWrapper>
+      <ImageWrapper onClick={handleClickShowReservationModal({ price, reviewCount, dayCount })}>
+        <ImageTag src={imageUrl.split(',')[Math.floor(Math.random() * 7)]} alt="" />
       </ImageWrapper>
       <HotelDescWrapper>
-        <Location>
-          서초구의 아파트 전체
-        </Location>
-        <HotelTitle>
-          #자가격리 #공부 # 강남 # 선릉역3분... # 파티 #역삼동
-        </HotelTitle>
+        <Location>서울의 아파트 전체</Location>
+        <HotelTitle>{title}</HotelTitle>
+
         <HotelOption>
-          최대인원 3명 원룸 침대1개 욕실1개
+          최대인원 {maximumOccupancy}명 ·
+          {oneroom ? '원룸 · ' : ''}
+          침대{numberOfBeds}개 ·
+          욕실{numberOfBathrooms}개
         </HotelOption>
         <HotelOption>
-          주방 무선인터넷 에어컨 헤어 드라이어
+          주방 · 무선인터넷 · 에어컨 · 헤어 드라이어
         </HotelOption>
         <FooterWrapper>
           <Grade>
-            별점
+            <ReviewStarPoint>
+              <img src={starImage} alt="" style={{ float: 'left' }} />&nbsp;
+              {reviewStarPoint.toFixed(2)}
+            </ReviewStarPoint>
+            <ReviewCount>
+              (후기 {reviewCount}개)
+            </ReviewCount>
           </Grade>
           <Price>
-            <div>가격 / 박</div>
-            <div>총액</div>
+            <div>
+              <OneDayPrice>₩{price.toLocaleString()}</OneDayPrice> / 박
+            </div>
+            <TotalPrice>
+              총액 ₩{dayCount
+                ? (Math.floor(dayCount * price * 1.2)).toLocaleString()
+                : (Math.floor(price * 1.2)).toLocaleString()}
+            </TotalPrice>
           </Price>
         </FooterWrapper>
       </HotelDescWrapper>
@@ -36,6 +70,7 @@ const HotelItemWrapper = styled.div`
   display:flex;
   padding: 1.5rem 0;
   height: 250px;
+  justify-content: space-around;
   & + &{
     border-top: 1px solid #E0E0E0;
   }
@@ -43,13 +78,22 @@ const HotelItemWrapper = styled.div`
 
 const ImageWrapper = styled.div`
   width: 45%;
+  max-width: 300px;
   height: 100%;
+  margin-right: 1rem;
+  &:hover{
+    cursor:pointer;
+  }
+`;
+
+const ImageTag = styled.img`
+  max-width: 100%;
+  max-height: 100%;
   border-radius: 10px;
-  margin-right: 1.5rem;
-  background:gray;
 `;
 
 const HotelDescWrapper = styled.div`
+  width: 55%;
   position:relative;
 `;
 
@@ -79,6 +123,7 @@ const Grade = styled.div`
   position: absolute;
   bottom:0;
   left:0;
+  font-size: .75rem;
 `;
 
 const Price = styled.div`
@@ -86,5 +131,21 @@ const Price = styled.div`
   text-align: end;
   bottom:0;
   right:0;
+  font-size: .75rem;
 `;
-export default HotelItem;
+
+const OneDayPrice = styled.span`
+  font-weight: 700;
+`;
+
+const TotalPrice = styled.div`
+  text-decoration: underline;
+`;
+const ReviewStarPoint = styled.span`
+  margin-right: .25rem;
+`;
+
+const ReviewCount = styled.span`
+  color: #828282;
+`;
+export default React.memo(HotelItem);

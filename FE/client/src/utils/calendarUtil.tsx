@@ -16,25 +16,39 @@ export const getYearAndMonth = (date: Date): string => {
   return `${date.getFullYear()}년 ${date.getMonth() + 1}월`;
 }
 
-export const getMonthAndDay = (dateTime:number): string => {
+export const getMonthAndDay = (dateTime: number): string => {
   const date = new Date(dateTime);
   return `${date.getMonth() + 1}월 ${date.getDate()}일`
 }
 
-export const getDayArray = (date :Date): Array<Array<string>> => {
-  const lastDayNumber = getLastDayNumber(date); 
-  const firstDayNumber = getFirstDayOfMonthNumber(date); 
+export const getDayArray = (date: Date): Array<Array<string>> => {
+  const lastDayNumber = getLastDayNumber(date);
+  const firstDayNumber = getFirstDayOfMonthNumber(date);
   let dayCount = 0;
 
   const dayArray = Array.from({ length: 6 }, (_, idx) => Array.from({ length: 7 }, (_, i) => {
     if (lastDayNumber < dayCount + 1) return '';
-    const checkPastDate  = new Date(date.getFullYear(), date.getMonth(), dayCount + 2).getTime() < currentDate.getTime();
+    const checkPastDate = new Date(date.getFullYear(), date.getMonth(), dayCount + 2).getTime() < currentDate.getTime();
     if (idx === 0) {
       return i >= firstDayNumber ? checkPastDate ? '-' + (++dayCount).toString() : (++dayCount).toString() : '';
     } else {
       return checkPastDate ? '-' + (++dayCount).toString() : (++dayCount).toString();
     }
   }));
-  
+
   return dayArray.filter(arr => arr.find(day => day !== '')); //마지막 배열에 값이 없으면 삭제하기
+}
+
+export const getFormattingDateFromTime = (dateTime: number) => {
+  const ONE_DAY_TIME = 8.64e+7;
+  const date = new Date(Number(dateTime) + ONE_DAY_TIME);
+  const [YYYYMMDD] = date.toISOString().split('T');
+  return YYYYMMDD.slice(5);
+}
+
+export const getFormattingDateFromTimeAllYear = (dateTime: number) => {
+  const ONE_DAY_TIME = 8.64e+7;
+  const date = new Date(Number(dateTime) + ONE_DAY_TIME);
+  const [YYYYMMDD] = date.toISOString().split('T');
+  return YYYYMMDD;
 }

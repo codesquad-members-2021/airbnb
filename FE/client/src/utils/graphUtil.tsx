@@ -1,10 +1,12 @@
+import { RangeStateType } from "@/Components/commons/baseType";
+
 export const getConvertedChartPrices = (priceArray: Array<number>): Array<Array<number>> => {
   const sortedPrices = [...priceArray].sort((a, b) => a - b);
   const PRICE_POINT = 20000;
   const MAX_PRICE = 1000000;
   let currentPrice = 0;
 
-  const resultArray = sortedPrices.reduce((acc: Array<Array<number>>, price) => {
+  const priceList = sortedPrices.reduce((acc: Array<Array<number>>, price) => {
     if (currentPrice === MAX_PRICE) {
       acc[acc.length - 1].push(price);
       return acc;
@@ -17,22 +19,20 @@ export const getConvertedChartPrices = (priceArray: Array<number>): Array<Array<
     return acc;
   }, [[]]);
 
+  const lengthToFill = 51 - priceList.length;
+  const resultArray = [...priceList, ...Array.from({ length: lengthToFill }, () => [])];
   return resultArray;
 }
 
-export type GraphType = {
-  rangeState: {
-    left: number,
-    right: number
-  };
+export type GraphType = RangeStateType & {
   priceArray: Array<Array<number>>
 }
 
-export const getAveragePrice = ({ rangeState: { left, right }, priceArray }: GraphType) => {
+export const getAveragePrice = ({ rangeState: { leftRange, rightRange }, priceArray }: GraphType) => {
   const priceArrayLength = priceArray.length;
 
   const selectedPriceArray = priceArray.map((count, idx) => {
-    const isSelect = (left / (100 / priceArrayLength)) <= idx && idx < Math.floor(right / (100 / priceArrayLength));
+    const isSelect = (leftRange / (100 / priceArrayLength)) <= idx && idx < Math.floor(rightRange / (100 / priceArrayLength));
     return isSelect ? count : 0;
   });
 
@@ -56,36 +56,43 @@ export const getOnePriceSize = ({ priceCountArray }: PriceCountArrayType) => {
 
 type LinesType = PriceCountArrayType & {
   oneSize: number;
+  viewBoxPosition: {
+    minX: number;
+    minY: number;
+    width: number;
+    height: number;
+  }
 }
 
-export const getLines = ({ oneSize, priceCountArray }: LinesType) => {
-  return `00, 100 \n ${priceCountArray.map((count, idx) => {
-    return `${idx * 10}, ${count ? 100 - (count * oneSize) : 100}`;
-  }).join('\n')}\n 500,100`;
+export const getLines = ({ oneSize, priceCountArray, viewBoxPosition }: LinesType) => {
+  const { minY, width, height } = viewBoxPosition;
+  return `M${minY}, ${height} \n ${priceCountArray.map((count, idx, array) => {
+    const currentCount = count ? 100 - (count * oneSize) : 100;
+    const nextCount = array[idx + 1] ? 100 - (array[idx + 1] * oneSize) : 100;
+    return `C${idx * 10 + 5}, ${currentCount}
+              ${idx * 10 + 5}, ${nextCount}
+            ${idx * 10 + 10}, ${nextCount}`;
+  }).join('\n')}\n L${width},${height}`;
 }
 
-type SelectedLinesType = LinesType & {
-  rangeState: {
-    left: number,
-    right: number
-  };
-};
+type SelectedLinesType = LinesType & RangeStateType;
 
-export const getSelectedLines = ({ priceCountArray, oneSize, rangeState: { left, right } }: SelectedLinesType) => {
-  const firstSelectIndex = priceCountArray.findIndex((_, idx) => {
-    return left / (100 / priceCountArray.length) <= idx;
-  })
+export const getSelectedLines = ({ priceCountArray, oneSize, rangeState, viewBoxPosition }: SelectedLinesType) => {
+  const { leftRange, rightRange } = rangeState;
+  const { minY, width, height } = viewBoxPosition;
 
-  const lastSelectIndex = [...priceCountArray].reverse().findIndex((_, idx) => {
-    return right / (100 / priceCountArray.length) < idx + 2;
-  })
+  const selectedLine = `M${minY}, ${height} \n ${priceCountArray.map((count, idx, array) => {
+    const isSelect = (leftRange / (100 / priceCountArray.length)) <= idx
+      && idx < Math.floor(rightRange / (100 / priceCountArray.length));
+    const isNextSelect = (leftRange / (100 / priceCountArray.length)) <= idx + 1
+      && idx + 1 < Math.floor(rightRange / (100 / priceCountArray.length));
+    const currentCount = isSelect ? 100 - (count * oneSize) : 100;
+    const nextCount = isNextSelect ? 100 - (array[idx + 1] * oneSize) : 100;
 
-  const selectedLine = `00, 100 \n ${priceCountArray.map((count, idx) => {
-    const isSelect = (left / (100 / priceCountArray.length)) <= idx && idx < Math.floor(right / (100 / priceCountArray.length));
-    const firstSelected = firstSelectIndex === idx ? `${idx * 10}, 100` : '';
-    const lastSelected = lastSelectIndex === idx ? `${idx * 10}, 100` : '';
-    return `${firstSelected} ${idx * 10}, ${isSelect ? 100 - (count * oneSize) : 100} ${lastSelected}`;
-  }).join('\n')}\n 500,100`;
+    return `C${idx * 10 + 5}, ${currentCount}
+                ${idx * 10 + 5}, ${nextCount}
+                ${idx * 10 + 10}, ${nextCount}`;
+  }).join('\n')}\n L${width},${height}`;
 
   return selectedLine;
 }
