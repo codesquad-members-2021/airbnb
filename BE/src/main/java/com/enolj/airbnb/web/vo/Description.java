@@ -1,4 +1,4 @@
-package com.enolj.airbnb.web.dto;
+package com.enolj.airbnb.web.vo;
 
 import com.enolj.airbnb.domain.house.House;
 import com.enolj.airbnb.domain.join.Join;

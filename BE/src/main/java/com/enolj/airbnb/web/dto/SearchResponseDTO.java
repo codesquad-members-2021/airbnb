@@ -2,10 +2,11 @@ package com.enolj.airbnb.web.dto;
 
 import com.enolj.airbnb.domain.house.House;
 import com.enolj.airbnb.domain.image.Image;
+import com.enolj.airbnb.web.vo.Location;
 
 import java.util.List;
 
-import static com.enolj.airbnb.web.dto.Location.createLocationByHouse;
+import static com.enolj.airbnb.web.vo.Location.createLocationByHouse;
 
 public class SearchResponseDTO {
 

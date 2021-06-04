@@ -1,4 +1,4 @@
-package com.enolj.airbnb.web.dto;
+package com.enolj.airbnb.web.vo;
 
 import java.time.LocalDate;
 

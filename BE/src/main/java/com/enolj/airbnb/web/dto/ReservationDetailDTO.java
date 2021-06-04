@@ -2,11 +2,12 @@ package com.enolj.airbnb.web.dto;
 
 import com.enolj.airbnb.domain.house.House;
 import com.enolj.airbnb.domain.join.Join;
+import com.enolj.airbnb.web.vo.Description;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import static com.enolj.airbnb.web.dto.Description.createDescription;
+import static com.enolj.airbnb.web.vo.Description.createDescription;
 
 public class ReservationDetailDTO {
 
