@@ -59,7 +59,6 @@ const priceList = selector({
       const res = await fetch(
         `http://3.35.178.32:8080/accomodation/prices/period?${reservation}`
       );
-      console.log(reservation);
       const data = await res.json();
       return await delay(3000, data);
     } catch (error) {
