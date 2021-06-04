@@ -17,10 +17,10 @@ const userLocation = atom({
 const mapSizeCoords = atom({
   key: 'mapSizeCoords',
   default: {
-    ne_latitude: 100,
-    ne_longitude: 100,
-    sw_latitude: 0,
-    sw_longitude: 0,
+    ne_latitude: 37.57992249446141,
+    ne_longitude: 127.05564290690467,
+    sw_latitude: 37.55468331278949,
+    sw_longitude: 126.92407277442867,
   },
 });
 

@@ -5,16 +5,10 @@ import { roomType } from '@components/SearchResult/types';
 
 const RoomInMap = ({ room }: props) => {
   const {
-    accomodation_id,
     accomodation_name,
     area,
     average_point,
-    bath_room_count,
-    bed_count,
-    bed_room_count,
     image_url,
-    latitude,
-    longitude,
     max_member_capacity,
     options,
     price_per_day,
@@ -45,7 +39,7 @@ const RoomInMap = ({ room }: props) => {
         </Desc>
         <Review>{`${average_point} 후기 ${review_count}개`}</Review>
         <PriceNotice>
-          <span>{`${price_per_day} / 박`}</span>
+          <span>{`${price_per_day.toLocaleString()} / 박`}</span>
           <span>{`총액 ${total_price}원`}</span>
         </PriceNotice>
       </Detail>

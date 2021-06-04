@@ -4,6 +4,8 @@ import { useRecoilState } from 'recoil';
 
 import { priceRange, selectedPrice } from '@recoil/atoms/price';
 
+import { testPrices } from './testPrice';
+
 interface positionY {
   value: number;
   maxYcount: number;
@@ -32,11 +34,11 @@ const Graph = ({ priceContents }: any) => {
 
   const prices: number[] = [...priceContents];
   const { minWidth, minHeight, width, height } = viewBoxData;
-  const sortedPrice = prices.sort((a, b) => a - b).filter((n) => n !== 0);
-  const maxPrice = 100000;
+  const sortedPrice = testPrices.sort((a, b) => a - b).filter((n) => n !== 0);
+  const maxPrice = 1000000;
 
   const getPriceRangeCount = (priceList: number[]) => {
-    const minPrice = 2500;
+    const minPrice = 25000;
     const scope = minPrice;
     const priceSet = priceList.reduce((acc: any, price) => {
       let value = Math.floor(price / scope);

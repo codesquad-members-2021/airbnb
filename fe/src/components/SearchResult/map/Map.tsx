@@ -1,58 +1,48 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-  useRecoilState,
-  useRecoilValueLoadable,
-  useSetRecoilState,
-} from 'recoil';
+import { useRecoilState, useRecoilValueLoadable } from 'recoil';
 import styled from 'styled-components';
 
-import {
-  userLocation,
-  mapSizeCoords,
-  accomodationList,
-} from '@recoil/atoms/searchResult';
+import { userLocation, accomodationList } from '@recoil/atoms/searchResult';
 
 import { roomType } from '@components/SearchResult/types';
-
-import Marker from './Marker';
 
 const { kakao }: any = window;
 
 const Map = () => {
-  const setMapSize = useSetRecoilState(mapSizeCoords);
+  const [map, setMap] = useState<any>(null);
   const mapContainer = useRef<HTMLElement>(null);
   const { state, contents } = useRecoilValueLoadable(accomodationList);
   const [COORDS, setCOORDS] = useRecoilState(userLocation);
   const { latitude, longitude } = COORDS;
+  const [mapLatLng, setMapLatLng] = useState({
+    lat: 37.57992249446141,
+    lng: 127.05564290690467,
+  });
   const [mapBounds, setMapBounds] = useState<mapBound>({
     ne_latitude: 0,
     ne_longitude: 0,
     sw_latitude: 0,
     sw_longitude: 0,
   });
+
   const rooms = contents;
 
   const getRoomPositions = (rooms: any) => {
-    if (rooms === null) return [];
+    if (state === 'loading') return [];
     return rooms.map((room: roomType) => {
       return {
-        content: (
-          <div className="custom-Overlay">
-            `${room.accomodation_name}: ${room.total_price}`
-          </div>
-        ),
-        latLng: new kakao.maps.LatLng(latitude, longitude),
+        content: `<div class="custom-Overlay">
+            <span>${room.accomodation_name}</span><span>${room.total_price}</span>
+          </div>`,
+        latLng: new kakao.maps.LatLng(room.latitude, room.longitude),
       };
     });
   };
 
   const roomPositions = getRoomPositions(rooms);
 
-  const options = {
-    center: new kakao.maps.LatLng(latitude, longitude),
-    level: 4,
-  };
-
+  // 현재는 쓰지 않는다.
+  // 사용자 위치 기반으로 지도를 불러오고 싶을 때 사용한다.
   navigator.geolocation.getCurrentPosition((position) => {
     const COORD = {
       latitude: position.coords.latitude,
@@ -62,38 +52,46 @@ const Map = () => {
   });
 
   useEffect(() => {
-    const map = new kakao.maps.Map(mapContainer.current, options);
-    kakao.maps.event.addListener(map, 'bounds_changed', () => {
-      const bounds = map.getBounds();
-      const swLatLng = bounds.getSouthWest();
-      const neLatLng = bounds.getNorthEast();
+    const { lat, lng } = mapLatLng;
+    const options = {
+      center: new kakao.maps.LatLng(lat, lng),
+      level: 5,
+    };
 
-      setMapBounds({
-        ne_latitude: neLatLng.La,
-        ne_longitude: neLatLng.Ma,
-        sw_latitude: swLatLng.La,
-        sw_longitude: swLatLng.Ma,
-      });
+    const createMap = new kakao.maps.Map(mapContainer.current, options);
+
+    const mapTypeControl = new kakao.maps.MapTypeControl();
+    createMap.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+    const zoomControl = new kakao.maps.ZoomControl();
+    createMap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+    setMap(createMap);
+  }, []);
+
+  const handleMouseUp = () => {
+    const bounds = map.getBounds();
+    const swLatLng = bounds.getSouthWest();
+    const neLatLng = bounds.getNorthEast();
+
+    setMapBounds({
+      ne_latitude: neLatLng.Ma,
+      ne_longitude: neLatLng.La,
+      sw_latitude: swLatLng.Ma,
+      sw_longitude: swLatLng.La,
     });
 
-    // 숙소를 지도 위에 마커로 표시한다.
-    if (roomPositions.length > 0) {
-      for (let i = 0; i < roomPositions.length; i++) {
-        const customOverlay = new kakao.maps.Marker({
-          position: roomPositions[i].latLng,
-          content: roomPositions[i].content,
-        });
-        customOverlay.setMap(map);
-      }
+    for (let i = 0; i < roomPositions.length; i++) {
+      const customOverlay = new kakao.maps.CustomOverlay({
+        position: roomPositions[i].latLng,
+        content: roomPositions[i].content,
+      });
+      customOverlay.setMap(map);
     }
-  }, [latitude, longitude]);
-
-  const handleMouseUpMap = (): void => setMapSize(mapBounds);
+  };
 
   return (
-    <MapWrap id="map" ref={mapContainer} onMouseUp={handleMouseUpMap}>
-      <Marker />
-    </MapWrap>
+    <MapWrap id="map" ref={mapContainer} onMouseUp={handleMouseUp}></MapWrap>
   );
 };
 
@@ -106,8 +104,12 @@ const MapWrap = styled.section`
   z-index: 1;
 
   .custom-Overlay {
-    width: 40px;
-    height: 20px;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    font-size: 12px;
+    background: #fff;
   }
 `;
 

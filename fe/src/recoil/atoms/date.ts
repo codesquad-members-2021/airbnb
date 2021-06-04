@@ -1,7 +1,6 @@
 import { atom, selector } from 'recoil';
 
 import { calendarDate, checkINOUT, check } from '@recoil/types/dateType';
-import { createJSDocReturnTag } from 'typescript';
 
 const calendarDateState = atom<calendarDate>({
   key: 'calendarDateState',
