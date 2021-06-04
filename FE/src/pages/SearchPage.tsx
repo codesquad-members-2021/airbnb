@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { Link } from '../util/MyRouter';
@@ -24,6 +24,7 @@ const SearchPage = () => {
   }
 
   const RoomsData = useFetch<IRoomsInfo>(targetURL);
+  const [$Map, set$Map] = useState<any>(null);
   
   useEffect(() => {  
     // console.log("SearchPage", RoomsData.result?.rooms);
@@ -33,8 +34,26 @@ const SearchPage = () => {
     console.log(payload.id);
     switch (type) {
       case "map":
+        for (const room of RoomsData.result.rooms) {
+          if (room.id === payload.id) {
+            payload.map.setCenter({
+              lat: room.latitude,
+              lng: room.longitude
+            });
+            break;
+          }
+        }
         break;
       case "room":
+        for (const room of RoomsData.result.rooms) {
+          if (room.id === payload.id) {
+            $Map.setCenter({
+              lat: room.latitude,
+              lng: room.longitude
+            });
+            break;
+          }
+        }
         break;
       default:
         break;
@@ -59,7 +78,7 @@ const SearchPage = () => {
         })}
         
       </SearchPageCardsSection>
-      <Map rooms={RoomsData.result?.rooms} handeChangePosition={handeChangePosition} />
+      <Map rooms={RoomsData.result?.rooms} handeChangePosition={handeChangePosition} handleSetMap={set$Map} />
 
     </SearchPageLayout>
   );

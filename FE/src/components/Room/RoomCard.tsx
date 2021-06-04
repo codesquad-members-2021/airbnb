@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { threeDigitsComma } from '../../util/util';
 import styled from 'styled-components';
 import { IRoomInfo } from '../../util/types/Room';
+import RoomInfoModal from './RoomInfoModal';
 
 interface IChangeProps {
   type: string, 
@@ -18,6 +19,7 @@ interface IRoomCardDescriptionInfo {
 }
 
 function RoomCard({ room, handeChangePosition }:IRoomCardInfo) {
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   // console.log("RoomCard", room)
   const numberedDescriptions = {
     "최대 인원": `${room.max}명`, 
@@ -47,7 +49,7 @@ function RoomCard({ room, handeChangePosition }:IRoomCardInfo) {
   const handleClickRoomCard = () => {
     handeChangePosition({type: "room", payload: { id: room.id }})
   }
-  const handleClickWishButton = (e) => {
+  const handleClickWishButton = (e: any) => {
     e.stopPropagation();
     console.log("wish")
   }
@@ -63,7 +65,7 @@ function RoomCard({ room, handeChangePosition }:IRoomCardInfo) {
           <ContentsRow>
             <ContentsLeftColumn> 
               <ContentsHeaderSpan> {room.address} </ContentsHeaderSpan>
-              <ContentsTitleSpan> {room.name} </ContentsTitleSpan>
+              <ContentsTitleSpan onClick={() => setIsModalVisible(true)}> {room.name} </ContentsTitleSpan>
               <ContentsDescriptionArea> { renderDescriptions(numberedDescriptions) } </ContentsDescriptionArea>
               <ContentsDescriptionArea> { renderDescriptions(optionDescriptions) } </ContentsDescriptionArea>
             </ContentsLeftColumn>
@@ -84,6 +86,8 @@ function RoomCard({ room, handeChangePosition }:IRoomCardInfo) {
           </ContentsFooterRow>
         </ContentsLayer>
       </RoomCardBlock>
+
+      <RoomInfoModal data={room} isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} />
     </RoomCardLayout>
   )
 }

@@ -12,10 +12,11 @@ interface IChangeProps {
 
 interface IMap {
   rooms: IRoomInfo[] | undefined,
-  handeChangePosition: ({type, payload}: IChangeProps) => void
+  handeChangePosition: ({type, payload}: IChangeProps) => void,
+  handleSetMap: () => void
 }
 
-function Map({rooms, handeChangePosition}: IMap) {
+function Map({rooms, handeChangePosition, handleSetMap}: IMap) {
   const $Map = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
@@ -50,6 +51,7 @@ function Map({rooms, handeChangePosition}: IMap) {
             document.getElementById("map") as HTMLElement,
             { zoom: 10, center: pos }
           );
+          handleSetMap(map);
           
           // 방 마커
           rooms?.forEach((room) => {
@@ -59,7 +61,7 @@ function Map({rooms, handeChangePosition}: IMap) {
             const $Content = document.createElement("div");
             $Content.innerHTML = `${threeDigitsComma(room.salePrice)}원`;
             $Content.addEventListener("click", () => {
-              handeChangePosition({type: "map", payload: { id: room.id }})
+              handeChangePosition({type: "map", payload: { map: map, id: room.id }});
             }) 
             const infomarker = new InfoMarker(
               new window.google.maps.LatLng(room.latitude, room.longitude),
