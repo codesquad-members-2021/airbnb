@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import { Moment } from 'moment';
+import moment, { Moment } from 'moment';
 
 export enum SearchBarBtnType {
   CHECK_IN_OUT = 'check-in-out',
@@ -34,11 +34,7 @@ export type guestCountStateType = {
 
 export type HeadCountContextType = {
   guestCountState: guestCountStateType | null,
-  setGuestCountState: React.Dispatch<React.SetStateAction<{
-    adults: number;
-    children: number;
-    infants: number;
-  }>> | null
+  setGuestCountState: React.Dispatch<React.SetStateAction<guestCountStateType>> | null
 }
 
 export type PriceContextType = {

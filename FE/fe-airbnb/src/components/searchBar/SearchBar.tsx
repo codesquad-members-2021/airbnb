@@ -52,21 +52,21 @@ function SearchBar() {
     }
   }
 
-   // ============================ price 상태 ============================
+  // ============================ price 상태 ============================
 
-   const [min, max] = [10000, 1000000];
-   const [minPrice, setMinPrice] = useState(min);
-   const [maxPrice, setMaxPrice] = useState(max);
-   const priceState = {
-     values: {
-       min,
-       max,
-       minPrice,
-       setMinPrice,
-       maxPrice,
-       setMaxPrice
-     }
-   }
+  const [min, max] = [10000, 1000000];
+  const [minPrice, setMinPrice] = useState(min);
+  const [maxPrice, setMaxPrice] = useState(max);
+  const priceState = {
+    values: {
+      min,
+      max,
+      minPrice,
+      setMinPrice,
+      maxPrice,
+      setMaxPrice
+    }
+  }
 
   const renderModal = (): ReactElement | void => {
     switch (selectedBtn) {
@@ -92,8 +92,6 @@ function SearchBar() {
         );
     }
   }
-
- 
 
   const handleClickSearchBarBtn = (btnType: string): void => {
     if(selectedBtn === btnType) setSelectedBtn(null);
@@ -148,9 +146,17 @@ function SearchBar() {
             </Flex>
           </SearchBarBtn>
 
-          <SearchButtonContainer>
-            <SearchButton size="compact" />
-          </SearchButtonContainer>
+          <CalendarContext.Provider value={calendarState.values}>
+            <PriceContext.Provider value={priceState.values}>
+              <HeadCountContext.Provider value={headCountState.values}>
+
+                <SearchButtonContainer>
+                  <SearchButton size="compact" />
+                </SearchButtonContainer>
+
+              </HeadCountContext.Provider>
+            </PriceContext.Provider>
+          </CalendarContext.Provider>
         </Flex>
 
         {selectedBtn && renderModal()}
