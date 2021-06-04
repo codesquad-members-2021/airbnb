@@ -29,8 +29,8 @@ public class JoinDAO {
 
     public Optional<Join> findByUserIdAndHouseId(Long userId, Long houseId) {
         String sql = "SELECT * FROM `join` WHERE user_id = ? AND house_id = ?";
-        List<Join> joins = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Join.class), userId, houseId);
-        return joins.stream().findAny();
+        Join join = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Join.class), userId, houseId);
+        return Optional.ofNullable(join);
     }
 
     public void delete(Join join) {

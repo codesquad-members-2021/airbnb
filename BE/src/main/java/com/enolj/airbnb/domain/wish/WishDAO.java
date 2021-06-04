@@ -29,8 +29,8 @@ public class WishDAO {
 
     public Optional<Wish> findByUserIdAndHouseId(Long userId, Long houseId) {
         String sql = "SELECT * FROM wish WHERE user_id = ? AND house_id = ?";
-        List<Wish> wishes = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Wish.class), userId, houseId);
-        return wishes.stream().findAny();
+        Wish wish = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Wish.class), userId, houseId);
+        return Optional.ofNullable(wish);
     }
 
     public void delete(Wish wish) {
