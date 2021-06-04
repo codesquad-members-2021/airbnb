@@ -42,6 +42,11 @@ public class RoomPriceRequestDTO {
     }
 
     public Booking toEntity(Long roomId) {
-        return Booking.create(checkIn, checkOut, guest, roomId);
+        return new Booking.Builder()
+                .checkIn(checkIn)
+                .checkOut(checkOut)
+                .guest(guest)
+                .room(roomId)
+                .build();
     }
 }

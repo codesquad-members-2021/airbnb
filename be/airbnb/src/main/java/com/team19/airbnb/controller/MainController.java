@@ -29,5 +29,4 @@ public class MainController {
     public ResponseBody<MainResponseDTO> main() {
         return ResponseBody.ok(mainService.main());
     }
-
 }

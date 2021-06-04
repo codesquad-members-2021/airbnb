@@ -24,10 +24,17 @@ public class BookingRequestDTO {
     @JsonProperty("totalPrice")
     private BigDecimal totalPrice;
 
-    public BookingRequestDTO() {}
+    public BookingRequestDTO() {
+    }
 
     public Booking toEntity() {
-        return Booking.create(checkIn, checkOut, guest, totalPrice, roomId);
+        return new Booking.Builder()
+                .checkIn(checkIn)
+                .checkOut(checkOut)
+                .guest(guest)
+                .totalPrice(totalPrice)
+                .room(roomId)
+                .build();
     }
 
     @Override

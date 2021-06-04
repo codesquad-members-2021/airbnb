@@ -18,10 +18,9 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
-    //날짜 확인하는 부분 추가 필요
-    @PostMapping("/{userId}")
-    public void book(@RequestBody BookingRequestDTO bookingRequestDTO, @PathVariable Long userId) {
-        bookingService.book(bookingRequestDTO, userId);
+    @GetMapping("/{bookingId}/{userId}")
+    public ResponseBody<BookingResponseDTO> showBooking(@PathVariable Long bookingId, @PathVariable Long userId) {
+        return ResponseBody.ok(bookingService.showBooking(userId, bookingId));
     }
 
     @GetMapping("/{userId}")
@@ -29,9 +28,10 @@ public class BookingController {
         return ResponseBody.ok(bookingService.showBookings(userId));
     }
 
-    @GetMapping("/{bookingId}/{userId}")
-    public ResponseBody<BookingResponseDTO> showBooking(@PathVariable Long bookingId, @PathVariable Long userId) {
-        return ResponseBody.ok(bookingService.showBooking(userId, bookingId));
+    //날짜 확인하는 부분 추가 필요
+    @PostMapping("/{userId}")
+    public void book(@RequestBody BookingRequestDTO bookingRequestDTO, @PathVariable Long userId) {
+        bookingService.book(bookingRequestDTO, userId);
     }
 
     @DeleteMapping("/{bookingId}/{userId}")

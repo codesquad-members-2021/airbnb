@@ -97,7 +97,11 @@ public class SearchRequestDTO {
     }
 
     public Booking toBooking() {
-        return Booking.create(checkIn, checkOut, guest);
+        return new Booking.Builder()
+                .checkIn(checkIn)
+                .checkOut(checkOut)
+                .guest(guest)
+                .build();
     }
 
 }
