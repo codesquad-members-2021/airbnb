@@ -12,6 +12,7 @@ class RoomsViewController: UIViewController {
 
     static let headerElementKind = "header-element-kind"
     
+    private var mapButton: UIButton!
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Int, Room>!
     private var conditionViewModel: ConditionViewModel
@@ -36,6 +37,7 @@ class RoomsViewController: UIViewController {
         
         configureNavigation()
         configureHierarchy()
+        configureMapButton()
         configureDataSource()
     }
 
@@ -175,12 +177,33 @@ extension RoomsViewController: UICollectionViewDelegate {
 
 extension RoomsViewController {
     
-    func configureNavigation() {
+    private func configureNavigation() {
         self.tabBarController?.tabBar.isHidden = false
         self.navigationItem.title = "숙소 찾기"
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
-
+    
+    private func configureMapButton() {
+        mapButton = UIButton()
+        view.addSubview(mapButton)
+        mapButton.translatesAutoresizingMaskIntoConstraints = false
+        mapButton.frame = CGRect(origin: view.center, size: CGSize(width: 100, height: 30))
+        mapButton.layer.masksToBounds = true
+        mapButton.layer.cornerRadius = 15
+        mapButton.backgroundColor = .darkGray
+        mapButton.setTitle(" 지도", for: .normal)
+        mapButton.setImage(UIImage(systemName: "map"), for: .normal)
+        mapButton.tintColor = .white
+        mapButton.setTitleColor(.white, for: .normal)
+        
+        NSLayoutConstraint.activate([
+            mapButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+            mapButton.heightAnchor.constraint(equalTo: mapButton.widthAnchor, multiplier: 0.4),
+            mapButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            mapButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -110),
+        ])
+    }
+    
 }
