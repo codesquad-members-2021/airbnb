@@ -1,9 +1,11 @@
 package com.codesquad.coco.room.model;
 
+import java.util.Objects;
+
 public class Money {
 
-    private static final int MIN_PRICE = 0;
-    private static final int MAX_PRICE = 999_999_999;
+    private static final Money MIN_PRICE = new Money(0);
+    private static final Money MAX_PRICE = new Money(999_999_999);
 
     private final int money;
 
@@ -12,17 +14,21 @@ public class Money {
     }
 
     public static Money minPrice(Integer money) {
-        money = money != null ? money : MIN_PRICE;
+        if (Objects.isNull(money)) {
+            return MIN_PRICE;
+        }
         return new Money(money);
     }
 
     public static Money maxPrice(Integer money) {
-        money = money != null ? money : MAX_PRICE;
+        if (Objects.isNull(money)) {
+            return MAX_PRICE;
+        }
         return new Money(money);
     }
 
     public static Money of() {
-        return new Money(MIN_PRICE);
+        return MIN_PRICE;
     }
 
     public static Money of(int money) {
