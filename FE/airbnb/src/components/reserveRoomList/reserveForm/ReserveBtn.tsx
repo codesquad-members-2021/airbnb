@@ -33,4 +33,5 @@ const StyledReserveBtn = styled.button`
   background-color: ${({ theme }) => theme.colors.black};
   color: ${({ theme }) => theme.colors.white};
   font-weight: 700;
+  cursor: pointer;
 `;
