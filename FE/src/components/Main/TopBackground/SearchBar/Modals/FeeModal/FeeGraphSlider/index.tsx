@@ -10,9 +10,9 @@ import { useSearchBarDispatch } from '../../../../../../../util/contexts/SearchB
 import SliderBlock from './SliderBlock';
 import SliderButton from './SliderButton';
 
-const FeeGraphSlider = ({ resData, ...props }: IFeeGraph) => {
+const FeeGraphSlider = ({ feeData, ...props }: IFeeGraph) => {
   // 1. 초기 설정
-  const { data, start: initStart, end: initEnd, unit: initUnit } = resData;
+  const { data, start: initStart, end: initEnd, unit: initUnit } = feeData;
   const searchBarDispatch = useSearchBarDispatch();
   const {
     state: {
@@ -66,6 +66,8 @@ const FeeGraphSlider = ({ resData, ...props }: IFeeGraph) => {
 
   // 2) 캔버스 그리기 및 Slider 버튼 위치 지정
   useEffect(() => {
+    if (!data || data.length <= 0) return;
+        if (!initStart || !initEnd || !initUnit) return;
     if (isCanvasSizeLoading || !canvasRef.current) return;
 
     // -1- 캔버스 그리기
@@ -97,11 +99,11 @@ const FeeGraphSlider = ({ resData, ...props }: IFeeGraph) => {
     // 🤪 라노 캔버스 그린다!!
     // 🤯 라노 키보드 부신다!!
     ctx.beginPath();
-    DESCData.forEach((price) => {
+    DESCData.forEach((price, i) => {
       // [*1*]에 의해 주석처리 (정상적인 그래프 그릴때 사용 / 주석해제시엔 아래 그려지는 색상은 흰색말고 다른색 하기)
       // ctx.rect(startX, startY - price * onePer.h, onePer.w, price * onePer.h);
-
-      ctx.rect(startX, 0, onePer.w, price * onePer.h);
+      const h = price * onePer.h;
+      ctx.rect(startX, 0, onePer.w, (i === 0) ? (h - ((price * onePer.h) / 10)) : h );
       ctx.fillStyle = '#FFF';
       ctx.fill();
       startX += onePer.w;
@@ -138,6 +140,7 @@ const FeeGraphSlider = ({ resData, ...props }: IFeeGraph) => {
 
   // 3-1) SlideButton (leftX & rightX 변경 시 / slideButtonMove에서 변경됨)
   useEffect(() => {
+    if (!initStart || !initEnd || !initUnit) return;
     if (!priceUnitWidth) return;
     graphSliderDispatch({
       type: 'SET_PRICE_RANGE',

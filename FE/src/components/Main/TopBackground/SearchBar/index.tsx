@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { forwardRef, useEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 
 import { Link } from '../../../../util/MyRouter';
@@ -19,6 +19,10 @@ import FeeModal from './Modals/FeeModal';
 import PeopleModal from './Modals/PeopleModal';
 import { threeDigitsComma } from '../../../../util/util';
 
+import useFetch from '../../../../util/hooks/useFetch';
+import { IRoomsInfo } from '../../../../util/types/Room';
+import API from '../../../../util/API';
+
 interface ISearchMenuItem {
   isClicked?: boolean;
 }
@@ -29,6 +33,15 @@ const SearchBar = forwardRef(
     //@ts-ignore
     { searchBarTexts, searchBarRef }: ITextTopBackground,
   ) => {
+    const { result, fetchState: {isLoading}} = useFetch<IRoomsInfo>(API.get.rooms);
+    const [salePrices, setSalePrices] = useState<number[]>([]);
+
+    useEffect(() => {
+      if (isLoading || !result) return;
+      setSalePrices(result.rooms.map((data) => data.salePrice));
+    }, [isLoading]);
+
+
     // 1. 초기 값 설정
     const { menuItems } = searchBarTexts;
 
@@ -151,7 +164,7 @@ const SearchBar = forwardRef(
           {searchBarClickedIdx > -1 && (
             <SearchBarRow>
               {searchBarClickedIdx === CALENDAR_FOCUS && <CalendarModal />}
-              {searchBarClickedIdx === FEE_FOCUS && <FeeModal />}
+              {searchBarClickedIdx === FEE_FOCUS && <FeeModal data={salePrices} />}
               {searchBarClickedIdx === PEOPLE_FOCUS && <PeopleModal />}
             </SearchBarRow>
           )}

@@ -3,21 +3,21 @@ import styled from 'styled-components';
 import { IFeeGraph } from '.';
 import { threeDigitsComma } from '../../../../../../util/util';
 
-const FeeInfo = ({ resData: {data, start, end}, ...props } : IFeeGraph) => {
+const FeeInfo = ({ feeData: {data, start, end}, ...props } : IFeeGraph) => {
   const [avg, setAvg] = useState("");
   useEffect(() => {
-    if (data.length <= 0) return;
+    if (!data || data.length <= 0) return;
     const calcAvg = data.reduce((result, curr) => (result += curr, result), 0) / data.length;
     setAvg(threeDigitsComma(calcAvg));
   }, [data]);
 
-  return (
+  return (start && end) ? (
     <FeeInfoLayout {...props}>
       <p className="price__text">가격 범위</p>
       <p className="price__range">\{threeDigitsComma(start)} ~ \{threeDigitsComma(end)}+</p>
       <p className="price__avg">평균 1박 요금은 \{avg} 입니다</p>
     </FeeInfoLayout>
-  );
+  ) : <></>;
 };
 
 export default FeeInfo;
