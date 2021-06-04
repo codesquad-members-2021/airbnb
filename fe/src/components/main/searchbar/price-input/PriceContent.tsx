@@ -16,7 +16,7 @@ const PriceContent = () => {
   useEffect(() => {
     if (isSuccess && !price.maxPrice)
       setPriceData({ maxPrice: data.max_price, minPrice: data.min_price });
-  }, [setPriceData]);
+  }, [setPriceData, data, isSuccess, price]);
 
   return (
     <Box p="2rem" width="22rem" display="flex" flexDirection="column">
@@ -26,6 +26,7 @@ const PriceContent = () => {
           prices={data.prices}
           minPrice={data.min_price}
           maxPrice={data.max_price}
+          avgPrice={data.avg_price}
         />
       ) : (
         <PriceRange> 여행가실 위치와 날짜를 입력해주세요 </PriceRange>

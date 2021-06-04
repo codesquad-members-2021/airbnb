@@ -1,6 +1,9 @@
 import { Box } from "@material-ui/core";
 import { FaHeart, FaRegHeart, FaStar } from "react-icons/fa";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { CalendarData, popUpState } from "atoms/searchbarAtom";
 import styled from "styled-components";
+import { MouseEvent } from "react";
 
 type HotelListItemProps = {
   options: string[];
@@ -9,6 +12,7 @@ type HotelListItemProps = {
   rate: number;
   title: string;
   wishlist: boolean;
+  hotelId: number;
 };
 
 const HotelListItem = ({
@@ -18,16 +22,33 @@ const HotelListItem = ({
   rate,
   title,
   wishlist,
+  hotelId,
 }: HotelListItemProps) => {
+  const setPopUpState = useSetRecoilState(popUpState);
+  const [checkIn, checkOut] = useRecoilValue(CalendarData);
+  let dayGap = 0;
+  if (checkIn && checkOut) {
+    dayGap = new Date(checkOut).getDay() - new Date(checkIn).getDay();
+  }
+
+  const clickHandler = ({ target }: MouseEvent<HTMLElement>) => {
+    
+      setPopUpState({
+        toggle: true,
+        hotelID: hotelId,
+        price: price,
+      });
+    
+  };
   return (
-    <StyledHotelListItem>
+    <StyledHotelListItem onClick={clickHandler}>
       <HotelImg src={img} />
       <Box
         display="flex"
         flexDirection="column"
         justifyContent="space-between"
         alignItems="stretch"
-        width= "23rem"
+        width="23rem"
       >
         <Box display="flex" flexDirection="column">
           <HotelWishList aria-checked={wishlist}>
@@ -46,7 +67,7 @@ const HotelListItem = ({
             <HotelItemTitle>
               <b>₩ {price}</b> /박
             </HotelItemTitle>
-            <HotelItemSubTitle>총액</HotelItemSubTitle>
+            <TotalPrice>총액 ₩ {dayGap * price}</TotalPrice>
           </HotelPrice>
         </Box>
       </Box>
@@ -55,7 +76,12 @@ const HotelListItem = ({
 };
 
 export default HotelListItem;
-
+const TotalPrice = styled.span`
+  font-size: 1.2rem;
+  text-decoration: underline;
+  line-height: 1.2;
+  color: ${({ theme }) => theme.color.Gray3};
+`;
 const HotelWishList = styled.div`
   position: absolute;
   right: 1rem;
@@ -71,10 +97,13 @@ const StyledHotelListItem = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  padding: 2rem 0;
-  margin-top: 1rem;
-  padding-bottom: 3rem;
+  padding: 3rem 3.6rem;
+
   border-bottom: ${({ theme }) => theme.border.Gray4};
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.color.Gray5};
+  }
 `;
 
 const HotelImg = styled.img`
@@ -95,7 +124,7 @@ const HotelRating = styled.span`
   font-weight: 700;
   font-size: 1rem;
   line-height: 1.4;
-  color:${({ theme }) => theme.color.Gray3};
+  color: ${({ theme }) => theme.color.Gray3};
   svg {
     color: ${({ theme }) => theme.color.Red};
     font-size: 1.3rem;

@@ -21,7 +21,7 @@ const InputItem = ({ w, title, subtitle, onClick }: InputItemProps) => {
     });
   };
   const isHotelList = useRecoilValue(isHotelPage);
-  console.log(isHotelList);
+
   return (
     <FlexBox {...{ w }} onClick={handleClick} aria-checked={HoverData[title]}>
       {isHotelList ? null : <InputTitle>{title}</InputTitle>}
