@@ -1,6 +1,5 @@
 package com.codesquad.coco.room.model;
 
-import com.codesquad.coco.global.exception.business.NonReservationException;
 import com.codesquad.coco.global.exception.business.OvercapacityException;
 import com.codesquad.coco.global.exception.business.TotalPriceNonMatchException;
 import com.codesquad.coco.host.Host;
@@ -31,7 +30,7 @@ public class Room {
     private String name;
     private Money pricePerDate;
     private String description;
-    private List<Reservation> reservations = new ArrayList<>();
+    private ReservationList reservations;
     private List<Image> images = new ArrayList<>();
     private WishList wishList;
 
@@ -45,7 +44,7 @@ public class Room {
         this.name = builder.name;
         this.pricePerDate = builder.pricePerDate;
         this.description = builder.description;
-        this.reservations = builder.reservations;
+        this.reservations = new ReservationList(builder.reservations);
         this.images = builder.images;
         this.wishList = builder.wishList;
         this.type = builder.type;
@@ -89,16 +88,11 @@ public class Room {
     }
 
     public boolean reservationDateCheck(LocalDate checkIn, LocalDate checkOut) {
-        for (Reservation reservation : reservations) {
-            if (!reservation.reservationDateCheck(checkIn, checkOut)) {
-                throw new NonReservationException();
-            }
-        }
-        return true;
+        return reservations.reservationDateCheck(checkIn, checkOut);
     }
 
     public void addReservation(Reservation reservation) {
-        reservations.add(reservation);
+        reservations.addReservation(reservation);
     }
 
     public void addImages(Image image) {
@@ -141,7 +135,7 @@ public class Room {
         return description;
     }
 
-    public List<Reservation> getReservations() {
+    public ReservationList getReservations() {
         return reservations;
     }
 

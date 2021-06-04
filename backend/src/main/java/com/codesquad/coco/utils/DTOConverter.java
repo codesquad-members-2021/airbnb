@@ -48,7 +48,7 @@ public class DTOConverter {
                 imagesToImages(room.getImages()),
                 reviewToReviewDTO(room.getReview()),
                 additionalCostToAdditionalCostDTO(room.getAdditionalCost()),
-                reservationsToReservationDateDTOs(room.getReservations())
+                reservationsToReservationDateDTOs(room.getReservations().getReservations())
         );
     }
 
