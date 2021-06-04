@@ -18,10 +18,10 @@ import java.util.*;
 public class RoomDAO {
 
     private final JdbcTemplate jdbcTemplate;
-    private final ImageDao imageDao;
+    private final ImageDAO imageDao;
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public RoomDAO(JdbcTemplate jdbcTemplate, ImageDao imageDao, DataSource dataSource) {
+    public RoomDAO(JdbcTemplate jdbcTemplate, ImageDAO imageDao, DataSource dataSource) {
         this.jdbcTemplate = jdbcTemplate;
         this.imageDao = imageDao;
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);

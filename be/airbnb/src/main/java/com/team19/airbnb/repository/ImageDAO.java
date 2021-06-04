@@ -9,11 +9,11 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
-public class ImageDao {
+public class ImageDAO {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public ImageDao(DataSource dataSource) {
+    public ImageDAO(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 

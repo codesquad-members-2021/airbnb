@@ -124,7 +124,7 @@ public class Booking {
         this.id = id;
     }
 
-    public void checkUserId(Long userId) {
+    public void setUser(Long userId) {
         this.user = userId;
     }
 

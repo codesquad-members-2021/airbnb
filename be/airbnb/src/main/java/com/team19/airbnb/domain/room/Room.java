@@ -14,7 +14,6 @@ public class Room {
     private String name;
     private List<Image> images;
 
-    //최대인원 필요
     @Embedded.Empty
     private Review review;
 

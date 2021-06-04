@@ -44,7 +44,7 @@ public class BookingService {
     public void book(BookingRequestDTO bookingRequestDTO, Long userId) {
         User user = userService.findUserById(userId);
         Booking booking = bookingRequestDTO.toEntity();
-        booking.checkUserId(userId);
+        booking.setUser(userId);
         bookingDAO.save(booking);
     }
 
