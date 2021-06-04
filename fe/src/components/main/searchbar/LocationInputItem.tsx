@@ -78,9 +78,8 @@ const LocationInputItem = ({
       <InputLocalSubtitle
         onChange={changeHandler}
         type="text"
-        placeholder="어디로 가시겠습니까?"
+        placeholder={subtitle}
         ref={ref}
-        value={subtitle}
       />
     </FlexBox>
   );

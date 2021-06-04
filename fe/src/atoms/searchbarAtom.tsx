@@ -3,21 +3,21 @@ import { atom, selector } from "recoil";
 type HoverData = {
   [key: string]: boolean;
 };
-type popUpState = {
+type popUp = {
   toggle: boolean;
   hotelID: number | undefined;
   price: number | undefined;
-
-}
-export const popUpState = atom<popUpState>({
+  userId: any | undefined;
+};
+export const popUpState = atom<popUp>({
   key: "popUpState",
   default: {
     toggle: false,
     hotelID: undefined,
-    price: undefined
+    price: undefined,
+    userId: undefined,
   },
 });
-
 
 export const SearchBarHoverData = atom<HoverData>({
   key: "SearchBarHoverData",
@@ -61,7 +61,7 @@ export const locationDataSelector = selector({
   key: "locationDataSelector",
   get({ get }) {
     const { name } = get(locationData);
-    if (!name) return undefined;
+    if (!name) return "어디로 가시렵니까?";
     return name;
   },
 });

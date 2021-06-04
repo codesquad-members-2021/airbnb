@@ -9,8 +9,8 @@ const LogIn = (props: any) => {
 
   const url =
     process.env.REACT_APP_API_URL + `/oauth/login?code=${result.code}`;
-  const { isSuccess, data } = useAxios(url, "get");
-
+  const { isSuccess, data } = useAxios(url, "GET");
+  console.log(url,data);
   useEffect(() => {
     if (isSuccess) {
       localStorage.setItem("token", JSON.stringify(data));
