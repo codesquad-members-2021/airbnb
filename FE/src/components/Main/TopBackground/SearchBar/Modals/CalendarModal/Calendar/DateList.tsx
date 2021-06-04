@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {
   useSearchBarDispatch,
   useSearchBarState,
-} from '../../../../../../../contexts/SearchBarContext';
+} from '../../../../../../../util/contexts/SearchBarContext';
 import { createDateNoTime } from '../../../../../../../util/calendar';
 import DefaultButton from '../../../../../../Common/DefaultButton';
 

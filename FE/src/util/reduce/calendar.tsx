@@ -3,7 +3,7 @@ import {
   createMonthStartFromFirstDay,
   createDates,
   createYearMonthText,
-} from '../util/calendar';
+} from '../calendar';
 
 interface IState {
   arrDates: number[];
@@ -62,11 +62,11 @@ const calendarReducer = (
     // -------
 
     default:
-      throw new Error('useCalendar : Unhandled action');
+      throw new Error('Reduce - Calendar : Unhandled action');
   }
 };
 
-const useCalendar = () => {
+export const useCalendar = () => {
   const [state, dispatch] = useReducer(
     calendarReducer,
     initialState,
@@ -74,4 +74,3 @@ const useCalendar = () => {
   return { state, dispatch };
 };
 
-export default useCalendar;

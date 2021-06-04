@@ -6,8 +6,8 @@ interface IBackgroundFluid {
   onClick?: (event: MouseEvent | Event) => void;
 }
 
-const BackgroundFluid = ({ children, onClick, ...props }: IBackgroundFluid) => (
-  <BackgroundFluidLayout {...props} onClick={onClick}>
+const BackgroundFluid = ({ children, ...props }: IBackgroundFluid) => (
+  <BackgroundFluidLayout {...props}>
     {children}
   </BackgroundFluidLayout>
 );

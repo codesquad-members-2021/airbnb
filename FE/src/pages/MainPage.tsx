@@ -1,6 +1,6 @@
 import Main from '../components/Main';
 import { Link } from '../util/MyRouter';
-import { MainContextProvider } from '../contexts/MainContext';
+import { MainContextProvider } from '../util/contexts/MainContext';
 
 const MainPage = () => (
   <MainContextProvider>

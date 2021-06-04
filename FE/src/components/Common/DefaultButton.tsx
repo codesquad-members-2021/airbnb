@@ -1,14 +1,14 @@
 import styled from 'styled-components';
-import { CustomOnClick, CustomChildren } from '../../util/types';
+import { TMouseEvent, CustomChildren } from '../../util/types';
 
-interface IDefaultButton {
-  onClick?: CustomOnClick;
+export interface IDefaultButton {
+  onClick?: TMouseEvent;
   disabled?: boolean;
   children?: CustomChildren;
 }
 
-const DefaultButton = ({ onClick, disabled, children, ...props }: IDefaultButton) => (
-  <DefaultButtonLayout {...props} onClick={onClick} disabled={disabled}>
+const DefaultButton = ({ children, ...props }: IDefaultButton) => (
+  <DefaultButtonLayout {...props}>
     {children}
   </DefaultButtonLayout>
 );

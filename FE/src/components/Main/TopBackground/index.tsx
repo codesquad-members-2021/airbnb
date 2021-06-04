@@ -4,7 +4,7 @@ import Header from './Header';
 import SearchBar from './SearchBar';
 import { cssMainChildren } from '../../../util/styles/CommonStyledCSS';
 import { ITextTopBackground } from '../../../util/reference';
-import SearchBarContextProvider from '../../../contexts/SearchBarContext';
+import SearchBarContextProvider from '../../../util/contexts/SearchBarContext';
 
 
 const TopBackground = (

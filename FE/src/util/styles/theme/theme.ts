@@ -24,6 +24,7 @@ const theme: DefaultTheme = {
   },
   colors: {
     white: '#FFF',
+    skyblue: "#0AC9FF",
     black1: '#010101',
     black2: '#181818',
     gray1: '#333',

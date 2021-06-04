@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import styled from 'styled-components';
-import { useMainDispatch, useMainState } from '../../../../contexts/MainContext';
+import { useMainDispatch, useMainState } from '../../../../util/contexts/MainContext';
 import { FiMenu, FiUser } from 'react-icons/fi';
 import DefaultButton from '../../../Common/DefaultButton';
 import AuthModal from './AuthModal';
