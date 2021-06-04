@@ -87,7 +87,7 @@ public class ReservationTest {
     }
 
     @Test
-    @DisplayName("날짜가 중간에 들어가는지")
+    @DisplayName("날짜가 중간에 들어가는지, 예약을 할 수 있는 날인지 체크")
     void dateIsBetween() {
         LocalDate targetDate1 = LocalDate.of(2021, 05, 26);
         LocalDate targetDate2 = LocalDate.of(2021, 05, 28);
