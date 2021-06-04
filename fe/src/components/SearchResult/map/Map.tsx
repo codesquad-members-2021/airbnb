@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { useRecoilState, useRecoilValueLoadable } from 'recoil';
+import { useRecoilValueLoadable } from 'recoil';
 import styled from 'styled-components';
 
-import { userLocation, accomodationList } from '@recoil/atoms/searchResult';
+import { accomodationList } from '@recoil/atoms/searchResult';
 
 import { roomType } from '@components/SearchResult/types';
 
@@ -12,12 +12,8 @@ const Map = () => {
   const [map, setMap] = useState<any>(null);
   const mapContainer = useRef<HTMLElement>(null);
   const { state, contents } = useRecoilValueLoadable(accomodationList);
-  const [COORDS, setCOORDS] = useRecoilState(userLocation);
-  const { latitude, longitude } = COORDS;
-  const [mapLatLng, setMapLatLng] = useState({
-    lat: 37.57992249446141,
-    lng: 127.05564290690467,
-  });
+  const mapLatLng = { lat: 37.57992249446141, lng: 127.05564290690467 };
+
   const [mapBounds, setMapBounds] = useState<mapBound>({
     ne_latitude: 0,
     ne_longitude: 0,
@@ -40,16 +36,6 @@ const Map = () => {
   };
 
   const roomPositions = getRoomPositions(rooms);
-
-  // 현재는 쓰지 않는다.
-  // 사용자 위치 기반으로 지도를 불러오고 싶을 때 사용한다.
-  navigator.geolocation.getCurrentPosition((position) => {
-    const COORD = {
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude,
-    };
-    setCOORDS(COORD);
-  });
 
   useEffect(() => {
     const { lat, lng } = mapLatLng;
@@ -82,7 +68,7 @@ const Map = () => {
     });
 
     for (let i = 0; i < roomPositions.length; i++) {
-      const customOverlay = new kakao.maps.CustomOverlay({
+      const customOverlay: any = new kakao.maps.CustomOverlay({
         position: roomPositions[i].latLng,
         content: roomPositions[i].content,
       });
