@@ -15,11 +15,13 @@ class RoomsViewController: UIViewController {
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Int, Room>!
     private var conditionViewModel: ConditionViewModel
+    private var roomViewModel: RoomViewModel!
     private let roomsUseCase = RoomsUseCase()
     private var cancelBag = Set<AnyCancellable>()
     
     init(conditionViewModel: ConditionViewModel) {
         self.conditionViewModel = conditionViewModel
+        self.roomViewModel = RoomViewModel()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -140,7 +142,12 @@ extension RoomsViewController {
 extension RoomsViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let room = dataSource.itemIdentifier(for: indexPath) else { return }
+        
+        roomViewModel.setRoomInfo(with: room)
+        
         let detailViewController = DetailRoomViewController(nibName: DetailRoomViewController.reuseIdentifier, bundle: nil)
+        detailViewController.setViewModels(conditionViewModel: conditionViewModel, roomViewModel: roomViewModel)
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
     

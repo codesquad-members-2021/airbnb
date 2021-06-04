@@ -20,6 +20,7 @@
 		AE11F5AA265F3D250034779F /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11F5A9265F3D250034779F /* DayCell.swift */; };
 		AE11F5AC265F3D5F0034779F /* DateGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11F5AB265F3D5F0034779F /* DateGenerator.swift */; };
 		AE11F5AE265F3D920034779F /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE11F5AD265F3D920034779F /* Date+extension.swift */; };
+		AE2049A72669CD1200C149B8 /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2049A62669CD1200C149B8 /* RoomCell.swift */; };
 		AE3FE07526574E7000A95177 /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07426574E7000A95177 /* SearchCityViewController.swift */; };
 		AE3FE07726578F1700A95177 /* RegionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07626578F1700A95177 /* RegionData.swift */; };
 		AE3FE07A26579D3B00A95177 /* RegionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FE07826579D3B00A95177 /* RegionCell.swift */; };
@@ -37,6 +38,7 @@
 		AE87A78E26690954003E9541 /* RoomDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A78D26690954003E9541 /* RoomDTO.swift */; };
 		AE87A79726693CD3003E9541 /* DetailRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A79526693CD3003E9541 /* DetailRoomViewController.swift */; };
 		AE87A79826693CD3003E9541 /* DetailRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE87A79626693CD3003E9541 /* DetailRoomViewController.xib */; };
+		AE87A79A266957AF003E9541 /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE87A799266957AF003E9541 /* RoomViewModel.swift */; };
 		AE8CD3B42653538700BCB8FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B32653538700BCB8FC /* AppDelegate.swift */; };
 		AE8CD3B62653538700BCB8FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B52653538700BCB8FC /* SceneDelegate.swift */; };
 		AE8CD3B82653538700BCB8FC /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8CD3B72653538700BCB8FC /* MainPageViewController.swift */; };
@@ -85,6 +87,7 @@
 		AE11F5A9265F3D250034779F /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		AE11F5AB265F3D5F0034779F /* DateGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateGenerator.swift; sourceTree = "<group>"; };
 		AE11F5AD265F3D920034779F /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
+		AE2049A62669CD1200C149B8 /* RoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
 		AE3FE07426574E7000A95177 /* SearchCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
 		AE3FE07626578F1700A95177 /* RegionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionData.swift; sourceTree = "<group>"; };
 		AE3FE07826579D3B00A95177 /* RegionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionCell.swift; sourceTree = "<group>"; };
@@ -102,6 +105,7 @@
 		AE87A78D26690954003E9541 /* RoomDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDTO.swift; sourceTree = "<group>"; };
 		AE87A79526693CD3003E9541 /* DetailRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRoomViewController.swift; sourceTree = "<group>"; };
 		AE87A79626693CD3003E9541 /* DetailRoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailRoomViewController.xib; sourceTree = "<group>"; };
+		AE87A799266957AF003E9541 /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
 		AE8CD3B02653538700BCB8FC /* Airbnb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Airbnb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE8CD3B32653538700BCB8FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE8CD3B52653538700BCB8FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				AE87A78B266906AE003E9541 /* RoomsUseCase.swift */,
+				AE87A799266957AF003E9541 /* RoomViewModel.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -225,6 +230,7 @@
 				AE87A7852668DF22003E9541 /* RoomsSupplementaryView.swift */,
 				AE87A7872668DFB1003E9541 /* AccommodationCell.swift */,
 				AE87A7882668DFB1003E9541 /* AccommodationCell.xib */,
+				AE2049A62669CD1200C149B8 /* RoomCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -508,6 +514,7 @@
 				AE87A78E26690954003E9541 /* RoomDTO.swift in Sources */,
 				AE87A78C266906AE003E9541 /* RoomsUseCase.swift in Sources */,
 				AEF03BA726675AB200050531 /* PriceUseCase.swift in Sources */,
+				AE87A79A266957AF003E9541 /* RoomViewModel.swift in Sources */,
 				AE11F5AE265F3D920034779F /* Date+extension.swift in Sources */,
 				AE0B5DE326560287000B35E7 /* MainPageUseCase.swift in Sources */,
 				AE0B5DEF26563BE4000B35E7 /* RecommandedDestinationViewController.swift in Sources */,
@@ -536,6 +543,7 @@
 				AE87A7812668992C003E9541 /* PeopleViewModel.swift in Sources */,
 				AE0B5DF3265642B2000B35E7 /* CategoryCell.swift in Sources */,
 				AE87A7892668DFB1003E9541 /* AccommodationCell.swift in Sources */,
+				AE2049A72669CD1200C149B8 /* RoomCell.swift in Sources */,
 				AEC52F6E2663FEB200D8F802 /* ConditionTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
