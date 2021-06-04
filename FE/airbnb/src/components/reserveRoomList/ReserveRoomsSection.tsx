@@ -1,24 +1,33 @@
 import { Suspense } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { roomsState } from '../../recoilStore/reserveRoomAtom';
-import ReserveRoom from './ReserveRoom';
+import {
+  reserveInfoSelector,
+  reserveQueryType,
+  totalGuestSelector,
+} from '../../recoilStore/headerAtom';
+import { getDateByTime } from '../../util/calendarUtils';
 import ReserveRoomList from './ReserveRoomList';
-import { roomType } from './roomType';
 
 interface Props {
   className?: string;
 }
 
 const ReserveRoomsSection = ({ className }: Props) => {
-  // const reserveRoomList = roomsData && roomsData.map((roomData, idx) => <ReserveSkeleton />);
+  const { checkIn, checkOut, minCharge, maxCharge } = useRecoilValue(reserveInfoSelector);
+  const checkInDate = getDateByTime(checkIn);
+  const checkOutDate = getDateByTime(checkOut);
+
+  const totalGuest = useRecoilValue(totalGuestSelector);
+  const dataInfo = `300개 이상의 숙소 · ${checkInDate?.month}월 ${checkInDate?.day}일 - ${
+    checkOutDate?.month
+  }월${
+    checkOutDate?.day
+  }일 · ￦${minCharge.toLocaleString()} ~ ￦${maxCharge.toLocaleString()} · 게스트 ${totalGuest}명`;
   return (
     <StyledReserveRoomsSection className={className}>
-      <div className='data__info'>
-        300개 이상의 숙소 · 5월 12일 - 5월 18일 · ￦100,000 ~ ￦1,000,000 · 게스트 3명
-      </div>
+      <div className='data__info'>{dataInfo}</div>
       <div className='title'>지도에서 선택한 지역의 숙소</div>
-      {/* <div className='room__list'>{reserveRoomList}</div> */}
       <Suspense fallback='loading...'>
         <ReserveRoomList />
       </Suspense>

@@ -6,6 +6,7 @@ import ReserveHeader from '../components/reserveHeader/ReserveHeader';
 import MapSkeleton from '../components/reservePageSkeleton/MapSkeleton';
 import ReserveRoomsSection from '../components/reserveRoomList/ReserveRoomsSection';
 import { reserveInfoSelector } from '../recoilStore/headerAtom';
+import { reserveInfoType } from '../util/api';
 
 interface Props {}
 
@@ -24,7 +25,7 @@ const ReservePage = ({}: Props) => {
       adult: +adult,
       child: +child,
       infants: +infants,
-    };
+    } as unknown as reserveInfoType;
     setReserveInfo(newReserveInfo);
   }, []);
 

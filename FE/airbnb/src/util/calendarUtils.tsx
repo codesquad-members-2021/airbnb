@@ -33,8 +33,8 @@ interface date {
 export const getTimes = ({ year, month, day }: date): number =>
   new Date(year, month - 1, day).getTime();
 
-export const getDateByTime = (time: number | null): date | void => {
-  if (!time) return;
+export const getDateByTime = (time: number | null): date => {
+  if (!time) return { year: 0, month: 0, day: 0 };
   const date = new Date(time);
   return { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() };
 };
