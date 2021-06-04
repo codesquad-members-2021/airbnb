@@ -36,7 +36,7 @@ extension AccommodationCell {
             self.mainImageView.image = uiimage
         }
         self.gradeLabel.text = "\(room.grade)"
-        self.reviewLabel.text = "후기 \(room.review ?? 0)개"
+        self.reviewLabel.text = "후기 \(room.reviewCount)개"
         self.titleLabel.text = room.title
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal

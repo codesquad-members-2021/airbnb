@@ -15,35 +15,40 @@ struct Room: Codable, Hashable {
     let uuid = UUID()
     
     var roomId: Int
-    var images: Images
     var price: Int
-    var people: Int?
     var title: String
     var description: String
+    var images: Images
+    var grade: Int
+    var reviewCount: Int
+    var tax: Tax
+    var location: Location
     var host: Host
     var detail: Detail
-    var grade: Int
-    var review: Int?
-    var tax: Tax
     
     struct Images: Codable, Hashable {
         var mainImage: String
         var detailImage: [String]
     }
     
+    struct Location: Codable, Hashable {
+        var latitude: Double
+        var longitude: Double
+    }
+    
     struct Host: Codable, Hashable {
-        var image: String?
-        var name: String?
+        var profileImageUrl: String
+        var id: String
     }
     
     struct Detail: Codable, Hashable {
         var maxPeople: Int
         var oneRoom: Bool
-        var bed: Int?
-        var bath: Int?
+        var bedCount: Int
+        var bathCount: Int
         var hairDryer: Bool
         var airConditioner: Bool
-        var WiFi: Bool?
+        var wiFi: Bool
         var kitchen: Bool
     }
     
