@@ -19,7 +19,7 @@ const Login = () => {
   return (
     <LoginWrap onClick={handleModalClick}>
       <li>
-        <a href="">
+        <a href="/">
           <span>회원가입</span>
         </a>
       </li>

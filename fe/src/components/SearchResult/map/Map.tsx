@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRecoilValueLoadable } from 'recoil';
 import styled from 'styled-components';
 
@@ -14,7 +14,7 @@ const Map = () => {
   const { state, contents } = useRecoilValueLoadable(accomodationList);
   const mapLatLng = { lat: 37.57992249446141, lng: 127.05564290690467 };
 
-  const [mapBounds, setMapBounds] = useState<mapBound>({
+  const [, setMapBounds] = useState<mapBound>({
     ne_latitude: 0,
     ne_longitude: 0,
     sw_latitude: 0,
@@ -23,17 +23,20 @@ const Map = () => {
 
   const rooms = contents;
 
-  const getRoomPositions = (rooms: any) => {
-    if (state === 'loading') return [];
-    return rooms.map((room: roomType) => {
-      return {
-        content: `<div class="custom-Overlay">
+  const getRoomPositions = useCallback(
+    (rooms: any) => {
+      if (state === 'loading') return [];
+      return rooms.map((room: roomType) => {
+        return {
+          content: `<div class="custom-Overlay">
             <span>${room.accomodation_name}</span><span>${room.total_price}</span>
           </div>`,
-        latLng: new kakao.maps.LatLng(room.latitude, room.longitude),
-      };
-    });
-  };
+          latLng: new kakao.maps.LatLng(room.latitude, room.longitude),
+        };
+      });
+    },
+    [state]
+  );
 
   const roomPositions = getRoomPositions(rooms);
 

@@ -1,4 +1,4 @@
-import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import SmallText from '@components/common/SmallText';

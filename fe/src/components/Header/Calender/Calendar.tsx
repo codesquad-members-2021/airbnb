@@ -1,5 +1,5 @@
 import { useRecoilState, useRecoilValue } from 'recoil';
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -34,7 +34,7 @@ const Calendar = ({ calendarDate, idx }: Props) => {
   const firstDay: number = new Date(year, month + idx).getDay();
   const days: number = new Date(year, currentMonth, 0).getDate();
 
-  const getDayList = (): number[][] => {
+  const getDayList = useCallback((): number[][] => {
     const dayList: number[][] = [];
     let week: number[] = new Array(7).fill(0);
 
@@ -48,7 +48,7 @@ const Calendar = ({ calendarDate, idx }: Props) => {
     }
     dayList.push(week);
     return dayList;
-  };
+  }, [days, firstDay]);
 
   const dayList = getDayList();
 

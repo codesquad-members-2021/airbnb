@@ -52,7 +52,7 @@ const Profile = () => {
       }
     };
     getAccessToken();
-  }, []);
+  }, [isLogin]);
 
   return (
     <ProfileContainer>
