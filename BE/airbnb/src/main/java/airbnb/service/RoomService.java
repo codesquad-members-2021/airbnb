@@ -9,6 +9,8 @@ import airbnb.response.RoomDetailPageResponse;
 import airbnb.response.RoomResponse;
 import airbnb.response.RoomResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,5 +40,10 @@ public class RoomService {
 
     public RoomResponses findRoomsCategorizedByCity(SearchRequest searchRequest) {
         return RoomResponses.getRoomsCategorizedByCity(findRoomsFilteredBy(searchRequest));
+    }
+
+    public Page<RoomResponse> findPagedRoomsFilteredBy(SearchRequest searchRequest, Pageable pageable) {
+       return roomRepository.findPagedRoomsFilteredBy(searchRequest, pageable)
+                .map(Room::createRoomResponse);
     }
 }

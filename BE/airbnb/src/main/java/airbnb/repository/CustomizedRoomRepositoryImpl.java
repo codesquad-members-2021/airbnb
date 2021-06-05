@@ -3,9 +3,15 @@ package airbnb.repository;
 
 import airbnb.domain.Room;
 import airbnb.request.SearchRequest;
+import airbnb.response.RoomResponse;
+import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,6 +35,23 @@ public class CustomizedRoomRepositoryImpl implements CustomizedRoomRepository {
                         priceBetween(searchRequest.getPriceMin(), searchRequest.getPriceMax()),
                         maximumNumberOfGuestsGoeSumOf(searchRequest.getAdults(), searchRequest.getChildren(), searchRequest.getInfants()))
                 .fetch();
+    }
+
+    @Override
+    public Page<Room> findPagedRoomsFilteredBy(SearchRequest searchRequest, Pageable pageable) {
+        QueryResults<Room> roomQueryResults=  queryFactory
+                .selectFrom(room)
+                .leftJoin(booking).on(room.id.eq(booking.id))
+                .where(placeIdEquals(searchRequest.getPlaceId()),
+                        dateNotBetween(searchRequest.getCheckIn(), searchRequest.getCheckOut()),
+                        priceBetween(searchRequest.getPriceMin(), searchRequest.getPriceMax()),
+                        maximumNumberOfGuestsGoeSumOf(searchRequest.getAdults(), searchRequest.getChildren(), searchRequest.getInfants()))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetchResults();
+        List<Room> content = roomQueryResults.getResults();
+        Long total = roomQueryResults.getTotal();
+        return new PageImpl<>(content, pageable, total);
     }
 
     private BooleanExpression placeIdEquals(String placeId) {
