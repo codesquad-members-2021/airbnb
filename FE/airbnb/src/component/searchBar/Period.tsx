@@ -29,7 +29,7 @@ function Period({ onClick, size }: Props) {
   );
 }
 
-export default Period;
+export default React.memo(Period);
 
 interface size {
   size: string;

@@ -15,15 +15,15 @@ interface Props {
 }
 
 function SearchBar({ size }: Props) {
-  const [isOpenCalendar, setIsOpenCalendar] = useState<boolean>(false);
-  const [isOpenFare, setIsOpenFare] = useState<boolean>(false);
-  const [isOpenGuest, setIsOpenGuest] = useState<boolean>(false);
+  const [isOpenCalendar, setIsOpenCalendar] = useState(false);
+  const [isOpenFare, setIsOpenFare] = useState(false);
+  const [isOpenGuest, setIsOpenGuest] = useState(false);
   const handleClickPeriod = (e: React.MouseEvent) =>
-    openModal({ e, open: setIsOpenCalendar, close: [setIsOpenFare, setIsOpenGuest] });
+    openModal({ e, openModal: setIsOpenCalendar, closeModal: [setIsOpenFare, setIsOpenGuest] });
   const handleClickFare = (e: React.MouseEvent) =>
-    openModal({ e, open: setIsOpenFare, close: [setIsOpenCalendar, setIsOpenGuest] });
+    openModal({ e, openModal: setIsOpenFare, closeModal: [setIsOpenCalendar, setIsOpenGuest] });
   const handleClickGuest = (e: React.MouseEvent) =>
-    openModal({ e, open: setIsOpenGuest, close: [setIsOpenCalendar, setIsOpenFare] });
+    openModal({ e, openModal: setIsOpenGuest, closeModal: [setIsOpenCalendar, setIsOpenFare] });
   closeModalByBodyClick(setIsOpenCalendar, setIsOpenFare, setIsOpenGuest);
 
   return (
@@ -45,7 +45,7 @@ function SearchBar({ size }: Props) {
   );
 }
 
-export default SearchBar;
+export default React.memo(SearchBar);
 
 interface SearchBarContainerType {
   size: string;

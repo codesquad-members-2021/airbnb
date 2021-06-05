@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { checkinDateState, checkoutDateState, hoverDateState } from "state/atoms/calendarAtoms";
@@ -33,7 +34,7 @@ function Day({ day, year, month, today }: Props) {
   );
 }
 
-export default Day;
+export default React.memo(Day);
 
 const DayTd = styled.td`
   width: 48px;

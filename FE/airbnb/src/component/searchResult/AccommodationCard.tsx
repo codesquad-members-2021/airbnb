@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { regionNameState } from "state/atoms/positionAtoms";
@@ -23,6 +24,8 @@ function AccommodationCard({ accommodationInfo }: Props) {
   const cardDetail = `${regionName}의 숙소 전체`;
   const cardInfo1 = `최대 인원 ${maxPeople}명•${type}•침대 ${numOfBed}개•욕실 ${numOfBathroom}개`;
   const cardInfo2 = "주방•무선 인터넷•에어컨•헤어드라이어";
+  // 1박 수를 곱해줘야됨
+  const totalPrice = price;
 
   return (
     <CardContainer imgSrc={mainImageUrl}>
@@ -36,14 +39,14 @@ function AccommodationCard({ accommodationInfo }: Props) {
         </div>
         <div className="card_right_bottom">
           <div className="card_price">₩{price.toLocaleString()} / 박</div>
-          <div className="card_total_price">총액 ₩1,493,159</div>
+          <div className="card_total_price">총액 ₩{totalPrice}</div>
         </div>
       </div>
     </CardContainer>
   );
 }
 
-export default AccommodationCard;
+export default React.memo(AccommodationCard);
 
 interface cardType {
   imgSrc: string;

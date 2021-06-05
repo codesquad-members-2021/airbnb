@@ -1,7 +1,7 @@
 import { atom, selector } from "recoil";
 
 export const minPriceState = atom<number>({
-  key: "thumbLeftPriceState",
+  key: "minPriceState",
   default: 0,
 });
 
@@ -19,6 +19,16 @@ export const thumbRightPriceState = atom<number>({
   key: "thumbRightPriceState",
   default: 10000000,
 });
+
+export const leftValueState = atom({
+  key: "leftValueState",
+  default: 0
+})
+
+export const rightValueState = atom({
+  key: "rightValueState",
+  default: 100
+})
 
 export const isSetPriceState = atom<boolean>({
   key: "isSetPriceState",

@@ -5,11 +5,11 @@ import { baseURL } from "variable";
 import { ReactComponent as MenuIcon } from "assets/menu.svg";
 import { ReactComponent as UserIcon } from "assets/user.svg";
 import MyPageModal from "component/header/MyPageModal";
-import { toggleModal, closeModalByBodyClick, stopPropagation } from "component/searchBar/modalFunctions";
+import { toggleModal, closeModalByBodyClick } from "component/searchBar/modalFunctions";
 
 function MyPage() {
-  const [isOpenMyPage, setIsOpenMyPage] = useState<boolean>(false);
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isOpenMyPage, setIsOpenMyPage] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   const handleClickMyPage = (e: React.MouseEvent) => toggleModal({ e, setState: setIsOpenMyPage, state: isOpenMyPage });
   closeModalByBodyClick(setIsOpenMyPage);
@@ -38,7 +38,7 @@ function MyPage() {
         <MenuIcon />
         <UserIcon />
       </Button>
-      {isOpenMyPage && <MyPageModal onClick={stopPropagation} />}
+      {isOpenMyPage && <MyPageModal />}
     </MyPageContainer>
   );
 }

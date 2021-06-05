@@ -7,8 +7,8 @@ interface toggleModalType {
 
 interface openModalType {
   e: React.MouseEvent;
-  open: (state: boolean) => void;
-  close: { (state: boolean): void }[];
+  openModal: (state: boolean) => void;
+  closeModal: { (state: boolean): void }[];
 }
 
 // 모달 토글
@@ -18,10 +18,10 @@ const toggleModal = ({ e, setState, state }: toggleModalType): void => {
 };
 
 // 누르면 무조건 열리게
-const openModal = ({ e, open, close }: openModalType): void => {
+const openModal = ({ e, openModal, closeModal }: openModalType): void => {
   e.stopPropagation();
-  open(true);
-  close.forEach((setState) => setState(false));
+  openModal(true);
+  closeModal.forEach((setState) => setState(false));
 };
 
 // 해당 모달을 클릭했을 때 닫히지 않도록(body Click X)

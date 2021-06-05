@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { searchResultState } from "state/atoms/searchResultAtoms";
 import { searchQuery } from "state/selectors/searchQuery";
@@ -36,7 +36,7 @@ function AccommodationList() {
   );
 }
 
-export default AccommodationList;
+export default React.memo(AccommodationList);
 
 const AccommodationBox = styled.div`
   box-sizing: border-box;

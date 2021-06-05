@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { numOfAdultsState, numOfChildrenState, numOfBabiesState } from "state/atoms/guestAtoms";
 
 interface Props {
   onClick: (e: React.MouseEvent) => void;
@@ -7,15 +9,25 @@ interface Props {
 }
 
 function Guest({ onClick, size }: Props) {
+  const adults = useRecoilValue(numOfAdultsState);
+  const children = useRecoilValue(numOfChildrenState);
+  const babies = useRecoilValue(numOfBabiesState);
+
+  let guestContent = "";
+  if (adults > 0) guestContent += `성인 ${adults}명`;
+  if (children > 0) guestContent += `, 어린이 ${children}명`;
+  if (babies > 0) guestContent += `, 유아 ${babies}명`;
+  if (adults === 0 && children === 0 && babies === 0) guestContent = "게스트 추가";
+
   return (
     <GuestContainer onClick={onClick} size={size}>
       <Title>인원</Title>
-      <Content>게스트 추가</Content>
+      <Content>{guestContent}</Content>
     </GuestContainer>
   );
 }
 
-export default Guest;
+export default React.memo(Guest);
 
 interface size {
   size: string;
