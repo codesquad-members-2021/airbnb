@@ -8,51 +8,62 @@ import { ReactComponent as RightButton } from "assets/right_arrow.svg";
 import { stopPropagation } from "component/searchBar/modalFunctions";
 import { getTodayText } from "component/searchBar/calendar/getCalendarData";
 
+const CAROUSEL = {
+  TRANSITION: "all 400ms",
+  TRANSLATE_DEFAULT: "calc(-100% / 3)",
+  TRANSLATE_LEFT: "17px",
+  TRANSLATE_RIGHT: "calc(-100% * 2 / 3 - 17px)",
+  NUM_CALENDAR: 2,
+  LAST_MONTH: 12,
+};
+
 function CalendarModal() {
+  const { TRANSITION, TRANSLATE_DEFAULT, TRANSLATE_LEFT, TRANSLATE_RIGHT, NUM_CALENDAR, LAST_MONTH } = CAROUSEL;
   const [year, setYear] = useState(() => new Date().getFullYear());
   const [month, setMonth] = useState(() => new Date().getMonth());
-  const [translate, setTranslate] = useState("calc(-100% / 3)");
-  const [duration, setDuration] = useState("all 400ms");
+  const [translate, setTranslate] = useState(TRANSLATE_DEFAULT);
+  const [duration, setDuration] = useState(TRANSITION);
   const [clickedArrow, setClickedArrow] = useState("");
   const checkoutDate = useRecoilValue(checkoutDateState);
   const setHoverDate = useSetRecoilState(hoverDateState);
 
   // ===== 달력 캐로셀 기능 =====
   const handleClickLeftBtn = (): void => {
-    setTranslate("17px");
+    setTranslate(TRANSLATE_LEFT);
     setClickedArrow("left");
   };
 
   const handleClickRightBtn = (): void => {
-    setTranslate("calc(-200% / 3 - 17px)");
+    setTranslate(TRANSLATE_RIGHT);
     setClickedArrow("right");
   };
 
   const handleTransitionEnd = (): void => {
+    const lastMonthOfCarousel = LAST_MONTH - NUM_CALENDAR;
     if (clickedArrow === "right") {
-      if (month < 10) setMonth(month + 2);
+      if (month < lastMonthOfCarousel) setMonth(month + NUM_CALENDAR);
       else {
         setYear(year + 1);
-        setMonth(month - 10);
+        setMonth(month - lastMonthOfCarousel);
       }
     }
     if (clickedArrow === "left") {
-      if (month > 1) setMonth(month - 2);
+      if (month > NUM_CALENDAR - 1) setMonth(month - NUM_CALENDAR);
       else {
         setYear(year - 1);
-        setMonth(month + 10);
+        setMonth(month + lastMonthOfCarousel);
       }
     }
     setDuration("none");
-    setTranslate("calc(-100% / 3)");
+    setTranslate(TRANSLATE_DEFAULT);
   };
 
   useEffect((): void => {
-    setDuration("all 400ms");
+    setDuration(TRANSITION);
   }, [duration]);
 
   const todayText = getTodayText();
-  const theNumOfCalendar = new Array(6).fill(null);
+  const theNumOfCalendar = new Array(NUM_CALENDAR * 3).fill(null);
   const handleMouseLeaveCalendar = (): void => {
     if (checkoutDate !== "날짜 입력") return;
     setHoverDate("");
@@ -63,7 +74,12 @@ function CalendarModal() {
       <ModalContent onMouseLeave={handleMouseLeaveCalendar}>
         <CalendarWrap translateValue={translate} duration={duration} onTransitionEnd={handleTransitionEnd}>
           {theNumOfCalendar.map((_, i) => (
-            <Calendar key={year + (month - 2 + i)} year={year} month={month - 2 + i} today={todayText} />
+            <Calendar
+              key={year + (month - NUM_CALENDAR + i)}
+              year={year}
+              month={month - NUM_CALENDAR + i}
+              today={todayText}
+            />
           ))}
         </CalendarWrap>
       </ModalContent>
