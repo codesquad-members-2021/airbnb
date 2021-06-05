@@ -54,7 +54,7 @@ function FareRangeSlider() {
     setThumbPosition(value, setThumbRightPos);
     setIsSetPrice(true);
     if (value === MAX) setRightPrice(maxPrice);
-    else setRightPrice(perValuePrice * value);
+    else setRightPrice(minPrice + perValuePrice * value);
   };
 
   return (
