@@ -1,7 +1,7 @@
 import { atom, selector } from "recoil";
 
 export const minPriceState = atom<number>({
-  key: "thumbLeftPriceState",
+  key: "minPriceState",
   default: 0,
 });
 
