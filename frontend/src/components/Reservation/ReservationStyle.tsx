@@ -23,7 +23,6 @@ const ReservationLayout = styled.div`
         margin: 24vh auto;
         background-color: #fff;
         border-radius: 10px;
-        /* height: 50vh; */
     }
 
 `
@@ -65,6 +64,11 @@ const ReservationInfoLayout = styled.div`
             height: 50%;
         }
 
+        .check-in-out-text {
+            padding: 10px 1px;
+            color: #999;
+            font-weight: bold;
+        }
         .dates {
             display: flex;
             .check-in {

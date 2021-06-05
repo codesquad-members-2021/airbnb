@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const ModalLayout = styled.div`
-  position: absolute; //relative는 SearchBarLayout 입니다
+  position: absolute; 
   top: 100%;
   width: 30rem;
   right: 0;

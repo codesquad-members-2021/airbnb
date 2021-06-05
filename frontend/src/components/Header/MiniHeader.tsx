@@ -1,4 +1,4 @@
-import React,{ useEffect, useMemo} from "react";
+import { useEffect, useMemo} from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { Link } from "react-router-dom";

@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import data from "./Prices2.json";
+import data from "./Prices.json";
 
 const PriceGraph = () => {
   const { prices } = data;
-  console.log(Object.values(prices));
   const priceCounts = Object.values(prices);
   return (
     <GraphItemContainer>
@@ -27,7 +26,7 @@ const GraphItemContainer = styled.div`
 `;
 const GraphItem = styled.div`
   width: 1.5rem;
-  height: ${(props: TGraph) => props._height}0%;
+  height: ${(props: TGraph) => props._height}%;
   background-color: #9a9898;
   bottom: 0;
 `;

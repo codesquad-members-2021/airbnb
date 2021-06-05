@@ -90,7 +90,7 @@ export const calendarModalState = atom<T.CalendarModal>({
     },
   },
 });
-//이거 사용안하는듯?
+
 export const calendarState = atom<T.Calendar>({
   key: "calendarState",
   default: {

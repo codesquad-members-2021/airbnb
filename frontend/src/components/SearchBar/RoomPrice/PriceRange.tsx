@@ -3,6 +3,8 @@ import { useState, useRef } from "react";
 import { useRecoilState } from "recoil";
 import { roomPriceState } from "recoil/Atoms";
 
+//작성중인 미완성 컴포넌트 입니다. ㅠㅠㅠ
+
 function PriceRange() {
   const [leftValue, setLeftValue] = useState("");
   const [rightValue, setRightValue] = useState("");
@@ -18,7 +20,6 @@ function PriceRange() {
     const max = parseInt(target.max);
     const value = Math.min();
     const rightValue: number | null = Number($rightInput.current?.value);
-    console.log("right", rightValue);
     setRoomPrice({ ...roomPrice, max: rightValue });
   }
 
@@ -26,7 +27,6 @@ function PriceRange() {
     const target = e.target;
     const { value, min, max } = target;
     const leftValue: number | null = Number($leftInput.current?.value);
-    console.log("left", leftValue);
 
     setRoomPrice({ ...roomPrice, min: leftValue });
   }
