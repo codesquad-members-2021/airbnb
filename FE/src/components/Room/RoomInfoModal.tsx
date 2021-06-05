@@ -22,7 +22,7 @@ const RoomInfoModal = ({data, isModalVisible, setIsModalVisible} : IRoomInfoModa
         <RoomInfoList>
           <RoomInfoItem className="price-review">
             <div className="price">
-              <span className="bold">\ {`${threeDigitsComma(data.salePrice)}`}</span>
+              <span className="bold">₩ {`${threeDigitsComma(data.salePrice)}`}</span>
               <span>/ 박</span>
             </div>
             <div className="review">후기 {`${data.commentCount}개`}</div>

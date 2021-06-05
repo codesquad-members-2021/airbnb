@@ -110,8 +110,9 @@ const SearchBar = forwardRef(
       const { start, end } = fee;
       if (!startDate || !endDate || !start || !end  || !peopleCount)
         return setSearchURL('/search');  
-      const checkIn = `${startDate.getFullYear()}-${(startDate.getMonth() + 1)}-${startDate.getDate()}`;
-      const checkOut = `${endDate.getFullYear()}-${(endDate.getMonth() + 1)}-${endDate.getDate()}`;
+      const handleNumberFormat = (num) => { return num <= 9 ? `0${num}`: num }
+      const checkIn = `${startDate.getFullYear()}-${(handleNumberFormat(startDate.getMonth() + 1))}-${handleNumberFormat(startDate.getDate())}`;
+      const checkOut = `${endDate.getFullYear()}-${(handleNumberFormat(endDate.getMonth() + 1))}-${handleNumberFormat(endDate.getDate())}`;
 
       const peopleCntValues = Object.values(peopleCount);
       const guestCount = peopleCntValues.reduce((result, curr) => (result += curr, result), 0);
