@@ -17,7 +17,7 @@ const FeeInfo = ({ feeData: {data, start, end}, ...props } : IFeeGraph) => {
       <p className="price__range">₩{threeDigitsComma(start)} ~ ₩{threeDigitsComma(end)}+</p>
       <p className="price__avg">평균 1박 요금은 ₩{avg} 입니다</p>
     </FeeInfoLayout>
-  ) : <></>;
+  ) : <>FeeData(start {"&"} end) is Null</>;
 };
 
 export default FeeInfo;
