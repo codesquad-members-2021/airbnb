@@ -20,7 +20,7 @@ function SearchBtn({ history }: any) {
     child,
     baby,
   } = value
-
+  console.log(value)
   const GoNextPage = () => {
     let routingPath =`/searchResult/${place}/${checkIn}/${checkOut}/${priceMin}/${priceMax}/${minFeePercent}/${maxFeePercent}/${adult}/${child}/${baby}`
     history.push(routingPath)

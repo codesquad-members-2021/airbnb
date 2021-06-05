@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import styled from 'styled-components'
-import { useSetRecoilState } from 'recoil'
-import { RoomData } from '../../customHook/atoms'
+import { useSetRecoilState, useRecoilState } from 'recoil'
+import { RoomData, RecoilValueGroup } from '../../customHook/atoms'
 import useAxios from '../../customHook/useAxios'
 import { getHouseData } from '../../customHook/axiosAPI'
 import Logo from '../header/Logo'
@@ -15,14 +15,17 @@ import Map from './Map'
 import {IParams} from '../../Interface'
 
 function SearchResult({ match }: RouteComponentProps<IParams>) {
-
+  const [newSetting, setNewSetting] = useRecoilState(RecoilValueGroup)
+  useEffect(()=>{
+    setNewSetting(match.params)
+  },[])
+    
   const setRoomDatas = useSetRecoilState(RoomData)
   const [clicked, setClicked] = useState(false)
-  const { fetchData} = useAxios(() => getHouseData(match.params),[], true)
+  const { fetchData } = useAxios(() => getHouseData(match.params),[], true)
   useEffect(() => {
     (async function() {
       const response: any = await fetchData();
-      console.log(response);
       if(response?.data?.rooms) setRoomDatas(response.data.rooms);
     })();
   }, [match])
@@ -35,7 +38,7 @@ function SearchResult({ match }: RouteComponentProps<IParams>) {
         <FlexBox>
           <Logo />
           {clicked && <CenterMenu type='black'/>}
-          {!clicked &&<MiniSearchBar setClicked={setClicked} inputData={match.params} /> }
+          {!clicked &&<MiniSearchBar setClicked={setClicked} /> }
           <UserInfo />
         </FlexBox>
         {clicked && <SearchBar />}

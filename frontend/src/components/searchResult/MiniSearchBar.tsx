@@ -1,13 +1,11 @@
 import styled from 'styled-components'
 import SearchIcon from '@material-ui/icons/Search'
 import IconButton from '@material-ui/core/IconButton'
-import { IParams } from '../../Interface'
-import { useRecoilValue} from 'recoil'
-import { RecoilValueGroup, RecoilSetStateGroup, defaultValue } from '../../customHook/atoms'
+import { useRecoilValue } from 'recoil'
+import { RecoilValueGroup, defaultValue } from '../../customHook/atoms'
 import { FilterDateToString } from '../../customHook/useDateInfo'
 interface IMiniProps {
   setClicked: (value: React.SetStateAction<boolean>) => void
-  inputData: IParams
 }
 
 export const setScheduleMsg = (
@@ -21,14 +19,12 @@ export const setScheduleMsg = (
   return msg
 }
 
-function MiniSearchBar({ setClicked, inputData }: IMiniProps) {
+function MiniSearchBar({ setClicked }: IMiniProps) {
+  const { place, checkIn, checkOut, guestMsg } = useRecoilValue(RecoilValueGroup)
   const handleClick = () => {
     setClicked(true)
   }
-  RecoilSetStateGroup(inputData)
-  const { place, checkIn, checkOut, guestMsg } = useRecoilValue(RecoilValueGroup)
-
-
+ 
   return (
     <SearchBar>
       <div onClick={handleClick}>{place}</div>

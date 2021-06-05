@@ -1,5 +1,5 @@
 import { atom, selector, useRecoilValue, useSetRecoilState } from 'recoil'
-import { IParams } from '../Interface'
+import { IParams, INewSetting } from '../Interface'
 
 //defaultValue________________________________________
 export const defaultValue = {
@@ -188,99 +188,32 @@ export function RecoilSetStateGroup(params: IParams) {
   setMaxFeePercent(filterUndefined(maxFeePercent))
 }
 
-export const RecoilValueGroup = selector({key:'recoilValues', 
-get({get}){
-  const place = get(clickedPlace) 
-  const checkIn = get(checkInMessage)
-  const checkOut = get(checkOutMessage)
-  const priceMin =get(FeeMin)
-  const priceMax =get(FeeMax)
-  const minFeePercent = get(FeeMinChange)
-  const maxFeePercent = get(FeeMaxChange)
-  const adult = get(personnelAudult)
-  const child = get(personnelChild)
-  const baby = get(personnelBaby)
-  const guestMsg = get(personnelMessage)
+export const RecoilValueGroup = selector({
+  key:'recoilValues', 
+  get: ({get})=>{
+    const place = get(clickedPlace) 
+    const checkIn = get(checkInMessage)
+    const checkOut = get(checkOutMessage)
+    const priceMin =get(FeeMin)
+    const priceMax =get(FeeMax)
+    const minFeePercent = get(FeeMinChange)
+    const maxFeePercent = get(FeeMaxChange)
+    const adult = get(personnelAudult)
+    const child = get(personnelChild)
+    const baby = get(personnelBaby)
+    const guestMsg = get(personnelMessage)
   return {place, checkIn, checkOut, priceMin, priceMax, minFeePercent, maxFeePercent, adult, child, baby, guestMsg}
-  
-}})
-
-// ,set({set}, newValues){
-//   const {place} = newValues as IParams
-//   place === defaultValue.placeToSearch ? set(clickedPlace, '근처 추천 장소'): set(clickedPlace, place)
-// }
-
-export function Test() {
-  const place = useRecoilValue(clickedPlace)
-  const checkIn = useRecoilValue(checkInMessage)
-  const checkOut = useRecoilValue(checkOutMessage)
-  const priceMin = useRecoilValue(FeeMin)
-  const priceMax = useRecoilValue(FeeMax)
-  const minFeePercent = useRecoilValue(FeeMinChange)
-  const maxFeePercent = useRecoilValue(FeeMaxChange)
-  const adult = useRecoilValue(personnelAudult)
-  const child = useRecoilValue(personnelChild)
-  const baby = useRecoilValue(personnelBaby)
-  const guestMsg = useRecoilValue(personnelMessage)
-  return {
-    place,
-    checkIn,
-    checkOut,
-    priceMin,
-    minFeePercent,
-    priceMax,
-    maxFeePercent,
-    adult,
-    child,
-    baby,
-    guestMsg,
-  }
-}
-  
-//   set({set}, newValues){
-//   const {
-//     place,
-//     checkIn,
-//     checkOut,
-//     adult,
-//     child,
-//     baby,
-//     priceMin,
-//     priceMax,
-//     maxFeePercent,
-//     minFeePercent,
-//   } = newValues
-//   set(clickedPlace, place)
-// } 
-//   set(checkInMessage, Number(checkIn))
-//   set(checkOutMessage, Number(checkOut))
-//   set(personnelAudult, Number(adult))
-//   set(personnelChild, Number(child))
-//   set(personnelBaby, Number(baby))
-//   set(FeeMin, priceMin)
-//   set(priceMax, priceMax)
-//   set(maxFeePercent, FeeMaxChange)
-//   set(minFeePercent, FeeMinChange)
-// }
-
-// export const reserveInfoSelector = selector({ key: 'reserveInformation', 
-// get: ({ get }): reserveQueryType => 
-// { const address = get(locationState); 
-//   const selectDateData = get(selectDateState);
-//    const checkIn = selectDateData.checkIn; 
-//    const checkOut = selectDateData.checkOut; 
-//    const priceData = get(priceState); 
-//    const minCharge = priceData.min; 
-//    const maxCharge = priceData.max; 
-//    const guests = get(guestState);
-//     return { address, checkIn, checkOut, minCharge, maxCharge, guests }; },
-//      set: ({ set }, newState): void => { 
-//        const { address, checkIn, checkOut, minCharge, maxCharge, adult, child, infants } = newState as reserveInfoType;
-//         const date = { checkIn, checkOut };
-//          const price = { min: minCharge, max: maxCharge };
-//           const guests = { adult, child, infants }; 
-//           set(locationState, address);
-//           set(selectDateState, date); 
-//           set(priceState, price); 
-//           set(guestState, guests); }, });
-
+  },
+  set:({set}, newValue:any)=>{
+    const {place, checkIn, checkOut, priceMin, priceMax, minFeePercent, maxFeePercent, adult, child, baby } = newValue
+    set(clickedPlace, place === defaultValue.placeToSearch ? '근처 추천 장소' : place)
+    set(checkInMessage, Number(checkIn))
+    set(checkOutMessage, Number(checkOut))
+    set(personnelAudult, Number(adult))
+    set(personnelChild, Number(child))
+    set(personnelBaby, Number(baby))
+    set(FeeMin, priceMin)
+    set(FeeMax, priceMax)
+    set(FeeMinChange, minFeePercent)
+    set(FeeMaxChange, maxFeePercent)
+  }})
