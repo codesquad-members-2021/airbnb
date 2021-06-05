@@ -7,33 +7,36 @@ import {
 import DefaultButton from '../../../../Common/DefaultButton';
 import Modal from '../../../../Common/Modal';
 
-type PeopleItemTextType = {
+
+type TPeopleKeys = "adult" | "child" | 'infant';
+type TPeopleItemText = {
+  type: TPeopleKeys;
+} & {
   name: string;
   desc: string;
-  type: string;
 };
 
-const PeopleItemText: PeopleItemTextType[] = [
+const PeopleItemText: TPeopleItemText[] = [
   { name: '성인', desc: '만 13세 이상', type: 'adult' },
   { name: '어린이', desc: '만 2 ~ 12세', type: 'child' },
   { name: '유아', desc: '만 2세 미만', type: 'infant' },
 ];
 
 const PeopleModal = ({ ...props }) => {
-  const textData: PeopleItemTextType[] = PeopleItemText;
+  const textData: TPeopleItemText[] = PeopleItemText;
   const { peopleCount } = useSearchBarState();
   const searchBarDispatch = useSearchBarDispatch();
 
-  const handleIncreasePeopleCnt = (type: string) =>
+  const handleIncreasePeopleCnt = (type: TPeopleKeys) =>
     searchBarDispatch({ type: 'INCREASE_PEOPLE_COUNT', payload: type });
-  const handleDecreasePeopleCnt = (type: string) =>
+  const handleDecreasePeopleCnt = (type: TPeopleKeys) =>
     searchBarDispatch({ type: 'DECREASE_PEOPLE_COUNT', payload: type });
 
   return (
     <PeopleModalLayout {...props}>
       <MenuList>
-        {textData.map(({ name, desc, type }) => (
-          <MenuItem>
+        {textData.map(({ name, desc, type }, i) => (
+          <MenuItem key={i}>
             <ul>
               <li>{name}</li>
               <li>{desc}</li>
@@ -43,12 +46,7 @@ const PeopleModal = ({ ...props }) => {
                 <AiOutlinePlusCircle />
               </MenuItemButton>
 
-              <span>
-                {
-                  // @ts-ignore
-                  peopleCount[type]
-                }
-              </span>
+              <span>{peopleCount[type]}</span>
               <MenuItemButton onClick={() => handleDecreasePeopleCnt(type)}>
                 <AiOutlineMinusCircle />
               </MenuItemButton>

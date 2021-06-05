@@ -81,10 +81,7 @@ const FeeGraphSlider = ({ feeData, ...props }: IFeeGraph) => {
         검은색은 SliderBlock 컴포넌트의 배경
         현재 구조가 SliderBlock 위에 캔버스가 있는 구조!
 
-        그러므로 아래 DESCData는 내림차순으로 변경하여 생성
     */
-    const DESCData = [...data].sort((a, b) => b - a);
-
     const canvas: HTMLCanvasElement = canvasRef.current;
     const ctx: CanvasRenderingContext2D | null = canvas.getContext('2d');
     if (!ctx) return;
@@ -99,7 +96,7 @@ const FeeGraphSlider = ({ feeData, ...props }: IFeeGraph) => {
     // 🤪 라노 캔버스 그린다!!
     // 🤯 라노 키보드 부신다!!
     ctx.beginPath();
-    DESCData.forEach((price, i) => {
+    data.forEach((price, i) => {
       // [*1*]에 의해 주석처리 (정상적인 그래프 그릴때 사용 / 주석해제시엔 아래 그려지는 색상은 흰색말고 다른색 하기)
       // ctx.rect(startX, startY - price * onePer.h, onePer.w, price * onePer.h);
       const h = price * onePer.h;

@@ -33,13 +33,15 @@ const SearchBar = forwardRef(
     //@ts-ignore
     { searchBarTexts, searchBarRef }: ITextTopBackground,
   ) => {
-    const { result, fetchState: {isLoading}} = useFetch<IRoomsInfo>(API.get.rooms);
+    const { result, fetchState: {isLoading, isError}} = useFetch<IRoomsInfo>(API.get.rooms);
     const [salePrices, setSalePrices] = useState<number[]>([]);
     const [searchURL, setSearchURL] = useState<string>('/search');
 
     useEffect(() => {
-      if (isLoading || !result) return;
-      setSalePrices(result.rooms.map((data) => data.salePrice));
+      if (isLoading || !result || isError) 
+        setSalePrices([...Array(300)].map((_) => Math.floor(Math.random() * 1000000)));
+      else
+        setSalePrices(result.rooms.map((data) => data.salePrice));
     }, [isLoading]);
 
     // 1. 초기 값 설정

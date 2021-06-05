@@ -7,7 +7,7 @@ const FeeInfo = ({ feeData: {data, start, end}, ...props } : IFeeGraph) => {
   const [avg, setAvg] = useState("");
   useEffect(() => {
     if (!data || data.length <= 0) return;
-    const calcAvg = data.reduce((result, curr) => (result += curr, result), 0) / data.length;
+    const calcAvg = Math.floor(data.reduce((result, curr) => (result += curr, result), 0) / data.length);
     setAvg(threeDigitsComma(calcAvg));
   }, [data]);
 
