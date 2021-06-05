@@ -36,7 +36,6 @@ const ModalLayout = styled.div`
 
   & > div {
     width: 35rem;
-    /* padding: 2rem; */
     color: #555;
   }
 

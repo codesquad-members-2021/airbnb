@@ -3,6 +3,8 @@ import { useState, useRef } from "react";
 import { useRecoilState } from "recoil";
 import { roomPriceState } from "recoil/Atoms";
 
+//작성중인 미완성 컴포넌트 입니다. ㅠㅠㅠ
+
 function PriceRange() {
   const [leftValue, setLeftValue] = useState("");
   const [rightValue, setRightValue] = useState("");

@@ -12,7 +12,7 @@ const MiniSearchBar = () => {
     const target = e.target as HTMLElement;
     const targetId = target.id;
     setClickFlagByType(targetId);
-    //atom 값 바꿔주기
+
   };
   const setClickFlagByType = (type: string) => {
     switch (type) {

@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import * as S from "components/Reservation/ReservationStyle";
 import { useEffect } from 'react';
 import { roomCardClickedState } from 'recoil/Atoms'

@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
 const LoginModal = () => {
-  // const token = localStorage.getItem("token");
-  // const menuListText = !token ? "🐹 동물의 세계로 로그인"
-  // : (() => {
-  //   const parsedToken = token && atob(token.split('.')[1]);
-  //   const {name, login} = JSON.parse(parsedToken);
-  //   return `${name}님 안녕하세요.`;
-  // })();
+  const token = localStorage.getItem("token");
+  const menuListText = !token ? "🐹 동물의 세계로 로그인"
+  : (() => {
+    const parsedToken = token && atob(token.split('.')[1]);
+    const {name, login} = JSON.parse(parsedToken);
+    return `${name}님 안녕하세요.`;
+  })();
 
   const menuList = [
     {
-      text: "menuListText",
+      text: menuListText,
       url:
         "https://github.com/login/oauth/authorize?client_id=5064f641a3bfe7f785ab",
     },
