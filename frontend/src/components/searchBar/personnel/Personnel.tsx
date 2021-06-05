@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import {
   ModalWrapper,
@@ -16,15 +16,19 @@ import {
 import ModalPersonnel from './ModalPersonnel'
 import useModalCtrl from '../../../customHook/useModalCtrlArray'
 import useXclick from '../../../customHook/useXclick'
+interface IPersonnel {
+  guestMsg : string
+}
 
-export const PersonnelBlock = (guestMsg:string) =>{
+export const PersonnelBlock = React.memo(({guestMsg}:IPersonnel) =>{
   return  (
   <div>
     <BarTitle>인원</BarTitle>
     <BarMessage>{guestMsg}</BarMessage>
   </div>
   )
-}
+})
+
 export const getGuestMsg = (adult: number, child: number, baby: number) => {
   adult = Number(adult)
   child = Number(child)
@@ -58,7 +62,7 @@ function Personnel() {
     <>
       <BarBlock ref={PersonnelToggle}>
         <BarInnerWrapper>
-          {PersonnelBlock(guestMsg)}
+          <PersonnelBlock guestMsg={guestMsg}/>
           <RenderXbtn />
         </BarInnerWrapper>
       </BarBlock>

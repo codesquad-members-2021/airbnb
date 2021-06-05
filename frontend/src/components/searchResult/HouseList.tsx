@@ -18,10 +18,10 @@ const ConfirmMsg = () => {
   const [msg, setMsg] = useState(`예약이 완료되었습니다.`)
   const [confirmMsg, setConfirmMsg] = useRecoilState(reserveMsg)
 
-  // new Promise(() => {
-  //   setTimeout(() => {
-  //     setConfirmMsg(false)}, 3000);
-  //   })
+  new Promise(() => {
+    setTimeout(() => {
+      setConfirmMsg(false)}, 1500);
+    })
 
   return <BackgroundBlock className="예약완료"><MsgModal>{msg}</MsgModal></BackgroundBlock>
 }
