@@ -42,4 +42,6 @@ generated
 ### front ###
 src/main/resources/static
 src/main/resources/application.properties
-src/main/resources/application-auth.properties
+src/main/resources/application-local.properties
+src/main/resources/application-prod.properties
+
