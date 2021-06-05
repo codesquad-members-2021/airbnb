@@ -1,10 +1,9 @@
-import { Suspense, useState } from 'react'
 import styled from 'styled-components'
 import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil'
-import {PersonnelBlock} from '../searchBar/personnel/Personnel'
-import {CheckInBlock} from '../searchBar/date/CheckIn'
-import {CheckOutBlock} from '../searchBar/date/CheckOut'
-import {personnelMessage,checkInMessage,checkOutMessage,reserveMsg} from '../../customHook/atoms'
+import { PersonnelBlock } from '../searchBar/personnel/Personnel'
+import { CheckInBlock } from '../searchBar/date/CheckIn'
+import { CheckOutBlock } from '../searchBar/date/CheckOut'
+import { personnelMessage,checkInMessage,checkOutMessage,reserveMsg} from '../../customHook/atoms'
 interface IReserve{
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
   targetData?: any
@@ -50,11 +49,9 @@ function Reservation({setOpen, targetData}:IReserve) {
         <ReviewSpan>후기 {targetData.review.review}개</ReviewSpan>
       </FlexBox>
       <GridBox>
-        
         <div><PersonnelBlock guestMsg={guestMsg}/></div>
         <div><CheckInBlock checkIn={checkIn}/></div>
         <div><CheckOutBlock checkOut={checkOut}/></div>
-
       </GridBox>
       <ReservationBtn onClick={handleReservationClick}>예약하기</ReservationBtn>
     </ReservationBlock>
