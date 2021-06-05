@@ -1,6 +1,5 @@
 import queryString from 'query-string'
 import { useEffect } from 'react'
-import styled from 'styled-components'
 import { RouteComponentProps } from 'react-router-dom'
 import axios from 'axios'
 import { defaultUrl } from '../../customHook/axiosAPI'
@@ -19,9 +18,7 @@ const GetCode = async () => {
   }
 }
 
-//{ history }: RouteComponentProps
 const GetUserInfo =  async (jwt:Promise<string>) =>{
-
   let userInfo
   try {
     const response = await axios({

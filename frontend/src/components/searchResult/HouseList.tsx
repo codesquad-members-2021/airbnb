@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useRecoilState } from 'recoil'
 import Reservation from '../reservation/Reservation'
 import WishToggleBtn from './WishListToggle'
 import {
   RecoilValueGroup,
   defaultValue,
-  RoomData
+  RoomData, reserveMsg
 } from '../../customHook/atoms'
 import { setScheduleMsg } from './MiniSearchBar'
 import { getFeeMsg } from '../searchBar/fee/Fee'
@@ -14,10 +14,22 @@ import { getFeeMsg } from '../searchBar/fee/Fee'
 interface IpriceType {
   type?:string
 }
+const ConfirmMsg = () => {
+  const [msg, setMsg] = useState(`예약이 완료되었습니다.`)
+  const [confirmMsg, setConfirmMsg] = useRecoilState(reserveMsg)
+
+  // new Promise(() => {
+  //   setTimeout(() => {
+  //     setConfirmMsg(false)}, 3000);
+  //   })
+
+  return <BackgroundBlock className="예약완료"><MsgModal>{msg}</MsgModal></BackgroundBlock>
+}
 
 function HouseList() {
   const { checkIn, checkOut, priceMin, priceMax, minFeePercent, maxFeePercent, guestMsg } = useRecoilValue(RecoilValueGroup)
   const roomDatas = useRecoilValue(RoomData);
+  const [confirmMsg, setConfirmMsg] = useRecoilState(reserveMsg)
 
   const filteringInfo = (data:any) => {
     let str = []
@@ -79,10 +91,33 @@ function HouseList() {
         </Column>
       ))}
       {open && <Reservation setOpen={setOpen} targetData={targetData}></Reservation>}
+      {console.log(confirmMsg)}
+      {confirmMsg && <ConfirmMsg/>}
       </ScrollArea>
     </Frame>
   )
 }
+const MsgModal = styled.div`
+  width: 200px;
+  height: 90px;
+  background-color: ${({theme})=>theme.color.red_btn};
+  color: ${({theme})=>theme.color.white};
+  display: flex;
+  border-radius: 30px;
+  align-items: center;
+  justify-content: center;`
+const BackgroundBlock = styled.div`
+  position: fixed;
+  right:0;
+  left:0;
+  top:0;
+  bottom:0;
+  background: #00000080;
+  z-index:10000;
+  display: flex;
+  align-items: center;
+  place-content: center;`
+
 const FlexBox = styled.div`
 display: flex;
 justify-content: space-between;`

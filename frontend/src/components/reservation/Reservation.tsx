@@ -1,9 +1,10 @@
+import { Suspense } from 'react'
 import styled from 'styled-components'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useRecoilState } from 'recoil'
 import {PersonnelBlock} from '../searchBar/personnel/Personnel'
 import {CheckInBlock} from '../searchBar/date/CheckIn'
 import {CheckOutBlock} from '../searchBar/date/CheckOut'
-import {personnelMessage,checkInMessage,checkOutMessage} from '../../customHook/atoms'
+import {personnelMessage,checkInMessage,checkOutMessage,reserveMsg} from '../../customHook/atoms'
 interface IReserve{
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
   targetData: any
@@ -16,9 +17,14 @@ function Reservation({setOpen, targetData}:IReserve) {
   const checkIn=useRecoilValue(checkInMessage)
   const checkOut=useRecoilValue(checkOutMessage)
   const guestMsg=useRecoilValue(personnelMessage)
+  const [confirmMsg, setConfirmMsg] = useRecoilState(reserveMsg)
 
-  const handleModalClick = () =>{
+ const handleModalClick = () =>{
     setOpen(false)
+  }
+  const handleReservationClick = () =>{
+    setOpen(false)
+    setConfirmMsg(true)
   }
   return (
   <BackgroundBlock className="MODAL" onClick={handleModalClick}>
@@ -36,7 +42,7 @@ function Reservation({setOpen, targetData}:IReserve) {
         <div><CheckOutBlock checkOut={checkOut}/></div>
 
       </GridBox>
-      <ReservationBtn>예약하기</ReservationBtn>
+      <ReservationBtn onClick={handleReservationClick}>예약하기</ReservationBtn>
     </ReservationBlock>
   </BackgroundBlock>)
 }

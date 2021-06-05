@@ -124,6 +124,12 @@ export const Login = atom({
   default: false,
 })
 
+//reserveCheck_Promise ATOM_________________________________
+export const reserveMsg = atom({
+  key: 'confirmMsg',
+  default: false
+})
+
 //UseAllSetRecoilData_______________________________________
 export function RecoilSetStateGroup(params: IParams) {
   const setPlace = useSetRecoilState(clickedPlace)
