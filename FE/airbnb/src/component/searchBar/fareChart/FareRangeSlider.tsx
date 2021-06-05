@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   minPriceState,
   maxPriceState,
   thumbLeftPriceState,
   thumbRightPriceState,
   isSetPriceState,
+  leftValueState,
+  rightValueState,
 } from "state/atoms/fareAtoms";
 import { ReactComponent as ThumbLeft } from "assets/pause_circle.svg";
 import { ReactComponent as ThumbRight } from "assets/pause_circle.svg";
@@ -20,10 +22,10 @@ function FareRangeSlider() {
   const { MIN, MAX } = RANGE_DATA;
   const minPrice = useRecoilValue(minPriceState);
   const maxPrice = useRecoilValue(maxPriceState);
-  const [leftValue, setLeftValue] = useState(MIN);
-  const [rightValue, setRightValue] = useState(MAX);
-  const [thumbLeftPos, setThumbLeftPos] = useState(MIN);
-  const [thumbRightPos, setThumbRightPos] = useState(MAX);
+  const [leftValue, setLeftValue] = useRecoilState(leftValueState);
+  const [rightValue, setRightValue] = useRecoilState(rightValueState);
+  const [thumbLeftPos, setThumbLeftPos] = useState(leftValue);
+  const [thumbRightPos, setThumbRightPos] = useState(rightValue);
   const setLeftPrice = useSetRecoilState(thumbLeftPriceState);
   const setRightPrice = useSetRecoilState(thumbRightPriceState);
   const setIsSetPrice = useSetRecoilState(isSetPriceState);
