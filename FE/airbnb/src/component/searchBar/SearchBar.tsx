@@ -45,7 +45,7 @@ function SearchBar({ size }: Props) {
   );
 }
 
-export default SearchBar;
+export default React.memo(SearchBar);
 
 interface SearchBarContainerType {
   size: string;

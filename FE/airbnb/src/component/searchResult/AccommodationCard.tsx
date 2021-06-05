@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { regionNameState } from "state/atoms/positionAtoms";
@@ -45,7 +46,7 @@ function AccommodationCard({ accommodationInfo }: Props) {
   );
 }
 
-export default AccommodationCard;
+export default React.memo(AccommodationCard);
 
 interface cardType {
   imgSrc: string;

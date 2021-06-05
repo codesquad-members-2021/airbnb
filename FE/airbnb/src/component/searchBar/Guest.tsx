@@ -27,7 +27,7 @@ function Guest({ onClick, size }: Props) {
   );
 }
 
-export default Guest;
+export default React.memo(Guest);
 
 interface size {
   size: string;

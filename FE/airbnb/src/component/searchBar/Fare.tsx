@@ -20,7 +20,7 @@ function Fare({ onClick, size }: Props) {
   );
 }
 
-export default Fare;
+export default React.memo(Fare);
 
 interface size {
   size: string;
