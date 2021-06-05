@@ -22,7 +22,9 @@ type RoomInformation = {
 
 const RoomCard = ({roomInfo: { thum_image, room_type, room_name, room_label, star_rating, review_label, price }}: RoomInformation) => {
     const setIsClicked = useSetRecoilState(roomCardClickedState);
-    const popReservationModal = () => {
+    const popReservationModal = (e: React.MouseEvent<Element, MouseEvent>) => {
+        const target = e.target as HTMLElement;
+        const targetId = target.id;
         setIsClicked(true);
     }
     return (

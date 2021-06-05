@@ -18,7 +18,6 @@ function PriceRange() {
     const max = parseInt(target.max);
     const value = Math.min();
     const rightValue: number | null = Number($rightInput.current?.value);
-    console.log("right", rightValue);
     setRoomPrice({ ...roomPrice, max: rightValue });
   }
 
@@ -26,7 +25,6 @@ function PriceRange() {
     const target = e.target;
     const { value, min, max } = target;
     const leftValue: number | null = Number($leftInput.current?.value);
-    console.log("left", leftValue);
 
     setRoomPrice({ ...roomPrice, min: leftValue });
   }

@@ -3,6 +3,7 @@ import * as S from "components/Reservation/ReservationStyle";
 import { useEffect } from 'react';
 import { roomCardClickedState } from 'recoil/Atoms'
 import { useRecoilState } from 'recoil';
+import { Link } from 'react-router-dom';
 
 function Reservation() {
     const [isClicked, setIsClicked] = useRecoilState(roomCardClickedState);
@@ -28,15 +29,25 @@ function Reservation() {
                     </div>
                     <div className="input-information">
                         <div className="dates">
-                            <div className="check-in">체크인</div>
-                            <div className="check-out">체크아웃</div>
+                            <div className="check-in">체크인
+                                <div className="check-in-out-text">
+                                    2021년 6월 10일
+                                </div>
+                            </div>
+                            <div className="check-out">체크아웃
+                                <div className="check-in-out-text">
+                                    2021년 6월 15일
+                                </div>
+                            </div>
                         </div>
                         <div className="guest-number">
                             <div>인원</div>
                             <div className="input-guest-number">게스트 3명</div>
                         </div>
                     </div>
+                    <Link to="/">
                     <button>예약하기</button>
+                    </Link>
                     <div className="notification">예약 확정 전에는 요금이 청구되지 않습니다.</div>
                     <div className="price-detail">
                         <div>

@@ -3,7 +3,6 @@ import data from "./Prices2.json";
 
 const PriceGraph = () => {
   const { prices } = data;
-  console.log(Object.values(prices));
   const priceCounts = Object.values(prices);
   return (
     <GraphItemContainer>
