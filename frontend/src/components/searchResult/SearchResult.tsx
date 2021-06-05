@@ -15,7 +15,7 @@ import Map from './Map'
 import {IParams} from '../../Interface'
 
 function SearchResult({ match }: RouteComponentProps<IParams>) {
-  const [newSetting, setNewSetting] = useRecoilState(RecoilValueGroup)
+  const setNewSetting = useSetRecoilState(RecoilValueGroup)
   useEffect(()=>{
     setNewSetting(match.params)
   },[])
@@ -33,7 +33,7 @@ function SearchResult({ match }: RouteComponentProps<IParams>) {
   // let roomData = result && !isRouter ? result.rooms : roomDatas
 
   return (
-    <TotalWindow>
+    <>
       <Header>
         <FlexBox>
           <Logo />
@@ -47,11 +47,10 @@ function SearchResult({ match }: RouteComponentProps<IParams>) {
         <HouseList />
         <Map setRoomDatas={setRoomDatas} />
       </NoPaddingFlexBox>
-    </TotalWindow>
+    </>
   )
 }
-const TotalWindow = styled.div`
-`
+
 const Header = styled.div`
   margin-bottom: 45px;
 `
