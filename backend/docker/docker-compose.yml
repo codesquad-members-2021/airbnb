@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql-5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: airbnb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/initdb:/docker-entrypoint-initdb.d
+      - ./db/data:/var/lib/mysql
+      - ./db/conf:/etc/mysql/conf.d
+    restart: always
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - 8884:8080
