@@ -1,24 +1,18 @@
 package mj.airbnb.domain.reservation;
 
+import mj.airbnb.web.dto.CreatingReservationRequestDto;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
+import static mj.airbnb.util.RowMapper.*;
+import static mj.airbnb.util.SqlQuery.*;
+
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 @Repository
 public class ReservationRepository {
-
-    private static RowMapper<Reservation> RESERVATION_ROW_MAPPER() {
-        return (rs, rowNum) -> {
-            Reservation reservation = new Reservation();
-            reservation.setAccommodationId(rs.getLong("accommodation_id"));
-            reservation.setCheckInDate(rs.getDate("check_in_date").toLocalDate());
-            reservation.setCheckOutDate(rs.getDate("check_out_date").toLocalDate());
-
-            return reservation;
-        };
-    }
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -26,10 +20,24 @@ public class ReservationRepository {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    public List<Reservation> findAllByUserId(Long userId) {
+        return jdbcTemplate.query(RESERVATIONS_BY_USER_ID_SQL, RESERVATION_ROW_MAPPER, userId);
+    }
+
+    public Long saveReservation(CreatingReservationRequestDto requestDto) {
+
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
+                .withTableName("reservation")
+                .usingGeneratedKeyColumns("id");
+
+        return simpleJdbcInsert.executeAndReturnKey(requestDto.toMap()).longValue();
+    }
+
     public Reservation findById(Long id) {
-        String sqlQuery = "check_in_date, check_out_date, accommodation_id " +
-                "FROM reservation " +
-                "WHERE id = ?";
-        return jdbcTemplate.queryForObject(sqlQuery, RESERVATION_ROW_MAPPER(), id);
+        return jdbcTemplate.queryForObject(RESERVATION_IDS_BY_ID_SQL, RESERVATION_IDS_ROW_MAPPER, id);
+    }
+
+    public void softDeleteReservation(Long reservationId) {
+        jdbcTemplate.update(RESERVATION_SOFT_DELETION_SQL, reservationId);
     }
 }

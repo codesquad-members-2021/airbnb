@@ -1,11 +1,14 @@
 package mj.airbnb.web;
 
-import mj.airbnb.domain.reservation.Reservation;
+import mj.airbnb.oauth.GitHubUser;
 import mj.airbnb.service.ReservationService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import mj.airbnb.web.dto.CreatingReservationRequestDto;
+import mj.airbnb.web.dto.CreatingReservationResponseDto;
+import mj.airbnb.web.dto.ReservationResponseDto;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/reservations")
@@ -17,8 +20,22 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
-    @GetMapping("/{id}")
-    public Reservation viewReservation(@PathVariable Long id) {
-        return reservationService.findById(id);
+    @GetMapping
+    public List<ReservationResponseDto> viewReservation(@RequestAttribute GitHubUser user) {
+        return reservationService.findByUserId(user.getId());
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public CreatingReservationResponseDto createReservation(@RequestBody CreatingReservationRequestDto requestDto, @RequestAttribute GitHubUser user) {
+        requestDto.setUserId(user.getId());
+
+        return reservationService.createReservation(requestDto);
+    }
+
+    @DeleteMapping("/{reservationId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteReservation(@PathVariable Long reservationId) {
+        reservationService.deleteReservation(reservationId);
     }
 }
