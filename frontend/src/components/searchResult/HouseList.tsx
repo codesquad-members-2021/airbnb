@@ -1,33 +1,25 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { useRecoilValue, useRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import Reservation from '../reservation/Reservation'
 import WishToggleBtn from './WishListToggle'
-import {
-  RecoilValueGroup,
-  defaultValue,
-  RoomData, reserveMsg
-} from '../../customHook/atoms'
+import { RecoilValueGroup, defaultValue, RoomData, FeeMsg} from '../../customHook/atoms'
 import { setScheduleMsg } from './MiniSearchBar'
-import { getFeeMsg } from '../searchBar/fee/Fee'
 
 interface IpriceType {
   type?:string
 }
 
-
 function HouseList() {
-  const { checkIn, checkOut, priceMin, priceMax, minFeePercent, maxFeePercent, guestMsg } = useRecoilValue(RecoilValueGroup)
+  const { checkIn, checkOut, guestMsg } = useRecoilValue(RecoilValueGroup)
   const roomDatas = useRecoilValue(RoomData);
-  const [confirmMsg, setConfirmMsg] = useRecoilState(reserveMsg)
-
+  const getFeeMsg = useRecoilValue(FeeMsg)
   const filteringInfo = (data:any) => {
     let str = []
     str.push(`${data.length}개의 숙소`)
     if (setScheduleMsg(checkIn, checkOut) !== defaultValue.checkIn)
       str.push(`${setScheduleMsg(checkIn, checkOut)}`)
-    if (getFeeMsg(priceMin, priceMax, minFeePercent, maxFeePercent) !== defaultValue.fee)
-      str.push(`${getFeeMsg(priceMin, priceMax, minFeePercent, maxFeePercent)}`)
+    if (getFeeMsg!== defaultValue.fee) str.push(getFeeMsg)
     if (guestMsg !== defaultValue.guest) str.push(guestMsg)
 
     return str.join(` · `)

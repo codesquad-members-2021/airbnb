@@ -41,6 +41,22 @@ export const FeeMaxChange = atom<number>({
   key: 'maxFeePercent',
   default: 0,
 })
+export const FeeMsg = selector({
+  key: 'getFeeMsg',
+  get({get}){
+    const priceMin = get(FeeMin)
+    const priceMax = get(FeeMax)
+    const minFeePercent = get(FeeMinChange)
+    const maxFeePercent = get(FeeMaxChange)
+    let feeMsg =
+    priceMin === defaultValue.fee
+      ? priceMin
+      : `${Number(priceMin) + Number(minFeePercent)} ~ ${
+          Number(priceMax) - Number(maxFeePercent)
+        }원`
+    return feeMsg;
+  }
+})
 //personnel__________________________________________
 
 export const personnelAudult = atom<number>({
@@ -70,11 +86,7 @@ export const filterPersonnelMessage = selector({
     : defaultValue.guest
   }
 })
-interface Inumber {
-  adult: number;
-  child: number;
-  baby: number;
-}
+
 export const totalPerson = selector({
   key: 'totalPersonnel',
    get({get}){
