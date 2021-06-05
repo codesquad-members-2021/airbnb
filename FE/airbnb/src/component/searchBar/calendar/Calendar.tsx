@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { checkinDateState, checkoutDateState, hoverDateState } from "state/atoms/calendarAtoms";
 import Day from "component/searchBar/calendar/Day";
-import getCalendarData from "component/searchBar/calendar/getCalendarData";
+import { getCalendarData } from "component/searchBar/calendar/getCalendarData";
 
 interface Props {
   year: number;
