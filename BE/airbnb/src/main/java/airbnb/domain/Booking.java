@@ -17,6 +17,7 @@ import static javax.persistence.FetchType.LAZY;
 @AllArgsConstructor
 @Builder
 public class Booking {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -39,17 +40,17 @@ public class Booking {
 
     private Integer totalPrice;
 
-    public static BookingResponse createBookingResponse(Booking booking) {
+    public BookingResponse createBookingResponse() {
         return BookingResponse.builder()
-                .bookingId(booking.getId())
-                .name(booking.room.getName())
-                .roomImages(booking.room.getImages().stream().map(Image::getImage).collect(Collectors.toList()))
-                .place(booking.room.getLocation().getPlaceId())
-                .host(booking.room.getHost().getName())
-                .checkIn(LocalDateTime.of(booking.checkIn, booking.room.getRule().getCheckInTime()))
-                .checkOut(LocalDateTime.of(booking.checkOut, booking.room.getRule().getCheckOutTime()))
-                .numberOfGuests(booking.guest.numberOfGuests())
-                .totalPrice(booking.totalPrice)
+                .bookingId(getId())
+                .name(room.getName())
+                .roomImages(room.getImages().stream().map(Image::getImage).collect(Collectors.toList()))
+                .place(room.getLocation().getPlaceId())
+                .host(room.getHost().getName())
+                .checkIn(LocalDateTime.of(checkIn, room.getRule().getCheckInTime()))
+                .checkOut(LocalDateTime.of(checkOut, room.getRule().getCheckOutTime()))
+                .numberOfGuests(guest.numberOfGuests())
+                .totalPrice(totalPrice)
                 .build();
     }
 }

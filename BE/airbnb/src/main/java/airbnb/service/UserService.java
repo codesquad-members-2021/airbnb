@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 import static airbnb.response.Status.FAIL;
@@ -27,7 +28,7 @@ public class UserService {
     public User findLoginUser(GithubUser githubUser) {
         if (!isDuplicate(githubUser)) {
             logger.debug("{}님이 회원가입하셨습니다.", githubUser.getGithubId());
-            User user = GithubUser.createUser(githubUser);
+            User user = githubUser.createUser();
             userRepository.save(user);
             return user;
         }
@@ -49,12 +50,12 @@ public class UserService {
     public String saveWish(Long roomId, User githubUser) {
         User user = findUserByGithubId(githubUser.getGithubId());
         Room room = roomService.findRoomById(roomId);
-        Wish wish = new Wish(user, room);
-        if (!user.getWishes().contains(wish)) {
-            wish.addWish(wish);
+
+        if (user.addWish(room).isPresent()) {
             userRepository.save(user);
             return Status.message(room.getName(), SUCCESS);
         }
+
         return Status.message(room.getName(), FAIL);
     }
 

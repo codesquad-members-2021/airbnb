@@ -15,10 +15,12 @@ import static airbnb.domain.Time.MINUTE;
 @Getter
 @NoArgsConstructor
 public class City {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    protected String name;
+
+    private String name;
     private double driveTime;
     private String image;
 
@@ -37,11 +39,11 @@ public class City {
         return df.format(driveTime) + MINUTE.getName();
     }
 
-    public static CityResponse of(City city) {
+    public CityResponse of() {
         return CityResponse.builder()
-                .name(city.name)
-                .driveTime(city.getProcessedDriveTime())
-                .image(city.image)
+                .name(name)
+                .driveTime(getProcessedDriveTime())
+                .image(image)
                 .build();
     }
 }

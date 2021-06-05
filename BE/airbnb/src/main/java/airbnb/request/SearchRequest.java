@@ -24,5 +24,4 @@ public class SearchRequest {
     private final Integer adults;
     private final Integer children;
     private final Integer infants;
-
 }

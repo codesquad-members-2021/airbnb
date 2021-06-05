@@ -3,7 +3,6 @@ package airbnb.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.jdo.annotations.Transactional;
 import javax.persistence.*;
 import java.util.*;
 
@@ -31,4 +30,13 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Wish> wishes = new ArrayList<>();
+
+    public Optional<User> addWish(Room room) {
+        Wish wish = new Wish(this, room);
+        if (!this.getWishes().contains(wish)) {
+            wish.addWish(wish);
+            return Optional.of(this);
+        }
+        return Optional.empty();
+    }
 }

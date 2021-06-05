@@ -22,12 +22,12 @@ public class GithubUser {
     @JsonProperty("avatar_url")
     private String avatarUrl;
 
-    public static User createUser(GithubUser githubUser) {
+    public User createUser() {
         return User.builder()
-                .name(githubUser.name)
-                .email(githubUser.email)
-                .githubId(githubUser.githubId)
-                .profileImage(githubUser.avatarUrl)
+                .name(name)
+                .email(email)
+                .githubId(githubId)
+                .profileImage(avatarUrl)
                 .build();
     }
 }

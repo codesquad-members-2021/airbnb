@@ -15,7 +15,7 @@ public class GithubArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameterAnnotation(Github.class) != null;
+        return parameter.hasParameterAnnotation(Github.class);
     }
 
     @Override

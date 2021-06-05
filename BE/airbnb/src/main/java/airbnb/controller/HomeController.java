@@ -1,9 +1,8 @@
 package airbnb.controller;
 
 import airbnb.domain.*;
-import airbnb.repository.CategoryRepository;
-import airbnb.repository.CityRepository;
 import airbnb.response.*;
+import airbnb.service.HomeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,25 +14,15 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class HomeController {
-    private final CityRepository cityRepository;
-    private final CategoryRepository categoryRepository;
+    private final HomeService homeService;
 
     @GetMapping
     public HomeResponse home() {
-        List<CityResponse> nearbyDestinations = cityRepository.findAll()
-                .stream().map(City::of).collect(Collectors.toList());
-        List<Category> liveAnywhere = categoryRepository.findAll();
-        return new HomeResponse(nearbyDestinations, liveAnywhere);
+        return new HomeResponse(homeService.getNearbyDestinations(), homeService.getLiveAnywhere());
     }
 
     @GetMapping("/price")
     public Map<Integer, Integer> getPriceDistribution() {
-        int minPrice = 11000;
-        int maxPrice = 1000000;
-        Map<Integer, Integer> graph = new LinkedHashMap<>();
-        for (int i = minPrice; i < maxPrice; i += 10000) {
-            graph.put(i, (int) (Math.random() * 300));
-        }
-        return graph;
+        return homeService.getPriceDistribution();
     }
 }

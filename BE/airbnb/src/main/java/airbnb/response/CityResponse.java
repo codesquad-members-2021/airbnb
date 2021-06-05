@@ -1,11 +1,11 @@
 package airbnb.response;
 
-import airbnb.domain.City;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Builder
 public class CityResponse {

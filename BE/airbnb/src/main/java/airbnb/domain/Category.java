@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 public class Category {
+
     @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -25,7 +25,8 @@ public class RoomService {
     }
 
     public RoomDetailPageResponse findRoomDetailPageById(Long roomId) {
-        return Room.createDetailPageResponse(findRoomById(roomId));
+        Room room = findRoomById(roomId);
+        return room.createDetailPageResponse();
     }
 
     public List<RoomResponse> findRoomsFilteredBy(SearchRequest searchRequest) {

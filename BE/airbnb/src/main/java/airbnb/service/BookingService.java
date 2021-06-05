@@ -18,16 +18,18 @@ import java.util.stream.Collectors;
 public class BookingService {
     private final BookingRepository bookingRepository;
     private final UserService userService;
+    private final RoomService roomService;
 
     public Booking findBookingById(Long bookingId) {
         return bookingRepository.findById(bookingId).orElseThrow(BookingNotFoundException::new);
     }
 
-    public BookingResponse reserve(User githubUser, Room room, BookingRequest reservationInfo) {
+    public BookingResponse reserve(User githubUser, Long roomId, BookingRequest reservationInfo) {
+        Room room = roomService.findRoomById(roomId);
         User user = userService.findUserByGithubId(githubUser.getGithubId());
-        Booking booking = Room.createBooking(user, room, reservationInfo);
+        Booking booking = room.createBooking(user, reservationInfo);
         bookingRepository.save(booking);
-        return Booking.createBookingResponse(booking);
+        return booking.createBookingResponse();
     }
 
     public void cancel(Long bookingId) {

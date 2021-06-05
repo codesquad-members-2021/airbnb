@@ -63,39 +63,39 @@ public class Room {
     @CollectionTable(name = "image", joinColumns = @JoinColumn(name = "room_id"))
     private final List<Image> images = new ArrayList<>();
 
-    public static RoomResponse createRoomResponse(Room room) {
+    public RoomResponse createRoomResponse() {
         return RoomResponse.builder()
-                .roomId(room.id)
-                .city(room.city.getName())
-                .placeId(room.location.getPlaceId())
-                .latitude(room.location.getLatitude())
-                .longitude(room.location.getLongitude())
-                .label(room.label)
-                .roomImages(room.images.stream().map(Image::getImage).collect(Collectors.toList()))
-                .averageRating(room.averageRating)
-                .title(room.name)
-                .maximumNumberOfGuests(room.maximumNumberOfGuests)
-                .roomAndBedOption(room.roomAndBedOption)
-                .amenities(AmenityEnum.getAmenityList(room.amenity))
-                .pricePerNight(room.pricePerNight)
+                .roomId(id)
+                .city(city.getName())
+                .placeId(location.getPlaceId())
+                .latitude(location.getLatitude())
+                .longitude(location.getLongitude())
+                .label(label)
+                .roomImages(images.stream().map(Image::getImage).collect(Collectors.toList()))
+                .averageRating(averageRating)
+                .title(name)
+                .maximumNumberOfGuests(maximumNumberOfGuests)
+                .roomAndBedOption(roomAndBedOption)
+                .amenities(AmenityEnum.getAmenityList(amenity))
+                .pricePerNight(pricePerNight)
                 .build();
     }
 
-    public static RoomDetailPageResponse createDetailPageResponse(Room room) {
+    public RoomDetailPageResponse createDetailPageResponse() {
         return RoomDetailPageResponse.builder()
-                .roomImages(room.images.stream().map(Image::getImage).collect(Collectors.toList()))
-                .title(room.name)
-                .roomDescription(room.detailInfo)
-                .averageRating(room.averageRating)
-                .host(room.host)
-                .pricePerNight(room.pricePerNight)
+                .roomImages(images.stream().map(Image::getImage).collect(Collectors.toList()))
+                .title(name)
+                .roomDescription(detailInfo)
+                .averageRating(averageRating)
+                .host(host)
+                .pricePerNight(pricePerNight)
                 .build();
     }
 
-    public static Booking createBooking(User user, Room room, BookingRequest reservationInfo) {
+    public Booking createBooking(User user, BookingRequest reservationInfo) {
         return Booking.builder()
                 .user(user)
-                .room(room)
+                .room(this)
                 .guest(BookingRequest.createGuest(reservationInfo))
                 .checkIn(LocalDate.parse(reservationInfo.getCheckIn()))
                 .checkOut(LocalDate.parse(reservationInfo.getCheckOut()))

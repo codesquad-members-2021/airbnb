@@ -35,6 +35,7 @@ public class JwtUtil {
 
     public Jwt createToken(User user) {
         String token = JWT.create()
+                .withExpiresAt(new Date())
                 .withClaim(GITHUB_NAME, user.getName())
                 .withClaim(GITHUB_EMAIL, user.getEmail())
                 .withClaim(GITHUB_ID, user.getGithubId())
@@ -46,6 +47,7 @@ public class JwtUtil {
 
     public DecodedJWT verifyToken(Jwt jwt) {
         JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SECRET_KEY))
+                .acceptExpiresAt(20000000)
                 .withIssuer(ISSUER)
                 .build();
         return verifier.verify(jwt.getJwt());

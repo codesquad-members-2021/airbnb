@@ -24,8 +24,7 @@ public class BookingController {
     @LoginRequired
     @PostMapping("/book/rooms/{roomId}")
     public BookingResponse reserve(@PathVariable Long roomId, @RequestBody BookingRequest reservationInfo, @Github User user) {
-        Room room = roomService.findRoomById(roomId);
-        return bookingService.reserve(user, room, reservationInfo);
+        return bookingService.reserve(user, roomId, reservationInfo);
     }
 
     @LoginRequired

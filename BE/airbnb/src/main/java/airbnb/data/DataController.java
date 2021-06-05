@@ -24,15 +24,15 @@ public class DataController {
             .exchangeStrategies(exchangeStrategies).build();
 
     public static void main(String[] args) throws IOException {
-        List<String> placeIDArr = new ArrayList<>();
-        placeIDArr.add("ChIJzWXFYYuifDUR64Pq5LTtioU");
-        placeIDArr.add("ChIJR4ITliVveTURQmG3LJD9N30");
-        placeIDArr.add("ChIJTYxvLg7HfDURrJz18pb4R-E");
-        placeIDArr.add("ChIJ1a3vsrjjZTURMC44oCngkro");
-        placeIDArr.add("ChIJAWZKutdIZTURtdOKmJ3WltE");
-        placeIDArr.add("ChIJr6f1ASOJcTURSPUlAe3S9AU");
-        placeIDArr.add("ChIJEUZ2IApDezURybRd7gIwN_E");
-        placeIDArr.add("ChIJgd6y4osuZjURATHZM3P6g3A");
+        List<String> placeIdArr = new ArrayList<>();
+        placeIdArr.add("ChIJzWXFYYuifDUR64Pq5LTtioU");
+        placeIdArr.add("ChIJR4ITliVveTURQmG3LJD9N30");
+        placeIdArr.add("ChIJTYxvLg7HfDURrJz18pb4R-E");
+        placeIdArr.add("ChIJ1a3vsrjjZTURMC44oCngkro");
+        placeIdArr.add("ChIJAWZKutdIZTURtdOKmJ3WltE");
+        placeIdArr.add("ChIJr6f1ASOJcTURSPUlAe3S9AU");
+        placeIdArr.add("ChIJEUZ2IApDezURybRd7gIwN_E");
+        placeIdArr.add("ChIJgd6y4osuZjURATHZM3P6g3A");
 
         BufferedWriter bufferedWriter1 = new BufferedWriter(new FileWriter("output.txt", true));
         BufferedWriter bufferedWriter2 = new BufferedWriter(new FileWriter("output2.txt", true));
@@ -46,7 +46,7 @@ public class DataController {
 
         Long i = 1L;
         Long k = 1L;
-        for (String placeId : placeIDArr) {
+        for (String placeId : placeIdArr) {
 
             Long cityId = k++;
             String url = "https://www.airbnb.co.kr/api/v2/explore_tabs?key=d306zoyjsyarp7ifhu67rjxn52tv0t20&place_id=" + placeId + "&_intents=p1&auto_ib=false&experiences_per_grid=0&fetch_filters=true&guidebooks_per_grid=0&has_zero_guest_treatment=true&is_guided_search=true&is_new_cards_experiment=true&is_standard_search=true&items_per_grid=100&luxury_pre_launch=false&metadata_only=false&query_understanding_enabled=true&refinement_paths%5B%5D=%2Fhomes&search_type=section_navigation&selected_tab_id=home_tab&supports_for_you_v3=true";

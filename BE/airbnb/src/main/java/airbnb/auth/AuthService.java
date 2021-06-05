@@ -9,6 +9,7 @@ import io.netty.resolver.DefaultAddressResolverGroup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,7 @@ public class AuthService {
                 .code(code)
                 .redirectUri(REDIRECT_URI)
                 .build();
+
         return webClient.post()
                 .uri(ACCESS_TOKEN_URI)
                 .accept(MediaType.APPLICATION_JSON)
@@ -62,7 +64,7 @@ public class AuthService {
         return webClient.get()
                 .uri(USER_URI)
                 .accept(MediaType.APPLICATION_JSON)
-                .header("Authorization", "token " + accessToken)
+                .header(HttpHeaders.AUTHORIZATION, "token " + accessToken)
                 .retrieve()
                 .bodyToMono(GithubUser.class)
                 .blockOptional()
