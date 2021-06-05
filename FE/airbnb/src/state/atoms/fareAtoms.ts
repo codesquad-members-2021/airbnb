@@ -20,6 +20,16 @@ export const thumbRightPriceState = atom<number>({
   default: 10000000,
 });
 
+export const leftValueState = atom({
+  key: "leftValueState",
+  default: 0
+})
+
+export const rightValueState = atom({
+  key: "rightValueState",
+  default: 100
+})
+
 export const isSetPriceState = atom<boolean>({
   key: "isSetPriceState",
   default: false,
