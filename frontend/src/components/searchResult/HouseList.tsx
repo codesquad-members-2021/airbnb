@@ -4,21 +4,20 @@ import { useRecoilValue } from 'recoil'
 import Reservation from '../reservation/Reservation'
 import WishToggleBtn from './WishListToggle'
 import { RecoilValueGroup, defaultValue, RoomData, FeeMsg} from '../../customHook/atoms'
-import { setScheduleMsg } from './MiniSearchBar'
+
 
 interface IpriceType {
   type?:string
 }
 
 function HouseList() {
-  const { checkIn, checkOut, guestMsg } = useRecoilValue(RecoilValueGroup)
+  const { scheduleMsg, guestMsg } = useRecoilValue(RecoilValueGroup)
   const roomDatas = useRecoilValue(RoomData);
   const getFeeMsg = useRecoilValue(FeeMsg)
   const filteringInfo = (data:any) => {
     let str = []
     str.push(`${data.length}개의 숙소`)
-    if (setScheduleMsg(checkIn, checkOut) !== defaultValue.checkIn)
-      str.push(`${setScheduleMsg(checkIn, checkOut)}`)
+    if (scheduleMsg !== defaultValue.checkIn) str.push(scheduleMsg)
     if (getFeeMsg!== defaultValue.fee) str.push(getFeeMsg)
     if (guestMsg !== defaultValue.guest) str.push(guestMsg)
 
@@ -29,8 +28,7 @@ function HouseList() {
   const [targetData, setTargetData] = useState(null)
   const handleModalClick = (e:React.MouseEvent<HTMLDivElement, MouseEvent>, el:any) => {
     const target = e.target as Element;
-    if (target.closest('.likeUnClick')!==null) return
-    if (target.closest('.likeClick')!==null) return
+    if (target.closest('.likeUnClick')!==null || target.closest('.likeClick')!==null) return
     setOpen(true)
     setTargetData(el)
   }

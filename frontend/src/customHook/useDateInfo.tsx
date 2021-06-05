@@ -30,6 +30,7 @@ export const dateToString = (clickedDate: string | number): string => {
   else {
     dateValue = Number(clickedDate)
   }
+  console.log(clickedDate)
   return new Date(dateValue).getMonth() + 1 + '월' + new Date(dateValue).getDate() + '일'
 }
 

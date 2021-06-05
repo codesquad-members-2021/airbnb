@@ -1,6 +1,6 @@
 import { atom, selector, useRecoilValue, useSetRecoilState } from 'recoil'
-import { IParams, INewSetting } from '../Interface'
-
+import { IParams } from '../Interface'
+import { dateToString } from './useDateInfo'
 //defaultValue________________________________________
 export const defaultValue = {
   placeAdjacent: '가까운 여행지 둘러보기',
@@ -16,14 +16,31 @@ export const clickedPlace = atom<string | undefined>({
   default: defaultValue.placeToSearch,
 })
 //Calendar___________________________________________
-export const checkInMessage = atom<string | number | undefined>({
+export const checkInMessage = atom<string | number>({
   key: 'checkIn',
   default: defaultValue.checkIn,
 })
-export const checkOutMessage = atom<string | number | undefined>({
+export const checkOutMessage = atom<string | number>({
   key: 'checkOut',
   default: defaultValue.checkOut,
 })
+export const scheduleMessage = selector({
+  key:'scheduleMsg',
+  get: ({get})=>{
+    const checkIn = get(checkInMessage)
+    const checkOut = get(checkOutMessage)
+    let msg = (checkIn!== defaultValue.checkIn && checkOut !== defaultValue.checkOut)
+    ? dateToString(checkIn) + '-' + dateToString(checkOut)
+    : checkIn
+    return msg;
+  }
+})
+
+
+
+
+
+
 //Fee_______________________________________________
 export const FeeMin = atom<string | number>({
   key: 'priceMin',
@@ -201,8 +218,9 @@ export const RecoilValueGroup = selector({
     const adult = get(personnelAudult)
     const child = get(personnelChild)
     const baby = get(personnelBaby)
-    const guestMsg = get(personnelMessage)
-  return {place, checkIn, checkOut, priceMin, priceMax, minFeePercent, maxFeePercent, adult, child, baby, guestMsg}
+    const scheduleMsg = get(scheduleMessage)
+    const guestMsg = get(filterPersonnelMessage)
+  return {place, checkIn, checkOut, scheduleMsg, priceMin, priceMax, minFeePercent, maxFeePercent, adult, child, baby, guestMsg}
   },
   set:({set}, newValue:any)=>{
     const {place, checkIn, checkOut, priceMin, priceMax, minFeePercent, maxFeePercent, adult, child, baby } = newValue
