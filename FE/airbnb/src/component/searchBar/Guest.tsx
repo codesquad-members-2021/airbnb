@@ -15,8 +15,8 @@ function Guest({ onClick, size }: Props) {
 
   let guestContent = "";
   if (adults > 0) guestContent += `성인 ${adults}명`;
-  if (children > 0) guestContent += `, 어린이 ${adults}명`;
-  if (babies > 0) guestContent += `, 유아 ${adults}명`;
+  if (children > 0) guestContent += `, 어린이 ${children}명`;
+  if (babies > 0) guestContent += `, 유아 ${babies}명`;
   if (adults === 0 && children === 0 && babies === 0) guestContent = "게스트 추가";
 
   return (
