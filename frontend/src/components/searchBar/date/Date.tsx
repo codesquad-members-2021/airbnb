@@ -5,9 +5,7 @@ import useModalCtrl from '../../../customHook/useModalCtrlArray'
 import ModalCalendar from './ModalCalendar'
 import CheckIn from './CheckIn'
 import CheckOut from './CheckOut'
-interface Itype {
-  type?: string
-}
+
 function Date() {
   const checkInToggle = useRef<HTMLDivElement>(null)
   const checkOutToggle = useRef<HTMLDivElement>(null)
