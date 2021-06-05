@@ -232,21 +232,3 @@ const PriceTag = styled.div`
   }
 `
 export default Slider
-
-// const handleMinInput = (e: React.FormEvent<HTMLInputElement>) => {
-//   const target = e.target as HTMLInputElement
-//   const maxTag = document.querySelector('.input-max') as HTMLInputElement
-//   const maxValue = maxTag?.value || 0
-//   console.log('min', target.value, maxValue, maxValue <= target.value)
-//   if (maxValue <= target.value) return
-//   setMinValue(target)
-// }
-
-// const handleMaxInput = (e: React.FormEvent<HTMLInputElement>) => {
-//   const target = e.target as HTMLInputElement
-//   const minTag = document.querySelector('.input-min') as HTMLInputElement
-//   const minValue = minTag?.value || 0
-//   console.log('max', target.value, minValue, minValue <= target.value)
-//   if (minValue >= target.value) return
-//   setMaxValue(target)
-// }

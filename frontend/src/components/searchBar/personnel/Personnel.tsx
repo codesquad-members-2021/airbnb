@@ -29,15 +29,6 @@ export const PersonnelBlock = React.memo(({guestMsg}:IPersonnel) =>{
   )
 })
 
-export const getGuestMsg = (adult: number, child: number, baby: number) => {
-  adult = Number(adult)
-  child = Number(child)
-  baby = Number(baby)
-  return adult + child + baby !== 0
-    ? `게스트 ${adult + child}명, 유아${baby}명`
-    : defaultValue.guest
-}
-
 function Personnel() {
   const PersonnelToggle = useRef<HTMLDivElement>(null)
   const PersonnelModal = useRef<HTMLDivElement>(null)
