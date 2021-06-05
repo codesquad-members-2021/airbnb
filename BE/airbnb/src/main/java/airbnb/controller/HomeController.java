@@ -22,7 +22,7 @@ public class HomeController {
     }
 
     @GetMapping("/price")
-    public Map<Integer, Integer> getPriceDistribution() {
+    public PriceGraphResponse getPriceDistribution() {
         return homeService.getPriceDistribution();
     }
 }
