@@ -34,8 +34,7 @@ function Reservation({setOpen, targetData}:IReserve) {
         <div>{PersonnelBlock(guestMsg)}</div>
         <div><CheckInBlock checkIn={checkIn}/></div>
         <div><CheckOutBlock checkOut={checkOut}/></div>
-        {/*<Date/>
-         */}
+
       </GridBox>
       <ReservationBtn>예약하기</ReservationBtn>
     </ReservationBlock>
