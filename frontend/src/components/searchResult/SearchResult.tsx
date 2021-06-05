@@ -34,11 +34,8 @@ function SearchResult({ match }: RouteComponentProps<IParams>) {
       <Header>
         <FlexBox>
           <Logo />
-          {clicked ? (
-            <CenterMenu />
-          ) : (
-            <MiniSearchBar setClicked={setClicked} inputData={match.params} />
-          )}
+          {clicked && <CenterMenu type='black'/>}
+          {!clicked &&<MiniSearchBar setClicked={setClicked} inputData={match.params} /> }
           <UserInfo />
         </FlexBox>
         {clicked && <SearchBar />}
