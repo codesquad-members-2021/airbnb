@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import { checkInMessage, checkOutMessage } from '../../../customHook/atoms'
+import { checkInMessage, checkOutMessage, defaultValue } from '../../../customHook/atoms'
 import { DateInfo } from '../../../customHook/useDateInfo'
 interface ICheckProps {
   year?: number
@@ -77,10 +77,10 @@ function Calendar({ currentMonth }: IDate) {
   const handleDateCLick = ({ year, currentMonth, dateEl, nonClickable }: ICheckProps): void => {
     if (!nonClickable) return
     const clickedDate = new Date(`${year}-${currentMonth}-${dateEl}`).valueOf()
-    if (checkIn === '날짜입력') setCheckIn(clickedDate)
-    if (checkIn !== undefined && checkIn !== '날짜입력' && checkIn <= clickedDate)
+    if (checkIn === defaultValue.checkIn) setCheckIn(clickedDate)
+    if (checkIn !== undefined && checkIn !== defaultValue.checkIn && checkIn <= clickedDate)
       setCheckOut(clickedDate)
-    if (checkIn !== undefined && checkIn !== '날짜입력' && checkIn > clickedDate)
+    if (checkIn !== undefined && checkIn !== defaultValue.checkIn && checkIn > clickedDate)
       setCheckIn(clickedDate)
   }
   return (

@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { RecoilRoot } from 'recoil'
-import GlobalStyle from './style/GlobalStyle'
 import { ThemeProvider } from 'styled-components'
 import { Theme } from './style/Theme'
 import './index.css'
@@ -15,7 +14,6 @@ ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
       <ThemeProvider theme={Theme}>
-      <GlobalStyle />
         <Router>
           <Switch>
             <Route path='/' component={App} exact />
