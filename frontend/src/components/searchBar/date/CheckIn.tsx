@@ -7,14 +7,14 @@ import {
   defaultValue,
 } from '../../../customHook/atoms'
 import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../../style/BarStyle'
-import { FilterDateToString } from '../../../customHook/useDateInfo'
+import { dateToString } from '../../../customHook/useDateInfo'
 import useXclick from '../../../customHook/useXclick'
 import { IProps } from '../../../Interface'
 
 export const CheckInBlock = React.memo(({checkIn}:any) => {
   return  (<div>
   <BarTitle>체크인</BarTitle>
-  <BarMessage>{FilterDateToString(checkIn)}</BarMessage>
+  <BarMessage>{dateToString(checkIn)}</BarMessage>
 </div>)
 })
 

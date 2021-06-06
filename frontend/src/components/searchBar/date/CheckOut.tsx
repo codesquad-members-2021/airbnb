@@ -6,7 +6,7 @@ import {
   clickCheckOut,
   defaultValue,
 } from '../../../customHook/atoms'
-import { FilterDateToString } from '../../../customHook/useDateInfo'
+import { dateToString } from '../../../customHook/useDateInfo'
 import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../../style/BarStyle'
 import useXclick from '../../../customHook/useXclick'
 import { IProps } from '../../../Interface'
@@ -14,11 +14,12 @@ import { IProps } from '../../../Interface'
 
 
 export const CheckOutBlock =  React.memo(({checkOut}:any) => {
-
-  return  (<div>
-  <BarTitle>체크아웃</BarTitle>
-  <BarMessage>{FilterDateToString(checkOut)}</BarMessage>
-</div>)
+  return  (
+  <div>
+    <BarTitle>체크아웃</BarTitle>
+    <BarMessage>{dateToString(checkOut)}</BarMessage>
+  </div>
+)
 })
 
 function CheckOut({ open, type, checkOutToggle }: IProps) {
