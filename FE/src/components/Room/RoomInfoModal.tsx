@@ -1,5 +1,3 @@
-// css 리팩토링 필요. 급하게짜서 폭탄..
-import { useState } from 'react';
 import styled from 'styled-components';
 import { threeDigitsComma } from '../../util/util';
 import DefaultButton from '../Common/DefaultButton';
@@ -89,12 +87,11 @@ const RoomInfoItem = styled.li`
     margin-top: 8px;
   }
   display: flex;
+  font-size: ${({ theme }) => theme.fontSize.S};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
 
   &.price-review {
     justify-content: space-between;
-
-    font-size: ${({ theme }) => theme.fontSize.S};
-    font-weight: ${({ theme }) => theme.fontWeight.normal};
 
     .price {
       display: flex;
@@ -126,29 +123,16 @@ const RoomInfoItem = styled.li`
 
     flex-direction: column;
 
-    ul li.bold {
-      font-weight: ${({ theme }) => theme.fontWeight.bold};
-    }
+    ul { padding: 12px; }
+    ul li.bold { font-weight: ${({ theme }) => theme.fontWeight.bold} }
 
     .checkin-out {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       width: 100%;
 
-      ul {
-        padding: 12px;
-        border-bottom: 2px solid ${({ theme }) => theme.colors.gray3};
-      }
-
-      ul + ul {
-        border-left: 2px solid ${({ theme }) => theme.colors.gray3};
-      }
-    }
-
-    .people {
-      ul {
-        padding: 12px;
-      }
+      ul { border-bottom: 2px solid ${({ theme }) => theme.colors.gray3} }
+      ul + ul { border-left: 2px solid ${({ theme }) => theme.colors.gray3} }
     }
   }
 
@@ -166,26 +150,19 @@ const RoomInfoItem = styled.li`
     font-size: ${({ theme }) => theme.fontSize.L};
     ul {
       width: 100%;
-    }
-    li {
-      display: flex;
-      justify-content: space-between;
-    }
 
-    ul li.total {
-      span {
-        font-weight: ${({ theme }) => theme.fontWeight.bold};
-        text-decoration-line: none;
+      li {
+        display: flex;
+        justify-content: space-between;
+
+        span:first-child { text-decoration-line: underline }
       }
-    }
-
-
-    li + li {
-        margin-top: 8px;
-    }
-    ul li {
-      span:first-child {
-        text-decoration-line: underline;
+      li + li { margin-top: 8px }
+      li.total {
+        span {
+          font-weight: ${({ theme }) => theme.fontWeight.bold};
+          text-decoration-line: none;
+        }
       }
     }
   }

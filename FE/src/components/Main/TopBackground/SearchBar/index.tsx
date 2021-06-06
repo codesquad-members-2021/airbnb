@@ -109,8 +109,8 @@ const SearchBar = forwardRef(
     useEffect(() => {
       const { start, end } = fee;
       if (!startDate || !endDate || !start || !end  || !peopleCount)
-        return setSearchURL('/search');  
-      const handleNumberFormat = (num) => { return num <= 9 ? `0${num}`: num }
+        return setSearchURL('/search');
+      const handleNumberFormat = (num : number) => { return num <= 9 ? `0${num}`: num }
       const checkIn = `${startDate.getFullYear()}-${(handleNumberFormat(startDate.getMonth() + 1))}-${handleNumberFormat(startDate.getDate())}`;
       const checkOut = `${endDate.getFullYear()}-${(handleNumberFormat(endDate.getMonth() + 1))}-${handleNumberFormat(endDate.getDate())}`;
 

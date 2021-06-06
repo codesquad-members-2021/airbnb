@@ -70,18 +70,6 @@ const FeeGraphSlider = ({ feeData, ...props }: IFeeGraph) => {
         if (!initStart || !initEnd || !initUnit) return;
     if (isCanvasSizeLoading || !canvasRef.current) return;
 
-    // -1- 캔버스 그리기
-    /* 
-      [*1*]
-        캔버스에서 그려진 그래프 볼 때
-        흰색부분이 실질적으로 그려진 그래프임.
-        캔버스의 배경은 FFFFFF0 (투명도 최대)
-
-        약간의 편법. 실질적으로 보이는 검은색은 없는 데이터인 부분.
-        검은색은 SliderBlock 컴포넌트의 배경
-        현재 구조가 SliderBlock 위에 캔버스가 있는 구조!
-
-    */
     const canvas: HTMLCanvasElement = canvasRef.current;
     const ctx: CanvasRenderingContext2D | null = canvas.getContext('2d');
     if (!ctx) return;
@@ -90,15 +78,8 @@ const FeeGraphSlider = ({ feeData, ...props }: IFeeGraph) => {
 
     let startX = 0;
 
-    // [*1*]에 의해 주석처리 (정상적인 그래프 그릴때 사용)
-    // let startY = height - onePer.h * data.length;
-
-    // 🤪 라노 캔버스 그린다!!
-    // 🤯 라노 키보드 부신다!!
     ctx.beginPath();
     data.forEach((price, i) => {
-      // [*1*]에 의해 주석처리 (정상적인 그래프 그릴때 사용 / 주석해제시엔 아래 그려지는 색상은 흰색말고 다른색 하기)
-      // ctx.rect(startX, startY - price * onePer.h, onePer.w, price * onePer.h);
       const h = price * onePer.h;
       ctx.rect(startX, 0, onePer.w, (i === 0) ? (h - ((price * onePer.h) / 10)) : h );
       ctx.fillStyle = '#FFF';
@@ -192,8 +173,6 @@ const FeeGraphSlider = ({ feeData, ...props }: IFeeGraph) => {
     if (!componentGrandParent) return;
     if (!componentGrandParent.contains(e.target as Node))
       return removeSlideButtonMove();
-    // 흠... 자체적으로 mouseUp이 언제되는지도 체크해야할듯
-    // 버그 추후 수정
 
     graphSliderDispatch({
       type: 'SET_SLIDER_BUTTON_COORDINATES',
