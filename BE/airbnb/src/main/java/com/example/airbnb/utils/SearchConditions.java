@@ -21,6 +21,29 @@ public class SearchConditions {
         this.infants = infants;
     }
 
+    public int peopleCount() {
+        if (this.getAdults()+this.getChildren() >= 1) {
+            return this.getAdults()+this.getChildren();
+        }
+        return 2;// 0,0,0 으로 조건이 들어오면 2명으로 검색
+    }
+
+    private boolean isPeopleCountValidate() {
+
+        if (0 >= this.getAdults()) {
+            return false;
+        }
+        if (0 >= this.getChildren()) {
+            return false;
+        }
+        if (0 >= this.getInfants()) {
+            return false;
+        }
+
+        return true;
+    }
+
+
     public String getLocation() {
         return location;
     }

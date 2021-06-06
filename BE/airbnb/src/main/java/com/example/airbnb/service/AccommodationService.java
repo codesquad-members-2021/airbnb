@@ -35,16 +35,6 @@ public class AccommodationService {
         return accommodationList;
     }
 
-    private boolean isPeopleCountValidated(SearchConditions conditions) {
-        if (0 >= conditions.getAdults()) {
-            return false;
-        }
-        if (0 >= conditions.getChildren()) {
-            return false;
-        }
-        return 0 < conditions.getInfants();
-    }
-
     private List<Accommodation> filterdPeopleCount(List<Accommodation> accommodationList) {
         return accommodationList;
     }
