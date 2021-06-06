@@ -78,9 +78,9 @@ function Calendar({ currentMonth }: IDate) {
     if (!nonClickable) return
     const clickedDate = new Date(`${year}-${currentMonth}-${dateEl}`).valueOf()
     if (checkIn === defaultValue.checkIn) setCheckIn(clickedDate)
-    if (checkIn !== undefined && checkIn !== defaultValue.checkIn && checkIn <= clickedDate)
+    if (checkIn !== defaultValue.checkIn && checkIn <= clickedDate)
       setCheckOut(clickedDate)
-    if (checkIn !== undefined && checkIn !== defaultValue.checkIn && checkIn > clickedDate)
+    if (checkIn !== defaultValue.checkIn && checkIn > clickedDate)
       setCheckIn(clickedDate)
   }
   return (

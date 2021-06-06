@@ -11,7 +11,7 @@ export const defaultValue = {
   guest: '게스트 추가',
 }
 //Place_______________________________________________
-export const clickedPlace = atom<string | undefined>({
+export const clickedPlace = atom<string>({
   key: 'place',
   default: defaultValue.placeToSearch,
 })
@@ -29,9 +29,9 @@ export const scheduleMessage = selector({
   get: ({get})=>{
     const checkIn = get(checkInMessage)
     const checkOut = get(checkOutMessage)
-    let msg = (checkIn!== defaultValue.checkIn && checkOut !== defaultValue.checkOut)
-    ? dateToString(checkIn) + '-' + dateToString(checkOut)
-    : checkIn
+    let msg = (typeof checkIn !== 'number')
+    ? defaultValue.checkIn
+    : dateToString(checkIn) + '-' + dateToString(checkOut)
     return msg;
   }
 })
@@ -120,6 +120,7 @@ export const clickPlace = atom<boolean>({
   key: 'placeClicked',
   default: false,
 })
+
 //ClickCheckIn&Out
 export const clickCheckIn = atom<boolean>({
   key: 'checkInClicked',
@@ -128,12 +129,6 @@ export const clickCheckIn = atom<boolean>({
 export const clickCheckOut = atom<boolean>({
   key: 'checkOutnClicked',
   default: false,
-})
-
-//startAtMain_______________________________________________
-export const RouterOrSearch = atom<boolean>({
-  key: 'isRouter',
-  default: true,
 })
 
 //RoomData__________________________________________________
@@ -174,8 +169,8 @@ export const RecoilValueGroup = selector({
   set:({set}, newValue:any)=>{
     const {place, checkIn, checkOut, priceMin, priceMax, minFeePercent, maxFeePercent, adult, child, baby } = newValue
     set(clickedPlace, place === defaultValue.placeToSearch ? '근처 추천 장소' : place)
-    set(checkInMessage, Number(checkIn))
-    set(checkOutMessage, Number(checkOut))
+    set(checkInMessage, checkIn)
+    set(checkOutMessage, checkOut)
     set(personnelAudult, Number(adult))
     set(personnelChild, Number(child))
     set(personnelBaby, Number(baby))

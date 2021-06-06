@@ -41,7 +41,7 @@ function Personnel() {
   const  setTotalPersonnel = useSetRecoilState(totalPerson)
   const [guestMsg, setGuestMsg] = useRecoilState(personnelMessage)
   const filteredMsg = useRecoilValue(filterPersonnelMessage)
-  setGuestMsg(filteredMsg)
+
   
   const RenderXbtn = useXclick(
     guestMsg,
@@ -53,7 +53,7 @@ function Personnel() {
     <>
       <BarBlock ref={PersonnelToggle}>
         <BarInnerWrapper>
-          <PersonnelBlock guestMsg={guestMsg}/>
+          <PersonnelBlock guestMsg={filteredMsg}/>
           <RenderXbtn />
         </BarInnerWrapper>
       </BarBlock>
