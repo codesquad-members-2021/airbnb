@@ -28,12 +28,12 @@ public class AuthService {
         User user = getUserFromGitHub(accessToken, gitHubRequest)
                 .orElseThrow(() -> new RuntimeException("바디 없음"));
 
-        String jwt = getJwt(user);
+        String jwtToken = getJwt(user);
         logger.info("accessToken : {}", accessToken);
         logger.info("gitHubRequest : {}", gitHubRequest);
-        logger.info("jwt : {}", jwt);
+        logger.info("jwtToken : {}", jwtToken);
         logger.info("user : {} ", user);
-        return new AuthDTO(jwt, user.getAvatar_url(), user.getLogin());
+        return new AuthDTO(jwtToken, user.getAvatar_url(), user.getLogin());
     }
 
     private String getJwt(User user) {
