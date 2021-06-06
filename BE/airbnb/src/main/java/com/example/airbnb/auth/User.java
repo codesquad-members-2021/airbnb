@@ -3,8 +3,6 @@ package com.example.airbnb.auth;
 public class User {
     private String login;
     private String name;
-    //private String login_id;
-    ///private String name;
     private String avatar_url;
 
     public User() {
