@@ -29,7 +29,7 @@ export const scheduleMessage = selector({
   get: ({get})=>{
     const checkIn = get(checkInMessage)
     const checkOut = get(checkOutMessage)
-    let msg = (typeof checkIn !== 'number')
+    let msg = (checkIn === defaultValue.checkIn)
     ? defaultValue.checkIn
     : dateToString(checkIn) + '-' + dateToString(checkOut)
     return msg;
