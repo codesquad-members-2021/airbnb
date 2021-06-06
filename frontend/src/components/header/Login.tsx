@@ -29,7 +29,6 @@ const GetUserInfo =  async (jwt:Promise<string>) =>{
       },
     })
     userInfo = response.data
-    console.log(userInfo)
     const { avatar_url, email, login: id } = userInfo
     localStorage.setItem('isLogin', 'true')
     localStorage.setItem('ID', id)
@@ -37,10 +36,7 @@ const GetUserInfo =  async (jwt:Promise<string>) =>{
     localStorage.setItem('email', email)
 
   } catch (e) {
-    console.log('err')
     console.error(e)
-  } finally {
-    console.log('fin')
   }
 }
 

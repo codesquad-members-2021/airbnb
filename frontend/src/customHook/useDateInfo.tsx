@@ -17,13 +17,11 @@ export const DateInfo = (today: Date): IDate => {
 }
 
 export const dateToString = (clickedDate: string | number): string => {
-  console.log(clickedDate, typeof clickedDate)
   if (typeof clickedDate === 'string') return clickedDate
   return new Date(clickedDate).getMonth() + 1 + '월' + new Date(clickedDate).getDate() + '일'
 }
 
 export const dateToDateForm = (dateNumber: number | string) => {
-  console.log(typeof dateNumber)
   if (typeof dateNumber === 'string') return null
   const year = new Date(dateNumber).getFullYear()
   const month = new Date(dateNumber).getMonth() + 1
