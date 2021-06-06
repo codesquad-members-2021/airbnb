@@ -1,27 +1,46 @@
 import styled from 'styled-components'
-import { useRecoilValue } from 'recoil'
-import {PersonnelBlock} from '../searchBar/personnel/Personnel'
-import {CheckInBlock} from '../searchBar/date/CheckIn'
-import {CheckOutBlock} from '../searchBar/date/CheckOut'
-import {personnelMessage,checkInMessage,checkOutMessage} from '../../customHook/atoms'
+import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil'
+import { PersonnelBlock } from '../searchBar/personnel/Personnel'
+import { CheckInBlock } from '../searchBar/date/CheckIn'
+import { CheckOutBlock } from '../searchBar/date/CheckOut'
+import { personnelMessage,checkInMessage,checkOutMessage,reserveMsg} from '../../customHook/atoms'
 interface IReserve{
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  targetData: any
+  targetData?: any
 }
 interface IpriceType {
   type?:string
+}
+
+const ConfirmMsg = ({setOpen}:IReserve) => {
+  const setConfirmMsg = useSetRecoilState(reserveMsg)
+
+  new Promise(() => {
+    setTimeout(() => {
+      setConfirmMsg(false)
+      setOpen(false)
+    }, 1500);
+    })
+
+  return <><MsgModal>`예약이 완료되었습니다.`</MsgModal></>
 }
 
 function Reservation({setOpen, targetData}:IReserve) {
   const checkIn=useRecoilValue(checkInMessage)
   const checkOut=useRecoilValue(checkOutMessage)
   const guestMsg=useRecoilValue(personnelMessage)
+  const [confirmMsg, setConfirmMsg] = useRecoilState(reserveMsg)
 
   const handleModalClick = () =>{
     setOpen(false)
   }
+  const handleReservationClick = () =>{
+    setConfirmMsg(true)
+  }
+  
   return (
   <BackgroundBlock className="MODAL" onClick={handleModalClick}>
+    {!confirmMsg && 
     <ReservationBlock onClick={(e)=>e.stopPropagation()}>
       <FlexBox>
         <PriceDay type='modal'>
@@ -30,17 +49,37 @@ function Reservation({setOpen, targetData}:IReserve) {
         <ReviewSpan>후기 {targetData.review.review}개</ReviewSpan>
       </FlexBox>
       <GridBox>
-        
-        <div>{PersonnelBlock(guestMsg)}</div>
-        <div>{CheckInBlock(checkIn)}</div>
-        <div>{CheckOutBlock(checkOut)}</div>
-        {/*<Date/>
-         */}
+        <div><PersonnelBlock guestMsg={guestMsg}/></div>
+        <div><CheckInBlock checkIn={checkIn}/></div>
+        <div><CheckOutBlock checkOut={checkOut}/></div>
       </GridBox>
-      <ReservationBtn>예약하기</ReservationBtn>
+      <ReservationBtn onClick={handleReservationClick}>예약하기</ReservationBtn>
     </ReservationBlock>
+    }
+    {confirmMsg && <ConfirmMsg setOpen={setOpen}/>}
   </BackgroundBlock>)
 }
+
+const MsgModal = styled.div`
+  width: 200px;
+  height: 90px;
+  background-color: ${({theme})=>theme.color.red_btn};
+  color: ${({theme})=>theme.color.white};
+  display: flex;
+  border-radius: 30px;
+  align-items: center;
+  justify-content: center;`
+const BackgroundBlock = styled.div`
+  position: fixed;
+  right:0;
+  left:0;
+  top:0;
+  bottom:0;
+  background: #00000080;
+  z-index:10000;
+  display: flex;
+  align-items: center;
+  place-content: center;`
 const ReservationBtn = styled.button`
 width: 380px;
 background-color: ${({theme})=> theme.color.grey_4};
@@ -80,14 +119,7 @@ color: ${({ theme }) => theme.color.grey_2};
 font-weight: ${({ theme }) => theme.fontWeight.w1};
 text-decoration: underline;
 cursor: pointer;`
-const BackgroundBlock = styled.div`
-  position: fixed;
-  right:0;
-  left:0;
-  top:0;
-  bottom:0;
-  background: #00000080;
-  z-index:10000;`
+
 const ReservationBlock = styled.div`
   width: 400px;
   height: 542px;

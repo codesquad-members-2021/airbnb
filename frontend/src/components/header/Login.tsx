@@ -2,46 +2,56 @@ import queryString from 'query-string'
 import { useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import axios from 'axios'
-function Login({ history }: RouteComponentProps) {
-  const GetCode = async () => {
-    let dataJWT
-    const parsing = queryString.parse(window.location.search)
-    try {
-      let response = await axios.post(`http://13.125.140.183/v1/auth/desktop?code=${parsing.code}`)
-      const { jwt } = await response.data
-      dataJWT = jwt
-    } catch (e) {
-      console.error(e)
-    }
+import { defaultUrl } from '../../customHook/axiosAPI'
 
-    let userInfo
-    try {
-      const response = await axios({
-        url: 'http://13.125.140.183/v1/users/git-info',
-        method: 'get',
-        headers: {
-          Authorization: dataJWT,
-        },
-      })
-      userInfo = response.data
-      const { avatar_url, email, login: id } = userInfo
-      localStorage.setItem('isLogin', 'true')
-      localStorage.setItem('ID', id)
-      localStorage.setItem('avatar_url', avatar_url)
-      localStorage.setItem('email', email)
-      history.push('/')
-    } catch (e) {
-      console.error(e)
-    }
+const GetCode = async () => {
+  let dataJWT
+  const parsing = queryString.parse(window.location.search)
+  try {
+    let response = await axios.post(`${defaultUrl}/v1/auth/desktop?code=${parsing.code}`)
+    const { jwt } = await response.data
+    dataJWT = jwt
+  } catch (e) {
+    console.error(e)
+  } finally {
+    return dataJWT;
   }
-  useEffect(() => {
-    GetCode()
-  }, [])
-  return (
-    <>
-      <div>Loading...💭</div>
-    </>
-  )
 }
 
+const GetUserInfo =  async (jwt:Promise<string>) =>{
+  let userInfo
+  try {
+    const response = await axios({
+      url: `${defaultUrl}/v1/users/git-info`,
+      method: 'get',
+      headers: {
+        Authorization: jwt,
+      },
+    })
+    userInfo = response.data
+    const { avatar_url, email, login: id } = userInfo
+    localStorage.setItem('isLogin', 'true')
+    localStorage.setItem('ID', id)
+    localStorage.setItem('avatar_url', avatar_url)
+    localStorage.setItem('email', email)
+
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+function Login({ history }: RouteComponentProps) {
+  useEffect(()=>{
+    (async function(){
+      const jwt = await GetCode()
+      await GetUserInfo(jwt)
+      history.push('/')
+    })()
+  }, [])
+  return (
+    <div>
+      <div>Loading...💭</div>
+    </div>
+  )
+}
 export default Login

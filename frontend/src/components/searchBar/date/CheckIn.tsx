@@ -1,3 +1,4 @@
+import React from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import {
   checkInMessage,
@@ -6,16 +7,16 @@ import {
   defaultValue,
 } from '../../../customHook/atoms'
 import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../../style/BarStyle'
-import { FilterDateToString } from '../../../customHook/useDateInfo'
+import { dateToString } from '../../../customHook/useDateInfo'
 import useXclick from '../../../customHook/useXclick'
 import { IProps } from '../../../Interface'
 
-export const CheckInBlock = (checkIn:any) => {
+export const CheckInBlock = React.memo(({checkIn}:any) => {
   return  (<div>
   <BarTitle>체크인</BarTitle>
-  <BarMessage>{FilterDateToString(checkIn)}</BarMessage>
+  <BarMessage>{dateToString(checkIn)}</BarMessage>
 </div>)
-}
+})
 
 function CheckIn({ open, type, checkInToggle }: IProps) {
   const [checkIn, setCheckIn] = useRecoilState(checkInMessage)
@@ -37,7 +38,7 @@ function CheckIn({ open, type, checkInToggle }: IProps) {
       ref={checkInToggle}
     >
       <BarInnerWrapper>
-        {CheckInBlock(checkIn)}
+        <CheckInBlock checkIn={checkIn}/>
         <RenderXbtn />
       </BarInnerWrapper>
     </BarBlock>

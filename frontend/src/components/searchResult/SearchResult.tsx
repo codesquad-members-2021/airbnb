@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import styled from 'styled-components'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { RecoilValueGroup, RouterOrSearch, RoomData } from '../../customHook/atoms'
+import { useSetRecoilState, useRecoilState } from 'recoil'
+import { RoomData, RecoilValueGroup } from '../../customHook/atoms'
 import useAxios from '../../customHook/useAxios'
 import { getHouseData } from '../../customHook/axiosAPI'
 import Logo from '../header/Logo'
@@ -15,49 +15,42 @@ import Map from './Map'
 import {IParams} from '../../Interface'
 
 function SearchResult({ match }: RouteComponentProps<IParams>) {
-
-  const recoilValues = useRecoilValue(RecoilValueGroup)
-
-  console.log(match.params, recoilValues)
+  const setNewSetting = useSetRecoilState(RecoilValueGroup)
+  useEffect(()=>{
+    setNewSetting(match.params)
+  },[])
+    
+  const setRoomDatas = useSetRecoilState(RoomData)
   const [clicked, setClicked] = useState(false)
-  const RoomDatas = useRecoilValue(RoomData)
-  const { state } = useAxios(() => getHouseData(match.params))
-  const [isRouter, setIsRouter] = useRecoilState(RouterOrSearch)
-  
+  const { fetchData } = useAxios(() => getHouseData(match.params),[], true)
   useEffect(() => {
-    if (RoomDatas.length === 0) setIsRouter(false)
-  }, [RoomDatas])
+    (async function() {
+      const response: any = await fetchData();
+      if(response?.data?.rooms) setRoomDatas(response.data.rooms);
+    })();
+  }, [match])
 
-  const { loading, error, data: result } = state
-  if (loading) return <div>Loading...💭</div>
-  if (error) return <div>에러발생</div>
-  if (!result) return null
-
-  let roomData = result && !isRouter ? result.rooms : RoomDatas
+  // let roomData = result && !isRouter ? result.rooms : roomDatas
 
   return (
-    <TotalWindow>
+    <>
       <Header>
         <FlexBox>
           <Logo />
-          {clicked ? (
-            <CenterMenu />
-          ) : (
-            <MiniSearchBar setClicked={setClicked} inputData={match.params} />
-          )}
+          {clicked && <CenterMenu type='black'/>}
+          {!clicked &&<MiniSearchBar setClicked={setClicked} /> }
           <UserInfo />
         </FlexBox>
         {clicked && <SearchBar />}
       </Header>
       <NoPaddingFlexBox>
-        <HouseList data={roomData} />
-        <Map data={roomData} isRouter={isRouter} />
+        <HouseList />
+        <Map setRoomDatas={setRoomDatas} />
       </NoPaddingFlexBox>
-    </TotalWindow>
+    </>
   )
 }
-const TotalWindow = styled.div`
-`
+
 const Header = styled.div`
   margin-bottom: 45px;
 `

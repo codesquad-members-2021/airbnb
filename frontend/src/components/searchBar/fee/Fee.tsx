@@ -8,24 +8,9 @@ import {
 } from '../../../style/BarStyle'
 import ModalFee from './ModalFee'
 import useModalCtrl from '../../../customHook/useModalCtrlArray'
-import { useRecoilValue, useRecoilState } from 'recoil'
-import { FeeMin, FeeMax, defaultValue, FeeMinChange, FeeMaxChange } from '../../../customHook/atoms'
+import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil'
+import { FeeMsg, FeeMin, FeeMax, defaultValue, FeeMinChange, FeeMaxChange } from '../../../customHook/atoms'
 import useXclick from '../../../customHook/useXclick'
-
-export const getFeeMsg = (
-  priceMin: string | number,
-  priceMax: number,
-  minFeePercent: number,
-  maxFeePercent: number
-) => {
-  let feeMsg =
-    priceMin === defaultValue.fee
-      ? priceMin
-      : `${Number(priceMin) + Number(minFeePercent)} ~ ${
-          Number(priceMax) - Number(maxFeePercent)
-        }원`
-  return feeMsg
-}
 
 const Fee = () => {
   const FeeToggle = useRef<HTMLDivElement>(null)
@@ -36,10 +21,10 @@ const Fee = () => {
     init: false,
   })
 
-  const [minFeePercent, setMinFeePercent] = useRecoilState(FeeMinChange)
-  const [maxFeePercent, setMaxFeePercent] = useRecoilState(FeeMaxChange)
+  const setMinFeePercent = useSetRecoilState(FeeMinChange)
+  const setMaxFeePercent = useSetRecoilState(FeeMaxChange)
   const [priceMin, setPriceMin] = useRecoilState(FeeMin)
-  const priceMax = useRecoilValue(FeeMax)
+  const getFeeMsg = useRecoilValue(FeeMsg)
 
   const RenderXbtn = useXclick(
     priceMin,
@@ -53,7 +38,7 @@ const Fee = () => {
         <BarInnerWrapper>
           <div>
             <BarTitle>요금</BarTitle>
-            <BarMessage>{getFeeMsg(priceMin, priceMax, minFeePercent, maxFeePercent)}</BarMessage>
+            <BarMessage>{getFeeMsg}</BarMessage>
           </div>
           <RenderXbtn />
         </BarInnerWrapper>

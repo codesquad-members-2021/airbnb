@@ -1,3 +1,4 @@
+import React from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import {
   checkOutMessage,
@@ -5,17 +6,21 @@ import {
   clickCheckOut,
   defaultValue,
 } from '../../../customHook/atoms'
-import { FilterDateToString } from '../../../customHook/useDateInfo'
+import { dateToString } from '../../../customHook/useDateInfo'
 import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../../style/BarStyle'
 import useXclick from '../../../customHook/useXclick'
 import { IProps } from '../../../Interface'
 
-export const CheckOutBlock = (checkOut:any) => {
-  return  (<div>
-  <BarTitle>체크아웃</BarTitle>
-  <BarMessage>{FilterDateToString(checkOut)}</BarMessage>
-</div>)
-}
+
+
+export const CheckOutBlock =  React.memo(({checkOut}:any) => {
+  return  (
+  <div>
+    <BarTitle>체크아웃</BarTitle>
+    <BarMessage>{dateToString(checkOut)}</BarMessage>
+  </div>
+)
+})
 
 function CheckOut({ open, type, checkOutToggle }: IProps) {
   const [checkOut, setCheckOut] = useRecoilState(checkOutMessage)
@@ -37,7 +42,7 @@ function CheckOut({ open, type, checkOutToggle }: IProps) {
       ref={checkOutToggle}
     >
       <BarInnerWrapper>
-       {CheckOutBlock(checkOut)}
+       <CheckOutBlock checkOut={checkOut}/>
         <RenderXbtn />
       </BarInnerWrapper>
     </BarBlock>

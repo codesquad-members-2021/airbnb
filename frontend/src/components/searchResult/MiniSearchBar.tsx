@@ -1,38 +1,23 @@
 import styled from 'styled-components'
 import SearchIcon from '@material-ui/icons/Search'
 import IconButton from '@material-ui/core/IconButton'
-import { IParams } from '../../Interface'
-import { useRecoilValue} from 'recoil'
-import { RecoilValueGroup, RecoilSetStateGroup, defaultValue } from '../../customHook/atoms'
-import { FilterDateToString } from '../../customHook/useDateInfo'
+import { useRecoilValue } from 'recoil'
+import { RecoilValueGroup } from '../../customHook/atoms'
+
 interface IMiniProps {
   setClicked: (value: React.SetStateAction<boolean>) => void
-  inputData: IParams
 }
 
-export const setScheduleMsg = (
-  checkIn: string | number | undefined,
-  checkOut: string | number | undefined
-) => {
-  let msg =
-    checkIn !== defaultValue.checkIn && checkOut !== defaultValue.checkOut
-      ? FilterDateToString(checkIn) + '-' + FilterDateToString(checkOut)
-      : checkIn
-  return msg
-}
-
-function MiniSearchBar({ setClicked, inputData }: IMiniProps) {
+function MiniSearchBar({ setClicked }: IMiniProps) {
+  const { place, scheduleMsg, guestMsg } = useRecoilValue(RecoilValueGroup)
   const handleClick = () => {
     setClicked(true)
   }
-  RecoilSetStateGroup(inputData)
-  const { place, checkIn, checkOut, guestMsg } = useRecoilValue(RecoilValueGroup)
-
-
+ 
   return (
     <SearchBar>
       <div onClick={handleClick}>{place}</div>
-      <div onClick={handleClick}>{setScheduleMsg(checkIn, checkOut)}</div>
+      <div onClick={handleClick}>{scheduleMsg}</div>
       <div onClick={handleClick}>{guestMsg}</div>
       <IconButton
         color='secondary'

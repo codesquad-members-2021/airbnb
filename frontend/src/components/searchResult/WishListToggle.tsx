@@ -12,7 +12,7 @@ interface IWish {
 
 function WishToggleBtn({setOpen, targetData}:IWish){
   const [isHeartClick, setHeartClick] = useState<boolean>(false)
-  const {state, fetchData} = useAxios(()=>wishToggle(targetData.id),[], true)
+  const { fetchData } = useAxios(()=>wishToggle(targetData.id),[], true)
   const handleLikeClick = (type:string, id:number) =>{
     if (type==='like'){
       setOpen(false)
@@ -21,8 +21,7 @@ function WishToggleBtn({setOpen, targetData}:IWish){
       setOpen(false)
       setHeartClick(false)
     }
-    const response = fetchData()
-    console.log(response) //코스에러.
+    fetchData()
     }
   
   return !isHeartClick ? (

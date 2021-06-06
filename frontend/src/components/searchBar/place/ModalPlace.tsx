@@ -1,34 +1,17 @@
 import styled from 'styled-components'
 import { useSetRecoilState } from 'recoil'
-import { clickedPlace } from '../../../customHook/atoms'
+import { clickedPlace, defaultValue } from '../../../customHook/atoms'
 import Button from '@material-ui/core/Button'
 import { FaMapMarkedAlt } from 'react-icons/fa'
 import { Modal } from '../../../style/BarStyle'
 import { IModalPropType } from '../../../Interface'
 
-const ModalPlace: React.FunctionComponent<IModalPropType> = ({ modalType }) => {
+function ModalPlace ({ modalType }:IModalPropType) {
   const locations = ['서울', '경기', '부산', '광주', '대전', '전주', '강원', '제주']
   const setPlace = useSetRecoilState(clickedPlace)
-  const defaultMsg = '가까운 여행지 둘러보기'
-  let coordsObj
+  const defaultMsg = defaultValue.placeAdjacent
   const handleClick = (location: string) => {
     setPlace(location)
-    if (location === defaultMsg) askForCoords()
-  }
-  const askForCoords = () => {
-    navigator.geolocation.getCurrentPosition(handleGeoSucces, handleGeoError)
-  }
-  const handleGeoSucces = (position: any) => {
-    const longitude = position.coords.longitude
-    const latitude = position.coords.latitude
-    coordsObj = {
-      latitude,
-      longitude,
-    }
-  }
-
-  function handleGeoError() {
-    console.log('Hmm...cant find your location 😯')
   }
 
   return (

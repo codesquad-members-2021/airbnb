@@ -1,31 +1,24 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import Reservation from '../reservation/Reservation'
 import WishToggleBtn from './WishListToggle'
-import {
-  RecoilValueGroup,
-  defaultValue, RoomData
-} from '../../customHook/atoms'
-import { setScheduleMsg } from './MiniSearchBar'
-import { getFeeMsg } from '../searchBar/fee/Fee'
+import { RecoilValueGroup, defaultValue, RoomData, FeeMsg} from '../../customHook/atoms'
+
 
 interface IpriceType {
   type?:string
 }
 
-function HouseList({ data }: any) {
-  const [RoomDatas, setRoomDatas] = useRecoilState(RoomData)
-  setRoomDatas(data)
-  const { checkIn, checkOut, priceMin, priceMax, minFeePercent, maxFeePercent, guestMsg } = useRecoilValue(RecoilValueGroup)
-
+function HouseList() {
+  const { scheduleMsg, guestMsg } = useRecoilValue(RecoilValueGroup)
+  const roomDatas = useRecoilValue(RoomData);
+  const getFeeMsg = useRecoilValue(FeeMsg)
   const filteringInfo = (data:any) => {
     let str = []
     str.push(`${data.length}개의 숙소`)
-    if (setScheduleMsg(checkIn, checkOut) !== defaultValue.checkIn)
-      str.push(`${setScheduleMsg(checkIn, checkOut)}`)
-    if (getFeeMsg(priceMin, priceMax, minFeePercent, maxFeePercent) !== defaultValue.fee)
-      str.push(`${getFeeMsg(priceMin, priceMax, minFeePercent, maxFeePercent)}`)
+    if (scheduleMsg !== defaultValue.checkIn) str.push(scheduleMsg)
+    if (getFeeMsg!== defaultValue.fee) str.push(getFeeMsg)
     if (guestMsg !== defaultValue.guest) str.push(guestMsg)
 
     return str.join(` · `)
@@ -35,8 +28,7 @@ function HouseList({ data }: any) {
   const [targetData, setTargetData] = useState(null)
   const handleModalClick = (e:React.MouseEvent<HTMLDivElement, MouseEvent>, el:any) => {
     const target = e.target as Element;
-    if (target.closest('.likeUnClick')!==null) return
-    if (target.closest('.likeClick')!==null) return
+    if (target.closest('.likeUnClick')!==null || target.closest('.likeClick')!==null) return
     setOpen(true)
     setTargetData(el)
   }
@@ -44,10 +36,10 @@ function HouseList({ data }: any) {
 
   return (
     <Frame>
-      <SmallSpan>{filteringInfo(data)}</SmallSpan>
+      <SmallSpan>{filteringInfo(roomDatas)}</SmallSpan>
       <ListTitle>선택한 지역의 숙소</ListTitle>
       <ScrollArea>
-      {data.map((el: any) => (
+      {roomDatas.map((el: any) => (
         <Column key={el.id} onClick={(e)=>handleModalClick(e, el)}>
           <div>
             <img src={el.thumbnail_image} width='300' height='220' />
@@ -79,10 +71,12 @@ function HouseList({ data }: any) {
         </Column>
       ))}
       {open && <Reservation setOpen={setOpen} targetData={targetData}></Reservation>}
+     
       </ScrollArea>
     </Frame>
   )
 }
+
 const FlexBox = styled.div`
 display: flex;
 justify-content: space-between;`
