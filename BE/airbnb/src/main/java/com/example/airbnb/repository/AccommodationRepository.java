@@ -4,7 +4,6 @@ import com.example.airbnb.domain.Accommodation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,19 +13,16 @@ public class AccommodationRepository {
 
 
     private final JdbcTemplate jdbcTemplate;
-    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    //private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final Logger logger = LoggerFactory.getLogger(Accommodation.class);
 
-    public AccommodationRepository(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-    }
 
-/*
-    public AccommodationRepository(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
-        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-    }*/
+    //@todo 이거 지워도 되지 않을까?
+    //public AccommodationRepository(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public AccommodationRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+        //this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
 
     public int countAllAccommodation() {
         String sql = "SELECT COUNT(*) FROM accommodation";
