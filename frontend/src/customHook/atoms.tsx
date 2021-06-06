@@ -36,11 +36,6 @@ export const scheduleMessage = selector({
   }
 })
 
-
-
-
-
-
 //Fee_______________________________________________
 export const FeeMin = atom<string | number>({
   key: 'priceMin',
@@ -158,52 +153,6 @@ export const reserveMsg = atom({
   key: 'confirmMsg',
   default: false
 })
-
-//UseAllSetRecoilData_______________________________________
-export function RecoilSetStateGroup(params: IParams) {
-  const setPlace = useSetRecoilState(clickedPlace)
-  const setCheckIn = useSetRecoilState(checkInMessage)
-  const setCheckOut = useSetRecoilState(checkOutMessage)
-  const setPriceMin = useSetRecoilState(FeeMin)
-  const setPriceMax = useSetRecoilState(FeeMax)
-  const setMinFeePercent = useSetRecoilState(FeeMinChange)
-  const setMaxFeePercent = useSetRecoilState(FeeMaxChange)
-  const setAdult = useSetRecoilState(personnelAudult)
-  const setChild = useSetRecoilState(personnelChild)
-  const setBaby = useSetRecoilState(personnelBaby)
-  const setGuestMsg = useSetRecoilState(personnelMessage)
-  const filteredMsg = useRecoilValue(filterPersonnelMessage)
-  const {
-    place,
-    checkIn,
-    checkOut,
-    adult,
-    child,
-    baby,
-    priceMin,
-    priceMax,
-    maxFeePercent,
-    minFeePercent,
-  } = params
-
-  const filterUndefined = (date: any) => {
-    if (date !== undefined) return date
-  }
-  setPlace(place === defaultValue.placeToSearch ? '근처 추천 장소' : place)
-  setCheckIn(filterUndefined(checkIn))
-  setCheckOut(filterUndefined(checkOut))
-  const numberTypeAdult = filterUndefined(adult)
-  const numberTypeChild = filterUndefined(child)
-  const numberTypeBaby = filterUndefined(baby)
-  setAdult(numberTypeAdult)
-  setChild(numberTypeChild)
-  setBaby(numberTypeBaby)
-  setGuestMsg(filteredMsg)
-  setPriceMin(filterUndefined(priceMin))
-  setPriceMax(filterUndefined(priceMax))
-  setMinFeePercent(filterUndefined(minFeePercent))
-  setMaxFeePercent(filterUndefined(maxFeePercent))
-}
 
 export const RecoilValueGroup = selector({
   key:'recoilValues', 

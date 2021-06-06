@@ -25,16 +25,3 @@ export interface IParams {
   priceMax?: string 
   priceMin?: string 
 }
-
-export interface INewSetting {
-  adult?: number
-  child?: number 
-  baby?: number 
-  checkIn?: number 
-  checkOut?: number
-  maxFeePercent?: string 
-  minFeePercent?: string 
-  place?: string
-  priceMax?: string 
-  priceMin?: string 
-}

@@ -57,7 +57,7 @@ function Map({ setRoomDatas }: IMapData) {
     
 
   }, [roomDatas]);
-  //'zoom_changed'
+
   return (
     <Frame>
       <div id='map' style={{ width: '100%', height: '86vh' }} />
