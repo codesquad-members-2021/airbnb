@@ -11,17 +11,11 @@ import java.util.List;
 @Repository
 public class AccommodationRepository {
 
-
     private final JdbcTemplate jdbcTemplate;
-    //private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final Logger logger = LoggerFactory.getLogger(Accommodation.class);
 
-
-    //@todo 이거 지워도 되지 않을까?
-    //public AccommodationRepository(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
     public AccommodationRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        //this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
     public int countAllAccommodation() {
