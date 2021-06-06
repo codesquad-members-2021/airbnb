@@ -1,17 +1,43 @@
 package com.codesquad.airbnb.accommodation.service;
 
-import com.codesquad.airbnb.accommodation.controller.AccommodationRequestDTO;
-import com.codesquad.airbnb.accommodation.controller.AccommodationResponseDTO;
+import com.codesquad.airbnb.accommodation.controller.AccommodationDetailResponse;
+import com.codesquad.airbnb.accommodation.controller.AccommodationRequest;
+import com.codesquad.airbnb.accommodation.controller.AccommodationReservationInfo;
+import com.codesquad.airbnb.accommodation.controller.AccommodationResponse;
+import com.codesquad.airbnb.accommodation.domain.Accommodation;
+import com.codesquad.airbnb.accommodation.repository.AccommodationRepository;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Profile("default")
-public class AccommodationServiceImpl implements AccommodationService{
+public class AccommodationServiceImpl implements AccommodationService {
+
+    private AccommodationRepository accommodationRepository;
+
+    public AccommodationServiceImpl(AccommodationRepository accommodationRepository) {
+        this.accommodationRepository = accommodationRepository;
+    }
+
     @Override
-    public List<AccommodationResponseDTO> readAll(AccommodationRequestDTO accommodationRequestDTO) {
-        return null;
+    public List<AccommodationResponse> readAll(AccommodationRequest accommodationRequest) {
+        return accommodationRepository.findAllBy(accommodationRequest).stream()
+                       .map(accommodation -> AccommodationResponse.of(accommodation, accommodationRequest.toReservationDetail()))
+                       .collect(Collectors.toList());
+    }
+
+    @Override
+    public AccommodationDetailResponse readOne(long id) {
+        return AccommodationDetailResponse.from(accommodationRepository.findOne(id));
+    }
+
+    @Override
+    public AccommodationReservationInfo accommodationReservationInfo(long id, AccommodationRequest accommodationRequest) {
+        Accommodation accommodation = accommodationRepository.findOne(id);
+
+        return AccommodationReservationInfo.of(accommodation, accommodationRequest.toReservationDetail());
     }
 }
