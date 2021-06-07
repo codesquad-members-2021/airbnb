@@ -6,11 +6,13 @@ import Profile from '@components/Header/ProfileMenu/Profile';
 
 const Nav = () => {
   return (
-    <NavContainer>
-      <Logo />
-      <Form />
-      <Profile />
-    </NavContainer>
+    <>
+      <NavContainer>
+        <Logo />
+        <Form />
+        <Profile />
+      </NavContainer>
+    </>
   );
 };
 

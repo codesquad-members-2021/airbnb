@@ -1,25 +1,26 @@
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
-import { dateSearchClick } from '@recoil/atoms/calendarState';
+import { modalStates } from '@recoil/atoms/modalState';
 
+import CalendarWrap from '@components/Header/Calender/CalendarWrap';
 import SearchButton from './SearchButton';
 import Date from './Date';
 import Fare from './Fare';
 import Guests from './Guests';
-import CalendarWrap from '@components/Header/Calender/CalendarWrap';
 
 const SearchBar = () => {
-  const [isOpenCalendar, setIsOpenCalendar] = useRecoilState(dateSearchClick);
+  const isOpenModal = useRecoilValue(modalStates);
+  const resetModalState = useResetRecoilState(modalStates);
 
   useEffect(() => {
-    const handleClickOutsideCalendar = (): void => setIsOpenCalendar(false);
-    document.addEventListener('click', handleClickOutsideCalendar);
+    const handleClickOutsidePriceChart = (): void => resetModalState();
+    document.addEventListener('click', handleClickOutsidePriceChart);
     return () => {
-      document.removeEventListener('click', handleClickOutsideCalendar);
+      document.removeEventListener('click', handleClickOutsidePriceChart);
     };
-  }, [setIsOpenCalendar]);
+  }, [resetModalState]);
 
   return (
     <>
@@ -29,7 +30,7 @@ const SearchBar = () => {
         <Guests />
         <SearchButton />
       </Select>
-      {isOpenCalendar && <CalendarWrap />}
+      {isOpenModal.calendar && <CalendarWrap />}
     </>
   );
 };
@@ -37,6 +38,8 @@ const SearchBar = () => {
 export default SearchBar;
 
 const Select = styled.div`
+  margin: 0 auto;
+  margin-top: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;

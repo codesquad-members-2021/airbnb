@@ -1,17 +1,19 @@
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
+import queryString from 'query-string';
 
 import { isOpenProfileModal } from '@recoil/atoms/profileModal';
 
-import Login from './Login';
 import { ReactComponent as MenuIcon } from '@assets/menu.svg';
 import { ReactComponent as User } from '@assets/user.svg';
+import Login from './Login';
 
 type MouseClick = React.MouseEvent<HTMLElement>;
 
 const Profile = () => {
   const [isOpenModal, setOpenModal] = useRecoilState(isOpenProfileModal);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
 
   const handleMenuClick = (e: MouseClick): void => {
     e.stopPropagation();
@@ -28,6 +30,29 @@ const Profile = () => {
       document.removeEventListener('click', handleBodyClick);
     };
   }, [setOpenModal]);
+
+  useEffect(() => {
+    const { code } = queryString.parse(window.location.search);
+    if (!code) return;
+
+    const getAccessToken = async () => {
+      if (isLogin) return;
+      try {
+        const response = await fetch(
+          `http://3.35.178.32:8080/auth?code=${code}`
+        );
+        const jwt = await response.text();
+        localStorage.setItem('jwt', jwt);
+        setIsLogin(true);
+
+        const homePage = '/';
+        window.history.pushState(null, '', homePage);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAccessToken();
+  }, [isLogin]);
 
   return (
     <ProfileContainer>
