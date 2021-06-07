@@ -2,10 +2,10 @@ import { useRef, RefObject, useEffect, MouseEvent } from 'react';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useToggle from '../../../hooks/useToggle';
-import { calendarOpenState, selectDateState } from '../../../recoil/calendarAtom';
-import { isFormOpenedState, selectCheckBoxState } from '../../../recoil/headerAtom';
+import { calendarOpenState, selectDateState } from '../../../recoilStore/calendarAtom';
+import { isFormOpenedState, selectCheckBoxState } from '../../../recoilStore/headerAtom';
 import HoverBlock from '../HoverBlock';
-import { getDateByTime } from './calendar/calendarDateFn';
+import { getDateByTime } from '../../../util/calendarUtils';
 import FormCalendar from './calendar/FormCalendar';
 import FormColumn from './FormColumn';
 import { ReactComponent as DeleteBtn } from '../../../assets/svg/Property 1=x-circle.svg';
@@ -17,13 +17,13 @@ interface Props {
 const FormCheckIn = ({ checkOutRef }: Props) => {
   const checkInRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLDivElement>(null);
+  const selectBox = useRecoilValue(selectCheckBoxState);
   const selectDate = useRecoilValue(selectDateState);
   const resetSelectDate = useResetRecoilState(selectDateState);
-  const selectBox = useRecoilValue(selectCheckBoxState);
   const setIsCalendarOpen = useSetRecoilState(calendarOpenState);
+  const setIsFormOpened = useSetRecoilState(isFormOpenedState);
   const isChekcInSelected = selectBox === 'checkIn';
   const { open } = useToggle({ clickRef: [checkInRef, checkOutRef], toggleRef, isChekcInSelected });
-  const setIsFormOpened = useSetRecoilState(isFormOpenedState);
 
   useEffect(() => {
     setIsCalendarOpen(open);
@@ -32,10 +32,10 @@ const FormCheckIn = ({ checkOutRef }: Props) => {
   }, [open]);
 
   const date = getDateByTime(selectDate.checkIn);
-  const description = date ? `${date.month}월 ${date.day}일` : '날짜';
+  const description = date.month !== 0 ? `${date.month}월 ${date.day}일` : '날짜';
   const isShowDeleteBtn = !!selectDate.checkIn && open && selectBox === 'checkIn';
 
-  const handleDeleteClick = (e: MouseEvent): void => {
+  const resetClickHandler = (e: MouseEvent): void => {
     e.stopPropagation();
     resetSelectDate();
   };
@@ -43,9 +43,9 @@ const FormCheckIn = ({ checkOutRef }: Props) => {
   return (
     <StyledCheckInWrapper>
       <StyledFormCheckIn ref={checkInRef} data-type='checkIn'>
-        <HoverBlock color='gray4' className='hover__checkIn' dataKey='checkIn' isModal={open}>
+        <HoverBlock color='gray5' className='hover__checkIn' dataKey='checkIn' isModal={open}>
           <FormColumn title='체크인' description={description} />
-          {isShowDeleteBtn && <DeleteBtn onClick={handleDeleteClick} />}
+          {isShowDeleteBtn && <DeleteBtn onClick={resetClickHandler} />}
         </HoverBlock>
       </StyledFormCheckIn>
       {open && <FormCalendar toggleRef={toggleRef} />}

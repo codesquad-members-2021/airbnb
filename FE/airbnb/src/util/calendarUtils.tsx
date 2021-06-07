@@ -1,4 +1,5 @@
-import { calendarDateType, dayType } from '../../../../recoil/calendarAtom';
+import { calendarDateType, dayType } from '../recoilStore/calendarAtom';
+import { pipe } from './util';
 
 export const getMonthData = ({ year, month, todayDate }: calendarDateType): dayType[][] => {
   const { year: todayYear, month: todayMonth, date: todayDay } = todayDate;
@@ -32,8 +33,8 @@ interface date {
 export const getTimes = ({ year, month, day }: date): number =>
   new Date(year, month - 1, day).getTime();
 
-export const getDateByTime = (time: number | null): date | void => {
-  if (!time) return;
+export const getDateByTime = (time: number | null): date => {
+  if (!time) return { year: 0, month: 0, day: 0 };
   const date = new Date(time);
   return { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() };
 };
@@ -47,3 +48,18 @@ export const dateToString = (date: date | void): string => {
   if (day < 10) newDay = '0' + day;
   return `${year}-${newMonth}-${newDay}`;
 };
+
+const stringToDate = (date: string): date => {
+  const [year, month, day] = date.split('-').map((v) => +v);
+  return { year, month, day };
+};
+
+export const getBetweenDays = (checkInTime: number | null, checkOutTime: number | null): number => {
+  if (!checkInTime || !checkOutTime) return 0;
+  const SECOND_UNIT = 1000 * 60 * 60 * 24;
+  return (checkOutTime - checkInTime) / SECOND_UNIT;
+};
+
+export const timeToDate = pipe(getDateByTime, dateToString);
+
+export const dateToTime = pipe(stringToDate, getTimes);

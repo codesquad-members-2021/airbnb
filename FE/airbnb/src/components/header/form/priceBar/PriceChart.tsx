@@ -34,8 +34,6 @@ const PriceChart = ({ priceSection }: Props) => {
 
   const drawDotsLine = (dots: dotType[]): void => {
     if (!canvas || !ctx) return;
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
     ctx.beginPath();
     ctx.fillStyle = 'rgba(0,0,0,0.7)';
 
@@ -44,18 +42,18 @@ const PriceChart = ({ priceSection }: Props) => {
 
     ctx.moveTo(prevX, prevY);
 
-    for (let i = 1; i < dots.length; i++) {
-      const cx = (prevX + dots[i].x) / 2;
-      const cy = (prevY + dots[i].y) / 2;
+    dots.forEach((dot) => {
+      const cx = (prevX + dot.x) / 2;
+      const cy = (prevY + dot.y) / 2;
       ctx.quadraticCurveTo(prevX, prevY, cx, cy);
-      prevX = dots[i].x;
-      prevY = dots[i].y;
-    }
+      prevX = dot.x;
+      prevY = dot.y;
+    });
 
     ctx.lineTo(prevX, prevY);
-    ctx.lineTo(canvasWidth, canvasHeight);
-    ctx.lineTo(0, canvasHeight);
     ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+    ctx.stroke();
     ctx.closePath();
   };
 

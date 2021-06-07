@@ -2,7 +2,7 @@ import { useRef, useEffect, FormEvent } from 'react';
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import useToggle from '../../../hooks/useToggle';
-import { isFormOpenedState, locationState } from '../../../recoil/headerAtom';
+import { isFormOpenedState, locationState } from '../../../recoilStore/headerAtom';
 import HoverBlock from '../HoverBlock';
 import FormColumn from './FormColumn';
 import FormLocationToggle from './FormLocationToggle';
@@ -22,7 +22,7 @@ const FormLocation = () => {
   useEffect(() => {
     if (open) {
       setIsFormOpened(true);
-      if (inputRef.current) inputRef.current.focus();
+      inputRef?.current?.focus();
     } else setIsFormOpened(false);
   }, [open]);
 
@@ -38,7 +38,7 @@ const FormLocation = () => {
   return (
     <StyledLocationWrapper>
       <StyledFormLocation ref={clickRef} data-type='location'>
-        <HoverBlock color='gray4' className='hover__location' dataKey='location' isModal={open}>
+        <HoverBlock color='gray5' className='hover__location' dataKey='location' isModal={open}>
           <FormColumn
             title='위치'
             description='어디로 여행가세요'

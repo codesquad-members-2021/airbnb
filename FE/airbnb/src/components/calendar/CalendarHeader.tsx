@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { calendarDateType } from '../../recoil/calendarAtom';
+import { calendarDateType } from '../../recoilStore/calendarAtom';
 
 interface Props {
   calendarDate: calendarDateType;

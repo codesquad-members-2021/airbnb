@@ -1,16 +1,19 @@
 import { MouseEvent, RefObject, useState } from 'react';
 import styled from 'styled-components';
-import { getNumberWithComma } from '../../../util/util';
+import { getNumberWithComma } from '../../../../util/tsUtils';
 import PriceChart from './PriceChart';
 import { btnPositionType, priceSectionType } from './priceType';
 import { ReactComponent as PauseBtn } from '../../../../assets/svg/Property 1=pause-circle.svg';
 import { priceData as sampleData } from './sampleData';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { throttle } from '../../../../util/util';
 import {
+  fetchPrice,
   pauseBtnLastPositionState,
   pauseBtnPositionState,
   priceState,
-} from '../../../../recoil/headerAtom';
+} from '../../../../recoilStore/headerAtom';
+import { CenterContainer } from '../../../../util/utilStyles';
 
 export const PRICE_DATA = {
   WIDTH: 365,
@@ -28,15 +31,19 @@ const PriceBar = ({ toggleRef }: Props) => {
   const [isBtnDown, setIsBtnDown] = useState(false);
   const [downBtnType, setDownBtnType] = useState({ left: false, right: false });
   const [clickPosition, setClickPosition] = useState(0);
+  // const [samplePriceData, setPriceData] = useState(sampleData);
+  const priceData = useRecoilValue(fetchPrice);
   const [btnPosition, setBtnPosition] = useRecoilState(pauseBtnPositionState);
   const [btnLastPosition, setBtnLastPosition] = useRecoilState(pauseBtnLastPositionState);
   const [priceRange, setPriceRange] = useRecoilState(priceState);
-  const [priceData, setPriceData] = useState(sampleData);
 
   const minPrice = getNumberWithComma(priceRange.min);
   const maxPrice = getNumberWithComma(priceRange.max);
-  const priceAverage = getNumberWithComma(getPriceAverage(priceData));
-  const priceSection = getSectionHeight(priceData);
+  if (typeof priceData === 'string') {
+    return <div>{priceData}</div>;
+  }
+  const priceAverage = priceData && getNumberWithComma(getPriceAverage(priceData));
+  const priceSection = priceData && getSectionHeight(priceData);
 
   const handleMouseDown = (e: MouseEvent): void => {
     const target = e.target as SVGAElement;
@@ -73,6 +80,8 @@ const PriceBar = ({ toggleRef }: Props) => {
     }
   };
 
+  const throttleHandleMouseMove = throttle(handleMouseMove, 10);
+
   const handleMouseUp = (e: MouseEvent): void => {
     if (!isBtnDown) return;
     setIsBtnDown(false);
@@ -88,22 +97,28 @@ const PriceBar = ({ toggleRef }: Props) => {
       ref={toggleRef}
       btnPosition={btnPosition}
       onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
+      onMouseMove={throttleHandleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >
-      <div className='title'>가격범위</div>
-      <div className='price-range'>
-        ￦{minPrice} ~ ￦{maxPrice}+
-      </div>
-      <div className='average'>평균 1박 요금은 ￦{priceAverage}입니다.</div>
-      <div className='chart'>
-        <div className='leftBox'></div>
-        <PriceChart priceSection={priceSection} />
-        <div className='rightBox'></div>
-      </div>
-      <PauseBtn className='pause-btn left__pause-btn' data-type='left' />
-      <PauseBtn className='pause-btn right__pause-btn' data-type='right' />
+      {priceData ? (
+        <>
+          <div className='title'>가격범위</div>
+          <div className='price-range'>
+            ￦{minPrice} ~ ￦{maxPrice}+
+          </div>
+          <div className='average'>평균 1박 요금은 ￦{priceAverage}입니다.</div>
+          <div className='chart'>
+            <div className='leftBox'></div>
+            <PriceChart priceSection={priceSection} />
+            <div className='rightBox'></div>
+          </div>
+          <PauseBtn className='pause-btn left__pause-btn' data-type='left' />
+          <PauseBtn className='pause-btn right__pause-btn' data-type='right' />
+        </>
+      ) : (
+        <StyledWarnPriceBar>위치, 체크인, 체크아웃 날짜를 입력해주세요🤐</StyledWarnPriceBar>
+      )}
     </StyledPriceBar>
   );
 };
@@ -199,4 +214,11 @@ const StyledPriceBar = styled.div<StyledProps>`
     right: 52px;
     transform: ${({ btnPosition }) => `translateX(${btnPosition.right}px)`};
   }
+`;
+
+const StyledWarnPriceBar = styled(CenterContainer)`
+  width: 100%;
+  height: 100%;
+  padding-bottom: 2rem;
+  font-weight: 700;
 `;

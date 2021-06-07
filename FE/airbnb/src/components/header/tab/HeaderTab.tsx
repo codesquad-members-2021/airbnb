@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { tabSelectedState } from '../../../recoil/headerAtom';
+import { tabSelectedState } from '../../../recoilStore/headerAtom';
 
 interface Props {
   title: string;

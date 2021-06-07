@@ -1,14 +1,17 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import HeaderNav from '../header/nav/HeaderNav';
-import ReserveForm from './ReserveForm';
+import ReserveHeaderForm from './ReserveHeaderForm';
 
 interface Props {}
 
 const ReserveHeader = (props: Props) => {
   return (
     <StyledReserveHeader>
-      <div className='logo'>LOGO</div>
-      <ReserveForm />
+      <Link to='/'>
+        <div className='logo'>LOGO</div>
+      </Link>
+      <ReserveHeaderForm />
       <HeaderNav />
     </StyledReserveHeader>
   );
@@ -31,5 +34,6 @@ const StyledReserveHeader = styled.div`
   .logo {
     font-size: ${({ theme }) => theme.fontSize.largest};
     font-weight: 700;
+    color: black;
   }
 `;

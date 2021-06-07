@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CenterContainer } from '../util/utilStyles';
+import { CenterContainer } from '../../util/utilStyles';
 import { IoGlobeOutline } from 'react-icons/io5';
 import HoverBlock from './HoverBlock';
 import HeaderNav from './nav/HeaderNav';

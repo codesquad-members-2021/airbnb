@@ -4,16 +4,30 @@ import { ReactComponent as Heart } from '../../assets/svg/Property 1=heart.svg';
 import { roomType } from './roomType';
 import ReserveRoomGrade from './ReserveRoomGrade';
 import ReserveRoomPrice from './ReserveRoomPrice';
+import ReserveForm from './reserveForm/ReserveForm';
+import { useEffect, useRef } from 'react';
+import useToggle from '../../hooks/useToggle';
+import { useSetRecoilState } from 'recoil';
+import { triggerReserve } from '../../recoilStore/reserveRoomAtom';
 
 interface Props {
   roomData: roomType;
 }
 
 const ReserveRoom = ({ roomData }: Props) => {
-  const { photo, chargePerNight, totalCharge } = roomData;
+  const { photo } = roomData;
+  const clickRef = useRef(null);
+  const toggleRef = useRef(null);
+  const { open } = useToggle({ clickRef, toggleRef });
+
+  const setTriggerReserve = useSetRecoilState(triggerReserve);
+
+  useEffect(() => {
+    if (!open) setTriggerReserve(false);
+  }, [open]);
 
   return (
-    <StyledReserveRoom>
+    <StyledReserveRoom ref={clickRef}>
       <div className='room__img'>
         <img src={photo} alt='' />
       </div>
@@ -27,6 +41,7 @@ const ReserveRoom = ({ roomData }: Props) => {
           <ReserveRoomPrice roomData={roomData} />
         </div>
       </div>
+      {open && <ReserveForm toggleRef={toggleRef} roomData={roomData} />}
     </StyledReserveRoom>
   );
 };
@@ -37,11 +52,12 @@ const StyledReserveRoom = styled.div`
   width: 100%;
   display: flex;
   padding: 3rem 0;
+  cursor: pointer;
   .room__img {
     flex: 1;
     img {
-      width: 330px;
-      /* height: 200px; */
+      width: 370px;
+      height: 230px;
       border-radius: 10px;
     }
   }
