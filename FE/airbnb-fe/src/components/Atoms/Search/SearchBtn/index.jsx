@@ -1,33 +1,37 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { SearchContext } from '..';
 import SearchButtonSvg from './SearchButtonSvg';
 
 const SearchBtn = () => {
-  const { clicked } = useContext(SearchContext);
-  const isModalClicked = clicked.checkInOut || clicked.price || clicked.people;
-  const history = useHistory();
-  const handleSearchClick = () => {
-    history.push('/reservation');
-  }; //http://3.35.226.74/airbnb/?location=soul&checkin=2021-05-28&checkout=2021-06-02&adults=2&children=1&infants=1
-  return (
-    // <Link to={
-    //   pathname: '',
-    //     state = {
+  const { clicked, calendarData, priceData, peopleCount } =
+    useContext(SearchContext);
 
-    //     }
-    // }>
-    <SearchBtnDiv isModalClicked={isModalClicked}>
-      <SearchSvgDiv>
-        <SearchSvg>
-          <SearchButtonSvg />
-        </SearchSvg>
-      </SearchSvgDiv>
-      {isModalClicked ? <SearchWordDiv>검색</SearchWordDiv> : null}
-    </SearchBtnDiv>
-    // </Link>
+  const putZero = (num) => (num <= 9 ? `0${num}` : num);
+
+  const checkInDate = `${calendarData.checkIn.year}-${putZero(
+    calendarData.checkIn.month
+  )}-${putZero(calendarData.checkIn.day)}`;
+  const checkOutDate = `${calendarData.checkOut.year}-${putZero(
+    calendarData.checkOut.month
+  )}-${putZero(calendarData.checkOut.day)}`;
+
+  const isModalClicked = clicked.checkInOut || clicked.price || clicked.people;
+
+  return (
+    <Link
+      to={`/reservation/seoul/${checkInDate}/${checkOutDate}/${peopleCount.adult}/${peopleCount.child}/${peopleCount.baby}/${priceData.minPrice}/${priceData.maxPrice}`}
+    >
+      <SearchBtnDiv isModalClicked={isModalClicked}>
+        <SearchSvgDiv>
+          <SearchSvg>
+            <SearchButtonSvg />
+          </SearchSvg>
+        </SearchSvgDiv>
+        {isModalClicked && <SearchWordDiv>검색</SearchWordDiv>}
+      </SearchBtnDiv>
+    </Link>
   );
 };
 

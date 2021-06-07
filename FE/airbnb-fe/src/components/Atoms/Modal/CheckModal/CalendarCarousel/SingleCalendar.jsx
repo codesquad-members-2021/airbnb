@@ -47,10 +47,9 @@ const SingleCalendar = ({ range }) => {
   };
 
   const handleTdBtnClick = (e) => {
-    console.log(e.target.dataset.day);
     const [clickedYear, clickedMonth, clickedDay] = e.target.dataset.day
       .split('-')
-      .map(Number); // "2021-5-26"
+      .map(Number);
     const clickedDate = new Date(
       clickedYear,
       clickedMonth,
@@ -65,10 +64,6 @@ const SingleCalendar = ({ range }) => {
       month: clickedMonth,
       day: clickedDay,
     };
-    //함수에다 인자 4개의 변수로 만들어지는 경우의 수  -> 반환 하는 함수를 만들어서
-    //a -> dispatch  어우....... 어우 ..... 둘다.....
-    //type checkin d이냐 checkout이냐
-    //채크인에 데이터가 있을 때
     if (checkInYear) {
       //체크아웃에 데이터가 있을 때
       if (checkOutYear) {

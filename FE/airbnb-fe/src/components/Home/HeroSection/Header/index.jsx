@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import AccountMenu from './AccountMenu';
 import NavRadio from './NavRadio';
-import AirbnbIcon from './AirbnbIcon';
+import AirbnbIcon from '../../../Atoms/icons/AirbnbIcon';
 
 const Header = () => {
   return (
     <HeaderDiv>
-      <AirbnbIcon />
+      <AirbnbIcon width={'100px'} />
       <NavRadio />
       <AccountMenu />
     </HeaderDiv>
