@@ -2,6 +2,7 @@ import { createContext, Dispatch, useContext, useReducer } from 'react';
 import { ICustomProps } from '../types';
 
 // 1) interface & type
+type TPeopleCountKeys = "adult" | "child" | 'infant';
 interface SearchBarState {
   calendar: {
     firstMonthOption: number;
@@ -14,9 +15,7 @@ interface SearchBarState {
     end: number;
   };
   peopleCount: {
-    adult: number;
-    child: number;
-    infant: number;
+    [key in TPeopleCountKeys]: number;
   };
 }
 
@@ -48,8 +47,8 @@ type SearchBarAction =
   | { type: 'DECREASE_CALENDAR_MOUTH_OPTION' }
   | { type: 'SET_CALENDAR_DATE'; payload: Date }
   | { type: 'SET_FEE_PRICE_RANGE'; payload: { start: number; end: number } }
-  | { type: 'INCREASE_PEOPLE_COUNT'; payload: string } // type (peopleCount의 key)
-  | { type: 'DECREASE_PEOPLE_COUNT'; payload: string };
+  | { type: 'INCREASE_PEOPLE_COUNT'; payload: TPeopleCountKeys } // type (peopleCount의 key)
+  | { type: 'DECREASE_PEOPLE_COUNT'; payload: TPeopleCountKeys };
 
 // 2) SearchBar 리듀서
 const searchBarReducer = (
@@ -130,7 +129,6 @@ const searchBarReducer = (
       };
     }
     case 'INCREASE_PEOPLE_COUNT': {
-      //@ts-ignore
       const currValue = state.peopleCount[action.payload];
 
       return {
@@ -142,7 +140,6 @@ const searchBarReducer = (
       };
     }
     case 'DECREASE_PEOPLE_COUNT': {
-      //@ts-ignore
       const currValue = state.peopleCount[action.payload];
       if (!currValue) return {...state};
 

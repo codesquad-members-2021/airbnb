@@ -37,7 +37,7 @@ const FeeModal = ({ data, ...props } : FeeDataType) => {
         <FeeGraphSlider feeData={feeData} />
       </FeeModalRow>
     </FeeModalLayout>
-  ) : <></>;
+  ) : <>FeeData is Null</>;
 };
 
 export default FeeModal;

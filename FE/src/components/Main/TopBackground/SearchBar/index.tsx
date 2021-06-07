@@ -33,13 +33,15 @@ const SearchBar = forwardRef(
     //@ts-ignore
     { searchBarTexts, searchBarRef }: ITextTopBackground,
   ) => {
-    const { result, fetchState: {isLoading}} = useFetch<IRoomsInfo>(API.get.rooms);
+    const { result, fetchState: {isLoading, isError}} = useFetch<IRoomsInfo>(API.get.rooms);
     const [salePrices, setSalePrices] = useState<number[]>([]);
     const [searchURL, setSearchURL] = useState<string>('/search');
 
     useEffect(() => {
-      if (isLoading || !result) return;
-      setSalePrices(result.rooms.map((data) => data.salePrice));
+      if (isLoading || !result || isError) 
+        setSalePrices([...Array(300)].map((_) => Math.floor(Math.random() * 1000000)));
+      else
+        setSalePrices(result.rooms.map((data) => data.salePrice));
     }, [isLoading]);
 
     // 1. 초기 값 설정
@@ -107,8 +109,8 @@ const SearchBar = forwardRef(
     useEffect(() => {
       const { start, end } = fee;
       if (!startDate || !endDate || !start || !end  || !peopleCount)
-        return setSearchURL('/search');  
-      const handleNumberFormat = (num) => { return num <= 9 ? `0${num}`: num }
+        return setSearchURL('/search');
+      const handleNumberFormat = (num : number) => { return num <= 9 ? `0${num}`: num }
       const checkIn = `${startDate.getFullYear()}-${(handleNumberFormat(startDate.getMonth() + 1))}-${handleNumberFormat(startDate.getDate())}`;
       const checkOut = `${endDate.getFullYear()}-${(handleNumberFormat(endDate.getMonth() + 1))}-${handleNumberFormat(endDate.getDate())}`;
 
