@@ -49,6 +49,7 @@ function useFetch<T>(url: IFetchParams.url, options?: IFetchParams.options) {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        throw Error();
         const response = await fetch(url, options as RequestInit);
         const ParsedResult = await response.json();
         setResult(ParsedResult);
