@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ReactComponent as Menu } from "image/menu.svg";
 import { ReactComponent as LoginLogo } from "image/loginLogo.svg";
 import LoginModal from "./LoginModal";

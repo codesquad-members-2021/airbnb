@@ -1,40 +1,28 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
-
+import API from 'util/API';
 
 const LoadingPage = () => {
-  const getToken = () => {
+  const getToken = async() => {
     const params = new URLSearchParams(window.location.search);
-    const code = params.get('code');
-    fetch('http://localhost:8080/api/auth', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-       },
-        body: JSON.stringify({ code })
-    }).then(response => response.json())
-    .then(({ token }) => {
-        console.log("token입니다: ", token);
-        localStorage.setItem('token', token);
-        window.location.href="http://localhost:3000";
-        //mainpage로 돌아가는 로직 필요
-    });
-  }
+    const code = params.get("code");
+    const token = await API.post.code(code);
+    localStorage.setItem("token", token);
+};
 
   useEffect(() => {
-   getToken();
-  }, [])
-
+    getToken();
+  }, []);
 
   return (
-    <Test>
-      <img src="https://thumbs.gfycat.com/GeneralUnpleasantApisdorsatalaboriosa-max-1mb.gif"/>
-    </Test>
+    <LoadingPageLayout>
+      <img src="https://thumbs.gfycat.com/GeneralUnpleasantApisdorsatalaboriosa-max-1mb.gif" />
+    </LoadingPageLayout>
   );
 };
 
-const Test = styled.div`
+const LoadingPageLayout = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;

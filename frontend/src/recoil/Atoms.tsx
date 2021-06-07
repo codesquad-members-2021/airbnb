@@ -1,9 +1,14 @@
 import { atom, selector } from "recoil";
 import * as T from "./AtomTypes";
 
-export const clickCountState = atom({
-  key: "clickCountState",
-  default: 0,
+export const roomCardClickedState = atom({
+  key: "roomCardClickState",
+  default: false,
+});
+
+export const MiniSearchBarClickState = atom({
+  key: "miniBarClickState",
+  default: false,
 });
 
 export const checkInClickState = atom({
@@ -71,23 +76,15 @@ export const searchBarClickState = selector({
     }
   },
 });
-// export const calendarToggleState = atom<T.SearchBarToggle>({
-//   key: "calendarToggleState",
-//   default: {
-//     calendar: false,
-//     roomPrice: false,
-//     guests: false,
-//   },
-// });
 
 export const calendarModalState = atom<T.CalendarModal>({
   key: "calendarModalState",
   default: {
     year: new Date().getFullYear(), //2021
-    month: new Date().getMonth(), //5
+    month: new Date().getMonth(), //5 (6월)
     today: {
       year: new Date().getFullYear(),
-      month: new Date().getMonth() + 1,
+      month: new Date().getMonth(),
       date: new Date().getDate(),
       dateObj: new Date(),
     },
@@ -109,9 +106,11 @@ export const calendarState = atom<T.Calendar>({
     },
   },
 });
+//얘 사용하는듯
 export const checkInState = atom<T.Date>({
   key: "checkInState",
   default: {
+    year: null,
     month: null,
     date: null,
     dateObj: new Date(),
@@ -120,6 +119,7 @@ export const checkInState = atom<T.Date>({
 export const checkOutState = atom<T.Date>({
   key: "checkOutState",
   default: {
+    year: null,
     month: null,
     date: null,
     dateObj: new Date(),

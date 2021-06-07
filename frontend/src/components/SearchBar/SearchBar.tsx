@@ -4,12 +4,32 @@ import Guests from "components/SearchBar/Guests/Guests";
 import RoomPrice from "components/SearchBar/RoomPrice/RoomPrice";
 import { ReactComponent as largeSearchBtn } from "image/largeSearchBtn.svg";
 import { ReactComponent as smallSearchBtn } from "image/smallSearchBtn.svg";
-import { useSetRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilValue } from "recoil";
 import React, { useEffect } from "react";
-import { searchBarClickState } from "recoil/Atoms";
+import {
+  searchBarClickState,
+  checkInState,
+  checkOutState,
+  roomPriceState,
+  guestState,
+} from "recoil/Atoms";
 import { search } from "util/enum";
+import { Link } from "react-router-dom";
+
 const SearchBar = () => {
   const setsSearchBarClick = useSetRecoilState(searchBarClickState);
+  const { min, max } = useRecoilValue(roomPriceState);
+  const {
+    year: checkInYear,
+    month: checkInMonth,
+    date: checkInDate,
+  } = useRecoilValue(checkInState);
+  const {
+    year: checkOutYear,
+    month: checkOutMonth,
+    date: checkOutDate,
+  } = useRecoilValue(checkOutState);
+  const { adult, child, toddler } = useRecoilValue(guestState);
 
   useEffect(() => {
     document.body.addEventListener("click", ClosePopup);
@@ -19,13 +39,26 @@ const SearchBar = () => {
     const target = e.target as HTMLElement;
     if (!target.closest(".search-bar")) setsSearchBarClick(search.reset);
   };
+
   return (
     <SearchBarLayout>
       <SearchBarContainer className="search-bar">
         <Calendar />
         <RoomPrice />
         <Guests />
-        <SearchBarButton />
+        {checkInMonth && checkOutMonth ? (
+          <Link
+            to={`/rooms?checkIn=${checkInYear}-${
+              checkInMonth + 1
+            }-${checkInDate}&checkOut=${checkOutYear}-${
+              checkOutMonth + 1
+            }-${checkOutDate}&adult=${adult}&child=${child}&toddler=${toddler}&min=${min}&max=${max}`}
+          >
+            <SearchBarButton />
+          </Link>
+        ) : (
+          <SearchBarButton />
+        )}
       </SearchBarContainer>
     </SearchBarLayout>
   );
@@ -43,7 +76,7 @@ const SearchBarContainer = styled.div`
   display: flex;
   width: 100%;
   height: 76px;
-  margin: 2rem auto 0 auto;
+  margin: 0 auto 1rem;
   background: #ffffff;
   border: 1px solid #bdbdbd;
   border-radius: 60px;
@@ -56,7 +89,7 @@ const SearchBarContainer = styled.div`
 
 const SearchBarLayout = styled.div`
   position: relative; //여기
-  width: 65%;
+  width: 80rem;
   display: flex;
   margin: 0 auto;
   flex-direction: column;

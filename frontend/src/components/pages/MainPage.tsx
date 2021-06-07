@@ -1,23 +1,21 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 import Header from "components/Header/Header";
 import SearchBar from "components/SearchBar/SearchBar";
 import Responsive from "components/common/Responsive";
-
+import { Text } from "util/textContent"
 const MainPage = () => {
   return (
     <>
       <Headline>
-        <span>에어비앤비의 코로나19 대응 방안에 대한 최신 정보를 확인하세요.</span>
+        <span>{Text.mainPage.headLine}</span>
       </Headline>
       <MainPageLayout>
         <Header />
         <SearchBar />
         <MainTextBox>
-          <div className="main-text">슬기로운</div>
-          <div className="main-text">자연생활</div>
-          <div className="main-slogan">에어비앤비가 엄선한 위시리스트를 만나보세요.</div>
-          <div className="view-more-btn">여행 아이디어 얻기</div>
+          {Text.mainPage.mainTextBox.map(str => <div className="main-text">{str}</div>)}
+          <div className="main-slogan">{Text.mainPage.mainSlogan}</div>
+          <div className="view-more-btn">{Text.mainPage.viewMore}</div>
         </MainTextBox>
       </MainPageLayout>
       <HeroBackgroundImageLayer />
@@ -32,15 +30,15 @@ const Headline = styled.div`
   padding: 2rem 10rem;
 
   & > span {
-  color: #ffffffb2;
-  cursor: pointer;
-  text-decoration-line: underline;
+    color: #ffffffb2;
+    cursor: pointer;
+    text-decoration-line: underline;
 
     &:hover {
       color: #ffffff7f;
     }
   }
-`
+`;
 const MainPageLayout = styled(Responsive)`
   position: relative;
 `;
@@ -61,7 +59,6 @@ const HeroBackgroundImageLayer = styled.div`
     background-image: url("https://a0.muscache.com/im/pictures/4e9fc041-1c7e-4f2d-b2bd-52c9cdc6a512.jpg");
   }
 `;
-
 
 const MainTextBox = styled.div`
   position: absolute;
@@ -92,6 +89,6 @@ const MainTextBox = styled.div`
     text-align: center;
     border-radius: 10px;
   }
-`
+`;
 
 export default MainPage;

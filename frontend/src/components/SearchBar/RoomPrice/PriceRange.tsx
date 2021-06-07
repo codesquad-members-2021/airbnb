@@ -2,49 +2,35 @@ import styled from "styled-components";
 import { useState, useRef } from "react";
 import { useRecoilState } from "recoil";
 import { roomPriceState } from "recoil/Atoms";
+
+//작성중인 미완성 컴포넌트 입니다. ㅠㅠㅠ
+
 function PriceRange() {
   const [leftValue, setLeftValue] = useState("");
   const [rightValue, setRightValue] = useState("");
   const $leftInput = useRef<HTMLInputElement>(null);
   const $rightInput = useRef<HTMLInputElement>(null);
   const [roomPrice, setRoomPrice] = useRecoilState(roomPriceState);
+  const $leftRange = useRef(null);
+  const $rightRange = useRef(null);
+
+  function handleRight(e: React.ChangeEvent<HTMLInputElement>) {
+    const target = e.target;
+    const min = parseInt(target.min);
+    const max = parseInt(target.max);
+    const value = Math.min();
+    const rightValue: number | null = Number($rightInput.current?.value);
+    setRoomPrice({ ...roomPrice, max: rightValue });
+  }
 
   function handleLeft(e: React.ChangeEvent<HTMLInputElement>) {
-    // var _this = inputLeft; //elem
     const target = e.target;
     const { value, min, max } = target;
-    // const rightValue: number | null = Number($rightInput.current?.value);
     const leftValue: number | null = Number($leftInput.current?.value);
-    leftValue && setRoomPrice({ ...roomPrice, min: leftValue });
-    console.log(leftValue);
-    // leftValue && setRoomPrice({ ...roomPrice, min: leftValue });
-    //console.log(value, min, max);
-    //console.log($rightInput.current?.value);
-    //console.log($leftInput.current?.value);
-  }
-  function handleRight(e: React.ChangeEvent<HTMLInputElement>) {
-    // var _this = inputLeft; //elem
-    const target = e.target;
-    const { value, min, max } = target;
-    const rightValue: number | null = Number($rightInput.current?.value);
-    // const leftValue: number | null = Number($leftInput.current?.value);
-    console.log("right", rightValue);
-    rightValue && setRoomPrice({ ...roomPrice, max: rightValue });
 
-    console.log(rightValue);
+    setRoomPrice({ ...roomPrice, min: leftValue });
   }
 
-  // function handleRightValue(e: React.ChangeEvent<HTMLInputElement>) {
-  //   // var _this = inputLeft; //elem
-  //   const target = e.target;
-  //   const { value, min, max } = target;
-  //   setRightValue(value);
-  //   console.log(value, min, max);
-  // }
-
-  // const handlePriceRange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-  //   console.log(e.target.value); //바로 반영되는게 맞긴 함 근데 기준이 있었으면 좋겠는데?
-  // };
   return (
     <PriceRangeLayout>
       <div className="multi-range-slider">
@@ -52,35 +38,52 @@ function PriceRange() {
           type="range"
           id="input-left"
           min="0"
-          max="50"
+          max="25000"
           onChange={handleLeft}
           ref={$leftInput}
+          step="100"
+          className="thumb"
         />
         <RangeInputRight
           type="range"
           id="input-right"
-          min="50"
-          max="100"
+          min="25000"
+          max="50000"
           onChange={handleRight}
           ref={$rightInput}
+          step="100"
+          className="thumb"
         />
-        <SliderContainer>
+        <Slider>
           <Track />
-          <Range />
+          <RangeLeft ref={$leftRange} />
+          <RangeRight ref={$rightRange} />
           <ThumbLeft />
           <ThumbRight />
-        </SliderContainer>
+        </Slider>
       </div>
     </PriceRangeLayout>
   );
 }
 
-const PriceRangeLayout = styled.div``;
-const SliderContainer = styled.div`
+const PriceRangeLayout = styled.div`
+  width: 100%;
+  position: relative;
+  .thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
+    pointer-events: all;
+  }
+`;
+const Slider = styled.div`
   position: relative;
   z-index: 1;
-  height: 10px;
-  margin: 0 15px;
+  height: 5px;
+  margin: 0;
 `;
 const Track = styled.div`
   position: absolute;
@@ -90,76 +93,83 @@ const Track = styled.div`
   top: 0;
   bottom: 0;
   border-radius: 5px;
-  background-color: #c6aee7;
+  background-color: #959595;
 `;
-const Range = styled.div`
+const RangeRight = styled.div`
   position: absolute;
   z-index: 2;
-  left: 25%;
-  right: 25%;
-  top: 0;
+  left: 75%; //여기
+  right: 0%; // 여기
   bottom: 0;
-  border-radius: 5px;
-  background-color: #6200ee;
+  height: 100px;
+
+  opacity: 90%;
+
+  background-color: #fcf8f8;
+`;
+const RangeLeft = styled.div`
+  position: absolute;
+  z-index: 2;
+  left: 0%; //여기
+  right: 75%; // 여기
+  bottom: 0;
+  height: 100px;
+
+  opacity: 90%;
+
+  background-color: #fcf8f8;
 `;
 const ThumbLeft = styled.div`
   position: absolute;
-  left: 25%; //여기를 바꿔줘야 함
-  transform: translate(-15px, -10px);
   z-index: 3;
-  width: 30px;
-  height: 30px;
-  background-color: #6200ee;
+  width: 25px;
+  height: 25px;
+  background-color: #cfcdcd;
+  border: white 1px solid;
   border-radius: 50%;
   box-shadow: 0 0 0 0 rgba(98, 0, 238, 0.1);
   transition: box-shadow 0.3s ease-in-out;
+
+  left: 25%; //여기
+  transform: translate(-15px, -10px);
 `;
 const ThumbRight = styled.div`
   position: absolute;
-  right: 25%;
+  right: 25%; //여기
   transform: translate(15px, -10px);
   z-index: 3;
-  width: 30px;
-  height: 30px;
-  background-color: #6200ee;
+  width: 25px;
+  height: 25px;
+  background-color: #cfcdcd;
+  border: white 1px solid;
+
   border-radius: 50%;
   box-shadow: 0 0 0 0 rgba(98, 0, 238, 0.1);
   transition: box-shadow 0.3s ease-in-out;
+
+  right: 25%;
+  transform: translate(15px, -10px);
 `;
 const RangeInputLeft = styled.input`
-  position: absolute;
-  pointer-events: none;
   -webkit-appearance: none;
-  z-index: 2;
-  height: 10px;
-  width: 30rem;
-  /* opacity: 0; */
+  pointer-events: none;
+  position: absolute;
+  height: 0;
+  width: 100%;
+  outline: none;
   &::-webkit-slider-thumb {
-    pointer-events: all;
-    width: 30px;
-    height: 30px;
-    border-radius: 0;
-    border: 0 none;
-    background-color: #ffc400;
-    -webkit-appearance: none;
+    z-index: 3;
   }
 `;
 const RangeInputRight = styled.input`
-  position: absolute;
-  pointer-events: none;
   -webkit-appearance: none;
-  z-index: 2;
-  height: 10px;
-  width: 30rem;
-  /* opacity: 0; */
+  pointer-events: none;
+  position: absolute;
+  height: 0;
+  width: 100%;
+  outline: none;
   &::-webkit-slider-thumb {
-    pointer-events: all;
-    width: 30px;
-    height: 30px;
-    border-radius: 0;
-    border: 0 none;
-    background-color: #00ff62;
-    -webkit-appearance: none;
+    z-index: 4;
   }
 `;
 
