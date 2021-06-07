@@ -8,7 +8,7 @@ const Menu = () => (
 	</MenuWrapper>
 );
 
-const Content = ({ content }) => <ContentWrapper>{content}</ContentWrapper>;
+const Content = ({ content }: { content: string }) => <ContentWrapper>{content}</ContentWrapper>;
 
 const MenuWrapper = styled.div`
 	position: relative;

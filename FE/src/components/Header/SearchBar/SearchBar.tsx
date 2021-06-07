@@ -4,19 +4,19 @@ import Price from "./Price/Price";
 import Personnel from "./Personnel/Personnel";
 import SearchButton from "./SearchButton";
 import { useContext, useEffect, useRef } from "react";
-import { ResultContext } from "../../../config/ResultContextProvider";
-import { SearchBarContext } from "../../../config/SearchBarContextProvider";
-import addComma from "../../../util/addComma";
+import { ResultContext } from "config/ResultContextProvider";
+import { SearchBarContext } from "config/SearchBarContextProvider";
+import addComma from "util/addComma";
 
 const SearchBar = () => {
-	const currentDOM = useRef();
-
 	const { isResultOn, isSearching, setSearching } = useContext(ResultContext);
 	const { start, end, min, max, priceData, man, kid, baby } = useContext(SearchBarContext);
 	const { unit, minimumPrice } = priceData;
 
+	const currentDOM = useRef<HTMLDivElement>(null);
+
 	useEffect(() => {
-		const blur = ({ target }) => !currentDOM.current?.contains(target) && setSearching(false);
+		const blur = ({ target }: MouseEvent) => !currentDOM.current?.contains(target as HTMLDivElement) && setSearching(false);
 		document.addEventListener("click", blur);
 		return () => document.removeEventListener("click", blur);
 	});
@@ -26,7 +26,7 @@ const SearchBar = () => {
 			{!isResultOn || isSearching ? (
 				<>
 					<Period />
-					<SearchButton isSearching={isSearching} />
+					<SearchButton />
 					<LineMain />
 					<Price />
 					<LineMain />
@@ -39,14 +39,14 @@ const SearchBar = () => {
 					<ContentResult>{`₩${addComma(minimumPrice + min * unit)} ~ ₩${addComma(minimumPrice + (max - 20) * unit)}`}</ContentResult>
 					<LineResult />
 					<ContentResult>{`게스트 ${man + kid}명, 유아${baby}명`}</ContentResult>
-					<SearchButton isSearching={isSearching} />
+					<SearchButton />
 				</>
 			)}
 		</SearchBarWrapper>
 	);
 };
 
-const SearchBarWrapper = styled.div`
+const SearchBarWrapper = styled.div<{ isActivated: boolean }>`
 	position: absolute;
 	top: ${({ isActivated }) => (isActivated ? "90px" : "23px")};
 	left: 50%;

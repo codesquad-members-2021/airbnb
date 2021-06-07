@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { ResultContext } from "../../config/ResultContextProvider";
+import { ResultContext } from "config/ResultContextProvider";
 import Logo from "./Logo";
 import Menu from "./Menu";
 import MyPage from "./MyPage";
@@ -18,7 +18,7 @@ const Header = () => {
 	);
 };
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper = styled.div<{ isResultOn: boolean; isSearching: boolean; isModalOn: boolean }>`
 	position: ${({ isResultOn }) => (isResultOn ? "absolute" : "relative")};
 	width: ${({ isResultOn }) => (isResultOn ? "100%" : "1440px")};
 	height: ${({ isSearching }) => (isSearching ? "192px" : "94px")};

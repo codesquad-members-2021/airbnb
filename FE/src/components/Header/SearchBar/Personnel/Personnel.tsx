@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PersonnelModal from "./PersonnelModal";
 import CloseButton from "../CloseButton";
 import { useContext, useEffect, useRef, useState } from "react";
-import { SearchBarContext } from "../../../../config/SearchBarContextProvider";
+import { SearchBarContext } from "config/SearchBarContextProvider";
 
 const Personnel = () => {
 	const [isOn, setOn] = useState(false);
@@ -11,10 +11,10 @@ const Personnel = () => {
 
 	const isActivated = Boolean(man || kid || baby);
 
-	const currentDOM = useRef();
+	const currentDOM = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		const blur = ({ target }) => !currentDOM.current?.contains(target) && setOn(false);
+		const blur = ({ target }: MouseEvent) => !currentDOM.current?.contains(target as HTMLDivElement) && setOn(false);
 		document.addEventListener("click", blur);
 		return () => document.removeEventListener("click", blur);
 	}, []);

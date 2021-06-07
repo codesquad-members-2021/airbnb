@@ -1,23 +1,31 @@
 import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 
+interface IUserInfo {
+	name: string;
+	email: string;
+	userId: string;
+	token: string;
+}
+
 const MyPage = () => {
 	const [isOn, setOn] = useState(Boolean(window.location.search));
-	const [userInfo, setUserInfo] = useState();
-	const currentDOM = useRef();
+	const [userInfo, setUserInfo] = useState<IUserInfo | null>(null);
+	const currentDOM = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		if (userInfo) return;
 		const code = window.location.search;
-		if (code)
+		if (code) {
 			fetch(`http://3.37.76.224:8080/login?code=${code.replace("?code=", "")}&typeCode=1`, { method: "POST" })
 				.then((res) => res.json())
 				.then((json) => setUserInfo(() => json))
 				.catch((res) => console.error("fetch error in login : ", res));
-	});
+		}
+	}, [userInfo]);
 
 	useEffect(() => {
-		const blur = ({ target }) => !currentDOM.current?.contains(target) && setOn(false);
+		const blur = ({ target }: MouseEvent) => !currentDOM.current?.contains(target as HTMLDivElement) && setOn(false);
 		document.addEventListener("click", blur);
 		return () => document.removeEventListener("click", blur);
 	});
@@ -62,29 +70,32 @@ const Bust = () => (
 	</BustWrapper>
 );
 
-const MyPageModal = ({ userInfo }) => (
-	<MyPageModalWrapper>
-		{userInfo ? (
-			<>
-				<ModalContent>{userInfo.email.split("@")[0]}님</ModalContent>
-				<Line />
-				<ModalContent>예약 취소</ModalContent>
-				<Line />
-				<ModalContent>위시리스트</ModalContent>
-				<Line />
+const MyPageModal = ({ userInfo }: { userInfo: IUserInfo | null }) => {
+	const targetURL = window.location.origin; // "http://3.37.76.224" for deploy // "http://localhost:3000" for dev
+	return (
+		<MyPageModalWrapper>
+			{userInfo ? (
+				<>
+					<ModalContent>{userInfo.email?.split("@")[0]}님</ModalContent>
+					<Line />
+					<ModalContent>예약 취소</ModalContent>
+					<Line />
+					<ModalContent>위시리스트</ModalContent>
+					<Line />
+					<ModalContent>
+						<a href={targetURL}>로그아웃</a>
+					</ModalContent>
+				</>
+			) : (
 				<ModalContent>
-					<a href={"http://3.37.76.224"}>로그아웃</a>
+					<a href={`https://github.com/login/oauth/authorize?client_id=830ef6707e92703260eb&scope=user&redirect_uri=${targetURL}`}>
+						로그인
+					</a>
 				</ModalContent>
-			</>
-		) : (
-			<ModalContent>
-				<a href={"https://github.com/login/oauth/authorize?client_id=830ef6707e92703260eb&scope=user&redirect_uri=http://3.37.76.224"}>
-					로그인
-				</a>
-			</ModalContent>
-		)}
-	</MyPageModalWrapper>
-);
+			)}
+		</MyPageModalWrapper>
+	);
+};
 
 const MyPageWrapper = styled.div`
 	position: relative;

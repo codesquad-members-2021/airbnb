@@ -1,31 +1,30 @@
 import styled from "styled-components";
-import { footerData, FNBData } from "../../json/data.json";
+import { footerData, FNBData } from "json/data.json";
 
-const Footer = () => {
+//prettier-ignore
+const Footer = (): JSX.Element => {
 	return (
 		<FooterWrapper>
-			{footerData.map((el) => (
-				<FooterContent key={el} body={el} />
-			))}
+			{footerData.map((el) => <FooterContent key={el[0]} body={el} />)}
 			<Line />
 			<FNB />
 		</FooterWrapper>
 	);
 };
 
-const FooterContent = ({ body }) => (
+interface ContentProps {
+	body: string[];
+}
+//prettier-ignore
+const FooterContent = ({ body }: ContentProps): JSX.Element => (
 	<FooterContentWrapper>
-		{body.map((el, i) => (
-			<FooterContentMenu key={i}>{el}</FooterContentMenu>
-		))}
+		{body.map((el, i) => <FooterContentMenu key={i}>{el}</FooterContentMenu>)}
 	</FooterContentWrapper>
 );
-
-const FNB = () => (
+//prettier-ignore
+const FNB = (): JSX.Element => (
 	<FNBWrapper>
-		{FNBData.map((el, i) => (
-			<FNBContent key={i}>{el}</FNBContent>
-		))}
+		{FNBData.map((el, i) => <FNBContent key={i}>{el}</FNBContent> )}
 	</FNBWrapper>
 );
 
@@ -53,7 +52,6 @@ const FooterContentWrapper = styled.ul`
 const FooterContentMenu = styled.li`
 	font-size: 16px;
 	line-height: 23px;
-
 	margin-bottom: 16px;
 	&:nth-child(1) {
 		font-weight: bold;
@@ -65,7 +63,6 @@ const Line = styled.div`
 	height: 1px;
 	left: 80px;
 	top: 541px;
-
 	background: #e0e0e0;
 `;
 const FNBWrapper = styled.div`

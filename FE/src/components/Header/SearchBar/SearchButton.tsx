@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { ResultContext } from "../../../config/ResultContextProvider";
+import { ResultContext } from "config/ResultContextProvider";
 
 const SearchButton = () => {
 	const { isResultOn, setResultOn, isSearching, fetchHouses, latitude, longitude } = useContext(ResultContext);
@@ -31,7 +31,7 @@ const Glass = () => (
 	</svg>
 );
 
-const SearchButtonWrapper = styled.div`
+const SearchButtonWrapper = styled.div<{ isResultOn: boolean; isSearching: boolean }>`
 	position: absolute;
 	width: ${({ isSearching }) => (isSearching ? "90px" : "40px")};
 	height: 40px;

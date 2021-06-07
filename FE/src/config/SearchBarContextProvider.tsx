@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const priceDataParser = (data, totalSlide) => {
-	const counts = {};
+const priceDataParser = (data: number[], totalSlide: number) => {
+	const counts: { [key: number]: number } = {};
 	let maxCount = 0;
 	let length = 0;
 
@@ -10,7 +10,7 @@ const priceDataParser = (data, totalSlide) => {
 	const unit = (maximumPrice - minimumPrice) / totalSlide;
 	const average = data.length ? Math.round(data.reduce((acc, cur) => acc + cur) / data.length) : 0;
 
-	const getPrice = (price) => Math.floor((price - minimumPrice) / unit) * unit + minimumPrice;
+	const getPrice = (price: number) => Math.floor((price - minimumPrice) / unit) * unit + minimumPrice;
 
 	data.forEach((el) => {
 		if (counts[getPrice(el)]) {
@@ -24,7 +24,17 @@ const priceDataParser = (data, totalSlide) => {
 	return { counts, maxCount, minimumPrice, maximumPrice, unit, length, average };
 };
 
-const SearchBarContextProvider = ({ children }) => {
+interface IPriceData {
+	counts: { [key: number]: number };
+	maxCount: number;
+	minimumPrice: number;
+	maximumPrice: number;
+	unit: number;
+	length: number;
+	average: number;
+}
+
+const SearchBarContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [start, setStart] = useState("");
 	const [end, setEnd] = useState("");
 
@@ -83,6 +93,26 @@ const SearchBarContextProvider = ({ children }) => {
 	);
 };
 
-export const SearchBarContext = React.createContext();
+export interface ISearchBar {
+	start: string;
+	setStart: React.Dispatch<React.SetStateAction<string>>;
+	end: string;
+	setEnd: React.Dispatch<React.SetStateAction<string>>;
+	min: number;
+	setMin: React.Dispatch<React.SetStateAction<number>>;
+	max: number;
+	setMax: React.Dispatch<React.SetStateAction<number>>;
+	sliderPixel: number;
+	sliderWidth: number;
+	priceData: IPriceData;
+	man: number;
+	setMan: React.Dispatch<React.SetStateAction<number>>;
+	kid: number;
+	setKid: React.Dispatch<React.SetStateAction<number>>;
+	baby: number;
+	setBaby: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export const SearchBarContext = React.createContext<ISearchBar>({} as ISearchBar);
 
 export default SearchBarContextProvider;
