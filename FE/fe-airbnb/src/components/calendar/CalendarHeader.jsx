@@ -11,11 +11,11 @@ const CalendarHeader = ({ calendar }) => {
   }
 
   return (
-    <Flex>
-      <Title>
+    <Title>
+      <Flex>
         {currYear()}년 {currMonthName()}월
-      </Title>
-    </Flex>
+      </Flex>
+    </Title>
   );
 };
 
