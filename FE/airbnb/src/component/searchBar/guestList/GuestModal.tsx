@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { numOfAdultsState, numOfChildrenState, numOfBabiesState } from "state/atoms/calendarAtoms";
+import { numOfAdultsState, numOfChildrenState, numOfBabiesState } from "state/atoms/guestAtoms";
 import GuestListItem from "component/searchBar/guestList/GuestListItem";
-import { stopPropagation } from "hooks/modalHooks";
+import { stopPropagation } from "component/searchBar/modalFunctions";
 
 const ageCategories = [
   { title: "성인", desc: "만 13세 이상", state: numOfAdultsState },
@@ -12,11 +12,11 @@ const ageCategories = [
 function GuestModal() {
   return (
     <Modal onClick={stopPropagation}>
-      <GuestList>
+      <ul>
         {ageCategories.map((ageInfo) => (
-          <GuestListItem ageInfo={ageInfo} />
+          <GuestListItem key={ageInfo.title} ageInfo={ageInfo} />
         ))}
-      </GuestList>
+      </ul>
     </Modal>
   );
 }
@@ -25,8 +25,8 @@ export default GuestModal;
 
 const Modal = styled.div`
   ${({ theme }) => theme.modal}
+  border: 1px solid #eee;
   right: 0;
-  width: 40%;
+  width: 365px;
   padding: 30px 60px;
 `;
-const GuestList = styled.ul``;

@@ -5,8 +5,8 @@ interface Args {
 }
 
 const getWeekData = ({ dayCount, lastDay, firstDayName = 0 }: Args): [number, string[]] => {
-  const emptyWeek: null[] = new Array(7).fill(null);
-  const week: string[] = emptyWeek.map((_, i) => {
+  const emptyWeek = new Array(7).fill(null);
+  const week = emptyWeek.map((_, i) => {
     if (i < firstDayName || dayCount >= lastDay) return "";
     dayCount++;
     return `${dayCount}`;
@@ -38,4 +38,14 @@ const getCalendarData = (year: number, month: number): string[][] => {
   return weeksData;
 };
 
-export default getCalendarData;
+const getTodayText = () => {
+  const today = new Date();
+  const [todayMonth, todayDate] = [today.getMonth(), today.getDate()];
+  const yearStr = `${today.getFullYear()}`;
+  const monthStr = todayMonth < 9 ? `0${todayMonth + 1}` : `${todayMonth + 1}`;
+  const dateStr = todayDate < 10 ? `0${todayDate}` : `${todayDate}`;
+  const todayText = yearStr + monthStr + dateStr;
+  return todayText;
+};
+
+export { getCalendarData, getTodayText };

@@ -1,11 +1,10 @@
-import React from "react";
 import styled from "styled-components";
-import LogoImg from "assets/logo.png";
 
 function Logo() {
+  const SRC = "https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg";
   return (
     <LogoContainer>
-      <img src={LogoImg} alt="airbnb" />
+      <img src={SRC} alt="airbnb" />
     </LogoContainer>
   );
 }

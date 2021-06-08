@@ -1,8 +1,9 @@
+import React from "react";
 import styled from "styled-components";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { checkinDateState, checkoutDateState, hoverDateState } from "state/atoms/calendarAtoms";
 import Day from "component/searchBar/calendar/Day";
-import getCalendarData from "component/searchBar/calendar/getCalendarData";
+import { getCalendarData } from "component/searchBar/calendar/getCalendarData";
 
 interface Props {
   year: number;
@@ -82,7 +83,7 @@ function Calendar({ year, month, today }: Props) {
   );
 }
 
-export default Calendar;
+export default React.memo(Calendar);
 
 const CalendarContainer = styled.div`
   width: 336px;

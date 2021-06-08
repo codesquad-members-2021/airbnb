@@ -1,25 +1,36 @@
 import React from "react";
 import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { isSetPriceState, priceToString } from "state/atoms/fareAtoms";
 
 interface Props {
   onClick: (e: React.MouseEvent) => void;
+  size: string;
 }
 
-function Fare({ onClick }: Props) {
+function Fare({ onClick, size }: Props) {
+  const priceOfString = useRecoilValue(priceToString);
+  const isSetPrice = useRecoilValue(isSetPriceState);
+  let defaultTxt = "금액대 설정";
   return (
-    <FareContainer onClick={onClick} className="betweenBorder">
+    <FareContainer onClick={onClick} className="betweenBorder" size={size}>
       <Title>요금</Title>
-      <Content>금액대 설정</Content>
+      <Content>{isSetPrice ? priceOfString : defaultTxt}</Content>
     </FareContainer>
   );
 }
 
-export default Fare;
+export default React.memo(Fare);
 
-const FareContainer = styled.li`
+interface size {
+  size: string;
+}
+
+const FareContainer = styled.li<size>`
   ${({ theme }) => theme.searchListItem}
+  ${({ size, theme }) => (size === "big" ? theme.bigSearchLI : theme.miniSearchLI)}
   cursor: pointer;
-  width: 255px;
+  width: ${({ size }) => (size === "big" ? "220px" : "280px")};
 `;
 
 const Title = styled.span`
