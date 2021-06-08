@@ -1,6 +1,7 @@
+import React from 'react'
 import styled, { css } from 'styled-components'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { checkInMessage, checkOutMessage } from '../../../customHook/atoms'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { checkInMessage, checkOutMessage, defaultValue } from '../../../customHook/atoms'
 import { DateInfo } from '../../../customHook/useDateInfo'
 interface ICheckProps {
   year?: number
@@ -16,10 +17,22 @@ interface IClick {
   onClick: () => void
 }
 
-const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
-  const dayList: string[] = ['일', '월', '화', '수', '목', '금', '토']
-  const MonthList = Array.from({ length: 12 }, (_, i) => i + 1)
+function FixedDate(){
+  const dayList: string[] = ['일', '월', '화', '수', '목', '금', '토'];
 
+  return (
+    <DayBlock>
+    {dayList.map((day, idx) => (
+      <Day key={idx}>{day}</Day>
+    ))}
+    </DayBlock>
+  )
+}
+
+const FixedDataLine = React.memo(FixedDate) 
+
+function Calendar({ currentMonth }: IDate) {
+  const MonthList = Array.from({ length: 12 }, (_, i) => i + 1) // 1 ~ 12
   let { year, month, date } = DateInfo(new Date())
   let currentYear = year
   let index
@@ -36,8 +49,8 @@ const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
         : year + Math.floor(currentMonth / 12)
     currentMonth = MonthList[index - 1]
   }
-  const { day: dayOfFirst, dateOfLast } = DateInfo(new Date(`${year}-${currentMonth}-1`))
 
+  const { day: dayOfFirst, dateOfLast } = DateInfo(new Date(`${year}-${currentMonth}-1`))
   const DateArray = Array.from({ length: dateOfLast + dayOfFirst }, (_, i) => {
     if (i < dayOfFirst) return null
     return i - dayOfFirst + 1
@@ -58,23 +71,21 @@ const Calendar: React.FunctionComponent<IDate> = ({ currentMonth }) => {
 
   //handleClick 안에서 사용하기
   const [checkIn, setCheckIn] = useRecoilState(checkInMessage)
-  const [checkOut, setCheckOut] = useRecoilState(checkOutMessage)
+  const setCheckOut = useSetRecoilState(checkOutMessage)
+
+
   const handleDateCLick = ({ year, currentMonth, dateEl, nonClickable }: ICheckProps): void => {
     if (!nonClickable) return
-
     const clickedDate = new Date(`${year}-${currentMonth}-${dateEl}`).valueOf()
-    if (checkIn === '날짜입력') setCheckIn(clickedDate)
-    if (checkIn !== '날짜입력' && checkIn <= clickedDate) setCheckOut(clickedDate)
-    if (checkIn !== '날짜입력' && checkIn > clickedDate) setCheckIn(clickedDate)
+    if (checkIn === defaultValue.checkIn) setCheckIn(clickedDate)
+    if (checkIn !== defaultValue.checkIn && checkIn <= clickedDate)
+      setCheckOut(clickedDate)
+    if (checkIn !== defaultValue.checkIn && checkIn > clickedDate)
+      setCheckIn(clickedDate)
   }
-
   return (
     <CalendarBox>
-      <DayBlock>
-        {dayList.map((day, idx) => (
-          <Day key={idx}>{day}</Day>
-        ))}
-      </DayBlock>
+      <FixedDataLine/>
       <NonFixedArea>
         <YearMonth>
           {year}년&nbsp;&nbsp;{currentMonth}월

@@ -1,45 +1,49 @@
-import { PlaceSection } from '../../../style/BarStyle'
-import Button from '@material-ui/core/Button'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { withRouter } from 'react-router-dom'
+import styled from 'styled-components'
 import SearchIcon from '@material-ui/icons/Search'
-import { useState } from 'react'
+import Button from '@material-ui/core/Button'
 import { useRecoilValue } from 'recoil'
-import { clickedPlace, checkInMessage, checkOutMessage } from '../../../customHook/atoms'
-import { defaultValue } from '../../../customHook/atoms'
+import { RecoilValueGroup } from '../../../customHook/atoms'
+import { PlaceSection } from '../../../style/BarStyle'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    button: {
-      margin: theme.spacing(1),
-      borderRadius: 30,
-    },
-  })
-)
-
-const SearchBtn = () => {
-  const classes = useStyles()
-  const [searchable, setSearchable] = useState(false)
-  const placeToSearch = useRecoilValue(clickedPlace)
-  const checkIn = useRecoilValue(checkInMessage)
-  const checkOut = useRecoilValue(checkOutMessage)
-  const handleClick = () => {
-    //api검색요청하기
+function SearchBtn({ history }: any) {
+  const value = useRecoilValue(RecoilValueGroup)
+  const {
+    place,
+    checkIn,
+    checkOut,
+    priceMin,
+    priceMax,
+    minFeePercent,
+    maxFeePercent,
+    adult,
+    child,
+    baby,
+  } = value
+  const GoNextPage = () => {
+    let routingPath =`/searchResult/${place}/${checkIn}/${checkOut}/${priceMin}/${priceMax}/${minFeePercent}/${maxFeePercent}/${adult}/${child}/${baby}`
+    history.push(routingPath)
   }
-  if (placeToSearch !== defaultValue.placeToSearch) setSearchable(true)
 
   return (
     <PlaceSection>
       <Button
-        onClick={handleClick}
         variant='contained'
         color='secondary'
-        className={classes.button}
+        className={'routerBtn'}
         startIcon={<SearchIcon />}
+        style={{ borderRadius: 50 }}
+        onClick={GoNextPage}
       >
-        검색
+        <CustomSpan>검색</CustomSpan>
       </Button>
     </PlaceSection>
   )
 }
 
-export default SearchBtn
+const CustomSpan = styled.span`
+  color: ${({ theme }) => theme.color.white};
+  font-weight: ${({ theme }) => theme.fontWeight.W2};
+  text-decoration: none;
+`
+export default withRouter(SearchBtn)

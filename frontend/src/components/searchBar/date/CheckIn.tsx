@@ -1,28 +1,34 @@
-import { RefObject, useEffect } from 'react'
-import { useRecoilValue, useRecoilState } from 'recoil'
-import { checkInMessage, clickCheckIn, clickCheckOut } from '../../../customHook/atoms'
+import React from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import {
+  checkInMessage,
+  clickCheckIn,
+  clickCheckOut,
+  defaultValue,
+} from '../../../customHook/atoms'
 import { BarBlock, BarInnerWrapper, BarTitle, BarMessage } from '../../../style/BarStyle'
 import { dateToString } from '../../../customHook/useDateInfo'
-interface IProps {
-  open: boolean
-  type: string
-  checkInToggle: RefObject<HTMLDivElement>
-}
+import useXclick from '../../../customHook/useXclick'
+import { IProps } from '../../../Interface'
 
-const CheckIn: React.FunctionComponent<IProps> = ({ open, type, checkInToggle }) => {
-  const checkIn = useRecoilValue(checkInMessage)
+export const CheckInBlock = React.memo(({checkIn}:any) => {
+  return  (<div>
+  <BarTitle>체크인</BarTitle>
+  <BarMessage>{dateToString(checkIn)}</BarMessage>
+</div>)
+})
+
+function CheckIn({ open, type, checkInToggle }: IProps) {
+  const [checkIn, setCheckIn] = useRecoilState(checkInMessage)
   const [checkInClicked, setCheckInClick] = useRecoilState(clickCheckIn)
-  const [checkOutnClicked, setCheckOutClick] = useRecoilState(clickCheckOut)
-  const clickTransfer = () => {
+  const setCheckOutClick = useSetRecoilState(clickCheckOut)
+
+  const handleClick = () => {
     setCheckInClick(true)
     setCheckOutClick(false)
   }
-  const handleClick = () => {
-    clickTransfer()
-  }
-  useEffect(() => {
-    clickTransfer()
-  }, [checkIn])
+
+  const RenderXbtn = useXclick(checkIn, [setCheckIn], defaultValue.checkIn)
 
   return (
     <BarBlock
@@ -32,10 +38,8 @@ const CheckIn: React.FunctionComponent<IProps> = ({ open, type, checkInToggle })
       ref={checkInToggle}
     >
       <BarInnerWrapper>
-        <div>
-          <BarTitle>체크인</BarTitle>
-          <BarMessage>{dateToString(checkIn)}</BarMessage>
-        </div>
+        <CheckInBlock checkIn={checkIn}/>
+        <RenderXbtn />
       </BarInnerWrapper>
     </BarBlock>
   )
