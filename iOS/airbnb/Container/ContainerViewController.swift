@@ -14,9 +14,9 @@ class ContainerViewController: UIViewController {
     @IBOutlet weak var skipButton: UIBarButtonItem!
     @IBOutlet weak var nextButton: UIBarButtonItem!
     
-     enum PresentOrder: CaseIterable {
-        case calandar
-        case price
+     enum PresentOrder: Int, CaseIterable {
+        case calandar = 1
+        case cost
         case person
         case hotel
     }
@@ -41,7 +41,7 @@ class ContainerViewController: UIViewController {
         
         switch order {
         case .calandar: break
-        case .price: loadPriceGraphView()
+        case .cost: loadPriceGraphView()
         case .person: loadPersonView()
         case .hotel: coordinator?.showHotelList()
         }
@@ -107,7 +107,7 @@ extension ContainerViewController : SelectInfoDelegate {
             return
         }
         dataSource.contents["체크인/체크아웃"] = date.date.toString()
-        let indexPath = IndexPath(row: 1, section: 0)
+        let indexPath = IndexPath(row: PresentOrder.calandar.rawValue, section: 0)
         footerTable.reloadRows(at: [indexPath], with: .top)
         skipButton.isEnabled = false
         nextButton.isEnabled = true
@@ -115,7 +115,7 @@ extension ContainerViewController : SelectInfoDelegate {
     
     func didSelectCost(_ cost: Int) {
         dataSource.contents.updateValue(String(cost), forKey: "요금")
-        let indexPath = IndexPath(row: 2, section: 0)
+        let indexPath = IndexPath(row: PresentOrder.cost.rawValue, section: 0)
         footerTable.reloadRows(at: [indexPath], with: .top)
         skipButton.isEnabled = false
         nextButton.isEnabled = true
@@ -123,7 +123,7 @@ extension ContainerViewController : SelectInfoDelegate {
     
     func didSelectPerson(_ person: Int) {
         dataSource.contents["인원"] = "게스트 \(person)명"
-        let indexPath = IndexPath(row: 3, section: 0)
+        let indexPath = IndexPath(row: PresentOrder.person.rawValue, section: 0)
         footerTable.reloadRows(at: [indexPath], with: .top)
         skipButton.isEnabled = false
         nextButton.isEnabled = true
