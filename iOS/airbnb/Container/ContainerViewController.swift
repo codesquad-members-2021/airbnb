@@ -60,14 +60,16 @@ class ContainerViewController: UIViewController {
 extension ContainerViewController {
     
     private func loadCalendarView(){
-        let calendar = CalendarViewController.instantiate(name: StoryBoarded.Search.stringValue)
+        let calendar = CalendarViewController.instantiate(name: StoryBoarded.Search.stringValue,
+                                                          bundle: Bundle.main)
         calendar.infoDelegate = self
         self.childController.append(calendar)
         self.addChildView(asChildViewController: calendar)
     }
     
     private func loadPriceGraphView(){
-        let priceViewController = PriceViewController.instantiate(name: StoryBoarded.Search.stringValue)
+        let priceViewController = PriceViewController.instantiate(name: StoryBoarded.Search.stringValue,
+                                                                  bundle: Bundle.main)
         priceViewController.infoDelegate = self
         priceViewController.localName = localName
         self.childController.append(priceViewController)
@@ -75,7 +77,8 @@ extension ContainerViewController {
     }
     
     private func loadPersonView(){
-        let personViewController = PersonCountViewController.instantiate(name: StoryBoarded.Search.stringValue)
+        let personViewController = PersonCountViewController.instantiate(name: StoryBoarded.Search.stringValue,
+                                                                         bundle: Bundle.main)
         personViewController.infoDelegate = self
         self.childController.append(personViewController)
         self.addChildView(asChildViewController: personViewController)

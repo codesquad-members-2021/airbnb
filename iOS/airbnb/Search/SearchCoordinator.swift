@@ -14,7 +14,8 @@ class SearchCoodinator : NSObject, ChildCoordinator {
     var navigationController: UINavigationController
     
     override init(){
-        let search = SearchViewController.instantiate(name: StoryBoarded.Search.stringValue)
+        let search = SearchViewController.instantiate(name: StoryBoarded.Search.stringValue,
+                                                      bundle: Bundle.main)
         self.navigationController = UINavigationController(rootViewController: search)
         navigationController.tabBarItem = UITabBarItem(title: "검색", image: UIImage(named: "search"), tag: 0)
         super.init()
@@ -22,14 +23,16 @@ class SearchCoodinator : NSObject, ChildCoordinator {
     }
 
     func start(){
-        let travelListViewController = TravelListViewController.instantiate(name: StoryBoarded.Search.stringValue)
+        let travelListViewController = TravelListViewController.instantiate(name: StoryBoarded.Search.stringValue,
+                                                                            bundle: Bundle.main)
         travelListViewController.coordinator = self
         navigationController.navigationItem.backButtonTitle = "뒤로"
         navigationController.pushViewController(travelListViewController, animated: true)
     }
     
     func choosePlace(to place : String){
-        let containerViewController = ContainerViewController.instantiate(name: StoryBoarded.Search.stringValue)
+        let containerViewController = ContainerViewController.instantiate(name: StoryBoarded.Search.stringValue,
+                                                                          bundle: Bundle.main)
         containerViewController.coordinator = self
         containerViewController.localName = place
         navigationController.navigationItem.backButtonTitle = "뒤로"
@@ -37,7 +40,8 @@ class SearchCoodinator : NSObject, ChildCoordinator {
     }
     
     func showHotelList(){
-        let hotelListViewcontroller = HotelListViewController.instantiate(name: StoryBoarded.Search.stringValue)
+        let hotelListViewcontroller = HotelListViewController.instantiate(name: StoryBoarded.Search.stringValue,
+                                                                          bundle: Bundle.main)
         hotelListViewcontroller.coordinator = self
         navigationController.navigationItem.backButtonTitle = "뒤로"
         navigationController.pushViewController(hotelListViewcontroller, animated: true)
