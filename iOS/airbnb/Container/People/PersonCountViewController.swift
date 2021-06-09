@@ -62,14 +62,14 @@ extension PersonCountViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let viewModel = viewModels[indexPath.row]
-        cell.setUp(viewModel)
         
-        viewModel.bind(control: UIAction(handler: { action in
+        cell.bind(control: UIAction(handler: { action in
             viewModel.counter.increase()
-        }), for: .plus, cell: cell)
-        viewModel.bind(control: UIAction(handler: { action in
+        }), for: .plus)
+        cell.bind(control: UIAction(handler: { action in
             viewModel.counter.decrease()
-        }), for: .minus, cell: cell)
+        }), for: .minus)
+        
         viewModel.bind(present: {
             cell.setUp(viewModel)
             self.calculatorTotalPerson()

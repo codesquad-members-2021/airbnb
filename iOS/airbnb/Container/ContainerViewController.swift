@@ -14,7 +14,7 @@ class ContainerViewController: UIViewController {
     @IBOutlet weak var skipButton: UIBarButtonItem!
     @IBOutlet weak var nextButton: UIBarButtonItem!
     
-     enum PresentOrder: Int, CaseIterable {
+    enum PresentOrder: Int, CaseIterable {
         case calandar = 1
         case cost
         case person
@@ -25,7 +25,7 @@ class ContainerViewController: UIViewController {
     var childController : [UIViewController] = []
     var dataSource = FooterTableViewDataSource()
     var localName: String = ""
-     var order: PresentOrder = .calandar
+    var order: PresentOrder = .calandar
     
     // MARK: - View Life Cycle
     

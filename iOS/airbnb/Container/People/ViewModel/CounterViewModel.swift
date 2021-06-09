@@ -5,9 +5,8 @@
 //  Created by 박혜원 on 2021/06/03.
 //
 
-import UIKit
+import Foundation
 import Combine
-
 
 class CounterViewModel {
  
@@ -26,12 +25,7 @@ class CounterViewModel {
             }
         }
     }
-    
-    enum Action {
-        case minus
-        case plus
-    }
-    
+
     let person: Person
     let limitAge: String
     var counter: CounterState
@@ -45,15 +39,6 @@ class CounterViewModel {
 
         cancellable = counter.objectWillChange.sink {
             self.presenterHandler?()
-        }
-    }
-
-    func bind(control action: UIAction, for item: Action, cell : PersonTableViewCell) {
-        switch item {
-        case .minus:
-            cell.minusButton.addAction(action, for: .touchUpInside)
-        case .plus:
-            cell.plusButton.addAction(action, for: .touchUpInside)
         }
     }
     

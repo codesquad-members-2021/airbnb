@@ -16,6 +16,11 @@ class PersonTableViewCell: UITableViewCell, IdentityInfo {
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     
+    enum Action {
+        case minus
+        case plus
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         minusButton.isEnabled = false
@@ -30,6 +35,15 @@ class PersonTableViewCell: UITableViewCell, IdentityInfo {
             minusButton.isEnabled = false
         } else {
             minusButton.isEnabled = true
+        }
+    }
+    
+    func bind(control action: UIAction, for item: Action){
+        switch item {
+        case .minus:
+            minusButton.addAction(action, for: .touchUpInside)
+        case .plus:
+            plusButton.addAction(action, for: .touchUpInside)
         }
     }
 }
