@@ -109,7 +109,7 @@ extension ContainerViewController : SelectInfoDelegate {
         guard let date = date else {
             return
         }
-        dataSource.contents["체크인/체크아웃"] = date.date.toString()
+        dataSource.contents["체크인/체크아웃"] = date.date.string()
         let indexPath = IndexPath(row: PresentOrder.calandar.rawValue, section: 0)
         footerTable.reloadRows(at: [indexPath], with: .top)
         skipButton.isEnabled = false
