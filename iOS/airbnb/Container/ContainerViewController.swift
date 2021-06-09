@@ -70,7 +70,7 @@ extension ContainerViewController {
     private func loadPriceGraphView(){
         let priceViewController = PriceViewController.instantiate(name: StoryBoarded.Search.stringValue,
                                                                   bundle: Bundle.main)
-        priceViewController.infoDelegate = self
+        priceViewController.costDelegate = self
         priceViewController.localName = localName
         self.childController.append(priceViewController)
         self.addChildView(asChildViewController: priceViewController)
@@ -79,7 +79,7 @@ extension ContainerViewController {
     private func loadPersonView(){
         let personViewController = PersonCountViewController.instantiate(name: StoryBoarded.Search.stringValue,
                                                                          bundle: Bundle.main)
-        personViewController.infoDelegate = self
+        personViewController.personDelegate = self
         self.childController.append(personViewController)
         self.addChildView(asChildViewController: personViewController)
         self.nextButton.title = "검색"

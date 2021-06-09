@@ -25,7 +25,7 @@ class CalendarViewController: UIViewController {
         return layout
     }()
     
-    weak var infoDelegate : SelectInfoDelegate?
+    weak var infoDelegate : SelectDayDelegate?
     private var dataSource : CalenderCollectionDataSource?
     private var numberOfWeeksInBaseDate: Int = 0
     

@@ -10,11 +10,11 @@ import UIKit
 class PersonCountViewController: UIViewController {
     
     @IBOutlet weak var personCountTable: UITableView!
-    weak var infoDelegate : SelectInfoDelegate?
+    weak var personDelegate : SelectPersonDelegate?
     
     var totalPerson : Int = 0 {
         didSet {
-            self.infoDelegate?.didSelectPerson(totalPerson)
+            self.personDelegate?.didSelectPerson(totalPerson)
         }
     }
     

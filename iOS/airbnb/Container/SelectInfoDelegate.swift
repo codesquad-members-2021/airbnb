@@ -7,9 +7,18 @@
 
 import Foundation
 
-protocol SelectInfoDelegate : AnyObject {
-//    func didselectPlace(_ place : String)
+protocol SelectInfoDelegate: SelectDayDelegate, SelectPersonDelegate, SelectCostDelegate {
+    
+}
+
+protocol SelectDayDelegate: AnyObject {
     func didSelectDay(_ date : Day?)
+}
+
+protocol SelectPersonDelegate: AnyObject {
     func didSelectPerson(_ person : Int)
+}
+
+protocol SelectCostDelegate: AnyObject {
     func didSelectCost(_ cost : Int)
 }

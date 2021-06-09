@@ -12,7 +12,7 @@ class PriceViewController: UIViewController {
     
     @IBOutlet weak var averageLabel: UILabel!
     
-    weak var infoDelegate : SelectInfoDelegate?
+    weak var costDelegate : SelectCostDelegate?
     
     var graphView : PriceGraphView!
     var localName : String?
