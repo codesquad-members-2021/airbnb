@@ -32,7 +32,7 @@ class ContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "숙소찾기"
-        footerConfigure()
+        configureFooter()
         loadCalendarView()
     }
     
@@ -47,7 +47,7 @@ class ContainerViewController: UIViewController {
         }
     }
     
-    func footerConfigure(){
+    private func configureFooter(){
         dataSource.contents.updateValue(localName, forKey: "위치")
         footerTable.dataSource = dataSource
         footerTable.delegate = self
@@ -59,14 +59,14 @@ class ContainerViewController: UIViewController {
 
 extension ContainerViewController {
     
-    func loadCalendarView(){
+    private func loadCalendarView(){
         let calendar = CalendarViewController.instantiate(name: StoryBoarded.Search.stringValue)
         calendar.infoDelegate = self
         self.childController.append(calendar)
         self.addChildView(asChildViewController: calendar)
     }
     
-    func loadPriceGraphView(){
+    private func loadPriceGraphView(){
         let priceViewController = PriceViewController.instantiate(name: StoryBoarded.Search.stringValue)
         priceViewController.infoDelegate = self
         priceViewController.localName = localName
@@ -74,7 +74,7 @@ extension ContainerViewController {
         self.addChildView(asChildViewController: priceViewController)
     }
     
-    func loadPersonView(){
+    private func loadPersonView(){
         let personViewController = PersonCountViewController.instantiate(name: StoryBoarded.Search.stringValue)
         personViewController.infoDelegate = self
         self.childController.append(personViewController)
@@ -82,7 +82,7 @@ extension ContainerViewController {
         self.nextButton.title = "검색"
     }
     
-    func addChildView(asChildViewController viewController: UIViewController) {
+    private func addChildView(asChildViewController viewController: UIViewController) {
         order = order.next()
         skipButton.isEnabled = true
         nextButton.isEnabled = false
