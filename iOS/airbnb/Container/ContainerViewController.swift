@@ -14,29 +14,36 @@ class ContainerViewController: UIViewController {
     @IBOutlet weak var skipButton: UIBarButtonItem!
     @IBOutlet weak var nextButton: UIBarButtonItem!
     
+     enum PresentOrder: CaseIterable {
+        case calandar
+        case price
+        case person
+        case hotel
+    }
+    
     weak var coordinator: SearchCoodinator?
     var childController : [UIViewController] = []
     var dataSource = FooterTableViewDataSource()
-    var localName : String = ""
-    var order : Int = 0
+    var localName: String = ""
+     var order: PresentOrder = .calandar
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "숙소찾기"
-        order = 0
         footerConfigure()
         loadCalendarView()
     }
     
     @IBAction func next(_ sender : UIBarButtonItem){
         removeChildView()
+        
         switch order {
-        case 1: loadPriceGraphView()
-        case 2: loadPersonView()
-        default:
-            coordinator?.showHotelList()
+        case .calandar: break
+        case .price: loadPriceGraphView()
+        case .person: loadPersonView()
+        case .hotel: coordinator?.showHotelList()
         }
     }
     
@@ -76,7 +83,7 @@ extension ContainerViewController {
     }
     
     func addChildView(asChildViewController viewController: UIViewController) {
-        order += 1
+        order = order.next()
         skipButton.isEnabled = true
         nextButton.isEnabled = false
         addChild(viewController)

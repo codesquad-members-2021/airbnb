@@ -13,7 +13,7 @@ enum EndPoint : String, CodingKey {
     case prices
     case wishList
     
-    static let baseURL = "http://15.165.235.96/api/"
+    static let baseURL = "http://13.125.93.217:8080/api/"
 
     var path : String { self.stringValue }
     var url : URL? { URL(string: EndPoint.baseURL + path) }
