@@ -23,7 +23,7 @@ class SearchViewController : UIViewController {
     }()
     
     weak var coordinator : SearchCoodinator?
-    private var nearPlaceDataSource : DataSource? = nil
+    private var placeDataSource : DataSource? = nil
     @Published private var places = [NearPlace]()
     private var themePlaceDataSource = ThemePlaceDataSource()
     private var cancellables = Set<AnyCancellable>()
@@ -37,8 +37,8 @@ class SearchViewController : UIViewController {
         
         self.navigationItem.titleView = searchBar
         searchBar.delegate = self
-        nearPlaceDataSource = makeDataSource()
-        nearPlaceCollection.dataSource = nearPlaceDataSource
+        placeDataSource = makeDataSource()
+        nearPlaceCollection.dataSource = placeDataSource
         themePlaceCollection.dataSource = themePlaceDataSource
         
         fetchData()
@@ -65,31 +65,35 @@ class SearchViewController : UIViewController {
             collectionView: nearPlaceCollection,
             cellProvider: { ( collectionview, indexPath, card) -> UICollectionViewCell? in
                 let cell = collectionview.dequeueReusableCell(withReuseIdentifier: NearPlaceCell.reuseIdentifier, for: indexPath) as? NearPlaceCell
-                cell?.bind(with: self.places[indexPath.row])
+                cell?.configurePlace(with: self.places[indexPath.row])
                 return cell
             })
         return dataSource
     }
 
     func fetchData(){
-        $places.receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] _ in
-                self?.applySnapshot()
+        
+        TravelNetworkDispatcher()
+            .execute(decodeType: [NearPlaceResponse].self)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {  [weak self] completion in
+                switch completion {
+                case .failure(let error): print(error.message)
+                case .finished:
+                    self?.applySnapshot()
+                }
+            }, receiveValue: { response in
+                self.places = response.map{ $0.toNearPlace() }
             })
             .store(in: &cancellables)
-       
-        TravelListAPI.loadTravelList(type: .search, with: limitCountOfNearPlace)
-            .sink(receiveCompletion: { _ in },
-                  receiveValue: { [weak self] responses in
-                    self?.places = responses.map{ $0.toNearPlace() }
-            }).store(in: &cancellables)
+   
     }
     
     func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(places)
-        nearPlaceDataSource?.apply(snapshot, animatingDifferences: animatingDifferences)
+        placeDataSource?.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
 
@@ -109,14 +113,5 @@ extension SearchViewController : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
-    }
-}
-
-extension SearchViewController : Storyboarded {
-    static func instantiate() -> Self {
-        let fullName = NSStringFromClass(self)
-        let className = fullName.components(separatedBy: ".")[1]
-        let storyboard = UIStoryboard(name: "Search", bundle: Bundle.main)
-        return storyboard.instantiateViewController(withIdentifier: className) as! Self
     }
 }

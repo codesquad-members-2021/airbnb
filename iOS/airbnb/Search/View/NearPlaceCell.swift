@@ -21,7 +21,7 @@ class NearPlaceCell: UICollectionViewCell, IdentityInfo {
         self.activityIndicator.startAnimating()
     }
 
-    func bind(with place : NearPlace?){
+    func configurePlace(with place : NearPlace?){
         guard let place = place else { return }
         
         self.areaTitle.text = place.name

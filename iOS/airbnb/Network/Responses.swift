@@ -7,21 +7,25 @@
 
 import Foundation
 
-struct Coordinate : Decodable {
-    let x : Double
-    let y : Double
-}
-
 struct NearPlaceResponse : Decodable {
     let name: String
-    let avatarUrl: URL?
+    let avatarUrl: String
     let distance: Int
-    let coordinate : Coordinate
+    let x: Double
+    let y: Double
     
     func toNearPlace() -> NearPlace {
         return NearPlace(name: self.name,
-                              avatarUrl: self.avatarUrl,
-                              distance: self.distance,
-                              coordinate: self.coordinate)
+                         avatarUrl: URL(string: self.avatarUrl),
+                         distance: self.distance,
+                         x: self.x,
+                         y: self.y)
     }
+}
+
+struct PriceInfo: Decodable {
+    let min: Int
+    let max: Int
+    let average: Int
+    let prices: [String: Int]
 }

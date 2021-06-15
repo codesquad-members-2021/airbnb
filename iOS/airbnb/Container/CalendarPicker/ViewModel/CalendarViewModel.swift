@@ -9,7 +9,7 @@ import UIKit
 
 class CalendarViewModel {
     
-    private var day : Day
+    private(set) var day : Day
     
     init(day : Day) {
         self.day = day
@@ -21,8 +21,17 @@ class CalendarViewModel {
         }
         if !day.isWithinDisplayedMonth {
             cell.numberLabel.textColor = .systemGray
+            cell.isUserInteractionEnabled = false
         }
         cell.numberLabel.text = day.number
     }
-
+    
+    func toggle(_ cell: UICollectionViewCell){
+        guard let cell = cell as? CalendarDateCell else {
+            return
+        }
+        day.isSelected = cell.isSelected
+        cell.selectionBackgroundView.backgroundColor = cell.isSelected ? .systemBlue : .clear
+    }
+    
 }

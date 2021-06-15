@@ -11,7 +11,7 @@ class CalendarDateCell: UICollectionViewCell {
     
     static let reuseIdentifier = String(describing: CalendarDateCell.self)
     
-    private var selectionBackgroundView: UIView = {
+    var selectionBackgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
@@ -34,45 +34,45 @@ class CalendarDateCell: UICollectionViewCell {
         dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, MMMM d")
         return dateFormatter
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        config()
+        configure()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        config()
+        configure()
     }
     
     override func layoutSubviews() {
-      super.layoutSubviews()
-
-      NSLayoutConstraint.deactivate(selectionBackgroundView.constraints)
-
-      let size = traitCollection.horizontalSizeClass == .compact ?
-        min(min(frame.width, frame.height) - 10, 60) : 45
-
-      NSLayoutConstraint.activate([
-        numberLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-        numberLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-
-        selectionBackgroundView.centerYAnchor.constraint(equalTo: numberLabel.centerYAnchor),
-        selectionBackgroundView.centerXAnchor.constraint(equalTo: numberLabel.centerXAnchor),
-        selectionBackgroundView.widthAnchor.constraint(equalToConstant: size),
-        selectionBackgroundView.heightAnchor.constraint(equalTo: selectionBackgroundView.widthAnchor)
-      ])
-
-      selectionBackgroundView.layer.cornerRadius = size / 2
+        super.layoutSubviews()
+        
+        NSLayoutConstraint.deactivate(selectionBackgroundView.constraints)
+        
+        let size = traitCollection.horizontalSizeClass == .compact ?
+            min(min(frame.width, frame.height) - 10, 60) : 45
+        
+        NSLayoutConstraint.activate([
+            numberLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            numberLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
+            selectionBackgroundView.centerYAnchor.constraint(equalTo: numberLabel.centerYAnchor),
+            selectionBackgroundView.centerXAnchor.constraint(equalTo: numberLabel.centerXAnchor),
+            selectionBackgroundView.widthAnchor.constraint(equalToConstant: size),
+            selectionBackgroundView.heightAnchor.constraint(equalTo: selectionBackgroundView.widthAnchor)
+        ])
+        
+        selectionBackgroundView.layer.cornerRadius = size / 2
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-      super.traitCollectionDidChange(previousTraitCollection)
-
-      layoutSubviews()
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        layoutSubviews()
     }
     
-    private func config(){
+    private func configure(){
         isAccessibilityElement = true
         accessibilityTraits = .button
         
